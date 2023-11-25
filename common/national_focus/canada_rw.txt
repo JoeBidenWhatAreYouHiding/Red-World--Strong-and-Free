@@ -1,0 +1,4067 @@
+focus_tree = {
+	id = canada_focus
+	country = {
+		factor = 0
+		modifier = {
+			add = 20
+			tag = CAN
+		}
+	}
+	default = no
+	continuous_focus_position = { x = 27000 y = 1100 }
+		
+	### Prime Minister Manning - Opening ###
+
+	focus = {
+		id = CAN_prime_minister_manning
+		icon = GFX_goal_CAN_prime_minister_manning
+		cost = 7
+		x = 11
+		y = 1
+
+		available = {
+			has_country_leader = {
+				name = "Preston Manning"
+				ruling_only = yes
+            }
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			custom_effect_tooltip = can_manning_pm
+		}
+	}
+	
+	focus = {
+		id = CAN_harpers_folly
+		icon = GFX_goal_CAN_harpers_folly
+		cost = 7
+		
+		prerequisite = {
+			focus = CAN_prime_minister_manning
+		}
+		
+		relative_position_id = CAN_prime_minister_manning
+		x = 0
+		y = 1
+
+		available = {
+			has_country_leader = {
+				name = "Preston Manning"
+				ruling_only = yes
+            }
+			has_country_flag = by_election_results
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = rw_canada.6
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.04
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_pander_to_reformites
+		icon = GFX_goal_CAN_reform_pandering
+		cost = 7
+		
+		prerequisite = {
+			focus = CAN_harpers_folly
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_allign_fiscal_conservatives
+		}
+		
+		relative_position_id = CAN_prime_minister_manning
+		x = -1
+		y = 2
+
+		available = {
+			has_country_leader = {
+				name = "Preston Manning"
+				ruling_only = yes
+            }
+			has_country_flag = reform_party_unites_with_pcs
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.02
+			}
+			swap_ideas = {
+				remove_idea = CAN_backbench_revolt
+				add_idea = CAN_reform_pandering
+			}
+			hidden_effect = {
+				country_event = {
+					id = rw_canada.10
+					days = 36
+				}
+			}
+			add_ideas = canada_sic_stephen_harper
+		}
+	}
+	
+	focus = {
+		id = CAN_focus_on_alberta
+		icon = GFX_goal_CAN_focus_on_alberta
+		cost = 7
+		
+		prerequisite = {
+			focus = CAN_pander_to_reformites
+		}
+		
+		relative_position_id = CAN_prime_minister_manning
+		x = -1
+		y = 4
+
+		available = {
+			has_country_leader = {
+				name = "Preston Manning"
+				ruling_only = yes
+            }
+			has_country_flag = reform_party_unites_with_pcs
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			470 = {
+				add_extra_state_shared_building_slots = 1
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.02
+			}
+			swap_ideas = {
+				remove_idea = CAN_reform_pandering
+				add_idea = CAN_reform_pandering2
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_allign_fiscal_conservatives
+		icon = GFX_goal_CAN_fiscal_conservatives
+		cost = 7
+		
+		prerequisite = {
+			focus = CAN_harpers_folly
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_pander_to_reformites
+		}
+		
+		relative_position_id = CAN_prime_minister_manning
+		x = 1
+		y = 2
+
+		available = {
+			has_country_leader = {
+				name = "Preston Manning"
+				ruling_only = yes
+            }
+			has_country_flag = reform_party_unites_with_pcs
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.02
+			}
+			swap_ideas = {
+				remove_idea = CAN_backbench_revolt
+				add_idea = CAN_pc_roots
+			}
+			hidden_effect = {
+				country_event = {
+					id = rw_canada.16
+					days = 36
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_focus_on_ontario
+		icon = GFX_goal_CAN_focus_on_ontario
+		cost = 7
+		
+		prerequisite = {
+			focus = CAN_allign_fiscal_conservatives
+		}
+		
+		relative_position_id = CAN_prime_minister_manning
+		x = 1
+		y = 4
+
+		available = {
+			has_country_leader = {
+				name = "Preston Manning"
+				ruling_only = yes
+            }
+			has_country_flag = reform_party_unites_with_pcs
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.02
+			}
+			682 = {
+				add_extra_state_shared_building_slots = 1
+			}
+			swap_ideas = {
+				remove_idea = CAN_pc_roots
+				add_idea = CAN_pc_roots2
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_rehabilitate_mulroney
+		icon = GFX_goal_CAN_mulroney_dream
+		cost = 7
+		
+		prerequisite = {
+			focus = CAN_allign_fiscal_conservatives
+			focus = CAN_pander_to_reformites
+		}
+		
+		relative_position_id = CAN_prime_minister_manning
+		x = 0
+		y = 3
+
+		available = {
+			has_country_leader = {
+				name = "Preston Manning"
+				ruling_only = yes
+            }
+			has_country_flag = reform_party_unites_with_pcs
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = CAN_mulroney_dream
+			country_event = rw_canada.14
+		}
+	}
+	
+	focus = {
+		id = CAN_2010_democratic_league_review
+		icon = GFX_goal_CAN_2010_democratic_league_summit
+		cost = 7
+		
+		prerequisite = {
+			focus = CAN_prime_minister_manning
+		}
+		
+		relative_position_id = CAN_prime_minister_manning
+		x = -2
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			every_country = {
+				limit = { is_in_faction_with = CAN }
+				country_event = canada_diplo.1
+				add_command_power = 20
+				army_experience = 20
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_british_ties
+		icon = GFX_goal_CAN_mend_british_relations
+		cost = 7
+		
+		prerequisite = {
+			focus = CAN_2010_democratic_league_review
+		}
+		
+		relative_position_id = CAN_2010_democratic_league_review
+		x = -1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			ENG = {
+				add_opinion_modifier = {
+				    target = CAN
+				    modifier = repaired_relations
+			    }
+			}
+			add_opinion_modifier = {
+				target = ENG
+				modifier = repaired_relations
+			}
+			ENG = {
+				country_event = canada_diplo.2
+			}
+		}
+	}
+
+	focus = {
+		id = CAN_our_dependencies
+		icon = GFX_goal_CAN_our_dependencies
+		cost = 7
+		
+		prerequisite = {
+			focus = CAN_british_ties
+		}
+		
+		relative_position_id = CAN_2010_democratic_league_review
+		x = 0
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			every_country = {
+				limit = { has_idea = CAN_subject_reliance_on_canada }
+				swap_ideas = {
+					remove_idea = CAN_subject_reliance_on_canada
+					add_idea = CAN_subject_reliance_on_canada2
+				}
+				add_political_power = 100
+			}
+			add_stability = 0.05
+		}
+	}
+	
+	focus = {
+		id = CAN_attack_the_liberals
+		icon = GFX_goal_CAN_red_orange_scare
+		cost = 7
+		
+		prerequisite = {
+			focus = CAN_prime_minister_manning
+		}
+		
+		relative_position_id = CAN_prime_minister_manning
+		x = 2
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = CAN_attack_the_liberals
+				days = 160
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_play_into_anti_american_fears
+		icon = GFX_goal_CAN_anti_immigrant_rhetoric
+		cost = 7
+		
+		prerequisite = {
+			focus = CAN_attack_the_liberals
+		}
+		
+		relative_position_id = CAN_attack_the_liberals
+		x = 1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_stability = -0.02
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.02
+			}
+			add_political_power = 60
+			country_event = rw_canada.38
+		}
+	}
+	
+	focus = {
+		id = CAN_manning_doctrine
+		icon = GFX_goal_CAN_manning_strategy
+		cost = 7
+		
+		prerequisite = {
+			focus = CAN_play_into_anti_american_fears
+		}
+		
+		relative_position_id = CAN_attack_the_liberals
+		x = 0
+		y = 2
+
+		available = {
+			OR = {
+				has_completed_focus = CAN_focus_on_alberta
+				has_completed_focus = CAN_focus_on_ontario
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.04
+			}
+			if = {
+				limit = {
+					has_idea = CAN_pc_roots2
+				}
+				swap_ideas = {
+					remove_idea = CAN_pc_roots2
+					add_idea = CAN_manning_doctrine_pc
+				}
+			}
+			if = {
+				limit = {
+					has_idea = CAN_reform_pandering2
+				}
+				swap_ideas = {
+					remove_idea = CAN_reform_pandering2
+					add_idea = CAN_manning_doctrine_reform
+				}
+			}
+			hidden_effect = {
+				country_event = {
+					id = rw_canada.19
+					days = 35
+				}
+			}
+		}
+	}
+	
+	######################
+	### 2011 Elections ###
+	######################
+	
+	focus = {
+		id = CAN_decision_2011
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		x = 11
+		y = 6
+
+		available = {
+			has_country_flag = CAN_2011_elections_held
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			custom_effect_tooltip = can_blank_tt
+		}
+	}
+	
+	### Progressive Conservative Victory ###
+	
+	focus = {
+		id = CAN_pc_victory
+		icon = GFX_goal_CAN_progressive_conservatives
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_decision_2011
+		}
+		
+		relative_position_id = CAN_decision_2011
+		x = -20
+		y = 1
+
+		available = {
+			has_country_flag = progcon_victory
+			OR = {
+				has_government = national_conservative
+				has_government = nationalist
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	## - Trump Branch
+	
+	focus = {
+		id = CAN_prime_minister_trump
+		icon = GFX_goal_CAN_prime_minister_trump
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_pc_victory
+		}
+		
+		relative_position_id = CAN_pc_victory
+		x = 6
+		y = 1
+
+		available = {
+			has_country_leader = {
+				name = "Donald Trump"
+				ruling_only = yes
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_codify_trumpism
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_prime_minister_trump
+		}
+		
+		relative_position_id = CAN_prime_minister_trump
+		x = -3
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_continue_ontario_partnership
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_codify_trumpism
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_replace_the_fords
+		}
+		
+		relative_position_id = CAN_codify_trumpism
+		x = -1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_sweep_scandals_away
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_continue_ontario_partnership
+		}
+	
+		relative_position_id = CAN_codify_trumpism
+		x = -2
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_trump_the_businessman
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_sweep_scandals_away
+		}
+	
+		relative_position_id = CAN_codify_trumpism
+		x = -2
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_replace_the_fords
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_codify_trumpism
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_continue_ontario_partnership
+		}
+		
+		relative_position_id = CAN_codify_trumpism
+		x = 1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_establishment_cabinet
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_replace_the_fords
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_emirges_in_the_administration
+		}
+		
+		relative_position_id = CAN_codify_trumpism
+		x = 0
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_trump_the_reformer
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_establishment_cabinet
+		}
+		
+		relative_position_id = CAN_codify_trumpism
+		x = 0
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = CAN_emirges_in_the_administration
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_replace_the_fords
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_establishment_cabinet
+		}
+		
+		relative_position_id = CAN_codify_trumpism
+		x = 2
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_trump_the_populist
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_emirges_in_the_administration
+		}
+		
+		relative_position_id = CAN_codify_trumpism
+		x = 2
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_protect_the_majority
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_trump_the_businessman
+			focus = CAN_trump_the_populist
+			focus = CAN_trump_the_reformer
+		}
+		
+		relative_position_id = CAN_codify_trumpism
+		x = 0
+		y = 4
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_promote_buisness_culture
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_prime_minister_trump
+		}
+		
+		relative_position_id = CAN_prime_minister_trump
+		x = 0
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_canada_first
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_prime_minister_trump
+		}
+		
+		relative_position_id = CAN_prime_minister_trump
+		x = 2
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_american_travel_bans
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_promote_buisness_culture
+		}
+		prerequisite = {
+			focus = CAN_canada_first
+		}
+		
+		relative_position_id = CAN_prime_minister_trump
+		x = 1
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_build_the_wall
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_american_travel_bans
+		}
+		
+		relative_position_id = CAN_prime_minister_trump
+		x = 1
+		y = 4
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_reverse_free_trade_course
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_promote_buisness_culture
+		}
+		prerequisite = {
+			focus = CAN_canada_first
+		}
+		
+		relative_position_id = CAN_prime_minister_trump
+		x = 3
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_liberalise_oil_industry
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_reverse_free_trade_course
+		}
+		
+		relative_position_id = CAN_prime_minister_trump
+		x = 4
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_buy_canadian
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_reverse_free_trade_course
+		}
+		
+		relative_position_id = CAN_prime_minister_trump
+		x = 2
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_trade_wars_against_communism
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_buy_canadian
+		}
+		prerequisite = {
+			focus = CAN_liberalise_oil_industry
+		}
+		
+		relative_position_id = CAN_prime_minister_trump
+		x = 3
+		y = 4
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_trump_tax_cut
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_trade_wars_against_communism
+		}
+		prerequisite = {
+			focus = CAN_build_the_wall
+		}
+		
+		relative_position_id = CAN_prime_minister_trump
+		x = 2
+		y = 5
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	## - Harper/Manning Branch
+	
+	focus = {
+		id = CAN_manning_second_term
+		icon = GFX_goal_CAN_mannings_second_term
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_pc_victory
+		}
+		
+		relative_position_id = CAN_pc_victory
+		x = -6
+		y = 1
+
+		available = {
+			has_country_leader = {
+				name = "Preston Manning"
+				ruling_only = yes
+            }
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_prime_minister_harper
+		icon = GFX_goal_CAN_prime_minister_harper
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_pc_victory
+		}
+		
+		relative_position_id = CAN_manning_second_term
+		x = -2
+		y = 0
+
+		available = {
+			has_country_leader = {
+				name = "Stephen Harper"
+				ruling_only = yes
+            }
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_sweep_aside_disunity
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_prime_minister_harper
+			focus = CAN_manning_second_term
+		}
+		
+		relative_position_id = CAN_manning_second_term
+		x = 2
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_undercut_the_canadian_alliance
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_sweep_aside_disunity
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_focus_on_leftwing_threats
+		}
+		
+		relative_position_id = CAN_sweep_aside_disunity
+		x = -1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_fiscal_and_social_conservatism
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_undercut_the_canadian_alliance
+		}
+		
+		relative_position_id = CAN_sweep_aside_disunity
+		x = -2
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_adress_western_alienation
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_fiscal_and_social_conservatism
+		}
+		
+		relative_position_id = CAN_sweep_aside_disunity
+		x = -1
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_focus_on_leftwing_threats
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_sweep_aside_disunity
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_undercut_the_canadian_alliance
+		}
+		
+		relative_position_id = CAN_sweep_aside_disunity
+		x = 1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_apologize_to_aboriginals
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_focus_on_leftwing_threats
+		}
+		
+		relative_position_id = CAN_sweep_aside_disunity
+		x = 2
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_reopen_quebec_soverignty_issue
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_apologize_to_aboriginals
+		}
+		
+		relative_position_id = CAN_sweep_aside_disunity
+		x = 1
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_ammend_the_immigration_and_refugee_protection_act
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_undercut_the_canadian_alliance
+			focus = CAN_focus_on_leftwing_threats
+		}
+		
+		relative_position_id = CAN_sweep_aside_disunity
+		x = 0
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_proudly_canadian
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_ammend_the_immigration_and_refugee_protection_act
+		}
+		prerequisite = {
+			focus = CAN_adress_western_alienation
+			focus = CAN_reopen_quebec_soverignty_issue
+		}
+		
+		relative_position_id = CAN_sweep_aside_disunity
+		x = 0
+		y = 4
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_cut_the_fat
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_manning_second_term
+			focus = CAN_prime_minister_harper
+		}
+		
+		relative_position_id = CAN_manning_second_term
+		x = -2
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_reduce_corprate_taxes
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_manning_second_term
+			focus = CAN_prime_minister_harper
+		}
+		
+		relative_position_id = CAN_manning_second_term
+		x = -4
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_aid_for_farmers
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_cut_the_fat
+		}
+		prerequisite = {
+			focus = CAN_reduce_corprate_taxes
+		}
+		
+		relative_position_id = CAN_manning_second_term
+		x = -1
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_abolish_the_wheat_board
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_aid_for_farmers
+		}
+		
+		relative_position_id = CAN_manning_second_term
+		x = -1
+		y = 4
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_global_market_action_plan
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_cut_the_fat
+		}
+		prerequisite = {
+			focus = CAN_reduce_corprate_taxes
+		}
+		
+		relative_position_id = CAN_manning_second_term
+		x = -3
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_funds_for_infrastructure
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_global_market_action_plan
+		}
+		
+		relative_position_id = CAN_manning_second_term
+		x = -4
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_oil_money
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_global_market_action_plan
+		}
+		
+		relative_position_id = CAN_manning_second_term
+		x = -2
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_trade_commissioner_service
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_oil_money
+		}
+		prerequisite = {
+			focus = CAN_funds_for_infrastructure
+		}
+		
+		relative_position_id = CAN_manning_second_term
+		x = -3
+		y = 4
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_a_growing_economy
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_adress_western_alienation
+		}
+		prerequisite = {
+			focus = CAN_reopen_quebec_soverignty_issue
+		}
+		prerequisite = {
+			focus = CAN_trade_commissioner_service
+		}
+		
+		relative_position_id = CAN_manning_second_term
+		x = -2
+		y = 5
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	### New Democrat Victory ###
+	
+	focus = {
+		id = CAN_ndp_victory
+		icon = GFX_goal_CAN_NDP
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_decision_2011
+		}
+		
+		relative_position_id = CAN_decision_2011
+		x = 18
+		y = 1
+
+		available = {
+			has_country_flag = ndp_victory
+			OR = {
+				has_government = new_democrat
+				has_government = moderate_socialist
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	## - Layton Branch
+	
+	focus = {
+		id = CAN_prime_minister_layton
+		icon = GFX_goal_CAN_prime_minister_layton
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_ndp_victory
+		}
+		
+		relative_position_id = CAN_ndp_victory
+		x = 6
+		y = 1
+
+		available = {
+			has_country_leader = {
+				name = "Jack Layton"
+				ruling_only = yes
+            }
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_institute_proportional_representation
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_prime_minister_layton
+		}
+		
+		relative_position_id = CAN_prime_minister_layton
+		x = 2
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_appease_centrists
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_institute_proportional_representation
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_legacy_of_the_ginger_group
+		}
+		
+		relative_position_id = CAN_institute_proportional_representation
+		x = -1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_work_with_the_liberals
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_appease_centrists
+		}
+		
+		relative_position_id = CAN_institute_proportional_representation
+		x = -2
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_comittment_to_nato
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_work_with_the_liberals
+		}
+		
+		relative_position_id = CAN_institute_proportional_representation
+		x = -1
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_legacy_of_the_ginger_group
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_institute_proportional_representation
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_appease_centrists
+		}
+		
+		relative_position_id = CAN_institute_proportional_representation
+		x = 1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_return_of_the_waffle
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_legacy_of_the_ginger_group
+		}
+		
+		relative_position_id = CAN_institute_proportional_representation
+		x = 2
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_encourage_peacekeeping
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_return_of_the_waffle
+		}
+		
+		relative_position_id = CAN_institute_proportional_representation
+		x = 1
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_aid_for_refugees
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_appease_centrists
+			focus = CAN_legacy_of_the_ginger_group
+		}
+		
+		relative_position_id = CAN_institute_proportional_representation
+		x = 0
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_social_progressivism
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_aid_for_refugees
+		}
+		prerequisite = {
+			focus = CAN_comittment_to_nato
+			focus = CAN_encourage_peacekeeping
+		}
+		
+		relative_position_id = CAN_institute_proportional_representation
+		x = 0
+		y = 4
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_protect_healthcare
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_prime_minister_layton
+		}
+		
+		relative_position_id = CAN_prime_minister_layton
+		x = -1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_support_the_homeless
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_prime_minister_layton
+		}
+		
+		relative_position_id = CAN_prime_minister_layton
+		x = -3
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_take_on_big_buisiness
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_protect_healthcare
+			focus = CAN_support_the_homeless
+		}
+		
+		relative_position_id = CAN_prime_minister_layton
+		x = -1
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_encourage_canadian_industry
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_take_on_big_buisiness
+		}
+		
+		relative_position_id = CAN_prime_minister_layton
+		x = -1
+		y = 4
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_take_on_the_banks
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_protect_healthcare
+			focus = CAN_support_the_homeless
+		}
+		
+		relative_position_id = CAN_prime_minister_layton
+		x = -3
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_organize_labour
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_take_on_the_banks
+		}
+		
+		relative_position_id = CAN_prime_minister_layton
+		x = -4
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_expand_social_programs
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_take_on_the_banks
+		}
+		
+		relative_position_id = CAN_prime_minister_layton
+		x = -2
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_rate_caps
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_expand_social_programs
+		}
+		prerequisite = {
+			focus = CAN_organize_labour
+		}
+		
+		relative_position_id = CAN_prime_minister_layton
+		x = -3
+		y = 4
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_mixed_economy
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_encourage_canadian_industry
+		}
+		prerequisite = {
+			focus = CAN_rate_caps
+		}
+		
+		relative_position_id = CAN_prime_minister_layton
+		x = -2
+		y = 5
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	## - Rae Branch
+	
+	focus = {
+		id = CAN_prime_minister_rae
+		icon = GFX_goal_CAN_prime_minister_rae
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_ndp_victory
+		}
+		
+		relative_position_id = CAN_ndp_victory
+		x = -4
+		y = 1
+
+		available = {
+			has_country_leader = {
+				name = "Bob Rae"
+				ruling_only = yes
+            }
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_a_fair_vote
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_prime_minister_rae
+		}
+		
+		relative_position_id = CAN_prime_minister_rae
+		x = -2
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_sway_the_liberals
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_a_fair_vote
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_prevent_backbench_revolt
+		}
+		
+		relative_position_id = CAN_a_fair_vote
+		x = -1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_new_broad_front
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_sway_the_liberals
+		}
+		
+		relative_position_id = CAN_a_fair_vote
+		x = -2
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_the_merger
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_new_broad_front
+			focus = CAN_appease_layton
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_liberals_at_arms_length
+		}
+		
+		relative_position_id = CAN_a_fair_vote
+		x = -1
+		y = 3
+
+		available = {
+			
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_the_merger
+		}
+	
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_prevent_backbench_revolt
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_a_fair_vote
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_sway_the_liberals
+		}
+		
+		relative_position_id = CAN_a_fair_vote
+		x = 1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_appease_layton
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_prevent_backbench_revolt
+		}
+		
+		relative_position_id = CAN_a_fair_vote
+		x = 2
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_liberals_at_arms_length
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_appease_layton
+			focus = CAN_new_broad_front
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_the_merger
+		}
+		
+		relative_position_id = CAN_a_fair_vote
+		x = 1
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_humanitarian_focus
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_sway_the_liberals
+			focus = CAN_prevent_backbench_revolt
+		}
+		
+		relative_position_id = CAN_a_fair_vote
+		x = 0
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_a_moderate_ndp
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_humanitarian_focus
+		}
+		prerequisite = {
+			focus = CAN_the_merger
+			focus = CAN_liberals_at_arms_length
+		}
+		
+		relative_position_id = CAN_a_fair_vote
+		x = 0
+		y = 4
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_expand_public_insurance
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_prime_minister_rae
+		}
+		
+		relative_position_id = CAN_prime_minister_rae
+		x = 0
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_job_creation_programs
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_prime_minister_rae
+		}
+		
+		relative_position_id = CAN_prime_minister_rae
+		x = 2
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_increase_social_spending
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_expand_public_insurance
+		}
+		prerequisite = {
+			focus = CAN_job_creation_programs
+		}
+		
+		relative_position_id = CAN_prime_minister_rae
+		x = 1
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_civil_service_cuts
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_increase_social_spending
+		}
+		
+		relative_position_id = CAN_prime_minister_rae
+		x = 1
+		y = 4
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_pro_business_policies
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_expand_public_insurance
+		}
+		prerequisite = {
+			focus = CAN_job_creation_programs
+		}
+		
+		relative_position_id = CAN_prime_minister_rae
+		x = 3
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_global_investment_networks
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_pro_business_policies
+		}
+		
+		relative_position_id = CAN_prime_minister_rae
+		x = 4
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_democratic_economic_forum
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_pro_business_policies
+		}
+		prerequisite = {
+			focus = CAN_increase_social_spending
+		}
+		
+		relative_position_id = CAN_prime_minister_rae
+		x = 2
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_nationwide_social_contract
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_democratic_economic_forum
+		}
+		prerequisite = {
+			focus = CAN_global_investment_networks
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_lip_service_to_labour
+		}
+		
+		relative_position_id = CAN_prime_minister_rae
+		x = 3
+		y = 4
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_lip_service_to_labour
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_democratic_economic_forum
+		}
+		prerequisite = {
+			focus = CAN_global_investment_networks
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_nationwide_social_contract
+		}
+		
+		relative_position_id = CAN_prime_minister_rae
+		x = 5
+		y = 4
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_mulroneys_dream_from_a_liberal_perspective
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_civil_service_cuts
+		}
+		prerequisite = {
+			focus = CAN_nationwide_social_contract
+			focus = CAN_lip_service_to_labour
+		}
+		
+		relative_position_id = CAN_prime_minister_rae
+		x = 3
+		y = 5
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	### Liberal Victory ###
+	
+	focus = {
+		id = CAN_liberal_victory
+		icon = GFX_goal_CAN_liberals
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_decision_2011
+		}
+		
+		relative_position_id = CAN_decision_2011
+		x = 0
+		y = 1
+
+		available = {
+			has_country_flag = liberal_victory
+			OR = {
+				has_government = centrist
+				has_government = liberal
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	## - Michael Ignatieff Branch
+	
+	focus = {
+		id = CAN_prime_minister_ignatieff
+		icon = GFX_goal_CAN_prime_minister_ignatieff
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_liberal_victory
+		}
+		
+		relative_position_id = CAN_liberal_victory
+		x = 3
+		y = 1
+
+		available = {
+			has_country_leader = {
+				name = "Michael Ignatieff"
+				ruling_only = yes
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_government_of_the_center
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_prime_minister_ignatieff
+		}
+		
+		relative_position_id = CAN_prime_minister_ignatieff
+		x = 2
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_legacy_of_martin
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_government_of_the_center
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_legacy_of_chretien
+		}
+		
+		relative_position_id = CAN_government_of_the_center
+		x = -1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_right_liberalism
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_legacy_of_martin
+		}
+		
+		relative_position_id = CAN_government_of_the_center
+		x = -2
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_legacy_of_chretien
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_government_of_the_center
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_legacy_of_martin
+		}
+		
+		relative_position_id = CAN_government_of_the_center
+		x = 1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_social_liberal_coalition
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_legacy_of_chretien
+		}
+		
+		relative_position_id = CAN_government_of_the_center
+		x = 2
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_immigration_fairness
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_legacy_of_martin
+			focus = CAN_legacy_of_chretien
+		}
+		
+		relative_position_id = CAN_government_of_the_center
+		x = 0
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_higher_education_passport
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_social_liberal_coalition
+			focus = CAN_right_liberalism
+		}
+		
+		prerequisite = {
+			focus = CAN_immigration_fairness
+		}
+		
+		relative_position_id = CAN_government_of_the_center
+		x = -1
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_no_more_scandals
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_social_liberal_coalition
+			focus = CAN_right_liberalism
+		}
+		
+		prerequisite = {
+			focus = CAN_immigration_fairness
+		}
+		
+		relative_position_id = CAN_government_of_the_center
+		x = 1
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_the_lesser_evil
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+
+		prerequisite = {
+			focus = CAN_higher_education_passport
+			focus = CAN_no_more_scandals
+		}
+		
+		relative_position_id = CAN_government_of_the_center
+		x = 0
+		y = 4
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_new_sponsorships
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_prime_minister_ignatieff
+		}
+		
+		relative_position_id = CAN_prime_minister_ignatieff
+		x = 0
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_competitive_tax_increases
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_prime_minister_ignatieff
+		}
+		
+		relative_position_id = CAN_prime_minister_ignatieff
+		x = -2
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_balance_the_books
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_new_sponsorships
+		}
+		prerequisite = {
+			focus = CAN_competitive_tax_increases
+		}
+		
+		relative_position_id = CAN_prime_minister_ignatieff
+		x = -1
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_pay_down_the_deficit
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_balance_the_books
+		}
+		
+		relative_position_id = CAN_prime_minister_ignatieff
+		x = -1
+		y = 4
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_in_the_green
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_pay_down_the_deficit
+		}
+		prerequisite = {
+			focus = CAN_strategic_innovation_fund
+		}
+		
+		relative_position_id = CAN_prime_minister_ignatieff
+		x = -2
+		y = 5
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	## - Trudeau Branch
+	
+	focus = {
+		id = CAN_prime_minister_trudeau
+		icon = GFX_goal_CAN_prime_minister_trudeau
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_liberal_victory
+		}
+		
+		relative_position_id = CAN_liberal_victory
+		x = -3
+		y = 1
+
+		available = {
+			has_country_leader = {
+				name = "Justin Trudeau"
+				ruling_only = yes
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_reform_the_senate
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_prime_minister_trudeau
+		}
+		
+		relative_position_id = CAN_prime_minister_trudeau
+		x = -2
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_legalize_marijuana
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_reform_the_senate
+		}
+		
+		relative_position_id = CAN_reform_the_senate
+		x = -1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_seven_historic_wrongs
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_legalize_marijuana
+		}
+		
+		relative_position_id = CAN_reform_the_senate
+		x = -2
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_indigenous_commitments
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_reform_the_senate
+		}
+		
+		relative_position_id = CAN_reform_the_senate
+		x = 1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_investigate_missing_ndigenous_women
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_indigenous_commitments
+		}
+		
+		relative_position_id = CAN_reform_the_senate
+		x = 2
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_accepting_refugees
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_legalize_marijuana
+		}
+		prerequisite = {
+			focus = CAN_indigenous_commitments
+		}
+		
+		relative_position_id = CAN_reform_the_senate
+		x = 0
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_concede_to_centrists
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_accepting_refugees
+		}
+		prerequisite = {
+			focus = CAN_investigate_missing_ndigenous_women
+		}
+		prerequisite = {
+			focus = CAN_seven_historic_wrongs
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_like_my_father_before_me
+		}
+		
+		relative_position_id = CAN_reform_the_senate
+		x = -1
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_like_my_father_before_me
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_accepting_refugees
+		}
+		prerequisite = {
+			focus = CAN_investigate_missing_ndigenous_women
+		}
+		prerequisite = {
+			focus = CAN_seven_historic_wrongs
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_concede_to_centrists
+		}
+		
+		relative_position_id = CAN_reform_the_senate
+		x = 1
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_trudeaumania
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_concede_to_centrists
+			focus = CAN_like_my_father_before_me
+		}
+		
+		relative_position_id = CAN_reform_the_senate
+		x = 0
+		y = 4
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_tax_increases_on_the_rich
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_prime_minister_trudeau
+		}
+		
+		relative_position_id = CAN_prime_minister_trudeau
+		x = 0
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_expand_the_trans_mountain_pipelines
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_prime_minister_trudeau
+		}
+		
+		relative_position_id = CAN_prime_minister_trudeau
+		x = 2
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_deficits_for_infrastructure
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_tax_increases_on_the_rich
+		}
+		prerequisite = {
+			focus = CAN_expand_the_trans_mountain_pipelines
+		}
+		
+		relative_position_id = CAN_prime_minister_trudeau
+		x = 1
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_lavlin_bobardier_deals
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_deficits_for_infrastructure
+		}
+		
+		relative_position_id = CAN_prime_minister_trudeau
+		x = 1
+		y = 4
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_self_balancing_budget
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_lavlin_bobardier_deals
+		}
+		prerequisite = {
+			focus = CAN_strategic_innovation_fund
+		}
+		
+		relative_position_id = CAN_prime_minister_trudeau
+		x = 2
+		y = 5
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	# - Shared Liberal
+	
+	focus = {
+		id = CAN_national_child_care_program
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_tax_increases_on_the_rich
+			focus = CAN_expand_the_trans_mountain_pipelines
+		}
+		prerequisite = {
+			focus = CAN_new_sponsorships
+			focus = CAN_competitive_tax_increases
+		}
+		
+		relative_position_id = CAN_prime_minister_trudeau
+		x = 3
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_enhance_the_cpp
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_national_child_care_program
+		}
+		
+		relative_position_id = CAN_prime_minister_trudeau
+		x = 4
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_carbon_tax
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_national_child_care_program
+		}
+		
+		relative_position_id = CAN_prime_minister_trudeau
+		x = 2
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_coronation
+		cost = 5
+		
+		prerequisite = {
+			focus = CAN_carbon_tax
+		}
+		prerequisite = {
+			focus = CAN_enhance_the_cpp
+		}
+		
+		relative_position_id = CAN_prime_minister_trudeau
+		x = 3
+		y = 4
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+}
