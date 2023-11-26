@@ -1,0 +1,51 @@
+on_actions = {
+   on_startup = { 
+     effect = { 
+	set_variable = { global.EU_Parliament_Seats = 705 }
+	set_variable = { global.EU_Total_Population = 0 }
+
+	every_country = { 
+		limit = { has_idea = idea_eu_member }
+	
+	add_to_variable = { global.EU_Total_Population = max_manpower_k }
+	}
+
+	every_country = { 
+		limit = { has_idea = idea_eu_member }
+	
+	set_variable = { EU_Seats_We_Own = 0 }
+	add_to_variable = { EU_Seats_We_Own = max_manpower_k }
+	divide_variable = { EU_Seats_We_Own = global.EU_Total_Population }
+	multiply_variable = { EU_Seats_We_Own = global.EU_Parliament_Seats }
+	round_variable = EU_Seats_We_Own 
+	}
+
+	every_country = { 
+	set_variable = { OPEC_oil_production = 0.1 }
+	set_variable = { OPEC_unity = 0.05 }
+	}
+     }
+   }
+   on_declare_war = {
+      effect = {
+         if = {
+            limit = {
+               ROOT = {
+                  original_tag = USA
+               }
+               FROM = {
+                  original_tag = MEX
+               }
+               NOT = {
+                  has_global_flag = RWE_2nd_Mexican_American_War
+               }
+            }
+            ROOT = {
+               activate_mission = RWE_Mex_America_War_White_Peace_Timeout
+
+               set_country_flag = RWE_2nd_Mexican_American_War_Fired_for_Tag
+            }
+         }
+      }
+   }
+}

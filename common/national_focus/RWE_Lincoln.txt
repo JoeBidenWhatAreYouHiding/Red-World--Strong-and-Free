@@ -1,0 +1,710 @@
+focus_tree = {
+	id = lincoln_tree
+	country = {
+		factor = 0
+		modifier = {
+			add = 20
+			tag = LIN
+		}
+	}
+
+	continuous_focus_position = { x = 50 y = 2200 }
+	default = no
+
+	focus = {
+		id = LIN_Resolve_the_Conflict
+		icon = GFX_goal_LIN_Unite_the_American_Right
+		available = { MOT = { has_war_with = LIN } }
+		x = 6
+		y = 0
+
+		cost = 3
+
+
+		completion_reward = {
+		add_war_support = 0.05
+		add_ideas = { limited_conscription }
+		}
+	}
+
+	focus = {
+		id = LIN_Income_from_Drugs
+		icon = GFX_goal_LIN_Funding
+		prerequisite = { focus = LIN_Resolve_the_Conflict }
+		available = { has_war_with = MOT }
+		mutually_exclusive = { focus = LIN_Arm_the_Militias }
+		x = 8
+		y = 1
+
+		cost = 3
+
+
+		completion_reward = {
+		add_ideas = RWE_LIN_Elusive_War_Funding
+		}
+	}
+
+	focus = {
+		id = LIN_Sell_Narcotics_in_California
+		icon = GFX_goal_LIN_West_Coast
+		prerequisite = { focus = LIN_Income_from_Drugs }
+		available = { has_war_with = MOT }
+		x = 7
+		y = 2
+
+		cost = 3
+
+
+		completion_reward = {
+		add_political_power = 50
+		add_manpower = 5000
+		add_offsite_building = { type = industrial_complex level = 1 }		
+		}
+	}
+
+	focus = {
+		id = LIN_Smuggling_is_our_Business
+		icon = GFX_goal_LIN_Rockies
+		prerequisite = { focus = LIN_Income_from_Drugs }
+		available = { has_war_with = MOT }
+		x = 9
+		y = 2
+
+		cost = 3
+
+
+		completion_reward = {
+		add_offsite_building = { type = arms_factory level = 2 }
+		}
+	}
+
+	focus = {
+		id = LIN_Empire_of_Needles
+		icon = GFX_goal_LIN_Throne_of_Needles
+		prerequisite = { focus = LIN_Smuggling_is_our_Business }
+		prerequisite = { focus = LIN_Sell_Narcotics_in_California }
+		available = { has_war_with = MOT }
+		x = 8
+		y = 3
+
+		cost = 3
+
+
+		completion_reward = {
+		swap_ideas = { remove_idea = RWE_LIN_Elusive_War_Funding add_idea = RWE_LIN_Elusive_War_Funding_1 }
+		}
+	}
+
+	focus = {
+		id = LIN_Surrounded_by_Enemies
+		icon = GFX_goal_LIN_Enemies
+		prerequisite = { focus = LIN_Expand_Training_Ranges focus = LIN_Empire_of_Needles }
+		available = { has_war_with = MOT }
+		x = 6
+		y = 4
+
+		cost = 3
+
+
+		completion_reward = {
+		add_ideas = RWE_LIN_Enemies_on_all_Sides 
+		}
+	}
+
+	focus = {
+		id = LIN_Arm_the_Militias
+		icon = GFX_goal_LIN_Arm_the_Militias
+		prerequisite = { focus = LIN_Resolve_the_Conflict }
+		available = { has_full_control_of_state = 890 has_war_with = MOT }
+		mutually_exclusive = { focus = LIN_Income_from_Drugs }
+		x = 4
+		y = 1
+
+		cost = 3
+
+
+		completion_reward = {
+		custom_effect_tooltip = LIN_MILITIA_1
+		hidden_effect = { load_oob = "LIN_MILITIA" }
+
+		}
+	}
+
+	focus = {
+		id = LIN_Ties_to_the_Black_Market
+		icon = GFX_goal_LIN_Underground_Ties
+		prerequisite = { focus = LIN_Arm_the_Militias }
+		available = { has_war_with = MOT }
+		x = 3
+		y = 2
+
+		cost = 3
+
+
+		completion_reward = {
+		add_political_power = -25
+add_equipment_to_stockpile = {
+    type = infantry_equipment
+    amount = 1000
+    producer = LIN
+}
+		}
+	}
+
+	focus = {
+		id = LIN_Glorify_our_Gun_Rights
+		icon = GFX_goal_LIN_Right_to_bear_Arms
+		prerequisite = { focus = LIN_Arm_the_Militias }
+		available = { has_war_with = MOT }
+		x = 5
+		y = 2
+
+		cost = 3
+
+
+		completion_reward = {
+		add_manpower = 10000
+		add_popularity = { ideology = national_bolshevik popularity = 0.03 }
+		add_popularity = { ideology = nationalist popularity = 0.03 }
+		add_popularity = { ideology = national_conservative popularity = 0.03 }
+		}
+	}
+
+	focus = {
+		id = LIN_Expand_Training_Ranges
+		icon = GFX_goal_Generic_Noose
+		prerequisite = { focus = LIN_Glorify_our_Gun_Rights }
+		prerequisite = { focus = LIN_Ties_to_the_Black_Market }
+		bypass = { has_idea = extensive_conscription }
+		available = { has_war_with = MOT }
+		x = 4
+		y = 3
+
+		cost = 3
+
+
+		completion_reward = {
+		add_ideas = extensive_conscription
+		add_popularity = { ideology = national_bolshevik popularity = 0.1 }
+		}
+	}
+
+	focus = {
+		id = LIN_Cement_the_Leadership_Principle
+		icon = GFX_goal_LIN_Leadership
+		available = { MOT = { exists = no } has_country_flag = LIN_CIVIL_WAR_SPENCER_WIN }
+		mutually_exclusive = { focus = LIN_End_to_Revolution }
+		x = 18
+		y = 0
+
+		cost = 2
+
+
+		completion_reward = {
+			add_country_leader_trait = supreme_chief
+		}
+	}
+
+	focus = {
+		id = LIN_Introduce_National_Bolshevism
+		icon = GFX_goal_LIN_Introduce_Nazbol
+		prerequisite = { focus = LIN_Cement_the_Leadership_Principle }
+		available = { }
+		x = 15
+		y = 1
+
+		cost = 2
+
+
+		completion_reward = {
+		add_popularity = { ideology = national_bolshevik popularity = 0.02 }
+		add_stability = -0.01
+		country_event = { id = lincoln.10 days = 0 }
+		}
+	}
+
+	focus = {
+		id = LIN_Core_Montana
+		icon = GFX_goal_MOT_American_Unity
+		prerequisite = { focus = LIN_Cement_the_Leadership_Principle }
+		x = 21
+		y = 1
+
+		cost = 10
+
+
+		completion_reward = {
+		add_stability = 0.05
+		every_state = { 
+		limit = { is_core_of = MOT }
+		add_core_of = LIN
+		}
+		}
+	}
+
+	focus = {
+		id = LIN_Strict_Government_Education
+		icon = GFX_goal_LIN_Education
+		prerequisite = { focus = LIN_Introduce_National_Bolshevism }
+		available = { }
+		x = 15
+		y = 2
+
+		cost = 5
+
+
+		completion_reward = {
+		add_popularity = { ideology = national_bolshevik popularity = 0.05 }
+		add_political_power = 25
+		add_ideas = { RWE_LIN_Surpressing_Creativity }
+		}
+	}
+
+	focus = {
+		id = LIN_Ban_Anti_Revolutionary_Literature
+		icon = GFX_goal_Generic_Prison_Camps
+		prerequisite = { focus = LIN_Strict_Government_Education }
+		available = { }
+		x = 15
+		y = 3
+
+		cost = 5
+
+
+		completion_reward = {
+		add_stability = -0.05
+		add_manpower = -15000
+		add_popularity = { ideology = national_conservative popularity = -0.05 }
+		add_popularity = { ideology = liberal popularity = -0.05 }
+		add_popularity = { ideology = centrist popularity = -0.05 }
+		add_popularity = { ideology = new_democrat popularity = -0.05 }
+		add_popularity = { ideology = moderate_socialist popularity = -0.05 }
+		}
+	}
+
+	focus = {
+		id = LIN_Embrace_Horseshoe_Theory
+		icon = GFX_goal_LIN_Embrace_Horseshoe
+		prerequisite = { focus = LIN_Introduce_National_Bolshevism }
+		available = { }
+		x = 12
+		y = 2
+
+		cost = 5
+
+
+		completion_reward = {
+		add_popularity = { ideology = centrist popularity = -0.05 }
+		swap_ideas = { remove_idea = RWE_LIN_Ideological_Enigma add_idea = RWE_LIN_Ideological_Enigma_1 }
+		}
+	}
+
+	focus = {
+		id = LIN_The_Visionary_Marx
+		icon = GFX_goal_LIN_Marx
+		prerequisite = { focus = LIN_Embrace_Horseshoe_Theory }
+		available = { }
+		x = 11
+		y = 3
+
+		cost = 5
+
+
+		completion_reward = {
+		add_popularity = { ideology = communist popularity = 0.05 }
+		add_timed_idea = { idea = RWE_LIN_Inspired_by_Marx days = 150 }
+		hidden_effect = { country_event = { id = lincoln.7 days = 5 } }
+		}
+	}
+
+	focus = {
+		id = LIN_The_Messiah_Mussolini
+		icon = GFX_goal_LIN_Mussolini
+		prerequisite = { focus = LIN_Embrace_Horseshoe_Theory }
+		available = { }
+		x = 13
+		y = 3
+
+		cost = 5
+
+
+		completion_reward = {
+		add_popularity = { ideology = fascist popularity = 0.05 }
+		swap_ideas = { remove_idea = RWE_LIN_Ideological_Enigma_1 add_idea = RWE_LIN_Ideological_Enigma_2 }
+		}
+	}
+
+	focus = {
+		id = LIN_Crush_the_Peoples_Opium
+		icon = GFX_goal_LIN_Collapsing_Church
+		prerequisite = { focus = LIN_The_Visionary_Marx }
+		prerequisite = { focus = LIN_The_Messiah_Mussolini }
+		available = { }
+		x = 10
+		y = 4
+
+		cost = 5
+
+
+		completion_reward = {
+		add_ideas = { RWE_LIN_Religious_Crackdown }
+		}
+	}
+
+	focus = {
+		id = LIN_Persecute_All_Faiths
+		icon = GFX_goal_Focus_FRA_Anti_Semetism
+		prerequisite = { focus = LIN_Crush_the_Peoples_Opium }
+		available = { }
+		x = 11
+		y = 5
+
+		cost = 5
+
+
+		completion_reward = {
+		add_popularity = { ideology = national_conservative popularity = -0.1 }
+		add_popularity = { ideology = liberal popularity = -0.05 }
+		add_political_power = 75
+		}
+	}
+
+	focus = {
+		id = LIN_No_References_to_God
+		icon = GFX_goal_LIN_Mary
+		prerequisite = { focus = LIN_Crush_the_Peoples_Opium }
+		available = { }
+		x = 9
+		y = 5
+
+		cost = 5
+
+
+		completion_reward = {
+		swap_ideas = { remove_idea = RWE_LIN_Religious_Crackdown add_idea = RWE_LIN_Religious_Crackdown_1 }
+		}
+	}
+
+	focus = {
+		id = LIN_Ban_Holy_Scriptures
+		icon = GFX_goal_Focus_Generic_Press_Censorship
+		prerequisite = { focus = LIN_No_References_to_God }
+		prerequisite = { focus = LIN_Persecute_All_Faiths }
+		mutually_exclusive = { focus = LIN_Advocate_for_Christian_Identity }
+		available = { }
+		x = 9
+		y = 6
+
+		cost = 5
+
+
+		completion_reward = {
+		hidden_effect = { country_event = { id = lincoln.8 days = 0 } }
+		swap_ideas = { remove_idea = RWE_LIN_Religious_Crackdown_1 add_idea = RWE_LIN_Religious_Crackdown_2 }
+		}
+	}
+
+	focus = {
+		id = LIN_Advocate_for_Christian_Identity
+		icon = GFX_goal_Focus_Generic_Press_Censorship
+		prerequisite = { focus = LIN_No_References_to_God }
+		prerequisite = { focus = LIN_Persecute_All_Faiths }
+		mutually_exclusive = { focus = LIN_Ban_Holy_Scriptures }
+		available = { }
+		x = 11
+		y = 6
+
+		cost = 5
+
+
+		completion_reward = {
+		hidden_effect = { country_event = { id = lincoln.8 days = 0 } }
+		swap_ideas = { remove_idea = RWE_LIN_Religious_Crackdown_1 add_idea = RWE_LIN_Religious_Crackdown_2 }
+		}
+	}
+
+	focus = {
+		id = LIN_Enshrine_the_Words
+		icon = focus_ideology_national_bolshevik
+		prerequisite = { focus = LIN_The_Visionary_Marx focus = LIN_The_Messiah_Mussolini }
+		prerequisite = { focus = LIN_Ban_Anti_Revolutionary_Literature }
+		available = { has_idea = RWE_LIN_Ideological_Enigma_2 }
+		x = 13
+		y = 4
+
+		cost = 5
+
+
+		completion_reward = {
+		custom_effect_tooltip = LIN_FUSE
+		hidden_effect = {
+		set_temp_variable = { LIN_total_popularity = 0 }
+		add_to_temp_variable = { LIN_total_popularity = party_popularity@communist }
+		add_to_temp_variable = { LIN_total_popularity = party_popularity@fascist }
+		}
+		add_popularity = { ideology = national_bolshevik popularity = LIN_total_popularity }		
+		swap_ideas = { remove_idea = RWE_LIN_Ideological_Enigma_2 add_idea = RWE_LIN_Ideological_Enigma_3 }
+		}
+	}
+
+	focus = {
+		id = LIN_White_Social_Security
+		icon = GFX_goal_LIN_White_Socialism
+		prerequisite = { focus = LIN_Introduce_National_Bolshevism }
+		available = { }
+		x = 17
+		y = 2
+
+		cost = 5
+
+
+		completion_reward = {
+		add_ideas = { RWE_LIN_White_Socialism }
+		}
+	}
+
+	focus = {
+		id = LIN_Party_for_the_All_American_Worker
+		icon = GFX_goal_LIN_Nazbol_Worker
+		prerequisite = { focus = LIN_White_Social_Security }
+		available = { }
+		x = 17
+		y = 3
+
+		cost = 5
+
+
+		completion_reward = {
+		add_popularity = { ideology = national_bolshevik popularity = 0.03 }
+		add_political_power = 25
+		country_event = { id = lincoln.6 days = 0 }
+		}
+	}
+
+	focus = {
+		id = LIN_Vanguard_of_the_American_Revolution
+		icon = GFX_goal_LIN_Founder
+		prerequisite = { focus = LIN_Party_for_the_All_American_Worker }
+		prerequisite = { focus = LIN_Ban_Anti_Revolutionary_Literature }
+		available = { }
+		x = 15
+		y = 4
+
+		cost = 5
+
+
+		completion_reward = {
+		add_ideas = { RWE_LIN_Revolutionary_Determinism }
+		}
+	}
+
+	focus = {
+		id = LIN_Cult_of_the_Constitution
+		icon = GFX_Focus_Bloody_Purge
+		prerequisite = { focus = LIN_Vanguard_of_the_American_Revolution }
+		available = { }
+		x = 16
+		y = 5
+
+		cost = 5
+
+
+		completion_reward = {
+		swap_ideas = { remove_idea = RWE_LIN_Revolutionary_Determinism add_idea = RWE_LIN_Revolutionary_Determinism_1 }
+		}
+	}
+
+	focus = {
+		id = LIN_The_Revolutionary_Founders
+		icon = GFX_goal_LIN_Rushmore
+		prerequisite = { focus = LIN_Vanguard_of_the_American_Revolution }
+		available = { }
+		x = 15
+		y = 6
+
+		cost = 2
+
+
+		completion_reward = {
+		country_event = { id = lincoln.11 days = 0 }
+add_war_support = 0.1
+add_stability = -0.05
+		}
+	}
+
+	focus = {
+		id = LIN_The_Father_Lincoln
+		icon = GFX_goal_LIN_Lincoln
+		prerequisite = { focus = LIN_Enshrine_the_Words }
+		available = { }
+		x = 13
+		y = 5
+
+		cost = 5
+
+
+		completion_reward = {
+		add_political_power = 100
+		country_event = { id = lincoln.5 days = 0 }
+		}
+	}
+
+	focus = {
+		id = LIN_Proclaim_Revolution_Abroad
+		icon = GFX_goal_LIN_Nazbol
+		prerequisite = { focus = LIN_The_Father_Lincoln }
+		available = { }
+		x = 13
+		y = 6
+
+		cost = 5
+
+
+		completion_reward = {
+		custom_effect_tooltip = LIN_WAR_DECISIONS
+		set_country_flag = LIN_WAR
+		swap_ideas = { remove_idea = RWE_LIN_Ideological_Enigma_3 add_idea = RWE_LIN_Ideological_Enigma_4 }
+		}
+	}
+
+	focus = {
+		id = LIN_Perfecting_the_Union
+		icon = GFX_goal_MOT_American_Unity
+		prerequisite = { focus = LIN_Core_Montana }
+		x = 20
+		y = 2
+
+		cost = 10
+
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = LIN_Institutionalize_the_Party
+		icon = GFX_goal_MOT_American_Unity
+		prerequisite = { focus = LIN_Perfecting_the_Union }
+		mutually_exclusive = { focus = LIN_Torches_of_the_Revolution }
+		x = 19 
+		y = 3
+
+		cost = 10
+
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = LIN_Torches_of_the_Revolution 
+		icon = GFX_goal_MOT_American_Unity
+		prerequisite = { focus = LIN_Perfecting_the_Union }
+		mutually_exclusive = { focus = LIN_Institutionalize_the_Party }
+		x = 21
+		y = 3
+
+		cost = 10
+
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = LIN_Ethnic_Heroes_of_the_Union
+		icon = GFX_goal_GRL_Workers_Rights
+		prerequisite = { focus = LIN_Party_for_the_All_American_Worker }
+		prerequisite = { focus = LIN_Institutionalize_the_Party focus = LIN_Torches_of_the_Revolution }
+		x = 18
+		y = 4
+
+		cost = 10
+
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = LIN_Wives_of_a_New_America
+		icon = GFX_goal_MOT_American_Unity
+		prerequisite = { focus = LIN_Ethnic_Heroes_of_the_Union }
+		x = 18
+		y = 6
+
+		cost = 10
+
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = LIN_Copying_the_Stasi
+		icon = GFX_goal_MOT_American_Unity
+		prerequisite = { focus = LIN_Core_Montana }
+		x = 23
+		y = 2
+
+		cost = 10
+
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = LIN_Civilian_Security_Organisation
+		icon = GFX_goal_MOT_American_Unity
+		prerequisite = { focus = LIN_Copying_the_Stasi }
+		x = 23
+		y = 3
+
+		cost = 10
+
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = LIN_War_Bolshevism
+		icon = GFX_goal_MOT_American_Unity
+		prerequisite = { focus = LIN_Institutionalize_the_Party focus = LIN_Torches_of_the_Revolution }
+		prerequisite = { focus = LIN_Civilian_Security_Organisation }
+		mutually_exclusive = { focus = LIN_The_White_Farmer_Ideal }
+		x = 21
+		y = 4
+
+		cost = 10
+
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = LIN_The_White_Farmer_Ideal 
+		icon = GFX_goal_MOT_American_Unity
+		prerequisite = { focus = LIN_Institutionalize_the_Party focus = LIN_Torches_of_the_Revolution }
+		prerequisite = { focus = LIN_Civilian_Security_Organisation }
+		mutually_exclusive = { focus = LIN_War_Bolshevism }
+		x = 24
+		y = 4
+
+		cost = 10
+
+
+		completion_reward = {
+
+		}
+	}

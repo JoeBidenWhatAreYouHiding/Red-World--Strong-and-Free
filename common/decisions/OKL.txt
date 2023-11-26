@@ -1,0 +1,463 @@
+OKL_Foreign_Policy = {
+
+	OKL_Reject_Unification_Principle = {
+
+		icon = generic_break_treaty
+
+		ai_will_do = {
+			factor = 100
+		}
+		fire_only_once = yes
+		available = {
+		OKL = { 
+		OR = { 
+		has_government = new_democrat
+		has_government = fascist
+		}
+		}
+		}
+		complete_effect = {
+		add_popularity = { ideology = nationalist popularity = -0.05 }
+		add_stability = 0.1
+		add_war_support = -0.1
+		add_political_power = 150
+		set_country_flag = OKL_REJECT_UNIFICATION
+	}
+	}
+
+	OKL_Midwestern_Security_Pact = {
+
+		icon = generic_nationalism
+
+		ai_will_do = {
+			factor = 100
+		}
+		fire_only_once = yes
+		available = {
+		OKL = { 
+		has_government = new_democrat
+		}
+		}
+		visible = { has_country_flag = OKL_REJECT_UNIFICATION }
+
+		complete_effect = {
+		create_faction = "Tulsa Protection Pact"
+	}
+	}
+
+	OKL_Reach_out_to_Texas = {
+
+		icon = generic_nationalism
+
+		ai_will_do = {
+			factor = 100
+		}
+		fire_only_once = yes
+		available = {
+		OKL = { 
+		has_government = new_democrat
+		is_faction_leader = yes
+		}
+		TEX = { exists = yes is_in_faction = no NOT = { has_war_with = OKL } }
+		}
+		visible = { has_country_flag = OKL_REJECT_UNIFICATION }
+
+		complete_effect = {
+		
+	}
+	}
+
+	OKL_Reach_out_to_Illinois = {
+
+		icon = generic_nationalism
+
+		ai_will_do = {
+			factor = 100
+		}
+		fire_only_once = yes
+		available = {
+		OKL = { 
+		has_government = new_democrat
+		is_faction_leader = yes
+		}
+		ILL = { exists = yes is_in_faction = no NOT = { has_war_with = OKL } }
+		}
+		visible = { has_country_flag = OKL_REJECT_UNIFICATION }
+
+		complete_effect = {
+		
+	}
+	}
+
+	OKL_Reach_out_to_the_Midwestern_Union = {
+
+		icon = generic_nationalism
+
+		ai_will_do = {
+			factor = 100
+		}
+		fire_only_once = yes
+		available = {
+		OKL = { 
+		has_government = new_democrat
+		is_faction_leader = yes
+		}
+		MWA = { exists = yes is_in_faction = no NOT = { has_war_with = OKL has_government = nationalist } }
+		}
+		visible = { has_country_flag = OKL_REJECT_UNIFICATION }
+
+		complete_effect = {
+		
+	}
+	}
+
+	OKL_Embrace_Unification_Spirit = {
+
+		icon = generic_nationalism
+
+		ai_will_do = {
+			factor = 100
+		}
+		fire_only_once = yes
+		available = {
+		OKL = { 
+		OR = {
+		has_government = liberal
+		has_government = nationalist
+		}
+		NOT = { has_decision = OKL_Reject_Unification_Principle }
+		}
+		}
+		complete_effect = {
+		add_stability = -0.05
+		add_war_support = 0.15
+		set_country_flag = OKL_EMBRACE_UNIFICATION
+	}
+	}
+
+	OKL_Seek_Texan_Protection = {
+
+		icon = generic_political_discourse
+
+		ai_will_do = {
+			factor = 50
+		}
+		fire_only_once = yes
+		available = {
+		OKL = { 
+		NOT = { has_war_with = TEX is_in_faction_with = TEX OR = { has_government = fascist has_government = nationalist } }
+		TEX = { exists = yes }
+		}
+		}
+
+		complete_effect = {
+		TEX = { country_event = { id = oklahoma.1 days = 1 } }
+	}
+	}
+
+	OKL_Apply_for_League_Membership = {
+
+		icon = generic_political_discourse
+
+		ai_will_do = {
+			factor = 25
+		}
+		fire_only_once = yes
+		available = {
+		OKL = { 
+		NOT = { has_war_with = CAN is_in_faction_with = CAN OR = { has_government = fascist has_government = nationalist } }
+		}
+		CAN = { is_faction_leader = yes exists = yes }
+		}
+
+		complete_effect = {
+		CAN = { country_event = { id = oklahoma.3 days = 1 } }
+	}
+	}
+
+	OKL_Unify_the_United_States = {
+
+		icon = generic_form_nation
+		cost = 100
+		ai_will_do = {
+			factor = 100
+		}
+		fire_only_once = yes
+		visible = { has_country_flag = OKL_EMBRACE_UNIFICATION }
+		available = {
+		has_integrated_NEA = yes
+		has_integrated_USA = yes
+		has_integrated_ILL = yes
+		has_integrated_GRL = yes
+		has_integrated_MWA = yes
+		has_integrated_MOT = yes
+		has_integrated_LIN = yes
+		has_integrated_UTA = yes
+		has_integrated_ARI = yes
+		has_integrated_PCA = yes
+		has_integrated_or_puppeted_TEX = yes
+		}
+
+		complete_effect = {
+		set_cosmetic_tag = USS_Democratic 
+		add_stability = 0.1
+		add_war_support = 0.1
+	}
+	}
+
+	OKL_Unify_Dixie = {
+
+		icon = generic_form_nation
+		cost = 100
+		ai_will_do = {
+			factor = 100
+		}
+		fire_only_once = yes
+		visible = { has_government = fascist }
+		available = {
+		has_country_flag = OKL_REJECT_UNIFICATION
+		owns_state = 900
+		owns_state = 371
+		owns_state = 370
+		owns_state = 365
+		owns_state = 367
+		owns_state = 363
+		owns_state = 362
+		owns_state = 369
+		owns_state = 375
+		}
+
+		complete_effect = {
+		set_cosmetic_tag = OKL_KKK_Dixie
+		set_capital = 365
+		add_state_core = 900
+		add_state_core = 899
+		add_state_core = 375
+		add_state_core = 894
+		add_state_core = 371
+		add_state_core = 372
+		add_state_core = 370
+		add_state_core = 367
+		add_state_core = 366
+		add_state_core = 365
+		add_state_core = 364
+		add_state_core = 368
+		add_state_core = 369
+		add_state_core = 363
+		add_state_core = 362
+		add_state_core = 902
+		set_country_flag = OKL_DIXIE_FORMED
+	}
+	}
+
+	OKL_Embrace_the_Golden_Circle_Idea = {
+
+		icon = generic_nationalism
+		cost = 100
+		ai_will_do = {
+			factor = 100
+		}
+		fire_only_once = yes
+		visible = { has_government = fascist has_country_flag = OKL_DIXIE_FORMED }
+		available = {
+		
+		}
+
+		complete_effect = {
+		set_country_flag = OKL_GOLDEN_CIRCLE
+		add_war_support = 0.2
+		add_popularity = { ideology = fascist popularity = 0.15 } 
+	}
+	}
+
+	OKL_All_of_Mexico_Movement = {
+
+		icon = generic_nationalism
+		cost = 50
+		ai_will_do = {
+			factor = 100
+		}
+		fire_only_once = yes
+		visible = { has_government = fascist has_country_flag = OKL_GOLDEN_CIRCLE }
+		available = {
+		OR = { 
+		MEX = { exists = yes }
+		}
+		OKL = { is_puppet = no }
+		}
+
+		complete_effect = {
+		create_wargoal = {
+    type = annex_everything
+    target = MEX
+}
+		add_war_support = 0.1
+	}
+	}
+
+	OKL_Remember_the_Fillibuster = {
+
+		icon = generic_nationalism
+		cost = 50
+		ai_will_do = {
+			factor = 100
+		}
+		fire_only_once = yes
+		visible = { has_government = fascist has_country_flag = OKL_GOLDEN_CIRCLE }
+		available = {
+		OR = { 
+		GUA = { exists = yes }
+		BLZ = { exists = yes }
+		CEA = { exists = yes }
+		PAN = { exists = yes }
+		}
+		OKL = { is_puppet = no }
+		}
+
+		complete_effect = {
+		create_wargoal = {
+    type = annex_everything
+    target = GUA
+}
+		create_wargoal = {
+    type = annex_everything
+    target = BLZ
+}
+		create_wargoal = {
+    type = annex_everything
+    target = CEA
+}
+		create_wargoal = {
+    type = annex_everything
+    target = PAN
+}
+		add_war_support = 0.05
+	}
+	}
+
+	OKL_Move_into_the_Carribean = {
+
+		icon = generic_nationalism
+		cost = 50
+		ai_will_do = {
+			factor = 100
+		}
+		fire_only_once = yes
+		visible = { has_government = fascist has_country_flag = OKL_GOLDEN_CIRCLE }
+		available = {
+		OR = { 
+		CUB = { exists = yes }
+		HAI = { exists = yes }
+		JAM = { exists = yes }
+		DOM = { exists = yes }
+		DMN = { exists = yes }
+		}
+		OKL = { is_puppet = no }		
+		}
+
+		complete_effect = {
+		create_wargoal = {
+    type = annex_everything
+    target = CUB
+}
+		create_wargoal = {
+    type = annex_everything
+    target = JAM
+}
+		create_wargoal = {
+    type = annex_everything
+    target = HAI
+}
+		create_wargoal = {
+    type = annex_everything
+    target = DOM
+}
+		create_wargoal = {
+    type = annex_everything
+    target = BHM
+}
+		create_wargoal = {
+    type = annex_everything
+    target = DMN
+}
+
+
+
+		add_war_support = 0.05
+	}
+	}
+
+	OKL_South_American_States = {
+
+		icon = generic_nationalism
+		cost = 50
+		ai_will_do = {
+			factor = 100
+		}
+		fire_only_once = yes
+		visible = { has_government = fascist has_country_flag = OKL_GOLDEN_CIRCLE }
+		available = {
+		OR = { 
+		VEN = { exists = yes }
+		COL = { exists = yes }
+		}
+		OKL = { is_puppet = no }			
+		}
+
+		complete_effect = {
+		create_wargoal = {
+    type = take_claimed_state 
+    target = COL
+}
+		create_wargoal = {
+    type = take_claimed_state 
+    target = VEN
+}
+add_state_claim = 493
+add_state_claim = 489
+add_state_claim = 307
+
+		add_war_support = 0.05
+	}
+	}
+
+	OKL_Unify_the_Golden_Circle = {
+
+		icon = generic_form_nation
+		cost = 50
+		ai_will_do = {
+			factor = 100
+		}
+		fire_only_once = yes
+		visible = { has_government = fascist has_country_flag = OKL_GOLDEN_CIRCLE }
+		available = {
+		owns_state = 315
+		owns_state = 318
+		owns_state = 319
+		owns_state = 689
+		owns_state = 489
+		owns_state = 493
+		owns_state = 304
+		owns_state = 307
+		owns_state = 313
+		owns_state = 311
+		owns_state = 317
+		owns_state = 277
+		MEX = { exists = no }
+		CEA = { exists = no }
+		GUA = { exists = no }
+		PAN = { exists = no }
+		BLZ = { exists = no }
+		CUB = { exists = no }
+		HAI = { exists = no }
+		DOM = { exists = no }
+		DMN = { exists = no }
+		}
+
+		complete_effect = {
+		set_cosmetic_tag = OKL_KKK_Golden_Circle 
+		set_capital = 315
+		add_popularity = { ideology = fascist popularity = 0.15 }
+
+	}
+	}

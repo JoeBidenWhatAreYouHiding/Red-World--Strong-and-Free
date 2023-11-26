@@ -1,0 +1,848 @@
+﻿add_namespace = france
+add_namespace = franceeu
+
+country_event = { #Bocquet retires
+	id = france.1
+	title = france.1.t
+	desc = france.1.d
+	picture = FRA_HQ
+	
+	is_triggered_only = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = france.1.a
+		ai_chance = {
+			factor = 100
+		}
+add_stability = -0.05
+retire_country_leader = yes
+create_country_leader = {
+	name = "National Assembly of France"
+	picture = "gfx/leaders/FRA/FRA_Parliament.tga"
+	ideology = marxist 
+}
+create_country_leader = {
+	name = "National Assembly of France"
+	picture = "gfx/leaders/FRA/FRA_Parliament.tga"
+	ideology = revolutionary_socialist_ideology 
+}
+create_country_leader = {
+	name = "National Assembly of France"
+	picture = "gfx/leaders/FRA/FRA_Parliament.tga"
+	ideology = european_moderate_socialist 
+}
+create_country_leader = {
+	name = "National Assembly of France"
+	picture = "gfx/leaders/FRA/FRA_Parliament.tga"
+	ideology = national_bolshevik_ideology 
+}
+set_country_flag = FRA_RESIGNATION
+complete_national_focus = FRA_SG_Resignation
+hidden_effect = { country_event = { id = france.3 days = 10 } 
+country_event = { id = france.17 days = 110 } 
+news_event = { id = newsrw.2 days = 1 } }
+	}
+
+}
+
+country_event = { #France declares Refugee Crisis
+	id = france.2
+	title = france.2.t
+	desc = france.2.d
+	picture = FRA_Refugees
+	
+	fire_only_once = yes
+	
+	trigger = {
+        tag = FRA
+	ITA = { has_completed_focus = ITA_refugee_crisis }
+	}
+	
+	mean_time_to_happen = {
+		days = 35
+	}
+	
+	option = { 
+		name = france.2.a
+		ai_chance = {
+			factor = 100
+		}
+add_ideas = FRA_Refugee_Crisis
+complete_national_focus = FRA_Declare_a_Refugee_Crisis
+hidden_effect = { country_event = { id = france.1 days = 10 } }
+	}
+
+}
+
+country_event = { #Le Pen makes her move
+	id = france.3
+	title = france.3.t
+	desc = france.3.d
+	picture = FRA_Le_Pen
+	
+	is_triggered_only = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = france.3.a
+		ai_chance = {
+			factor = 100
+		}
+add_popularity = { ideology = national_bolshevik popularity = 0.05 }
+hidden_effect = { country_event = { id = france.4 days = 10 } }
+	}
+
+}
+
+country_event = { #Reformists appeal to the younger
+	id = france.4
+	title = france.4.t
+	desc = france.4.d
+	picture = FRA_Reformist_Rally
+	
+	is_triggered_only = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = france.4.a
+		ai_chance = {
+			factor = 100
+		}
+add_popularity = { ideology = moderate_socialist popularity = 0.05 }
+hidden_effect = { country_event = { id = france.5 days = 10 } }
+	}
+
+}
+
+country_event = { #Melenchon candidacy
+	id = france.5
+	title = france.5.t
+	desc = france.5.d
+	picture = FRA_Melenchon
+	
+	is_triggered_only = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = france.5.a
+		ai_chance = {
+			factor = 100
+		}
+add_political_power = -20
+add_popularity = { ideology = moderate_socialist popularity = -0.02 }
+hidden_effect = { country_event = { id = france.8 days = 10 } }
+	}
+
+}
+
+country_event = { #Mainstream has to choose
+	id = france.6
+	title = france.6.t
+	desc = france.6.d
+	picture = FRA_Mainstream
+	
+	is_triggered_only = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #Go with boring le Hyaric
+		name = france.6.a
+		ai_chance = {
+			factor = 40
+		}
+		set_country_flag = FRA_CHOOSE_HYARIC
+hidden_effect = { country_event = { id = france.16 days = 30 } }
+	}
+
+	option = { #Jean-Luc Mélenchon
+		name = france.6.b
+		ai_chance = {
+			factor = 60
+		}
+		set_country_flag = FRA_CHOOSE_MELENCHON
+		country_event = { id = france.7 days = 2 }
+hidden_effect = { country_event = { id = france.16 days = 30 } }
+	}
+
+}
+
+country_event = { #Mainstream goes with a hardliner
+	id = france.7
+	title = france.7.t
+	desc = france.7.d
+	picture = FRA_Gremetz
+	
+	is_triggered_only = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #Go with boring le Hyaric
+		name = france.7.a
+		ai_chance = {
+			factor = 40
+		}
+		set_country_flag = FRA_ENABLE_HARDLINER
+		add_political_power = -40
+		add_popularity = { ideology = communist popularity = -0.03 }
+	}
+
+}
+
+country_event = { #Breton Terrorist Attack
+	id = france.8
+	title = france.8.t
+	desc = france.8.d
+	picture = FRA_Breton_Terrorism
+	
+	is_triggered_only = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #Go with boring le Hyaric
+		name = france.8.a
+		ai_chance = {
+			factor = 40
+		}
+		add_stability = -0.05
+hidden_effect = { country_event = { id = france.9 days = 10 } }
+	}
+
+}
+
+country_event = { #Refugee Camps form around Marseille
+	id = france.9
+	title = france.9.t
+	desc = france.9.d
+	picture = FRA_Refugee_Camps
+	
+	is_triggered_only = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #Go with boring le Hyaric
+		name = france.9.a
+		ai_chance = {
+			factor = 40
+		}
+		add_stability = -0.03
+		add_popularity = { ideology = national_bolshevik popularity = 0.03 }
+hidden_effect = { country_event = { id = france.10 days = 10 } }
+	}
+
+}
+
+country_event = { #Reformist Rallies in Universities
+	id = france.10
+	title = france.10.t
+	desc = france.10.d
+	picture = FRA_Students
+	
+	is_triggered_only = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #Go with boring le Hyaric
+		name = france.10.a
+		ai_chance = {
+			factor = 40
+		}
+hidden_effect = { country_event = { id = france.11 days = 10 } }
+		add_popularity = { ideology = moderate_socialist popularity = 0.05 }
+	}
+
+}
+
+country_event = { #Le Pen denounces her dead father
+	id = france.11
+	title = france.11.t
+	desc = france.11.d
+	picture = FRA_Father
+	
+	is_triggered_only = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #Go with boring le Hyaric
+		name = france.11.a
+		ai_chance = {
+			factor = 40
+		}
+hidden_effect = { country_event = { id = france.6 days = 10 } }
+		add_popularity = { ideology = national_bolshevik popularity = 0.02 }
+	}
+
+}
+
+country_event = { #French Welfareism
+	id = france.12
+	title = france.12.t
+	desc = france.12.d
+	picture = FRA_Welfare
+	
+	is_triggered_only = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = france.12.a
+		ai_chance = {
+			factor = 40
+		}
+		add_popularity = { ideology = national_bolshevik popularity = 0.03 }
+		add_stability = 0.03
+	}
+
+}
+
+
+country_event = { #Provide for Refugees
+	id = france.13
+	title = france.13.t
+	desc = france.13.d
+	picture = FRA_Support
+	
+	is_triggered_only = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = france.13.a
+		ai_chance = {
+			factor = 40
+		}
+		add_popularity = { ideology = communist popularity = 0.03 }
+		add_stability = 0.05
+		add_political_power = -20
+	}
+
+}
+
+country_event = { #All-French Housing
+	id = france.14
+	title = france.14.t
+	desc = france.14.d
+	picture = FRA_Housing
+	
+	is_triggered_only = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = france.14.a
+		ai_chance = {
+			factor = 40
+		}
+		add_popularity = { ideology = national_bolshevik popularity = 0.02 }
+		add_popularity = { ideology = communist popularity = 0.02 }
+		add_stability = 0.01
+	}
+
+}
+
+country_event = { #Roofs for Refugees
+	id = france.15
+	title = france.15.t
+	desc = france.15.d
+	picture = FRA_Housing_2
+	
+	is_triggered_only = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = france.15.a
+		ai_chance = {
+			factor = 40
+		}
+		add_popularity = { ideology = moderate_socialist popularity = 0.04 }
+		add_stability = 0.05
+		add_political_power = -30
+	}
+
+}
+
+country_event = { #Reformist Choose Candidate
+	id = france.16
+	title = france.16.t
+	desc = france.16.d
+	picture = FRA_Reformists
+	
+	is_triggered_only = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = france.16.a
+		ai_chance = {
+			factor = 70
+		}
+		set_country_flag = FRA_REFORMIST_JOSPIN	
+		add_popularity = { ideology = moderate_socialist popularity = 0.07 }
+	}
+
+	option = { 
+		name = france.16.b
+		ai_chance = {
+			factor = 70
+		}
+		set_country_flag = FRA_REFORMIST_DUFLOT
+		add_popularity = { ideology = moderate_socialist popularity = 0.04 }
+	}
+}
+
+country_event = { #Election is held
+	id = france.17
+	title = france.17.t
+	desc = france.17.d
+	picture = FRA_Election
+	
+	is_triggered_only = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #Jospin
+		name = france.17.a
+		ai_chance = {
+			factor = 20
+		}
+		trigger = { has_country_flag = FRA_REFORMIST_JOSPIN }
+		add_popularity = { ideology = moderate_socialist popularity = 0.05 }
+		create_country_leader = {
+		name = "Lionel Jospin"
+		picture = "gfx/leaders/FRA/FRA_Lionel_Jospin.tga"
+		ideology = marxist 
+		}
+		create_country_leader = {
+		name = "Lionel Jospin"
+		picture = "gfx/leaders/FRA/FRA_Lionel_Jospin.tga"
+		ideology = revolutionary_socialist_ideology 
+		}
+		create_country_leader = {
+		name = "Lionel Jospin"
+		picture = "gfx/leaders/FRA/FRA_Lionel_Jospin.tga"
+		ideology = european_moderate_socialist 
+		}
+		create_country_leader = {
+		name = "Lionel Jospin"
+		picture = "gfx/leaders/FRA/FRA_Lionel_Jospin.tga"
+		ideology = national_bolshevik_ideology 
+		}
+		set_politics = { ruling_party = moderate_socialist }
+		hidden_effect = { news_event = { id = newsrw.4 days = 0 } }
+	}
+
+	option = { #Duflot
+		name = france.17.b
+		ai_chance = {
+			factor = 20
+		}
+		trigger = { has_country_flag = FRA_REFORMIST_DUFLOT }
+		add_popularity = { ideology = moderate_socialist popularity = 0.05 }
+		create_country_leader = {
+		name = "Cécile Duflot"
+		picture = "gfx/leaders/FRA/FRA_Duflot.tga"
+		ideology = marxist 
+		}
+		create_country_leader = {
+		name = "Cécile Duflot"
+		picture = "gfx/leaders/FRA/FRA_Duflot.tga"
+		ideology = revolutionary_socialist_ideology 
+		}
+		create_country_leader = {
+		name = "Cécile Duflot"
+		picture = "gfx/leaders/FRA/FRA_Duflot.tga"
+		ideology = european_moderate_socialist 
+		}
+		create_country_leader = {
+		name = "Cécile Duflot"
+		picture = "gfx/leaders/FRA/FRA_Duflot.tga"
+		ideology = national_bolshevik_ideology 
+		}
+		set_politics = { ruling_party = moderate_socialist }
+		hidden_effect = { news_event = { id = newsrw.5 days = 0 } }
+	}
+
+	option = { #Duflot
+		name = france.17.c
+		ai_chance = {
+			factor = 20
+		}
+		trigger = { has_country_flag = FRA_CHOOSE_HYARIC }
+		add_popularity = { ideology = communist popularity = 0.05 }
+		create_country_leader = {
+		name = "Patrick le Hyaric"
+		picture = "gfx/leaders/FRA/FRA_Hyaric.tga"
+		ideology = marxist 
+		}
+		create_country_leader = {
+		name = "Patrick le Hyaric"
+		picture = "gfx/leaders/FRA/FRA_Hyaric.tga"
+		ideology = revolutionary_socialist_ideology 
+		}
+		create_country_leader = {
+		name = "Patrick le Hyaric"
+		picture = "gfx/leaders/FRA/FRA_Hyaric.tga"
+		ideology = european_moderate_socialist 
+		}
+		create_country_leader = {
+		name = "Patrick le Hyaric"
+		picture = "gfx/leaders/FRA/FRA_Hyaric.tga"
+		ideology = national_bolshevik_ideology 
+		}
+		set_politics = { ruling_party = communist }
+		hidden_effect = { news_event = { id = newsrw.7 days = 0 } }
+	}
+
+	option = { #Mélenchon
+		name = france.17.e
+		ai_chance = {
+			factor = 20
+		}
+		trigger = { has_country_flag = FRA_CHOOSE_MELENCHON }
+		add_popularity = { ideology = communist popularity = 0.05 }
+		create_country_leader = {
+		name = "Jean-Luc Mélenchon"
+		picture = "gfx/leaders/FRA/FRA_Melechon.tga"
+		ideology = marxist 
+		}
+		create_country_leader = {
+		name = "Patrick le Hyaric"
+		picture = "gfx/leaders/FRA/FRA_Melechon.tga"
+		ideology = revolutionary_socialist_ideology 
+		}
+		create_country_leader = {
+		name = "Patrick le Hyaric"
+		picture = "gfx/leaders/FRA/FRA_Melechon.tga"
+		ideology = european_moderate_socialist 
+		}
+		create_country_leader = {
+		name = "Patrick le Hyaric"
+		picture = "gfx/leaders/FRA/FRA_Melechon.tga"
+		ideology = national_bolshevik_ideology 
+		}
+		set_politics = { ruling_party = communist }
+		hidden_effect = { news_event = { id = newsrw.6 days = 0 } }
+	}
+
+	option = { #Maxime Gremetz
+		name = france.17.f
+		ai_chance = {
+			factor = 20
+		}
+		trigger = { has_country_flag = FRA_ENABLE_HARDLINER }
+		add_popularity = { ideology = communist popularity = 0.05 }
+		create_country_leader = {
+		name = "Maxime Gremetz"
+		picture = "gfx/leaders/FRA/FRA_Maxime_Gremetz.tga"
+		ideology = marxist 
+		}
+		create_country_leader = {
+		name = "Maxime Gremetz"
+		picture = "gfx/leaders/FRA/FRA_Maxime_Gremetz.tga"
+		ideology = revolutionary_socialist_ideology 
+		}
+		create_country_leader = {
+		name = "Maxime Gremetz"
+		picture = "gfx/leaders/FRA/FRA_Maxime_Gremetz.tga"
+		ideology = european_moderate_socialist 
+		}
+		create_country_leader = {
+		name = "Maxime Gremetz"
+		picture = "gfx/leaders/FRA/FRA_Maxime_Gremetz.tga"
+		ideology = national_bolshevik_ideology 
+		}
+		set_politics = { ruling_party = communist }
+		hidden_effect = { news_event = { id = newsrw.8 days = 0 } }
+	}
+
+	option = { #Marine Le Pen
+		name = france.17.g
+		ai_chance = {
+			factor = 20
+		}
+		add_popularity = { ideology = national_bolshevik popularity = 0.05 }
+		create_country_leader = {
+		name = "Marine le Pen"
+		picture = "gfx/leaders/FRA/FRA_Le_Pen.tga"
+		ideology = marxist 
+		}
+		create_country_leader = {
+		name = "Marine le Pen"
+		picture = "gfx/leaders/FRA/FRA_Le_Pen.tga"
+		ideology = revolutionary_socialist_ideology 
+		}
+		create_country_leader = {
+		name = "Marine le Pen"
+		picture = "gfx/leaders/FRA/FRA_Le_Pen.tga"
+		ideology = european_moderate_socialist 
+		}
+		create_country_leader = {
+		name = "Marine le Pen"
+		picture = "gfx/leaders/FRA/FRA_Le_Pen.tga"
+		ideology = national_bolshevik_ideology 
+		}
+		set_politics = { ruling_party = national_bolshevik }
+		hidden_effect = { news_event = { id = newsrw.3 days = 0 } }
+	}
+}
+
+
+country_event = { #Frexit victory
+	id = france.18
+	title = france.18.t
+	desc = france.18.d
+	picture = FRA_Refugees
+	
+	is_triggered_only = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #
+		name = france.18.a
+		
+		news_event = { id = newsrw.25 days = 0 } 
+	}
+
+
+}
+
+country_event = { #France falls apart
+	id = france.99
+	title = france.99.t
+	desc = france.99.d
+	picture = FRA_Refugees
+	
+	is_triggered_only = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #
+		name = france.99.a
+		FRN = { transfer_state = 21 } 
+		FRN = { transfer_state = 1 } 
+		FRN = { transfer_state = 853 } 
+		FRN = { transfer_state = 735 } 
+		FRN = { transfer_state = 32 } 
+		FRN = { transfer_state = 20 } 
+		FRN = { transfer_state = 22 } 
+		FRN = { transfer_state = 31 } 
+		FRN = { transfer_state = 26 } 
+		declare_war_on = {
+   		 target = FRN
+   		 type = annex_everything
+		}
+		news_event = { id = newsrw.11 days = 0 } 
+	}
+
+
+}
+
+country_event = { #Retreat to Corsica
+	id = france.100
+	title = france.100.t
+	desc = france.100.d
+	picture = FRA_Refugees
+	
+	fire_only_once = yes
+	
+	trigger = {
+        tag = FRN
+
+	}
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #
+		name = france.100.a
+		FRA = { transfer_state = 21 } 
+		FRA = { transfer_state = 853 } 
+		FRA = { transfer_state = 735 } 
+		FRA = { transfer_state = 32 } 
+		FRA = { transfer_state = 20 } 
+		FRA = { transfer_state = 22 } 
+		FRA = { transfer_state = 31 } 
+		FRA = { transfer_state = 26 } 
+
+		FRN = { transfer_state = 1 } 
+		FRA = { white_peace = FRN }
+		FRA = { add_stability = 0.15 }
+		set_country_flag = FRN_CORSICA_RETREAT 
+		news_event = { id = newsrw.12 days = 0 } 
+	}
+}
+
+country_event = { #Corsican Politics Set-up
+	id = france.101
+	title = france.101.t
+	desc = france.101.d
+	picture = FRA_Refugees
+	
+	fire_only_once = yes
+	
+	trigger = {
+        tag = FRN
+	has_country_flag = FRN_CORSICA_RETREAT 
+	}
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #
+		name = france.101.a
+		hidden_effect = { 
+	
+		set_popularities = { 
+		fascist = 23
+		nationalist = 12
+		monarchist = 10
+		national_bolshevik = 5
+		national_conservative = 0
+		centrist = 0
+		liberal = 10
+		new_democrat = 10
+		moderate_socialist = 0
+		revolutionary_socialist = 25
+		communist = 5
+		}
+		set_party_name = { 
+  		ideology = revolutionary_socialist
+   		long_name = "Corsican National Liberation Front"
+    		name = "FLNC"
+		}
+		set_party_name = { 
+  		ideology = national_bolshevik
+   		long_name = "Corsican National Liberation Front"
+    		name = "FLNC"
+		}
+		set_party_name = { 
+  		ideology = new_democrat
+   		long_name = "Corsican Nation Party"
+    		name = "Nation Party"
+		}		
+		set_party_name = { 
+  		ideology = communist
+   		long_name = "Anti-Separatist People's Party"
+    		name = "Anti-Separatist Party"
+		}
+		set_party_name = { 
+  		ideology = monarchist
+   		long_name = "Bonapartist Central Committee"
+    		name = "Bonapartist Committee"
+		}
+		set_party_name = { 
+  		ideology = liberal
+   		long_name = "Corsican Liberal Party"
+    		name = "Liberal Party"
+		}
+		create_country_leader = {
+		name = "Jacques Casamarta"
+		picture = "gfx/leaders/FRA/FRA_Jacques_Casamarta.tga"
+		ideology = marxist 
+		}
+		create_country_leader = {
+		name = "Jean-Michel Rossi"
+		picture = "gfx/leaders/FRA/COR_Jean_Michel_Rossi.tga"
+		ideology = national_communist 
+		}
+		create_country_leader = {
+		name = "Gilles Simeoni"
+		picture = "gfx/leaders/FRA/COR_Simeoni.tga"
+		ideology = new_democrat_ideology 
+		}
+		create_country_leader = {
+		name = "Marcel Lorenzoni"
+		picture = "gfx/leaders/FRA/COR_Marcel_Lorenzoni.tga"
+		ideology = third_international_theory 
+		}
+		create_country_leader = {
+		name = "Valérie Bozzi"
+		picture = "gfx/leaders/FRA/COR_Valerie_Bozzi.tga"
+		ideology = fiscal_conservative 
+		}
+		create_country_leader = {
+		name = "Jean-Charles Orsucci"
+		picture = "gfx/leaders/FRA/COR_Orsucci.tga"
+		ideology = social_liberal 
+		}
+		create_country_leader = {
+		name = "Jean-Christophe I"
+		picture = "gfx/leaders/FRA/FRA_Jean_Christophe_Napoleon.tga"
+		ideology = absolute_monarchist 
+		}
+		create_country_leader = {
+		name = "Charles Giacomi"
+		picture = "gfx/leaders/FRA/COR_Charles_Giacomi.tga"
+		ideology = fascist_ideology 
+		}
+		set_politics = { ruling_party = revolutionary_socialist }
+	}
+
+	}
+
+
+}
+
+country_event = { #Corsican separatists take control
+	id = france.102
+	title = france.102.t
+	desc = france.102.d
+	picture = FRA_Refugees
+	
+	is_triggered_only = yes
+	
+	mean_time_to_happen = {
+		days = 30
+	}
+	
+	option = { #
+		name = france.102.a
+		set_cosmetic_tag = FRN_CORSICA
+		
+	}
+
+
+}
