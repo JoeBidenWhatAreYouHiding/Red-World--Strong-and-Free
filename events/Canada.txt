@@ -687,15 +687,11 @@ country_event = {
 		if = {
 			limit = { has_country_flag = trump_leads_progcons }
 			hidden_effect = {
-				country_event = {
-					id = rw_canada.25
-					days = 2
-				}
-			}
-			every_country = {
-				news_event = {
-					hours = 4
-					id = rw_canada_news.2
+				every_country = {
+					news_event = {
+						hours = 4
+						id = rw_canada_news.2
+					}
 				}
 			}
 		}
@@ -1209,9 +1205,347 @@ country_event = {
 		name = rw_canada.38.o1
 		add_stability = -0.01
 		add_political_power = 10
+		swap_ideas = {
+			remove_idea = CAN_american_immigration
+			add_idea = CAN_refugee_strain
+		}
 	}
 }
 
+#Barr Reforms
+country_event = {
+	id = rw_canada.39
+	title = rw_canada.39.t
+	desc = rw_canada.39.d
+	picture = bill_barr
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.39.o1
+		add_political_power = 20
+		add_stability = -0.02
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.02
+		}
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.02
+		}
+	}
+}
+
+#Trump Meets the Fords
+country_event = {
+	id = rw_canada.40
+	title = rw_canada.40.t
+	desc = rw_canada.40.d
+	picture = trump_meets_fords
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.40.o1
+		add_political_power = 10
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.02
+		}
+	}
+}
+
+#Trump Praises Alberta
+country_event = {
+	id = rw_canada.41
+	title = rw_canada.41.t
+	desc = rw_canada.41.d
+	picture = trump_visits_alberta
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.41.o1
+		add_stability = 0.05
+		add_political_power = -10
+	}
+}
+
+#Trump Meets with Business
+country_event = {
+	id = rw_canada.42
+	title = rw_canada.42.t
+	desc = rw_canada.42.d
+	picture = trump_in_toronto
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.42.o1
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.02
+		}
+	}
+}
+
+#Construction on the Wall
+country_event = {
+	id = rw_canada.43
+	title = rw_canada.43.t
+	desc = rw_canada.43.d
+	picture = trump_at_the_wall
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.43.o1
+		add_ideas = CAN_building_the_wall
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.44
+				days = 22
+			}
+			country_event = {
+				id = rw_canada.45
+				days = 44
+			}
+			country_event = {
+				id = rw_canada.46
+				days = 66
+			}
+			country_event = {
+				id = rw_canada.47
+				days = 77
+			}
+		}
+		set_variable = { var = CAN_wall_pragmatic value = 0 }
+		set_variable = { var = CAN_wall_political value = 0 }
+		custom_effect_tooltip = CAN_pragmatic_vs_political_tt
+	}
+}
+
+#Wall or Fence
+country_event = {
+	id = rw_canada.44
+	title = rw_canada.44.t
+	desc = rw_canada.44.d
+	picture = wall_or_fence
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Wall 
+		name = rw_canada.44.o1
+		add_to_variable = { var = CAN_wall_political value = 1 }
+	}
+	
+	option = { #Fence
+		name = rw_canada.44.o2
+		add_to_variable = { var = CAN_wall_pragmatic value = 1 }
+	}
+}
+
+#Fate of the Clearings
+country_event = {
+	id = rw_canada.44
+	title = rw_canada.44.t
+	desc = rw_canada.44.d
+	picture = border_markings
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Ignore them, keep the wall
+		name = rw_canada.44.o1
+		add_to_variable = { var = CAN_wall_political value = 1 }
+	}
+	
+	option = { #Utilize Natural Barriers
+		name = rw_canada.44.o2
+		add_to_variable = { var = CAN_wall_pragmatic value = 1 }
+	}
+}
+
+#Niagra Falls
+country_event = {
+	id = rw_canada.45
+	title = rw_canada.45.t
+	desc = rw_canada.45.d
+	picture = niagra_falls
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Wall through the falls
+		name = rw_canada.45.o1
+		add_to_variable = { var = CAN_wall_political value = 1 }
+		add_political_power = -40
+	}
+	
+	option = { #Nah
+		name = rw_canada.45.o2
+		add_to_variable = { var = CAN_wall_pragmatic value = 1 }
+	}
+}
+
+#Ambassador Bridge
+country_event = {
+	id = rw_canada.46
+	title = rw_canada.46.t
+	desc = rw_canada.46.d
+	picture = ambassador_bridge
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Tear it Down
+		name = rw_canada.46.o1
+		add_to_variable = { var = CAN_wall_political value = 1 }
+		set_country_flag = CAN_tore_down_ambassador_bridge
+	}
+	
+	option = { #Secure the Bridge
+		name = rw_canada.46.o2
+		add_to_variable = { var = CAN_wall_pragmatic value = 1 }
+	}
+}
+
+#Extent of the Wall
+country_event = {
+	id = rw_canada.47
+	title = rw_canada.47.t
+	desc = rw_canada.47.d
+	picture = american_wall
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Entire American Border
+		name = rw_canada.47.o1
+		add_to_variable = { var = CAN_wall_political value = 1 }
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.46
+				days = 10
+			}
+		}
+		set_country_flag = CAN_entire_border
+	}
+	
+	option = { #Border with the Commonwealth
+		name = rw_canada.47.o2
+		add_to_variable = { var = CAN_wall_pragmatic value = 1 }
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.48
+				days = 100
+			}
+		}
+		set_country_flag = CAN_commonwealth_border
+	}
+}
+
+#The Wall Completed!
+country_event = {
+	id = rw_canada.48
+	title = rw_canada.48.t
+	desc = rw_canada.48.d
+	picture = wall_complete
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.48.o1
+		add_stability = 0.05
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.05
+		}
+		if = {
+			limit = { has_country_flag = CAN_tore_down_ambassador_bridge }
+			276 = {
+				damage_building = {
+					type = infrastructure
+					damage = 0.01
+				}
+			}
+		}
+	}
+}
+
+#Entire Wall complete
+country_event = {
+	id = rw_canada.49
+	title = rw_canada.49.t
+	desc = rw_canada.49.d
+	picture = entire_wall
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.49.o1
+		682 = {
+			add_building_construction = { type = bunker province = 12582 level = 1 instant_build = yes }
+			add_building_construction = { type = bunker province = 7899 level = 1 instant_build = yes }
+			add_building_construction = { type = bunker province = 1769 level = 1 instant_build = yes }
+			add_building_construction = { type = bunker province = 4875 level = 1 instant_build = yes }
+		}
+		467 = {
+			add_building_construction = { type = bunker province = 1873 level = 1 instant_build = yes }
+			add_building_construction = { type = bunker province = 4790 level = 1 instant_build = yes }
+			add_building_construction = { type = bunker province = 12145 level = 1 instant_build = yes }
+			add_building_construction = { type = bunker province = 1845 level = 1 instant_build = yes }
+		}
+		469 = {
+			add_building_construction = { type = bunker province = 1788 level = 1 instant_build = yes }
+			add_building_construction = { type = bunker province = 12603 level = 1 instant_build = yes }
+			add_building_construction = { type = bunker province = 3769 level = 1 instant_build = yes }
+			add_building_construction = { type = bunker province = 10552 level = 1 instant_build = yes }
+		}
+		470 = {
+			add_building_construction = { type = bunker province = 7718 level = 1 instant_build = yes }
+			add_building_construction = { type = bunker province = 1262 level = 1 instant_build = yes }
+		}
+		473 = {
+			add_building_construction = { type = bunker province = 7820 level = 1 instant_build = yes }
+			add_building_construction = { type = bunker province = 12578 level = 1 instant_build = yes }
+			add_building_construction = { type = bunker province = 12578 level = 1 instant_build = yes }
+			add_building_construction = { type = bunker province = 7677 level = 1 instant_build = yes }
+			add_building_construction = { type = bunker province = 7753 level = 1 instant_build = yes }
+			add_building_construction = { type = bunker province = 4428 level = 1 instant_build = yes }
+		}
+		remove_ideas = CAN_extending_the_wall
+	}
+}
+
+#Lake of the Woods
+country_event = {
+	id = rw_canada.50
+	title = rw_canada.50.t
+	desc = rw_canada.50.d
+	picture = lake_of_the_woods
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Build it through the lake
+		name = rw_canada.50.o1
+		add_to_variable = { var = CAN_wall_political value = 1 }
+	}
+	
+	option = { #Increase Patrols
+		name = rw_canada.50.o1
+		add_to_variable = { var = CAN_wall_pragmatic value = 1 }
+	}
+}
 
 #########################
 ### DIPLOMATIC EVENTS ###
