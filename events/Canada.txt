@@ -21,7 +21,7 @@ country_event = {
 				id = rw_canada.2
 			}
 			country_event = {
-				days = 34
+				days = 32
 				id = rw_canada.4
 			}
 		}
@@ -89,7 +89,7 @@ country_event = {
 		hidden_effect = {
 			country_event = {
 				id = rw_canada.5
-				days = 11
+				days = 10
 			}
 		}
 	}
@@ -116,6 +116,12 @@ country_event = {
 			popularity = 0.02
 		}
 		add_stability = -0.02
+		hidden_effect = {	
+			country_event = {
+				id = rw_canada.37
+				days = 11
+			}
+		}
 	}
 }
 
@@ -226,7 +232,7 @@ country_event = {
 		}
 		add_popularity = {
 			ideology = fascist
-			popularity = 0.02
+			popularity = 0.05
 		}
 		set_party_name = {
 			ideology = fascist
@@ -398,7 +404,7 @@ country_event = {
 		set_country_flag = rae_leads_ndp
 		set_country_flag = ndp_is_nd
 		add_popularity = {
-			ideology = centrist
+			ideology = new_democrat
 			popularity = 0.06
 		}
 	}
@@ -408,7 +414,7 @@ country_event = {
 		set_country_flag = layton_leads_ndp
 		set_country_flag = ndp_is_modsoc
 		add_popularity = {
-			ideology = liberal
+			ideology = moderate_socialist
 			popularity = 0.06
 		}
 	}
@@ -418,7 +424,18 @@ country_event = {
 country_event = {
 	id = rw_canada.19
 	title = rw_canada.19.t
-	desc = rw_canada.19.d
+	desc = {
+		text = rw_canada.19.d_1
+		trigger = {
+			has_completed_focus = CAN_focus_on_alberta
+		}
+	}
+	desc = {
+		text = rw_canada.19.d_2
+		trigger = {
+			has_completed_focus = CAN_focus_on_ontario
+		}
+	}
 	picture = manning_leadership
 	
 	fire_only_once = yes
@@ -458,6 +475,9 @@ country_event = {
 	
 	option = { #Resign
 		name = rw_canada.20.o2
+		trigger = {
+			date < 2011.3.3
+		}
 		add_stability = 0.03
 		hidden_effect = {
 			country_event = {	
@@ -465,8 +485,14 @@ country_event = {
 				days = 23
 			}
 		}
+		hidden_effect = {
+			CAN_preston_manning = {
+				clr_character_flag = CAN_progressive_conservative_leader
+			}
+		}
 		CAN_stockwell_day = {
 			promote_character = progressive_conservative
+			set_character_flag = CAN_progressive_conservative_leader
 		}
 	}
 }
@@ -481,6 +507,18 @@ country_event = {
 	fire_only_once = yes
 	is_triggered_only = yes
 	
+	trigger = {
+		NOT = { has_country_flag = CAN_2011_elections_held }
+	}
+	
+	immediate = {
+		hidden_effect = {
+			CAN_stockwell_day = {
+				clr_character_flag = CAN_progressive_conservative_leader
+			}
+		}
+	}
+	
 	option = { #Trump
 		name = rw_canada.21.o1
 		set_country_flag = trump_leads_progcons
@@ -491,6 +529,7 @@ country_event = {
 		}
 		CAN_donald_trump = {
 			promote_character = progressive_conservative
+			set_character_flag = CAN_progressive_conservative_leader
 		}
 	}
 	
@@ -509,14 +548,12 @@ country_event = {
 					ideology = progressive_conservative
 				}
 			}
+			promote_character = progressive_conservative
+			set_character_flag = CAN_progressive_conservative_leader
 		}
 		add_popularity = {
 			ideology = nationalist
-			popularity = 0.1
-		}
-		set_politics = {
-			ruling_party = nationalist
-			elections_allowed = yes
+			popularity = 0.05
 		}
 	}
 }
@@ -563,7 +600,6 @@ country_event = {
 			}
 			set_politics = {
 				ruling_party = liberal
-				elections_allowed = yes
 			}
 			news_event = {
 				hours = 4
@@ -585,7 +621,6 @@ country_event = {
 			}
 			set_politics = {
 				ruling_party = centrist
-				elections_allowed = yes
 			}
 			news_event = {
 				hours = 4
@@ -633,16 +668,13 @@ country_event = {
 			}
 			set_politics = {
 				ruling_party = moderate_socialist
-				elections_allowed = yes
 			}
-			news_event = {
-				hours = 4
-				id = rw_canada_news.7
-		    }
 			hidden_effect = {
-				country_event = {
-					id = rw_canada.29
-					days = 2
+				every_country = {
+					news_event = {
+						hours = 4
+						id = rw_canada_news.7
+					}
 				}
 			}
 		}
@@ -654,12 +686,13 @@ country_event = {
 			}
 			set_politics = {
 				ruling_party = new_democrat
-				elections_allowed = yes
 			}
-			news_event = {
-				hours = 4
-				id = rw_canada_news.6
-		    }
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.6
+				}
+			}
 			hidden_effect = {
 				country_event = {
 					id = rw_canada.28
@@ -684,40 +717,34 @@ country_event = {
 		if = {
 			limit = { has_country_flag = trump_leads_progcons }
 			hidden_effect = {
-				country_event = {
-					id = rw_canada.25
-					days = 2
+				every_country = {
+					news_event = {
+						hours = 4
+						id = rw_canada_news.2
+					}
 				}
 			}
-			news_event = {
-				hours = 4
-				id = rw_canada_news.2
-		    }
 		}
 		else_if = {
 			limit = { has_country_flag = harper_leads_progcons }
 			hidden_effect = {
-				country_event = {
-					id = rw_canada.24
-					days = 2
+				every_country = {
+					news_event = {
+						hours = 4
+						id = rw_canada_news.3
+					}
 				}
 			}
-			news_event = {
-				hours = 4
-				id = rw_canada_news.3
-		    }
 		}
 		else = {
 			hidden_effect = {
-				country_event = {
-					id = rw_canada.23
-					days = 2
+				every_country = {
+					news_event = {
+						hours = 4
+						id = rw_canada_news.1
+					}
 				}
 			}
-			news_event = {
-				hours = 4
-				id = rw_canada_news.1
-		    }
 		}
 	}
 }
@@ -735,6 +762,12 @@ country_event = {
 	option = {
 		name = rw_canada.23.o1
 		add_political_power = 10
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.35
+				days = 6
+			}
+		}
 	}
 }
 
@@ -751,6 +784,12 @@ country_event = {
 	option = {
 		name = rw_canada.24.o1
 		add_political_power = 10
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.35
+				days = 6
+			}
+		}
 	}
 }
 
@@ -772,6 +811,10 @@ country_event = {
 				id = rw_canada.30
 				days = 4
 			}
+			country_event = {
+				id = rw_canada.35
+				days = 6
+			}
 		}
 	}
 }
@@ -789,6 +832,12 @@ country_event = {
 	option = {
 		name = rw_canada.26.o1
 		add_political_power = 10
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.34
+				days = 6
+			}
+		}
 	}
 }
 
@@ -805,6 +854,12 @@ country_event = {
 	option = {
 		name = rw_canada.27.o1
 		add_political_power = 10
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.34
+				days = 6
+			}
+		}
 	}
 }
 
@@ -821,6 +876,12 @@ country_event = {
 	option = {
 		name = rw_canada.28.o1
 		add_political_power = 10
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.36
+				days = 6
+			}
+		}
 	}
 }
 
@@ -837,6 +898,12 @@ country_event = {
 	option = {
 		name = rw_canada.29.o1
 		add_political_power = 10
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.36
+				days = 6
+			}
+		}
 	}
 }
 
@@ -845,7 +912,7 @@ country_event = {
 	id = rw_canada.30
 	title = rw_canada.30.t
 	desc = rw_canada.30.d
-	picture = layton_elected
+	picture = protests_in_quebec
 	
 	fire_only_once = yes
 	is_triggered_only = yes
@@ -861,7 +928,7 @@ country_event = {
 	id = rw_canada.31
 	title = rw_canada.31.t
 	desc = rw_canada.31.d
-	picture = layton_elected
+	picture = trump_dosent_concede
 	
 	fire_only_once = yes
 	is_triggered_only = yes
@@ -1047,7 +1114,7 @@ country_event = {
 	}
 }
 
-#Conservative Cabinet
+#NDP Cabinet
 country_event = {
 	id = rw_canada.36
 	title = {
@@ -1160,6 +1227,1007 @@ country_event = {
 		name = rw_canada.38.o1
 		add_stability = -0.01
 		add_political_power = 10
+		swap_ideas = {
+			remove_idea = CAN_american_immigration
+			add_idea = CAN_refugee_strain
+		}
+	}
+}
+
+#Barr Reforms
+country_event = {
+	id = rw_canada.39
+	title = rw_canada.39.t
+	desc = rw_canada.39.d
+	picture = bill_barr
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.39.o1
+		add_political_power = 20
+		add_stability = -0.02
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.02
+		}
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.02
+		}
+	}
+}
+
+#Trump Meets the Fords
+country_event = {
+	id = rw_canada.40
+	title = rw_canada.40.t
+	desc = rw_canada.40.d
+	picture = trump_meets_fords
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.40.o1
+		add_political_power = 10
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.02
+		}
+	}
+}
+
+#Trump Praises Alberta
+country_event = {
+	id = rw_canada.41
+	title = rw_canada.41.t
+	desc = rw_canada.41.d
+	picture = trump_visits_alberta
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.41.o1
+		add_stability = 0.05
+		add_political_power = -10
+	}
+}
+
+#Trump Meets with Business
+country_event = {
+	id = rw_canada.42
+	title = rw_canada.42.t
+	desc = rw_canada.42.d
+	picture = trump_in_toronto
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.42.o1
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.02
+		}
+	}
+}
+
+#Construction on the Wall
+country_event = {
+	id = rw_canada.43
+	title = rw_canada.43.t
+	desc = rw_canada.43.d
+	picture = trump_at_the_wall
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.43.o1
+		add_ideas = CAN_building_the_wall
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.44
+				days = 22
+			}
+			country_event = {
+				id = rw_canada.45
+				days = 44
+			}
+			country_event = {
+				id = rw_canada.46
+				days = 66
+			}
+			country_event = {
+				id = rw_canada.47
+				days = 77
+			}
+		}
+		set_variable = { var = CAN_wall_pragmatic value = 0 }
+		set_variable = { var = CAN_wall_political value = 0 }
+		custom_effect_tooltip = CAN_pragmatic_vs_political_tt
+	}
+}
+
+#Wall or Fence
+country_event = {
+	id = rw_canada.44
+	title = rw_canada.44.t
+	desc = rw_canada.44.d
+	picture = wall_or_fence
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Wall 
+		name = rw_canada.44.o1
+		add_to_variable = { var = CAN_wall_political value = 1 }
+		set_country_flag = CAN_wall
+		custom_effect_tooltip = CAN_stronger_wall
+		465 = {
+			add_extra_state_shared_building_slots = -1
+		}
+		468 = {
+			add_extra_state_shared_building_slots = -1
+		}
+		276 = {
+			add_extra_state_shared_building_slots = -1
+		}
+	}
+	
+	option = { #Fence
+		name = rw_canada.44.o2
+		add_to_variable = { var = CAN_wall_pragmatic value = 1 }
+		set_country_flag = CAN_fence
+	}
+}
+
+#Fate of the Clearings
+country_event = {
+	id = rw_canada.44
+	title = rw_canada.44.t
+	desc = rw_canada.44.d
+	picture = border_markings
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Ignore them, keep the wall
+		name = rw_canada.44.o1
+		add_to_variable = { var = CAN_wall_political value = 1 }
+	}
+	
+	option = { #Utilize Natural Barriers
+		name = rw_canada.44.o2
+		add_to_variable = { var = CAN_wall_pragmatic value = 1 }
+	}
+}
+
+#Niagra Falls
+country_event = {
+	id = rw_canada.45
+	title = rw_canada.45.t
+	desc = rw_canada.45.d
+	picture = niagra_falls
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Wall through the falls
+		name = rw_canada.45.o1
+		add_to_variable = { var = CAN_wall_political value = 1 }
+		add_political_power = -40
+	}
+	
+	option = { #Nah
+		name = rw_canada.45.o2
+		add_to_variable = { var = CAN_wall_pragmatic value = 1 }
+	}
+}
+
+#Ambassador Bridge
+country_event = {
+	id = rw_canada.46
+	title = rw_canada.46.t
+	desc = rw_canada.46.d
+	picture = ambassador_bridge
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Tear it Down
+		name = rw_canada.46.o1
+		add_to_variable = { var = CAN_wall_political value = 1 }
+		set_country_flag = CAN_tore_down_ambassador_bridge
+	}
+	
+	option = { #Secure the Bridge
+		name = rw_canada.46.o2
+		add_to_variable = { var = CAN_wall_pragmatic value = 1 }
+	}
+}
+
+#Extent of the Wall
+country_event = {
+	id = rw_canada.47
+	title = rw_canada.47.t
+	desc = rw_canada.47.d
+	picture = american_wall
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Entire American Border
+		name = rw_canada.47.o1
+		add_to_variable = { var = CAN_wall_political value = 1 }
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.46
+				days = 10
+			}
+		}
+		set_country_flag = CAN_entire_border
+	}
+	
+	option = { #Border with the Commonwealth
+		name = rw_canada.47.o2
+		add_to_variable = { var = CAN_wall_pragmatic value = 1 }
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.48
+				days = 100
+			}
+		}
+		set_country_flag = CAN_commonwealth_border
+	}
+}
+
+#The Wall Completed!
+country_event = {
+	id = rw_canada.48
+	title = rw_canada.48.t
+	desc = rw_canada.48.d
+	picture = wall_complete
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.48.o1
+		add_stability = 0.05
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.05
+		}
+		if = {
+			limit = { has_country_flag = CAN_tore_down_ambassador_bridge }
+			276 = {
+				damage_building = {
+					type = infrastructure
+					damage = 0.01
+				}
+			}
+		}
+	}
+}
+
+#Entire Wall complete
+country_event = {
+	id = rw_canada.49
+	title = rw_canada.49.t
+	desc = rw_canada.49.d
+	picture = entire_wall
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.49.o1
+		effect_tooltip = {
+			682 = {
+				add_building_construction = { type = bunker province = 12582 level = 1 instant_build = yes }
+				add_building_construction = { type = bunker province = 7899 level = 1 instant_build = yes }
+				add_building_construction = { type = bunker province = 1769 level = 1 instant_build = yes }
+				add_building_construction = { type = bunker province = 4875 level = 1 instant_build = yes }
+			}
+			467 = {
+				add_building_construction = { type = bunker province = 1873 level = 1 instant_build = yes }
+				add_building_construction = { type = bunker province = 4790 level = 1 instant_build = yes }
+				add_building_construction = { type = bunker province = 12145 level = 1 instant_build = yes }
+				add_building_construction = { type = bunker province = 1845 level = 1 instant_build = yes }
+			}
+			469 = {
+				add_building_construction = { type = bunker province = 1788 level = 1 instant_build = yes }
+				add_building_construction = { type = bunker province = 12603 level = 1 instant_build = yes }
+				add_building_construction = { type = bunker province = 3769 level = 1 instant_build = yes }
+				add_building_construction = { type = bunker province = 10552 level = 1 instant_build = yes }
+			}
+			470 = {
+				add_building_construction = { type = bunker province = 7718 level = 1 instant_build = yes }
+				add_building_construction = { type = bunker province = 1262 level = 1 instant_build = yes }
+			}
+			473 = {
+				add_building_construction = { type = bunker province = 7820 level = 1 instant_build = yes }
+				add_building_construction = { type = bunker province = 12578 level = 1 instant_build = yes }
+				add_building_construction = { type = bunker province = 12578 level = 1 instant_build = yes }
+				add_building_construction = { type = bunker province = 7677 level = 1 instant_build = yes }
+				add_building_construction = { type = bunker province = 7753 level = 1 instant_build = yes }
+				add_building_construction = { type = bunker province = 4428 level = 1 instant_build = yes }
+			}
+		}
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = CAN_fence }
+				682 = {
+					add_building_construction = { type = bunker province = 12582 level = 1 instant_build = yes }
+					add_building_construction = { type = bunker province = 7899 level = 1 instant_build = yes }
+					add_building_construction = { type = bunker province = 1769 level = 1 instant_build = yes }
+					add_building_construction = { type = bunker province = 4875 level = 1 instant_build = yes }
+				}
+				467 = {
+					add_building_construction = { type = bunker province = 1873 level = 1 instant_build = yes }
+					add_building_construction = { type = bunker province = 4790 level = 1 instant_build = yes }
+					add_building_construction = { type = bunker province = 12145 level = 1 instant_build = yes }
+					add_building_construction = { type = bunker province = 1845 level = 1 instant_build = yes }
+				}
+				469 = {
+					add_building_construction = { type = bunker province = 1788 level = 1 instant_build = yes }
+					add_building_construction = { type = bunker province = 12603 level = 1 instant_build = yes }
+					add_building_construction = { type = bunker province = 3769 level = 1 instant_build = yes }
+					add_building_construction = { type = bunker province = 10552 level = 1 instant_build = yes }
+				}
+				470 = {
+					add_building_construction = { type = bunker province = 7718 level = 1 instant_build = yes }
+					add_building_construction = { type = bunker province = 1262 level = 1 instant_build = yes }
+				}
+				473 = {
+					add_building_construction = { type = bunker province = 7820 level = 1 instant_build = yes }
+					add_building_construction = { type = bunker province = 12578 level = 1 instant_build = yes }
+					add_building_construction = { type = bunker province = 12578 level = 1 instant_build = yes }
+					add_building_construction = { type = bunker province = 7677 level = 1 instant_build = yes }
+					add_building_construction = { type = bunker province = 7753 level = 1 instant_build = yes }
+					add_building_construction = { type = bunker province = 4428 level = 1 instant_build = yes }
+				}
+			}
+			else = {
+				682 = {
+					add_building_construction = { type = bunker province = 12582 level = 3 instant_build = yes }
+					add_building_construction = { type = bunker province = 7899 level = 3 instant_build = yes }
+					add_building_construction = { type = bunker province = 1769 level = 3 instant_build = yes }
+					add_building_construction = { type = bunker province = 4875 level = 3 instant_build = yes }
+				}
+				467 = {
+					add_building_construction = { type = bunker province = 1873 level = 3 instant_build = yes }
+					add_building_construction = { type = bunker province = 4790 level = 3 instant_build = yes }
+					add_building_construction = { type = bunker province = 12145 level = 3 instant_build = yes }
+					add_building_construction = { type = bunker province = 1845 level = 3 instant_build = yes }
+				}
+				469 = {
+					add_building_construction = { type = bunker province = 1788 level = 3 instant_build = yes }
+					add_building_construction = { type = bunker province = 12603 level = 3 instant_build = yes }
+					add_building_construction = { type = bunker province = 3769 level = 3 instant_build = yes }
+					add_building_construction = { type = bunker province = 10552 level = 3 instant_build = yes }
+				}
+				470 = {
+					add_building_construction = { type = bunker province = 7718 level = 3 instant_build = yes }
+					add_building_construction = { type = bunker province = 1262 level = 3 instant_build = yes }
+				}
+				473 = {
+					add_building_construction = { type = bunker province = 7820 level = 3 instant_build = yes }
+					add_building_construction = { type = bunker province = 12578 level = 3 instant_build = yes }
+					add_building_construction = { type = bunker province = 12578 level = 3 instant_build = yes }
+					add_building_construction = { type = bunker province = 7677 level = 3 instant_build = yes }
+					add_building_construction = { type = bunker province = 7753 level = 3 instant_build = yes }
+					add_building_construction = { type = bunker province = 4428 level = 3 instant_build = yes }
+				}
+			}
+		}
+		remove_ideas = CAN_extending_the_wall
+	}
+}
+
+#Lake of the Woods
+country_event = {
+	id = rw_canada.50
+	title = rw_canada.50.t
+	desc = rw_canada.50.d
+	picture = lake_of_the_woods
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Build it through the lake
+		name = rw_canada.50.o1
+		add_to_variable = { var = CAN_wall_political value = 1 }
+	}
+	
+	option = { #Increase Patrols
+		name = rw_canada.50.o1
+		add_to_variable = { var = CAN_wall_pragmatic value = 1 }
+	}
+}
+
+#CA voters flock to the Progressive Conservatives
+country_event = {
+	id = rw_canada.51
+	title = rw_canada.51.t
+	desc = rw_canada.51.d
+	picture = ca_voter_exodus
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.51.o1
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.05
+		}
+		if = {
+			limit = {
+				fascist < 0.1
+			}
+			hidden_effect = {
+				country_event = {
+					id = rw_canada.53
+					days = 124
+				}
+			}
+		}
+	}
+}
+
+#Harper Offers Formal Apology
+country_event = {
+	id = rw_canada.52
+	title = rw_canada.52.t
+	desc = rw_canada.52.d
+	picture = ca_voter_exodus
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.52.o1
+		add_stability = 0.10
+		add_political_power = -10
+	}
+}
+
+#Canadian Wheat Board abolished
+country_event = {
+	id = rw_canada.53
+	title = rw_canada.53.t
+	desc = rw_canada.53.d
+	picture = ca_voter_exodus
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.53.o1
+		add_political_power = 20
+	}
+}
+
+#Cruz loses seat
+country_event = {
+	id = rw_canada.54
+	title = rw_canada.54.t
+	desc = rw_canada.54.d
+	picture = cruz_loses_seat
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.54.o1
+		add_political_power = 10
+		add_popularity = {
+			ideology = fascist 
+			popularity = -0.02
+		}
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.55
+				days = 34
+			}
+		}
+	}
+}
+
+#CA Folds
+country_event = {
+	id = rw_canada.55
+	title = rw_canada.55.t
+	desc = rw_canada.55.d
+	picture = cruz_dissolves_ca
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.55.o1
+		add_political_power = 10
+		add_popularity = {
+			ideology = fascist 
+			popularity = -0.1
+		}
+		set_party_name = {
+			long_name = CAN_fascists_party
+			name = CAN_fascists_party_long_long
+		}
+	}
+}
+
+#Voters Defect
+country_event = {
+	id = rw_canada.56
+	title = rw_canada.56.t
+	desc = rw_canada.56.d
+	picture = cruz_popularity_surge
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.56.o1
+		add_political_power = 10
+		add_popularity = {
+			ideology = fascist 
+			popularity = 0.1
+		}
+		add_political_power = -20
+		add_stability = -0.02
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.57
+				days = 65
+				random_days = 43
+			}
+		}
+	}
+}
+
+#Kenney Defects
+country_event = {
+	id = rw_canada.57
+	title = rw_canada.57.t
+	desc = rw_canada.57.d
+	picture = kenney_defects_to_ca
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.57.o1
+		add_political_power = 10
+		add_popularity = {
+			ideology = fascist 
+			popularity = 0.05
+		}
+		add_political_power = -50
+		set_party_name = {
+			name = CAN_canadian_alliance_fascist_party
+			long_name = CAN_canadian_alliance_fascist_party_long
+			ideology = nationalist
+		}
+		CAN_jason_kenney = {
+			promote_character = neoconservative
+		}
+	}
+}
+
+#Proportional Representation
+country_event = {
+	id = rw_canada.58
+	title = rw_canada.58.t
+	desc = rw_canada.58.d
+	picture = proportional_representation
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.58.o1
+		add_political_power = 10
+	}
+}
+
+#Layton Meets with Rae
+country_event = {
+	id = rw_canada.59
+	title = rw_canada.59.t
+	desc = rw_canada.59.d
+	picture = layton_meets_rae
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.59.o1
+		add_stability = 0.02
+		custom_effect_tooltip = CAN_switch_to_new_democrat
+		add_ideas = CAN_centrist_ndp
+	}
+}
+
+#The Waffle Returns
+country_event = {
+	id = rw_canada.60
+	title = rw_canada.60.t
+	desc = rw_canada.60.d
+	picture = waffle_returns
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.60.o1
+		add_political_power = -30
+		add_war_support = 0.02
+	}
+}
+
+
+#Layton Pride Parade
+country_event = {
+	id = rw_canada.61
+	title = rw_canada.61.t
+	desc = rw_canada.61.d
+	picture = layton_pride_parade
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.61.o1
+		add_political_power = 40
+	}
+}
+
+#Defending Healthcare
+country_event = {
+	id = rw_canada.62
+	title = rw_canada.62.t
+	desc = rw_canada.62.d
+	picture = douglas_legacy
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.62.o1
+		add_stability = 0.02
+	}
+}
+
+#More Unions
+country_event = {
+	id = rw_canada.63
+	title = rw_canada.63.t
+	desc = rw_canada.63.d
+	picture = union_rates_increasing
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.63.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+	}
+}
+
+#Layton Rejects Liberal Deal
+country_event = {
+	id = rw_canada.64
+	title = rw_canada.64.t
+	desc = rw_canada.64.d
+	picture = layton_rejects_liberals
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.64.o1
+		add_popularity = {
+			ideology = centrist
+			popularity = -0.05
+		}
+	}
+}
+
+#Liberals Support Layton
+country_event = {
+	id = rw_canada.65
+	title = rw_canada.65.t
+	desc = rw_canada.65.d
+	picture = liberals_support_layton
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.65.o1
+		add_popularity = {
+			ideology = centrist
+			popularity = -0.05
+		}
+	}
+}
+
+#Layton Cancer
+country_event = {
+	id = rw_canada.66
+	title = rw_canada.66.t
+	desc = rw_canada.66.d
+	picture = layton_cancer
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.66.o1
+		add_stability = -0.02
+		CAN_jack_layton = {
+			set_portraits = {
+				civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Jack_Layton_Cancer.png" }
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.67
+				days = 22
+			}
+		}
+	}
+}
+
+#Layton Resignation?
+country_event = {
+	id = rw_canada.67
+	title = rw_canada.67.t
+	desc = rw_canada.67.d
+	picture = layton_cancer_worsens
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Resign
+		name = rw_canada.67.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = -0.04
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = -0.04
+		}
+		set_country_flag = CAN_layton_resigns
+		hidden_effect = {
+			country_event = { id = rw_canada.68 days = 3 }
+			if = {
+				limit = { has_completed_focus = CAN_protect_healthcare }
+				random_list = {
+					30 = { 
+						country_event = {
+							id = rw_canada.70 #Layton Succumbs
+							days = 44
+						}
+					}
+					70 = { 
+						country_event = {
+							id = rw_canada.69 #Layton Recovers
+							days = 44
+						}
+					}
+				}
+			}
+			else = {
+				random_list = {
+					50 = { 
+						country_event = {
+							id = rw_canada.69 #Layton Recovers
+							days = 44
+						}
+					}
+					50 = { 
+						country_event = {
+							id = rw_canada.70 #Layton Succumbs
+							days = 44
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	option = { #Fight Cancer
+		name = rw_canada.67.o2
+		add_political_power = 50
+		hidden_effect = {
+			if = {
+				limit = { has_completed_focus = CAN_protect_healthcare }
+				random_list = {
+					40 = { 
+						country_event = {
+							id = rw_canada.70 #Layton Succumbs
+							days = 44
+						}
+					}
+					60 = { 
+						country_event = {
+							id = rw_canada.69 #Layton Recovers
+							days = 44
+						}
+					}
+				}
+			}
+			else = {
+				random_list = {
+					40 = { 
+						country_event = {
+							id = rw_canada.69 #Layton Recovers
+							days = 44
+						}
+					}
+					60 = { 
+						country_event = {
+							id = rw_canada.70 #Layton Succumbs
+							days = 44
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+#New NDP Leader
+country_event = {
+	id = rw_canada.68
+	title = rw_canada.68.t
+	desc = {
+		text = rw_canada.68.d_pm
+		trigger = { NOT = { has_country_flag = CAN_layton_resigns } }
+	}
+	desc = {
+		text = rw_canada.68.d_resigned
+		trigger = { has_country_flag = CAN_layton_resigns }
+	}
+	picture = ndp_leadership_convention
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Tom Mulcair
+		name = rw_canada.68.o1
+		if = {
+			limit = { has_government = moderate_socialist }
+			CAN_tom_mulcair = {
+				add_country_leader_role = {
+					country_leader = {
+						expire = "1.1.1.1"
+						ideology = democratic_socialist
+					}
+				}
+				promote_character = democratic_socialist
+			}
+		}
+		else = {
+			limit = { has_government = moderate_socialist }
+			CAN_tom_mulcair = {
+				promote_character = new_democrat_ideology
+			}
+		}
+	}
+	
+	option = { #James Laxer
+		name = rw_canada.68.o2
+		trigger = {
+			has_government = moderate_socialist
+			has_completed_focus = CAN_return_of_the_waffle
+		}
+		CAN_james_laxer = {
+			promote_character = democratic_socialist
+		}
+	}
+	
+	option = { #Mel Watkins
+		name = rw_canada.68.o3
+		trigger = {
+			has_government = moderate_socialist
+			has_completed_focus = CAN_return_of_the_waffle
+		}
+		CAN_mel_watkins = {
+			promote_character = democratic_socialist
+		}
+	}
+}
+
+#Layton Recovers
+country_event = {
+	id = rw_canada.69
+	title = rw_canada.69.t
+	desc = {
+		text = rw_canada.69.d_pm
+		trigger = { NOT = { has_country_flag = CAN_layton_resigns } }
+	}
+	desc = {
+		text = rw_canada.69.d_resigned
+		trigger = { has_country_flag = CAN_layton_resigns }
+	}
+	picture = layton_recovers
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Yay
+		name = rw_canada.69.o1
+		add_stability = 0.10
+		add_political_power = 50
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+		CAN_jack_layton = {
+			set_portraits = {
+				civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Jack_Layton_Recovered.png" }
+			}
+		}
+	}
+}
+
+#Dies
+country_event = {
+	id = rw_canada.70
+	title = rw_canada.70.t
+	desc = {
+		text = rw_canada.70.d_pm
+		trigger = { NOT = { has_country_flag = CAN_layton_resigns } }
+	}
+	desc = {
+		text = rw_canada.70.d_resigned
+		trigger = { has_country_flag = CAN_layton_resigns }
+	}
+	picture = layton_funeral
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Rest in Peace
+		name = rw_canada.70.o1
+		add_stability = -0.04
+		add_political_power = -10
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+		set_country_flag = CAN_layton_is_dead
+		if = {
+			limit = { has_country_leader = { name = "Jack Layton" ruling_only = yes }
+			country_event = rw_canada.68
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.8
+				}
+			}
+		}
 	}
 }
 
@@ -1306,5 +2374,18 @@ news_event = {	#Layton elected
 	
 	option = {
 		name = rw_canada_news.7.o1
+	}
+}
+
+news_event = {	#Layton Dies
+	id = rw_canada_news.8
+	title = rw_canada_news.8.t
+	desc = rw_canada_news.8.d
+	picture = news_layton_victory
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.8.o1
 	}
 }
