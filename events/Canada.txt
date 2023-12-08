@@ -1932,7 +1932,7 @@ country_event = {
 	id = rw_canada.64
 	title = rw_canada.64.t
 	desc = rw_canada.64.d
-	picture = union_rates_increasing
+	picture = layton_rejects_liberals
 	
 	fire_only_once = yes
 	is_triggered_only = yes
@@ -1951,7 +1951,7 @@ country_event = {
 	id = rw_canada.65
 	title = rw_canada.65.t
 	desc = rw_canada.65.d
-	picture = union_rates_increasing
+	picture = liberals_support_layton
 	
 	fire_only_once = yes
 	is_triggered_only = yes
@@ -1964,6 +1964,276 @@ country_event = {
 		}
 	}
 }
+
+#Layton Cancer
+country_event = {
+	id = rw_canada.66
+	title = rw_canada.66.t
+	desc = rw_canada.66.d
+	picture = layton_cancer
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.66.o1
+		add_stability = -0.02
+		CAN_jack_layton = {
+			set_portraits = {
+				civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Jack_Layton_Cancer.png" }
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.67
+				days = 22
+			}
+		}
+	}
+}
+
+#Layton Resignation?
+country_event = {
+	id = rw_canada.67
+	title = rw_canada.67.t
+	desc = rw_canada.67.d
+	picture = layton_cancer_worsens
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Resign
+		name = rw_canada.67.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = -0.04
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = -0.04
+		}
+		set_country_flag = CAN_layton_resigns
+		hidden_effect = {
+			country_event = { id = rw_canada.68 days = 3 }
+			if = {
+				limit = { has_completed_focus = CAN_protect_healthcare }
+				random_list = {
+					30 = { 
+						country_event = {
+							id = rw_canada.70 #Layton Succumbs
+							days = 44
+						}
+					}
+					70 = { 
+						country_event = {
+							id = rw_canada.69 #Layton Recovers
+							days = 44
+						}
+					}
+				}
+			}
+			else = {
+				random_list = {
+					50 = { 
+						country_event = {
+							id = rw_canada.69 #Layton Recovers
+							days = 44
+						}
+					}
+					50 = { 
+						country_event = {
+							id = rw_canada.70 #Layton Succumbs
+							days = 44
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	option = { #Fight Cancer
+		name = rw_canada.67.o2
+		add_political_power = 50
+		hidden_effect = {
+			if = {
+				limit = { has_completed_focus = CAN_protect_healthcare }
+				random_list = {
+					40 = { 
+						country_event = {
+							id = rw_canada.70 #Layton Succumbs
+							days = 44
+						}
+					}
+					60 = { 
+						country_event = {
+							id = rw_canada.69 #Layton Recovers
+							days = 44
+						}
+					}
+				}
+			}
+			else = {
+				random_list = {
+					40 = { 
+						country_event = {
+							id = rw_canada.69 #Layton Recovers
+							days = 44
+						}
+					}
+					60 = { 
+						country_event = {
+							id = rw_canada.70 #Layton Succumbs
+							days = 44
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+#New NDP Leader
+country_event = {
+	id = rw_canada.68
+	title = rw_canada.68.t
+	desc = {
+		text = rw_canada.68.d_pm
+		trigger = { NOT = { has_country_flag = CAN_layton_resigns } }
+	}
+	desc = {
+		text = rw_canada.68.d_resigned
+		trigger = { has_country_flag = CAN_layton_resigns }
+	}
+	picture = ndp_leadership_convention
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Tom Mulcair
+		name = rw_canada.68.o1
+		if = {
+			limit = { has_government = moderate_socialist }
+			CAN_tom_mulcair = {
+				add_country_leader_role = {
+					country_leader = {
+						expire = "1.1.1.1"
+						ideology = democratic_socialist
+					}
+				}
+				promote_character = democratic_socialist
+			}
+		}
+		else = {
+			limit = { has_government = moderate_socialist }
+			CAN_tom_mulcair = {
+				promote_character = new_democrat_ideology
+			}
+		}
+	}
+	
+	option = { #James Laxer
+		name = rw_canada.68.o2
+		trigger = {
+			has_government = moderate_socialist
+			has_completed_focus = CAN_return_of_the_waffle
+		}
+		CAN_james_laxer = {
+			promote_character = democratic_socialist
+		}
+	}
+	
+	option = { #Mel Watkins
+		name = rw_canada.68.o3
+		trigger = {
+			has_government = moderate_socialist
+			has_completed_focus = CAN_return_of_the_waffle
+		}
+		CAN_mel_watkins = {
+			promote_character = democratic_socialist
+		}
+	}
+}
+
+#Layton Recovers
+country_event = {
+	id = rw_canada.69
+	title = rw_canada.69.t
+	desc = {
+		text = rw_canada.69.d_pm
+		trigger = { NOT = { has_country_flag = CAN_layton_resigns } }
+	}
+	desc = {
+		text = rw_canada.69.d_resigned
+		trigger = { has_country_flag = CAN_layton_resigns }
+	}
+	picture = layton_recovers
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Yay
+		name = rw_canada.69.o1
+		add_stability = 0.10
+		add_political_power = 50
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+		CAN_jack_layton = {
+			set_portraits = {
+				civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Jack_Layton_Recovered.png" }
+			}
+		}
+	}
+}
+
+#Dies
+country_event = {
+	id = rw_canada.70
+	title = rw_canada.70.t
+	desc = {
+		text = rw_canada.70.d_pm
+		trigger = { NOT = { has_country_flag = CAN_layton_resigns } }
+	}
+	desc = {
+		text = rw_canada.70.d_resigned
+		trigger = { has_country_flag = CAN_layton_resigns }
+	}
+	picture = layton_funeral
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Rest in Peace
+		name = rw_canada.70.o1
+		add_stability = -0.04
+		add_political_power = -10
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+		set_country_flag = CAN_layton_is_dead
+		if = {
+			limit = { has_country_leader = { name = "Jack Layton" ruling_only = yes }
+			country_event = rw_canada.68
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.8
+				}
+			}
+		}
+	}
+}
+
 
 #########################
 ### DIPLOMATIC EVENTS ###
@@ -2107,5 +2377,18 @@ news_event = {	#Layton elected
 	
 	option = {
 		name = rw_canada_news.7.o1
+	}
+}
+
+news_event = {	#Layton Dies
+	id = rw_canada_news.8
+	title = rw_canada_news.8.t
+	desc = rw_canada_news.8.d
+	picture = news_layton_victory
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.8.o1
 	}
 }
