@@ -494,6 +494,14 @@ country_event = {
 			promote_character = progressive_conservative
 			set_character_flag = CAN_progressive_conservative_leader
 		}
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.9
+				}
+			}
+		}
 	}
 }
 
@@ -1385,27 +1393,6 @@ country_event = {
 	}
 }
 
-#Fate of the Clearings
-country_event = {
-	id = rw_canada.44
-	title = rw_canada.44.t
-	desc = rw_canada.44.d
-	picture = border_markings
-	
-	fire_only_once = yes
-	is_triggered_only = yes
-	
-	option = { #Ignore them, keep the wall
-		name = rw_canada.44.o1
-		add_to_variable = { var = CAN_wall_political value = 1 }
-	}
-	
-	option = { #Utilize Natural Barriers
-		name = rw_canada.44.o2
-		add_to_variable = { var = CAN_wall_pragmatic value = 1 }
-	}
-}
-
 #Niagra Falls
 country_event = {
 	id = rw_canada.45
@@ -2219,7 +2206,7 @@ country_event = {
 		}
 		set_country_flag = CAN_layton_is_dead
 		if = {
-			limit = { has_country_leader = { name = "Jack Layton" ruling_only = yes }
+			limit = { has_country_leader = { name = "Jack Layton" ruling_only = yes } }
 			country_event = rw_canada.68
 			every_country = {
 				news_event = {
@@ -2267,6 +2254,349 @@ country_event = {
 	}
 }
 
+#Cascadia - Canada Supports us
+country_event = {
+	id = canada_diplo.3
+	title = canada_diplo.3.t
+	desc = canada_diplo.3.d
+	picture = cascadian_military_support
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = canada_diplo.3.o1
+		army_experience = 100
+		add_command_power = 100
+	}
+}
+
+#Cascadia - Canada Offers Annexation
+country_event = {
+	id = canada_diplo.4
+	title = canada_diplo.4.t
+	desc = canada_diplo.4.d
+	picture = canada_cascadia_relations
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #No
+		name = canada_diplo.4.o1
+		CAN = {
+			country_event = {
+				id = canada_diplo.6
+				days = 2
+			}
+		}
+	}
+	
+	option = { #Yes
+		name = canada_diplo.4.o2
+		CAN = {
+			country_event = {
+				id = canada_diplo.5
+				days = 2
+			}
+		}
+	}
+}
+
+#Canada - Cascadia Joins Canada
+country_event = {
+	id = canada_diplo.5
+	title = canada_diplo.5.t
+	desc = canada_diplo.5.d
+	picture = canada_cascadia_relations
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Hooray
+		name = canada_diplo.5.o1
+		annex_country = { 
+			target = CSD 
+			transfer_troops = yes
+		}
+		every_owned_state = {
+			limit = { is_claimed_by = CSD }
+			CAN = {
+				add_state_core = PREV
+			}
+		}
+		CSD = {
+			every_unit_leader = {
+				set_nationality = CAN
+			}
+		}
+		every_country = {
+			news_event = {
+				hours = 4
+				id = rw_canada_news.10
+			}
+		}
+	}
+}
+
+#Canada - Cascadia Refuses
+country_event = {
+	id = canada_diplo.6
+	title = canada_diplo.6.t
+	desc = canada_diplo.6.d
+	picture = canada_cascadia_relations
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Damn
+		name = canada_diplo.6.o1
+		add_stability = -0.02
+	}
+}
+
+#New England - Canada Supports us
+country_event = {
+	id = canada_diplo.7
+	title = canada_diplo.7.t
+	desc = canada_diplo.7.d
+	picture = cascadian_military_support
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = canada_diplo.7.o1
+		army_experience = 100
+		add_command_power = 100
+	}
+}
+
+#New England asks to join Democratic League - Canada
+country_event = {
+	id = canada_diplo.8
+	title = canada_diplo.8.t
+	desc = canada_diplo.8.d
+	picture = ottawa_parliament
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = canada_diplo.8.o1
+	    ai_chance = {
+			factor = 100
+		}
+		CAN = {
+			add_to_faction = ROOT
+		}
+	}
+	
+	option = { #No
+		name = canada_diplo.8.o2
+	}
+}
+
+#New England = Canada proposes annexation
+country_event = {
+	id = canada_diplo.9
+	title = canada_diplo.9.t
+	desc = canada_diplo.9.d
+	picture = canada_new_england_relations
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = canada_diplo.9.o1
+	    ai_chance = {
+			factor = 100
+		}
+		CAN = {
+			country_event = canada_diplo.10
+		}
+	}
+	
+	option = { #No
+		name = canada_diplo.9.o2
+		CAN = {
+			country_event = canada_diplo.11
+		}
+	}
+}
+
+#Canada - New England Joins
+country_event = {
+	id = canada_diplo.10
+	title = canada_diplo.10.t
+	desc = canada_diplo.10.d
+	picture = canada_new_england_relations
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Hooray
+		name = canada_diplo.10.o1
+		annex_country = { 
+			target = AMC 
+			transfer_troops = yes
+		}
+		every_owned_state = {
+			limit = { is_claimed_by = AMC }
+			CAN = {
+				add_state_core = PREV
+			}
+		}
+		AMC = {
+			every_unit_leader = {
+				set_nationality = CAN
+			}
+		}
+	}
+}
+
+#Canada - New England Refuses
+country_event = {
+	id = canada_diplo.11
+	title = canada_diplo.11.t
+	desc = canada_diplo.11.d
+	picture = canada_new_england_relations
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Damn
+		name = canada_diplo.11.o1
+		add_political_power = -10
+	}
+	
+	option = { #Take them Out
+		name = canada_diplo.11.o2
+		AMC = {
+			country_event = canada_diplo.7
+		}
+	}
+	
+	option = { #Take them Out
+		name = canada_diplo.11.o3
+		create_wargoal = {
+			type = annex_everything
+			target = AMC
+		}
+	}
+}
+
+#Alaska - annexationist rhetoric on the rise
+country_event = {
+	id = canada_diplo.12
+	title = canada_diplo.12.t
+	desc = canada_diplo.12.d
+	picture = canada_alaska_relations
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Discourage
+		name = canada_diplo.12.o1
+		ai_chance = {
+			factor = 0
+		}
+		add_stability = -0.05
+	}
+	option = { #Hold Referendum
+		name = canada_diplo.12.o2
+		ai_chance = {
+			factor = 0
+		}
+		CAN = {
+			country_event = canada_diplo.14
+		}
+	}
+}
+
+#Alaska votes to Join Canada
+country_event = {
+	id = canada_diplo.14
+	title = canada_diplo.14.t
+	desc = canada_diplo.14.d
+	picture = canada_alaska_relations
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Interesting
+		name = canada_diplo.14.o1
+		annex_country = { 
+			target = ALA 
+			transfer_troops = yes
+		}
+		every_owned_state = {
+			limit = { is_claimed_by = ALA }
+			CAN = {
+				add_state_core = PREV
+			}
+		}
+		ALA = {
+			every_unit_leader = {
+				set_nationality = CAN
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = canada_diplo.17
+				days = 15
+			}
+		}
+	}
+}
+
+#Alaska - Canada Status Quo
+country_event = {
+	id = canada_diplo.15
+	title = canada_diplo.15.t
+	desc = canada_diplo.15.d
+	picture = canada_alaska_relations
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Interesting
+		name = canada_diplo.15.o1
+		add_political_power = 10
+	}
+}
+
+#Alaska - Treaty of Anchorage
+country_event = {
+	id = canada_diplo.16
+	title = canada_diplo.16.t
+	desc = canada_diplo.16.d
+	picture = canada_alaska_relations
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Interesting
+		name = canada_diplo.16.o1
+		add_political_power = 10
+	}
+}
+
+#Alaskan Resistance
+country_event = {
+	id = canada_diplo.17
+	title = canada_diplo.17.t
+	desc = canada_diplo.17.d
+	picture = alaskan_resistance
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Interesting
+		name = canada_diplo.17.o1
+		add_timed_idea = {
+			idea = CAN_alaskan_resistance
+			days = 300
+		}
+	}
+}
 
 #Canada-UK Relations
 country_event = {
@@ -2387,5 +2717,31 @@ news_event = {	#Layton Dies
 	
 	option = {
 		name = rw_canada_news.8.o1
+	}
+}
+
+news_event = {	#Preston Manning Resigns
+	id = rw_canada_news.9
+	title = rw_canada_news.9.t
+	desc = rw_canada_news.9.d
+	picture = preston_manning_resigns
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.9.o1
+	}
+}
+
+news_event = {	#Cascadia Joins Canada
+	id = rw_canada_news.10
+	title = rw_canada_news.10.t
+	desc = rw_canada_news.10.d
+	picture = preston_manning_resigns
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.10.o1
 	}
 }
