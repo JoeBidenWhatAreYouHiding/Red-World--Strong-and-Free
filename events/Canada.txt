@@ -2108,7 +2108,6 @@ country_event = {
 			}
 		}
 		else = {
-			limit = { has_government = moderate_socialist }
 			CAN_tom_mulcair = {
 				promote_character = new_democrat_ideology
 			}
@@ -2319,7 +2318,7 @@ country_event = {
 			transfer_troops = yes
 		}
 		every_owned_state = {
-			limit = { is_claimed_by = CSD }
+			limit = { is_core_of = CSD }
 			CAN = {
 				add_state_core = PREV
 			}
@@ -2439,7 +2438,7 @@ country_event = {
 			transfer_troops = yes
 		}
 		every_owned_state = {
-			limit = { is_claimed_by = AMC }
+			limit = { is_core_of = AMC }
 			CAN = {
 				add_state_core = PREV
 			}
@@ -2516,7 +2515,7 @@ country_event = {
 	id = canada_diplo.14
 	title = canada_diplo.14.t
 	desc = canada_diplo.14.d
-	picture = canada_alaska_relations
+	picture = alaska_vote
 
 	fire_only_once = yes
 	is_triggered_only = yes
@@ -2528,7 +2527,7 @@ country_event = {
 			transfer_troops = yes
 		}
 		every_owned_state = {
-			limit = { is_claimed_by = ALA }
+			limit = { is_core_of = ALA }
 			CAN = {
 				add_state_core = PREV
 			}
@@ -2594,6 +2593,977 @@ country_event = {
 		add_timed_idea = {
 			idea = CAN_alaskan_resistance
 			days = 300
+		}
+	}
+}
+
+#Intervention against Montana
+country_event = {
+	id = canada_diplo.18
+	title = canada_diplo.18.t
+	desc = canada_diplo.18.d
+	picture = northwest_nuclear_arsenal
+
+	fire_only_once = yes
+	trigger = {	
+		tag = CAN
+		has_idea = CAN_chalk_river_labs
+		MOT = {
+			is_researching_technology = atomic_research
+		}
+	}
+	
+	option = { #Interesting
+		name = canada_diplo.18.o1
+		declare_war_on = { target = MOT type = annex_everything }
+		set_country_flag = CAN_intervention_in_the_northwest
+	}
+}
+
+#Intervention against Lincoln
+country_event = {
+	id = canada_diplo.19
+	title = canada_diplo.19.t
+	desc = canada_diplo.19.d
+	picture = northwest_nuclear_arsenal
+
+	fire_only_once = yes
+	trigger = {	
+		tag = CAN
+		has_idea = CAN_chalk_river_labs
+		LIN = {
+			is_researching_technology = atomic_research
+		}
+	}
+	
+	option = { #Interesting
+		name = canada_diplo.19.o1
+		declare_war_on = { target = LIN type = annex_everything }
+		set_country_flag = CAN_intervention_in_the_northwest
+	}
+}
+
+#Montana/Idaho Army
+country_event = {
+	id = canada_diplo.20
+	title = canada_diplo.20.t
+	desc = canada_diplo.20.d
+	picture = montana_military
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Keep Canadian Soldiers there
+		name = canada_diplo.20.o1
+		add_manpower = 2400
+		army_experience = 60
+		add_command_power = 60
+		add_to_variable = { var = CAN_reconstruction_failure value = 1 }
+	}
+	
+	option = { #Rebuild Armies
+		name = canada_diplo.20.o2
+		add_manpower = -2400
+		add_command_power = -100
+		army_experience = -100
+		add_to_variable = { var = CAN_reconstruction_success value = 1 }
+	}
+}
+
+
+#Northwest Conqured
+country_event = {
+	id = canada_diplo.25
+	title = canada_diplo.25.t
+	desc = canada_diplo.25.d
+	picture = northwest_falls
+
+	fire_only_once = yes
+	
+	trigger = {
+		388 = { 
+			owner = {
+				OR = {
+					tag = ROOT
+					is_subject_of = ROOT
+				}
+			}
+		}
+		387 = { 
+			owner = {
+				OR = {
+					tag = ROOT
+					is_subject_of = ROOT
+				}
+			}
+		}
+		LIN = {
+			OR = {
+				exists = no
+				is_subject_of = CAN
+			}
+		}
+		MOT = {
+			OR = {
+				exists = no
+				is_subject_of = CAN
+			}
+		}
+		OR = {
+			has_country_flag = CAN_intervention_in_the_northwest
+			has_completed_focus = CAN_no_more_ethnostates
+		}
+	}
+	
+	option = { #Good
+		name = canada_diplo.25.o1
+		release_puppet = LIN
+		release_puppet = MOT
+		MOT = {
+			set_politics = {
+				ruling_party = nationalist
+			}
+			add_popularity = {
+				ideology = nationalist 
+				popularity = 0.25
+			}
+			set_party_name = {
+				name = CAN_canadian_occupation_party
+				long_name = CAN_canadian_occupation_party_long
+				ideology = nationalist
+			}
+			set_cosmetic_tag = MOT_CAN
+		}
+		LIN = {
+			set_politics = {
+				ruling_party = nationalist
+			}
+			add_popularity = {
+				ideology = nationalist 
+				popularity = 0.25
+			}
+			set_party_name = {
+				name = CAN_canadian_occupation_party
+				long_name = CAN_canadian_occupation_party_long
+				ideology = nationalist
+			}
+			set_cosmetic_tag = LIN_CAN
+		}
+		CAN_david_fraser = {
+			set_nationality = MOT
+			add_country_leader_role = {
+				country_leader = { ideology = military_junta }
+				promote_leader = yes
+			}
+		}
+		CAN_ray_henault = {
+			set_nationality = LIN
+			add_country_leader_role = {
+				country_leader = { ideology = military_junta }
+				promote_leader = yes
+			}
+		}
+	}
+}
+
+#Montana/Idaho Politics
+country_event = {
+	id = canada_diplo.21
+	title = canada_diplo.21.t
+	desc = canada_diplo.21.d
+	picture = militia_mobilisation
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Pay off Warlords
+		name = canada_diplo.21.o1
+		add_stability = -0.06
+		add_to_variable = { var = CAN_reconstruction_failure value = 1 }
+		CAN_add_3_percent_popularity = yes
+	}
+	
+	option = { #Rebuild from scratch
+		name = canada_diplo.21.o2
+		add_stability = -0.1
+		CAN_subtract_5_percent_popularity = yes
+		add_to_variable = { var = CAN_reconstruction_success value = 1 }
+	}
+}
+
+#Montana/Idaho Government
+country_event = {
+	id = canada_diplo.22
+	title = canada_diplo.22.t
+	desc = canada_diplo.22.d
+	picture = montana_government
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Centralize
+		name = canada_diplo.22.o1
+		add_political_power = 60
+		add_to_variable = { var = CAN_reconstruction_failure value = 1 }
+		CAN_add_3_percent_popularity = yes
+	}
+	
+	option = { #Decentralize
+		name = canada_diplo.22.o2
+		add_political_power = -100
+		CAN_subtract_5_percent_popularity = yes
+		add_to_variable = { var = CAN_reconstruction_success value = 1 }
+	}
+}
+
+#Reconstruction A Sucess
+country_event = {
+	id = canada_diplo.23
+	title = canada_diplo.23.t
+	desc = canada_diplo.23.d
+	picture = canadian_evactuation
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Good
+		name = canada_diplo.23.o1
+		set_country_flag = CAN_won_northwest
+		add_political_power = 100
+		add_stability = 0.10
+		CAN_add_5_percent_popularity = yes
+		hidden_effect = {
+			end_puppet = MOT
+			end_puppet = LIN
+			LIN = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					name = LIN_nationalist_party
+					long_name = LIN_nationalist_party_long
+					ideology = nationalist
+				}
+				remove_country_leader_role = {
+					character = CAN_ray_henault
+					ideology = military_junta
+				}
+				LIN_walt_bayes = {
+					promote_character = nationalist_ideology
+				}
+				CAN_ray_henault = {
+					set_nationality = CAN
+				}
+				random_list = {
+					20 = {
+						add_popularity = {
+							ideology = nationalist
+							popularity = 0.2
+						}
+						set_politics = {
+							ruling_party = nationalist
+						}
+					}
+					20 = {
+						add_popularity = {
+							ideology = national_conservative
+							popularity = 0.2
+						}
+						set_politics = {
+							ruling_party = national_conservative
+						}
+					}
+					20 = {
+						add_popularity = {
+							ideology = centrist
+							popularity = 0.2
+						}
+						set_politics = {
+							ruling_party = centrist
+						}
+					}
+					20 = {
+						add_popularity = {
+							ideology = liberal
+							popularity = 0.2
+						}
+						set_politics = {
+							ruling_party = liberal
+						}
+					}
+					20 = {
+						add_popularity = {
+							ideology = moderate_socialist
+							popularity = 0.2
+						}
+						set_politics = {
+							ruling_party = moderate_socialist
+						}
+					}
+				}
+			}
+			MOT = {	
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					name = MOT_nationalist_party
+					long_name = MOT_nationalist_party_long
+					ideology = nationalist
+				}
+				remove_country_leader_role = {
+					character = CAN_david_fraser
+					ideology = military_junta
+				}
+				MOT_ben_garrison = {
+					promote_character = militia_ideology
+				}
+				CAN_david_fraser = {
+					set_nationality = CAN
+				}
+				random_list = {
+					20 = {
+						add_popularity = {
+							ideology = nationalist
+							popularity = 0.2
+						}
+						set_politics = {
+							ruling_party = nationalist
+						}
+					}
+					20 = {
+						add_popularity = {
+							ideology = national_conservative
+							popularity = 0.2
+						}
+						set_politics = {
+							ruling_party = national_conservative
+						}
+					}
+					20 = {
+						add_popularity = {
+							ideology = centrist
+							popularity = 0.2
+						}
+						set_politics = {
+							ruling_party = centrist
+						}
+					}
+					20 = {
+						add_popularity = {
+							ideology = liberal
+							popularity = 0.2
+						}
+						set_politics = {
+							ruling_party = liberal
+						}
+					}
+					20 = {
+						add_popularity = {
+							ideology = moderate_socialist
+							popularity = 0.2
+						}
+						set_politics = {
+							ruling_party = moderate_socialist
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+#Reconstruction A Failure
+country_event = {
+	id = canada_diplo.24
+	title = canada_diplo.24.t
+	desc = canada_diplo.24.d
+	picture = failed_evacuation
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Oops
+		name = canada_diplo.24.o1
+		set_country_flag = CAN_failed_northwest
+		add_political_power = -100
+		add_stability = -0.10
+		add_timed_idea = {
+			idea = CAN_failure_in_the_northwest
+			days = 400
+		}
+		CAN_subtract_5_percent_popularity = yes
+		hidden_effect = {
+			remove_from_faction = MOT
+			remove_from_faction = LIN
+			end_puppet = MOT
+			end_puppet = LIN
+			MOT = {
+				drop_cosmetic_tag = yes
+				add_popularity = {
+					ideology = fascist
+					popularity = 0.2
+				}
+				set_politics = {
+					ruling_party = fascist
+				}
+				MOT_timothy_mcveigh = {	
+					add_country_leader_role = {
+						country_leader={
+							ideology=national_socialist
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+					promote_character = national_socialist
+				}
+				set_party_name = {
+					name = MOT_nationalist_party
+					long_name = MOT_nationalist_party_long
+					ideology = nationalist
+				}
+				remove_country_leader_role = {
+					character = CAN_david_fraser
+					ideology = military_junta
+				}
+				MOT_ben_garrison = {
+					promote_character = militia_ideology
+				}
+				CAN_david_fraser = {
+					set_nationality = CAN
+				}
+			}
+			LIN = {
+				drop_cosmetic_tag = yes
+				add_popularity = {
+					ideology = national_bolshevik
+					popularity = 0.2
+				}
+				set_politics = {
+					ruling_party = national_bolshevik
+				}
+				LIN_richard_b._spencer = {	
+					set_portraits = {
+						civilian = { large = "gfx/leaders/LIN/Portrait_LIN_Richard_Spencer_Returned.png" }
+					}
+				}
+				set_party_name = {
+					name = LIN_nationalist_party
+					long_name = LIN_nationalist_party_long
+					ideology = nationalist
+				}
+				remove_country_leader_role = {
+					character = CAN_ray_henault
+					ideology = military_junta
+				}
+				LIN_walt_bayes = {
+					promote_character = nationalist_ideology
+				}
+				CAN_ray_henault = {
+					set_nationality = CAN
+				}
+			}
+		}
+	}
+}
+
+
+#America Policy
+country_event = {
+	id = canada_diplo.26
+	title = canada_diplo.26.t
+	desc = {
+		text = canada_diplo.26.d_1
+		trigger = {
+			has_country_flag = CAN_won_northwest
+		}
+	}
+	desc = {
+		text = canada_diplo.26.d_2
+		trigger = {
+			has_country_flag = CAN_failed_northwest
+		}
+	}
+	picture = our_policy_towards_america
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Neutrality
+		name = canada_diplo.26.o1
+		set_country_flag = CAN_staying_neutral
+	}
+	
+	option = { #Reunification
+		name = canada_diplo.26.o2
+		trigger = {
+			USA = { exists = yes has_idea = idea_standing_firm_remnants }
+		}
+		set_country_flag = CAN_supporting_AR
+	}
+	
+	option = { #Intervention
+		name = canada_diplo.26.o3
+		set_country_flag = CAN_intervention
+	}
+}
+
+#Second Northwest War
+country_event = {
+	id = canada_diplo.27
+	title = canada_diplo.27.t
+	desc = {
+		text = canada_diplo.27.d
+		trigger = { NOT = { has_completed_focus = CAN_finish_the_job } }
+	}
+	desc = {
+		text = canada_diplo.27.d_2
+		trigger = { has_completed_focus = CAN_finish_the_job }
+	}
+	picture = northwest_falls
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Interesting
+		name = canada_diplo.27.o1
+		declare_war_on = { target = LIN type = annex_everything }
+		declare_war_on = { target = MOT type = annex_everything }
+	}
+}
+
+#Canada Protects us
+country_event = {
+	id = canada_diplo.28
+	title = canada_diplo.28.t
+	desc = canada_diplo.28.d
+	picture = our_policy_towards_america
+
+	is_triggered_only = yes
+	
+	option = {
+		name = canada_diplo.28.o1
+		add_stability = 0.02
+		set_country_flag = CAN_under_canadas_protection
+	}
+}
+
+#Canada Protects us
+country_event = {
+	id = canada_diplo.29
+	title = canada_diplo.29.t
+	desc = canada_diplo.29.d
+	picture = our_policy_towards_america
+	
+	trigger = {
+		NOT = { is_in_faction_with = CAN }
+		has_country_flag = CAN_under_canadas_protection
+		OR = {
+			has_war_with = NEA
+			has_war_with = PCA
+			has_war_with = USA
+		}
+		has_defensive_war = yes
+	}
+	
+	option = {
+		name = canada_diplo.29.o1
+		CAN = {
+			add_to_faction = ROOT
+		}
+	}
+}
+
+#Canada Demands we join the DL
+country_event = {
+	id = canada_diplo.30
+	title = canada_diplo.30.t
+	desc = canada_diplo.30.d
+	picture = ottawa_parliament
+
+	is_triggered_only = yes
+	
+	option = {
+		name = canada_diplo.30.o1
+		CAN = {
+			add_to_faction = ROOT
+		}
+	}
+	
+	option = {
+		name = canada_diplo.30.o2
+		CAN = {
+			country_event = canada_diplo.31
+		}
+	}
+}
+
+#Canada Demands we join the DL
+country_event = {
+	id = canada_diplo.31
+	title = canada_diplo.31.t
+	desc = canada_diplo.31.d
+	picture = canada_us_relations
+
+	is_triggered_only = yes
+	
+	option = {
+		name = canada_diplo.31.o1
+		
+	}
+	
+	option = {
+		name = canada_diplo.31.o2
+		create_wargoal = {
+			type = annex_everything
+			target = FROM
+		}
+	}
+}
+
+#Fate of America
+country_event = {
+	id = canada_diplo.32
+	title = canada_diplo.32.t
+	desc = canada_diplo.32.d
+	picture = canada_us_relations
+
+	fire_only_once = yes
+	
+	trigger = {
+		tag = CAN
+		#has_completed_focus = CAN_a_disunited_america
+		MWA = {
+			OR = {
+				exists = no
+				is_subject_of = CAN
+			}
+		}
+		GRL = {
+			OR = {
+				exists = no
+				is_subject_of = CAN
+			}
+		}
+		MOT = {
+			OR = {
+				exists = no
+				is_subject_of = CAN
+			}
+		}
+		LIN = {
+			OR = {
+				exists = no
+				is_subject_of = CAN
+			}
+		}
+		PCA = {
+			OR = {
+				exists = no
+				is_subject_of = CAN
+			}
+		}
+		TEX = {
+			OR = {
+				exists = no
+				is_subject_of = CAN
+			}
+		}
+		UTA = {
+			OR = {
+				exists = no
+				is_subject_of = CAN
+			}
+		}
+		ARI = {
+			OR = {
+				exists = no
+				is_subject_of = CAN
+			}
+		}
+		CAN_america_is_controlled = yes
+	}
+	
+	option = { #Absorb America
+		name = canada_diplo.32.o1
+		every_country = {
+			limit = { 
+				is_post_america_nation = yes 
+				is_subject_of = CAN
+			}
+			CAN = {
+				annex_country = { 
+					target = PREV 
+					transfer_troops = yes
+				}
+			}
+		}
+		enable_unification_decisions = yes
+		core_NEA = yes
+		core_ILL = yes
+		core_GRL = yes
+		core_MWA = yes
+		core_MOT = yes
+		core_LIN = yes
+		core_UTA = yes
+		core_ARI = yes
+		core_PCA = yes
+		core_TEX = yes
+		core_USA = yes
+	}
+	
+	option = { #Form United America
+		name = canada_diplo.32.o2
+		create_dynamic_country = {	#United America
+			original_tag = MWA
+			copy_tag = MWA
+			
+			save_global_event_target_as = united_american_puppet
+
+			### Politics
+			set_popularities = {
+				fascist = 0
+				nationalist = 10
+				monarchist = 0
+				national_bolshevik = 0
+				national_conservative = 20
+				centrist = 20
+				liberal = 20
+				new_democrat = 20
+				moderate_socialist = 10
+				revolutionary_socialist = 0
+				communist = 0
+			}
+			set_party_name = {
+				ideology = centrist
+				long_name = "United America"
+				name = "United America"
+			}
+			set_party_name = {
+				ideology = nationalist
+				long_name = "United America"
+				name = "United America"
+			}
+			set_party_name = {
+				ideology = national_conservative
+				long_name = "United America"
+				name = "United America"
+			}
+			set_party_name = {
+				ideology = liberal
+				long_name = "United America"
+				name = "United America"
+			}
+			set_party_name = {
+				ideology = moderate_socialist
+				long_name = "United America"
+				name = "United America"
+			}
+			set_politics = {
+				ruling_party = centrist
+				elections_allowed = no
+			}
+			set_cosmetic_tag = AMR_CONFED
+		}
+		event_target:united_american_puppet = { 
+			get_current_government_type = yes
+		}
+		CAN = {
+			puppet = event_target:united_american_puppet
+		}
+		event_target:united_american_puppet = { 
+			restore_previous_government_type = yes
+		}
+		AMR_council_of_america = {
+			set_nationality = event_target:united_american_puppet
+		}
+		event_target:united_american_puppet = { 
+			AMR_council_of_america = {
+				promote_character = centrist_ideology
+				add_country_leader_role = {
+					country_leader={
+						ideology=nationalist_ideology
+						expire="1.1.1.1"
+						id=-1
+					}
+					country_leader={
+						ideology=reactionary
+						expire="1.1.1.1"
+						id=-1
+					}
+					country_leader={
+						ideology=social_liberal
+						expire="1.1.1.1"
+						id=-1
+					}
+					country_leader={
+						ideology=new_democrat_ideology
+						expire="1.1.1.1"
+						id=-1
+					}
+					country_leader={
+						ideology=moderate_socialist_ideology
+						expire="1.1.1.1"
+						id=-1
+					}
+				}
+			}
+		}
+		every_owned_state = {
+			limit = {
+				is_mainland_us_state = yes
+				NOT = { is_core_of = CAN }
+			}
+			event_target:united_american_puppet = {
+				transfer_state = PREV
+			}
+		}
+		every_country = {
+			limit = { 
+				is_post_america_nation = yes 
+				is_subject_of = CAN
+			}
+			event_target:united_american_puppet = { 
+				annex_country = { 
+					target = PREV 
+					transfer_troops = yes
+				}
+			}
+		}
+		event_target:united_american_puppet = {  
+			every_owned_state = {
+				limit = { is_mainland_us_state = yes }
+				add_state_core = PREV
+			}
+		}
+		every_country = {
+			news_event = rw_canada_news.12
+		}
+	}
+	option = { #Nothing
+		name = canada_diplo.32.o3
+		add_stability = 0.05
+	}
+}
+
+#American Republic - Canada Recognizes us
+country_event = {
+	id = canada_diplo.33
+	title = canada_diplo.33.t
+	desc = canada_diplo.33.d
+	picture = canada_recognizes_ar
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = canada_diplo.33.o1
+		add_stability = 0.02
+	}
+}
+
+#American Republic - Canada Recognizes us
+country_event = {
+	id = canada_diplo.34
+	title = canada_diplo.34.t
+	desc = canada_diplo.34.d
+	picture = canada_recognizes_ar
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = canada_diplo.34.o1
+		USA = {
+			annex_country = { 
+				target = ROOT 
+				transfer_troops = yes
+			}
+		}
+	}
+}
+
+#Second Northwest War
+country_event = {
+	id = canada_diplo.35
+	title = canada_diplo.35.t
+	desc = canada_diplo.35.d
+	
+	picture = northwest_falls
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Interesting
+		name = canada_diplo.35.o1
+		declare_war_on = { target = LIN type = annex_everything }
+		declare_war_on = { target = MOT type = annex_everything }
+	}
+}
+
+#American Republic - Canada Supports Us
+country_event = {
+	id = canada_diplo.36
+	title = canada_diplo.36.t
+	desc = canada_diplo.36.d
+	
+	picture = our_policy_towards_america
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Interesting
+		name = canada_diplo.36.o1
+		custom_effect_tooltip = CAN_return_us_cores_when_they_join_dl
+		effect_tooltip = {
+			swap_ideas = {
+				remove_idea = CAN_canadian_support
+				add_idea = CAN_canadian_support2
+			}
+		}
+	}
+}
+
+#American Republic - Rejoin Nato?
+country_event = {
+	id = canada_diplo.37
+	title = canada_diplo.37.t
+	desc = canada_diplo.37.d
+	
+	picture = democratic_league_summit
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Yes
+		name = canada_diplo.37.o1
+		CAN = {
+			add_to_faction = USA
+		}
+	}
+	
+	option = { #No
+		name = canada_diplo.37.o2
+		CAN = {
+			country_event = canada_diplo.38
+		}
+	}
+}
+
+#Canada Demands we join the DL
+country_event = {
+	id = canada_diplo.38
+	title = canada_diplo.38.t
+	desc = canada_diplo.38.d
+	picture = canada_recognizes_ar
+
+	is_triggered_only = yes
+	
+	option = {
+		name = canada_diplo.38.o1
+		
+	}
+	
+	option = {
+		name = canada_diplo.38.o2
+		create_wargoal = {
+			type = annex_everything
+			target = USA
 		}
 	}
 }
@@ -2737,11 +3707,37 @@ news_event = {	#Cascadia Joins Canada
 	id = rw_canada_news.10
 	title = rw_canada_news.10.t
 	desc = rw_canada_news.10.d
-	picture = preston_manning_resigns
+	picture = cascadia_joins_canada
 	
 	is_triggered_only = yes 
 	
 	option = {
 		name = rw_canada_news.10.o1
+	}
+}
+
+news_event = {	#Canada Unites America
+	id = rw_canada_news.11
+	title = rw_canada_news.11.t
+	desc = rw_canada_news.11.d
+	picture = canada_unites_america
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.11.o1
+	}
+}
+
+news_event = {	#American Unity Government
+	id = rw_canada_news.12
+	title = rw_canada_news.12.t
+	desc = rw_canada_news.12.d
+	picture = american_unity_government
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.12.o1
 	}
 }

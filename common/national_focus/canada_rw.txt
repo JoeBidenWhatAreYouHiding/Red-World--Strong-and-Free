@@ -3205,7 +3205,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			add_ideas = CAN_mixed_economy
+			add_ideas = CAN_mixed_economy_idea
 			random_owned_state = {
 				add_extra_state_shared_building_slots = 1
 			}
@@ -6035,6 +6035,12 @@ focus_tree = {
 				    modifier = interfering_in_our_affairs
 			    }
 			}
+			GRL = {
+				add_opinion_modifier = {
+				    target = CAN
+				    modifier = interfering_in_our_affairs
+			    }
+			}
 			TEX = {
 				add_opinion_modifier = {
 				    target = CAN
@@ -6076,6 +6082,16 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			CSD = {
+				add_opinion_modifier = {
+				    target = CAN
+				    modifier = supports_our_cause
+			    }
+			}
+			add_opinion_modifier = {
+				target = CAN
+				modifier = supports_our_cause
+			}
 			CSD = {
 				country_event = {
 					id = canada_diplo.3
@@ -6217,6 +6233,16 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			AMC = {
+				add_opinion_modifier = {
+				    target = CAN
+				    modifier = supports_our_cause
+			    }
+			}
+			add_opinion_modifier = {
+				target = AMC
+				modifier = supports_our_cause
+			}
 			AMC = {
 				country_event = {
 					id = canada_diplo.7
@@ -6442,12 +6468,28 @@ focus_tree = {
 			focus = CAN_absorb_alaska
 		}
 		
+		bypass = {
+			OR = {
+				AND = {
+					LIN = { exists = no }
+					MOT = { exists = no }
+				}
+				AND = {
+					LIN = { is_subject_of = CAN }
+					MOT = { is_subject_of = CAN }
+				}
+			}
+		}
+		
 		relative_position_id = CAN_america
 		x = 0
 		y = 2
 
 		available = {
-			date > 2012.1.1
+			OR = {
+				date > 2012.1.1
+				has_country_flag = CAN_intervention_in_the_northwest
+			}
 		}
 
 		ai_will_do = {
@@ -6456,22 +6498,32 @@ focus_tree = {
 
 		available_if_capitulated = yes
 
-		completion_reward = {
-			create_wargoal = {
-				type = annex_everything
-				target = LIN
+		completion_reward = {	
+			if = {
+				limit = { 
+					LIN = { NOT = { is_subject_of = CAN } }
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = LIN
+				}
 			}
-			create_wargoal = {
-				type = annex_everything
-				target = MOT
+			if = {
+				limit = { 
+					MOT = { NOT = { is_subject_of = CAN } }
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = MOT
+				}
 			}
 		}
 	}
 	
 	focus = {
 		id = CAN_rebuild_the_northwest
-		icon = GFX_goal_CAN_strategic_innovation_fund
-		cost = 7
+		icon = GFX_goal_CAN_rebuild_the_northwest
+		cost = 10
 		
 		prerequisite = {
 			focus = CAN_no_more_ethnostates
@@ -6484,6 +6536,48 @@ focus_tree = {
 		available = {
 			
 		}
+		
+		select_effect = {	
+			set_variable = { var = CAN_reconstruction_success value = 0 }
+			set_variable = { var = CAN_reconstruction_failure value = 0 }
+			country_event = {
+				id = canada_diplo.20
+				days = 20
+			}
+			country_event = {
+				id = canada_diplo.21
+				days = 40
+			}
+			country_event = {
+				id = canada_diplo.22
+				days = 60
+			}
+		}
+		
+		bypass = {
+			388 = { 
+				owner = {
+					NOT = {
+						OR = {
+							tag = ROOT
+							is_subject_of = ROOT
+						}
+					}
+				}
+			}
+			387 = { 
+				owner = {
+					NOT = {
+						OR = {
+							tag = ROOT
+							is_subject_of = ROOT
+						}
+					}
+				}
+			}
+			LIN = { exists = no }
+			MOT = { exists = no }
+		}
 
 		ai_will_do = {
 			factor = 100
@@ -6492,13 +6586,36 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			custom_effect_tooltip = CAN_rebuild_the_northwest_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						check_variable = { CAN_reconstruction_success > CAN_reconstruction_failure }
+					}
+					country_event = {
+						id = canada_diplo.23
+						days = 25
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = { CAN_reconstruction_success < CAN_reconstruction_failure }
+					}
+					country_event = {
+						id = canada_diplo.24
+						days = 25
+					}
+				}
+				else = {
+					
+				}
+			}
 		}
 	}
 	
 	focus = {
 		id = CAN_reexamine_america_policy
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_examine_america_policy
 		cost = 7
 		
 		prerequisite = {
@@ -6520,7 +6637,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = canada_diplo.26
 		}
 	}
 	
@@ -6528,7 +6645,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_interventionism
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_american_interventionism
 		cost = 7
 		
 		prerequisite = {
@@ -6545,7 +6662,7 @@ focus_tree = {
 		y = 5
 
 		available = {
-			
+			has_country_flag = CAN_intervention
 		}
 
 		ai_will_do = {
@@ -6555,13 +6672,22 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			if = {
+				limit = {
+					has_country_flag = CAN_failed_northwest
+				}
+				country_event = {
+					id = canada_diplo.27
+					days = 4
+				}
+			}
+			add_ideas = CAN_american_interventionism
 		}
 	}
 	
 	focus = {
 		id = CAN_safeguard_breakaway_states
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_protect_breakaways
 		cost = 7
 		
 		prerequisite = {
@@ -6583,13 +6709,29 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			every_country = {
+				limit = {
+					OR = {
+						tag = GRL
+						tag = ILL
+						tag = MWA
+						tag = UTA
+						tag = ARI
+						tag = TEX
+					}
+					is_subject = no
+				}
+				country_event = canada_diplo.28
+				CAN = {
+					give_guarantee = PREV
+				}
+			}
 		}
 	}
 	
 	focus = {
 		id = CAN_take_down_the_unifiers
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_take_down_big_players
 		cost = 7
 		
 		prerequisite = {
@@ -6601,7 +6743,17 @@ focus_tree = {
 		y = 1
 
 		available = {
-			
+			OR = {
+				NEA = {	
+					has_war = yes
+				}
+				USA = {	
+					has_war = yes
+				}
+				PCA = {	
+					has_war = yes
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -6611,13 +6763,25 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			create_wargoal = {
+				type = annex_everything
+				target = NEA
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = USA
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = PCA
+			}
+			set_country_flag = CAN_took_action
 		}
 	}
 	
 	focus = {
 		id = CAN_a_disunited_america
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_fate_of_america
 		cost = 7
 		
 		prerequisite = {
@@ -6630,9 +6794,39 @@ focus_tree = {
 		relative_position_id = CAN_interventionism
 		x = 0
 		y = 2
+		
+		select_effect = {
+			every_country = {
+				limit = {
+					OR = {
+						tag = GRL
+						tag = ILL
+						tag = MWA
+						tag = UTA
+						tag = ARI
+						tag = TEX
+					}
+					NOT = { is_in_faction_with = CAN }
+					is_subject = no
+				}
+				country_event = canada_diplo.30
+			}
+		}
+				
 
 		available = {
-			
+			NEA = {	
+				NOT = { has_idea = idea_standing_firm_commonwealth }
+				is_in_faction_with = CAN
+			}
+			PCA = {	
+				NOT = { has_idea = idea_standing_firm_union }
+				is_in_faction_with = CAN
+			}
+			USA = {	
+				NOT = { has_idea = idea_standing_firm_remnants }
+				is_in_faction_with = CAN
+			}
 		}
 
 		ai_will_do = {
@@ -6642,7 +6836,47 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			custom_effect_tooltip = CAN_american_breakaways_dl_tt
+			custom_effect_tooltip = tooltip_blank_line
 			
+			if = {
+				limit = { is_ai = no }
+				custom_effect_tooltip = CAN_breakaways_will_become_our_puppets
+				every_country = {
+					limit = {
+						OR = {
+							tag = GRL
+							tag = ILL
+							tag = MWA
+							tag = UTA
+							tag = ARI
+							tag = TEX
+							tag = AMC
+							tag = CSD
+							tag = USA
+							tag = PCA
+							tag = NEA
+						}
+						is_in_faction_with = CAN 
+						is_subject = no
+					}
+					PREV = { 
+						get_current_government_type = yes
+					}
+					CAN = {
+						puppet = PREV
+					}
+					PREV = { 
+						restore_previous_government_type = yes
+					}
+				}
+			}
+			
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = CAN_decide_fate_of_america_tt
+			effect_tooltip = {
+				country_event = canada_diplo.32
+			}
 		}
 	}
 	
@@ -6650,7 +6884,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_neutrality
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_neutrality
 		cost = 7
 		
 		prerequisite = {
@@ -6667,7 +6901,7 @@ focus_tree = {
 		y = 5
 
 		available = {
-			
+			has_country_flag = CAN_staying_neutral
 		}
 
 		ai_will_do = {
@@ -6677,13 +6911,15 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_ideas = CAN_neutral_american_outlook
+			add_political_power = 100
+			CAN_add_3_percent_popularity = yes
 		}
 	}
 	
 	focus = {
 		id = CAN_sell_weapons_to_america
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_arms_sales
 		cost = 7
 		
 		prerequisite = {
@@ -6695,7 +6931,10 @@ focus_tree = {
 		y = 2
 
 		available = {
-			
+			any_country = {
+				is_post_america_nation = yes 
+				has_war = yes
+			}
 		}
 
 		ai_will_do = {
@@ -6705,7 +6944,14 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_ideas = CAN_arms_dealer_of_the_new_world
+			add_offsite_building = {
+                type = arms_factory level = 1
+            }
+            add_equipment_to_stockpile = {
+                type = infantry_equipment
+                amount = 2000
+            }
 		}
 	}
 	
@@ -6713,7 +6959,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_reunificationism
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_support_the_republic
 		cost = 7
 		
 		prerequisite = {
@@ -6730,7 +6976,7 @@ focus_tree = {
 		y = 5
 
 		available = {
-			
+			has_country_flag = CAN_supporting_AR
 		}
 
 		ai_will_do = {
@@ -6740,17 +6986,24 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			USA = {
+				country_event = canada_diplo.33
+				add_ideas = CAN_canadian_support
+			}
 		}
 	}
 	
 	focus = {
 		id = CAN_revoke_northwest_independence
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_revoke_northwest_independence
 		cost = 7
 		
 		prerequisite = {
 			focus = CAN_reunificationism
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_finish_the_job
 		}
 		
 		relative_position_id = CAN_reunificationism
@@ -6758,7 +7011,14 @@ focus_tree = {
 		y = 1
 
 		available = {
-			
+			has_country_flag = CAN_won_northwest
+			LIN = { is_subject_of = CAN }
+			MOT = { is_subject_of = CAN }
+		}
+		
+		bypass = {
+			LIN = { exists = no }
+			MOT = { exists = no }
 		}
 
 		ai_will_do = {
@@ -6768,17 +7028,31 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			custom_effect_tooltip = CAN_idaho_montana_join_ar
+			LIN = {
+				country_event = canada_diplo.34
+			}
+			MOT = {
+				country_event = canada_diplo.34
+			}
+			USA = {
+				core_MOT = yes
+				core_LIN = yes
+			}
 		}
 	}
 	
 	focus = {
-		id = CAN_investment_in_the_ar
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		id = CAN_finish_the_job
+		icon = GFX_goal_CAN_finish_the_job
 		cost = 7
 		
 		prerequisite = {
 			focus = CAN_reunificationism
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_revoke_northwest_independence
 		}
 		
 		relative_position_id = CAN_reunificationism
@@ -6786,7 +7060,12 @@ focus_tree = {
 		y = 1
 
 		available = {
-			
+			has_country_flag = CAN_failed_northwest
+		}
+		
+		bypass = {
+			LIN = { exists = no }
+			MOT = { exists = no }
 		}
 
 		ai_will_do = {
@@ -6796,20 +7075,21 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			USA = {
+				country_event = canada_diplo.35
+			}
+			country_event = canada_diplo.27
 		}
 	}
 	
 	focus = {
 		id = CAN_aid_american_unification
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_aid_american_unification
 		cost = 7
 		
 		prerequisite = {
 			focus = CAN_revoke_northwest_independence
-		}
-		prerequisite = {
-			focus = CAN_investment_in_the_ar
+			focus = CAN_finish_the_job
 		}
 		
 		relative_position_id = CAN_reunificationism
@@ -6817,7 +7097,9 @@ focus_tree = {
 		y = 2
 
 		available = {
-			
+			USA = {
+				has_war = yes
+			}
 		}
 
 		ai_will_do = {
@@ -6827,7 +7109,23 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			USA = {
+				country_event = canada_diplo.36
+				swap_ideas = {
+					remove_idea = CAN_canadian_support
+					add_idea = CAN_canadian_support2
+				}
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = NEA
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = PCA
+			}
+			custom_effect_tooltip = CAN_return_us_cores_when_they_join_dl
+			set_global_flag = CAN_supported_ar
 		}
 	}
 	
@@ -8310,6 +8608,7 @@ focus_tree = {
 		
 		prerequisite = {
 			focus = CAN_invade_iceland
+			focus = CAN_pressure_iceland
 		}
 		
 		mutually_exclusive = {
