@@ -539,12 +539,18 @@ country_event = {
 			promote_character = progressive_conservative
 			set_character_flag = CAN_progressive_conservative_leader
 		}
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.74
+				days = 10
+			}
+		}
 	}
 	
 	option = { #Harper
 		name = rw_canada.21.o2
 		set_country_flag = harper_leads_progcons
-		set_country_flag = pcs_are_nationalist
+		set_country_flag = pcs_are_natcon
 		add_popularity = {
 			ideology = nationalist
 			popularity = 0.06
@@ -562,6 +568,12 @@ country_event = {
 		add_popularity = {
 			ideology = nationalist
 			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.75
+				days = 10
+			}
 		}
 	}
 }
@@ -609,17 +621,15 @@ country_event = {
 			set_politics = {
 				ruling_party = liberal
 			}
-			news_event = {
-				hours = 4
-				id = rw_canada_news.5
-		    }
-			add_ideas = canada_sic_michael_ignatiff
 			hidden_effect = {
-				country_event = {
-					id = rw_canada.27
-					days = 2
+				every_country = {
+					news_event = {
+						hours = 4
+						id = rw_canada_news.5
+					}
 				}
 			}
+			add_ideas = canada_sic_michael_ignatiff
 		}
 		else_if = {
 			limit = { has_country_flag = ignatieff_leads_liberals }
@@ -630,10 +640,14 @@ country_event = {
 			set_politics = {
 				ruling_party = centrist
 			}
-			news_event = {
-				hours = 4
-				id = rw_canada_news.4
-		    }
+			hidden_effect = {
+				every_country = {
+					news_event = {
+						hours = 4
+						id = rw_canada_news.4
+					}
+				}
+			}
 			add_ideas = canada_sic_stephane_dion
 			hidden_effect = {
 				country_event = {
@@ -695,16 +709,12 @@ country_event = {
 			set_politics = {
 				ruling_party = new_democrat
 			}
-			every_country = {
-				news_event = {
-					hours = 4
-					id = rw_canada_news.6
-				}
-			}
 			hidden_effect = {
-				country_event = {
-					id = rw_canada.28
-					days = 2
+				every_country = {
+					news_event = {
+						hours = 4
+						id = rw_canada_news.6
+					}
 				}
 			}
 		}
@@ -1747,6 +1757,7 @@ country_event = {
 			long_name = CAN_fascists_party
 			name = CAN_fascists_party_long_long
 		}
+		clr_country_flag = canadian_alliance_exists
 	}
 }
 
@@ -2217,6 +2228,284 @@ country_event = {
 	}
 }
 
+#Harper Attacks Cruz
+country_event = {
+	id = rw_canada.71
+	title = rw_canada.71.t
+	desc = {
+		text = rw_canada.71.d_pm
+		trigger = {
+			has_country_leader = { name = "Stephen Harper" ruling_only = yes }
+		}
+	}
+	desc = {
+		text = rw_canada.71.d_deputy_pm
+		trigger = {
+			NOT = { has_country_leader = { name = "Stephen Harper" ruling_only = yes } }
+		}
+	}
+	picture = harper_attacks_cruz
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.71.o1
+		add_popularity = {
+			ideology = nationalist
+			popularity = -0.05
+		}
+	}
+}
+
+#Tax Cuts
+country_event = {
+	id = rw_canada.72
+	title = rw_canada.72.t
+	desc = rw_canada.72.d
+	picture = tax_cuts
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.72.o1
+		add_political_power = -30
+		CAN_add_3_percent_popularity = yes
+	}
+}
+
+#Parlaiment Dissolved
+country_event = {
+	id = rw_canada.73
+	title = rw_canada.73.t
+	desc = rw_canada.73.d
+	picture = harper_and_jean
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.73.o1
+		custom_effect_tooltip = CAN_elections_in_one_month
+	}
+}
+
+#Harper Quits
+country_event = {
+	id = rw_canada.74
+	title = rw_canada.74.t
+	desc = rw_canada.74.d
+	picture = its_harpover
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.74.o1
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.04
+		}
+	}
+}
+
+#Trump joins Liberals
+country_event = {
+	id = rw_canada.75
+	title = rw_canada.75.t
+	desc = {
+		text = rw_canada.75.d_ignatieff
+		trigger = { NOT = { has_country_flag = trudeau_leads_liberals } }
+	}
+	desc = {
+		text = rw_canada.75.d_trudeau
+		trigger = { has_country_flag = trudeau_leads_liberals } 
+	}
+	picture = trump_trudeau
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.75.o1
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.04
+		}
+	}
+}
+
+#Liberals Support Rae
+country_event = {
+	id = rw_canada.76
+	title = rw_canada.76.t
+	desc = rw_canada.76.d
+	picture = rae_meets_trudeau
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.76.o1
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.05
+		}
+	}
+}
+
+#Liberals Coalition Formalized
+country_event = {
+	id = rw_canada.77
+	title = rw_canada.77.t
+	desc = rw_canada.77.d
+	picture = trudeau_supports_ndp
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.77.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.05
+		}
+	}
+}
+
+#Layton Defects
+country_event = {
+	id = rw_canada.78
+	title = rw_canada.78.t
+	desc = rw_canada.78.d
+	picture = layton_hat
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.78.o1
+		add_political_power = -50
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.04
+		}
+		set_party_name = {
+			name = CAN_socialist_party
+			long_name = CAN_socialist_party_long
+			ideology = moderate_socialist
+		}
+	}
+}
+
+#Layton Supports Rae
+country_event = {
+	id = rw_canada.81
+	title = rw_canada.81.t
+	desc = rw_canada.81.d
+	picture = layton_meets_rae
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.81.o1
+		add_political_power = -50
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.04
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.04
+		}
+	}
+}
+
+#Rae rejects Liberals
+country_event = {
+	id = rw_canada.82
+	title = rw_canada.82.t
+	desc = rw_canada.82.d
+	picture = rae_rejects_ndp
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.82.o1
+		add_stability = 0.02
+		add_popularity = {
+			ideology = liberal
+			popularity = -0.02
+		}
+		add_popularity = {
+			ideology = centrist
+			popularity = -0.02
+		}
+	}
+}
+
+#Rae allies Liberals
+country_event = {
+	id = rw_canada.83
+	title = rw_canada.83.t
+	desc = rw_canada.83.d
+	picture = rae_meets_trudeau
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.83.o1
+		add_political_power = 20
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.02
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.02
+		}
+		add_popularity = {
+			ideology = centrist
+			popularity = -0.02
+		}
+	}
+}
+
+#Liberal Merger Rejected
+country_event = {
+	id = rw_canada.84
+	title = rw_canada.84.t
+	desc = rw_canada.84.d
+	picture = rae_rejects_liberal_merger
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.84.o1
+		add_political_power = 20
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.02
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.02
+		}
+		add_popularity = {
+			ideology = centrist
+			popularity = -0.02
+		}
+	}
+}
 
 #########################
 ### DIPLOMATIC EVENTS ###
@@ -2719,6 +3008,19 @@ country_event = {
 		name = canada_diplo.25.o1
 		release_puppet = LIN
 		release_puppet = MOT
+		if = {
+			limit = { 
+				MOT = {
+					owns_state = 387
+				}
+			}
+			MOT = {
+				release = LIN
+			}
+			CAN = {
+				puppet = LIN
+			}
+		}
 		MOT = {
 			set_politics = {
 				ruling_party = nationalist

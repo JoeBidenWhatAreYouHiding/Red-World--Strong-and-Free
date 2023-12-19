@@ -139,6 +139,9 @@ focus_tree = {
 		prerequisite = {
 			focus = CAN_pander_to_reformites
 		}
+		prerequisite = {
+			focus = CAN_rehabilitate_mulroney
+		}
 		
 		relative_position_id = CAN_prime_minister_manning
 		x = -1
@@ -243,6 +246,9 @@ focus_tree = {
 		
 		prerequisite = {
 			focus = CAN_allign_fiscal_conservatives
+		}
+		prerequisite = {
+			focus = CAN_rehabilitate_mulroney
 		}
 		
 		relative_position_id = CAN_prime_minister_manning
@@ -1698,10 +1704,13 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			country_event = rw_canada.72
 			add_ideas = CAN_fiscal_and_social_conservatism
 			add_political_power = 50
 			add_stability = -0.02
 			custom_effect_tooltip = CAN_will_switch_to_nationalism
+			set_country_flag = pcs_are_nationalist
+			clr_country_flag = pcs_are_natcon
 			hidden_effect = {
 				if = {
 					limit = { has_country_leader = { name = "Preston Manning" ruling_only = yes } }
@@ -1804,6 +1813,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			country_event = rw_canada.71
 			add_popularity = {
 				ideology = national_conservative
 				popularity = 0.02
@@ -3257,7 +3267,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = rw_canada.28
 		}
 	}
 	
@@ -3285,7 +3295,15 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = rw_canada.58
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.1
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.1
+			}
 		}
 	}
 	
@@ -3317,7 +3335,16 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = rw_canada.76
+			add_ideas = CAN_liberal_confidence
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.05
+			}
 		}
 	}
 	
@@ -3345,7 +3372,15 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = CAN_liberal_confidence
+				add_idea = CAN_liberal_coalition
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = -0.1
+			}
+			country_event = rw_canada.77
 		}
 	}
 	
@@ -3381,7 +3416,55 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			clr_country_flag = liberals_exist
+			custom_effect_tooltip = CAN_ndp_will_become_centrist
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = CAN_liberals_merge_with_ndp
+			set_party_name = {
+				name = CAN_new_democrat_party
+				long_name = CAN_new_democrat_party_long
+				ideology = centrist
+			}
+			set_party_name = {
+				name = CAN_trudeau_new_democrat_party
+				long_name = CAN_trudeau_new_democrat_party_long
+				ideology = liberal
+			}
+			hidden_effect = {
+				if = {
+					limit = { has_country_leader = { name = "Bob Rae" ruling_only = yes } }
+					CAN_bob_rae = {
+						add_country_leader_role = {
+							country_leader = {
+								expire = "1.1.1.1"
+								ideology = centrist_ideology
+							}
+						}
+						promote_character = centrist_ideology
+					}
+				}
+				if = {
+					limit = { has_government = new_democrat }
+					set_politics = {
+						ruling_party = centrist
+					}
+					set_variable = {
+						current_centrist_pop = party_popularity@centrist
+					}
+					set_variable = {
+						current_newdem_pop = party_popularity@new_democrat
+					}
+					subtract_from_variable = {
+						var = current_newdem_pop
+						value = current_centrist_pop
+					}
+					add_popularity = {
+						ideology = centrist
+						popularity = current_newdem_pop
+					}	
+				}
+			}
+			country_event = rw_canada.78
 		}
 	}
 	
@@ -3413,7 +3496,14 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = rw_canada.82
+			add_political_power = 20
+			add_stability = 0.05
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.03
+			}
+			add_ideas = CAN_ndp_roots
 		}
 	}
 	
@@ -3441,7 +3531,20 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = rw_canada.81
+			swap_ideas = {
+				remove_idea = CAN_ndp_roots
+				add_idea = CAN_layton_support
+			}
+			add_stability = 0.05
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.02
+			}
 		}
 	}
 	
@@ -3474,7 +3577,27 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			if = {
+				limit = { 	
+					has_completed_focus = CAN_appease_layton
+				}
+				country_event = rw_canada.83
+				swap_ideas = {
+					remove_idea = CAN_layton_support
+					add_idea = CAN_layton_liberal_support
+				}
+				add_popularity = {
+					ideology = liberal
+					popularity = 0.04
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = CAN_liberal_coalition
+					add_idea = CAN_liberal_coalition2
+				}
+				country_event = rw_canada.84
+			}
 		}
 	}
 	
@@ -3851,7 +3974,7 @@ focus_tree = {
 	focus = {
 		id = CAN_liberal_victory
 		icon = GFX_goal_CAN_liberals
-		cost = 7
+		cost = 1
 		
 		prerequisite = {
 			focus = CAN_decision_2011
@@ -3876,7 +3999,20 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.02
+			}
+			custom_effect_tooltip = CAN_campaign_trail_ideas_removed
+			hidden_effect = {
+				remove_ideas = CAN_manning_doctrine_reform
+				remove_ideas = CAN_manning_doctrine_pc
+				remove_ideas = CAN_attack_the_liberals
+			}
 		}
 	}
 	
@@ -3885,7 +4021,7 @@ focus_tree = {
 	focus = {
 		id = CAN_prime_minister_ignatieff
 		icon = GFX_goal_CAN_prime_minister_ignatieff
-		cost = 7
+		cost = 2
 		
 		prerequisite = {
 			focus = CAN_liberal_victory
@@ -3909,7 +4045,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = rw_canada.26
 		}
 	}
 	
@@ -4360,7 +4496,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = rw_canada.27
 		}
 	}
 	
@@ -4920,7 +5056,7 @@ focus_tree = {
 		y = 1
 
 		available = {
-			
+			has_country_flag = CAN_monarchy_up_for_debate
 		}
 
 		ai_will_do = {
@@ -4930,7 +5066,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			custom_effect_tooltip = can_manning_pm
+			#custom_effect_tooltip = can_manning_pm
 		}
 	}
 	
@@ -5967,7 +6103,11 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			custom_effect_tooltip = can_manning_pm
+			every_country = {
+				limit = { is_in_faction_with = CAN }
+				add_political_power = 30
+				add_stability = 0.04
+			}
 		}
 	}
 	
