@@ -2226,12 +2226,17 @@ focus_tree = {
 				remove_idea = CAN_reduced_corprate_taxes
 				add_idea = CAN_reduced_corprate_taxes2
 			}
+			hidden_effect = {
+				remove_idea = CAN_mulroney_dream
+			}
+			custom_effect_tooltip = CAN_merge_mulroney_idea
 			every_country = {
 				limit = { 
 					NOT = {
 						OR = {
 							has_government = communist
 							has_government = revolutionary_socialist
+							has_government = national_bolshevik
 						}
 					}
 				}
@@ -3486,7 +3491,9 @@ focus_tree = {
 		y = 1
 
 		available = {
-			
+			hidden_trigger = {
+				NOT = { has_completed_focus = CAN_nationwide_social_contract }
+			}
 		}
 
 		ai_will_do = {
@@ -3867,7 +3874,14 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			swap_ideas = {
+				remove_idea = CAN_buisness_haven
+				add_idea = CAN_buisness_haven2
+			}
+			add_ideas = CAN_pro_business_policies
 		}
 	}
 	
@@ -3895,7 +3909,27 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = CAN_pro_business_policies
+				add_idea = CAN_pro_business_policies2
+			}
+			hidden_effect = {
+				remove_idea = CAN_mulroney_dream
+			}
+			custom_effect_tooltip = CAN_merge_mulroney_idea_ndp
+			every_country = {
+				limit = { 
+					NOT = {
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+							has_government = national_bolshevik
+						}
+						tag = CAN
+					}
+				}
+				add_ideas = CAN_canadian_investment
+			}
 		}
 	}
 	
@@ -3916,7 +3950,7 @@ focus_tree = {
 		y = 3
 
 		available = {
-			
+			has_completed_focus = CAN_global_investment_networks
 		}
 
 		ai_will_do = {
@@ -3926,7 +3960,18 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			every_country = {
+				limit = { 
+					has_idea = CAN_canadian_investment
+				}
+				swap_ideas = {
+					remove_idea = CAN_canadian_investment
+					add_idea = CAN_democratic_economic_forum_member
+				}
+			}
+			hidden_effect = {
+				add_ideas = CAN_democratic_economic_forum_member
+			}
 		}
 	}
 	
@@ -3951,7 +3996,7 @@ focus_tree = {
 		y = 4
 
 		available = {
-			
+			NOT = { has_completed_focus = CAN_prevent_backbench_revolt }
 		}
 
 		ai_will_do = {
@@ -3961,7 +4006,11 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = CAN_pro_business_policies2
+				add_idea = CAN_pro_business_policies3_social_contract
+			}
+			country_event = rw_canada.79
 		}
 	}
 	
@@ -3996,7 +4045,11 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = rw_canada.80
+			swap_ideas = {
+				remove_idea = CAN_pro_business_policies2
+				add_idea = CAN_pro_business_policies3_pro_union
+			}
 		}
 	}
 	
@@ -4028,7 +4081,56 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			if = {
+				limit = { has_completed_focus = CAN_lip_service_to_labour }
+				swap_ideas = {
+					remove_idea = CAN_pro_business_policies3_pro_union
+					add_idea = CAN_mulroneys_dream_from_a_liberal_perspective_union
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = CAN_pro_business_policies3_social_contract
+					add_idea = CAN_mulroneys_dream_from_a_liberal_socialcontract
+				}
+			}
+			add_stability = 0.05
+			GRL = {
+				add_opinion_modifier = {
+					target = CAN
+					modifier = trade_influence_2
+				}
+			}
+			UTA = {
+				add_opinion_modifier = {
+					target = CAN
+					modifier = trade_influence_2
+				}
+			}
+			ARI = {
+				add_opinion_modifier = {
+					target = CAN
+					modifier = trade_influence_2
+				}
+			}
+			MWA = {
+				add_opinion_modifier = {
+					target = CAN
+					modifier = trade_influence_2
+				}
+			}
+			ILL = {
+				add_opinion_modifier = {
+					target = CAN
+					modifier = trade_influence_2
+				}
+			}
+			MEX = {
+				add_opinion_modifier = {
+					target = CAN
+					modifier = trade_influence_2
+				}
+			}
 		}
 	}
 	
