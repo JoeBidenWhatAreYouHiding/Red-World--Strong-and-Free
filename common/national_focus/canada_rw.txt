@@ -707,6 +707,8 @@ focus_tree = {
 		completion_reward = {
 			custom_effect_tooltip = CAN_shape_of_trump_government
 			country_event = rw_canada.39
+			add_political_power = 40
+			add_stability = 0.04
 		}
 	}
 	
@@ -3960,16 +3962,20 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			every_country = {
-				limit = { 
-					has_idea = CAN_canadian_investment
-				}
-				swap_ideas = {
-					remove_idea = CAN_canadian_investment
-					add_idea = CAN_democratic_economic_forum_member
-				}
+			custom_effect_tooltip = CAN_every_dem_country
+			effect_tooltip = {
+				add_ideas = CAN_democratic_economic_forum_member
 			}
 			hidden_effect = {
+				every_country = {
+					limit = { 
+						has_idea = CAN_canadian_investment
+					}
+					swap_ideas = {
+						remove_idea = CAN_canadian_investment
+						add_idea = CAN_democratic_economic_forum_member
+					}
+				}
 				add_ideas = CAN_democratic_economic_forum_member
 			}
 		}
@@ -4689,7 +4695,17 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_stability = 0.01
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.04
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = -0.04
+			}
+			country_event = rw_canada.85
+			add_ideas = CAN_new_senate
 		}
 	}
 	
@@ -4717,13 +4733,25 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_ideas = CAN_legal_weed_idea
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.02
+			}
+			add_offsite_building = {
+                type = industrial_complex level = 1
+            }
+			country_event = rw_canada.86
 		}
 	}
 	
 	focus = {
-		id = CAN_seven_historic_wrongs
-		icon = GFX_goal_CAN_historic_wrongs
+		id = CAN_beacon_against_tyranny
+		icon = GFX_goal_CAN_beacon_against_tyranny
 		cost = 7
 		
 		prerequisite = {
@@ -4745,7 +4773,9 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_ideas = CAN_new_democratic_order
+			add_war_support = 0.02
+			country_event = rw_canada.87
 		}
 	}
 	
@@ -4773,7 +4803,8 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_ideas = CAN_indigenous_commitments
+			country_event = rw_canada.87
 		}
 	}
 	
@@ -4801,7 +4832,32 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = CAN_indigenous_commitments
+				add_idea = CAN_indigenous_commitments2
+			}
+			470 = {
+				add_state_modifier = {
+					modifier = {
+						local_manpower = 0.02
+					}
+				}
+			}
+			473 = {
+				add_state_modifier = {
+					modifier = {
+						local_manpower = 0.02
+					}
+				}
+			}
+			469 = {
+				add_state_modifier = {
+					modifier = {
+						local_manpower = 0.02
+					}
+				}
+			}
+			country_event = rw_canada.88
 		}
 	}
 	
@@ -4832,7 +4888,12 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = CAN_refugee_strain
+				add_idea = CAN_service_guarentees_citizenship
+			}
+			add_manpower = 1100
+			army_experience = -30
 		}
 	}
 	
@@ -4848,7 +4909,7 @@ focus_tree = {
 			focus = CAN_investigate_missing_indigenous_women
 		}
 		prerequisite = {
-			focus = CAN_seven_historic_wrongs
+			focus = CAN_beacon_against_tyranny
 		}
 		
 		mutually_exclusive = {
@@ -4870,7 +4931,41 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_ideas = CAN_trudeau_establishment
+			hidden_effect = {
+				if = {
+					limit = { has_country_leader = { name = "Justin Trudeau" ruling_only = yes } }
+					CAN_justin_trudeau = {
+						add_country_leader_role = {
+							country_leader = {
+								expire = "1.1.1.1"
+								ideology = centrist_ideology
+							}
+						}
+						promote_character = centrist_ideology
+					}
+				}
+				if = {
+					limit = { has_government = liberal }
+					set_politics = {
+						ruling_party = centrist
+					}
+					set_variable = {
+						current_centrist_pop = party_popularity@centrist
+					}
+					set_variable = {
+						current_liberal_pop = party_popularity@liberal
+					}
+					subtract_from_variable = {
+						var = current_liberal_pop
+						value = current_centrist_pop
+					}
+					add_popularity = {
+						ideology = centrist
+						popularity = current_liberal_pop
+					}	
+				}
+			}
 		}
 	}
 	
@@ -4886,7 +4981,7 @@ focus_tree = {
 			focus = CAN_investigate_missing_indigenous_women
 		}
 		prerequisite = {
-			focus = CAN_seven_historic_wrongs
+			focus = CAN_beacon_against_tyranny
 		}
 		
 		mutually_exclusive = {
@@ -4908,7 +5003,9 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_stability = -0.02
+			add_political_power = 20
+			add_ideas = CAN_trudeau_antiestablishment
 		}
 	}
 	
@@ -4937,7 +5034,29 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.05
+			}
+			if = {
+				limit = { has_government = centrist }
+				add_trait = {
+					character = CAN_justin_trudeau
+					ideology = centrist_ideology
+					trait = CAN_trudeaumania
+				}
+			}
+			else = {
+				add_trait = {
+					character = CAN_justin_trudeau
+					ideology = social_liberal
+					trait = CAN_trudeaumania
+				}
+			}
 		}
 	}
 	
