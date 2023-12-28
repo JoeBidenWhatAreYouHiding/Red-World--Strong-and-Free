@@ -922,6 +922,11 @@ focus_tree = {
 
 		completion_reward = {
 			add_ideas = CAN_ruling_from_the_centre
+			CAN_donald_trump = {
+				set_portraits = {
+					civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Donald_Trump_Happy.png" }
+				}
+			}
 		}
 	}
 	focus = {
@@ -992,6 +997,11 @@ focus_tree = {
 
 		completion_reward = {
 			add_ideas = CAN_unabashed_conservatism
+			CAN_donald_trump = {
+				set_portraits = {
+					civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Donald_Trump_Angry.png" }
+				}
+			}
 		}
 	}
 	
@@ -1711,8 +1721,11 @@ focus_tree = {
 			add_political_power = 50
 			add_stability = -0.02
 			custom_effect_tooltip = CAN_will_switch_to_nationalism
-			set_country_flag = pcs_are_nationalist
-			clr_country_flag = pcs_are_natcon
+			if = {
+				limit = { has_country_flag = pcs_are_natcon }
+				clr_country_flag = pcs_are_natcon
+				set_country_flag = pcs_are_nationalist
+			}
 			hidden_effect = {
 				if = {
 					limit = { has_country_leader = { name = "Preston Manning" ruling_only = yes } }
@@ -1827,6 +1840,11 @@ focus_tree = {
 			swap_ideas = {
 				remove_idea = CAN_pcs_strengthened
 				add_idea = CAN_pcs_strengthened2_pc
+			}
+			if = {
+				limit = { has_country_flag = pcs_are_nationalist }
+				clr_country_flag = pcs_are_nationalist
+				set_country_flag = pcs_are_natcon
 			}
 			custom_effect_tooltip = CAN_will_switch_to_natcon
 			hidden_effect = {
@@ -2143,13 +2161,17 @@ focus_tree = {
 
 		completion_reward = {
 			470 = {
-				add_state_modifier = {
-					local_supplies = 0.02
+				add_state_modifier = {	
+					modifier = {
+						local_supplies = 0.02
+					}
 				}
 			}
 			469 = {
 				add_state_modifier = {
-					local_supplies = 0.02
+					modifier = {
+						local_supplies = 0.02
+					}
 				}
 			}
 			add_ideas = CAN_farm_aid
@@ -2229,7 +2251,7 @@ focus_tree = {
 				add_idea = CAN_reduced_corprate_taxes2
 			}
 			hidden_effect = {
-				remove_idea = CAN_mulroney_dream
+				remove_ideas = CAN_mulroney_dream
 			}
 			custom_effect_tooltip = CAN_merge_mulroney_idea
 			every_country = {
@@ -2587,6 +2609,11 @@ focus_tree = {
 			add_popularity = {
 				ideology = moderate_socialist
 				popularity = -0.05
+			}
+			if = {
+				limit = { has_country_flag = ndp_is_modsoc }
+				clr_country_flag = ndp_is_modsoc
+				set_country_flag = ndp_is_nd
 			}
 			custom_effect_tooltip = CAN_switch_to_new_democrat
 			hidden_effect = {
@@ -3437,6 +3464,11 @@ focus_tree = {
 				long_name = CAN_trudeau_new_democrat_party_long
 				ideology = liberal
 			}
+			if = {
+				limit = { has_country_flag = ndp_is_nd }
+				clr_country_flag = ndp_is_nd
+				set_country_flag = ndp_is_centrist
+			}
 			hidden_effect = {
 				if = {
 					limit = { has_country_leader = { name = "Bob Rae" ruling_only = yes } }
@@ -3471,6 +3503,7 @@ focus_tree = {
 					}	
 				}
 			}
+			set_country_flag = ndp_is_centrist
 			country_event = rw_canada.78
 		}
 	}
@@ -3916,7 +3949,7 @@ focus_tree = {
 				add_idea = CAN_pro_business_policies2
 			}
 			hidden_effect = {
-				remove_idea = CAN_mulroney_dream
+				remove_ideas = CAN_mulroney_dream
 			}
 			custom_effect_tooltip = CAN_merge_mulroney_idea_ndp
 			every_country = {
@@ -4933,6 +4966,11 @@ focus_tree = {
 		completion_reward = {
 			add_ideas = CAN_trudeau_establishment
 			custom_effect_tooltip = CAN_liberals_become_centrist
+			if = {
+				limit = { has_country_flag = liberals_are_liberal }
+				clr_country_flag = liberals_are_liberal
+				set_country_flag = liberals_are_centrist
+			}
 			hidden_effect = {
 				if = {
 					limit = { has_country_leader = { name = "Justin Trudeau" ruling_only = yes } }
@@ -7356,14 +7394,15 @@ focus_tree = {
 					limit = {
 						is_post_america_nation = yes
 						is_in_faction_with = CAN 
+						NOT = { is_subject_of = CAN }
 					}
-					PREV = { 
+					FROM = { 
 						get_current_government_type = yes
 					}
 					CAN = {
-						puppet = PREV
+						puppet = FROM
 					}
-					PREV = { 
+					FROM = { 
 						restore_previous_government_type = yes
 					}
 				}

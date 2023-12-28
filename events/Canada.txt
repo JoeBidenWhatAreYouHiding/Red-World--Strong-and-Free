@@ -655,6 +655,18 @@ country_event = {
 				}
 			}
 		}
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.198
+				days = 80
+				random_days = 30
+			}
+			country_event = {
+				id = rw_canada.199
+				days = 40
+				random_days = 20
+			}
+		}
 	}
 	
 	option = { #NDP
@@ -717,6 +729,18 @@ country_event = {
 				}
 			}
 		}
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.197
+				days = 80
+				random_days = 30
+			}
+			country_event = {
+				id = rw_canada.199
+				days = 40
+				random_days = 20
+			}
+		}
 	}
 	
 	option = { #ProgCons
@@ -761,6 +785,18 @@ country_event = {
 						id = rw_canada_news.1
 					}
 				}
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.197
+				days = 80
+				random_days = 30
+			}
+			country_event = {
+				id = rw_canada.198
+				days = 40
+				random_days = 20
 			}
 		}
 	}
@@ -997,6 +1033,7 @@ country_event = {
 			ideology = national_conservative
 			popularity = -0.02
 		}
+		set_country_flag = harper_calls_it_quits
 	}
 }
 
@@ -1815,6 +1852,8 @@ country_event = {
 		CAN_jason_kenney = {
 			promote_character = neoconservative
 		}
+		set_country_flag = nationalists_are_canadian_alliance
+		set_country_flag = canadian_alliance_is_relevant
 	}
 }
 
@@ -2306,6 +2345,7 @@ country_event = {
 			ideology = fascist
 			popularity = 0.04
 		}
+		set_country_flag = harper_calls_it_quits
 	}
 }
 
@@ -2633,6 +2673,983 @@ country_event = {
 		name = rw_canada.89.o1
 		add_stability = 0.02
 		add_political_power = -20
+	}
+}
+
+
+### 2015 Elections Stuff ###
+
+#Liberal Primarty
+country_event = {
+	id = rw_canada.197
+	title = rw_canada.197.t
+	desc = rw_canada.197.d
+	picture = sp_primary_2016
+
+	is_triggered_only = yes
+	
+	trigger = {	
+		has_country_flag = liberals_exist
+	}
+
+	option = { #Current Leader
+		name = rw_canada.197.o1
+		trigger = {
+			OR = {
+				has_government = centrist
+				has_government = liberal
+			}
+		}
+		set_country_flag = current_liberal_leader_2015
+	}
+
+	option = { #Justin Trudeau
+		name = rw_canada.197.o2
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = centrist
+					has_government = liberal
+				}
+				has_country_flag = 2011_pc_liberal_resigns
+			}
+			NOT = {
+				has_country_leader = { name = "Justin Trudeau" ruling_only = yes }
+			}
+		}
+		set_country_flag = liberal_justin_trudeau_2015
+		if = {
+			limit = { has_country_flag = liberals_are_centrist }
+			clr_country_flag = liberals_are_centrist
+			set_country_flag = liberals_are_liberal
+		}
+	}
+
+	option = { #Chrystia Freeland
+		name = rw_canada.197.o3
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = centrist
+					has_government = liberal
+				}
+				has_country_flag = 2011_pc_liberal_resigns
+			}
+		}
+		set_country_flag = liberal_chrystia_freeland_2015
+		CAN_chrystia_freeland = {
+			promote_character = social_liberal
+		}
+		if = {
+			limit = { has_country_flag = liberals_are_centrist }
+			clr_country_flag = liberals_are_centrist
+			set_country_flag = liberals_are_liberal
+		}
+	}
+	
+	option = { #Paul Martin
+		name = rw_canada.197.o4
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = centrist
+					has_government = liberal
+				}
+				has_country_flag = 2011_pc_liberal_resigns
+			}
+			has_completed_focus = CAN_legacy_of_martin
+		}
+		set_country_flag = liberal_paul_martin_2015
+		CAN_paul_martin = {
+			promote_character = centrist_populist
+		}
+		if = {
+			limit = { has_country_flag = liberals_are_liberal }
+			clr_country_flag = liberals_are_liberal
+			set_country_flag = liberals_are_centrist
+		}
+	}
+	
+	option = { #Michael Bloomberg
+		name = rw_canada.197.o5
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = centrist
+					has_government = liberal
+				}
+				has_country_flag = 2011_pc_liberal_resigns
+			}
+		}
+		set_country_flag = liberal_michael_bloomberg_2015
+		CAN_michael_bloomberg = {
+			promote_character = centrist_populist
+		}
+		if = {
+			limit = { has_country_flag = liberals_are_liberal }
+			clr_country_flag = liberals_are_liberal
+			set_country_flag = liberals_are_centrist
+		}
+	}
+}
+
+#NDP Primarty
+country_event = {
+	id = rw_canada.198
+	title = rw_canada.198.t
+	desc = rw_canada.198.d
+	picture = sp_primary_2016
+
+	is_triggered_only = yes
+	
+	trigger = {	
+		has_country_flag = ndp_exists
+	}
+
+	option = { #Current Leader
+		name = rw_canada.198.o1
+		trigger = {
+			OR = {
+				has_government = moderate_socialist
+				AND = {
+					has_government = centrist
+					has_country_flag = ndp_is_centrist
+				}
+				has_government = new_democrat
+			}
+		}
+		set_country_flag = current_ndp_leader_2015
+	}
+
+	option = { #Tom Mulcair
+		name = rw_canada.198.o2
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = moderate_socialist
+					has_government = centrist
+					has_government = new_democrat
+				}
+				has_country_flag = 2011_ndp_leader_resigns
+			}
+			NOT = {
+				has_country_leader = { name = "Tom Mulcair" ruling_only = yes }
+			}
+		}
+		set_country_flag = ndp_tom_mulcair_2015
+		if = {
+			limit = { has_country_flag = ndp_is_modsoc }
+			CAN_tom_mulcair = {
+				add_country_leader_role = {
+					country_leader = {
+						expire = "1.1.1.1"
+						ideology = democratic_socialist
+					}
+				}
+				promote_character = democratic_socialist
+			}
+		}
+		else = {
+			CAN_tom_mulcair = {
+				promote_character = new_democrat_ideology
+			}
+		}
+	}
+
+	option = { #Olivia Chow
+		name = rw_canada.198.o3
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = moderate_socialist
+					has_government = centrist
+					has_government = new_democrat
+				}
+				has_country_flag = 2011_ndp_leader_resigns
+			}
+		}
+		set_country_flag = ndp_olivia_chow_2015
+		if = {
+			limit = { has_country_flag = ndp_is_modsoc }
+			CAN_olivia_chow = {
+				add_country_leader_role = {
+					country_leader = {
+						expire = "1.1.1.1"
+						ideology = democratic_socialist
+					}
+				}
+				promote_character = democratic_socialist
+			}
+		}
+		else = {
+			CAN_olivia_chow = {
+				promote_character = new_democrat_ideology
+			}
+		}
+	}
+	
+	option = { #Mel Watkins
+		name = rw_canada.198.o4
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = moderate_socialist
+					has_government = centrist
+					has_government = new_democrat
+				}
+				has_country_flag = 2011_ndp_leader_resigns
+			}
+			has_completed_focus = CAN_return_of_the_waffle
+		}
+		set_country_flag = ndp_mel_watkins_2015
+		CAN_mel_watkins = {
+			promote_character = democratic_socialist
+		}
+	}
+	
+	option = { #James Laxer
+		name = rw_canada.198.o5
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = moderate_socialist
+					has_government = centrist
+					has_government = new_democrat
+				}
+				has_country_flag = 2011_ndp_leader_resigns
+			}
+			has_completed_focus = CAN_return_of_the_waffle
+		}
+		set_country_flag = ndp_james_laxer_2015
+		CAN_james_laxer = {
+			promote_character = democratic_socialist
+		}
+	}
+	
+	option = { #Justin Trudeau
+		name = rw_canada.198.o6
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = moderate_socialist
+					has_government = centrist
+					has_government = new_democrat
+				}
+				has_country_flag = 2011_ndp_leader_resigns
+			}
+			has_completed_focus = CAN_the_merger
+		}
+		set_country_flag = ndp_justin_trudeau_2015
+		if = {
+			limit = { has_country_flag = ndp_is_centrist }
+			clr_country_flag = ndp_is_centrist
+			set_country_flag = ndp_is_liberal
+		}
+	}
+	
+	option = { #Charlie Angus
+		name = rw_canada.198.o7
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = moderate_socialist
+					has_government = centrist
+					has_government = new_democrat
+				}
+				has_country_flag = 2011_ndp_leader_resigns
+			}
+		}
+		set_country_flag = ndp_charlie_angus_2015
+		if = {
+			limit = { has_country_flag = ndp_is_modsoc }
+			CAN_charlie_angus = {
+				add_country_leader_role = {
+					country_leader = {
+						expire = "1.1.1.1"
+						ideology = democratic_socialist
+					}
+				}
+				promote_character = democratic_socialist
+			}
+		}
+		else = {
+			CAN_charlie_angus = {
+				promote_character = new_democrat_ideology
+			}
+		}
+	}
+}
+
+#PC Primarty
+country_event = {
+	id = rw_canada.199
+	title = rw_canada.199.t
+	desc = rw_canada.199.d
+	picture = sp_primary_2016
+
+	is_triggered_only = yes
+	
+	trigger = {	
+		has_country_flag = progcons_exist
+	}
+
+	option = { #Current Leader
+		name = rw_canada.199.o1
+		trigger = {
+			OR = {
+				has_government = nationalist
+				has_government = national_conservative
+			}
+		}
+		set_country_flag = current_pc_leader_2015
+	}
+
+	option = { #Jim Prentice
+		name = rw_canada.199.o2
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = nationalist
+					has_government = national_conservative
+				}
+				has_country_flag = 2011_pc_leader_resigns
+			}
+		}
+		set_country_flag = pc_jim_prentice_2015
+		CAN_jim_prentice = {
+			promote_character = progressive_conservative
+		}
+		if = {
+			limit = { has_country_flag = pcs_are_nationalist }
+			clr_country_flag = pcs_are_nationalist
+			set_country_flag = pcs_are_natcon
+		}
+	}
+
+	option = { #Peter MacKay
+		name = rw_canada.199.o3
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = nationalist
+					has_government = national_conservative
+				}
+				has_country_flag = 2011_pc_leader_resigns
+			}
+		}
+		set_country_flag = pc_peter_mackay_2015
+		CAN_peter_mackay = {
+			promote_character = progressive_conservative
+		}
+		if = {
+			limit = { has_country_flag = pcs_are_nationalist }
+			clr_country_flag = pcs_are_nationalist
+			set_country_flag = pcs_are_natcon
+		}
+	}
+	
+	option = { #Stockwell Day
+		name = rw_canada.199.o4
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = nationalist
+					has_government = national_conservative
+				}
+				has_country_flag = 2011_pc_leader_resigns
+			}
+		}
+		set_country_flag = pc_stockwell_day_2015
+		CAN_stockwell_day = {
+			promote_character = neoconservative
+		}
+		if = {
+			limit = { has_country_flag = pcs_are_natcon }
+			clr_country_flag = pcs_are_natcon
+			set_country_flag = pcs_are_nationalist
+		}
+	}
+	
+	option = { #Stephen Harper
+		name = rw_canada.199.o5
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = nationalist
+					has_government = national_conservative
+				}
+				has_country_flag = 2011_pc_leader_resigns
+			}
+			NOT = {
+				has_country_flag = harper_calls_it_quits
+			}
+		}
+		set_country_flag = pc_stephen_harper_2015
+		if = {
+			limit = { has_country_flag = pcs_are_natcon }
+			clr_country_flag = pcs_are_natcon
+			set_country_flag = pcs_are_nationalist
+		}
+	}
+}
+
+#2011 Election
+country_event = {
+	id = rw_canada.200
+	title = rw_canada.200.t
+	desc = rw_canada.200.d
+	picture = can_election
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = { has_country_leader = { name = "Donald Trump" ruling_only = yes } }
+				if = {
+					limit = {
+						has_completed_focus = CAN_trump_the_populist
+					}
+					CAN_donald_trump = {
+						set_portraits = {
+							civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Donald_Trump_Second_Term_Angry.png" }
+						}
+					}
+				}
+				else = {
+					CAN_donald_trump = {
+						set_portraits = {
+							civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Donald_Trump_Second_Term.png" }
+						}
+					}
+				}
+			}
+			
+			if = {
+				limit = { has_country_leader = { name = "Justin Trudeau" ruling_only = yes } }
+				CAN_justin_trudeau = {
+					set_portraits = {
+						civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Justin_Trudeau_2015.png" }
+					}
+				}
+			}
+		}
+	}
+				
+	
+	option = { #Liberals
+		name = rw_canada.200.o1
+		set_country_flag =  pc_victory_2015
+		set_country_flag = CAN_2015_elections_held
+		if = {
+			limit = { has_country_flag = liberals_are_liberal }
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = liberal
+			}
+		}
+		else = {
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = centrist
+			}
+		}
+		if = {
+			limit = { 
+				has_country_flag = liberal_chrystia_freeland_2015
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.14
+				}
+			}
+		}
+		else_if = {
+			limit = { 
+				has_country_flag = liberal_justin_trudeau_2015
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.15
+				}
+			}
+		}
+		else_if = {
+			limit = { 
+				has_country_flag = liberal_michael_bloomberg_2015
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.16
+				}
+			}
+		}
+		else_if = {
+			limit = { 
+				has_country_flag = liberal_paul_martin_2015
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.17
+				}
+			}
+		}
+		else_if = {
+			limit = { 
+				has_country_flag = current_liberal_leader_2015
+				has_country_leader = { name = "Justin Trudeau" ruling_only = yes }
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.18
+				}
+			}
+		}
+		else_if = {
+			limit = { 
+				has_country_flag = current_liberal_leader_2015
+				has_country_leader = { name = "Michael Ignatieff" ruling_only = yes }
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.19
+				}
+			}
+		}
+	}
+	
+	option = { #NDP
+		name = rw_canada.200.o2
+		set_country_flag =  ndp_victory_2015
+		set_country_flag = CAN_2015_elections_held
+		if = {
+			limit = { has_country_flag = ndp_is_modsoc }
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = moderate_socialist
+			}
+		}
+		else_if = {
+			limit = { has_country_flag = ndp_is_centrist }
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = centrist
+			}
+		}
+		else = {
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = new_democrat
+			}
+		}
+	}
+	
+	option = { #ProgCons
+		name = rw_canada.200.o3
+		set_country_flag =  pc_victory_2015
+		set_country_flag = CAN_2015_elections_held
+		if = {
+			limit = { has_country_flag = pcs_are_nationalist }
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = nationalist
+			}
+		}
+		else = {
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = national_conservative
+			}
+		}
+		if = {
+			limit = { 
+				has_country_flag = pc_jim_prentice_2015
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.20
+				}
+			}
+		}
+		else_if = {
+			limit = { 
+				has_country_flag = pc_peter_mackay_2015
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.21
+				}
+			}
+		}
+		else_if = {
+			limit = { 
+				has_country_flag = pc_stephen_harper_2015
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.22
+				}
+			}
+		}
+		else_if = {
+			limit = { 
+				has_country_flag = pc_stockwell_day_2015
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.23
+				}
+			}
+		}
+		else_if = {
+			limit = { 
+				has_country_flag = current_pc_leader_2015
+				has_country_leader = { name = "Donald Trump" ruling_only = yes }
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.24
+				}
+			}
+		}
+		else_if = {
+			limit = { 
+				has_country_flag = current_liberal_leader_2015
+				has_country_leader = { name = "Stephen Harper" ruling_only = yes }
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.25
+				}
+			}
+		}
+	}
+	
+	option = { #NDP
+		name = rw_canada.200.o2
+		set_country_flag =  ndp_victory_2015
+		set_country_flag = CAN_2015_elections_held
+		if = {
+			limit = { has_country_flag = ndp_is_modsoc }
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = moderate_socialist
+			}
+		}
+		else_if = {
+			limit = { has_country_flag = ndp_is_centrist }
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = centrist
+			}
+		}
+		else = {
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = new_democrat
+			}
+		}
+	}
+	
+	option = { #No Majority
+		name = rw_canada.200.o4
+		trigger = {
+			has_country_flag = canadian_alliance_is_relevant
+		}
+		add_stability = -0.05
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.201
+				days = 4
+			}
+		}
+	}
+}
+
+#Hung Parlaiment
+country_event = {
+	id = rw_canada.201
+	title = rw_canada.201.t
+	desc = rw_canada.201.d
+	picture = can_election
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #ProgCons backed by the CA
+		name = rw_canada.201.o1
+		set_country_flag =  pc_victory_2015
+		set_country_flag = CAN_2015_elections_held
+		if = {
+			limit = { has_country_flag = pcs_are_natcon }
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = national_conservative
+			}
+		}
+		else = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = nationalist
+			}
+		}
+	}
+	
+	option = { #The NDP, backed by Liberals and the Bloc
+		name = rw_canada.201.o2
+		set_country_flag =  ndp_victory_2015
+		set_country_flag = CAN_2015_elections_held
+		if = {
+			limit = { has_country_flag = ndp_is_modsoc }
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = moderate_socialist
+			}
+		}
+		else_if = {
+			limit = { has_country_flag = ndp_is_centrist }
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = centrist
+			}
+		}
+		else = {
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = new_democrat
+			}
+		}
+	}
+	
+	option = { #The Liberals, backed by the NDP and the Bloc
+		name = rw_canada.201.o3
+		set_country_flag =  pc_victory_2015
+		set_country_flag = CAN_2015_elections_held
+		if = {
+			limit = { has_country_flag = liberals_are_liberal }
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = liberal
+			}
+		}
+		else = {
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = centrist
+			}
+		}
+	}
+	
+	option = { #Canadian Alliance
+		name = rw_canada.201.o4
+		country_event = rw_canada.203
+	}
+	
+	option = { #Bloc Québécois
+		name = rw_canada.201.o5
+		if = {
+			limit = { has_country_flag = ndp_is_nd }
+			clr_country_flag = ndp_is_nd
+			set_country_flag = ndp_is_modsoc
+			if = {
+				limit = { has_country_flag = ndp_tom_mulcair_2015 }
+				CAN_tom_mulcair = {
+					add_country_leader_role = {
+						country_leader = {
+							expire = "1.1.1.1"
+							ideology = democratic_socialist
+						}
+					}
+					promote_character = democratic_socialist
+				}
+			}
+			else_if = {
+				limit = { has_country_flag = ndp_olivia_chow_2015 }
+				CAN_olivia_chow = {
+					add_country_leader_role = {
+						country_leader = {
+							expire = "1.1.1.1"
+							ideology = democratic_socialist
+						}
+					}
+					promote_character = democratic_socialist
+				}
+			}
+		}
+		set_country_flag = CAN_2015_elections_held
+		set_country_flag = bloc_quebecois_victory_2015
+		set_party_name = {
+			name = CAN_bloc_quebecois_party_long
+			long_name = CAN_bloc_quebecois_party_long
+			ideology = new_democrat
+		}
+		CAN_gilles_duceppe = {
+			promote_character = new_democrat_ideology
+		}
+		set_politics = {
+			ruling_party = new_democrat
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.202
+				days = 4
+			}
+		}
+	}
+}
+
+#Bloc Backing
+country_event = {
+	id = rw_canada.202
+	title = rw_canada.202.t
+	desc = rw_canada.202.d
+	picture = can_election
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #NDP
+		name = rw_canada.202.o1
+		set_country_flag =  bloc_ndp_alliance
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.06
+		}
+	}
+	
+	option = { #Liberals
+		name = rw_canada.202.o1
+		set_country_flag =  bloc_liberal_alliance
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.06
+		}
+	}
+}
+
+#Cruz is in a position to take power
+country_event = {
+	id = rw_canada.203
+	title = rw_canada.203.t
+	desc = rw_canada.203.d
+	picture = can_election
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #CA minority governmnet
+		name = rw_canada.203.o1
+		set_country_flag =  canadian_alliance_victory_2015
+		set_country_flag = CAN_2015_elections_held
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.06
+		}
+		set_politics = {
+			ruling_party = fascist
+		}
+		add_political_power = -40
+	}
+	
+	option = { #Cruz Resignation
+		name = rw_canada.203.o2
+		add_stability = -0.02
+		hidden_effect = {
+			country_event = rw_canada.204
+		}
+	}
+}
+
+#Kenney Forms Government
+country_event = {
+	id = rw_canada.204
+	title = rw_canada.204.t
+	desc = rw_canada.204.d
+	picture = can_election
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { 
+		name = rw_canada.204.o1
+		set_country_flag =  canadian_alliance_victory_2015
+		set_country_flag = CAN_2015_elections_held
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.06
+		}
+		set_politics = {
+			ruling_party = nationalist
+		}
+		add_stability = 0.02
 	}
 }
 
@@ -4017,6 +5034,48 @@ country_event = {
 	}
 }
 
+######################
+### FLAVOUR EVENTS ###
+######################
+
+add_namespace = can_flavour
+
+#IntPhone
+country_event = {
+	id = can_flavour.0
+	title = can_flavour.0.t
+	desc = can_flavour.0.d
+	picture = steve_jobs_intphone
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = can_flavour.0.o1
+		
+	}
+}
+
+#Blockbuster Buys IntraFlix
+country_event = {
+	id = can_flavour.32
+	title = can_flavour.32.t
+	desc = can_flavour.32.d
+	picture = blockbuster
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = can_flavour.32.o1
+	
+	}
+}
+
+###################
+### NEWS EVENTS ###
+###################
+
 news_event = {	#Manning elected
 	id = rw_canada_news.1
 	title = rw_canada_news.1.t
@@ -4170,5 +5229,278 @@ news_event = {	#American Unity Government
 	
 	option = {
 		name = rw_canada_news.12.o1
+	}
+}
+
+news_event = {	#Freeland Elected Prime Minister
+	id = rw_canada_news.14
+	title = rw_canada_news.14.t
+	desc = rw_canada_news.14.d
+	picture = freeland_victory
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.14.o1
+	}
+}
+
+news_event = {	#Trudeau Elected Prime Minister
+	id = rw_canada_news.15
+	title = rw_canada_news.15.t
+	desc = rw_canada_news.15.d
+	picture = trudeau_victory
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.15.o1
+	}
+}
+
+news_event = {	#Bloomberg Elected Prime Minister
+	id = rw_canada_news.16
+	title = rw_canada_news.16.t
+	desc = rw_canada_news.16.d
+	picture = american_unity_government
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.16.o1
+	}
+}
+
+news_event = {	#Paul Martin Elected Prime Minister
+	id = rw_canada_news.17
+	title = rw_canada_news.17.t
+	desc = rw_canada_news.17.d
+	picture = martin_victory
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.17.o1
+	}
+}
+
+news_event = {	#Trudeau Re-Elected
+	id = rw_canada_news.18
+	title = rw_canada_news.18.t
+	desc = rw_canada_news.18.d
+	picture = trudeau_re_elected
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.18.o1
+	}
+}
+
+news_event = {	#Ignatieff Re-Elected
+	id = rw_canada_news.19
+	title = rw_canada_news.19.t
+	desc = rw_canada_news.19.d
+	picture = ignatieff_re_elected
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.19.o1
+	}
+}
+
+news_event = {	#Prentice Elected
+	id = rw_canada_news.20
+	title = rw_canada_news.20.t
+	desc = rw_canada_news.20.d
+	picture = prentice_victory
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.20.o1
+	}
+}
+
+news_event = {	#MacKay Elected
+	id = rw_canada_news.21
+	title = rw_canada_news.21.t
+	desc = rw_canada_news.21.d
+	picture = mackay_victory
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.21.o1
+	}
+}
+
+news_event = {	#Harper Elected
+	id = rw_canada_news.22
+	title = rw_canada_news.22.t
+	desc = rw_canada_news.22.d
+	picture = harper_victory
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.22.o1
+	}
+}
+
+news_event = {	#Day Elected
+	id = rw_canada_news.23
+	title = rw_canada_news.23.t
+	desc = rw_canada_news.23.d
+	picture = day_victory
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.23.o1
+	}
+}
+
+news_event = {	#Trump Re-Elected
+	id = rw_canada_news.24
+	title = rw_canada_news.24.t
+	desc = rw_canada_news.24.d
+	picture = trump_re_elected
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.24.o1
+	}
+}
+
+news_event = {	#Harper Re-Elected
+	id = rw_canada_news.25
+	title = rw_canada_news.25.t
+	desc = rw_canada_news.25.d
+	picture = harper_re_elected
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.25.o1
+	}
+}
+
+news_event = {	#Mulcair Elected
+	id = rw_canada_news.26
+	title = rw_canada_news.26.t
+	desc = rw_canada_news.26.d
+	picture = mulcair_victory
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.26.o1
+	}
+}
+
+news_event = {	#Chow Elected
+	id = rw_canada_news.27
+	title = rw_canada_news.27.t
+	desc = rw_canada_news.27.d
+	picture = chow_victory
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.27.o1
+	}
+}
+
+news_event = {	#Waffle Elected
+	id = rw_canada_news.28
+	title = rw_canada_news.28.t
+	desc = rw_canada_news.28.d
+	picture = waffle_victory
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.28.o1
+	}
+}
+
+news_event = {	#Angus Elected
+	id = rw_canada_news.29
+	title = rw_canada_news.29.t
+	desc = rw_canada_news.29.d
+	picture = angus_victory
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.29.o1
+	}
+}
+
+news_event = {	#Layton Re-Elected
+	id = rw_canada_news.30
+	title = rw_canada_news.30.t
+	desc = rw_canada_news.30.d
+	picture = layton_re_elected
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.30.o1
+	}
+}
+
+news_event = {	#Rae Re-Elected
+	id = rw_canada_news.31
+	title = rw_canada_news.31.t
+	desc = rw_canada_news.31.d
+	picture = rae_re_re_elected
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.31.o1
+	}
+}
+
+news_event = {	#Cruz Elected
+	id = rw_canada_news.32
+	title = rw_canada_news.32.t
+	desc = rw_canada_news.32.d
+	picture = cruz_victory
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.32.o1
+	}
+}
+
+news_event = {	#Kenney Elected
+	id = rw_canada_news.32
+	title = rw_canada_news.32.t
+	desc = rw_canada_news.32.d
+	picture = kenney_victory
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.32.o1
+	}
+}
+
+news_event = {	#Bloc Victory
+	id = rw_canada_news.33
+	title = rw_canada_news.33.t
+	desc = rw_canada_news.33.d
+	picture = duceppe_victory
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.33.o1
 	}
 }
