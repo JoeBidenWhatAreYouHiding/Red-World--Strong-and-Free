@@ -7364,16 +7364,38 @@ focus_tree = {
 
 		available = {
 			NEA = {	
-				NOT = { has_idea = idea_standing_firm_commonwealth }
-				is_in_faction_with = CAN
+				OR = {
+					is_in_faction_with = CAN
+					exists = no
+				}
 			}
 			PCA = {	
-				NOT = { has_idea = idea_standing_firm_union }
-				is_in_faction_with = CAN
+				OR = {
+					is_in_faction_with = CAN
+					exists = no
+				}
 			}
 			USA = {	
-				NOT = { has_idea = idea_standing_firm_remnants }
-				is_in_faction_with = CAN
+				OR = {
+					is_in_faction_with = CAN
+					exists = no
+				}
+			}
+			365 = {
+				owner = {
+					OR = {
+						tag = CAN
+						is_in_faction_with = CAN
+					}
+				}
+			}
+			378 = {
+				owner = {
+					OR = {
+						tag = CAN
+						is_in_faction_with = CAN
+					}
+				}
 			}
 		}
 
@@ -8917,7 +8939,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_europe
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_europe
 		cost = 7
 		
 		prerequisite = {
@@ -8939,7 +8961,18 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			every_country = {
+				limit = {
+					capital_scope = {
+						is_on_continent = europe
+					}
+					NOT = { is_in_faction_with = GER }
+				}
+				add_opinion_modifier = {
+					target = PREV
+					modifier = anti_communist_focus
+				}
+			}
 		}
 	}
 	
@@ -8947,7 +8980,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_north_atlantic
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_north_atlantic
 		cost = 7
 		
 		prerequisite = {
@@ -8975,7 +9008,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_greenlandic_integration
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_annex_greenland
 		cost = 7
 		
 		prerequisite = {
@@ -9007,7 +9040,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_greenlandic_support
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_greenland
 		cost = 7
 		
 		prerequisite = {
@@ -9040,7 +9073,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_invade_iceland
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_invade_iceland
 		cost = 7
 		
 		prerequisite = {
@@ -9073,7 +9106,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_pressure_iceland
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_pressure_iceland
 		cost = 7
 		
 		prerequisite = {
@@ -9106,12 +9139,11 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_iceland_integration
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_integrate_iceland
 		cost = 7
 		
 		prerequisite = {
 			focus = CAN_invade_iceland
-			focus = CAN_pressure_iceland
 		}
 		
 		mutually_exclusive = {
@@ -9139,7 +9171,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_iceland_in_the_dl
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_iceland_in_nato
 		cost = 7
 		
 		prerequisite = {
@@ -9171,8 +9203,8 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = CAN_reclaim_denmark
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		id = CAN_restore_norway
+		icon = GFX_goal_CAN_restore_norway
 		cost = 7
 		
 		prerequisite = {
@@ -9195,17 +9227,20 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			create_wargoal = {
+				type = annex_everything
+				target = NOR
+			}
 		}
 	}
 	
 	focus = {
 		id = CAN_alliance_with_sweden
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_work_with_sweden
 		cost = 7
 		
 		prerequisite = {
-			focus = CAN_reclaim_denmark
+			focus = CAN_restore_norway
 		}
 		
 		relative_position_id = CAN_north_atlantic
@@ -9228,8 +9263,8 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = CAN_restore_norway
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		id = CAN_reclaim_denmark
+		icon = GFX_goal_CAN_denmark
 		cost = 7
 		
 		prerequisite = {
@@ -9251,7 +9286,10 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			create_wargoal = {
+				type = annex_everything
+				target = DEN
+			}
 		}
 	}
 	
@@ -9259,7 +9297,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_soviet_bloc
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_soviet_bloc
 		cost = 7
 		
 		prerequisite = {
@@ -9271,7 +9309,12 @@ focus_tree = {
 		y = 1
 
 		available = {
-			
+			OR = {
+				country_exists = SOV
+				GER = {
+					is_faction_leader = yes
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -9281,13 +9324,44 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			SOV = {
+				add_opinion_modifier = {
+					target = CAN
+					modifier = denounced_warsaw_pact
+				}
+			}
+			add_opinion_modifier = {
+				target = SOV
+				modifier = denounced_warsaw_pact
+			}
+			GER = {
+				add_opinion_modifier = {
+					target = CAN
+					modifier = denounced_warsaw_pact
+				}
+			}
+			add_opinion_modifier = {
+				target = GER
+				modifier = denounced_warsaw_pact
+			}
+			hidden_effect = {
+				every_country = {
+					news_event = {
+						id = rw_canada_news.34
+						hours = 5
+					}
+				}
+				add_named_threat = {
+					threat = 20
+					name = "Restarted Cold War"
+				}
+			}
 		}
 	}
 	
 	focus = {
 		id = CAN_germans
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_the_germans
 		cost = 7
 		
 		prerequisite = {
@@ -9309,13 +9383,20 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			GER = {
+				add_stability = -0.06
+				add_timed_idea = {
+					idea = CAN_canadian_sabatoge
+					days = 2300
+				}
+				CAN_subtract_5_percent_popularity = yes
+			}
 		}
 	}
 	
 	focus = {
 		id = CAN_encourage_western_memories
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_western_memories
 		cost = 7
 		
 		prerequisite = {
@@ -9337,13 +9418,18 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			GER = {
+				add_political_power = -50
+				add_stability = -0.1
+				CAN_subtract_5_percent_popularity = yes
+				add_ideas = GER_empowered_democratic_resistance
+			}
 		}
 	}
 	
 	focus = {
 		id = CAN_soviets
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_the_soviets
 		cost = 7
 		
 		prerequisite = {
@@ -9357,6 +9443,10 @@ focus_tree = {
 		available = {
 			
 		}
+		
+		bypass = {
+			NOT = { country_exists = SOV }
+		}
 
 		ai_will_do = {
 			factor = 100
@@ -9365,13 +9455,20 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			SOV = {
+				add_stability = -0.06
+				add_timed_idea = {
+					idea = CAN_canadian_sabatoge
+					days = 2300
+				}
+				CAN_subtract_5_percent_popularity = yes
+			}
 		}
 	}
 	
 	focus = {
 		id = CAN_encourage_sepreatism
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_encourage_soviet_sepratism
 		cost = 7
 		
 		prerequisite = {
@@ -9385,6 +9482,10 @@ focus_tree = {
 		available = {
 			
 		}
+		
+		bypass = {
+			NOT = { country_exists = SOV }
+		}
 
 		ai_will_do = {
 			factor = 100
@@ -9393,13 +9494,18 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			SOV = {
+				add_political_power = -50
+				add_stability = -0.1
+				CAN_subtract_5_percent_popularity = yes
+				add_ideas = SOV_empowered_separatist_movements
+			}
 		}
 	}
 	
 	focus = {
 		id = CAN_sabatoge_intel_agencies
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_sabotage_communist_intel
 		cost = 7
 		
 		prerequisite = {
@@ -9422,13 +9528,81 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			if = {
+				limit = { has_dlc = "La Resistance" }
+				SOV = {
+					add_timed_idea = {
+						idea = CAN_bad_intel_idea_lar
+						days = 2300
+					}
+				}
+				GER = {
+					add_timed_idea = {
+						idea = CAN_bad_intel_idea_lar
+						days = 2300
+					}
+				}
+			}
+			else = {
+				SOV = {
+					add_timed_idea = {
+						idea = CAN_bad_intel_idea
+						days = 2300
+					}
+				}
+				GER = {
+					add_timed_idea = {
+						idea = CAN_bad_intel_idea
+						days = 2300
+					}
+				}
+			}
 			
+			if = {
+				limit = { has_dlc = "La Resistance" }
+				if = {
+					limit = { has_intelligence_agency = yes }
+					if = {
+						limit = { NOT = { has_done_agency_upgrade = upgrade_commando_training } }
+						upgrade_intelligence_agency = upgrade_commando_training
+					}
+					if = {
+						limit = { NOT = { has_done_agency_upgrade = upgrade_crypto_strength } }
+						upgrade_intelligence_agency = upgrade_crypto_strength
+					}
+					if = {
+						limit = { NOT = { has_done_agency_upgrade = upgrade_decryption_boost } }
+						upgrade_intelligence_agency = upgrade_decryption_boost
+					}
+					if = {
+						limit = {
+							OR = {
+								has_done_agency_upgrade = upgrade_commando_training
+								has_done_agency_upgrade = upgrade_crypto_strength
+								has_done_agency_upgrade = upgrade_decryption_boost
+							}
+							NOT = { has_done_agency_upgrade = upgrade_training_centers }
+						}
+						upgrade_intelligence_agency = upgrade_training_centers
+					}
+				}
+				else_if = {
+					limit = { has_intelligence_agency = no }
+					create_intelligence_agency = yes
+					upgrade_intelligence_agency = upgrade_commando_training
+					upgrade_intelligence_agency = upgrade_decryption_boost
+				}
+				add_ideas = CAN_strenthened_csis_lar
+			}
+			else = {
+				add_ideas = CAN_strenthened_csis
+			}
 		}
 	}
 	
 	focus = {
 		id = CAN_play_germany_against_ussr
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_stoke_warsaw_pact_divide
 		cost = 7
 		
 		prerequisite = {
@@ -9437,6 +9611,12 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = CAN_sabatoge_intel_agencies
+		}
+			
+		bypass = {
+			GER = {
+				NOT = { is_in_faction_with = SOV }
+			}
 		}
 		
 		relative_position_id = CAN_soviet_bloc
@@ -9454,13 +9634,31 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			every_country = {
+				limit = { is_in_faction_with = GER }
+				add_timed_idea = {
+					idea = CAN_chaos_in_the_warsaw_pact
+					days = 1120
+				}
+			}
+			GER = {
+				add_opinion_modifier = {
+					target = SOV
+					modifier = growing_pact_divide
+				}
+			}
+			SOV = {
+				add_opinion_modifier = {
+					target = GER
+					modifier = growing_pact_divide
+				}
+			}
 		}
 	}
 	
 	focus = {
 		id = CAN_support_pro_democracy_movements
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_pro_democracy_movements
 		cost = 7
 		
 		prerequisite = {
@@ -9482,13 +9680,26 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			every_country = {
+				limit = { 
+					is_in_faction_with = GER 
+					capital_scope = {
+						is_on_continent = europe
+					}
+					NOT = { tag = SOV }
+					NOT = { tag = GER }
+				}
+				add_timed_idea = {
+					idea = CAN_democratic_support_surge
+					days = 2300
+				}
+			}
 		}
 	}
 	
 	focus = {
 		id = CAN_european_spring
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_european_spring
 		cost = 7
 		
 		prerequisite = {
@@ -9500,7 +9711,10 @@ focus_tree = {
 		y = 4
 
 		available = {
-			
+			any_country = {
+				limit = { is_in_faction_with = GER }
+				communist < 0.50
+			}
 		}
 
 		ai_will_do = {
@@ -9510,19 +9724,71 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			custom_effect_tooltip = CAN_democratic_uprising_tt
+			every_country = {
+				limit = { 
+					capital_scope = {
+						is_on_continent = europe
+					}
+					is_in_faction_with = GER
+					communist < 0.50
+				}
+				hidden_effect = {
+					random_list = {
+						25 = {
+							start_civil_war = {
+								ideology = national_conservative
+								size = 0.5
+							}
+						}
+						25 = {
+							start_civil_war = {
+								ideology = centrist
+								size = 0.5
+							}
+						}
+						25 = {
+							start_civil_war = {
+								ideology = liberal
+								size = 0.5
+							}
+						}
+						25 = {
+							start_civil_war = {
+								ideology = new_democrat
+								size = 0.5
+							}
+						}
+					}
+				}
+				
+			}
+			custom_effect_tooltip = CAN_wait_for_communist_support_to_erode
+			hidden_effect = {
+				every_country = {
+					news_event = {
+						id = rw_canada_news.35
+						hours = 5
+					}
+				}
+			}
 		}
 	}
 	
 	focus = {
 		id = CAN_the_final_battle
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_final_battle
 		cost = 7
 		
 		prerequisite = {
 			focus = CAN_european_spring
+		}
+		prerequisite = {
 			focus = CAN_support_pro_democracy_movements
 		}
+		
+		will_lead_to_war_with = GER
+		will_lead_to_war_with = SOV
 		
 		relative_position_id = CAN_soviet_bloc
 		x = 0
@@ -9539,7 +9805,14 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			create_wargoal = {
+				type = annex_everything
+				target = SOV
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = GER
+			}
 		}
 	}
 	
@@ -9547,7 +9820,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_british_isles
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_british_isles
 		cost = 7
 		
 		prerequisite = {
@@ -9575,7 +9848,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_merge_forces
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_merge_forces
 		cost = 7
 		
 		prerequisite = {
@@ -9607,7 +9880,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_protect_ireland
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_protect_ireland
 		cost = 7
 		
 		prerequisite = {
@@ -9639,7 +9912,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_liberate_britain
-		icon = GFX_goal_CAN_strategic_innovation_fund
+		icon = GFX_goal_CAN_liberate_britain
 		cost = 7
 		
 		prerequisite = {
