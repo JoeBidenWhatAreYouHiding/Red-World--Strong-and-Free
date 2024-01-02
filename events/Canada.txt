@@ -2711,7 +2711,7 @@ country_event = {
 					has_government = centrist
 					has_government = liberal
 				}
-				has_country_flag = 2011_pc_liberal_resigns
+				has_country_flag = liberal_leader_resigns_2011
 			}
 			NOT = {
 				has_country_leader = { name = "Justin Trudeau" ruling_only = yes }
@@ -2733,7 +2733,7 @@ country_event = {
 					has_government = centrist
 					has_government = liberal
 				}
-				has_country_flag = 2011_pc_liberal_resigns
+				has_country_flag = liberal_leader_resigns_2011
 			}
 		}
 		set_country_flag = liberal_chrystia_freeland_2015
@@ -2755,7 +2755,7 @@ country_event = {
 					has_government = centrist
 					has_government = liberal
 				}
-				has_country_flag = 2011_pc_liberal_resigns
+				has_country_flag = liberal_leader_resigns_2011
 			}
 			has_completed_focus = CAN_legacy_of_martin
 		}
@@ -2778,7 +2778,7 @@ country_event = {
 					has_government = centrist
 					has_government = liberal
 				}
-				has_country_flag = 2011_pc_liberal_resigns
+				has_country_flag = liberal_leader_resigns_2011
 			}
 		}
 		set_country_flag = liberal_michael_bloomberg_2015
@@ -2830,7 +2830,7 @@ country_event = {
 					has_government = centrist
 					has_government = new_democrat
 				}
-				has_country_flag = 2011_ndp_leader_resigns
+				has_country_flag = ndp_leader_resigns_2011
 			}
 			NOT = {
 				has_country_leader = { name = "Tom Mulcair" ruling_only = yes }
@@ -2865,7 +2865,7 @@ country_event = {
 					has_government = centrist
 					has_government = new_democrat
 				}
-				has_country_flag = 2011_ndp_leader_resigns
+				has_country_flag = ndp_leader_resigns_2011
 			}
 		}
 		set_country_flag = ndp_olivia_chow_2015
@@ -2897,7 +2897,7 @@ country_event = {
 					has_government = centrist
 					has_government = new_democrat
 				}
-				has_country_flag = 2011_ndp_leader_resigns
+				has_country_flag = ndp_leader_resigns_2011
 			}
 			has_completed_focus = CAN_return_of_the_waffle
 		}
@@ -2916,7 +2916,7 @@ country_event = {
 					has_government = centrist
 					has_government = new_democrat
 				}
-				has_country_flag = 2011_ndp_leader_resigns
+				has_country_flag = ndp_leader_resigns_2011
 			}
 			has_completed_focus = CAN_return_of_the_waffle
 		}
@@ -2935,7 +2935,7 @@ country_event = {
 					has_government = centrist
 					has_government = new_democrat
 				}
-				has_country_flag = 2011_ndp_leader_resigns
+				has_country_flag = ndp_leader_resigns_2011
 			}
 			has_completed_focus = CAN_the_merger
 		}
@@ -2956,7 +2956,7 @@ country_event = {
 					has_government = centrist
 					has_government = new_democrat
 				}
-				has_country_flag = 2011_ndp_leader_resigns
+				has_country_flag = ndp_leader_resigns_2011
 			}
 		}
 		set_country_flag = ndp_charlie_angus_2015
@@ -3920,7 +3920,7 @@ country_event = {
 	option = { #Hold Referendum
 		name = canada_diplo.12.o2
 		ai_chance = {
-			factor = 0
+			factor = 100
 		}
 		CAN = {
 			country_event = canada_diplo.14
@@ -4999,6 +4999,197 @@ country_event = {
 	}
 }
 
+#Iceland - Canada Guarentees us in exchange for ending Police Junta
+country_event = {
+	id = canada_diplo.39
+	title = canada_diplo.39.t
+	desc = canada_diplo.39.d
+	picture = iceland_policy
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Yes
+		name = canada_diplo.39.o1
+		CAN = { country_event = canada_diplo.41 }
+	}
+	
+	option = { #No
+		name = canada_diplo.39.o2
+		CAN = { country_event = canada_diplo.40 }
+	}
+}
+
+#Canada - Iceland Refuses
+country_event = {
+	id = canada_diplo.40
+	title = canada_diplo.40.t
+	desc = canada_diplo.40.d
+	picture = iceland_policy
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Yes
+		name = canada_diplo.40.o1
+		if = {
+			limit = { ICE = { is_ai = yes } }
+			declare_war_on = { target = ICE type = annex_everything }
+		}
+	}
+}
+
+
+#Canada - Iceland Accepts
+country_event = {
+	id = canada_diplo.41
+	title = canada_diplo.41.t
+	desc = canada_diplo.41.d
+	picture = iceland_policy
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Yes
+		name = canada_diplo.41.o1
+		CAN = {
+			add_to_faction = ICE
+		}
+		ICE = {
+			country_event = election.1
+		}
+	}
+}
+
+#Nation asks to join Democratic League - Canada
+country_event = {
+	id = canada_diplo.42
+	title = canada_diplo.42.t
+	desc = canada_diplo.42.d
+	picture = ottawa_parliament
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = canada_diplo.42.o1
+	    ai_chance = {
+			factor = 100
+		}
+		CAN = {
+		    country_event = { days = 1 id = canada_diplo.43 } 
+			add_to_faction = ROOT
+		}
+		
+	}
+	
+	option = { #No
+		name = canada_diplo.42.o2
+	    ai_chance = {
+			factor = 0
+		}
+		add_political_power = -20
+		CAN = {
+		    country_event = { days = 1 id = canada_diplo.44 } 
+		}
+	}
+}
+
+#Canada accepts
+country_event = {
+	id = canada_diplo.43
+	title = canada_diplo.43.t
+	desc = canada_diplo.43.d
+	picture = ottawa_parliament
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = canada_diplo.43.o1
+	    ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+#Canada refuses
+country_event = {
+	id = canada_diplo.44
+	title = canada_diplo.44.t
+	desc = canada_diplo.44.d
+	picture = ottawa_parliament
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = canada_diplo.44.o1
+	    ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+#Greenland - Canada proposes annexation
+country_event = {
+	id = canada_diplo.45
+	title = canada_diplo.45.t
+	desc = canada_diplo.45.d
+	picture = greenland_policy
+	
+	is_triggered_only = yes
+	
+	option = { #Join
+		name = canada_diplo.45.o1
+		ai_chance = {
+			factor = 100
+		}
+		CAN = {
+			country_event = canada_diplo.46
+		}
+	}
+	option = { #No
+		name = canada_diplo.45.o2
+		ai_chance = {
+			factor = 0
+		}
+		add_political_power = 40
+	}
+}
+
+#Canada Annexes Greenland
+country_event = {
+	id = canada_diplo.46
+	title = canada_diplo.46.t
+	desc = canada_diplo.46.d
+	picture = greenland_policy
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = canada_diplo.46.o1
+		annex_country = {
+			target = GRN
+			transfer_troops = yes
+		}
+		add_state_core = 101
+	}
+}
+
+#Greenland  - Canadian Independence Plan
+country_event = {
+	id = canada_diplo.47
+	title = canada_diplo.47.t
+	desc = canada_diplo.47.d
+	picture = greenland_policy
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = canada_diplo.47.o1
+		add_stability = 0.02
+	}
+}
+
+
 #Canada-UK Relations
 country_event = {
 	id = canada_debug.1
@@ -5463,28 +5654,28 @@ news_event = {	#Cruz Elected
 }
 
 news_event = {	#Kenney Elected
-	id = rw_canada_news.32
-	title = rw_canada_news.32.t
-	desc = rw_canada_news.32.d
+	id = rw_canada_news.33
+	title = rw_canada_news.33.t
+	desc = rw_canada_news.33.d
 	picture = kenney_victory
 	
 	is_triggered_only = yes 
 	
 	option = {
-		name = rw_canada_news.32.o1
+		name = rw_canada_news.33.o1
 	}
 }
 
 news_event = {	#Bloc Victory
-	id = rw_canada_news.33
-	title = rw_canada_news.33.t
-	desc = rw_canada_news.33.d
+	id = rw_canada_news.330
+	title = rw_canada_news.330.t
+	desc = rw_canada_news.330.d
 	picture = duceppe_victory
 	
 	is_triggered_only = yes 
 	
 	option = {
-		name = rw_canada_news.33.o1
+		name = rw_canada_news.330.o1
 	}
 }
 
