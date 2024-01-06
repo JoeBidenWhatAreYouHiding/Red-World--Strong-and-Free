@@ -536,7 +536,7 @@ country_event = {
 			popularity = 0.06
 		}
 		CAN_donald_trump = {
-			promote_character = progressive_conservative
+			promote_character = fiscal_conservative
 			set_character_flag = CAN_progressive_conservative_leader
 		}
 		hidden_effect = {
@@ -3012,7 +3012,7 @@ country_event = {
 					has_government = nationalist
 					has_government = national_conservative
 				}
-				has_country_flag = 2011_pc_leader_resigns
+				has_country_flag = pc_leader_resigns_2011
 			}
 		}
 		set_country_flag = pc_jim_prentice_2015
@@ -3034,7 +3034,7 @@ country_event = {
 					has_government = nationalist
 					has_government = national_conservative
 				}
-				has_country_flag = 2011_pc_leader_resigns
+				has_country_flag = pc_leader_resigns_2011
 			}
 		}
 		set_country_flag = pc_peter_mackay_2015
@@ -3056,7 +3056,7 @@ country_event = {
 					has_government = nationalist
 					has_government = national_conservative
 				}
-				has_country_flag = 2011_pc_leader_resigns
+				has_country_flag = pc_leader_resigns_2011
 			}
 		}
 		set_country_flag = pc_stockwell_day_2015
@@ -3078,7 +3078,7 @@ country_event = {
 					has_government = nationalist
 					has_government = national_conservative
 				}
-				has_country_flag = 2011_pc_leader_resigns
+				has_country_flag = pc_leader_resigns_2011
 			}
 			NOT = {
 				has_country_flag = harper_calls_it_quits
@@ -3093,7 +3093,7 @@ country_event = {
 	}
 }
 
-#2011 Election
+#2015 Election
 country_event = {
 	id = rw_canada.200
 	title = rw_canada.200.t
@@ -3143,7 +3143,7 @@ country_event = {
 		trigger = {
 			has_country_flag = liberals_exist
 		}
-		set_country_flag =  pc_victory_2015
+		set_country_flag =  liberal_victory_2015
 		set_country_flag = CAN_2015_elections_held
 		if = {
 			limit = { has_country_flag = liberals_are_liberal }
@@ -5189,6 +5189,155 @@ country_event = {
 	}
 }
 
+#Ireland - Canada Offers Protection
+country_event = {
+	id = canada_diplo.48
+	title = canada_diplo.48.t
+	desc = canada_diplo.48.d
+	picture = ottawa_parliament
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = canada_diplo.48.o1
+	    ai_chance = {
+			factor = 100
+		}
+		CAN = {
+		    country_event = { days = 1 id = canada_diplo.43 } 
+			add_to_faction = ROOT
+		}
+		
+	}
+	
+	option = { #No
+		name = canada_diplo.48.o2
+	    ai_chance = {
+			factor = 0
+		}
+		add_political_power = -20
+		CAN = {
+		    country_event = { days = 1 id = canada_diplo.44 } 
+		}
+	}
+}
+
+#Britain - Canada Offers Protection
+country_event = {
+	id = canada_diplo.49
+	title = canada_diplo.49.t
+	desc = canada_diplo.49.d
+	picture = canada_rejects_agreement
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = canada_diplo.49.o1
+	    ai_chance = {
+			factor = 100
+		}
+		CAN = {
+		    country_event = { days = 1 id = canada_diplo.43 } 
+			add_to_faction = ROOT
+		}
+		hidden_effect = {
+		add_named_threat = { threat = 2	 name = ENG_joining_dem_legue }
+			every_country = {
+				news_event = {
+					hours = 4
+					id = news.153
+				}
+			}
+		}
+		IRE = {
+			country_event = canada_diplo.50
+		}
+		ULS = {
+			country_event = {
+				id = canada_diplo.50
+				days = 4
+			}
+		}
+	}
+	
+	option = { #No
+		name = canada_diplo.49.o2
+	    ai_chance = {
+			factor = 0
+		}
+		add_political_power = -20
+		CAN = {
+		    country_event = { days = 1 id = canada_diplo.44 } 
+		}
+	}
+}
+
+#Ireland - Canada Offers Protection
+country_event = {
+	id = canada_diplo.50
+	title = canada_diplo.50.t
+	desc = canada_diplo.50.d
+	picture = ottawa_parliament
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = canada_diplo.50.o1
+	    ai_chance = {
+			factor = 100
+		}
+		CAN = {
+		    country_event = { days = 1 id = canada_diplo.51 } 
+			add_to_faction = ROOT
+		}
+		
+	}
+	
+	option = { #No
+		name = canada_diplo.50.o2
+	    ai_chance = {
+			factor = 0
+		}
+		add_political_power = -20
+		CAN = {
+		    country_event = { days = 1 id = canada_diplo.52 } 
+		}
+	}
+}
+
+#Canada accepts
+country_event = {
+	id = canada_diplo.51
+	title = canada_diplo.51.t
+	desc = canada_diplo.51.d
+	picture = ottawa_parliament
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = canada_diplo.51.o1
+	    ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+#Canada refuses
+country_event = {
+	id = canada_diplo.52
+	title = canada_diplo.52.t
+	desc = canada_diplo.52.d
+	picture = ottawa_parliament
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = canada_diplo.52.o1
+	    ai_chance = {
+			factor = 100
+		}
+	}
+}
 
 #Canada-UK Relations
 country_event = {
@@ -5675,7 +5824,7 @@ news_event = {	#Bloc Victory
 	is_triggered_only = yes 
 	
 	option = {
-		name = rw_canada_news.330.o1
+		name = rw_canada_news.34.o1
 	}
 }
 
