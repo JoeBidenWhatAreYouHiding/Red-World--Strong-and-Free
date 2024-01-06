@@ -7133,7 +7133,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_canadian_alliance_victory
-		icon = X
+		icon = GFX_goal_CAN_canadian_alliance
 		cost = 6
 		
 		prerequisite = {
@@ -7167,7 +7167,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_prime_minister_cruz
-		icon = X
+		icon = GFX_goal_CAN_prime_minister_cruz
 		cost = 6
 		
 		prerequisite = {
@@ -7203,7 +7203,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_war_against_the_establishment
-		icon = X
+		icon = GFX_goal_CAN_shatter_the_establishment
 		cost = 6
 		
 		prerequisite = {
@@ -7231,7 +7231,7 @@ focus_tree = {
 
 	focus = {
 		id = CAN_backs_against_the_wall
-		icon = X
+		icon = GFX_goal_CAN_our_backs_against_the_wall
 		cost = 6
 		
 		prerequisite = {
@@ -7259,7 +7259,7 @@ focus_tree = {
 
 	focus = {
 		id = CAN_defund_the_cbc
-		icon = X
+		icon = GFX_goal_CAN_defund_the_cbc
 		cost = 6
 		
 		prerequisite = {
@@ -7287,7 +7287,7 @@ focus_tree = {
 
 	focus = {
 		id = CAN_dark_money_influence
-		icon = X
+		icon = GFX_goal_CAN_dark_money_influence
 		cost = 6
 		
 		prerequisite = {
@@ -7320,7 +7320,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_crusade_against_communism
-		icon = X
+		icon = GFX_goal_CAN_crusade_against_communism
 		cost = 6
 		
 		prerequisite = {
@@ -7354,7 +7354,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_prime_minister_kenney
-		icon = X
+		icon = GFX_goal_CAN_prime_minister_kenney
 		cost = 6
 		
 		prerequisite = {
@@ -9387,7 +9387,9 @@ focus_tree = {
 		}
 		
 		bypass = {
-			has_global_flag = treaty_of_columbus
+			AMC = {
+				has_country_flag = treaty_of_columbus
+			}
 		}
 
 		ai_will_do = {
@@ -9451,7 +9453,9 @@ focus_tree = {
 				exists = yes
 				has_war = no
 			}
-			has_global_flag = treaty_of_columbus
+			AMC = {
+				has_country_flag = treaty_of_columbus
+			}
 		}
 
 		ai_will_do = {
@@ -9489,7 +9493,9 @@ focus_tree = {
 				exists = yes
 				has_war = no
 			}
-			has_global_flag = treaty_of_columbus
+			AMC = {
+				has_country_flag = treaty_of_columbus
+			}
 		}
 
 		ai_will_do = {
@@ -9643,6 +9649,26 @@ focus_tree = {
 					MOT = { is_subject_of = CAN }
 				}
 			}
+			388 = { 
+				owner = {
+					NOT = {
+						OR = {
+							tag = ROOT
+							is_subject_of = ROOT
+						}
+					}
+				}
+			}
+			387 = { 
+				owner = {
+					NOT = {
+						OR = {
+							tag = ROOT
+							is_subject_of = ROOT
+						}
+					}
+				}
+			}
 		}
 		
 		relative_position_id = CAN_america
@@ -9698,7 +9724,18 @@ focus_tree = {
 		y = 3
 
 		available = {
-			
+			388 = { 
+				is_owned_by_ROOT_or_subject = yes
+			}
+			387 = { 
+				is_owned_by_ROOT_or_subject = yes
+			}
+			NOT = {
+				has_war_with = MOT
+			}
+			NOT = {
+				has_war_with = LIN
+			}
 		}
 		
 		select_effect = {	
@@ -9739,8 +9776,6 @@ focus_tree = {
 					}
 				}
 			}
-			LIN = { exists = no }
-			MOT = { exists = no }
 		}
 
 		ai_will_do = {
@@ -10028,19 +10063,157 @@ focus_tree = {
 			if = {
 				limit = { is_ai = no }
 				custom_effect_tooltip = CAN_breakaways_will_become_our_puppets
-				every_country = {
-					limit = {
-						is_post_america_nation = yes
-						is_in_faction_with = CAN 
-						NOT = { is_subject_of = CAN }
+				if = {
+					limit = { 
+						MWA = { is_in_faction_with = CAN }
 					}
-					FROM = { 
+					MWA = { 
 						get_current_government_type = yes
 					}
 					CAN = {
-						puppet = FROM
+						puppet = MWA
 					}
-					FROM = { 
+					MWA = { 
+						restore_previous_government_type = yes
+					}
+				}
+				if = {
+					limit = { 
+						CSD = { is_in_faction_with = CAN }
+					}
+					CSD = { 
+						get_current_government_type = yes
+					}
+					CAN = {
+						puppet = CSD
+					}
+					CSD = { 
+						restore_previous_government_type = yes
+					}
+				}
+				if = {
+					limit = { 
+						PCA = { is_in_faction_with = CAN }
+					}
+					PCA = { 
+						get_current_government_type = yes
+					}
+					CAN = {
+						puppet = PCA
+					}
+					PCA = { 
+						restore_previous_government_type = yes
+					}
+				}
+				if = {
+					limit = { 
+						UTA = { is_in_faction_with = CAN }
+					}
+					UTA = { 
+						get_current_government_type = yes
+					}
+					CAN = {
+						puppet = UTA
+					}
+					UTA = { 
+						restore_previous_government_type = yes
+					}
+				}
+				if = {
+					limit = { 
+						ARI = { is_in_faction_with = CAN }
+					}
+					ARI = { 
+						get_current_government_type = yes
+					}
+					CAN = {
+						puppet = ARI
+					}
+					ARI = { 
+						restore_previous_government_type = yes
+					}
+				}
+				if = {
+					limit = { 
+						GRL = { is_in_faction_with = CAN }
+					}
+					GRL = { 
+						get_current_government_type = yes
+					}
+					CAN = {
+						puppet = GRL
+					}
+					GRL = { 
+						restore_previous_government_type = yes
+					}
+				}
+				if = {
+					limit = { 
+						TEX = { is_in_faction_with = CAN }
+					}
+					TEX = { 
+						get_current_government_type = yes
+					}
+					CAN = {
+						puppet = TEX
+					}
+					TEX = { 
+						restore_previous_government_type = yes
+					}
+				}
+				if = {
+					limit = { 
+						ILL = { is_in_faction_with = CAN }
+					}
+					ILL = { 
+						get_current_government_type = yes
+					}
+					CAN = {
+						puppet = ILL
+					}
+					ILL = { 
+						restore_previous_government_type = yes
+					}
+				}
+				if = {
+					limit = { 
+						USA = { is_in_faction_with = CAN }
+					}
+					USA = { 
+						get_current_government_type = yes
+					}
+					CAN = {
+						puppet = USA
+					}
+					USA = { 
+						restore_previous_government_type = yes
+					}
+				}
+				if = {
+					limit = { 
+						NEA = { is_in_faction_with = CAN }
+					}
+					NEA = { 
+						get_current_government_type = yes
+					}
+					CAN = {
+						puppet = NEA
+					}
+					NEA = { 
+						restore_previous_government_type = yes
+					}
+				}
+				if = {
+					limit = { 
+						AMC = { is_in_faction_with = CAN }
+					}
+					AMC = { 
+						get_current_government_type = yes
+					}
+					CAN = {
+						puppet = AMC
+					}
+					AMC = { 
 						restore_previous_government_type = yes
 					}
 				}
