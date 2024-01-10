@@ -6769,6 +6769,7 @@ focus_tree = {
 		prerequisite = {
 			focus = CAN_mainline_conservatives_in_power
 			focus = CAN_reformist_conservatives_in_power
+			focus = CAN_keep_canada_great
 		}
 		
 		mutually_exclusive = {
@@ -7281,7 +7282,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_ideas = CAN_new_cbc 
 		}
 	}
 
@@ -7314,7 +7315,13 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_ideas = CAN_dark_money_influence
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = CAN_sic_avalible
+			show_ideas_tooltip = canada_sic_roger_stone
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = CAN_nsm_avalible
+			show_ideas_tooltip = canada_nsm_paul_manafort
 		}
 	}
 	
@@ -7400,7 +7407,7 @@ focus_tree = {
 
 	focus = {
 		id = CAN_coopt_conservative_movements
-		icon = X
+		icon = GFX_goal_CAN_coopt_conservative_movements
 		cost = 6
 		
 		prerequisite = {
@@ -7427,8 +7434,8 @@ focus_tree = {
 	}
 
 	focus = {
-		id = CAN_a_fair_deal
-		icon = X
+		id = CAN_a_moral_canada
+		icon = GFX_goal_CAN_a_moral_canada
 		cost = 6
 		
 		prerequisite = {
@@ -7456,11 +7463,11 @@ focus_tree = {
 
 	focus = {
 		id = CAN_corprate_backing
-		icon = X
+		icon = GFX_goal_CAN_corprate_influence
 		cost = 6
 		
 		prerequisite = {
-			focus = CAN_a_fair_deal
+			focus = CAN_a_moral_canada
 			focus = CAN_western_populism
 		}
 		
@@ -7489,11 +7496,11 @@ focus_tree = {
 
 	focus = {
 		id = CAN_privatization_frenzy
-		icon = X
+		icon = GFX_goal_CAN_privatization_frenzy
 		cost = 6
 		
 		prerequisite = {
-			focus = CAN_a_fair_deal
+			focus = CAN_a_moral_canada
 		}
 		
 		mutually_exclusive = {
@@ -7521,7 +7528,7 @@ focus_tree = {
 
 	focus = {
 		id = CAN_canadian_conservative_rebranding
-		icon = X
+		icon = GFX_goal_CAN_conservative_rebranding
 		cost = 6
 		
 		prerequisite = {
@@ -7556,7 +7563,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_legacy_of_the_soccreds
-		icon = X
+		icon = GFX_goal_CAN_soccred_legacy
 		cost = 6
 		
 		prerequisite = {
@@ -7585,7 +7592,7 @@ focus_tree = {
 
 	focus = {
 		id = CAN_western_populism
-		icon = X
+		icon = GFX_goal_CAN_canadian_neo_nationalism
 		cost = 6
 		
 		prerequisite = {
@@ -7613,7 +7620,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_end_douglas_mistake
-		icon = X
+		icon = GFX_goal_CAN_privatize_healthcare
 		cost = 6
 		
 		prerequisite = {
@@ -10063,225 +10070,227 @@ focus_tree = {
 			if = {
 				limit = { is_ai = no }
 				custom_effect_tooltip = CAN_breakaways_will_become_our_puppets
-				if = {
-					limit = { 
+				hidden_effect = {
+					if = {
+						limit = { 
+							MWA = { 
+								is_in_faction_with = CAN 
+								NOT = { is_subject_of = CAN }
+							}
+						}
 						MWA = { 
-							is_in_faction_with = CAN 
-							NOT = { is_subject_of = CAN }
+							get_current_government_type = yes
+						}
+						CAN = {
+							puppet = MWA
+						}
+						MWA = { 
+							restore_previous_government_type = yes
 						}
 					}
-					MWA = { 
-						get_current_government_type = yes
-					}
-					CAN = {
-						puppet = MWA
-					}
-					MWA = { 
-						restore_previous_government_type = yes
-					}
-				}
-				if = {
-					limit = { 
+					if = {
+						limit = { 
+							CSD = { 
+								is_in_faction_with = CAN 
+								NOT = { is_subject_of = CAN }
+							}
+						}
 						CSD = { 
-							is_in_faction_with = CAN 
-							NOT = { is_subject_of = CAN }
+							get_current_government_type = yes
+						}
+						CAN = {
+							puppet = CSD
+						}
+						CSD = { 
+							restore_previous_government_type = yes
 						}
 					}
-					CSD = { 
-						get_current_government_type = yes
-					}
-					CAN = {
-						puppet = CSD
-					}
-					CSD = { 
-						restore_previous_government_type = yes
-					}
-				}
-				if = {
-					limit = { 
+					if = {
+						limit = { 
+							PCA = { 
+								is_in_faction_with = CAN 
+								NOT = { is_subject_of = CAN }
+							}
+						}
 						PCA = { 
-							is_in_faction_with = CAN 
-							NOT = { is_subject_of = CAN }
+							get_current_government_type = yes
+						}
+						CAN = {
+							puppet = PCA
+						}
+						PCA = { 
+							restore_previous_government_type = yes
 						}
 					}
-					PCA = { 
-						get_current_government_type = yes
-					}
-					CAN = {
-						puppet = PCA
-					}
-					PCA = { 
-						restore_previous_government_type = yes
-					}
-				}
-				if = {
-					limit = { 
+					if = {
+						limit = { 
+							UTA = { 
+								is_in_faction_with = CAN 
+								NOT = { is_subject_of = CAN }
+							}
+						}
 						UTA = { 
-							is_in_faction_with = CAN 
-							NOT = { is_subject_of = CAN }
+							get_current_government_type = yes
+						}
+						CAN = {
+							puppet = UTA
+						}
+						UTA = { 
+							restore_previous_government_type = yes
 						}
 					}
-					UTA = { 
-						get_current_government_type = yes
-					}
-					CAN = {
-						puppet = UTA
-					}
-					UTA = { 
-						restore_previous_government_type = yes
-					}
-				}
-				if = {
-					limit = { 
+					if = {
+						limit = { 
+							ARI = { 
+								is_in_faction_with = CAN 
+								NOT = { is_subject_of = CAN }
+							}
+						}
 						ARI = { 
-							is_in_faction_with = CAN 
-							NOT = { is_subject_of = CAN }
+							get_current_government_type = yes
+						}
+						CAN = {
+							puppet = ARI
+						}
+						ARI = { 
+							restore_previous_government_type = yes
 						}
 					}
-					ARI = { 
-						get_current_government_type = yes
-					}
-					CAN = {
-						puppet = ARI
-					}
-					ARI = { 
-						restore_previous_government_type = yes
-					}
-				}
-				if = {
-					limit = { 
+					if = {
+						limit = { 
+							GRL = { 
+								is_in_faction_with = CAN 
+								NOT = { is_subject_of = CAN }
+							}
+						}
 						GRL = { 
-							is_in_faction_with = CAN 
-							NOT = { is_subject_of = CAN }
+							get_current_government_type = yes
+						}
+						CAN = {
+							puppet = GRL
+						}
+						GRL = { 
+							restore_previous_government_type = yes
 						}
 					}
-					GRL = { 
-						get_current_government_type = yes
-					}
-					CAN = {
-						puppet = GRL
-					}
-					GRL = { 
-						restore_previous_government_type = yes
-					}
-				}
-				if = {
-					limit = { 
+					if = {
+						limit = { 
+							TEX = { 
+								is_in_faction_with = CAN 
+								NOT = { is_subject_of = CAN }
+							}
+						}
 						TEX = { 
-							is_in_faction_with = CAN 
-							NOT = { is_subject_of = CAN }
+							get_current_government_type = yes
+						}
+						CAN = {
+							puppet = TEX
+						}
+						TEX = { 
+							restore_previous_government_type = yes
 						}
 					}
-					TEX = { 
-						get_current_government_type = yes
-					}
-					CAN = {
-						puppet = TEX
-					}
-					TEX = { 
-						restore_previous_government_type = yes
-					}
-				}
-				if = {
-					limit = { 
+					if = {
+						limit = { 
+							ILL = { 
+								is_in_faction_with = CAN 
+								NOT = { is_subject_of = CAN }
+							}
+						}
 						ILL = { 
-							is_in_faction_with = CAN 
-							NOT = { is_subject_of = CAN }
+							get_current_government_type = yes
+						}
+						CAN = {
+							puppet = ILL
+						}
+						ILL = { 
+							restore_previous_government_type = yes
 						}
 					}
-					ILL = { 
-						get_current_government_type = yes
-					}
-					CAN = {
-						puppet = ILL
-					}
-					ILL = { 
-						restore_previous_government_type = yes
-					}
-				}
-				if = {
-					limit = { 
+					if = {
+						limit = { 
+							USA = { 
+								is_in_faction_with = CAN 
+								NOT = { is_subject_of = CAN }
+							}
+						}
 						USA = { 
-							is_in_faction_with = CAN 
-							NOT = { is_subject_of = CAN }
+							get_current_government_type = yes
+						}
+						CAN = {
+							puppet = USA
+						}
+						USA = { 
+							restore_previous_government_type = yes
 						}
 					}
-					USA = { 
-						get_current_government_type = yes
-					}
-					CAN = {
-						puppet = USA
-					}
-					USA = { 
-						restore_previous_government_type = yes
-					}
-				}
-				if = {
-					limit = { 
+					if = {
+						limit = { 
+							NEA = { 
+								is_in_faction_with = CAN 
+								NOT = { is_subject_of = CAN }
+							}
+						}
 						NEA = { 
-							is_in_faction_with = CAN 
-							NOT = { is_subject_of = CAN }
+							get_current_government_type = yes
+						}
+						CAN = {
+							puppet = NEA
+						}
+						NEA = { 
+							restore_previous_government_type = yes
 						}
 					}
-					NEA = { 
-						get_current_government_type = yes
-					}
-					CAN = {
-						puppet = NEA
-					}
-					NEA = { 
-						restore_previous_government_type = yes
-					}
-				}
-				if = {
-					limit = { 
+					if = {
+						limit = { 
+							AMC = { 
+								is_in_faction_with = CAN 
+								NOT = { is_subject_of = CAN }
+							}
+						}
 						AMC = { 
-							is_in_faction_with = CAN 
-							NOT = { is_subject_of = CAN }
+							get_current_government_type = yes
+						}
+						CAN = {
+							puppet = AMC
+						}
+						AMC = { 
+							restore_previous_government_type = yes
 						}
 					}
-					AMC = { 
-						get_current_government_type = yes
-					}
-					CAN = {
-						puppet = AMC
-					}
-					AMC = { 
-						restore_previous_government_type = yes
-					}
-				}
-				if = {
-					limit = { 
+					if = {
+						limit = { 
+							MOT = { 
+								is_in_faction_with = CAN 
+								NOT = { is_subject_of = CAN }
+							}
+						}
 						MOT = { 
-							is_in_faction_with = CAN 
-							NOT = { is_subject_of = CAN }
+							get_current_government_type = yes
+						}
+						CAN = {
+							puppet = MOT
+						}
+						MOT = { 
+							restore_previous_government_type = yes
 						}
 					}
-					MOT = { 
-						get_current_government_type = yes
-					}
-					CAN = {
-						puppet = MOT
-					}
-					MOT = { 
-						restore_previous_government_type = yes
-					}
-				}
-				if = {
-					limit = { 
+					if = {
+						limit = { 
+							LIN = { 
+								is_in_faction_with = CAN 
+								NOT = { is_subject_of = CAN }
+							}
+						}
 						LIN = { 
-							is_in_faction_with = CAN 
-							NOT = { is_subject_of = CAN }
+							get_current_government_type = yes
 						}
-					}
-					LIN = { 
-						get_current_government_type = yes
-					}
-					CAN = {
-						puppet = LIN
-					}
-					LIN = { 
-						restore_previous_government_type = yes
+						CAN = {
+							puppet = LIN
+						}
+						LIN = { 
+							restore_previous_government_type = yes
+						}
 					}
 				}
 			}

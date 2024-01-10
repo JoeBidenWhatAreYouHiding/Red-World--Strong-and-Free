@@ -2676,6 +2676,64 @@ country_event = {
 	}
 }
 
+#The Ignatieffs Return Home
+country_event = {
+	id = rw_canada.90
+	title = rw_canada.90.t
+	desc = rw_canada.90.d
+	picture = mmiw_inquiry
+	
+	fire_only_once = yes
+	trigger = {
+		RUS = { is_subject_of = CAN }
+		has_country_leader = {
+			name = "Michael Ignatieff"
+			ruling_only = yes
+		}
+	}
+	
+	option = {
+		name = rw_canada.90.o1
+		add_stability = 0.02
+	}
+	
+	option = {
+		name = rw_canada.90.o2
+		CAN_michael_ignatieff = {
+			set_nationality = RUS
+			set_character_name = "Mikhail Ignatiev"
+			set_portraits = {
+				civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Michael_Ignatieff_Tsar.png" }
+			}
+			add_country_leader_role = {
+				country_leader = {
+					expire = "1.1.1.1"
+					ideology = regency_monarchist
+				}
+			}
+			promote_character = regency_monarchist
+		}
+		CAN_michael_bloomberg = {
+			promote_character = centrist_populist
+		}
+		RUS = {
+			set_politics = {
+				ruling_party = monarchist
+			}
+			add_popularity = {
+				ideology = monarchist
+				popularity = 0.2
+			}
+			set_party_name = {
+				name = "Ignatiev Court"
+				long_name = "Ignatiev Court"
+				ideology = monarchist
+			}
+			set_cosmetic_tag = RUS_IGN
+		}
+	}
+}
+
 
 ### 2015 Elections Stuff ###
 
@@ -4873,11 +4931,9 @@ country_event = {
 				}
 			}
 		}
-		event_target:united_american_puppet = {  
-			every_owned_state = {
-				limit = { is_mainland_us_state = yes }
-				add_state_core = PREV
-			}
+		every_state = {
+			limit = { is_american_mainland_state = yes }
+			event_target:united_american_puppet = { add_state_core = PREV }
 		}
 		every_country = {
 			news_event = rw_canada_news.12
