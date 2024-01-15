@@ -4250,12 +4250,19 @@ focus_tree = {
 
 		completion_reward = {
 			country_event = rw_canada.26
+			hidden_effect = {
+				country_event = {	
+					id = rw_canada.92
+					days = 54
+					random_days = 120
+				}
+			}
 		}
 	}
 	
 	focus = {
-		id = CAN_government_of_the_center
-		icon = GFX_goal_Generic_Centrism
+		id = CAN_the_lesser_evil
+		icon = GFX_goal_CAN_the_lesser_evil
 		cost = 7
 		
 		prerequisite = {
@@ -4277,7 +4284,20 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_ideas = CAN_patriot_act
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = fascist
+				popularity = -0.02
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = -0.02
+			}
+			country_event = rw_canada.96
 		}
 	}
 	
@@ -4287,14 +4307,14 @@ focus_tree = {
 		cost = 7
 		
 		prerequisite = {
-			focus = CAN_government_of_the_center
+			focus = CAN_the_lesser_evil
 		}
 		
 		mutually_exclusive = {
 			focus = CAN_legacy_of_chretien
 		}
 		
-		relative_position_id = CAN_government_of_the_center
+		relative_position_id = CAN_the_lesser_evil
 		x = -1
 		y = 1
 
@@ -4309,7 +4329,9 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = rw_canada.91
+			add_stability = 0.02
+			add_ideas = CAN_looking_to_the_right
 		}
 	}
 	
@@ -4322,7 +4344,7 @@ focus_tree = {
 			focus = CAN_legacy_of_martin
 		}
 		
-		relative_position_id = CAN_government_of_the_center
+		relative_position_id = CAN_the_lesser_evil
 		x = -2
 		y = 2
 
@@ -4337,7 +4359,16 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.04
+			}
+			add_war_support = 0.03
+			country_event = rw_canada.93
+			swap_ideas = {
+				remove_idea = CAN_looking_to_the_right
+				add_idea = CAN_looking_to_the_right2
+			}
 		}
 	}
 	
@@ -4347,14 +4378,14 @@ focus_tree = {
 		cost = 7
 		
 		prerequisite = {
-			focus = CAN_government_of_the_center
+			focus = CAN_the_lesser_evil
 		}
 		
 		mutually_exclusive = {
 			focus = CAN_legacy_of_martin
 		}
 		
-		relative_position_id = CAN_government_of_the_center
+		relative_position_id = CAN_the_lesser_evil
 		x = 1
 		y = 1
 
@@ -4369,7 +4400,9 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = rw_canada.94
+			add_political_power = 20
+			add_ideas = CAN_repairing_chretiens_legacy
 		}
 	}
 	
@@ -4382,7 +4415,7 @@ focus_tree = {
 			focus = CAN_legacy_of_chretien
 		}
 		
-		relative_position_id = CAN_government_of_the_center
+		relative_position_id = CAN_the_lesser_evil
 		x = 2
 		y = 2
 
@@ -4397,7 +4430,50 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = CAN_repairing_chretiens_legacy
+				add_idea = CAN_repairing_chretiens_legacy2
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = -0.04
+			}
+			custom_effect_tooltip = CAN_liberals_become_liberal
+			country_event = rw_canada.95
+			hidden_effect = {
+				if = {
+					limit = { has_country_leader = { name = "Michael Ignatieff" ruling_only = yes } }
+					CAN_michael_ignatieff = {
+						add_country_leader_role = {
+							country_leader = {
+								expire = "1.1.1.1"
+								ideology = social_liberal
+							}
+						}
+						promote_character = social_liberal
+					}
+				}
+				if = {
+					limit = { has_government = centrist }
+					set_politics = {
+						ruling_party = liberal
+					}
+					set_variable = {
+						current_liberal_pop = party_popularity@liberal
+					}
+					set_variable = {
+						current_centrist_pop = party_popularity@centrist
+					}
+					subtract_from_variable = {
+						var = current_centrist_pop
+						value = current_liberal_pop
+					}
+					add_popularity = {
+						ideology = liberal
+						popularity = current_centrist_pop
+					}	
+				}
+			}
 		}
 	}
 	
@@ -4411,7 +4487,7 @@ focus_tree = {
 			focus = CAN_legacy_of_chretien
 		}
 		
-		relative_position_id = CAN_government_of_the_center
+		relative_position_id = CAN_the_lesser_evil
 		x = 0
 		y = 2
 
@@ -4426,7 +4502,20 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_manpower = 1100
+			add_stability = -0.05
+			add_popularity = {
+				ideology = centrist
+				popularity = -0.02
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.02
+			}
+			swap_ideas = {
+				remove_idea = CAN_refugee_strain
+				add_idea = CAN_immigration_fairness
+			}
 		}
 	}
 	
@@ -4444,7 +4533,7 @@ focus_tree = {
 			focus = CAN_immigration_fairness
 		}
 		
-		relative_position_id = CAN_government_of_the_center
+		relative_position_id = CAN_the_lesser_evil
 		x = -1
 		y = 3
 
@@ -4459,7 +4548,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_ideas = CAN_higher_education_passport
 		}
 	}
 	
@@ -4477,7 +4566,7 @@ focus_tree = {
 			focus = CAN_immigration_fairness
 		}
 		
-		relative_position_id = CAN_government_of_the_center
+		relative_position_id = CAN_the_lesser_evil
 		x = 1
 		y = 3
 
@@ -4492,13 +4581,49 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			custom_effect_tooltip = CAN_if_you_went_liberal
+			effect_tooltip = {
+				swap_ideas = {
+					remove_idea = CAN_repairing_chretiens_legacy2
+					add_idea = CAN_repairing_chretiens_legacy3
+				}
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = CAN_if_you_went_centrist
+			effect_tooltip = {
+				swap_ideas = {
+					remove_idea = CAN_looking_to_the_right2
+					add_idea = CAN_looking_to_the_right3
+				}
+			}
+			add_timed_idea = {
+				idea = CAN_liberal_support_surge
+				days = 1200
+			}
+			hidden_effect = {
+				if = {
+					limit = { has_completed_focus = CAN_right_liberalism }
+					swap_ideas = {
+						remove_idea = CAN_looking_to_the_right2
+						add_idea = CAN_looking_to_the_right3
+					}
+				}
+				else_if = {
+					limit = { has_completed_focus = CAN_social_liberal_coalition }
+					swap_ideas = {
+						remove_idea = CAN_repairing_chretiens_legacy2
+						add_idea = CAN_repairing_chretiens_legacy3
+					}
+				}
+				else = {
+				}
+			}
 		}
 	}
 	
 	focus = {
-		id = CAN_the_lesser_evil
-		icon = GFX_goal_CAN_the_lesser_evil
+		id = CAN_philosophical_liberalism
+		icon = GFX_goal_CAN_philosophical_liberalism
 		cost = 7
 
 		prerequisite = {
@@ -4506,7 +4631,7 @@ focus_tree = {
 			focus = CAN_no_more_scandals
 		}
 		
-		relative_position_id = CAN_government_of_the_center
+		relative_position_id = CAN_the_lesser_evil
 		x = 0
 		y = 4
 
@@ -4520,8 +4645,40 @@ focus_tree = {
 
 		available_if_capitulated = yes
 
-		completion_reward = {
-			
+		completion_reward = {		
+			custom_effect_tooltip = CAN_if_you_went_liberal
+			effect_tooltip = {
+				swap_ideas = {
+					remove_idea = CAN_repairing_chretiens_legacy3
+					add_idea = CAN_philosophical_liberalism_left
+				}
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = CAN_if_you_went_centrist
+			effect_tooltip = {
+				swap_ideas = {
+					remove_idea = CAN_looking_to_the_right3
+					add_idea = CAN_philosophical_liberalism_right
+				}
+			}
+			hidden_effect = {
+				if = {
+					limit = { has_idea = CAN_repairing_chretiens_legacy3 }
+					swap_ideas = {
+						remove_idea = CAN_repairing_chretiens_legacy3
+						add_idea = CAN_philosophical_liberalism_left
+					}
+				}
+				else_if = {
+					limit = { has_idea = CAN_looking_to_the_right3 }
+					swap_ideas = {
+						remove_idea = CAN_looking_to_the_right3
+						add_idea = CAN_philosophical_liberalism_right
+					}
+				}
+				else = {
+				}
+			}
 		}
 	}
 	
@@ -4549,7 +4706,21 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_ideas = CAN_new_sponsorships_idea
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
 		}
 	}
 	
@@ -4577,7 +4748,10 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_ideas = CAN_competitive_tax_increases
+			add_offsite_building = {
+				type = industrial_complex level = 1
+            }			
 		}
 	}
 	
@@ -4608,7 +4782,16 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = CAN_competitive_tax_increases
+				add_idea = CAN_balancing_the_budget
+			}
+			add_political_power = -40
+			add_stability = 0.03
+			add_timed_idea = {
+				idea = CAN_budget_cuts
+				days = 1100
+			}
 		}
 	}
 	
@@ -4636,7 +4819,15 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			modify_timed_idea = {
+				idea = CAN_budget_cuts
+				days = -275
+			}
+			add_political_power = 30
+			swap_ideas = {
+				remove_idea = CAN_balancing_the_budget
+				add_idea = CAN_balancing_the_budget2
+			}
 		}
 	}
 	
@@ -4667,7 +4858,14 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			modify_timed_idea = {
+				idea = CAN_budget_cuts
+				days = -400
+			}
+			swap_ideas = {
+				remove_idea = CAN_balancing_the_budget2
+				add_idea = CAN_a_balanced_budget
+			}
 		}
 	}
 	
@@ -5361,7 +5559,15 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_stability = 0.02
+			random_owned_state = {
+				add_state_modifier = {
+					modifier = {
+						local_manpower = 0.01
+					}
+				}
+			}
+			add_ideas = CAN_national_child_care_program
 		}
 	}
 	
@@ -5389,7 +5595,8 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_ideas = CAN_new_canada_pension_plan
+			add_stability = 0.02
 		}
 	}
 	
@@ -5417,7 +5624,17 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			every_owned_state = {
+				add_state_modifier = {
+					modifier = {
+						local_resources_factor = 0.06
+						local_supplies = 0.06
+						industry_free_repair_factor = 0.5
+					}
+				}
+			}
+			add_ideas = CAN_carbon_tax
+			add_stability = 0.04
 		}
 	}
 	
@@ -5448,7 +5665,10 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_timed_idea = {
+				idea = CAN_strategic_innovation_fund
+				days = 2600
+			}
 		}
 	}
 	
@@ -5486,7 +5706,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_recovery_of_the_century
-		icon = X
+		icon = GFX_goal_CAN_recovery_of_the_century
 		cost = 6
 		
 		prerequisite = {
@@ -5503,6 +5723,7 @@ focus_tree = {
 				ruling_only = yes
             }
 			has_country_flag = ndp_victory_2015
+			has_country_flag = CAN_layton_recovered_from_cancer
 		}
 
 		ai_will_do = {
@@ -5518,7 +5739,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_denounce_soviet_despotism
-		icon = X
+		icon = GFX_goal_CAN_denouce_soviet_tyranny
 		cost = 6
 		
 		prerequisite = {
@@ -5547,7 +5768,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_foster_canadian_unity
-		icon = X
+		icon = GFX_goal_CAN_foster_canadian_unity
 		cost = 6
 		
 		prerequisite = {
@@ -5575,7 +5796,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_attack_establishment_corruption
-		icon = X
+		icon = GFX_goal_CAN_attack_establishment_corruption
 		cost = 6
 		
 		prerequisite = {
@@ -5605,11 +5826,13 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_broadebets_legacy
-		icon = X
+		icon = GFX_goal_CAN_broadbents_legacy
 		cost = 6
 		
 		prerequisite = {
 			focus = CAN_foster_canadian_unity
+		}
+		prerequisite = {
 			focus = CAN_attack_establishment_corruption
 		}
 		
@@ -5634,7 +5857,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_nationalize_essential_utilites
-		icon = X
+		icon = GFX_goal_CAN_nationalize_essential_utilities
 		cost = 6
 		
 		prerequisite = {
@@ -5662,7 +5885,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_war_on_big_finance
-		icon = X
+		icon = GFX_goal_CAN_war_on_big_finance
 		cost = 6
 		
 		prerequisite = {
@@ -5690,7 +5913,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_canadas_new_democracy
-		icon = X
+		icon = GFX_goal_CAN_canadas_new_democracy
 		cost = 6
 		
 		prerequisite = {
@@ -5724,7 +5947,43 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_laytons_sucsessor
-		icon = X
+		icon = GFX_goal_CAN_prime_minister_mulcair #Mulcair (Default)
+		icon = { #Olivia Chow
+			value = GFX_goal_CAN_prime_minister_chow
+			trigger = {
+				OR = {
+					has_country_flag = ndp_olivia_chow_2015
+					has_country_flag = ndp_olivia_chow_2019
+				}
+			}
+		}
+		icon = { #Charlie Angus
+			value = GFX_goal_CAN_prime_minister_angus
+			trigger = {
+				OR = {
+					has_country_flag = ndp_charlie_angus_2015
+					has_country_flag = ndp_charlie_angus_2019
+				}
+			}
+		}
+		icon = { #Jagmeet Singh
+			value = GFX_goal_CAN_prime_minister_singh
+			trigger = {
+				has_country_flag = ndp_jagmeet_singh_2019
+			}
+		}
+		desc = {
+			value = CAN_laytons_sucsessor_desc_1
+			trigger = {
+				has_country_flag = CAN_layton_is_dead
+			}
+		}
+		desc = {
+			value = CAN_laytons_sucsessor_desc_2
+			trigger = {
+				NOT = { has_country_flag = CAN_layton_is_dead }
+			}
+		}
 		cost = 6
 		
 		prerequisite = {
@@ -5770,7 +6029,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_ndp_legalize_marijuana
-		icon = X
+		icon = GFX_goal_CAN_decriminalize_weed
 		cost = 6
 		
 		prerequisite = {
@@ -5800,7 +6059,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_war_on_poverty
-		icon = X
+		icon = GFX_goal_CAN_war_on_poverty
 		cost = 6
 		
 		prerequisite = {
@@ -5831,7 +6090,7 @@ focus_tree = {
 
 	focus = {
 		id = CAN_honour_layton
-		icon = X
+		icon = GFX_goal_CAN_honour_layton
 		cost = 6
 		
 		prerequisite = {
@@ -5862,7 +6121,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_waffle_in_power
-		icon = X
+		icon = GFX_goal_CAN_waffle
 		cost = 6
 		
 		prerequisite = {
@@ -5901,7 +6160,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_push_the_party_further_left
-		icon = X
+		icon = GFX_goal_CAN_push_ndp_left
 		cost = 6
 		
 		prerequisite = {
@@ -5929,7 +6188,7 @@ focus_tree = {
 
 	focus = {
 		id = CAN_nationalize_american_business
-		icon = X
+		icon = GFX_goal_CAN_fight_against_american_finance
 		cost = 6
 		
 		prerequisite = {
@@ -5957,7 +6216,7 @@ focus_tree = {
 
 	focus = {
 		id = CAN_canadian_democratic_socialism
-		icon = X
+		icon = GFX_goal_CAN_canadian_democratic_socialism
 		cost = 6
 		
 		prerequisite = {
@@ -5985,7 +6244,7 @@ focus_tree = {
 
 	focus = {
 		id = CAN_anti_american_nationalism
-		icon = X
+		icon = GFX_goal_CAN_anti_american_nationalism
 		cost = 6
 		
 		prerequisite = {
@@ -6013,7 +6272,7 @@ focus_tree = {
 
 	focus = {
 		id = CAN_leap_mannifestio
-		icon = X
+		icon = GFX_goal_CAN_leap_manifestio
 		cost = 6
 		
 		prerequisite = {
