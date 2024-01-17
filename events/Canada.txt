@@ -481,26 +481,9 @@ country_event = {
 		}
 		add_stability = 0.03
 		hidden_effect = {
-			country_event = {	
+			country_event = {
 				id = rw_canada.21
-				days = 23
-			}
-		}
-		hidden_effect = {
-			CAN_preston_manning = {
-				clr_character_flag = CAN_progressive_conservative_leader
-			}
-		}
-		CAN_stockwell_day = {
-			promote_character = progressive_conservative
-			set_character_flag = CAN_progressive_conservative_leader
-		}
-		hidden_effect = {
-			every_country = {
-				news_event = {
-					hours = 4
-					id = rw_canada_news.9
-				}
+				days = 6
 			}
 		}
 	}
@@ -509,8 +492,22 @@ country_event = {
 #Conservative Party Convention
 country_event = {
 	id = rw_canada.21
-	title = rw_canada.21.t
-	desc = rw_canada.21.d
+	title = {
+		text = rw_canada.21.t_harper
+		trigger = { has_country_flag = CAN_pcs_reform }
+	}
+	title = {
+		text = rw_canada.21.t_trump
+		trigger = { has_country_flag = CAN_pcs_progcon }
+	}
+	desc = {
+		text = rw_canada.21.d_harper
+		trigger = { has_country_flag = CAN_pcs_reform }
+	}
+	desc = {
+		text = rw_canada.21.d_trump
+		trigger = { has_country_flag = CAN_pcs_progcon }
+	}
 	picture = conservative_leadership_election
 	
 	fire_only_once = yes
@@ -522,7 +519,7 @@ country_event = {
 	
 	immediate = {
 		hidden_effect = {
-			CAN_stockwell_day = {
+			CAN_preston_manning = {
 				clr_character_flag = CAN_progressive_conservative_leader
 			}
 		}
@@ -530,6 +527,9 @@ country_event = {
 	
 	option = { #Trump
 		name = rw_canada.21.o1
+		trigger = {
+			has_country_flag = CAN_pcs_progcon
+		}
 		set_country_flag = trump_leads_progcons
 		set_country_flag = pcs_are_natcon
 		add_popularity = {
@@ -545,15 +545,46 @@ country_event = {
 				id = rw_canada.74
 				days = 10
 			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.9
+				}
+			}
 		}
 	}
 	
 	option = { #Harper
-		name = rw_canada.21.o2
+		name = rw_canada.21.o1
+		trigger = {
+			has_country_flag = CAN_pcs_reform
+		}
 		set_country_flag = harper_leads_progcons
 		set_country_flag = pcs_are_nationalist
 		set_politics = {
 			ruling_party = nationalist
+		}
+		hidden_effect = {
+			if = {
+				limit = { has_government = national_conservative }
+				set_politics = {
+					ruling_party = nationalist
+				}
+				set_variable = {
+					current_nationalist_pop = party_popularity@nationalist
+				}
+				set_variable = {
+					current_natcon_pop = party_popularity@national_conservative
+				}
+				subtract_from_variable = {
+					var = current_natcon_pop
+					value = current_nationalist_pop
+				}
+				add_popularity = {
+					ideology = nationalist
+					popularity = current_natcon_pop
+				}	
+			}
 		}
 		CAN_stephen_harper = {
 			add_country_leader_role = {
@@ -567,12 +598,22 @@ country_event = {
 		}
 		add_popularity = {
 			ideology = nationalist
-			popularity = 0.05
+			popularity = 0.08
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = -0.05
 		}
 		hidden_effect = {
 			country_event = {
 				id = rw_canada.75
 				days = 10
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.9
+				}
 			}
 		}
 	}
@@ -1719,7 +1760,7 @@ country_event = {
 	id = rw_canada.52
 	title = rw_canada.52.t
 	desc = rw_canada.52.d
-	picture = ca_voter_exodus
+	picture = harpers_apology
 	
 	fire_only_once = yes
 	is_triggered_only = yes
@@ -1736,7 +1777,7 @@ country_event = {
 	id = rw_canada.53
 	title = rw_canada.53.t
 	desc = rw_canada.53.d
-	picture = ca_voter_exodus
+	picture = canadian_wheat_board
 	
 	fire_only_once = yes
 	is_triggered_only = yes
@@ -3300,10 +3341,47 @@ country_event = {
 			}
 			
 			if = {
+				limit = { has_country_leader = { name = "Preston Manning" ruling_only = yes } }
+				CAN_preston_manning = {
+					set_portraits = {
+						civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Preston_Manning_2015.png" }
+					}
+				}
+			}
+			
+			if = {
+				limit = { has_country_leader = { name = "Stephen Harper" ruling_only = yes } }
+				if = {
+					limit = { has_government = nationalist }
+					CAN_stephen_harper = {
+						set_portraits = {
+							civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Stephen_Harper_2015.png" }
+						}
+					}
+				}
+				else = {
+					CAN_stephen_harper = {
+						set_portraits = {
+							civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Stephen_Harper_ProgCon_2015.png" }
+						}
+					}
+				}
+			}
+			
+			if = {
 				limit = { has_country_leader = { name = "Justin Trudeau" ruling_only = yes } }
 				CAN_justin_trudeau = {
 					set_portraits = {
 						civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Justin_Trudeau_2015.png" }
+					}
+				}
+			}
+			
+			if = {
+				limit = { has_country_leader = { name = "Jack Layton" ruling_only = yes } }
+				CAN_jack_layton = {
+					set_portraits = {
+						civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Jack_Layton_2015.png" }
 					}
 				}
 			}
@@ -5721,7 +5799,18 @@ news_event = {	#Layton Dies
 news_event = {	#Preston Manning Resigns
 	id = rw_canada_news.9
 	title = rw_canada_news.9.t
-	desc = rw_canada_news.9.d
+	desc = {
+		text = rw_canada_news.9.d_trump
+		CAN = {
+			has_country_leader = { name = "Donald Trump" ruling_only = yes }
+		}
+	}
+	desc = {
+		text = rw_canada_news.9.d_harper
+		CAN = {
+			has_country_leader = { name = "Stephen Harper" ruling_only = yes }
+		}
+	}
 	picture = preston_manning_resigns
 	
 	is_triggered_only = yes 
