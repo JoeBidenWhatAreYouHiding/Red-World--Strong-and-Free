@@ -8332,13 +8332,34 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_monarchy_question
-		icon = GFX_goal_CAN_prime_minister_manning
+		icon = GFX_goal_CAN_fate_of_the_monarchy
 		cost = 6
-		x = 49
+		x = 48
 		y = 1
 
 		available = {
-			has_country_flag = CAN_monarchy_up_for_debate
+			custom_trigger_tooltip = {
+				tooltip = CAN_monarchy_up_for_debate
+				OR = {
+					ENG = { has_country_flag = queen_dissolves_parliament }
+					has_country_flag = CAN_monarchy_exists_in_canada
+					has_country_flag = CAN_monarchy_has_been_abolished
+				}
+			}
+		}
+		
+		select_effect = {
+			if = {
+				limit = { ENG = { has_country_flag = queen_dissolves_parliament } }
+				country_event = {
+					id = rw_canada.104
+					days = 10
+				}
+			}
+		}
+		
+		bypass = {
+			has_country_flag = CAN_monarchy_abolished
 		}
 
 		ai_will_do = {
@@ -8348,7 +8369,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			#custom_effect_tooltip = can_manning_pm
+			country_event = rw_canada.100
 		}
 	}
 	
@@ -8372,7 +8393,7 @@ focus_tree = {
 		y = 1
 
 		available = {
-			
+			has_country_flag = CAN_monarchy_abolished
 		}
 
 		ai_will_do = {
@@ -8382,7 +8403,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = rw_canada.103
 		}
 	}
 	
@@ -8411,7 +8432,11 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = rw_canada.106
+			swap_ideas = {
+				remove_idea = CAN_legal_chaos
+				add_idea = CAN_legal_chaos2
+			}
 		}
 	}
 	
@@ -8440,7 +8465,11 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = rw_canada.107
+			swap_ideas = {
+				remove_idea = CAN_legal_chaos2
+				add_idea = CAN_legal_chaos3
+			}
 		}
 	}
 	
@@ -8467,7 +8496,7 @@ focus_tree = {
 		y = 2
 
 		available = {
-			
+			has_country_flag = CAN_govgen_is_now_president
 		}
 
 		ai_will_do = {
@@ -8591,7 +8620,7 @@ focus_tree = {
 		y = 2
 
 		available = {
-			
+			has_country_flag = CAN_prime_minister_is_head_of_state
 		}
 
 		ai_will_do = {
@@ -8712,7 +8741,7 @@ focus_tree = {
 		y = 1
 
 		available = {
-			
+			has_country_flag = CAN_monarchy_kept
 		}
 
 		ai_will_do = {
@@ -8727,7 +8756,7 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = CAN_rideau_hall
+		id = CAN_tour_the_nation
 		icon = GFX_goal_CAN_strategic_innovation_fund
 		cost = 7
 		
@@ -8756,12 +8785,12 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = CAN_governor_general
+		id = CAN_canadian_investments
 		icon = GFX_goal_CAN_strategic_innovation_fund
 		cost = 7
 		
 		prerequisite = {
-			focus = CAN_rideau_hall
+			focus = CAN_tour_the_nation
 		}
 
 		
@@ -8790,7 +8819,7 @@ focus_tree = {
 		cost = 7
 		
 		prerequisite = {
-			focus = CAN_governor_general
+			focus = CAN_canadian_investments
 		}
 
 		
@@ -8813,10 +8842,8 @@ focus_tree = {
 		}
 	}
 	
-	## - Con Monarchist 
-	
 	focus = {
-		id = CAN_constitutional_monarchism
+		id = CAN_kingdom_of_canada
 		icon = GFX_goal_CAN_strategic_innovation_fund
 		cost = 7
 		
@@ -8825,7 +8852,7 @@ focus_tree = {
 		}
 	
 		mutually_exclusive = {
-			focus = CAN_raise_red_ensign_high
+			focus = CAN_legacy_of_the_red_ensign
 		}
 		
 		relative_position_id = CAN_queen_in_canada
@@ -8848,16 +8875,16 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = CAN_tour_the_nation
+		id = CAN_rideau_hall
 		icon = GFX_goal_CAN_strategic_innovation_fund
 		cost = 7
 		
 		prerequisite = {
-			focus = CAN_constitutional_monarchism
+			focus = CAN_kingdom_of_canada
 		}
 
 		
-		relative_position_id = CAN_constitutional_monarchism
+		relative_position_id = CAN_kingdom_of_canada
 		x = -1
 		y = 1
 
@@ -8877,16 +8904,16 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = CAN_invest_in_canada
+		id = CAN_governor_general
 		icon = GFX_goal_CAN_strategic_innovation_fund
 		cost = 7
 		
 		prerequisite = {
-			focus = CAN_constitutional_monarchism
+			focus = CAN_kingdom_of_canada
 		}
 
 		
-		relative_position_id = CAN_constitutional_monarchism
+		relative_position_id = CAN_kingdom_of_canada
 		x = 1
 		y = 1
 
@@ -8911,14 +8938,14 @@ focus_tree = {
 		cost = 7
 		
 		prerequisite = {
-			focus = CAN_tour_the_nation
+			focus = CAN_rideau_hall
 		}
 		prerequisite = {
-			focus = CAN_invest_in_canada
+			focus = CAN_governor_general
 		}
 
 		
-		relative_position_id = CAN_constitutional_monarchism
+		relative_position_id = CAN_kingdom_of_canada
 		x = 0
 		y = 2
 
@@ -8940,7 +8967,7 @@ focus_tree = {
 	## - Monarchist 
 	
 	focus = {
-		id = CAN_raise_red_ensign_high
+		id = CAN_legacy_of_the_red_ensign
 		icon = GFX_goal_CAN_strategic_innovation_fund
 		cost = 7
 		
@@ -8949,7 +8976,7 @@ focus_tree = {
 		}
 	
 		mutually_exclusive = {
-			focus = CAN_constitutional_monarchism
+			focus = CAN_kingdom_of_canada
 		}
 		
 		relative_position_id = CAN_queen_in_canada
@@ -8972,16 +8999,16 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = CAN_empower_the_senate
+		id = CAN_influence_the_prime_minister
 		icon = GFX_goal_CAN_strategic_innovation_fund
 		cost = 7
 		
 		prerequisite = {
-			focus = CAN_raise_red_ensign_high
+			focus = CAN_legacy_of_the_red_ensign
 		}
 
 		
-		relative_position_id = CAN_raise_red_ensign_high
+		relative_position_id = CAN_legacy_of_the_red_ensign
 		x = -1
 		y = 1
 
@@ -9001,16 +9028,16 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = CAN_intimidate_commons
+		id = CAN_rally_support_for_reclaimation
 		icon = GFX_goal_CAN_strategic_innovation_fund
 		cost = 7
 		
 		prerequisite = {
-			focus = CAN_raise_red_ensign_high
+			focus = CAN_legacy_of_the_red_ensign
 		}
 
 		
-		relative_position_id = CAN_raise_red_ensign_high
+		relative_position_id = CAN_legacy_of_the_red_ensign
 		x = 1
 		y = 1
 
@@ -9028,325 +9055,23 @@ focus_tree = {
 			
 		}
 	}
-	
-	focus = {
-		id = CAN_replace_the_prime_minister
-		icon = GFX_goal_CAN_strategic_innovation_fund
-		cost = 7
-		
-		prerequisite = {
-			focus = CAN_intimidate_commons
-			focus = CAN_empower_the_senate
-		}
-
-		
-		relative_position_id = CAN_raise_red_ensign_high
-		x = 0
-		y = 2
-
-		available = {
-			
-		}
-
-		ai_will_do = {
-			factor = 100
-		}
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			
-		}
-	}
-	
-	focus = {
-		id = CAN_kingdom_of_canada
-		icon = GFX_goal_CAN_strategic_innovation_fund
-		cost = 7
-		
-		prerequisite = {
-			focus = CAN_replace_the_prime_minister
-		}
-
-		mutually_exclusive = {
-			focus = CAN_great_britain_in_exile
-		}
-		
-		relative_position_id = CAN_replace_the_prime_minister
-		x = -2
-		y = 1
-
-		available = {
-			
-		}
-
-		ai_will_do = {
-			factor = 100
-		}
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			
-		}
-	}
-	
-	focus = {
-		id = CAN_great_britain_in_exile
-		icon = GFX_goal_CAN_strategic_innovation_fund
-		cost = 7
-		
-		prerequisite = {
-			focus = CAN_replace_the_prime_minister
-		}
-
-		mutually_exclusive = {
-			focus = CAN_kingdom_of_canada
-		}
-		
-		relative_position_id = CAN_replace_the_prime_minister
-		x = 2
-		y = 1
-
-		available = {
-			
-		}
-
-		ai_will_do = {
-			factor = 100
-		}
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			
-		}
-	}
-	
-	focus = {
-		id = CAN_west_indies
-		icon = GFX_goal_CAN_strategic_innovation_fund
-		cost = 7
-		
-		prerequisite = {
-			focus = CAN_great_britain_in_exile
-			focus = CAN_kingdom_of_canada
-		}
-
-		
-		relative_position_id = CAN_replace_the_prime_minister
-		x = -1
-		y = 2
-
-		available = {
-			
-		}
-
-		ai_will_do = {
-			factor = 100
-		}
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			
-		}
-	}
-	
-	focus = {
-		id = CAN_belize
-		icon = GFX_goal_CAN_strategic_innovation_fund
-		cost = 7
-		
-		prerequisite = {
-			focus = CAN_great_britain_in_exile
-			focus = CAN_kingdom_of_canada
-		}
-
-		
-		relative_position_id = CAN_replace_the_prime_minister
-		x = 1
-		y = 2
-
-		available = {
-			
-		}
-
-		ai_will_do = {
-			factor = 100
-		}
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			
-		}
-	}
-	
-	focus = {
-		id = CAN_pacific_possesions
-		icon = GFX_goal_CAN_strategic_innovation_fund
-		cost = 7
-		
-		prerequisite = {
-			focus = CAN_west_indies
-			focus = CAN_belize
-		}
-
-		
-		relative_position_id = CAN_replace_the_prime_minister
-		x = 0
-		y = 3
-
-		available = {
-			
-		}
-
-		ai_will_do = {
-			factor = 100
-		}
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			
-		}
-	}
-	
-	focus = {
-		id = CAN_south_africa
-		icon = GFX_goal_CAN_strategic_innovation_fund
-		cost = 7
-		
-		prerequisite = {
-			focus = CAN_great_britain_in_exile
-			focus = CAN_kingdom_of_canada
-		}
-
-		
-		relative_position_id = CAN_replace_the_prime_minister
-		x = -3
-		y = 2
-
-		available = {
-			
-		}
-
-		ai_will_do = {
-			factor = 100
-		}
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			
-		}
-	}
-	
-	focus = {
-		id = CAN_egypt
-		icon = GFX_goal_CAN_strategic_innovation_fund
-		cost = 7
-		
-		prerequisite = {
-			focus = CAN_south_africa
-		}
-
-		
-		relative_position_id = CAN_replace_the_prime_minister
-		x = -2
-		y = 3
-
-		available = {
-			
-		}
-
-		ai_will_do = {
-			factor = 100
-		}
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			
-		}
-	}
-	
-	focus = {
-		id = CAN_hong_kong
-		icon = GFX_goal_CAN_strategic_innovation_fund
-		cost = 7
-		
-		prerequisite = {
-			focus = CAN_great_britain_in_exile
-			focus = CAN_kingdom_of_canada
-		}
-
-		
-		relative_position_id = CAN_replace_the_prime_minister
-		x = 3
-		y = 2
-
-		available = {
-			
-		}
-
-		ai_will_do = {
-			factor = 100
-		}
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			
-		}
-	}
-	
-	focus = {
-		id = CAN_empress_of_india
-		icon = CAN_hong_kong
-		cost = 7
-		
-		prerequisite = {
-			focus = CAN_hong_kong
-		}
-
-		
-		relative_position_id = CAN_replace_the_prime_minister
-		x = 2
-		y = 3
-
-		available = {
-			
-		}
-
-		ai_will_do = {
-			factor = 100
-		}
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			
-		}
-	}
-	
 	
 	focus = {
 		id = CAN_reclaim_the_birthright
-		icon = CAN_hong_kong
+		icon = GFX_goal_CAN_strategic_innovation_fund
 		cost = 7
 		
 		prerequisite = {
-			focus = CAN_egypt
-			focus = CAN_empress_of_india
-			focus = CAN_pacific_possesions
+			focus = CAN_rally_support_for_reclaimation
+		}
+		prerequisite = {
+			focus = CAN_influence_the_prime_minister
 		}
 
 		
-		relative_position_id = CAN_replace_the_prime_minister
+		relative_position_id = CAN_legacy_of_the_red_ensign
 		x = 0
-		y = 4
+		y = 2
 
 		available = {
 			

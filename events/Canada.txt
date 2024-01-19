@@ -2890,6 +2890,244 @@ country_event = {
 	}
 }
 
+### Monarchy Question ###
+
+#Fate of the Monarchy
+country_event = {
+	id = rw_canada.100
+	title = rw_canada.100.t
+	desc = {
+		text = rw_canada.100.d
+		trigger = { NOT = { has_global_flag = royal_family_executed } }
+	}
+	desc = {
+		text = rw_canada.100.d_royals_executed
+		trigger = { has_global_flag = royal_family_executed }
+	}
+	picture = monarchy_fate
+	
+	is_triggered_only = yes
+	
+	option = { #Retain the Monarchy
+		name = rw_canada.100.o1
+		add_political_power = 20
+		add_stability = -0.02
+		set_country_flag = CAN_monarchy_kept
+		if = {
+			limit = { NOT = { has_global_flag = royal_family_executed } }
+			country_event = {
+				id = rw_canada.101
+				days = 5
+			}
+		}
+		else = {
+			country_event = {
+				id = rw_canada.102
+				days = 5
+			}
+		}
+	}
+	
+	option = { #Abolish the Monarchy
+		name = rw_canada.100.o2
+		add_stability = -0.02
+		add_political_power = 20
+		set_country_flag = CAN_monarchy_abolished
+		custom_effect_tooltip = CAN_period_of_transition
+		add_ideas = CAN_legal_chaos
+	}
+}
+
+#Queen Arrives in Canada
+country_event = {
+	id = rw_canada.101
+	title = rw_canada.101.t
+	desc = rw_canada.101.d
+	picture = queen_arrives_in_canada
+
+	is_triggered_only = yes
+	
+
+	option = { #God Save the Queen
+		name = rw_canada.101.o1
+		add_ideas = CAN_elizabeth_in_exile
+	}
+}
+
+#Monarchy Lives on
+country_event = {
+	id = rw_canada.102
+	title = rw_canada.102.t
+	desc = {
+		text = rw_canada.102.d_andrew
+		trigger = { has_country_flag = CAN_king_in_exile_andrew }
+	}
+	desc = {
+		text = rw_canada.102.d_edward
+		trigger = { has_country_flag = CAN_king_in_exile_edward }
+	}
+	picture = monarchy_lives_on
+
+	is_triggered_only = yes
+	
+
+	option = { #God Save the King
+		name = rw_canada.102.o1
+		if = {
+			limit = { has_country_flag = CAN_andrew_leads_exiles }
+			add_ideas = CAN_king_in_exile_andrew
+		}
+		else = {
+			add_ideas = CAN_king_in_exile_edward
+		}
+		set_country_flag = CAN_british_monarchy_in_exile
+	}
+}
+
+#Republic Formalized
+country_event = {
+	id = rw_canada.103
+	title = rw_canada.103.t
+	desc = rw_canada.103.d
+	picture = republic_debate
+
+	is_triggered_only = yes
+	
+
+	option = { #Interesting
+		name = rw_canada.103.o1
+		add_popularity = {
+			ideology = monarchist
+			popularity = -0.1
+		}
+		set_party_name = {
+			long_name = CAN_canada_first_party_long
+			name = CAN_canada_first_party
+			ideology = monarchist
+		}
+		CAN_romana_didulo = {
+			promote_character = absolute_monarchist
+		}
+	}
+}
+
+#Queen Attempts to Dissolve Parlaiment
+country_event = {
+	id = rw_canada.104
+	title = rw_canada.104.t
+	desc = rw_canada.104.d
+	picture = queen_attempts_coup
+
+	is_triggered_only = yes
+	
+
+	option = { #Interesting
+		name = rw_canada.104.o1
+		add_popularity = {
+			ideology = monarchist
+			popularity = -0.1
+		}
+		add_opinion_modifier = {
+			target = ENG
+			modifier = failed_coup
+		}
+		ENG = {
+			country_event = rw_canada.105
+		}
+		add_ideas = CAN_legal_chaos
+		set_country_flag = CAN_monarchy_abolished
+	}
+}
+
+#Canada Rebukes us
+country_event = {
+	id = rw_canada.105
+	title = rw_canada.105.t
+	desc = rw_canada.105.d
+	picture = sp_primary_2016
+
+	is_triggered_only = yes
+	
+
+	option = { #Disloyal Subjects!
+		name = rw_canada.105.o1
+		ai_chance = {
+			factor = 80
+		}
+		add_political_power = -20
+		add_opinion_modifier = {
+			target = CAN
+			modifier = betrayed_the_queen
+		}
+	}
+	
+	option = { #Teach them a Lesson
+		name = rw_canada.104.o2
+		ai_chance = {
+			factor = 20
+		}
+		declare_war_on = { 
+			target = CAN
+			type = annex_everything 
+		}
+	}
+}
+
+#Emergency Constitutional Convention
+country_event = {
+	id = rw_canada.106
+	title = rw_canada.106.t
+	desc = rw_canada.106.d
+	picture = constitutional_convention
+
+	is_triggered_only = yes
+	
+
+	option = { #Interesting
+		name = rw_canada.106.o1
+		add_stability = 0.02
+	}
+}
+
+#Head of State
+country_event = {
+	id = rw_canada.107
+	title = rw_canada.107.t
+	desc = rw_canada.107.d
+	picture = our_head_of_state
+
+	is_triggered_only = yes
+	
+
+	option = { #President
+		name = rw_canada.107.o1
+		set_country_flag= CAN_govgen_is_now_president
+	}
+	
+	option = { #Prime Minister
+		name = rw_canada.107.o2
+		if = {
+			limit = { has_idea = CAN_govgen_michaelle_jean }
+			remove_ideas = CAN_govgen_michaelle_jean
+		}
+		
+		if = {
+			limit = { has_idea = CAN_govgen_david_johnston }
+			remove_ideas = CAN_govgen_david_johnston
+		}
+		
+		if = {
+			limit = { has_idea = CAN_govgen_julie_payette }
+			remove_ideas = CAN_govgen_julie_payette
+		}
+		
+		if = {
+			limit = { has_idea = CAN_govgen_mary_simon }
+			remove_ideas = CAN_govgen_mary_simon
+		}
+		set_country_flag = CAN_prime_minister_is_head_of_state
+	}
+}
 
 ### 2015 Elections Stuff ###
 
