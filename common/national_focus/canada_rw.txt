@@ -748,6 +748,10 @@ focus_tree = {
 			}
 			country_event = rw_canada.40
 			add_ideas = CAN_ford_machine
+			add_to_variable = {
+			   var = CAN_alberta_tension
+			   value = 1
+			}
 		}
 	}
 	
@@ -853,6 +857,10 @@ focus_tree = {
 		completion_reward = {
 			country_event = rw_canada.41
 			add_ideas = CAN_antiestablishmentarianism 
+			subtract_from_variable = {
+			   var = CAN_alberta_tension
+			   value = 1
+			}
 		}
 	}
 	
@@ -1701,6 +1709,7 @@ focus_tree = {
 		
 		prerequisite = {
 			focus = CAN_undercut_the_canadian_alliance
+			focus = CAN_focus_on_leftwing_threats
 		}
 		
 		relative_position_id = CAN_sweep_aside_disunity
@@ -1722,6 +1731,55 @@ focus_tree = {
 			add_ideas = CAN_fiscal_and_social_conservatism
 			add_political_power = 50
 			add_stability = -0.02
+		}
+	}
+	
+	focus = {
+		id = CAN_new_conservative_era
+		icon = GFX_goal_CAN_neoconservatism
+		cost = 7
+		
+		prerequisite = {
+			focus = CAN_fiscal_and_social_conservatism
+		}
+		prerequisite = {
+			focus = CAN_ammend_the_immigration_and_refugee_protection_act
+			focus = CAN_apologize_to_aboriginals
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_return_to_diefenbakerism
+		}
+		
+		relative_position_id = CAN_sweep_aside_disunity
+		x = -1
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CAN_fiscal_and_social_conservatism
+				add_idea = CAN_neoconservatism
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = -0.02
+			}
+			add_war_support = 0.02
+			add_political_power = 20
 			custom_effect_tooltip = CAN_will_switch_to_nationalism
 			if = {
 				limit = { has_country_flag = pcs_are_natcon }
@@ -1760,43 +1818,6 @@ focus_tree = {
 						ideology = nationalist
 						popularity = current_natcon_pop
 					}	
-				}
-			}
-		}
-	}
-	
-	focus = {
-		id = CAN_adress_western_alienation
-		icon = GFX_goal_CAN_western_alienation
-		cost = 7
-		
-		prerequisite = {
-			focus = CAN_fiscal_and_social_conservatism
-		}
-		
-		relative_position_id = CAN_sweep_aside_disunity
-		x = -1
-		y = 3
-
-		available = {
-			
-		}
-
-		ai_will_do = {
-			factor = 100
-		}
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			add_ideas = CAN_alberta_support_surge
-			470 = {
-				add_extra_state_shared_building_slots = 1
-				add_state_modifier = {
-					modifier = {
-						local_manpower = 0.02
-						local_supplies = 0.02
-					}
 				}
 			}
 		}
@@ -1848,6 +1869,103 @@ focus_tree = {
 				clr_country_flag = pcs_are_nationalist
 				set_country_flag = pcs_are_natcon
 			}
+			custom_effect_tooltip = CAN_pc_loyalist_cabinet
+			hidden_effect = {
+				if = {
+					limit = { has_country_leader = { name = "Stephen Harper" ruling_only = yes } }
+					add_ideas = canada_sic_jim_prentice
+					add_ideas = canada_ind_peter_van_loan
+				}
+				else = {
+					add_ideas = canada_sic_stephen_harper
+					add_ideas = canada_ind_jim_prentice
+				}
+				add_ideas = canada_fom_peter_mackay
+				add_ideas = canada_nsm_erin_otoole
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_apologize_to_aboriginals
+		icon = GFX_goal_CAN_apologize_to_aboriginals
+		cost = 7
+		
+		prerequisite = {
+			focus = CAN_undercut_the_canadian_alliance
+			focus = CAN_focus_on_leftwing_threats
+		}
+		
+		relative_position_id = CAN_sweep_aside_disunity
+		x = 2
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.03
+			}
+			country_event = rw_canada.52
+			add_ideas = CAN_righting_past_wrongs
+		}
+	}
+	
+	focus = {
+		id = CAN_return_to_diefenbakerism
+		icon = GFX_goal_CAN_dief_chief
+		cost = 7
+		
+		prerequisite = {
+			focus = CAN_fiscal_and_social_conservatism
+		}
+		prerequisite = {
+			focus = CAN_ammend_the_immigration_and_refugee_protection_act
+			focus = CAN_apologize_to_aboriginals
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_new_conservative_era
+		}
+		
+		relative_position_id = CAN_sweep_aside_disunity
+		x = 1
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+		
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CAN_fiscal_and_social_conservatism
+				add_idea = CAN_diefenbakerism
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.02
+			}
+			add_stability = 0.02
+			add_political_power = 20
 			custom_effect_tooltip = CAN_will_switch_to_natcon
 			hidden_effect = {
 				if = {
@@ -1877,90 +1995,6 @@ focus_tree = {
 						set_portraits = {
 							civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Stephen_Harper_ProgCon.png" }
 						}
-					}
-				}
-			}
-			custom_effect_tooltip = CAN_pc_loyalist_cabinet
-			hidden_effect = {
-				if = {
-					limit = { has_country_leader = { name = "Stephen Harper" ruling_only = yes } }
-					add_ideas = canada_sic_jim_prentice
-					add_ideas = canada_ind_peter_van_loan
-				}
-				else = {
-					add_ideas = canada_sic_stephen_harper
-					add_ideas = canada_ind_jim_prentice
-				}
-				add_ideas = canada_fom_peter_mackay
-				add_ideas = canada_nsm_erin_otoole
-			}
-		}
-	}
-	
-	focus = {
-		id = CAN_apologize_to_aboriginals
-		icon = GFX_goal_CAN_apologize_to_aboriginals
-		cost = 7
-		
-		prerequisite = {
-			focus = CAN_focus_on_leftwing_threats
-		}
-		
-		relative_position_id = CAN_sweep_aside_disunity
-		x = 2
-		y = 2
-
-		available = {
-			
-		}
-
-		ai_will_do = {
-			factor = 100
-		}
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			add_popularity = {
-				ideology = nationalist
-				popularity = -0.03
-			}
-			country_event = rw_canada.52
-			add_ideas = CAN_righting_past_wrongs
-		}
-	}
-	
-	focus = {
-		id = CAN_reopen_quebec_soverignty_issue
-		icon = GFX_goal_CAN_reopen_quebec_soverignty_issue
-		cost = 7
-		
-		prerequisite = {
-			focus = CAN_apologize_to_aboriginals
-		}
-		
-		relative_position_id = CAN_sweep_aside_disunity
-		x = 1
-		y = 3
-
-		available = {
-			
-		}
-
-		ai_will_do = {
-			factor = 100
-		}
-
-		available_if_capitulated = yes
-		
-		completion_reward = {
-			add_ideas = CAN_quebec_support_surge
-			466 = {
-				add_extra_state_shared_building_slots = 1
-				add_state_modifier = {
-					modifier = {
-						local_manpower = 0.02
-						local_supplies = 0.02
 					}
 				}
 			}
@@ -2013,8 +2047,8 @@ focus_tree = {
 			focus = CAN_ammend_the_immigration_and_refugee_protection_act
 		}
 		prerequisite = {
-			focus = CAN_adress_western_alienation
-			focus = CAN_reopen_quebec_soverignty_issue
+			focus = CAN_new_conservative_era
+			focus = CAN_return_to_diefenbakerism
 		}
 		
 		relative_position_id = CAN_sweep_aside_disunity
@@ -2406,10 +2440,8 @@ focus_tree = {
 		cost = 7
 		
 		prerequisite = {
-			focus = CAN_adress_western_alienation
-		}
-		prerequisite = {
-			focus = CAN_reopen_quebec_soverignty_issue
+			focus = CAN_new_conservative_era
+			focus = CAN_return_to_diefenbakerism
 		}
 		prerequisite = {
 			focus = CAN_trade_commissioner_service
@@ -3507,6 +3539,10 @@ focus_tree = {
 			}
 			set_country_flag = ndp_is_centrist
 			country_event = rw_canada.78
+			add_to_variable = {
+			   var = CAN_alberta_tension
+			   value = 1
+			}
 		}
 	}
 	
@@ -5248,6 +5284,10 @@ focus_tree = {
 			add_stability = -0.02
 			add_political_power = 20
 			add_ideas = CAN_trudeau_antiestablishment
+			add_to_variable = {
+			   var = CAN_quebec_tension
+			   value = 1
+			}
 		}
 	}
 	

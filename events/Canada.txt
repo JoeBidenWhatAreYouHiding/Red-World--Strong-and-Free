@@ -472,6 +472,10 @@ country_event = {
 			ideology = national_conservative
 			popularity = 0.02
 		}
+		add_to_variable = {
+		   var = CAN_quebec_tension
+		   value = 1
+		}
 	}
 	
 	option = { #Resign
@@ -552,6 +556,10 @@ country_event = {
 				}
 			}
 		}
+		add_to_variable = {
+		   var = CAN_alberta_tension
+		   value = 1
+		}
 	}
 	
 	option = { #Harper
@@ -615,6 +623,10 @@ country_event = {
 					id = rw_canada_news.9
 				}
 			}
+		}
+		add_to_variable = {
+		   var = CAN_quebec_tension
+		   value = 1
 		}
 	}
 }
@@ -708,6 +720,10 @@ country_event = {
 				days = 40
 				random_days = 20
 			}
+		}
+		add_to_variable = {
+		   var = CAN_alberta_tension
+		   value = 1
 		}
 	}
 	
@@ -1015,6 +1031,10 @@ country_event = {
 	option = {
 		name = rw_canada.30.o1
 		add_stability = -0.05
+		add_to_variable = {
+		   var = CAN_quebec
+		   value = 1
+		}
 	}
 }
 
@@ -1896,6 +1916,10 @@ country_event = {
 		}
 		set_country_flag = nationalists_are_canadian_alliance
 		set_country_flag = canadian_alliance_is_relevant
+		add_to_variable = {
+			var = CAN_alberta_tension
+			value = 1
+		}
 	}
 }
 
@@ -3703,6 +3727,10 @@ country_event = {
 		trigger = {
 			has_country_flag = liberals_exist
 		}
+		add_to_variable = {
+			var = CAN_alberta_tension
+			value = 1
+		}
 		set_country_flag =  liberal_victory_2015
 		set_country_flag = CAN_2015_elections_held
 		if = {
@@ -3979,6 +4007,10 @@ country_event = {
 				ruling_party = nationalist
 			}
 		}
+		add_to_variable = {
+			var = CAN_alberta_tension
+			value = 1
+		}
 	}
 	
 	option = { #The NDP, backed by Liberals and the Bloc
@@ -4017,6 +4049,10 @@ country_event = {
 				ruling_party = new_democrat
 			}
 		}
+		add_to_variable = {
+			var = CAN_alberta_tension
+			value = 1
+		}
 	}
 	
 	option = { #The Liberals, backed by the NDP and the Bloc
@@ -4045,11 +4081,23 @@ country_event = {
 				ruling_party = centrist
 			}
 		}
+		add_to_variable = {
+			var = CAN_quebec_tension
+			value = -1
+		}
+		add_to_variable = {
+			var = CAN_alberta_tension
+			value = 1
+		}
 	}
 	
 	option = { #Canadian Alliance
 		name = rw_canada.201.o4
 		country_event = rw_canada.203
+		add_to_variable = {
+			var = CAN_quebec_tension
+			value = 2
+		}
 	}
 	
 	option = { #Bloc Québécois
@@ -4121,6 +4169,10 @@ country_event = {
 				id = rw_canada.202
 				days = 4
 			}
+		}
+		add_to_variable = {
+			var = CAN_alberta_tension
+			value = 2
 		}
 	}
 }
@@ -5959,6 +6011,418 @@ country_event = {
 	}
 }
 
+##########################
+### Separatism EVENTS ###
+#########################
+
+add_namespace = can_separatism
+
+#Alberta General Election
+country_event = {
+	id = can_separatism.1
+	title = can_separatism.1.t
+	desc = can_separatism.1.d
+	picture = 2012_alberta_election
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Alison Redford
+		name = can_separatism.1.o1
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.02
+		}
+	}
+	
+	option = { #Danielle Smith
+		name = can_separatism.1.o1
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.02
+		}
+		add_to_variable = {
+		   var = CAN_alberta_tension
+		   value = 1
+		}
+		hidden_effect = {
+			country_event = {
+				id = can_separatism.8
+				days = 45
+				random_days = 34
+			}
+		}
+	}
+}
+
+#Quebec General Election
+country_event = {
+	id = can_separatism.2
+	title = can_separatism.2.t
+	desc = can_separatism.2.d
+	picture = 2012_quebec_election
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Jean Charest
+		name = can_separatism.2.o1
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.02
+		}
+	}
+	
+	option = { #Pauline Marois
+		name = can_separatism.2.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.02
+		}
+		add_to_variable = {
+		   var = CAN_quebec_tension
+		   value = 1
+		}
+		hidden_effect = {
+			country_event = {
+				id = can_separatism.3
+				days = 45
+				random_days = 34
+			}
+		}
+	}
+}
+
+#Party Quebecois pushes for greater autonomy
+country_event = {
+	id = can_separatism.3
+	title = can_separatism.3.t
+	desc = can_separatism.3.d
+	picture = quebec_demands_greater_autonomy
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #
+		name = can_separatism.3.o1
+		add_stability = -0.01
+		hidden_effect = {
+			if = {	
+				limit = {
+					check_variable = {
+						var = CAN_quebec_tension
+						value = 2
+						compare = greater_than_or_equals
+					}
+				}
+				hidden_effect = {
+					country_event = {
+						id = can_separatism.4
+						days = 100
+						random_days = 44
+					}
+				}
+			}
+		}
+	}
+}
+
+#Tensions rising in Quebec
+country_event = {
+	id = can_separatism.4
+	title = can_separatism.4.t
+	desc = can_separatism.4.d
+	picture = tensions_rising_with_quebec
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #
+		name = can_separatism.4.o1
+		add_war_support = -0.02
+		hidden_effect = {
+			if = {	
+				limit = {
+					check_variable = {
+						var = CAN_quebec_tension
+						value = 2
+						compare = greater_than_or_equals
+					}
+				}
+				hidden_effect = {
+					country_event = {
+						id = can_separatism.5
+						days = 100
+						random_days = 44
+					}
+				}
+			}
+		}
+	}
+}
+
+#Second Referendum Demanded
+country_event = {
+	id = can_separatism.5
+	title = can_separatism.5.t
+	desc = can_separatism.5.d
+	picture = premier_demands_referendum
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #
+		name = can_separatism.5.o1
+		add_political_power = -20
+		add_to_variable = {
+		   var = CAN_quebec_tension
+		   value = 1
+		}
+		hidden_effect = {
+			if = {	
+				limit = {
+					check_variable = {
+						var = CAN_quebec_tension
+						value = 2
+						compare = greater_than
+					}
+				}
+				hidden_effect = {
+					country_event = {
+						id = can_separatism.6
+						days = 50
+						random_days = 44
+					}
+				}
+			}
+		}
+	}
+}
+
+#Protests Rock Quebec
+country_event = {
+	id = can_separatism.6
+	title = can_separatism.6.t
+	desc = can_separatism.6.d
+	picture = protests_rock_quebec
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #
+		name = can_separatism.6.o1
+		add_stability = -0.03
+		add_to_variable = {
+		   var = CAN_quebec_tension
+		   value = 1
+		}
+		CAN_subtract_5_percent_popularity = yes
+		hidden_effect = {
+			if = {	
+				limit = {
+					check_variable = {
+						var = CAN_quebec_tension
+						value = 3
+						compare = greater_than_or_equals
+					}
+				}
+				hidden_effect = {
+					country_event = {
+						id = can_separatism.7
+						days = 50
+						random_days = 44
+					}
+				}
+			}
+		}
+	}
+}
+
+#FLQ Returns
+country_event = {
+	id = can_separatism.7
+	title = can_separatism.7.t
+	desc = can_separatism.7.d
+	picture = flq_comes_back
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #
+		name = can_separatism.7.o1
+		add_stability = -0.05
+		add_political_power = -50
+		add_war_support = -0.05
+		set_country_flag = CAN_quebec_in_crisis
+		add_ideas = CAN_quebec_in_crisis
+	}
+}
+
+#Wildrose Denounces Ottawa
+country_event = {
+	id = can_separatism.8
+	title = can_separatism.8.t
+	desc = can_separatism.8.d
+	picture = wildrose_denounces_ottawa
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #
+		name = can_separatism.8.o1
+		add_stability = -0.01
+		hidden_effect = {
+			if = {	
+				limit = {
+					check_variable = {
+						var = CAN_alberta_tension
+						value = 2
+						compare = greater_than_or_equals
+					}
+				}
+				hidden_effect = {
+					country_event = {
+						id = can_separatism.9
+						days = 100
+						random_days = 44
+					}
+				}
+			}
+		}
+	}
+}
+
+#Tensions rising in Alberta
+country_event = {
+	id = can_separatism.9
+	title = can_separatism.9.t
+	desc = can_separatism.9.d
+	picture = sovereignty_act_passes
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #
+		name = can_separatism.9.o1
+		add_war_support = -0.02
+		hidden_effect = {
+			if = {	
+				limit = {
+					check_variable = {
+						var = CAN_alberta_tension
+						value = 2
+						compare = greater_than_or_equals
+					}
+				}
+				hidden_effect = {
+					country_event = {
+						id = can_separatism.10
+						days = 100
+						random_days = 44
+					}
+				}
+			}
+		}
+	}
+}
+
+#Alberta Referendum Demanded
+country_event = {
+	id = can_separatism.10
+	title = can_separatism.10.t
+	desc = can_separatism.10.d
+	picture = alberta_referendum_demanded
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #
+		name = can_separatism.10.o1
+		add_political_power = -20
+		add_to_variable = {
+		   var = CAN_alberta_tension
+		   value = 1
+		}
+		hidden_effect = {
+			if = {	
+				limit = {
+					check_variable = {
+						var = CAN_alberta_tension
+						value = 2
+						compare = greater_than
+					}
+				}
+				hidden_effect = {
+					country_event = {
+						id = can_separatism.11
+						days = 50
+						random_days = 44
+					}
+				}
+			}
+		}
+	}
+}
+
+#Protests Rock Alberta
+country_event = {
+	id = can_separatism.11
+	title = can_separatism.11.t
+	desc = can_separatism.11.d
+	picture = protests_rock_alberta
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #
+		name = can_separatism.11.o1
+		add_stability = -0.03
+		add_to_variable = {
+		   var = CAN_alberta_tension
+		   value = 1
+		}
+		CAN_subtract_5_percent_popularity = yes
+		hidden_effect = {
+			if = {	
+				limit = {
+					check_variable = {
+						var = CAN_alberta_tension
+						value = 3
+						compare = greater_than_or_equals
+					}
+				}
+				hidden_effect = {
+					country_event = {
+						id = can_separatism.12
+						days = 50
+						random_days = 44
+					}
+				}
+			}
+		}
+	}
+}
+
+#WNCO founded
+country_event = {
+	id = can_separatism.12
+	title = can_separatism.12.t
+	desc = can_separatism.12.d
+	picture = western_compact_formed
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #
+		name = can_separatism.12.o1
+		add_stability = -0.05
+		add_political_power = -50
+		add_war_support = -0.05
+		set_country_flag = CAN_alberta_in_crisis
+		add_ideas = CAN_alberta_in_crisis
+	}
+}
+
 ######################
 ### FLAVOUR EVENTS ###
 ######################
@@ -6471,7 +6935,7 @@ news_event = {	#Queen in Canada
 	id = rw_canada_news.36
 	title = rw_canada_news.36.t
 	desc = rw_canada_news.36.d
-	picture = european_spring
+	picture = elizabeth_flees_to_canada
 	
 	is_triggered_only = yes 
 	
@@ -6497,7 +6961,7 @@ news_event = {	#Failed Royal Coup
 			ENG = { has_war_with = CAN }
 		}
 	}
-	picture = european_spring
+	picture = elizabeth_war_with_canada
 	
 	is_triggered_only = yes 
 	
@@ -6517,7 +6981,7 @@ news_event = {	#Royals in Canada
 		text = rw_canada_news.38.d_edward
 		trigger = { CAN  = {has_country_flag = CAN_king_in_exile_edward } }
 	}
-	picture = european_spring
+	picture = royals_in_canada
 	
 	is_triggered_only = yes 
 	
@@ -6537,7 +7001,7 @@ news_event = {	#Canadian Republic
 		text = rw_canada_news.39.d_royals_executed
 		trigger = { has_global_flag = royal_family_executed }
 	}
-	picture = european_spring
+	picture = canada_delcares_republic
 	
 	is_triggered_only = yes 
 	
