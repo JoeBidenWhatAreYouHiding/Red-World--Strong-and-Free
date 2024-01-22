@@ -2935,6 +2935,14 @@ country_event = {
 		set_country_flag = CAN_monarchy_abolished
 		custom_effect_tooltip = CAN_period_of_transition
 		add_ideas = CAN_legal_chaos
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.39
+				}
+			}
+		}
 	}
 }
 
@@ -2951,6 +2959,14 @@ country_event = {
 	option = { #God Save the Queen
 		name = rw_canada.101.o1
 		add_ideas = CAN_elizabeth_in_exile
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.36
+				}
+			}
+		}
 	}
 }
 
@@ -2981,6 +2997,14 @@ country_event = {
 			add_ideas = CAN_king_in_exile_edward
 		}
 		set_country_flag = CAN_british_monarchy_in_exile
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.38
+				}
+			}
+		}
 	}
 }
 
@@ -3036,6 +3060,7 @@ country_event = {
 		}
 		add_ideas = CAN_legal_chaos
 		set_country_flag = CAN_monarchy_abolished
+		set_global_flag = canada_failed_royal_coup
 	}
 }
 
@@ -3059,6 +3084,14 @@ country_event = {
 			target = CAN
 			modifier = betrayed_the_queen
 		}
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.37
+				}
+			}
+		}
 	}
 	
 	option = { #Teach them a Lesson
@@ -3069,6 +3102,14 @@ country_event = {
 		declare_war_on = { 
 			target = CAN
 			type = annex_everything 
+		}
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.37
+				}
+			}
 		}
 	}
 }
@@ -3126,6 +3167,36 @@ country_event = {
 			remove_ideas = CAN_govgen_mary_simon
 		}
 		set_country_flag = CAN_prime_minister_is_head_of_state
+	}
+}
+
+#Senate Fate
+country_event = {
+	id = rw_canada.108
+	title = rw_canada.108.t
+	desc = rw_canada.108.d
+	picture = canada_senate
+
+	is_triggered_only = yes
+	
+
+	option = { #Abolish
+		name = rw_canada.108.o1
+		add_political_power = 20
+		set_country_flag = CAN_senate_abolished
+		swap_ideas = {
+			remove_idea = CAN_canadian_republicanism2
+			add_idea = CAN_canadian_republicanism3_no_senate
+		}
+	}
+
+	option = { #Maintain
+		name = rw_canada.107.o2
+		add_stability = 0.02
+		swap_ideas = {
+			remove_idea = CAN_canadian_republicanism2
+			add_idea = CAN_canadian_republicanism3_senate
+		}
 	}
 }
 
@@ -6395,3 +6466,83 @@ news_event = {	#European Spring
 		name = rw_canada_news.35.o1
 	}
 }
+
+news_event = {	#Queen in Canada
+	id = rw_canada_news.36
+	title = rw_canada_news.36.t
+	desc = rw_canada_news.36.d
+	picture = european_spring
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.36.o1
+	}
+}
+
+news_event = {	#Failed Royal Coup
+	id = rw_canada_news.37
+	title = rw_canada_news.37.t
+	desc = {
+		text = rw_canada_news.37.d_queen_coup
+		trigger = { 
+			has_global_flag = canada_failed_royal_coup 
+			ENG = { NOT = { has_war_with = CAN } }
+		}
+	}
+	desc = {
+		text = rw_canada_news.37.d_queen_coup_war
+		trigger = { 
+			has_global_flag = canada_failed_royal_coup 
+			ENG = { has_war_with = CAN }
+		}
+	}
+	picture = european_spring
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.37.o1
+	}
+}
+
+news_event = {	#Royals in Canada
+	id = rw_canada_news.38
+	title = rw_canada_news.38.t
+	desc = {
+		text = rw_canada_news.38.d_andrew
+		trigger = { CAN = { has_country_flag = CAN_king_in_exile_andrew } }
+	}
+	desc = {
+		text = rw_canada_news.38.d_edward
+		trigger = { CAN  = {has_country_flag = CAN_king_in_exile_edward } }
+	}
+	picture = european_spring
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.38.o1
+	}
+}
+
+news_event = {	#Canadian Republic
+	id = rw_canada_news.39
+	title = rw_canada_news.39.t
+	desc = {
+		text = rw_canada_news.39.d
+		trigger = { NOT = { has_global_flag = royal_family_executed } }
+	}
+	desc = {
+		text = rw_canada_news.39.d_royals_executed
+		trigger = { has_global_flag = royal_family_executed }
+	}
+	picture = european_spring
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.39.o1
+	}
+}
+
