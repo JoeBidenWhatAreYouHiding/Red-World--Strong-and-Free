@@ -1641,6 +1641,10 @@ focus_tree = {
 				popularity = 0.04
 			}
 			add_ideas =  CAN_pcs_strengthened
+			subtract_from_variable = {
+			   var = CAN_alberta_tension
+			   value = 1
+			}
 		}
 	}
 	
@@ -1713,7 +1717,7 @@ focus_tree = {
 		}
 		
 		relative_position_id = CAN_sweep_aside_disunity
-		x = -2
+		x = 0
 		y = 2
 
 		available = {
@@ -1743,12 +1747,13 @@ focus_tree = {
 			focus = CAN_fiscal_and_social_conservatism
 		}
 		prerequisite = {
-			focus = CAN_ammend_the_immigration_and_refugee_protection_act
-			focus = CAN_apologize_to_aboriginals
+			focus = CAN_undercut_the_canadian_alliance
 		}
-		
-		mutually_exclusive = {
-			focus = CAN_return_to_diefenbakerism
+		prerequisite = {
+			focus = CAN_ammend_the_immigration_and_refugee_protection_act
+		}
+		prerequisite = {
+			focus = CAN_apologize_to_aboriginals
 		}
 		
 		relative_position_id = CAN_sweep_aside_disunity
@@ -1820,6 +1825,7 @@ focus_tree = {
 					}	
 				}
 			}
+			country_event = rw_canada.120
 		}
 	}
 	
@@ -1929,12 +1935,13 @@ focus_tree = {
 			focus = CAN_fiscal_and_social_conservatism
 		}
 		prerequisite = {
-			focus = CAN_ammend_the_immigration_and_refugee_protection_act
-			focus = CAN_apologize_to_aboriginals
+			focus = CAN_focus_on_leftwing_threats
 		}
-		
-		mutually_exclusive = {
-			focus = CAN_new_conservative_era
+		prerequisite = {
+			focus = CAN_ammend_the_immigration_and_refugee_protection_act
+		}
+		prerequisite = {
+			focus = CAN_apologize_to_aboriginals
 		}
 		
 		relative_position_id = CAN_sweep_aside_disunity
@@ -1998,6 +2005,7 @@ focus_tree = {
 					}
 				}
 			}
+			country_event = rw_canada.121
 		}
 	}
 	
@@ -2012,7 +2020,7 @@ focus_tree = {
 		}
 		
 		relative_position_id = CAN_sweep_aside_disunity
-		x = 0
+		x = -2
 		y = 2
 
 		available = {
@@ -2043,9 +2051,6 @@ focus_tree = {
 		icon = GFX_goal_CAN_proudly_canadian
 		cost = 7
 		
-		prerequisite = {
-			focus = CAN_ammend_the_immigration_and_refugee_protection_act
-		}
 		prerequisite = {
 			focus = CAN_new_conservative_era
 			focus = CAN_return_to_diefenbakerism
@@ -8462,7 +8467,7 @@ focus_tree = {
 		y = 1
 
 		available = {
-			
+			has_completed_focus = CAN_president_or_prime_minister
 		}
 
 		ai_will_do = {
@@ -8474,9 +8479,10 @@ focus_tree = {
 		completion_reward = {
 			country_event = rw_canada.106
 			swap_ideas = {
-				remove_idea = CAN_legal_chaos
-				add_idea = CAN_legal_chaos2
+				remove_idea = CAN_legal_chaos2
+				add_idea = CAN_legal_chaos3
 			}
+			add_stability = 0.02
 		}
 	}
 	
@@ -8507,8 +8513,8 @@ focus_tree = {
 		completion_reward = {
 			country_event = rw_canada.107
 			swap_ideas = {
-				remove_idea = CAN_legal_chaos2
-				add_idea = CAN_legal_chaos3
+				remove_idea = CAN_legal_chaos
+				add_idea = CAN_legal_chaos2
 			}
 		}
 	}
@@ -8830,7 +8836,19 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			if = {
+				limit = { NOT = { has_global_flag = royal_family_executed } }
+				country_event = {
+					id = rw_canada.101
+					days = 5
+				}
+			}
+			else = {
+				country_event = {
+					id = rw_canada.102
+					days = 5
+				}
+			}
 		}
 	}
 	
@@ -8859,7 +8877,11 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_stability = 0.05
+			swap_ideas = {
+				remove_idea = CAN_resistance_to_the_monarchy
+				add_idea = CAN_resistance_to_the_monarchy2
+			}
 		}
 	}
 	
@@ -8888,7 +8910,16 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = CAN_resistance_to_the_monarchy2
+				add_idea = CAN_resistance_to_the_monarchy3
+			}
+			add_offsite_building = {
+				type = industrial_complex level = 1
+            }
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
 		}
 	}
 	
@@ -8917,7 +8948,12 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = CAN_resistance_to_the_monarchy3
+				add_idea = CAN_constitutional_monarchy
+			}
+			add_political_power = 50
+			CAN_add_3_percent_popularity = yes
 		}
 	}
 	
@@ -8939,7 +8975,9 @@ focus_tree = {
 		y = 4
 
 		available = {
-			
+			NOT = {
+				has_global_flag = royal_family_executed
+			}
 		}
 
 		ai_will_do = {
@@ -8949,7 +8987,25 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = CAN_elizabeth_in_exile
+				add_idea = CAN_elizabeth_ii_gg
+			}
+			add_popularity = {
+				ideology = monarchist
+				popularity = 0.05
+			}
+			CAN_elizabeth_ii = {
+				promote_character = absolute_monarchist
+			}
+			hidden_effect = {
+				ENG = {
+					ENG_regency_council = {
+						promote_character = regency_monarchist
+					}
+				}
+        	}
+			set_cosmetic_tag = CAN_kingdom
 		}
 	}
 	
@@ -8978,7 +9034,14 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = CAN_constitutional_monarchy
+				add_idea = CAN_constitutional_monarchy2
+			}
+			276 = {
+				add_extra_state_shared_building_slots = 1
+			}
+			country_event = rw_canada.109
 		}
 	}
 	
@@ -9007,7 +9070,32 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = CAN_elizabeth_ii_gg
+				add_idea = CAN_elizabeth_ii
+			}
+			effect_tooltip = {
+				if = {
+					limit = { has_idea = CAN_govgen_michaelle_jean }
+					remove_ideas = CAN_govgen_michaelle_jean
+				}
+				
+				if = {
+					limit = { has_idea = CAN_govgen_david_johnston }
+					remove_ideas = CAN_govgen_david_johnston
+				}
+				
+				if = {
+					limit = { has_idea = CAN_govgen_julie_payette }
+					remove_ideas = CAN_govgen_julie_payette
+				}
+				
+				if = {
+					limit = { has_idea = CAN_govgen_mary_simon }
+					remove_ideas = CAN_govgen_mary_simon
+				}
+			}
+			country_event = rw_canada.110
 		}
 	}
 
@@ -9039,7 +9127,13 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_stability = 0.06
+			add_political_power = 60
+			CAN_add_5_percent_popularity = yes
+			swap_ideas = {
+				remove_idea = CAN_constitutional_monarchy2
+				add_idea = CAN_constitutional_monarchy3
+			}
 		}
 	}
 	
@@ -9063,7 +9157,15 @@ focus_tree = {
 		y = 4
 
 		available = {
-			
+			ENG = {
+				OR = {
+					has_government = nationalist
+					has_government = fascist
+					has_government = revolutionary_socialist
+					has_government = communist
+					has_government = national_bolshevik
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -9073,7 +9175,16 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_stability = -0.03
+			swap_ideas = {
+				remove_idea = CAN_constitutional_monarchy
+				add_idea = CAN_constitutional_monarchy2_red_ensign
+			}
+			country_event = rw_canada.111
+			add_popularity = {
+				ideology = monarchist
+				popularity = -0.04
+			}
 		}
 	}
 	
@@ -9092,7 +9203,7 @@ focus_tree = {
 		y = 1
 
 		available = {
-			
+			has_completed_focus = CAN_rally_support_for_reclaimation
 		}
 
 		ai_will_do = {
@@ -9102,7 +9213,12 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = CAN_constitutional_monarchy3_red_ensign
+				add_idea = CAN_constitutional_monarchy4_red_ensign
+			}
+			add_war_support = 0.06
+			country_event = rw_canada.112
 		}
 	}
 	
@@ -9131,7 +9247,12 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			CAN_add_3_percent_popularity = yes
+			add_political_power = 40
+			swap_ideas = {
+				remove_idea = CAN_constitutional_monarchy2_red_ensign
+				add_idea = CAN_constitutional_monarchy3_red_ensign
+			} 
 		}
 	}
 	
@@ -9163,7 +9284,16 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_war_support = 0.05
+			add_stability = 0.05
+			swap_ideas = {
+				remove_idea = CAN_constitutional_monarchy4_red_ensign
+				add_idea = CAN_reclaim_the_birthright
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = ENG
+			}
 		}
 	}
 	
@@ -9823,6 +9953,7 @@ focus_tree = {
 					NOT = {
 						OR = {
 							tag = ROOT
+							tag = MOT
 							is_subject_of = ROOT
 						}
 					}
@@ -9833,6 +9964,7 @@ focus_tree = {
 					NOT = {
 						OR = {
 							tag = ROOT
+							tag = LIN
 							is_subject_of = ROOT
 						}
 					}

@@ -2937,19 +2937,7 @@ country_event = {
 		add_political_power = 20
 		add_stability = -0.02
 		set_country_flag = CAN_monarchy_kept
-		if = {
-			limit = { NOT = { has_global_flag = royal_family_executed } }
-			country_event = {
-				id = rw_canada.101
-				days = 5
-			}
-		}
-		else = {
-			country_event = {
-				id = rw_canada.102
-				days = 5
-			}
-		}
+		add_ideas = CAN_resistance_to_the_monarchy
 	}
 	
 	option = { #Abolish the Monarchy
@@ -3142,7 +3130,14 @@ country_event = {
 country_event = {
 	id = rw_canada.106
 	title = rw_canada.106.t
-	desc = rw_canada.106.d
+	desc = {
+		text = rw_canada.106.d_hog
+		trigger = { has_country_flag = CAN_govgen_is_now_president }
+	}
+	desc = {
+		text = rw_canada.106.d_hos
+		trigger = { has_country_flag = CAN_prime_minister_is_head_of_state }
+	}
 	picture = constitutional_convention
 
 	is_triggered_only = yes
@@ -3221,6 +3216,201 @@ country_event = {
 			remove_idea = CAN_canadian_republicanism2
 			add_idea = CAN_canadian_republicanism3_senate
 		}
+	}
+}
+
+#Rideau Hall
+country_event = {
+	id = rw_canada.109
+	title = rw_canada.109.t
+	desc = rw_canada.109.d
+	picture = rideau_hall
+
+	is_triggered_only = yes
+	
+
+	option = { #Interesting
+		name = rw_canada.109.o1
+		add_popularity = {
+			ideology = monarchist
+			popularity = 0.02
+		}
+	}
+}
+
+#Governor-General abolished
+country_event = {
+	id = rw_canada.110
+	title = rw_canada.110.t
+	desc = rw_canada.110.d
+	picture = our_head_of_state
+
+	is_triggered_only = yes
+	
+
+	option = { #Interesting
+		name = rw_canada.110.o1
+		add_political_power = 10
+		add_popularity = {
+			ideology = monarchist
+			popularity = 0.02
+		}
+		if = {
+			limit = { has_idea = CAN_govgen_michaelle_jean }
+			remove_ideas = CAN_govgen_michaelle_jean
+		}
+		
+		if = {
+			limit = { has_idea = CAN_govgen_david_johnston }
+			remove_ideas = CAN_govgen_david_johnston
+		}
+		
+		if = {
+			limit = { has_idea = CAN_govgen_julie_payette }
+			remove_ideas = CAN_govgen_julie_payette
+		}
+		
+		if = {
+			limit = { has_idea = CAN_govgen_mary_simon }
+			remove_ideas = CAN_govgen_mary_simon
+		}
+	}
+}
+
+#British Government in Exile
+country_event = {
+	id = rw_canada.111
+	title = rw_canada.111.t
+	desc = rw_canada.111.d
+	picture = british_government_in_exile
+
+	is_triggered_only = yes
+	
+
+	option = { #Interesting
+		name = rw_canada.111.o1
+		add_political_power = -10
+		add_war_support = 0.02
+	}
+}
+
+#Monarch meets with PM
+country_event = {
+	id = rw_canada.112
+	title = rw_canada.112.t
+	desc = rw_canada.112.d
+	picture = queen_meets_prime_minister
+
+	is_triggered_only = yes
+	
+
+	option = { #Interesting
+		name = rw_canada.112.o1
+		add_war_support = 0.06
+		add_political_power = -20
+	}
+}
+
+#Britain Returns
+country_event = {
+	id = rw_canada.114
+	title = rw_canada.114.t
+	desc = rw_canada.114.d
+	picture = queen_meets_prime_minister
+
+	fire_only_once = yes
+	
+	trigger = {
+		tag = CAN
+		ENG = {
+			is_in_faction_with = CAN
+			OR = {
+				has_government = national_conservative
+				has_government = centrist
+				has_government = liberal
+				has_government = new_democrat
+				is_subject_of = CAN
+			}
+		}
+		has_completed_focus = CAN_reclaim_the_birthright
+	}
+
+	option = { #Interesting
+		name = rw_canada.114.o1
+		add_stability = 0.05
+		if = {
+			limit = { has_idea = CAN_elizabeth_in_exile }
+			remove_ideas = CAN_elizabeth_in_exile
+			ENG = {
+				country_event = rw_canada.115
+			}
+		}
+		else_if = {
+			limit = { has_idea = CAN_king_in_exile_andrew }
+			remove_ideas = CAN_king_in_exile_andrew
+		}
+		else_if = {
+			limit = { has_idea = CAN_king_in_exile_edward }
+			remove_ideas = CAN_king_in_exile_edward
+		}
+	}
+}
+
+#Elizabeth Returns
+country_event = {
+	id = rw_canada.115
+	title = rw_canada.115.t
+	desc = rw_canada.115.d
+	picture = elizabeth_returns
+
+	is_triggered_only = yes
+	
+
+	option = { #Interesting
+		name = rw_canada.115.o1
+		drop_cosmetic_tag = yes
+		add_ideas = idea_queen_elizabeth_ii
+		add_popularity = {
+			ideology = monarchist
+			popularity = 0.10
+		}
+		ENG_elizabeth_ii = {
+			promote_character = absolute_monarchist
+		}
+	}
+}
+
+#NeoConservatism
+country_event = {
+	id = rw_canada.120
+	title = rw_canada.120.t
+	desc = rw_canada.120.d
+	picture = canadian_neoconservatism
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.120.o1
+		add_political_power = 10
+		add_stability = -0.01
+	}
+}
+
+#Red Tories return
+country_event = {
+	id = rw_canada.121
+	title = rw_canada.121.t
+	desc = rw_canada.121.d
+	picture = red_tories_return
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.121.o1
+		add_political_power = -10
+		add_stability = -0.01
 	}
 }
 
@@ -6036,7 +6226,7 @@ country_event = {
 	}
 	
 	option = { #Danielle Smith
-		name = can_separatism.1.o1
+		name = can_separatism.1.o2
 		add_popularity = {
 			ideology = nationalist
 			popularity = 0.02
@@ -6074,7 +6264,7 @@ country_event = {
 	}
 	
 	option = { #Pauline Marois
-		name = can_separatism.2.o1
+		name = can_separatism.2.o2
 		add_popularity = {
 			ideology = new_democrat
 			popularity = 0.02
@@ -6442,6 +6632,106 @@ country_event = {
 	option = {
 		name = can_flavour.0.o1
 		
+	}
+}
+
+#2010 Stanley Cup 
+country_event = {
+	id = can_flavour.3
+	title = can_flavour.3.t
+	desc = can_flavour.3.d
+	picture = 2010_stanley_cup
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	major = yes
+
+	show_major = {
+		OR = {
+			tag = CAN
+			tag = ARI
+		}
+	}
+	
+	option = {
+		name = can_flavour.3.o1
+		trigger = { tag = CAN }
+		hidden_effect = {
+			random_list = {
+				50 = {
+					country_event = { id = can_flavour.4 days = 1 } #Arizona wins
+				}
+				50 = {
+					country_event = { id = can_flavour.5 days = 1 } #Ottawa wins
+				}
+			}
+		}
+	}
+	option = {
+		name = can_flavour.o2.b
+		trigger = { tag = ARI }
+	}
+}
+
+#Cyotes win the Cup!
+country_event = {
+	id = can_flavour.4
+	title = can_flavour.4.t
+	desc = can_flavour.4.d
+	picture = cyotes_win_the_cup
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	major = yes
+
+	show_major = {
+		OR = {
+			tag = CAN
+			tag = ARI
+		}
+	}
+	
+	option = {
+		name = can_flavour.4.o1
+		trigger = { tag = CAN }
+		add_political_power = -10
+	}
+	
+	option = {
+		name = can_flavour.4.o2
+		trigger = { tag = ARI }
+		add_political_power = 10
+	}
+}
+
+#Senators win the Cup!
+country_event = {
+	id = can_flavour.5
+	title = can_flavour.5.t
+	desc = can_flavour.5.d
+	picture = senators_win_the_cup
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	major = yes
+
+	show_major = {
+		OR = {
+			tag = CAN
+			tag = ARI
+		}
+	}
+	
+	option = {
+		name = can_flavour.5.o1
+		trigger = { tag = ARI }
+		add_political_power = 10
+	}
+	
+	option = {
+		name = can_flavour.5.o2
+		trigger = { tag = CAN }
+		add_political_power = -10
 	}
 }
 
@@ -6967,6 +7257,11 @@ news_event = {	#Failed Royal Coup
 	
 	option = {
 		name = rw_canada_news.37.o1
+		trigger = { NOT = { tag = ENG } }
+	}
+	option = {
+		name = rw_canada_news.37.o2
+		trigger = { tag = ENG }
 	}
 }
 
