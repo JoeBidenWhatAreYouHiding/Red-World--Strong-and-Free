@@ -752,6 +752,13 @@ focus_tree = {
 			   var = CAN_alberta_tension
 			   value = 1
 			}
+			hidden_effect = {
+				country_event = {
+					id = rw_canada.56
+					days = 98
+					random_days = 20
+				}
+			}
 		}
 	}
 	
@@ -3368,7 +3375,6 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			country_event = rw_canada.58
 			add_popularity = {
 				ideology = new_democrat
 				popularity = 0.1
@@ -7990,6 +7996,13 @@ focus_tree = {
 		completion_reward = {
 			custom_effect_tooltip = CAN_political_focuses_previous_govt_undone
 			CAN_remove_first_term_spirits = yes
+			hidden_effect = {
+				country_event = {
+					id = rw_canada.126
+					days = 130
+					random_days = 210
+				}
+			}
 		}
 	}
 	
@@ -8341,7 +8354,19 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.04
+			}
+			add_ideas = CAN_bloc_liberal_alliance
 		}
 	}
 
@@ -8369,7 +8394,15 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_stability = 0.05
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.02
+			}
+			swap_ideas = {
+				remove_idea = CAN_bloc_liberal_alliance
+				add_idea = CAN_bloc_liberal_alliance2
+			}
 		}
 	}
 
@@ -8397,7 +8430,15 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.04
+			}
+			add_ideas = CAN_bloc_ndp_alliance
 		}
 	}
 
@@ -8423,12 +8464,436 @@ focus_tree = {
 		}
 
 		available_if_capitulated = yes
-
+		
 		completion_reward = {
-			
+			add_political_power = 50
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.02
+			}
+			swap_ideas = {
+				remove_idea = CAN_bloc_ndp_alliance
+				add_idea = CAN_bloc_ndp_alliance2
+			}
 		}
 	}
 
+	##############################
+	#### QUEBEC/ALBERTA ISSUE ####
+	##############################
+	
+	focus = {
+		id = CAN_alberta_in_crisis
+		icon = GFX_CAN_alberta_flames
+		cost = 6
+		x = 32
+		y = 17
+
+		available = {
+			has_country_flag = CAN_alberta_in_crisis
+		}
+		bypass = {
+			has_country_flag = CAN_alberta_in_crisis
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			custom_effect_tooltip = CAN_deal_with_alberta
+		}
+	}
+	
+	# - Harsh Response in Alberta
+	
+	focus = {
+		id = CAN_invoke_extraordinary_legislation
+		icon = GFX_goal_CAN_invoke_extraordinary_legislation
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_alberta_in_crisis
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_negotiate_with_alberta
+		}
+		
+		relative_position_id = CAN_alberta_in_crisis
+		x = -1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+
+		}
+	}
+	
+	focus = {
+		id = CAN_investigate_alberta_premier
+		icon = GFX_goal_CAN_investigate_alberta_premier
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_invoke_extraordinary_legislation
+		}
+		
+		relative_position_id = CAN_alberta_in_crisis
+		x = -1
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+
+		}
+	}
+	
+	focus = {
+		id = CAN_crush_terrorist_forces
+		icon = GFX_goal_CAN_route_the_terrorists
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_investigate_alberta_premier
+		}
+		
+		relative_position_id = CAN_alberta_in_crisis
+		x = -1
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+
+		}
+	}
+	
+	# - Negotiate with Alberta
+	
+	focus = {
+		id = CAN_negotiate_with_alberta
+		icon = GFX_goal_CAN_negotiate_with_alberta
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_alberta_in_crisis
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_invoke_extraordinary_legislation
+		}
+		
+		relative_position_id = CAN_alberta_in_crisis
+		x = 1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+
+		}
+	}
+	
+	focus = {
+		id = CAN_adress_western_alienation
+		icon = GFX_goal_CAN_western_alienation
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_negotiate_with_alberta
+		}
+		
+		relative_position_id = CAN_alberta_in_crisis
+		x = 1
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+
+		}
+	}
+	
+	focus = {
+		id = CAN_referendum_agreement
+		icon = GFX_goal_CAN_referendum_in_alberta
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_adress_western_alienation
+		}
+		
+		relative_position_id = CAN_alberta_in_crisis
+		x = 1
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+
+		}
+	}
+	
+	
+	focus = {
+		id = CAN_quebec_in_crisis
+		icon = GFX_CAN_quebec_flames
+		cost = 6
+		x = 36
+		y = 17
+
+		available = {
+			has_country_flag = CAN_quebec_in_crisis
+		}
+		bypass = {
+			has_country_flag = CAN_quebec_in_crisis
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			custom_effect_tooltip = CAN_deal_with_quebec
+		}
+	}
+	
+	# - Harsh Response in Quebec
+	
+	focus = {
+		id = CAN_legacy_of_october
+		icon = GFX_goal_CAN_legacy_of_october
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_quebec_in_crisis
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_negotiate_with_quebec
+		}
+		
+		relative_position_id = CAN_quebec_in_crisis
+		x = 1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+
+		}
+	}
+	
+	focus = {
+		id = CAN_investigate_quebec_premier
+		icon = GFX_goal_CAN_investigate_quebec_premier
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_legacy_of_october
+		}
+		
+		relative_position_id = CAN_quebec_in_crisis
+		x = 1
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+
+		}
+	}
+	
+	focus = {
+		id = CAN_route_the_flq
+		icon = GFX_goal_CAN_route_the_flq
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_investigate_quebec_premier
+		}
+		
+		relative_position_id = CAN_quebec_in_crisis
+		x = 1
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+
+		}
+	}
+	
+	# - Negotiate with Quebec
+	
+	focus = {
+		id = CAN_negotiate_with_quebec
+		icon = GFX_goal_CAN_negotiate_with_quebec
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_quebec_in_crisis
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_legacy_of_october
+		}
+		
+		relative_position_id = CAN_quebec_in_crisis
+		x = -1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+
+		}
+	}
+	
+	focus = {
+		id = CAN_adress_quebec_soverignty
+		icon = GFX_goal_CAN_reopen_quebec_soverignty_issue
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_negotiate_with_quebec
+		}
+		
+		relative_position_id = CAN_quebec_in_crisis
+		x = -1
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+
+		}
+	}
+	
+	focus = {
+		id = CAN_a_second_referendum
+		icon = GFX_goal_CAN_second_quebec_referendum
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_adress_quebec_soverignty
+		}
+		
+		relative_position_id = CAN_quebec_in_crisis
+		x = -1
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+
+		}
+	}
+ 
+	
 	###########################
 	#### MONARCHY QUESTION ####
 	###########################
