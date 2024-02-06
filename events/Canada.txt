@@ -710,10 +710,20 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			country_event = {
-				id = rw_canada.198
-				days = 80
-				random_days = 30
+			if = {
+				limit = { has_country_flag = rae_leads_ndp }
+				country_event = {
+					id = rw_canada.98
+					days = 40
+					random_days = 20
+				}
+			}
+			else = {
+				country_event = {
+					id = rw_canada.118
+					days = 40
+					random_days = 20
+				}
 			}
 			country_event = {
 				id = rw_canada.199
@@ -788,10 +798,20 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			country_event = {
-				id = rw_canada.197
-				days = 80
-				random_days = 30
+			if = {
+				limit = { has_country_flag = ignatieff_leads_liberals }
+				country_event = {
+					id = rw_canada.97
+					days = 80
+					random_days = 30
+				}
+			}
+			else = {
+				country_event = {
+					id = rw_canada.99
+					days = 80
+					random_days = 30
+				}
 			}
 			country_event = {
 				id = rw_canada.199
@@ -846,15 +866,36 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			country_event = {
-				id = rw_canada.197
-				days = 80
-				random_days = 30
+			if = {
+				limit = { has_country_flag = ignatieff_leads_liberals }
+				country_event = {
+					id = rw_canada.97
+					days = 80
+					random_days = 30
+				}
 			}
-			country_event = {
-				id = rw_canada.198
-				days = 40
-				random_days = 20
+			else = {
+				country_event = {
+					id = rw_canada.99
+					days = 80
+					random_days = 30
+				}
+			}
+			
+			if = {
+				limit = { has_country_flag = rae_leads_ndp }
+				country_event = {
+					id = rw_canada.98
+					days = 40
+					random_days = 20
+				}
+			}
+			else = {
+				country_event = {
+					id = rw_canada.118
+					days = 40
+					random_days = 20
+				}
 			}
 		}
 	}
@@ -2914,6 +2955,88 @@ country_event = {
 	}
 }
 
+#Ignatieff Resigns
+country_event = {
+	id = rw_canada.97
+	title = rw_canada.97.t
+	desc = {
+		text = rw_canada.97.d
+		trigger = {
+			NOT = { has_country_leader = { name = "Bob Rae" ruling_only = yes } }
+		}
+	}
+	desc = {
+		text = rw_canada.97.d_2
+		trigger = {
+			has_country_leader = { name = "Bob Rae" ruling_only = yes }
+		}
+	}
+	picture = ignatieff_resigns
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.97.o1
+		if = {
+			limit = { has_country_leader = { name = "Bob Rae" ruling_only = yes } }
+			set_country_flag = liberal_justin_trudeau_2015
+			if = {
+				limit = { has_country_flag = liberals_are_centrist }
+				clr_country_flag = liberals_are_centrist
+				set_country_flag = liberals_are_liberal
+			}
+			effect_tooltip = {
+				CAN_justin_trudeau = {
+					promote_character = social_liberal
+				}
+			}
+		}
+		else = {
+			country_event = {
+				id = rw_canada.197
+				days = 10
+			}
+		}
+	}
+}
+
+#Rae replaced as NDP leader
+country_event = {
+	id = rw_canada.98
+	title = rw_canada.98.t
+	desc = rw_canada.98.d
+	picture = rae_replaced_as_ndp_leader
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.98.o1
+		country_event = {
+			id = rw_canada.198
+			days = 10
+		}
+	}
+}
+
+#Trudeau survives confidence vote
+country_event = {
+	id = rw_canada.99
+	title = rw_canada.99.t
+	desc = rw_canada.99.d
+	picture = trudeau_survives_leadership_review
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.99.o1
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.02
+		}
+	}
+}
+
 ### Monarchy Question ###
 
 #Fate of the Monarchy
@@ -3384,6 +3507,40 @@ country_event = {
 	}
 }
 
+#Layton Resigns
+country_event = {
+	id = rw_canada.118
+	title = rw_canada.118.t
+	desc = {
+		text = rw_canada.118.d
+		trigger = {
+			NOT = { has_country_flag = liberal_victory }
+		}
+	}
+	desc = {
+		text = rw_canada.118.d_liberal
+		trigger = {
+			has_country_flag = liberal_victory
+		}
+	}
+	picture = layton_cancer_worsens
+
+	is_triggered_only = yes
+	
+
+	option = { #Interesting
+		name = rw_canada.118.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.02
+		}
+		country_event = {
+			id = canada.198
+			days = 10
+		}
+	}
+}
+
 #NeoConservatism
 country_event = {
 	id = rw_canada.120
@@ -3717,6 +3874,28 @@ country_event = {
 			set_country_flag = liberals_are_centrist
 		}
 	}
+	
+	option = { #Stéphane Dion
+		name = rw_canada.197.o6
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = centrist
+					has_government = liberal
+				}
+				has_country_flag = liberal_leader_resigns_2011
+			}
+		}
+		set_country_flag = liberal_stephane_dion_2015
+		CAN_stephane_dion = {
+			promote_character = social_liberal
+		}
+		if = {
+			limit = { has_country_flag = liberals_are_centrist }
+			clr_country_flag = liberals_are_centrist
+			set_country_flag = liberals_are_liberal
+		}
+	}
 }
 
 #NDP Primarty
@@ -3751,12 +3930,17 @@ country_event = {
 		name = rw_canada.198.o2
 		trigger = {
 			OR = {
-				NOT = {
-					has_government = moderate_socialist
-					has_government = centrist
-					has_government = new_democrat
-				}
 				has_country_flag = ndp_leader_resigns_2011
+				NOT = {
+					OR = {
+						has_government = moderate_socialist
+						AND = {
+							has_government = centrist
+							has_country_flag = ndp_is_centrist
+						}
+						has_government = new_democrat
+					}
+				}
 			}
 			NOT = {
 				has_country_leader = { name = "Tom Mulcair" ruling_only = yes }
@@ -3786,12 +3970,17 @@ country_event = {
 		name = rw_canada.198.o3
 		trigger = {
 			OR = {
-				NOT = {
-					has_government = moderate_socialist
-					has_government = centrist
-					has_government = new_democrat
-				}
 				has_country_flag = ndp_leader_resigns_2011
+				NOT = {
+					OR = {
+						has_government = moderate_socialist
+						AND = {
+							has_government = centrist
+							has_country_flag = ndp_is_centrist
+						}
+						has_government = new_democrat
+					}
+				}
 			}
 		}
 		set_country_flag = ndp_olivia_chow_2015
@@ -3818,12 +4007,17 @@ country_event = {
 		name = rw_canada.198.o4
 		trigger = {
 			OR = {
-				NOT = {
-					has_government = moderate_socialist
-					has_government = centrist
-					has_government = new_democrat
-				}
 				has_country_flag = ndp_leader_resigns_2011
+				NOT = {
+					OR = {
+						has_government = moderate_socialist
+						AND = {
+							has_government = centrist
+							has_country_flag = ndp_is_centrist
+						}
+						has_government = new_democrat
+					}
+				}
 			}
 			has_completed_focus = CAN_return_of_the_waffle
 		}
@@ -3837,12 +4031,17 @@ country_event = {
 		name = rw_canada.198.o5
 		trigger = {
 			OR = {
-				NOT = {
-					has_government = moderate_socialist
-					has_government = centrist
-					has_government = new_democrat
-				}
 				has_country_flag = ndp_leader_resigns_2011
+				NOT = {
+					OR = {
+						has_government = moderate_socialist
+						AND = {
+							has_government = centrist
+							has_country_flag = ndp_is_centrist
+						}
+						has_government = new_democrat
+					}
+				}
 			}
 			has_completed_focus = CAN_return_of_the_waffle
 		}
@@ -3856,12 +4055,17 @@ country_event = {
 		name = rw_canada.198.o6
 		trigger = {
 			OR = {
-				NOT = {
-					has_government = moderate_socialist
-					has_government = centrist
-					has_government = new_democrat
-				}
 				has_country_flag = ndp_leader_resigns_2011
+				NOT = {
+					OR = {
+						has_government = moderate_socialist
+						AND = {
+							has_government = centrist
+							has_country_flag = ndp_is_centrist
+						}
+						has_government = new_democrat
+					}
+				}
 			}
 			has_completed_focus = CAN_the_merger
 		}
@@ -3877,12 +4081,17 @@ country_event = {
 		name = rw_canada.198.o7
 		trigger = {
 			OR = {
-				NOT = {
-					has_government = moderate_socialist
-					has_government = centrist
-					has_government = new_democrat
-				}
 				has_country_flag = ndp_leader_resigns_2011
+				NOT = {
+					OR = {
+						has_government = moderate_socialist
+						AND = {
+							has_government = centrist
+							has_country_flag = ndp_is_centrist
+						}
+						has_government = new_democrat
+					}
+				}
 			}
 		}
 		set_country_flag = ndp_charlie_angus_2015
@@ -4176,6 +4385,17 @@ country_event = {
 		}
 		else_if = {
 			limit = { 
+				has_country_flag = liberal_stephane_dion_2015
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.160
+				}
+			}
+		}
+		else_if = {
+			limit = { 
 				has_country_flag = liberal_paul_martin_2015
 			}
 			every_country = {
@@ -4187,8 +4407,8 @@ country_event = {
 		}
 		else_if = {
 			limit = { 
-				has_country_flag = current_liberal_leader_2015
 				has_country_leader = { name = "Justin Trudeau" ruling_only = yes }
+				NOT = { has_country_flag = liberal_justin_trudeau_2015 }
 			}
 			every_country = {
 				news_event = {
@@ -4198,8 +4418,7 @@ country_event = {
 			}
 		}
 		else_if = {
-			limit = { 
-				has_country_flag = current_liberal_leader_2015
+			limit = {
 				has_country_leader = { name = "Michael Ignatieff" ruling_only = yes }
 			}
 			every_country = {
@@ -4245,6 +4464,65 @@ country_event = {
 			}
 			set_politics = {
 				ruling_party = new_democrat
+			}
+		}
+		
+		if = {
+			limit = { 
+				has_country_leader = { name = "Tom Mulcair" ruling_only = yes }
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.26
+				}
+			}
+		}
+		else_if = {
+			limit = { 
+				has_country_flag = ndp_olivia_chow_2015
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.27
+				}
+			}
+		}
+		else_if = {
+			limit = { 
+				OR = {
+					has_country_leader = { name = "Mel Watkins" ruling_only = yes }
+					has_country_leader = { name = "James Laxer" ruling_only = yes }
+				}
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.28
+				}
+			}
+		}
+		else_if = {
+			limit = { 
+				has_country_flag = ndp_charlie_angus_2015
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.29
+				}
+			}
+		}
+		else_if = {
+			limit = { 
+				has_country_leader = { name = "Jack Layton" ruling_only = yes }
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.29
+				}
 			}
 		}
 	}
@@ -4321,7 +4599,6 @@ country_event = {
 		}
 		else_if = {
 			limit = { 
-				has_country_flag = current_pc_leader_2015
 				has_country_leader = { name = "Donald Trump" ruling_only = yes }
 			}
 			every_country = {
@@ -4333,8 +4610,8 @@ country_event = {
 		}
 		else_if = {
 			limit = { 
-				has_country_flag = current_liberal_leader_2015
 				has_country_leader = { name = "Stephen Harper" ruling_only = yes }
+				NOT = { has_country_flag = pc_stephen_harper_2015 }
 			}
 			every_country = {
 				news_event = {
@@ -7445,14 +7722,18 @@ news_event = {	#Preston Manning Resigns
 	title = rw_canada_news.9.t
 	desc = {
 		text = rw_canada_news.9.d_trump
-		CAN = {
-			has_country_leader = { name = "Donald Trump" ruling_only = yes }
+		trigger = {
+			CAN = {
+				has_country_leader = { name = "Donald Trump" ruling_only = yes }
+			}
 		}
 	}
 	desc = {
 		text = rw_canada_news.9.d_harper
-		CAN = {
-			has_country_leader = { name = "Stephen Harper" ruling_only = yes }
+		trigger = {
+			CAN = {
+				has_country_leader = { name = "Stephen Harper" ruling_only = yes }
+			}
 		}
 	}
 	picture = preston_manning_resigns
@@ -7533,12 +7814,25 @@ news_event = {	#Bloomberg Elected Prime Minister
 	id = rw_canada_news.16
 	title = rw_canada_news.16.t
 	desc = rw_canada_news.16.d
-	picture = american_unity_government
+	picture = bloomberg_victory
 	
 	is_triggered_only = yes 
 	
 	option = {
 		name = rw_canada_news.16.o1
+	}
+}
+
+news_event = {	#Dion Elected Prime Minister
+	id = rw_canada_news.160
+	title = rw_canada_news.160.t
+	desc = rw_canada_news.160.d
+	picture = dion_victory
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.160.o1
 	}
 }
 
