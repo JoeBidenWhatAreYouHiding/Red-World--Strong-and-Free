@@ -7206,7 +7206,7 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = CAN_turn_away_american_asylum_seekers
+		id = CAN_focus_on_a_strong_economy
 		icon = X
 		cost = 6
 		
@@ -7234,12 +7234,12 @@ focus_tree = {
 	}
 
 	focus = {
-		id = CAN_eliminate_interprovincial_trade_restrictions
+		id = CAN_cut_red_tape
 		icon = X
 		cost = 6
 		
 		prerequisite = {
-			focus = CAN_turn_away_american_asylum_seekers
+			focus = CAN_focus_on_a_strong_economy
 		}
 		
 		relative_position_id = CAN_mainline_conservatives_in_power
@@ -7352,7 +7352,7 @@ focus_tree = {
 	}
 
 	focus = {
-		id = CAN_demonize_the_press
+		id = CAN_culture_of_corruption
 		icon = X
 		cost = 6
 		
@@ -7391,7 +7391,7 @@ focus_tree = {
 		cost = 6
 		
 		prerequisite = {
-			focus = CAN_demonize_the_press
+			focus = CAN_culture_of_corruption
 		}
 		
 		relative_position_id = CAN_keep_canada_great
@@ -7420,11 +7420,11 @@ focus_tree = {
 		
 		prerequisite = {
 			focus = CAN_economic_liberalism
-			focus = CAN_eliminate_interprovincial_trade_restrictions
+			focus = CAN_cut_red_tape
 		}
 		
 		mutually_exclusive = {
-			focus = CAN_demonize_the_press
+			focus = CAN_culture_of_corruption
 			focus = CAN_canadian_conservatism_reborn
 		}
 		
@@ -7482,13 +7482,13 @@ focus_tree = {
 		
 		prerequisite = {
 			focus = CAN_forget_the_canadian_alliance
-			focus = CAN_eliminate_interprovincial_trade_restrictions
+			focus = CAN_cut_red_tape
 			focus = CAN_economic_liberalism
 		}
 		
 		mutually_exclusive = {
 			focus = CAN_coalition_with_the_liberals
-			focus = CAN_demonize_the_press
+			focus = CAN_culture_of_corruption
 		}
 		
 		relative_position_id = CAN_reformist_conservatives_in_power
@@ -11707,7 +11707,10 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			create_wargoal = {
+				type = puppet_wargoal_focus
+				target = CEA
+			}
 		}
 	}
 	
@@ -12181,7 +12184,10 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			create_wargoal = {
+				type = puppet_wargoal_focus
+				target = VEN
+			}
 		}
 	}
 	
@@ -12209,7 +12215,10 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			create_wargoal = {
+				type = puppet_wargoal_focus
+				target = GUY
+			}
 		}
 	}
 	
@@ -12241,7 +12250,18 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			every_country = {
+				limit = {
+					capital_scope = {
+						is_on_continent = asia
+					}
+					NOT = { has_government = communist }
+				}
+				add_opinion_modifier = {
+					target = PREV
+					modifier = anti_communist_focus
+				}
+			}
 		}
 	}
 	
@@ -12271,7 +12291,18 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			every_country = {
+				limit = {
+					capital_scope = {
+						is_on_continent = australia
+					}
+					NOT = { has_government = communist }
+				}
+				add_opinion_modifier = {
+					target = PREV
+					modifier = anti_communist_focus
+				}
+			}
 		}
 	}
 	
@@ -12299,7 +12330,14 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			HAW = {
+				add_stability = 0.05
+				add_war_support = 0.05
+				add_timed_idea = {
+					idea = CAN_can_support_hawaii
+					days = 500
+				}
+			}
 		}
 	}
 	
@@ -12327,7 +12365,11 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			AST = {
+				add_ideas = CAN_anzac_brotherhood
+				add_command_power = 100
+				army_experience = 100
+			}
 		}
 	}
 	
@@ -12355,7 +12397,10 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			create_wargoal = {
+				type = puppet_wargoal_focus
+				target = NZL
+			}
 		}
 	}
 	
@@ -12405,7 +12450,7 @@ focus_tree = {
 		y = 1
 
 		available = {
-			
+			has_country_flag = CAN_hostile_china_policy
 		}
 
 		ai_will_do = {
@@ -12415,7 +12460,16 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			CHI = {
+				add_opinion_modifier = {
+					target = CAN
+					modifier = canadian_hostility
+				}
+			}
+			add_opinion_modifier = {
+				target = PRC
+				modifier = canadian_hostility
+			}
 		}
 	}
 	
@@ -12443,7 +12497,17 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_opinion_modifier = {
+				target = CHI
+				modifier = canadian_protection
+			}
+			CHI = {
+				add_opinion_modifier = {
+				target = CAN
+					modifier = canadian_protection
+				}
+				country_event = canada_diplo.42
+			}
 		}
 	}
 	
@@ -12471,7 +12535,9 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			give_guarantee = VIN
+			give_guarantee = PHI
+			give_guarantee = BOR
 		}
 	}
 	
@@ -12504,7 +12570,10 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			create_wargoal = {
+				type = puppet_wargoal_focus
+				target = PRC
+			}
 		}
 	}
 	
@@ -12524,7 +12593,7 @@ focus_tree = {
 		y = 1
 
 		available = {
-			
+			has_country_flag = CAN_friendly_china_policy
 		}
 
 		ai_will_do = {
@@ -12534,7 +12603,12 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			PRC = {
+				add_opinion_modifier = {
+				    target = CAN
+				    modifier = repaired_relations
+			    }
+			}
 		}
 	}
 	
@@ -12562,7 +12636,30 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			PRC = {
+				add_offsite_building = {
+					type = industrial_complex level = 1
+				}
+				random_owned_state = {
+					add_extra_state_shared_building_slots = 1
+				}
+			}
+			add_offsite_building = {
+				type = industrial_complex level = 1
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			add_opinion_modifier = {
+				target = PRC
+				modifier = trade_with_china
+			}
+			PRC = {
+				add_opinion_modifier = {
+					target = CAN
+					modifier = trade_with_china
+				}
+			}
 		}
 	}
 	
@@ -12623,7 +12720,9 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			PRC = {
+				country_event = canada_diplo.42
+			}
 		}
 	}
 	
@@ -12715,7 +12814,9 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			JAP = {
+				country_event = canada_diplo.42
+			}
 		}
 	}
 	
