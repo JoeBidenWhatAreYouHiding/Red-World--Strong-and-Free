@@ -12300,7 +12300,7 @@ focus_tree = {
 				}
 				add_opinion_modifier = {
 					target = PREV
-					modifier = anti_communist_focus
+					modifier = canadian_protection
 				}
 			}
 		}
@@ -12333,10 +12333,7 @@ focus_tree = {
 			HAW = {
 				add_stability = 0.05
 				add_war_support = 0.05
-				add_timed_idea = {
-					idea = CAN_can_support_hawaii
-					days = 500
-				}
+				add_ideas = CAN_can_support_hawaii
 			}
 		}
 	}
@@ -12430,7 +12427,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = canada_diplo.53
 		}
 	}
 	
@@ -12574,6 +12571,16 @@ focus_tree = {
 				type = puppet_wargoal_focus
 				target = PRC
 			}
+			add_timed_idea = {
+				idea = CAN_crusade_against_the_ccp
+				days = 1200
+			}
+			CHI = {
+				add_timed_idea = {
+					idea = CAN_crusade_against_the_ccp
+					days = 1200
+				}
+			}
 		}
 	}
 	
@@ -12687,7 +12694,18 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			CHI = {
+				add_opinion_modifier = {
+					target = CAN
+					modifier = non_commital
+				}
+			}
+			PRC = {
+				add_opinion_modifier = {
+					target = CAN
+					modifier = refuses_to_recognize_taiwan
+				}
+			}
 		}
 	}
 	
@@ -12710,7 +12728,9 @@ focus_tree = {
 		y = 3
 
 		available = {
-			
+			JAP = {
+				NOT = { is_in_faction_with = CAN }
+			}
 		}
 
 		ai_will_do = {
@@ -12756,7 +12776,21 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_political_power = 50
+			add_war_support = 0.05
+			add_ideas = CAN_distance_with_china
+			PRC = {
+				add_political_power = 50
+				add_war_support = 0.05
+				add_ideas = CHI_distance_with_canada
+			}
+			if = {
+				limit = { has_completed_focus = CAN_antagonize_the_prc }
+				add_opinion_modifier = {
+					target = PRC
+					modifier = friendly_rivalry_with_china
+				}
+			}
 		}
 	}
 	
@@ -12786,7 +12820,12 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			JAP = {
+				add_opinion_modifier = {
+					target = CAN
+					modifier = canadian_protection
+				}
+			}
 		}
 	}
 	
@@ -12804,7 +12843,10 @@ focus_tree = {
 		y = 1
 
 		available = {
-			
+			NOT = {
+				has_completed_focus = CAN_china_in_the_dl
+				PRC = { is_in_faction_with = CAN }
+			}
 		}
 
 		ai_will_do = {
