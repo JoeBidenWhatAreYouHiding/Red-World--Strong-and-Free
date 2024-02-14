@@ -1,0 +1,617 @@
+add_namespace = australia
+
+country_event = { #Replace Gillard with someone who isn't an embarrasment?
+	id = australia.1
+	title = australia.1.t
+	desc = australia.1.d
+	picture = australia_intro
+
+	is_triggered_only = yes
+
+	option = { #Rudd
+		name = australia.1.o1
+		AST_kevin_rudd = {
+			promote_character = new_democrat_ideology
+		}
+		set_country_flag = AST_rudd_2010
+	}
+	
+	option = { #Gillard
+		name = australia.1.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = -0.02
+		}
+	}
+}
+
+country_event = { #Elections
+	id = australia.2
+	title = australia.2.t
+	desc = australia.2.d
+	picture = australia_intro
+
+	is_triggered_only = yes
+
+	option = { #Labor holds firm!
+		name = australia.2.o1
+		set_country_flag = AST_labour_won_2010_elections
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+		if = {
+			limit = { has_country_flag = AST_rudd_2010 }
+			hidden_effect = {
+				country_event = {
+					id = australia.6
+					days = 283 
+					random_days = 140
+				}
+			}
+		}
+		else = {
+			hidden_effect = {
+				country_event = {
+					id = australia.7
+					days = 283 
+					random_days = 140
+				}
+			}
+		}
+	}
+	
+	option = { #Labour loses their grip on power
+		name = australia.2.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = -0.05
+		}
+		country_event = {
+			id = australia.3
+			days = 6
+		}
+		hidden_effect = {
+			country_event = {
+				id = australia.5
+				days = 727 
+			}
+		}
+	}
+}
+
+country_event = { #A Dilemma
+	id = australia.3
+	title = australia.3.t
+	desc = australia.3.d
+	picture = australia_intro
+
+	is_triggered_only = yes
+
+	option = { #The Liberals secure the support of National and back down on China issues
+		name = australia.2.o1
+		set_politics = {
+			ruling_party = national_conservative
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.06
+		}
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.06
+		}
+		AST_tony_abbott = {
+			promote_character = fiscal_conservative
+		}
+		set_party_name = {
+			long_name = AST_liberal_nationalist_party_long
+			name = AST_liberal_nationalist_party
+			ideology = centrist
+		}
+		set_party_name = {
+			long_name = AST_liberal_nationalist_party_long
+			name = AST_liberal_nationalist_party
+			ideology = national_conservative
+		}
+		set_country_flag = AST_liberals_nationalists_unite
+	}
+	
+	option = { #The Liberals defy the Nationals once more and rule as a minority government
+		name = australia.3.o2
+		add_political_power = -50
+		set_politics = {
+			ruling_party = centrist
+		}
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.06
+		}
+	}
+}
+
+country_event = { #Katter's Australia Party launched
+	id = australia.4
+	title = australia.4.t
+	desc = australia.4.d
+	picture = australia_intro
+
+	is_triggered_only = yes
+
+	option = { #Interesting
+		name = australia.4.o1
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.02
+		}
+		set_party_name = {
+			name = AST_katters_australia_party
+			long_name = AST_katters_australia_party_long
+			ideology = nationalist
+		}
+	}
+}
+
+country_event = { #Tensions growing with Abbott
+	id = australia.5
+	title = australia.5.t
+	desc = australia.5.d
+	picture = australia_intro
+	
+	trigger = {
+		has_country_leader = {
+			name = "Tony Abbott"
+			ruling_only = yes
+		}
+	}
+
+	is_triggered_only = yes
+
+	option = { #Force him to resign
+		name = australia.5.o1
+		add_political_power = 30
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.02
+		}
+		AST_malcolm_turnbull = {
+			promote_character = fiscal_conservative
+		}
+		AST_malcolm_turnbull = {
+			promote_character = right_libertarian
+		}
+		hidden_effect = {
+			country_event = {
+				id = australia.500
+				days = 1074
+			}
+		}
+			
+	}
+	
+	option = { #Keep him on
+		name = australia.5.o2
+		add_political_power = -20
+	}
+}
+
+country_event = { #Tensions growing with Turnbull
+	id = australia.500
+	title = australia.500.t
+	desc = australia.500.d
+	picture = australia_intro
+	
+	trigger = {
+		has_country_leader = {
+			name = "Malcolm Turnbull"
+			ruling_only = yes
+		}
+	}
+
+	is_triggered_only = yes
+
+	option = { #Force him to resign
+		name = australia.500.o1
+		add_political_power = 30
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.02
+		}
+		AST_scott_morrison = {
+			promote_character = fiscal_conservative
+		}
+		AST_scott_morrison = {
+			promote_character = right_libertarian
+		}
+	}
+	
+	option = { #Keep him on
+		name = australia.500.o2
+		add_political_power = -20
+	}
+}
+
+country_event = { #Rudd resigns
+	id = australia.6
+	title = australia.6.t
+	desc = australia.6.d
+	picture = australia_intro
+	
+	trigger = {
+		has_country_leader = {
+			name = "Kevin Rudd"
+			ruling_only = yes
+		}
+	}
+
+	is_triggered_only = yes
+
+	option = { #Nah
+		name = australia.6.o1
+		add_political_power = 30
+	}
+	
+	option = { #Appoint Shorten
+		name = australia.6.o2
+		add_political_power = -20
+		AST_bill_shorten = {
+			promote_character = new_democrat_ideology
+		}
+	}
+	
+	option = { #Gillard Returns
+		name = australia.6.o3
+		add_political_power = -20
+		AST_julia_gillard = {
+			promote_character = new_democrat_ideology
+		}
+		hidden_effect = {	
+			country_event = {
+				id = australia.7
+				days = 630
+				random_days = 220
+			}
+		}
+	}
+}
+
+country_event = { #Gillard Leadership Slip
+	id = australia.7
+	title = australia.7.t
+	desc = australia.7.d
+	picture = australia_intro
+	
+	trigger = {
+		has_country_leader = {
+			name = "Julia Gillard"
+			ruling_only = yes
+		}
+	}
+
+	is_triggered_only = yes
+
+	option = { #Rudd returns
+		name = australia.7.o1
+		add_political_power = 30
+		AST_kevin_rudd = {
+			promote_character = new_democrat_ideology
+		}
+	}
+	
+	option = { #Gillard Stays
+		name = australia.7.o2
+		add_political_power = -20
+	}
+	
+	option = { #Albo wins
+		name = australia.7.o3
+		add_stability = 0.02
+		AST_anthony_albanese = {
+			promote_character = new_democrat_ideology
+		}
+	}
+}
+
+country_event = { #2013 elections
+	id = australia.8
+	title = australia.8.t
+	desc = australia.8.d
+	picture = australia_intro
+
+	is_triggered_only = yes
+
+	option = { #Labour!
+		name = australia.8.o1
+		set_politics = {
+			ruling_party = new_democrat
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.04
+		}
+	}
+	
+	option = { #Labour! - backed by the Greens
+		name = australia.8.o2
+		set_politics = {
+			ruling_party = new_democrat
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.04
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.04
+		}
+		set_country_flag = AST_green_labour_coalition
+	}
+	
+	option = { #Liberals!
+		name = australia.8.o3
+		trigger = {
+			NOT = { has_country_flag = AST_liberals_nationalists_unite }
+		}
+		set_politics = {
+			ruling_party = centrist
+		}
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.04
+		}
+	}
+	
+	option = { #National!
+		name = australia.8.o4
+		trigger = {
+			NOT = { has_country_flag = AST_liberals_nationalists_unite }
+		}
+		set_politics = {
+			ruling_party = national_conservative
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.04
+		}
+	}
+	
+	option = { #Liberal/National!
+		name = australia.8.o5
+		trigger = {
+			has_country_flag = AST_liberals_nationalists_unite
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.04
+		}
+	}
+	
+	option = { #Katter's Australia Party
+		name = australia.8.o6
+		set_politics = {
+			ruling_party = nationalist
+		}
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.04
+		}
+	}
+}
+
+country_event = { #2016 elections
+	id = australia.9
+	title = australia.9.t
+	desc = australia.9.d
+	picture = australia_intro
+
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+			if = { 
+				limit = { NOT = { has_government = new_democrat } }
+				AST_bill_shorten = {
+					promote_character = new_democrat_ideology
+				}
+			}
+			
+			if = { 
+				limit = { NOT = { OR = { has_government = national_conservative has_government = centrist } } }
+				AST_malcolm_turnbull = {
+					promote_character = right_libertarian
+				}
+				AST_barnaby_joyce = {
+					promote_character = fiscal_conservative
+				}
+			}
+			AST_bob_brown = {
+				promote_character = eco_socialist
+			}
+		}
+	}
+		
+
+	option = { #Labour!
+		name = australia.9.o1
+		set_politics = {
+			ruling_party = new_democrat
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.04
+		}
+	}
+	
+	option = { #Greens!
+		name = australia.9.o2
+		set_politics = {
+			ruling_party = moderate_socialist
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.04
+		}
+		set_country_flag = AST_green_labour_coalition
+	}
+	
+	option = { #Liberals!
+		name = australia.9.o3
+		trigger = {
+			NOT = { has_country_flag = AST_liberals_nationalists_unite }
+		}
+		set_politics = {
+			ruling_party = centrist
+		}
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.04
+		}
+	}
+	
+	option = { #National!
+		name = australia.9.o4
+		trigger = {
+			NOT = { has_country_flag = AST_liberals_nationalists_unite }
+		}
+		set_politics = {
+			ruling_party = national_conservative
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.04
+		}
+	}
+	
+	option = { #Liberal/National!
+		name = australia.9.o5
+		trigger = {
+			has_country_flag = AST_liberals_nationalists_unite
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.04
+		}
+	}
+	
+	option = { #Katter's Australia Party
+		name = australia.9.o6
+		set_politics = {
+			ruling_party = nationalist
+		}
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.04
+		}
+	}
+}
+
+country_event = { #2019 elections
+	id = australia.10
+	title = australia.10.t
+	desc = australia.10.d
+	picture = australia_intro
+
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+			if = { 
+				limit = { NOT = { has_government = new_democrat } }
+				AST_anthony_albanese = {
+					promote_character = new_democrat_ideology
+				}
+			}
+			
+			if = { 
+				limit = { NOT = { OR = { has_government = national_conservative has_government = centrist } } }
+				AST_scott_morrison = {
+					promote_character = right_libertarian
+				}
+				AST_michael_mccormack = {
+					promote_character = fiscal_conservative
+				}
+			}
+			
+			if = {
+				limit = { NOT = { has_country_flag = AST_green_labour_coalition }
+				AST_richard_di_natale = {
+					promote_character = eco_socialist
+				}
+			}
+		}
+	}
+		
+
+	option = { #Labour!
+		name = australia.9.o1
+		set_politics = {
+			ruling_party = new_democrat
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.04
+		}
+	}
+	
+	option = { #Greens!
+		name = australia.9.o2
+		set_politics = {
+			ruling_party = moderate_socialist
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.04
+		}
+		set_country_flag = AST_green_labour_coalition
+	}
+	
+	option = { #Liberals!
+		name = australia.9.o3
+		trigger = {
+			NOT = { has_country_flag = AST_liberals_nationalists_unite }
+		}
+		set_politics = {
+			ruling_party = centrist
+		}
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.04
+		}
+	}
+	
+	option = { #National!
+		name = australia.9.o4
+		trigger = {
+			NOT = { has_country_flag = AST_liberals_nationalists_unite }
+		}
+		set_politics = {
+			ruling_party = national_conservative
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.04
+		}
+	}
+	
+	option = { #Liberal/National!
+		name = australia.9.o5
+		trigger = {
+			has_country_flag = AST_liberals_nationalists_unite
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.04
+		}
+	}
+	
+	option = { #Katter's Australia Party
+		name = australia.9.o6
+		set_politics = {
+			ruling_party = nationalist
+		}
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.04
+		}
+	}
+}
