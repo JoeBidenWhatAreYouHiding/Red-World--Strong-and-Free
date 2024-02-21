@@ -21,4 +21,33 @@ on_actions = {
 			end_coalition = yes
 		}
 	}
+	
+	on_annex = {
+		effect = {
+			FROM = {
+				end_coalition = yes
+			}
+		}
+	}
+	
+	on_daily = {
+		effect = {
+			if = {
+				limit = { has_variable = coalition_partners^num }
+				set_variable = { coalition_pp_gain = 0 }
+				for_each_loop = {
+					array = coalition_partners
+					add_to_variable = { coalition_pp_gain = party_popularity@var:v }
+				}
+				#multiply_variable = { coalition_pp_gain = 0.5 }
+				# if = {
+					# limit = { has_variable = coalition_stability }
+					# multiply_variable = { coalition_pp_gain = coalition_stability }
+				# }
+				# else = {
+					# multiply_variable = { coalition_pp_gain = 0.5 }
+				# }
+			}
+		}
+	}
 }
