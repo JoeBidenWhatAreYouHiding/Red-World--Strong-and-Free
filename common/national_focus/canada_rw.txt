@@ -2735,10 +2735,87 @@ focus_tree = {
 
 		completion_reward = {
 			country_event = rw_canada.59
+			add_ideas = CAN_distance_from_socialism
 			add_popularity = {
 				ideology = moderate_socialist
 				popularity = -0.05
 			}
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.05
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_work_with_the_liberals
+		icon = GFX_goal_CAN_cooperate_with_the_liberals
+		cost = 7
+		
+		prerequisite = {
+			focus = CAN_appease_centrists
+		}
+		
+		relative_position_id = CAN_institute_proportional_representation
+		x = -2
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CAN_distance_from_socialism
+				add_idea = CAN_liberal_confidence
+			}
+			custom_effect_tooltip = CAN_liberals_will_support_our_government
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.04
+			}
+			country_event = rw_canada.65
+			add_liberal_to_coalition = yes
+			add_centrist_to_coalition = yes
+		}
+	}
+	
+	focus = {
+		id = CAN_return_to_social_democracy
+		icon = GFX_goal_CAN_return_to_social_democracy
+		cost = 7
+		
+		prerequisite = {
+			focus = CAN_work_with_the_liberals
+		}
+		
+		relative_position_id = CAN_institute_proportional_representation
+		x = -1
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = rw_canada.139
+			add_ideas = CAN_socdem_restored
 			if = {
 				limit = { has_country_flag = ndp_is_modsoc }
 				clr_country_flag = ndp_is_modsoc
@@ -2784,84 +2861,6 @@ focus_tree = {
 					add_modsoc_to_coalition = yes
 				}
 			}
-		}
-	}
-	
-	focus = {
-		id = CAN_work_with_the_liberals
-		icon = GFX_goal_CAN_cooperate_with_the_liberals
-		cost = 7
-		
-		prerequisite = {
-			focus = CAN_appease_centrists
-		}
-		
-		relative_position_id = CAN_institute_proportional_representation
-		x = -2
-		y = 2
-
-		available = {
-			
-		}
-
-		ai_will_do = {
-			factor = 100
-		}
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			swap_ideas = {
-				remove_idea = CAN_centrist_ndp
-				add_idea = CAN_liberal_confidence
-			}
-			custom_effect_tooltip = CAN_liberals_will_support_our_government
-			add_popularity = {
-				ideology = liberal
-				popularity = 0.04
-			}
-			add_popularity = {
-				ideology = centrist
-				popularity = 0.04
-			}
-			country_event = rw_canada.65
-			add_liberal_to_coalition = yes
-			add_centrist_to_coalition = yes
-		}
-	}
-	
-	focus = {
-		id = CAN_comittment_to_nato
-		icon = GFX_goal_CAN_commitment_to_nato
-		cost = 7
-		
-		prerequisite = {
-			focus = CAN_work_with_the_liberals
-		}
-		
-		relative_position_id = CAN_institute_proportional_representation
-		x = -1
-		y = 3
-
-		available = {
-			
-		}
-
-		ai_will_do = {
-			factor = 100
-		}
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			add_war_support = 0.05
-			add_command_power = 50
-			every_country = {
-				limit = { is_in_faction_with = CAN }
-				add_war_support = 0.05
-				add_command_power = 50
-			}
-			add_ideas = CAN_comittment_to_nato
 		}
 	}
 	
@@ -2979,6 +2978,7 @@ focus_tree = {
 				add_political_power = 30
 			}
 			add_ideas = CAN_putting_peace_first
+			country_event = rw_canada.140
 		}
 	}
 	
@@ -3024,7 +3024,7 @@ focus_tree = {
 			focus = CAN_aid_for_refugees
 		}
 		prerequisite = {
-			focus = CAN_comittment_to_nato
+			focus = CAN_return_to_social_democracy
 			focus = CAN_encourage_peacekeeping
 		}
 		
@@ -3084,6 +3084,22 @@ focus_tree = {
 		completion_reward = {
 			add_ideas = CAN_defending_healthcare
 			country_event = rw_canada.62
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = hospital
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = hospital
+					level = 1
+					instant_build = yes
+				}
+			}
 		}
 	}
 	
@@ -3550,6 +3566,7 @@ focus_tree = {
 			country_event = rw_canada.77
 			add_liberal_to_coalition = yes
 			add_centrist_to_coalition = yes
+			add_ideas = canada_sic_justin_trudeau
 		}
 	}
 	
@@ -3650,6 +3667,8 @@ focus_tree = {
 			hidden_effect = {
 				remove_ideas = CAN_liberal_coalition
 				add_ideas = CAN_liberal_order
+				add_ideas = canada_fom_christina_freeland
+				add_ideas = canada_ind_alexa_mcdonough
 			}
 		}
 	}
@@ -10620,7 +10639,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_the_democratic_league
-		icon = democratic_league
+		icon = GFX_goal_CAN_commitment_to_nato
 		cost = 2
 		x = 83
 		y = 1
@@ -10636,10 +10655,20 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_political_power = 30
+			add_stability = 0.04
+			add_war_support = 0.05
+			add_command_power = 50
 			every_country = {
-				limit = { is_in_faction_with = CAN }
+				limit = { 
+					is_in_faction_with = CAN 
+					NOT = { tag = CAN }
+				}
 				add_political_power = 30
 				add_stability = 0.04
+				add_war_support = 0.05
+				add_command_power = 50
+				add_ideas = CAN_nato_support
 			}
 		}
 	}

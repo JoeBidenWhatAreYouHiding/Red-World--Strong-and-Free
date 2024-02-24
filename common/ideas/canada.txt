@@ -1171,11 +1171,11 @@ ideas = {
 		
 		# - Layton
 		
-		CAN_centrist_ndp = {
+		CAN_distance_from_socialism = {
 			allowed = {
 				always = yes
 			}
-			picture = CAN_centrist_ndp
+			picture = CAN_distance_from_socialism
 			removal_cost = -1
 			modifier = {
 				stability_factor = 0.02
@@ -1202,14 +1202,19 @@ ideas = {
 			}
 		}
 		
-		CAN_comittment_to_nato = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea CAN_comittment_to_nato"}
-			allowed = { always = no }
-            modifier = {
-				war_support_factor = 0.05
-				army_core_attack_factor = 0.05
+		CAN_socdem_restored = {
+			allowed = {
+				always = yes
 			}
-			picture = CAN_nato_idea
+			
+			picture = CAN_liberal_support
+			
+			removal_cost = -1
+			modifier = {
+				new_democrat_drift = 0.01
+				stability_factor = 0.03
+				war_support_factor = 0.03
+			}
 		}
 		
 		CAN_putting_peace_first = {
@@ -1411,8 +1416,8 @@ ideas = {
 			removal_cost = -1
 			modifier = {
 				political_power_cost = -0.02
-				stability_factor = 0.12
-				new_democrat_drift = 0.01
+				stability_factor = 0.13
+				new_democrat_drift = 0.02
 				moderate_socialist_drift = -0.01
 				centrist_drift = 0.01
 				liberal_drift = 0.01
@@ -3460,6 +3465,16 @@ ideas = {
 		
 		### Foreign Policy Ideas ###
 		
+		CAN_nato_support = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea CAN_nato_support"}
+			allowed = { always = no }
+            modifier = {
+				war_support_factor = 0.05
+				army_core_attack_factor = 0.05
+			}
+			picture = CAN_nato_idea
+		}
+		
 		CAN_cascadian_support = {
 			allowed = {
 				always = no
@@ -4705,6 +4720,7 @@ ideas = {
 			    OR = {
 					has_government = centrist
 					has_government = liberal
+					has_government = new_democrat
 				} 
 			}
 			
@@ -4726,6 +4742,21 @@ ideas = {
 			}
 			
 			traits = { flamboyant_tough_guy }			
+		}
+		
+		canada_sic_alexa_mcdonough = {
+		
+		    allowed = {
+			    original_tag = CAN
+			}
+			
+			available = {
+			    OR = {
+					has_government = new_democrat
+				} 
+			}
+			
+			traits = { apologetic_clerk }			
 		}
 		
 		canada_sic_jagmeet_singh = {
@@ -6038,6 +6069,30 @@ ideas = {
 			traits = { former_scientist }			
 		}
 		
+		canada_ind_alexa_mcdonough = {
+		
+		    allowed = {
+			    original_tag = CAN
+			}
+			
+			picture = canada_sic_alexa_mcdonough
+			name = canada_sic_alexa_mcdonough
+			
+			available = {
+			    OR = {
+					hidden_trigger = {
+						AND = {
+							has_government = centrist
+							has_completed_focus = CAN_the_merger
+						}
+					}
+					has_government = new_democrat
+				} 
+			}
+			
+			traits = { former_scientist }			
+		}
+		
 		canada_ind_nathen_cullen = {
 		
 		    allowed = {
@@ -6047,6 +6102,7 @@ ideas = {
 			available = {
 			    OR = {
 					has_government = new_democrat
+					has_government = moderate_socialist
 				} 
 			}
 			
@@ -6606,6 +6662,12 @@ ideas = {
 			
 			available = {
 			    OR = {
+					hidden_trigger = {
+						AND = {
+							has_government = centrist
+							has_completed_focus = CAN_the_merger
+						}
+					}
 					has_government = new_democrat
 				} 
 			}
@@ -6622,6 +6684,7 @@ ideas = {
 			available = {
 			    OR = {
 					has_government = moderate_socialist
+					has_government = new_democrat
 				} 
 			}
 			

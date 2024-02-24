@@ -1359,17 +1359,17 @@ country_event = {
 		add_ideas = {
 			canada_sic_thomas_mulcair
 			canada_fom_olivia_chow
-			canada_ind_christopher_bentley
-			canada_ind_jen_hunter
+			canada_nsm_joe_comartin
+			canada_ind_guy_caron
 		}
 	}
 	option = {
 		name = rw_canada.35.o1
 		trigger = { has_government = new_democrat }
 		add_ideas = {
-			canada_sic_richard_cannings
+			canada_sic_alexa_mcdonough
 			canada_fom_thomas_mulcair
-			canada_ind_nathen_cullen
+			canada_nsm_david_christopherson
 			canada_ind_helene_leblanc
 		}
 	}
@@ -2030,8 +2030,6 @@ country_event = {
 	option = {
 		name = rw_canada.59.o1
 		add_stability = 0.02
-		custom_effect_tooltip = CAN_switch_to_new_democrat
-		add_ideas = CAN_centrist_ndp
 	}
 }
 
@@ -3949,6 +3947,41 @@ country_event = {
 	option = {
 		name = rw_canada.138.o1
 		add_stability = 0.02
+	}
+}
+
+#Leap Manifesto Implemented
+country_event = {
+	id = rw_canada.139
+	title = rw_canada.139.t
+	desc = rw_canada.139.d
+	picture = buzz_hargrove
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.139.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = -0.02
+		}
+	}
+}
+
+#Peace-First Foreign Policy
+country_event = {
+	id = rw_canada.140
+	title = rw_canada.140.t
+	desc = rw_canada.140.d
+	picture = peace_first_foreign_policy
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.140.o1
+		add_war_support = -0.04
 	}
 }
 
@@ -6865,6 +6898,35 @@ country_event = {
 	}
 }
 
+
+#Soviet Union Collapse
+country_event = {
+	id = canada_diplo.54
+	title = canada_diplo.54.t
+	desc = canada_diplo.54.d
+	picture = germany_takes_warsaw_pact_leadership
+	
+	fire_only_once = yes
+	
+	trigger = {
+		tag = CAN
+		GER = { is_faction_leader = yes }
+		SOV = {
+			NOT = { is_in_faction_with = GER }
+			OR = {
+				exists = no
+				NOT = { has_government = communist }
+			}
+		}
+	}
+	
+	option = { #
+		name = canada_diplo.54.o1
+		add_war_support = 0.05
+		add_command_power = 30
+	}
+}
+
 #Canada-UK Relations
 country_event = {
 	id = canada_debug.1
@@ -6942,6 +7004,24 @@ country_event = {
 		name = canada_debug.2.o1
 		mark_focus_tree_layout_dirty = yes
 		clr_country_flag = CAN_wma_restored
+	}
+}
+
+
+#Canada-UK Relations
+country_event = {
+	id = canada_debug.5
+	title = canada_debug.2.t
+	desc = canada_debug.2.d
+	picture = canadian_british_relations
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = canada_debug.2.o1
+		custom_effect_tooltip = "pee"
+		GER = { set_faction_leader = yes }
 	}
 }
 
