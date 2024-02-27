@@ -3229,6 +3229,7 @@ focus_tree = {
 				ideology = new_democrat
 				popularity = 0.05
 			}
+			remove_ideas = CAN_mulroney_dream
 		}
 	}
 	
@@ -3630,10 +3631,13 @@ focus_tree = {
 				if = {
 					limit = { has_country_leader = { name = "Bob Rae" ruling_only = yes } }
 					CAN_bob_rae = {
+						set_portraits = {
+							civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Bob_Rae_Liberal.png" }
+						}
 						add_country_leader_role = {
 							country_leader = {
 								expire = "1.1.1.1"
-								desc="POLITICS_CAN_JACK_LAYTON_DESC"
+								desc="POLITICS_CAN_BOB_RAE_DESC"
 								ideology = centrist_ideology
 							}
 						}
@@ -4623,6 +4627,9 @@ focus_tree = {
 				if = {
 					limit = { has_country_leader = { name = "Michael Ignatieff" ruling_only = yes } }
 					CAN_michael_ignatieff = {
+						set_portraits = {
+							civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Michael_Ignatieff_Liberal.png" }
+						}
 						add_country_leader_role = {
 							country_leader = {
 								expire = "1.1.1.1"
@@ -9730,6 +9737,7 @@ focus_tree = {
 					has_country_flag = CAN_monarchy_has_been_abolished
 				}
 			}
+			date > 2011.5.5
 		}
 		
 		select_effect = {
@@ -10636,6 +10644,1242 @@ focus_tree = {
 		}
 	}
 	
+	##########################
+	#### CANADIAN ECONOMY ####
+	##########################
+	
+	focus = {
+		id = CAN_the_canadian_economy
+		icon = X
+		cost = 6
+		x = 49
+		y = 17
+
+		available = {
+			date > 2011.10.10
+			custom_trigger_tooltip = {
+				tooltip = CAN_economic_focuses_of_pm_done
+				OR = {
+					has_completed_focus = CAN_a_growing_economy
+					has_completed_focus = CAN_trump_tax_cut
+					has_completed_focus = CAN_self_balancing_budget
+					has_completed_focus = CAN_in_the_green
+					has_completed_focus = CAN_mulroneys_dream_from_a_liberal_perspective
+					has_completed_focus = CAN_mixed_economy
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	# - Energy Policy
+	
+	focus = {
+		id = CAN_canadian_oil_industry
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_the_canadian_economy
+		}
+		
+		relative_position_id = CAN_the_canadian_economy
+		x = 6
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_oil_sands
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_canadian_oil_industry
+		}
+		
+		relative_position_id = CAN_canadian_oil_industry
+		x = 1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_suncor_energy
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_oil_sands
+		}
+		
+		relative_position_id = CAN_canadian_oil_industry
+		x = 2
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_offshore_natural_gas
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_canadian_oil_industry
+			focus = CAN_focus_on_renewables
+		}
+		
+		relative_position_id = CAN_canadian_oil_industry
+		x = 0
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_american_oil_barons
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_offshore_natural_gas
+			focus = CAN_suncor_energy
+		}
+		
+		relative_position_id = CAN_canadian_oil_industry
+		x = 0
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_canadian_petroleum_concerns
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_american_oil_barons
+		}
+		
+		relative_position_id = CAN_canadian_oil_industry
+		x = 0
+		y = 4
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_focus_on_renewables
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_the_canadian_economy
+		}
+		
+		relative_position_id = CAN_the_canadian_economy
+		x = 4
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_develop_solar_panels
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_focus_on_renewables
+		}
+		
+		relative_position_id = CAN_focus_on_renewables
+		x = 1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_hydroelectric_power
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_focus_on_renewables
+		}
+		
+		relative_position_id = CAN_focus_on_renewables
+		x = 0
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_wind_farms
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_develop_solar_panels
+		}
+		prerequisite = {
+			focus = CAN_hydroelectric_power
+		}
+		
+		relative_position_id = CAN_focus_on_renewables
+		x = 1
+		y = 5
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_american_nuclear_expertise
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_focus_on_renewables
+		}
+		
+		relative_position_id = CAN_focus_on_renewables
+		x = -1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_reactor_construction
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_american_nuclear_expertise
+		}
+		
+		relative_position_id = CAN_focus_on_renewables
+		x = -1
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_expand_nuclear_capibilities
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_reactor_construction
+		}
+		
+		relative_position_id = CAN_reactor_construction
+		x = 1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_nuclear_safety_initiative
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_reactor_construction
+		}
+		
+		relative_position_id = CAN_reactor_construction
+		x = -1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	# - Industrial/Commercial Development
+	
+	focus = {
+		id = CAN_toronto_stock_exchange
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_the_canadian_economy
+		}
+		
+		relative_position_id = CAN_the_canadian_economy
+		x = 0
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_modern_intranet
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_toronto_stock_exchange
+		}
+		
+		relative_position_id = CAN_toronto_stock_exchange
+		x = 0
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_expand_construction
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_modern_intranet
+		}
+		
+		relative_position_id = CAN_toronto_stock_exchange
+		x = -1
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_expand_mining
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_modern_intranet
+		}
+		
+		relative_position_id = CAN_toronto_stock_exchange
+		x = 1
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_strengthen_the_dollar
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_expand_mining
+			focus = CAN_expand_construction
+		}
+		
+		relative_position_id = CAN_toronto_stock_exchange
+		x = 0
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_reinvigorate_the_steel_belt
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_strengthen_the_dollar
+		}
+		prerequisite = {
+			focus = CAN_expand_construction
+		}
+		
+		relative_position_id = CAN_toronto_stock_exchange
+		x = 0
+		y = 4
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_expand_the_trans_canada_highway
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_reinvigorate_the_steel_belt
+		}
+		prerequisite = {
+			focus = CAN_expand_construction
+		}
+		
+		relative_position_id = CAN_toronto_stock_exchange
+		x = -1
+		y = 5
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_restore_privatized_crown_coporations
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_reinvigorate_the_steel_belt
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_divest_to_private_enterprise
+		}
+		
+		relative_position_id = CAN_toronto_stock_exchange
+		x = 1
+		y = 5
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_divest_to_private_enterprise
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_reinvigorate_the_steel_belt
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_restore_privatized_crown_coporations
+		}
+		
+		relative_position_id = CAN_toronto_stock_exchange
+		x = 3
+		y = 5
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_improve_the_reservations
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_divest_to_private_enterprise
+			focus = CAN_restore_privatized_crown_coporations
+			focus = CAN_expand_the_trans_canada_highway
+		}
+		
+		relative_position_id = CAN_toronto_stock_exchange
+		x = 2
+		y = 6
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	# - General Development
+	
+	focus = {
+		id = CAN_the_northern_breadbasket
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_the_canadian_economy
+		}
+		
+		relative_position_id = CAN_the_canadian_economy
+		x = -3
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_regulate_the_fishing_industry
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_the_northern_breadbasket
+		}
+		
+		relative_position_id = CAN_the_northern_breadbasket
+		x = -1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_encourage_tourism
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_the_northern_breadbasket
+		}
+		
+		relative_position_id = CAN_the_northern_breadbasket
+		x = 1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_film_industry
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_the_northern_breadbasket
+		}
+		
+		relative_position_id = CAN_the_northern_breadbasket
+		x = 0
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_maple_syrup
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_film_industry
+		}
+		
+		relative_position_id = CAN_the_northern_breadbasket
+		x = 0
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	# - Housing Crisis
+	
+	focus = {
+		id = CAN_adress_housing_crisis
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_the_canadian_economy
+		}
+		
+		relative_position_id = CAN_the_canadian_economy
+		x = -7
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_housing_development_scheme
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_adress_housing_crisis
+		}
+		
+		relative_position_id = CAN_adress_housing_crisis
+		x = 0
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_affordability_focus
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_housing_development_scheme
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_residential_focus
+		}
+		
+		relative_position_id = CAN_adress_housing_crisis
+		x = -2
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_fight_nimbyism
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_affordability_focus
+		}
+		
+		relative_position_id = CAN_adress_housing_crisis
+		x = -2
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_refefine_zoning_laws
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_fight_nimbyism
+		}
+		
+		relative_position_id = CAN_adress_housing_crisis
+		x = -3
+		y = 4
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_rent_controls
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_refefine_zoning_laws
+		}
+		prerequisite = {
+			focus = CAN_real_estate_regulations
+		}
+		prerequisite = {
+			focus = CAN_foreign_buyers_ban
+		}
+		
+		relative_position_id = CAN_adress_housing_crisis
+		x = -2
+		y = 5
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_residential_focus
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_housing_development_scheme
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_affordability_focus
+		}
+		
+		relative_position_id = CAN_adress_housing_crisis
+		x = 2
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_family_housing_plans
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_residential_focus
+		}
+		
+		relative_position_id = CAN_adress_housing_crisis
+		x = 2
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_cut_development_red_tape
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_family_housing_plans
+		}
+		
+		relative_position_id = CAN_adress_housing_crisis
+		x = 3
+		y = 4
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_incentives_for_homebuilding
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_cut_development_red_tape
+		}
+		prerequisite = {
+			focus = CAN_real_estate_regulations
+		}
+		prerequisite = {
+			focus = CAN_foreign_buyers_ban
+		}
+		
+		relative_position_id = CAN_adress_housing_crisis
+		x = 2
+		y = 5
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_foreign_buyers_ban
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_fight_nimbyism
+			focus = CAN_family_housing_plans
+		}
+		
+		relative_position_id = CAN_adress_housing_crisis
+		x = -1
+		y = 4
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_real_estate_regulations
+		icon = X
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_fight_nimbyism
+			focus = CAN_family_housing_plans
+		}
+		
+		relative_position_id = CAN_adress_housing_crisis
+		x = 1
+		y = 4
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
 	########################
 	#### FOREIGN POLICY ####
 	########################
@@ -10910,7 +12154,7 @@ focus_tree = {
 	focus = {
 		id = CAN_support_commonwealth_rebels
 		icon = GFX_goal_CAN_support_new_england
-		cost = 7
+		cost = 2
 		
 		prerequisite = {
 			focus = CAN_america
