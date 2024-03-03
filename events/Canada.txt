@@ -284,7 +284,7 @@ country_event = {
 	fire_only_once = yes
 	is_triggered_only = yes
 	
-	option = {
+	option = { #Rest in Peace Brian Mulroney 1939-2024
 		name = rw_canada.14.o1
 		add_popularity = {
 			ideology = national_conservative
@@ -4097,6 +4097,29 @@ country_event = {
 		}
 	}
 	
+	option = { #Jean Chretien
+		name = rw_canada.197.o7
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = centrist
+					has_government = liberal
+				}
+				has_country_flag = liberal_leader_resigns_2011
+			}
+			has_completed_focus = CAN_legacy_of_chretien
+		}
+		set_country_flag = liberal_jean_chretien_2015
+		CAN_jean_chretien = {
+			promote_character = social_liberal
+		}
+		if = {
+			limit = { has_country_flag = liberals_are_centrist }
+			clr_country_flag = liberals_are_centrist
+			set_country_flag = liberals_are_liberal
+		}
+	}
+	
 	option = { #Michael Bloomberg
 		name = rw_canada.197.o5
 		trigger = {
@@ -4437,6 +4460,9 @@ country_event = {
 				}
 				has_country_flag = pc_leader_resigns_2011
 			}
+			NOT = {
+				has_country_flag = nationalists_are_canadian_alliance
+			}
 		}
 		set_country_flag = pc_stockwell_day_2015
 		CAN_stockwell_day = {
@@ -4461,6 +4487,9 @@ country_event = {
 			}
 			NOT = {
 				has_country_flag = harper_calls_it_quits
+			}
+			NOT = {
+				has_country_flag = nationalists_are_canadian_alliance
 			}
 		}
 		set_country_flag = pc_stephen_harper_2015
@@ -5216,6 +5245,436 @@ country_event = {
 			add_ideas = canada_nsm_brian_jean
 			add_ideas = canada_fom_maxime_bernier
 			add_ideas = canada_ind_pierre_poilievre
+		}
+	}
+}
+
+### 2019 Elections Stuff ###
+
+#Liberal Primarty
+country_event = {
+	id = rw_canada.297
+	title = rw_canada.297.t
+	desc = rw_canada.297.d
+	picture = sp_primary_2016
+
+	is_triggered_only = yes
+	
+	trigger = {	
+		has_country_flag = liberals_exist
+	}
+
+	option = { #Current Leader
+		name = rw_canada.297.o1
+		trigger = {
+			OR = {
+				has_government = centrist
+				has_government = liberal
+			}
+		}
+		set_country_flag = current_liberal_leader_2019
+	}
+
+	option = { #Martin Cauchon
+		name = rw_canada.297.o2
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = centrist
+					has_government = liberal
+				}
+				has_country_flag = liberal_leader_resigns_2015
+			}
+		}
+		set_country_flag = liberal_martin_cauchon_2019
+		CAN_martin_cauchon = {
+			promote_character = social_liberal
+		}
+		if = {
+			limit = { has_country_flag = liberals_are_centrist }
+			clr_country_flag = liberals_are_centrist
+			set_country_flag = liberals_are_liberal
+		}
+	}
+
+	option = { #Chrystia Freeland
+		name = rw_canada.297.o3
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = centrist
+					has_government = liberal
+				}
+				has_country_flag = liberal_leader_resigns_2015
+			}
+		}
+		set_country_flag = liberal_chrystia_freeland_2019
+		CAN_chrystia_freeland = {
+			promote_character = social_liberal
+		}
+		if = {
+			limit = { has_country_flag = liberals_are_centrist }
+			clr_country_flag = liberals_are_centrist
+			set_country_flag = liberals_are_liberal
+		}
+	}
+	
+	option = { #Martha Hall Findlay
+		name = rw_canada.297.o4
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = centrist
+					has_government = liberal
+				}
+				has_country_flag = liberal_leader_resigns_2015
+			}
+		}
+		set_country_flag = liberal_martha_hall_findlay_2019
+		CAN_martha_hall_findlay = {
+			promote_character = centrist_populist
+		}
+		if = {
+			limit = { has_country_flag = liberals_are_liberal }
+			clr_country_flag = liberals_are_liberal
+			set_country_flag = liberals_are_centrist
+		}
+	}
+	
+	option = { #Scott Brison
+		name = rw_canada.297.o5
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = centrist
+					has_government = liberal
+				}
+				has_country_flag = liberal_leader_resigns_2015
+			}
+		}
+		set_country_flag = liberal_scott_brison_2019
+		CAN_scott_brison = {
+			promote_character = centrist_populist
+		}
+		if = {
+			limit = { has_country_flag = liberals_are_liberal }
+			clr_country_flag = liberals_are_liberal
+			set_country_flag = liberals_are_centrist
+		}
+	}
+	
+	option = { #Joyce Murray
+		name = rw_canada.297.o6
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = centrist
+					has_government = liberal
+				}
+				has_country_flag = liberal_leader_resigns_2015
+			}
+		}
+		set_country_flag = liberal_joyce_murray_2019
+		CAN_joyce_murray = {
+			promote_character = social_liberal
+		}
+		if = {
+			limit = { has_country_flag = liberals_are_centrist }
+			clr_country_flag = liberals_are_centrist
+			set_country_flag = liberals_are_liberal
+		}
+	}
+}
+
+#NDP Primarty
+country_event = {
+	id = rw_canada.298
+	title = rw_canada.298.t
+	desc = rw_canada.298.d
+	picture = sp_primary_2016
+
+	is_triggered_only = yes
+	
+	trigger = {	
+		has_country_flag = ndp_exists
+	}
+
+	option = { #Current Leader
+		name = rw_canada.298.o1
+		trigger = {
+			OR = {
+				has_government = moderate_socialist
+				AND = {
+					has_government = centrist
+					has_country_flag = ndp_is_centrist
+				}
+				has_government = new_democrat
+			}
+		}
+		set_country_flag = current_ndp_leader_2019
+	}
+
+	option = { #Nathan Cullen
+		name = rw_canada.298.o2
+		trigger = {
+			OR = {
+				has_country_flag = ndp_leader_resigns_2015
+				NOT = {
+					OR = {
+						has_government = moderate_socialist
+						AND = {
+							has_government = centrist
+							has_country_flag = ndp_is_centrist
+						}
+						has_government = new_democrat
+					}
+				}
+			}
+		}
+		set_country_flag = ndp_nathan_cullen_2019
+		if = {
+			limit = { has_country_flag = ndp_is_modsoc }
+			CAN_nathan_cullen = {
+				add_country_leader_role = {
+					country_leader = {
+						expire = "1.1.1.1"
+						ideology = democratic_socialist
+					}
+				}
+				promote_character = democratic_socialist
+			}
+		}
+		else = {
+			CAN_nathan_cullen = {
+				promote_character = new_democrat_ideology
+			}
+		}
+	}
+
+	option = { #Guy Caron
+		name = rw_canada.298.o3
+		trigger = {
+			OR = {
+				has_country_flag = ndp_leader_resigns_2015
+				NOT = {
+					OR = {
+						has_government = moderate_socialist
+						AND = {
+							has_government = centrist
+							has_country_flag = ndp_is_centrist
+						}
+						has_government = new_democrat
+					}
+				}
+			}
+		}
+		set_country_flag = ndp_guy_caron_2019
+		if = {
+			limit = { has_country_flag = ndp_is_modsoc }
+			CAN_guy_caron = {
+				add_country_leader_role = {
+					country_leader = {
+						expire = "1.1.1.1"
+						ideology = democratic_socialist
+					}
+				}
+				promote_character = democratic_socialist
+			}
+		}
+		else = {
+			CAN_guy_caron = {
+				promote_character = new_democrat_ideology
+			}
+		}
+	}
+	
+	option = { #Jagmeet Singh
+		name = rw_canada.298.o4
+		trigger = {
+			OR = {
+				has_country_flag = ndp_leader_resigns_2015
+				NOT = {
+					OR = {
+						has_government = moderate_socialist
+						AND = {
+							has_government = centrist
+							has_country_flag = ndp_is_centrist
+						}
+						has_government = new_democrat
+					}
+				}
+			}
+		}
+		set_country_flag = ndp_jagmeet_singh_2019
+		if = {
+			limit = { has_country_flag = ndp_is_modsoc }
+			CAN_jagmeet_singh = {
+				add_country_leader_role = {
+					country_leader = {
+						expire = "1.1.1.1"
+						ideology = democratic_socialist
+					}
+				}
+				promote_character = democratic_socialist
+			}
+		}
+		else = {
+			CAN_jagmeet_singh = {
+				promote_character = new_democrat_ideology
+			}
+		}
+	}
+	
+	option = { #Charlie Angus
+		name = rw_canada.298.o7
+		trigger = {
+			OR = {
+				has_country_flag = ndp_leader_resigns_2015
+				NOT = {
+					OR = {
+						has_government = moderate_socialist
+						AND = {
+							has_government = centrist
+							has_country_flag = ndp_is_centrist
+						}
+						has_government = new_democrat
+					}
+				}
+			}
+		}
+		set_country_flag = ndp_charlie_angus_2019
+		if = {
+			limit = { has_country_flag = ndp_is_modsoc }
+			CAN_charlie_angus = {
+				add_country_leader_role = {
+					country_leader = {
+						expire = "1.1.1.1"
+						ideology = democratic_socialist
+					}
+				}
+				promote_character = democratic_socialist
+			}
+		}
+		else = {
+			CAN_charlie_angus = {
+				promote_character = new_democrat_ideology
+			}
+		}
+	}
+}
+
+#PC Primarty
+country_event = {
+	id = rw_canada.299
+	title = rw_canada.299.t
+	desc = rw_canada.299.d
+	picture = sp_primary_2016
+
+	is_triggered_only = yes
+	
+	trigger = {	
+		has_country_flag = progcons_exist
+	}
+
+	option = { #Current Leader
+		name = rw_canada.299.o1
+		trigger = {
+			OR = {
+				has_government = nationalist
+				has_government = national_conservative
+			}
+		}
+		set_country_flag = current_pc_leader_2019
+	}
+
+	option = { #Erin O'Toole
+		name = rw_canada.299.o2
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = nationalist
+					has_government = national_conservative
+				}
+				has_country_flag = pc_leader_resigns_2015
+			}
+		}
+		set_country_flag = pc_erin_o_toole_2019
+		CAN_erin_o_toole = {
+			promote_character = progressive_conservative
+		}
+		if = {
+			limit = { has_country_flag = pcs_are_nationalist }
+			clr_country_flag = pcs_are_nationalist
+			set_country_flag = pcs_are_natcon
+		}
+	}
+
+	option = { #Andrew Scheer
+		name = rw_canada.299.o3
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = nationalist
+					has_government = national_conservative
+				}
+				has_country_flag = pc_leader_resigns_2015
+			}
+		}
+		set_country_flag = pc_andrew_scheer_2019
+		CAN_andrew_scheer = {
+			promote_character = progressive_conservative
+		}
+		if = {
+			limit = { has_country_flag = pcs_are_nationalist }
+			clr_country_flag = pcs_are_nationalist
+			set_country_flag = pcs_are_natcon
+		}
+	}
+	
+	option = { #Maxime Bernier
+		name = rw_canada.299.o4
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = nationalist
+					has_government = national_conservative
+				}
+				has_country_flag = pc_leader_resigns_2015
+			}
+			NOT = {
+				has_country_flag = nationalists_are_canadian_alliance
+			}
+		}
+		set_country_flag = pc_maxime_bernier_2019
+		CAN_maxime_bernier = {
+			promote_character = neoconservative
+		}
+		if = {
+			limit = { has_country_flag = pcs_are_natcon }
+			clr_country_flag = pcs_are_natcon
+			set_country_flag = pcs_are_nationalist
+		}
+	}
+	
+	option = { #Pierre Poilievre
+		name = rw_canada.299.o5
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = nationalist
+					has_government = national_conservative
+				}
+				has_country_flag = pc_leader_resigns_2015
+			}
+			NOT = {
+				has_country_flag = nationalists_are_canadian_alliance
+			}
+		}
+		set_country_flag = pc_pierre_poilievre_2019
+		if = {
+			limit = { has_country_flag = pcs_are_natcon }
+			clr_country_flag = pcs_are_natcon
+			set_country_flag = pcs_are_nationalist
 		}
 	}
 }

@@ -9726,7 +9726,7 @@ focus_tree = {
 		icon = GFX_goal_CAN_fate_of_the_monarchy
 		cost = 6
 		x = 48
-		y = 1
+		y = 3
 
 		available = {
 			custom_trigger_tooltip = {
@@ -10677,6 +10677,14 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			hidden_effect = {
+				set_variable = { CAN_industrial_capacity_factory = 0.03 }
+				set_variable = { CAN_prod_speed_infra = 0.03 }
+				set_variable = { CAN_prod_speed_buildings = 0.01 }
+				add_dynamic_modifier = { modifier = CAN_canadian_economy_mod  }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_add_eco_modifier
 		}
 	}
 	
@@ -10706,7 +10714,18 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			random_owned_controlled_state = {
+				limit = {
+					has_resources_amount = {
+						resource = oil
+						amount > 5
+					}
+				}
+				add_resource = {
+					type = oil
+					amount = 4
+				}
+			}
 		}
 	}
 	
@@ -11105,7 +11124,20 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			hidden_effect = {
+				set_variable = { CAN_trade_opinion = 0.04 }
+				set_variable = { CAN_min_export = 0.04 }
+				force_update_dynamic_modifier = yes
+			}
+			276 = {
+				add_province_modifier = {
+					static_modifiers = { CAN_the_new_new_york }
+					province = {
+						id = 3775
+					}
+				}
+			}
+			custom_effect_tooltip = CAN_toronto_effect
 		}
 	}
 	
@@ -11133,12 +11165,32 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			random_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_ideas = CAN_intranet_connections
+			add_tech_bonus = {
+				name = computing_tech_bonus
+				bonus = 0.5
+				uses = 2
+				category = computing_tech
+			}
 		}
 	}
 	
 	focus = {
-		id = CAN_expand_construction
+		id = CAN_expand_manufacturing
 		icon = X
 		cost = 2
 		
@@ -11161,7 +11213,25 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			hidden_effect = {
+				add_to_variable = { CAN_prod_speed_buildings = 0.04 }
+				set_variable = { CAN_prod_max_efficiency = 0.04 }
+				set_variable = { CAN_start_efficency = 0.04 }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_construction_effect
+			add_timed_idea = {
+				idea = CAN_manufacturing_boom
+				days = 2400
+			}
 		}
 	}
 	
@@ -11189,7 +11259,23 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			unlock_decision_tooltip = CAN_develop_quebec_steel_mines
+			unlock_decision_tooltip = CAN_develop_quebec_aluminium_mines
+			unlock_decision_tooltip = CAN_develop_nwt_tungsten_mines
+			unlock_decision_tooltip = CAN_develop_nunavut_tungsten_mines
+			unlock_decision_tooltip = CAN_develop_newfoundland_zinc_mines
+			hidden_effect = {
+				if = {
+					limit = { has_variable = CAN_local_resources }
+					add_to_variable = { CAN_local_resources = 0.02 }
+				}
+				else = {	
+					set_variable = { CAN_local_resources = 0.02 }
+				}
+				set_variable = { CAN_lack_penalty_factor = -0.03 }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_mining_modify_effect
 		}
 	}
 	
@@ -11200,7 +11286,7 @@ focus_tree = {
 		
 		prerequisite = {
 			focus = CAN_expand_mining
-			focus = CAN_expand_construction
+			focus = CAN_expand_manufacturing
 		}
 		
 		relative_position_id = CAN_toronto_stock_exchange
@@ -11218,7 +11304,34 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			custom_effect_tooltip = CAN_democratic_regimes_will_switch_to_dollar
+			every_country = {
+				limit = { 
+					NOT = {
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+							has_government = national_bolshevik
+						}
+						is_in_faction_with = CAN
+					}
+				}
+				add_ideas = CAN_canadian_reserve_currency
+				add_opinion_modifier = {
+				    target = GER
+				    modifier = ditched_the_ruble
+			    }
+				add_opinion_modifier = {
+				    target = SOV
+				    modifier = ditched_the_ruble
+			    }
+			}
+			hidden_effect = {
+				add_to_variable = { CAN_trade_opinion = 0.02 }
+				add_to_variable = { CAN_min_export = 0.02 }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_dollar_effect
 		}
 	}
 	
@@ -11231,7 +11344,7 @@ focus_tree = {
 			focus = CAN_strengthen_the_dollar
 		}
 		prerequisite = {
-			focus = CAN_expand_construction
+			focus = CAN_expand_manufacturing
 		}
 		
 		relative_position_id = CAN_toronto_stock_exchange
@@ -11249,7 +11362,41 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			682 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			276 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			hidden_effect = {
+				add_to_variable = { CAN_prod_speed_buildings = 0.05 }
+				add_to_variable = { CAN_industrial_capacity_factory = 0.04 }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_great_lakes_effect
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = CAN_unlock_industrial_company
+			show_ideas_tooltip = aecon
 		}
 	}
 	
@@ -11262,7 +11409,7 @@ focus_tree = {
 			focus = CAN_reinvigorate_the_steel_belt
 		}
 		prerequisite = {
-			focus = CAN_expand_construction
+			focus = CAN_expand_manufacturing
 		}
 		
 		relative_position_id = CAN_toronto_stock_exchange
@@ -11280,7 +11427,40 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			hidden_effect = {
+				add_to_variable = { CAN_prod_speed_infra = 0.03 }
+				set_variable = { CAN_prod_speed_rail = 0.04 }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_trans_canada_effect
 		}
 	}
 	
@@ -11312,7 +11492,21 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			custom_effect_tooltip = CAN_unlock_industrial_company
+			show_ideas_tooltip = cn_rail
+			custom_effect_tooltip = tooltip_blank_line
+			if = {
+				limit = { has_dlc = "Arms Against Tyranny" }
+				custom_effect_tooltip = CAN_unlock_aircraft_mio
+				show_mio_tooltip = CAN_air_canada_organization
+				mio:CAN_air_canada_organization = {
+					add_mio_funds = 2500
+				}
+			}
+			else = {
+				custom_effect_tooltip = CAN_unlock_aircraft_designer
+				show_ideas_tooltip = air_canada
+			}
 		}
 	}
 	
@@ -11344,7 +11538,52 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			effect_tooltip = {
+				swap_ideas = {
+					remove_idea = CAN_bell
+					add_idea = CAN_bell2
+				}
+				custom_effect_tooltip = CAN_cost_to_hire_tt
+			}
+			hidden_effect = {
+				if = {
+					limit = { has_idea = CAN_bell }
+					swap_ideas = {
+						remove_idea = CAN_bell
+						add_idea = CAN_bell2
+					}
+				}
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			if = {
+				limit = { has_dlc = "Arms Against Tyranny" }
+				every_military_industrial_organization = {
+					limit = {
+						is_military_industrial_organization = CAN_bombardier_organization
+					}
+					add_mio_size = 1
+					add_mio_funds = 500
+					add_mio_funds_gain_factor = 0.25
+				}
+			}
+			else = {
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = bombardier
+						add_idea = bombardier2
+					}
+					custom_effect_tooltip = CAN_cost_to_hire_tt
+				}
+				hidden_effect = {
+					if = {
+						limit = { has_idea = bombardier }
+						swap_ideas = {
+							remove_idea = bombardier
+							add_idea = bombardier2
+						}
+					}
+				}
+			}
 		}
 	}
 	
@@ -11374,7 +11613,25 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			custom_effect_tooltip = CAN_improve_reservations
+			add_timed_idea = {	
+				idea = CAN_improving_reserve_conditions
+				days = 2300
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			every_owned_state = {
+				limit = {
+					is_controlled_by = CAN
+					OR = {
+						state = 683 #Nunavut
+						state = 472 #NWT
+					}
+				}
+				add_dynamic_modifier = { modifier = CAN_new_reserves }
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = CAN_when_spirit_removes
+			custom_effect_tooltip = CAN_reservation_effect
 		}
 	}
 	
@@ -11404,7 +11661,21 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			hidden_effect = {
+				if = {
+					limit = { has_variable = CAN_local_resources }
+					add_to_variable = { CAN_local_resources = 0.02 }
+				}
+				else = {	
+					set_variable = { CAN_local_resources = 0.02 }
+				}
+				set_variable = { CAN_supply_consumption = -0.03 }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_breadbasket_modify_effect
+			469 = {
+				add_extra_state_shared_building_slots = 1
+			}
 		}
 	}
 	
@@ -11432,7 +11703,13 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			hidden_effect = {
+				set_variable = { CAN_navy_range = 0.04 }
+				set_variable = { CAN_convoy_escort = 0.06 }
+				set_variable = { CAN_dockyard_output = 0.05 }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_fishing_modify_effect
 		}
 	}
 	
@@ -11460,7 +11737,16 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			hidden_effect = {
+				set_variable = { CAN_consumer_goods = 0.06 }
+				set_variable = { CAN_monthly_pop = 0.02 }
+				set_variable = { CAN_climate_gain_factor = 0.05 }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_tourism_modify_effect
+			add_offsite_building = {
+				type = industrial_complex level = 1
+			}
 		}
 	}
 	
@@ -11488,7 +11774,19 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_war_support = 0.05
+			add_stability = 0.03
+			CAN_add_3_percent_popularity = yes
+			every_owned_state = {
+				limit = {
+					is_controlled_by = CAN
+					OR = {
+						state = 473 #British Colombia
+						state = 740 #Vancouver Island
+					}
+				}
+				add_dynamic_modifier = { modifier = CAN_northern_hollywood_effect }
+			}
 		}
 	}
 	
@@ -11516,7 +11814,24 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			hidden_effect = {
+				add_to_variable = { CAN_consumer_goods = 0.02 }
+				add_to_variable = { CAN_local_resources = 0.02 }
+				subtract_from_variable = { CAN_supply_consumption = 0.02 }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_syrup_modify_effect
+			every_owned_state = {
+				limit = {
+					is_controlled_by = CAN
+					OR = {
+						state = 466 #Quebec
+						state = 468 #Saint Lawrence
+						state = 276 #Southern Ontario
+					}
+				}
+				add_dynamic_modifier = { modifier = CAN_maple_syrup_capital }
+			}
 		}
 	}
 	
@@ -11546,14 +11861,17 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_political_power = 60
+			add_stability = 0.05
+			CAN_add_3_percent_popularity = yes
+			custom_effect_tooltip = CAN_housing_crisis_will_not_get_worse
 		}
 	}
 	
 	focus = {
 		id = CAN_housing_development_scheme
 		icon = X
-		cost = 2
+		cost = 5
 		
 		prerequisite = {
 			focus = CAN_adress_housing_crisis
@@ -11574,14 +11892,30 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_timed_idea = {
+				idea = CAN_housing_development_scheme
+				days = 460
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			if = {
+				limit = {
+					OR = {
+						has_idea = CAN_housing_crunch_worse
+						has_idea = CAN_housing_crunch_worse2
+						has_idea = CAN_housing_crunch_worse3
+					}
+				}
+				CAN_decrease_housing_crisis = yes
+			}		
 		}
 	}
 	
 	focus = {
 		id = CAN_affordability_focus
 		icon = X
-		cost = 2
+		cost = 5
 		
 		prerequisite = {
 			focus = CAN_housing_development_scheme
@@ -11596,7 +11930,17 @@ focus_tree = {
 		y = 2
 
 		available = {
-			
+			always = no
+		}
+		
+		bypass = {
+			hidden_trigger = {
+				OR = {
+					has_government = liberal
+					has_government = new_democrat
+					has_government = moderate_socialist
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -11606,14 +11950,14 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			custom_effect_tooltip = CAN_unlock_depending_on_government
 		}
 	}
 	
 	focus = {
 		id = CAN_fight_nimbyism
 		icon = X
-		cost = 2
+		cost = 5
 		
 		prerequisite = {
 			focus = CAN_affordability_focus
@@ -11634,14 +11978,26 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			CAN_decrease_housing_crisis = yes
+			add_popularity = {
+				ideology = national_conservative
+				popularity = -0.01
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.01
+			}
+			modify_timed_idea = {
+				idea = CAN_housing_development_scheme
+				days = -120
+			}
 		}
 	}
 	
 	focus = {
 		id = CAN_refefine_zoning_laws
 		icon = X
-		cost = 2
+		cost = 5
 		
 		prerequisite = {
 			focus = CAN_fight_nimbyism
@@ -11662,14 +12018,34 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			every_owned_state = {
+				limit = { has_state_category = city }
+				set_state_category = large_city
+			}
+			every_owned_state = {
+				limit = { has_state_category = large_city }
+				set_state_category = metropolis
+			}
+			if = {
+				limit = {
+					OR = {
+						has_idea = CAN_housing_crunch_worse
+						has_idea = CAN_housing_crunch_worse2
+						has_idea = CAN_housing_crunch_worse3
+					}
+				}
+				CAN_decrease_housing_crisis = yes
+			}
 		}
 	}
 	
 	focus = {
 		id = CAN_rent_controls
 		icon = X
-		cost = 2
+		cost = 5
 		
 		prerequisite = {
 			focus = CAN_refefine_zoning_laws
@@ -11696,14 +12072,30 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			remove_ideas = CAN_housing_crunch5
+			add_stability = 0.05
+			every_owned_state = {
+				limit = { 
+					OR = {
+						has_state_category = large_city
+						has_state_category = city
+					}
+				}
+				add_state_modifier = {
+					modifier = {
+						local_manpower = 0.02
+						local_supplies = -0.02
+						state_production_speed_buildings_factor = 0.02
+					}
+				}
+			}
 		}
 	}
 	
 	focus = {
 		id = CAN_residential_focus
 		icon = X
-		cost = 2
+		cost = 5
 		
 		prerequisite = {
 			focus = CAN_housing_development_scheme
@@ -11717,8 +12109,15 @@ focus_tree = {
 		x = 2
 		y = 2
 
-		available = {
-			
+		bypass = {
+			hidden_trigger = {
+				OR = {
+					has_government = fascist
+					has_government = nationalist
+					has_government = national_conservative
+					has_government = centrist
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -11728,14 +12127,14 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			custom_effect_tooltip = CAN_unlock_depending_on_government
 		}
 	}
 	
 	focus = {
 		id = CAN_family_housing_plans
 		icon = X
-		cost = 2
+		cost = 5
 		
 		prerequisite = {
 			focus = CAN_residential_focus
@@ -11756,14 +12155,34 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			every_owned_state = {
+				limit = { has_state_category = rural }
+				set_state_category = large_town
+			}
+			every_owned_state = {
+				limit = { has_state_category = large_town }
+				set_state_category = city
+			}
+			if = {
+				limit = {
+					OR = {
+						has_idea = CAN_housing_crunch_worse
+						has_idea = CAN_housing_crunch_worse2
+						has_idea = CAN_housing_crunch_worse3
+					}
+				}
+				CAN_decrease_housing_crisis = yes
+			}
 		}
 	}
 	
 	focus = {
 		id = CAN_cut_development_red_tape
 		icon = X
-		cost = 2
+		cost = 5
 		
 		prerequisite = {
 			focus = CAN_family_housing_plans
@@ -11784,14 +12203,23 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			CAN_decrease_housing_crisis = yes
+			add_political_power = 50
+			random_owned_state = {
+				add_state_modifier = {
+					modifier = {
+						state_production_speed_buildings_factor = 0.02
+					}
+				}
+			}
+			CAN_decrease_housing_crisis = yes
 		}
 	}
 	
 	focus = {
 		id = CAN_incentives_for_homebuilding
 		icon = X
-		cost = 2
+		cost = 5
 		
 		prerequisite = {
 			focus = CAN_cut_development_red_tape
@@ -11818,14 +12246,29 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			remove_ideas = CAN_housing_crunch5
+			add_stability = 0.05
+			every_owned_state = {
+				limit = { 
+					OR = {
+						has_state_category = large_town
+						has_state_category = city
+					}
+				}
+				add_state_modifier = {
+					modifier = {
+						local_supplies = 0.02
+						local_building_slots_factor = -0.04
+					}
+				}
+			}
 		}
 	}
 	
 	focus = {
 		id = CAN_foreign_buyers_ban
 		icon = X
-		cost = 2
+		cost = 5
 		
 		prerequisite = {
 			focus = CAN_fight_nimbyism
@@ -11847,14 +12290,42 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			CAN_decrease_housing_crisis = yes
+			add_offsite_building = {
+				type = industrial_complex level = 1
+			}
+			add_manpower = -1100
+			473 = {
+				add_extra_state_shared_building_slots = 1
+			}
+			740 = {
+				add_extra_state_shared_building_slots = 1
+			}
+			SIA = {
+				add_opinion_modifier = {
+				    target = CAN
+				    modifier = foreign_buyers_ban
+			    }
+			}
+			PHI = {
+				add_opinion_modifier = {
+				    target = CAN
+				    modifier = foreign_buyers_ban
+			    }
+			}
+			CHI = {
+				add_opinion_modifier = {
+				    target = CAN
+				    modifier = foreign_buyers_ban
+			    }
+			}
 		}
 	}
 	
 	focus = {
 		id = CAN_real_estate_regulations
 		icon = X
-		cost = 2
+		cost = 5
 		
 		prerequisite = {
 			focus = CAN_fight_nimbyism
@@ -11876,7 +12347,11 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			CAN_decrease_housing_crisis = yes
+			add_stability = 0.02
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
 		}
 	}
 	
