@@ -10692,7 +10692,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_canadian_oil_industry
-		icon = X
+		icon = GFX_goal_CAN_oil
 		cost = 2
 		
 		prerequisite = {
@@ -10730,8 +10730,8 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = CAN_oil_sands
-		icon = X
+		id = CAN_new_oil_wells
+		icon = GFX_goal_CAN_new_oil_wells
 		cost = 2
 		
 		prerequisite = {
@@ -10753,17 +10753,40 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			470 = {
+				add_resource = {
+					type = oil
+					amount = 4
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			hidden_effect = {
+				set_variable = { CAN_oil_prod = 0.06 }
+				set_variable = { CAN_fuel_gain = 0.05 }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_oil_wells_effect
+			add_tech_bonus = {
+				bonus = 1.0
+				uses = 2
+				category = excavation_tech
+			}
 		}
 	}
 	
 	focus = {
-		id = CAN_suncor_energy
-		icon = X
+		id = CAN_oil_sands
+		icon = GFX_goal_CAN_oil_sands
 		cost = 2
 		
 		prerequisite = {
-			focus = CAN_oil_sands
+			focus = CAN_new_oil_wells
 		}
 		
 		relative_position_id = CAN_canadian_oil_industry
@@ -10781,13 +10804,37 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			set_technology = { synth_oil_experiments = 1 }
+			random_owned_controlled_state = {
+				prioritize = { 470 }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = fuel_silo
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = CAN_polymer_corporation
+				ahead_reduction = 2
+				bonus = 1.0
+				uses = 1
+				category = synth_resources
+			}
+			custom_effect_tooltip = CAN_unlock_industrial_company
+			show_ideas_tooltip = suncor
 		}
 	}
 	
 	focus = {
 		id = CAN_offshore_natural_gas
-		icon = X
+		icon = GFX_goal_CAN_offshore_drilling
 		cost = 2
 		
 		prerequisite = {
@@ -10810,18 +10857,61 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			464 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = fuel_silo
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+				    type = oil
+				    amount = 5
+			    }
+			}
+			331 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = fuel_silo
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+				    type = oil
+				    amount = 5
+			    }
+			}
+			hidden_effect = {
+				add_to_variable = { CAN_oil_prod = 0.03 }
+				add_to_variable = { CAN_fuel_gain = 0.02 }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_offshore_oil_effect
 		}
 	}
 	
 	focus = {
 		id = CAN_american_oil_barons
-		icon = X
+		icon = GFX_goal_CAN_american_oil_barons
 		cost = 2
 		
 		prerequisite = {
 			focus = CAN_offshore_natural_gas
-			focus = CAN_suncor_energy
+		}
+		prerequisite = {
+			focus = CAN_oil_sands
 		}
 		
 		relative_position_id = CAN_canadian_oil_industry
@@ -10839,13 +10929,22 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			custom_effect_tooltip = CAN_unlock_industrial_company
+			show_ideas_tooltip = exxonmobil
+			custom_effect_tooltip = CAN_unlock_industrial_company
+			show_ideas_tooltip = enron_canada
+			hidden_effect = {
+				add_to_variable = { CAN_oil_prod = 0.02 }
+				add_to_variable = { CAN_fuel_gain = 0.02 }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_oil_effect
 		}
 	}
 	
 	focus = {
 		id = CAN_canadian_petroleum_concerns
-		icon = X
+		icon = GFX_goal_CAN_oil_industrialists
 		cost = 2
 		
 		prerequisite = {
@@ -10867,13 +10966,22 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			custom_effect_tooltip = CAN_unlock_industrial_company
+			show_ideas_tooltip = imperial_oil
+			custom_effect_tooltip = CAN_unlock_industrial_company
+			show_ideas_tooltip = husky_energy
+			hidden_effect = {
+				add_to_variable = { CAN_oil_prod = 0.02 }
+				add_to_variable = { CAN_fuel_gain = 0.02 }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_oil_effect
 		}
 	}
 	
 	focus = {
 		id = CAN_focus_on_renewables
-		icon = X
+		icon = GFX_goal_CAN_renewables
 		cost = 2
 		
 		prerequisite = {
@@ -10895,13 +11003,24 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			hidden_effect = {
+				add_to_variable = { CAN_prod_max_efficiency = 0.03 }
+				add_to_variable = { CAN_start_efficency = 0.02 }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_renewable_effect
 		}
 	}
 	
 	focus = {
 		id = CAN_develop_solar_panels
-		icon = X
+		icon = GFX_goal_CAN_solar_panels
 		cost = 2
 		
 		prerequisite = {
@@ -10923,13 +11042,21 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			hidden_effect = {
+				set_variable = { CAN_research_speed = 0.03 }
+				set_variable = { CAN_max_fuel = 0.02 }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_solar_effect
 		}
 	}
 	
 	focus = {
 		id = CAN_hydroelectric_power
-		icon = X
+		icon = GFX_goal_CAN_hydro
 		cost = 2
 		
 		prerequisite = {
@@ -10951,13 +11078,32 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			hidden_effect = {
+				if = {
+					limit = { has_variable = CAN_global_building_slots }
+					add_to_variable = { CAN_global_building_slots = 0.03 }
+				}
+				else = {	
+					set_variable = { CAN_global_building_slots = 0.03 }
+				}
 			
+				if = {
+					limit = { has_variable = CAN_local_resources }
+					add_to_variable = { CAN_local_resources = 0.02 }
+				}
+				else = {	
+					set_variable = { CAN_local_resources = 0.02 }
+				}
+				add_to_variable = { CAN_industrial_capacity_factory = 0.02 }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_hydro_effect
 		}
 	}
 	
 	focus = {
 		id = CAN_wind_farms
-		icon = X
+		icon = GFX_goal_CAN_wind_farms
 		cost = 2
 		
 		prerequisite = {
@@ -10982,13 +11128,28 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			hidden_effect = {
+				if = {
+					limit = { has_variable = CAN_local_resources }
+					add_to_variable = { CAN_research_speed = 0.02 }
+				}
+				else = {	
+					set_variable = { CAN_research_speed = 0.02 }
+				}
+				set_variable = { CAN_prod_synth = 0.04 }
+				set_variable = { CAN_base_fuel = 0.02 }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_wind_effect
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
 		}
 	}
 	
 	focus = {
 		id = CAN_american_nuclear_expertise
-		icon = X
+		icon = GFX_goal_CAN_american_nuclear_experts
 		cost = 2
 		
 		prerequisite = {
@@ -11010,13 +11171,13 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_ideas = CAN_nuclear_focus
 		}
 	}
 	
 	focus = {
 		id = CAN_reactor_construction
-		icon = X
+		icon = GFX_goal_CAN_reactor_construction
 		cost = 2
 		
 		prerequisite = {
@@ -11038,13 +11199,24 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = CAN_nuclear_focus
+				add_idea = CAN_nuclear_focus2
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = nuclear_reactor level = 2 instant_build = yes }  
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = nuclear_reactor level = 2 instant_build = yes }  
+			}
 		}
 	}
 	
 	focus = {
 		id = CAN_expand_nuclear_capibilities
-		icon = X
+		icon = GFX_goal_CAN_canucks_with_nukes
 		cost = 2
 		
 		prerequisite = {
@@ -11056,7 +11228,7 @@ focus_tree = {
 		y = 1
 
 		available = {
-			
+			num_of_nukes > 10
 		}
 
 		ai_will_do = {
@@ -11066,13 +11238,34 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			if = {
+				limit = { has_idea = CAN_chalk_river_labs }
+				swap_ideas = {
+					remove_idea = CAN_chalk_river_labs
+					add_idea = CAN_chalk_river_labs2
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = nuclear_reactor level = 1 instant_build = yes }  
+			}
+			air_experience = 15
+			add_tech_bonus = {
+				name = cat_strategic_bomber_bonus
+				bonus = 1
+				uses = 1
+				category = cat_strategic_bomber
+			}
+			custom_effect_tooltip = CAN_add_30_nukes
+			hidden_effect = {
+				add_nuclear_bombs = 30
+			}
 		}
 	}
 	
 	focus = {
 		id = CAN_nuclear_safety_initiative
-		icon = X
+		icon = GFX_goal_CAN_nuclear_safety
 		cost = 2
 		
 		prerequisite = {
@@ -11094,7 +11287,10 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = CAN_nuclear_focus2
+				add_idea = CAN_nuclear_focus3
+			}
 		}
 	}
 	
