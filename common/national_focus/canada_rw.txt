@@ -7478,6 +7478,18 @@ focus_tree = {
 				}
 			}
 			has_country_flag = pc_victory_2015
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CAN_pc_didnt_win_2015
+					NOT = { has_country_flag = progcon_victory }
+				}
+				custom_trigger_tooltip = {
+					tooltip = CAN_pc_first_term_tree_completed
+					has_completed_focus = CAN_trump_the_canadian
+					has_completed_focus = CAN_protect_the_majority
+					has_completed_focus = CAN_trump_tax_cut
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -7487,7 +7499,44 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.02
+			}
+			custom_effect_tooltip = CAN_pc_first_term_ideas_removed
+			hidden_effect = {
+				if = {
+					limit = { has_country_flag = progcon_victory }
+					CAN_remove_all_first_term_spirits = yes
+					if = {	
+						limit = { has_completed_focus = CAN_prime_minister_trump }
+						if = {
+							limit = { has_completed_focus = CAN_trump_the_businessman }
+							add_ideas = CAN_trump_first_term_effect_natcon
+						}
+						else_if = {
+							limit = { has_completed_focus = CAN_trump_the_populist }
+							add_ideas = CAN_trump_first_term_effect_nat
+						}
+						else = {
+							add_ideas = CAN_trump_first_term_effect_centrist
+						}
+					}
+					else = {
+						if = {
+							limit = { has_government = nationalist }
+							add_ideas = CAN_pc_first_term_effect_nat
+						}
+						else = {
+							add_ideas = CAN_pc_first_term_effect_natcon
+						}
+					}
+				}
+			}
 		}
 	}
 
@@ -7533,6 +7582,17 @@ focus_tree = {
 			}
 			has_government = national_conservative
 			has_country_flag = pc_victory_2015
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CAN_pc_didnt_win_2015
+					NOT = { has_country_flag = progcon_victory }
+				}
+				custom_trigger_tooltip = {
+					tooltip = CAN_pc_first_term_tree_completed
+					has_completed_focus = CAN_proudly_canadian
+					has_completed_focus = CAN_a_growing_economy
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -7542,7 +7602,40 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.02
+			}
+			custom_effect_tooltip = CAN_pc_first_term_ideas_removed
+			hidden_effect = {
+				if = {
+					limit = { has_country_flag = progcon_victory }
+					CAN_remove_all_first_term_spirits = yes
+					if = {	
+						limit = { has_completed_focus = CAN_prime_minister_trump }
+						if = {
+							limit = { has_completed_focus = CAN_trump_the_businessman }
+							add_ideas = CAN_trump_first_term_effect_natcon
+						}
+						else_if = {
+							limit = { has_completed_focus = CAN_trump_the_populist }
+							add_ideas = CAN_trump_first_term_effect_nat
+						}
+						else = {
+							add_ideas = CAN_trump_first_term_effect_centrist
+						}
+					}
+					else = {
+						if = {
+							limit = { has_government = nationalist }
+							add_ideas = CAN_pc_first_term_effect_nat
+						}
+						else = {
+							add_ideas = CAN_pc_first_term_effect_natcon
+						}
+					}
+				}
+			}
 		}
 	}
 
@@ -7588,6 +7681,17 @@ focus_tree = {
 			}
 			has_government = nationalist
 			has_country_flag = pc_victory_2015
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CAN_pc_didnt_win_2015
+					NOT = { has_country_flag = progcon_victory }
+				}
+				custom_trigger_tooltip = {
+					tooltip = CAN_pc_first_term_tree_completed
+					has_completed_focus = CAN_proudly_canadian
+					has_completed_focus = CAN_a_growing_economy
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -7597,7 +7701,40 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.02
+			}
+			custom_effect_tooltip = CAN_pc_first_term_ideas_removed
+			hidden_effect = {
+				if = {
+					limit = { has_country_flag = progcon_victory }
+					CAN_remove_all_first_term_spirits = yes
+					if = {	
+						limit = { has_completed_focus = CAN_prime_minister_trump }
+						if = {
+							limit = { has_completed_focus = CAN_trump_the_businessman }
+							add_ideas = CAN_trump_first_term_effect_natcon
+						}
+						else_if = {
+							limit = { has_completed_focus = CAN_trump_the_populist }
+							add_ideas = CAN_trump_first_term_effect_nat
+						}
+						else = {
+							add_ideas = CAN_trump_first_term_effect_centrist
+						}
+					}
+					else = {
+						if = {
+							limit = { has_government = nationalist }
+							add_ideas = CAN_pc_first_term_effect_nat
+						}
+						else = {
+							add_ideas = CAN_pc_first_term_effect_natcon
+						}
+					}
+				}
+			}
 		}
 	}
 	
@@ -11251,10 +11388,10 @@ focus_tree = {
 			}
 			air_experience = 15
 			add_tech_bonus = {
-				name = cat_strategic_bomber_bonus
+				name = rocket_engines
 				bonus = 1
 				uses = 1
-				category = cat_strategic_bomber
+				category = rocketry
 			}
 			custom_effect_tooltip = CAN_add_30_nukes
 			hidden_effect = {

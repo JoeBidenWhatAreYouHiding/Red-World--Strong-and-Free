@@ -1,156 +1,88 @@
+CAN_nuclear_policy = {
 
-eighties = {	
-	CAN_nato_intervention_greenland = {
-
-		icon = greenland
-
-		allowed = {
-			OR = {
-			    original_tag = CAN
-			}
-		}
+	CAN_abandon_non_nuclear_policy = {
+		icon = cold_lake_project
 
 		available = {
-			always = yes
+			threat > 0.2
 		}
 
-		cost = 0
-		fire_only_once = no
-		ai_will_do = {
-			factor = 0
+		visible = {
+			
+		}
+
+		fire_only_once = yes
+
+		cost = 25
+		days_remove = 60
+
+		modifier = {
+			civilian_factory_use = 2
+			political_power_cost = 0.05
 		}
 
 		complete_effect = {
-			country_event = { id = can_history.4 }
+		}
+		remove_effect = {
+			set_country_flag = CAN_developed_nukes
+			if = {
+				limit = { has_idea = CAN_chalk_river_labs }
+				swap_ideas = {
+					remove_idea = CAN_chalk_river_labs
+					add_idea = CAN_chalk_river_labs2
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
 		}
 	}
 	
-	CAN_battle_for_the_canal = {
-
-		icon = canal
-
-		allowed = {
-			OR = {
-			    original_tag = CAN
-			}
-		}
+	CAN_build_arsenal = {
+		icon = build_nuclear_arsenal
 
 		available = {
-			always = yes
+			has_country_flag = CAN_developed_nukes
 		}
 
-		cost = 0
-		fire_only_once = no
-		ai_will_do = {
-			factor = 0
+		visible = {
+			
+		}
+
+		fire_only_once = yes
+
+		cost = 25
+		days_remove = 80
+
+		modifier = {
+			civilian_factory_use = 2
+			political_power_cost = 0.05
 		}
 
 		complete_effect = {
-			country_event = { id = can_history.5 }
 		}
-	}
-}
-
-nineties = {	
-	CAN_1995_quebec_referendum = {
-
-		icon = quebec
-
-		allowed = {
-			OR = {
-			    original_tag = CAN
+		remove_effect = {
+			custom_effect_tooltip = CAN_add_10_nukes
+			hidden_effect = {
+				add_nuclear_bombs = 10
+			}
+			hidden_effect = {
+				every_country = {
+					news_event = {
+						hours = 4
+						id = rw_canada_news.46
+					}
+				}
+			}
+			add_named_threat = {
+				threat = 20
+				name = "Canadian Nuclear Development"
 			}
 		}
 
-		available = {
-			always = yes
-		}
-
-		cost = 0
-		fire_only_once = no
 		ai_will_do = {
-			factor = 0
-		}
-
-		complete_effect = {
-			country_event = { id = can_history.6 }
-		}
-	}
-	
-	CAN_1997_election = {
-
-		icon = liberal
-
-		allowed = {
-			OR = {
-			    original_tag = CAN
-			}
-		}
-
-		available = {
-			always = yes
-		}
-
-		cost = 0
-		fire_only_once = no
-		ai_will_do = {
-			factor = 0
-		}
-
-		complete_effect = {
-			country_event = { id = can_history.1 }
-		}
-	}
-}
-
-noughts = {	
-	CAN_2005_election = {
-
-		icon = ndp
-
-		allowed = {
-			OR = {
-			    original_tag = CAN
-			}
-		}
-
-		available = {
-			always = yes
-		}
-
-		cost = 0
-		fire_only_once = no
-		ai_will_do = {
-			factor = 0
-		}
-
-		complete_effect = {
-			country_event = { id = can_history.2 }
-		}
-	}
-	
-	CAN_2008_election = {
-
-		icon = pc
-
-		allowed = {
-			OR = {
-			    original_tag = CAN
-			}
-		}
-
-		available = {
-			always = yes
-		}
-
-		cost = 0
-		fire_only_once = no
-		ai_will_do = {
-			factor = 0
-		}
-
-		complete_effect = {
-			country_event = { id = can_history.3 }
+			factor = 100
 		}
 	}
 }
@@ -413,6 +345,162 @@ prospect_for_resources = {
 
 		ai_will_do = {
 			factor = 1
+		}
+	}
+}
+
+eighties = {	
+	CAN_nato_intervention_greenland = {
+
+		icon = greenland
+
+		allowed = {
+			OR = {
+			    original_tag = CAN
+			}
+		}
+
+		available = {
+			always = yes
+		}
+
+		cost = 0
+		fire_only_once = no
+		ai_will_do = {
+			factor = 0
+		}
+
+		complete_effect = {
+			country_event = { id = can_history.4 }
+		}
+	}
+	
+	CAN_battle_for_the_canal = {
+
+		icon = canal
+
+		allowed = {
+			OR = {
+			    original_tag = CAN
+			}
+		}
+
+		available = {
+			always = yes
+		}
+
+		cost = 0
+		fire_only_once = no
+		ai_will_do = {
+			factor = 0
+		}
+
+		complete_effect = {
+			country_event = { id = can_history.5 }
+		}
+	}
+}
+
+nineties = {	
+	CAN_1995_quebec_referendum = {
+
+		icon = quebec
+
+		allowed = {
+			OR = {
+			    original_tag = CAN
+			}
+		}
+
+		available = {
+			always = yes
+		}
+
+		cost = 0
+		fire_only_once = no
+		ai_will_do = {
+			factor = 0
+		}
+
+		complete_effect = {
+			country_event = { id = can_history.6 }
+		}
+	}
+	
+	CAN_1997_election = {
+
+		icon = liberal
+
+		allowed = {
+			OR = {
+			    original_tag = CAN
+			}
+		}
+
+		available = {
+			always = yes
+		}
+
+		cost = 0
+		fire_only_once = no
+		ai_will_do = {
+			factor = 0
+		}
+
+		complete_effect = {
+			country_event = { id = can_history.1 }
+		}
+	}
+}
+
+noughts = {	
+	CAN_2005_election = {
+
+		icon = ndp
+
+		allowed = {
+			OR = {
+			    original_tag = CAN
+			}
+		}
+
+		available = {
+			always = yes
+		}
+
+		cost = 0
+		fire_only_once = no
+		ai_will_do = {
+			factor = 0
+		}
+
+		complete_effect = {
+			country_event = { id = can_history.2 }
+		}
+	}
+	
+	CAN_2008_election = {
+
+		icon = pc
+
+		allowed = {
+			OR = {
+			    original_tag = CAN
+			}
+		}
+
+		available = {
+			always = yes
+		}
+
+		cost = 0
+		fire_only_once = no
+		ai_will_do = {
+			factor = 0
+		}
+
+		complete_effect = {
+			country_event = { id = can_history.3 }
 		}
 	}
 }
