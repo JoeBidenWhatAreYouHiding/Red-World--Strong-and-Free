@@ -6003,6 +6003,7 @@ focus_tree = {
 		prerequisite = {
 			focus = CAN_recovery_of_the_century
 			focus = CAN_laytons_sucsessor
+			focus = CAN_new_ndp_in_power
 		}
 		
 		relative_position_id = CAN_recovery_of_the_century
@@ -6053,6 +6054,13 @@ focus_tree = {
 			focus = CAN_denounce_soviet_despotism
 		}
 		
+		hidden_trigger = {
+			NOT = {
+				has_country_flag = ndp_is_centrist 
+				has_country_flag = ndp_is_liberal
+			}
+		}
+		
 		relative_position_id = CAN_recovery_of_the_century
 		x = -1
 		y = 2
@@ -6090,6 +6098,13 @@ focus_tree = {
 		prerequisite = {
 			focus = CAN_denounce_soviet_despotism
 			focus = CAN_ndp_legalize_marijuana
+		}
+		
+		hidden_trigger = {
+			NOT = {
+				has_country_flag = ndp_is_centrist 
+				has_country_flag = ndp_is_liberal
+			}
 		}
 		
 		relative_position_id = CAN_recovery_of_the_century
@@ -7439,7 +7454,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_keep_canada_great
-		icon = X
+		icon = GFX_goal_CAN_trumpist_conservatives_in_power
 		cost = 6
 		
 		prerequisite = {
@@ -7542,7 +7557,7 @@ focus_tree = {
 
 	focus = {
 		id = CAN_mainline_conservatives_in_power
-		icon = X
+		icon = GFX_goal_CAN_mainline_conservatives_in_power
 		cost = 6
 		
 		prerequisite = {
@@ -7641,7 +7656,7 @@ focus_tree = {
 
 	focus = {
 		id = CAN_reformist_conservatives_in_power
-		icon = X
+		icon = GFX_goal_CAN_reformite_conservatives_in_power
 		cost = 6
 		
 		prerequisite = {
@@ -7769,7 +7784,10 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_political_power = 20
+			add_stability = 0.02
+			add_ideas = CAN_progressive_conservative_policies
+			country_event = rw_canada.141
 		}
 	}
 	
@@ -7797,7 +7815,13 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_stability = 0.02
+			add_political_power = -20
+			add_offsite_building = {
+                type = industrial_complex level = 1
+            }
+			add_ideas = CAN_decriminalized_weed_idea
+			country_event = rw_canada.86
 		}
 	}
 
@@ -7825,6 +7849,23 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = CAN_progressive_conservative_policies
+				add_idea = CAN_economic_liberalism_idea
+			}
+			add_political_power = 50
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.04
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.02
+			}
 			
 		}
 	}
@@ -7859,7 +7900,10 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_stability = -0.05
+			add_political_power = 50
+			country_event = rw_canada.144
+			add_ideas = CAN_trumpist_policies
 		}
 	}
 	
@@ -7887,7 +7931,53 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = CAN_trumpist_policies
+				add_idea = CAN_canadian_neopopulism
+			}
+			custom_effect_tooltip = CAN_will_switch_to_nationalism
+			if = {
+				limit = { has_country_flag = pcs_are_natcon }
+				clr_country_flag = pcs_are_natcon
+				set_country_flag = pcs_are_nationalist
+			}
+			hidden_effect = {
+				if = {
+					limit = { has_country_leader = { name = "Donald Trump" ruling_only = yes } }
+					CAN_donald_trump = {
+						add_country_leader_role = {
+							country_leader = {
+								expire = "1.1.1.1"
+								desc="POLITICS_CAN_DONALD_TRUMP_DESC"
+								ideology = neoconservative
+							}
+						}
+						promote_character = neoconservative
+					}
+				}
+				if = {
+					limit = { has_government = national_conservative }
+					set_politics = {
+						ruling_party = nationalist
+					}
+					set_variable = {
+						current_nationalist_pop = party_popularity@nationalist
+					}
+					set_variable = {
+						current_natcon_pop = party_popularity@national_conservative
+					}
+					subtract_from_variable = {
+						var = current_natcon_pop
+						value = current_nationalist_pop
+					}
+					add_popularity = {
+						ideology = nationalist
+						popularity = current_natcon_pop
+					}	
+					add_natcon_to_coalition = yes
+				}
+			}
+			country_event = rw_canada.145
 		}
 	}
 
@@ -7915,7 +8005,16 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_fash_to_coalition = yes
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = fascist
+				popularity = 0.04
+			}
+			country_event = rw_canada.147
 		}
 	}
 	
@@ -8159,7 +8258,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = rw_canada.146
 		}
 	}
 
