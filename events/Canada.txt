@@ -4142,6 +4142,46 @@ country_event = {
 	}
 }
 
+#PCs put first
+country_event = {
+	id = rw_canada.148
+	title = rw_canada.148.t
+	desc = rw_canada.148.d
+	picture = prime_minister_announces_new_direction
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.148.o1
+		add_stability = 0.02
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.02
+		}
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.02
+		}
+	}
+}
+
+#Trade Relations Cut
+country_event = {
+	id = rw_canada.149
+	title = rw_canada.149.t
+	desc = rw_canada.149.d
+	picture = trade_relations_slashed
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.149.o1
+		add_political_power = 20
+	}
+}
+
 ### 2015 Elections Stuff ###
 
 #Liberal Primarty
@@ -5747,8 +5787,30 @@ country_event = {
 		}
 	}
 
-	option = { #Andrew Scheer
+	option = { #Kim Campbell
 		name = rw_canada.299.o3
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = nationalist
+					has_government = national_conservative
+				}
+				has_country_flag = pc_leader_resigns_2015
+			}
+		}
+		set_country_flag = pc_kim_campbell_2019
+		CAN_kim_campbell = {
+			promote_character = progressive_conservative
+		}
+		if = {
+			limit = { has_country_flag = pcs_are_nationalist }
+			clr_country_flag = pcs_are_nationalist
+			set_country_flag = pcs_are_natcon
+		}
+	}
+
+	option = { #Andrew Scheer
+		name = rw_canada.299.o4
 		trigger = {
 			OR = {
 				NOT = {
@@ -5770,7 +5832,7 @@ country_event = {
 	}
 	
 	option = { #Maxime Bernier
-		name = rw_canada.299.o4
+		name = rw_canada.299.o5
 		trigger = {
 			OR = {
 				NOT = {
@@ -5795,7 +5857,7 @@ country_event = {
 	}
 	
 	option = { #Pierre Poilievre
-		name = rw_canada.299.o5
+		name = rw_canada.299.o6
 		trigger = {
 			OR = {
 				NOT = {
@@ -5809,6 +5871,34 @@ country_event = {
 			}
 		}
 		set_country_flag = pc_pierre_poilievre_2019
+		CAN_pierre_poilievre = {
+			promote_character = neoconservative
+		}
+		if = {
+			limit = { has_country_flag = pcs_are_natcon }
+			clr_country_flag = pcs_are_natcon
+			set_country_flag = pcs_are_nationalist
+		}
+	}
+	
+	option = { #Leslyn Lewis
+		name = rw_canada.299.o7
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = nationalist
+					has_government = national_conservative
+				}
+				has_country_flag = pc_leader_resigns_2015
+			}
+			NOT = {
+				has_country_flag = nationalists_are_canadian_alliance
+			}
+		}
+		set_country_flag = pc_leslyn_lewis_2019
+		CAN_leslyn_lewis = {
+			promote_character = neoconservative
+		}
 		if = {
 			limit = { has_country_flag = pcs_are_natcon }
 			clr_country_flag = pcs_are_natcon
