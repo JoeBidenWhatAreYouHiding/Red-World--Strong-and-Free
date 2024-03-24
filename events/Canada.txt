@@ -4016,6 +4016,14 @@ country_event = {
 	
 	option = {
 		name = rw_canada.141.o1
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.02
+		}
+		add_popularity = {
+			ideology = nationalist
+			popularity = -0.02
+		}
 		add_ideas = canada_sic_jim_prentice
 		add_ideas = canada_ind_peter_van_loan
 		add_ideas = canada_fom_peter_mackay
@@ -4142,7 +4150,7 @@ country_event = {
 	}
 }
 
-#PCs put first
+#Balance Sought
 country_event = {
 	id = rw_canada.148
 	title = rw_canada.148.t
@@ -4157,16 +4165,20 @@ country_event = {
 		add_stability = 0.02
 		add_popularity = {
 			ideology = national_conservative
-			popularity = 0.02
+			popularity = 0.01
 		}
 		add_popularity = {
 			ideology = nationalist
-			popularity = 0.02
+			popularity = 0.01
 		}
+		add_ideas = canada_sic_andrew_scheer
+		add_ideas = canada_ind_pierre_poilievre
+		add_ideas = canada_fom_peter_mackay
+		add_ideas = canada_nsm_erin_otoole
 	}
 }
 
-#Trade Relations Cut
+#Trade Regulations Cut
 country_event = {
 	id = rw_canada.149
 	title = rw_canada.149.t
@@ -4179,6 +4191,167 @@ country_event = {
 	option = {
 		name = rw_canada.149.o1
 		add_political_power = 20
+	}
+}
+
+#Reformites Rule Supreme
+country_event = {
+	id = rw_canada.150
+	title = rw_canada.150.t
+	desc = rw_canada.150.d
+	picture = prime_minister_announces_new_direction
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.150.o1
+		add_stability = 0.02
+		add_popularity = {
+			ideology = national_conservative
+			popularity = -0.02
+		}
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.02
+		}
+		add_ideas = canada_sic_jason_kenney
+		add_ideas = canada_nsm_stockwell_day
+		add_ideas = canada_fom_maxime_bernier
+		add_ideas = canada_ind_pierre_poilievre
+	}
+}
+
+#Approach Cruz
+country_event = {
+	id = rw_canada.151
+	title = rw_canada.151.t
+	desc = rw_canada.151.d
+	picture = reform_approaches_cruz
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Merger
+		name = rw_canada.151.o1
+		set_country_flag = CAN_cruz_merger
+		hidden_effect = {
+			random_list = {
+				50 = { country_event = { id = rw_canada.153 days = 1 }  } #Cruz Accepts
+				50 = { country_event = { id = rw_canada.152 days = 1 }  } #Cruz Refuses
+			}
+		}
+	}
+	
+	option = { #Supply/Confidence
+		name = rw_canada.151.o2
+		set_country_flag = CAN_cruz_supplyconfidence
+		hidden_effect = {
+			random_list = {
+				50 = { country_event = { id = rw_canada.153 days = 1 }  } #Cruz Accepts
+				50 = { country_event = { id = rw_canada.152 days = 1 }  } #Cruz Refuses
+			}
+		}
+	}
+	
+	option = { #Screw him
+		name = rw_canada.151.o3
+		add_political_power = 50
+		add_stability = 0.02
+	}
+}
+
+#Cruz Refuses
+country_event = {
+	id = rw_canada.152
+	title = rw_canada.152.t
+	desc = {
+		text = rw_canada.152.d_merger
+		trigger = { has_country_flag = CAN_cruz_merger }
+	}
+	desc = {
+		text = rw_canada.152.d_supplyconfidence
+		trigger = { has_country_flag = CAN_cruz_supplyconfidence }
+	}
+	picture = cruz_refuses_proposal
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.152.o1
+		add_political_power = -60
+		add_popularity = {
+			ideology = nationalist
+			popularity = -0.02
+		}
+	}
+}
+
+#Cruz Accepts
+country_event = {
+	id = rw_canada.153
+	title = rw_canada.153.t
+	desc = {
+		text = rw_canada.153.d_merger
+		trigger = { has_country_flag = CAN_cruz_merger }
+	}
+	desc = {
+		text = rw_canada.153.d_supplyconfidence
+		trigger = { has_country_flag = CAN_cruz_supplyconfidence }
+	}
+	picture = cruz_accepts_proposal
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.153.o1
+		trigger = {
+			has_country_flag = CAN_cruz_merger
+		}
+		set_party_name = {
+			long_name = CAN_cruz_pc_party_long
+			name = CAN_cruz_pc_party
+			ideology = fascist
+		}
+		add_ideas = canada_sic_rafael_edward_ralph_cruz
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.02
+		}
+		add_fash_to_coalition = yes
+	}
+	
+	option = {
+		name = rw_canada.153.o1
+		trigger = {
+			has_country_flag = CAN_cruz_supplyconfidence
+		}
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.02
+		}
+		add_fash_to_coalition = yes
+	}
+}
+
+#Reform Appeals to Eastern Canada
+country_event = {
+	id = rw_canada.154
+	title = rw_canada.154.t
+	desc = rw_canada.154.d
+	picture = pc_appeals_eastern_canada
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.154.o1
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.02
+		}
 	}
 }
 
@@ -8878,12 +9051,8 @@ country_event = {
 		trigger = { tag = CAN }
 		hidden_effect = {
 			random_list = {
-				50 = {
-					country_event = { id = can_flavour.5 days = 1 } #Ottawa wins
-				}
-				50 = {
-					country_event = { id = can_flavour.4 days = 1 } #Arizona wins
-				}
+				50 = { country_event = { id = can_flavour.5 days = 1 }  } #Ottawa wins
+				50 = { country_event = { id = can_flavour.4 days = 1 }  } #Arizona wins
 			}
 		}
 	}
