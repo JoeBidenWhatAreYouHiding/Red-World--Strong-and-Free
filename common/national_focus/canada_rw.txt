@@ -2700,12 +2700,13 @@ focus_tree = {
 		completion_reward = {
 			add_popularity = {
 				ideology = new_democrat
-				popularity = 0.1
+				popularity = 0.05
 			}
 			add_popularity = {
 				ideology = moderate_socialist
-				popularity = 0.1
+				popularity = 0.05
 			}
+			add_political_power = 70
 			country_event = rw_canada.58
 		}
 	}
@@ -3058,7 +3059,7 @@ focus_tree = {
 				ideology = moderate_socialist
 				popularity = 0.04
 			}
-			country_event = rw_canada.61
+			#country_event = rw_canada.61
 		}
 	}
 	
@@ -3487,12 +3488,14 @@ focus_tree = {
 		completion_reward = {
 			add_popularity = {
 				ideology = new_democrat
-				popularity = 0.1
+				popularity = 0.05
 			}
 			add_popularity = {
 				ideology = liberal
-				popularity = 0.1
+				popularity = 0.05
 			}
+			add_political_power = 70
+			country_event = rw_canada.58
 		}
 	}
 	
@@ -6317,6 +6320,10 @@ focus_tree = {
 		available = {
 			
 		}
+		
+		mutually_exclusive = {
+			focus = CAN_restore_political_pragmatism
+		}
 
 		ai_will_do = {
 			factor = 100
@@ -6365,6 +6372,18 @@ focus_tree = {
 			value = GFX_goal_CAN_prime_minister_singh
 			trigger = {
 				has_country_flag = ndp_jagmeet_singh_2019
+			}
+		}
+		icon = { #Nathan Cullen
+			value = GFX_goal_CAN_prime_minister_cullen
+			trigger = {
+				has_country_flag = ndp_nathan_cullen_2019
+			}
+		}
+		icon = { #Guy Caron
+			value = GFX_goal_CAN_prime_minister_caron
+			trigger = {
+				has_country_flag = ndp_guy_caron_2019
 			}
 		}
 		icon = {
@@ -6593,6 +6612,10 @@ focus_tree = {
 				}
 			}
 		}
+		
+		mutually_exclusive = {
+			focus = CAN_canadas_new_democracy
+		}
 
 		ai_will_do = {
 			factor = 100
@@ -6601,6 +6624,8 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_political_power = -50
+			add_stability = -0.04
 			add_popularity = {
 				ideology = moderate_socialist
 				popularity = -0.04
@@ -7421,7 +7446,7 @@ focus_tree = {
 	}
 
 	focus = {
-		id = CAN_triumph_of_the_establishment
+		id = CAN_minority_outreach
 		icon = X
 		cost = 6
 		
@@ -7432,8 +7457,67 @@ focus_tree = {
 		}
 		
 		relative_position_id = CAN_decision_2015
-		x = 0
+		x = -1
 		y = 5
+
+		available = {
+		
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_moderate_privatization
+		icon = X
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_martinomics
+			focus = CAN_canadian_business_prowess
+			focus = CAN_subsidize_green_business
+		}
+		
+		relative_position_id = CAN_decision_2015
+		x = 1
+		y = 5
+
+		available = {
+		
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_triumph_of_the_establishment
+		icon = X
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_moderate_privatization
+			focus = CAN_minority_outreach
+		}
+		
+		relative_position_id = CAN_decision_2015
+		x = 0
+		y = 6
 
 		available = {
 		
@@ -7801,7 +7885,7 @@ focus_tree = {
 		}
 		
 		relative_position_id = CAN_mainline_conservatives_in_power
-		x = -1
+		x = -2
 		y = 2
 
 		available = {
@@ -7917,7 +8001,7 @@ focus_tree = {
 		}
 		
 		relative_position_id = CAN_keep_canada_great
-		x = -1
+		x = -2
 		y = 2
 
 		available = {
@@ -8070,7 +8154,7 @@ focus_tree = {
 		}
 		
 		relative_position_id = CAN_mainline_conservatives_in_power
-		x = 1
+		x = 2
 		y = 2
 
 		available = {
@@ -8185,7 +8269,7 @@ focus_tree = {
 		}
 		
 		relative_position_id = CAN_reformist_conservatives_in_power
-		x = 1
+		x = 2
 		y = 2
 
 		available = {
@@ -8266,20 +8350,25 @@ focus_tree = {
 		
 		prerequisite = {
 			focus = CAN_coopt_reform_adgenda
+			focus = CAN_cut_red_tape
 			focus = CAN_economic_liberalism
 		}
 		
 		mutually_exclusive = {
 			focus = CAN_coalition_with_the_liberals
-			focus = CAN_canadian_conservatism_reborn
+			focus = CAN_mannings_legacy
 		}
 		
 		relative_position_id = CAN_keep_canada_great
-		x = 0
+		x = -1
 		y = 4
 
 		available = {
-			
+			has_country_leader = {
+				name = "Donald Trump"
+				ruling_only = yes
+			}
+			has_government = nationalist
 		}
 
 		ai_will_do = {
@@ -8289,7 +8378,14 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = CAN_buisness_haven
+				add_idea = CAN_buisness_haven2
+			}
+			add_timed_idea = {
+				idea = CAN_corruption
+				days = 4200
+			}
 		}
 	}
 
@@ -8303,7 +8399,7 @@ focus_tree = {
 		}
 		
 		relative_position_id = CAN_keep_canada_great
-		x = 0
+		x = -2
 		y = 5
 
 		available = {
@@ -8318,6 +8414,20 @@ focus_tree = {
 
 		completion_reward = {
 			country_event = rw_canada.146
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = fascist
+				popularity = 0.04
+			}
+			add_ideas = CAN_followers_of_the_red_hat
+			add_trait = {
+				character = CAN_donald_trump
+				ideology = neoconservative
+				trait = CAN_modern_deity 
+			}
 		}
 	}
 
@@ -8333,7 +8443,7 @@ focus_tree = {
 		
 		mutually_exclusive = {
 			focus = CAN_culture_of_corruption
-			focus = CAN_canadian_conservatism_reborn
+			focus = CAN_mannings_legacy
 		}
 		
 		relative_position_id = CAN_mainline_conservatives_in_power
@@ -8341,7 +8451,11 @@ focus_tree = {
 		y = 4
 
 		available = {
-			
+			has_country_leader = {
+				name = "Donald Trump"
+				ruling_only = yes
+			}
+			has_government = national_conservative
 		}
 
 		ai_will_do = {
@@ -8351,7 +8465,10 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_liberal_to_coalition = yes
+			add_centrist_to_coalition = yes
+			add_ideas = CAN_cons_liberal_coalition
+			country_event = rw_canada.155
 		}
 	}
 
@@ -8379,12 +8496,16 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			276 = {
+				add_extra_state_shared_building_slots = 1
+				add_manpower = 1100
+			}
+			add_ideas = CAN_canadian_psycho
 		}
 	}
 
 	focus = {
-		id = CAN_canadian_conservatism_reborn
+		id = CAN_mannings_legacy
 		icon = X
 		cost = 6
 		
@@ -8400,7 +8521,7 @@ focus_tree = {
 		}
 		
 		relative_position_id = CAN_reformist_conservatives_in_power
-		x = 0
+		x = 1
 		y = 4
 
 		available = {
@@ -8419,16 +8540,136 @@ focus_tree = {
 	}
 
 	focus = {
-		id = CAN_mannings_legacy
+		id = CAN_carbon_cap_price
 		icon = X
 		cost = 6
 		
 		prerequisite = {
-			focus = CAN_canadian_conservatism_reborn
+			focus = CAN_mannings_legacy
 		}
 		
 		relative_position_id = CAN_reformist_conservatives_in_power
+		x = 2
+		y = 5
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_international_democrat_union
+		icon = X
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_nationalist_policies
+			focus = CAN_trumpist_policies
+			focus = CAN_conservative_policies
+			focus = CAN_progressive_conservative_policies
+		}
+		
+		relative_position_id = CAN_mainline_conservatives_in_power
 		x = 0
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.02
+			}
+			every_country = {
+				limit = {
+					NOT = { tag = CAN }
+					OR = { 
+						has_government = nationalist
+						has_government = national_conservative
+						
+					}
+				}
+				add_popularity = {
+					ideology = national_conservative
+					popularity = 0.02
+				}
+				add_popularity = {
+					ideology = nationalist
+					popularity = 0.02
+				}
+				add_timed_idea = {
+					idea = CAN_idu_influence
+					days = 400
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_cooperate_with_christian_groups
+		icon = X
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_culture_of_corruption
+			focus = CAN_coalition_with_the_liberals
+			focus = CAN_mannings_legacy
+		}
+		
+		relative_position_id = CAN_mainline_conservatives_in_power
+		x = -2
+		y = 5
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = CAN_open_closed_shop
+		icon = X
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_culture_of_corruption
+			focus = CAN_coalition_with_the_liberals
+			focus = CAN_mannings_legacy
+		}
+		
+		relative_position_id = CAN_mainline_conservatives_in_power
+		x = 2
 		y = 5
 
 		available = {
@@ -8458,7 +8699,7 @@ focus_tree = {
 		}
 		
 		relative_position_id = CAN_decision_2015
-		x = 14
+		x = 15
 		y = 1
 
 		available = {
@@ -9336,7 +9577,17 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_stability = 0.04
+			add_political_power = -20
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.02
+			}
+			add_ideas = CAN_secular_canada
 		}
 	}
 
@@ -11271,6 +11522,14 @@ focus_tree = {
 				force_update_dynamic_modifier = yes
 			}
 			custom_effect_tooltip = CAN_oil_effect
+			add_opinion_modifier = {
+				target = SAU
+				modifier = oil_partner
+			}
+			add_opinion_modifier = {
+				target = VEN
+				modifier = oil_rival
+			}
 		}
 	}
 	
@@ -11538,6 +11797,14 @@ focus_tree = {
 				swap_ideas = {
 					remove_idea = CAN_chalk_river_labs
 					add_idea = CAN_chalk_river_labs2
+				}
+				hidden_effect = {
+					every_country = {
+						news_event = {
+							hours = 4
+							id = rw_canada_news.46
+						}
+					}
 				}
 			}
 			random_owned_state = {
