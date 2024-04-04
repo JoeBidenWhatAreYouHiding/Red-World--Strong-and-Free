@@ -1,0 +1,2842 @@
+﻿add_namespace = cascadia
+
+#Dispute between Walden and Franz
+country_event = {
+	id = cascadia.1
+	title = cascadia.1.t
+	desc = cascadia.1.d
+	picture = dispute_between_walden_and_ross
+
+	fire_only_once = yes
+
+	trigger = {
+		tag = CSD
+		has_war = no
+	}
+
+	mean_time_to_happen = {
+		days = 40
+	}
+
+	option = {
+		name = cascadia.1.o1
+		hidden_effect = {
+		    country_event = { days = 4 id = cascadia.2 }
+		}
+	}
+}
+
+#Rumours of Franz leaving cabinet spread
+country_event = {
+	id = cascadia.2
+	title = cascadia.2.t
+	desc = cascadia.2.d
+	picture = rumours_ross_leaving
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.2.o1
+		hidden_effect = {
+		    country_event = { days = 2 id = cascadia.3 }
+		}
+	}
+}
+
+#Wagner condemns 'obstructionists' spreading false rumours
+country_event = {
+	id = cascadia.3
+	title = cascadia.3.t
+	desc = cascadia.3.d
+	picture = wagner_press_conference
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.3.o1
+		hidden_effect = {
+		    country_event = { days = 5 id = cascadia.4 }
+		}
+	}
+}
+
+#Franz snubs Walden at Beer Riot event
+country_event = {
+	id = cascadia.4
+	title = cascadia.4.t
+	desc = cascadia.4.d
+	picture = cascadia_marching
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.4.o1
+		hidden_effect = {
+		    country_event = { days = 2 id = cascadia.5 }
+		}
+	}
+}
+
+#Walden removes Franz from cabinet, leaves position vacant
+country_event = {
+	id = cascadia.5
+	title = cascadia.5.t
+	desc = cascadia.5.d
+	picture = rumours_ross_leaving
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.5.o1
+		hidden_effect = {
+		    country_event = { days = 1 id = cascadia.6 }
+		}
+	}
+}
+
+#Labor front leaves parliament
+country_event = {
+	id = cascadia.6
+	title = cascadia.6.t
+	desc = cascadia.6.d
+	picture = labor_front_leaves_parliament
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.6.o1
+		add_political_power = -60
+		add_stability = -0.035
+		hidden_effect = {
+		    country_event = { days = 3 id = cascadia.7 }
+		}
+	}
+}
+
+#Stine calls on Brown to rule by decree
+country_event = {
+	id = cascadia.7
+	title = cascadia.7.t
+	desc = cascadia.7.d
+	picture = wagner_press_conference
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.7.o1
+		hidden_effect = {
+		    country_event = { days = 1 id = cascadia.8 }
+		}
+	}
+}
+
+#Franz and Wagner create informal alliance against 'tyrants'
+country_event = {
+	id = cascadia.8
+	title = cascadia.8.t
+	desc = cascadia.8.d
+	picture = ross_wagner_alliance
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.8.o1
+		hidden_effect = {
+		    country_event = { days = 2 id = cascadia.9 }
+		}
+	}
+}
+
+#Brown addresses parliament attended by labor front
+country_event = {
+	id = cascadia.9
+	title = cascadia.9.t
+	desc = cascadia.9.d
+	picture = brown_addresses_parliament
+
+	immediate = {
+	    if = {
+		    limit = {
+			    CSD = {
+				    is_ai = no
+				}
+			}
+			hidden_effect = {
+		        sound_effect = fall_of_walden_sound
+		    }
+		}
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.9.o1
+		hidden_effect = {
+		    country_event = { days = 4 id = cascadia.10 }
+		}
+	}
+}
+
+#Walden meets with Brown for new elections
+country_event = {
+	id = cascadia.10
+	title = cascadia.10.t
+	desc = cascadia.10.d
+	picture = washington_governor_mansion
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.10.o1
+		hidden_effect = {
+		    country_event = { days = 1 id = cascadia.11 }
+		}
+	}
+}
+
+#Brown fires Walden, Franz becomes caretaker prime minister
+country_event = {
+	id = cascadia.11
+	title = cascadia.11.t
+	desc = cascadia.11.d
+	picture = brown_fires_walden
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.11.o1
+		add_political_power = -150
+		set_politics = {
+	        ruling_party = revolutionary_socialist
+	        elections_allowed = no
+        }
+		set_cosmetic_tag = CSD_Caretaker
+		hidden_effect = {
+		    country_event = { days = 7 id = cascadia.12 }
+		}
+	}
+}
+
+#A week before snap election, stine, richardson and wagner form their own coalition for freedom
+country_event = {
+	id = cascadia.12
+	title = cascadia.12.t
+	desc = cascadia.12.d
+	picture = coalition_for_freedom_cascadia
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.12.o1
+		add_political_power = -80
+		hidden_effect = {
+		    country_event = { days = 7 id = cascadia.13 }
+		}
+		set_country_flag = popular_front_has_collapsed
+	}
+}
+
+#Snap parliamentary elections
+country_event = {
+	id = cascadia.13
+	title = cascadia.13.t
+	desc = cascadia.13.d
+	picture = generic_election_event
+
+	is_triggered_only = yes
+
+	option = {    #Labor Front
+		name = cascadia.13.o1
+		ai_chance = {
+			base = 35
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_COALITION_FOR_FREEDOM_RICHARDSON
+					}
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_COALITION_FOR_FREEDOM_WAGNER
+					}
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_COALITION_FOR_FREEDOM_STINE
+					}
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_INDEPENDENCE
+					}
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_ORECORP
+					}
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_JUNTA
+					}
+				}
+				factor = 0
+			}
+		}
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.35
+		}
+		add_political_power = 35
+		drop_cosmetic_tag = yes
+		set_country_flag = labor_front_in_government
+		custom_effect_tooltip = cascadia_labour_front_ministers
+		hidden_effect = {
+			add_ideas = cascadia_fom_doug_barnes
+			add_ideas = cascadia_ind_jordana_sardo
+			add_ideas = cascadia_nsm_steve_hoffman
+			add_ideas = cascadia_inm_mary_martin
+		}
+	}
+
+	option = {    #Coalition for Freedom
+		name = cascadia.13.o2
+		ai_chance = {
+			base = 35
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_LABOR
+					}
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_INDEPENDENCE
+					}
+				}
+				factor = 0
+			}
+		}
+		set_politics = {
+	        ruling_party = centrist
+	        elections_allowed = no
+        }
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.20
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.15
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.15
+		}
+		add_political_power = 5
+		set_country_flag = freedom_coalition_in_government
+		drop_cosmetic_tag = yes
+		hidden_effect = {
+		    country_event = { days = 6 id = cascadia.14 }
+		}
+	}
+
+	option = {    #Independence Party
+		name = cascadia.13.o3
+		ai_chance = {
+			base = 35
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_COALITION_FOR_FREEDOM_RICHARDSON
+					}
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_COALITION_FOR_FREEDOM_WAGNER
+					}
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_COALITION_FOR_FREEDOM_STINE
+					}
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_LABOR
+					}
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_ORECORP
+					}
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_JUNTA
+					}
+				}
+				factor = 0
+			}
+		}
+		set_politics = {
+	        ruling_party = nationalist
+	        elections_allowed = no
+        }
+		add_political_power = -30
+		add_stability = -0.035
+		set_country_flag = independence_party_in_government
+		drop_cosmetic_tag = yes
+		custom_effect_tooltip = cascadia_independence_party_ministers
+		hidden_effect = {
+			add_ideas = cascadia_fom_aaron_donald_auer
+			add_ideas = cascadia_ind_mark_schoesler
+			add_ideas = cascadia_nsm_michael_stencel
+			add_ideas = cascadia_inm_evan_mcmullin
+		}
+	}
+}
+
+#Choosing a Prime Minister - coalition negotiations
+country_event = {
+	id = cascadia.14
+	title = cascadia.14.t
+	desc = cascadia.14.d
+	picture = rumours_ross_leaving
+
+	is_triggered_only = yes
+
+	option = {    #Richardson
+		name = cascadia.14.o1
+		ai_chance = {
+			base = 20
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_COALITION_FOR_FREEDOM_STINE
+					}
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_COALITION_FOR_FREEDOM_WAGNER
+					}
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_JUNTA
+					}
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_ORECORP
+					}
+				}
+				factor = 0
+			}
+		}
+		set_politics = {
+	        ruling_party = national_conservative
+	        elections_allowed = no
+        }
+		set_country_flag = prime_minister_richardson
+		hidden_effect = {
+		    country_event = { days = 1 id = cascadia.15 }
+		}
+	}
+
+	option = {    #Wagner
+		name = cascadia.14.o2
+		ai_chance = {
+			base = 40
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_COALITION_FOR_FREEDOM_STINE
+					}
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_COALITION_FOR_FREEDOM_RICHARDSON
+					}
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_JUNTA
+					}
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_ORECORP
+					}
+				}
+				factor = 0
+			}
+		}
+		set_country_flag = prime_minister_wagner
+		hidden_effect = {
+		    country_event = { days = 1 id = cascadia.16 }
+		}
+	}
+
+	option = {    #Stine
+		name = cascadia.14.o3
+		ai_chance = {
+			base = 40
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_COALITION_FOR_FREEDOM_RICHARDSON
+					}
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_COALITION_FOR_FREEDOM_WAGNER
+					}
+				}
+				factor = 0
+			}
+		}
+		set_politics = {
+	        ruling_party = new_democrat
+	        elections_allowed = no
+        }
+		set_country_flag = prime_minister_stine
+		hidden_effect = {
+		    country_event = { days = 1 id = cascadia.17 }
+		}
+	}
+}
+
+#President Brown appoints Richardson
+country_event = {
+	id = cascadia.15
+	title = cascadia.15.t
+	desc = cascadia.15.d
+	picture = washington_governor_mansion
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.15.o1
+			add_ideas = cascadia_fom_glenn_beck
+			add_ideas = cascadia_ind_allan_alley
+			add_ideas = cascadia_nsm_michael_stencel
+			add_ideas = cascadia_inm_evan_mcmullin
+	}
+}
+
+#President Brown appoints Wagner
+country_event = {
+	id = cascadia.16
+	title = cascadia.16.t
+	desc = cascadia.16.d
+	picture = washington_governor_mansion
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.16.o1
+			add_ideas = cascadia_fom_richard_burke
+			add_ideas = cascadia_ind_bill_sizemore
+			add_ideas = cascadia_nsm_lars_hedbor
+			add_ideas = cascadia_inm_timothy_perkins
+	}
+}
+
+#President Brown appoints Stine
+country_event = {
+	id = cascadia.17
+	title = cascadia.17.t
+	desc = cascadia.17.d
+	picture = washington_governor_mansion
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.17.o1
+			add_ideas = cascadia_fom_david_adam_smith
+			add_ideas = cascadia_ind_peter_defazio
+			add_ideas = cascadia_nsm_earl_blumenauer
+			add_ideas = cascadia_inm_meroe_park
+	}
+}
+
+#Pacific States invited into Democratic League by Cascadia
+country_event = {
+	id = cascadia.18
+	title = cascadia.18.t
+	desc = cascadia.18.d
+	picture = the_treaty_of_seattle
+
+	is_triggered_only = yes
+
+	option = {    #Accept
+		name = cascadia.18.o1
+		ai_chance = {
+			factor = 100
+		}
+		CAN = {
+			country_event = { id = generic.4 }
+	    }
+		CSD = {
+			country_event = { days = 2 id = cascadia.19 }
+	    }
+	}
+
+	option = {    #Refuse
+		name = cascadia.18.o2
+		ai_chance = {
+			factor = 0
+		}
+		CSD = {
+			country_event = { days = 1 id = cascadia.20 }
+	    }
+	}
+}
+
+#Second Treaty of Seattle
+country_event = {
+	id = cascadia.19
+	title = cascadia.19.t
+	desc = cascadia.19.d
+	picture = egypt_meeting
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.19.o1
+		add_political_power = 20
+	}
+}
+
+#Pacific States refuses invitation
+country_event = {
+	id = cascadia.20
+	title = cascadia.20.t
+	desc = cascadia.20.d
+	picture = the_treaty_of_seattle
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.20.o1
+		add_political_power = -35
+	}
+}
+
+#Parliament passes progressive legislation
+country_event = {
+	id = cascadia.21
+	title = cascadia.21.t
+	desc = cascadia.21.d
+	picture = labor_front_leaves_parliament
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.21.o1
+	}
+}
+
+#Coalition with greens
+country_event = {
+	id = cascadia.22
+	title = cascadia.22.t
+	desc = cascadia.22.d
+	picture = coalition_with_greens_cascadia
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.22.o1
+	}
+}
+
+#Greens sidelined
+country_event = {
+	id = cascadia.23
+	title = cascadia.23.t
+	desc = cascadia.23.d
+	picture = labor_front_leaves_parliament
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.23.o1
+	}
+}
+
+#Prisoners of war freed
+country_event = {
+	id = cascadia.24
+	title = cascadia.24.t
+	desc = cascadia.24.d
+	picture = india_kashmir_prison
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.24.o1
+	}
+}
+
+#Parliament passes tax reforms
+country_event = {
+	id = cascadia.25
+	title = cascadia.25.t
+	desc = cascadia.25.d
+	picture = wagner_press_conference
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.25.o1
+	}
+}
+
+#Richardson's speech on christianity
+country_event = {
+	id = cascadia.26
+	title = cascadia.26.t
+	desc = cascadia.26.d
+	picture = dennis_richardson_speech
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.26.o1
+	}
+}
+
+#New budget increases military funding
+country_event = {
+	id = cascadia.27
+	title = cascadia.27.t
+	desc = cascadia.27.d
+	picture = commonwealth_military_budget
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.27.o1
+	}
+}
+
+#Richardson meets with orecorp
+country_event = {
+	id = cascadia.28
+	title = cascadia.28.t
+	desc = cascadia.28.d
+	picture = businesses_support_welfare_state
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.28.o1
+	}
+}
+
+#Direct democracy implemented
+country_event = {
+	id = cascadia.29
+	title = cascadia.29.t
+	desc = cascadia.29.d
+	picture = prime_minister_election
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.29.o1
+	}
+}
+
+#Gun rights restored
+country_event = {
+	id = cascadia.30
+	title = cascadia.30.t
+	desc = cascadia.30.d
+	picture = gun_rights_restored
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.30.o1
+	}
+}
+
+#Tax reform bill
+country_event = {
+	id = cascadia.31
+	title = cascadia.31.t
+	desc = cascadia.31.d
+	picture = wagner_press_conference
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.31.o1
+	}
+}
+
+#Stine meets union reps
+country_event = {
+	id = cascadia.32
+	title = cascadia.32.t
+	desc = cascadia.32.d
+	picture = businesses_support_welfare_state
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.32.o1
+	}
+}
+
+#Parliament approves more immigration
+country_event = {
+	id = cascadia.33
+	title = cascadia.33.t
+	desc = cascadia.33.d
+	picture = labor_front_leaves_parliament
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.33.o1
+	}
+}
+
+#Kate Browns plan endorsed
+country_event = {
+	id = cascadia.34
+	title = cascadia.34.t
+	desc = cascadia.34.d
+	picture = economic_plan
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.34.o1
+	}
+}
+
+#Stines plan endorsed
+country_event = {
+	id = cascadia.35
+	title = cascadia.35.t
+	desc = cascadia.35.d
+	picture = economic_plan
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.35.o1
+	}
+}
+
+#Conscription increased
+country_event = {
+	id = cascadia.36
+	title = cascadia.36.t
+	desc = cascadia.36.d
+	picture = rural_conscription
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.36.o1
+	}
+}
+
+#Propaganda ministry
+country_event = {
+	id = cascadia.37
+	title = cascadia.37.t
+	desc = cascadia.37.d
+	picture = pui_ministeries
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.37.o1
+	}
+}
+
+#Waldens environmentalism speech
+country_event = {
+	id = cascadia.38
+	title = cascadia.38.t
+	desc = cascadia.38.d
+	picture = walden_environmentalist_speech
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.38.o1
+	}
+}
+
+#Military exercises
+country_event = {
+	id = cascadia.39
+	title = cascadia.39.t
+	desc = cascadia.39.d
+	picture = police_military_council
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.39.o1
+	}
+}
+
+#Canadian delegation arrives
+country_event = {
+	id = cascadia.40
+	title = cascadia.40.t
+	desc = cascadia.40.d
+	picture = india_canada
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.40.o1
+	}
+}
+
+#Carbon tax
+country_event = {
+	id = cascadia.41
+	title = cascadia.41.t
+	desc = cascadia.41.d
+	picture = labor_front_leaves_parliament
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.41.o1
+	}
+}
+
+#Cascadian nationalism increases
+country_event = {
+	id = cascadia.42
+	title = cascadia.42.t
+	desc = cascadia.42.d
+	picture = cascadian_nationalism
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.42.o1
+	}
+}
+
+#Drugs legalised
+country_event = {
+	id = cascadia.43
+	title = cascadia.43.t
+	desc = cascadia.43.d
+	picture = drugs_legalised
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.43.o1
+	}
+}
+
+#Cascadian Confederation
+country_event = {
+	id = cascadia.44
+	title = cascadia.44.t
+	desc = cascadia.44.d
+	picture = cascadian_confederation
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.44.o1
+		set_country_flag = wagner_is_president
+	}
+}
+
+#Attempt on President Brown's life
+country_event = {
+	id = cascadia.45
+	title = cascadia.45.t
+	desc = cascadia.45.d
+	picture = bill_gates_assassinated
+
+	fire_only_once = yes
+
+	trigger = {
+		tag = CSD
+		date > 2014.2.1
+		date < 2014.2.30
+		NOT = {
+		    has_country_flag = wagner_is_president
+			has_government = fascist
+			has_country_leader = {
+				name = "Michael Stencel"
+				ruling_only = yes
+			}
+		}
+	}
+
+	option = {
+		name = cascadia.45.o1
+		add_political_power = -10
+	}
+}
+
+#Orecorp founded by Canadian investors
+country_event = {
+	id = cascadia.46
+	title = cascadia.46.t
+	desc = cascadia.46.d
+	picture = egypt_meeting
+
+	fire_only_once = yes
+
+	trigger = {
+		tag = CSD
+		date > 2011.4.1
+		date < 2011.4.30
+		OR = {
+		    has_government = national_conservative
+			has_government = centrist
+			has_government = new_democrat
+		}
+	}
+
+	option = {
+		name = cascadia.46.o1
+		hidden_effect = {
+		    country_event = { days = 100 id = cascadia.47 }
+		}
+		set_country_flag = orecorp_founded
+	}
+}
+
+#Orecorp factories dot landscape
+country_event = {
+	id = cascadia.47
+	title = cascadia.47.t
+	desc = cascadia.47.d
+	picture = orecorp_factory
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.47.o1
+		hidden_effect = {
+		    country_event = { days = 24 id = cascadia.48 }
+		}
+	}
+}
+
+#Orecorp records huge spike in profits
+country_event = {
+	id = cascadia.48
+	title = cascadia.48.t
+	desc = cascadia.48.d
+	picture = economic_plan
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.48.o1
+		add_political_power = 5
+		hidden_effect = {
+		    country_event = { days = 140 id = cascadia.49 }
+		}
+	}
+}
+
+#Orecorp named number one jobmaker in Oregon
+country_event = {
+	id = cascadia.49
+	title = cascadia.49.t
+	desc = cascadia.49.d
+	picture = wagner_press_conference
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.49.o1
+		add_political_power = 60
+		hidden_effect = {
+		    if = {
+			    limit = {
+				    has_government = new_democrat
+				}
+				country_event = { days = 32 id = cascadia.50 }
+			}
+		}
+	}
+}
+
+#Government tipped off
+country_event = {
+	id = cascadia.50
+	title = cascadia.50.t
+	desc = cascadia.50.d
+	picture = washington_state_capitol
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.50.o1
+		hidden_effect = {
+		    country_event = { days = 5 id = cascadia.51 }
+		}
+	}
+}
+
+#Assistant Minister of Defence forced to resign mysteriously
+country_event = {
+	id = cascadia.51
+	title = cascadia.51.t
+	desc = cascadia.51.d
+	picture = rumours_ross_leaving
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.51.o1
+		add_political_power = -20
+		retire_character = CSD_michael_stencel_air
+		hidden_effect = {
+			set_country_flag = CSD_michael_stencel_fired
+		    country_event = { days = 8 id = cascadia.52 }
+		}
+	}
+}
+
+#Speculation grows surrounding resignation
+country_event = {
+	id = cascadia.52
+	title = cascadia.52.t
+	desc = cascadia.52.d
+	picture = technology_council_media_freedoms
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.52.o1
+		hidden_effect = {
+		    country_event = { days = 2 id = cascadia.53 }
+		}
+	}
+}
+
+#Prime Minister Stine calls for inquiry into orecorp activities
+country_event = {
+	id = cascadia.53
+	title = cascadia.53.t
+	desc = cascadia.53.d
+	picture = wagner_press_conference
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.53.o1
+		add_political_power = -15
+		add_popularity = {
+			ideology = new_democrat
+			popularity = -0.02
+		}
+		hidden_effect = {
+		    country_event = { days = 4 id = cascadia.54 }
+		}
+	}
+}
+
+#President Brown approves inquiry
+country_event = {
+	id = cascadia.54
+	title = cascadia.54.t
+	desc = cascadia.54.d
+	picture = president_brown_approves_inquiry
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.54.o1
+		hidden_effect = {
+		    country_event = { days = 14 id = cascadia.55 }
+		}
+	}
+}
+
+#Presidential Commission into Orecorp Activities begins
+country_event = {
+	id = cascadia.55
+	title = cascadia.55.t
+	desc = cascadia.55.d
+	picture = central_committee_hearing
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.55.o1
+		hidden_effect = {
+		    country_event = { days = 13 id = cascadia.56 }
+		}
+	}
+}
+
+#Court cites lack of evidence as reason for ending commission
+country_event = {
+	id = cascadia.56
+	title = cascadia.56.t
+	desc = cascadia.56.d
+	picture = trial_of_the_committee
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.56.o1
+		hidden_effect = {
+		    country_event = { days = 1 id = cascadia.57 }
+		}
+	}
+}
+
+#Witness comes forward
+country_event = {
+	id = cascadia.57
+	title = cascadia.57.t
+	desc = cascadia.57.d
+	picture = washington_state_capitol
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.57.o1
+		hidden_effect = {
+		    country_event = { days = 2 id = cascadia.58 }
+		}
+	}
+}
+
+#Witness disappears
+country_event = {
+	id = cascadia.58
+	title = cascadia.58.t
+	desc = cascadia.58.d
+	picture = the_treaty_of_seattle
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.58.o1
+		hidden_effect = {
+		    country_event = { days = 4 id = cascadia.86 }
+		}
+	}
+}
+
+#Commission orders raid of orecorp headquarters
+country_event = {
+	id = cascadia.59
+	title = cascadia.59.t
+	desc = cascadia.59.d
+	picture = indiana_raid
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.59.o1
+		hidden_effect = {
+		    country_event = { days = 7 id = cascadia.60 }
+		}
+	}
+}
+
+#Revelations that Orecorp was planning to commit terror attacks and sabotage Mt. Jefferson to remove the government from power
+country_event = {
+	id = cascadia.60
+	title = cascadia.60.t
+	desc = cascadia.60.d
+	picture = wagner_press_conference
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.60.o1
+		hidden_effect = {
+		    country_event = { days = 2 id = cascadia.61 }
+		}
+	}
+}
+
+#Commission arrests key executives of orecorp
+country_event = {
+	id = cascadia.61
+	title = cascadia.61.t
+	desc = cascadia.61.d
+	picture = trade_council_arrested
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.61.o1
+		hidden_effect = {
+		    country_event = { days = 8 id = cascadia.62 }
+		}
+	}
+}
+
+#Orecorp liquidated
+country_event = {
+	id = cascadia.62
+	title = cascadia.62.t
+	desc = cascadia.62.d
+	picture = central_committee_hearing
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.62.o1
+		hidden_effect = {
+		    country_event = { days = 2 id = cascadia.63 }
+		}
+	}
+}
+
+#President Brown hails commission as true justice
+country_event = {
+	id = cascadia.63
+	title = cascadia.63.t
+	desc = cascadia.63.d
+	picture = brown_true_justice
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.63.o1
+		hidden_effect = {
+		    country_event = { days = 280 id = cascadia.64 }
+		}
+	}
+}
+
+#Orecorp factories and dockyards lie abandoned
+country_event = {
+	id = cascadia.64
+	title = cascadia.64.t
+	desc = cascadia.64.d
+	picture = orecorp_abandoned
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.64.o1
+		add_political_power = -30
+		add_stability = -0.02
+	}
+}
+
+#United bio region rally
+country_event = {
+	id = cascadia.65
+	title = cascadia.65.t
+	desc = cascadia.65.d
+	picture = united_bio_region_rally
+
+	fire_only_once = yes
+
+	trigger = {
+		tag = CSD
+		date > 2011.6.1
+		date < 2011.6.30
+	}
+
+	option = {
+		name = cascadia.65.o1
+	}
+}
+
+#Portland mayoral election campaign
+country_event = {
+	id = cascadia.66
+	title = cascadia.66.t
+	desc = cascadia.66.d
+	picture = portland_election
+
+	fire_only_once = yes
+
+	trigger = {
+		tag = CSD
+		date > 2013.12.1
+		date < 2013.12.30
+		OR = {
+		    has_government = national_conservative
+			has_government = centrist
+			has_government = new_democrat
+		}
+	}
+
+	option = {
+		name = cascadia.66.o1
+		hidden_effect = {
+		    country_event = { days = 90 id = cascadia.67 }
+		}
+	}
+}
+
+#Former leader of revolution in Portland Ted Wheeler is victorious
+country_event = {
+	id = cascadia.67
+	title = cascadia.67.t
+	desc = cascadia.67.d
+	picture = ted_wheeler_portland
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.67.o1
+	}
+}
+
+#Oregon bus crash
+country_event = {
+	id = cascadia.68
+	title = cascadia.68.t
+	desc = cascadia.68.d
+	picture = oregon_bus_crash
+
+	fire_only_once = yes
+
+	trigger = {
+		tag = CSD
+		date > 2012.12.1
+		date < 2012.12.30
+	}
+
+	option = {
+		name = cascadia.68.o1
+	}
+}
+
+#Parliament rejects proposal to replace cascadian flags with red flags
+country_event = {
+	id = cascadia.70
+	title = cascadia.70.t
+	desc = cascadia.70.d
+	picture = parliament_rejects_cascadia_flag_change
+
+	fire_only_once = yes
+
+	trigger = {
+		tag = CSD
+		date > 2012.5.1
+		date < 2012.5.30
+		has_government = revolutionary_socialist
+	}
+
+	option = {
+		name = cascadia.70.o1
+		add_political_power = 5
+	}
+}
+
+#Reports of white supremacist groups in rural Washington
+country_event = {
+	id = cascadia.71
+	title = cascadia.71.t
+	desc = cascadia.71.d
+	picture = white_supremacists_washington
+
+	fire_only_once = yes
+
+	option = {
+		name = cascadia.71.o1
+		hidden_effect = {
+		    country_event = { days = 13 id = cascadia.72 }
+		}
+	}
+
+	trigger = {
+		tag = CSD
+		date > 2014.1.1
+		date < 2014.1.30
+		NOT = {
+			has_government = fascist
+			has_country_leader = {
+				name = "Michael Stencel"
+				ruling_only = yes
+			}
+		}
+	}
+}
+
+#Residents of Easton worry about attacks on black residents
+country_event = {
+	id = cascadia.72
+	title = cascadia.72.t
+	desc = cascadia.72.d
+	picture = easton_washington
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.72.o1
+		hidden_effect = {
+		    country_event = { days = 2 id = cascadia.73 }
+		}
+	}
+}
+
+#News of attacks makes it onto national tv
+country_event = {
+	id = cascadia.73
+	title = cascadia.73.t
+	desc = cascadia.73.d
+	picture = fire_warden_newspaper
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.73.o1
+		add_political_power = -40
+		hidden_effect = {
+		    country_event = { days = 1 id = cascadia.74 }
+		}
+	}
+}
+
+#Kittitas County Commissionor Bruce Tabb calls for action
+country_event = {
+	id = cascadia.74
+	title = cascadia.74.t
+	desc = cascadia.74.d
+	picture = tabb_calls_for_action
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.74.o1
+		hidden_effect = {
+		    country_event = { days = 3 id = cascadia.75 }
+		}
+	}
+}
+
+#Police raid homes of suspected white supremacists
+country_event = {
+	id = cascadia.75
+	title = cascadia.75.t
+	desc = cascadia.75.d
+	picture = indiana_raid
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.75.o1
+		hidden_effect = {
+		    country_event = { days = 5 id = cascadia.76 }
+		}
+	}
+}
+
+#Silence on the issue
+country_event = {
+	id = cascadia.76
+	title = cascadia.76.t
+	desc = cascadia.76.d
+	picture = washington_state_capitol
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.76.o1
+		hidden_effect = {
+		    country_event = { days = 7 id = cascadia.77 }
+		}
+	}
+}
+
+#Member of group confesses to participating in activities
+country_event = {
+	id = cascadia.77
+	title = cascadia.77.t
+	desc = cascadia.77.d
+	picture = white_supremacist_confesses
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.77.o1
+		hidden_effect = {
+		    country_event = { days = 2 id = cascadia.78 }
+		}
+	}
+}
+
+#KKK members arrested
+country_event = {
+	id = cascadia.78
+	title = cascadia.78.t
+	desc = cascadia.78.d
+	picture = india_emergency_arrests
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.78.o1
+		hidden_effect = {
+		    country_event = { days = 14 id = cascadia.79 }
+		}
+	}
+}
+
+#Trial of the kkk
+country_event = {
+	id = cascadia.79
+	title = cascadia.79.t
+	desc = cascadia.79.d
+	picture = trial_of_the_committee
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.79.o1
+		hidden_effect = {
+		    country_event = { days = 8 id = cascadia.80 }
+		}
+	}
+}
+
+#Guilty verdict
+country_event = {
+	id = cascadia.80
+	title = cascadia.80.t
+	desc = cascadia.80.d
+	picture = india_corruption_cabinet_on_trial
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.80.o1
+		hidden_effect = {
+		    country_event = { days = 1 id = cascadia.81 }
+		}
+	}
+}
+
+#Celebrations in the streets, highly televised event
+country_event = {
+	id = cascadia.81
+	title = cascadia.81.t
+	desc = cascadia.81.d
+	picture = kkk_arrest_celebration
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.81.o1
+		add_political_power = 10
+		add_stability = 0.01
+	}
+}
+
+#New Capital. Since this event moved the capital, I guessed the intent was to be able to pick bewtween capitals, since it moved the capital, but not all of it was never coded. Ether way it keeps the event more or less the same just more options.
+country_event = {
+	id = cascadia.82
+	title = cascadia.82.t
+	desc = cascadia.82.d
+	picture = kkk_arrest_celebration
+
+	fire_only_once = yes
+
+	trigger = {
+		tag = CSD
+		NOT = {
+		    has_war_with = PCA
+		}
+	}
+	option = { #Seattle
+		name = cascadia.82.o1
+		set_capital = { state = 386 }
+		add_stability = 0.05
+		CSD_greg_walden = {
+			set_portraits = {
+				civilian = { large = "gfx/leaders/CSD/Portrait_CSD_Greg_Walden_Suit.png" }
+			}
+		}
+		ai_chance = {
+			factor = 70
+		}
+	}
+	option = {   #Portland
+		name = cascadia.82.o2
+		set_capital = { state = 385 }
+		385 = {
+		add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+		}
+		971 = {
+		add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+		}
+		ai_chance = {
+			factor = 30
+		}
+		CSD_greg_walden = {
+			set_portraits = {
+				civilian = { large = "gfx/leaders/CSD/Portrait_CSD_Greg_Walden_Suit.png" }
+			}
+		}
+	}
+}
+
+#Election w/ Richardson
+country_event = {
+	id = cascadia.83
+	title = cascadia.83.t
+	desc = cascadia.83.d
+	picture = cascadian_nationalism
+
+	fire_only_once = yes
+
+	trigger = {
+		date > 2017.4.1
+		date < 2017.4.30
+		has_country_flag = prime_minister_richardson
+	}
+
+	option = {
+		name = cascadia.83.o1
+		ai_chance = {
+			factor = 30
+		}
+		add_popularity = {
+		ideology = new_democrat
+		popularity = 0.15
+		}
+		set_politics = {
+		ruling_party = new_democrat
+		}
+		CSD_patty_murray = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					expire = "1.1.1.1"
+					ideology = ecopolitician
+				}
+			}
+		}
+		custom_effect_tooltip = cascadia_progressive_cabinet_tooltip
+		hidden_effect = {
+			add_ideas = cascadia_fom_david_adam_smith
+			add_ideas = cascadia_ind_peter_defazio
+			add_ideas = cascadia_nsm_earl_blumenauer
+			add_ideas = cascadia_inm_meroe_park
+		}
+	}
+	option = {
+		name = cascadia.83.o2
+		ai_chance = {
+			factor = 20
+		}
+		add_popularity = {
+		ideology = centrist
+		popularity = 0.15
+		}
+		set_politics = {
+		ruling_party = centrist
+		}
+		CSD_tim_reeves = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					expire = "1.1.1.1"
+					ideology = right_libertarian
+				}
+			}
+		}
+		custom_effect_tooltip = cascadia_libertarian_cabinet
+		hidden_effect = {
+			add_ideas = cascadia_fom_richard_burke
+			add_ideas = cascadia_ind_bill_sizemore
+			add_ideas = cascadia_nsm_lars_hedbor
+			add_ideas = cascadia_inm_timothy_perkins
+		}
+
+	}
+	option = {
+		name = cascadia.83.o3
+		ai_chance = {
+			factor = 50
+		}
+		add_popularity = {
+		ideology = national_conservative
+		popularity = 0.05
+		}
+		CSD_gordon_smith = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					expire = "1.1.1.1"
+					ideology = american_conservative
+				}
+			}
+		}
+		custom_effect_tooltip = cascadia_conservative_cabinet_tooltip
+		hidden_effect = {
+			add_ideas = cascadia_fom_glenn_beck
+			add_ideas = cascadia_ind_allan_alley
+			add_ideas = cascadia_nsm_michael_stencel
+			add_ideas = cascadia_inm_evan_mcmullin
+		}
+	}
+}
+
+#Election w/ Wagner
+country_event = {
+	id = cascadia.84
+	title = cascadia.84.t
+	desc = cascadia.84.d
+	picture = cascadian_nationalism
+
+	fire_only_once = yes
+
+	trigger = {
+		date > 2017.4.1
+		date < 2017.4.30
+		has_country_flag = prime_minister_wagner
+	}
+
+	option = {
+		name = cascadia.84.o1
+		ai_chance = {
+			factor = 30
+		}
+		add_popularity = {
+		ideology = new_democrat
+		popularity = 0.15
+		}
+		set_politics = {
+		ruling_party = new_democrat
+		}
+		CSD_cyrus_habib = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					expire = "1.1.1.1"
+					ideology = ecopolitician
+				}
+			}
+		}
+		custom_effect_tooltip = cascadia_progressive_cabinet_tooltip
+		hidden_effect = {
+			add_ideas = cascadia_fom_david_adam_smith
+			add_ideas = cascadia_ind_peter_defazio
+			add_ideas = cascadia_nsm_earl_blumenauer
+			add_ideas = cascadia_inm_meroe_park
+		}
+	}
+	option = {
+		name = cascadia.84.o2
+		ai_chance = {
+			factor = 20
+		}
+		add_popularity = {
+		ideology = centrist
+		popularity = 0.05
+		}
+		CSD_steven_nielson = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					expire = "1.1.1.1"
+					ideology = right_libertarian
+				}
+			}
+		}
+	}
+	option = {
+		name = cascadia.84.o3
+		ai_chance = {
+			factor = 50
+		}
+		add_popularity = {
+		ideology = national_conservative
+		popularity = 0.15
+		}
+		set_politics = {
+		ruling_party = national_conservative
+		}
+		CSD_chris_dudley = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					expire = "1.1.1.1"
+					ideology = american_conservative
+				}
+			}
+		}
+		custom_effect_tooltip = cascadia_conservative_cabinet_tooltip
+		hidden_effect = {
+			add_ideas = cascadia_fom_glenn_beck
+			add_ideas = cascadia_ind_allan_alley
+			add_ideas = cascadia_nsm_michael_stencel
+			add_ideas = cascadia_inm_evan_mcmullin
+		}
+	}
+}
+
+#Election w/ Stine
+country_event = {
+	id = cascadia.85
+	title = cascadia.85.t
+	desc = cascadia.85.d
+	picture = cascadian_nationalism
+
+	fire_only_once = yes
+
+	trigger = {
+		date > 2017.4.1
+		date < 2017.4.30
+		has_country_flag = prime_minister_stine
+	}
+
+	option = {
+		name = cascadia.85.o1
+		ai_chance = {
+			factor = 30
+		}
+		add_popularity = {
+		ideology = new_democrat
+		popularity = 0.05
+		}
+		CSD_peter_defazio = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					expire = "1.1.1.1"
+					ideology = ecopolitician
+				}
+			}
+		}
+		custom_effect_tooltip = cascadia_replaces_defazio_in_cabinet
+		hidden_effect = {
+			add_ideas = cascadia_ind_pramila_jayapal
+		}
+	}
+	option = {
+		name = cascadia.85.o2
+		ai_chance = {
+			factor = 20
+		}
+		add_popularity = {
+		ideology = centrist
+		popularity = 0.15
+		}
+		set_politics = {
+		ruling_party = centrist
+		}
+		CSD_bill_sizemore = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					expire = "1.1.1.1"
+					ideology = right_libertarian
+				}
+			}
+		}
+		custom_effect_tooltip = cascadia_libertarian_cabinet
+		hidden_effect = {
+			add_ideas = cascadia_fom_richard_burke
+			add_ideas = cascadia_ind_bill_sizemore
+			add_ideas = cascadia_nsm_lars_hedbor
+			add_ideas = cascadia_inm_timothy_perkins
+		}
+
+	}
+	option = {
+		name = cascadia.85.o3
+		ai_chance = {
+			factor = 50
+		}
+		add_popularity = {
+		ideology = national_conservative
+		popularity = 0.15
+		}
+		set_politics = {
+		ruling_party = national_conservative
+		}
+		CSD_jaime_herrera_beutler = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					expire = "1.1.1.1"
+					ideology = american_conservative
+				}
+			}
+		}
+		custom_effect_tooltip = cascadia_conservative_cabinet_tooltip
+		hidden_effect = {
+			add_ideas = cascadia_fom_glenn_beck
+			add_ideas = cascadia_ind_allan_alley
+			add_ideas = cascadia_nsm_michael_stencel
+			add_ideas = cascadia_inm_evan_mcmullin
+		}
+	}
+}
+
+#the prime ministers decision
+country_event = {
+	id = cascadia.86
+	title = cascadia.86.t
+	desc = cascadia.86.d
+	picture = the_prime_ministers_decision
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.86.o1
+		ai_chance = {
+			base = 50
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_COALITION_FOR_FREEDOM_STINE
+					}
+				}
+				factor = 0
+			}
+		}
+		hidden_effect = {
+		    country_event = { days = 4 id = cascadia.87 }
+		}
+	}
+	option = {
+		name = cascadia.86.o2
+		ai_chance = {
+			base = 50
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_JUNTA
+					}
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_ORECORP
+					}
+				}
+				factor = 0
+			}
+		}
+		hidden_effect = {
+		    country_event = { days = 4 id = cascadia.59 }
+		}
+	}
+}
+
+#assasination attempt against cabinet
+country_event = {
+	id = cascadia.87
+	title = cascadia.87.t
+	desc = cascadia.87.d
+	picture = cabinet_assasination_attempt
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.87.o1
+		hidden_effect = {
+		    country_event = { days = 4 id = cascadia.88 }
+		}
+	}
+}
+
+#Mt.Jefferson Complex Collapses
+country_event = {
+	id = cascadia.88
+	title = cascadia.88.t
+	desc = cascadia.88.d
+	picture = jefferson_complex_collapse
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.88.o1
+		hidden_effect = {
+		    country_event = { days = 4 id = cascadia.89 }
+		}
+		retire_character = CSD_kevin_stine
+		set_country_flag = CSD_kate_brown_dead
+	}
+}
+
+#seattle coup
+country_event = {
+	id = cascadia.89
+	title = cascadia.89.t
+	desc = cascadia.89.d
+	picture = seattle_coup
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.89.o1
+		set_politics = {
+	        ruling_party = nationalist
+            elections_allowed = no
+        }
+		retire_character = CSD_greg_walden
+		CSD_michael_stencel = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					expire = "1.1.1.1"
+					ideology = military_junta
+				}
+			}
+		}
+		set_party_name = {
+			name = "Military Junta"
+			long_name = "Military Junta"
+			ideology = nationalist
+		}
+		hidden_effect = {
+			clr_country_flag = CSD_michael_stencel_fired
+			remove_ideas = idea_csd_mixed_economy
+			remove_ideas = idea_csd_centralised_republic
+			remove_ideas = idea_csd_stines_plan
+			remove_ideas = cascadia_fom_david_adam_smith
+			remove_ideas = cascadia_ind_peter_defazio
+			remove_ideas = cascadia_nsm_earl_blumenauer
+			remove_ideas = cascadia_inm_meroe_park
+			remove_ideas = cascadia_sic_kate_brown
+			add_ideas =	cascadia_sic_jill_lannan
+	        add_ideas = cascadia_fom_carter_ham
+	        add_ideas = cascadia_ind_mark_emmert
+	        add_ideas = cascadia_nsm_thomas_hemingway
+	        add_ideas = cascadia_inm_gregory_todd
+			load_focus_tree = orecorp_tree
+			news_event = {
+				id = news.324
+				days = 7
+			}
+        }
+	}
+}
+
+#stencels decision
+country_event = {
+	id = cascadia.90
+	title = cascadia.90.t
+	desc = cascadia.90.d
+	picture = stencels_decision
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.90.o1
+		ai_chance = {
+			base = 15
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_JUNTA
+					}
+				}
+				factor = 0
+			}
+		}
+		complete_national_focus = CSD_orecorp_rule
+		hidden_effect = {
+			set_cosmetic_tag = CSD_Orecorp
+		}
+	}
+	option = {
+		name = cascadia.90.o2
+		ai_chance = {
+			base = 15
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = CSD_ai_behavior
+						option = CSD_ORECORP
+					}
+				}
+				factor = 0
+			}
+		}
+		complete_national_focus = CSD_junta_rule
+		hidden_effect = {
+			set_cosmetic_tag = CSD_Orecorp
+		}
+		add_political_power = -150
+	}
+}
+
+#telfer to step down
+country_event = {
+	id = cascadia.91
+	title = cascadia.91.t
+	desc = cascadia.91.d
+	picture = CSD_telfer_to_step_down
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.91.o1
+	}
+}
+#ian telfer addresses the nation
+country_event = {
+	id = cascadia.92
+	title = cascadia.92.t
+	desc = cascadia.92.d
+	picture = CSD_telfer_addresses_nation
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.92.o1
+	}
+}
+#foresting profits skyrocket
+country_event = {
+	id = cascadia.93
+	title = cascadia.93.t
+	desc = cascadia.93.d
+	picture = CSD_orecorp_big_foresting_profits
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.93.o1
+	}
+}
+#merging of the branches
+country_event = {
+	id = cascadia.94
+	title = cascadia.94.t
+	desc = cascadia.94.d
+	picture = CSD_orecorp_merging_the_branches
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.94.o1
+	}
+}
+#stock market prediction high
+country_event = {
+	id = cascadia.95
+	title = cascadia.95.t
+	desc = cascadia.95.d
+	picture = CSD_orecorp_stonks_high
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.95.o1
+	}
+}
+#telfer economic convention
+country_event = {
+	id = cascadia.96
+	title = cascadia.96.t
+	desc = cascadia.96.d
+	picture = CSD_orecorp_telfer_convention
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.96.o1
+	}
+}
+#ban socialist parties
+country_event = {
+	id = cascadia.97
+	title = cascadia.97.t
+	desc = cascadia.97.d
+	picture = CSD_banned_lefties
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.97.o1
+	}
+}
+#Hilary Franz missing
+country_event = {
+	id = cascadia.99
+	title = cascadia.99.t
+	desc = cascadia.99.d
+	picture = CSD_hilary_franz_gone
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.99.o1
+		CSD_doug_barnes = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					expire = "1.1.1.1"
+					ideology = libertarian_socialist
+				}
+			}
+		}
+	}
+}
+#day of coup made national holiday
+country_event = {
+	id = cascadia.100
+	title = cascadia.100.t
+	desc = cascadia.100.d
+	picture = CSD_coup_day_holiday
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.100.o1
+	}
+}
+#independence members flip
+country_event = {
+	id = cascadia.101
+	title = cascadia.101.t
+	desc = cascadia.101.d
+	picture = CSD_independence_flips
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.101.o1
+	}
+}
+#elwha dams reopened
+country_event = {
+	id = cascadia.102
+	title = cascadia.102.t
+	desc = cascadia.102.d
+	picture = CSD_elwha_opens
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.102.o1
+	}
+}
+#stencel sworn in as PM
+country_event = {
+	id = cascadia.103
+	title = cascadia.103.t
+	desc = cascadia.103.d
+	picture = CSD_stencel_is_PM
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.103.o1
+	}
+}
+#PM Stencel address
+country_event = {
+	id = cascadia.104
+	title = cascadia.104.t
+	desc = cascadia.104.d
+	picture = CSD_stencel_address
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.104.o1
+	}
+}
+#ministry of innovation
+country_event = {
+	id = cascadia.105
+	title = cascadia.105.t
+	desc = cascadia.105.d
+	picture = CSD_ministry_of_innovation
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.105.o1
+	}
+}
+#project skookum
+country_event = {
+	id = cascadia.106
+	title = cascadia.106.t
+	desc = cascadia.106.d
+	picture = CSD_cascadian_nuclear
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.106.o1
+	}
+}
+#national council founded
+country_event = {
+	id = cascadia.107
+	title = cascadia.107.t
+	desc = cascadia.107.d
+	picture = CSD_national_council_founded
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.107.o1
+	}
+}
+#the council's spokesperson
+country_event = {
+	id = cascadia.108
+	title = cascadia.108.t
+	desc = cascadia.108.d
+	picture = CSD_council_spokesperson
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.108.o1
+		set_country_flag = picked_rob_monster
+		hidden_effect = {
+			remove_ideas = cascadia_sic_kevin_macdonald
+			remove_ideas = cascadia_sic_michael_stencel
+		}
+		add_ideas = cascadia_sic_rob_monster
+	}
+	option = {
+		name = cascadia.108.o2
+		set_country_flag = picked_paul_allen
+		hidden_effect = {
+			remove_ideas = cascadia_sic_kevin_macdonald
+			remove_ideas = cascadia_sic_michael_stencel
+		}
+		add_ideas = cascadia_sic_paul_allen
+	}
+	option = {
+		name = cascadia.108.o3
+		set_country_flag = picked_terry_emmert
+		hidden_effect = {
+			remove_ideas = cascadia_sic_kevin_macdonald
+			remove_ideas = cascadia_sic_michael_stencel
+		}
+		add_ideas = cascadia_sic_terry_emmert
+	}
+	option = {
+		name = cascadia.108.o4
+		set_country_flag = picked_solomon_yue
+		hidden_effect = {
+			remove_ideas = cascadia_sic_kevin_macdonald
+			remove_ideas = cascadia_sic_michael_stencel
+		}
+		add_ideas = cascadia_sic_solomon_yue
+	}
+}
+#the council's expertise
+country_event = {
+	id = cascadia.109
+	title = cascadia.109.t
+	desc = cascadia.109.d
+	picture = CSD_council_expertise
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.109.o1
+	}
+}
+#surge of eco terrorism
+country_event = {
+	id = cascadia.110
+	title = cascadia.110.t
+	desc = cascadia.110.d
+	picture = CSD_eco_terrorism
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.110.o1
+	}
+}
+#growth in uranium extraction
+country_event = {
+	id = cascadia.111
+	title = cascadia.111.t
+	desc = cascadia.111.d
+	picture = CSD_more_uranium_extraction
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.111.o1
+	}
+}
+#growth in uranium extraction
+country_event = {
+	id = cascadia.112
+	title = cascadia.112.t
+	desc = cascadia.112.d
+	picture = CSD_militias_are_pmcs
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.112.o1
+	}
+}
+#students demonstration at psu
+country_event = {
+	id = cascadia.113
+	title = cascadia.113.t
+	desc = cascadia.113.d
+	picture = CSD_student_demonstration_at_PSU
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.113.o1
+		hidden_effect = {
+			country_event = {
+				id = cascadia.114
+				days = 7
+			}
+		}
+	}
+}
+#student demonstration expands
+country_event = {
+	id = cascadia.114
+	title = cascadia.114.t
+	desc = cascadia.114.d
+	picture = CSD_student_demonstrations_expand
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.114.o1
+		add_political_power = -5
+		hidden_effect = {
+			country_event = {
+				id = cascadia.115
+				days = 7
+			}
+		}
+	}
+}
+#protests reach seattle
+country_event = {
+	id = cascadia.115
+	title = cascadia.115.t
+	desc = cascadia.115.d
+	picture = CSD_protests_reach_seattle
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.115.o1
+		add_stability = -0.01
+		hidden_effect = {
+			country_event = {
+				id = cascadia.116
+				days = 14
+			}
+		}
+	}
+}
+#protests turn violent
+country_event = {
+	id = cascadia.116
+	title = cascadia.116.t
+	desc = cascadia.116.d
+	picture = CSD_protests_turn_violent
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.116.o1
+		add_political_power = -10
+		hidden_effect = {
+			country_event = {
+				id = cascadia.117
+				days = 7
+			}
+		}
+	}
+}
+#leftists occupy portland
+country_event = {
+	id = cascadia.117
+	title = cascadia.117.t
+	desc = cascadia.117.d
+	picture = CSD_leftists_occupy_portland
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.117.o1
+		add_stability = -0.04
+		add_manpower = -9
+		hidden_effect = {
+			country_event = {
+				id = cascadia.118
+				days = 7
+			}
+		}
+	}
+}
+#military deployed in urban regions
+country_event = {
+	id = cascadia.118
+	title = cascadia.118.t
+	desc = cascadia.118.d
+	picture = CSD_military_deployed_in_urban_regions
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.118.o1
+		add_stability = 0.01
+		hidden_effect = {
+			country_event = {
+				id = cascadia.119
+				days = 21
+			}
+		}
+	}
+}
+#socialist bomb plot defused
+country_event = {
+	id = cascadia.119
+	title = cascadia.119.t
+	desc = cascadia.119.d
+	picture = CSD_bomb_plot_defused
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.119.o1
+		add_political_power = 10
+		add_stability = 0.04
+		hidden_effect = {
+			country_event = {
+				id = cascadia.120
+				days = 7
+			}
+		}
+	}
+}
+#organizers trialed
+country_event = {
+	id = cascadia.120
+	title = cascadia.120.t
+	desc = cascadia.120.d
+	picture = CSD_organizers_trialed
+
+	is_triggered_only = yes
+
+	option = { #kill them
+		name = cascadia.120.o1
+		hidden_effect = {
+			country_event = {
+				id = cascadia.121
+				days = 60
+			}
+			country_event = {
+				id = cascadia.122
+				days = 45
+			}
+			news_event = {
+				id = news.323
+				days = 7
+			}
+		}
+	}
+	option = { #life imprisonment
+		name = cascadia.120.o2
+		hidden_effect = {
+			country_event = {
+				id = cascadia.121
+				days = 60
+			}
+			country_event = {
+				id = cascadia.122
+				days = 45
+			}
+		}
+	}
+}
+#portland police fired
+country_event = {
+	id = cascadia.121
+	title = cascadia.121.t
+	desc = cascadia.121.d
+	picture = CSD_police_chief_fired
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.121.o1
+		add_political_power = 15
+		hidden_effect = {
+			country_event = {
+				id = cascadia.123
+				days = 60
+			}
+		}
+	}
+}
+#celebration for protest "veterans"
+country_event = {
+	id = cascadia.122
+	title = cascadia.122.t
+	desc = cascadia.122.d
+	picture = CSD_celebrate_child_killers
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.122.o1
+	}
+}
+#cascadian patriotic youth
+country_event = {
+	id = cascadia.123
+	title = cascadia.123.t
+	desc = cascadia.123.d
+	picture = CSD_cascadian_youth
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.123.o1
+		add_political_power = 10
+	}
+}
+#parliament dissolved
+country_event = {
+	id = cascadia.124
+	title = cascadia.124.t
+	desc = cascadia.124.d
+	picture = CSD_national_council_founded
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.124.o1
+	}
+}
+
+#Election w/ Franz
+country_event = {
+	id = cascadia.125
+	title = cascadia.125.t
+	desc = cascadia.125.d
+	picture = cascadian_nationalism
+
+	fire_only_once = yes
+
+	trigger = {
+		date > 2017.4.1
+		date < 2017.4.30
+		has_country_flag = labor_front_in_government
+	}
+
+	option = {
+		name = cascadia.125.o1
+		ai_chance = {
+			factor = 50
+		}
+		add_popularity = {
+		ideology = revolutionary_socialist
+		popularity = 0.05
+		}
+	}
+	option = {
+		name = cascadia.125.o2
+		ai_chance = {
+			factor = 50
+		}
+		add_popularity = {
+		ideology = liberal
+		popularity = 0.15
+		}
+		set_politics = {
+		ruling_party = liberal
+		}
+		CSD_john_kitzhaber = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					expire = "1.1.1.1"
+					ideology = old_american_democrats
+				}
+			}
+		}
+		hidden_effect = {
+			set_cosmetic_tag = CSD_Kitz
+			add_ideas = cascadia_fom_denny_heck
+			add_ideas = cascadia_ind_rick_metsger
+			add_ideas = cascadia_nsm_jeanne_atkins
+			add_ideas = cascadia_inm_meroe_park
+		}
+	}
+}
+
+#Election w/ Walden
+country_event = {
+	id = cascadia.126
+	title = cascadia.126.t
+	desc = cascadia.126.d
+	picture = cascadian_nationalism
+
+	fire_only_once = yes
+
+	trigger = {
+		date > 2017.4.1
+		date < 2017.4.30
+		has_country_flag = independence_party_in_government
+	}
+
+	option = {
+		name = cascadia.126.o1
+		ai_chance = {
+			factor = 50
+		}
+		add_popularity = {
+		ideology = nationalist
+		popularity = 0.05
+		}
+	}
+	option = {
+		name = cascadia.126.o2
+		ai_chance = {
+			factor = 50
+		}
+		add_popularity = {
+		ideology = moderate_socialist
+		popularity = 0.15
+		}
+		set_politics = {
+		ruling_party = moderate_socialist
+		}
+		CSD_jason_levin = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					expire = "1.1.1.1"
+					ideology = eco_socialist
+				}
+			}
+		}
+		hidden_effect = {
+			add_ideas = cascadia_fom_william_smaldone
+			add_ideas = cascadia_ind_chris_henry
+			add_ideas = cascadia_nsm_walter_brown
+			add_ideas = cascadia_inm_meroe_park
+		}
+	}
+}
