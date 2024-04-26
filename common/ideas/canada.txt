@@ -1683,6 +1683,79 @@ ideas = {
 			}
 		}
 		
+		CAN_manning_legacy = {
+			allowed = {
+				always = yes
+			}
+			picture = CAN_distance_from_socialism
+			removal_cost = -1
+			modifier = {
+				drift_defence_factor = 0.02
+				political_power_cost = -0.02
+				stability_factor = 0.035
+			}
+		}
+		
+		CAN_carbon_cap_price = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea CAN_carbon_tax" }
+			
+			allowed = {
+				always = no
+			}
+			
+			picture = new_tax_cuts
+			
+			modifier = {
+				MONTHLY_POPULATION = 0.02
+				production_factory_efficiency_gain_factor = -0.01
+				production_factory_max_efficiency_factor = -0.01
+				production_speed_buildings_factor = -0.01
+				local_resources_factor = 0.01
+				stability_factor = 0.01
+				repair_speed_infrastructure_factor = 0.07
+				repair_speed_factor = 0.06
+			}
+		}
+		
+		CAN_christian_influence = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea CAN_christian_influence" }
+			
+			allowed = {
+				always = no
+			}
+			
+			picture = new_tax_cuts
+			
+			modifier = {
+				research_speed_factor = -0.02
+				MONTHLY_POPULATION = 0.02
+				drift_defence_factor = 0.02
+				communist_drift = -0.02
+				revolutionary_socialist_drift = -0.02
+				stability_factor = -0.02
+				political_power_cost = -0.04
+				surrender_limit = 0.02
+			}
+		}
+		
+		CAN_freedom_to_hire = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea CAN_freedom_to_hire" }
+			
+			allowed = {
+				always = no
+			}
+			
+			picture = new_tax_cuts
+			
+			modifier = {
+				party_popularity_stability_factor = 0.05
+				production_factory_start_efficiency_factor = 0.02
+				production_factory_efficiency_gain_factor = 0.04
+				production_factory_max_efficiency_factor = 0.05
+				production_speed_buildings_factor = 0.03
+			}
+		}
+		
 		### NDP Ideas ###
 		
 		# - Layton
@@ -5014,9 +5087,6 @@ ideas = {
 
 			allowed = {
 				original_tag = CAN
-				NOT = {
-					has_available_idea_with_traits = { idea = tank_manufacturer limit = 1 }
-				}
 			}
 
 			cost = 150
@@ -5036,9 +5106,6 @@ ideas = {
 
 			allowed = {
 				original_tag = CAN
-				NOT = {
-					has_available_idea_with_traits = { idea = tank_manufacturer limit = 1 }
-				}
 			}
 
 			cost = 150
@@ -5223,16 +5290,24 @@ ideas = {
 			research_bonus = {
 				air_equipment = 0.10
 			}
+			
+			modifier = {
+				consumer_goods_factor = -0.02
+			}
 
 			traits = { medium_aircraft_manufacturer }
 		}
 		
-		bombardier  = {
+		canada_bombardier  = {
 
 			picture = bombardier
 
 			allowed = {
 				original_tag = CAN
+			}
+			
+			visible = {
+				NOT = { has_completed_focus = CAN_divest_to_private_enterprise }
 			}
 
 			cost = 150
@@ -5252,6 +5327,10 @@ ideas = {
 
 			allowed = {
 				original_tag = CAN
+			}
+			
+			visible = {
+				has_completed_focus = CAN_divest_to_private_enterprise
 			}
 
 			cost = 50
@@ -5612,6 +5691,10 @@ ideas = {
 				train_tech = 0.15
 			}
 			
+			modifier = {
+				consumer_goods_factor = -0.02
+			}
+			
 			traits = { railway_company }
 		}
 	}
@@ -5951,7 +6034,7 @@ ideas = {
 				} 
 			}
 			
-			traits = { corporate_suit }			
+			traits = { apologetic_clerk }			
 		}
 		
 		canada_sic_bob_rae = {
@@ -6501,7 +6584,7 @@ ideas = {
 				} 
 			}
 			
-			traits = { autocratic_charmer }			
+			traits = { power_hungry_demagogue }			
 		}
 	
 	}

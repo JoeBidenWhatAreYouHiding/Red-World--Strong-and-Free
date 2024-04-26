@@ -5858,6 +5858,7 @@ focus_tree = {
 				}
 			}
 			add_stability = 0.04
+			add_political_power = -40
 		}
 	}
 	
@@ -6006,7 +6007,6 @@ focus_tree = {
 		prerequisite = {
 			focus = CAN_recovery_of_the_century
 			focus = CAN_laytons_sucsessor
-			focus = CAN_new_ndp_in_power
 		}
 		
 		relative_position_id = CAN_recovery_of_the_century
@@ -7110,7 +7110,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_new_ndp_in_power
-		icon = X
+		icon = GFX_goal_CAN_new_ndp_in_power
 		cost = 6
 		
 		prerequisite = {
@@ -7188,7 +7188,7 @@ focus_tree = {
 
 	focus = {
 		id = CAN_centrist_liberals_in_power
-		icon = X
+		icon = GFX_goal_CAN_centrist_liberals_in_power
 		cost = 6
 		
 		prerequisite = {
@@ -7223,7 +7223,7 @@ focus_tree = {
 
 	focus = {
 		id = CAN_social_liberals_in_power
-		icon = X
+		icon = GFX_goal_CAN_social_liberals_in_power
 		cost = 6
 		
 		prerequisite = {
@@ -8615,7 +8615,23 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = rw_canada.159
+			add_political_power = 10
+			if = {
+				limit = { has_government = nationalist }
+				add_trait = {
+					ideology = neoconservative
+					character = CAN_preston_manning
+					trait = CAN_new_era_prime_minister
+				}
+			}
+			else = {
+				add_trait = {
+					ideology = progressive_conservative
+					character = CAN_preston_manning
+					trait = CAN_new_era_prime_minister
+				}
+			}
 		}
 	}
 
@@ -8656,7 +8672,9 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = rw_canada.158
+			add_political_power = 10
+			add_ideas = CAN_manning_legacy
 		}
 	}
 
@@ -8685,7 +8703,18 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_ideas = CAN_carbon_cap_price
+			every_owned_state = {
+				add_state_modifier = {
+					modifier = {
+						local_resources_factor = 0.06
+						local_supplies = 0.06
+						industry_free_repair_factor = 0.5
+					}
+				}
+			}
+			add_political_power = 40
+			add_stability = -0.04
 		}
 	}
 	
@@ -8776,7 +8805,19 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_political_power = 50
+			add_timed_idea = {
+				idea = CAN_christian_influence
+				days = 1200
+			}
+			CAN_add_3_percent_popularity = yes
+			random_owned_controlled_state = {
+				add_state_modifier = {
+					modifier = {
+						local_manpower = 0.02
+					}
+				}
+			}
 		}
 	}
 	
@@ -8807,7 +8848,14 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			add_offsite_building = {
+				type = industrial_complex level = 1
+            }
+			add_ideas = CAN_freedom_to_hire
+			country_event = 
 		}
 	}
 	
@@ -12433,16 +12481,16 @@ focus_tree = {
 			else = {
 				effect_tooltip = {
 					swap_ideas = {
-						remove_idea = bombardier
+						remove_idea = canada_bombardier
 						add_idea = bombardier2
 					}
 					custom_effect_tooltip = CAN_cost_to_hire_tt
 				}
 				hidden_effect = {
 					if = {
-						limit = { has_idea = bombardier }
+						limit = { has_idea = canada_bombardier }
 						swap_ideas = {
-							remove_idea = bombardier
+							remove_idea = canada_bombardier
 							add_idea = bombardier2
 						}
 					}
@@ -12810,6 +12858,7 @@ focus_tree = {
 					has_government = new_democrat
 					has_government = moderate_socialist
 				}
+				NOT = { has_completed_focus = CAN_residential_focus }
 			}
 		}
 
@@ -12978,6 +13027,10 @@ focus_tree = {
 		relative_position_id = CAN_adress_housing_crisis
 		x = 2
 		y = 2
+		
+		available = {
+			always = no
+		}
 
 		bypass = {
 			hidden_trigger = {
@@ -12987,6 +13040,7 @@ focus_tree = {
 					has_government = national_conservative
 					has_government = centrist
 				}
+				NOT = { has_completed_focus = CAN_affordability_focus }
 			}
 		}
 
@@ -14136,9 +14190,11 @@ focus_tree = {
 						tag = UTA
 						tag = ARI
 						tag = TEX
+						tag = AMC
+						tag = CSD
 					}
 					NOT = { is_in_faction_with = CAN }
-					is_subject = no
+					NOT = { is_subject_of = CAN }
 				}
 				country_event = canada_diplo.30
 			}
@@ -16808,7 +16864,7 @@ focus_tree = {
 				add_ideas = CAN_strenthened_csis_lar
 			}
 			else = {
-				add_ideas = CAN_strenthened_csis
+				add_ideas = CAN_strenthened_csis_idea
 			}
 		}
 	}
