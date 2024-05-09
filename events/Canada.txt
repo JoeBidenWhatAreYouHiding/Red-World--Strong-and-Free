@@ -9269,8 +9269,12 @@ country_event = {
 	immediate = {
 		hidden_effect = {
 			random_list = {
-				50 = { country_event = { id = can_flavour.5 days = 2 }  } #Ottawa wins
-				50 = { country_event = { id = can_flavour.4 days = 2 }  } #Arizona wins
+				50 = { #Ottawa wins
+					set_global_flag = CAN_senators_win_cup
+				}
+				50 = { #Arizona wins
+					set_global_flag = ARI_coyotes_win_cup
+				}
 			}
 		}
 	}
@@ -9278,10 +9282,18 @@ country_event = {
 	option = {
 		name = can_flavour.3.o1
 		trigger = { tag = CAN }
+		hidden_effect = {
+			country_event = { id = can_flavour.5 days = 1 }
+			country_event = { id = can_flavour.4 days = 1 }
+		}
 	}
 	option = {
 		name = can_flavour.o2.b
 		trigger = { tag = ARI }
+		hidden_effect = {
+			country_event = { id = can_flavour.5 days = 1 }
+			country_event = { id = can_flavour.4 days = 1 }
+		}
 	}
 }
 
@@ -9292,15 +9304,14 @@ country_event = {
 	desc = can_flavour.4.d
 	picture = cyotes_win_the_cup
 
-	fire_only_once = yes
 	is_triggered_only = yes
-	major = yes
 
-	show_major = {
+	trigger = {
 		OR = {
 			tag = CAN
 			tag = ARI
 		}
+		has_global_flag = ARI_coyotes_win_cup
 	}
 	
 	option = {
@@ -9323,15 +9334,14 @@ country_event = {
 	desc = can_flavour.5.d
 	picture = senators_win_the_cup
 
-	fire_only_once = yes
 	is_triggered_only = yes
-	major = yes
-
-	show_major = {
+	
+	trigger = {
 		OR = {
 			tag = CAN
 			tag = ARI
 		}
+		has_global_flag = CAN_senators_win_cup
 	}
 	
 	option = {
@@ -9347,19 +9357,32 @@ country_event = {
 	}
 }
 
-#Blockbuster Buys IntraFlix
+#Vancouver Riots
 country_event = {
-	id = can_flavour.32
-	title = can_flavour.32.t
-	desc = can_flavour.32.d
-	picture = blockbuster
+	id = can_flavour.7
+	title = can_flavour.7.t
+	desc = {
+		text = can_flavour.7.d_senators
+		trigger = { has_global_flag = CAN_senators_win_cup }
+	}
+	desc = {
+		text = can_flavour.7.d_coytes
+		trigger = { has_global_flag = ARI_coyotes_win_cup }
+	}
+	picture = 2011_vancouver_riots
 
 	fire_only_once = yes
 	is_triggered_only = yes
 	
 	option = {
-		name = can_flavour.32.o1
-	
+		name = can_flavour.7.o1
+		473 = {
+			damage_building = {
+				type = infrastructure
+				damage = 0.04
+			}
+		}
+		add_stability = -0.01
 	}
 }
 
@@ -9379,6 +9402,65 @@ country_event = {
 			add_extra_state_shared_building_slots = 1
 		}
 		add_stability = -0.01
+	}
+}
+
+#GSC Launched
+country_event = {
+	id = can_flavour.11
+	title = can_flavour.11.t
+	desc = can_flavour.11.d
+	picture = global_space_center
+
+	is_triggered_only = yes
+	
+	option = {
+		name = can_flavour.11.o1
+		add_stability = 0.02
+		every_country = {
+			limit = {
+				OR = {
+					tag = JAP
+					tag = SOV
+					tag = ENG
+					tag = AST
+					has_idea = idea_eu_member
+					is_post_america_nation = yes
+				}
+			}
+			country_event = can_flavour.11
+		}
+	}
+}
+
+#Chris Hadfield
+country_event = {
+	id = can_flavour.12
+	title = can_flavour.12.t
+	desc = can_flavour.12.d
+	picture = chris_hadfield
+
+	is_triggered_only = yes
+	
+	option = {
+		name = can_flavour.12.o1
+		add_stability = 0.04
+	}
+}
+
+#Blockbuster Buys IntraFlix
+country_event = {
+	id = can_flavour.32
+	title = can_flavour.32.t
+	desc = can_flavour.32.d
+	picture = blockbuster
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = can_flavour.32.o1
+	
 	}
 }
 
