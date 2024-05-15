@@ -13873,7 +13873,13 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			hidden_effect = {
+				set_variable = { CAN_army_experience_gain = 0.04 }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_army_modify_effect
+			custom_effect_tooltip = tooltip_blank_line
+			army_experience = 60
 		}
 	}
 	
@@ -13902,7 +13908,7 @@ focus_tree = {
 		completion_reward = {
 			hidden_effect = {
 				set_variable = { CAN_army_training = 0.08 }
-				set_variable = { CAN_weekly_manpower = 0.04 }
+				set_variable = { CAN_weekly_manpower = 20 }
 				force_update_dynamic_modifier = yes
 			}
 			custom_effect_tooltip = CAN_reserve_effect
@@ -14182,6 +14188,8 @@ focus_tree = {
 			hidden_effect = {
 				add_to_variable = { CAN_army_org = 0.05 }
 				set_variable = { CAN_special_forces = 5 }
+				set_variable = { CAN_special_forces_cap = 0.10 }
+				set_variable = { CAN_special_forces_attack = 0.15 }
 				force_update_dynamic_modifier = yes
 			}
 			custom_effect_tooltip = CAN_prof_effect
@@ -14380,7 +14388,8 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_ideas = CAN_memories_of_vimy
+			add_war_support = 0.06
 		}
 	}
 	
@@ -14412,7 +14421,42 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_tech_bonus = {
+				name = marines_bonus
+				bonus = 1
+				uses = 1
+				category = marine_tech
+			}
+			add_ideas = CAN_royal_canadian_marine_corp
+			if = {
+				limit = { NOT = { has_template = "Canadian Marine Division" } }
+				division_template = {
+					name = "Canadian Marine Division"
+					
+					regiments = {
+						marine = { x = 0 y = 0 }
+						marine = { x = 0 y = 1 }
+						marine = { x = 0 y = 2 }
+						marine = { x = 1 y = 0 }
+						marine = { x = 1 y = 1 }
+						marine = { x = 1 y = 2 }
+					}
+					support = {
+						recon = { x = 0 y = 0 }
+						engineer = { x = 0 y = 1 }
+						artillery = { x = 0 y = 2 }
+					}
+				}
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			random_owned_controlled_state = {
+				limit = { is_in_home_area = yes }
+				create_unit = {
+					division = "division_template = \"Canadian Marine Division\" start_experience_factor = 0.4"
+					owner = ROOT
+					count = 3
+				}
+			}
 		}
 	}
 	
@@ -14439,7 +14483,16 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = tp_tech
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			swap_ideas = {
+				remove_idea = CAN_royal_canadian_marine_corp
+				add_idea = CAN_royal_canadian_marine_corp2
+			}
 		}
 	}
 	
@@ -14466,7 +14519,10 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = CAN_royal_canadian_marine_corp2
+				add_idea = CAN_liberation_focus
+			}
 		}
 	}
 	
