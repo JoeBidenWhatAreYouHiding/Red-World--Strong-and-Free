@@ -4792,6 +4792,43 @@ country_event = {
 			}
 		}
 	}
+
+	option = { #Olivia Chow
+		name = rw_canada.198.o8
+		trigger = {
+			OR = {
+				has_country_flag = ndp_leader_resigns_2011
+				NOT = {
+					OR = {
+						has_government = moderate_socialist
+						AND = {
+							has_government = centrist
+							has_country_flag = ndp_is_centrist
+						}
+						has_government = new_democrat
+					}
+				}
+			}
+		}
+		set_country_flag = ndp_brian_topp_2015
+		if = {
+			limit = { has_government = moderate_socialist }
+			CAN_brian_topp = {
+				add_country_leader_role = {
+					country_leader = {
+						expire = "1.1.1.1"
+						ideology = democratic_socialist
+					}
+				}
+				promote_character = democratic_socialist
+			}
+		}
+		else = {
+			CAN_brian_topp = {
+				promote_character = new_democrat_ideology
+			}
+		}
+	}
 	
 	option = { #Mel Watkins
 		name = rw_canada.198.o4
@@ -5286,6 +5323,17 @@ country_event = {
 				news_event = {
 					hours = 4
 					id = rw_canada_news.27
+				}
+			}
+		}
+		else_if = {
+			limit = { 
+				has_country_flag = ndp_brian_topp_2015
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.270
 				}
 			}
 		}
@@ -9853,6 +9901,19 @@ news_event = {	#Chow Elected
 	
 	option = {
 		name = rw_canada_news.27.o1
+	}
+}
+
+news_event = {	#Topp Elected
+	id = rw_canada_news.270
+	title = rw_canada_news.270.t
+	desc = rw_canada_news.270.d
+	picture = chow_victory
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.270.o1
 	}
 }
 

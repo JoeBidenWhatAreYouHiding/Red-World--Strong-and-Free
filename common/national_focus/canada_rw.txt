@@ -29,6 +29,12 @@ focus_tree = {
 				ruling_only = yes
             }
 		}
+		bypass = {
+			has_country_leader = {
+				name = "Preston Manning"
+				ruling_only = yes
+            }
+		}
 
 		ai_will_do = {
 			factor = 100
@@ -6392,7 +6398,10 @@ focus_tree = {
 		icon = { #Guy Caron
 			value = GFX_goal_CAN_prime_minister_topp
 			trigger = {
-				has_country_flag = topp_suceeds_layton
+				OR = {
+					has_country_flag = topp_suceeds_layton
+					has_country_flag = ndp_brian_topp_2015
+				}
 			}
 		}
 		icon = {
@@ -12280,6 +12289,11 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.33
+				uses = 2
+				category = construction_tech
+			}
 			682 = {
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
@@ -13307,7 +13321,18 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			hidden_effect = {
+				set_variable = { CAN_army_org = 0.03 }
+				set_variable = { CAN_command_power_gain = 0.03 }
+				add_dynamic_modifier = { modifier = CAN_canada_first_defence_strategy  }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_add_mil_modifier
+			custom_effect_tooltip = tooltip_blank_line
+			add_command_power = 20
+			army_experience = 5
+			air_experience = 5
+			navy_experience = 5
 		}
 	}
 	
@@ -13316,7 +13341,7 @@ focus_tree = {
 	focus = {
 		id = CAN_navy
 		icon = GFX_goal_CAN_navy
-		cost = 6
+		cost = 2
 		
 		prerequisite = {
 			focus = CAN_inspect_armed_forces
@@ -13336,7 +13361,13 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			hidden_effect = {
+				set_variable = { CAN_navy_experience_gain = 0.04 }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_navy_modify_effect
+			custom_effect_tooltip = tooltip_blank_line
+			navy_experience = 60
 		}
 	}
 	
@@ -13363,7 +13394,34 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			464 = { #Nova Scotia
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					province = 7361 #Halifax
+					instant_build = yes
+				}
+			}
+			331 = { #Newfoundland
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					province = 12505 #St. Johns
+					instant_build = yes
+				}
+			}
 		}
 	}
 	
@@ -13390,7 +13448,34 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			473 = { #British Colombia
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					province = 1408 #Vancouver
+					instant_build = yes
+				}
+			}
+			740 = { #Vancouver Island
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					province = 7259 #Victoria
+					instant_build = yes
+				}
+			}
 		}
 	}
 	
@@ -13417,7 +13502,10 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_timed_idea = {
+				idea = CAN_halifax_upgrade
+				days = 1200
+			}
 		}
 	}
 	
@@ -13444,7 +13532,17 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			hidden_effect = {
+				set_variable = { CAN_submarine_detection = 0.05 }
+				set_variable = { CAN_navy_screen = 0.03 }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_anti_sub_effect
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = dd_tech
+			}
 		}
 	}
 	
@@ -13471,7 +13569,12 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = ss_tech
+			}
+			add_ideas = CAN_submarines
 		}
 	}
 	
@@ -13498,7 +13601,32 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = cat_torpedo
+				category = naval_mines
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			if = {
+				limit = { has_dlc = "Man the Guns" }
+				hidden_effect = {
+					set_variable = { CAN_mine_planting = 0.1 }
+					set_variable = { CAN_mine_sweeping = 0.1 }
+					set_variable = { CAN_torpedo_hit = 0.05 }
+					set_variable = { CAN_torpedo_screen = 0.05 }
+					force_update_dynamic_modifier = yes
+				}
+				custom_effect_tooltip = CAN_test_range_effect_mtg
+			}
+			else = {
+				hidden_effect = {
+					set_variable = { CAN_torpedo_hit = 0.1 }
+					set_variable = { CAN_torpedo_screen = 0.1 }
+					force_update_dynamic_modifier = yes
+				}
+				custom_effect_tooltip = CAN_test_range_effect
+			}
 		}
 	}
 	
@@ -13525,7 +13653,25 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			hidden_effect = {
+				set_variable = { CAN_naval_coordination = 0.05 }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_drills_effect
+			custom_effect_tooltip = tooltip_blank_line
+			navy_experience = 100
+			add_command_power = 50
+			every_country = {
+				limit = { is_in_faction_with = CAN }
+				navy_experience = 100
+				add_command_power = 50
+			}
+			add_tech_bonus = {
+				name = naval_doctrine_bonus
+				bonus = 0.5
+				uses = 1
+				category = naval_doctrine
+			}
 		}
 	}
 	
@@ -13552,7 +13698,8 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_political_power = 60
+			add_ideas = CAN_dominance_of_the_arctic
 		}
 	}
 	
@@ -13580,7 +13727,13 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_ideas = CAN_national_shipbuilding_strategy
+			add_tech_bonus = {
+				name = naval_equipment_bonus
+				bonus = 0.55
+				uses = 1
+				category = naval_equipment
+			}
 		}
 	}
 	
@@ -13607,7 +13760,16 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = CAN_national_shipbuilding_strategy
+				add_idea = CAN_national_shipbuilding_strategy2
+			}
+			add_tech_bonus = {
+				name = naval_equipment_bonus
+				bonus = 0.55
+				uses = 1
+				category = naval_equipment
+			}
 		}
 	}
 	
@@ -13637,7 +13799,15 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = ss_tech
+			}
+			swap_ideas = {
+				remove_idea = CAN_submarines
+				add_idea = CAN_submarines2
+			}
 		}
 	}
 	
@@ -13655,6 +13825,7 @@ focus_tree = {
 		y = 5
 
 		available = {
+			has_completed_focus = CAN_canadian_surface_combatant
 		}
 
 		ai_will_do = {
@@ -13664,7 +13835,16 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = CAN_national_shipbuilding_strategy2
+				add_idea = CAN_national_shipbuilding_strategy3
+			}
+			add_tech_bonus = {
+				name = cv_tech_bonus
+				bonus = 1
+				uses = 1
+				category = cv_tech
+			}
 		}
 	}
 	
@@ -13720,7 +13900,14 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			hidden_effect = {
+				set_variable = { CAN_army_training = 0.08 }
+				set_variable = { CAN_weekly_manpower = 0.04 }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_reserve_effect
+			custom_effect_tooltip = tooltip_blank_line
+			add_manpower = 2200
 		}
 	}
 	
@@ -13747,7 +13934,17 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_tech_bonus = {
+				name = infantry_weapons_bonus
+				bonus = 0.5
+				uses = 1
+				category = infantry_weapons
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1200
+				producer = CAN
+			}
 		}
 	}
 	
@@ -13774,7 +13971,16 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = engineers_tech
+			}
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = recon_tech
+			}
 		}
 	}
 	
@@ -13801,7 +14007,16 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = cat_anti_tank
+			}
+			add_equipment_to_stockpile = {
+				type = anti_tank_equipment
+				amount = 65
+				producer = CAN
+			}
 		}
 	}
 	
@@ -13828,7 +14043,17 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_tech_bonus = {
+				name = motorized_equipment_bonus
+				bonus = 0.5
+				uses = 1
+				category = motorized_equipment
+			}
+			add_equipment_to_stockpile = {
+				type = motorized_equipment
+				amount = 100
+				producer = CAN
+			}
 		}
 	}
 	
@@ -13855,7 +14080,21 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 2
+				category = cat_mechanized_equipment
+			}
+			add_equipment_to_stockpile = {
+				type = light_tank_chassis
+				amount = 100
+				producer = CAN
+			}
+			add_equipment_to_stockpile = {
+				type = mechanized_equipment
+				amount = 100
+				producer = CAN
+			}
 		}
 	}
 	
@@ -13885,7 +14124,31 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = armor
+			}
+			if = {
+				limit = {
+					NOT = { has_dlc = "No Step Back" }
+				}
+				add_equipment_to_stockpile = {
+					type = light_tank_equipment_1
+					amount = 125
+					producer = CAN
+				}
+			}
+			if = {
+				limit = {
+					has_dlc = "No Step Back"
+				}
+				add_equipment_to_stockpile = {
+					type = light_tank_chassis
+					amount = 125
+					producer = CAN
+				}
+			}
 		}
 	}
 	
@@ -13915,7 +14178,22 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_war_support = 0.05
+			hidden_effect = {
+				add_to_variable = { CAN_army_org = 0.05 }
+				set_variable = { CAN_special_forces = 5 }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_prof_effect
+			custom_effect_tooltip = tooltip_blank_line
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				technology = tech_special_forces
+			}
+			every_army_leader = {
+				add_planning = 1
+			}
 		}
 	}
 	
@@ -13942,6 +14220,27 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_tech_bonus = {
+				name = electronics_bonus
+				bonus = 0.5
+				uses = 1
+				category = electronics
+			}
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.75
+				uses = 1
+				category = land_doctrine
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			hidden_effect = {
+				add_to_variable = { CAN_combat_width = 0.1 }
+				set_variable = { CAN_planning_speed = 0.06 }
+				set_variable = { CAN_land_reinforce = 0.07 }
+				set_variable = { CAN_army_fuel = 0.05 }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_coordination_effect
 			
 		}
 	}
@@ -13969,12 +14268,19 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_research_slot = 1
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+			army_experience = 120
 		}
 	}
 	
 	focus = {
-		id = CAN_artillery
+		id = CAN_arty_integration
 		icon = GFX_goal_CAN_artillery
 		cost = 6
 
@@ -13996,7 +14302,18 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_tech_bonus = {
+				bonus = 0.75
+				uses = 1
+				category = artillery
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			hidden_effect = {
+				add_to_variable = { CAN_artillery_attack = 0.06 }
+				set_variable = { CAN_artillery_xp = 0.1 }
+				force_update_dynamic_modifier = yes
+			}
+			custom_effect_tooltip = CAN_artillery_effect
 		}
 	}
 	
@@ -14006,7 +14323,7 @@ focus_tree = {
 		cost = 6
 
 		prerequisite = {
-			focus = CAN_artillery
+			focus = CAN_arty_integration
 		}
 		
 		relative_position_id = CAN_army
@@ -14023,7 +14340,17 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = motorized_equipment
+				technology = rocket_artillery
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = 250
+				producer = CAN
+			}
 		}
 	}
 	
