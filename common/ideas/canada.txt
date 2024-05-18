@@ -4405,6 +4405,40 @@ ideas = {
 			}
 		}
 		
+		CAN_air_expertise = {
+			allowed = {
+				always = no
+			}
+
+			picture = CAN_housing_crunch
+
+			modifier = {
+				army_bonus_air_superiority_factor = 0.5
+				enemy_army_bonus_air_superiority_factor = -0.5
+				paradrop_organization_factor = 0.10
+				production_speed_air_base_factor = 0.06
+				air_doctrine_cost_factor = -0.1
+				experience_gain_air_factor = 0.075
+				enemy_army_bonus_air_superiority_factor = -0.06
+				air_interception_detect_factor = 0.07
+				ground_attack_factor = 0.14
+			}
+			research_bonus = {
+				air_equipment = 0.10
+			}
+			equipment_bonus = {
+				fighter_equipment_1 = {
+					build_cost_ic = -0.15 instant = yes
+				}
+				nav_bomber_equipment_1 = {
+					build_cost_ic = -0.15 instant = yes
+				}
+				tac_bomber_equipment_1 = {
+					build_cost_ic = -0.15 instant = yes
+				}
+			}
+		}
+		
 		### Economy Ideas ###
 		
 		CAN_housing_crunch_worse = {
@@ -5558,12 +5592,35 @@ ideas = {
 			allowed = {
 				original_tag = CAN
 			}
+			
+			visible = { NOT = { has_completed_focus = CAN_boeing_experts } }
 
 			cost = 150
 			removal_cost = 10
 
 			research_bonus = {
 				air_equipment = 0.10
+			}
+
+			traits = { heavy_aircraft_manufacturer }
+		}
+
+		boeing_can2 = {
+
+			picture = generic_air_manufacturer_1
+			name = boeing_can
+
+			allowed = {
+				original_tag = CAN
+			}
+			
+			visible = { has_completed_focus = CAN_boeing_experts }
+
+			cost = 50
+			removal_cost = 10
+
+			research_bonus = {
+				air_equipment = 0.15
 			}
 
 			traits = { heavy_aircraft_manufacturer }
@@ -5640,7 +5697,7 @@ ideas = {
 			}
 			
 			visible = {
-				NOT = { has_completed_focus = CAN_divest_to_private_enterprise }
+				NOT = { has_country_flag = CAN_bombardier_upgraded_1 }
 			}
 
 			cost = 150
@@ -5663,7 +5720,8 @@ ideas = {
 			}
 			
 			visible = {
-				has_completed_focus = CAN_divest_to_private_enterprise
+				has_country_flag = CAN_bombardier_upgraded_1
+				NOT = { has_country_flag = CAN_bombardier_upgraded_2 }
 			}
 
 			cost = 50
@@ -5671,6 +5729,29 @@ ideas = {
 
 			research_bonus = {
 				air_equipment = 0.15
+			}
+
+			traits = { fuel_efficient_aircraft_manufacturer }
+		}
+		
+		bombardier3  = {
+
+			name = bombardier
+			picture = bombardier
+
+			allowed = {
+				original_tag = CAN
+			}
+			
+			visible = {
+				has_country_flag = CAN_bombardier_upgraded_2
+			}
+
+			cost = 50
+			removal_cost = 10
+
+			research_bonus = {
+				air_equipment = 0.2
 			}
 
 			traits = { fuel_efficient_aircraft_manufacturer }
