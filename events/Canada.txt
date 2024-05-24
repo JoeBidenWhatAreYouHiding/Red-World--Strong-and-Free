@@ -3215,11 +3215,11 @@ country_event = {
 	title = rw_canada.102.t
 	desc = {
 		text = rw_canada.102.d_andrew
-		trigger = { has_country_flag = CAN_king_in_exile_andrew }
+		trigger = { has_country_flag = CAN_andrew_leads_exiles }
 	}
 	desc = {
 		text = rw_canada.102.d_edward
-		trigger = { has_country_flag = CAN_king_in_exile_edward }
+		trigger = { has_country_flag = CAN_edward_leads_exiles }
 	}
 	picture = monarchy_lives_on
 
@@ -4562,6 +4562,210 @@ country_event = {
 	}
 }
 
+#Section 33 Invoked
+country_event = {
+	id = rw_canada.163
+	title = rw_canada.163.t
+	desc = rw_canada.163.d
+	picture = cruz_invokes_clause
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.163.o1
+		add_political_power = 20
+		add_stability = -0.02
+	}
+}
+
+#Tucker Carlson given control of the CBC
+country_event = {
+	id = rw_canada.164
+	title = rw_canada.164.t
+	desc = rw_canada.164.d
+	picture = conservatives_given_control_of_cbc
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.164.o1
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.02
+		}
+	}
+}
+
+#Kenney Hailed by Conservative Establishment
+country_event = {
+	id = rw_canada.165
+	title = rw_canada.165.t
+	desc = rw_canada.165.d
+	picture = establishment_backs_kenney
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.165.o1
+		add_political_power = 10
+	}
+}
+
+#Fate of the PCs
+country_event = {
+	id = rw_canada.166
+	title = rw_canada.166.t
+	desc = rw_canada.166.d
+	picture = kenney_pc_fate
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #No Merge
+		name = rw_canada.166.o1
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.168
+				days = 4
+			}
+		}
+	}
+	
+	option = { #Merge
+		name = rw_canada.166.o2
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.167
+				days = 4
+			}
+		}
+	}
+}
+
+#UCP Created
+country_event = {
+	id = rw_canada.167
+	title = rw_canada.167.t
+	desc = rw_canada.167.d
+	picture = kenney_creates_ucp
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.167.o1
+		set_party_name = {
+			name = CAN_ucp_natcon_party
+			long_name = CAN_ucp_natcon_party_long
+			ideology = national_conservative
+		}
+		set_party_name = {
+			name = CAN_ucp_nationalist_party
+			long_name = CAN_ucp_nationalist_party_long
+			ideology = nationalist
+		}
+		set_party_name = {
+			name = CAN_ucp_fascist_party
+			long_name = CAN_ucp_fascist_party_long
+			ideology = fascist
+		}
+		clr_country_flag = progcons_exist
+	}
+}
+
+#PCs to remain seperate
+country_event = {
+	id = rw_canada.168
+	title = rw_canada.168.t
+	desc = rw_canada.168.d
+	picture = pcs_embrace_new_identity
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.168.o1
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.01
+		}
+	}
+}
+
+#Decency Laws
+country_event = {
+	id = rw_canada.169
+	title = rw_canada.169.t
+	desc = rw_canada.169.d
+	picture = kenney_decency_laws
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.169.o1
+		add_stability = 0.02
+	}
+}
+
+#I fucking LOVE OIL
+country_event = {
+	id = rw_canada.170
+	title = {
+		text = rw_canada.170.t
+		trigger = {
+			NOT = {
+				has_country_leader = { name = "Rafael Edward Cruz" ruling_only = yes }
+			}
+		}
+	}
+	title = {
+		text = rw_canada.170.t_cruz
+		trigger = {
+			has_country_leader = { name = "Rafael Edward Cruz" ruling_only = yes }
+		}
+	}
+	desc = rw_canada.170.d
+	picture = big_oil_backing
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.170.o1
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.01
+		}
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.01
+		}
+	}
+}
+
+#The creator of this mod being murdered by Ted Cruz
+country_event = {
+	id = rw_canada.171
+	title = rw_canada.171.t
+	desc = rw_canada.171.d
+	picture = kenney_cruz_legacy
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.171.o1
+		add_popularity = {
+			ideology = fascist
+			popularity = -0.01
+		}
+	}
+}
+
 ### 2015 Elections Stuff ###
 
 #Liberal Primarty
@@ -5548,7 +5752,7 @@ country_event = {
 			set_politics = {
 				ruling_party = national_conservative
 			}
-			add_natcon_to_coalition = yes
+			add_nationalist_to_coalition = yes
 		}
 		else = {
 			add_popularity = {
@@ -5558,13 +5762,14 @@ country_event = {
 			set_politics = {
 				ruling_party = nationalist
 			}
-			add_nationalist_to_coalition = yes
+			add_natcon_to_coalition = yes
 		}
 		add_fash_to_coalition = yes
 		add_to_variable = {
 			var = CAN_alberta_tension
 			value = 1
 		}
+		set_country_flag = pc_ca_alliance
 	}
 	
 	option = { #The NDP, backed by Liberals and the Bloc
@@ -10148,11 +10353,11 @@ news_event = {	#Royals in Canada
 	title = rw_canada_news.38.t
 	desc = {
 		text = rw_canada_news.38.d_andrew
-		trigger = { CAN = { has_country_flag = CAN_king_in_exile_andrew } }
+		trigger = { CAN = { has_country_flag = CAN_andrew_leads_exiles } }
 	}
 	desc = {
 		text = rw_canada_news.38.d_edward
-		trigger = { CAN  = {has_country_flag = CAN_king_in_exile_edward } }
+		trigger = { CAN  = {has_country_flag = CAN_edward_leads_exiles } }
 	}
 	picture = royals_in_canada
 	
