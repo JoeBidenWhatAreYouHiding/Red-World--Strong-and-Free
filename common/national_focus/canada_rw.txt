@@ -12193,8 +12193,8 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = CAN_modern_intranet
-		icon = GFX_goal_CAN_intranet
+		id = CAN_expand_manufacturing
+		icon = GFX_goal_CAN_manufacturing_economy
 		cost = 4
 		
 		prerequisite = {
@@ -12204,54 +12204,6 @@ focus_tree = {
 		relative_position_id = CAN_toronto_stock_exchange
 		x = 0
 		y = 1
-
-		available = {
-			
-		}
-
-		ai_will_do = {
-			factor = 100
-		}
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			random_owned_state = {
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-					instant_build = yes
-				}
-			}
-			random_owned_state = {
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-					instant_build = yes
-				}
-			}
-			add_ideas = CAN_intranet_connections
-			add_tech_bonus = {
-				name = computing_tech_bonus
-				bonus = 0.5
-				uses = 2
-				category = computing_tech
-			}
-		}
-	}
-	
-	focus = {
-		id = CAN_expand_manufacturing
-		icon = GFX_goal_CAN_manufacturing_economy
-		cost = 4
-		
-		prerequisite = {
-			focus = CAN_modern_intranet
-		}
-		
-		relative_position_id = CAN_toronto_stock_exchange
-		x = -1
-		y = 2
 
 		available = {
 			
@@ -12287,12 +12239,150 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = CAN_local_network_consolidation
+		icon = GFX_goal_CAN_local_network_consolidation
+		cost = 4
+		
+		prerequisite = {
+			focus = CAN_expand_manufacturing
+		}
+		
+		relative_position_id = CAN_toronto_stock_exchange
+		x = -1
+		y = 2
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = radar_tech
+			}
+			add_ideas = CAN_local_network_consolidation
+		}
+	}
+	
+	focus = {
+		id = CAN_canadaconnect_systems
+		icon = GFX_goal_CAN_canadaconnect_systems
+		cost = 4
+		
+		prerequisite = {
+			focus = CAN_local_network_consolidation
+		}
+		
+		relative_position_id = CAN_toronto_stock_exchange
+		x = -1
+		y = 3
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = electronics_bonus
+				bonus = 0.5
+				uses = 1
+				category = electronics
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+                    type = radar_station
+                    level = 2
+                    instant_build = yes
+                }
+			}
+			swap_ideas = {
+				remove_idea = CAN_local_network_consolidation
+				add_idea = CAN_local_network_consolidation2
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = CAN_unlock_industrial_company
+			show_ideas_tooltip = canadaconnect_systems
+		}
+	}
+	
+	focus = {
+		id = CAN_modern_intranet
+		icon = GFX_goal_CAN_intranet
+		cost = 4
+		
+		prerequisite = {
+			focus = CAN_canadaconnect_systems
+		}
+		
+		relative_position_id = CAN_toronto_stock_exchange
+		x = -2
+		y = 4
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			random_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			swap_ideas = {
+				remove_idea = CAN_local_network_consolidation2
+				add_idea = CAN_intranet_connections
+			}
+			add_tech_bonus = {
+				name = computing_tech_bonus
+				bonus = 0.5
+				uses = 2
+				category = computing_tech
+			}
+		}
+	}
+	
+	focus = {
 		id = CAN_expand_mining
 		icon = GFX_mining_contracts
 		cost = 4
 		
 		prerequisite = {
-			focus = CAN_modern_intranet
+			focus = CAN_expand_manufacturing
 		}
 		
 		relative_position_id = CAN_toronto_stock_exchange
@@ -12337,11 +12427,11 @@ focus_tree = {
 		
 		prerequisite = {
 			focus = CAN_expand_mining
-			focus = CAN_expand_manufacturing
+			focus = CAN_local_network_consolidation
 		}
 		
 		relative_position_id = CAN_toronto_stock_exchange
-		x = 0
+		x = 1
 		y = 3
 
 		available = {
@@ -12465,7 +12555,7 @@ focus_tree = {
 			focus = CAN_reinvigorate_the_steel_belt
 		}
 		prerequisite = {
-			focus = CAN_expand_manufacturing
+			focus = CAN_local_network_consolidation
 		}
 		
 		relative_position_id = CAN_toronto_stock_exchange
@@ -13881,6 +13971,19 @@ focus_tree = {
 				uses = 1
 				category = naval_equipment
 			}
+			custom_effect_tooltip = tooltip_blank_line
+			if = {
+				limit = { has_dlc = "Arms Against Tyranny" }
+				custom_effect_tooltip = CAN_unlock_navy_mio
+				show_mio_tooltip = CAN_davie_organization
+				mio:CAN_davie_organization = {
+					add_mio_funds = 2500
+				}
+			}
+			else = {
+				custom_effect_tooltip = CAN_unlock_navy_designer
+				show_ideas_tooltip = davie
+			}
 		}
 	}
 	
@@ -13916,6 +14019,19 @@ focus_tree = {
 				bonus = 0.55
 				uses = 1
 				category = naval_equipment
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			if = {
+				limit = { has_dlc = "Arms Against Tyranny" }
+				custom_effect_tooltip = CAN_unlock_navy_mio
+				show_mio_tooltip = CAN_irving_organization
+				mio:CAN_irving_organization = {
+					add_mio_funds = 2500
+				}
+			}
+			else = {
+				custom_effect_tooltip = CAN_unlock_navy_designer
+				show_ideas_tooltip = irving
 			}
 		}
 	}
