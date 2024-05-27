@@ -8338,6 +8338,190 @@ country_event = {
 	}
 }
 
+news_event = {	#Haiti Earthquake
+	id = canada_diplo.55
+	title = canada_diplo.55.t
+	desc = canada_diplo.55.d
+	picture = haiti_quake
+	
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = canada_diplo.55.o1
+		HAI = {
+			add_manpower = -10000
+			add_stability = -0.2
+			add_ideas = HAI_quake_idea
+		}
+	}
+}
+
+news_event = {	#President Recovered
+	id = canada_diplo.56
+	title = canada_diplo.56.t
+	desc = canada_diplo.56.d
+	picture = martelly_recovered
+	
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = canada_diplo.56.o1
+		
+	}
+}
+
+news_event = {	#Civil War in Haiti
+	id = canada_diplo.57
+	title = canada_diplo.57.t
+	desc = canada_diplo.57.d
+	picture = haiti_civil_war
+	
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = canada_diplo.57.o1
+		HAI = {
+			add_stability = -0.15
+			add_ideas = HAI_civil_war
+		}
+	}
+}
+
+#Haiti Begs us to do something
+country_event = {
+	id = canada_diplo.58
+	title = canada_diplo.58.t
+	desc = canada_diplo.58.d
+	picture = haiti_begs_for_aid
+	
+	is_triggered_only = yes
+	
+	option = { #Can't someone else deal with this mess?
+		name = canada_diplo.58.o1
+	    add_political_power = -10
+		hidden_effect = {
+			country_event = {
+				id = canada_diplo.59
+				days = 10
+			}
+		}
+	}
+}
+
+#Jean speaks up
+country_event = {
+	id = canada_diplo.59
+	title = canada_diplo.59.t
+	desc = canada_diplo.59.d
+	picture = jean_speaks_up
+	
+	immediate = {
+		hidden_effect = {
+			random_character = {
+				limit = {
+					is_army_leader = yes
+					NOT = {
+						is_character = CAN_rick_j._hillier
+						is_character = CAN_ray_henault
+						is_character = CAN_david_fraser
+					}
+				}
+				set_variable = { CAN.CAN_haiti_expedition_leader = THIS }
+				set_character_flag = CAN_haiti_expedition_leader
+			}
+		}
+	}
+	
+	is_triggered_only = yes
+	
+	option = { #Can't someone else deal with this mess?
+		name = canada_diplo.59.o1
+	    add_stability = -0.03
+		CAN_subtract_3_percent_popularity = yes
+		add_political_power = 50
+	}
+	
+	option = { #Fine, we'll do something
+		name = canada_diplo.59.o2
+		add_political_power = -100
+		add_stability = 0.02
+		random_character = {
+			limit = { has_character_flag = CAN_haiti_expedition_leader }
+			set_nationality = HAI
+		}
+		HAI = {
+			random_character = {
+				limit = { has_character_flag = CAN_haiti_expedition_leader }
+				add_country_leader_role = {
+					country_leader = { ideology = centrist_ideology }
+					promote_leader = yes
+				}
+			}
+			set_party_name = {
+				name = CAN_multinational_mission_party
+				long_name = CAN_multinational_mission_party_long
+				ideology = centrist
+			}
+		}
+		news_event = {
+			id = canada_diplo.60
+			hours = 4
+		}
+		hidden_effect = {
+			add_ideas = CAN_haiti_mission
+			set_country_flag = CAN_intervened_in_haiti
+		}
+	}
+}
+
+news_event = {	#Canada Does something in Haiti
+	id = canada_diplo.60
+	title = canada_diplo.60.t
+	desc = canada_diplo.60.d
+	picture = haiti_civil_war
+	
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = canada_diplo.60.o1
+		
+	}
+}
+
+#News Event Trigger
+country_event = {
+	id = canada_diplo.600
+	hidden = yes
+	
+	fire_only_once = yes
+	
+	trigger = {
+	    date > 2010.01.12
+		date < 2010.01.15
+	}
+	
+	option = {
+		news_event = {
+			id = canada_diplo.55
+			hours = 4
+		}
+		hidden_effect = {
+			news_event = {
+				days = 7
+				id = canada_diplo.56
+			}
+			news_event = {
+				days = 27
+				id = canada_diplo.57
+			}
+		}
+	}
+}
+
 #Canada-UK Relations
 country_event = {
 	id = canada_debug.1
