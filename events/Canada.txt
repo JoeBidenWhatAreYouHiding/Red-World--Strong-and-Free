@@ -4766,6 +4766,70 @@ country_event = {
 	}
 }
 
+#SocCred legacy
+country_event = {
+	id = rw_canada.172
+	title = rw_canada.172.t
+	desc = {
+		text = rw_canada.172.d
+		trigger = {
+			NOT = {
+				has_country_leader = { name = "Rafael Edward Cruz" ruling_only = yes }
+			}
+		}
+	}
+	desc = {
+		text = rw_canada.172.d_cruz
+		trigger = {
+			has_country_leader = { name = "Rafael Edward Cruz" ruling_only = yes }
+		}
+	}
+	picture = aberhart_legacy
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.172.o1
+		trigger = {
+			NOT - P has_country_leader = { name = "Rafael Edward Cruz" ruling_only = yes } }
+		}
+		add_stability = -0.02
+		add_political_power = 10
+	}
+	
+	option = {
+		name = rw_canada.172.o2
+		trigger = {
+			has_country_leader = { name = "Rafael Edward Cruz" ruling_only = yes }
+		}
+		add_stability = -0.02
+		add_political_power = 10
+	}
+}
+
+#Cruz enlists Roger Stone
+country_event = {
+	id = rw_canada.173
+	title = rw_canada.173.t
+	desc = rw_canada.173.d
+	picture = roger_stone
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.173.o1
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.01
+		}
+		add_political_power = 20
+		add_stability = -0.02
+	}
+}
+
+
 ### 2015 Elections Stuff ###
 
 #Liberal Primarty
@@ -9992,6 +10056,27 @@ country_event = {
 	option = {
 		name = can_flavour.33.o1
 		add_manpower = -1
+	}
+}
+
+#Canada Day
+country_event = {
+	id = can_flavour.37
+	title = can_flavour.37.t
+	desc = can_flavour.37.d
+	picture = canada_day
+	
+	immediate = {
+		hidden_effect = {
+			hidden_effect = { country_event = { id = canada.432 days = 365 } }
+		}
+	}
+
+	is_triggered_only = yes
+	
+	option = {
+		name = can_flavour.37.o1
+		add_stability = 0.01
 	}
 }
 
