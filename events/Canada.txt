@@ -4823,6 +4823,208 @@ country_event = {
 	}
 }
 
+#F-35 debacle
+country_event = {
+	id = rw_canada.175
+	title = rw_canada.175.t
+	desc = rw_canada.175.d
+	picture = f35_procurement
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.175.o1
+		trigger = {
+			OR = {
+				has_government = moderate_socialist
+				has_government = new_democrat
+				AND = {
+					has_country_flag = ndp_is_centrist
+					has_government = centrist
+				}
+			}
+		}
+		add_ideas = CAN_defense_white_paper
+	}
+	
+	option = {
+		name = rw_canada.175.o2
+		trigger = {
+			OR = {
+				has_government = centrist
+				has_government = liberal
+			}
+			NOT = { has_country_flag = ndp_is_centrist }
+		}
+		add_ideas = CAN_cheaper_airplane
+	}
+	
+	option = {
+		name = rw_canada.175.o3
+		trigger = {
+			OR = {
+				has_government = fascist
+				has_government = national_conservative
+				has_government = nationalist
+			}
+		}
+		add_ideas = CAN_hornet_replacement
+	}
+}
+
+#Separatist Parties Banned
+country_event = {
+	id = rw_canada.176
+	title = rw_canada.176.t
+	desc = rw_canada.176.d
+	picture = trade_council_arrested
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.176.o1
+		add_popularity = {
+			ideology = national_bolshevik
+			popularity = 0.01
+		}
+		add_political_power = 20
+		add_stability = -0.02
+	}
+}
+
+#Singh Jailed
+country_event = {
+	id = rw_canada.177
+	title = rw_canada.177.t
+	desc = rw_canada.177.d
+	picture = singh_arrested_by_trudeau
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.177.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = -0.01
+		}
+	}
+}
+
+#Trudeau Speech
+country_event = {
+	id = rw_canada.178
+	title = rw_canada.178.t
+	desc = rw_canada.178.d
+	picture = trudeau_speech
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.178.o1
+		add_popularity = {
+			ideology = national_bolshevik
+			popularity = 0.01
+		}
+	}
+}
+
+#Trudeau Joins Army
+country_event = {
+	id = rw_canada.179
+	title = rw_canada.179.t
+	desc = rw_canada.179.d
+	picture = trudeau_army
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.179.o1
+		add_war_support = 0.04
+		add_manpower = 1
+		set_country_flag = CAN_trudeau_joined_army
+	}
+}
+
+#Philly Captured
+country_event = {
+	id = rw_canada.180
+	title = rw_canada.180.t
+	desc = rw_canada.180.d
+	picture = philly_captured
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.180.o1
+		country_event = rw_canada.181
+	}
+}
+
+#Commonwealth Leadership Suicide
+country_event = {
+	id = rw_canada.181
+	title = rw_canada.181.t
+	desc = rw_canada.181.d
+	picture = commonwealth_leadership_suicide
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.181.o1
+		country_event = rw_canada.182
+	}
+}
+
+#Trudeau attends battle
+country_event = {
+	id = rw_canada.182
+	title = rw_canada.182.t
+	desc = rw_canada.182.d
+	picture = trudeau_at_battle
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.182.o1
+		CAN_justin_trudeau = {
+			add_corps_commander_role = {
+				traits = { politically_connected navy_media_personality }
+				skill = 1
+				attack_skill = 2
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 1
+			}
+		}
+	}
+}
+
+#Trudeau Speech
+country_event = {
+	id = rw_canada.183
+	title = rw_canada.183.t
+	desc = rw_canada.183.d
+	picture = trudeau_denounces_neoliberalism
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.183.o1
+		add_popularity = {
+			ideology = centrist
+			popularity = -0.05
+		}
+	}
+}
 
 ### 2015 Elections Stuff ###
 
@@ -7526,11 +7728,13 @@ country_event = {
 			USA = { exists = yes has_idea = idea_standing_firm_remnants }
 		}
 		set_country_flag = CAN_supporting_AR
+		set_global_flag = NEA_is_afraid_of_canada
 	}
 	
 	option = { #Intervention
 		name = canada_diplo.26.o3
 		set_country_flag = CAN_intervention
+		set_global_flag = NEA_is_afraid_of_canada
 	}
 }
 
@@ -8542,6 +8746,21 @@ country_event = {
 	}
 }
 
+news_event = {	#Canada Does something in Haiti
+	id = canada_diplo.60
+	title = canada_diplo.60.t
+	desc = canada_diplo.60.d
+	picture = haiti_intervention
+	
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = canada_diplo.60.o1
+		
+	}
+}
+
 #Haiti Evacuated
 country_event = {
 	id = canada_diplo.61
@@ -8734,20 +8953,6 @@ country_event = {
 	}
 }
 
-news_event = {	#Canada Does something in Haiti
-	id = canada_diplo.60
-	title = canada_diplo.60.t
-	desc = canada_diplo.60.d
-	picture = haiti_civil_war
-	
-	is_triggered_only = yes
-	major = yes
-	
-	option = {
-		name = canada_diplo.60.o1
-		
-	}
-}
 
 #News Event Trigger
 country_event = {
@@ -8838,7 +9043,7 @@ country_event = {
 	option = {
 		name = canada_debug.2.o1
 		mark_focus_tree_layout_dirty = yes
-		set_country_flag = CAN_wma_restored
+		set_country_flag = CAN_nazbol_trudeau
 	}
 }
 
@@ -8855,7 +9060,7 @@ country_event = {
 	option = {
 		name = canada_debug.2.o1
 		mark_focus_tree_layout_dirty = yes
-		clr_country_flag = CAN_wma_restored
+		clr_country_flag = CAN_nazbol_trudeau
 	}
 }
 
@@ -9297,6 +9502,13 @@ country_event = {
 		add_war_support = -0.05
 		set_country_flag = CAN_quebec_in_crisis
 		add_ideas = CAN_quebec_in_crisis_idea
+		hidden_effect = {
+			country_event = {
+				id = can_separatism.30
+				days = 130
+				random_days = 200
+			}
+		}
 	}
 }
 
@@ -9467,6 +9679,13 @@ country_event = {
 		add_war_support = -0.05
 		set_country_flag = CAN_alberta_in_crisis
 		add_ideas = CAN_alberta_in_crisis_idea
+		hidden_effect = {
+			country_event = {
+				id = can_separatism.30
+				days = 130
+				random_days = 200
+			}
+		}
 	}
 }
 
@@ -9854,6 +10073,531 @@ country_event = {
 				}
 			}
 		}
+	}
+}
+
+#Things Get Worse
+country_event = {
+	id = can_separatism.30
+	title = can_separatism.30.t
+	desc = {
+		text = can_separatism.30.d_quebec
+		trigger = { has_country_flag = CAN_quebec_in_crisis }
+	}
+	desc = {
+		text = can_separatism.30.d_alberta
+		trigger = { has_country_flag = CAN_alberta_in_crisis }
+	}
+	desc = {
+		text = can_separatism.30.d_both
+		trigger = { 
+			has_country_flag = CAN_alberta_in_crisis 
+			has_country_flag = CAN_quebec_in_crisis 
+		}
+	}
+	picture = western_compact_formed
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		OR = {
+			has_idea = CAN_alberta_in_crisis_idea
+			has_idea = CAN_quebec_in_crisis_idea
+		}
+	}
+	
+	option = { #
+		name = can_separatism.30.o1
+		hidden_effect = {
+			country_event = {
+				id = can_separatism.31
+				days = 47
+			}
+		}
+	}
+}
+
+#Weapons
+country_event = {
+	id = can_separatism.31
+	title = can_separatism.31.t
+	desc = {
+		text = can_separatism.31.d_quebec
+		trigger = { has_country_flag = CAN_quebec_in_crisis }
+	}
+	desc = {
+		text = can_separatism.31.d_alberta
+		trigger = { has_country_flag = CAN_alberta_in_crisis }
+	}
+	desc = {
+		text = can_separatism.31.d_both
+		trigger = { 
+			has_country_flag = CAN_alberta_in_crisis 
+			has_country_flag = CAN_quebec_in_crisis 
+		}
+	}
+	picture = western_compact_formed
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		OR = {
+			has_idea = CAN_alberta_in_crisis_idea
+			has_idea = CAN_quebec_in_crisis_idea
+		}
+	}
+	
+	option = { #
+		name = can_separatism.31.o1
+		hidden_effect = {
+			country_event = {
+				id = can_separatism.32
+				days = 47
+			}
+		}
+	}
+}
+
+#Attacks Intensify
+country_event = {
+	id = can_separatism.32
+	title = can_separatism.32.t
+	desc = {
+		text = can_separatism.32.d_quebec
+		trigger = { has_country_flag = CAN_quebec_in_crisis }
+	}
+	desc = {
+		text = can_separatism.32.d_alberta
+		trigger = { has_country_flag = CAN_alberta_in_crisis }
+	}
+	desc = {
+		text = can_separatism.32.d_both
+		trigger = { 
+			has_country_flag = CAN_alberta_in_crisis 
+			has_country_flag = CAN_quebec_in_crisis 
+		}
+	}
+	picture = western_compact_formed
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		OR = {
+			has_idea = CAN_alberta_in_crisis_idea
+			has_idea = CAN_quebec_in_crisis_idea
+		}
+		if = {
+			limit = { 
+				has_country_flag = CAN_alberta_in_crisis
+			}
+			MOT = { is_subject = no }
+		}
+		if = {
+			limit = { 
+				has_country_flag = CAN_quebec_in_crisis
+			}
+			NEA = { has_government = revolutionary_socialist }
+		}
+	}
+	
+	option = { #
+		name = can_separatism.32.o1
+		random_owned_state = {
+			damage_building = {
+				type = infrastructure
+				damage = 0.06
+			}
+		}
+		random_owned_state = {
+			damage_building = {
+				type = infrastructure
+				damage = 0.06
+			}
+		}
+		add_manpower = -400
+		hidden_effect = {
+			if = {
+				limit = { NOT = { has_global_flag = NEA_is_afraid_of_canada } }
+				country_event = {
+					id = can_separatism.33
+					days = 47
+				}
+			}
+		}
+	}
+}
+
+#Toronto Nuked
+country_event = {
+	id = can_separatism.33
+	title = can_separatism.33.t
+	desc = {
+		text = can_separatism.33.d_quebec
+		trigger = { has_country_flag = CAN_quebec_in_crisis }
+	}
+	desc = {
+		text = can_separatism.33.d_alberta
+		trigger = { has_country_flag = CAN_alberta_in_crisis }
+	}
+	desc = {
+		text = can_separatism.33.d_both
+		trigger = { 
+			has_country_flag = CAN_alberta_in_crisis 
+			has_country_flag = CAN_quebec_in_crisis 
+		}
+	}
+	picture = western_compact_formed
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		OR = {
+			has_idea = CAN_alberta_in_crisis_idea
+			has_idea = CAN_quebec_in_crisis_idea
+		}
+		NEA = { has_government = revolutionary_socialist }
+	}
+	
+	option = { #
+		name = can_separatism.33.o1
+		276 = {
+			damage_building = {
+				type = infrastructure
+				damage = 0.1
+			}
+		}
+		add_manpower = -1200
+		hidden_effect = {
+			country_event = {
+				id = can_separatism.34
+				days = 3
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.47
+				}
+			}
+		}
+	}
+}
+
+#Prime Minister's Response
+country_event = {
+	id = can_separatism.34
+	title = can_separatism.34.t
+	desc = can_separatism.34.d
+	picture = western_compact_formed
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Summon Commonwealth Ambassador
+		name = can_separatism.34.o1
+		NEA = {
+			country_event = can_separatism.35
+		}
+		country_event = can_separatism.35
+	}
+	
+	option = { #Nuke them
+		name = can_separatism.34.o2
+		trigger = {
+			num_of_nukes > 1
+		}
+		country_event = can_separatism.36
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.48
+				}
+			}
+		}
+	}
+}
+
+#APC says sorry
+country_event = {
+	id = can_separatism.35
+	title = can_separatism.35.t
+	desc = can_separatism.35.d
+	picture = western_compact_formed
+
+	is_triggered_only = yes
+	
+	option = { #Summon Commonwealth Ambassador
+		name = can_separatism.35.o1
+		add_political_power = 10
+	}
+}
+
+#Philly Nuked
+country_event = {
+	id = can_separatism.36
+	title = can_separatism.36.t
+	desc = can_separatism.36.d
+	picture = western_compact_formed
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #
+		name = can_separatism.36.o1
+		launch_nuke = { 
+		   provinve = 6845
+		   state = 360
+		   controller = NEA
+		} 
+		declare_war_on = { target = NEA type = annex_everything }
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_leader = { name = "Justin Trudeau" ruling_only = yes }
+					has_completed_focus = CAN_like_my_father_before_me
+				}
+				country_event = {
+					id = can_separatism.38
+					days = 2
+				}
+				set_global_flag = CAN_trudeau_commonwealth_war
+			}
+			else = {
+				country_event = {
+					id = can_separatism.37
+					days = 2
+				}
+			}
+		}
+	}
+}
+
+#PM Resigns
+country_event = {
+	id = can_separatism.37
+	title = can_separatism.37.t
+	desc = can_separatism.37.d
+	picture = western_compact_formed
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #
+		name = can_separatism.37.o1
+		meta_effect = {
+            text = {
+				CAN_rick_j._hillier = {
+					add_country_leader_role = {
+						country_leader = {
+							expire = "1.1.1.1"
+							ideology = [CURRENT_IDEOLOGY]
+						}
+					}
+					promote_character = [CURRENT_IDEOLOGY]
+				}
+            }
+            CURRENT_IDEOLOGY = "[ROOT.get_subideology]"
+        }
+		if = {
+			limit = {
+				has_government = moderate_socialist
+			}
+			set_party_name = {
+				long_name = CAN_unity_party_long
+				name = CAN_unity_party
+				ideology = moderate_socialist
+			}
+			set_country_flag = CAN_soc_ndp_party_name_restore
+			set_country_flag = CAN_nd_ndp_party_name_restore
+			add_nationalist_to_coalition = yes
+			add_natcon_to_coalition = yes
+			add_centrist_to_coalition = yes
+			add_liberal_to_coalition = yes
+			add_modsoc_to_coalition = yes
+		}
+		
+		if = {
+			limit = {
+				has_government = new_democrat
+			}
+			set_party_name = {
+				long_name = CAN_unity_party_long
+				name = CAN_unity_party
+				ideology = new_democrat
+			}
+			set_country_flag = CAN_nd_ndp_party_name_restore
+			add_nationalist_to_coalition = yes
+			add_natcon_to_coalition = yes
+			add_centrist_to_coalition = yes
+			add_liberal_to_coalition = yes
+			add_modsoc_to_coalition = yes
+		}
+		
+		if = {
+			limit = {
+				has_government = liberal
+				has_country_flag = ndp_is_liberal
+			}
+			set_party_name = {
+				long_name = CAN_unity_party_long
+				name = CAN_unity_party
+				ideology = liberal
+			}
+			set_country_flag = CAN_liberal_ndp_party_name_restore
+			add_nationalist_to_coalition = yes
+			add_natcon_to_coalition = yes
+			add_centrist_to_coalition = yes
+			add_newdem_to_coalition = yes
+			add_modsoc_to_coalition = yes
+		}
+		
+		if = {
+			limit = {
+				has_government = liberal
+				NOT = { has_country_flag = ndp_is_liberal }
+			}
+			set_party_name = {
+				long_name = CAN_unity_party_long
+				name = CAN_unity_party
+				ideology = liberal
+			}
+			set_country_flag = CAN_liberal_lib_party_name_restore
+			add_nationalist_to_coalition = yes
+			add_natcon_to_coalition = yes
+			add_centrist_to_coalition = yes
+			add_newdem_to_coalition = yes
+			add_modsoc_to_coalition = yes
+		}
+		
+		if = {
+			limit = {
+				has_government = centrist
+				has_country_flag = ndp_is_centrist
+			}
+			set_party_name = {
+				long_name = CAN_unity_party_long
+				name = CAN_unity_party
+				ideology = centrist
+			}
+			set_country_flag = CAN_centrist_ndp_party_name_restore
+			add_nationalist_to_coalition = yes
+			add_natcon_to_coalition = yes
+			add_liberal_to_coalition = yes
+			add_newdem_to_coalition = yes
+			add_modsoc_to_coalition = yes
+		}
+		
+		else_if = {
+			limit = {
+				has_government = centrist
+				NOT = { has_country_flag = ndp_is_centrist }
+			}
+			set_party_name = {
+				long_name = CAN_unity_party_long
+				name = CAN_unity_party
+				ideology = centrist
+			}
+			set_country_flag = CAN_centrist_lib_party_name_restore
+			add_nationalist_to_coalition = yes
+			add_natcon_to_coalition = yes
+			add_liberal_to_coalition = yes
+			add_newdem_to_coalition = yes
+			add_modsoc_to_coalition = yes
+		}
+		
+		else_if = {
+			limit = {
+				has_government = national_conservative
+			}
+			set_party_name = {
+				long_name = CAN_unity_party_long
+				name = CAN_unity_party
+				ideology = national_conservative
+			}
+			set_country_flag = CAN_pc_party_name_restore
+			add_nationalist_to_coalition = yes
+			add_centrist_to_coalition = yes
+			add_liberal_to_coalition = yes
+			add_newdem_to_coalition = yes
+			add_modsoc_to_coalition = yes
+		}
+		
+		else_if = {
+			limit = {
+				has_government = nationalist
+				has_country_flag = nationalists_are_canadian_alliance
+			}
+			set_party_name = {
+				long_name = CAN_unity_party_long
+				name = CAN_unity_party
+				ideology = nationalist
+			}
+			set_country_flag = CAN_alliance_nat_party_name_restore
+			add_natcon_to_coalition = yes
+			add_centrist_to_coalition = yes
+			add_liberal_to_coalition = yes
+			add_newdem_to_coalition = yes
+			add_modsoc_to_coalition = yes
+		}
+		
+		else_if = {
+			limit = {
+				has_government = nationalist
+				NOT = { has_country_flag = nationalists_are_canadian_alliance }
+			}
+			set_party_name = {
+				long_name = CAN_unity_party_long
+				name = CAN_unity_party
+				ideology = nationalist
+			}
+			set_country_flag = CAN_pc_nat_party_name_restore
+			add_natcon_to_coalition = yes
+			add_centrist_to_coalition = yes
+			add_liberal_to_coalition = yes
+			add_newdem_to_coalition = yes
+			add_modsoc_to_coalition = yes
+		}
+		
+		else_if = {
+			limit = {
+				has_government = fascist
+			}
+			set_party_name = {
+				long_name = CAN_unity_party_long
+				name = CAN_unity_party
+				ideology = fascist
+			}
+			set_country_flag = CAN_alliance_party_name_restore
+			add_nationalist_to_coalition = yes
+			add_natcon_to_coalition = yes
+			add_centrist_to_coalition = yes
+			add_liberal_to_coalition = yes
+			add_newdem_to_coalition = yes
+			add_modsoc_to_coalition = yes
+		}
+	}
+}
+
+#WMA Restored
+country_event = {
+	id = can_separatism.38
+	title = can_separatism.38.t
+	desc = can_separatism.38.d
+	picture = western_compact_formed
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #
+		name = can_separatism.38.o1
+		set_country_flag = CAN_wma_restored
+		mark_focus_tree_layout_dirty = yes
+		add_stability = -0.05
+		add_political_power = 50
 	}
 }
 
@@ -10279,6 +11023,38 @@ country_event = {
 	option = {
 		name = can_flavour.37.o1
 		add_stability = 0.01
+	}
+}
+
+#Rail Disaster
+country_event = {
+	id = can_flavour.36
+	title = can_flavour.36.t
+	desc = {
+		text = can_flavour.36.d
+		trigger = {
+			NOT = { has_country_flag = CAN_monarchy_abolished }
+		}
+	}
+	desc = {
+		text = can_flavour.36.d_republic
+		trigger = {
+			has_country_flag = CAN_monarchy_abolished
+		}
+	}
+	picture = lac_megantic_rail_disaster
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = can_flavour.36.o1
+		466 = {
+			damage_building = {
+				type = infrastructure
+				damage = 0.07
+			}
+		}
 	}
 }
 
@@ -10970,6 +11746,32 @@ news_event = {	#Canadian Nukes
 	
 	option = {
 		name = rw_canada_news.46.o1
+	}
+}
+
+news_event = {	#Toronto Dirty Bomb
+	id = rw_canada_news.47
+	title = rw_canada_news.47.t
+	desc = rw_canada_news.47.d
+	picture = canadian_nuclear_arsenal
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.47.o1
+	}
+}
+
+news_event = {	#Philly Nuked
+	id = rw_canada_news.48
+	title = rw_canada_news.48.t
+	desc = rw_canada_news.48.d
+	picture = philly_nuked
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.48.o1
 	}
 }
 

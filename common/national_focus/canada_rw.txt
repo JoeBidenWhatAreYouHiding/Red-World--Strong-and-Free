@@ -5917,8 +5917,18 @@ focus_tree = {
 		offset = {
 			x = -3
 			trigger = {
-				has_country_flag = CAN_wma_restored
+				has_country_flag = CAN_nazbol_trudeau
 			}	
+		}
+		
+		offset = {
+			x = 2
+			trigger = {
+				has_country_flag = CAN_wma_restored
+				NOT = {
+					has_country_flag = CAN_nazbol_trudeau
+				}
+			}
 		}
 
 		available = {
@@ -10049,6 +10059,14 @@ focus_tree = {
 		cost = 6
 		x = 35
 		y = 15
+		
+		offset = {
+			y = 1
+			x = 0
+			trigger = {
+				NOT = { has_country_flag = CAN_nazbol_trudeau }
+			}
+		}
 
 		available = {
 			has_country_flag = CAN_wma_restored
@@ -10067,7 +10085,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			custom_effect_tooltip = CAN_deal_with_alberta
+			custom_effect_tooltip = tooltip_blank_line
 		}
 	}
 	
@@ -10095,7 +10113,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-
+			country_event = rw_canada.176
 		}
 	}
  
@@ -10151,7 +10169,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-
+			country_event = rw_canada.177
 		}
 	}
  
@@ -10185,15 +10203,43 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-
+			country_event = rw_canada.178
 		}
 	}
 	
 	# - POLITICAL 
  
 	focus = {
-		id = CAN_citizen_soldier_franchise
-		icon = GFX_goal_CAN_citizen_soldier
+		id = CAN_denounce_false_liberalism
+		icon = GFX_goal_CAN_denounce_false_liberalism
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_with_us_or_against_us
+		}
+		
+		relative_position_id = CAN_with_us_or_against_us
+		x = 1
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = rw_canada.183
+		}
+	}
+ 
+	focus = {
+		id = CAN_nationalization
+		icon = GFX_goal_CAN_nationalize
 		cost = 2
 		
 		prerequisite = {
@@ -10220,12 +10266,47 @@ focus_tree = {
 	}
  
 	focus = {
+		id = CAN_citizen_soldier_franchise
+		icon = GFX_goal_CAN_citizen_soldier
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_with_us_or_against_us
+		}
+		
+		allow_branch = {
+			has_country_flag = CAN_nazbol_trudeau
+		}
+		
+		relative_position_id = CAN_with_us_or_against_us
+		x = -3
+		y = 1
+
+		available = {
+			
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+
+		}
+	}
+ 
+	focus = {
 		id = CAN_distribute_rifles
 		icon = GFX_goal_CAN_rifles_for_citizens
 		cost = 2
 		
 		prerequisite = {
 			focus = CAN_citizen_soldier_franchise
+		}
+		prerequisite = {
+			focus = CAN_nationalization
 		}
 		
 		relative_position_id = CAN_with_us_or_against_us
@@ -10284,8 +10365,12 @@ focus_tree = {
 			focus = CAN_with_us_or_against_us
 		}
 		
+		allow_branch = {
+			has_country_flag = CAN_nazbol_trudeau
+		}
+		
 		relative_position_id = CAN_with_us_or_against_us
-		x = 1
+		x = 3
 		y = 1
 
 		available = {
@@ -10310,6 +10395,9 @@ focus_tree = {
 		
 		prerequisite = {
 			focus = CAN_cult_of_trudeau
+		}
+		prerequisite = {
+			focus = CAN_denounce_false_liberalism
 		}
 		
 		relative_position_id = CAN_with_us_or_against_us
@@ -10400,11 +10488,15 @@ focus_tree = {
 		}
 		
 		relative_position_id = CAN_with_us_or_against_us
-		x = -4
+		x = -5
 		y = 1
 
 		available = {
 			
+		}
+		
+		allow_branch = {
+			NOT = { country_exists = NEA }
 		}
 
 		ai_will_do = {
@@ -10548,11 +10640,15 @@ focus_tree = {
 		}
 		
 		relative_position_id = CAN_with_us_or_against_us
-		x = 4
+		x = 5
 		y = 1
 
 		available = {
 			
+		}
+		
+		allow_branch = {
+			NOT = { country_exists = NEA }
 		}
 
 		ai_will_do = {
@@ -10690,14 +10786,6 @@ focus_tree = {
 		cost = 2
 		
 		prerequisite = {
-			focus = CAN_focus_on_commonwealth_failures
-			focus = CAN_salt_the_earth
-		}
-		prerequisite = {
-			focus = CAN_conditional_re_integration
-			focus = CAN_terrorize_the_terrorists
-		}
-		prerequisite = {
 			focus = CAN_citizen_service
 		}
 		
@@ -10725,14 +10813,6 @@ focus_tree = {
 		icon = GFX_goal_CAN_censor_unpatriotic_broadcasts
 		cost = 2
 		
-		prerequisite = {
-			focus = CAN_focus_on_commonwealth_failures
-			focus = CAN_salt_the_earth
-		}
-		prerequisite = {
-			focus = CAN_conditional_re_integration
-			focus = CAN_terrorize_the_terrorists
-		}
 		prerequisite = {
 			focus = CAN_puppet_the_pcs
 		}
@@ -10800,6 +10880,14 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = CAN_managed_democracy
+		}
+		prerequisite = {
+			focus = CAN_focus_on_commonwealth_failures
+			focus = CAN_salt_the_earth
+		}
+		prerequisite = {
+			focus = CAN_conditional_re_integration
+			focus = CAN_terrorize_the_terrorists
 		}
 		
 		relative_position_id = CAN_with_us_or_against_us
@@ -12378,7 +12466,16 @@ focus_tree = {
 		offset = {
 			x = 3
 			trigger = {
+				has_country_flag = CAN_nazbol_trudeau
+			}
+		}
+		offset = {
+			x = -2
+			trigger = {
 				has_country_flag = CAN_wma_restored
+				NOT = {
+					has_country_flag = CAN_nazbol_trudeau
+				}
 			}
 		}
 
@@ -13259,7 +13356,7 @@ focus_tree = {
 				}
 			}
 			swap_ideas = {
-				remove_idea = CAN_local_network_consolidation2
+				remove_idea = CAN_local_network_consolidation_idea2
 				add_idea = CAN_intranet_connections
 			}
 			add_tech_bonus = {
@@ -14444,8 +14541,17 @@ focus_tree = {
 		offset = {
 			x = 3
 			trigger = {
-				has_country_flag = CAN_wma_restored
+				has_country_flag = CAN_nazbol_trudeau
 			}	
+		}
+		offset = {
+			x = -2
+			trigger = {
+				has_country_flag = CAN_wma_restored
+				NOT = {
+					has_country_flag = CAN_nazbol_trudeau
+				}
+			}
 		}
 
 		available = {
@@ -15754,6 +15860,16 @@ focus_tree = {
 				uses = 1
 				category = light_fighter
 			}
+			country_event = rw_canada.175
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = CAN_if_we_have_a_ndp_govt
+			event_option_tooltip = rw_canada.175.o1
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = CAN_if_we_have_a_liberal_govt
+			event_option_tooltip = rw_canada.175.o2
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = CAN_if_we_have_a_conservative_govt
+			event_option_tooltip = rw_canada.175.o3
 		}
 	}
 	
