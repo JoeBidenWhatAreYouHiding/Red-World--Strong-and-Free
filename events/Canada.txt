@@ -4891,6 +4891,12 @@ country_event = {
 		}
 		add_political_power = 20
 		add_stability = -0.02
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.184
+				days = 14
+			}
+		}
 	}
 }
 
@@ -5022,6 +5028,66 @@ country_event = {
 		add_popularity = {
 			ideology = centrist
 			popularity = -0.05
+		}
+	}
+}
+
+#Quebec and Alberta Rebel
+country_event = {
+	id = rw_canada.184
+	title = rw_canada.184.t
+	desc = rw_canada.184.d
+	picture = cascadian_rebels_forest
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.184.o1
+		swap_ideas = {
+			remove_idea = CAN_separatist_crisis
+			add_idea = CAN_separatist_crisis_worse
+		}
+		release = QUE
+		QUE = { 
+			declare_war_on = { target = CAN type = annex_everything }
+			QUE_pauline_marois = {
+				promote_character = new_democrat_ideology
+			}
+			division_template = {
+				name = "Rebel Forces"
+				regiments = {
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 1 }
+				}	
+			}
+			random_owned_controlled_state = {
+				create_unit = {
+					division = "division_template = \"Rebel Forces\" start_experience_factor = 0.2"
+					owner = QUE
+					count = 3
+				}
+			}
+		}
+		release = ALT
+		ALT = {
+			declare_war_on = { target = CAN type = annex_everything }
+			division_template = {
+				name = "Rebel Forces"
+				regiments = {
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 1 }
+				}	
+			}
+			random_owned_controlled_state = {
+				create_unit = {
+					division = "division_template = \"Rebel Forces\" start_experience_factor = 0.2"
+					owner = ALT
+					count = 3
+				}
+			}
 		}
 	}
 }
@@ -11049,7 +11115,7 @@ country_event = {
 	
 	option = {
 		name = can_flavour.36.o1
-		466 = {
+		468 = {
 			damage_building = {
 				type = infrastructure
 				damage = 0.07
