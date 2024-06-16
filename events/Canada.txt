@@ -1440,23 +1440,46 @@ country_event = {
 	id = rw_canada.39
 	title = rw_canada.39.t
 	desc = rw_canada.39.d
-	picture = bill_barr
+	picture = trump_rcmp
 	
 	fire_only_once = yes
 	is_triggered_only = yes
 	
 	option = {
 		name = rw_canada.39.o1
-		add_political_power = 20
-		add_stability = -0.02
-		add_popularity = {
-			ideology = national_conservative
-			popularity = 0.02
+		country_event = rw_canada.390
+	}
+}
+
+#Cohen Reforms
+country_event = {
+	id = rw_canada.390
+	title = rw_canada.390.t
+	desc = rw_canada.390.d
+	picture = cohen_or_bernier
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.390.o1
+		add_stability = -0.06
+		add_timed_idea = {
+			idea = CAN_pmo_office_strengthened
+			days = 500
 		}
-		add_popularity = {
-			ideology = fascist
-			popularity = 0.02
+	}
+	
+	option = {
+		name = rw_canada.390.o2
+		CAN_donald_trump = {
+		add_trait = {
+			character = CAN_donald_trump
+			ideology = fiscal_conservative
+			trait = CAN_senator_trump
 		}
+		custom_effect_tooltip = tooltip_blank_line
+		custom_effect_tooltip = CAN_trump_resigns_as_mp_tt
 	}
 }
 
@@ -5092,6 +5115,90 @@ country_event = {
 	}
 }
 
+#Trudeau Speech
+country_event = {
+	id = rw_canada.185
+	title = rw_canada.185.t
+	desc = rw_canada.185.d
+	picture = trudeau_new_order_speech
+	
+	fire_only_once = yes
+	trigger = {
+		tag = CAN
+		has_country_leader = {
+			name = "Justin Trudeau"
+			ruling_only = yes
+		}
+		has_country_flag = CAN_trudeau_commonwealth_war
+		NEA = {
+			exists = no 
+		}
+		owns_state = 360
+	}
+	
+	option = {
+		name = rw_canada.185.o1
+		set_politics = {
+			ruling_party = national_bolshevik
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = national_bolshevik
+			popularity = 0.1
+		}
+		set_party_name = {
+			name = CAN_nazbol_liberal_party
+			long_name = CAN_nazbol_liberal_party_long
+			ideology = national_bolshevik
+		}
+		set_country_flag = CAN_nazbol_trudeau
+		mark_focus_tree_layout_dirty = yes
+		CAN_justin_trudeau = {
+			add_country_leader_role = {
+				country_leader = {
+					expire = "1.1.1.1"
+					desc="POLITICS_CAN_JUSTIN_TRUDEAU_DESC"
+					ideology = revolutionary_junta
+					traits = { CAN_trudeaumania }
+				}
+			}
+			promote_character = revolutionary_junta
+		}
+	}
+}
+
+#Trudeau Speech
+country_event = {
+	id = rw_canada.186
+	title = rw_canada.186.t
+	desc = rw_canada.186.d
+	picture = trudeau_denounces_neoliberalism
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.186.o1
+		add_war_support = 0.02
+	}
+}
+
+#Trudeau Speech
+country_event = {
+	id = rw_canada.187
+	title = rw_canada.187.t
+	desc = rw_canada.187.d
+	picture = trudeau_denounces_neoliberalism
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.187.o1
+		army_experience = 10
+	}
+}
+
 ### 2015 Elections Stuff ###
 
 #Liberal Primarty
@@ -8663,6 +8770,7 @@ country_event = {
 		name = canada_diplo.54.o1
 		add_war_support = 0.05
 		add_command_power = 30
+		set_country_flag = CAN_germany_is_main_badguy
 	}
 }
 
@@ -9047,6 +9155,53 @@ country_event = {
 				id = canada_diplo.57
 			}
 		}
+	}
+}
+
+#WE FUCKIN WON YEAAAA
+country_event = {
+	id = canada_diplo.100
+	title = canada_diplo.100.t
+	desc = {
+		text = canada_diplo.100.d
+		trigger = {
+			NOT = { has_country_flag = CAN_germany_is_main_badguy }
+		}
+	}
+	desc = {
+		text = canada_diplo.100.d_germany
+		trigger = {
+			has_country_flag = CAN_germany_is_main_badguy
+		}
+	}
+	picture = battle_for_the_canal
+	
+	fire_only_once = yes
+	
+	trigger = {
+		tag = CAN
+		if = {
+			limit = { has_country_flag = CAN_germany_is_main_badguy }
+			GER = { is_in_faction_with = CAN }
+		}
+		else = {
+			OR = {
+				SOV = {
+					exists = no
+					is_in_faction_with = CAN
+				}
+			}
+		}
+		16 = { is_owned_by_ROOT_or_subject = yes }
+		10 = { is_owned_by_ROOT_or_subject = yes }
+		7 = { is_owned_by_ROOT_or_subject = yes }
+		1022 = { is_owned_by_ROOT_or_subject = yes }
+	}
+	
+	option = { #Cool
+		name = canada_diplo.100.o1
+		add_political_power = 200
+		add_stability = 0.20
 	}
 }
 
