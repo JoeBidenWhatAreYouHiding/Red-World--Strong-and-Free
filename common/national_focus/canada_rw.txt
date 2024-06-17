@@ -11057,7 +11057,8 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-
+			add_war_support = 0.10
+			add_ideas = CAN_cult_of_action
 		}
 	}
 	
@@ -11085,7 +11086,12 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-
+			add_ideas = CAN_media_censorship
+			add_popularity = {
+				ideology = national_bolshevik
+				popularity = 0.05
+			}
+			country_event = rw_canada.193
 		}
 	}
 	
@@ -11116,7 +11122,14 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-
+			swap_ideas = {
+				remove_idea = CAN_citizen_soldier_franchise3
+				add_idea = CAN_citizen_soldier_franchise4
+			}
+			add_popularity = {
+				ideology = national_bolshevik
+				popularity = 0.05
+			}
 		}
 	}
 	
@@ -11158,7 +11171,14 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-
+			create_wargoal = {
+				type = annex_everything
+				target = SOV
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = GER
+			}
 		}
 	}
  
@@ -11179,7 +11199,19 @@ focus_tree = {
 		y = 6
 
 		available = {
-			
+			SOV = {
+				OR = {
+					exists = no
+					NOT = { is_in_faction_with = GER }
+					is_subject_of = CAN
+				}
+			}
+			GER = {
+				OR = {
+					exists = no
+					is_subject_of = CAN
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -11189,7 +11221,11 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-
+			add_popularity = {	
+				ideology = national_bolshevik
+				popularity = -0.2
+			}
+			country_event = rw_canada.194
 		}
 	}
  
@@ -11220,7 +11256,22 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-
+			every_country = {
+				limit = { has_government = communist }
+				CAN = {
+					create_wargoal = {
+						type = annex_everything
+						target = PREV
+					}
+				}
+			}
+			add_war_support = 0.05
+			add_political_power = 100
+			add_trait = {
+				character = CAN_justin_trudeau
+				ideology = revolutionary_junta
+				trait = CAN_generalissimo
+			}
 		}
 	}
 
