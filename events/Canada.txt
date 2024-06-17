@@ -5072,7 +5072,9 @@ country_event = {
 			remove_idea = CAN_separatist_crisis
 			add_idea = CAN_separatist_crisis_worse
 		}
-		release = QUE
+		release = ALT
+			subtract_from_variable = { CAN_provinces = 1 }
+			subtract_from_variable = { CAN_provinces = 1 }
 		QUE = { 
 			declare_war_on = { target = CAN type = annex_everything }
 			QUE_pauline_marois = {
@@ -5326,6 +5328,148 @@ country_event = {
 			}
 		}
 		custom_effect_tooltip = CAN_elections_in_one_month
+	}
+}
+
+#Cruz Killed
+country_event = {
+	id = rw_canada.195
+	title = rw_canada.195.t
+	desc = rw_canada.195.d
+	picture = conservatives_given_control_of_cbc
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.195.o1
+		kill_character = CAN_rafael_edward_cruz
+		add_popularity = {
+			ideology = fascist
+			popularity = -0.1
+		}
+	}
+}
+
+#Hillier Resigns
+country_event = {
+	id = rw_canada.196
+	title = rw_canada.196.t
+	desc = rw_canada.196.d
+	picture = trudeau_new_order_speech
+	
+	fire_only_once = yes
+	trigger = {
+		tag = CAN
+		has_country_leader = {
+			name = "Rick J. Hillier"
+			ruling_only = yes
+		}
+		has_country_flag = CAN_hillier_took_over
+		NEA = {
+			OR = {
+				exists = no 
+				is_subject_of = CAN
+			}
+		}
+		360 = {
+			is_owned_by_ROOT_or_subject = yes
+		}
+	}
+	
+	option = {
+		name = rw_canada.196.o1
+		meta_effect = {
+            text = {
+				CAN_rick_j._hillier = {
+					remove_country_leader_role = {
+						ideology = [CURRENT_IDEOLOGY]
+					}
+				}
+            }
+            CURRENT_IDEOLOGY = "[ROOT.get_subideology]"
+        }
+		
+		if = {
+			limit = { has_country_flag = CAN_soc_ndp_party_name_restore }
+			set_party_name = {
+				name = CAN_socialist_ndp_party
+				long_name = CAN_socialist_ndp_party_long
+				ideology = moderate_socialist
+			}
+		}
+		
+		if = {
+			limit = { has_country_flag = CAN_nd_ndp_party_name_restore }
+			set_party_name = {
+				name = CAN_moderate_ndp_party
+				long_name = CAN_moderate_ndp_party_long
+				ideology = new_democrat
+			}
+		}
+		
+		if = {
+			limit = { has_country_flag = CAN_liberal_lib_party_name_restore }
+			set_party_name = {
+				name = CAN_liberal_liberal_party
+				long_name = CAN_liberal_liberal_party_long
+				ideology = liberal
+			}
+		}
+		
+		if = {
+			limit = { has_country_flag = CAN_centrist_lib_party_name_restore }
+			set_party_name = {
+				name = CAN_centrist_liberal_party
+				long_name = CAN_centrist_liberal_party_long
+				ideology = centrist
+			}
+		}
+		
+		if = {
+			limit = { has_country_flag = CAN_centrist_ndp_party_name_restore }
+			set_party_name = {
+				name = CAN_moderate_ndp_party
+				long_name = CAN_moderate_ndp_party_long
+				ideology = centrist
+			}
+		}
+		
+		if = {
+			limit = { has_country_flag = CAN_pc_party_name_restore }
+			set_party_name = {
+				name = CAN_national_conservative_party
+				long_name = CAN_national_conservative_party_long
+				ideology = national_conservative
+			}
+		}
+		
+		if = {
+			limit = { has_country_flag = CAN_alliance_nat_party_name_restore }
+			set_party_name = {
+				name = CAN_canadian_alliance_party
+				long_name = CAN_canadian_alliance_party_long
+				ideology = nationalist
+			}
+		}
+		
+		if = {
+			limit = { has_country_flag = CAN_pc_nat_party_name_restore }
+			set_party_name = {
+				name = CAN_united_reform_pc_party_postel
+				long_name = CAN_united_reform_pc_party_postel_long
+				ideology = nationalist
+			}
+		}
+		
+		if = {
+			limit = { has_country_flag = CAN_alliance_party_name_restore }
+			set_party_name = {
+				name = CAN_canadian_alliance_party
+				long_name = CAN_canadian_alliance_party_long
+				ideology = nationalist
+			}
+		}
 	}
 }
 
@@ -7448,6 +7592,7 @@ country_event = {
 			target = ALA 
 			transfer_troops = yes
 		}
+		add_to_variable = { CAN_provinces = 1 }
 		every_owned_state = {
 			limit = { is_core_of = ALA }
 			CAN = {
@@ -8686,6 +8831,7 @@ country_event = {
 			transfer_troops = yes
 		}
 		add_state_core = 101
+		add_to_variable = { CAN_provinces = 1 }
 	}
 }
 
@@ -10327,9 +10473,18 @@ country_event = {
 	option = { #
 		name = can_separatism.25.o1
 		CAN_subtract_5_percent_popularity = yes
-		ALT = {
-			transfer_state = 470
-			add_state_core = 470
+		hidden_effect = {
+			release = ALT
+			subtract_from_variable = { CAN_provinces = 1 }
+			ALT = { 
+				get_current_government_type = yes
+			}
+			CAN = {
+				puppet = ALT
+			}
+			ALT = { 
+				restore_previous_government_type = yes
+			}
 		}
 		hidden_effect = {
 			every_country = {
@@ -10381,6 +10536,7 @@ country_event = {
 		CAN_subtract_5_percent_popularity = yes
 		hidden_effect = {
 			release = QUE
+			subtract_from_variable = { CAN_provinces = 1 }
 			QUE = { 
 				get_current_government_type = yes
 			}
@@ -10606,10 +10762,8 @@ country_event = {
 	is_triggered_only = yes
 	
 	trigger = {
-		OR = {
-			has_idea = CAN_alberta_in_crisis_idea
-			has_idea = CAN_quebec_in_crisis_idea
-		}
+		has_idea = CAN_alberta_in_crisis_idea
+		has_idea = CAN_quebec_in_crisis_idea
 		NEA = { has_government = revolutionary_socialist }
 	}
 	
@@ -10739,6 +10893,7 @@ country_event = {
 	
 	option = { #
 		name = can_separatism.37.o1
+		set_country_flag = CAN_hillier_took_over
 		meta_effect = {
             text = {
 				CAN_rick_j._hillier = {
@@ -10763,7 +10918,6 @@ country_event = {
 				ideology = moderate_socialist
 			}
 			set_country_flag = CAN_soc_ndp_party_name_restore
-			set_country_flag = CAN_nd_ndp_party_name_restore
 			add_nationalist_to_coalition = yes
 			add_natcon_to_coalition = yes
 			add_centrist_to_coalition = yes
