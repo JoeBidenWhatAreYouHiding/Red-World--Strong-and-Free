@@ -6191,6 +6191,17 @@ country_event = {
 		}
 		else_if = {
 			limit = { 
+				has_country_flag = liberal_jean_chretien_2015
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.170
+				}
+			}
+		}
+		else_if = {
+			limit = { 
 				has_country_leader = { name = "Justin Trudeau" ruling_only = yes }
 				NOT = { has_country_flag = liberal_justin_trudeau_2015 }
 			}
@@ -6406,6 +6417,17 @@ country_event = {
 				news_event = {
 					hours = 4
 					id = rw_canada_news.24
+				}
+			}
+		}
+		else_if = {
+			limit = { 
+				has_country_leader = { name = "Preston Manning" ruling_only = yes }
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.250
 				}
 			}
 		}
@@ -6831,6 +6853,221 @@ country_event = {
 		name = rw_canada.205.o1
 		CAN_increase_housing_crisis = yes
 		CAN_subtract_3_percent_popularity = yes
+	}
+}
+
+#New Governor General
+country_event = {
+	id = rw_canada.206
+	title = rw_canada.206.t
+	desc = rw_canada.206.d
+	picture = housing_crisis
+	
+	trigger = {	
+		NOT = { has_country_flag = CAN_abolished_governor_general }
+	}
+	
+	immediate = {
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.207
+				days = 1825
+			}
+		}
+	}
+	
+	is_triggered_only = yes
+	
+	option = { #David Johnston
+		name = rw_canada.206.o1
+		remove_ideas = CAN_govgen_michaelle_jean
+		add_ideas = CAN_govgen_david_johnston
+		CAN_david_johnston = {
+			promote_character = regency_monarchist
+		}
+	}
+	
+	option = { #John de Chastelain
+		name = rw_canada.206.o2
+		remove_ideas = CAN_govgen_michaelle_jean
+		add_ideas = CAN_govgen_john_de_chastelain
+		CAN_john_de_chastelain = {
+			promote_character = regency_monarchist
+		}
+	}
+	
+	option = { #Mary Simon
+		name = rw_canada.206.o3
+		remove_ideas = CAN_govgen_michaelle_jean
+		add_ideas = CAN_govgen_mary_simon
+		CAN_mary_simon = {
+			promote_character = regency_monarchist
+		}
+		set_country_flag = CAN_simon_was_already_gg
+	}
+}
+
+#New Governor General
+country_event = {
+	id = rw_canada.207
+	title = rw_canada.207.t
+	desc = {
+		text = rw_canada.207.d_johnston
+		trigger = { has_idea = CAN_govgen_david_johnston }
+	}
+	desc = {
+		text = rw_canada.207.d_chastelain
+		trigger = { has_idea = CAN_govgen_john_de_chastelain }
+	}
+	desc = {
+		text = rw_canada.207.d_simon
+		trigger = { has_idea = CAN_govgen_mary_simon }
+	}
+	picture = housing_crisis
+	
+	trigger = {	
+		NOT = { has_country_flag = CAN_abolished_governor_general }
+	}
+	
+	is_triggered_only = yes
+	
+	option = { #Michael Ignatieff
+		name = rw_canada.207.o1
+		trigger = {
+			NOT = { 
+				has_country_leader = {
+					name = "Michael Ignatieff"
+					ruling_only = yes
+				}
+			}
+		}
+		CAN_remove_governor_general = yes
+		add_ideas = CAN_govgen_michael_ignatieff
+		CAN_michael_ignatieff = {
+			add_country_leader_role = {
+				country_leader = {
+					expire = "1.1.1.1"
+					ideology = regency_monarchist
+				}
+			}
+			promote_character = regency_monarchist
+		}
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.208
+				days = 1825
+			}
+		}
+	}
+	
+	option = { #Kevin S. MacLeod
+		name = rw_canada.206.o2
+		trigger = {
+			has_country_leader = {
+				name = "Michael Ignatieff"
+				ruling_only = yes
+			}
+		}
+		CAN_remove_governor_general = yes
+		add_ideas = CAN_govgen_kevin_macleod
+		CAN_kevin_s_macleod = {
+			promote_character = regency_monarchist
+		}
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.208
+				days = 1825
+			}
+		}
+	}
+	
+	option = { #Julie Payette
+		name = rw_canada.206.o3
+		CAN_remove_governor_general = yes
+		add_ideas = CAN_govgen_julie_payette
+		CAN_julie_payette = {
+			promote_character = regency_monarchist
+		}
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.208
+				days = 1208
+			}
+		}
+	}
+	
+	option = { #Joe Clark
+		name = rw_canada.206.o4
+		CAN_remove_governor_general = yes
+		add_ideas = CAN_govgen_joe_clark
+		CAN_joe_clark = {
+			promote_character = regency_monarchist
+		}
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.208
+				days = 1825
+			}
+		}
+	}
+}
+
+#New Governor General
+country_event = {
+	id = rw_canada.208
+	title = rw_canada.208.t
+	desc = {
+		text = rw_canada.208.d_ignatieff
+		trigger = { has_idea = CAN_govgen_michael_ignatieff }
+	}
+	desc = {
+		text = rw_canada.208.d_payette
+		trigger = { has_idea = CAN_govgen_julie_payette }
+	}
+	desc = {
+		text = rw_canada.208.d_clark
+		trigger = { has_idea = CAN_govgen_joe_clark }
+	}
+	desc = {
+		text = rw_canada.208.d_macleod
+		trigger = { has_idea = CAN_govgen_kevin_macleod }
+	}
+	picture = housing_crisis
+	
+	trigger = {	
+		NOT = { has_country_flag = CAN_abolished_governor_general }
+	}
+	
+	is_triggered_only = yes
+
+	option = { #Mary Simon
+		name = rw_canada.208.o1
+		trigger = {
+			NOT = { has_country_flag = CAN_simon_was_already_gg }
+		}
+		CAN_remove_governor_general = yes
+		add_ideas = CAN_govgen_mary_simon
+		CAN_mary_simon = {
+			promote_character = regency_monarchist
+		}
+	}
+	
+	option = { #Graydon Nicholas
+		name = rw_canada.208.o2
+		CAN_remove_governor_general = yes
+		add_ideas = CAN_govgen_graydon_nicholas
+		CAN_graydon_nicholas = {
+			promote_character = regency_monarchist
+		}
+	}
+	
+	option = { #Chris Hadfield
+		name = rw_canada.208.o3
+		CAN_remove_governor_general = yes
+		add_ideas = CAN_govgen_chris_hadfield
+		CAN_chris_hadfield = {
+			promote_character = regency_monarchist
+		}
 	}
 }
 
@@ -11854,6 +12091,19 @@ news_event = {	#Paul Martin Elected Prime Minister
 	}
 }
 
+news_event = {	#Jean Chretien Elected Prime Minister
+	id = rw_canada_news.170
+	title = rw_canada_news.170.t
+	desc = rw_canada_news.170.d
+	picture = chretien_victory
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.170.o1
+	}
+}
+
 news_event = {	#Trudeau Re-Elected
 	id = rw_canada_news.18
 	title = rw_canada_news.18.t
@@ -11955,6 +12205,19 @@ news_event = {	#Harper Re-Elected
 	
 	option = {
 		name = rw_canada_news.25.o1
+	}
+}
+
+news_event = {	#Manning Wins Third Term
+	id = rw_canada_news.250
+	title = rw_canada_news.250.t
+	desc = rw_canada_news.250.d
+	picture = manning_re_re_re_elected
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.250.o1
 	}
 }
 
