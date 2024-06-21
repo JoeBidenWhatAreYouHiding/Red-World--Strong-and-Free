@@ -4832,6 +4832,8 @@ focus_tree = {
 
 		prerequisite = {
 			focus = CAN_higher_education_passport
+		}
+		prerequisite = {
 			focus = CAN_no_more_scandals
 		}
 		
@@ -7233,6 +7235,25 @@ focus_tree = {
 					ruling_only = yes
 				}
 			}
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CAN_liberals_didnt_win_2015
+					NOT = { has_country_flag = progcon_victory }
+				}
+				custom_trigger_tooltip = {
+					tooltip = CAN_liberals_first_term_tree_completed
+					OR = {
+						AND = {
+							has_completed_focus = CAN_trudeaumania
+							has_completed_focus = CAN_self_balancing_budget
+						}
+						AND = {
+							has_completed_focus = CAN_philosophical_liberalism
+							has_completed_focus = CAN_in_the_green
+						}
+					}
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -7242,7 +7263,53 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			if = {
+				limit = { has_country_flag = liberal_victory }
+				custom_effect_tooltip = CAN_liberal_first_term_ideas_removed
+				hidden_effect = {
+					CAN_remove_all_first_term_spirits = yes
+					if = {
+						limit = { 
+							has_country_leader = {
+								name = "Michael Ignatieff"
+								ruling_only = yes
+							}
+							has_government = liberal
+						}
+						add_ideas = CAN_ignatieff_first_term_liberal_idea
+					}
+					else_if = {
+						limit = { 
+							has_country_leader = {
+								name = "Michael Ignatieff"
+								ruling_only = yes
+							}
+							has_government = centrist
+						}
+						add_ideas = CAN_ignatieff_first_term_centrist_idea
+					}
+					else_if = {
+						limit = { 
+							has_country_leader = {
+								name = "Justin Trudeau"
+								ruling_only = yes
+							}
+							has_government = centrist
+						}
+						add_ideas = CAN_trudeau_first_term_centrist_idea
+					}
+					else_if = {
+						limit = { 
+							has_country_leader = {
+								name = "Justin Trudeau"
+								ruling_only = yes
+							}
+							has_government = liberal
+						}
+						add_ideas = CAN_trudeau_first_term_liberal_idea
+					}
+				}
+			}
 		}
 	}
 
@@ -7271,6 +7338,25 @@ focus_tree = {
 					}
 				}
 			}
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = CAN_liberals_didnt_win_2015
+					NOT = { has_country_flag = progcon_victory }
+				}
+				custom_trigger_tooltip = {
+					tooltip = CAN_liberals_first_term_tree_completed
+					OR = {
+						AND = {
+							has_completed_focus = CAN_trudeaumania
+							has_completed_focus = CAN_self_balancing_budget
+						}
+						AND = {
+							has_completed_focus = CAN_philosophical_liberalism
+							has_completed_focus = CAN_in_the_green
+						}
+					}
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -7280,7 +7366,53 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			if = {
+				limit = { has_country_flag = liberal_victory }
+				custom_effect_tooltip = CAN_liberal_first_term_ideas_removed
+				hidden_effect = {
+					CAN_remove_all_first_term_spirits = yes
+					if = {
+						limit = { 
+							has_country_leader = {
+								name = "Michael Ignatieff"
+								ruling_only = yes
+							}
+							has_government = liberal
+						}
+						add_ideas = CAN_ignatieff_first_term_liberal_idea
+					}
+					else_if = {
+						limit = { 
+							has_country_leader = {
+								name = "Michael Ignatieff"
+								ruling_only = yes
+							}
+							has_government = centrist
+						}
+						add_ideas = CAN_ignatieff_first_term_centrist_idea
+					}
+					else_if = {
+						limit = { 
+							has_country_leader = {
+								name = "Justin Trudeau"
+								ruling_only = yes
+							}
+							has_government = centrist
+						}
+						add_ideas = CAN_trudeau_first_term_centrist_idea
+					}
+					else_if = {
+						limit = { 
+							has_country_leader = {
+								name = "Justin Trudeau"
+								ruling_only = yes
+							}
+							has_government = liberal
+						}
+						add_ideas = CAN_trudeau_first_term_liberal_idea
+					}
+				}
+			}
 		}
 	}
 
@@ -7309,7 +7441,12 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_stability = 0.02
+			add_political_power = -20
+			add_offsite_building = {
+                type = industrial_complex level = 1
+            }
+			add_ideas = CAN_decriminalized_weed_idea
 		}
 	}
 
@@ -7338,7 +7475,12 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			add_stability = 0.04
+			add_political_power = -50
+			add_ideas = CAN_minimum_wage_increase
 		}
 	}
 
@@ -7367,7 +7509,9 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_stability = 0.04
+			CAN_add_3_percent_popularity = yes
+			add_ideas = CAN_canadian_feminism
 		}
 	}
 
@@ -7396,7 +7540,15 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_political_power = -30
+			add_stability = 0.04
+			add_war_support = -0.05
+			add_ideas = CAN_gun_control
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1200
+				producer = CAN
+			}
 		}
 	}
 
@@ -7437,7 +7589,23 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = CAN_buisness_haven
+				add_idea = CAN_buisness_haven2
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_political_power = 50
+			CAN_add_3_percent_popularity = yes
 		}
 	}
 
@@ -7477,7 +7645,32 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			hidden_effect = {
+				if = {
+					limit = {	has_idea = CAN_buisness_haven2 }
+					remove_ideas = CAN_buisness_haven2_ndp
+					add_ideas = CAN_buisness_haven
+				}
+				
+				if = {
+					limit = {	has_idea = CAN_buisness_haven2_ndp }
+					remove_ideas = CAN_buisness_haven2_ndp
+					add_ideas = CAN_buisness_haven
+				}
+				
+				if = {
+					limit = {	has_idea = CAN_buisness_haven3_ndp }
+					remove_ideas = CAN_buisness_haven3_ndp
+					add_ideas = CAN_buisness_haven
+				}
+			}
+			swap_ideas = {
+				remove_idea = CAN_buisness_haven
+				add_idea = CAN_buisness_haven3
+			}
+			add_political_power = 50
+			add_stability = -0.05
+			CAN_subtract_3_percent_popularity = yes
 		}
 	}
 
@@ -7489,6 +7682,7 @@ focus_tree = {
 		prerequisite = {
 			focus = CAN_centrist_liberals_in_power
 			focus = CAN_social_liberals_in_power
+			focus = CAN_new_ndp_in_power
 		}
 		
 		prerequisite = {
@@ -7518,7 +7712,19 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_political_power = 50
+			add_stability = 0.05
+			add_ideas = CAN_green_economy
+			custom_effect_tooltip = tooltip_blank_line
+			random_owned_controlled_state = {
+				add_state_modifier = {
+					modifier = {
+						local_manpower = 0.04
+						industry_free_repair_factor = 0.06
+						local_resources_factor = 0.02
+					}
+				}
+			}
 		}
 	}
 
@@ -7538,7 +7744,7 @@ focus_tree = {
 		y = 5
 
 		available = {
-		
+			has_completed_focus = CAN_increase_immigration
 		}
 
 		ai_will_do = {
@@ -7548,7 +7754,26 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_stability = 0.05
+			add_war_support = 0.05
+			CAN_add_3_percent_popularity = yes
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = CAN_if_you_completed_increased_immigration
+			effect_tooltip = {
+				swap_ideas = {
+					remove_idea = CAN_immigration_increase
+					add_idea = CAN_immigration_increase2
+				}
+			}
+			hidden_effect = {
+				if = {
+					limit = { has_completed_focus = CAN_increase_immigration }
+					swap_ideas = {
+						remove_idea = CAN_immigration_increase
+						add_idea = CAN_immigration_increase2
+					}
+				}
+			}
 		}
 	}
 	
@@ -7578,7 +7803,14 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			random_owned_controlled_state = {
+				add_manpower = 23000
+			}
+			random_owned_controlled_state = {
+				add_manpower = 23000
+			}
+			add_political_power = -50
+			add_ideas = CAN_immigration_increase
 		}
 	}
 	
@@ -7607,7 +7839,10 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_political_power = 100
+			add_stability = 0.1
+			CAN_add_5_percent_popularity = yes
+			add_ideas = CAN_triumph_of_the_establishment
 		}
 	}
 	
