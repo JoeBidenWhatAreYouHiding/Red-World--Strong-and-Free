@@ -8511,7 +8511,7 @@ country_event = {
 		}
 	}
 	
-	option = { #Leslyn Lewis
+	option = { #Brad Trost
 		name = rw_canada.299.o7
 		trigger = {
 			OR = {
@@ -8526,7 +8526,7 @@ country_event = {
 			}
 		}
 		set_country_flag = pc_leslyn_lewis_2019
-		CAN_leslyn_lewis = {
+		CAN_brad_trost = {
 			promote_character = neoconservative
 		}
 		if = {
@@ -8703,6 +8703,585 @@ country_event = {
 		}
 		set_country_flag = alliance_victory_2019
 		set_country_flag = CAN_2019_elections_held
+		if = {
+			limit = { has_country_flag = alliance_is_nationalist }
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = nationalist
+			}
+			add_fash_to_coalition = yes
+		}
+		else = {
+			add_popularity = {
+				ideology = fascist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = fascist
+			}
+			add_nationalist_to_coalition = yes
+		}
+	}
+}
+
+#Liberal Primarty
+country_event = {
+	id = rw_canada.301
+	title = rw_canada.301.t
+	desc = rw_canada.301.d
+	picture = liberal_party_convention
+
+	is_triggered_only = yes
+	
+	trigger = {	
+		has_country_flag = liberals_exist
+	}
+	
+	option = { #Current Leader
+		name = rw_canada.301.o1
+		trigger = {
+			OR = {
+				has_government = centrist
+				has_government = liberal
+			}
+		}
+		set_country_flag = current_liberal_leader_2023
+	}
+
+	option = { #Dominic LeBlanc
+		name = rw_canada.301.o2
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = centrist
+					has_government = liberal
+				}
+				has_country_flag = liberal_leader_resigns_2015
+			}
+		}
+		set_country_flag = liberal_dominic_leblanc_2023
+		CAN_dominic_leblanc = {
+			promote_character = social_liberal
+		}
+		if = {
+			limit = { has_country_flag = liberals_are_centrist }
+			clr_country_flag = liberals_are_centrist
+			set_country_flag = liberals_are_liberal
+		}
+	}
+
+	option = { #Mark Carney
+		name = rw_canada.301.o3
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = centrist
+					has_government = liberal
+				}
+				has_country_flag = liberal_leader_resigns_2015
+			}
+		}
+		set_country_flag = liberal_mark_carney_2023
+		CAN_mark_carney = {
+			promote_character = social_liberal
+		}
+		if = {
+			limit = { has_country_flag = liberals_are_centrist }
+			clr_country_flag = liberals_are_centrist
+			set_country_flag = liberals_are_liberal
+		}
+	}
+	
+	option = { #Denis Coderre
+		name = rw_canada.301.o4
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = centrist
+					has_government = liberal
+				}
+				has_country_flag = liberal_leader_resigns_2015
+			}
+		}
+		set_country_flag = liberal_denis_coderre_2023
+		CAN_denis_coderre = {
+			promote_character = centrist_populist
+		}
+		if = {
+			limit = { has_country_flag = liberals_are_liberal }
+			clr_country_flag = liberals_are_liberal
+			set_country_flag = liberals_are_centrist
+		}
+	}
+	
+	option = { #Marc Garneau
+		name = rw_canada.301.o5
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = centrist
+					has_government = liberal
+				}
+				has_country_flag = liberal_leader_resigns_2015
+			}
+		}
+		set_country_flag = liberal_marc_garneau_2023
+		CAN_marc_garneau = {
+			promote_character = centrist_populist
+		}
+		if = {
+			limit = { has_country_flag = liberals_are_liberal }
+			clr_country_flag = liberals_are_liberal
+			set_country_flag = liberals_are_centrist
+		}
+	}
+}
+
+#NDP Primarty
+country_event = {
+	id = rw_canada.302
+	title = rw_canada.302.t
+	desc = rw_canada.302.d
+	picture = ndp_convention
+
+	is_triggered_only = yes
+	
+	trigger = {	
+		has_country_flag = ndp_exists
+	}
+
+	option = { #Current Leader
+		name = rw_canada.302.o1
+		trigger = {
+			OR = {
+				has_government = moderate_socialist
+				AND = {
+					has_government = centrist
+					has_country_flag = ndp_is_centrist
+				}
+				has_government = new_democrat
+			}
+		}
+		set_country_flag = current_ndp_leader_2023
+	}
+
+	option = { #Niki Ashton
+		name = rw_canada.302.o2
+		trigger = {
+			OR = {
+				has_country_flag = ndp_leader_resigns_2015
+				NOT = {
+					OR = {
+						has_government = moderate_socialist
+						AND = {
+							has_government = centrist
+							has_country_flag = ndp_is_centrist
+						}
+						has_government = new_democrat
+					}
+				}
+			}
+		}
+		set_country_flag = ndp_niki_ashton_2023
+		if = {
+			limit = { has_country_flag = ndp_is_modsoc }
+			CAN_niki_ashton = {
+				add_country_leader_role = {
+					country_leader = {
+						expire = "1.1.1.1"
+						ideology = democratic_socialist
+					}
+				}
+				promote_character = democratic_socialist
+			}
+		}
+		else = {
+			CAN_niki_ashton = {
+				promote_character = new_democrat_ideology
+			}
+		}
+	}
+
+	option = { #Paul Dewar
+		name = rw_canada.302.o3
+		trigger = {
+			OR = {
+				has_country_flag = ndp_leader_resigns_2015
+				NOT = {
+					OR = {
+						has_government = moderate_socialist
+						AND = {
+							has_government = centrist
+							has_country_flag = ndp_is_centrist
+						}
+						has_government = new_democrat
+					}
+				}
+			}
+		}
+		set_country_flag = ndp_paul_dewar_2023
+		if = {
+			limit = { has_country_flag = ndp_is_modsoc }
+			CAN_paul_dewar = {
+				add_country_leader_role = {
+					country_leader = {
+						expire = "1.1.1.1"
+						ideology = democratic_socialist
+					}
+				}
+				promote_character = democratic_socialist
+			}
+		}
+		else = {
+			CAN_paul_dewar = {
+				promote_character = new_democrat_ideology
+			}
+		}
+	}
+	
+	option = { #Peggy Nash
+		name = rw_canada.302.o4
+		trigger = {
+			OR = {
+				has_country_flag = ndp_leader_resigns_2015
+				NOT = {
+					OR = {
+						has_government = moderate_socialist
+						AND = {
+							has_government = centrist
+							has_country_flag = ndp_is_centrist
+						}
+						has_government = new_democrat
+					}
+				}
+			}
+		}
+		set_country_flag = ndp_peggy_nash_2023
+		if = {
+			limit = { has_country_flag = ndp_is_modsoc }
+			CAN_peggy_nash = {
+				add_country_leader_role = {
+					country_leader = {
+						expire = "1.1.1.1"
+						ideology = democratic_socialist
+					}
+				}
+				promote_character = democratic_socialist
+			}
+		}
+		else = {
+			CAN_peggy_nash = {
+				promote_character = new_democrat_ideology
+			}
+		}
+	}
+	
+	option = { #Richard Cannings
+		name = rw_canada.302.o7
+		trigger = {
+			OR = {
+				has_country_flag = ndp_leader_resigns_2015
+				NOT = {
+					OR = {
+						has_government = moderate_socialist
+						AND = {
+							has_government = centrist
+							has_country_flag = ndp_is_centrist
+						}
+						has_government = new_democrat
+					}
+				}
+			}
+		}
+		set_country_flag = ndp_richard_cannings_2023
+		if = {
+			limit = { has_country_flag = ndp_is_modsoc }
+			CAN_richard_cannings = {
+				add_country_leader_role = {
+					country_leader = {
+						expire = "1.1.1.1"
+						ideology = democratic_socialist
+					}
+				}
+				promote_character = democratic_socialist
+			}
+		}
+		else = {
+			CAN_richard_cannings = {
+				promote_character = new_democrat_ideology
+			}
+		}
+	}
+}
+
+#PC Primarty
+country_event = {
+	id = rw_canada.303
+	title = rw_canada.303.t
+	desc = rw_canada.303.d
+	picture = pc_party_convention
+
+	is_triggered_only = yes
+	
+	trigger = {	
+		has_country_flag = progcons_exist
+	}
+
+	option = { #Current Leader
+		name = rw_canada.303.o1
+		trigger = {
+			OR = {
+				has_government = nationalist
+				has_government = national_conservative
+			}
+		}
+		set_country_flag = current_pc_leader_2023
+	}
+
+	option = { #Jean Charest
+		name = rw_canada.303.o2
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = nationalist
+					has_government = national_conservative
+				}
+				has_country_flag = pc_leader_resigns_2015
+			}
+		}
+		set_country_flag = pc_jean_charest_2023
+		CAN_jean_charest = {
+			promote_character = progressive_conservative
+		}
+		if = {
+			limit = { has_country_flag = pcs_are_nationalist }
+			clr_country_flag = pcs_are_nationalist
+			set_country_flag = pcs_are_natcon
+		}
+	}
+
+	option = { #Scott Aitchison
+		name = rw_canada.303.o3
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = nationalist
+					has_government = national_conservative
+				}
+				has_country_flag = pc_leader_resigns_2015
+			}
+		}
+		set_country_flag = pc_scott_aitchison_2023
+		CAN_scott_aitchison = {
+			promote_character = progressive_conservative
+		}
+		if = {
+			limit = { has_country_flag = pcs_are_nationalist }
+			clr_country_flag = pcs_are_nationalist
+			set_country_flag = pcs_are_natcon
+		}
+	}
+
+	option = { #Pierre Poilievre
+		name = rw_canada.303.o4
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = nationalist
+					has_government = national_conservative
+				}
+				has_country_flag = pc_leader_resigns_2015
+			}
+			NOT = {
+				has_country_flag = nationalists_are_canadian_alliance
+			}
+		}
+		set_country_flag = pc_pierre_poilievre_2023
+		CAN_pierre_poilievre = {
+			promote_character = neoconservative
+		}
+		if = {
+			limit = { has_country_flag = pcs_are_natcon }
+			clr_country_flag = pcs_are_natcon
+			set_country_flag = pcs_are_nationalist
+		}
+	}
+	
+	option = { #Leslyn Lewis
+		name = rw_canada.303.o5
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = nationalist
+					has_government = national_conservative
+				}
+				has_country_flag = pc_leader_resigns_2015
+			}
+			NOT = {
+				has_country_flag = nationalists_are_canadian_alliance
+			}
+		}
+		set_country_flag = pc_leslyn_lewis_2023
+		CAN_leslyn_lewis = {
+			promote_character = neoconservative
+		}
+		if = {
+			limit = { has_country_flag = pcs_are_natcon }
+			clr_country_flag = pcs_are_natcon
+			set_country_flag = pcs_are_nationalist
+		}
+	}
+}
+
+#2015 Election
+country_event = {
+	id = rw_canada.304
+	title = rw_canada.304.t
+	desc = rw_canada.304.d
+	picture = can_election
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = {
+			OR = {
+				has_government = national_bolshevik
+				has_government = revolutionary_socialist
+				has_government = communist
+			}
+		}
+	}
+	
+	option = { #Liberals
+		name = rw_canada.304.o1
+		trigger = {
+			has_country_flag = liberals_exist
+		}
+		set_country_flag =  liberal_victory_2023
+		set_country_flag = CAN_2023_elections_held
+		if = {
+			limit = { has_country_flag = liberals_are_liberal }
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = liberal
+			}
+		}
+		else = {
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = centrist
+			}
+		}
+	}
+	
+	option = { #NDP
+		name = rw_canada.304.o2
+		trigger = {
+			has_country_flag = ndp_exists
+		}
+		set_country_flag =  ndp_victory_2023
+		set_country_flag = CAN_2023_elections_held
+		if = {
+			limit = { has_country_flag = ndp_is_modsoc }
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = moderate_socialist
+			}
+			add_newdem_to_coalition = yes
+		}
+		else_if = {
+			limit = { has_country_flag = ndp_is_centrist }
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = centrist
+			}
+			add_newdem_to_coalition = yes
+			add_liberal_to_coalition = yes
+		}
+		else = {
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = new_democrat
+			}
+			add_modsoc_to_coalition = yes
+		}
+	}
+	
+	option = { #ProgCons
+		name = rw_canada.304.o3
+		trigger = {
+			has_country_flag = progcons_exist
+		}
+		set_country_flag =  pc_victory_2023
+		set_country_flag = CAN_2023_elections_held
+		if = {
+			limit = { has_country_flag = pcs_are_nationalist }
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = nationalist
+			}
+			add_natcon_to_coalition = yes
+		}
+		else = {
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = national_conservative
+			}
+			add_nationalist_to_coalition = yes
+		}
+	}
+
+	option = { #Canadian Alliance
+		name = rw_canada.304.o4
+		trigger = {
+			has_country_flag = canadian_bloc_exists
+		}
+		set_country_flag =  bloc_victory_2023
+		set_country_flag = CAN_2023_elections_held
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.04
+		}
+		set_politics = {
+			ruling_party = new_democrat
+		}
+		add_liberal_to_coalition = yes
+		add_modsoc_to_coalition = yes
+		add_centrist_to_coalition = yes
+	}
+	
+	option = { #Canadian Alliance
+		name = rw_canada.304.o5
+		trigger = {
+			has_country_flag = canadian_alliance_is_relevant
+		}
+		set_country_flag = alliance_victory_2023
+		set_country_flag = CAN_2023_elections_held
 		if = {
 			limit = { has_country_flag = alliance_is_nationalist }
 			add_popularity = {
