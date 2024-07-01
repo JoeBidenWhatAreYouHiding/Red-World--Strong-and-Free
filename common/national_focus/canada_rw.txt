@@ -1573,6 +1573,11 @@ focus_tree = {
 			custom_effect_tooltip = CAN_manning_cabinet_assembled_tt
 			hidden_effect = {
 				country_event = {	
+					id = can_flavour.55
+					days = 100
+					random_days = 40
+				}
+				country_event = {	
 					id = can_flavour.47
 					days = 230
 					random_days = 120
@@ -1607,6 +1612,11 @@ focus_tree = {
 			country_event = rw_canada.24
 			custom_effect_tooltip = CAN_harper_cabinet_assembled_tt
 			hidden_effect = {
+				country_event = {	
+					id = can_flavour.55
+					days = 100
+					random_days = 40
+				}
 				country_event = {	
 					id = can_flavour.46
 					days = 230
@@ -4587,6 +4597,13 @@ focus_tree = {
 				}
 			}
 			
+			hidden_effect = {
+				country_event = {
+					id = rw_canada.309
+					days = 45
+					random_days = 20
+				}
+			}
 		}
 	}
 	
@@ -5327,6 +5344,13 @@ focus_tree = {
 			swap_ideas = {
 				remove_idea = CAN_buisness_haven2_ndp
 				add_idea = CAN_buisness_haven3_ndp
+			}
+			hidden_effect = {
+				country_event = {
+					id = can_flavour.49
+					days = 70
+					random_days = 40
+				}
 			}
 		}
 	}
@@ -9207,6 +9231,7 @@ focus_tree = {
 				remove_idea = CAN_quebec_first2
 				add_idea = CAN_quebec_first3_seulterme
 			}
+			set_country_flag = CAN_bq_stand_down
 		}
 	}
 
@@ -9376,6 +9401,15 @@ focus_tree = {
 				add_idea = CAN_quebec_first4_newbloc
 			}
 			country_event = rw_canada.125
+			hidden_effect = {
+				if = {
+					limit = { NOT = { has_country_flag = bloc_ndp_alliance } }
+					country_event = {
+						id = rw_canada.309
+						days = 34
+					}
+				}
+			}
 		}
 	}
 
@@ -19648,13 +19682,18 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			create_wargoal = {
-				type = annex_everything
-				target = SOV
+			if = {
+				limit = { GER = { is_faction_leader = yes }
+				create_wargoal = {
+					type = annex_everything
+					target = GER
+				}
 			}
-			create_wargoal = {
-				type = annex_everything
-				target = GER
+			else = {
+				create_wargoal = {
+					type = annex_everything
+					target = SOV
+				}
 			}
 		}
 	}

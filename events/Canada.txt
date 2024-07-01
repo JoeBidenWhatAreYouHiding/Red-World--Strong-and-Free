@@ -2770,6 +2770,9 @@ country_event = {
 	
 	option = { #Yay
 		name = rw_canada.69.o1
+		trigger = { 
+			NOT = { has_country_flag = CAN_layton_resigns }
+		}
 		add_stability = 0.10
 		add_political_power = 50
 		add_popularity = {
@@ -2784,6 +2787,48 @@ country_event = {
 			set_portraits = {
 				civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Jack_Layton_Recovered.png" }
 			}
+		}
+		set_country_flag = CAN_layton_recovered_from_cancer
+	}
+	
+	option = { #Yay
+		name = rw_canada.69.o2
+		trigger = { 
+			has_country_flag = CAN_layton_resigns
+		}
+		add_stability = 0.10
+		add_political_power = 50
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+		CAN_jack_layton = {
+			promote_character = moderate_socialist_ideology
+			set_portraits = {
+				civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Jack_Layton_Recovered.png" }
+			}
+		}
+		set_country_flag = CAN_layton_recovered_from_cancer
+	}
+	
+	option = { #Yay
+		name = rw_canada.69.o3
+		trigger = { 
+			has_country_flag = CAN_layton_resigns
+		}
+		add_stability = 0.05
+		add_political_power = 100
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
 		}
 		set_country_flag = CAN_layton_recovered_from_cancer
 	}
@@ -5653,9 +5698,18 @@ country_event = {
 			ruling_party = liberal
 		}
 		hidden_effect = {
-			country_event = {
-				id = rw_canada.200
-				days = 30
+			if = {
+				limit = { date < 2016.1.1 }
+				country_event = {
+					id = rw_canada.200
+					days = 30
+				}
+			}
+			else = {
+				country_event = {
+					id = rw_canada.300
+					days = 30
+				}
 			}
 		}
 		custom_effect_tooltip = CAN_elections_in_one_month
@@ -5811,7 +5865,18 @@ country_event = {
 country_event = {
 	id = rw_canada.197
 	title = rw_canada.197.t
-	desc = rw_canada.197.d
+	desc = {
+		text = rw_canada.197.d_resigns
+		trigger = {
+			has_country_flag = liberal_leader_resigns_2011
+		}
+	}
+	desc = {
+		text = rw_canada.197.d
+		trigger = {
+			NOT = { has_country_flag = liberal_leader_resigns_2011 }
+		}
+	}
 	picture = liberal_party_convention
 
 	is_triggered_only = yes
@@ -5827,6 +5892,7 @@ country_event = {
 				has_government = centrist
 				has_government = liberal
 			}
+			NOT = { has_country_flag = liberal_leader_resigns_2011 }
 		}
 		set_country_flag = current_liberal_leader_2015
 	}
@@ -5850,7 +5916,10 @@ country_event = {
 			limit = { has_country_flag = liberals_are_centrist }
 			clr_country_flag = liberals_are_centrist
 			set_country_flag = liberals_are_liberal
-			set_country_flag = CAN_liberals_become_liberal_tt
+			custom_effect_tooltip = CAN_liberals_become_liberal_tt
+		}
+		CAN_justin_trudeau = {
+			promote_character = social_liberal
 		}
 	}
 
@@ -5873,7 +5942,7 @@ country_event = {
 			limit = { has_country_flag = liberals_are_centrist }
 			clr_country_flag = liberals_are_centrist
 			set_country_flag = liberals_are_liberal
-			set_country_flag = CAN_liberals_become_liberal_tt
+			custom_effect_tooltip = CAN_liberals_become_liberal_tt
 		}
 	}
 	
@@ -5921,7 +5990,7 @@ country_event = {
 			limit = { has_country_flag = liberals_are_centrist }
 			clr_country_flag = liberals_are_centrist
 			set_country_flag = liberals_are_liberal
-			set_country_flag = CAN_liberals_become_liberal_tt
+			custom_effect_tooltip = CAN_liberals_become_liberal_tt
 		}
 	}
 	
@@ -5967,7 +6036,7 @@ country_event = {
 			limit = { has_country_flag = liberals_are_centrist }
 			clr_country_flag = liberals_are_centrist
 			set_country_flag = liberals_are_liberal
-			set_country_flag = CAN_liberals_become_liberal_tt
+			custom_effect_tooltip = CAN_liberals_become_liberal_tt
 		}
 	}
 }
@@ -6485,6 +6554,12 @@ country_event = {
 					id = rw_canada_news.14
 				}
 			}
+			add_ideas = {
+				canada_sic_stephane_dion
+				canada_fom_john_mccallum
+				canada_ind_kirsty_duncan
+				canada_nsm_kent_heher
+			}
 		}
 		else_if = {
 			limit = { 
@@ -6495,6 +6570,12 @@ country_event = {
 					hours = 4
 					id = rw_canada_news.15
 				}
+			}
+			add_ideas = {
+				canada_sic_stephane_dion
+				canada_fom_christina_freeland
+				canada_ind_kirsty_duncan
+				canada_nsm_kent_heher
 			}
 		}
 		else_if = {
@@ -6507,6 +6588,12 @@ country_event = {
 					id = rw_canada_news.16
 				}
 			}
+			add_ideas = {
+				canada_sic_stephane_dion
+				canada_fom_christina_freeland
+				canada_ind_kirsty_duncan
+				canada_nsm_kent_heher
+			}
 		}
 		else_if = {
 			limit = { 
@@ -6517,6 +6604,12 @@ country_event = {
 					hours = 4
 					id = rw_canada_news.160
 				}
+			}
+			add_ideas = {
+				canada_sic_justin_trudeau
+				canada_fom_christina_freeland
+				canada_ind_kirsty_duncan
+				canada_nsm_kent_heher
 			}
 		}
 		else_if = {
@@ -6529,6 +6622,12 @@ country_event = {
 					id = rw_canada_news.17
 				}
 			}
+			add_ideas = {
+				canada_sic_michael_bloomberg
+				canada_fom_christina_freeland
+				canada_ind_kirsty_duncan
+				canada_nsm_kent_heher
+			}
 		}
 		else_if = {
 			limit = { 
@@ -6539,6 +6638,12 @@ country_event = {
 					hours = 4
 					id = rw_canada_news.170
 				}
+			}
+			add_ideas = {
+				canada_sic_justin_trudeau
+				canada_fom_christina_freeland
+				canada_ind_kirsty_duncan
+				canada_nsm_kent_heher
 			}
 		}
 		else_if = {
@@ -6636,6 +6741,15 @@ country_event = {
 					id = rw_canada_news.26
 				}
 			}
+			if = {
+				limit = { NOT = { has_country_flag = ndp_tom_mulcair_2015 } }
+				add_ideas = {
+					canada_sic_jagmeet_singh
+					canada_fom_helene_laverdiere
+					canada_nsm_david_christopherson
+					canada_ind_helene_leblanc
+				}
+			}
 		}
 		else_if = {
 			limit = { 
@@ -6646,6 +6760,12 @@ country_event = {
 					hours = 4
 					id = rw_canada_news.27
 				}
+			}
+			add_ideas = {
+				canada_sic_thomas_mulcair
+				canada_fom_helene_laverdiere
+				canada_nsm_david_christopherson
+				canada_ind_helene_leblanc
 			}
 		}
 		else_if = {
@@ -6659,6 +6779,15 @@ country_event = {
 				news_event = {
 					hours = 4
 					id = rw_canada_news.270
+				}
+			}
+			if = {
+				limit = { NOT = { has_country_flag = ndp_brian_topp_2015 } }
+				add_ideas = {
+					canada_sic_charlie_angus
+					canada_fom_paul_dewar
+					canada_nsm_joe_comartin
+					canada_ind_guy_caron
 				}
 			}
 		}
@@ -6696,6 +6825,12 @@ country_event = {
 					hours = 4
 					id = rw_canada_news.29
 				}
+			}
+			add_ideas = {
+				canada_sic_thomas_mulcair
+				canada_fom_paul_dewar
+				canada_nsm_joe_comartin
+				canada_ind_guy_caron
 			}
 		}
 		else_if = {
@@ -6769,6 +6904,12 @@ country_event = {
 					id = rw_canada_news.20
 				}
 			}
+			add_ideas = {
+				canada_sic_jim_flaherty
+				canada_fom_robert_nicholson
+				canada_ind_bernard_valcourt
+				canada_nsm_christopher_alexander
+			}
 		}
 		else_if = {
 			limit = { 
@@ -6779,6 +6920,12 @@ country_event = {
 					hours = 4
 					id = rw_canada_news.21
 				}
+			}
+			add_ideas = {
+				canada_sic_jim_prentice
+				canada_fom_robert_nicholson
+				canada_ind_bernard_valcourt
+				canada_nsm_christopher_alexander
 			}
 		}
 		else_if = {
@@ -6801,6 +6948,12 @@ country_event = {
 					hours = 4
 					id = rw_canada_news.23
 				}
+			}
+			add_ideas = {
+				canada_sic_jim_prentice
+				canada_fom_robert_nicholson
+				canada_ind_bernard_valcourt
+				canada_nsm_christopher_alexander
 			}
 		}
 		else_if = {
@@ -6859,7 +7012,7 @@ country_event = {
 	id = rw_canada.201
 	title = rw_canada.201.t
 	desc = rw_canada.201.d
-	picture = can_election
+	picture = hung_parlaiment
 	
 	fire_only_once = yes
 	is_triggered_only = yes
@@ -7414,6 +7567,7 @@ country_event = {
 			var = CAN_alberta_tension
 			value = 2
 		}
+		set_country_flag = CAN_bloc_government
 	}
 }
 
@@ -7422,7 +7576,7 @@ country_event = {
 	id = rw_canada.202
 	title = rw_canada.202.t
 	desc = rw_canada.202.d
-	picture = can_election
+	picture = duceppe_forms_government
 	
 	fire_only_once = yes
 	is_triggered_only = yes
@@ -7503,7 +7657,7 @@ country_event = {
 	id = rw_canada.203
 	title = rw_canada.203.t
 	desc = rw_canada.203.d
-	picture = can_election
+	picture = cruz_forms_government
 	
 	fire_only_once = yes
 	is_triggered_only = yes
@@ -7560,7 +7714,7 @@ country_event = {
 	id = rw_canada.204
 	title = rw_canada.204.t
 	desc = rw_canada.204.d
-	picture = can_election
+	picture = kenney_forms_government
 	
 	fire_only_once = yes
 	is_triggered_only = yes
@@ -8086,7 +8240,7 @@ country_event = {
 			limit = { has_country_flag = liberals_are_centrist }
 			clr_country_flag = liberals_are_centrist
 			set_country_flag = liberals_are_liberal
-			set_country_flag = CAN_liberals_become_liberal_tt
+			custom_effect_tooltip = CAN_liberals_become_liberal_tt
 		}
 		clr_country_flag = trudeau_leads_liberals
 	}
@@ -8110,7 +8264,7 @@ country_event = {
 			limit = { has_country_flag = liberals_are_centrist }
 			clr_country_flag = liberals_are_centrist
 			set_country_flag = liberals_are_liberal
-			set_country_flag = CAN_liberals_become_liberal_tt
+			custom_effect_tooltip = CAN_liberals_become_liberal_tt
 		}
 		clr_country_flag = trudeau_leads_liberals
 	}
@@ -8182,7 +8336,7 @@ country_event = {
 			limit = { has_country_flag = liberals_are_centrist }
 			clr_country_flag = liberals_are_centrist
 			set_country_flag = liberals_are_liberal
-			set_country_flag = CAN_liberals_become_liberal_tt
+			custom_effect_tooltip = CAN_liberals_become_liberal_tt
 		}
 		clr_country_flag = trudeau_leads_liberals
 	}
@@ -8537,7 +8691,7 @@ country_event = {
 	}
 }
 
-#2015 Election
+#2019 Election
 country_event = {
 	id = rw_canada.300
 	title = rw_canada.300.t
@@ -8577,6 +8731,19 @@ country_event = {
 			country_event = {
 				id = rw_canada.304
 				days = 1460
+			}
+			
+			if = {
+				limit = { has_country_flag = CAN_bq_stand_down }
+				set_party_name = {
+					name = CAN_moderate_ndp_party
+					long_name = CAN_moderate_ndp_party_long
+					ideology = new_democrat
+				}
+				retire_character = CAN_gilles_duceppe
+				retire_character = CAN_yves_francois_blanchet
+				retire_character = CAN_mario_beaulieu
+				retire_character = CAN_martine_ouellet
 			}
 		}
 	}
@@ -8620,6 +8787,13 @@ country_event = {
 				random_days = 24
 			}
 		}
+		add_ideas = {
+			canada_sic_christina_freeland
+			canada_fom_stephanie_dion
+			canada_ind_maryann_mihychuk
+			canada_nsm_dominic_leblanc
+		}
+		clr_country_flag = CAN_bloc_government
 	}
 	
 	option = { #NDP
@@ -8674,6 +8848,13 @@ country_event = {
 				random_days = 24
 			}
 		}
+		add_ideas = {
+			canada_sic_jagmeet_singh
+			canada_fom_paul_dewar
+			canada_ind_nathen_cullen
+			canada_nsm_joe_comartin
+		}
+		clr_country_flag = CAN_bloc_government
 	}
 	
 	option = { #ProgCons
@@ -8693,6 +8874,7 @@ country_event = {
 				ruling_party = nationalist
 			}
 			add_natcon_to_coalition = yes
+			add_ideas = canada_sic_andrew_scheer
 		}
 		else = {
 			add_popularity = {
@@ -8703,6 +8885,7 @@ country_event = {
 				ruling_party = national_conservative
 			}
 			add_nationalist_to_coalition = yes
+			add_ideas = canada_sic_brad_trost
 		}
 		hidden_effect = {
 			country_event = {
@@ -8716,6 +8899,12 @@ country_event = {
 				random_days = 24
 			}
 		}
+		add_ideas = {
+			canada_fom_john_baird
+			canada_ind_tony_clement
+			canada_nsm_erin_otoole
+		}
+		clr_country_flag = CAN_bloc_government
 	}
 
 	option = { #Bloc
@@ -8771,6 +8960,12 @@ country_event = {
 				ruling_party = nationalist
 			}
 			add_fash_to_coalition = yes
+			add_ideas = {
+				canada_sic_jason_kenney
+				canada_fom_maxime_bernier
+				canada_ind_pierre_poilievre
+				canada_nsm_brian_jean
+			}
 		}
 		else = {
 			add_popularity = {
@@ -8781,6 +8976,12 @@ country_event = {
 				ruling_party = fascist
 			}
 			add_nationalist_to_coalition = yes
+			add_ideas = {
+				canada_sic_stockwell_day
+				canada_fom_maxime_bernier
+				canada_ind_pierre_poilievre
+				canada_nsm_brian_jean
+			}
 		}
 		hidden_effect = {
 			country_event = {
@@ -8798,6 +8999,46 @@ country_event = {
 				days = 22
 				random_days = 24
 			}
+		}
+		clr_country_flag = CAN_bloc_government
+	}
+	
+	option = { #Green Party
+		name = rw_canada.300.o6
+		trigger = {
+			has_country_flag = green_party_is_a_thing
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.04
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+		}
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.301
+				days = 12
+				random_days = 34
+			}
+			country_event = {
+				id = rw_canada.302
+				days = 12
+				random_days = 34
+			}
+			country_event = {
+				id = rw_canada.303
+				days = 22
+				random_days = 24
+			}
+		}
+		clr_country_flag = CAN_bloc_government
+		set_country_flag = CAN_green_party
+		add_ideas = {
+			canada_sic_annamie_paul
+			canada_fom_paul_manly
+			canada_ind_jen_hunter
+			canada_nsm_david_chernushenko
 		}
 	}
 }
@@ -8845,7 +9086,7 @@ country_event = {
 			limit = { has_country_flag = liberals_are_centrist }
 			clr_country_flag = liberals_are_centrist
 			set_country_flag = liberals_are_liberal
-			set_country_flag = CAN_liberals_become_liberal_tt
+			custom_effect_tooltip = CAN_liberals_become_liberal_tt
 		}
 	}
 
@@ -8868,7 +9109,7 @@ country_event = {
 			limit = { has_country_flag = liberals_are_centrist }
 			clr_country_flag = liberals_are_centrist
 			set_country_flag = liberals_are_liberal
-			set_country_flag = CAN_liberals_become_liberal_tt
+			custom_effect_tooltip = CAN_liberals_become_liberal_tt
 		}
 	}
 	
@@ -9202,7 +9443,7 @@ country_event = {
 	}
 }
 
-#2015 Election
+#Later Election
 country_event = {
 	id = rw_canada.304
 	title = rw_canada.304.t
@@ -9226,6 +9467,11 @@ country_event = {
 			country_event = {
 				id = rw_canada.304
 				days = 1460
+			}
+		}
+		CAN_pierre_poilievre = {
+			set_portraits = {
+				civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Pierre_Poilievre_No_Glasses.png" }
 			}
 		}
 	}
@@ -9483,6 +9729,75 @@ country_event = {
 		name = rw_canada.308.o1
 		add_manpower = -20
 		set_country_flag = CAN_trump_dead
+	}
+}
+
+#Collapse of the NDP
+country_event = {
+	id = rw_canada.309
+	title = rw_canada.309.t
+	desc = rw_canada.309.d
+	picture = green_party_surge
+
+	is_triggered_only = yes
+	
+	option = { #Green Party
+		name = rw_canada.309.o1
+		set_country_flag = green_party_is_a_thing
+		clr_character_flag = ndp_exists
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+		set_party_name = {
+			name = CAN_green_party
+			long_name = CAN_green_party_long
+			ideology = moderate_socialist
+		}
+		CAN_elizabeth_may = {
+			promote_character = eco_socialist
+		}
+	}
+}
+
+#New Leader for Ignatieff?
+country_event = {
+	id = rw_canada.310
+	title = rw_canada.310.t
+	desc = {
+		text = rw_canada.310.d
+		trigger = {	has_completed_focus = CAN_legacy_of_martin }
+	}
+	desc = {
+		text = rw_canada.310.d_2
+		trigger = {	has_completed_focus = CAN_legacy_of_chretien }
+	}
+	picture = liberals_continue_decline_under_ignatieff
+
+	is_triggered_only = yes
+	
+	trigger = {
+		has_country_leader = {
+			name = "Michael Ignatieff"
+			ruling_only = yes
+		}
+	}
+	
+	option = { #Yes
+		name = rw_canada.310.o1
+		set_country_flag = CAN_current_leader_replaced
+		set_country_flag = liberal_leader_resigns_2011
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.197
+				days = 12
+			}
+		}
+	}
+	
+	option = { #No
+		name = rw_canada.310.o2
+		add_political_power = 10
 	}
 }
 
@@ -13784,6 +14099,36 @@ country_event = {
 	}
 }
 
+#Canada 150
+country_event = {
+	id = can_flavour.22
+	title = can_flavour.22.t
+	desc = can_flavour.22.d
+	picture = canada_150
+
+	is_triggered_only = yes
+	
+	option = {
+		name = can_flavour.22.o1
+		add_political_power = -10
+	}
+}
+
+#Epstien Killed
+country_event = {
+	id = can_flavour.23
+	title = can_flavour.23.t
+	desc = can_flavour.23.d
+	picture = epstien_dossier
+
+	is_triggered_only = yes
+	
+	option = {
+		name = can_flavour.23.o1
+		add_stability = 0.02
+	}
+}
+
 #Namedrop a bunch of Canadian Actors
 country_event = {
 	id = can_flavour.24
@@ -13850,6 +14195,21 @@ country_event = {
 	option = {
 		name = can_flavour.28.o2
 		add_stability = 0.02
+	}
+}
+
+#Epstien Didn't Kill Himself
+country_event = {
+	id = can_flavour.29
+	title = can_flavour.29.t
+	desc = can_flavour.29.d
+	picture = epstien_didnt_kill_himself
+
+	is_triggered_only = yes
+	
+	option = {
+		name = can_flavour.29.o1
+		add_stability = -0.05
 	}
 }
 
@@ -14280,6 +14640,23 @@ country_event = {
 	}
 }
 
+#SNC-Lavlin
+country_event = {
+	id = can_flavour.49
+	title = can_flavour.49.t
+	desc = can_flavour.49.d
+	picture = snc_lavlin_affair
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = can_flavour.49.o1
+		add_political_power = -40
+		CAN_subtract_3_percent_popularity = yes
+	}
+}
+
 #Ignatieff and White Russia
 country_event = {
 	id = can_flavour.50
@@ -14396,6 +14773,22 @@ country_event = {
 			ideology = new_democrat
 			popularity = 0.02
 		}
+	}
+}
+
+#Robocalls Scandal
+country_event = {
+	id = can_flavour.55
+	title = can_flavour.55.t
+	desc = can_flavour.55.d
+	picture = robocalls_scandal
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = can_flavour.55.o1
+		add_political_power = -50
 	}
 }
 
