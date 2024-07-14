@@ -261,6 +261,63 @@ country_event = {
 		    }
 		}
 	}
+	
+	option = { #Joe Biden - Liberal
+		name = usa.2.o5
+		set_politics = {
+	        ruling_party = liberal
+	        elections_allowed = no
+        }
+		ai_chance = {
+			base = 20
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = USA_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = USA_ai_behavior
+						option = ROB_WIN_USA
+					}
+					has_game_rule = {
+						rule = USA_ai_behavior
+						option = ROB_WIN_CSA
+					}
+				}
+				factor = 0
+			}
+		}
+		set_country_flag = joe_biden_elected
+		set_country_flag = us_election_completed
+		custom_effect_tooltip = USA_democratic_cabinet
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = usa_vice_president_carville }
+				add_ideas = usa_james_carville 
+			}
+			else = {
+				add_ideas = usa_barry_obama
+			}
+			add_ideas = usa_fom_abigail_spanberger
+			add_ideas = usa_ind_ted_turner
+			add_ideas = usa_nsm_ralph_northam
+			add_ideas = usa_inm_william_joseph_burns
+		}
+		hidden_effect = {
+			every_country = {
+		        limit = {
+			        NOT = {
+				        tag = USA
+				    }
+			    }
+			    news_event = {
+			        hours = 4
+			        id = usa.203
+		        }
+		    }
+		}
+	}
 }
 
 #2010 Congressional Elections
@@ -5801,6 +5858,10 @@ country_event = {
 				id = usa.193
 				days = 13
 			}
+			country_event = {
+				id = usa.200
+				days = 7
+			}
 		}
 	}
 }
@@ -5992,5 +6053,74 @@ country_event = {
 		ai_chance = {
 			factor = 100
 		}
+	}
+}
+
+#Democrats Nominate Biden
+country_event = {
+	id = usa.200
+	title = usa.200.t
+	desc = usa.200.d
+	picture = biden_becomes_dem_nominee
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = usa.200.o1
+		USA_joseph_biden = {
+			promote_character = old_american_democrats
+		}
+		hidden_effect = {
+			country_event = {
+				id = usa.201
+				days = 2
+			}
+		}
+	}
+}
+
+#Democrat Vice-President
+country_event = {
+	id = usa.201
+	title = usa.201.t
+	desc = usa.201.d
+	picture = biden_becomes_dem_nominee
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = usa.201.o1
+		custom_effect_tooltip = USA_if_dems_win
+		effect_tooltip = {
+			add_ideas = usa_james_carville
+		}
+		set_country_flag = usa_vice_president_carville
+	}
+	
+	option = {
+		name = usa.201.o2
+		custom_effect_tooltip = USA_if_dems_win
+		effect_tooltip = {
+			add_ideas = usa_barry_obama
+		}
+		set_country_flag = usa_vice_president_obama
+	}
+}
+
+news_event = {	#bush elected president
+	id = usa.203
+	title = usa.203.t
+	desc = usa.203.d
+	picture = news_biden_elected_president
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = usa.203.o1
+		
 	}
 }
