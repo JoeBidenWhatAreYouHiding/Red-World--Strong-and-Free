@@ -11380,7 +11380,7 @@ country_event = {
 	option = { #Ok
 		name = canada_diplo.42.o1
 	    ai_chance = {
-			factor = 100
+			factor = 80
 		}
 		CAN = {
 		    country_event = { days = 1 id = canada_diplo.43 } 
@@ -11392,7 +11392,22 @@ country_event = {
 	option = { #No
 		name = canada_diplo.42.o2
 	    ai_chance = {
-			factor = 0
+			factor = 20
+			modifier = {
+				factor = 40
+				AND = { #Countries are less likely to join if they are just Commonwealth members
+					has_idea = idea_eng_commonwealth_member
+					NOT = {
+						OR = {
+							has_government = national_conservative
+							has_government = centrist
+							has_government = liberal
+							has_government = new_democrat
+							has_government = moderate_socialist
+						}
+					}
+				}
+			}
 		}
 		add_political_power = -20
 		CAN = {
@@ -12078,6 +12093,95 @@ country_event = {
 				id = canada_diplo.57
 			}
 		}
+	}
+}
+
+#Canada Proposes North American Union
+country_event = {
+	id = canada_diplo.66
+	title = canada_diplo.66.t
+	desc = canada_diplo.66.d
+	picture = mexico_canada_flags
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Sounds Promising
+		name = canada_diplo.66.o1
+		CAN = { 
+			country_event = canada_diplo.67 
+			change_tag_from = ROOT
+		}
+	}
+	
+	option = { #No
+		name = canada_diplo.66.o2
+		CAN = { country_event = canada_diplo.68 }
+	}
+}
+
+#Mexico Joins Union
+country_event = {
+	id = canada_diplo.67
+	title = canada_diplo.67.t
+	desc = canada_diplo.67.d
+	picture = mexico_joins_us
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Excellent
+		name = canada_diplo.67.o1
+		annex_country = { 
+			target = MEX
+			transfer_troops = yes
+		}
+	}
+}
+
+#Mexico Refuses
+country_event = {
+	id = canada_diplo.68
+	title = canada_diplo.68.t
+	desc = canada_diplo.68.d
+	picture = mexico_refuses
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Our Union won't include Mexico
+		name = canada_diplo.68.o1
+		add_political_power = -10
+	}
+	
+	option = { #We shall unify North America by Force
+		name = canada_diplo.68.o2
+		declare_war_on = {
+			type = annex_everything
+			target = MEX
+		}
+		MEX = { country_event = canada_diplo.69 }
+	}
+}
+
+#Mexico Informed of Canada War
+country_event = {
+	id = canada_diplo.69
+	title = canada_diplo.69.t
+	desc = canada_diplo.69.d
+	picture = war_with_mexico
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #To Arms!
+		name = canada_diplo.69.o1
+		add_war_support = 0.05
+		add_manpower = 1100
 	}
 }
 
@@ -14307,6 +14411,21 @@ country_event = {
 	option = {
 		name = can_flavour.26.o1
 		add_stability = 0.01
+	}
+}
+
+#Zellers buys WaltonMart
+country_event = {
+	id = can_flavour.27
+	title = can_flavour.27.t
+	desc = can_flavour.27.d
+	picture = zellers
+
+	is_triggered_only = yes
+	
+	option = {
+		name = can_flavour.27.o1
+		add_political_power = 10
 	}
 }
 
