@@ -349,6 +349,117 @@ prospect_for_resources = {
 	}
 }
 
+uniting_north_america = {	
+	CAN_pursue_north_american_union = {
+
+		icon = north_american_unity
+
+		allowed = {
+			OR = {
+			    original_tag = CAN
+			}
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = CAN_has_integrated_north_america
+				CAN_america_is_controlled = yes
+				has_integrated_NEA = yes
+				has_integrated_USA = yes
+				has_integrated_ILL = yes
+				has_integrated_GRL = yes
+				has_integrated_MWA = yes
+				has_integrated_MOT = yes
+				has_integrated_LIN = yes
+				has_integrated_UTA = yes
+				has_integrated_ARI = yes
+				has_integrated_PCA = yes
+				has_integrated_or_puppeted_TEX = yes
+			}
+		}
+
+		cost = 0
+		fire_only_once = no
+		ai_will_do = {
+			factor = 0
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = CAN_NAU
+			unlock_decision_tooltip = CAN_demand_mexican_unification
+			set_country_flag = CAN_north_american_union
+		}
+	}
+	
+	CAN_demand_mexican_unification = {
+
+		icon = integrate_mexico
+
+		allowed = {
+			OR = {
+			    original_tag = CAN
+			}
+		}
+		
+		visible = {
+			has_country_flag = CAN_north_american_union
+		}
+
+		available = {
+			has_country_flag = CAN_north_american_union
+		}
+
+		cost = 0
+		fire_only_once = no
+		ai_will_do = {
+			factor = 0
+		}
+
+		complete_effect = {
+			MEX = { country_event = canada_diplo.66 } 
+		}
+	}
+	
+	CAN_incorporate_mexico = {
+
+		icon = CHL_mapuche_reorganize_the_mexican_government
+
+		allowed = {
+			OR = {
+			    original_tag = CAN
+			}
+		}
+
+		available = {
+			NOT = { country_exists = MEX }
+			owns_state = 277
+			owns_state = 480
+			owns_state = 483
+			owns_state = 485
+			owns_state = 474
+			owns_state = 484
+		}
+		
+		visible = {
+			has_country_flag = CAN_north_american_union
+		}
+
+		cost = 0
+		fire_only_once = no
+		ai_will_do = {
+			factor = 0
+		}
+
+		complete_effect = {
+			every_owned_state = {
+				limit = { is_core_of = MEX }
+				CAN = { add_state_core = PREV }
+			}
+			set_cosmetic_tag = CAN_NAU_MEX
+		}
+	}
+}
+
 eighties = {	
 	CAN_nato_intervention_greenland = {
 

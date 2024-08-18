@@ -16185,7 +16185,10 @@ focus_tree = {
 				has_war = no
 			}
 			AMC = {
-				has_country_flag = treaty_of_columbus
+				OR = {
+					has_country_flag = treaty_of_columbus
+					is_in_faction_with = CAN
+				}
 			}
 		}
 
@@ -16221,7 +16224,10 @@ focus_tree = {
 				has_war = no
 			}
 			AMC = {
-				has_country_flag = treaty_of_columbus
+				OR = {
+					has_country_flag = treaty_of_columbus
+					is_in_faction_with = CAN
+				}
 			}
 		}
 
@@ -19793,6 +19799,103 @@ focus_tree = {
 		completion_reward = {
 			ENG = {
 				country_event = canada_diplo.49
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_commonwealth_military_cooperation
+		icon = GFX_goal_CAN_commonwealth_military
+		cost = 4
+		
+		prerequisite = {
+			focus = CAN_merge_forces
+		}
+		prerequisite = {
+			focus = CAN_anzac_legacy
+		}
+		
+		relative_position_id = CAN_british_isles
+		x = 2
+		y = 2
+
+		available = {
+			any_country = {
+				has_idea = idea_eng_commonwealth_member
+			}
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			custom_effect_tooltip = CAN_all_commonwealth_members
+			effect_tooltip = {
+				add_stability = 0.05
+				add_war_support = 0.05
+				army_experience = 100
+				add_command_power = 100
+				add_opinion_modifier = {
+					target = PREV
+					modifier = military_ties
+				}
+				diplomatic_relation = {
+					country = CAN
+					relation = military_access
+					active = yes
+				}
+			}
+			hidden_effect = {
+				every_country = {
+					limit = { has_idea = idea_eng_commonwealth_member }
+					add_stability = 0.05
+					add_war_support = 0.05
+					army_experience = 100
+					add_command_power = 100
+					add_opinion_modifier = {
+						target = PREV
+						modifier = military_ties
+					}
+					diplomatic_relation = {
+						country = CAN
+						relation = military_access
+						active = yes
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_commonwealth_alliance
+		icon = GFX_goal_CAN_unite_commonwealth
+		cost = 4
+		
+		prerequisite = {
+			focus = CAN_commonwealth_military_cooperation
+		}
+		
+		relative_position_id = CAN_british_isles
+		x = 2
+		y = 3
+
+		available = {
+			any_country = {
+				has_idea = idea_eng_commonwealth_member
+			}
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			custom_effect_tooltip = CAN_all_commonwealth_members_faction
+			hidden_effect = {
+				every_country = {
+					limit = { 
+						has_idea = idea_eng_commonwealth_member 
+						NOT = { is_in_faction_with = CAN }
+					}
+					country_event = canada_diplo.42
+				}
 			}
 		}
 	}
