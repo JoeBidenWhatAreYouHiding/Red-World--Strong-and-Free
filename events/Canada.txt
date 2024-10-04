@@ -2848,8 +2848,30 @@ country_event = {
 			ideology = new_democrat
 			popularity = 0.05
 		}
+		if = {
+			limit = { has_government = moderate_socialist }
+			CAN_jack_layton = {
+				add_country_leader_role = {
+					country_leader = {
+						expire = "1.1.1.1"
+						ideology = democratic_socialist
+					}
+				}
+				promote_character = democratic_socialist
+			}
+		}
+		else = {
+			CAN_jack_layton = {
+				add_country_leader_role = {
+					country_leader = {
+						expire = "1.1.1.1"
+						ideology = democratic_socialist
+					}
+				}
+				promote_character = new_democrat_ideology
+			}
+		}
 		CAN_jack_layton = {
-			promote_character = moderate_socialist_ideology
 			set_portraits = {
 				civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Jack_Layton_Recovered.png" }
 			}
@@ -3093,6 +3115,13 @@ country_event = {
 			ideology = moderate_socialist
 		}
 		remove_modsoc_from_coalition = yes
+		hidden_effect = {	
+			country_event = {
+				id = rw_canada.119
+				days = 100
+				random_days = 45
+			}
+		}
 	}
 }
 
@@ -3156,6 +3185,13 @@ country_event = {
 		add_popularity = {
 			ideology = new_democrat
 			popularity = 0.04
+		}
+		hidden_effect = {	
+			country_event = {
+				id = rw_canada.119
+				days = 100
+				random_days = 45
+			}
 		}
 	}
 }
@@ -3570,6 +3606,13 @@ country_event = {
 		country_event = {
 			id = rw_canada.198
 			days = 10
+		}
+		hidden_effect = {	
+			country_event = {
+				id = rw_canada.119
+				days = 100
+				random_days = 45
+			}
 		}
 	}
 }
@@ -4059,8 +4102,37 @@ country_event = {
 			id = rw_canada.198
 			days = 10
 		}
+		hidden_effect = {	
+			country_event = {
+				id = rw_canada.119
+				days = 100
+				random_days = 45
+			}
+		}
 	}
 }
+
+#Layton Dies
+country_event = {
+	id = rw_canada.119
+	title = rw_canada.119.t
+	desc = rw_canada.119.d
+	picture = layton_funeral
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.119.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.04
+		}
+		add_manpower = -1
+		retire_character = CAN_jack_layton
+	}
+}
+
 
 #NeoConservatism
 country_event = {
