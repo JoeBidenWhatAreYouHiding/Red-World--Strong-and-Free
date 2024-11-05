@@ -1,0 +1,929 @@
+add_namespace = golden_gate_usa
+
+#Fate of the American Dream
+country_event = {
+	id = golden_gate_usa.1
+	title = golden_gate_usa.1.t
+	desc = golden_gate_usa.1.d
+	picture = harris_soviet_speech
+	
+	trigger = {
+		OR = {
+		    has_country_flag = golden_gate_league_coup
+			has_country_flag = battle_of_los_angeles_won
+		}
+		NOT = { country_exists = GRL }
+		NOT = { country_exists = ARI }
+		owns_state = 377
+		owns_state = 895
+		owns_state = 379
+		owns_state = 380
+		owns_state = 896
+	}
+	
+	fire_only_once = yes
+	
+	option = {  #Expansionist Ethos
+		name = golden_gate_usa.1.o1
+		set_country_flag = PCA_continued_expansionism
+		custom_effect_tooltip = PCA_reject_american_claims
+	}
+	
+	option = {  #Americanist Ethos
+		name = golden_gate_usa.1.o2
+		set_country_flag = PCA_american_reunificationism
+		mark_focus_tree_layout_dirty = yes
+		custom_effect_tooltip = PCA_support_american_claims
+	}
+}
+
+#Great Lakes - Ultimatum from Harris
+country_event = {
+	id = golden_gate_usa.2
+	title = golden_gate_usa.2.t
+	desc = golden_gate_usa.2.d
+	picture = india_com_coup_mumbai_tank
+	
+	is_triggered_only = yes
+	
+	option = { #Accept
+		name = golden_gate_usa.2.o1
+		ai_chance = {
+			factor = 30
+		}
+		hidden_effect = {
+		    PCA = {
+			    country_event = { days = 1 id = golden_gate_usa.3 } 
+			}
+		}
+	}
+	
+	option = { #Refuse
+		name = golden_gate_usa.2.o2
+		ai_chance = {
+			factor = 70
+		}
+		hidden_effect = {
+		    PCA = {
+			    country_event = { days = 1 id = golden_gate_usa.4 } 
+			}
+		}
+	}
+}
+
+#Great Lakes accepts ultimatum
+country_event = {
+	id = golden_gate_usa.3
+	title = golden_gate_usa.3.t
+	desc = golden_gate_usa.3.d
+	picture = india_com_china_meeting
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = golden_gate_usa.3.o1
+		PCA = {
+			annex_country = { 
+				target = GRL
+				transfer_troops = yes
+			}
+		}
+	}
+}
+
+#Great Lakes rejects demands
+country_event = {
+	id = golden_gate_usa.4
+	title = golden_gate_usa.4.t
+	desc = golden_gate_usa.4.d
+	picture = india_com_coup_mumbai_tank
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = golden_gate_usa.4.o1
+		add_political_power = -50 
+		create_wargoal = {
+			type = annex_everything
+			target = GRL
+		}
+	}
+}
+
+#Harris sworn in
+country_event = {
+	id = golden_gate_usa.5
+	title = golden_gate_usa.5.t
+	desc = golden_gate_usa.5.d
+	picture = kamala_becomes_us_president
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = golden_gate_usa.5.o1
+		add_political_power = 20
+	}
+}
+
+#Constitution Restored
+country_event = {
+	id = golden_gate_usa.6
+	title = golden_gate_usa.6.t
+	desc = golden_gate_usa.6.d
+	picture = constitution_officially_restored
+	
+	is_triggered_only = yes
+	
+	option = { #Independents
+		name = golden_gate_usa.6.o1
+		add_stability = 0.02
+	}
+}
+
+#Congressional Elections Held
+country_event = {
+	id = golden_gate_usa.7
+	title = golden_gate_usa.7.t
+	desc = golden_gate_usa.7.d
+	picture = congressional_elections_held
+	
+	is_triggered_only = yes
+	
+	option = { #Independents
+		name = golden_gate_usa.7.o1
+		add_popularity = {
+			ideology = centrist
+			popularity = -0.02
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = -0.02
+		}
+	}
+	
+	option = { #DRUL
+		name = golden_gate_usa.7.o2
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.04
+		}
+	}
+	
+	option = { #All-for-America Party
+		name = golden_gate_usa.7.o3
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.04
+		}
+	}
+}
+
+#Cascadia - Ultimatum from Harris
+country_event = {
+	id = golden_gate_usa.8
+	title = golden_gate_usa.8.t
+	desc = golden_gate_usa.8.d
+	picture = india_com_coup_mumbai_tank
+	
+	is_triggered_only = yes
+	
+	option = { #Accept
+		name = golden_gate_usa.8.o1
+		ai_chance = {
+			factor = 30
+		}
+		hidden_effect = {
+		    PCA = {
+			    country_event = { days = 1 id = golden_gate_usa.9 } 
+			}
+		}
+	}
+	
+	option = { #Refuse
+		name = golden_gate_usa.8.o2
+		ai_chance = {
+			factor = 70
+		}
+		hidden_effect = {
+		    PCA = {
+			    country_event = { days = 1 id = golden_gate_usa.10 } 
+			}
+		}
+	}
+}
+
+#Cascadia accepts ultimatum
+country_event = {
+	id = golden_gate_usa.9
+	title = golden_gate_usa.9.t
+	desc = golden_gate_usa.9.d
+	picture = india_com_china_meeting
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = golden_gate_usa.9.o1
+		PCA = {
+			annex_country = { 
+				target = CSD
+				transfer_troops = yes
+			}
+		}
+	}
+}
+
+#Cascadia rejects demands
+country_event = {
+	id = golden_gate_usa.10
+	title = golden_gate_usa.10.t
+	desc = golden_gate_usa.10.d
+	picture = india_com_coup_mumbai_tank
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = golden_gate_usa.10.o1
+		add_political_power = -50 
+		create_wargoal = {
+			type = annex_everything
+			target = CSD
+		}
+	}
+	
+	option = { 
+		name = golden_gate_usa.10.o2
+		add_war_support = -0.05
+	}
+}
+
+#Americans seek DL Leadership
+country_event = {
+	id = golden_gate_usa.11
+	title = golden_gate_usa.11.t
+	desc = golden_gate_usa.11.d
+	picture = india_com_coup_mumbai_tank
+	
+	is_triggered_only = yes
+	
+	option = { #Accept
+		name = golden_gate_usa.11.o1
+		ai_chance = {
+			factor = 80
+		}
+		hidden_effect = {
+		    PCA = {
+			    country_event = { days = 1 id = golden_gate_usa.12 } 
+			}
+		}
+	}
+	
+	option = { #Refuse
+		name = golden_gate_usa.8.o2
+		ai_chance = {
+			factor = 20
+		}
+		hidden_effect = {
+		    PCA = {
+			    country_event = { days = 1 id = golden_gate_usa.14 } 
+			}
+		}
+	}
+}
+
+#Canadians give us DL Leadership
+country_event = {
+	id = golden_gate_usa.12
+	title = golden_gate_usa.12.t
+	desc = golden_gate_usa.12.d
+	picture = india_com_china_meeting
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = golden_gate_usa.12.o1
+		CAN = {
+			add_to_faction = PCA
+		}
+		PCA = { set_faction_leader = yes }
+	}
+}
+
+#Canada stays as leader
+country_event = {
+	id = golden_gate_usa.14
+	title = golden_gate_usa.14.t
+	desc = golden_gate_usa.14.d
+	picture = india_com_coup_mumbai_tank
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = golden_gate_usa.14.o1
+		add_war_support = -0.05
+		CAN = {
+			add_to_faction = PCA
+		}
+	}
+}
+
+
+#Nation asks to join Democratic League
+country_event = {
+	id = golden_gate_usa.15
+	title = golden_gate_usa.15.t
+	desc = golden_gate_usa.15.d
+	picture = ottawa_parliament
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = golden_gate_usa.15.o1
+	    ai_chance = {
+			factor = 80
+		}
+		if = {
+			limit = { PCA = { is_faction_leader = yes } }
+			PCA = {
+				country_event = { days = 1 id = golden_gate_usa.16 } 
+				add_to_faction = ROOT
+			}
+		}
+		else = {
+			CAN = {
+				country_event = { days = 1 id = golden_gate_usa.16 } 
+				add_to_faction = ROOT
+			}
+		}
+	}
+	
+	option = { #No
+		name = golden_gate_usa.15.o2
+	    ai_chance = {
+			factor = 20
+		}
+		add_political_power = -20
+		if = {
+			limit = { PCA = { is_faction_leader = yes } }
+			PCA = {
+				country_event = { days = 1 id = golden_gate_usa.17 } 
+			}
+		}
+		else = {
+			CAN = {
+				country_event = { days = 1 id = golden_gate_usa.17 } 
+			}
+		}
+	}
+}
+
+#DL Leader accepts
+country_event = {
+	id = golden_gate_usa.16
+	title = golden_gate_usa.16.t
+	desc = golden_gate_usa.16.d
+	picture = ottawa_parliament
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = golden_gate_usa.16.o1
+	    ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+#DL Leader refuses
+country_event = {
+	id = golden_gate_usa.17
+	title = golden_gate_usa.17.t
+	desc = golden_gate_usa.17.d
+	picture = ottawa_parliament
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = golden_gate_usa.17.o1
+	    ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+#Liberalism of the Soul
+country_event = {
+	id = golden_gate_usa.18
+	title = golden_gate_usa.18.t
+	desc = golden_gate_usa.18.d
+	picture = harris_liberalism
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = golden_gate_usa.18.o1
+		add_political_power = 20
+	}
+}
+
+#California Dream
+country_event = {
+	id = golden_gate_usa.19
+	title = golden_gate_usa.19.t
+	desc = golden_gate_usa.19.d
+	picture = californian_ideals
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = golden_gate_usa.19.o1
+		add_stability = 0.02
+	}
+}
+
+#Elections announced
+country_event = {
+	id = golden_gate_usa.20
+	title = golden_gate_usa.20.t
+	desc = golden_gate_usa.20.d
+	picture = special_congress_election
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = golden_gate_usa.20.o1
+		add_stability = 0.04
+		hidden_effect = {
+			country_event = {
+				id = golden_gate_usa.21
+				days = 7
+			}
+		}
+	}
+}
+
+#Mitt Romney becomes Candidate
+country_event = {
+	id = golden_gate_usa.21
+	title = golden_gate_usa.21.t
+	desc = golden_gate_usa.21.d
+	picture = rommney_nominated
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = golden_gate_usa.21.o1
+		PCA_mitt_romney = {
+			promote_character = christian_democrat
+		}
+		set_party_name = {
+			ideology = centrist
+			name = PCA_democratic_republican_unity
+			long_name = PCA_democratic_republican_unity_long
+		}
+		hidden_effect = {
+			if = {
+				limit = { has_completed_focus = PCA_golden_gate_rule }
+				country_event = {
+					id = golden_gate_usa.22
+					days = 5
+				}
+				country_event = {
+					id = golden_gate_usa.25
+					days = 37
+				}
+			}
+			else = {
+				country_event = {
+					id = golden_gate_usa.24
+					days = 25
+				}
+				country_event = {
+					id = golden_gate_usa.25
+					days = 37
+				}
+			}
+		}
+	}
+}
+
+#Mitt Romney Shot
+country_event = {
+	id = golden_gate_usa.22
+	title = golden_gate_usa.22.t
+	desc = golden_gate_usa.22.d
+	picture = rommney_shot
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = golden_gate_usa.22.o1
+		add_stability = -0.1
+		PCA_dan_quayle = {
+			promote_character = christian_democrat
+		}
+		hidden_effect = {
+			country_event = {
+				id = golden_gate_usa.23
+				days = 20
+			}
+		}
+	}
+}
+
+#Debate Harris v Quayle
+country_event = {
+	id = golden_gate_usa.23
+	title = golden_gate_usa.23.t
+	desc = golden_gate_usa.23.d
+	picture = harris_v_quayle_debate
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = golden_gate_usa.23.o1
+		add_popularity = {
+			ideology = centrist
+			popularity = -0.04
+		}
+	}
+}
+
+#Debate Harris v Romney
+country_event = {
+	id = golden_gate_usa.24
+	title = golden_gate_usa.24.t
+	desc = golden_gate_usa.24.d
+	picture = harris_v_romney_debate
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = golden_gate_usa.24.o1
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.02
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.02
+		}
+	}
+}
+
+#Presidential Elections
+country_event = {
+	id = golden_gate_usa.25
+	title = golden_gate_usa.25.t
+	desc = golden_gate_usa.25.d
+	picture = AMC_general_election_2021_2
+	
+	is_triggered_only = yes
+	
+	option = { #Kamala
+		name = golden_gate_usa.25.o1
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.1
+		}
+		hidden_effect = {
+		    country_event = { days = 1460 id = golden_gate_usa.33 } 
+		}
+	}
+	
+	option = { #Mittens
+		name = golden_gate_usa.25.o2
+		set_politics = {
+			ruling_party = centrist
+		}
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.1
+		}
+		hidden_effect = {
+		    country_event = { days = 1460 id = golden_gate_usa.30 } 
+		}
+	}
+}
+
+#Harris re-elected
+country_event = {
+	id = golden_gate_usa.26
+	title = golden_gate_usa.26.t
+	desc = golden_gate_usa.26.d
+	picture = harris_re_elected
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = golden_gate_usa.26.o1
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.1
+		}
+		hidden_effect = {
+		    country_event = { days = 1320 id = golden_gate_usa.27 } 
+		}
+		hidden_effect = {
+		    country_event = { days = 1340 id = golden_gate_usa.28 } 
+		}
+		hidden_effect = {
+		    country_event = { days = 1460 id = golden_gate_usa.29 } 
+		}
+	}
+}
+
+#Term Limits Abolished
+country_event = {
+	id = golden_gate_usa.27
+	title = golden_gate_usa.27.t
+	desc = golden_gate_usa.27.d
+	picture = twenty_second_amendment_abolished
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = golden_gate_usa.27.o1
+		add_stability = -0.02
+	}
+}
+
+#DRUL collapses
+country_event = {
+	id = golden_gate_usa.28
+	title = golden_gate_usa.28.t
+	desc = golden_gate_usa.28.d
+	picture = contested_convention
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = golden_gate_usa.28.o1
+		add_popularity = {
+			ideology = centrist
+			popularity = -0.1
+		}
+	}
+}
+
+#Harris Re-Elected unchallenged
+country_event = {
+	id = golden_gate_usa.29
+	title = golden_gate_usa.29.t
+	desc = golden_gate_usa.29.d
+	picture = prime_minister_election
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = golden_gate_usa.29.o1
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.02
+		}
+		hidden_effect = {
+		    country_event = { days = 1460 id = golden_gate_usa.37 } 
+		}
+	}
+}
+
+#Romney Re-Elected unchallenged
+country_event = {
+	id = golden_gate_usa.30
+	title = golden_gate_usa.30.t
+	desc = golden_gate_usa.30.d
+	picture = romney_re_elected
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = golden_gate_usa.30.o1
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.02
+		}
+		hidden_effect = {
+		    country_event = { days = 1460 id = golden_gate_usa.31 } 
+		}
+	}
+}
+
+#Quayle Elected unchallenged
+country_event = {
+	id = golden_gate_usa.31
+	title = golden_gate_usa.31.t
+	desc = golden_gate_usa.31.d
+	picture = dan_quayle_elected
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = golden_gate_usa.31.o1
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.02
+		}
+		PCA_dan_quayle = {
+			promote_character = christian_democrat
+		}
+		hidden_effect = {
+		    country_event = { days = 1460 id = golden_gate_usa.32 } 
+		}
+	}
+}
+
+#Quayle re-Elected unchallenged
+country_event = {
+	id = golden_gate_usa.32
+	title = golden_gate_usa.32.t
+	desc = golden_gate_usa.32.d
+	picture = dan_quayle_re_elected
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = golden_gate_usa.32.o1
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.02
+		}
+	}
+}
+
+#Harris re-Elected unchallenged
+country_event = {
+	id = golden_gate_usa.33
+	title = golden_gate_usa.33.t
+	desc = golden_gate_usa.33.d
+	picture = kamala_harris_steps_aside
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = golden_gate_usa.33.o1
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.02
+		}
+		hidden_effect = {
+		    country_event = { days = 1440 id = golden_gate_usa.34 } 
+		    country_event = { days = 1460 id = golden_gate_usa.35 } 
+		}
+	}
+}
+
+#Harris candidate
+country_event = {
+	id = golden_gate_usa.34
+	title = golden_gate_usa.34.t
+	desc = golden_gate_usa.34.d
+	picture = harris_doug_emhoff
+	
+	is_triggered_only = yes
+	
+	option = { #Doug
+		name = golden_gate_usa.34.o1
+		set_country_flag = PCA_nominated_emhoff
+	}
+	
+	option = { #Martin
+		name = golden_gate_usa.34.o2
+		set_country_flag = PCA_nominated_omalley
+	}
+}
+
+#Harris candidate elected
+country_event = {
+	id = golden_gate_usa.35
+	title = golden_gate_usa.35.t
+	desc = {
+		text = golden_gate_usa.35.d_1
+		trigger = { has_country_flag = PCA_nominated_emhoff }
+	}
+	desc = {
+		text = golden_gate_usa.35.d_2
+		trigger = { has_country_flag = PCA_nominated_omalley }
+	}
+	picture = AMC_general_election_2021_3
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = golden_gate_usa.35.o1
+		if = {
+			limit = { has_country_flag = PCA_nominated_emhoff }
+			PCA_doug_emhoff = {
+				promote_character = social_liberal
+			}
+		}
+		
+		if = {
+			limit = { has_country_flag = PCA_nominated_omalley }
+			PCA_martin_o_malley = {
+				promote_character = social_liberal
+			}
+		}
+		
+		hidden_effect = {
+		    country_event = { days = 1460 id = golden_gate_usa.36 } 
+		}
+	}
+}
+
+#President re-elected unchallenged
+country_event = {
+	id = golden_gate_usa.36
+	title = golden_gate_usa.36.t
+	desc = golden_gate_usa.36.d
+	picture = amc_general_election_republic
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = golden_gate_usa.36.o1
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.02
+		}
+	}
+}
+
+#Harris re-elected unchallenged
+country_event = {
+	id = golden_gate_usa.37
+	title = golden_gate_usa.37.t
+	desc = golden_gate_usa.37.d
+	picture = harris_elected_unnoposed
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = golden_gate_usa.37.o1
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.02
+		}
+		hidden_effect = {
+		    country_event = { days = 1460 id = golden_gate_usa.38 } 
+		}
+	}
+}
+
+#Harris re-elected unchallenged
+country_event = {
+	id = golden_gate_usa.38
+	title = golden_gate_usa.37.t
+	desc = golden_gate_usa.37.d
+	picture = harris_elected_unnoposed
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = golden_gate_usa.37.o1
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.02
+		}
+	}
+}
+
+news_event = {	#Harris AMERICA
+	id = golden_gate_usa.39
+	title = golden_gate_usa.39.t
+	desc = golden_gate_usa.39.d
+	picture = free_america_news
+		
+	is_triggered_only = yes 
+	
+	option = {
+		trigger = {
+			NOT = {
+				tag = PCA
+			}
+		}
+		name = golden_gate_usa.39.o1
+	}
+	option = {
+		trigger = {
+			tag = PCA
+		}
+		name = golden_gate_usa.39.o2
+	}
+}
+
+#Harris becomes Pres again
+country_event = {
+	id = golden_gate_usa.40
+	title = golden_gate_usa.40.t
+	desc = golden_gate_usa.40.d
+	picture = kamala_harris_president_again
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = golden_gate_usa.40.o1
+		PCA_kamala_harris = {
+			promote_character = social_liberal
+		}
+	}
+}
+
