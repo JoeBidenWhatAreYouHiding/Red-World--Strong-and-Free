@@ -1,0 +1,2225 @@
+add_namespace = bolivia
+add_namespace = bolivia_news
+
+country_event = { #Government Briefing on the Ongoing Protest Situation
+	id = bolivia.1
+	title = bolivia.1.t
+	desc = bolivia.1.d
+	picture = bolivia_briefing_event
+	
+	fire_only_once = yes
+	trigger = {
+		tag = BOL
+		date > 2010.4.1
+		date < 2010.4.30
+	}
+	
+	option = {
+		name = bolivia.1.o1
+		set_variable = {
+		   var = bolivia_army_variable
+		   value = 0
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.2
+				days = 15
+			}
+		}
+	}
+}
+
+country_event = { #Riots Wreak Havoc in Downtown La Paz
+	id = bolivia.2
+	title = bolivia.2.t
+	desc = bolivia.2.d
+	picture = bolivia_riots_in_la_paz
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.2.o1
+		add_stability = -0.05
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = -0.05
+		}
+		302 = {
+			damage_building = {
+				type = infrastructure
+				damage = 1
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.3
+				days = 5
+			}
+		}
+	}
+}
+
+country_event = { #Protests Spread Across the Department of La Paz
+	id = bolivia.3
+	title = bolivia.3.t
+	desc = bolivia.3.d
+	picture = bolivia_protests_across_la_paz
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.3.o1
+		add_stability = -0.05
+		add_political_power = -75
+		hidden_effect = {
+			country_event = {
+				id = bolivia.4
+				days = 14
+			}
+		}
+	}
+}
+
+country_event = { #Wildcat Strikes Break Out in Cochamba
+	id = bolivia.4
+	title = bolivia.4.t
+	desc = bolivia.4.d
+	picture = bolivia_wildcat_strikes
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.4.o1
+		add_popularity = {
+			ideology = communist
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.5
+				days = 4
+			}
+		}
+	}
+}
+
+country_event = { #FSTMB Warns it is Losing Control over the Miners
+	id = bolivia.5
+	title = bolivia.5.t
+	desc = bolivia.5.d
+	picture = bolivia_fstmb_is_failing
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #The Police Can Handle It
+		name = bolivia.5.o1
+		add_political_power = -25
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.03
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.6
+				days = 7
+			}
+		}
+	}
+	
+	option = { #Send in the Army
+		name = bolivia.5.o2
+		add_war_support = 0.03 
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.03
+		}
+		add_to_variable = {
+		   var = bolivia_army_variable
+		   value = 1
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.7
+				days = 7
+			}
+		}
+	}
+}
+
+country_event = { #Riot Police Struggles to Contain Strikers
+	id = bolivia.6
+	title = bolivia.6.t
+	desc = bolivia.6.d
+	picture = bolivia_riot_police_strikers
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.6.o1
+		add_political_power = -35
+		add_stability = -0.03
+		hidden_effect = {
+			country_event = {
+				id = bolivia.8
+				days = 5
+			}
+		}
+	}
+}
+
+country_event = { #Army Clamps Down on Cochamba Strikes
+	id = bolivia.7
+	title = bolivia.7.t
+	desc = bolivia.7.d
+	picture = bolivia_army_in_cochamba
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.7.o1
+		add_political_power = 15
+		add_popularity = {
+			ideology = communist
+			popularity = -0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.8
+				days = 5
+			}
+		}
+	}
+}
+
+country_event = { #Comandante Morales Denounces Treatment of Cochamba Strikers
+	id = bolivia.8
+	title = bolivia.8.t
+	desc = bolivia.8.d
+	picture = bolivia_morales_hates_medinaceli
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.8.o1
+		add_political_power = -75
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = -0.07
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.9
+				days = 10
+			}
+		}
+	}
+}
+
+country_event = { #Friction in the Front Parties
+	id = bolivia.9
+	title = bolivia.9.t
+	desc = bolivia.9.d
+	picture = bolivia_front_parties_suffer
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Shore up the MNR
+		name = bolivia.9.o1
+		add_political_power = -15
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.04
+		}
+		add_to_variable = {
+		   var = bolivia_army_variable
+		   value = 1
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.10
+				days = 14
+			}
+		}
+	}
+	
+	option = { #We can't afford to lend them a hand
+		name = bolivia.9.o2 
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.08
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.08
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.10
+				days = 14
+			}
+		}
+	}
+}
+
+country_event = { #FRI Politburo Evaluates Handling of the 'Andes Chasm'
+	id = bolivia.10
+	title = bolivia.10.t
+	desc = bolivia.10.d
+	picture = bolivia_fri_politburo_meets
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #We've given too much ground to reactionary ideology
+		name = bolivia.10.o1
+		set_country_flag = bolivia_cultural_revolution_flag 
+		hidden_effect = {
+			country_event = {
+				id = bolivia.11
+				days = 5
+			}
+		}
+	}
+	
+	option = { #We've grown too complacent
+		name = bolivia.10.o2
+		hidden_effect = {
+			country_event = {
+				id = bolivia.14
+				days = 5
+			}
+		}
+	}
+}
+
+country_event = { #Medinaceli Calls for Struggle Against Neo-Bourgeois Elements
+	id = bolivia.11
+	title = bolivia.11.t
+	desc = bolivia.11.d
+	picture = bolivia_cultural_revolution_picture
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.11.o1
+		add_political_power = 50		
+		add_stability = -0.1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.12
+				days = 10
+			}
+		}
+	}
+}
+
+country_event = { #FRI Militants Face off Against Indigenous Activists
+	id = bolivia.12
+	title = bolivia.12.t
+	desc = bolivia.12.d
+	picture = bolivia_leftist_infighting
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.12.o1 
+		add_political_power = -75
+		add_popularity = {
+			ideology = communist
+			popularity = 0.07
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.13
+				days = 7
+			}
+		}
+	}
+}
+
+country_event = { #Wildcat Strikes Continue Across the Andes
+	id = bolivia.13
+	title = bolivia.13.t
+	desc = bolivia.13.d
+	picture = bolivia_wildcat_strikes_continue
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.13.o1
+		add_stability = -0.07
+		add_popularity = {
+			ideology = communist
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.17
+				days = 12
+			}
+		}
+	}
+}
+
+country_event = { #Medinaceli Declares National Martial Law
+	id = bolivia.14
+	title = bolivia.14.t
+	desc = bolivia.14.d
+	picture = bolivia_martial_law
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.14.o1
+		add_war_support = 0.05
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.05
+		}
+		add_to_variable = {
+		   var = bolivia_army_variable
+		   value = 1
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.15
+				days = 10
+			}
+		}
+	}
+}
+
+country_event = { #FSP Steps up Attacks in the North	
+	id = bolivia.15
+	title = bolivia.15.t
+	desc = bolivia.15.d
+	picture = bolivia_attacks_in_north
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.15.t
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = -0.05
+		}
+		932 = {
+			damage_building = {
+				type = infrastructure
+				damage = 1
+			}
+		}
+		302 = {
+			damage_building = {
+				type = industrial_complex
+				damage = 1
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.16
+				days = 7
+			}
+		}
+	}
+}
+
+country_event = { #Members Leave the FSTMB In Droves
+	id = bolivia.16
+	title = bolivia.16.t
+	desc = bolivia.16.d
+	picture = bolivia_loser_trade_union
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.16.o1
+		add_political_power = -50
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = -0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.17
+				days = 12
+			}
+		}
+	}
+}
+
+country_event = { #Forest Fires Break Out in Eastern Bolivia
+	id = bolivia.17
+	title = bolivia.17.t
+	desc = bolivia.17.d
+	picture = bolivia_forest_fires
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Ask Our Neighbours For Assitance
+		name = bolivia.17.o1
+		add_political_power = -15
+		932 = {
+			damage_building = {
+				type = infrastructure
+				damage = 1
+			}
+		}
+		487 = {
+			damage_building = {
+				type = infrastructure
+				damage = 1
+			}
+		}
+		hidden_effect = {
+			ARG = {
+				country_event = {
+					id = bolivia.18
+					days = 3
+				}
+			}
+			BRA = {
+				country_event = {
+					id = bolivia.18
+					days = 3
+				}
+			}
+		}
+		set_variable = {
+		   var = bolivia_fire_fighting_variable
+		   value = 0
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.21
+				days = 21
+			}
+		}
+	}
+	
+	option = { #Deploy the Military as Firefighters
+		name = bolivia.17.o2 
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.03
+		}
+		932 = {
+			damage_building = {
+				type = infrastructure
+				damage = 1
+			}
+		}
+		487 = {
+			damage_building = {
+				type = infrastructure
+				damage = 1
+			}
+		}
+		add_to_variable = {
+		   var = bolivia_army_variable
+		   value = 1
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.22
+				days = 4
+			}
+		}
+	}
+}
+
+country_event = { #Bolivia Requests Support Putting Out Fires
+	id = bolivia.18
+	title = bolivia.18.t
+	desc = bolivia.18.d
+	picture = bolivia_fire_bombing_planes
+	
+	is_triggered_only = yes
+	
+	option = { #We will send them help
+		name = bolivia.18.o1
+		add_political_power = -10
+		hidden_effect = {
+			BOL = {
+				country_event = {
+					id = bolivia.19
+					days = 3
+				}
+			}
+		}
+		ai_chance = {
+			factor = 60
+		}
+	}
+	
+	option = { #Assisting Medinaceli is not in our Interest
+		name = bolivia.18.o2
+		BOL = {
+			add_to_variable = {
+				var = bolivia_fire_fighting_variable
+				value = 1
+			}
+		}
+		hidden_effect = {
+			BOL = {
+				country_event = {
+					id = bolivia.20
+					days = 3
+				}
+			}
+		}
+		ai_chance = {
+			factor = 40
+		}
+	}
+}
+
+country_event = { #[FROM.GetName] Sends Aid for Forest Fires
+	id = bolivia.19
+	title = bolivia.19.t
+	desc = bolivia.19.d
+	picture = bolivia_aid_for_fires
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.19.o1
+		add_political_power = 5
+		add_popularity = {
+			ideology = FROM
+			popularity = 0.03
+		}
+	}
+}
+
+country_event = { #[FROM.GetName] refuses to send assistance
+	id = bolivia.20
+	title = bolivia.20.t
+	desc = bolivia.20.d
+	picture = bolivia_no_help_for_fires
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.20.o1
+		add_political_power = -10
+	}
+}
+
+country_event = { #Forest Fires Brought Under Control
+	id = bolivia.21
+	title = bolivia.21.t
+	desc = {
+        trigger = {
+            check_variable = {
+				bolivia_fire_fighting_variable = 2
+			}
+        }
+        text = bolivia.21.d1
+    }
+    desc = {
+        trigger = {
+            NOT = { 
+				check_variable = {
+					bolivia_fire_fighting_variable = 2
+				}
+			}
+        }
+        text = bolivia.21.d2
+    }
+	picture = bolivia_forest_fires_put_out
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.21.o1 
+		trigger = {
+            check_variable = {
+				bolivia_fire_fighting_variable = 2
+			}
+        }
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = -0.05
+		}
+		932 = {
+			damage_building = {
+				type = infrastructure
+				damage = 2
+			}
+			add_manpower = -11
+		}
+		487 = {
+			damage_building = {
+				type = infrastructure
+				damage = 2
+			}
+			add_manpower = -122
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.24
+				days = 8
+			}
+		}
+	}
+	
+	option = {
+		name = bolivia.21.o1
+		trigger = {
+			NOT = { 
+				check_variable = {
+					bolivia_fire_fighting_variable = 2
+				}
+			}
+		}
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = -0.05
+		}
+		932 = {
+			damage_building = {
+				type = infrastructure
+				damage = 1
+			}
+		}
+		487 = {
+			damage_building = {
+				type = infrastructure
+				damage = 1
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.24
+				days = 8
+			}
+		}
+	}
+}
+
+country_event = { #Army Evacuates Farmers From Approaching Fires
+	id = bolivia.22
+	title = bolivia.22.t
+	desc = bolivia.22.d
+	picture = bolivia_army_evacuations
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.22.o1
+		add_stability = 0.1
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.03
+		}
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.03
+		}
+		add_to_variable = {
+		   var = bolivia_army_variable
+		   value = 1
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.23
+				days = 17
+			}
+		}
+	}
+}
+
+country_event = { #Army Contains Forest Fires
+	id = bolivia.23
+	title = bolivia.23.t
+	desc = bolivia.23.d
+	picture = bolivia_army_stopped_fire
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.23.o1
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.07
+		}
+		add_manpower = -325
+		932 = {
+			damage_building = {
+				type = infrastructure
+				damage = 1
+			}
+			add_manpower = -5
+		}
+		487 = {
+			damage_building = {
+				type = infrastructure
+				damage = 1
+			}
+			add_manpower = -32
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.24
+				days = 8
+			}
+		}
+	}
+}
+
+country_event = { #Residents of Santa Cruz Demand Answers on Forest Fires
+	id = bolivia.24
+	title = bolivia.24.t
+	desc = bolivia.24.d
+	picture = bolivia_santa_cruz_demands_answers
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #It was an unpreventable natural disaster
+		name = bolivia.24.o1 
+		add_political_power = -25
+		add_to_variable = {
+		   var = bolivia_army_variable
+		   value = 1
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.25
+				days = 7
+			}
+		}
+	}
+	
+	option = { #Bourgeois saboteurs were to blame
+		name = bolivia.24.o2
+		add_political_power = 25
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.26
+				days = 7
+			}
+		}
+	}
+}
+
+country_event = { #Collective Farmers Return to Burnt Out Farms
+	id = bolivia.25
+	title = bolivia.25.t
+	desc = bolivia.25.d
+	picture = bolivia_collective_farmers_return
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.25.o1
+		add_stability = 0.03 
+		hidden_effect = {
+			country_event = {
+				id = bolivia.27
+				days = 14
+			}
+		}
+	}
+}
+
+country_event = { #Clashes Erupt Between FRI Militants and Collective Farmers
+	id = bolivia.26
+	title = bolivia.26.t
+	desc = bolivia.26.d
+	picture = bolivia_fight_the_farmers
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { 
+		name = bolivia.26.o1
+		add_political_power = -50
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.05
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.27
+				days = 14
+			}
+		}
+	}
+}
+
+country_event = { #Independent Journalist Collective Reveals Government Cover-Up
+	id = bolivia.27
+	title = bolivia.27.t
+	desc = bolivia.27.d 
+	picture = bolivia_cover_up
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.27.o1 
+		add_political_power = -150
+		add_stability = -0.1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = -0.1
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.28
+				days = 5
+			}
+		}
+	}
+}
+
+country_event = { #Unprecedented Riots Rock Santa Cruz
+	id = bolivia.28
+	title = bolivia.28.t
+	desc = bolivia.28.d
+	picture = bolivia_riots_in_santa_cruz
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #This threat must be crushed now
+		name = bolivia.28.o1 
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.07
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.07
+		}
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.07
+		}
+		487 = {
+			damage_building = {
+				type = infrastructure
+				damage = 1
+			}
+		}
+		487 = {
+			damage_building = {
+				type = industrial_complex
+				damage = 1
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.29
+				days = 6
+			}
+		}
+	}
+	
+	option = { #Call Upon General Antonio Cueto Calderón
+		name = bolivia.28.o2 
+		trigger = {
+			check_variable = {
+				var = bolivia_army_variable
+				value = 4
+				compare = greater_than_or_equals
+			}
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.07
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.07
+		}
+		487 = {
+			damage_building = {
+				type = infrastructure
+				damage = 1
+			}
+			damage_building = {
+				type = industrial_complex
+				damage = 2
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.38
+				days = 4
+			}
+		}
+	}
+}
+
+country_event = { #Bloody Street Battles Erupt in Santa Cruz
+	id = bolivia.29
+	title = bolivia.29.t
+	desc = bolivia.29.d
+	picture = bolivia_battles_in_santa_cruz
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.29.o1
+		add_manpower = -33
+		487 = {
+			add_manpower = -261
+		}
+		add_stability = -0.05
+		hidden_effect = {
+			country_event = {
+				id = bolivia.30
+				days = 3
+			}
+		}
+	}
+}
+
+country_event = { #Condemnations of the 'Santa Cruz Massacre' Come in from Across the Country
+	id = bolivia.30
+	title = bolivia.30.t
+	desc = bolivia.30.d
+	picture = bolivia_condemnations
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.30.o1
+		add_political_power = -150
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = -0.15
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.31
+				days = 6
+			}
+		}
+	}
+}
+
+country_event = { #Members of the MNR Defect En Masse
+	id = bolivia.31
+	title = bolivia.31.t
+	desc = bolivia.31.d
+	picture = bolivia_mnr_fucks_off
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.31.o1
+		add_political_power = -100
+		add_popularity = {
+			ideology = nationalist
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.1
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.32
+				days = 6
+			}
+		}
+	}
+}
+
+country_event = { #FSP and Liberal Opposition Forms Alliance
+	id = bolivia.32
+	title = bolivia.32.t
+	desc = bolivia.32.d
+	picture = bolivia_opposition_alliance
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.32.o1
+		add_political_power = -25
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.05
+		}
+		add_popularity = {
+			ideology = communist
+			popularity = 0.05
+		}
+		932 = {
+			set_demilitarized_zone = yes
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.33
+				days = 4
+			}
+		}
+	}
+}
+
+country_event = { #Álvaro Garcia Linera Defects to the FSP
+	id = bolivia.33
+	title = bolivia.33.t
+	desc = bolivia.33.d
+	picture = bolivia_alvaro_garcia_linera_defects
+	
+	fire_only_once = yes 
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.33.o1
+		add_stability = -0.05
+		add_popularity = {
+			ideology = communist
+			popularity = 0.1
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.34
+				days = 7
+			}
+		}
+	}
+}
+
+country_event = { #The La Paz Uprising
+	id = bolivia.34
+	title = bolivia.34.t
+	desc = bolivia.34.d
+	picture = bolivia_la_paz_uprising
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.34.o1
+		add_political_power = -100
+		add_manpower = -55
+		302 = {
+			add_manpower = -322
+			set_demilitarized_zone = yes
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.35
+				days = 7
+			}
+		}
+	}
+}
+
+country_event = { #Opposition Declares 'People's War of Liberation' Against the Medinaceli Government
+	id = bolivia.35
+	title = bolivia.35.t
+	desc = bolivia.35.d
+	picture = bolivia_civil_war_begins
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #We will stand against the bourgeois restorationists!
+		name = bolivia.35.o1
+		932 = {
+			set_demilitarized_zone = no
+		}
+		302 = {
+			set_demilitarized_zone = no
+		}
+		add_war_support = 0.1
+		add_ideas = idea_bolivian_civil_war
+		if = {
+			limit = {
+				has_country_flag = bolivia_cultural_revolution_flag
+			}
+			division_template = {
+				name = "Revolutionary Activists"
+				regiments = {
+					militia = { x = 0 y = 0 }
+					militia = { x = 0 y = 1 }
+					militia = { x = 1 y = 0 }
+					militia = { x = 1 y = 1 }
+				}
+			}
+			907 = {
+				create_unit = {
+					division = "name = \"Potosi Revolutionary Militia\" division_template = \"Revolutionary Activists\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+					owner = BOL
+				}
+			}
+			937 = {
+				create_unit = {
+					division = "name = \"Sucre Revolutionary Militia\" division_template = \"Revolutionary Activists\" start_experience_factor = 0.2  start_equipment_factor = 0.8"
+					owner = BOL
+				}
+			}
+			487 = {
+				create_unit = {
+					division = "name = \"Santa Cruz Revolutionary Militia\" division_template = \"Revolutionary Activists\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+					owner = BOL
+				}
+			}
+		}
+		STC = { transfer_technology = yes }
+		set_country_flag = bolivia_civil_war_flag
+		STC = {
+			transfer_state = 932
+			transfer_state = 302
+			add_ideas = idea_bolivian_civil_war
+			declare_war_on = {
+                target = BOL
+                type = annex_everything
+            }
+			hidden_effect = {
+				load_oob = "STC_2000"
+			}
+			set_country_flag = bolivia_civil_war_flag
+		}
+		every_state = {
+			limit ={
+				is_core_of = BOL
+			}
+			add_core_of = STC
+		}
+		every_state = {
+			limit ={
+				is_claimed_by = BOL
+			}
+			add_claim_by = STC
+		}
+		retire_character = BOL_juan_jose_zuniga_macias
+		hidden_effect = { 
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.1
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = -0.3
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.3
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = -0.3
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.36
+				days = 21
+			}
+		}
+		hidden_effect = {
+			BOL_toribia_lero_quispe = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						ideology = social_liberal
+						expire="1.1.1.1"
+					}
+				}
+			}
+			set_party_name = {
+				ideology = liberal
+				long_name = BOL_civic_community_long
+				name = BOL_civic_community
+			}
+			BOL_jhonny_fernandez = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						ideology = fiscal_conservative
+						expire="1.1.1.1"
+					}
+				}
+			}
+			set_party_name = {
+				ideology = national_conservative
+				long_name = BOL_jhonny_party_long
+				name = BOL_jhonny_party
+			}
+			BOL_ignacio_mendoza_pizarro = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						ideology = leninist
+						expire="1.1.1.1"
+					}
+				}
+			}
+			set_party_name = {
+				ideology = communist
+				long_name = BOL_fri_commies_long
+				name = BOL_fri_commies
+			}
+		}
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOT = {
+						OR = {
+							tag = BOL
+							tag = STC
+						}
+					}
+				}
+				news_event = {
+					hours = 4
+					id = bolivia_news.1
+				}
+			}
+		}
+	}
+	
+	option = { #¡Abajo Medinaceli!
+		name = bolivia.35.o2
+		932 = {
+			set_demilitarized_zone = no
+		}
+		302 = {
+			set_demilitarized_zone = no
+		}
+		add_war_support = 0.1
+		add_ideas = idea_bolivian_civil_war
+		if = {
+			limit = {
+				has_country_flag = bolivia_cultural_revolution_flag
+			}
+			division_template = {
+				name = "Revolutionary Activists"
+				regiments = {
+					militia = { x = 0 y = 0 }
+					militia = { x = 0 y = 1 }
+					militia = { x = 1 y = 0 }
+					militia = { x = 1 y = 1 }
+				}
+			}
+			907 = {
+				create_unit = {
+					division = "name = \"Potosi Revolutionary Militia\" division_template = \"Revolutionary Activists\" start_experience_factor = 0.1 start_equipment_factor = 0.8"
+					owner = BOL
+				}
+			}
+			937 = {
+				create_unit = {
+					division = "name = \"Sucre Revolutionary Militia\" division_template = \"Revolutionary Activists\" start_experience_factor = 0.1  start_equipment_factor = 0.8"
+					owner = BOL
+				}
+			}
+			487 = {
+				create_unit = {
+					division = "name = \"Santa Cruz Revolutionary Militia\" division_template = \"Revolutionary Activists\" start_experience_factor = 0.1 start_equipment_factor = 0.8"
+					owner = BOL
+				}
+			}
+		}
+		set_country_flag = bolivia_civil_war_flag
+		STC = { transfer_technology = yes }
+		STC = {
+			transfer_state = 932
+			transfer_state = 302
+			add_ideas = idea_bolivian_civil_war
+			declare_war_on = {
+                target = BOL
+                type = annex_everything
+            }
+			hidden_effect = {
+				load_oob = "STC_2000"
+			}
+			set_country_flag = bolivia_civil_war_flag
+			change_tag_from = BOL
+		}
+		every_state = {
+			limit ={
+				is_core_of = BOL
+			}
+			add_core_of = STC
+		}
+		every_state = {
+			limit ={
+				is_claimed_by = BOL
+			}
+			add_claim_by = STC
+		}
+		retire_character = BOL_juan_jose_zuniga_macias
+		hidden_effect = { 
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.1
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = -0.3
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.3
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = -0.3
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.36
+				days = 21
+			}
+		}
+		hidden_effect = {
+			BOL_samuel_jorge_doria_medina_auza = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						ideology = social_liberal
+						expire="1.1.1.1"
+					}
+				}
+			}
+			set_party_name = {
+				ideology = liberal
+				long_name = BOL_doria_medina_party_long
+				name = BOL_doria_medina_party
+			}
+			BOL_jhonny_fernandez = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						ideology = fiscal_conservative
+						expire="1.1.1.1"
+					}
+				}
+			}
+			set_party_name = {
+				ideology = national_conservative
+				long_name = BOL_jhonny_party_long
+				name = BOL_jhonny_party
+			}
+			BOL_ignacio_mendoza_pizarro = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						ideology = leninist
+						expire="1.1.1.1"
+					}
+				}
+			}
+			set_party_name = {
+				ideology = communist
+				long_name = BOL_fri_commies_long
+				name = BOL_fri_commies
+			}
+		}
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOT = {
+						OR = {
+							tag = BOL
+							tag = STC
+						}
+					}
+				}
+				news_event = {
+					hours = 4
+					id = bolivia_news.1
+				}
+			}
+		}
+	}
+}
+
+country_event = { #MNR Youth Union Offers Its Support
+	id = bolivia.36
+	title = bolivia.36.t
+	desc = bolivia.36.d
+	picture = bolivia_pact_with_camacho
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #We need every man we can get
+		name = bolivia.36.o1
+		BOL_luis_fernando_camacho = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					ideology = falangist
+					expire="1.1.1.1"
+				}
+			}
+			add_corps_commander_role = {
+				skill = 1
+				attack_skill = 2
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 1
+			}
+		}
+		set_party_name = {
+			ideology = fascist
+			long_name = BOL_mnr_youth_wing_long
+			name = BOL_mnr_youth_wing
+		}
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.15
+		}
+		set_country_flag = bolivia_relied_on_camacho
+		division_template = {
+			name = "Falangist Militia"
+			regiments = {
+				militia = { x = 0 y = 0 }
+				militia = { x = 0 y = 1 }
+				militia = { x = 1 y = 0 }
+				militia = { x = 1 y = 1 }
+			}
+		}
+		487 = {
+			create_unit = {
+				division = "name = \"MNR Youth Union Equipetrol\" division_template = \"Falangist Militia\" start_experience_factor = 0.25  start_equipment_factor = 1"
+				owner = BOL
+			}
+			create_unit = {
+				division = "name = \"MNR Youth Union Urubó\" division_template = \"Falangist Militia\" start_experience_factor = 0.25  start_equipment_factor = 1"
+				owner = BOL
+			}
+			create_unit = {
+				division = "name = \"MNR Youth Union Centro\" division_template = \"Falangist Militia\" start_experience_factor = 0.25  start_equipment_factor = 1"
+				owner = BOL
+			}
+		}
+	}
+	
+	option = { #These Youth Radicals Might Prove Our Undoing
+		name = bolivia.36.o2
+		add_stability = 0.05
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.05
+		}
+		custom_effect_tooltip = bolivia_camacho_defects_tooltip
+		hidden_effect = {
+			STC = {
+				country_event = {
+					id = bolivia.37
+					days = 4
+				}
+			}
+		}
+	}
+}
+
+country_event = { #MNR Youth Union Defects
+	id = bolivia.37
+	title = bolivia.37.t
+	desc = bolivia.37.d
+	picture = bolivia_mnr_defects
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.37.o1
+		add_political_power = 50
+		STC_luis_fernando_camacho = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					ideology = falangist
+					expire="1.1.1.1"
+				}
+			}
+			add_corps_commander_role = {
+				skill = 1
+				attack_skill = 2
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 1
+			}
+		}
+		set_party_name = {
+			ideology = fascist
+			long_name = BOL_mnr_youth_wing_long
+			name = BOL_mnr_youth_wing
+		}
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.15
+		}
+		set_country_flag = bolivia_north_relied_on_camacho
+		division_template = {
+			name = "Falangist Militia"
+			regiments = {
+				militia = { x = 0 y = 0 }
+				militia = { x = 0 y = 1 }
+				militia = { x = 1 y = 0 }
+				militia = { x = 1 y = 1 }
+			}
+		}
+		487 = {
+			create_unit = {
+				division = "name = \"MNR Youth Union Equipetrol\" division_template = \"Falangist Militia\" start_experience_factor = 0.25  start_equipment_factor = 1"
+				owner = BOL
+			}
+			create_unit = {
+				division = "name = \"MNR Youth Union Urubó\" division_template = \"Falangist Militia\" start_experience_factor = 0.25  start_equipment_factor = 1"
+				owner = BOL
+			}
+			create_unit = {
+				division = "name = \"MNR Youth Union Centro\" division_template = \"Falangist Militia\" start_experience_factor = 0.25  start_equipment_factor = 1"
+				owner = BOL
+			}
+		}
+	}
+}
+
+country_event = { #Medinaceli Meets with High Command
+	id = bolivia.38
+	title = bolivia.38.t
+	desc = bolivia.38.d
+	picture = bolivia_medinaceli_and_military
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.38.o1
+		add_political_power = 50
+		add_stability = 0.05
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.39
+				days = 7
+			}
+		}
+	}
+}
+
+country_event = { #General Calderón Proposes Government Rearrangement and Power-sharing Agreement
+	id = bolivia.39
+	title = bolivia.39.t
+	desc = bolivia.39.d
+	picture = bolivia_deal_with_the_devil
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.39.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = -0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.40
+				days = 7
+			}
+		}
+	}
+}
+
+country_event = { #Antonio Cueto Calderón Made Prime Minister
+	id = bolivia.40
+	title = bolivia.40.t
+	desc = bolivia.40.d
+	picture = bolivia_power_sharing_agreement
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.40.o1
+		BOL_oscar_zamora_medinaceli = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					ideology = revolutionary_junta
+					expire="1.1.1.1"
+				}
+			}
+		}
+		set_politics = {
+			ruling_party = national_bolshevik
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = national_bolshevik
+			popularity = 0.2
+		}
+		set_party_name = {
+			ideology = national_bolshevik
+			long_name = BOL_power_sharing_govt_long
+			name = BOL_power_sharing_govt
+		}
+		hidden_effect = {
+			BOL_luis_arce = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						ideology = left_maoist
+						expire="1.1.1.1"
+					}
+				}
+			}
+			set_party_name = {
+				ideology = revolutionary_socialist
+				long_name = BOL_luis_arce_loyalists_long
+				name = BOL_luis_arce_loyalists
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = bolivia.41
+				days = 14
+			}
+		}
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOT = {
+						OR = {
+							tag = BOL
+							tag = STC
+						}
+					}
+				}
+				news_event = {
+					hours = 4
+					id = bolivia_news.2
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Bolivian Army Restores Order to Bolivia
+	id = bolivia.41
+	title = bolivia.41.t
+	desc = bolivia.41.d
+	picture = bolivian_army_restores_order
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.41.o1
+		add_stability = 0.1
+		remove_ideas = idea_BOL_andes_chasm
+		add_popularity = {
+			ideology = liberal
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = -0.1
+		}
+	}
+}
+
+country_event = { #[ROOT.GetYear] General Election
+	id = bolivia.42
+	title = bolivia.42.t
+	desc = bolivia.42.d
+	picture = bolivia_election_time
+	
+	fire_only_once = yes
+	trigger = {
+		tag = STC
+		has_country_flag = bolivia_civil_war_flag
+		BOL = {
+			exists = no
+		}
+	}
+	
+	option = { #Se Siente, se siente, Evo Presidente!
+		name = bolivia.42.o1
+		if = {
+			limit = {
+				NOT = {
+					has_government = communist
+				}
+			}
+			set_politics = {
+				ruling_party = communist
+				elections_allowed = no
+			}
+		}
+		add_popularity = {
+			ideology = communist
+			popularity = 0.2
+		}
+		ai_chance = {
+			base = 30
+			modifier = {
+				CUB = {
+					has_country_flag = cuba_communist_aided_morales_flag
+				}
+				add = 30
+			}
+		}
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOT = {
+						OR = {
+							tag = BOL
+							tag = STC
+						}
+					}
+				}
+				news_event = {
+					hours = 4
+					id = bolivia_news.3
+				}
+			}
+		}
+	}
+	
+	option = { #For a new Bolivia and for Federalism, Rubén Costas 
+		name = bolivia.42.o2
+		if = {
+			limit = {
+				NOT = {
+					has_government = liberal
+				}
+			}
+			set_politics = {
+				ruling_party = liberal
+				elections_allowed = no
+			}
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.2
+		}
+		ai_chance = {
+			base = 25
+		}
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOT = {
+						OR = {
+							tag = BOL
+							tag = STC
+						}
+					}
+				}
+				news_event = {
+					hours = 4
+					id = bolivia_news.4
+				}
+			}
+		}
+	}
+	
+	option = { #Towards a Free Economy, a Strong Nation and a break with Communism
+		name = bolivia.42.o3
+		if = {
+			limit = {
+				NOT = {
+					has_government = national_conservative
+				}
+			}
+			set_politics = {
+				ruling_party = national_conservative
+				elections_allowed = no
+			}
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.2
+		}
+		ai_chance = {
+			base = 30
+		}
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOT = {
+						OR = {
+							tag = BOL
+							tag = STC
+						}
+					}
+				}
+				news_event = {
+					hours = 4
+					id = bolivia_news.5
+				}
+			}
+		}
+	}
+	
+	option = { #Return the Bible to the Palacio Quemado
+		name = bolivia.42.o4
+		if = {
+			limit = {
+				NOT = {
+					has_government = nationalist
+				}
+			}
+			set_politics = {
+				ruling_party = nationalist
+				elections_allowed = no
+			}
+		}
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.2
+		}
+		ai_chance = {
+			base = 15
+		}
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOT = {
+						OR = {
+							tag = BOL
+							tag = STC
+						}
+					}
+				}
+				news_event = {
+					hours = 4
+					id = bolivia_news.6
+				}
+			}
+		}
+	}
+}
+
+country_event = { #MNR Youth Union Marches on La Paz
+	id = bolivia.43
+	title = bolivia.43.t
+	desc = bolivia.43.d
+	picture = bolivia_mnr_putsch
+	
+	fire_only_once = yes
+	trigger = {
+		tag = BOL
+		has_country_flag = bolivia_civil_war_flag
+		has_country_flag = bolivia_relied_on_camacho
+		STC = {
+			exists = no
+		}
+	}
+	
+	option = { #Call Cueto Calderón, NOW!
+		name = bolivia.43.o1
+		if = {
+			limit = {
+				check_variable = {
+					var = bolivia_army_variable
+					value = 1
+					compare = less_than_or_equals
+				}
+			}
+			hidden_effect = {
+				country_event = {
+					id = bolivia.44
+					days = 5
+				}
+			}
+		}
+		if = {
+			limit = {
+				check_variable = {
+					bolivia_army_variable > 1
+				}
+			}
+			hidden_effect = {
+				country_event = {
+					id = bolivia.45
+					days = 5
+				}
+			}
+		}
+	}
+}
+
+country_event = { #MNR Youth Union Ousts Medinaceli
+	id = bolivia.44
+	title = bolivia.44.t
+	desc = bolivia.44.d
+	picture = bolivia_fascist_coup
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.44.o1
+		if = {
+			limit = {
+				NOT = {
+					has_government = fascist
+				}
+			}
+			set_politics = {
+				ruling_party = fascist
+				elections_allowed = no
+			}
+		}
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.25
+		}
+		set_capital = { state = 487 }
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOT = {
+						OR = {
+							tag = BOL
+							tag = STC
+						}
+					}
+				}
+				news_event = {
+					hours = 4
+					id = bolivia_news.7
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Bolivian Military Scatters MNR Youth Union Marchers
+	id = bolivia.45
+	title = bolivia.45.t
+	desc = bolivia.45.d
+	picture = bolivia_the_fascists_crushed
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = bolivia.45.o1
+		add_stability = 0.1
+		add_manpower = -10
+		add_popularity = {
+			ideology = fascist
+			popularity = -0.25
+		}
+	}
+}
+
+news_event = { #Civil War Breaks Out in Bolivia
+	id = bolivia_news.1
+	title = bolivia_news.1.t
+	desc = bolivia_news.1.d
+	picture = news_bolivia_civil_war
+
+	is_triggered_only = yes
+
+	option = { #Oh bother
+		name = bolivia_news.1.o1 
+	}
+}
+
+news_event = { #Oscar Zamora Medinaceli Forms Power-Sharing Agreement with Bolivian ARmy
+	id = bolivia_news.2
+	title = bolivia_news.2.t
+	desc = bolivia_news.2.d
+	picture = news_bolivia_power_sharing
+
+	is_triggered_only = yes
+
+	option = { #Cool tanks
+		name = bolivia_news.2.o1 
+	}
+}
+
+news_event = { #Evo Morales Elected President of Bolivia
+	id = bolivia_news.3
+	title = bolivia_news.3.t
+	desc = bolivia_news.3.d
+	picture = news_bolivia_evo_presidente
+
+	is_triggered_only = yes
+
+	option = { #Wow what a nice guy I hope he never does anything evil
+		name = bolivia_news.3.o1 
+	}
+}
+
+news_event = { #Ruben Costas Elected President of Bolivia
+	id = bolivia_news.4
+	title = bolivia_news.4.t
+	desc = bolivia_news.4.d
+	picture = news_bolivia_costas_presidente
+
+	is_triggered_only = yes
+
+	option = { #Liberal!
+		name = bolivia_news.4.o1 
+	}
+}
+
+news_event = { #Jorge Quiroga Elected President of Bolivia
+	id = bolivia_news.5
+	title = bolivia_news.5.t
+	desc = bolivia_news.5.d
+	picture = news_bolivia_quiroga_presidente
+
+	is_triggered_only = yes
+
+	option = { #I can assure you the American Republic is a force for good and not evil
+		name = bolivia_news.5.o1 
+	}
+}
+
+news_event = { #Jeanine Añez Elected President of Bolivia
+	id = bolivia_news.6
+	title = bolivia_news.6.t
+	desc = bolivia_news.6.d
+	picture = news_bolivia_anez_presidente
+
+	is_triggered_only = yes
+
+	option = { #Gaslight gatekeep girlboss 
+		name = bolivia_news.6.o1 
+	}
+}
+
+news_event = { #Medinaceli Overthrown in Falangist Coup 
+	id = bolivia_news.7
+	title = bolivia_news.7.t
+	desc = bolivia_news.7.d
+	picture = news_bolivia_falangist_coup
+
+	is_triggered_only = yes
+
+	option = { #I can't think of anything funny here 
+		name = bolivia_news.7.o1
+		trigger = {
+			AND = {
+				capital_scope = {
+						        is_on_continent = south_america
+						    }
+				NOT = {
+					has_government = fascist
+				}
+			}
+		}
+	}
+	
+	option = { #I can't think of anything funny here 
+		name = bolivia_news.7.o2
+		trigger = {
+			AND = {
+				capital_scope = {
+						        is_on_continent = south_america
+						    }
+				has_government = fascist
+			}
+		}
+	}
+	
+	option = { #I can't think of anything funny here 
+		name = bolivia_news.7.o3
+		trigger = {
+			NOT = {
+				capital_scope = {
+						        is_on_continent = south_america
+						    }
+			}
+		}
+	}
+}
+
+news_event = { #Bolivian Government Wins the Bolivian Civil War
+	id = bolivia_news.8
+	title = bolivia_news.8.t
+	desc = bolivia_news.8.d
+	picture = news_bolivia_government_wins
+	fire_only_once = yes
+
+	trigger = {
+		country_exists = BOL
+		BOL = {
+			has_country_flag = bolivia_civil_war_flag
+		}
+		NOT = {
+			country_exists = STC 
+		}
+		NOT = { has_global_flag = bolivia_civil_war_over }
+	}
+
+	option = { #Viva Medinaceli
+		name = bolivia_news.8.o1
+		set_global_flag = bolivia_civil_war_over
+	}
+}
+
+news_event = { #Bolivian Opposition Wins the Bolivian Civil War
+	id = bolivia_news.9
+	title = bolivia_news.9.t
+	desc = bolivia_news.9.d
+	picture = news_bolivia_opposition_wins
+	fire_only_once = yes
+
+	trigger = {
+		country_exists = STC
+		STC = {
+			has_country_flag = bolivia_civil_war_flag
+		}
+		NOT = {
+			country_exists = BOL 
+		}
+		NOT = { has_global_flag = bolivia_civil_war_over }
+	}
+
+	option = { #Abajo Medinaceli
+		name = bolivia_news.9.o1
+		set_global_flag = bolivia_civil_war_over
+	}
+}

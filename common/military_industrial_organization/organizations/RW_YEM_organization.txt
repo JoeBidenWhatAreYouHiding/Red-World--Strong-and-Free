@@ -1,0 +1,183 @@
+#Tanks
+sanaa_heavy_industry = {
+	include = generic_medium_tank_organization	
+	icon = GFX_idea_sanaa_heavy_industry
+	
+	allowed = {	
+		original_tag = YEM
+	}
+
+	equipment_type = { mio_cat_eq_all_light_tank mio_cat_eq_all_medium_tank mio_cat_eq_all_heavy_tank }
+	research_categories = { mio_cat_tech_light_armor_and_modules mio_cat_tech_medium_armor_and_modules mio_cat_tech_heavy_armor_and_modules }
+
+	initial_trait = {
+		organization_modifier = {
+			military_industrial_organization_research_bonus = 0.05
+		}
+		equipment_bonus = {
+			defense = 0.05
+		}
+	}
+	
+	available = {
+		# When in a Foreign MIO, countries need to be at peace with original country
+		IF = {
+			limit = {
+				FROM = { NOT = { original_tag = YEM } }
+			}
+			FROM = { NOT = { has_war_with = YEM } }
+		}
+	}
+}
+
+#Ships
+red_sea_ports = {
+	include = generic_battle_line_ship_organization
+	icon = GFX_idea_red_sea_ports
+
+	initial_trait = {
+		equipment_bonus = {
+            fuel_consumption = -0.05
+        }
+	}
+
+	allowed = {	
+		original_tag = YEM
+	}
+}
+
+#Planes
+al_jabin_aerospace = {
+	include = generic_light_aircraft_organization
+	icon = GFX_idea_al_jabin_aerospace
+
+	allowed = {	
+		original_tag = YEM
+	}
+}
+
+leopard = {
+	include = generic_medium_aircraft_organization
+	icon = GFX_idea_leopard
+
+	initial_trait = {
+		equipment_bonus = {
+            fuel_consumption = -0.05
+            air_attack = 0.03
+        }
+	}
+
+	allowed = {	
+		original_tag = YEM
+	}
+}
+
+Yemeni_Air = {
+	include = generic_heavy_aircraft_organization
+	icon = GFX_idea_Yemeni_Air
+
+	initial_trait = {
+		equipment_bonus = {
+            air_defence = 0.05
+            air_bombing = 0.05
+        }
+	}
+
+	allowed = {	
+		original_tag = YEM
+	}
+}
+
+al_jabin_aerospace_naval = {
+	include = generic_naval_aircraft_organization
+	icon = GFX_idea_al_jabin_aerospace
+
+	allowed = {	
+		original_tag = YEM
+	}
+}
+
+#Materiel
+king_of_yemen = {
+	include = generic_motorized_mechanized_organization
+	icon = GFX_idea_king_of_yemen
+
+	initial_trait = {
+		organization_modifier = {
+			military_industrial_organization_research_bonus = 0.05
+		}
+		equipment_bonus = {
+			maximum_speed = 0.05
+			reliability = -0.03
+		}
+	}
+	
+	allowed = {	
+		original_tag = YEM
+	}
+	available = {
+		# When in a Foreign MIO, countries need to be at peace with original country
+		IF = {
+			limit = {
+				FROM = { NOT = { original_tag = YEM } }
+			}
+			FROM = { NOT = { has_war_with = YEM } }
+		}
+	}
+}
+
+remington_arms_yem = {
+	include = generic_infantry_equipment_organization
+	icon = GFX_idea_remington_arms
+
+	initial_trait = {
+		equipment_bonus = {
+			soft_attack = 0.05
+		}
+	}
+
+	allowed = {	
+		OR = {
+				original_tag = YEM
+				original_tag = YAR
+			}
+	}
+	available = {
+		# When in a Foreign MIO, countries need to be at peace with original country
+		IF = {
+			limit = {
+				FROM = { NOT = { original_tag = YEM original_tag = YAR } }
+			}
+			FROM = { NOT = { has_war_with = YEM has_war_with = YAR } }
+		}
+	}
+}
+
+united_defense_yemen = {
+	include = generic_artillery_organization
+	icon = GFX_idea_united_defense
+	
+	allowed = {	
+		OR = {
+				original_tag = YEM
+				original_tag = YAR
+			}
+	}
+
+	initial_trait = {
+		equipment_bonus = {
+			hard_attack = 0.03
+			soft_attack = 0.03
+		}
+	}
+
+	available = {
+		# When in a Foreign MIO, countries need to be at peace with original country
+		IF = {
+			limit = {
+				FROM = { NOT = { original_tag = YEM original_tag = YAR } }
+			}
+			FROM = { NOT = { has_war_with = YEM has_war_with = YAR } }
+		}
+	}
+}

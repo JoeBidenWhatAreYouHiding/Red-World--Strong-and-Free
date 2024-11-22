@@ -1,0 +1,153 @@
+#Tanks
+anniston_arms_depot_org = {
+	include = generic_heavy_tank_organization
+	icon = GFX_idea_anniston_army_depot
+	
+	allowed = {	
+		original_tag = USA
+	}
+
+	equipment_type = { mio_cat_eq_all_light_tank mio_cat_eq_all_medium_tank mio_cat_eq_all_heavy_tank }
+	research_categories = { mio_cat_tech_light_armor_and_modules mio_cat_tech_medium_armor_and_modules mio_cat_tech_heavy_armor_and_modules }
+
+	initial_trait = {
+		organization_modifier = {
+			military_industrial_organization_research_bonus = 0.05
+		}
+	}
+	
+	available = {
+		# When in a Foreign MIO, countries need to be at peace with original country
+		IF = {
+			limit = {
+				FROM = { NOT = { original_tag = USA } }
+			}
+			FROM = { NOT = { has_war_with = USA } }
+		}
+	}
+}
+
+#Ships
+huntington_ingalls_industries_org = {
+	include = generic_battle_line_ship_organization
+	icon = GFX_idea_huntington_ingalls_industries
+	
+	allowed = {	
+		original_tag = USA 
+	}
+}
+
+#Planes
+lockheed_corporation_org = {
+	include = generic_light_aircraft_organization
+	icon = GFX_idea_lockheed_corporation
+	
+	allowed = {	
+		original_tag = USA
+	}
+}
+
+griffon_aerospace_org = {
+	include = generic_medium_aircraft_organization
+	icon = GFX_idea_griffon_aerospace
+	
+	allowed = {	
+		original_tag = USA
+	}
+}
+
+bombardier = {
+	include = generic_heavy_aircraft_organization
+	icon = GFX_idea_bombardier
+	
+	available = {
+			IF = {
+				USA = { has_country_flag = corporations_return }
+			}
+		}
+
+	allowed = {	
+		original_tag = USA
+	}
+}
+
+northrop_org = {
+	include = generic_naval_aircraft_organization
+	icon = GFX_idea_northrop
+	
+	available = {
+			IF = {
+				USA = { has_country_flag = corporations_return }
+			}
+		}
+
+	allowed = {	
+		original_tag = USA
+	}
+}
+
+#Materiel
+mack_trucks_org = {
+	include = generic_motorized_mechanized_organization
+	icon = GFX_idea_mack_trucks
+	
+	allowed = {	
+		original_tag = USA
+	}
+
+	available = {
+		# When in a Foreign MIO, countries need to be at peace with original country
+		IF = {
+			limit = {
+				FROM = { NOT = { original_tag = USA } }
+			}
+			FROM = { NOT = { has_war_with = USA } }
+		}
+	}
+}
+
+united_defense_org = {
+	include = generic_artillery_organization
+	icon = GFX_idea_united_defense
+	
+	allowed = {	
+		original_tag = USA
+	}
+	available = {
+		# When in a Foreign MIO, countries need to be at peace with original country
+		IF = {
+			limit = {
+				FROM = { NOT = { original_tag = USA } }
+			}
+			FROM = { NOT = { has_war_with = USA } }
+		}
+	}
+}
+
+remington_arms_org = {
+	include = generic_infantry_equipment_organization
+	icon = GFX_idea_remington_arms
+	
+	equipment_type = {
+		infantry_equipment
+		support_equipment
+	}
+	initial_trait = {
+	production_bonus = {
+			production_cost_factor = -0.05
+		}
+	}
+
+	allowed = {	
+		original_tag = USA
+	}
+	available = {
+		# When in a Foreign MIO, countries need to be at peace with original country
+		IF = {
+			limit = {
+				FROM = { NOT = { original_tag = USA } }
+			}
+			FROM = { NOT = { has_war_with = USA } }
+		}
+	}
+}

@@ -1,0 +1,107 @@
+#Tanks
+oregon_ironworks = {
+	include = generic_infantry_tank_organization
+	icon = GFX_idea_oregon_ironworks
+	
+	allowed = {	
+		original_tag = CSD
+	}
+
+	equipment_type = { mio_cat_eq_all_light_tank mio_cat_eq_all_medium_tank mio_cat_eq_all_heavy_tank }
+	research_categories = { mio_cat_tech_light_armor_and_modules mio_cat_tech_medium_armor_and_modules mio_cat_tech_heavy_armor_and_modules }
+
+	initial_trait = {
+		organization_modifier = {
+			military_industrial_organization_research_bonus = 0.10
+		}
+	}
+	
+	available = {
+		# When in a Foreign MIO, countries need to be at peace with original country
+		IF = {
+			limit = {
+				FROM = { NOT = { original_tag = CSD } }
+			}
+			FROM = { NOT = { has_war_with = CSD } }
+		}
+	}
+}
+
+#Ships
+vigor_industrial = {
+	include = generic_task_force_ship_organization
+	icon = GFX_idea_vigor_industrial
+	
+	allowed = {	
+		original_tag = CSD
+	}
+}
+
+#Planes
+esterline_technologies = {
+	include = generic_light_aircraft_organization
+	icon = GFX_idea_esterline_technologies
+	
+	allowed = {	
+		original_tag = CSD
+	}
+}
+
+insitu = {
+	include = generic_heavy_aircraft_organization
+	icon = GFX_idea_insitu
+
+	allowed = {	
+		original_tag = CSD
+	}
+}
+
+#Materiel
+paccar = {
+	include = generic_motorized_mechanized_organization
+	icon = GFX_idea_paccar
+	
+	allowed = {	
+		original_tag = CSD
+	}
+
+	initial_trait = {
+		equipment_bonus = {
+			maximum_speed = 0.05
+			defense = 0.05
+		}
+	}
+
+	available = {
+		# When in a Foreign MIO, countries need to be at peace with original country
+		IF = {
+			limit = {
+				FROM = { NOT = { original_tag = CSD } }
+			}
+			FROM = { NOT = { has_war_with = CSD } }
+		}
+	}
+}
+
+calico_light_arms = {
+	include = generic_infantry_equipment_organization
+	icon = GFX_idea_calico_light_arms
+	
+	allowed = {	
+		original_tag = CSD
+	}
+	initial_trait = {
+		equipment_bonus = {
+			hard_attack = 0.05
+		}
+	}
+	available = {
+		# When in a Foreign MIO, countries need to be at peace with original country
+		IF = {
+			limit = {
+				FROM = { NOT = { original_tag = CSD } }
+			}
+			FROM = { NOT = { has_war_with = CSD } }
+		}
+	}
+}

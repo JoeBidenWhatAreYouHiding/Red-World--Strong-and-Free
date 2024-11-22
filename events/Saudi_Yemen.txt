@@ -1,0 +1,1656 @@
+add_namespace = saudi_yemen
+
+#Yemen Requests Military Intervention
+country_event = {
+	id = saudi_yemen.1
+	title = saudi_yemen.1.t
+	desc = saudi_yemen.1.d
+	picture = saudi_yemen_military_intervention
+	
+	is_triggered_only = yes
+	
+	option = { #we accept
+		name = saudi_yemen.1.a
+		YEM = {
+		    country_event = { id = saudi_yemen.2 } 
+		}
+	}
+	option = { #we refuse
+		name = saudi_yemen.1.b
+		YEM = {
+		    country_event = { days = 1 id = saudi_yemen.3 } 
+		}
+	}
+}
+#The saudis accept
+country_event = {
+	id = saudi_yemen.2
+	title = saudi_yemen.2.t
+	desc = saudi_yemen.2.d
+	picture = saudi_yemen_riyadh_says_yes
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = saudi_yemen.2.a
+		division_template = {
+			name = "Saudi Infantry Division"
+			
+			regiments = {
+				infantry = { x = 0 y = 0 }
+			    infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 1 y = 0 }
+				infantry = { x = 1 y = 1 }
+				infantry = { x = 1 y = 2 }
+			}
+		}
+		973 = {
+			create_unit = {
+				division = "name = \"Saudi Infantry Division\" division_template = \"Saudi Infantry Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+				owner = YEM
+			}
+			create_unit = {
+				division = "name = \"Saudi Infantry Division\" division_template = \"Saudi Infantry Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+				owner = YEM
+			}
+		}
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_0
+			amount = 2000
+			producer = SAU
+		}
+	}
+}
+#The saudis refuse
+country_event = {
+	id = saudi_yemen.3
+	title = saudi_yemen.3.t
+	desc = saudi_yemen.3.d
+	picture = saudi_yemen_riyadh_says_no
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = saudi_yemen.3.a
+		add_popularity = {
+			ideology = nationalist
+			popularity = -0.10
+		}
+		973 = {
+			remove_building = {
+				type = industrial_complex
+				level = 2
+			}
+		}
+	}
+}
+#Fate of the Republican Guard
+country_event = {
+	id = saudi_yemen.4
+	title = saudi_yemen.4.t
+	desc = saudi_yemen.4.d
+	picture = saudi_yemen_republican_guard_trial
+	
+	is_triggered_only = yes
+	
+	option = { #bring them to high command
+		name = saudi_yemen.4.a
+		army_experience = 50
+		add_tech_bonus = {
+			bonus = 0.50
+			uses = 1
+			category = land_doctrine
+			add_stability = -0.05
+		}
+	}
+	option = { #outlaw them
+		name = saudi_yemen.4.b
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_0
+			amount = 3500
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment_1
+			amount = 500
+		}
+		add_equipment_to_stockpile = {
+			type = light_tank_equipment_1
+			amount = 500
+		}
+		add_stability = 0.05
+		set_country_flag = yemen_republican_guard_banned
+	}
+}
+#Terrorist leaders executed in Marib
+country_event = {
+	id = saudi_yemen.5
+	title = saudi_yemen.5.t
+	desc = saudi_yemen.5.d
+	picture = saudi_yemen_terror_leaders
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = saudi_yemen.5.a
+		977 = {
+			set_demilitarized_zone = no
+		}
+	}
+}
+#Status of the economy
+country_event = {
+	id = saudi_yemen.6
+	title = saudi_yemen.6.t
+	desc = saudi_yemen.6.d
+	picture = saudi_yemen_economy_pic
+	
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			country_event = {
+				id = saudi_yemen.7
+				days = 7
+			}
+		}
+	}
+	
+	option = { #more saudi economic integration
+		name = saudi_yemen.6.a
+		add_to_variable = { saudi_influence = 1 } 
+		set_country_flag = saudi_economic_flag
+		set_country_flag = saudi_economic_model_followed
+	}
+	option = { #slava al-islah
+		name = saudi_yemen.6.b
+		set_country_flag = al_islah_support_flag
+		set_country_flag = alislah_economic_model_followed
+	}
+	option = { #more yemeni economic independence
+		name = saudi_yemen.6.c
+		add_to_variable = { yemeni_influence = 1 }
+		set_country_flag = yemeni_economic_flag
+		set_country_flag = yemen_economic_model_followed
+	}
+}
+#Status of the Occupation
+country_event = {
+	id = saudi_yemen.7
+	title = saudi_yemen.7.t
+	desc = saudi_yemen.7.d
+	picture = saudi_yemen_armed_forces_pic
+	
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			country_event = {
+				id = saudi_yemen.8
+				days = 7
+			}
+		}
+	}
+	
+	option = { #saudis remain
+		name = saudi_yemen.7.a
+		add_to_variable = { saudi_influence = 1 } 
+	}
+	option = { #saudis withdraw
+		name = saudi_yemen.7.b
+		add_to_variable = { yemeni_influence = 1 }
+	}
+}
+#Ambassador talks shit about the Saudis
+country_event = {
+	id = saudi_yemen.8
+	title = saudi_yemen.8.t
+	desc = saudi_yemen.8.d
+	picture = saudi_yemen_ambassador_angry
+	
+	is_triggered_only = yes
+	
+	option = { #The ambassadors words are his own
+		name = saudi_yemen.8.a
+		add_to_variable = { saudi_influence = 1 } 
+		if = {
+			limit = {
+				check_variable = {
+				  saudi_influence = yemeni_influence
+			   }
+			}
+			hidden_effect = {
+				country_event = {
+					id = saudi_yemen.10
+					days = 3
+				}
+			}
+		}
+	}
+	option = { #The ambassador speaks for all of Yemen
+		name = saudi_yemen.8.b
+		add_to_variable = { yemeni_influence = 1 }
+		if = {
+			limit = {
+				check_variable = {
+				  saudi_influence = yemeni_influence
+			   }
+			}
+			hidden_effect = {
+				country_event = {
+					id = saudi_yemen.11
+					days = 3
+				}
+			}
+		}
+	}
+}
+#opening of the riyadh conference
+country_event = {
+	id = saudi_yemen.9
+	title = saudi_yemen.9.t
+	desc = saudi_yemen.9.d
+	picture = saudi_yemen_conference_opens
+
+	trigger = {
+		tag = YEM
+		NOT = { has_completed_focus = YEM_riyadh_conference }
+		focus_progress = {
+			focus = YEM_riyadh_conference
+			progress > 0.10
+		}
+	}
+	
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = {
+			country_event = {
+				id = saudi_yemen.6
+				days = 7
+			}
+		}
+	}
+
+	option = { #the fate of yemen is set here
+		name = saudi_yemen.9.a
+	}
+}
+#the status quo prevails
+country_event = {
+	id = saudi_yemen.10
+	title = saudi_yemen.10.t
+	desc = saudi_yemen.10.d
+	picture = saudi_yemen_status_quo
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.10.a
+		set_country_flag = status_quo_win
+		complete_national_focus = YEM_the_status_quo
+		if = {
+			limit = {
+				has_country_flag = yemeni_economic_flag
+			}
+			hidden_effect = {
+				country_event = {
+					id = saudi_yemen.60
+					days = 3
+				}
+			}
+		}
+	}
+}
+#A new era for Yemen
+country_event = {
+	id = saudi_yemen.11
+	title = saudi_yemen.11.t
+	desc = saudi_yemen.11.d
+	picture = saudi_yemen_new_era
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.11.a
+	}
+}
+#Coronation of Prince Turki
+country_event = {
+	id = saudi_yemen.12
+	title = saudi_yemen.12.t
+	desc = saudi_yemen.12.d
+	picture = saudi_yemen_saudi_coronation
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.12.a
+	}
+}
+#Prince Turki purges cabinet
+country_event = {
+	id = saudi_yemen.13
+	title = saudi_yemen.13.t
+	desc = saudi_yemen.13.d
+	picture = saudi_yemen_cabinet_purge
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.13.a
+	}
+}
+#former presidential palace to be demolished
+country_event = {
+	id = saudi_yemen.14
+	title = saudi_yemen.14.t
+	desc = saudi_yemen.14.d
+	picture = saudi_yemen_presidential_palace_demolished
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.14.a
+	}
+}
+#houthi leadership executed
+country_event = {
+	id = saudi_yemen.15
+	title = saudi_yemen.15.t
+	desc = saudi_yemen.15.d
+	picture = saudi_yemen_houthis_executed
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.15.a
+	}
+}
+#President Ahwal Declares Martial Law
+country_event = {
+	id = saudi_yemen.16
+	title = saudi_yemen.16.t
+	desc = saudi_yemen.16.d
+	picture = saudi_yemen_ahwal_martial_law
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.16.a
+	}
+}
+#Tribal Leaders Arrested
+country_event = {
+	id = saudi_yemen.17
+	title = saudi_yemen.17.t
+	desc = saudi_yemen.17.d
+	picture = saudi_yemen_tribal_arrests
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.17.a
+	}
+}
+#Martial Law Ends
+country_event = {
+	id = saudi_yemen.18
+	title = saudi_yemen.18.t
+	desc = saudi_yemen.18.d
+	picture = saudi_yemen_martial_law_ends
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.18.a
+	}
+}
+#Corporate Officials Invited to Government
+country_event = {
+	id = saudi_yemen.19
+	title = saudi_yemen.19.t
+	desc = saudi_yemen.19.d
+	picture = saudi_yemen_money_money_money
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.19.a
+	}
+}
+#president ahwal removed from office
+country_event = {
+	id = saudi_yemen.20
+	title = saudi_yemen.20.t
+	desc = saudi_yemen.20.d
+	picture = saudi_yemen_ahwal_removed
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.20.a
+		complete_national_focus = YEM_a_new_era
+		set_country_flag = yemeni_win
+		hidden_effect = {
+			country_event = {
+				id = saudi_yemen.62
+				days = 3
+			}
+		}
+	}
+}
+#restoration of the old constitution
+country_event = {
+	id = saudi_yemen.21
+	title = saudi_yemen.21.t
+	desc = saudi_yemen.21.d
+	picture = saudi_yemen_old_constitution
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.21.a
+	}
+}
+#Yemen organizes Second National Conciliation Agreement
+country_event = {
+	id = saudi_yemen.22
+	title = saudi_yemen.22.t
+	desc = saudi_yemen.22.d
+	picture = saudi_yemen_national_conciliation
+	
+	is_triggered_only = yes
+
+	option = { #we shall sign the agreement
+		name = saudi_yemen.22.a
+		YEM = {
+			country_event = saudi_yemen.23
+		}
+	}
+	option = { #we refuse this agreement
+		name = saudi_yemen.22.b
+		YEM = {
+			country_event = saudi_yemen.24
+		}
+	}
+}
+#Signing of the second National Conciliation Agreement
+country_event = {
+	id = saudi_yemen.23
+	title = saudi_yemen.23.t
+	desc = saudi_yemen.23.d
+	picture = saudi_yemen_conciliation_yes
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.23.a
+		diplomatic_relation = {
+			country = SAU
+			relation = non_aggression_pact
+			active = yes
+		}
+		SAU = {
+			diplomatic_relation = {
+				country = YEM
+				relation = non_aggression_pact
+				active = yes
+			}
+		}
+		add_opinion_modifier = {
+			target = SAU
+			modifier = yem_second_national_conciliation_agreement
+		}
+		987 = {
+			set_demilitarized_zone = no
+		}
+		985 = {
+			set_demilitarized_zone = no
+		}
+		988 = {
+			set_demilitarized_zone = no
+		}
+		SAU = {
+			add_opinion_modifier = {
+				target = YEM
+				modifier = yem_second_national_conciliation_agreement
+			}
+		}
+	}
+}
+#saudis refuse to sign the agreement
+country_event = {
+	id = saudi_yemen.24
+	title = saudi_yemen.24.t
+	desc = saudi_yemen.24.d
+	picture = saudi_yemen_conciliation_no
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.24.a
+		add_political_power = -50
+	}
+}
+#president ashwal orders parliamentary reshuffle
+country_event = {
+	id = saudi_yemen.25
+	title = saudi_yemen.25.t
+	desc = saudi_yemen.25.d
+	picture = yar_the_peoples_1984
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.25.a
+	}
+}
+#military parade held in sanaa
+country_event = {
+	id = saudi_yemen.26
+	title = saudi_yemen.26.t
+	desc = saudi_yemen.26.d
+	picture = saudi_yemen_military_parade
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.26.a
+	}
+}
+#General People’s Congress handed power
+country_event = {
+	id = saudi_yemen.27
+	title = saudi_yemen.27.t
+	desc = saudi_yemen.27.d
+	picture = saudi_yemen_gpc_power
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.27.a
+	}
+}
+#Saleh amendment passed through parliament
+country_event = {
+	id = saudi_yemen.28
+	title = saudi_yemen.28.t
+	desc = saudi_yemen.28.d
+	picture = saudi_yemen_saleh_amendment
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.28.a
+	}
+}
+#Young Officers arrest President Ashwal
+country_event = {
+	id = saudi_yemen.29
+	title = saudi_yemen.29.t
+	desc = saudi_yemen.29.d
+	picture = saudi_yemen_young_officers_coup
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.29.a
+	}
+}
+#Parliament Amends Constitution
+country_event = {
+	id = saudi_yemen.30
+	title = saudi_yemen.30.t
+	desc = saudi_yemen.30.d
+	picture = saudi_yemen_constitution_change
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.30.a
+	}
+}
+#Community outreach programs established
+country_event = {
+	id = saudi_yemen.31
+	title = saudi_yemen.31.t
+	desc = saudi_yemen.31.d
+	picture = saudi_yemen_community_outreach
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.31.a
+	}
+}
+#President addresses the nation
+country_event = {
+	id = saudi_yemen.32
+	title = saudi_yemen.32.t
+	desc = saudi_yemen.32.d
+	picture = saudi_yemen_address
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.32.a
+	}
+}
+#Yemen seeks admission to OPEC
+country_event = {
+	id = saudi_yemen.33
+	title = saudi_yemen.33.t
+	desc = saudi_yemen.33.d
+	picture = saudi_yemen_opec_membership
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.33.a
+		YEM = {
+			country_event = saudi_yemen.34
+		}
+	}
+	option = { 
+		name = saudi_yemen.33.b
+		YEM = {
+			country_event = saudi_yemen.35
+		}
+	}
+}
+#Saudi Arabia accepts our admission into OPEC
+country_event = {
+	id = saudi_yemen.34
+	title = saudi_yemen.34.t
+	desc = saudi_yemen.34.d
+	picture = saudi_yemen_opec_sponsored
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.34.a
+		add_ideas = YEM_opec_member
+		add_political_power = 50
+		every_country = {
+			limit = {
+				has_idea = YEM_opec_member
+			}
+			add_opinion_modifier = {
+				target = YEM
+				modifier = yemen_opec
+			}
+		}
+	}
+}
+#Saudi Arabia rejects our admission into OPEC
+country_event = {
+	id = saudi_yemen.35
+	title = saudi_yemen.35.t
+	desc = saudi_yemen.35.d
+	picture = saudi_yemen_opec_no
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.35.a
+		add_political_power = -50
+		add_popularity = {
+			ideology = nationalist
+			popularity = -0.05
+		}
+	}
+}
+#Yeman seeks to build railways
+country_event = {
+	id = saudi_yemen.36
+	title = saudi_yemen.36.t
+	desc = saudi_yemen.36.d
+	picture = saudi_yemen_highway_investment
+	
+	is_triggered_only = yes
+
+	option = { #yes
+		name = saudi_yemen.36.a
+		YEM = {
+			country_event = saudi_yemen.37
+		}
+	}
+	option = { #no
+		name = saudi_yemen.36.b
+		YEM = {
+			country_event = saudi_yemen.38
+		}
+	}
+}
+#saudis accept
+country_event = {
+	id = saudi_yemen.37
+	title = saudi_yemen.37.t
+	desc = saudi_yemen.37.d
+	picture = saudi_yemen_choo_choo
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.37.a
+		build_railway = {
+			level = 1
+			build_only_on_allied = no
+			controller_priority = {
+				base = 1
+			 
+				modifier = {
+					tag = YEM
+					add = 1
+				}
+			}
+			fallback = yes
+			path = { 13643 13650 13668 13672 13659 8030 10870 13722 5093 12727 }
+			start_state = 973
+			target_state = 292
+		}
+		add_ideas = YEM_railway_construction_boom
+	}
+}
+#saudis refuse
+country_event = {
+	id = saudi_yemen.38
+	title = saudi_yemen.38.t
+	desc = saudi_yemen.38.d
+	picture = saudi_yemen_no_trains
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.38.a
+		build_railway = {
+			level = 1
+			build_only_on_allied = no
+			controller_priority = {
+				base = 1
+			 
+				modifier = {
+					tag = YEM
+					add = 1
+				}
+			}
+			fallback = yes
+			path = { 13643 13650 13668 13672 13659 }
+			start_state = 973
+			target_state = 976
+		}
+		add_political_power = -50
+	}
+}
+#yemen seeks to revive trade relations
+country_event = {
+	id = saudi_yemen.39
+	title = saudi_yemen.39.t
+	desc = saudi_yemen.39.d
+	picture = saudi_yemen_trade_relations
+	
+	is_triggered_only = yes
+
+	option = { #yes
+		name = saudi_yemen.39.a
+		YEM = {
+			country_event = saudi_yemen.40
+		}
+	}
+	option = { #no
+		name = saudi_yemen.39.b
+		YEM = {
+			country_event = saudi_yemen.41
+		}
+	}
+}
+#murica accepts
+country_event = {
+	id = saudi_yemen.40
+	title = saudi_yemen.40.t
+	desc = saudi_yemen.40.d
+	picture = saudi_yemen_yank_yes
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.40.a
+		USA = {
+			add_resource = {
+				type = oil
+				amount = 10
+				state = 366
+			}
+			add_resource = {
+				type = tungsten
+				amount = 5
+				state = 366
+			}
+			add_resource = {
+				type = aluminium
+				amount = 5
+				state = 366
+			}
+		}
+		add_offsite_building = { 
+			type = industrial_complex
+			level = 2 
+		}
+		add_ideas = YEM_american_cooperation
+	}
+}
+#murica refuses
+country_event = {
+	id = saudi_yemen.41
+	title = saudi_yemen.41.t
+	desc = saudi_yemen.41.d
+	picture = saudi_yemen_yank_no
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.41.a
+		add_political_power = -30
+	}
+}
+#Yemen seeks to develop shared oilfields
+country_event = {
+	id = saudi_yemen.42
+	title = saudi_yemen.42.t
+	desc = saudi_yemen.42.d
+	picture = saudi_yemen_oil_fields
+	
+	is_triggered_only = yes
+
+	option = { #yes
+		name = saudi_yemen.42.a
+		YEM = {
+			country_event = saudi_yemen.43
+		}
+	}
+	option = { #no
+		name = saudi_yemen.42.b
+		YEM = {
+			country_event = saudi_yemen.44
+		}
+	}
+}
+#saudis accept
+country_event = {
+	id = saudi_yemen.43
+	title = saudi_yemen.43.t
+	desc = saudi_yemen.43.d
+	picture = saudi_yemen_yes_oil
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.43.a
+		add_resource = {
+			type = oil
+			amount = 20
+			state = 976
+		}
+		add_resource = {
+			type = oil
+			amount = 10
+			state = 977
+		}
+	}
+}
+#saudis refuse
+country_event = {
+	id = saudi_yemen.44
+	title = saudi_yemen.44.t
+	desc = saudi_yemen.44.d
+	picture = saudi_yemen_no_oil
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.44.a
+		add_resource = {
+			type = oil
+			amount = 5
+			state = 977
+		}
+		add_political_power = -50
+	}
+}
+#Yemeni companies sold to Saudi royalty
+country_event = {
+	id = saudi_yemen.45
+	title = saudi_yemen.45.t
+	desc = saudi_yemen.45.d
+	picture = saudi_yemen_saudi_takeover
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.45.a
+	}
+}
+#Yemen seeks aid for Sa’ada
+country_event = {
+	id = saudi_yemen.46
+	title = saudi_yemen.46.t
+	desc = saudi_yemen.46.d
+	picture = saudi_yemen_help_for_saada
+	
+	is_triggered_only = yes
+
+	option = { #we accept their offer
+		name = saudi_yemen.46.a
+		YEM = {
+			country_event = saudi_yemen.47
+		}
+	}
+	option = { #we reject their offer
+		name = saudi_yemen.46.b
+		YEM = {
+			country_event = saudi_yemen.48
+		}
+	}
+}
+#saudis accept
+country_event = {
+	id = saudi_yemen.47
+	title = saudi_yemen.47.t
+	desc = saudi_yemen.47.d
+	picture = saudi_yemen_sell_your_kidney
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.47.a
+		SAU = {
+			add_state_claim = 976
+			set_state_owner = 976
+		}
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_0
+			amount = 5000
+			producer = SAU
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment_1
+			amount = 1000
+			producer = SAU
+		}
+		add_equipment_to_stockpile = {
+			type = light_tank_equipment_1
+			amount = 500
+			producer = SAU
+		}
+		add_equipment_to_stockpile = {
+			type = CAS_equipment_1
+			amount = 200
+			producer = SAU
+		}
+		add_stability = -0.07
+		add_manpower = -425
+	}
+}
+#saudis refuse
+country_event = {
+	id = saudi_yemen.48
+	title = saudi_yemen.48.t
+	desc = saudi_yemen.48.d
+	picture = saudi_yemen_no_kidney_sold
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.48.a
+		add_political_power = -150
+	}
+}
+#Sinan Abu Lahoum Passes Away
+country_event = {
+	id = saudi_yemen.49
+	title = saudi_yemen.49.t
+	desc = saudi_yemen.49.d
+	picture = saudi_yemen_sinan_dies
+	
+	fire_only_once = yes
+	trigger = {
+		tag = YEM
+		has_country_flag = saudi_yemen_flag
+		date > 2021.1.1
+		date < 2021.1.30
+	}
+
+	option = { 
+		name = saudi_yemen.49.a
+		if = {
+			limit = {
+				has_government = nationalist
+			}
+			add_ideas = yemen_Saba_Sinan_Abu_Lahoum
+		}
+		set_country_flag = sinan_fucking_dies
+	}
+}
+#Trial of the Yemeni Socialist Party leadership
+country_event = {
+	id = saudi_yemen.50
+	title = saudi_yemen.50.t
+	desc = saudi_yemen.50.d
+	picture = pdy_fate_of_jasmines
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.50.a
+	}
+}
+#[YEM.Getleader] announces reunification of Yemen
+country_event = {
+	id = saudi_yemen.51
+	title = saudi_yemen.51.t
+	desc = saudi_yemen.51.d
+	picture = saudi_yemen_reunification
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.51.a
+	}
+}
+#King [SAU.Getleader] Visits Sana'a
+country_event = {
+	id = saudi_yemen.52
+	title = saudi_yemen.52.t
+	desc = saudi_yemen.52.d
+	picture = saudi_yemen_visit_to_sanaa
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.52.a
+	}
+}
+#Sana'a Doctrine Reestablished
+country_event = {
+	id = saudi_yemen.53
+	title = saudi_yemen.53.t
+	desc = saudi_yemen.53.d
+	picture = jas_establish_a_provisional_government
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.53.a
+	}
+}
+#Tribal authority reestablished in Hadrahmaut
+country_event = {
+	id = saudi_yemen.54
+	title = saudi_yemen.54.t
+	desc = saudi_yemen.54.d
+	picture = saudi_yemen_tribal_reconstruction
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.54.a
+	}
+}
+#North seeks to establish trade agreements
+country_event = {
+	id = saudi_yemen.55
+	title = saudi_yemen.55.t
+	desc = saudi_yemen.55.d
+	picture = pdy_uapr_no
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.55.a
+		YEM = {
+			country_event = saudi_yemen.56
+		}
+	}
+	option = { 
+		name = saudi_yemen.55.b
+		YEM = {
+			country_event = saudi_yemen.57
+		}
+	}
+}
+#The PDRY Accepts Our Offer
+country_event = {
+	id = saudi_yemen.56
+	title = saudi_yemen.56.t
+	desc = saudi_yemen.56.d
+	picture = saudi_yemen_pdry_friends
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.56.a
+		add_ideas = YEM_trade_agreements
+		PDY = {
+			add_ideas = YEM_trade_agreements
+		}
+	}
+}
+#The PDRY Rejects Our Offer
+country_event = {
+	id = saudi_yemen.57
+	title = saudi_yemen.57.t
+	desc = saudi_yemen.57.d
+	picture = saudi_yemen_pdry_no_friends
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.57.a
+	}
+}
+#President invests into tribal communities
+country_event = {
+	id = saudi_yemen.58
+	title = saudi_yemen.58.t
+	desc = saudi_yemen.58.d
+	picture = saudi_yemen_tribal_investments
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.58.a
+	}
+}
+#Parliament passes the Sana’a act
+country_event = {
+	id = saudi_yemen.59
+	title = saudi_yemen.59.t
+	desc = saudi_yemen.59.d
+	picture = saudi_yemen_sana_act
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.59.a
+	}
+}
+
+#President Formalises Economic Plan
+country_event = {
+	id = saudi_yemen.60
+	title = saudi_yemen.60.t
+	desc = saudi_yemen.60.d
+	picture = saudi_yemen_economic_plan
+	
+	is_triggered_only = yes
+
+	option = { #Saudi Dosh
+		name = saudi_yemen.60.a
+		set_country_flag = saudi_economic_model_followed
+		clr_country_flag = alislah_economic_model_followed
+		clr_country_flag = yemen_economic_model_followed
+	}
+	
+	option = { #Yankee Dosh
+		name = saudi_yemen.60.b
+		set_country_flag = alislah_economic_model_followed
+		clr_country_flag = saudi_economic_model_followed
+		clr_country_flag = yemen_economic_model_followed
+	}
+}
+
+#President Formalises Economic Plan
+country_event = {
+	id = saudi_yemen.61
+	title = saudi_yemen.61.t
+	desc = saudi_yemen.61.d
+	picture = saudi_yemen_economic_plan
+	
+	is_triggered_only = yes
+
+	option = { #Yemeni Dosh
+		name = saudi_yemen.61.a
+		set_country_flag = yemen_economic_model_followed
+		clr_country_flag = saudi_economic_model_followed
+		clr_country_flag = alislah_economic_model_followed
+	}
+	
+	option = { #Yankee Dosh
+		name = saudi_yemen.61.b
+		set_country_flag = alislah_economic_model_followed
+		clr_country_flag = saudi_economic_model_followed
+		clr_country_flag = yemen_economic_model_followed
+	}
+}
+
+#Declaration of Independence Signed by President Ashwal
+country_event = {
+	id = saudi_yemen.62
+	title = saudi_yemen.62.t
+	desc = saudi_yemen.62.d
+	picture = saudi_yemen_declaration_of_independence
+	
+	is_triggered_only = yes
+
+	option = { 
+		name = saudi_yemen.62.o1
+		remove_ideas = YEM_fueling_the_saudi_economy
+		remove_ideas = YEM_saudi_influence
+		remove_ideas = YEM_saudi_influence2
+		remove_ideas = YEM_saudi_buffer_state
+		remove_ideas = YEM_saudi_buffer_state2
+		remove_ideas = YEM_saudi_buffer_state3
+		remove_ideas = YEM_saudi_buffer_state4
+		SAU = {
+			diplomatic_relation = {
+				country = YEM
+				relation = puppet
+				active = no
+			}
+			hidden_effect = {
+				country_event = {
+					id = saudi_yemen.63
+					days = 1
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Yemen Declares Independence
+	id = saudi_yemen.63
+	title = saudi_yemen.63.t
+	desc = saudi_yemen.63.d
+	picture  = saudi_yemen_yemen_declares_independence
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = saudi_yemen.63.o1
+		set_country_flag = SAU_war_with_YEM
+		declare_war_on = {
+			target = YEM
+			type = annex_everything
+		}
+		every_state = {
+			limit = {
+				is_core_of = YEM
+			}
+			add_claim_by = SAU
+		}
+		custom_effect_tooltip = saudi_yemen_180_days_tt
+		hidden_effect = {
+			YEM = {
+				country_event = {
+					id = saudi_yemen.64
+					days = 90
+				}
+				country_event = {
+					id = saudi_yemen.78
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Volunteers Arrive
+	id = saudi_yemen.64
+	title = saudi_yemen.64.t
+	desc = saudi_yemen.64.d
+	picture = saudi_yemen_gets_volunteers
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = saudi_yemen.64.o1
+		add_manpower = 20000
+	}
+}
+
+country_event = { #Hidden peace event
+	id = saudi_yemen.65
+	title = saudi_yemen.65.t
+	desc = saudi_yemen.65.d
+	picture = placeholder
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	hidden = yes
+	
+	option = {
+		name = saudi_yemen.65.o1
+		if = {
+			limit = {
+				controls_state = 973
+			}
+			hidden_effect = {
+				country_event = {
+					id = saudi_yemen.66
+					days = 1
+				}
+			}
+		}
+		else = {
+			hidden_effect = {
+				country_event = {
+					id = saudi_yemen.67
+					days = 1
+				}
+			}
+		}
+	}
+}
+
+country_event = { #The Second Occupation of Yemen
+	id = saudi_yemen.66
+	title = saudi_yemen.66.t
+	desc = saudi_yemen.66.d
+	picture = saudi_yemen_occupation
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Let's just occupy them, like we should the first time
+		name = saudi_yemen.66.o1
+		add_political_power = -100
+		hidden_effect = {
+			news_event = {
+				hours = 4
+				id = news.329
+			}
+		}
+	}
+	
+	option = { #Allow Prince Turki to Guide Yemen Forward
+		name = saudi_yemen.66.o2
+		every_state = {
+			limit = {
+				is_core_of = YEM
+			}
+			remove_claim_by = SAU
+		}
+		release_puppet = YEM
+		YEM = {
+			unlock_national_focus = YEM_the_status_quo
+			complete_national_focus = YEM_invite_prince_turki
+			clr_country_flag = yemeni_win
+		}
+		hidden_effect = {
+			news_event = {
+				hours = 4
+				id = news.328
+			}
+		}
+	}
+}
+
+country_event = { #Generals Propose End to War
+	id = saudi_yemen.67
+	title = saudi_yemen.67.t
+	desc = saudi_yemen.67.d
+	picture = saudi_yemen_peace_negotiations
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = saudi_yemen.67.o1
+		add_political_power = -50
+		YEM = {
+			hidden_effect = {
+				country_event = {
+					id = saudi_yemen.68
+					days = 3
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Treaty of Baqim Signed
+	id = saudi_yemen.68
+	title = saudi_yemen.68.t
+	desc = saudi_yemen.68.d
+	picture = saudi_yemen_treaty_of_baqim
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = saudi_yemen.68.o1
+		white_peace = SAU
+		987 = {
+			set_demilitarized_zone = yes
+		}
+		985 = {
+			set_demilitarized_zone = yes
+		}
+		988 = {
+			set_demilitarized_zone = yes
+		}
+		if = {
+			limit = {
+				has_country_flag = saudi_economic_flag
+			}
+			hidden_effect = {
+				country_event = {
+					id = saudi_yemen.61
+					days = 3
+				}
+			}
+		}
+		hidden_effect = {
+			news_event = {
+				hours = 4
+				id = news.327
+			}
+		}
+	}
+}
+
+country_event = { #President Ashwal Meets with Saleh Loyalists
+	id = saudi_yemen.69
+	title = saudi_yemen.69.t
+	desc = saudi_yemen.69.d
+	picture = saudi_yemen_saleh_loyalists
+	
+	fire_only_once = yes
+	trigger = {
+		tag = YEM
+		NOT = { has_completed_focus = YEM_honor_president_saleh }
+		focus_progress = {
+			focus = YEM_honor_president_saleh
+			progress > 0.10
+		}
+	}
+	
+	option = {
+		name = saudi_yemen.69.o1
+	}
+}
+
+country_event = { #Factionalism Criticised in Parliament
+	id = saudi_yemen.70
+	title = saudi_yemen.70.t
+	desc = saudi_yemen.70.d
+	picture = saudi_yemen_factionalism_sux
+	
+	fire_only_once = yes
+	trigger = {
+		tag = YEM
+		NOT = { has_completed_focus = YEM_restore_president_hamdis_pragmatism }
+		focus_progress = {
+			focus = YEM_restore_president_hamdis_pragmatism
+			progress > 0.10
+		}
+	}
+	
+	option = {
+		name = saudi_yemen.70.o1
+	}
+}
+
+country_event = { #Prime Minister Abdul Aziz Abdul Ghani Announces Retirement
+	id = saudi_yemen.71
+	title = saudi_yemen.71.t
+	desc = saudi_yemen.71.d
+	picture = saudi_yemen_pm_retires
+	
+	fire_only_once = yes
+	trigger = {
+		tag = YEM
+		has_completed_focus = YEM_honor_president_saleh
+		date > 2018.8.1
+		date < 2018.8.30
+	}
+	
+	option = {
+		name = saudi_yemen.71
+		if = {
+			limit = {
+				has_idea = yemen_Abdul_Aziz_Abdul_Ghani
+			}
+			add_ideas = {
+				yemen_Yahya_Mohamed_Abdullah_Saleh
+			}
+		}
+		set_country_flag = ghani_is_old
+	}
+}
+
+
+country_event = { #Republican Guard Pardoned by President
+	id = saudi_yemen.72
+	title = saudi_yemen.72.t
+	desc = saudi_yemen.72.d
+	picture = saudi_yemen_pardon_rg
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = saudi_yemen.72.o1
+		army_experience = 50
+	}
+}
+
+country_event = { #Investigation Ordered into President Hamdi's Death
+	id = saudi_yemen.73
+	title = saudi_yemen.73.t
+	desc = saudi_yemen.73.d
+	picture = saudi_yemen_hamdi_investigation
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = saudi_yemen.73.o1
+		hidden_effect = {
+			country_event = {
+				id = saudi_yemen.74
+				days = 371
+			}
+		}
+	}
+}
+
+country_event = { #President Hamdi Commission Publishes Results
+	id = saudi_yemen.74
+	title = saudi_yemen.74.t
+	desc = saudi_yemen.74.d
+	picture = saudi_yemen_investigation_complete
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = saudi_yemen.74.o1
+	}
+}
+
+country_event = { #President Ahwal Addresses the Nation
+	id = saudi_yemen.75
+	title = saudi_yemen.75.t
+	desc = saudi_yemen.75.d
+	picture = saudi_yemen_ahwal_speaks
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = saudi_yemen.75.o1
+		add_stability = -0.03
+		hidden_effect = {
+			country_event = {
+				id = saudi_yemen.76
+				days = 14
+			}
+		}
+	}
+}
+
+country_event = { #United Yemeni Front Organises Resistance
+	id = saudi_yemen.76
+	title = saudi_yemen.76.t
+	desc = saudi_yemen.76.d
+	picture = saudi_yemen_uyf_strikes
+	
+	fire_only_once = yes 
+	is_triggered_only = yes
+	
+	option = {
+		name = saudi_yemen.76.o1
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.07
+		}
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.07
+		}
+		hidden_effect = {
+			country_event = {
+				id = saudi_yemen.77
+				days = 5
+			}
+		}
+	}
+}
+
+country_event = { #United Yemeni Front Seizes Marib
+	id = saudi_yemen.77
+	title = saudi_yemen.77.t
+	desc = saudi_yemen.77.d
+	picture = saudi_yemen_occupation_of_marib
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = saudi_yemen.77.o1
+		977 = {
+			set_demilitarized_zone = yes
+			damage_building = {
+				type = arms_factory
+				damage = 1
+			}
+		}
+	}
+}
+
+country_event = { #saudi arabia launches invasion
+	id = saudi_yemen.78
+	title = saudi_yemen.78.t
+	desc = saudi_yemen.78.d
+	picture = saudi_yemen_saudis_invade_yemen
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = saudi_yemen.78.o1
+	}
+}
