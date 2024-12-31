@@ -1,0 +1,213 @@
+add_namespace = return_cores
+
+# Which cores to return?
+country_event = {
+	id = return_cores.1
+	title = return_cores.1.t
+	desc = return_cores.1.d
+	picture = treaty_signing
+
+	is_triggered_only = yes
+
+	option = {
+		name = return_cores.1.o1 #return all land
+		ai_chance = {
+			base = 1
+		}
+		clr_country_flag = RW_returning_land
+		custom_effect_tooltip = RW_will_return_all
+		hidden_effect = {
+			event_target:return_to = {
+				country_event = return_cores.2
+			}
+		}
+	}
+	option = {
+		name = return_cores.1.o2 #return all land but vital provinces
+		trigger = {
+			any_owned_state = {
+				is_controlled_by = ROOT
+				NOT = {
+					is_claimed_by = ROOT
+					is_core_of  = ROOT
+				}
+				is_important_state = yes
+				NOT = { has_state_flag = RW_keeping_state@ROOT }
+				OR = {
+					is_core_of = event_target:return_to
+					is_claimed_by = event_target:return_to
+				}
+			}
+		}
+		ai_chance = {
+			base = 100
+		}
+		custom_effect_tooltip = RW_will_return_rest
+		hidden_effect = {
+			clr_country_flag = RW_returning_land
+			every_owned_state = {
+				limit = {
+					NOT = {
+						is_claimed_by = ROOT
+						is_core_of  = ROOT
+					}
+					is_important_state = yes
+					NOT = { has_state_flag = RW_keeping_state@ROOT }
+					OR = {
+						is_core_of = event_target:return_to
+						is_claimed_by = event_target:return_to
+					}
+				}
+				set_state_flag = RW_keeping_state@ROOT
+			}
+			if = {
+				limit = {
+					any_owned_state = {
+						NOT = {
+							is_claimed_by = ROOT
+							is_core_of  = ROOT
+						}
+						is_important_state = no
+						NOT = { has_state_flag = RW_keeping_state@ROOT }
+						OR = {
+							any_neighbor_state = { is_owned_by = event_target:return_to }
+							is_coastal = yes
+						}
+						OR = {
+							is_core_of = event_target:return_to
+							is_claimed_by = event_target:return_to
+						}
+					}
+				}
+				event_target:return_to = {
+					country_event = return_cores.2
+				}
+			}
+		}
+	}
+	option = {
+		name = return_cores.1.o3 #return cores only
+		trigger = {
+			is_ai = no
+			any_owned_state = {
+				NOT = {
+					is_claimed_by = ROOT
+					is_core_of  = ROOT
+				}
+				is_important_state = no
+				NOT = { has_state_flag = RW_keeping_state@ROOT 	}
+				is_core_of = event_target:return_to
+			}
+			any_owned_state = {
+				NOT = {
+					is_claimed_by = ROOT
+					is_core_of  = ROOT
+				}
+				is_important_state = no
+				NOT = { has_state_flag = RW_keeping_state@ROOT 	}
+				NOT = { is_core_of = event_target:return_to }
+				is_claimed_by = event_target:return_to
+			}
+		}
+		custom_effect_tooltip = RW_will_return_cores
+		hidden_effect = {
+			clr_country_flag = RW_returning_land
+			every_owned_state = {
+				limit = {
+					NOT = {
+						is_claimed_by = ROOT
+						is_core_of  = ROOT
+					}
+					NOT = { has_state_flag = RW_keeping_state@ROOT }
+					NOT = { is_core_of = event_target:return_to }
+					is_claimed_by = event_target:return_to
+				}
+				set_state_flag = RW_keeping_state@ROOT
+			}
+			event_target:return_to = {
+				country_event = return_cores.2
+			}
+		}
+	}
+	option = {
+		name = return_cores.1.o4 #keep it all
+		trigger = {
+			is_ai = no
+		}
+		clr_country_flag = RW_returning_land
+		custom_effect_tooltip = RW_will_not_return
+		hidden_effect = {
+			every_owned_state = {
+				limit = {
+					OR = {
+						is_core_of = event_target:return_to
+						is_claimed_by = event_target:return_to
+					}
+					NOT = {
+						is_claimed_by = ROOT
+						is_core_of  = ROOT
+					}
+					NOT = { has_state_flag = RW_keeping_state@ROOT }
+				}
+				set_state_flag = RW_keeping_state@ROOT
+			}
+		}
+	}
+}
+
+# Cores/claims have been returned by an ally
+country_event = {
+	id = return_cores.2
+	title = return_cores.2.t
+	desc = return_cores.2.d
+	picture = treaty_signing
+
+	is_triggered_only = yes
+
+	option = {
+		name = return_cores.2.o1
+		add_opinion_modifier = {
+			target = FROM
+			modifier = RW_returned_land
+		}
+		while_loop_effect = {
+			limit = {
+				any_state = {
+					is_owned_by = FROM
+					OR = {
+						is_claimed_by = ROOT
+						is_core_of  = ROOT
+					}
+					NOT = {
+						is_claimed_by = FROM
+						is_core_of = FROM
+					}
+					OR = {
+						any_neighbor_state = { is_owned_by = ROOT }
+						is_coastal = yes
+					}
+					NOT = { has_state_flag = RW_keeping_state@FROM }
+				}
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FROM
+					OR = {
+						is_claimed_by = ROOT
+						is_core_of  = ROOT
+					}
+					NOT = {
+						is_claimed_by = FROM
+						is_core_of = FROM
+					}
+					OR = {
+						any_neighbor_state = { is_owned_by = ROOT }
+						is_coastal = yes
+					}
+					NOT = { has_state_flag = RW_keeping_state@FROM }
+				}
+				transfer_to_ROOT = yes
+			}
+		}
+	}
+}

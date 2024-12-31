@@ -1,0 +1,1115 @@
+focus_tree = {
+	id = orecorp_tree
+	
+	country = {
+		factor = 0
+	}
+	
+	continuous_focus_position = { x = 50 y = 2000 }
+
+    focus = {
+		id = CSD_stencel_coup
+		icon = CSD_Stencel_coup
+		cost = 1
+
+		x = 5
+		y = 0
+		completion_reward = {
+			add_political_power = 100
+		    add_popularity = {
+			    ideology = nationalist
+			    popularity = 0.20
+		    }
+		    add_popularity = {
+			    ideology = fascist
+			    popularity = 0.15
+		    }
+		}
+	}
+	focus = {
+		id = CSD_disperse_riots
+		icon = CSD_disperse_riots
+		cost = 3
+		
+		relative_position_id = CSD_stencel_coup
+		prerequisite = {
+			focus = CSD_stencel_coup
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			add_political_power = -75
+			add_stability = 0.10
+		}
+	}
+	focus = {
+		id = CSD_abolish_parliament
+		icon = tear_treaty
+		cost = 3
+		
+		relative_position_id = CSD_stencel_coup
+		prerequisite = {
+			focus = CSD_stencel_coup
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					has_idea = idea_csd_pacifist_dominance
+				}
+				remove_ideas = idea_csd_pacifist_dominance
+			}
+			add_popularity = {
+			    ideology = nationalist
+			    popularity = 0.05
+			}
+			add_political_power = 50
+			country_event = {
+				id = cascadia.124
+			}
+		}
+	}
+	focus = {
+		id = CSD_martial_law
+		icon = red_gold_army
+		cost = 3
+		
+		relative_position_id = CSD_disperse_riots
+		prerequisite = {
+			focus = CSD_disperse_riots
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_timed_idea = {
+                idea = idea_csd_martial_law
+                days = 500
+            }
+		}
+	}
+	focus = {
+		id = CSD_seize_airwaves
+		icon = CSD_seize_airwaves
+		cost = 2
+		
+		relative_position_id = CSD_abolish_parliament
+		prerequisite = {
+			focus = CSD_abolish_parliament
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_timed_idea = {
+                idea = idea_nationalist_broadcasts
+                days = 365
+            }
+		}
+	}
+	focus = {
+		id = CSD_new_order
+		icon = CSD_new_order
+		cost = 1
+		
+		relative_position_id = CSD_seize_airwaves
+		prerequisite = {
+			focus = CSD_seize_airwaves
+		}
+		prerequisite = {
+			focus = CSD_martial_law
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			country_event = {
+				id = cascadia.90
+			}
+			hidden_effect = {
+				country_event = {
+					id = cascadia.113
+					days = 300
+				}
+			}
+		}
+	}
+	focus = {
+		id = CSD_orecorp_rule
+		icon = CSD_orecorp_rule
+		cost = 10
+		
+		relative_position_id = CSD_new_order
+		prerequisite = {
+			focus = CSD_new_order
+		}
+		mutually_exclusive = {
+			focus = CSD_junta_rule
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			set_party_name = {
+			    name = "OreCorp"
+			    long_name = "OreCorp Board of Shareholders"
+			    ideology = fascist
+		    }
+			set_politics = {
+	            ruling_party = fascist
+                elections_allowed = no
+            }
+			CSD_ian_telfer = {
+				promote_character = corporate
+			}
+		}
+	}
+	focus = {
+		id = CSD_junta_rule
+		icon = CSD_junta_rule
+		cost = 10
+		
+		relative_position_id = CSD_new_order
+		prerequisite = {
+			focus = CSD_new_order
+		}
+		mutually_exclusive = {
+			focus = CSD_orecorp_rule
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			set_party_name = {
+			    name = "National Party"
+			    long_name = "Cascadian National Party"
+			    ideology = nationalist
+		    }
+			add_popularity = {
+			    ideology = nationalist
+			    popularity = 0.10
+			}
+		}
+	}
+	focus = {
+		id = CSD_expand_mining_projects
+		icon = steel
+		cost = 5
+		
+		relative_position_id = CSD_orecorp_rule
+		prerequisite = {
+			focus = CSD_orecorp_rule
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			add_resource = {
+                type = steel
+                amount = 50
+                state = 970
+            }
+			add_resource = {
+                type = aluminium
+                amount = 50
+                state = 970
+            }
+		}
+	}
+	focus = {
+		id = CSD_cascadian_movement
+		icon = CSD_coopt_movement
+		cost = 5
+		
+		relative_position_id = CSD_junta_rule
+		prerequisite = {
+			focus = CSD_junta_rule
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			country_event = {
+				id = cascadia.101
+			}
+			add_popularity = {
+			    ideology = nationalist
+			    popularity = 0.10
+			}
+			add_war_support = 0.05
+		}
+	}
+	focus = {
+		id = CSD_ban_socialist_parties
+		icon = CSD_ban_socialism
+		cost = 5
+		
+		relative_position_id = CSD_junta_rule
+		prerequisite = {
+			focus = CSD_junta_rule
+			focus = CSD_orecorp_rule
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			country_event = {
+				id = cascadia.97
+			}
+			add_popularity = {
+			    ideology = communist
+			    popularity = -0.15
+			}
+			add_popularity = {
+			    ideology = revolutionary_socialist
+			    popularity = -0.15
+			}
+			add_popularity = {
+			    ideology = moderate_socialist
+			    popularity = -0.05
+			}
+			add_popularity = {
+			    ideology = new_democrat
+			    popularity = -0.20
+			}
+			if = {
+				limit = {
+					has_government = fascist
+				}
+				add_popularity = {
+				    ideology = fascist
+				    popularity = 0.10
+				}
+			}
+			if = {
+				limit = {
+					has_government = nationalist
+				}
+				add_popularity = {
+				    ideology = nationalist
+				    popularity = 0.10
+				}
+			}
+		}
+	}
+	focus = {
+		id = CSD_shareholders
+		icon = CSD_board_shareholders
+		cost = 5
+		
+		relative_position_id = CSD_expand_mining_projects
+		prerequisite = {
+			focus = CSD_expand_mining_projects
+		}
+		mutually_exclusive = {
+			focus = CSD_national_executive
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			CSD_board_of_shareholders = {
+				promote_character = corporate
+			}
+			country_event = {
+				id = cascadia.91
+			}
+		}
+	}
+	focus = {
+		id = CSD_national_executive
+		icon = CSD_keep_executive
+		cost = 3
+		
+		relative_position_id = CSD_expand_mining_projects
+		prerequisite = {
+			focus = CSD_expand_mining_projects
+		}
+		mutually_exclusive = {
+			focus = CSD_shareholders
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			add_popularity = {
+			    ideology = fascist
+			    popularity = 0.05
+			}
+			country_event = { id = cascadia.92}
+		}
+	}
+    focus = {
+		id = CSD_industrial_megaprojects
+		icon = industry_1
+		cost = 7
+		
+		relative_position_id = CSD_cascadian_movement
+		prerequisite = {
+			focus = CSD_cascadian_movement
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = { id = cascadia.102}
+			970 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 4
+					instant_build = yes
+				}
+                add_extra_state_shared_building_slots = 4
+			}
+            971 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+                add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+    focus = {
+		id = CSD_abolish_corporate_tax
+		icon = CSD_abolish_corporate_taxation
+		cost = 6
+		
+		relative_position_id = CSD_ban_socialist_parties
+		prerequisite = {
+			focus = CSD_ban_socialist_parties
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = idea_no_corpo_tax
+		}
+	}
+    focus = {
+		id = CSD_abolish_foresting_laws
+		icon = CSD_deforestation
+		cost = 6
+		
+		relative_position_id = CSD_shareholders
+		prerequisite = {
+			focus = CSD_shareholders
+            focus = CSD_national_executive
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = idea_deforestation
+			country_event = {id = cascadia.93}
+		}
+	}
+    focus = {
+		id = CSD_new_military_budget
+		icon = GFX_mass_fund_the_army
+		cost = 6
+		
+		relative_position_id = CSD_industrial_megaprojects
+		prerequisite = {
+			focus = CSD_industrial_megaprojects
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = idea_new_army_budget
+		}
+	}
+    focus = {
+		id = CSD_contract_secret_police
+		icon = CSD_shady_af
+		cost = 7
+		
+		relative_position_id = CSD_abolish_corporate_tax
+		prerequisite = {
+			focus = CSD_abolish_corporate_tax
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			add_ideas = idea_secret_police
+			country_event = {id = cascadia.99}
+            add_popularity = {
+			    ideology = revolutionary_socialist
+			    popularity = -0.15
+			}
+			add_popularity = {
+			    ideology = new_democrat
+			    popularity = -0.10
+			}
+		}
+	}
+    focus = {
+		id = CSD_canadian_links
+		icon = CSD_CAN_entrench_links
+		cost = 7
+		
+		relative_position_id = CSD_abolish_foresting_laws
+		prerequisite = {
+			focus = CSD_abolish_foresting_laws
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+            CAN = {
+                puppet = CSD
+            }
+			set_politics = {
+	            ruling_party = fascist
+                elections_allowed = no
+            }
+			add_ideas = idea_canadian_links
+			country_event = { id = cascadia.94}
+		}
+	}
+    focus = {
+		id = CSD_national_investor_council
+		icon = CSD_national_council_investors
+		cost = 7
+		
+		relative_position_id = CSD_new_military_budget
+		prerequisite = {
+			focus = CSD_new_military_budget
+		}
+        mutually_exclusive = {
+			focus = CSD_merge_the_posts
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+		country_event = {id = cascadia.107}
+		country_event = {id = cascadia.108}
+           set_politics = {
+	            ruling_party = fascist
+                elections_allowed = no
+            }
+			CSD_national_council_of_investors = {
+				promote_character = corporate
+			}
+            add_popularity = {
+			    ideology = fascist
+			    popularity = 0.10
+			}
+			set_party_name = { 
+				ideology = fascist
+				long_name = CSD_national_council_party_long
+				name = CSD_national_council_party
+			}
+		}
+	}
+    focus = {
+		id = CSD_merge_the_posts
+		icon = CSD_merge_posts
+		cost = 7
+		
+		relative_position_id = CSD_new_military_budget
+		prerequisite = {
+			focus = CSD_new_military_budget
+		}
+        mutually_exclusive = {
+			focus = CSD_national_investor_council
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			country_event = { id = cascadia.103 }
+           add_political_power = 100
+		   add_ideas = idea_total_military_control
+		   remove_ideas = cascadia_sic_jill_lannan
+		   add_ideas = cascadia_sic_michael_stencel
+		}
+	}
+    focus = {
+		id = CSD_private_cascadia
+		icon = CSD_private_cascadia
+		cost = 7
+		
+		relative_position_id = CSD_contract_secret_police
+		prerequisite = {
+			focus = CSD_contract_secret_police
+		}
+        prerequisite = {
+			focus = CSD_canadian_links
+            focus = CSD_national_investor_council
+            focus = CSD_merge_the_posts
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+		country_event = {id = cascadia.100}
+           add_political_power = 100
+           add_ideas = idea_private_cascadia
+		}
+	}
+	focus = {
+		id = CSD_stencels_plan
+		icon = CSD_stencel_plan
+		cost = 1
+
+		available = {
+			has_completed_focus = CSD_merge_the_posts
+		}
+		mutually_exclusive = {
+			focus = CSD_orecorp_economic_policies
+			focus = CSD_council_expertise
+		}
+
+		x = 10
+		y = 0
+		completion_reward = {
+			country_event = { id = cascadia.104 }
+			add_ideas = idea_stencel_plan
+		}
+	}
+	focus = {
+		id = CSD_technocratic_management
+		icon = power_to_the_president
+		cost = 6
+		
+		relative_position_id = CSD_stencels_plan
+		prerequisite = {
+			focus = CSD_stencels_plan
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+           swap_ideas = {
+                remove_idea = idea_stencel_plan
+                add_idea = idea_stencel_plan2
+            }
+		}
+	}
+	focus = {
+		id = CSD_new_military_tech
+		icon = GFX_american_weapons
+		cost = 8
+		
+		relative_position_id = CSD_technocratic_management
+		prerequisite = {
+			focus = CSD_technocratic_management
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+		country_event = { id = cascadia.105 }
+           swap_ideas = {
+                remove_idea = idea_stencel_plan2
+                add_idea = idea_stencel_plan3
+            }
+			add_tech_bonus = {
+                bonus = 0.10
+                uses = 2
+                category = infantry_weapons
+            }
+		}
+	}
+	focus = {
+		id = CSD_project_skookum
+		icon = CSD_project_skookum
+		cost = 8
+		
+		relative_position_id = CSD_new_military_tech
+		prerequisite = {
+			focus = CSD_new_military_tech
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = {id = cascadia.106}
+			add_tech_bonus = {
+                bonus = 0.250
+                uses = 1
+                category = nuclear
+            }
+		}
+	}
+	focus = {
+		id = CSD_council_expertise
+		icon = CSD_councils_expertise
+		cost = 1
+
+		available = {
+		    has_completed_focus = CSD_national_investor_council
+		}
+		mutually_exclusive = {
+			focus = CSD_orecorp_economic_policies
+			focus = CSD_stencels_plan
+		}
+
+		x = 12
+		y = 0
+		completion_reward = {
+			country_event = {id = cascadia.109}
+			add_popularity = {
+			    ideology = fascist
+			    popularity = 0.05
+			}
+		}
+	}
+	focus = {
+		id = CSD_open_the_nation
+		icon = trade
+		cost = 6
+		
+		relative_position_id = CSD_council_expertise
+		prerequisite = {
+			focus = CSD_council_expertise
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+	            limit = { has_idea = closed_economy }
+		        swap_ideas = {
+			        remove_idea = closed_economy
+			        add_idea = free_trade
+				}
+		    }
+			else_if = {
+		        limit = { has_idea = limited_exports }
+		        swap_ideas = {
+			        remove_idea = limited_exports
+			        add_idea = free_trade
+		        }
+	        }
+	        else_if = {
+		        limit = { has_idea = export_focus }
+		        swap_ideas = {
+			        remove_idea = export_focus
+			        add_idea = free_trade
+		        }
+	        }
+	        else_if = {
+		        limit = { has_idea = free_trade }
+		        add_political_power = 100
+	        }
+			add_ideas = idea_foreign_investments
+	    }
+    }
+	focus = {
+		id = CSD_privatize_state_lands
+		icon = CSD_privatize_the_state_trust_lands
+		cost = 8
+		
+		relative_position_id = CSD_open_the_nation
+		prerequisite = {
+			focus = CSD_open_the_nation
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = {id = cascadia.110}
+			add_ideas = idea_privatized_lands
+	    }
+    }
+	focus = {
+		id = CSD_decentralized_economy
+		icon = remove_corporate_taxes
+		cost = 8
+		
+		relative_position_id = CSD_privatize_state_lands
+		prerequisite = {
+			focus = CSD_privatize_state_lands
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = idea_decentralized_economy
+	    }
+    }
+	focus = {
+		id = CSD_orecorp_economic_policies
+		icon = GFX_YAR_business_above_all
+		cost = 3
+
+		available = {
+		    has_completed_focus = CSD_canadian_links
+		}
+		mutually_exclusive = {
+			focus = CSD_stencels_plan
+			focus = CSD_council_expertise
+		}
+
+		x = 14
+		y = 0
+		completion_reward = {
+			add_political_power = 100
+			country_event = {id = cascadia.95}
+		}
+	}
+	focus = {
+		id = CSD_export_workforce
+		icon = CAN_CSD_import_workers
+		cost = 6
+		
+		relative_position_id = CSD_orecorp_economic_policies
+		prerequisite = {
+			focus = CSD_orecorp_economic_policies
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_manpower = -1500
+            CAN = {
+				add_manpower = 1500
+				random_owned_state = {
+					add_building_construction = {
+					    type = industrial_complex
+					    level = 2
+					    instant_build = yes
+					}
+					add_extra_state_shared_building_slots = 2
+				}
+			}
+	    }
+    }
+	focus = {
+		id = CSD_international_trade
+		icon = irish_trade
+		cost = 8
+		
+		relative_position_id = CSD_export_workforce
+		prerequisite = {
+			focus = CSD_export_workforce
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+		country_event = {id = cascadia.96}
+		if = {
+	            limit = { has_idea = closed_economy }
+		        swap_ideas = {
+			        remove_idea = closed_economy
+			        add_idea = free_trade
+				}
+		    }
+			else_if = {
+		        limit = { has_idea = limited_exports }
+		        swap_ideas = {
+			        remove_idea = limited_exports
+			        add_idea = free_trade
+		        }
+	        }
+	        else_if = {
+		        limit = { has_idea = export_focus }
+		        swap_ideas = {
+			        remove_idea = export_focus
+			        add_idea = free_trade
+		        }
+	        }
+	        else_if = {
+		        limit = { has_idea = free_trade }
+		        add_political_power = 100
+	        }
+	    }
+    }
+	focus = {
+		id = CSD_manufacturing_boom
+		icon = factory_build
+		cost = 8
+		
+		relative_position_id = CSD_international_trade
+		prerequisite = {
+			focus = CSD_international_trade
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = idea_manufacturing_boom
+	    }
+    }
+	focus = {
+		id = CSD_breaking_silience
+		icon = CSD_breaking_silence
+		cost = 1
+
+		available = {
+			has_completed_focus = CSD_private_cascadia
+		}
+		
+		x = 20
+		y = 0
+		completion_reward = {
+			add_political_power = 150
+	    }
+    }
+	focus = {
+		id = CSD_lincolnites
+		icon = lincoln_attack
+		cost = 5
+		
+		relative_position_id = CSD_breaking_silience
+		prerequisite = {
+			focus = CSD_breaking_silience
+		}
+		x = 2
+		y = 1
+		will_lead_to_war_with = LIN
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = LIN
+		    }
+			387 = {
+			    add_core_of = CSD
+			}
+	    }
+    }
+	focus = {
+		id = CSD_attack_montana
+		icon = montana_attack
+		cost = 5
+		
+		relative_position_id = CSD_lincolnites
+		prerequisite = {
+			focus = CSD_lincolnites
+		}
+		x = -1
+		y = 1
+		will_lead_to_war_with = MOT
+		completion_reward = {
+			create_wargoal = {
+                type = annex_everything
+                target = MOT
+            }
+	    }
+    }
+	focus = {
+		id = CSD_idahoan_uranium
+		icon = CSD_dig_for_ideahoan_uranium
+		cost = 8
+		
+		relative_position_id = CSD_lincolnites
+		
+		prerequisite = {
+			focus = CSD_lincolnites
+		}
+		
+		available = {
+			controls_state = 387
+			controls_state = 890
+		}
+		
+		x = 1
+		y = 1
+		completion_reward = {
+			country_event = { id = cascadia.111 }
+			add_tech_bonus = {
+                bonus = 0.250
+                uses = 1
+                category = nuclear
+            }
+	    }
+    }
+	focus = {
+		id = CSD_militias_to_pmcs
+		icon = CSD_militia_to_pmc
+		cost = 8
+		
+		relative_position_id = CSD_attack_montana
+		
+		available = {
+			controls_state = 1016
+			controls_state = 1017
+			controls_state = 1018
+			controls_state = 381
+			controls_state = 388
+			controls_state = 389
+		}
+		
+		prerequisite = {
+			focus = CSD_attack_montana
+			focus = CSD_idahoan_uranium
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			country_event = { id = cascadia.112}
+			add_ideas = idea_militia_to_pmc
+			add_political_power = -50
+			1016 = {
+				add_core_of = CSD
+			}
+			1017 = {
+				add_core_of = CSD
+			}
+			1018 = {
+				add_core_of = CSD
+			}
+            388 = {
+			    add_core_of = CSD
+			}
+			381 = {
+			    add_core_of = CSD
+			}
+			389 = {
+			    add_core_of = CSD
+			}
+	    }
+    }
+	focus = {
+		id = CSD_demleague_trade
+		icon = canada
+		cost = 6
+		
+		relative_position_id = CSD_breaking_silience
+		prerequisite = {
+			focus = CSD_breaking_silience
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			every_country = {
+				limit = {
+					NOT = {
+						tag = CSD
+					}
+					is_in_faction_with = CAN
+				}
+				add_opinion_modifier = {
+				    target = ROOT
+				    modifier = trade_influence_3
+			    }
+			}
+	    }
+    }
+	focus = {
+		id = CSD_south_asian_trade
+		icon = thailand
+		cost = 6
+		
+		relative_position_id = CSD_demleague_trade
+		prerequisite = {
+			focus = CSD_demleague_trade
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			add_opinion_modifier = {
+				target = RAJ
+				modifier = trade_influence_3
+			}
+			add_opinion_modifier = {
+				target = PAK
+				modifier = trade_influence_3
+			}
+			add_opinion_modifier = {
+				target = BNG
+				modifier = trade_influence_3
+			}
+			add_opinion_modifier = {
+				target = SIA
+				modifier = trade_influence_3
+			}
+			add_opinion_modifier = {
+				target = MAY
+				modifier = trade_influence_3
+			}
+	    }
+    }
+	focus = {
+		id = CSD_free_europe_trade
+		icon = britain
+		cost = 6
+		
+		relative_position_id = CSD_demleague_trade
+		prerequisite = {
+			focus = CSD_demleague_trade
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = {
+					ENG = {
+						NOT = {
+							has_government = communist
+						}
+					}
+				}
+				add_opinion_modifier = {
+				    target = ENG
+				    modifier = trade_influence_3
+			    }
+			}
+			if = {
+				limit = {
+					IRE = {
+						NOT = {
+							has_government = communist
+						}
+					}
+				}
+				add_opinion_modifier = {
+				    target = IRE
+				    modifier = trade_influence_3
+			    }
+			}
+			if = {
+				limit = {
+					SWE = {
+						NOT = {
+							has_government = communist
+						}
+					}
+				}
+				add_opinion_modifier = {
+				    target = SWE
+				    modifier = trade_influence_3
+			    }
+			}
+			if = {
+				limit = {
+					ICE = {
+						NOT = {
+							has_government = communist
+						}
+					}
+				}
+				add_opinion_modifier = {
+				    target = ICE
+				    modifier = trade_influence_3
+			    }
+			}
+			if = {
+				limit = {
+					SPR = {
+						NOT = {
+							has_government = communist
+						}
+					}
+				}
+				add_opinion_modifier = {
+				    target = SPR
+				    modifier = trade_influence_3
+			    }
+			}
+			if = {
+				limit = {
+					ULS = {
+						NOT = {
+							has_government = communist
+						}
+					}
+				}
+				add_opinion_modifier = {
+				    target = ULS
+				    modifier = trade_influence_3
+			    }
+			}
+	    }
+    }
+	focus = {
+		id = CSD_join_demleague
+		icon = democratic_league
+		cost = 8
+		
+		relative_position_id = CSD_free_europe_trade
+		prerequisite = {
+			focus = CSD_free_europe_trade
+		}
+		prerequisite = {
+			focus = CSD_south_asian_trade
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			CAN = {
+				country_event = generic.4
+			}
+	    }
+    }
+}

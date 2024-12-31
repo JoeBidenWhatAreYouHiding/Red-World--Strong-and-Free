@@ -1,0 +1,7537 @@
+focus_tree = {
+	id = british_tree
+	country = {
+		factor = 0
+		modifier = {
+			add = 20
+			tag = ENG
+		}
+	}
+	
+	continuous_focus_position = { x = 50 y = 1100 }
+	default = no
+	focus = {
+		id = ENG_british_factories
+		icon = british_factories
+		cost = 7.2
+		x = 6
+		y = 0
+		completion_reward = {
+		    add_tech_bonus = {
+				name = construction_tech_bonus
+				bonus = 1
+				uses = 1
+				category = construction_tech
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_dual_military_industry
+		icon = military_factory
+		cost = 15
+		mutually_exclusive = {
+			focus = ENG_scottish_military_industry
+			focus = ENG_english_military_industry
+		}
+		prerequisite = {
+			focus = ENG_state_investment
+		}
+		x = 10
+		y = 2
+		completion_reward = {
+		    128 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			133 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			121 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			125 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_half_mast
+		icon = half_mast
+		cost = 5
+		x = 31
+		y = 0
+		available = {
+		    has_country_flag = assassination_has_occured
+		}
+		completion_reward = {
+		    add_political_power = 70
+		}
+
+	}
+	focus = {
+		id = ENG_strengthen_the_foreign_office
+		icon = foreign_office
+		cost = 7.2
+		available = {
+		    date > 2013.1.1
+		}
+		x = 70
+		y = 0
+		completion_reward = {
+		    add_political_power = 120
+		}
+
+	}
+	focus = {
+		id = ENG_truly_british_military
+		icon = ENG_Truly_British_Military
+		cost = 7.2
+		available = {
+		    date > 2012.1.1
+		}
+		x = 86
+		y = 0
+		completion_reward = {
+		    army_experience = 5
+			air_experience = 5
+			navy_experience = 10
+		}
+
+	}
+	focus = {
+		id = ENG_new_industrial_revolution
+		icon = tech_sharing
+		cost = 7.2
+		available = {
+		    date > 2012.1.1
+		}
+		prerequisite = {
+			focus = ENG_british_factories
+		}
+		mutually_exclusive = {
+			focus = ENG_state_investment
+		}
+		x = 3
+		y = 1
+		completion_reward = {
+		    add_tech_bonus = {
+				name = industry_bonus
+				bonus = 1
+				uses = 1
+				category = industry
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_building_factories
+		icon = generic_construction
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_new_industrial_revolution
+		}
+		x = 2
+		y = 2
+		completion_reward = {
+		random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = rubber_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		    add_ideas = idea_eng_new_industrial_revolution
+		}
+
+	}
+	focus = {
+		id = ENG_industrial_universities
+		icon = scientific_exchange
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_building_factories
+		}
+		x = 2
+		y = 3
+		completion_reward = {
+		    add_tech_bonus = {
+				name = industry_bonus
+				bonus = 0.5
+				uses = 1
+				category = industry
+			}
+			add_tech_bonus = {
+				name = construction_tech_bonus
+				bonus = 0.5
+				uses = 1
+				category = construction_tech
+			}
+			add_tech_bonus = {
+				name = computing_tech_bonus
+				bonus = 0.5
+				uses = 1
+				category = computing_tech
+			}
+			add_tech_bonus = {
+				name = synth_resources_bonus
+				bonus = 0.5
+				uses = 1
+				category = synth_resources
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_automation_technology
+		icon = generic_research
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_new_industrial_revolution
+		}
+		x = 4
+		y = 2
+		completion_reward = {
+		    add_tech_bonus = {
+				name = electronics_bonus
+				bonus = 0.5
+				uses = 2
+				category = electronics
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_promote_computer_development
+		icon = GFX_goal_computer
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_automation_technology
+		}
+		x = 4
+		y = 3
+		completion_reward = {
+		    add_tech_bonus = {
+				name = computing_tech_bonus
+				bonus = 0.5
+				uses = 2
+				category = computing_tech
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_broad_technology_program
+		icon = consumer_goods
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_industrial_universities
+		}
+		prerequisite = {
+			focus = ENG_promote_computer_development
+		}
+		x = 3
+		y = 4
+		completion_reward = {
+		    add_ideas = idea_eng_technology_program
+		}
+
+	}
+	focus = {
+		id = ENG_state_investment
+		icon = generic_construction_2
+		cost = 12
+		available = {
+		    date > 2012.1.1
+		}
+		prerequisite = {
+			focus = ENG_british_factories
+		}
+		mutually_exclusive = {
+			focus = ENG_new_industrial_revolution
+		}
+		x = 10
+		y = 1
+		completion_reward = {
+		    add_political_power = 100
+		}
+
+	}
+	focus = {
+		id = ENG_scottish_military_industry
+		icon = scottish_military_industry
+		cost = 9
+		prerequisite = {
+			focus = ENG_state_investment
+		}
+		mutually_exclusive = {
+			focus = ENG_dual_military_industry
+			focus = ENG_english_military_industry
+		}
+		x = 8
+		y = 2
+		completion_reward = {
+		    120 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			136 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			121 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			133 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_scottish_dockyards
+		icon = naval_dockyard
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_scottish_military_industry
+		}
+		x = 8
+		y = 3
+		completion_reward = {
+		    133 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			136 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			120 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_defending_scotlands_coast
+		icon = coastal_fort
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_scottish_dockyards
+		}
+		x = 8
+		y = 4
+		completion_reward = {
+		    121 = {	
+				add_building_construction = {
+					type = coastal_bunker
+					province = 11378
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					province = 9392
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					province = 6300
+					level = 2
+					instant_build = yes
+				}
+			}
+			136 = {	
+				add_building_construction = {
+					type = coastal_bunker
+					province = 3150
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					province = 11136
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					province = 200
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					province = 11207
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					province = 9161
+					level = 2
+					instant_build = yes
+				}
+			}
+			120 = {	
+				add_building_construction = {
+					type = coastal_bunker
+					province = 3159
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					province = 11064
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					province = 131
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					province = 9090
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					province = 6205
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_offshore_oil
+		icon = offshore_oil
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_broad_technology_program
+			focus = ENG_defending_scotlands_coast
+		}
+		x = 6
+		y = 5
+		completion_reward = {
+		    136 = {
+			    add_resource = {
+				    type = oil
+				    amount = 5
+			    }
+		    }
+			120 = {
+			    add_resource = {
+				    type = oil
+				    amount = 5
+			    }
+		    }
+			country_event = { id = britain.59 }
+		}
+
+	}
+	focus = {
+		id = ENG_royal_scottish_guards
+		icon = royal_scottish_guards
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_defending_scotlands_coast
+		}
+		x = 8
+		y = 6
+		completion_reward = {
+		    army_experience = 15
+		}
+
+	}
+	focus = {
+		id = ENG_revive_scotland
+		icon = production_2
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_royal_scottish_guards
+		}
+		x = 8
+		y = 7
+		completion_reward = {
+		    133 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			121 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_national_naval_industry
+		icon = submarine
+		cost = 18
+		prerequisite = {
+			focus = ENG_dual_military_industry
+		}
+		x = 10
+		y = 4
+		completion_reward = {
+		    122 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			136 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			125 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_british_infrastructure_initiative
+		icon = infrastructure
+		cost = 15
+		prerequisite = {
+			focus = ENG_national_naval_industry
+		}
+		x = 10
+		y = 6
+		completion_reward = {
+		    122 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			132 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			130 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			133 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			121 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			123 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			120 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			add_political_power = -20
+		}
+
+	}
+	focus = {
+		id = ENG_english_military_industry
+		icon = english_military_industry
+		cost = 9
+		prerequisite = {
+			focus = ENG_state_investment
+		}
+		mutually_exclusive = {
+			focus = ENG_scottish_military_industry
+			focus = ENG_dual_military_industry
+		}
+		x = 12
+		y = 2
+		completion_reward = {
+		    128 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			127 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			129 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			130 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_english_factories
+		icon = civ_factory
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_english_military_industry
+		}
+		x = 12
+		y = 3
+		completion_reward = {
+		    132 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			126 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_urban_development
+		icon = torch_industry
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_english_factories
+		}
+		x = 11
+		y = 5
+		completion_reward = {
+		    132 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			127 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			128 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_rural_development
+		icon = free_some_farms
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_english_factories
+		}
+		x = 13
+		y = 5
+		completion_reward = {
+		    131 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+			}
+			122 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_revive_england
+		icon = industry_generic_focus
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_urban_development
+		}
+		prerequisite = {
+			focus = ENG_rural_development
+		}
+		x = 12
+		y = 6
+		completion_reward = {
+		    128 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			126 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_let_her_in
+		icon = let_her_in
+		cost = 1
+		prerequisite = {
+			focus = ENG_half_mast
+		}
+		mutually_exclusive = {
+			focus = ENG_lock_her_out
+		}
+		available = {
+		    has_country_flag = queen_dissolves_parliament
+		}
+		x = 21
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = monarchist
+				popularity = 0.015
+			}
+			set_politics = {
+	            ruling_party = monarchist
+	            elections_allowed = no
+            }
+			add_political_power = -50
+			dismantle_faction = yes
+			country_event = { id = britain.60 }
+			hidden_effect = {
+				remove_ideas = britain_sic_gordon_brown
+				remove_ideas = britain_fom_mike_gapes
+				remove_ideas = britain_ind_kenneth_clarke
+				remove_ideas = britain_nsm_chris_leslie
+				add_ideas = britain_sic_jacob_reesmogg
+				add_ideas = britain_fom_nigel_farage
+				add_ideas = britain_ind_rupert_murdoch
+				add_ideas = britain_nsm_princess_anne
+			}
+			custom_effect_tooltip = britain_monarchist_ministers_tooltip
+		}
+
+	}
+	focus = {
+		id = ENG_empower_the_house_of_lords
+		icon = empower_the_house_of_lords
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_let_her_in
+		}
+		x = 18
+		y = 2
+		completion_reward = {
+		    add_political_power = 100 
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.025
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.02
+			}
+			country_event = { id = britain.61 }
+		}
+
+	}
+	focus = {
+		id = ENG_pass_british_security_act
+		icon = british_security_act
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_empower_the_house_of_lords
+		}
+		x = 16
+		y = 3
+		completion_reward = {
+		    add_ideas = idea_eng_british_security_act
+			country_event = { id = britain.62 }
+		}
+
+	}
+	focus = {
+		id = ENG_threaten_the_social_democrats
+		icon = threaten_social_democrats
+		cost = 5
+		prerequisite = {
+			focus = ENG_let_her_in
+		}
+		x = 20
+		y = 2
+		completion_reward = {
+		    add_popularity = {
+				ideology = liberal
+				popularity = -0.03
+			}
+			add_stability = 0.02
+			country_event = { id = britain.63 }
+		}
+
+	}
+	focus = {
+		id = ENG_threaten_the_conservatives
+		icon = threaten_conservatives
+		cost = 5
+		prerequisite = {
+			focus = ENG_let_her_in
+		}
+		x = 22
+		y = 2
+		completion_reward = {
+		    add_popularity = {
+				ideology = national_conservative
+				popularity = -0.03
+			}
+			add_stability = 0.02
+			country_event = { id = britain.64 }
+		}
+
+	}
+	focus = {
+		id = ENG_far_right_alliance
+		icon = the_nationalist
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_threaten_the_social_democrats
+		}
+		prerequisite = {
+			focus = ENG_threaten_the_conservatives
+		}
+		x = 21
+		y = 3
+		completion_reward = {
+		    add_popularity = {
+				ideology = monarchist
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = fascist
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+			add_ideas = idea_eng_far_right_demands
+			country_event = { id = britain.65 }
+		}
+
+	}
+	focus = {
+		id = ENG_puppet_parliament
+		icon = royal_institutions
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_far_right_alliance
+		}
+		prerequisite = {
+			focus = ENG_empower_the_house_of_lords
+		}
+		mutually_exclusive = {
+			focus = ENG_abolish_house_of_commons
+		}
+		x = 19
+		y = 4
+		completion_reward = {
+		    add_ideas = idea_eng_puppet_parliament
+			country_event = { id = britain.66 }
+		}
+
+	}
+	focus = {
+		id = ENG_new_privy_council
+		icon = privy_council
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_let_her_in
+		}
+		x = 24
+		y = 2
+		completion_reward = {
+		    add_ideas = idea_eng_privy_council
+		}
+
+	}
+	focus = {
+		id = ENG_abolish_house_of_commons
+		icon = prestige_of_the_royals
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_far_right_alliance
+		}
+		prerequisite = {
+			focus = ENG_new_privy_council
+		}
+		mutually_exclusive = {
+			focus = ENG_puppet_parliament
+		}
+		x = 23
+		y = 4
+		completion_reward = {
+		    add_political_power = 120 
+		    add_stability = -0.1
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.05
+			}
+			country_event = { id = britain.67 }
+		}
+
+	}
+	focus = {
+		id = ENG_ban_leftist_parties
+		icon = broken_star
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_abolish_house_of_commons
+		}
+		x = 23
+		y = 5
+		completion_reward = {
+		    add_popularity = {
+				ideology = communist
+				popularity = -0.035
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = -0.05
+			}
+			add_political_power = 100
+			country_event = { id = britain.68 }
+		}
+
+	}
+	focus = {
+		id = ENG_purge_republicans
+		icon = liberty_attack
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_ban_leftist_parties
+		}
+		x = 23
+		y = 6
+		completion_reward = {
+		    add_ideas = idea_eng_republican_ideals_crushed
+			country_event = { id = britain.69 }
+		}
+
+	}
+	focus = {
+		id = ENG_war_advisor
+		icon = license_production
+		cost = 5
+		prerequisite = {
+			focus = ENG_new_privy_council
+		}
+		x = 26
+		y = 3
+		completion_reward = {
+		    add_ideas = idea_eng_war_advisor
+		}
+
+	}
+	focus = {
+		id = ENG_economic_advisor
+		icon = production_2
+		cost = 5
+		prerequisite = {
+			focus = ENG_war_advisor
+		}
+		x = 26
+		y = 4
+		completion_reward = {
+		    add_ideas = idea_eng_economic_advisor
+		}
+
+	}
+	focus = {
+		id = ENG_more_welfare
+		icon = propaganda
+		cost = 5
+		prerequisite = {
+			focus = ENG_economic_advisor
+		}
+		mutually_exclusive = {
+			focus = ENG_less_welfare
+		}
+		x = 25
+		y = 6
+		completion_reward = {
+		    add_ideas = idea_eng_more_welfare
+		}
+
+	}
+	focus = {
+		id = ENG_her_majestys_representative
+		icon = democracy
+		cost = 5
+		prerequisite = {
+			focus = ENG_economic_advisor
+		}
+		x = 26
+		y = 5
+		completion_reward = {
+		    add_ideas = idea_eng_stronger_foreign_influence
+		}
+
+	}
+	focus = {
+		id = ENG_less_welfare
+		icon = generic_ideology
+		cost = 5
+		prerequisite = {
+			focus = ENG_economic_advisor
+		}
+		mutually_exclusive = {
+			focus = ENG_more_welfare
+		}
+		x = 27
+		y = 6
+		completion_reward = {
+		    add_ideas = idea_eng_less_welfare
+		}
+
+	}
+	focus = {
+		id = ENG_lock_her_out
+		icon = GFX_goal_blue_democracy
+		cost = 1
+		prerequisite = {
+			focus = ENG_half_mast
+		}
+		available = {
+		    has_country_flag = queen_locked_out_of_parliament
+		}
+		mutually_exclusive = {
+			focus = ENG_let_her_in
+		}
+		x = 45
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = monarchist
+				popularity = -0.02
+			}
+			add_political_power = 25
+			country_event = { id = britain.70 }
+		}
+
+	}
+	focus = {
+		id = ENG_snap_election
+		icon = forceful_treaty
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_lock_her_out
+		}
+		x = 45
+		y = 2
+		completion_reward = {
+		    ENG = {
+		        country_event = { id = britain.5 }
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_a_peoples_government
+		icon = peoples_government
+		cost = 7.2
+		ai_will_do = {
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = ENG_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = ENG_ai_behavior
+						option = ENG_COM_RULE
+					}
+					has_game_rule = {
+						rule = ENG_ai_behavior
+						option = ENG_REVSOC_RULE
+					}
+				}
+				factor = 0
+			}
+		}
+		prerequisite = {
+			focus = ENG_snap_election
+		}
+		available = {
+		    has_government = moderate_socialist
+		}
+		mutually_exclusive = {
+			focus = ENG_democratic_policies
+		}
+		mutually_exclusive = {
+			focus = ENG_government_of_strength
+		}
+		x = 37
+		y = 3
+		completion_reward = {
+		    add_popularity = {
+				ideology = communist
+				popularity = 0.03
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.05
+			}
+			add_stability = 0.05
+			country_event = { id = britain.71 }
+		}
+
+	}
+	focus = {
+		id = ENG_align_with_trade_unions
+		icon = trades_union_congress
+		cost = 7.2
+		ai_will_do = {
+			modifier = {
+				has_game_rule = {
+					rule = ENG_ai_behavior
+					option = ENG_COM_RULE
+				}
+				factor = 0
+			}
+		}
+		prerequisite = {
+			focus = ENG_a_peoples_government
+		}
+		mutually_exclusive = {
+			focus = ENG_begin_the_revolution
+		}
+		x = 32
+		y = 4
+		completion_reward = {
+		    add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.1
+			}
+			add_ideas = idea_eng_trade_unions_alliance
+			country_event = { id = britain.72 }
+		}
+
+	}
+	focus = {
+		id = ENG_begin_the_revolution
+		icon = communism_3
+		cost = 7.2
+		ai_will_do = {
+			modifier = {
+				has_game_rule = {
+					rule = ENG_ai_behavior
+					option = ENG_REVSOC_RULE
+				}
+				factor = 0
+			}
+		}
+		prerequisite = {
+			focus = ENG_a_peoples_government
+		}
+		mutually_exclusive = {
+			focus = ENG_align_with_trade_unions
+		}
+		x = 41
+		y = 4
+		completion_reward = {
+		    add_popularity = {
+				ideology = communist
+				popularity = 0.05
+			}
+			country_event = { id = britain.73 }
+		}
+
+	}
+	focus = {
+		id = ENG_democratic_policies
+		icon = GFX_goal_elections
+		cost = 7.2
+		ai_will_do = {
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = ENG_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = ENG_ai_behavior
+						option = ENG_DEM_RULE_INTERV
+					}
+					has_game_rule = {
+						rule = ENG_ai_behavior
+						option = ENG_DEM_RULE_ISO
+					}
+				}
+				factor = 0
+			}
+		}
+		prerequisite = {
+			focus = ENG_snap_election
+		}
+		mutually_exclusive = {
+			focus = ENG_government_of_strength
+		}
+		mutually_exclusive = {
+			focus = ENG_a_peoples_government
+		}
+		x = 49
+		y = 3
+		completion_reward = {
+		    add_stability = 0.1
+		}
+
+	}
+	focus = {
+		id = ENG_conservative_government
+		icon = conservative_uk
+		cost = 3.6
+		prerequisite = {
+			focus = ENG_democratic_policies
+		}
+		available = {
+		    has_government = national_conservative
+		}
+		x = 46
+		y = 4
+		completion_reward = {
+		    add_political_power = 100
+		}
+
+	}
+	focus = {
+		id = ENG_increased_police_presence
+		icon = GFX_goal_police_funding_bonus
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_conservative_government
+		}
+		available = {
+		    has_government = national_conservative
+		}
+		x = 46
+		y = 5
+		completion_reward = {
+		    add_ideas = idea_eng_increased_police_presence
+			country_event = { id = britain.74 }
+		}
+
+	}
+	focus = {
+		id = ENG_lower_taxes
+		icon = low_company_tax
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_increased_police_presence
+		}
+		available = {
+		    has_government = national_conservative
+		}
+		x = 46
+		y = 6
+		completion_reward = {
+		    add_ideas = idea_eng_low_taxes
+			country_event = { id = britain.75 }
+		}
+
+	}
+	focus = {
+		id = ENG_traditional_british_values
+		icon = traditional_values
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_lower_taxes
+		}
+		available = {
+		    has_government = national_conservative
+		}
+		x = 46
+		y = 7
+		completion_reward = {
+		    add_ideas = idea_eng_traditional_british_values
+		}
+
+	}
+	focus = {
+		id = ENG_increase_military_spending
+		icon = GFX_goal_britain_increase_military_spending
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_traditional_british_values
+		}
+		available = {
+		    has_government = national_conservative
+		}
+		x = 46
+		y = 8
+		completion_reward = {
+		    add_ideas = idea_eng_increased_military_spending
+			country_event = { id = britain.76 }
+		}
+
+	}
+	focus = {
+		id = ENG_liberal_democrat_government
+		icon = liberal_democrat_uk
+		cost = 3.6
+		prerequisite = {
+			focus = ENG_democratic_policies
+		}
+		available = {
+		    has_government = centrist
+		}
+		x = 48
+		y = 4
+		completion_reward = {
+		    add_political_power = 100
+		}
+
+	}
+	focus = {
+		id = ENG_atlantic_cooperation
+		icon = britain_shaking_hands
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_liberal_democrat_government
+		}
+		available = {
+		    has_government = centrist
+		}
+		x = 48
+		y = 5
+		completion_reward = {
+		    CAN = {
+			    add_opinion_modifier = {
+				    target = ENG
+				    modifier = declaration_of_friendship
+			    }
+		    }
+			ICE = {
+			    add_opinion_modifier = {
+				    target = ENG
+				    modifier = declaration_of_friendship
+			    }
+		    }
+			USA = {
+			    add_opinion_modifier = {
+				    target = ENG
+				    modifier = declaration_of_friendship
+			    }
+		    }
+			BRA = {
+			    add_opinion_modifier = {
+				    target = ENG
+				    modifier = declaration_of_friendship
+			    }
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_left_and_right_policies
+		icon = GFX_goal_Generic_Centrism
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_atlantic_cooperation
+		}
+		available = {
+		    has_government = centrist
+		}
+		x = 48
+		y = 6
+		completion_reward = {
+		    add_ideas = idea_eng_centrist_policies
+			country_event = { id = britain.77 }
+		}
+
+	}
+	focus = {
+		id = ENG_lower_company_taxes
+		icon = GFX_goal_britain_lowered_taxes
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_left_and_right_policies
+		}
+		available = {
+		    has_government = centrist
+		}
+		x = 48
+		y = 7
+		completion_reward = {
+		    add_ideas = idea_eng_low_corporate_taxes
+			country_event = { id = britain.78 }
+		}
+
+	}
+	focus = {
+		id = ENG_empower_the_voters
+		icon = GFX_goal_elections2
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_lower_company_taxes
+		}
+		available = {
+		    has_government = centrist
+		}
+		x = 48
+		y = 8
+		completion_reward = {
+		    add_stability = 0.025
+			country_event = { id = britain.79 }
+		}
+
+	}
+	focus = {
+		id = ENG_social_democratic_government
+		icon = social_democrat_uk
+		cost = 3.6
+		prerequisite = {
+			focus = ENG_democratic_policies
+		}
+		available = {
+		    has_government = liberal
+		}
+		x = 50
+		y = 4
+		completion_reward = {
+		    add_political_power = 100
+		}
+
+	}
+	focus = {
+		id = ENG_condemn_trotskyist_labour
+		icon = anti_trotskyism
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_social_democratic_government
+		}
+		available = {
+		    has_government = liberal
+		}
+		x = 50
+		y = 5
+		completion_reward = {
+		    add_popularity = {
+				ideology = new_democrat
+				popularity = -0.05
+				
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = -0.05
+				
+			}
+			add_stability = 0.025
+			country_event = { id = britain.80 }
+		}
+
+	}
+	focus = {
+		id = ENG_owens_legacy
+		icon = GFX_goal_owens_legacy
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_condemn_trotskyist_labour
+		}
+		available = {
+		    has_government = liberal
+		}
+		x = 50
+		y = 6
+		completion_reward = {
+		    add_ideas = idea_eng_owens_legacy
+			country_event = { id = britain.81 }
+		}
+
+	}
+	focus = {
+		id = ENG_moderate_welfare_promises
+		icon = welfare_statism
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_owens_legacy
+		}
+		available = {
+		    has_government = liberal
+		}
+		x = 50
+		y = 7
+		completion_reward = {
+		    add_ideas = idea_eng_moderate_welfare
+		}
+
+	}
+	focus = {
+		id = ENG_bolster_our_nuclear_arsenal
+		icon = GFX_goal_uranium_fever
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_moderate_welfare_promises
+		}
+		available = {
+		    has_government = liberal
+		}
+		x = 50
+		y = 8
+		completion_reward = {
+		    add_ideas = idea_eng_stronger_nuclear_arsenal
+			country_event = { id = britain.82 }
+		}
+
+	}
+	focus = {
+		id = ENG_labour_government
+		icon = labour_uk
+		cost = 3.6
+		prerequisite = {
+			focus = ENG_democratic_policies
+		}
+		available = {
+		    OR = {
+			    has_government = new_democrat
+				has_government = moderate_socialist
+			}
+		}
+		x = 53
+		y = 4
+		completion_reward = {
+		    add_political_power = 100
+		}
+
+	}
+	focus = {
+		id = ENG_moderate_policies
+		icon = GFX_goal_labourism
+		cost = 1
+		prerequisite = {
+			focus = ENG_labour_government
+		}
+		available = {
+		    has_government = new_democrat
+		}
+		mutually_exclusive = {
+			focus = ENG_radical_policies
+		}
+
+		x = 52
+		y = 5
+
+	}
+	focus = {
+		id = ENG_labour_welfare_program
+		icon = GFX_goal_welfare
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_moderate_policies
+		}
+		available = {
+		    has_government = new_democrat
+		}
+		x = 52
+		y = 6
+		completion_reward = {
+		    add_ideas = idea_eng_labour_welfare_program
+			country_event = { id = britain.83 }
+		}
+
+	}
+	focus = {
+		id = ENG_less_military_spending
+		icon = GFX_goal_decrease_military_spending
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_labour_welfare_program
+		}
+		available = {
+		    has_government = new_democrat
+		}
+		x = 52
+		y = 7
+		completion_reward = {
+		    add_ideas = idea_eng_decreased_military_spending 
+			country_event = { id = britain.84 }
+		}
+
+	}
+	focus = {
+		id = ENG_labour_minor_nationalisation
+		icon = GFX_goal_NationalizeTrade
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_less_military_spending
+		}
+		available = {
+		    has_government = new_democrat
+		}
+		x = 52
+		y = 8
+		completion_reward = {
+		    add_ideas = idea_eng_minor_nationalisation
+			
+		}
+
+	}
+	focus = {
+		id = ENG_economic_advisory_council
+		icon = chinese_economy
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_labour_minor_nationalisation
+		}
+		available = {
+		    has_government = new_democrat
+		}
+		x = 52
+		y = 9
+		completion_reward = {
+		    add_ideas = idea_eng_economic_advisory_council
+			country_event = { id = britain.85 }
+		}
+
+	}
+	focus = {
+		id = ENG_radical_policies
+		icon = independent_labour_uk
+		cost = 1
+		prerequisite = {
+			focus = ENG_labour_government
+		}
+		available = {
+		    has_government = moderate_socialist
+		}
+		mutually_exclusive = {
+			focus = ENG_moderate_policies
+		}
+		x = 54
+		y = 5
+
+	}
+	focus = {
+		id = ENG_republic_referendum
+		icon = GFX_goal_uk_republic
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_radical_policies
+		}
+		available = {
+		    has_government = moderate_socialist
+		}
+		x = 54
+		y = 6
+		completion_reward = {
+			set_country_flag = british_republic
+			if = {
+				limit = {
+					has_idea = idea_queen_elizabeth_ii
+				}
+				remove_ideas = idea_queen_elizabeth_ii
+			}
+			if = {
+				limit = {
+					has_idea = idea_queen_elizabeth_humiliated
+				}
+				remove_ideas = idea_queen_elizabeth_humiliated
+			}
+			if = {
+				limit = {
+					has_idea = idea_king_charles_third
+				}
+				remove_ideas = idea_king_charles_third
+			}
+			if = {
+				limit = {
+					has_idea = idea_king_william_fifth
+				}
+				remove_ideas = idea_king_william_fifth
+			}
+			if = {
+				limit = {
+					has_idea = idea_king_edward_ix_andrew
+				}
+				remove_ideas = idea_king_edward_ix_andrew
+			}
+			if = {
+				limit = {
+					has_idea = idea_king_edward_ix_edward
+				}
+				remove_ideas = idea_king_edward_ix_edward
+			}
+			add_political_power = 100
+			set_cosmetic_tag = ENG_Republic
+			country_event = { id = britain.86 }
+		}
+
+	}
+	focus = {
+		id = ENG_new_nhs
+		icon = generic_welfare_focus
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_republic_referendum
+		}
+		available = {
+		    has_government = moderate_socialist
+		}
+		x = 54
+		y = 7
+		completion_reward = {
+		    add_ideas = idea_eng_new_nhs
+			country_event = { id = britain.87 }
+		}
+
+	}
+	focus = {
+		id = ENG_cooperate_with_eu_nations
+		icon = GFX_goal_eu_cooperation
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_new_nhs
+		}
+		available = {
+		    has_government = moderate_socialist
+		}
+		x = 54
+		y = 8
+		completion_reward = {
+		    every_country = {
+			    limit = {
+				    has_idea = idea_eu_member
+				}
+				add_opinion_modifier = {
+				    target = ENG
+				    modifier = declaration_of_friendship
+			    }
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_union_friendships
+		icon = GFX_goal_generic_union_agreement
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_cooperate_with_eu_nations
+		}
+		available = {
+		    has_government = moderate_socialist
+		}
+		x = 54
+		y = 9
+		completion_reward = {
+		    every_country = {
+			    limit = {
+				    has_idea = idea_eu_member
+				}
+				add_opinion_modifier = {
+				    target = ENG
+				    modifier = trade_influence_1
+			    }
+			}
+			country_event = { id = britain.88 }
+		}
+
+	}
+	focus = {
+		id = ENG_northern_ireland_negotiations
+		icon = northern_ireland_negotiations
+		cost = 7.2
+		ai_will_do = {
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = ENG_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = ENG_ai_behavior
+						option = ENG_DEM_RULE_INTERV
+					}
+				}
+				factor = 0
+			}
+		}
+		prerequisite = {
+			focus = ENG_increase_military_spending
+			focus = ENG_empower_the_voters
+			focus = ENG_bolster_our_nuclear_arsenal
+			focus = ENG_economic_advisory_council
+			focus = ENG_union_friendships
+		}
+		mutually_exclusive = {
+			focus = ENG_strengthen_the_protection_union
+		}
+		x = 49
+		y = 10
+		completion_reward = {
+		    ENG = {
+		        country_event = { id = britain.6 }
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_strengthen_the_protection_union
+		icon = strengthen_protection_union
+		cost = 7.2
+		ai_will_do = {
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = ENG_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = ENG_ai_behavior
+						option = ENG_DEM_RULE_ISO
+					}
+				}
+				factor = 0
+			}
+		}
+		prerequisite = {
+			focus = ENG_increase_military_spending
+			focus = ENG_empower_the_voters
+			focus = ENG_bolster_our_nuclear_arsenal
+			focus = ENG_economic_advisory_council
+			focus = ENG_union_friendships
+		}
+		mutually_exclusive = {
+			focus = ENG_northern_ireland_negotiations
+		}
+		x = 51
+		y = 10
+		completion_reward = {
+		    ENG = {
+			    add_political_power = 100
+				add_stability = 0.05
+				army_experience = 10
+				navy_experience = 10
+				air_experience = 10
+			}
+			IRE = {
+			    add_political_power = 100
+				add_stability = 0.05
+				army_experience = 10
+				navy_experience = 10
+				air_experience = 10
+			}
+			ULS = {
+			    add_political_power = 100
+				add_stability = 0.05
+				army_experience = 10
+				navy_experience = 10
+				air_experience = 10
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_government_of_strength
+		icon = government_of_strength
+		cost = 7.2
+		ai_will_do = {
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = ENG_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = ENG_ai_behavior
+						option = ENG_NAT_RULE
+					}
+					has_game_rule = {
+						rule = ENG_ai_behavior
+						option = ENG_FASH_RULE
+					}
+					has_game_rule = {
+						rule = ENG_ai_behavior
+						option = ENG_PHOENIX_RULE
+					}
+				}
+				factor = 0
+			}
+		}
+		prerequisite = {
+			focus = ENG_snap_election
+		}
+		mutually_exclusive = {
+			focus = ENG_democratic_policies
+		}
+		mutually_exclusive = {
+			focus = ENG_a_peoples_government
+		}
+		available = {
+		    has_government = national_conservative
+		}
+		x = 61
+		y = 3
+		completion_reward = {
+		    add_popularity = {
+				ideology = national_conservative
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = fascist
+				popularity = 0.03
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+			country_event = { id = britain.89 }
+		}
+
+	}
+	focus = {
+		id = ENG_privatise_the_nhs
+		icon = GFX_goal_privatise_the_nhs
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_government_of_strength
+		}
+		x = 58
+		y = 5
+		completion_reward = {
+		    add_ideas = idea_eng_privatised_nhs
+			country_event = { id = britain.90 }
+		}
+
+	}
+	focus = {
+		id = ENG_strengthen_our_army
+		icon = guns_blue
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_government_of_strength
+		}
+		x = 60
+		y = 5
+		completion_reward = {
+		    add_ideas = idea_eng_strengthened_army
+		}
+
+	}
+	focus = {
+		id = ENG_nuclear_initiative
+		icon = research_nukes
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_government_of_strength
+		}
+		x = 62
+		y = 5
+		completion_reward = {
+		    add_ideas = idea_eng_stronger_nuclear_arsenal
+			
+		}
+
+	}
+	focus = {
+		id = ENG_christian_britain
+		icon = christian_britain
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_government_of_strength
+		}
+		x = 64
+		y = 5
+		completion_reward = {
+		    add_ideas = idea_eng_traditional_british_values
+		}
+
+	}
+	focus = {
+		id = ENG_sabotage_the_conservative_leadership
+		icon = sabotage_conservative_leadership
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_privatise_the_nhs
+		}
+		prerequisite = {
+			focus = ENG_strengthen_our_army
+		}
+		prerequisite = {
+			focus = ENG_nuclear_initiative
+		}
+		prerequisite = {
+			focus = ENG_christian_britain
+		}
+		x = 61
+		y = 6
+		completion_reward = {
+		    add_popularity = {
+				ideology = national_conservative
+				popularity = -0.1
+			}
+			ENG_nigel_farage = {
+				promote_character = reactionary
+			}
+			hidden_effect = {
+				remove_ideas = britain_sic_nigel_farage
+			}
+			add_ideas = britain_sic_michael_gove
+			add_political_power = 80
+			country_event = { id = britain.91 }
+			hidden_effect = {
+		        ENG = {
+		            country_event = { days = 7 id = britain.182 } 
+		        }   
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_false_flag
+		icon = GFX_goal_firebomb
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_sabotage_the_conservative_leadership
+		}
+		x = 61
+		y = 7
+		completion_reward = {
+		    add_stability = 0.05
+			country_event = { id = britain.92 }
+			hidden_effect = {
+		        ENG = {
+		            country_event = { days = 10 id = britain.184 } 
+		        }   
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_new_election
+		icon = GFX_goal_elections_rigged
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_false_flag
+		}
+		x = 61
+		y = 8
+		completion_reward = {
+		    ENG = {
+		        country_event = { id = britain.23 }
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_far_right_control
+		icon = uk_far_right_control
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_new_election
+		}
+		available = {
+		    OR = {
+			    has_country_flag = britain_first_wins_election
+				has_country_flag = bnp_wins_election
+			}
+		}
+		mutually_exclusive = {
+			focus = ENG_the_phoenix_front_craze
+		}
+		x = 59
+		y = 9
+		completion_reward = {
+		    add_popularity = {
+				ideology = fascist
+				popularity = 0.035
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.035
+			}
+			add_political_power = 120
+			dismantle_faction = yes
+		}
+
+	}
+	focus = {
+		id = ENG_paramilitary_brigades
+		icon = paramilitary_brigades
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_far_right_control
+		}
+		x = 58
+		y = 10
+		completion_reward = {
+		    add_ideas = idea_eng_paramilitary_brigades
+			country_event = { id = britain.93 }
+		}
+
+	}
+	focus = {
+		id = ENG_strengthen_our_party
+		icon = fascism_2
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_far_right_control
+		}
+		x = 60
+		y = 10
+		completion_reward = {
+		    add_political_power = 100
+			if = {
+			    limit = {
+				    has_government = fascist
+				}
+				add_popularity = {
+				    ideology = fascist
+				    popularity = 0.05
+			    }
+			}
+			if = {
+			    limit = {
+				    has_government = nationalist
+				}
+				add_popularity = {
+				    ideology = nationalist
+				    popularity = 0.05
+			    }
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_royal_guidance
+		icon = royal_strength
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_strengthen_our_party
+			focus = ENG_paramilitary_brigades
+		}
+		available = {
+		    has_government = nationalist
+		}
+		mutually_exclusive = {
+			focus = ENG_out_with_royalty
+		}
+		x = 60
+		y = 11
+		completion_reward = {
+		    add_ideas = idea_eng_royal_guidance
+			country_event = { id = britain.94 }
+		}
+		
+
+	}
+	focus = {
+		id = ENG_out_with_royalty
+		icon = anti_monarchy
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_paramilitary_brigades
+			focus = ENG_strengthen_our_party
+		}
+		mutually_exclusive = {
+			focus = ENG_royal_guidance
+		}
+		x = 58
+		y = 11
+		completion_reward = {
+		    remove_ideas = idea_queen_elizabeth_humiliated
+			set_cosmetic_tag = ENG_Republic
+			country_event = { id = britain.95 }
+		}
+
+	}
+	focus = {
+		id = ENG_anti_immigration_policies
+		icon = GFX_goal_anti_immigration
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_royal_guidance
+			focus = ENG_out_with_royalty
+		}
+		x = 62
+		y = 12
+		completion_reward = {
+		    add_ideas = idea_eng_anti_immigration_policies
+			country_event = { id = britain.96 }
+		}
+
+	}
+	focus = {
+		id = ENG_new_educational_material
+		icon = GFX_goal_education
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_out_with_royalty
+			focus = ENG_royal_guidance
+		}
+		x = 56
+		y = 12
+		completion_reward = {
+			if = {
+			    limit = {
+				    has_government = nationalist
+				}
+				add_ideas = idea_eng_nationalist_indoctrination
+			}
+			else = {
+				add_ideas = idea_eng_fascist_indoctrination
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_cut_off_the_channel
+		icon = cut_off_the_channel
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_anti_immigration_policies
+		}
+		x = 62
+		y = 13
+		completion_reward = {
+		    127 = {	
+				add_building_construction = {
+					type = coastal_bunker
+					province = 3501
+					level = 4
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					province = 11446
+					level = 4
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					province = 9458
+					level = 4
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					province = 6489
+					level = 4
+					instant_build = yes
+				}
+			}
+			123 = {	
+				add_building_construction = {
+					type = coastal_bunker
+					province = 3422
+					level = 4
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					province = 3463
+					level = 4
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					province = 540
+					level = 4
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					province = 6526
+					level = 4
+					instant_build = yes
+				}
+			}
+			
+		}
+
+	}
+	focus = {
+		id = ENG_ban_atheism
+		icon = GFX_goal_Improve_Catholic_Relations
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_cut_off_the_channel
+		}
+		x = 62
+		y = 14
+		completion_reward = {
+		    add_ideas = idea_eng_atheism_banned
+			country_event = { id = britain.97 }
+		}
+
+	}
+	focus = {
+		id = ENG_powerful_union
+		icon = two_flags
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_strengthen_the_foreign_office
+		}
+		available = {
+		    all_allied_country = {
+                OR = {
+                    tag = IRE
+                    tag = ULS
+                }
+            }
+		}
+		mutually_exclusive = {
+			focus = ENG_out_with_the_protection_union
+		}
+		x = 67
+		y = 1
+		completion_reward = {
+		    IRE = {
+			    army_experience = 25
+			}
+			if = {
+			    limit = {
+				    is_in_faction_with = ULS
+				}
+				ULS = {
+				    army_experience = 25
+				}
+			}
+			army_experience = 25
+			add_political_power = 80
+		}
+
+	}
+	focus = {
+		id = ENG_ulster_investment
+		icon = ulster_investment
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_powerful_union
+		}
+		bypass = {
+		    NOT = {
+			    is_in_faction_with = ULS
+			}
+		}
+		x = 67
+		y = 2
+		completion_reward = {
+		    119 = {
+			    add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_irish_investment
+		icon = irish_investment
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_ulster_investment
+		}
+		x = 67
+		y = 3
+		completion_reward = {
+		    113 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			134 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			135 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+
+	}
+	focus = {
+		id = ENG_new_training_exercises
+		icon = commonwealth_infantry
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_irish_investment
+		}
+		x = 67
+		y = 4
+		completion_reward = {
+		    add_ideas = idea_eng_protection_union_training_exercises
+			IRE = {
+			    add_ideas = idea_eng_protection_union_training_exercises
+			}
+			if = {
+			    limit = {
+				    is_in_faction_with = ULS
+				}
+				ULS = {
+				    add_ideas = idea_eng_protection_union_training_exercises
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_joint_naval_force
+		icon = carrier
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_new_training_exercises
+		}
+		x = 67
+		y = 5
+		completion_reward = {
+		    add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
+				uses = 2
+				category = naval_doctrine
+			}
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
+				uses = 2
+				category = naval_doctrine
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_the_phoenix_front_craze
+		icon = phoenix_front
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_new_election
+		}
+		available = {
+		    has_country_flag = phoenix_front_wins_election
+		}
+		mutually_exclusive = {
+			focus = ENG_far_right_control
+		}
+		x = 67
+		y = 9
+		completion_reward = {
+		    add_stability = 0.05
+			dismantle_faction = yes
+			country_event = { id = britain.98 }
+		}
+
+	}
+	focus = {
+		id = ENG_unite_with_corporations
+		icon = GFX_goal_unite_with_corporations
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_the_phoenix_front_craze
+		}
+		x = 67
+		y = 10
+		completion_reward = {
+		    add_ideas = idea_eng_corporatism
+			country_event = { id = britain.99 }
+		}
+
+	}
+	focus = {
+		id = ENG_establish_concentration_camps
+		icon = uk_concentration_camps
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_unite_with_corporations
+		}
+		x = 65
+		y = 11
+		completion_reward = {
+		    add_ideas = idea_eng_concentration_camps
+			country_event = { id = britain.100 }
+		}
+
+	}
+	focus = {
+		id = ENG_persecute_leftist_activists
+		icon = GFX_goal_generic_trial
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_unite_with_corporations
+		}
+		x = 67
+		y = 11
+		completion_reward = {
+		    add_popularity = {
+				ideology = communist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.03
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = -0.03
+			}
+			add_popularity = {
+				ideology = new_democrat
+				popularity = -0.03
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.05
+			}
+			country_event = { id = britain.101 }
+		}
+
+	}
+	focus = {
+		id = ENG_phoenix_television
+		icon = phoenix_television
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_persecute_leftist_activists
+		}
+		x = 67
+		y = 12
+		completion_reward = {
+		    add_ideas = idea_eng_phoenix_television
+			country_event = { id = britain.102 }
+		}
+
+	}
+	focus = {
+		id = ENG_visible_army
+		icon = visible_army
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_phoenix_television
+		}
+		x = 67
+		y = 13
+		completion_reward = {
+		    army_experience = 25
+			add_ideas = idea_eng_englands_army
+		}
+
+	}
+	focus = {
+		id = ENG_train_a_new_generation
+		icon = GFX_goal_phoenix_army
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_visible_army
+		}
+		x = 67
+		y = 14
+		completion_reward = {
+		    add_ideas = idea_eng_new_military
+		}
+
+	}
+	focus = {
+		id = ENG_out_with_the_protection_union
+		icon = out_with_the_protection_union
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_strengthen_the_foreign_office
+		}
+		mutually_exclusive = {
+			focus = ENG_powerful_union
+		}
+		x = 70
+		y = 1
+		completion_reward = {
+		    set_rule = {
+				can_create_factions = yes
+			}
+            if = {
+                limit = {
+                    all_allied_country = {
+                        OR = {
+                            tag = IRE
+                            tag = ULS
+                        }
+                    }
+                }
+                dismantle_faction = yes
+            }
+		}
+
+	}
+	focus = {
+		id = ENG_invite_scandinavia
+		icon = sweden
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_out_with_the_protection_union
+		}
+		available = {
+		    is_faction_leader = yes
+		}
+		x = 69
+		y = 3
+		completion_reward = {
+		    if = {
+			    limit = {
+				    OR = {
+					    AND = {
+						    has_government = fascist
+							DEN = {
+							    has_government = fascist
+							}
+						}
+						AND = {
+						    has_government = nationalist
+							DEN = {
+							    has_government = nationalist
+							}
+						}
+						AND = {
+						    has_government = monarchist
+							DEN = {
+							    has_government = monarchist
+							}
+						}
+						AND = {
+						    has_government = national_bolshevik
+							DEN = {
+							    has_government = national_bolshevik
+							}
+						}
+						AND = {
+						    OR = {
+							    has_government = national_conservative
+								has_government = centrist
+								has_government = liberal
+								has_government = new_democrat
+								has_government = moderate_socialist
+							}
+							DEN = {
+							    OR = {
+							        has_government = national_conservative
+								    has_government = centrist
+								    has_government = liberal
+								    has_government = new_democrat
+								    has_government = moderate_socialist
+							    }
+							}
+						}
+						AND = {
+						    has_government = revolutionary_socialist
+							DEN = {
+							    has_government = revolutionary_socialist
+							}
+						}
+						AND = {
+						    has_government = communist
+							DEN = {
+							    has_government = communist
+							}
+						}
+					}
+				}
+				DEN = {
+		            country_event = { id = britain.24 }
+		        }
+			}
+			if = {
+			    limit = {
+				    OR = {
+					    AND = {
+						    has_government = fascist
+							SWE = {
+							    has_government = fascist
+							}
+						}
+						AND = {
+						    has_government = nationalist
+							SWE = {
+							    has_government = nationalist
+							}
+						}
+						AND = {
+						    has_government = monarchist
+							SWE = {
+							    has_government = monarchist
+							}
+						}
+						AND = {
+						    has_government = national_bolshevik
+							SWE = {
+							    has_government = national_bolshevik
+							}
+						}
+						AND = {
+						    OR = {
+							    has_government = national_conservative
+								has_government = centrist
+								has_government = liberal
+								has_government = new_democrat
+								has_government = moderate_socialist
+							}
+							SWE = {
+							    OR = {
+							        has_government = national_conservative
+								    has_government = centrist
+								    has_government = liberal
+								    has_government = new_democrat
+								    has_government = moderate_socialist
+							    }
+							}
+						}
+						AND = {
+						    has_government = revolutionary_socialist
+							SWE = {
+							    has_government = revolutionary_socialist
+							}
+						}
+						AND = {
+						    has_government = communist
+							SWE = {
+							    has_government = communist
+							}
+						}
+					}
+				}
+				SWE = {
+		            country_event = { id = britain.24 }
+		        }
+			}
+			if = {
+			    limit = {
+				    OR = {
+					    AND = {
+						    has_government = fascist
+							NOR = {
+							    has_government = fascist
+							}
+						}
+						AND = {
+						    has_government = nationalist
+							NOR = {
+							    has_government = nationalist
+							}
+						}
+						AND = {
+						    has_government = monarchist
+							NOR = {
+							    has_government = monarchist
+							}
+						}
+						AND = {
+						    has_government = national_bolshevik
+							NOR = {
+							    has_government = national_bolshevik
+							}
+						}
+						AND = {
+						    OR = {
+							    has_government = national_conservative
+								has_government = centrist
+								has_government = liberal
+								has_government = new_democrat
+								has_government = moderate_socialist
+							}
+							NOR = {
+							    OR = {
+							        has_government = national_conservative
+								    has_government = centrist
+								    has_government = liberal
+								    has_government = new_democrat
+								    has_government = moderate_socialist
+							    }
+							}
+						}
+						AND = {
+						    has_government = revolutionary_socialist
+							NOR = {
+							    has_government = revolutionary_socialist
+							}
+						}
+						AND = {
+						    has_government = communist
+							NOR = {
+							    has_government = communist
+							}
+						}
+					}
+				}
+				NOR = {
+		            country_event = { id = britain.24 }
+		        }
+			}
+			if = {
+			    limit = {
+				    OR = {
+					    AND = {
+						    has_government = fascist
+							FIN = {
+							    has_government = fascist
+							}
+						}
+						AND = {
+						    has_government = nationalist
+							FIN = {
+							    has_government = nationalist
+							}
+						}
+						AND = {
+						    has_government = monarchist
+							FIN = {
+							    has_government = monarchist
+							}
+						}
+						AND = {
+						    has_government = national_bolshevik
+							FIN = {
+							    has_government = national_bolshevik
+							}
+						}
+						AND = {
+						    OR = {
+							    has_government = national_conservative
+								has_government = centrist
+								has_government = liberal
+								has_government = new_democrat
+								has_government = moderate_socialist
+							}
+							FIN = {
+							    OR = {
+							        has_government = national_conservative
+								    has_government = centrist
+								    has_government = liberal
+								    has_government = new_democrat
+								    has_government = moderate_socialist
+							    }
+							}
+						}
+						AND = {
+						    has_government = revolutionary_socialist
+							FIN = {
+							    has_government = revolutionary_socialist
+							}
+						}
+						AND = {
+						    has_government = communist
+							FIN = {
+							    has_government = communist
+							}
+						}
+					}
+				}
+				FIN = {
+		            country_event = { id = britain.24 }
+		        }
+			}
+			if = {
+			    limit = {
+				    OR = {
+					    AND = {
+						    has_government = fascist
+							ICE = {
+							    has_government = fascist
+							}
+						}
+						AND = {
+						    has_government = nationalist
+							ICE = {
+							    has_government = nationalist
+							}
+						}
+						AND = {
+						    has_government = monarchist
+							ICE = {
+							    has_government = monarchist
+							}
+						}
+						AND = {
+						    has_government = national_bolshevik
+							ICE = {
+							    has_government = national_bolshevik
+							}
+						}
+						AND = {
+						    OR = {
+							    has_government = national_conservative
+								has_government = centrist
+								has_government = liberal
+								has_government = new_democrat
+								has_government = moderate_socialist
+							}
+							ICE = {
+							    OR = {
+							        has_government = national_conservative
+								    has_government = centrist
+								    has_government = liberal
+								    has_government = new_democrat
+								    has_government = moderate_socialist
+							    }
+							}
+						}
+						AND = {
+						    has_government = revolutionary_socialist
+							ICE = {
+							    has_government = revolutionary_socialist
+							}
+						}
+						AND = {
+						    has_government = communist
+							ICE = {
+							    has_government = communist
+							}
+						}
+					}
+				}
+				ICE = {
+		            country_event = { id = britain.24 }
+		        }
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_invite_morocco
+		icon = morocco
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_out_with_the_protection_union
+		}
+		available = {
+		    OR = {
+			    AND = {
+				    has_government = fascist
+					MOR = {
+					    has_government = fascist
+					}
+				}
+				AND = {
+					has_government = nationalist
+					MOR = {
+						has_government = nationalist
+					}
+				}
+				AND = {
+					has_government = monarchist
+					MOR = {
+						has_government = monarchist
+					}
+				}
+				AND = {
+					has_government = national_bolshevik
+					MOR = {
+					    has_government = national_bolshevik
+				    }
+				}
+				AND = {
+					OR = {
+						has_government = national_conservative
+					    has_government = centrist
+						has_government = liberal
+						has_government = new_democrat
+						has_government = moderate_socialist
+					}
+					MOR = {
+						OR = {
+							has_government = national_conservative
+						    has_government = centrist
+							has_government = liberal
+							has_government = new_democrat
+							has_government = moderate_socialist
+					    }
+					}
+				}
+				AND = {
+					has_government = revolutionary_socialist
+					MOR = {
+						has_government = revolutionary_socialist
+					}
+				}
+				AND = {
+					has_government = communist
+					MOR = {
+						has_government = communist
+				    }
+				}
+			}
+		}
+		x = 69
+		y = 5
+		completion_reward = {
+		    MOR = {
+		        country_event = { id = britain.24 }
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_one_with_the_church_of_england
+		icon = church_of_england
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_unite_with_corporations
+		}
+		x = 69
+		y = 11
+		completion_reward = {
+		    add_political_power = 100
+			add_popularity = {
+				ideology = fascist
+				popularity = 0.03
+			}
+			add_popularity = {
+				ideology = monarchist
+				popularity = 0.03
+			}
+			country_event = { id = britain.103 }
+		}
+
+	}
+	focus = {
+		id = ENG_influence_clergy
+		icon = english_clergy
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_one_with_the_church_of_england
+		}
+		x = 69
+		y = 12
+		completion_reward = {
+		    add_ideas = idea_eng_puppet_clergy
+			country_event = { id = britain.104 }
+		}
+
+	}
+	focus = {
+		id = ENG_protect_the_monarch
+		icon = support_monarchy
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_influence_clergy
+		}
+		x = 69
+		y = 13
+		completion_reward = {
+		    add_popularity = {
+				ideology = fascist
+				popularity = 0.07
+			}
+			add_popularity = {
+				ideology = monarchist
+				popularity = 0.05
+			}
+			every_country = {
+			    limit = {
+				    has_government = monarchist
+				}
+				add_opinion_modifier = {
+				    target = ENG
+				    modifier = recent_actions_very_positive
+			    }
+			}
+			country_event = { id = britain.105 }
+		}
+
+	}
+	focus = {
+		id = ENG_isolate_britain
+		icon = isolate_britain
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_protect_the_monarch
+		}
+		x = 69
+		y = 14
+		completion_reward = {
+		    add_ideas = neutrality_idea
+			country_event = { id = britain.106 }
+		}
+
+	}
+	focus = {
+		id = ENG_invite_australia
+		icon = australia
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_out_with_the_protection_union
+		}
+		available = {
+		    OR = {
+			    AND = {
+				    has_government = fascist
+					AST = {
+					    has_government = fascist
+					}
+				}
+				AND = {
+					has_government = nationalist
+					AST = {
+						has_government = nationalist
+					}
+				}
+				AND = {
+					has_government = monarchist
+					AST = {
+						has_government = monarchist
+					}
+				}
+				AND = {
+					has_government = national_bolshevik
+					AST = {
+					    has_government = national_bolshevik
+				    }
+				}
+				AND = {
+					OR = {
+						has_government = national_conservative
+					    has_government = centrist
+						has_government = liberal
+						has_government = new_democrat
+						has_government = moderate_socialist
+					}
+					AST = {
+						OR = {
+							has_government = national_conservative
+						    has_government = centrist
+							has_government = liberal
+							has_government = new_democrat
+							has_government = moderate_socialist
+					    }
+					}
+				}
+				AND = {
+					has_government = revolutionary_socialist
+					AST = {
+						has_government = revolutionary_socialist
+					}
+				}
+				AND = {
+					has_government = communist
+					AST = {
+						has_government = communist
+				    }
+				}
+			}
+		}
+		x = 70
+		y = 4
+		completion_reward = {
+		    AST = {
+		        country_event = { id = britain.24 }
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_invite_south_africa
+		icon = south_africa
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_out_with_the_protection_union
+		}
+		available = {
+		    OR = {
+			    AND = {
+				    has_government = fascist
+					SAF = {
+					    has_government = fascist
+					}
+				}
+				AND = {
+					has_government = nationalist
+					SAF = {
+						has_government = nationalist
+					}
+				}
+				AND = {
+					has_government = monarchist
+					SAF = {
+						has_government = monarchist
+					}
+				}
+				AND = {
+					has_government = national_bolshevik
+					SAF = {
+					    has_government = national_bolshevik
+				    }
+				}
+				AND = {
+					OR = {
+						has_government = national_conservative
+					    has_government = centrist
+						has_government = liberal
+						has_government = new_democrat
+						has_government = moderate_socialist
+					}
+					SAF = {
+						OR = {
+							has_government = national_conservative
+						    has_government = centrist
+							has_government = liberal
+							has_government = new_democrat
+							has_government = moderate_socialist
+					    }
+					}
+				}
+				AND = {
+					has_government = revolutionary_socialist
+					SAF = {
+						has_government = revolutionary_socialist
+					}
+				}
+				AND = {
+					has_government = communist
+					SAF = {
+						has_government = communist
+				    }
+				}
+			}
+		}
+		x = 71
+		y = 3
+		completion_reward = {
+		    SAF = {
+		        country_event = { id = britain.24 }
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_invite_iran
+		icon = iran
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_out_with_the_protection_union
+		}
+		available = {
+		    OR = {
+			    AND = {
+				    has_government = fascist
+					PER = {
+					    has_government = fascist
+					}
+				}
+				AND = {
+					has_government = nationalist
+					PER = {
+						has_government = nationalist
+					}
+				}
+				AND = {
+					has_government = monarchist
+					PER = {
+						has_government = monarchist
+					}
+				}
+				AND = {
+					has_government = national_bolshevik
+					PER = {
+					    has_government = national_bolshevik
+				    }
+				}
+				AND = {
+					OR = {
+						has_government = national_conservative
+					    has_government = centrist
+						has_government = liberal
+						has_government = new_democrat
+						has_government = moderate_socialist
+					}
+					PER = {
+						OR = {
+							has_government = national_conservative
+						    has_government = centrist
+							has_government = liberal
+							has_government = new_democrat
+							has_government = moderate_socialist
+					    }
+					}
+				}
+				AND = {
+					has_government = revolutionary_socialist
+					PER = {
+						has_government = revolutionary_socialist
+					}
+				}
+				AND = {
+					has_government = communist
+					PER = {
+						has_government = communist
+				    }
+				}
+			}
+		}
+		x = 71
+		y = 5
+		completion_reward = {
+		    PER = {
+		        country_event = { id = britain.24 }
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_irish_trade
+		icon = irish_trade
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_strengthen_the_foreign_office
+		}
+		x = 73
+		y = 1
+		completion_reward = {
+		    IRE = {
+			    add_opinion_modifier = {
+				    target = ENG
+				    modifier = trade_influence_3
+			    }
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_befriend_brazil
+		icon = brazil
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_irish_trade
+		}
+		x = 74
+		y = 2
+		completion_reward = {
+		    BRA = {
+			    add_opinion_modifier = {
+				    target = ENG
+				    modifier = declaration_of_friendship
+			    }
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_trade_with_brazil
+		icon = positive_trade_relations
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_befriend_brazil
+		}
+		x = 74
+		y = 3
+		completion_reward = {
+		    BRA = {
+			    add_opinion_modifier = {
+				    target = ENG
+				    modifier = trade_influence_3
+			    }
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_befriend_mexico
+		icon = mexico
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_irish_trade
+		}
+		x = 76
+		y = 2
+		completion_reward = {
+		    MEX = {
+			    add_opinion_modifier = {
+				    target = ENG
+				    modifier = declaration_of_friendship
+			    }
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_trade_with_mexico
+		icon = positive_trade_relations
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_befriend_mexico
+		}
+		x = 76
+		y = 3
+		completion_reward = {
+		    MEX = {
+			    add_opinion_modifier = {
+				    target = ENG
+				    modifier = trade_influence_3
+			    }
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_befriend_west_africa
+		icon = major_alliance
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_irish_trade
+		}
+		x = 78
+		y = 2
+		completion_reward = {
+		    WAF = {
+			    add_opinion_modifier = {
+				    target = ENG
+				    modifier = declaration_of_friendship
+			    }
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_trade_with_west_africa
+		icon = positive_trade_relations
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_befriend_west_africa
+		}
+		x = 78
+		y = 3
+		completion_reward = {
+		    WAF = {
+			    add_opinion_modifier = {
+				    target = ENG
+				    modifier = trade_influence_3
+			    }
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_defend_the_streets
+		icon = GFX_goal_britain_army
+		cost = 5
+		prerequisite = {
+			focus = ENG_truly_british_military
+		}
+		x = 83
+		y = 1
+		completion_reward = {
+		    army_experience = 10
+		}
+
+	}
+	focus = {
+		id = ENG_state_of_the_art_artillery
+		icon = artillery_2
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_defend_the_streets
+		}
+		x = 82
+		y = 2
+		completion_reward = {
+		    add_tech_bonus = {
+				name = artillery_bonus
+				bonus = 1
+				uses = 1
+				category = artillery
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_weapons_development
+		icon = small_arms
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_state_of_the_art_artillery
+		}
+		x = 82
+		y = 3
+		completion_reward = {
+		    add_tech_bonus = {
+				name = infantry_weapons_bonus
+				bonus = 1
+				uses = 1
+				category = infantry_weapons
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_land_fort_project
+		icon = fortify_city
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_defend_the_streets
+		}
+		x = 83
+		y = 4
+		completion_reward = {
+		    add_tech_bonus = {
+				name = marine_tech_bonus
+				bonus = 1
+				uses = 1
+				category = marine_tech
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_british_tanks
+		icon = build_tank
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_defend_the_streets
+		}
+		x = 84
+		y = 2
+		completion_reward = {
+		    add_tech_bonus = {
+				name = armor_bonus
+				bonus = 1
+				uses = 1
+				category = armor
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_training_program
+		icon = swords
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_british_tanks
+		}
+		x = 84
+		y = 3
+		completion_reward = {
+		    add_doctrine_cost_reduction = {
+				cost_reduction = 1
+				uses = 1
+				category = land_doctrine
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_defend_the_oceans
+		icon = GFX_goal_britain_navy
+		cost = 5
+		prerequisite = {
+			focus = ENG_truly_british_military
+		}
+		x = 86
+		y = 1
+		completion_reward = {
+		    navy_experience = 10
+		}
+
+	}
+	focus = {
+		id = ENG_glorious_navy
+		icon = glorious_british_navy
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_defend_the_oceans
+		}
+		x = 86
+		y = 2
+		completion_reward = {
+		    add_tech_bonus = {
+				name = dd_tech_bonus
+				bonus = 1
+				uses = 1
+				category = dd_tech
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_modern_vessels
+		icon = battleship
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_glorious_navy
+		}
+		x = 86
+		y = 3
+		completion_reward = {
+		    add_tech_bonus = {
+				name = cv_tech_bonus
+				bonus = 1
+				uses = 1
+				category = cv_tech
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_old_and_new_strategies
+		icon = navy_doctrine
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_modern_vessels
+		}
+		x = 85
+		y = 4
+		completion_reward = {
+		    add_doctrine_cost_reduction = {
+				cost_reduction = 0.75
+				uses = 1
+				category = naval_doctrine
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_protect_colonial_establishments
+		icon = naval_occupation
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_modern_vessels
+		}
+		x = 87
+		y = 4
+		completion_reward = {
+		    299 = {	
+				add_building_construction = {
+					type = coastal_bunker
+					province = 12960
+					level = 7
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_broad_dockyard_construction
+		icon = naval_dockyard
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_old_and_new_strategies
+		}
+		prerequisite = {
+			focus = ENG_protect_colonial_establishments
+		}
+		x = 86
+		y = 5
+		completion_reward = {
+		    add_timed_idea = {
+				idea = idea_eng_broad_dockyard_construction
+				days = 200
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_defend_the_skies
+		icon = GFX_goal_britain_RAF
+		cost = 5
+		prerequisite = {
+			focus = ENG_truly_british_military
+		}
+		x = 89
+		y = 1
+		completion_reward = {
+		    air_experience = 10
+		}
+
+	}
+	focus = {
+		id = ENG_legacy_of_the_battle_of_britain
+		icon = legacy_of_the_battle_of_britain
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_defend_the_skies
+		}
+		x = 88
+		y = 2
+		completion_reward = {
+		    add_doctrine_cost_reduction = {
+				cost_reduction = 0.75
+				uses = 1
+				category = air_doctrine
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_modern_bombers
+		icon = generic_bomber
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_legacy_of_the_battle_of_britain
+		}
+		x = 88
+		y = 3
+		completion_reward = {
+		    add_tech_bonus = {
+				name = cat_strategic_bomber_bonus
+				bonus = 1
+				uses = 1
+				category = cat_strategic_bomber
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_scientific_advisors
+		icon = intelligence_exchange
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_broad_technology_program
+		}
+		x = 3
+		y = 5
+		completion_reward = {
+		    add_research_slot = 1
+		}
+
+	}
+	focus = {
+		id = ENG_minor_economic_reforms
+		icon = alliance
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_pass_british_security_act
+		}
+		x = 16
+		y = 4
+		completion_reward = {
+		    add_ideas = idea_eng_the_queens_reforms
+		}
+
+	}
+	focus = {
+		id = ENG_elite_society
+		icon = uk_elite_society
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_minor_economic_reforms
+		}
+		x = 16
+		y = 5
+		completion_reward = {
+		    add_ideas = idea_eng_elite_society
+		}
+
+	}
+	focus = {
+		id = ENG_empower_corporations
+		icon = GFX_goal_bag_of_money
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_elite_society
+		}
+		mutually_exclusive = {
+			focus = ENG_the_queens_estates
+		}
+		x = 15
+		y = 6
+		completion_reward = {
+		    add_ideas = idea_eng_royal_corporatism
+			country_event = { id = britain.107 }
+		}
+
+	}
+	focus = {
+		id = ENG_the_queens_estates
+		icon = queens_estates
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_elite_society
+		}
+		mutually_exclusive = {
+			focus = ENG_empower_corporations
+		}
+		x = 17
+		y = 6
+		completion_reward = {
+		    add_ideas = idea_eng_queens_estates
+		}
+
+	}
+	focus = {
+		id = ENG_one_coalition
+		icon = one_coalition
+		cost = 5
+		prerequisite = {
+			focus = ENG_puppet_parliament
+		}
+		x = 19
+		y = 5
+		completion_reward = {
+		    add_popularity = {
+				ideology = monarchist
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.03
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.03
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.03
+			}
+			add_political_power = -100
+			add_stability = 0.05
+			country_event = { id = britain.108 }
+		}
+
+	}
+	focus = {
+		id = ENG_restore_economic_confidence
+		icon = demand
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_one_coalition
+		}
+		x = 19
+		y = 6
+		completion_reward = {
+		    128 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			132 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			131 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			129 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			125 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			127 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_spy_on_the_people
+		icon = surveillance_panopticon
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_restore_economic_confidence
+			focus = ENG_purge_republicans
+		}
+		available = {
+		    has_completed_focus = ENG_pass_british_security_act
+		}
+		x = 19
+		y = 7
+		completion_reward = {
+		    add_tech_bonus = {
+				name = electronics_bonus
+				bonus = 1
+				uses = 1
+				category = electronics
+			}
+			add_tech_bonus = {
+				name = decryption_tech_bonus
+				bonus = 1
+				uses = 1
+				category = decryption_tech
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_national_royal_holiday
+		icon = national_royal_holiday
+		cost = 5
+		prerequisite = {
+			focus = ENG_restore_economic_confidence
+			focus = ENG_purge_republicans
+		}
+		x = 21
+		y = 7
+		completion_reward = {
+		    add_stability = 0.02
+			add_political_power = 100
+			country_event = { id = britain.109 }
+		}
+
+	}
+	focus = {
+		id = ENG_the_queens_soldiers
+		icon = GFX_goal_queens_soldiers
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_purge_republicans
+			focus = ENG_restore_economic_confidence
+		}
+		x = 23
+		y = 7
+		completion_reward = {
+		    add_ideas = idea_eng_the_queens_soldiers
+		}
+
+	}
+	focus = {
+		id = ENG_appease_scotland
+		icon = appease_scotland
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_spy_on_the_people
+		}
+		prerequisite = {
+			focus = ENG_national_royal_holiday
+		}
+		prerequisite = {
+			focus = ENG_the_queens_soldiers
+		}
+		mutually_exclusive = {
+			focus = ENG_one_union_under_england
+		}
+		x = 20
+		y = 8
+		completion_reward = {
+		    remove_ideas = idea_scottish_tensions
+			add_political_power = -300
+			add_ideas = idea_eng_english_anger
+			country_event = { id = britain.110 }
+		}
+
+	}
+	focus = {
+		id = ENG_one_union_under_england
+		icon = one_union_under_england
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_spy_on_the_people
+		}
+		prerequisite = {
+			focus = ENG_national_royal_holiday
+		}
+		prerequisite = {
+			focus = ENG_the_queens_soldiers
+		}
+		mutually_exclusive = {
+			focus = ENG_appease_scotland
+		}
+		x = 22
+		y = 8
+		completion_reward = {
+		    add_political_power = 300
+			add_popularity = {
+				ideology = monarchist
+				popularity = 0.08
+			}
+			country_event = { id = britain.27 }
+		}
+
+	}
+	focus = {
+		id = ENG_recover_from_backlash
+		icon = defence
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_appease_scotland
+		}
+		x = 20
+		y = 9
+		completion_reward = {
+		    remove_ideas = idea_eng_english_anger
+		}
+
+	}
+	focus = {
+		id = ENG_rebuild_scotland
+		icon = generic_construction_2
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_one_union_under_england
+		}
+		available = {
+		    NOT = {
+			    has_war_with = SCO
+			}
+		}
+		x = 22
+		y = 9
+		completion_reward = {
+		    120 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			136 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			121 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			120 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			136 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_days_of_glory
+		icon = royal_strength
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_recover_from_backlash
+			focus = ENG_rebuild_scotland
+		}
+		x = 21
+		y = 10
+		completion_reward = {
+		    add_ideas = idea_eng_days_of_glory
+			set_cosmetic_tag = ENG_Ulster
+			country_event = { id = britain.111 }
+		}
+
+	}
+	focus = {
+		id = ENG_queen_of_northern_ireland
+		icon = northern_ireland_negotiations
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_days_of_glory
+		}
+		available = {
+		    date > 2013.1.1
+		}
+		x = 21
+		y = 11
+		will_lead_to_war_with = ULS
+		completion_reward = {
+		    create_wargoal = {
+			    type = annex_everything
+			    target = ULS
+		    }
+			119 = {
+			    add_core_of = ENG
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_operation_green
+		icon = operation_green
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_queen_of_northern_ireland
+		}
+		x = 17
+		y = 12
+		will_lead_to_war_with = IRE
+		completion_reward = {
+			if = {
+				limit = {
+					IRE = {
+						is_puppet_of = ENG
+					}
+				}
+				annex_country = {
+					target = IRE
+				}
+			}
+			else = {
+				create_wargoal = {
+					type = annex_everything
+					target = IRE
+				}
+			}
+			134 = {
+			    add_core_of = ENG
+			}
+			113 = {
+			    add_core_of = ENG
+			}
+			135 = {
+			    add_core_of = ENG
+			}
+			country_event = { id = britain.112 }
+		}
+
+	}
+	focus = {
+		id = ENG_the_spanish_marriage
+		icon = spanish_marriage
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_queen_of_northern_ireland
+		}
+		available = {
+		    SPR = {
+			    has_government = monarchist
+			}
+		}
+		x = 21
+		y = 13
+		completion_reward = {
+			create_faction = imperial_alliance
+		    SPR = {
+			    country_event = { id = britain.28 }
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_target_canada
+		icon = uk_target_canada
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_queen_of_northern_ireland
+		}
+		x = 19
+		y = 12
+		will_lead_to_war_with = CAN
+		completion_reward = {
+			every_state = {
+				limit = {
+					is_in_array = {
+						array = CAN_starting_cores
+						value = THIS
+					}
+				}
+				add_claim_by = ENG
+			}
+		    create_wargoal = {
+			    type = annex_everything
+			    target = CAN
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_british_caribbean
+		icon = british_caribbean
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_target_canada
+		}
+		x = 19
+		y = 13
+		will_lead_to_war_with = JAM
+		will_lead_to_war_with = BHM
+		will_lead_to_war_with = ANT
+		will_lead_to_war_with = BRB
+		will_lead_to_war_with = DMN
+		will_lead_to_war_with = GND
+		will_lead_to_war_with = GUY
+		will_lead_to_war_with = STL
+		will_lead_to_war_with = STV
+		will_lead_to_war_with = TAT
+		will_lead_to_war_with = BLZ
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						is_in_array = {
+							array = JAM_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = BHM_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = ANT_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = BRB_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = DMN_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = GND_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = GUY_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = STL_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = STV_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = TAT_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = BLZ_starting_cores
+							value = THIS
+						}
+					}
+				}
+				add_claim_by = ENG
+			}
+		    create_wargoal = {
+			    type = annex_everything
+			    target = JAM
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = BHM
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = ANT
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = BRB
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = DMN
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = GND
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = GUY
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = STL
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = STV
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = TAT
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = BLZ
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_pressure_the_argentines
+		icon = pressure_the_argentines
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_british_caribbean
+		}
+		x = 19
+		y = 14
+		will_lead_to_war_with = ARG
+		completion_reward = {
+		    ARG = {
+			    country_event = { id = britain.31 }
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_the_west_african_colonies
+		icon = west_african_colonies
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_queen_of_northern_ireland
+		}
+		x = 23
+		y = 12
+		will_lead_to_war_with = NGR
+		will_lead_to_war_with = GHA
+		will_lead_to_war_with = GAM
+		will_lead_to_war_with = SIE
+		will_lead_to_war_with = BEN
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						is_in_array = {
+							array = NGR_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = GHA_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = GAM_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = SIE_starting_cores
+							value = THIS
+						}
+					}
+				}
+				add_claim_by = ENG
+			}
+		    create_wargoal = {
+			    type = annex_everything
+			    target = NGR
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = GHA
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = GAM
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = SIE
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = BEN
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_british_south_africa
+		icon = british_south_africa
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_the_west_african_colonies
+		}
+		x = 23
+		y = 13
+		will_lead_to_war_with = SAF
+		will_lead_to_war_with = BOT
+		will_lead_to_war_with = ZAM
+		will_lead_to_war_with = ZIM
+		will_lead_to_war_with = MLW
+		will_lead_to_war_with = TNZ
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						is_in_array = {
+							array = SAF_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = BOT_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = ZAM_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = ZIM_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = MLW_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = TNZ_starting_cores
+							value = THIS
+						}
+					}
+				}
+				add_claim_by = ENG
+			}
+		    create_wargoal = {
+			    type = annex_everything
+			    target = SAF
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = BOT
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = ZAM
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = ZIM
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = MLW
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = TNZ
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_british_north_africa
+		icon = british_north_africa
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_british_south_africa
+		}
+		x = 23
+		y = 14
+		will_lead_to_war_with = UAR
+		will_lead_to_war_with = EGY
+		will_lead_to_war_with = SUD
+		will_lead_to_war_with = KEN
+		will_lead_to_war_with = UGA
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						is_in_array = {
+							array = EGY_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = SUD_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = KEN_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = UGA_starting_cores
+							value = THIS
+						}
+					}
+				}
+				add_claim_by = ENG
+			}
+		    create_wargoal = {
+			    type = annex_everything
+			    target = UAR
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = EGY
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = SUD
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = KEN
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = UGA
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_arabian_memories
+		icon = arabian_memories
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_queen_of_northern_ireland
+		}
+		x = 25
+		y = 12
+		will_lead_to_war_with = UAE
+		will_lead_to_war_with = YEM
+		will_lead_to_war_with = PAL
+		will_lead_to_war_with = IRQ
+		will_lead_to_war_with = KUW
+		will_lead_to_war_with = JOR
+		will_lead_to_war_with = QAT
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						is_in_array = {
+							array = UAE_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = YEM_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = PAL_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = IRQ_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = KUW_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = JOR_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = QAT_starting_cores
+							value = THIS
+						}
+					}
+				}
+				add_claim_by = ENG
+			}
+		    create_wargoal = {
+			    type = annex_everything
+			    target = UAE
+		    }
+			if = {
+				limit = {
+					country_exists = YEM
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = YEM
+				}
+			}
+			if = {
+				limit = {
+					country_exists = PDY
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = PDY
+				}
+			}
+			if = {
+				limit = {
+					country_exists = YAR
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = YAR
+				}
+			}
+			if = {
+				limit = {
+					country_exists = JAS
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = JAS
+				}
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = PAL
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = IRQ
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = KUW
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = JOR
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = QAT
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_ultimatum_to_cyprus
+		icon = ultimatum_to_cyprus
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_operation_green
+		}
+		x = 16
+		y = 13
+		will_lead_to_war_with = CYP
+		completion_reward = {
+			every_state = {
+				limit = {
+					is_in_array = {
+						array = CYP_starting_cores
+						value = THIS
+					}
+				}
+				add_claim_by = ENG
+			}
+		    CYP = {
+			    country_event = { id = britain.35 }
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_empress_of_india
+		icon = empress_of_india
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_arabian_memories
+		}
+		x = 26
+		y = 13
+		will_lead_to_war_with = RAJ
+		will_lead_to_war_with = PAK
+		will_lead_to_war_with = MYA
+		will_lead_to_war_with = MLD
+		will_lead_to_war_with = SRI
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						is_in_array = {
+							array = RAJ_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = PAK_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = MYA_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = MLD_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = SRI_starting_cores
+							value = THIS
+						}
+					}
+				}
+				add_claim_by = ENG
+			}
+		    create_wargoal = {
+			    type = annex_everything
+			    target = RAJ
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = PAK
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = MYA
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = MLD
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = SRI
+		    }
+			country_event = { id = britain.113 }
+		}
+
+	}
+	focus = {
+		id = ENG_pacific_empire
+		icon = uk_pacific_empire
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_british_south_africa
+		}
+		prerequisite = {
+			focus = ENG_empress_of_india
+		}
+		x = 25
+		y = 14
+		will_lead_to_war_with = AST
+		will_lead_to_war_with = MAY
+		will_lead_to_war_with = PAP
+		will_lead_to_war_with = NZL
+		will_lead_to_war_with = FIJ
+		will_lead_to_war_with = KIR
+		will_lead_to_war_with = SOL
+		will_lead_to_war_with = TON
+		will_lead_to_war_with = NAU
+		will_lead_to_war_with = TUV
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						is_in_array = {
+							array = AST_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = MAY_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = PAP_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = NZL_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = FIJ_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = KIR_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = SOL_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = TON_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = NAU_starting_cores
+							value = THIS
+						}
+						is_in_array = {
+							array = TUV_starting_cores
+							value = THIS
+						}
+					}
+				}
+				add_claim_by = ENG
+			}
+		    create_wargoal = {
+			    type = annex_everything
+			    target = AST
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = MAY
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = PAP
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = NZL
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = FIJ
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = KIR
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = SOL
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = TON
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = NAU
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = TUV
+		    }
+		}
+		
+
+	}
+	focus = {
+		id = ENG_demand_somaliland
+		icon = major_war
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_ultimatum_to_cyprus
+		}
+		x = 17
+		y = 14
+		will_lead_to_war_with = SOM
+		completion_reward = {
+			269 = {
+				add_claim_by = ENG
+			}
+		    every_country = {
+			    limit = {
+				    owns_state = 269
+				}
+				country_event = { id = britain.38 }
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_thirteen_colonies
+		icon = thirteen_colonies
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_demand_somaliland
+		}
+		prerequisite = {
+			focus = ENG_pressure_the_argentines
+		}
+		prerequisite = {
+			focus = ENG_british_north_africa
+		}
+		prerequisite = {
+			focus = ENG_pacific_empire
+		}
+		x = 22
+		y = 15
+		will_lead_to_war_with = NEA
+		will_lead_to_war_with = AMC
+		completion_reward = {
+			every_state = {
+				limit = {
+					is_in_array = {
+						array = NEA_starting_cores
+						value = THIS
+					}
+				}
+				add_claim_by = ENG
+			}
+		    create_wargoal = {
+			    type = annex_everything
+			    target = NEA
+		    }
+            create_wargoal = {
+			    type = annex_everything
+			    target = AMC
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_the_hong_kong_mistake
+		icon = hong_kong_mistake
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_demand_somaliland
+		}
+		prerequisite = {
+			focus = ENG_pressure_the_argentines
+		}
+		prerequisite = {
+			focus = ENG_british_north_africa
+		}
+		prerequisite = {
+			focus = ENG_pacific_empire
+		}
+		available = {
+		    PRC = {
+			    owns_state = 326
+			} 
+		}
+		x = 20
+		y = 15
+		will_lead_to_war_with = PRC
+		completion_reward = {
+		    PRC = {
+			    country_event = { id = britain.40 }
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_republican_values
+		icon = british_republicans
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_align_with_trade_unions
+		}
+		x = 32
+		y = 5
+		completion_reward = {
+		    add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.03
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.05
+			}
+			add_political_power = 100
+			add_stability = -0.05
+			country_event = { id = britain.114 }
+		}
+
+	}
+	focus = {
+		id = ENG_radical_economic_reforms
+		icon = communist_construction
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_republican_values
+		}
+		x = 31
+		y = 6
+		completion_reward = {
+		    add_ideas = idea_eng_revolutionary_economy
+			country_event = { id = britain.115 }
+		}
+
+	}
+	focus = {
+		id = ENG_limit_press_coverage
+		icon = GFX_goal_anti_propaganda
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_republican_values
+		}
+		x = 33
+		y = 6
+		completion_reward = {
+		    add_ideas = idea_eng_state_media
+			country_event = { id = britain.116 }
+		}
+
+	}
+	focus = {
+		id = ENG_establish_nationalisation_ministry
+		icon = establish_nationalisation_ministry
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_radical_economic_reforms
+		}
+		x = 29
+		y = 7
+		completion_reward = {
+		    add_timed_idea = {
+				idea = idea_eng_nationalisation_ministry
+				days = 365
+			}
+			country_event = { id = britain.117 }
+		}
+
+	}
+	focus = {
+		id = ENG_nationalise_energy
+		icon = nationalise_energy
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_establish_nationalisation_ministry
+		}
+		x = 28
+		y = 8
+		completion_reward = {
+		    add_ideas = idea_eng_nationalised_energy
+			country_event = { id = britain.118 }
+		}
+
+	}
+	focus = {
+		id = ENG_nationalise_infrastructure
+		icon = infrastructure
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_establish_nationalisation_ministry
+		}
+		x = 30
+		y = 8
+		completion_reward = {
+		    add_ideas = idea_eng_nationalised_infrastructure
+		}
+
+	}
+	focus = {
+		id = ENG_increase_healthcare_coverage
+		icon = increase_healthcare_coverage
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_establish_nationalisation_ministry
+		}
+		x = 29
+		y = 9
+		completion_reward = {
+		    add_ideas = idea_eng_socialised_healthcare
+		}
+
+	}
+	focus = {
+		id = ENG_withdraw_european_ambassadors
+		icon = communists_marching
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_radical_economic_reforms
+		}
+		prerequisite = {
+			focus = ENG_limit_press_coverage
+		}
+		x = 32
+		y = 7
+		completion_reward = {
+		    every_country = {
+			    limit = {
+				    has_idea = idea_eu_member
+				}
+				add_opinion_modifier = {
+				    target = ENG
+				    modifier = declaration_of_hostility
+			    }
+			}
+			add_political_power = 200
+			add_stability = 0.03
+			
+		}
+
+	}
+	focus = {
+		id = ENG_meet_with_the_queen
+		icon = meet_with_the_queen
+		cost = 2
+		prerequisite = {
+			focus = ENG_limit_press_coverage
+		}
+		x = 35
+		y = 7
+		completion_reward = {
+		    add_popularity = {
+				ideology = national_conservative
+				popularity = -0.03
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.03
+			}
+			country_event = { id = britain.119 }
+		}
+
+	}
+	focus = {
+		id = ENG_abolish_the_monarchy
+		icon = anti_monarchy
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_meet_with_the_queen
+		}
+		x = 35
+		y = 8
+		completion_reward = {
+		    set_politics = {
+	            ruling_party = revolutionary_socialist
+	            elections_allowed = no
+            }
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.05
+			}
+			remove_ideas = idea_queen_elizabeth_humiliated
+			dismantle_faction = yes
+			country_event = { id = britain.120 }
+			hidden_effect = {
+				remove_ideas = britain_sic_ken_livingstone
+				remove_ideas = britain_fom_margaret_beckett
+				remove_ideas = britain_nsm_clive_lewis
+				remove_ideas = britain_inm_john_sawers
+				add_ideas = britain_sic_len_mccluskey
+				add_ideas = britain_fom_lindsey_german
+				add_ideas = britain_nsm_frank_sweeney
+				add_ideas = britain_inm_china_mieville
+			}
+			custom_effect_tooltip = britain_revsoc_ministers_tooltip
+		}
+
+	}
+	focus = {
+		id = ENG_nationalise_royal_estates
+		icon = GFX_goal_nationalise_royalty
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_abolish_the_monarchy
+		}
+		x = 35
+		y = 9
+		completion_reward = {
+		    add_ideas = idea_eng_republican_estates
+		}
+
+	}
+	focus = {
+		id = ENG_industrial_workers_of_britain
+		icon = red_hands_shaking
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_increase_healthcare_coverage
+		}
+		x = 29
+		y = 10
+		completion_reward = {
+		    add_ideas = idea_eng_british_workers
+		}
+
+	}
+	focus = {
+		id = ENG_invite_socialist_american_scientists
+		icon = socialist_science
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_withdraw_european_ambassadors
+		}
+		x = 32
+		y = 9
+		completion_reward = {
+		    add_research_slot = 1
+			country_event = { id = britain.121 }
+		}
+
+	}
+	focus = {
+		id = ENG_draft_a_socialist_constitution
+		icon = GFX_goal_socialist_constitution
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_nationalise_royal_estates
+		}
+		x = 35
+		y = 10
+		completion_reward = {
+		    add_stability = 0.05
+			country_event = { id = britain.122 }
+		}
+
+	}
+	focus = {
+		id = ENG_dissolve_parliament
+		icon = gorbachevs_kgb
+		cost = 2
+		prerequisite = {
+			focus = ENG_industrial_workers_of_britain
+		}
+		prerequisite = {
+			focus = ENG_draft_a_socialist_constitution
+		}
+		x = 32
+		y = 11
+		completion_reward = {
+		    add_popularity = {
+				ideology = moderate_socialist
+				popularity = -0.1
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = fascist
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = national_bolshevik
+				popularity = 0.02
+			}
+			country_event = { id = britain.123 }
+		}
+
+	}
+	focus = {
+		id = ENG_british_workers_congress
+		icon = communism_2
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_dissolve_parliament
+		}
+		x = 32
+		y = 12
+		completion_reward = {
+		    add_ideas = idea_eng_workers_congress
+			country_event = { id = britain.124 }
+			hidden_effect = {
+				ENG = {
+					country_event = { days = 1 id = britain.245 }
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_confederation
+		icon = uk_confederation
+		cost = 2
+		prerequisite = {
+			focus = ENG_british_workers_congress
+		}
+		available = {
+			OR = {
+				has_country_leader = {
+					name = "Lindsey German"
+				}
+				has_country_leader = {
+					name = "John McDonnell"
+				}
+			}
+		}
+		mutually_exclusive = {
+			focus = ENG_federation
+			focus = ENG_union_state
+		}
+		x = 29
+		y = 13
+		completion_reward = {
+		    add_political_power = 200
+			country_event = { id = britain.125 }
+		}
+
+	}
+	focus = {
+		id = ENG_federation
+		icon = uk_federation
+		cost = 2
+		prerequisite = {
+			focus = ENG_british_workers_congress
+		}
+		available = {
+			OR = {
+				has_country_leader = {
+					name = "John McDonnell"
+				}
+				has_country_leader = {
+					name = "Len McCluskey"
+				}
+			}
+		}
+		mutually_exclusive = {
+			focus = ENG_confederation
+			focus = ENG_union_state
+		}
+		x = 32
+		y = 13
+		completion_reward = {
+		    add_stability = 0.05 
+			country_event = { id = britain.126 }
+		}
+
+	}
+	focus = {
+		id = ENG_union_state
+		icon = uk_union_state
+		cost = 2
+		prerequisite = {
+			focus = ENG_british_workers_congress
+		}
+		available = {
+			OR = {
+				has_country_leader = {
+					name = "George Galloway"
+				}
+				has_country_leader = {
+					name = "Len McCluskey"
+				}
+			}
+		}
+		mutually_exclusive = {
+			focus = ENG_confederation
+			focus = ENG_federation
+		}
+		x = 35
+		y = 13
+		completion_reward = {
+		    add_political_power = -200
+			add_stability = 0.03
+			country_event = { id = britain.127 }
+		}
+
+	}
+	focus = {
+		id = ENG_workers_of_england
+		icon = workers_of_england
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_confederation
+		}
+		x = 28
+		y = 14
+		completion_reward = {
+		    128 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			338 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			125 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			129 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			127 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			130 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			
+		}
+
+	}
+	focus = {
+		id = ENG_workers_of_scotland
+		icon = workers_of_scotland
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_confederation
+		}
+		x = 30
+		y = 14
+		completion_reward = {
+		    SCO = {
+			    transfer_state = 120
+				transfer_state = 136
+				transfer_state = 133
+				transfer_state = 121
+			}
+			ENG = {
+			    puppet = SCO
+			} 
+		    133 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			121 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			136 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			remove_ideas = idea_scottish_tensions
+			country_event = { id = britain.128 }
+		}
+
+	}
+	focus = {
+		id = ENG_workers_of_wales
+		icon = workers_of_wales
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_workers_of_england
+		}
+		prerequisite = {
+			focus = ENG_workers_of_scotland
+		}
+		x = 29
+		y = 15
+		completion_reward = {
+		    WAL = {
+			    transfer_state = 122
+			}
+			ENG = {
+			    puppet = WAL
+			} 
+		    122 = {
+			    add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = industrial_complex
+					level = 4
+					instant_build = yes
+				}
+			}
+			country_event = { id = britain.129 }
+		}
+
+	}
+	focus = {
+		id = ENG_socialist_devolved_parliaments
+		icon = manipulate_swedish_banks
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_federation
+		}
+		x = 32
+		y = 15
+		completion_reward = {
+		    remove_ideas = idea_scottish_tensions
+			country_event = { id = britain.130 }
+		}
+
+	}
+	focus = {
+		id = ENG_revolutionary_institutions
+		icon = GFX_goal_CommunistScientists
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_socialist_devolved_parliaments
+		}
+		x = 31
+		y = 16
+		completion_reward = {
+		    add_ideas = idea_eng_revolutionary_institutions
+		}
+
+	}
+	focus = {
+		id = ENG_national_reconciliation
+		icon = communist_monarchy
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_socialist_devolved_parliaments
+		}
+		x = 33
+		y = 16
+		completion_reward = {
+		    add_ideas = idea_eng_national_reconciliation
+		}
+
+	}
+	focus = {
+		id = ENG_strengthened_red_army
+		icon = military_salute
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_union_state
+		}
+		x = 35
+		y = 14
+		completion_reward = {
+		    add_ideas = idea_eng_british_red_army
+			country_event = { id = britain.131 }
+		}
+
+	}
+	focus = {
+		id = ENG_further_centralisation
+		icon = military_factory
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_strengthened_red_army
+		}
+		x = 35
+		y = 15
+		completion_reward = {
+		    add_ideas = idea_eng_centralised_britain_revsoc
+			country_event = { id = britain.132 }
+		}
+
+	}
+	focus = {
+		id = ENG_cooperate_with_some_communists
+		icon = cooperate_with_some_communists
+		cost = 5
+		prerequisite = {
+			focus = ENG_further_centralisation
+		}
+		x = 35
+		y = 17
+		completion_reward = {
+		    add_popularity = {
+				ideology = communist
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.05
+			}
+			add_political_power = 100
+		}
+
+	}
+	focus = {
+		id = ENG_international_revolution
+		icon = communism_1
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_cooperate_with_some_communists
+			focus = ENG_revolutionary_institutions
+			focus = ENG_national_reconciliation
+			focus = ENG_workers_of_wales
+		}
+		available = {
+		    date > 2013.1.1
+		}
+		x = 32
+		y = 18
+		completion_reward = {
+		    every_country = {
+			    limit = {
+				    has_government = revolutionary_socialist
+				}
+				add_opinion_modifier = {
+				    target = ENG
+				    modifier = declaration_of_friendship
+			    }
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_trotskys_way
+		icon = fourth_international
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_international_revolution
+		}
+		available = {
+			NOT = {
+				OR = {
+					has_country_leader = {
+						name = "Lindsey German"
+					}
+					has_country_leader = {
+						name = "Murad Qureshi"
+					}
+					has_country_leader = {
+						name = "Chris Nineham"
+					}
+				}
+			}
+		}
+
+		mutually_exclusive = {
+			focus = ENG_socialism_through_peace
+		}
+		x = 31
+		y = 19
+		completion_reward = {
+		    add_ideas = idea_eng_trotskyism
+			country_event = { id = britain.133 }
+		}
+
+	}
+	focus = {
+		id = ENG_socialism_through_peace
+		icon = GFX_goal_communist_peace
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_international_revolution
+		}
+		mutually_exclusive = {
+			focus = ENG_trotskys_way
+		}
+		x = 33
+		y = 19
+		completion_reward = {
+		    add_ideas = idea_eng_socialism_through_peace
+			country_event = { id = britain.134 }
+		}
+
+	}
+	focus = {
+		id = ENG_red_ireland
+		icon = ireland_attack
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_trotskys_way
+		}
+		x = 27
+		y = 20
+		will_lead_to_war_with = IRE
+		will_lead_to_war_with = ULS
+		completion_reward = {
+		    create_wargoal = {
+			    type = annex_everything
+			    target = IRE
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = ULS
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_end_of_the_warsaw_pact
+		icon = soviet_attack
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_trotskys_way
+		}
+		x = 29
+		y = 20
+		will_lead_to_war_with = SOV
+		completion_reward = {
+			if = {
+				limit = {
+					SOV = {
+						has_government = communist
+						is_faction_leader = yes
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = SOV
+				}
+			}
+		    if = {
+				limit = {
+					GER = {
+						has_government = communist
+						is_faction_leader = yes
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = GER
+				}
+			}
+			if = {
+				limit = {
+					ITA = {
+						has_government = communist
+						is_faction_leader = yes
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = ITA
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_crush_spain
+		icon = spain_attack
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_trotskys_way
+		}
+		x = 31
+		y = 20
+		will_lead_to_war_with = SPR
+		completion_reward = {
+		    create_wargoal = {
+			    type = annex_everything
+			    target = SPR
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_red_iceland
+		icon = iceland_attack
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_red_ireland
+		}
+		x = 27
+		y = 21
+		will_lead_to_war_with = ICE
+		completion_reward = {
+		    create_wargoal = {
+			    type = annex_everything
+			    target = ICE
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_death_to_imperialists
+		icon = canada_attack
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_crush_spain
+		}
+		x = 31
+		y = 21
+		will_lead_to_war_with = USA
+		will_lead_to_war_with = CAN
+		completion_reward = {
+		    create_wargoal = {
+			    type = annex_everything
+			    target = CAN
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = USA
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_lands_of_the_lost_empire
+		icon = australia_attack
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_end_of_the_warsaw_pact
+		}
+		x = 29
+		y = 21
+		will_lead_to_war_with = AST
+		will_lead_to_war_with = RAJ
+		completion_reward = {
+		    create_wargoal = {
+			    type = annex_everything
+			    target = AST
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = RAJ
+		    }
+		}
+		
+
+	}
+	focus = {
+		id = ENG_cooperate_with_americans
+		icon = improve_relations
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_socialism_through_peace
+		}
+		bypass = {
+			OR = {
+				is_in_faction_with = NEA
+				NEA = {
+					NOT = {
+						has_government = revolutionary_socialist
+					}
+				}
+			}
+		}
+		x = 33
+		y = 20
+		completion_reward = {
+		    NEA = {
+			    country_event = { id = britain.43 }
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_socialist_science
+		icon = socialist_science
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_cooperate_with_americans
+		}
+		x = 33
+		y = 21
+		completion_reward = {
+		    add_ideas = idea_eng_revolutionary_science
+		}
+
+	}
+	focus = {
+		id = ENG_continue_national_development
+		icon = production
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_socialism_through_peace
+		}
+		x = 35
+		y = 20
+		completion_reward = {
+		    130 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			132 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			129 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			128 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_renewed_patriotism
+		icon = demand_territory
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_continue_national_development
+		}
+		x = 35
+		y = 21
+		completion_reward = {
+		    add_ideas = idea_eng_renewed_patriotism
+			country_event = { id = britain.135 }
+		}
+
+	}
+	focus = {
+		id = ENG_truly_equal_society
+		icon = support_workers
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_socialism_through_peace
+		}
+		x = 37
+		y = 20
+		completion_reward = {
+		    add_stability = 0.045
+		}
+
+	}
+	focus = {
+		id = ENG_secure_revolutionary_nation
+		icon = industry_in_alabama
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_truly_equal_society
+		}
+		x = 37
+		y = 21
+		completion_reward = {
+		    add_ideas = idea_eng_secure_britain
+		}
+
+	}
+	focus = {
+		id = ENG_storm_buckingham_palace
+		icon = storm_buckingham_palace
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_begin_the_revolution
+		}
+		x = 41
+		y = 5
+		completion_reward = {
+		    add_stability = -0.03
+			add_political_power = 150
+			dismantle_faction = yes
+			country_event = { id = britain.136 }
+		}
+
+	}
+	focus = {
+		id = ENG_execute_them
+		icon = execute_them
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_storm_buckingham_palace
+		}
+		mutually_exclusive = {
+			focus = ENG_exile_them
+		}
+		x = 40
+		y = 6
+		completion_reward = {
+		    set_politics = {
+	            ruling_party = communist
+	            elections_allowed = no
+            }
+		    add_popularity = {
+				ideology = communist
+				popularity = -0.05
+			}
+			hidden_effect = {
+				ENG_regency_council = {
+					promote_character = regency_monarchist
+				}
+        	}
+			hidden_effect = {
+				remove_ideas = britain_sic_ken_livingstone
+				remove_ideas = britain_fom_margaret_beckett
+				remove_ideas = britain_ind_john_mcdonnell
+				remove_ideas = britain_nsm_clive_lewis
+				remove_ideas = britain_inm_john_sawers
+				add_ideas = britain_sic_robert_crow
+				add_ideas = britain_fom_liz_payne
+				add_ideas = britain_ind_ian_lavery
+				add_ideas = britain_nsm_arthur_scargill
+				add_ideas = britain_inm_andrew_murray
+			}
+			country_event = { id = britain.137 }
+			add_ideas = idea_eng_royal_family_erased
+			remove_ideas = idea_queen_elizabeth_humiliated
+			custom_effect_tooltip = britain_communist_ministers_tooltip
+		}
+
+	}
+	focus = {
+		id = ENG_exile_them
+		icon = investigate_industrial_corruption
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_storm_buckingham_palace
+		}
+		mutually_exclusive = {
+			focus = ENG_execute_them
+		}
+		x = 42
+		y = 6
+		completion_reward = {
+		    set_politics = {
+	            ruling_party = communist
+	            elections_allowed = no
+            }
+		    add_popularity = {
+				ideology = communist
+				popularity = 0.03
+			}
+			add_ideas = idea_eng_royals_in_exile
+			remove_ideas = idea_queen_elizabeth_humiliated
+			country_event = { id = britain.138 }
+			hidden_effect = {
+				remove_ideas = britain_sic_ken_livingstone
+				remove_ideas = britain_fom_margaret_beckett
+				remove_ideas = britain_ind_john_mcdonnell
+				remove_ideas = britain_nsm_clive_lewis
+				remove_ideas = britain_inm_john_sawers
+				add_ideas = britain_sic_robert_crow
+				add_ideas = britain_fom_liz_payne
+				add_ideas = britain_ind_ian_lavery
+				add_ideas = britain_nsm_arthur_scargill
+				add_ideas = britain_inm_andrew_murray
+			}
+			custom_effect_tooltip = britain_communist_ministers_tooltip
+		}
+
+	}
+	focus = {
+		id = ENG_build_a_one_party_state
+		icon = GFX_goal_red_flag_communist
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_execute_them
+			focus = ENG_exile_them
+		}
+		x = 41
+		y = 7
+		completion_reward = {
+		    add_ideas = idea_eng_one_party_state
+			country_event = { id = britain.139 }
+		}
+
+	}
+	focus = {
+		id = ENG_state_industries
+		icon = GFX_goal_communist_factories
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_build_a_one_party_state
+		}
+		x = 39
+		y = 8
+		completion_reward = {
+		    add_ideas = idea_eng_state_industries
+		}
+
+	}
+	focus = {
+		id = ENG_indoctrination_program
+		icon = generic_marching
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_build_a_one_party_state
+		}
+		x = 41
+		y = 8
+		completion_reward = {
+		    add_ideas = idea_eng_communist_indoctrination
+		}
+
+	}
+	focus = {
+		id = ENG_pro_soviet_propaganda
+		icon = pro_soviet_propaganda
+		cost = 5
+		prerequisite = {
+			focus = ENG_build_a_one_party_state
+		}
+		x = 43
+		y = 8
+		completion_reward = {
+		    SOV = {
+			    add_opinion_modifier = {
+				    target = ENG
+				    modifier = declaration_of_friendship
+			    }
+			}
+			country_event = { id = britain.140 }
+		}
+
+	}
+	focus = {
+		id = ENG_communist_ministries
+		icon = uk_communist_ministries
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_state_industries
+		}
+		prerequisite = {
+			focus = ENG_indoctrination_program
+		}
+		x = 40
+		y = 9
+		completion_reward = {
+		    add_ideas = idea_eng_state_ministries
+			country_event = { id = britain.141 }
+		}
+
+	}
+	focus = {
+		id = ENG_strengthen_links_with_the_eu
+		icon = european_union
+		cost = 5
+		prerequisite = {
+			focus = ENG_indoctrination_program
+		}
+		prerequisite = {
+			focus = ENG_pro_soviet_propaganda
+		}
+		x = 42
+		y = 9
+		completion_reward = {
+		    every_country = {
+			    limit = {
+				    has_idea = idea_eu_member
+				}
+				add_opinion_modifier = {
+				    target = ENG
+				    modifier = declaration_of_friendship
+			    }
+			}
+			
+		}
+
+	}
+	focus = {
+		id = ENG_join_the_eu
+		icon = uk_join_the_eu
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_strengthen_links_with_the_eu
+		}
+		x = 42
+		y = 10
+		completion_reward = {
+		    add_ideas = idea_eu_member
+		}
+
+	}
+	focus = {
+		id = ENG_overthrow_the_academic_elite
+		icon = crown_shattered
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_communist_ministries
+		}
+		x = 40
+		y = 10
+		completion_reward = {
+		    add_ideas = idea_eng_academics_crushed
+		}
+
+	}
+	focus = {
+		id = ENG_peasants_revolution
+		icon = uk_peasants_revolution
+		cost = 2
+		prerequisite = {
+			focus = ENG_overthrow_the_academic_elite
+		}
+		prerequisite = {
+			focus = ENG_join_the_eu
+		}
+		mutually_exclusive = {
+			focus = ENG_workers_revolution
+			focus = ENG_total_revolution
+		}
+		x = 37
+		y = 11
+		completion_reward = {
+		    PRC = {
+			    add_opinion_modifier = {
+				    target = ENG
+				    modifier = recent_actions_positive
+			    }
+			}
+			country_event = { id = britain.142 }
+			hidden_effect = {
+				remove_ideas = britain_sic_robert_crow
+				remove_ideas = britain_fom_liz_payne
+				remove_ideas = britain_ind_ian_lavery
+				remove_ideas = britain_nsm_arthur_scargill
+				add_ideas = britain_sic_harpal_brar
+				add_ideas = britain_fom_dermot_hudson
+				add_ideas = britain_ind_ella_rule
+				add_ideas = britain_nsm_roy_greenslade
+			}
+			custom_effect_tooltip = britain_maoist_ministers_tooltip
+		}
+
+	}
+	focus = {
+		id = ENG_workers_revolution
+		icon = uk_workers_revolution
+		cost = 2
+		prerequisite = {
+			focus = ENG_overthrow_the_academic_elite
+		}
+		prerequisite = {
+			focus = ENG_join_the_eu
+		}
+		mutually_exclusive = {
+			focus = ENG_peasants_revolution
+			focus = ENG_total_revolution
+		}
+		x = 41
+		y = 11
+		completion_reward = {
+		    SOV = {
+			    add_opinion_modifier = {
+				    target = ENG
+				    modifier = recent_actions_positive
+			    }
+			}
+			country_event = { id = britain.143 }
+		}
+
+	}
+	focus = {
+		id = ENG_total_revolution
+		icon = uk_total_revolution
+		cost = 2
+		prerequisite = {
+			focus = ENG_join_the_eu
+		}
+		prerequisite = {
+			focus = ENG_overthrow_the_academic_elite
+		}
+		mutually_exclusive = {
+			focus = ENG_peasants_revolution
+			focus = ENG_workers_revolution
+		}
+		x = 45
+		y = 11
+		completion_reward = {
+		    add_popularity = {
+				ideology = communist
+				popularity = 0.05
+			}
+			country_event = { id = britain.144 }
+			hidden_effect = {
+				remove_ideas = britain_sic_robert_crow
+				remove_ideas = britain_fom_liz_payne
+				remove_ideas = britain_nsm_arthur_scargill
+				add_ideas = britain_sic_michael_chant
+				add_ideas = britain_fom_dermot_hudson
+				add_ideas = britain_nsm_roy_greenslade
+			}
+			custom_effect_tooltip = britain_totalist_ministers_tooltip
+		}
+
+	}
+	focus = {
+		id = ENG_join_warsaw_pact
+		icon = warsaw_pact
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_workers_revolution
+		}
+		x = 41
+		y = 13
+		completion_reward = {
+		    SOV = {
+			    country_event = { id = britain.46 }
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_british_soviet_training_exercises
+		icon = GFX_goal_british_soviet_exercises
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_join_warsaw_pact
+		}
+		x = 41
+		y = 14
+		completion_reward = {
+		    army_experience = 20
+			add_tech_bonus = {
+				name = infantry_weapons_bonus
+				bonus = 1
+				uses = 1
+				category = infantry_weapons
+			}
+			country_event = { id = britain.145 }
+		}
+
+	}
+	focus = {
+		id = ENG_soviet_investment
+		icon = soviet_investment
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_british_soviet_training_exercises
+		}
+		x = 41
+		y = 15
+		completion_reward = {
+		    136 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			125 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			128 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			133 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			if = {
+				limit = {
+					country_exists = SOV
+				}
+				add_ideas = idea_comecon_member
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_local_red_councils
+		icon = soviet_nationalist
+		cost = 5
+		prerequisite = {
+			focus = ENG_pro_soviet_propaganda
+		}
+		x = 44
+		y = 9
+		completion_reward = {
+		    128 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			338 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			122 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			123 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			129 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			125 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			127 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			133 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			country_event = { id = britain.146 }
+		}
+
+	}
+	focus = {
+		id = ENG_scottish_peoples_state
+		icon = GFX_goal_scottish_peoples_state
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_peasants_revolution
+			focus = ENG_workers_revolution
+		}
+		x = 39
+		y = 12
+		completion_reward = {
+		    remove_ideas = idea_scottish_tensions
+			country_event = { id = britain.147 }
+		}
+
+	}
+	focus = {
+		id = ENG_a_united_britain
+		icon = embrace_conservatism
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_total_revolution
+		}
+		x = 45
+		y = 12
+		completion_reward = {
+		    add_ideas = idea_eng_united_britain
+			country_event = { id = britain.148 }
+		}
+
+	}
+	focus = {
+		id = ENG_agriculture_focus
+		icon = GFX_goal_generic_agriculture
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_peasants_revolution
+		}
+		x = 38
+		y = 13
+		completion_reward = {
+		    add_ideas = idea_eng_agriculture_focus
+		}
+
+	}
+	focus = {
+		id = ENG_rural_conscription
+		icon = GFX_goal_agrarian_soldiers
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_agriculture_focus
+		}
+		x = 38
+		y = 14
+		completion_reward = {
+		    add_ideas = idea_eng_rural_conscription
+			country_event = { id = britain.149 }
+		}
+
+	}
+	focus = {
+		id = ENG_red_militias
+		icon = GFX_goal_red_militias
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_rural_conscription
+		}
+		x = 38
+		y = 15
+		completion_reward = {
+		    add_ideas = idea_eng_red_militias
+		}
+
+	}
+	focus = {
+		id = ENG_consolidate_communist_rule
+		icon = socialism_focus
+		cost = 5
+		prerequisite = {
+			focus = ENG_soviet_investment
+		}
+		x = 41
+		y = 16
+		completion_reward = {
+		    add_popularity = {
+				ideology = communist
+				popularity = 0.1
+			}
+			add_political_power = 200
+		}
+
+	}
+	focus = {
+		id = ENG_join_china
+		icon = china
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_red_militias
+		}
+		x = 38
+		y = 16
+		completion_reward = {
+		    PRC = {
+			    country_event = { id = britain.47 }
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_unite_the_isles
+		icon = GFX_focus_generic_annex_country
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_a_united_britain
+		}
+		available = {
+		    date > 2013.1.1
+		}
+		x = 45
+		y = 13
+		will_lead_to_war_with = ULS
+		will_lead_to_war_with = IRE
+		completion_reward = {
+		    create_wargoal = {
+			    type = annex_everything
+			    target = ULS
+		    }
+			create_wargoal = {
+			    type = annex_everything
+			    target = IRE
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_defend_our_commune
+		icon = military_sphere
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_unite_the_isles
+		}
+		mutually_exclusive = {
+			focus = ENG_crush_all_capitalists
+		}
+		x = 44
+		y = 14
+		completion_reward = {
+		    add_ideas = idea_eng_defending_the_commune
+		}
+
+	}
+	focus = {
+		id = ENG_crush_all_capitalists
+		icon = parties
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_unite_the_isles
+		}
+		mutually_exclusive = {
+			focus = ENG_defend_our_commune
+		}
+		x = 46
+		y = 14
+		completion_reward = {
+		    add_ideas = idea_eng_total_war
+		}
+
+	}
+	focus = {
+		id = ENG_further_economic_reform
+		icon = GFX_goal_socialist_industry
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_defend_our_commune
+		}
+		x = 44
+		y = 15
+		completion_reward = {
+		    add_ideas = idea_eng_centralised_britain
+			
+		}
+
+	}
+	focus = {
+		id = ENG_monitor_our_people
+		icon = GFX_goal_Generic_Espionage2
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_further_economic_reform
+		}
+		x = 44
+		y = 16
+		completion_reward = {
+		    add_ideas = idea_eng_populace_monitored
+			country_event = { id = britain.150 }
+		}
+
+	}
+	focus = {
+		id = ENG_red_navy
+		icon = wolf_pack
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_monitor_our_people
+		}
+		x = 44
+		y = 17
+		completion_reward = {
+		    add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
+				uses = 1
+				category = naval_doctrine
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_war_with_spain
+		icon = spain_attack
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_crush_all_capitalists
+		}
+		x = 46
+		y = 15
+		will_lead_to_war_with = SPR
+		completion_reward = {
+		    create_wargoal = {
+			    type = annex_everything
+			    target = SPR
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_war_with_american_imperialists
+		icon = american_republic_attack
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_war_with_spain
+		}
+		x = 46
+		y = 16
+		will_lead_to_war_with = USA
+		completion_reward = {
+		    create_wargoal = {
+			    type = annex_everything
+			    target = USA
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_war_with_american_traitors
+		icon = commonwealth_attack
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_war_with_spain
+		}
+		x = 48
+		y = 16
+		will_lead_to_war_with = NEA
+		will_lead_to_war_with = AMC
+		completion_reward = {
+		    create_wargoal = {
+			    type = annex_everything
+			    target = NEA
+		    }
+            create_wargoal = {
+			    type = annex_everything
+			    target = AMC
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_reform_the_commonwealth
+		icon = reform_the_commonwealth
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_northern_ireland_negotiations
+		}
+		x = 49
+		y = 11
+		completion_reward = {
+		    add_ideas = idea_eng_commonwealth_member
+		    every_country = {
+			    limit = {
+				    AND = {
+					    has_country_flag = was_in_british_empire
+						OR = {
+						    has_government = nationalist
+							has_government = national_conservative
+							has_government = centrist
+							has_government = liberal
+							has_government = new_democrat 
+							has_government = moderate_socialist
+						}
+						NOT = {
+							tag = YEM
+							tag = YAR
+							tag = PDY
+							tag = JAS
+						}
+					}
+				}
+				country_event = { id = britain.49 }
+			}
+			dismantle_faction = yes
+			hidden_effect = {
+			    every_country = {
+		            limit = {
+			            NOT = {
+				            tag = ENG
+				        }
+			        }
+			        news_event = {
+			            hours = 4
+			            id = news.152
+		            }
+		        }
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_a_new_alliance
+		icon = democratic_league
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_reform_the_commonwealth
+		}
+		available = {
+			has_war = no
+		}
+		x = 49
+		y = 12
+		completion_reward = {
+			CAN = {
+				country_event = britain.303
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_avenge_europe
+		icon = GFX_goal_eu_attack
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_soldiers_of_democracy
+		}
+		available = {
+		    date > 2013.1.1
+		    has_army_manpower = {
+    		size > 400000
+			}
+		}
+		x = 49
+		y = 14
+		will_lead_to_war_with = SOV
+		completion_reward = {
+		    create_wargoal = {
+			    type = annex_everything
+			    target = SOV
+		    }
+		    add_ideas = idea_eng_the_final_battle
+		}
+
+	}
+	focus = {
+		id = ENG_invest_in_ireland
+		icon = irish_investment
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_strengthen_the_protection_union
+		}
+		x = 51
+		y = 11
+		completion_reward = {
+		    134 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			113 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			135 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_isolationist_foreign_policy
+		icon = GFX_goal_english_isolation
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_invest_in_ireland
+		}
+		x = 51
+		y = 12
+		completion_reward = {
+		    add_ideas = neutrality_idea
+			country_event = { id = britain.151 }
+		}
+
+	}
+	focus = {
+		id = ENG_scientific_endeavours
+		icon = generic_research
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_isolationist_foreign_policy
+		}
+		x = 51
+		y = 13
+		completion_reward = {
+		    add_research_slot = 1
+		}
+
+	}
+	focus = {
+		id = ENG_soldiers_of_democracy
+		icon = GFX_goal_soldiers2
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_a_new_alliance
+		}
+		x = 49
+		y = 13
+		completion_reward = {
+		    add_ideas = idea_eng_soldiers_of_democracy
+			country_event = { id = britain.152 }
+		}
+
+	}
+	focus = {
+		id = ENG_economic_recovery
+		icon = econ_expension
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_scientific_endeavours
+		}
+		x = 51
+		y = 14
+		completion_reward = {
+		    128 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			129 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			132 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			122 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			125 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			136 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			121 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			133 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_create_war_council
+		icon = GFX_goal_generic_army_high_command
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_out_with_royalty
+			focus = ENG_royal_guidance
+		}
+		x = 58
+		y = 12
+		completion_reward = {
+		    add_ideas = idea_eng_british_war_council
+			country_event = { id = britain.153 }
+		}
+
+	}
+	focus = {
+		id = ENG_restrict_trade
+		icon = GFX_goal_protectionist_economics
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_out_with_royalty
+			focus = ENG_royal_guidance
+		}
+		x = 60
+		y = 12
+		completion_reward = {
+		    add_ideas = idea_eng_trade_restricted
+			country_event = { id = britain.154 }
+		}
+
+	}
+	focus = {
+		id = ENG_ultimate_power_to_the_generals
+		icon = military_salute
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_create_war_council
+		}
+		x = 58
+		y = 13
+		completion_reward = {
+		    add_ideas = idea_eng_powerful_generals
+			country_event = { id = britain.155 }
+		}
+
+	}
+	focus = {
+		id = ENG_fascist_fleet
+		icon = naval_occupation
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_ultimate_power_to_the_generals
+		}
+		x = 58
+		y = 14
+		completion_reward = {
+		    navy_experience = 35
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.75
+				uses = 1
+				category = naval_doctrine
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_legacy_of_mosley
+		icon = legacy_of_mosley
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_new_educational_material
+		}
+		x = 56
+		y = 13
+		completion_reward = {
+		    add_ideas = idea_eng_legacy_of_mosley
+			country_event = { id = britain.156 }
+		}
+
+	}
+	focus = {
+		id = ENG_unite_the_nation
+		icon = national_unity
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_legacy_of_mosley
+		}
+		x = 56
+		y = 14
+		completion_reward = {
+		    remove_ideas = idea_scottish_tensions
+			if = {
+			    limit = {
+				    has_government = fascist
+				}
+				add_popularity = {
+				    ideology = fascist
+				    popularity = 0.05
+			    }
+			}
+			if = {
+			    limit = {
+				    has_government = nationalist
+				}
+				add_popularity = {
+				    ideology = nationalist
+				    popularity = 0.05
+			    }
+			}
+			
+		}
+
+	}
+	focus = {
+		id = ENG_purge_leftist_elements
+		icon = GFX_goal_purgesocial
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_restrict_trade
+		}
+		x = 60
+		y = 13
+		completion_reward = {
+		    add_popularity = {
+				ideology = communist
+				popularity = -0.05
+		    }
+			add_popularity = {
+				ideology = new_democrat
+				popularity = -0.05
+		    }
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.05
+		    }
+			add_political_power = 250
+			country_event = { id = britain.157 }
+		}
+
+	}
+	focus = {
+		id = ENG_new_house_of_lords
+		icon = GFX_goal_new_house_of_lords
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_purge_leftist_elements
+		}
+		x = 60
+		y = 14
+		completion_reward = {
+		    add_ideas = idea_eng_new_house_of_lords
+			country_event = { id = britain.158 }
+		}
+
+	}
+	focus = {
+		id = ENG_referendum_in_ulster
+		icon = forceful_treaty
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_unite_the_nation
+			focus = ENG_fascist_fleet
+			focus = ENG_new_house_of_lords
+			focus = ENG_ban_atheism
+		}
+		x = 59
+		y = 15
+		will_lead_to_war_with = ULS
+		completion_reward = {
+		    119 = {
+			    add_core_of = ENG
+			}
+			ULS = {
+			    country_event = { id = britain.55 }
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_atlantic_supremacy
+		icon = fascism_1
+		cost = 10
+		prerequisite = {
+			focus = ENG_referendum_in_ulster
+		}
+		available = {
+		    date > 2013.1.1
+		}
+		x = 59
+		y = 16
+		completion_reward = {
+		hidden_effect = {
+		add_named_threat = { threat = 2 name = ENG_atlantic_supremacy }
+		}
+		    134 = {
+			    add_core_of = ENG
+			}
+			113 = {
+			    add_core_of = ENG
+			}
+			135 = {
+			    add_core_of = ENG
+			}
+			337 = {
+			    add_core_of = ENG
+			}
+			100 = {
+			    add_core_of = ENG
+			}
+			101 = {
+			    add_core_of = ENG
+			}
+			698 = {
+			    add_core_of = ENG
+			}
+			697 = {
+			    add_core_of = ENG
+			}
+			332 = {
+			    add_core_of = ENG
+			}
+			331 = {
+			    add_core_of = ENG
+			}
+			730 = {
+			    add_core_of = ENG
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_crush_communists
+		icon = GFX_goal_Anti_Communist
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_atlantic_supremacy
+		}
+		x = 59
+		y = 17
+		will_lead_to_war_with = SOV
+		completion_reward = {
+		    create_wargoal = {
+			    type = annex_everything
+			    target = SOV
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_eyes_and_ears
+		icon = GFX_goal_Generic_Espionage
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_establish_concentration_camps
+		}
+		x = 65
+		y = 12
+		completion_reward = {
+		    add_ideas = idea_eng_eyes_and_ears
+			country_event = { id = britain.159 }
+		}
+
+	}
+	focus = {
+		id = ENG_purge_scottish_rebels
+		icon = purge_scottish_rebels
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_eyes_and_ears
+		}
+		x = 65
+		y = 13
+		completion_reward = {
+		    remove_ideas = idea_scottish_tensions 
+			add_political_power = -200
+			country_event = { id = britain.160 }
+		}
+
+	}
+	focus = {
+		id = ENG_occupy_northern_ireland
+		icon = GFX_focus_generic_annex_country_2
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_purge_scottish_rebels
+		}
+		x = 65
+		y = 14
+		completion_reward = {
+		    create_wargoal = {
+			    type = annex_everything
+			    target = ULS
+		    }
+		}
+
+	}
+	focus = {
+		id = ENG_industrial_isles
+		icon = ethiopia_the_emperors_army
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_occupy_northern_ireland
+			focus = ENG_train_a_new_generation
+			focus = ENG_isolate_britain
+		}
+		x = 67
+		y = 15
+		completion_reward = {
+		    add_ideas = idea_eng_industrial_isles
+		}
+
+	}
+	focus = {
+		id = ENG_reclaim_normandy
+		icon = reclaim_normandy
+		cost = 10
+		prerequisite = {
+			focus = ENG_industrial_isles
+		}
+		available = {
+		    date > 2013.1.1
+		}
+		x = 67
+		y = 16
+		completion_reward = {
+		    15 = {
+			    add_core_of = ENG
+			}
+			country_event = { id = britain.161 }
+		}
+
+	}
+	focus = {
+		id = ENG_anti_air_installations
+		icon = red_air
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_defend_the_skies
+		}
+		x = 90
+		y = 2
+		completion_reward = {
+		    126 = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 8
+					instant_build = yes
+				}
+			}
+			127 = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+			123 = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+			125 = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+			129 = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+			122 = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+			338 = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_further_air_defence
+		icon = eagle_air
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_anti_air_installations
+		}
+		x = 90
+		y = 3
+		completion_reward = {
+		    120 = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+			136 = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+			121 = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENG_british_drones
+		icon = air_icon
+		cost = 7.2
+		prerequisite = {
+			focus = ENG_modern_bombers
+		}
+		prerequisite = {
+			focus = ENG_further_air_defence
+		}
+		x = 89
+		y = 4
+		completion_reward = {
+		    add_tech_bonus = {
+				name = tactical_bomber_bonus
+				bonus = 1
+				uses = 1
+				category = tactical_bomber
+			}
+		}
+
+	}
+}
