@@ -2736,6 +2736,45 @@ country_event = {
 		set_country_flag = topp_suceeds_layton
 	}
 	
+	option = { #Kiefer Sutherland
+		name = rw_canada.68.o5
+		ai_chance = {	
+			factor = 20
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = CAN_layton_cancer 
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = CAN_layton_cancer 
+						option = CAN_SUTHERLAND_WIN
+					}
+				}
+				factor = 0
+			}
+		}
+		if = {
+			limit = { has_government = moderate_socialist }
+			CAN_kiefer_sutherland = {
+				add_country_leader_role = {
+					country_leader = {
+						expire = "1.1.1.1"
+						ideology = democratic_socialist
+					}
+				}
+				promote_character = democratic_socialist
+			}
+		}
+		else = {
+			CAN_kiefer_sutherland = {
+				promote_character = new_democrat_ideology
+			}
+		}
+		add_ideas = canada_sic_charlie_angus
+		set_country_flag = sutherland_suceeds_layton
+	}
+	
 	option = { #James Laxer
 		name = rw_canada.68.o2
 		ai_chance = {	
@@ -15125,6 +15164,29 @@ country_event = {
 	option = {
 		name = can_flavour.55.o1
 		add_political_power = -50
+	}
+}
+
+#Kiefer Sutherland becomes MP
+country_event = {
+	id = can_flavour.56
+	title = can_flavour.56.t
+	desc = can_flavour.56.d
+	picture = sutherland_becomes_mp
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = can_flavour.56.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.01
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.01
+		}
 	}
 }
 
