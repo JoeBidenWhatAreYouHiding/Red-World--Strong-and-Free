@@ -7727,6 +7727,22 @@ country_event = {
 					promote_character = democratic_socialist
 				}
 			}
+			else_if = {
+				limit = { 
+					has_country_leader = { name = "Kiefer Sutherland" ruling_only = yes } 
+					has_government = new_democrat 
+					#has_country_flag = current_ndp_leader_2015
+				}
+				CAN_kiefer_sutherland = {
+					add_country_leader_role = {
+						country_leader = {
+							expire = "1.1.1.1"
+							ideology = democratic_socialist
+						}
+					}
+					promote_character = democratic_socialist
+				}
+			}
 		}
 		set_country_flag = CAN_2015_elections_held
 		set_country_flag = bloc_quebecois_victory_2015
@@ -7762,6 +7778,30 @@ country_event = {
 			value = 2
 		}
 		set_country_flag = CAN_bloc_government
+	}
+	
+	option = { #Trump
+		name = rw_canada.201.o6
+		trigger = {
+			has_country_leader = {
+				name = "Donald Trump"
+				ruling_only = yes
+			}
+			has_country_flag = CAN_prime_minister_is_head_of_state
+			has_country_flag = CAN_followed_red_hat
+			OR = {
+				has_idea = CAN_alberta_in_crisis_idea
+				has_idea = CAN_alberta_in_crisis_idea2
+				has_idea = CAN_alberta_in_crisis_idea3
+				has_idea = CAN_alberta_in_crisis_idea4
+				has_idea = CAN_quebec_in_crisis_idea
+				has_idea = CAN_quebec_in_crisis_idea2
+				has_idea = CAN_quebec_in_crisis_idea3
+				has_idea = CAN_quebec_in_crisis_idea4
+			}
+		}
+		add_political_power = -100
+		country_event = rw_canada.311
 	}
 }
 
@@ -10047,6 +10087,260 @@ country_event = {
 		add_political_power = 10
 	}
 }
+
+#Trump Uses reserve power
+country_event = {
+	id = rw_canada.311
+	title = rw_canada.311.t
+	desc = rw_canada.311.d
+	picture = green_party_surge
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.311.o1
+		add_popularity = {
+			ideology = national_conservative
+			popularity = -0.03
+		}
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.312
+				days = 2
+			}
+		}
+	}
+}
+
+#Outbreak of Protests
+country_event = {
+	id = rw_canada.312
+	title = rw_canada.312.t
+	desc = rw_canada.312.d
+	picture = green_party_surge
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.312.o1
+		add_stability = -0.05
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.314
+				days = 2
+			}
+		}
+	}
+}
+
+#Trump Rallies
+country_event = {
+	id = rw_canada.314
+	title = rw_canada.314.t
+	desc = rw_canada.314.d
+	picture = green_party_surge
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.314.o1
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.02
+		}
+		hidden_effect = {
+			country_event = rw_canada.315
+		}
+	}
+}
+
+#Trump Shot
+country_event = {
+	id = rw_canada.315
+	title = rw_canada.315.t
+	desc = rw_canada.315.d
+	picture = green_party_surge
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.315.o1
+		add_stability = -0.10
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.316
+				days = 3
+			}
+		}
+	}
+}
+
+#Trump Wakes
+country_event = {
+	id = rw_canada.316
+	title = rw_canada.316.t
+	desc = rw_canada.316.d
+	picture = green_party_surge
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.316.o1
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.01
+		}
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.317
+				days = 1
+			}
+		}
+	}
+}
+
+#Trump Goes Schizo
+country_event = {
+	id = rw_canada.317
+	title = rw_canada.317.t
+	desc = rw_canada.317.d
+	picture = green_party_surge
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.317.o1
+		set_country_flag = CAN_trump_self_coup
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.319
+				days = 70
+			}
+		}
+	}
+}
+
+#Trump Supporters Radicalize
+country_event = {
+	id = rw_canada.318
+	title = rw_canada.318.t
+	desc = rw_canada.318.d
+	picture = green_party_surge
+
+	is_triggered_only = yes
+	
+	option = { #Nutcases
+		name = rw_canada.318.o1
+		add_political_power = -20
+		add_stability = 0.02
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.03
+		}
+	}
+	
+	option = { #Work with them
+		name = rw_canada.318.o2
+		add_stability = -0.05
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.04
+		}
+		set_country_flag = CAN_followed_red_hat
+	}
+}
+
+#Trump Dies
+country_event = {
+	id = rw_canada.319
+	title = rw_canada.319.t
+	desc = rw_canada.319.d
+	picture = green_party_surge
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.319.o1
+		set_country_flag = CAN_trump_dead
+		CAN_council_of_patriots = {
+			promote_character = progressive_conservative
+		}
+	}
+}
+
+#Trump Sucsessor
+country_event = {
+	id = rw_canada.320
+	title = rw_canada.320.t
+	desc = rw_canada.320.d
+	picture = green_party_surge
+
+	is_triggered_only = yes
+	
+	option = { #Thiel
+		name = rw_canada.320.o1
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.1
+		}
+		set_politics = {
+			ruling_party = fascist
+			elections_allowed = no
+		}
+		add_nationalist_to_coalition = yes
+		add_natcon_to_coalition = yes
+		#CABINET
+		# ? - SIC
+		# ? - FOR
+		# ? - IND
+		# ? - NSM
+	}
+	
+	option = { #Rustad
+		name = rw_canada.320.o2
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.1
+		}
+		set_politics = {
+			ruling_party = nationalist
+			elections_allowed = no
+		}
+		add_fash_to_coalition = yes
+		add_natcon_to_coalition = yes
+		#CABINET
+		# ? - canada_sic_kellie_leitch
+		# ? - FOR
+		# ? - canada_ind_kevin_oleary
+		# ? - NSM
+	}
+	
+	option = { #Roman Dildo
+		name = rw_canada.320.o3
+		add_popularity = {
+			ideology = monarchist
+			popularity = 0.1
+		}
+		set_politics = {
+			ruling_party = monarchist
+			elections_allowed = no
+		}
+		set_party_name = {
+			ideology = monarchist
+			name = CAN_q_pc_party
+			long_name = CAN_q_pc_party_long
+		}
+		add_natcon_to_coalition = yes
+		add_nationalist_to_coalition = yes
+		add_fash_to_coalition = yes
+		#CABINET
+		# ? - Lin Wood
+		# ? - FOR
+		# ? - IND
+		# ? - NSM
+	}
+}
+
 
 #########################
 ### DIPLOMATIC EVENTS ###
