@@ -3803,7 +3803,7 @@ country_event = {
 			ideology = monarchist
 		}
 		CAN_romana_didulo = {
-			promote_character = absolute_monarchist
+			promote_character = q_theology
 		}
 		hidden_effect = { set_cosmetic_tag = CAN_republic }
 	}
@@ -9725,6 +9725,11 @@ country_event = {
 				civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Pierre_Poilievre_No_Glasses.png" }
 			}
 		}
+		CAN_donald_trump = {
+			set_portraits = {
+				civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Donald_Trump_Third_Term.png" }
+			}
+		}
 	}
 			
 	
@@ -10266,7 +10271,7 @@ country_event = {
 	option = { #Worrying
 		name = rw_canada.319.o1
 		set_country_flag = CAN_trump_dead
-		retire_character = CAN_donald_trump
+		effect_tooltip = { retire_character = CAN_donald_trump }
 		CAN_council_of_patriots = {
 			promote_character = progressive_conservative
 		}
@@ -10635,6 +10640,13 @@ country_event = {
 	option = { #Worrying
 		name = rw_canada.332.o1
 		add_manpower = 3400
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.339
+				days = 130
+				random_days = 40
+			}
+		}
 	}
 }
 
@@ -10666,7 +10678,7 @@ country_event = {
 	id = rw_canada.334
 	title = rw_canada.334.t
 	desc = rw_canada.334.d
-	picture = canada_utopia
+	picture = keeping_canada_great
 
 	is_triggered_only = yes
 	
@@ -10693,6 +10705,307 @@ country_event = {
 		set_country_flag = CAN_couchfucker_flag
 		custom_effect_tooltip = CAN_fom_avalible
 		show_ideas_tooltip = canada_fom_jim_bowman
+	}
+}
+
+#AI Investments?
+country_event = {
+	id = rw_canada.336
+	title = rw_canada.336.t
+	desc = rw_canada.336.d
+	picture = GFX_trump_ai_animated
+
+	is_triggered_only = yes
+	
+	option = { #No
+		name = rw_canada.336.o1
+		add_timed_idea = {
+			idea = CAN_ai_investments
+			days = 200
+		}
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.337
+				days = 100
+			}
+		}
+	}
+	
+	option = { #Sure
+		name = rw_canada.336.o2
+		add_stability = -0.02
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+#TRUMPNET?
+country_event = {
+	id = rw_canada.337
+	title = rw_canada.337.t
+	desc = rw_canada.337.d
+	picture = GFX_trump_ai_animated
+
+	is_triggered_only = yes
+	
+	option = { #No
+		name = rw_canada.337.o1
+		swap_ideas = {
+			remove_idea = CAN_ai_investments
+			add_idea = CAN_ai_investments2
+		}
+		add_stability = -0.05
+		add_popularity = {
+			ideology = fascist
+			popularity = -0.02
+		}
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.338
+				days = 150
+			}
+		}
+	}
+	
+	option = { #Sure
+		name = rw_canada.337.o2
+		add_political_power = 30
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.02
+		}
+	}
+}
+
+#TRUMPNET Online
+country_event = {
+	id = rw_canada.338
+	title = rw_canada.338.t
+	desc = rw_canada.338.d
+	picture = GFX_trump_ai_animated
+
+	is_triggered_only = yes
+	
+	option = { #No
+		name = rw_canada.338.o1
+		swap_ideas = {
+			remove_idea = CAN_ai_investments2
+			add_idea = CAN_ai_investments
+		}
+		add_political_power = -100
+		add_stability = -0.05
+		CAN_donald_trump = {	
+			add_country_leader_role = {
+				country_leader={
+					ideology=neo_reactionary
+					traits = { CAN_ai_replica }
+					desc="POLITICS_CAN_TRUMPNET_DESC"
+					expire="1.1.1.1"
+				}
+			}
+			promote_character = neo_reactionary
+			set_portraits = {
+				civilian = { large = "GFX_Portrait_CAN_Donald_Trump_AI" }
+			}
+		}
+	}
+	
+	option = { #Sure
+		name = rw_canada.338.o2
+		swap_ideas = {
+			remove_idea = CAN_ai_investments2
+			add_idea = CAN_trumpnet
+		}
+	}
+}
+
+#Q Speaks
+country_event = {
+	id = rw_canada.339
+	title = rw_canada.339.t
+	desc = rw_canada.339.d
+	picture = GFX_trump_ai_animated
+
+	is_triggered_only = yes
+	
+	option = { #Speak for the Second Coming
+		name = rw_canada.339.o1
+		add_stability = -0.04
+		add_popularity = {
+			ideology = monarchist
+			popularity = 0.02
+		}
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.341
+				days = 6
+			}
+		}
+	}
+	
+	option = { #Soldier of Christ, why are thou Hidden?
+		name = rw_canada.339.o2
+		add_political_power = 40
+		add_stability = 0.04
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.340
+				days = 6
+			}
+		}
+	}
+}
+
+#The False Q
+country_event = {
+	id = rw_canada.340
+	title = rw_canada.340.t
+	desc = rw_canada.340.d
+	picture = GFX_trump_ai_animated
+
+	is_triggered_only = yes
+	
+	option = { #The Demon of Babylon Disguises Himself With the Coat of the Righteous."
+		name = rw_canada.340.o1
+		add_political_power = 100
+		add_popularity = {
+			ideology = monarchist
+			popularity = 0.02
+		}
+	}
+}
+
+#Trump lives
+country_event = {
+	id = rw_canada.341
+	title = rw_canada.341.t
+	desc = rw_canada.341.d
+	picture = GFX_trump_ai_animated
+
+	is_triggered_only = yes
+	
+	option = { #TRUMP LIVES
+		name = rw_canada.341.o1
+		add_stability = -0.05
+		add_war_support = 0.04
+		hidden_effect = {
+			random_list = {
+				seed = random
+				80 = {
+					hidden_effect = {
+						country_event = {
+							id = rw_canada.343
+							days = 60
+						}
+					}
+				}
+				20 = {
+					hidden_effect = {
+						country_event = {
+							id = rw_canada.342
+							days = 60
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+#Trump lives but for real
+country_event = {
+	id = rw_canada.342
+	title = rw_canada.342.t
+	desc = rw_canada.342.d
+	picture = GFX_trump_ai_animated
+
+	is_triggered_only = yes
+	
+	option = { #TRUMP LIVES
+		name = rw_canada.342.o1
+		CAN_donald_trump = {	
+			add_country_leader_role = {
+				country_leader={
+					ideology=q_theology
+					expire="1.1.1.1"
+				}
+			}
+			promote_character = q_theology
+			set_portraits = {
+				civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Donald_Trump_King.png" }
+			}
+		}
+	}
+}
+
+#Generalissimo Donald Trump is still dead
+country_event = {
+	id = rw_canada.343
+	title = rw_canada.343.t
+	desc = rw_canada.343.d
+	picture = GFX_trump_ai_animated
+
+	is_triggered_only = yes
+	
+	option = { #NOTHING EVER HAPPENS
+		name = rw_canada.343.o1
+		country_event = rw_canada.344
+	}
+	
+	option = { #Just trust me bro
+		name = rw_canada.343.o2
+		add_stability = -0.1
+		add_political_power = -100
+		hidden_effect = {
+			random_list = {
+				seed = random
+				50 = {
+					
+				}
+				50 = {
+					hidden_effect = {
+						country_event = {
+							id = rw_canada.342
+							days = 60
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+#Generalissimo Donald Trump is still dead
+country_event = {
+	id = rw_canada.344
+	title = rw_canada.344.t
+	desc = rw_canada.344.d
+	picture = GFX_trump_ai_animated
+
+	is_triggered_only = yes
+	
+	option = { #Trump Jr.
+		name = rw_canada.344.o1
+		CAN_donald_trump_jr = {	
+			add_country_leader_role = {
+				country_leader={
+					ideology=q_theology
+					expire="1.1.1.1"
+				}
+			}
+			promote_character = q_theology
+			set_portraits = {
+				civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Donald_Trump_Jr_King.png" }
+			}
+		}
+	}
+	
+	option = { #Barron
+		name = rw_canada.344.o2
+		CAN_barron_trump = {
+			promote_character = q_theology
+		}
 	}
 }
 
