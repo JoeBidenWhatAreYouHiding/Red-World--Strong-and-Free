@@ -387,7 +387,19 @@ uniting_north_america = {
 		}
 
 		complete_effect = {
-			set_cosmetic_tag = CAN_NAU
+			if = {
+				limit = { has_country_leader_ideology = neo_reactionary }
+				set_cosmetic_tag = CAN_NAU_dark_enlightenment
+				set_country_flag = CAN_no_mexico_cosmetic
+			}
+			else_if = {
+				limit = { has_country_leader_ideology = q_theology }
+				set_cosmetic_tag = CAN_NAU_qanada
+				set_country_flag = CAN_no_mexico_cosmetic
+			}
+			else = {
+				set_cosmetic_tag = CAN_NAU
+			}
 			unlock_decision_tooltip = CAN_demand_mexican_unification
 			set_country_flag = CAN_north_american_union
 		}
@@ -461,7 +473,10 @@ uniting_north_america = {
 				limit = { is_core_of = MEX }
 				CAN = { add_state_core = PREV }
 			}
-			set_cosmetic_tag = CAN_NAU_MEX
+			if = {
+				limit = { NOT = { has_country_flag = CAN_no_mexico_cosmetic } }
+				set_cosmetic_tag = CAN_NAU_MEX
+			}
 		}
 	}
 }
