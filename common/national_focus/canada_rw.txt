@@ -1016,6 +1016,13 @@ focus_tree = {
 					civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Donald_Trump_Angry.png" }
 				}
 			}
+			hidden_effect = {
+				country_event = {
+					id = rw_canada.318
+					days = 65
+					random_days = 70
+				}
+			}
 		}
 	}
 	
@@ -1799,10 +1806,10 @@ focus_tree = {
 							country_leader = {
 								expire = "1.1.1.1"
 								desc="POLITICS_CAN_PRESTON_MANNING_DESC"
-								ideology = neoconservative
+								ideology = reform_populism
 							}
 						}
-						promote_character = neoconservative
+						promote_character = reform_populism
 					}
 				}
 				if = {
@@ -7871,10 +7878,10 @@ focus_tree = {
 							country_leader = {
 								expire = "1.1.1.1"
 								desc="POLITICS_CAN_DONALD_TRUMP_DESC"
-								ideology = neoconservative
+								ideology = trumpism
 							}
 						}
-						promote_character = neoconservative
+						promote_character = trumpism
 					}
 				}
 				if = {
@@ -8239,7 +8246,7 @@ focus_tree = {
 			add_ideas = CAN_followers_of_the_red_hat
 			add_trait = {
 				character = CAN_donald_trump
-				ideology = neoconservative
+				ideology = trumpism
 				trait = CAN_modern_deity 
 			}
 		}
@@ -8347,7 +8354,7 @@ focus_tree = {
 			if = {
 				limit = { has_government = nationalist }
 				add_trait = {
-					ideology = neoconservative
+					ideology = reform_populism
 					character = CAN_preston_manning
 					trait = CAN_new_era_prime_minister
 				}
@@ -9638,6 +9645,1023 @@ focus_tree = {
 			}
 		}
 	}
+	
+	############################
+	#### TRUMP SPECIAL PATH ####
+	############################
+	
+	focus = {
+		id = CAN_patriots_in_control
+		icon = GFX_goal_CAN_patriots_in_control
+		cost = 6
+		x = -14
+		y = 15
+		
+		available = {
+			has_country_flag = CAN_trump_self_coup
+		}
+		bypass = {
+			has_country_flag = CAN_trump_self_coup
+		}
+		allow_branch = {
+			has_country_flag = CAN_trump_self_coup
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			custom_effect_tooltip = CAN_patriots_in_control_tt
+		}
+	}
+	
+	focus = {
+		id = CAN_purge_unpatriotic_officials
+		icon = GFX_goal_CAN_purge_nonpatriots
+		cost = 3
+		
+		prerequisite = {
+			focus = CAN_patriots_in_control
+		}
+		
+		relative_position_id = CAN_patriots_in_control
+		x = -1
+		y = 1
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_stability = -0.10
+			add_popularity = {
+				ideology = national_conservative 
+				popularity = -0.1
+			}
+			add_ideas = CAN_struggle_against_the_deep_state
+		}
+	}
+	
+	focus = {
+		id = CAN_build_fanatacism
+		icon = GFX_goal_CAN_radicalize_the_base
+		cost = 3
+		
+		prerequisite = {
+			focus = CAN_patriots_in_control
+		}
+		
+		relative_position_id = CAN_patriots_in_control
+		x = 1
+		y = 1
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_manpower = 6500
+			add_stability = -0.05
+			add_war_support = 0.10
+			set_party_name = {
+				ideology = nationalist
+				name = CAN_trumpist_progcon_party
+				long_name = CAN_trumpist_progcon_party_long
+			}
+			CAN_john_rustad = {
+				promote_character = neo_nationalist
+			}
+			set_party_name = {
+				ideology = fascist
+				name = CAN_trumpist_fascist_party
+				long_name = CAN_trumpist_fascist_party_long
+			}
+			CAN_peter_thiel = {
+				promote_character = neo_reactionary 
+			}
+			if = {	
+				limit = { has_country_flag = nationalists_are_canadian_alliance }
+				clr_country_flag = nationalists_are_canadian_alliance
+			}
+			if = {	
+				limit = { has_country_flag = canadian_alliance_is_relevant }
+				clr_country_flag = canadian_alliance_is_relevant
+			}
+			add_nationalist_to_coalition = yes
+			add_fash_to_coalition = yes
+			clr_country_flag = canadian_alliance_exists
+		}
+	}
+	
+	focus = {
+		id = CAN_the_greatest_canadian_statesman
+		icon = GFX_goal_CAN_greatest_canadian_statesman
+		cost = 4
+		
+		prerequisite = {
+			focus = CAN_purge_unpatriotic_officials
+		}
+		prerequisite = {
+			focus = CAN_build_fanatacism
+		}
+		
+		available = {
+			has_country_flag = CAN_trump_dead
+		}
+		
+		relative_position_id = CAN_patriots_in_control
+		x = 0
+		y = 2
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = rw_canada.320
+		}
+	}
+	
+	# - Thiel
+	
+	focus = {
+		id = CAN_a_dark_enlightenment
+		icon = GFX_goal_CAN_thiel
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_the_greatest_canadian_statesman
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_an_era_of_awakening
+			focus = CAN_the_mcga_establishment
+		}
+		
+		relative_position_id = CAN_patriots_in_control
+		x = -3
+		y = 3
+
+		available = {
+			has_country_flag = CAN_chose_thiel
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = CAN_a_dark_enlightenment
+			add_popularity = {
+				ideology = fascist
+				popularity = 0.05
+			}
+			country_event = rw_canada.321
+		}
+	}
+	
+	focus = {
+		id = CAN_total_privatization
+		icon = GFX_goal_CAN_beyond_privatization
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_a_dark_enlightenment
+		}
+		
+		relative_position_id = CAN_a_dark_enlightenment
+		x = -1
+		y = 1
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_ideas = CAN_total_privatization
+		}
+	}
+	
+	focus = {
+		id = CAN_protect_freedom_from_democracy
+		icon = GFX_goal_CAN_protect_freedom_from_democracy
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_total_privatization
+		}
+		
+		relative_position_id = CAN_total_privatization
+		x = 1
+		y = 1
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = rw_canada.322
+			swap_ideas = {
+				remove_idea = CAN_struggle_against_the_deep_state
+				add_idea = CAN_struggle_against_the_deep_state2
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.05
+			}
+			custom_effect_tooltip = CAN_sic_avalible
+			show_ideas_tooltip = canada_sic_tim_moen
+		}
+	}
+	
+	focus = {
+		id = CAN_boundless_reach_of_science
+		icon = GFX_goal_CAN_boundless_reach_of_science
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_total_privatization
+		}
+		
+		relative_position_id = CAN_total_privatization
+		x = -1
+		y = 1
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = CAN_boundless_reach_of_science
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			hidden_effect = {
+				country_event = {
+					id = rw_canada.336
+					days = 100
+					random_days = 40
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_feudalism_and_futurism
+		icon = GFX_goal_CAN_futurism_sovereign_enclaves
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_protect_freedom_from_democracy
+		}
+		prerequisite = {
+			focus = CAN_boundless_reach_of_science
+		}
+		
+		relative_position_id = CAN_total_privatization
+		x = 0
+		y = 2
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CAN_struggle_against_the_deep_state2
+				add_idea = CAN_feudalism_and_futurism
+			}
+			set_cosmetic_tag = CAN_ancapistan
+			country_event = rw_canada.323
+			event_option_tooltip = rw_canada.323.o1
+		}
+	}
+	
+	
+	# - Didulo
+	
+	focus = {
+		id = CAN_an_era_of_awakening
+		icon = GFX_goal_CAN_didulo
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_the_greatest_canadian_statesman
+		}
+	
+		mutually_exclusive = {
+			focus = CAN_the_mcga_establishment
+			focus = CAN_a_dark_enlightenment
+		}
+		
+		relative_position_id = CAN_patriots_in_control
+		x = 3
+		y = 3
+
+		available = {
+			has_country_flag = CAN_chose_didulo
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CAN_struggle_against_the_deep_state
+				add_idea = CAN_an_era_of_awakening
+			}
+			add_popularity = {
+				ideology = monarchist
+				popularity = 0.05
+			}
+			country_event = rw_canada.324
+		}
+	}
+	
+	focus = {
+		id = CAN_worship_the_messiah
+		icon = GFX_goal_CAN_worship_the_messiah
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_an_era_of_awakening
+		}
+		
+		relative_position_id = CAN_an_era_of_awakening
+		x = 1
+		y = 1
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_popularity = {
+				ideology = monarchist
+				popularity = 0.1
+			}
+			add_war_support = 0.05
+			add_manpower = 2300
+			add_trait = {
+				character = CAN_romana_didulo
+				ideology = q_theology
+				trait = CAN_the_messenger
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_trumpian_theosophy
+		icon = GFX_goal_CAN_trumpian_theosophy
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_worship_the_messiah
+		}
+		
+		relative_position_id = CAN_worship_the_messiah
+		x = -1
+		y = 1
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_popularity = {
+				ideology = monarchist
+				popularity = 0.05
+			}
+			add_ideas = CAN_scholars_of_q
+			add_command_power = 40
+		}
+	}
+	
+	focus = {
+		id = CAN_monarchism_without_windsor_false_kings
+		icon = GFX_goal_CAN_monarchism_without_false_kings
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_worship_the_messiah
+		}
+		
+		relative_position_id = CAN_worship_the_messiah
+		x = 1
+		y = 1
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = rw_canada.325
+			swap_ideas = {
+				remove_idea = CAN_an_era_of_awakening
+				add_idea = CAN_tearing_down_nwo_republicanism
+			}
+			add_opinion_modifier = {
+				target = ENG
+				modifier = false_kings
+			}
+			set_cosmetic_tag = CAN_qingdqm_qf_qanqdq
+		}
+	}
+	
+	focus = {
+		id = CAN_discover_the_true_branch_of_david
+		icon = GFX_goal_CAN_discover_the_true_branch_of_david
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_trumpian_theosophy
+		}
+		prerequisite = {
+			focus = CAN_monarchism_without_windsor_false_kings
+		}
+		
+		relative_position_id = CAN_worship_the_messiah
+		x = 0
+		y = 2
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CAN_tearing_down_nwo_republicanism
+				add_idea = CAN_reclaim_the_holy_land
+			}
+			add_war_support = 0.1
+			add_popularity = {
+				ideology = monarchist
+				popularity = 0.04
+			}
+			country_event = rw_canada.326
+			custom_effect_tooltip = CAN_decide_extent_of_anglo_israelism_tt
+			every_state = {
+				limit = { is_core_of = ENG }
+				CAN = {
+					add_state_core = PREV
+				}
+			}
+		}
+	}
+	
+	# - Rustad
+	
+	focus = {
+		id = CAN_the_mcga_establishment
+		icon = GFX_goal_CAN_rustad
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_the_greatest_canadian_statesman
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_an_era_of_awakening
+			focus = CAN_a_dark_enlightenment
+		}
+		
+		relative_position_id = CAN_patriots_in_control
+		x = 0
+		y = 3
+
+		available = {
+			has_country_flag = CAN_chose_rustad
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = rw_canada.327
+			swap_ideas = {
+				remove_idea = CAN_struggle_against_the_deep_state
+				add_idea = CAN_the_new_establishment
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.02
+			}
+		}
+	}
+		
+	focus = {
+		id = CAN_remember_trumps_memory
+		icon = GFX_goal_CAN_venerate_the_prime_minister
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_the_mcga_establishment
+		}
+		
+		relative_position_id = CAN_the_mcga_establishment
+		x = -2
+		y = 1
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_war_support = 0.06
+			add_stability = 0.04
+			add_political_power = -20
+			add_ideas = CAN_trump_veneration
+			add_popularity = {
+				ideology = fascist
+				popularity = -0.02
+			}
+			add_popularity = {
+				ideology = monarchist
+				popularity = -0.02
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_dont_tread_on_me
+		icon = GFX_goal_CAN_dont_tread_on_me
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_the_mcga_establishment
+		}
+		
+		relative_position_id = CAN_the_mcga_establishment
+		x = 0
+		y = 1
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = CAN_lolbert_ideas
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1200
+				producer = CAN
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.02
+			}
+			country_event = rw_canada.328
+			hidden_effect = {
+				country_event = {
+					id = rw_canada.345
+					days = 16
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_appease_the_fanatics
+		icon = GFX_goal_CAN_appease_the_fanatics
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_the_mcga_establishment
+		}
+		
+		relative_position_id = CAN_the_mcga_establishment
+		x = 2
+		y = 1
+
+		available = {
+			has_completed_focus = CAN_remember_trumps_memory
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CAN_trump_veneration
+				add_idea = CAN_trump_veneration2
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = fascist
+				popularity = 0.03
+			}
+			country_event = rw_canada.329
+		}
+	}
+	
+	focus = {
+		id = CAN_a_broad_mcga_coalition
+		icon = GFX_goal_CAN_broad_movement
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_remember_trumps_memory
+		}
+		prerequisite = {
+			focus = CAN_appease_the_fanatics
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_elevate_true_belivers
+		}
+		
+		relative_position_id = CAN_the_mcga_establishment
+		x = -1
+		y = 2
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_political_power = 20
+			add_stability = 0.02
+			add_popularity = {
+				ideology = fascist
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.05
+			}
+			swap_ideas = {
+				remove_idea = CAN_the_new_establishment
+				add_idea = CAN_the_new_establishment2_cruz
+			}
+			country_event = rw_canada.330
+			hidden_effect = {
+				country_event = {
+					id = rw_canada.335
+					days = 70
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_elevate_true_belivers
+		icon = GFX_goal_CAN_elevate_true_believers
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_remember_trumps_memory
+		}
+		prerequisite = {
+			focus = CAN_appease_the_fanatics
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_a_broad_mcga_coalition
+		}
+		
+		relative_position_id = CAN_the_mcga_establishment
+		x = 1
+		y = 2
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_stability = -0.04
+			add_political_power = 70
+			add_popularity = {
+				ideology = fascist
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.03
+			}
+			swap_ideas = {
+				remove_idea = CAN_the_new_establishment
+				add_idea = CAN_the_new_establishment2_rustad
+			}
+			country_event = rw_canada.331
+			hidden_effect = {
+				country_event = {
+					id = rw_canada.335
+					days = 70
+				}
+			}
+		}
+	}
+	
+	# - Shared
+	
+	focus = {
+		id = CAN_the_patriot_political_machine
+		icon = GFX_goal_CAN_patriot_political_machine
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_a_broad_mcga_coalition
+			focus = CAN_protect_freedom_from_democracy
+		}
+		
+		relative_position_id = CAN_patriots_in_control
+		x = -2
+		y = 6
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			CAN_add_5_percent_popularity = yes
+			add_political_power = 40
+			add_ideas = CAN_the_patriot_political_machine
+		}
+	}
+	
+	focus = {
+		id = CAN_crusade_against_the_lizards
+		icon = GFX_goal_CAN_fight_against_the_lizards
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_elevate_true_belivers
+			focus = CAN_monarchism_without_windsor_false_kings
+		}
+		
+		relative_position_id = CAN_patriots_in_control
+		x = 2
+		y = 6
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_manpower = 2300
+			add_war_support = 0.06
+			add_ideas = CAN_struggle_against_the_illuminati
+		}
+	}
+	
+	focus = {
+		id = CAN_pax_canadia
+		icon = GFX_goal_CAN_pax_canadia
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_a_broad_mcga_coalition
+			focus = CAN_elevate_true_belivers
+			focus = CAN_protect_freedom_from_democracy
+			focus = CAN_monarchism_without_windsor_false_kings
+		}
+		
+		relative_position_id = CAN_patriots_in_control
+		x = 0
+		y = 6
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_state_core = 970
+			add_state_core = 386
+			add_state_core = 385
+			add_state_core = 971
+			add_state_core = 890
+			add_state_core = 792
+			add_state_core = 794
+			add_state_core = 793
+			add_state_core = 357
+			add_state_core = 795
+			add_state_core = 739
+			add_state_core = 391
+		}
+	}
+	
+	focus = {
+		id = CAN_fight_against_the_communist_new_world_order
+		icon = GFX_goal_CAN_struggle_against_the_communist_nwo
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_the_patriot_political_machine
+			focus = CAN_crusade_against_the_lizards
+		}
+		prerequisite = {
+			focus = CAN_pax_canadia
+		}
+		
+		relative_position_id = CAN_patriots_in_control
+		x = -1
+		y = 7
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_war_support = 0.05
+			add_popularity = {
+				ideology = communist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = new_democrat
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.05
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = -1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = -1
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_prepare_for_the_storm
+		icon = GFX_goal_CAN_prepare_for_the_storm
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_the_patriot_political_machine
+			focus = CAN_crusade_against_the_lizards
+		}
+		prerequisite = {
+			focus = CAN_pax_canadia
+		}
+		
+		relative_position_id = CAN_patriots_in_control
+		x = 1
+		y = 7
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_country_leader_trait = CAN_the_storm
+		}
+	}
+	
+	focus = {
+		id = CAN_where_we_go_one_we_go_all
+		icon = GFX_goal_CAN_where_we_go_one
+		cost = 6
+		
+		prerequisite = {
+			focus = CAN_prepare_for_the_storm
+		}
+		prerequisite = {
+			focus = CAN_fight_against_the_communist_new_world_order
+		}
+		
+		relative_position_id = CAN_patriots_in_control
+		x = 0
+		y = 8
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_manpower = 6400
+			add_war_support = 0.05
+			if = {
+				limit = { 
+					OR = {
+						has_country_leader = { name = "Peter Thiel" ruling_only = yes } 
+						has_country_flag = CAN_trumpnet
+					}
+				}
+				country_event = rw_canada.333
+				add_ideas = CAN_liberalisms_death_knell
+			}
+			if = {
+				limit = { has_country_leader = { name = "John Rustad" ruling_only = yes } }
+				country_event = rw_canada.334
+				add_ideas = CAN_canada_great_forevermore
+			}
+			if = {
+				limit = { has_country_leader = { name = "Romana Didulo" ruling_only = yes } }
+				country_event = rw_canada.332
+				add_ideas = CAN_wwg1wga_idea
+			}
+			else = {
+				effect_tooltip = {
+					custom_effect_tooltip = CAN_if_thiel_is_hos
+					country_event = rw_canada.333
+					add_ideas = CAN_liberalisms_death_knell
+					custom_effect_tooltip = tooltip_blank_line
+					custom_effect_tooltip = CAN_if_rustad_is_hos
+					country_event = rw_canada.334
+					add_ideas = CAN_canada_great_forevermore
+					custom_effect_tooltip = tooltip_blank_line
+					custom_effect_tooltip = CAN_if_didulo_is_hos
+					country_event = rw_canada.332
+					add_ideas = CAN_wwg1wga_idea
+				}
+			}
+		}
+	}
+	
 	
 	##############################
 	#### TRUDEAU SPECIAL PATH ####

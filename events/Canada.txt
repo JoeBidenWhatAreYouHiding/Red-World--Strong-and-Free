@@ -1637,6 +1637,7 @@ country_event = {
 			idea = CAN_pmo_office_strengthened
 			days = 500
 		}
+		set_country_flag = CAN_strenghthened_pmo
 	}
 	
 	option = {
@@ -2190,7 +2191,7 @@ country_event = {
 			ideology = nationalist
 		}
 		CAN_jason_kenney = {
-			promote_character = neoconservative
+			promote_character = reform_populism
 		}
 		set_country_flag = nationalists_are_canadian_alliance
 		set_country_flag = canadian_alliance_is_relevant
@@ -3802,8 +3803,9 @@ country_event = {
 			ideology = monarchist
 		}
 		CAN_romana_didulo = {
-			promote_character = absolute_monarchist
+			promote_character = q_theology
 		}
+		hidden_effect = { set_cosmetic_tag = CAN_republic }
 	}
 }
 
@@ -3841,7 +3843,7 @@ country_event = {
 	id = rw_canada.105
 	title = rw_canada.105.t
 	desc = rw_canada.105.d
-	picture = sp_primary_2016
+	picture = elizabeth_speech
 
 	is_triggered_only = yes
 	
@@ -3867,7 +3869,7 @@ country_event = {
 	}
 	
 	option = { #Teach them a Lesson
-		name = rw_canada.104.o2
+		name = rw_canada.105.o2
 		ai_chance = {
 			factor = 20
 		}
@@ -4308,7 +4310,7 @@ country_event = {
 	option = { #Martine Ouellet
 		name = rw_canada.126.o2
 		CAN_martine_ouellet = {
-			promote_character = new_democrat_ideology
+			promote_character = quebec_nationalism
 		}
 		add_political_power = 40
 	}
@@ -4316,7 +4318,7 @@ country_event = {
 	option = { #Mario Beaulieu
 		name = rw_canada.126.o3
 		CAN_mario_beaulieu = {
-			promote_character = new_democrat_ideology
+			promote_character = quebec_nationalism
 		}
 		add_stability = 0.04
 	}
@@ -4324,7 +4326,7 @@ country_event = {
 	option = { #Yves-François Blanchet
 		name = rw_canada.126.o4
 		CAN_yves_francois_blanchet = {
-			promote_character = new_democrat_ideology
+			promote_character = quebec_nationalism
 		}
 		add_popularity = {
 			ideology = new_democrat
@@ -6532,7 +6534,7 @@ country_event = {
 		}
 		set_country_flag = pc_stockwell_day_2015
 		CAN_stockwell_day = {
-			promote_character = neoconservative
+			promote_character = reform_populism
 		}
 		if = {
 			limit = { has_country_flag = pcs_are_natcon }
@@ -7727,6 +7729,22 @@ country_event = {
 					promote_character = democratic_socialist
 				}
 			}
+			else_if = {
+				limit = { 
+					has_country_leader = { name = "Kiefer Sutherland" ruling_only = yes } 
+					has_government = new_democrat 
+					#has_country_flag = current_ndp_leader_2015
+				}
+				CAN_kiefer_sutherland = {
+					add_country_leader_role = {
+						country_leader = {
+							expire = "1.1.1.1"
+							ideology = democratic_socialist
+						}
+					}
+					promote_character = democratic_socialist
+				}
+			}
 		}
 		set_country_flag = CAN_2015_elections_held
 		set_country_flag = bloc_quebecois_victory_2015
@@ -7736,7 +7754,7 @@ country_event = {
 			ideology = new_democrat
 		}
 		CAN_gilles_duceppe = {
-			promote_character = new_democrat_ideology
+			promote_character = quebec_nationalism
 		}
 		set_politics = {
 			ruling_party = new_democrat
@@ -7762,6 +7780,31 @@ country_event = {
 			value = 2
 		}
 		set_country_flag = CAN_bloc_government
+	}
+	
+	option = { #Trump
+		name = rw_canada.201.o6
+		trigger = {
+			has_country_leader = {
+				name = "Donald Trump"
+				ruling_only = yes
+			}
+			has_country_flag = CAN_prime_minister_is_head_of_state
+			has_country_flag = CAN_followed_red_hat
+			has_country_flag = CAN_strenghthened_pmo
+			OR = {
+				has_idea = CAN_alberta_in_crisis_idea
+				has_idea = CAN_alberta_in_crisis_idea2
+				has_idea = CAN_alberta_in_crisis_idea3
+				has_idea = CAN_alberta_in_crisis_idea4
+				has_idea = CAN_quebec_in_crisis_idea
+				has_idea = CAN_quebec_in_crisis_idea2
+				has_idea = CAN_quebec_in_crisis_idea3
+				has_idea = CAN_quebec_in_crisis_idea4
+			}
+		}
+		add_political_power = -100
+		country_event = rw_canada.311
 	}
 }
 
@@ -8342,6 +8385,28 @@ country_event = {
 	}
 }
 
+#Rustad Concedes
+country_event = {
+	id = rw_canada.217
+	title = rw_canada.217.t
+	desc = rw_canada.217.d
+	picture = its_rustadover
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.217.o1
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.303
+				days = 22
+				random_days = 24
+			}
+		}
+	}
+}
+
 ### 2019 Elections Stuff ###
 
 #Liberal Primarty
@@ -8355,6 +8420,7 @@ country_event = {
 	
 	trigger = {	
 		has_country_flag = liberals_exist
+		NOT = { has_country_flag = CAN_elections_dont_happen_anymore }
 	}
 	
 	option = { #Ted Cruz
@@ -8382,7 +8448,7 @@ country_event = {
 		name = rw_canada.296.o3
 		set_country_flag = alliance_maxime_bernier_2019
 		CAN_maxime_bernier = {
-			promote_character = neoconservative
+			promote_character = reform_populism
 		}
 		if = {
 			limit = { has_country_flag = alliance_is_fascist }
@@ -8395,7 +8461,7 @@ country_event = {
 		name = rw_canada.296.o4
 		set_country_flag = alliance_maxime_bernier_2019
 		CAN_pierre_poilievre = {
-			promote_character = neoconservative
+			promote_character = reform_populism
 		}
 		if = {
 			limit = { has_country_flag = alliance_is_fascist }
@@ -8416,6 +8482,7 @@ country_event = {
 	
 	trigger = {	
 		has_country_flag = liberals_exist
+		NOT = { has_country_flag = CAN_elections_dont_happen_anymore }
 	}
 	
 	option = { #Current Leader
@@ -8561,6 +8628,7 @@ country_event = {
 	
 	trigger = {	
 		has_country_flag = ndp_exists
+		NOT = { has_country_flag = CAN_elections_dont_happen_anymore }
 	}
 
 	option = { #Current Leader
@@ -8738,6 +8806,7 @@ country_event = {
 	
 	trigger = {	
 		has_country_flag = progcons_exist
+		NOT = { has_country_flag = CAN_elections_dont_happen_anymore }
 	}
 
 	option = { #Current Leader
@@ -8836,7 +8905,7 @@ country_event = {
 		}
 		set_country_flag = pc_maxime_bernier_2019
 		CAN_maxime_bernier = {
-			promote_character = neoconservative
+			promote_character = reform_populism
 		}
 		if = {
 			limit = { has_country_flag = pcs_are_natcon }
@@ -8862,7 +8931,7 @@ country_event = {
 		}
 		set_country_flag = pc_pierre_poilievre_2019
 		CAN_pierre_poilievre = {
-			promote_character = neoconservative
+			promote_character = reform_populism
 		}
 		if = {
 			limit = { has_country_flag = pcs_are_natcon }
@@ -8888,7 +8957,7 @@ country_event = {
 		}
 		set_country_flag = pc_leslyn_lewis_2019
 		CAN_brad_trost = {
-			promote_character = neoconservative
+			promote_character = reform_populism
 		}
 		if = {
 			limit = { has_country_flag = pcs_are_natcon }
@@ -8917,10 +8986,15 @@ country_event = {
 				has_government = communist
 			}
 		}
+		NOT = { has_country_flag = CAN_elections_dont_happen_anymore }
 	}
 	
 	immediate = {
 		hidden_effect = {
+			if = {
+				limit = { NOT = { has_country_flag = CAN_2015_elections_held } }
+				set_country_flag = CAN_2015_elections_held
+			}
 			if = {
 				limit = { has_country_leader = { name = "Justin Trudeau" ruling_only = yes } }
 				CAN_justin_trudeau = {
@@ -8989,10 +9063,21 @@ country_event = {
 				days = 12
 				random_days = 34
 			}
-			country_event = {
-				id = rw_canada.303
-				days = 22
-				random_days = 24
+			if = {
+				limit = { 
+					NOT = { has_country_flag = CAN_chose_rustad }
+				}
+				country_event = {
+					id = rw_canada.303
+					days = 22
+					random_days = 24
+				}
+			}
+			else = {
+				country_event = {
+					id = rw_canada.217
+					days = 2
+				}
 			}
 		}
 		add_ideas = {
@@ -9050,10 +9135,22 @@ country_event = {
 				days = 12
 				random_days = 34
 			}
-			country_event = {
-				id = rw_canada.303
-				days = 22
-				random_days = 24
+			if = {
+				limit = { 
+					NOT = { has_country_flag = CAN_chose_rustad }
+				}
+				country_event = {
+					id = rw_canada.303
+					days = 22
+					random_days = 24
+				}
+			}
+			else = {
+				country_event = {
+					id = rw_canada.217
+					days = 22
+					random_days = 24
+				}
 			}
 		}
 		add_ideas = {
@@ -9262,6 +9359,7 @@ country_event = {
 	
 	trigger = {	
 		has_country_flag = liberals_exist
+		NOT = { has_country_flag = CAN_elections_dont_happen_anymore }
 	}
 	
 	option = { #Current Leader
@@ -9379,6 +9477,7 @@ country_event = {
 	
 	trigger = {	
 		has_country_flag = ndp_exists
+		NOT = { has_country_flag = CAN_elections_dont_happen_anymore }
 	}
 
 	option = { #Current Leader
@@ -9539,6 +9638,7 @@ country_event = {
 	
 	trigger = {	
 		has_country_flag = progcons_exist
+		NOT = { has_country_flag = CAN_elections_dont_happen_anymore }
 	}
 
 	option = { #Current Leader
@@ -9614,7 +9714,7 @@ country_event = {
 		}
 		set_country_flag = pc_pierre_poilievre_2023
 		CAN_pierre_poilievre = {
-			promote_character = neoconservative
+			promote_character = reform_populism
 		}
 		if = {
 			limit = { has_country_flag = pcs_are_natcon }
@@ -9640,7 +9740,34 @@ country_event = {
 		}
 		set_country_flag = pc_leslyn_lewis_2023
 		CAN_leslyn_lewis = {
-			promote_character = neoconservative
+			promote_character = reform_populism
+		}
+		if = {
+			limit = { has_country_flag = pcs_are_natcon }
+			clr_country_flag = pcs_are_natcon
+			set_country_flag = pcs_are_nationalist
+			custom_effect_tooltip = CAN_pc_become_nationalist_tt
+		}
+	}
+	
+	option = { #Jim Bowman
+		name = rw_canada.303.o6
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = nationalist
+					has_government = national_conservative
+				}
+				has_country_flag = pc_leader_resigns_2015
+			}
+			NOT = {
+				has_country_flag = nationalists_are_canadian_alliance
+			}
+			has_country_flag = CAN_couchfucker_flag
+		}
+		set_country_flag = pc_jim_bowman_2023
+		CAN_jim_bowman = {
+			promote_character = neo_nationalist
 		}
 		if = {
 			limit = { has_country_flag = pcs_are_natcon }
@@ -9668,6 +9795,7 @@ country_event = {
 				has_government = communist
 			}
 		}
+		NOT = { has_country_flag = CAN_elections_dont_happen_anymore }
 	}
 	
 	immediate = {
@@ -9680,6 +9808,21 @@ country_event = {
 		CAN_pierre_poilievre = {
 			set_portraits = {
 				civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Pierre_Poilievre_No_Glasses.png" }
+			}
+		}
+		if = {
+			limit = { has_government = nationalist }
+			CAN_donald_trump = {
+				set_portraits = {
+					civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Donald_Trump_Third_Term.png" }
+				}
+			}
+		}
+		else = {
+			CAN_donald_trump = {
+				set_portraits = {
+					civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Donald_Trump_Third_Term_Angry.png" }
+				}
 			}
 		}
 	}
@@ -10048,6 +10191,1024 @@ country_event = {
 	}
 }
 
+#Trump Uses reserve power
+country_event = {
+	id = rw_canada.311
+	title = rw_canada.311.t
+	desc = rw_canada.311.d
+	picture = trump_consolidates_power
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.311.o1
+		add_popularity = {
+			ideology = national_conservative
+			popularity = -0.03
+		}
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.312
+				days = 2
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.51
+				}
+			}
+		}
+	}
+}
+
+#Outbreak of Protests
+country_event = {
+	id = rw_canada.312
+	title = rw_canada.312.t
+	desc = rw_canada.312.d
+	picture = trump_protest
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.312.o1
+		add_stability = -0.05
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.314
+				days = 2
+			}
+		}
+	}
+}
+
+#Trump Rallies
+country_event = {
+	id = rw_canada.314
+	title = rw_canada.314.t
+	desc = rw_canada.314.d
+	picture = trump_scales_back_reform_attacks
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.314.o1
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.02
+		}
+		hidden_effect = {
+			country_event = rw_canada.315
+		}
+	}
+}
+
+#Trump Shot
+country_event = {
+	id = rw_canada.315
+	title = rw_canada.315.t
+	desc = rw_canada.315.d
+	picture = donald_trump_shot
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.315.o1
+		add_stability = -0.10
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.316
+				days = 3
+			}
+		}
+	}
+}
+
+#Trump Wakes
+country_event = {
+	id = rw_canada.316
+	title = rw_canada.316.t
+	desc = rw_canada.316.d
+	picture = trump_ambulance
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.316.o1
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.01
+		}
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.317
+				days = 1
+			}
+		}
+	}
+}
+
+#Trump Goes Schizo
+country_event = {
+	id = rw_canada.317
+	title = rw_canada.317.t
+	desc = rw_canada.317.d
+	picture = trump_purge
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.317.o1
+		set_country_flag = CAN_trump_self_coup
+		mark_focus_tree_layout_dirty = yes
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.319
+				days = 70
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.52
+				}
+			}
+		}
+	}
+}
+
+#Trump Supporters Radicalize
+country_event = {
+	id = rw_canada.318
+	title = rw_canada.318.t
+	desc = rw_canada.318.d
+	picture = trump_supporters_radicalize
+
+	is_triggered_only = yes
+	
+	option = { #Nutcases
+		name = rw_canada.318.o1
+		add_political_power = -20
+		add_stability = 0.02
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.03
+		}
+	}
+	
+	option = { #Work with them
+		name = rw_canada.318.o2
+		add_stability = -0.05
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.04
+		}
+		set_country_flag = CAN_followed_red_hat
+	}
+}
+
+#Trump Dies
+country_event = {
+	id = rw_canada.319
+	title = rw_canada.319.t
+	desc = rw_canada.319.d
+	picture = trump_dead
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.319.o1
+		set_country_flag = CAN_trump_dead
+		effect_tooltip = { retire_character = CAN_donald_trump }
+		CAN_council_of_patriots = {
+			promote_character = progressive_conservative
+		}
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.53
+				}
+			}
+		}
+	}
+}
+
+#Trump Sucsessor
+country_event = {
+	id = rw_canada.320
+	title = rw_canada.320.t
+	desc = rw_canada.320.d
+	picture = moving_on_from_trump
+
+	is_triggered_only = yes
+	
+	option = { #Thiel
+		name = rw_canada.320.o1
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.1
+		}
+		set_politics = {
+			ruling_party = fascist
+			elections_allowed = no
+		}
+		set_country_flag = CAN_chose_thiel
+		add_nationalist_to_coalition = yes
+		add_natcon_to_coalition = yes
+		custom_effect_tooltip = CAN_thiel_cabinet_tt
+		hidden_effect = {
+			add_ideas = canada_sic_curtis_yarvin
+			add_ideas = canada_fom_nick_land
+			add_ideas = canada_ind_peter_thiel
+			add_ideas = canada_nsm_blake_masters
+		}
+		set_country_flag = CAN_elections_dont_happen_anymore
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.54
+				}
+			}
+		}
+	}
+	
+	option = { #Rustad
+		name = rw_canada.320.o2
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.1
+		}
+		set_politics = {
+			ruling_party = nationalist
+			elections_allowed = no
+		}
+		set_country_flag = CAN_chose_rustad
+		add_fash_to_coalition = yes
+		add_natcon_to_coalition = yes
+		custom_effect_tooltip = CAN_rustad_cabinet_tt
+		hidden_effect = {
+			add_ideas = canada_sic_kellie_leitch
+			add_ideas = canada_fom_rex_tillerson
+			add_ideas = canada_ind_kevin_oleary
+			add_ideas =  canada_nsm_kash_patel
+		}
+		clr_country_flag = pcs_are_natcon
+		set_country_flag = pcs_are_nationalist
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.55
+				}
+			}
+		}
+	}
+	
+	option = { #Roman Dildo
+		name = rw_canada.320.o3
+		add_popularity = {
+			ideology = monarchist
+			popularity = 0.1
+		}
+		set_politics = {
+			ruling_party = monarchist
+			elections_allowed = no
+		}
+		set_party_name = {
+			ideology = monarchist
+			name = CAN_q_pc_party
+			long_name = CAN_q_pc_party_long
+		}
+		set_country_flag = CAN_chose_didulo
+		add_natcon_to_coalition = yes
+		add_nationalist_to_coalition = yes
+
+		add_fash_to_coalition = yes
+		custom_effect_tooltip = CAN_didulo_cabinet_tt
+		hidden_effect = {
+			add_ideas = canada_sic_lin_wood
+			add_ideas = canada_fom_corey_hurren
+			add_ideas = canada_ind_james_bauder
+			add_ideas = canada_nsm_stuart_myiow_jr
+		}
+		set_country_flag = CAN_elections_dont_happen_anymore
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.56
+				}
+			}
+		}
+	}
+}
+
+#Thiel PM
+country_event = {
+	id = rw_canada.321
+	title = rw_canada.321.t
+	desc = rw_canada.321.d
+	picture = rise_of_thiel
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.321.o1
+		add_stability = -0.02
+	}
+}
+
+#Protecting Freedom from Democracy
+country_event = {
+	id = rw_canada.322
+	title = rw_canada.322.t
+	desc = rw_canada.322.d
+	picture = federal_government_abolished
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.322.o1
+		add_political_power = 20
+		set_faction_name = CAN_freedom_league_faction
+		end_coalition = yes
+		set_party_name = {
+			name = CAN_circle_of_enlightenment
+			long_name = CAN_circle_of_enlightenment_long
+			ideology = fascist
+		}
+		set_party_name = {
+			name = CAN_centrist_circle_of_enlightenment
+			long_name = CAN_centrist_circle_of_enlightenment_long
+			ideology = centrist
+		}
+		add_centrist_to_coalition = yes
+		CAN_peter_thiel = {	
+			add_country_leader_role = {
+				country_leader={
+					ideology=right_libertarian
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+			promote_character = right_libertarian
+		}
+	}
+}
+
+#Schizo babble
+country_event = {
+	id = rw_canada.323
+	title = rw_canada.323.t
+	desc = rw_canada.323.d
+	picture = patchwork_settelments_founded
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.323.o1
+		every_owned_state = {
+			add_state_modifier = {
+				modifier = {
+					local_manpower = 0.02
+					local_supplies = 0.02
+					state_production_speed_buildings_factor = 0.02
+				}
+			}
+		}
+	}
+}
+
+#Didulo Speaks
+country_event = {
+	id = rw_canada.324
+	title = rw_canada.324.t
+	desc = rw_canada.324.d
+	picture = didulo_speaks
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.324.o1
+		set_party_name = {
+			long_name = CAN_canada_first_party_long
+			name = CAN_canada_first_party
+			ideology = monarchist
+		}
+	}
+}
+
+#Monarchy Fever
+country_event = {
+	id = rw_canada.325
+	title = rw_canada.325.t
+	desc = rw_canada.325.d
+	picture = monarchy_fervor
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.325.o1
+		add_stability = -0.05
+		add_popularity = {
+			ideology = monarchist
+			popularity = 0.02
+		}
+	}
+}
+
+#Britain Reclaimed
+country_event = {
+	id = rw_canada.326
+	title = rw_canada.326.t
+	desc = rw_canada.326.d
+	picture = crusade_for_britain
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.326.o1
+		ai_chance = {
+			factor = 0
+		}
+		if = {
+			limit = { ENG = { is_in_faction_with = CAN } }
+			CAN = {
+				remove_from_faction = ENG 
+			}
+		}
+		if = {
+			limit = { IRE = { is_in_faction_with = CAN } }
+			CAN = {
+				remove_from_faction = IRE 
+			}
+		}
+		if = {
+			limit = { ULS = { is_in_faction_with = CAN } }
+			CAN = {
+				remove_from_faction = ULS
+			}
+		}
+		declare_war_on = { target = ENG type = annex_everything }
+		custom_effect_tooltip = CAN_reclaim_britain_tt
+	}
+	
+	option = { #Worrying
+		name = rw_canada.326.o2
+		ai_chance = {
+			factor = 100
+		}
+		add_stability = 0.05
+		add_timed_idea = {
+			idea = CAN_anglo_israelite_rhetoric_scaled_back
+			days = 200
+		}
+	}
+}
+
+#Rustad Speaks
+country_event = {
+	id = rw_canada.327
+	title = rw_canada.327.t
+	desc = rw_canada.327.d
+	picture = rustad_speaks
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.327.o1
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.03
+		}
+	}
+}
+
+#Gun Control abolished
+country_event = {
+	id = rw_canada.328
+	title = rw_canada.328.t
+	desc = rw_canada.328.d
+	picture = gun_control_abolished
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.328.o1
+		add_war_support = 0.02
+	}
+}
+
+#Followers of Q Purged
+country_event = {
+	id = rw_canada.329
+	title = rw_canada.329.t
+	desc = rw_canada.329.d
+	picture = appeasing_q_radicals
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.329.o1
+		add_popularity = {
+			ideology = monarchist
+			popularity = -0.04
+		}
+		set_party_name = {
+			long_name = CAN_canada_first_party_long
+			name = CAN_canada_first_party
+			ideology = monarchist
+		}
+	}
+}
+
+#Rustad Meets with Cruz
+country_event = {
+	id = rw_canada.330
+	title = rw_canada.330.t
+	desc = rw_canada.330.d
+	picture = cruz_meets_rustad
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.330.o1
+		add_ideas = canada_sic_rafael_edward_ralph_cruz
+		set_party_name = {
+			long_name = CAN_conservative_party_of_canada_long
+			name = CAN_conservative_party_of_canada
+			ideology = nationalist
+		}
+		set_party_name = {
+			long_name = CAN_conservative_party_of_canada_cruz_long
+			name = CAN_conservative_party_of_canada_cruz
+			ideology = fascist
+		}
+		set_party_name = {
+			long_name = CAN_conservative_party_of_canada_natcon_long
+			name = CAN_conservative_party_of_canada_natcon
+			ideology = national_conservative
+		}
+		CAN_rafael_edward_cruz = {
+			promote_character = fascist_ideology
+		}
+		clr_country_flag = canadian_alliance_is_relevant
+	}
+}
+
+#Rustad Meets with WP Supporters
+country_event = {
+	id = rw_canada.331
+	title = rw_canada.331.t
+	desc = rw_canada.331.d
+	picture = trump_white_phoenix
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.331.o1
+		add_stability = -0.04
+		add_war_support = 0.04
+		add_manpower = 1100
+		NEA = {
+			add_opinion_modifier = {
+				target = CAN
+				modifier = supports_white_phoenix
+			}
+		}
+	}
+}
+
+#The Storm Arrives
+country_event = {
+	id = rw_canada.332
+	title = rw_canada.332.t
+	desc = rw_canada.332.d
+	picture = storm_arrives
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.332.o1
+		add_manpower = 3400
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.339
+				days = 130
+				random_days = 40
+			}
+		}
+	}
+}
+
+#Is a man not entitled to the sweat of his brow?
+country_event = {
+	id = rw_canada.333
+	title = rw_canada.333.t
+	desc = rw_canada.333.d
+	picture = canada_utopia
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.333.o1
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+#Keeping Canada Great
+country_event = {
+	id = rw_canada.334
+	title = rw_canada.334.t
+	desc = rw_canada.334.d
+	picture = keeping_canada_great
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.334.o1
+		add_stability = 0.05
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+#One Mr. Bowman
+country_event = {
+	id = rw_canada.335
+	title = rw_canada.335.t
+	desc = rw_canada.335.d
+	picture = jim_bowman_event
+
+	is_triggered_only = yes
+	
+	option = { #Worrying
+		name = rw_canada.335.o1
+		set_country_flag = CAN_couchfucker_flag
+		custom_effect_tooltip = CAN_fom_avalible
+		show_ideas_tooltip = canada_fom_jim_bowman
+	}
+}
+
+#AI Investments?
+country_event = {
+	id = rw_canada.336
+	title = rw_canada.336.t
+	desc = rw_canada.336.d
+	picture = investments_in_ai
+
+	is_triggered_only = yes
+	
+	option = { #No
+		name = rw_canada.336.o1
+		add_timed_idea = {
+			idea = CAN_ai_investments
+			days = 700
+		}
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.337
+				days = 100
+			}
+		}
+	}
+	
+	option = { #Sure
+		name = rw_canada.336.o2
+		add_stability = -0.02
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+#TRUMPNET?
+country_event = {
+	id = rw_canada.337
+	title = rw_canada.337.t
+	desc = rw_canada.337.d
+	picture = the_dead_speak
+
+	is_triggered_only = yes
+	
+	option = { #No
+		name = rw_canada.337.o1
+		swap_ideas = {
+			remove_idea = CAN_ai_investments
+			add_idea = CAN_ai_investments2
+		}
+		add_stability = -0.05
+		add_popularity = {
+			ideology = fascist
+			popularity = -0.02
+		}
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.338
+				days = 150
+			}
+		}
+	}
+	
+	option = { #Sure
+		name = rw_canada.337.o2
+		add_political_power = 30
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.02
+		}
+	}
+}
+
+#TRUMPNET Online
+country_event = {
+	id = rw_canada.338
+	title = rw_canada.338.t
+	desc = rw_canada.338.d
+	picture = GFX_trump_ai_animated
+
+	is_triggered_only = yes
+	
+	option = { #No
+		name = rw_canada.338.o1
+		swap_ideas = {
+			remove_idea = CAN_ai_investments2
+			add_idea = CAN_ai_investments
+		}
+		add_political_power = -100
+		add_stability = -0.05
+		CAN_donald_trump = {	
+			add_country_leader_role = {
+				country_leader={
+					ideology=neo_reactionary
+					traits = { CAN_ai_replica }
+					desc="POLITICS_CAN_TRUMPNET_DESC"
+					expire="1.1.1.1"
+				}
+			}
+			promote_character = neo_reactionary
+			set_portraits = {
+				civilian = { large = "GFX_Portrait_CAN_Donald_Trump_AI" }
+			}
+		}
+		set_country_flag = CAN_trumpnet
+		hidden_effect = {
+			remove_ideas = canada_sic_curtis_yarvin
+			add_ideas = canada_sic_peter_thiel
+			remove_ideas = canada_ind_peter_thiel
+			add_ideas = canada_ind_curtis_yarvin
+		}
+	}
+	
+	option = { #Sure
+		name = rw_canada.338.o2
+		effect_tooltip = {
+			swap_ideas = {
+				remove_idea = CAN_ai_investments2
+				add_idea = CAN_trumpnet
+			}
+		}
+		hidden_effect = {
+			remove_ideas = CAN_ai_investments2
+			add_ideas = CAN_trumpnet
+		}
+	}
+}
+
+#Q Speaks
+country_event = {
+	id = rw_canada.339
+	title = rw_canada.339.t
+	desc = rw_canada.339.d
+	picture = q_speaks
+
+	is_triggered_only = yes
+	
+	option = { #Speak for the Second Coming
+		name = rw_canada.339.o1
+		add_stability = -0.04
+		add_popularity = {
+			ideology = monarchist
+			popularity = 0.02
+		}
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.341
+				days = 6
+			}
+		}
+	}
+	
+	option = { #Soldier of Christ, why are thou Hidden?
+		name = rw_canada.339.o2
+		add_political_power = 40
+		add_stability = 0.04
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.340
+				days = 6
+			}
+		}
+	}
+}
+
+#The False Q
+country_event = {
+	id = rw_canada.340
+	title = rw_canada.340.t
+	desc = rw_canada.340.d
+	picture = fake_revealed
+
+	is_triggered_only = yes
+	
+	option = { #The Demon of Babylon Disguises Himself With the Coat of the Righteous."
+		name = rw_canada.340.o1
+		add_political_power = 100
+		add_popularity = {
+			ideology = monarchist
+			popularity = 0.02
+		}
+	}
+}
+
+#Trump lives
+country_event = {
+	id = rw_canada.341
+	title = rw_canada.341.t
+	desc = rw_canada.341.d
+	picture = nation_braces
+
+	is_triggered_only = yes
+	
+	option = { #TRUMP LIVES
+		name = rw_canada.341.o1
+		add_stability = -0.05
+		add_war_support = 0.04
+		hidden_effect = {
+			random_list = {
+				seed = random
+				80 = {
+					hidden_effect = {
+						country_event = {
+							id = rw_canada.343
+							days = 60
+						}
+					}
+				}
+				20 = {
+					hidden_effect = {
+						country_event = {
+							id = rw_canada.342
+							days = 60
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+#Trump lives but for real
+country_event = {
+	id = rw_canada.342
+	title = rw_canada.342.t
+	desc = rw_canada.342.d
+	picture = trump_arrives
+
+	is_triggered_only = yes
+	
+	option = { #TRUMP LIVES
+		name = rw_canada.342.o1
+		CAN_donald_trump = {	
+			add_country_leader_role = {
+				country_leader={
+					ideology=q_theology
+					expire="1.1.1.1"
+				}
+			}
+			promote_character = q_theology
+			set_portraits = {
+				civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Donald_Trump_King.png" }
+			}
+		}
+		hidden_effect = {
+			remove_ideas = canada_sic_lin_wood
+			add_ideas = canada_sic_romana_didulo
+		}
+	}
+}
+
+#Generalissimo Donald Trump is still dead
+country_event = {
+	id = rw_canada.343
+	title = rw_canada.343.t
+	desc = rw_canada.343.d
+	picture = trump_dosent_return
+
+	is_triggered_only = yes
+	
+	option = { #NOTHING EVER HAPPENS
+		name = rw_canada.343.o1
+		country_event = rw_canada.344
+	}
+	
+	option = { #Just trust me bro
+		name = rw_canada.343.o2
+		add_stability = -0.1
+		add_political_power = -100
+		hidden_effect = {
+			random_list = {
+				seed = random
+				50 = {
+					
+				}
+				50 = {
+					hidden_effect = {
+						country_event = {
+							id = rw_canada.342
+							days = 60
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+#Generalissimo Donald Trump is still dead
+country_event = {
+	id = rw_canada.344
+	title = rw_canada.344.t
+	desc = rw_canada.344.d
+	picture = heir_to_the_trump_line
+
+	is_triggered_only = yes
+	
+	option = { #Trump Jr.
+		name = rw_canada.344.o1
+		CAN_donald_trump_jr = {	
+			add_country_leader_role = {
+				country_leader={
+					ideology=q_theology
+					expire="1.1.1.1"
+				}
+			}
+			promote_character = q_theology
+			set_portraits = {
+				civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Donald_Trump_Jr_King.png" }
+			}
+		}
+		hidden_effect = {
+			remove_ideas = canada_sic_lin_wood
+			add_ideas = canada_sic_romana_didulo
+		}
+	}
+	
+	option = { #Barron
+		name = rw_canada.344.o2
+		CAN_barron_trump = {
+			promote_character = q_theology
+		}
+		hidden_effect = {
+			remove_ideas = canada_sic_lin_wood
+			add_ideas = canada_sic_romana_didulo
+		}
+	}
+}
+
+#Freedom Protest in Ottawa
+country_event = {
+	id = rw_canada.345
+	title = rw_canada.345.t
+	desc = rw_canada.345.d
+	picture = rustad_freedom_riders
+
+	is_triggered_only = yes
+	
+	option = { #Clear Out
+		name = rw_canada.345.o1
+		add_manpower = -200
+		add_political_power = 10
+		add_stability = -0.05
+	}
+	
+	option = { #Support
+		name = rw_canada.344.o2
+		add_ideas = CAN_freedom_riders
+	}
+}
+
+
 #########################
 ### DIPLOMATIC EVENTS ###
 #########################
@@ -10164,6 +11325,7 @@ country_event = {
 				id = rw_canada_news.10
 			}
 		}
+		add_to_variable = { CAN_provinces = 1 }
 	}
 }
 
@@ -10267,6 +11429,7 @@ country_event = {
 			target = AMC 
 			transfer_troops = yes
 		}
+		add_to_variable = { CAN_provinces = 1 }
 		every_owned_state = {
 			limit = { is_core_of = AMC }
 			CAN = {
@@ -13256,7 +14419,7 @@ country_event = {
 	id = can_separatism.21
 	title = can_separatism.21.t
 	desc = can_separatism.21.d
-	picture = alberta_premier_replaced
+	picture = quebec_premier_arrested
 
 	fire_only_once = yes
 	is_triggered_only = yes
@@ -13314,7 +14477,7 @@ country_event = {
 	id = can_separatism.24
 	title = can_separatism.24.t
 	desc = can_separatism.24.d
-	picture = quebec_premier_arrested
+	picture = alberta_premier_replaced
 
 	fire_only_once = yes
 	is_triggered_only = yes
@@ -14061,6 +15224,43 @@ country_event = {
 	
 	option = {   
 		name = can_history.6.o1
+	}
+}
+
+####################
+### GUIDE EVENTS ###
+####################
+
+add_namespace = can_guides
+
+country_event = {
+	id = can_guides.1
+	title = can_guides.1.t
+	desc = can_guides.1.d
+	picture = GFX_report_event_001
+	
+	is_triggered_only = yes
+	
+	option = {   
+		name = can_guides.1.o1
+	}
+	
+	option = {   
+		name = can_guides.1.o2
+		country_event = can_guides.2
+	}
+}
+
+country_event = {
+	id = can_guides.2
+	title = can_guides.2.t
+	desc = can_guides.2.d
+	picture = GFX_report_event_001
+	
+	is_triggered_only = yes
+	
+	option = {   
+		name = can_guides.1.o1
 	}
 }
 
@@ -15965,6 +17165,84 @@ news_event = {	#World War III - Germany/Canada
 	
 	option = {
 		name = rw_canada_news.50.o1
+	}
+}
+
+news_event = {	#Trump Constitutional Crisis
+	id = rw_canada_news.51
+	title = rw_canada_news.51.t
+	desc = rw_canada_news.51.d
+	picture = trump_constitutional_crisis
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.51.o1
+	}
+}
+
+news_event = {	#Trump Purges Cabinet
+	id = rw_canada_news.52
+	title = rw_canada_news.52.t
+	desc = rw_canada_news.52.d
+	picture = trump_shot_news
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.52.o1
+	}
+}
+
+news_event = {	#Trump Dies
+	id = rw_canada_news.53
+	title = rw_canada_news.53.t
+	desc = rw_canada_news.53.d
+	picture = news_trump_dead
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.53.o1
+	}
+}
+
+news_event = {	#Thiel Sucsessor News
+	id = rw_canada_news.54
+	title = rw_canada_news.54.t
+	desc = rw_canada_news.54.d
+	picture = thiel_suceeds_trump
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.54.o1
+	}
+}
+
+news_event = {	#Rustad Sucsessor News
+	id = rw_canada_news.55
+	title = rw_canada_news.55.t
+	desc = rw_canada_news.55.d
+	picture = rustad_suceeds_trump
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.55.o1
+	}
+}
+
+news_event = {	#Didulo Sucsessor News
+	id = rw_canada_news.56
+	title = rw_canada_news.56.t
+	desc = rw_canada_news.56.d
+	picture = didulo_suceeds_trump
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.56.o1
 	}
 }
 
