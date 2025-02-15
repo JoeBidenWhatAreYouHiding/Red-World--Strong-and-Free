@@ -8385,6 +8385,28 @@ country_event = {
 	}
 }
 
+#Rustad Concedes
+country_event = {
+	id = rw_canada.217
+	title = rw_canada.217.t
+	desc = rw_canada.217.d
+	picture = its_rustadover
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.217.o1
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.303
+				days = 22
+				random_days = 24
+			}
+		}
+	}
+}
+
 ### 2019 Elections Stuff ###
 
 #Liberal Primarty
@@ -8970,6 +8992,10 @@ country_event = {
 	immediate = {
 		hidden_effect = {
 			if = {
+				limit = { NOT = { has_country_flag = CAN_2015_elections_held } }
+				set_country_flag = CAN_2015_elections_held
+			}
+			if = {
 				limit = { has_country_leader = { name = "Justin Trudeau" ruling_only = yes } }
 				CAN_justin_trudeau = {
 					set_portraits = {
@@ -9037,10 +9063,21 @@ country_event = {
 				days = 12
 				random_days = 34
 			}
-			country_event = {
-				id = rw_canada.303
-				days = 22
-				random_days = 24
+			if = {
+				limit = { 
+					NOT = { has_country_flag = CAN_chose_rustad }
+				}
+				country_event = {
+					id = rw_canada.303
+					days = 22
+					random_days = 24
+				}
+			}
+			else = {
+				country_event = {
+					id = rw_canada.217
+					days = 2
+				}
 			}
 		}
 		add_ideas = {
@@ -9098,10 +9135,22 @@ country_event = {
 				days = 12
 				random_days = 34
 			}
-			country_event = {
-				id = rw_canada.303
-				days = 22
-				random_days = 24
+			if = {
+				limit = { 
+					NOT = { has_country_flag = CAN_chose_rustad }
+				}
+				country_event = {
+					id = rw_canada.303
+					days = 22
+					random_days = 24
+				}
+			}
+			else = {
+				country_event = {
+					id = rw_canada.217
+					days = 22
+					random_days = 24
+				}
 			}
 		}
 		add_ideas = {
@@ -9692,6 +9741,33 @@ country_event = {
 		set_country_flag = pc_leslyn_lewis_2023
 		CAN_leslyn_lewis = {
 			promote_character = reform_populism
+		}
+		if = {
+			limit = { has_country_flag = pcs_are_natcon }
+			clr_country_flag = pcs_are_natcon
+			set_country_flag = pcs_are_nationalist
+			custom_effect_tooltip = CAN_pc_become_nationalist_tt
+		}
+	}
+	
+	option = { #Jim Bowman
+		name = rw_canada.303.o6
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = nationalist
+					has_government = national_conservative
+				}
+				has_country_flag = pc_leader_resigns_2015
+			}
+			NOT = {
+				has_country_flag = nationalists_are_canadian_alliance
+			}
+			has_country_flag = CAN_couchfucker_flag
+		}
+		set_country_flag = pc_jim_bowman_2023
+		CAN_jim_bowman = {
+			promote_character = neo_nationalist
 		}
 		if = {
 			limit = { has_country_flag = pcs_are_natcon }
@@ -10377,6 +10453,8 @@ country_event = {
 			add_ideas = canada_ind_kevin_oleary
 			add_ideas =  canada_nsm_kash_patel
 		}
+		clr_country_flag = pcs_are_natcon
+		set_country_flag = pcs_are_nationalist
 		hidden_effect = {
 			every_country = {
 				news_event = {
@@ -10675,6 +10753,7 @@ country_event = {
 		CAN_rafael_edward_cruz = {
 			promote_character = fascist_ideology
 		}
+		clr_country_flag = canadian_alliance_is_relevant
 	}
 }
 
@@ -11104,6 +11183,28 @@ country_event = {
 			remove_ideas = canada_sic_lin_wood
 			add_ideas = canada_sic_romana_didulo
 		}
+	}
+}
+
+#Freedom Protest in Ottawa
+country_event = {
+	id = rw_canada.345
+	title = rw_canada.345.t
+	desc = rw_canada.345.d
+	picture = rustad_freedom_riders
+
+	is_triggered_only = yes
+	
+	option = { #Clear Out
+		name = rw_canada.345.o1
+		add_manpower = -200
+		add_political_power = 10
+		add_stability = -0.05
+	}
+	
+	option = { #Support
+		name = rw_canada.344.o2
+		add_ideas = CAN_freedom_riders
 	}
 }
 
@@ -15123,6 +15224,43 @@ country_event = {
 	
 	option = {   
 		name = can_history.6.o1
+	}
+}
+
+####################
+### GUIDE EVENTS ###
+####################
+
+add_namespace = can_guides
+
+country_event = {
+	id = can_guides.1
+	title = can_guides.1.t
+	desc = can_guides.1.d
+	picture = GFX_report_event_001
+	
+	is_triggered_only = yes
+	
+	option = {   
+		name = can_guides.1.o1
+	}
+	
+	option = {   
+		name = can_guides.1.o2
+		country_event = can_guides.2
+	}
+}
+
+country_event = {
+	id = can_guides.2
+	title = can_guides.2.t
+	desc = can_guides.2.d
+	picture = GFX_report_event_001
+	
+	is_triggered_only = yes
+	
+	option = {   
+		name = can_guides.1.o1
 	}
 }
 
