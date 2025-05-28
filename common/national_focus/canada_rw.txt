@@ -4196,6 +4196,10 @@ focus_tree = {
 			focus = CAN_liberal_victory
 		}
 		
+		allow_branch = {
+			NOT = { has_country_flag = jobs_leads_liberals }
+		}
+		
 		relative_position_id = CAN_liberal_victory
 		x = 3
 		y = 1
@@ -4399,6 +4403,7 @@ focus_tree = {
 								expire = "1.1.1.1"
 								desc="POLITICS_CAN_MICHAEL_IGNATIEFF"
 								ideology = social_liberal
+								traits = { CAN_inept_academic }
 							}
 						}
 						promote_character = social_liberal
@@ -4817,6 +4822,683 @@ focus_tree = {
 				remove_idea = CAN_balancing_the_budget2
 				add_idea = CAN_a_balanced_budget
 			}
+		}
+	}
+	
+	## - Steve Jobs Branch
+	
+	focus = {
+		id = CAN_prime_minister_jobs
+		icon = GFX_goal_CAN_prime_minister_jobs
+		cost = 2
+		
+		prerequisite = {
+			focus = CAN_liberal_victory
+		}
+		
+		allow_branch = {
+			has_country_flag = jobs_leads_liberals
+		}
+		
+		relative_position_id = CAN_liberal_victory
+		x = 3
+		y = 1
+
+		available = {
+			has_country_leader = {
+				name = "Steve Jobs"
+				ruling_only = yes
+			}
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = rw_canada.222
+			custom_effect_tooltip = CAN_jobs_cabinet_assembled_tt
+			hidden_effect = {
+				country_event = {
+					id = can_flavour.57
+					days = 70
+					random_days = 40
+				}
+				country_event = {
+					id = can_flavour.58
+					days = 130
+					random_days = 10
+				}
+				country_event = {
+					id = rw_canada.230
+					days = 230
+					random_days = 40
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_keynote_democracy
+		icon = GFX_goal_CAN_stevenote_democracy
+		cost = 5.8
+		
+		prerequisite = {
+			focus = CAN_prime_minister_jobs
+		}
+		
+		relative_position_id = CAN_prime_minister_jobs
+		x = 2
+		y = 1
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = CAN_keynote_democracy
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.04
+			}
+			country_event = rw_canada.224
+		}
+	}
+	
+	focus = {
+		id = CAN_deregulation_drive
+		icon = GFX_goal_CAN_deregulation_drive
+		cost = 5.8
+		
+		prerequisite = {
+			focus = CAN_keynote_democracy
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_progressive_vision
+		}
+		
+		relative_position_id = CAN_keynote_democracy
+		x = -1
+		y = 1
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.05
+			}
+			add_timed_idea = {
+				idea = CAN_deregulation_spree
+				days = 205
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_lead_the_business_world
+		icon = GFX_goal_CAN_lead_the_business_world
+		cost = 5.8
+		
+		prerequisite = {
+			focus = CAN_deregulation_drive
+		}
+		
+		relative_position_id = CAN_keynote_democracy
+		x = -2
+		y = 2
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = rw_canada.225
+			swap_ideas = {
+				remove_idea = CAN_buisness_haven
+				add_idea = CAN_buisness_haven2
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.04
+			}
+			add_political_power = 40
+			set_country_flag = CAN_apple_unlocked
+			custom_effect_tooltip = CAN_unlock_industrial_company
+			show_ideas_tooltip = apple
+		}
+	}
+	
+	focus = {
+		id = CAN_progressive_vision
+		icon = GFX_goal_CAN_progressive_vision_of_society
+		cost = 5.8
+		
+		prerequisite = {
+			focus = CAN_keynote_democracy
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_deregulation_drive
+		}
+		
+		relative_position_id = CAN_keynote_democracy
+		x = 1
+		y = 1
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = CAN_progressive_vision
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.05
+			}
+			country_event = rw_canada.226
+		}
+	}
+	
+	focus = {
+		id = CAN_technocratic_liberalism
+		icon = GFX_goal_CAN_technocratic_liberalism
+		cost = 5.8
+		
+		prerequisite = {
+			focus = CAN_progressive_vision
+		}
+		
+		relative_position_id = CAN_keynote_democracy
+		x = 2
+		y = 2
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CAN_progressive_vision
+				add_idea = CAN_technocratic_liberalism
+			}
+			custom_effect_tooltip = CAN_liberals_become_liberal
+			hidden_effect = {
+				if = {
+					limit = { has_country_leader = { name = "Steve Jobs" ruling_only = yes } }
+					CAN_steve_jobs = {
+						add_country_leader_role = {
+							country_leader = {
+								expire = "1.1.1.1"
+								desc="POLITICS_CAN_STEVE_JOBS"
+								ideology = liberal_idemocracy
+								traits={
+									CAN_out_of_touch_technocrat
+									CAN_egotistical_perfectionist
+								}
+							}
+						}
+						promote_character = liberal_idemocracy
+					}
+				}
+				if = {
+					limit = { has_government = centrist }
+					set_politics = {
+						ruling_party = liberal
+					}
+					set_variable = {
+						current_liberal_pop = party_popularity@liberal
+					}
+					set_variable = {
+						current_centrist_pop = party_popularity@centrist
+					}
+					subtract_from_variable = {
+						var = current_centrist_pop
+						value = current_liberal_pop
+					}
+					add_popularity = {
+						ideology = liberal
+						popularity = current_centrist_pop
+					}	
+					add_centrist_to_coalition = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_education_for_citizenship_initiative
+		icon = GFX_goal_CAN_education_citizenship_pipeline
+		cost = 5.8
+		
+		prerequisite = {
+			focus = CAN_deregulation_drive
+			focus = CAN_progressive_vision
+		}
+		
+		relative_position_id = CAN_keynote_democracy
+		x = 0
+		y = 2
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			473 = {
+				add_manpower = 1200
+			}
+			470 = {
+				add_manpower = -1100
+			}
+			469 = {
+				add_manpower = -1000
+			}
+			276 = {
+				add_manpower = 1400
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			swap_ideas = {
+				remove_idea = CAN_refugee_strain
+				add_idea = CAN_education_for_citizenship_initiative
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_legalize_pot_and_lsd
+		icon = GFX_goal_CAN_legalize_lsd
+		cost = 5.8
+		
+		prerequisite = {
+			focus = CAN_technocratic_liberalism
+			focus = CAN_lead_the_business_world
+		}
+		
+		prerequisite = {
+			focus = CAN_education_for_citizenship_initiative
+		}
+		
+		relative_position_id = CAN_keynote_democracy
+		x = -1
+		y = 3
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = CAN_libertarian_fever_dream_idea
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.02
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = -0.02
+			}
+			add_stability = 0.02
+			add_offsite_building = {
+                type = industrial_complex level = 1
+            }
+		}
+	}
+	
+	focus = {
+		id = CAN_fight_hyperpartisanship
+		icon = GFX_goal_CAN_fight_legislative_hyperpartisanship
+		cost = 5.8
+		
+		prerequisite = {
+			focus = CAN_technocratic_liberalism
+			focus = CAN_lead_the_business_world
+		}
+		
+		prerequisite = {
+			focus = CAN_education_for_citizenship_initiative
+		}
+		
+		relative_position_id = CAN_keynote_democracy
+		x = 1
+		y = 3
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CAN_utopia_divided
+				add_idea = CAN_utopia_divided2
+			}
+			country_event = rw_canada.227
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.04
+			}
+			if = {
+				limit = { has_government = liberal }
+				remove_trait = {
+					character = CAN_steve_jobs
+					ideology = social_liberal
+					trait = CAN_out_of_touch_technocrat
+				}
+				add_trait = {
+					character = CAN_steve_jobs
+					ideology = social_liberal
+					trait = CAN_progressive_problem_solver 
+				}
+			}
+			else = {
+				remove_trait = {
+					character = CAN_steve_jobs
+					ideology = centrist_populist
+					trait = CAN_out_of_touch_technocrat
+				}
+				add_trait = {
+					character = CAN_steve_jobs
+					ideology = centrist_populist
+					trait = CAN_progressive_problem_solver
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_think_different
+		icon = GFX_goal_CAN_thinking_differently
+		cost = 5.8
+
+		prerequisite = {
+			focus = CAN_legalize_pot_and_lsd
+		}
+		prerequisite = {
+			focus = CAN_fight_hyperpartisanship
+		}
+		
+		relative_position_id = CAN_keynote_democracy
+		x = 0
+		y = 4
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {		
+			swap_ideas = {
+				remove_idea = CAN_utopia_divided2
+				add_idea = CAN_think_different
+			}
+			add_political_power = 50
+			add_stability = 0.05
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.04
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_digitize_the_economy
+		icon = GFX_goal_CAN_digitize_the_economy
+		cost = 5.8
+		
+		prerequisite = {
+			focus = CAN_prime_minister_jobs
+		}
+		
+		relative_position_id = CAN_prime_minister_jobs
+		x = 0
+		y = 1
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_ideas = CAN_digital_economy
+		}
+	}
+	
+	focus = {
+		id = CAN_spirit_of_innovation
+		icon = GFX_goal_CAN_support_innovation
+		cost = 5.8
+		
+		prerequisite = {
+			focus = CAN_prime_minister_jobs
+		}
+		
+		relative_position_id = CAN_prime_minister_jobs
+		x = -2
+		y = 1
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = CAN_spirit_of_innovation
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_international_investment
+		icon = GFX_goal_CAN_global_investments
+		cost = 5.8
+		
+		prerequisite = {
+			focus = CAN_digitize_the_economy
+		}
+		prerequisite = {
+			focus = CAN_spirit_of_innovation
+		}
+		
+		relative_position_id = CAN_prime_minister_jobs
+		x = -1
+		y = 2
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {	
+				remove_idea = CAN_digital_economy
+				add_idea = CAN_digital_economy2
+			}
+			every_country = {
+				limit = { 
+					NOT = {
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+							has_government = national_bolshevik
+						}
+						tag = CAN
+					}
+				}
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			VIN = {
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			PRC = {
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			RAJ = {
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_productive_deindustrialization
+		icon = GFX_goal_CAN_productive_deindustrialization
+		cost = 5.8
+		
+		prerequisite = {
+			focus = CAN_international_investment
+		}
+		
+		relative_position_id = CAN_prime_minister_jobs
+		x = -1
+		y = 4
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			276 = {
+				add_extra_state_shared_building_slots = -1
+			}
+			740 = {
+				add_extra_state_shared_building_slots = -1
+			}
+			random_owned_controlled_state = {
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_ideas = CAN_productive_deindustrialization
+			add_political_power = -90
+		}
+	}
+	
+	focus = {
+		id = CAN_vancouver_model
+		icon = GFX_goal_CAN_vancouver_city_design
+		cost = 5.8
+		
+		prerequisite = {
+			focus = CAN_productive_deindustrialization
+		}
+		prerequisite = {
+			focus = CAN_strategic_innovation_fund
+		}
+		
+		relative_position_id = CAN_prime_minister_jobs
+		x = -2
+		y = 5
+
+		available = {
+			
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			every_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				increase_state_category_by_one_level = yes
+			}
+			random_owned_controlled_state = {
+				increase_state_category_by_one_level = yes
+			}
+			swap_ideas = {
+				remove_idea = CAN_productive_deindustrialization
+				add_idea = CAN_vancouver_model
+			}
+			country_event = rw_canada.229
 		}
 	}
 	
@@ -5450,10 +6132,12 @@ focus_tree = {
 		prerequisite = {
 			focus = CAN_tax_increases_on_the_rich
 			focus = CAN_new_sponsorships
+			focus = CAN_digitize_the_economy
 		}
 		prerequisite = {
 			focus = CAN_competitive_tax_increases
 			focus = CAN_expand_the_trans_mountain_pipelines
+			focus = CAN_spirit_of_innovation
 		}
 		
 		relative_position_id = CAN_prime_minister_trudeau
@@ -6837,6 +7521,10 @@ focus_tree = {
 							has_completed_focus = CAN_philosophical_liberalism
 							has_completed_focus = CAN_in_the_green
 						}
+						AND = {
+							has_completed_focus = CAN_think_different
+							has_completed_focus = CAN_vancouver_model
+						}
 					}
 				}
 			}
@@ -6935,6 +7623,10 @@ focus_tree = {
 						AND = {
 							has_completed_focus = CAN_philosophical_liberalism
 							has_completed_focus = CAN_in_the_green
+						}
+						AND = {
+							has_completed_focus = CAN_think_different
+							has_completed_focus = CAN_vancouver_model
 						}
 					}
 				}
@@ -13132,6 +13824,7 @@ focus_tree = {
 					has_completed_focus = CAN_trump_tax_cut
 					has_completed_focus = CAN_self_balancing_budget
 					has_completed_focus = CAN_in_the_green
+					has_completed_focus = CAN_vancouver_model
 					has_completed_focus = CAN_mulroneys_dream_from_a_liberal_perspective
 					has_completed_focus = CAN_mixed_economy
 				}
@@ -16899,7 +17592,7 @@ focus_tree = {
 	
 	# focus = {
 		# id = CAN_strong_secure_and_engaged
-		# icon = X
+		# icon = GFX_goal_CAN_prime_minister_jobs
 		# cost = 6
 		
 		# prerequisite = {
