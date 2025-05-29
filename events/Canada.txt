@@ -432,7 +432,7 @@ country_event = {
 					}
 					has_game_rule = {
 						rule = CAN_ai_behavior
-						option = CAN_TRUDEAU_WIN
+						option = CAN_JOBS_WIN
 					}
 				}
 				factor = 0
@@ -504,6 +504,10 @@ country_event = {
 					has_game_rule = {
 						rule = CAN_ai_behavior
 						option = CAN_LAYTON_WIN
+					}
+					has_game_rule = {
+						rule = CAN_ai_behavior
+						option = CAN_JOBS_WIN
 					}
 				}
 				factor = 0
@@ -612,6 +616,10 @@ country_event = {
 					has_game_rule = {
 						rule = CAN_ai_behavior
 						option = CAN_HARPER_WIN
+					}
+					has_game_rule = {
+						rule = CAN_ai_behavior
+						option = CAN_JOBS_WIN
 					}
 				}
 				factor = 0
@@ -830,6 +838,10 @@ country_event = {
 					has_game_rule = {
 						rule = CAN_ai_behavior
 						option = CAN_TRUDEAU_WIN
+					}
+					has_game_rule = {
+						rule = CAN_ai_behavior
+						option = CAN_JOBS_WIN
 					}
 				}
 				factor = 0
@@ -2574,6 +2586,7 @@ country_event = {
 				if = {
 					limit = { has_completed_focus = CAN_protect_healthcare }
 					random_list = {
+						seed = random
 						30 = { 
 							country_event = {
 								id = rw_canada.70 #Layton Succumbs
@@ -2590,6 +2603,7 @@ country_event = {
 				}
 				else = {
 					random_list = {
+						seed = random
 						50 = { 
 							country_event = {
 								id = rw_canada.69 #Layton Recovers
@@ -2644,6 +2658,7 @@ country_event = {
 				if = {
 					limit = { has_completed_focus = CAN_protect_healthcare }
 					random_list = {
+						seed = random
 						40 = { 
 							country_event = {
 								id = rw_canada.70 #Layton Succumbs
@@ -2660,6 +2675,7 @@ country_event = {
 				}
 				else = {
 					random_list = {
+						seed = random
 						40 = { 
 							country_event = {
 								id = rw_canada.69 #Layton Recovers
@@ -6924,6 +6940,17 @@ country_event = {
 				}
 			}
 		}
+		else_if = {
+			limit = {
+				has_country_leader = { name = "Steve Jobs" ruling_only = yes }
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.59
+				}
+			}
+		}
 	}
 	
 	option = { #NDP
@@ -7215,6 +7242,13 @@ country_event = {
 					id = rw_canada_news.23
 				}
 			}
+			hidden_effect = {
+				country_event = {
+					id = can_flavour.59
+					days = 60
+					random_days = 30
+				}
+			}
 			add_ideas = {
 				canada_sic_jim_prentice
 				canada_fom_robert_nicholson
@@ -7378,6 +7412,13 @@ country_event = {
 				news_event = {
 					hours = 4
 					id = rw_canada_news.23
+				}
+			}
+			hidden_effect = {
+				country_event = {
+					id = can_flavour.59
+					days = 60
+					random_days = 30
 				}
 			}
 		}
@@ -7712,6 +7753,17 @@ country_event = {
 				news_event = {
 					hours = 4
 					id = rw_canada_news.19
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				has_country_leader = { name = "Steve Jobs" ruling_only = yes }
+			}
+			every_country = {
+				news_event = {
+					hours = 4
+					id = rw_canada_news.59
 				}
 			}
 		}
@@ -8495,6 +8547,22 @@ country_event = {
 	
 	option = { #Denounce Steve Jobs
 		name = rw_canada.218.o1
+		ai_chance = {
+			factor = 50
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = CAN_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = CAN_ai_behavior
+						option = CAN_JOBS_WIN
+					}
+				}
+				factor = 0
+			}
+		}
 		add_political_power = 20
 		hidden_effect = {
 			country_event = {
@@ -8506,6 +8574,22 @@ country_event = {
 	
 	option = { #Liberal Party's a tad fucked, eh?
 		name = rw_canada.218.o2
+		ai_chance = {
+			factor = 50
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = CAN_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = CAN_ai_behavior
+						option = CAN_TRUDEAU_WIN
+					}
+				}
+				factor = 0
+			}
+		}
 		add_popularity = {
 			ideology = nationalist
 			popularity = 0.01
@@ -8864,6 +8948,7 @@ country_event = {
 			clr_country_flag = alliance_is_nationalist
 			set_country_flag = alliance_is_fascist
 		}
+		set_country_flag = CAN_day_leads_alliance
 	}
 
 	option = { #Maxime Bernier
@@ -9727,6 +9812,18 @@ country_event = {
 				id = rw_canada.303
 				days = 22
 				random_days = 24
+			}
+			if = {
+				limit = {
+					has_country_flag = CAN_day_leads_alliance
+				}
+				hidden_effect = {
+					country_event = {
+						id = can_flavour.59
+						days = 60
+						random_days = 30
+					}
+				}
 			}
 		}
 		clr_country_flag = CAN_bloc_government
@@ -15819,10 +15916,11 @@ country_event = {
 		clr_global_flag = ARI_coyotes_win_cup
 		hidden_effect = {
 			random_list = {
-				53 = { #Ottawa wins
+				seed = random
+				45 = { #Ottawa wins
 					set_global_flag = CAN_senators_win_cup
 				}
-				47 = { #Arizona wins
+				55 = { #Arizona wins
 					set_global_flag = ARI_coyotes_win_cup
 				}
 			}
@@ -15942,6 +16040,15 @@ country_event = {
 	title = can_flavour.8.t
 	desc = can_flavour.8.d
 	picture = steve_jobs_death
+	
+	trigger = {
+		NOT = { 
+			has_country_leader = {
+				name = "Steve Jobs"
+				ruling_only = yes
+			}
+		}
+	}
 
 	fire_only_once = yes
 	is_triggered_only = yes
@@ -16891,6 +16998,31 @@ country_event = {
 	}
 }
 
+#Harry Truman, Doris Day, Red China, Johnnie Ray
+country_event = {
+	id = can_flavour.59
+	title = can_flavour.59.t
+	desc = can_flavour.59.d
+	picture = mercer_stockwell_day
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Change your name
+		name = can_flavour.59.o1
+		CAN_stockwell_day = {
+			set_character_name = "Doris Day"
+		}
+		custom_effect_tooltip = CAN_day_rename_tt
+	}
+	
+	option = { #No
+		name = can_flavour.59.o2
+		add_political_power = -90
+		CAN_subtract_3_percent_popularity = yes
+	}
+}
+
 ###################
 ### NEWS EVENTS ###
 ###################
@@ -17770,6 +17902,19 @@ news_event = {	#Mark Carney Elected
 	
 	option = {
 		name = rw_canada_news.58.o1
+	}
+}
+
+news_event = {	#Steve Jobs Re-Elected
+	id = rw_canada_news.59
+	title = rw_canada_news.59.t
+	desc = rw_canada_news.59.d
+	picture = jobs_re_elected
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rw_canada_news.59.o1
 	}
 }
 
