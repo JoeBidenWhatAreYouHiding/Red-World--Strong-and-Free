@@ -116,6 +116,10 @@ focus_tree = {
 						rule = CAN_ai_behavior
 						option = CAN_HARPER_WIN
 					}
+					has_game_rule = {
+						rule = CAN_ai_behavior
+						option = CAN_JOBS_WIN
+					}
 				}
 				factor = 0
 			}
@@ -168,6 +172,10 @@ focus_tree = {
 				ruling_only = yes
             }
 			has_country_flag = reform_party_unites_with_pcs
+		}
+		
+		ai_will_do = {
+			factor = 100
 		}
 
 		available_if_capitulated = yes
@@ -287,6 +295,10 @@ focus_tree = {
             }
 			has_country_flag = reform_party_unites_with_pcs
 		}
+		
+		ai_will_do = {
+			factor = 100
+		}
 
 		available_if_capitulated = yes
 
@@ -332,6 +344,10 @@ focus_tree = {
 				ruling_only = yes
             }
 			has_country_flag = reform_party_unites_with_pcs
+		}
+		
+		ai_will_do = {
+			factor = 100
 		}
 
 		available_if_capitulated = yes
@@ -385,7 +401,15 @@ focus_tree = {
 		y = 1
 
 		available = {
-			
+			hidden_trigger = {
+				if = {
+					limit = { is_ai = yes }
+					OR = {
+						has_completed_focus = CAN_focus_on_alberta
+						has_completed_focus = CAN_focus_on_ontario
+					}
+				}
+			}
 		}
 
 		available_if_capitulated = yes
@@ -3696,7 +3720,15 @@ focus_tree = {
 		y = 4
 
 		available = {
-			
+			hidden_trigger = {
+				if = {
+					limit = { is_ai = yes }
+					OR = {
+						has_completed_focus = CAN_focus_on_alberta
+						has_completed_focus = CAN_focus_on_ontario
+					}
+				}
+			}
 		}
 
 		available_if_capitulated = yes
@@ -5210,24 +5242,24 @@ focus_tree = {
 				limit = { has_government = liberal }
 				remove_trait = {
 					character = CAN_steve_jobs
-					ideology = social_liberal
+					ideology = liberal_idemocracy
 					trait = CAN_out_of_touch_technocrat
 				}
 				add_trait = {
 					character = CAN_steve_jobs
-					ideology = social_liberal
+					ideology = liberal_idemocracy
 					trait = CAN_progressive_problem_solver 
 				}
 			}
 			else = {
 				remove_trait = {
 					character = CAN_steve_jobs
-					ideology = centrist_populist
+					ideology = idemocracy
 					trait = CAN_out_of_touch_technocrat
 				}
 				add_trait = {
 					character = CAN_steve_jobs
-					ideology = centrist_populist
+					ideology = idemocracy
 					trait = CAN_progressive_problem_solver
 				}
 			}
@@ -7578,6 +7610,26 @@ focus_tree = {
 						}
 						add_ideas = CAN_trudeau_first_term_liberal_idea
 					}
+					else_if = {
+						limit = { 
+							has_country_leader = {
+								name = "Steve Jobs"
+								ruling_only = yes
+							}
+							has_government = centrist
+						}
+						add_ideas = CAN_jobs_first_term_centrist_idea
+					}
+					else_if = {
+						limit = { 
+							has_country_leader = {
+								name = "Steve Jobs"
+								ruling_only = yes
+							}
+							has_government = liberal
+						}
+						add_ideas = CAN_jobs_first_term_liberal_idea
+					}
 				}
 			}
 		}
@@ -7680,6 +7732,26 @@ focus_tree = {
 							has_government = liberal
 						}
 						add_ideas = CAN_trudeau_first_term_liberal_idea
+					}
+					else_if = {
+						limit = { 
+							has_country_leader = {
+								name = "Steve Jobs"
+								ruling_only = yes
+							}
+							has_government = centrist
+						}
+						add_ideas = CAN_jobs_first_term_centrist_idea
+					}
+					else_if = {
+						limit = { 
+							has_country_leader = {
+								name = "Steve Jobs"
+								ruling_only = yes
+							}
+							has_government = liberal
+						}
+						add_ideas = CAN_jobs_first_term_liberal_idea
 					}
 				}
 			}
@@ -7905,8 +7977,8 @@ focus_tree = {
 			hidden_effect = {
 				if = {
 					limit = {	has_idea = CAN_buisness_haven2 }
-					remove_ideas = CAN_buisness_haven2_ndp
-					add_ideas = CAN_buisness_haven
+					remove_ideas = CAN_buisness_haven2
+					add_ideas = CAN_buisness_haven3
 				}
 				
 				if = {
@@ -7921,9 +7993,11 @@ focus_tree = {
 					add_ideas = CAN_buisness_haven
 				}
 			}
-			swap_ideas = {
-				remove_idea = CAN_buisness_haven
-				add_idea = CAN_buisness_haven3
+			effect_tooltip = {
+				swap_ideas = {
+					remove_idea = CAN_buisness_haven
+					add_idea = CAN_buisness_haven3
+				}
 			}
 			add_political_power = 50
 			add_stability = -0.05
@@ -8309,7 +8383,7 @@ focus_tree = {
 					ruling_only = yes
 				}
 				has_country_leader = {
-					name = "Stockwell Day"
+					character = CAN_stockwell_day
 					ruling_only = yes
 				}
 				has_country_leader = {
@@ -17639,6 +17713,15 @@ focus_tree = {
 
 		available = {
 			has_completed_focus = CAN_2010_democratic_league_review
+			hidden_trigger = {
+				if = {
+					limit = { is_ai = yes }
+					OR = {
+						has_completed_focus = CAN_focus_on_alberta
+						has_completed_focus = CAN_focus_on_ontario
+					}
+				}
+			}
 		}
 
 		available_if_capitulated = yes
