@@ -1068,6 +1068,14 @@ country_event = {
 					random_days = 30
 				}
 			}
+			else_if = {
+				limit = { has_country_flag = jobs_leads_liberals }
+				country_event = {
+					id = rw_canada.116
+					days = 80
+					random_days = 30
+				}
+			}
 			else = {
 				country_event = {
 					id = rw_canada.99
@@ -1156,6 +1164,14 @@ country_event = {
 				limit = { has_country_flag = ignatieff_leads_liberals }
 				country_event = {
 					id = rw_canada.97
+					days = 80
+					random_days = 30
+				}
+			}
+			else_if = {
+				limit = { has_country_flag = jobs_leads_liberals }
+				country_event = {
+					id = rw_canada.116
 					days = 80
 					random_days = 30
 				}
@@ -4146,12 +4162,15 @@ country_event = {
 		tag = CAN
 		ENG = {
 			is_in_faction_with = CAN
+			is_subject_of = CAN
 			OR = {
 				has_government = national_conservative
 				has_government = centrist
 				has_government = liberal
 				has_government = new_democrat
-				is_subject_of = CAN
+				has_government = nationalist
+				has_government = moderate_socialist
+				has_government = fascist
 			}
 		}
 		has_completed_focus = CAN_reclaim_the_birthright
@@ -4199,6 +4218,42 @@ country_event = {
 		ENG_elizabeth_ii = {
 			promote_character = absolute_monarchist
 		}
+	}
+}
+
+#Jobs Resigns
+country_event = {
+	id = rw_canada.116
+	title = rw_canada.116.t
+	desc = rw_canada.116.d
+	picture = silicon_valley_of_death
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.116.o1
+		if = {
+			limit = { has_country_leader = { name = "Bob Rae" ruling_only = yes } }
+			set_country_flag = liberal_justin_trudeau_2015
+			if = {
+				limit = { has_country_flag = liberals_are_centrist }
+				clr_country_flag = liberals_are_centrist
+				set_country_flag = liberals_are_liberal
+			}
+			effect_tooltip = {
+				CAN_justin_trudeau = {
+					promote_character = social_liberal
+				}
+			}
+		}
+		else = {
+			country_event = {
+				id = rw_canada.197
+				days = 10
+			}
+		}
+		set_country_flag = CAN_jobs_failed_bid
 	}
 }
 
@@ -8644,6 +8699,11 @@ country_event = {
 		add_popularity = {
 			ideology = centrist
 			popularity = 0.06
+		}
+		set_party_name = {
+			name = CAN_jobs_liberal_party
+			long_name = CAN_jobs_liberal_party_long
+			ideology = centrist
 		}
 	}
 }
@@ -16038,7 +16098,18 @@ country_event = {
 country_event = {
 	id = can_flavour.8
 	title = can_flavour.8.t
-	desc = can_flavour.8.d
+	desc = {
+		text = can_flavour.8.d
+		trigger = {
+			NOT = { has_country_flag = CAN_jobs_failed_bid }
+		}
+	}
+	desc = {
+		text = can_flavour.8.d_2
+		trigger = {
+			has_country_flag = CAN_jobs_failed_bid
+		}
+	}
 	picture = steve_jobs_death
 	
 	trigger = {
