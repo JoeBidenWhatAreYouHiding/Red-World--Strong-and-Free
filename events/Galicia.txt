@@ -1,0 +1,8871 @@
+###########################
+# Galicia Events
+###########################
+
+add_namespace = galicia
+add_namespace = galfopo
+add_namespace = galfopof
+add_namespace = galelections
+
+#Debates in the nationalist bloc
+country_event = {
+	id = galicia.1
+	title = galicia.1.t
+	desc = galicia.1.d
+	picture = GAL_bng_debates_start
+
+	trigger = {
+		original_tag = GAL
+		has_war = no
+		is_puppet = no
+	}
+
+	fire_only_once = yes
+
+	mean_time_to_happen = {
+		days = 1
+	}
+
+	option = {
+		name = galicia.1.o1
+		hidden_effect = {
+			GAL = {
+		        country_event = { days = 12 id = galicia.2 }
+			}
+		}
+	}
+}
+#PP and PSOG call for elections
+country_event = {
+	id = galicia.2
+	title = galicia.2.t
+	desc = galicia.2.d
+	picture = GAL_opposition_wants_elections
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.2.o1
+		hidden_effect = {
+			GAL = {
+		        country_event = { days = 5 id = galicia.3 }
+			}
+		}
+	}
+}
+#Nationalist Bloc calls for elections to be postpones
+country_event = {
+	id = galicia.3
+	title = galicia.3.t
+	desc = galicia.3.d
+	picture = GAL_bng_delays_elections
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.3.o1
+		ai_chance = {
+			base = 50
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_PROTECTOR_OF_GALICIA_DEM
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_A_NECESSARY_LIBERALIZATION
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_FRANCOIST_MODERATE
+					}
+				}
+				factor = 0
+			}
+		}
+		hidden_effect = {
+			GAL = {
+		        country_event = { days = 2 id = galicia.4 }
+				set_country_flag = GAL_beiras_delayed_democracy
+			}
+		}
+	}
+	option = {
+		name = galicia.3.o2
+		ai_chance = {
+			base = 50
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_PROTECTOR_OF_GALICIA_NON_DEM
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_PEOPLES_UNION
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_QUINTANAS_BLOC
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_MAINTAIN_THE_PATH
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_A_NECESSARY_LIBERALIZATION
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_FRANCOIST
+					}
+				}
+				factor = 0
+			}
+		}
+		hidden_effect = {
+			GAL = {
+		        country_event = { days = 2 id = galicia.26 }
+			}
+		}
+	}
+}
+#PP and PSOG condemn Beiras' hypocrisy
+country_event = {
+	id = galicia.4
+	title = galicia.4.t
+	desc = galicia.4.d
+	picture = GAL_opposition_condemns_hypocrisy
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.4.o1
+		hidden_effect = {
+			GAL = {
+		        country_event = { days = 7 id = galicia.5 }
+			}
+		}
+	}
+}
+#Civil Guard joins anti-government protests
+country_event = {
+	id = galicia.5
+	title = galicia.5.t
+	desc = galicia.5.d
+	picture = GAL_civil_guard_joins_protests
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.5.o1
+		hidden_effect = {
+			GAL = {
+		        country_event = { days = 10 id = galicia.6 }
+			}
+		}
+	}
+}
+#civil guard and military clash
+country_event = {
+	id = galicia.6
+	title = galicia.6.t
+	desc = galicia.6.d
+	picture = GAL_battle_of_santiago_de_compostela
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.6.o1
+		ai_chance = {
+			base = 40
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_MAINTAIN_THE_PATH
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_A_NECESSARY_LIBERALIZATION
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_FRANCOIST
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_MODERATE_LEFT
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_TRIUMPH_OF_THE_MODERATES
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_LEGACY_OF_THE_PEOPLES_PARTY
+					}
+				}
+				factor = 0
+			}
+		}
+		hidden_effect = { #military wins
+			GAL = {
+		        country_event = { days = 5 id = galicia.7 }
+			}
+		}
+	}
+	option = {
+		name = galicia.6.o2
+		ai_chance = {
+			base = 60
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_PROTECTOR_OF_GALICIA_NON_DEM
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_PEOPLES_UNION
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_QUINTANAS_BLOC
+					}
+				}
+				factor = 0
+			}
+		}
+		hidden_effect = { #civil guard wins
+			GAL = {
+		        country_event = { days = 5 id = galicia.23 }
+			}
+			set_politics = {
+				ruling_party = fascist
+				elections_allowed = no
+				last_election = "1935.12.17"
+				election_frequency = 48
+			}
+		}
+		swap_ideas = {
+			remove_idea = idea_gal_legacy_resistance
+			add_idea = idea_gal_disloyal_military
+		}
+		swap_ideas = {
+			remove_idea = idea_gal_divided_revolution
+			add_idea = idea_gal_lingering_leftist_militancy
+		}
+	}
+}
+#Military triumphant in clashes
+country_event = {
+	id = galicia.7
+	title = galicia.7.t
+	desc = galicia.7.d
+	picture = GAL_rev_army_triumph
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.7.o1
+		hidden_effect = {
+			GAL = {
+		        country_event = { days = 1 id = galicia.8 }
+			}
+		}
+	}
+}
+#Nationalist bloc debates resume
+country_event = {
+	id = galicia.8
+	title = galicia.8.t
+	desc = galicia.8.d
+	picture = GAL_bng_debates_resume
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.8.o1
+		hidden_effect = {
+			GAL = {
+		        country_event = { days = 1 id = galicia.9 }
+			}
+		}
+	}
+}
+#quintana gaining greater influence
+country_event = {
+	id = galicia.9
+	title = galicia.9.t
+	desc = galicia.9.d
+	picture = GAL_quintana_getting_stronger
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.9.o1
+		hidden_effect = {
+			GAL = {
+		        country_event = { days = 1 id = galicia.10 }
+			}
+		}
+	}
+}
+#Beiras argues wtih quintana
+country_event = {
+	id = galicia.10
+	title = galicia.10.t
+	desc = galicia.10.d
+	picture = GAL_beiras_hates_quintana
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.10.o1
+		hidden_effect = {
+			GAL = {
+		        country_event = { days = 1 id = galicia.11 }
+			}
+		}
+	}
+}
+#quintana and beiras approach Rego for support
+country_event = {
+	id = galicia.11
+	title = galicia.11.t
+	desc = galicia.11.d
+	picture = GAL_fighting_over_rego
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.11.o1
+		ai_chance = {
+			base = 40
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_PROTECTOR_OF_GALICIA_NON_DEM
+					}
+				}
+				factor = 0
+			}
+		}
+		hidden_effect = { #Rego backs Quintana
+			GAL = {
+		        country_event = { days = 1 id = galicia.12 }
+			}
+		}
+	}
+	option = {
+		name = galicia.11.o2
+		ai_chance = {
+			base = 20
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_PEOPLES_UNION
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_PROTECTOR_OF_GALICIA_NON_DEM
+					}
+				}
+				factor = 0
+			}
+		}
+		hidden_effect = { #Rego refuses to take a side
+			GAL = {
+		        country_event = { days = 1 id = galicia.13 }
+			}
+		}
+	}
+	option = {
+		name = galicia.11.o3
+		ai_chance = {
+			base = 40
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_QUINTANAS_BLOC
+					}
+				}
+				factor = 0
+			}
+		}
+		hidden_effect = { #Rego backs Beiras
+			GAL = {
+		        country_event = { days = 1 id = galicia.14 }
+			}
+		}
+	}
+}
+#Rego and Quintana's factions merge
+country_event = {
+	id = galicia.12
+	title = galicia.12.t
+	desc = galicia.12.d
+	picture = GAL_quintana_and_rego_merge
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.12.o1
+		hidden_effect = {
+			GAL = {
+		        country_event = { days = 1 id = galicia.15 }
+			}
+		}
+	}
+}
+#Beiras discredited
+country_event = {
+	id = galicia.15
+	title = galicia.15.t
+	desc = galicia.15.d
+	picture = GAL_debates_continue_rego_does_nothing
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.15.o1
+		ai_chance = {
+			base = 50
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_PEOPLES_UNION
+					}
+				}
+				factor = 0
+			}
+		}
+		hidden_effect = {
+			GAL = {
+		        country_event = { days = 1 id = galicia.16 }
+			}
+		}
+	}
+	option = {
+		name = galicia.15.o2
+		ai_chance = {
+			base = 50
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_QUINTANAS_BLOC
+					}
+				}
+				factor = 0
+			}
+		}
+		hidden_effect = {
+			GAL = {
+		        country_event = { days = 1 id = galicia.17 }
+			}
+		}
+	}
+}
+#Quintana emerges as leader
+country_event = {
+	id = galicia.16
+	title = galicia.16.t
+	desc = galicia.16.d
+	picture = GAL_qunitana_wins
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.16.o1
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		#complete_national_focus = GAL_nationalist_bloc_dominance
+		#complete_national_focus = GAL_quintanas_bloc
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_the_people
+		complete_national_focus = generic_revolution
+	}
+}
+#Rego emerges as new leader
+country_event = {
+	id = galicia.17
+	title = galicia.17.t
+	desc = galicia.17.d
+	picture = GAL_rego_wins
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.17.o1
+		set_politics = {
+			ruling_party = national_bolshevik
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		#complete_national_focus = GAL_nationalist_bloc_dominance
+		#complete_national_focus = GAL_peoples_union_triumphant
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_the_people
+		complete_national_focus = generic_new_bolsheviks
+	}
+}
+#debates continue as normal
+country_event = {
+	id = galicia.13
+	title = galicia.13.t
+	desc = galicia.13.d
+	picture = GAL_debates_continue_rego_does_nothing
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.13.o1
+		hidden_effect = {
+			GAL = {
+		        country_event = { days = 1 id = galicia.18 }
+			}
+		}
+	}
+}
+#Rego did nothing so Quintana wins
+country_event = {
+	id = galicia.18
+	title = galicia.18.t
+	desc = galicia.18.d
+	picture = GAL_qunitana_wins
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.18.o1
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+
+		#complete_national_focus = GAL_nationalist_bloc_dominance
+		#complete_national_focus = GAL_quintanas_bloc
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_the_people
+		complete_national_focus = generic_revolution
+	}
+}
+#Rego and Beiras team up
+country_event = {
+	id = galicia.14
+	title = galicia.14.t
+	desc = galicia.14.d
+	picture = GAL_beiras_rego_investigate
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.14.o1
+		hidden_effect = {
+			GAL = {
+		        country_event = { days = 1 id = galicia.19 }
+			}
+		}
+	}
+}
+#corruption discovered, Quintana booted
+country_event = {
+	id = galicia.19
+	title = galicia.19.t
+	desc = galicia.19.d
+	picture = GAL_quintana_corrupt
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.19.o1
+		hidden_effect = {
+			GAL = {
+		        country_event = { days = 1 id = galicia.20 }
+			}
+		}
+		retire_character = GAL_anxo_quintana
+		GAL_francisco_jorquera = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=syndicalism
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+}
+#Debates continue without Quintana
+country_event = {
+	id = galicia.20
+	title = galicia.20.t
+	desc = galicia.20.d
+	picture = GAL_debates_continue_rego_does_nothing
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #Rego wins
+		name = galicia.20.o1
+		ai_chance = {
+			base = 25
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_PROTECTOR_OF_GALICIA_NON_DEM
+					}
+				}
+				factor = 0
+			}
+		}
+		hidden_effect = {
+			GAL = {
+		        country_event = { id = galicia.21 }
+			}
+		}
+	}
+	option = {
+		name = galicia.20.o2
+		ai_chance = {
+			base = 75
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_PEOPLES_UNION
+					}
+				}
+				factor = 0
+			}
+		}
+		hidden_effect = {
+			GAL = { #Beiras wins
+		        country_event = { id = galicia.22 }
+			}
+		}
+	}
+}
+#Rego Emerges as leader of bloc
+country_event = {
+	id = galicia.21
+	title = galicia.21.t
+	desc = galicia.21.d
+	picture = GAL_rego_wins
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.21.o1
+		set_politics = {
+			ruling_party = national_bolshevik
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		#complete_national_focus = GAL_nationalist_bloc_dominance
+		#complete_national_focus = GAL_peoples_union_triumphant
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_the_people
+		complete_national_focus = generic_new_bolsheviks
+	}
+}
+#Beiras retains leadership
+country_event = {
+	id = galicia.22
+	title = galicia.22.t
+	desc = galicia.22.d
+	picture = GAL_beiras_wins
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.22.o1
+		#complete_national_focus = GAL_nationalist_bloc_dominance
+		#complete_national_focus = GAL_the_champion_of_galician_independence
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_freedom
+		complete_national_focus = generic_moderate_socialist_focus
+	}
+}
+#Civil guard overthrows Nationalist Bloc
+country_event = {
+	id = galicia.23
+	title = galicia.23.t
+	desc = galicia.23.d
+	picture = GAL_righteous_revolution
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #we must first ensure stability
+		name = galicia.23.o1
+		ai_chance = {
+			base = 50
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_PROTECTOR_OF_GALICIA_DEM
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_MODERATE_LEFT
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_TRIUMPH_OF_THE_MODERATES
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_LEGACY_OF_THE_PEOPLES_PARTY
+					}
+				}
+				factor = 0
+			}
+		}
+		hidden_effect = {
+			GAL = {
+		        country_event = { days = 1 id = galicia.24 }
+			}
+			set_country_flag = GAL_beiras_got_purged
+		}
+	}
+	option = { #hold elections as promised
+		name = galicia.23.o2
+		ai_chance = {
+			base = 50
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_A_NECESSARY_LIBERALIZATION
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_MAINTAIN_THE_PATH
+					}
+				}
+				factor = 0
+			}
+		}
+		hidden_effect = {
+			GAL = {
+		        country_event = { days = 1 id = galicia.25 }
+			}
+			set_country_flag = GAL_beiras_got_purged
+		}
+	}
+}
+#Civil Guard retains power
+country_event = {
+	id = galicia.24
+	title = galicia.24.t
+	desc = galicia.24.d
+	picture = GAL_falangista_joe_biden
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.24.o1
+		#complete_national_focus = GAL_under_amedos_violence
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_the_nation
+		complete_national_focus = generic_the_fallen_eagle
+	}
+}
+#Election Day
+country_event = {
+	id = galicia.25
+	title = galicia.25.t
+	desc = galicia.25.d
+	picture = GAL_civil_guard_elections
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #Socialist Workers' Party
+		name = galicia.25.o1
+		ai_chance = {
+			base = 50
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_PROTECTOR_OF_GALICIA_DEM
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_TRIUMPH_OF_THE_MODERATES
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_LEGACY_OF_THE_PEOPLES_PARTY
+					}
+				}
+				factor = 0
+			}
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		set_country_flag = GAL_democracy_prevails
+		#complete_national_focus = GAL_first_galician_elections
+		#complete_national_focus = GAL_the_moderate_left
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_freedom
+		complete_national_focus = generic_new_democrat_focus
+		hidden_effect = {
+#			country_event = {
+#				id = galelections.2
+#				days = 1461
+#			}
+		}
+	}
+	option = { #People's Party
+		name = galicia.25.o2
+		ai_chance = {
+			base = 50
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_MODERATE_LEFT
+					}
+				}
+				factor = 0
+			}
+		}
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		set_country_flag = GAL_democracy_prevails
+		#complete_national_focus = GAL_first_galician_elections
+		#complete_national_focus = GAL_the_conservative_backlash
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_freedom
+		complete_national_focus = generic_national_conservative_focus
+	}
+}
+#Beiras breaks with nationalist bloc
+country_event = {
+	id = galicia.26
+	title = galicia.26.t
+	desc = galicia.26.d
+	picture = GAL_beiras_breaks_bloc
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #police agree
+		name = galicia.26.o1
+		ai_chance = {
+			base = 60
+		}
+		hidden_effect = {
+			GAL = {
+		        country_event = { days = 1 id = galicia.27 }
+			}
+		}
+	}
+	option = { #police refuse
+		name = galicia.26.o2
+		ai_chance = {
+			base = 40
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_PROTECTOR_OF_GALICIA_DEM
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_MODERATE_LEFT
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_TRIUMPH_OF_THE_MODERATES
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_LEGACY_OF_THE_PEOPLES_PARTY
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_FRANCOIST_MODERATE
+					}
+				}
+				factor = 0
+			}
+		}
+		hidden_effect = {
+			GAL = {
+		        country_event = { days = 1 id = galicia.28 }
+			}
+		}
+	}
+}
+#Bloc agents repulsed
+country_event = {
+	id = galicia.27
+	title = galicia.27.t
+	desc = galicia.27.d
+	picture = GAL_beiras_protected
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.27.o1
+		country_event = { days = 1 id = galicia.29 }
+		swap_ideas = {
+			remove_idea = idea_gal_legacy_resistance
+			add_idea = idea_gal_disloyal_military
+		}
+	}
+}
+#Beiras announces elections
+country_event = {
+	id = galicia.29
+	title = galicia.29.t
+	desc = galicia.29.d
+	picture = GAL_beiras_elections
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.29.o1
+		country_event = { days = 21 id = galicia.30 }
+	}
+}
+#Election day
+country_event = {
+	id = galicia.30
+	title = galicia.30.t
+	desc = galicia.30.d
+	picture = GAL_civil_guard_elections
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #Beiras wins
+		name = galicia.30.o1
+		ai_chance = {
+			base = 33
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_MODERATE_LEFT
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_TRIUMPH_OF_THE_MODERATES
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_LEGACY_OF_THE_PEOPLES_PARTY
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_FRANCOIST_MODERATE
+					}
+				}
+				factor = 0
+			}
+		}
+		set_country_flag = GAL_democracy_prevails
+		#complete_national_focus = GAL_first_galician_elections
+		#complete_national_focus = GAL_the_champion_of_galician_independence
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_freedom
+		complete_national_focus = generic_moderate_socialist_focus
+		hidden_effect = {
+#			country_event = {
+#				id = galelections.3
+#				days = 1461
+#			}
+#			country_event = {
+#				id = galelections.22
+#				days = 217
+#			}
+			set_cosmetic_tag = GAL_red_star_republic
+		}
+	}
+	option = { #PP Wins
+		name = galicia.30.o2
+		ai_chance = {
+			base = 34
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_PROTECTOR_OF_GALICIA_DEM
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_MODERATE_LEFT
+					}
+				}
+				factor = 0
+			}
+		}
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		set_country_flag = GAL_democracy_prevails
+		swap_ideas = {
+			remove_idea = idea_gal_divided_revolution
+			add_idea = idea_gal_lingering_leftist_militancy
+		}
+		#complete_national_focus = GAL_first_galician_elections
+		#complete_national_focus = GAL_the_conservative_backlash
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_freedom
+		complete_national_focus = generic_national_conservative_focus
+		hidden_effect = {
+#			country_event = {
+#				id = galelections.22
+#				days = 217
+#			}
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+#				country_event = {
+#					id = galelections.24
+#					days = 194
+#				}
+			}
+			set_cosmetic_tag = GAL_no_red_star
+		}
+	}
+	option = { #PSdeG Wins
+		name = galicia.30.o3
+		ai_chance = {
+			base = 33
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_PROTECTOR_OF_GALICIA_DEM
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_TRIUMPH_OF_THE_MODERATES
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_LEGACY_OF_THE_PEOPLES_PARTY
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_FRANCOIST_MODERATE
+					}
+				}
+				factor = 0
+			}
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		set_country_flag = GAL_democracy_prevails
+		swap_ideas = {
+			remove_idea = idea_gal_divided_revolution
+			add_idea = idea_gal_lingering_leftist_militancy
+		}
+		#complete_national_focus = GAL_first_galician_elections
+		#complete_national_focus = GAL_the_moderate_left
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_freedom
+		complete_national_focus = generic_new_order
+		hidden_effect = {
+#			country_event = {
+#				id = galelections.4
+#				days = 1461
+#			}
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+#				country_event = {
+#					id = galelections.24
+#					days = 194
+#				}
+			}
+			set_cosmetic_tag = GAL_no_red_star
+		}
+	}
+}
+#Nationalist bloc overthrows Beiras
+country_event = {
+	id = galicia.28
+	title = galicia.28.t
+	desc = galicia.28.d
+	picture = GAL_beiras_deposed
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.28.o1
+		country_event = { days = 1 id = galicia.31 }
+		set_politics = {
+			ruling_party = national_bolshevik
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			set_variable = {gal_natbol_support = 0}
+			set_variable = {gal_revsoc_support = 0}
+		}
+	}
+}
+#Bloc debates resume
+country_event = {
+	id = galicia.31
+	title = galicia.31.t
+	desc = galicia.31.d
+	picture = GAL_more_bng_debates
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.31.o1
+		country_event = { days = 1 id = galicia.32 }
+	}
+}
+#Debate on rural vs urban
+country_event = {
+	id = galicia.32
+	title = galicia.32.t
+	desc = galicia.32.d
+	picture = GAL_regional_debate
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #favor rural
+		name = galicia.32.o1
+		country_event = { days = 1 id = galicia.33 }
+		add_to_variable = { gal_revsoc_support = 1 }
+	}
+	option = { #favor urban
+		name = galicia.32.o2
+		country_event = { days = 1 id = galicia.33 }
+		add_to_variable = { gal_natbol_support = 1 }
+	}
+}
+#Debate on official language
+country_event = {
+	id = galicia.33
+	title = galicia.33.t
+	desc = galicia.33.d
+	picture = GAL_language_debate
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #spanish remains co-official
+		name = galicia.33.o1
+		country_event = { days = 1 id = galicia.34 }
+		add_to_variable = { gal_revsoc_support = 1 }
+	}
+	option = { #only galician official
+		name = galicia.33.o2
+		country_event = { days = 1 id = galicia.34 }
+		add_to_variable = { gal_natbol_support = 1 }
+	}
+}
+#Debate on socialization method
+country_event = {
+	id = galicia.34
+	title = galicia.34.t
+	desc = galicia.34.d
+	picture = GAL_socialization_debate
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #favor rural
+		name = galicia.34.o1
+		country_event = { days = 1 id = galicia.35 }
+		add_to_variable = { gal_revsoc_support = 1 }
+	}
+	option = { #favor urban
+		name = galicia.34.o2
+		country_event = { days = 1 id = galicia.35 }
+		add_to_variable = { gal_natbol_support = 1 }
+	}
+}
+#Debates end
+country_event = {
+	id = galicia.35
+	title = galicia.35.t
+	picture = GAL_debates_continue_rego_does_nothing
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	desc = { #RevSoc victory
+		text = galicia.35.d1
+		trigger = {
+			check_variable = {
+				gal_revsoc_support > 1
+			}
+			check_variable = {
+				gal_natbol_support < 2
+			}
+		}
+	}
+	desc = { #NatBol victory
+		text = galicia.35.d2
+		trigger = {
+			check_variable = {
+				gal_natbol_support > 1
+			}
+			check_variable = {
+				gal_revsoc_support < 2
+			}
+		}
+	}
+
+	option = { #RevSoc victory
+		name = galicia.35.o1
+		trigger = {
+			check_variable = {
+				gal_revsoc_support > 1
+			}
+			check_variable = {
+				gal_natbol_support < 2
+			}
+		}
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		#complete_national_focus = GAL_nationalist_bloc_dominance
+		#complete_national_focus = GAL_quintanas_bloc
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_the_people
+		complete_national_focus = generic_revolution
+	}
+	option = { #NatBol victory
+		name = galicia.35.o2
+		trigger = {
+			check_variable = {
+				gal_natbol_support > 1
+			}
+			check_variable = {
+				gal_revsoc_support < 2
+			}
+		}
+		set_politics = {
+			ruling_party = national_bolshevik
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		#complete_national_focus = GAL_nationalist_bloc_dominance
+		#complete_national_focus = GAL_peoples_union_triumphant
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_the_people
+		complete_national_focus = generic_new_bolsheviks
+	}
+}
+#future of the galician state
+country_event = {
+	id = galicia.36
+	title = galicia.36.t
+	desc = galicia.36.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #stay the course
+		ai_chance = {
+			base = 55
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_A_NECESSARY_LIBERALIZATION
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_FRANCOIST
+					}
+				}
+				factor = 0
+			}
+		}
+		name = galicia.36.o1
+		complete_national_focus = GAL_maintain_the_path
+	}
+	option = {
+		name = galicia.36.o2
+		ai_chance = {
+			base = 45
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_MAINTAIN_THE_PATH
+					}
+				}
+				factor = 0
+			}
+		}
+		hidden_effect = {
+			country_event = { days = 1 id = galicia.37 }
+		}
+	}
+}
+#amedo announces imminent elections
+country_event = {
+	id = galicia.37
+	title = galicia.37.t
+	desc = galicia.37.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.37.o1
+		hidden_effect = {
+			country_event = { days = 5 id = galicia.38 }
+		}
+	}
+}
+#Carmen Franco announces intent to run
+country_event = {
+	id = galicia.38
+	title = galicia.38.t
+	desc = galicia.38.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.38.o1
+		hidden_effect = {
+			country_event = { days = 7 id = galicia.39 }
+		}
+	}
+}
+#amedo vs franco election day
+country_event = {
+	id = galicia.39
+	title = galicia.39.t
+	desc = galicia.39.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #amedo wins
+		name = galicia.39.o1
+		ai_chance = {
+			base = 55
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_FRANCOIST
+					}
+				}
+				factor = 0
+			}
+		}
+		set_party_name = {
+			ideology = nationalist
+			long_name = GAL_nationalist_patriot_party_long
+			name = GAL_nationalist_patriot_party
+		}
+		set_party_name = {
+			ideology = fascist
+			long_name = GAL_fascist_legacy_party_long
+			name = GAL_fascist_legacy_party
+		}
+		set_politics = {
+			ruling_party = nationalist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.20
+		}
+		set_cosmetic_tag = GAL_amedo_republic
+		complete_national_focus = GAL_a_necessary_liberalization
+		set_country_flag = GAL_amedo_liberalized
+		hidden_effect = {
+			retire_character = GAL_jose_amedo
+			GAL_jose_amedo_nationalist = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader={
+						ideology=neoconservative
+						expire="1.1.1.1"
+						id=-1
+					}
+				}
+			}
+			GAL_carmen_franco_I = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader={
+						ideology=francoist
+						expire="1.1.1.1"
+						id=-1
+					}
+				}
+			}
+			country_event = {
+				id = galelections.18
+				days = 400
+			}
+			country_event = {
+				id = galelections.19
+				days = 300
+			}
+			country_event = {
+				id = galelections.20
+				days = 1461
+			}
+		}
+	}
+	option = { #franco wins
+		name = galicia.39.o2
+		ai_chance = {
+			base = 45
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_A_NECESSARY_LIBERALIZATION
+					}
+				}
+				factor = 0
+			}
+		}
+		set_party_name = {
+			ideology = nationalist
+			long_name = GAL_nationalist_patriot_party_long
+			name = GAL_nationalist_patriot_party
+		}
+		set_party_name = {
+			ideology = fascist
+			long_name = GAL_fascist_legacy_party_long
+			name = GAL_fascist_legacy_party
+		}
+		set_politics = {
+			ruling_party = fascist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.10
+		}
+		hidden_effect = {
+			retire_character = GAL_jose_amedo
+			GAL_jose_amedo_nationalist = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader={
+						ideology=neoconservative
+						expire="1.1.1.1"
+						id=-1
+					}
+				}
+			}
+			GAL_carmen_franco_I = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader={
+						ideology=francoist
+						expire="1.1.1.1"
+						id=-1
+					}
+				}
+			}
+			load_focus_tree = galicia_francoism_tree
+			complete_national_focus = GAL_franco_blood_of_el_caudillo
+		}
+	}
+}
+#Feijoo Crisis starts galicianists walk out
+country_event = {
+	id = galicia.40
+	title = galicia.40.t
+	desc = galicia.40.d
+	picture = x
+
+	trigger = {
+		focus_progress = {
+			focus = GAL_a_new_education_plan
+			progress > 0.2
+		}
+	}
+	fire_only_once = yes
+
+	option = {
+		name = galicia.40.o1
+		hidden_effect = {
+			country_event = { days = 7 id = galicia.41 }
+			set_country_flag = GAL_education_plan_collapsed
+		}
+	}
+}
+#Vice President Carmen Fraga announces challenge to Feijoo leadership
+country_event = {
+	id = galicia.41
+	title = galicia.41.t
+	desc = galicia.41.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.41.o1
+		hidden_effect = {
+			country_event = { days = 4 id = galicia.42 }
+			set_country_flag = GAL_carmen_fraga_breaks_with_feijoo
+		}
+	}
+}
+#rumors of vonc
+country_event = {
+	id = galicia.42
+	title = galicia.42.t
+	desc = galicia.42.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.42.o1
+		hidden_effect = {
+			country_event = { days = 4 id = galicia.43 }
+		}
+	}
+}
+#Fraga supports a monarchy socialists not a fan
+country_event = {
+	id = galicia.43
+	title = galicia.43.t
+	desc = galicia.43.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.43.o1
+		hidden_effect = {
+			country_event = { days = 4 id = galicia.44 }
+		}
+	}
+}
+#vonc time
+country_event = {
+	id = galicia.44
+	title = galicia.44.t
+	desc = galicia.44.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #motion fails
+		ai_chance = {
+			base = 50
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_LEGACY_OF_THE_PEOPLES_PARTY
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_FRANCOIST_MODERATE
+					}
+				}
+				factor = 0
+			}
+		}
+		name = galicia.44.o1
+		hidden_effect = {
+			country_event = { days = 1 id = galicia.45 }
+		}
+	}
+	option = { #motion passes
+		name = galicia.44.o2
+		ai_chance = {
+			base = 50
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_TRIUMPH_OF_THE_MODERATES
+					}
+				}
+				factor = 0
+			}
+		}
+		hidden_effect = {
+			country_event = { days = 1 id = galicia.46 }
+		}
+	}
+}
+#vonc fails
+country_event = {
+	id = galicia.45
+	title = galicia.45.t
+	desc = galicia.45.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.45.o1
+		complete_national_focus = GAL_triumph_of_the_moderates
+		hidden_effect = {
+			country_event = {
+				id = galelections.5
+				days = 1100
+			}
+		}
+	}
+}
+#vonc passes
+country_event = {
+	id = galicia.46
+	title = galicia.46.t
+	desc = galicia.46.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.46.o1
+		hidden_effect = {
+			retire_character = GAL_alberto_nunez_feijoo
+			GAL_carmen_fraga = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader={
+						ideology=christian_democracy
+						expire="1.1.1.1"
+						id=-1
+					}
+				}
+			}
+			country_event = { days = 15 id = galicia.47 }
+			set_country_flag = GAL_carmen_fraga_leads_the_peoples_party
+		}
+	}
+}
+#Fraga demands monarchy referendum
+country_event = {
+	id = galicia.47
+	title = galicia.47.t
+	desc = galicia.47.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #shut down the referendum
+		name = galicia.47.o1
+		ai_chance = {
+			base = 55
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_FRANCOIST_MODERATE
+					}
+				}
+				factor = 0
+			}
+		}
+		hidden_effect = {
+			country_event = { days = 5 id = galicia.48 }
+		}
+	}
+	option = { #hold the referendum
+		name = galicia.47.o2
+		ai_chance = {
+			base = 45
+		}
+		hidden_effect = {
+			country_event = { days = 10 id = galicia.50 }
+		}
+	}
+}
+#Left shuts down referendum
+country_event = {
+	id = galicia.48
+	title = galicia.48.t
+	desc = galicia.48.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.48.o1
+		hidden_effect = {
+			country_event = { days = 40 id = galicia.49 }
+		}
+	}
+}
+#snap elections
+country_event = {
+	id = galicia.49
+	title = galicia.49.t
+	desc = {
+		text = galicia.49.d1
+		trigger = {
+			has_country_flag = GAL_beiras_got_purged
+		}
+	}
+	desc = {
+		text = galicia.49.d2
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+	}
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #fraga wins
+		name = galicia.49.o1
+		ai_chance = {
+			base = 40
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.05
+		}
+		complete_national_focus = GAL_legacy_of_the_peoples_party
+		hidden_effect = {
+			country_event = {
+				id = galelections.6
+				days = 1461
+			}
+			country_event = {
+				id = galelections.22
+				days = 217
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.24
+					days = 194
+				}
+			}
+			clr_country_flag = gal_impending_political_subterfuge
+		}
+	}
+	option = { #newdems win
+		name = galicia.49.o2
+		ai_chance = {
+			base = 30
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_LEGACY_OF_THE_PEOPLES_PARTY
+					}
+				}
+				factor = 0
+			}
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		complete_national_focus = GAL_the_moderate_left
+		hidden_effect = {
+			country_event = {
+				id = galelections.7
+				days = 1461
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.24
+					days = 194
+				}
+			}
+			clr_country_flag = gal_impending_political_subterfuge
+		}
+	}
+	option = { #modsocs win
+		name = galicia.49.o3
+		ai_chance = {
+			base = 30
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_LEGACY_OF_THE_PEOPLES_PARTY
+					}
+				}
+				factor = 0
+			}
+		}
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		complete_national_focus = GAL_the_champion_of_galician_independence
+		hidden_effect = {
+			country_event = {
+				id = galelections.8
+				days = 1461
+			}
+			country_event = {
+				id = galelections.22
+				days = 217
+			}
+			clr_country_flag = gal_impending_political_subterfuge
+		}
+	}
+}
+#monarchy referendum passes
+country_event = {
+	id = galicia.50
+	title = galicia.50.t
+	desc = galicia.50.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.50.o1
+		hidden_effect = {
+			country_event = { days = 1 id = galicia.51 }
+		}
+	}
+}
+#which royal candidate
+country_event = {
+	id = galicia.51
+	title = galicia.51.t
+	desc = galicia.51.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #Bruno I
+		name = galicia.51.o1
+		ai_chance = {
+			base = 50
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_FRANCOIST_MODERATE
+					}
+				}
+				factor = 0
+			}
+		}
+		hidden_effect = {
+			country_event = { days = 34 id = galicia.53 }
+		}
+		set_cosmetic_tag = GAL_kingdom_of_galicia
+	}
+	option = { #Alfonso XIV
+		name = galicia.51.o2
+		ai_chance = {
+			base = 50
+		}
+		hidden_effect = {
+			country_event = { days = 4 id = galicia.52 }
+		}
+		GAL_alfonso_xiv = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=absolute_monarchist
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+		set_cosmetic_tag = GAL_kingdom_of_galicia
+	}
+}
+#younger carmen franco runs for prime minister
+country_event = {
+	id = galicia.52
+	title = galicia.52.t
+	desc = galicia.52.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.52.o1
+		set_party_name = {
+			ideology = nationalist
+			long_name = GAL_fascist_legacy_party_long
+			name = GAL_fascist_legacy_party
+		}
+		hidden_effect = {
+			country_event = { days = 30 id = galicia.54 }
+			set_country_flag = GAL_carmen_franco_running_for_prime_minister
+			retire_character = GAL_gonzalo_perez_jacome
+		}
+		GAL_carmen_franco_II = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=neofrancoist
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+}
+#snap elections under the monarchy without francos
+country_event = {
+	id = galicia.53
+	title = galicia.53.t
+	desc = galicia.53.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #fraga wins
+		name = galicia.53.o1
+		ai_chance = {
+			base = 50
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.05
+		}
+		complete_national_focus = GAL_legacy_of_the_peoples_party
+		hidden_effect = {
+			country_event = {
+				id = galelections.9
+				days = 1461
+			}
+			country_event = {
+				id = galelections.22
+				days = 217
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.24
+					days = 194
+				}
+			}
+			clr_country_flag = gal_impending_political_subterfuge
+		}
+	}
+	option = { #newdems win
+		name = galicia.53.o2
+		ai_chance = {
+			base = 50
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_LEGACY_OF_THE_PEOPLES_PARTY
+					}
+				}
+				factor = 0
+			}
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		complete_national_focus = GAL_the_moderate_left
+		hidden_effect = {
+			country_event = {
+				id = galelections.10
+				days = 1461
+			}
+			country_event = {
+				id = galelections.27
+				days = 167
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.24
+					days = 194
+				}
+			}
+			clr_country_flag = gal_impending_political_subterfuge
+		}
+	}
+	option = { #modsocs win
+		name = galicia.53.o3
+		ai_chance = {
+			base = 50
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_LEGACY_OF_THE_PEOPLES_PARTY
+					}
+				}
+				factor = 0
+			}
+		}
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		complete_national_focus = GAL_the_champion_of_galician_independence
+		hidden_effect = {
+			country_event = {
+				id = galelections.11
+				days = 1461
+			}
+			country_event = {
+				id = galelections.27
+				days = 167
+			}
+			country_event = {
+				id = galelections.22
+				days = 217
+			}
+			clr_country_flag = gal_impending_political_subterfuge
+		}
+	}
+}
+#snap elections under the monarchy with franco
+country_event = {
+	id = galicia.54
+	title = galicia.54.t
+	desc = galicia.54.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #fraga wins
+		name = galicia.54.o1
+		ai_chance = {
+			base = 50
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_FRANCOIST_MODERATE
+					}
+				}
+				factor = 0
+			}
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.05
+		}
+		complete_national_focus = GAL_legacy_of_the_peoples_party
+		hidden_effect = {
+			country_event = {
+				id = galelections.12
+				days = 1461
+			}
+			country_event = {
+				id = galelections.22
+				days = 217
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.24
+					days = 194
+				}
+			}
+			clr_country_flag = gal_impending_political_subterfuge
+		}
+	}
+	option = { #Pérez wins
+		name = galicia.54.o2
+		ai_chance = {
+			base = 50
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_LEGACY_OF_THE_PEOPLES_PARTY
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_FRANCOIST_MODERATE
+					}
+				}
+				factor = 0
+			}
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		complete_national_focus = GAL_the_moderate_left
+		hidden_effect = {
+			country_event = {
+				id = galelections.13
+				days = 1461
+			}
+			country_event = {
+				id = galelections.27
+				days = 167
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.24
+					days = 194
+				}
+			}
+			clr_country_flag = gal_impending_political_subterfuge
+		}
+	}
+	option = { #beiras wins
+		name = galicia.54.o3
+		ai_chance = {
+			base = 50
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_LEGACY_OF_THE_PEOPLES_PARTY
+					}
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_FRANCOIST_MODERATE
+					}
+				}
+				factor = 0
+			}
+		}
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		complete_national_focus = GAL_the_champion_of_galician_independence
+		hidden_effect = {
+			country_event = {
+				id = galelections.14
+				days = 1461
+			}
+			country_event = {
+				id = galelections.27
+				days = 167
+			}
+			country_event = {
+				id = galelections.22
+				days = 217
+			}
+			clr_country_flag = gal_impending_political_subterfuge
+		}
+	}
+	option = { #franco wins
+		name = galicia.54.o4
+		ai_chance = {
+			base = 50
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = GAL_ai_behavior_rw
+						option = GAL_LEGACY_OF_THE_PEOPLES_PARTY
+					}
+				}
+				factor = 0
+			}
+		}
+		set_politics = {
+			ruling_party = nationalist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.2
+		}
+		hidden_effect = {
+			complete_national_focus = GAL_franco_blood_of_el_caudillo
+			load_focus_tree = galicia_francoism_tree
+			country_event = {
+				id = galelections.15
+				days = 1461
+			}
+			country_event = {
+				id = galelections.27
+				days = 167
+			}
+			country_event = {
+				id = galelections.22
+				days = 217
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.24
+					days = 194
+				}
+			}
+			clr_country_flag = gal_impending_political_subterfuge
+		}
+	}
+}
+#beiras gets arrested
+country_event = {
+	id = galicia.55
+	title = galicia.55.t
+	desc = galicia.55.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.55.o1
+	}
+}
+#everyone but beiras gets arrested
+country_event = {
+	id = galicia.56
+	title = galicia.56.t
+	desc = galicia.56.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.56.o1
+	}
+}
+#natbols and revsocs destroy the civil guard
+country_event = {
+	id = galicia.57
+	title = galicia.57.t
+	desc = galicia.57.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.57.o1
+	}
+}
+#religious institutions banned
+country_event = {
+	id = galicia.58
+	title = galicia.58.t
+	desc = galicia.58.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.58.o1
+	}
+}
+#abolition of spanish political parties
+country_event = {
+	id = galicia.59
+	title = galicia.59.t
+	desc = galicia.59.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.59.o1
+	}
+}
+#union leaders welcomed into government
+country_event = {
+	id = galicia.60
+	title = galicia.60.t
+	desc = galicia.60.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.60.o1
+	}
+}
+#small businesses consolidated
+country_event = {
+	id = galicia.61
+	title = galicia.61.t
+	desc = galicia.61.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.61.o1
+	}
+}
+#galician as official language
+country_event = {
+	id = galicia.62
+	title = galicia.62.t
+	desc = galicia.62.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.62.o1
+	}
+}
+#rural cooperation
+country_event = {
+	id = galicia.63
+	title = galicia.63.t
+	desc = galicia.63.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.63.o1
+	}
+}
+#military and party unification
+country_event = {
+	id = galicia.64
+	title = galicia.64.t
+	desc = galicia.64.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.64.o1
+	}
+}
+#revsoc and natbol military parade
+country_event = {
+	id = galicia.65
+	title = galicia.65.t
+	desc = galicia.65.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.65.o1
+	}
+}
+#franco family cabinet
+country_event = {
+	id = galicia.66
+	title = galicia.66.t
+	desc = galicia.66.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.66.o1
+	}
+}
+#leftist organizations forced underground
+country_event = {
+	id = galicia.67
+	title = galicia.67.t
+	desc = galicia.67.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.67.o1
+	}
+}
+#opposition parties disbanded
+country_event = {
+	id = galicia.68
+	title = galicia.68.t
+	desc = galicia.68.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.68.o1
+	}
+}
+#return of the franco constitution
+country_event = {
+	id = galicia.69
+	title = galicia.69.t
+	desc = galicia.69.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.69.o1
+	}
+}
+#nobles support government
+country_event = {
+	id = galicia.70
+	title = galicia.70.t
+	desc = galicia.70.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.70.o1
+	}
+}
+#desocialization of galician nationalism
+country_event = {
+	id = galicia.71
+	title = galicia.71.t
+	desc = galicia.71.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.71.o1
+	}
+}
+#recruitment campaigns prove effective
+country_event = {
+	id = galicia.72
+	title = galicia.72.t
+	desc = galicia.72.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galicia.72.o1
+	}
+}
+
+##foreign policy##
+#demand porto
+country_event = {
+	id = galfopo.1
+	title = galfopo.1.t
+	desc = galfopo.1.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #accept
+		name = galfopo.1.o1
+		ai_chance = {factor = 20}
+		hidden_effect = {
+			GAL = {
+				country_event = {
+					id = galfopo.2
+					days = 3
+				}
+			}
+		}
+	}
+	option = { #deny
+		name = galfopo.1.o2
+		ai_chance = {factor = 80}
+		hidden_effect = {
+			GAL = {
+				country_event = {
+					id = galfopo.3
+					days = 3
+				}
+			}
+		}
+	}
+}
+#portugal accepts
+country_event = {
+	id = galfopo.2
+	title = galfopo.2.t
+	desc = galfopo.2.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #accept
+		name = galfopo.2.o1
+		transfer_state = 180
+	}
+}
+#portugal declines
+country_event = {
+	id = galfopo.3
+	title = galfopo.3.t
+	desc = galfopo.3.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #accept
+		name = galfopo.3.o1
+		create_wargoal = {
+			type = annex_everything
+			target = POR
+		}
+		add_political_power = -50
+	}
+}
+#demand asturias and leon
+country_event = {
+	id = galfopo.4
+	title = galfopo.4.t
+	desc = galfopo.4.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #accept
+		name = galfopo.4.o1
+		ai_chance = {factor = 30}
+		hidden_effect = {
+			GAL = {
+				country_event = {
+					id = galfopo.5
+					days = 3
+				}
+			}
+		}
+	}
+	option = { #deny
+		name = galfopo.4.o2
+		ai_chance = {factor = 70}
+		hidden_effect = {
+			GAL = {
+				country_event = {
+					id = galfopo.6
+					days = 3
+				}
+			}
+		}
+	}
+}
+#spain accepts
+country_event = {
+	id = galfopo.5
+	title = galfopo.5.t
+	desc = galfopo.5.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #accept
+		name = galfopof.5.o1
+		transfer_state = 174
+		transfer_state = 928
+	}
+}
+#spain declines
+country_event = {
+	id = galfopo.6
+	title = galfopo.6.t
+	desc = galfopo.6.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #accept
+		name = galfopof.6.o1
+		IF = {
+			limit = {
+				country_exists = SPR
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = SPR
+			}
+		}
+		IF = {
+			limit = {
+				country_exists = SPN
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = SPN
+			}
+		}
+		add_political_power = -50
+	}
+}
+#pursue linguistic reintegrationism
+country_event = {
+	id = galfopo.7
+	title = galfopo.7.t
+	desc = galfopo.7.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #accept
+		name = galfopo.7.o1
+		ai_chance = {factor = 90}
+		hidden_effect = {
+			GAL = {
+				country_event = {
+					id = galfopo.8
+					days = 3
+				}
+			}
+			set_country_flag = GAL_portugal_accepted_reintegrationism
+		}
+	}
+	option = { #deny
+		name = galfopo.7.o2
+		ai_chance = {factor = 10}
+		hidden_effect = {
+			GAL = {
+				country_event = {
+					id = galfopo.9
+					days = 3
+				}
+			}
+		}
+	}
+}
+#portugal accepts
+country_event = {
+	id = galfopo.8
+	title = galfopo.8.t
+	desc = galfopo.8.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #accept
+		name = galfopo.8.o1
+	}
+}
+#portugal declines
+country_event = {
+	id = galfopo.9
+	title = galfopo.9.t
+	desc = galfopo.9.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #accept
+		name = galfopo.9.o1
+		set_country_flag = GAL_portugal_refused_integrationism
+		uncomplete_national_focus = {
+			focus = GAL_pursue_linguistic_reintegrationism
+			uncomplete_children = yes
+			refund_political_power = no
+		}
+	}
+}
+#bureaucratic centralization
+country_event = {
+	id = galfopo.10
+	title = galfopo.10.t
+	desc = galfopo.10.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #accept
+		name = galfopo.10.o1
+		ai_chance = {factor = 60}
+		hidden_effect = {
+			GAL = {
+				country_event = {
+					id = galfopo.11
+					days = 3
+				}
+			}
+		}
+	}
+	option = { #deny
+		name = galfopo.10.o2
+		ai_chance = {factor = 40}
+		hidden_effect = {
+			GAL = {
+				country_event = {
+					id = galfopo.12
+					days = 3
+				}
+			}
+		}
+	}
+}
+#portugal accepts
+country_event = {
+	id = galfopo.11
+	title = galfopo.11.t
+	desc = galfopo.11.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #accept
+		name = galfopo.11.o1
+		puppet = POR
+	}
+}
+#portugal declines
+country_event = {
+	id = galfopo.12
+	title = galfopo.12.t
+	desc = galfopo.12.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #accept
+		name = galfopo.12.o1
+		create_wargoal = {
+			type = annex_everything
+			target = POR
+		}
+	}
+}
+#Galicia sponsors infrastructural integration program
+country_event = {
+	id = galfopo.13
+	title = galfopo.13.t
+	desc = galfopo.13.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #accept
+		name = galfopo.13.o1
+	}
+}
+#Galicia sponsors industrial integration program
+country_event = {
+	id = galfopo.14
+	title = galfopo.14.t
+	desc = galfopo.14.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #accept
+		name = galfopo.14.o1
+	}
+}
+#galicia seeks our protection
+country_event = {
+	id = galfopo.15
+	title = galfopo.15.t
+	desc = galfopo.15.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = galfopo.15.o1
+		ai_chance = {factor = 60}
+		GAL = {
+			country_event = {
+				id = galfopo.16
+				days = 3
+			}
+		}
+		give_guarantee = GAL
+	}
+	option = { #fuck off
+		name = galfopo.15.o2
+		ai_chance = {factor = 40}
+		GAL = {
+			country_event = {
+				id = galfopo.17
+				days = 3
+			}
+		}
+	}
+}
+#country offers their protection
+country_event = {
+	id = galfopo.16
+	title = galfopo.16.t
+	desc = galfopo.16.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.16.o1
+	}
+}
+#country refuses to give protection
+country_event = {
+	id = galfopo.17
+	title = galfopo.17.t
+	desc = galfopo.17.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.17.o1
+		add_political_power = -50
+	}
+}
+#galicia makes friend with Portugal from Portugal's perspective
+country_event = {
+	id = galfopo.18
+	title = galfopo.18.t
+	desc = galfopo.18.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.18.o1
+	}
+}
+#galicia makes friend with Portugal from Galicia's perspective
+country_event = {
+	id = galfopo.19
+	title = galfopo.19.t
+	desc = galfopo.19.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.19.o1
+	}
+}
+#galicia makes friend with Spain from Spain's perspective
+country_event = {
+	id = galfopo.20
+	title = galfopo.20.t
+	desc = galfopo.20.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.20.o1
+	}
+}
+#galicia makes friend with SPR from Galicia's perspective
+country_event = {
+	id = galfopo.21
+	title = galfopo.21.t
+	desc = galfopo.21.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.21.o1
+	}
+}
+#galicia makes friend with SPN from Galicia's perspective
+country_event = {
+	id = galfopo.22
+	title = galfopo.22.t
+	desc = galfopo.22.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.22.o1
+	}
+}
+#galicia wants to join russia
+country_event = {
+	id = galfopo.24
+	title = galfopo.24.t
+	desc = galfopo.24.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = galfopo.24.o1
+		ai_chance = {factor = 100}
+		GAL = {
+			country_event = {
+				id = galfopo.25
+				days = 3
+			}
+		}
+	}
+	option = { #fuck off
+		name = galfopo.24.o2
+		ai_chance = {factor = 0}
+		GAL = {
+			country_event = {
+				id = galfopo.26
+				days = 3
+			}
+		}
+	}
+}
+#Russia wants us
+country_event = {
+	id = galfopo.25
+	title = galfopo.25.t
+	desc = galfopo.25.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.25.o1
+		RUS = {
+			add_to_faction = ROOT
+		}
+	}
+}
+#Russia doesn't want us
+country_event = {
+	id = galfopo.26
+	title = galfopo.26.t
+	desc = galfopo.26.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.26.o1
+		add_political_power = -50
+		uncomplete_national_focus = {
+			focus = GAL_franco_pursue_an_alliance_with_russia
+			uncomplete_children = yes
+			refund_political_power = no
+		}
+		set_country_flag = GAL_russia_refused_to_ally_us
+	}
+}
+#galicia wants to join Canada
+country_event = {
+	id = galfopo.27
+	title = galfopo.27.t
+	desc = galfopo.27.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = galfopo.27.o1
+		ai_chance = {factor = 100}
+		GAL = {
+			country_event = {
+				id = galfopo.28
+				days = 3
+			}
+		}
+	}
+	option = { #fuck off
+		name = galfopo.27.o2
+		ai_chance = {factor = 0}
+		GAL = {
+			country_event = {
+				id = galfopo.29
+				days = 3
+			}
+		}
+	}
+}
+#Canada wants us
+country_event = {
+	id = galfopo.28
+	title = galfopo.28.t
+	desc = galfopo.28.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.28.o1
+		CAN = {
+			add_to_faction = ROOT
+		}
+	}
+}
+#Canada doesn't want us
+country_event = {
+	id = galfopo.29
+	title = galfopo.29.t
+	desc = galfopo.29.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.29.o1
+		add_political_power = -50
+		uncomplete_national_focus = {
+			focus = GAL_delegation_to_ottawa
+			uncomplete_children = yes
+			refund_political_power = no
+		}
+		set_country_flag = GAL_canada_refused_to_ally_us
+	}
+}
+#galicia wants to join warsaw pact but for the soviets
+country_event = {
+	id = galfopo.30
+	title = galfopo.30.t
+	desc = galfopo.30.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = galfopo.30.o1
+		ai_chance = {base = 100}
+		GAL = {
+			country_event = {
+				id = galfopo.31
+				days = 3
+			}
+		}
+		add_to_faction = GAL
+	}
+	option = { #fuck off
+		name = galfopo.30.o2
+		ai_chance = {base = 0}
+		GAL = {
+			country_event = {
+				id = galfopo.32
+				days = 3
+			}
+		}
+
+	}
+}
+#warsaw wants us
+country_event = {
+	id = galfopo.31
+	title = galfopo.31.t
+	desc = galfopo.31.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.31.o1
+	}
+}
+#warsaw doesn't want us
+country_event = {
+	id = galfopo.32
+	title = galfopo.32.t
+	desc = galfopo.32.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.32.o1
+		add_political_power = -50
+	}
+}
+#galicia wants to join the warsaw pact but this time it's germany
+country_event = {
+	id = galfopo.33
+	title = galfopo.33.t
+	desc = galfopo.33.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = galfopo.33.o1
+		ai_chance = {base = 100}
+		GAL = {
+			country_event = {
+				id = galfopo.34
+				days = 3
+			}
+		}
+		add_to_faction = GAL
+	}
+	option = { #fuck off
+		name = galfopo.33.o2
+		ai_chance = {base = 0}
+		GAL = {
+			country_event = {
+				id = galfopo.35
+				days = 3
+			}
+		}
+
+	}
+}
+#warsaw wants us
+country_event = {
+	id = galfopo.34
+	title = galfopo.34.t
+	desc = galfopo.34.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.34.o1
+	}
+}
+#warsaw doesn't want us
+country_event = {
+	id = galfopo.35
+	title = galfopo.35.t
+	desc = galfopo.35.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.35.o1
+		add_political_power = -50
+	}
+}
+#galicia requests help from portugal
+country_event = {
+	id = galfopo.36
+	title = galfopo.36.t
+	desc = galfopo.36.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = galfopo.36.o1
+		ai_chance = {base = 80}
+		GAL = {
+			country_event = {
+				id = galfopo.37
+				days = 3
+			}
+		}
+	}
+	option = { #fuck off
+		name = galfopo.36.o2
+		ai_chance = {base = 20}
+		GAL = {
+			country_event = {
+				id = galfopo.38
+				days = 3
+			}
+		}
+
+	}
+}
+#portugal agrees
+country_event = {
+	id = galfopo.37
+	title = galfopo.37.t
+	desc = galfopo.37.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.37.o1
+		add_ideas = {
+			idea_gal_portuguese_aid
+		}
+	}
+}
+#portugal declines
+country_event = {
+	id = galfopo.38
+	title = galfopo.38.t
+	desc = galfopo.38.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.38.o1
+		add_political_power = -50
+	}
+}
+#galicia proposes worker exchange
+country_event = {
+	id = galfopo.39
+	title = galfopo.39.t
+	desc = galfopo.39.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = galfopo.39.o1
+		ai_chance = {base = 70}
+		GAL = {
+			country_event = {
+				id = galfopo.40
+				days = 3
+			}
+		}
+		add_ideas = {
+			idea_gal_galizo_spanish_worker_exchange
+		}
+	}
+	option = { #fuck off
+		name = galfopo.39.o2
+		ai_chance = {base = 30}
+		GAL = {
+			country_event = {
+				id = galfopo.41
+				days = 3
+			}
+		}
+
+	}
+}
+#Spain agrees
+country_event = {
+	id = galfopo.40
+	title = galfopo.40.t
+	desc = galfopo.40.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.40.o1
+		add_ideas = {
+			idea_gal_galizo_spanish_worker_exchange
+		}
+	}
+}
+#Spain declines
+country_event = {
+	id = galfopo.41
+	title = galfopo.41.t
+	desc = galfopo.41.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.41.o1
+		add_political_power = -50
+	}
+}
+#galicia seeks to buy resource rights from portugal
+country_event = {
+	id = galfopo.42
+	title = galfopo.42.t
+	desc = galfopo.42.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = galfopo.42.o1
+		ai_chance = {base = 70}
+		GAL = {
+			country_event = {
+				id = galfopo.43
+				days = 3
+			}
+		}
+		add_timed_idea = {
+			idea = idea_gal_getting_paid_for_tungsten
+			days = 60
+		}
+	}
+	option = { #fuck off
+		name = galfopo.42.o2
+		ai_chance = {base = 30}
+		GAL = {
+			country_event = {
+				id = galfopo.44
+				days = 3
+			}
+		}
+
+	}
+}
+#Portugal agrees
+country_event = {
+	id = galfopo.43
+	title = galfopo.43.t
+	desc = galfopo.43.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.43.o1
+		add_resource = {
+			type = tungsten
+			amount = 35
+			state = 171
+		}
+		add_timed_idea = {
+			idea = idea_gal_paying_for_tungsten
+			days = 60
+		}
+	}
+}
+#Portugal declines
+country_event = {
+	id = galfopo.44
+	title = galfopo.44.t
+	desc = galfopo.44.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.44.o1
+		add_political_power = -50
+	}
+}
+#galicia proposes nap with Spain and Portugal
+country_event = {
+	id = galfopo.45
+	title = galfopo.45.t
+	desc = galfopo.45.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = galfopo.45.o1
+		ai_chance = {base = 70}
+		GAL = {
+			country_event = {
+				id = galfopo.46
+				days = 3
+			}
+		}
+		diplomatic_relation = {
+			country = GAL
+			relation = non_aggression_pact
+			active = yes
+		}
+		set_country_flag = spr_spain_and_portugal_pursued_peace_with_galicia
+	}
+	option = { #fuck off
+		name = galfopo.45.o2
+		ai_chance = {base = 30}
+		GAL = {
+			country_event = {
+				id = galfopo.47
+				days = 3
+			}
+		}
+
+	}
+}
+#Portugal or Spain agrees
+country_event = {
+	id = galfopo.46
+	title = galfopo.46.t
+	desc = galfopo.46.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.46.o1
+	}
+}
+#Portugal or Spain declines
+country_event = {
+	id = galfopo.47
+	title = galfopo.47.t
+	desc = galfopo.47.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.47.o1
+		add_political_power = -50
+	}
+}
+#galicia asks Spain and Portugal for guarantees
+country_event = {
+	id = galfopo.48
+	title = galfopo.48.t
+	desc = galfopo.48.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = galfopo.48.o1
+		ai_chance = {base = 70}
+		GAL = {
+			country_event = {
+				id = galfopo.49
+				days = 3
+			}
+		}
+		give_guarantee = GAL
+	}
+	option = { #fuck off
+		name = galfopo.48.o2
+		ai_chance = {base = 30}
+		GAL = {
+			country_event = {
+				id = galfopo.50
+				days = 3
+			}
+		}
+
+	}
+}
+#Portugal or Spain agrees
+country_event = {
+	id = galfopo.49
+	title = galfopo.49.t
+	desc = galfopo.49.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.49.o1
+	}
+}
+#Portugal or Spain declines
+country_event = {
+	id = galfopo.50
+	title = galfopo.50.t
+	desc = galfopo.50.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.50.o1
+		add_political_power = -50
+	}
+}
+#Galicia wants to join revsoc faction
+country_event = {
+	id = galfopo.51
+	title = galfopo.51.t
+	desc = galfopo.51.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = galfopo.51.o1
+		ai_chance = {factor = 100}
+		GAL = {
+			country_event = {
+				id = galfopo.52
+				days = 3
+			}
+		}
+		add_to_faction = GAL
+	}
+	option = { #fuck off
+		name = galfopo.51.o2
+		ai_chance = {factor = 0}
+		GAL = {
+			country_event = {
+				id = galfopo.53
+				days = 3
+			}
+		}
+	}
+}
+#revsoc faction wants us
+country_event = {
+	id = galfopo.52
+	title = galfopo.52.t
+	desc = galfopo.52.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.52.o1
+	}
+}
+#revsoc faction doesn't want us
+country_event = {
+	id = galfopo.53
+	title = galfopo.53.t
+	desc = galfopo.53.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.53.o1
+		add_political_power = -50
+	}
+}
+
+#portugal in the iberian federation
+country_event = {
+	id = galfopo.54
+	title = galfopo.54.t
+	desc = galfopo.54.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #accept
+		name = galfopo.54.o1
+		ai_chance = {base = 15}
+		add_ideas = {
+			idea_gal_iberian_socialist_federation
+		}
+		hidden_effect = {
+			GAL = {
+				country_event = {
+					id = galfopo.55
+					days = 3
+				}
+			}
+		}
+	}
+	option = { #deny
+		name = galfopo.54.o2
+		ai_chance = {base = 15}
+		hidden_effect = {
+			GAL = {
+				country_event = {
+					id = galfopo.56
+					days = 3
+				}
+			}
+		}
+	}
+	option = { #make conditions
+		name = galfopo.54.o3
+		ai_chance = {base = 70}
+		hidden_effect = {
+			GAL = {
+				country_event = {
+					id = galfopo.57
+					days = 3
+				}
+			}
+		}
+	}
+}
+#portugal accepts
+country_event = {
+	id = galfopo.55
+	title = galfopo.55.t
+	desc = galfopo.55.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #accept
+		name = galfopo.55.o1
+		IF = {
+			limit = {
+				NOT = {
+					has_idea = idea_gal_iberian_socialist_federation
+				}
+			}
+			add_ideas = {
+				idea_gal_iberian_socialist_federation
+			}
+		}
+	}
+}
+#portugal declines
+country_event = {
+	id = galfopo.56
+	title = galfopo.56.t
+	desc = galfopo.56.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.56.o1
+		set_country_flag = gal_portugal_said_no_to_isf
+	}
+}
+#portugal wants concessions
+country_event = {
+	id = galfopo.57
+	title = galfopo.57.t
+	desc = galfopo.57.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #accept
+		name = galfopo.57.o1
+		ai_chance = {base = 100}
+		POR = {
+			country_event = {
+				id = galfopo.58
+			}
+		}
+		hidden_effect = {
+			IF = {
+				limit = {
+					NOT = {
+						has_idea = idea_gal_iberian_socialist_federation
+					}
+				}
+				add_ideas = {
+					idea_gal_iberian_socialist_federation
+				}
+			}
+		}
+	}
+	option = { #refuse
+		name = galfopo.57.o2
+		ai_chance = {base = 0}
+		POR = {
+			country_event = {
+				id = galfopo.59
+			}
+		}
+		set_country_flag = gal_refused_concessions_to_portugal
+	}
+}
+#galicia promises concessions
+country_event = {
+	id = galfopo.58
+	title = galfopo.58.t
+	desc = galfopo.58.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.58.o1
+		add_ideas = {
+			idea_gal_iberian_socialist_federation
+		}
+		set_country_flag = gal_promised_us_concessions
+	}
+}
+#galicia refuses concessions
+country_event = {
+	id = galfopo.59
+	title = galfopo.59.t
+	desc = galfopo.59.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.59.o1
+		GAL = {
+			country_event = {
+				id = galfopo.60
+			}
+		}
+	}
+}
+#diplomatic talks with portugal collapse
+country_event = {
+	id = galfopo.60
+	title = galfopo.60.t
+	desc = galfopo.60.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.60.o1
+	}
+}
+#galicia decides to unite the federation
+country_event = {
+	id = galfopo.61
+	title = galfopo.61.t
+	desc = galfopo.61.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #accept
+		name = galfopo.61.o1
+		ai_chance = {base = 100}
+		IF = {
+			limit = {
+				tag = CAT
+				has_country_flag = gal_promised_us_concessions
+			}
+			every_state = {
+				limit = {
+					is_core_of = CAT
+				}
+				add_dynamic_modifier = { modifier = isf_investments_in_catalonia }
+			}
+			GAL = {
+				swap_ideas = {
+					remove_idea = idea_gal_iberian_socialist_federation
+					add_idea = idea_gal_iberian_socialist_federation_2
+				}
+			}
+		}
+		IF = {
+			limit = {
+				tag = POR
+				has_country_flag = gal_promised_us_concessions
+			}
+			GAL = {
+				swap_ideas = {
+					remove_idea = idea_gal_galician_superiority3
+					add_idea = idea_gal_galician_superiority4
+				}
+				set_capital = {state = 180}
+			}
+		}
+		IF = {
+			limit = {
+				tag = BSQ
+				has_country_flag = gal_promised_us_concessions
+			}
+			every_state = {
+				limit = {
+					is_core_of = BSQ
+				}
+				add_dynamic_modifier = { modifier = autonomous_state }
+			}
+		}
+		hidden_effect = {
+			every_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_core_of = GAL
+			}
+			every_owned_state = {
+				add_claim_by = GAL
+			}
+		}
+		GAL = {
+			annex_country = {
+				target = ROOT
+				transfer_troops = yes
+			}
+		}
+	}
+	option = { #refuse
+		name = galfopo.61.o2
+		ai_chance = {base = 0}
+		GAL = {
+			country_event = {
+				id = galfopo.62
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = ROOT
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = ROOT
+			}
+			add_claim_by = GAL
+		}
+	}
+}
+#country refuses to unite the federation
+country_event = {
+	id = galfopo.62
+	title = galfopo.62.t
+	desc = galfopo.62.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.62.o1
+		add_war_support = 0.05
+	}
+}
+#basque in the iberian federation
+country_event = {
+	id = galfopo.63
+	title = galfopo.63.t
+	desc = galfopo.63.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #accept
+		name = galfopo.63.o1
+		ai_chance = {base = 15}
+		add_ideas = {
+			idea_gal_iberian_socialist_federation
+		}
+		hidden_effect = {
+			GAL = {
+				country_event = {
+					id = galfopo.64
+					days = 3
+				}
+			}
+		}
+	}
+	option = { #deny
+		name = galfopo.63.o2
+		ai_chance = {base = 15}
+		hidden_effect = {
+			GAL = {
+				country_event = {
+					id = galfopo.65
+					days = 3
+				}
+			}
+		}
+	}
+	option = { #make conditions
+		name = galfopo.63.o3
+		ai_chance = {base = 70}
+		hidden_effect = {
+			GAL = {
+				country_event = {
+					id = galfopo.66
+					days = 3
+				}
+			}
+		}
+	}
+}
+#basque accepts
+country_event = {
+	id = galfopo.64
+	title = galfopo.64.t
+	desc = galfopo.64.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #accept
+		name = galfopo.64.o1
+		IF = {
+			limit = {
+				NOT = {
+					has_idea = idea_gal_iberian_socialist_federation
+				}
+			}
+			add_ideas = {
+				idea_gal_iberian_socialist_federation
+			}
+		}
+	}
+}
+#basque declines
+country_event = {
+	id = galfopo.65
+	title = galfopo.65.t
+	desc = galfopo.65.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.65.o1
+		set_country_flag = gal_basque_said_no_to_isf
+	}
+}
+#basque wants concessions
+country_event = {
+	id = galfopo.66
+	title = galfopo.66.t
+	desc = galfopo.66.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #accept
+		name = galfopo.66.o1
+		ai_chance = {base = 100}
+		BSQ = {
+			country_event = {
+				id = galfopo.67
+			}
+		}
+		hidden_effect = {
+			IF = {
+				limit = {
+					NOT = {
+						has_idea = idea_gal_iberian_socialist_federation
+					}
+				}
+				add_ideas = {
+					idea_gal_iberian_socialist_federation
+				}
+			}
+		}
+	}
+	option = { #refuse
+		name = galfopo.66.o2
+		ai_chance = {base = 0}
+		BSQ = {
+			country_event = {
+				id = galfopo.68
+			}
+		}
+		set_country_flag = gal_refused_concessions_to_basques
+	}
+}
+#galicia promises concessions
+country_event = {
+	id = galfopo.67
+	title = galfopo.67.t
+	desc = galfopo.67.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.67.o1
+		add_ideas = {
+			idea_gal_iberian_socialist_federation
+		}
+		set_country_flag = gal_promised_us_concessions
+	}
+}
+#galicia refuses concessions
+country_event = {
+	id = galfopo.68
+	title = galfopo.68.t
+	desc = galfopo.68.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.68.o1
+		GAL = {
+			country_event = {
+				id = galfopo.69
+			}
+		}
+	}
+}
+#diplomatic talks with basque collapse
+country_event = {
+	id = galfopo.69
+	title = galfopo.69.t
+	desc = galfopo.69.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.69.o1
+	}
+}
+#catalonia in the iberian federation
+country_event = {
+	id = galfopo.70
+	title = galfopo.70.t
+	desc = galfopo.70.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #accept
+		name = galfopo.70.o1
+		ai_chance = {base = 15}
+		add_ideas = {
+			idea_gal_iberian_socialist_federation
+		}
+		hidden_effect = {
+			GAL = {
+				country_event = {
+					id = galfopo.71
+					days = 3
+				}
+			}
+		}
+	}
+	option = { #deny
+		name = galfopo.70.o2
+		ai_chance = {base = 15}
+		hidden_effect = {
+			GAL = {
+				country_event = {
+					id = galfopo.72
+					days = 3
+				}
+			}
+		}
+	}
+	option = { #make conditions
+		name = galfopo.70.o3
+		ai_chance = {base = 70}
+		hidden_effect = {
+			GAL = {
+				country_event = {
+					id = galfopo.73
+					days = 3
+				}
+			}
+		}
+	}
+}
+#catalonia accepts
+country_event = {
+	id = galfopo.71
+	title = galfopo.71.t
+	desc = galfopo.71.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #accept
+		name = galfopo.71.o1
+		IF = {
+			limit = {
+				NOT = {
+					has_idea = idea_gal_iberian_socialist_federation
+				}
+			}
+			add_ideas = {
+				idea_gal_iberian_socialist_federation
+			}
+		}
+	}
+}
+#catalonia declines
+country_event = {
+	id = galfopo.72
+	title = galfopo.72.t
+	desc = galfopo.72.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.72.o1
+		set_country_flag = gal_catalonia_said_no_to_isf
+	}
+}
+#catalonia wants concessions
+country_event = {
+	id = galfopo.73
+	title = galfopo.73.t
+	desc = galfopo.73.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #accept
+		name = galfopo.73.o1
+		ai_chance = {base = 100}
+		CAT = {
+			country_event = {
+				id = galfopo.74
+			}
+		}
+		hidden_effect = {
+			IF = {
+				limit = {
+					NOT = {
+						has_idea = idea_gal_iberian_socialist_federation
+					}
+				}
+				add_ideas = {
+					idea_gal_iberian_socialist_federation
+				}
+			}
+		}
+	}
+	option = { #refuse
+		name = galfopo.73.o2
+		ai_chance = {base = 0}
+		CAT = {
+			country_event = {
+				id = galfopo.75
+			}
+		}
+		set_country_flag = gal_refused_concessions_to_catalonia
+	}
+}
+#galicia promises concessions
+country_event = {
+	id = galfopo.74
+	title = galfopo.74.t
+	desc = galfopo.74.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.74.o1
+		add_ideas = {
+			idea_gal_iberian_socialist_federation
+		}
+		set_country_flag = gal_promised_us_concessions
+	}
+}
+#galicia refuses concessions
+country_event = {
+	id = galfopo.75
+	title = galfopo.75.t
+	desc = galfopo.75.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.75.o1
+		GAL = {
+			country_event = {
+				id = galfopo.76
+			}
+		}
+	}
+}
+#diplomatic talks with catalonia collapse
+country_event = {
+	id = galfopo.76
+	title = galfopo.76.t
+	desc = galfopo.76.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.76.o1
+	}
+}
+#galicia demands french land
+country_event = {
+	id = galfopo.77
+	title = galfopo.77.t
+	desc = galfopo.77.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = galfopo.77.o1
+		ai_chance = {base = 5}
+		GAL = {
+			country_event = {
+				id = galfopo.78
+				days = 3
+			}
+		}
+	}
+	option = { #fuck off
+		name = galfopo.77.o2
+		ai_chance = {base = 95}
+		GAL = {
+			country_event = {
+				id = galfopo.79
+				days = 3
+			}
+		}
+	}
+}
+#france agrees
+country_event = {
+	id = galfopo.78
+	title = galfopo.78.t
+	desc = galfopo.78.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.78.o1
+		transfer_state = 663
+		transfer_state = 927
+	}
+}
+#france refuses
+country_event = {
+	id = galfopo.79
+	title = galfopo.79.t
+	desc = galfopo.79.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopo.79.o1
+		add_political_power = -50
+		create_wargoal = {
+			type = annex_everything
+			target = SPR
+		}
+	}
+}
+
+##Francoist Fopo##
+
+#demand porto
+country_event = {
+	id = galfopof.1
+	title = galfopof.1.t
+	desc = galfopof.1.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #accept
+		name = galfopof.1.o1
+		ai_chance = {factor = 10}
+		hidden_effect = {
+			GAL = {
+				country_event = {
+					id = galfopof.2
+					days = 3
+				}
+			}
+		}
+	}
+	option = { #deny
+		name = galfopof.1.o2
+		ai_chance = {factor = 90}
+		hidden_effect = {
+			GAL = {
+				country_event = {
+					id = galfopof.3
+					days = 3
+				}
+			}
+		}
+	}
+}
+#portugal accepts
+country_event = {
+	id = galfopof.2
+	title = galfopof.2.t
+	desc = galfopof.2.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #accept
+		name = galfopof.2.o1
+		transfer_state = 180
+	}
+}
+#portugal declines
+country_event = {
+	id = galfopof.3
+	title = galfopof.3.t
+	desc = galfopof.3.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #accept
+		name = galfopof.3.o1
+		create_wargoal = {
+			type = annex_everything
+			target = POR
+		}
+		add_political_power = -50
+	}
+}
+#Spain demands Gibraltar
+country_event = {
+	id = galfopof.4
+	title = galfopof.4.t
+	desc = galfopof.4.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = galfopof.4.o1
+		ai_chance = {factor = 50}
+		GAL = {
+			country_event = {
+				id = galfopof.5
+			}
+		}
+	}
+	option = { #fuck off
+		name = galfopof.4.o2
+		ai_chance = {factor = 50}
+		GAL = {
+			country_event = {
+				id = galfopof.6
+			}
+		}
+	}
+}
+#britain cedes us gibraltar
+country_event = {
+	id = galfopof.5
+	title = galfopof.5.t
+	desc = galfopof.5.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopof.5.o1
+		ROOT = {
+			transfer_state = 118
+		}
+	}
+}
+#britain wont cede gibraltar
+country_event = {
+	id = galfopof.6
+	title = galfopof.6.t
+	desc = galfopof.6.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopof.6.o1
+		create_wargoal = {
+			type = annex_everything
+			target = ENG
+		}
+	}
+}
+#galicia wants to join russia
+country_event = {
+	id = galfopof.7
+	title = galfopof.7.t
+	desc = galfopof.7.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = galfopof.7.o1
+		ai_chance = {factor = 100}
+		GAL = {
+			country_event = {
+				id = galfopof.8
+				days = 3
+			}
+		}
+	}
+	option = { #fuck off
+		name = galfopof.7.o2
+		ai_chance = {factor = 0}
+		GAL = {
+			country_event = {
+				id = galfopof.9
+				days = 3
+			}
+		}
+	}
+}
+#Russia wants us
+country_event = {
+	id = galfopof.8
+	title = galfopof.8.t
+	desc = galfopof.8.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopof.8.o1
+		RUS = {
+			add_to_faction = ROOT
+		}
+	}
+}
+#Russia doesn't want us
+country_event = {
+	id = galfopof.9
+	title = galfopof.9.t
+	desc = galfopof.9.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopof.9.o1
+		add_political_power = -50
+		uncomplete_national_focus = {
+			focus = GAL_franco_pursue_an_alliance_with_russia
+			uncomplete_children = yes
+			refund_political_power = no
+		}
+		set_country_flag = GAL_russia_refused_to_ally_us
+	}
+}
+#galicia wants to join Canada
+country_event = {
+	id = galfopof.10
+	title = galfopof.10.t
+	desc = galfopof.10.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = galfopof.10.o1
+		ai_chance = {factor = 100}
+		GAL = {
+			country_event = {
+				id = galfopof.11
+				days = 3
+			}
+		}
+	}
+	option = { #fuck off
+		name = galfopof.10.o2
+		ai_chance = {factor = 0}
+		GAL = {
+			country_event = {
+				id = galfopof.12
+				days = 3
+			}
+		}
+	}
+}
+#Canada wants us
+country_event = {
+	id = galfopof.11
+	title = galfopof.11.t
+	desc = galfopof.11.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopof.11.o1
+		CAN = {
+			add_to_faction = ROOT
+		}
+	}
+}
+#Canada doesn't want us
+country_event = {
+	id = galfopof.12
+	title = galfopof.12.t
+	desc = galfopof.12.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopof.12.o1
+		add_political_power = -50
+		uncomplete_national_focus = {
+			focus = GAL_franco_pursue_an_alliance_with_canada
+			uncomplete_children = yes
+			refund_political_power = no
+		}
+		set_country_flag = GAL_canada_refused_to_ally_us
+	}
+}
+#galicia wants industrial aid
+country_event = {
+	id = galfopof.13
+	title = galfopof.13.t
+	desc = galfopof.13.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = galfopof.13.o1
+		ai_chance = {factor = 70}
+		GAL = {
+			country_event = {
+				id = galfopof.14
+				days = 3
+			}
+		}
+	}
+	option = { #fuck off
+		name = galfopof.13.o2
+		ai_chance = {factor = 30}
+		GAL = {
+			country_event = {
+				id = galfopof.15
+				days = 3
+			}
+		}
+	}
+}
+#faction leader gives us aid
+country_event = {
+	id = galfopof.14
+	title = galfopof.14.t
+	desc = galfopof.14.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopof.14.o1
+		add_offsite_building = {
+			type = industrial_complex
+			level = 3
+		}
+	}
+}
+#no aid for us
+country_event = {
+	id = galfopof.15
+	title = galfopof.15.t
+	desc = galfopof.15.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopof.15.o1
+		add_political_power = -50
+	}
+}
+#galicia hosts joint military training
+country_event = {
+	id = galfopof.16
+	title = galfopof.16.t
+	desc = galfopof.16.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopof.16.o1
+		add_ideas = {
+			idea_gal_joint_military_drills
+		}
+	}
+}
+#galicia wants oil
+country_event = {
+	id = galfopof.17
+	title = galfopof.17.t
+	desc = galfopof.17.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = galfopof.17.o1
+		ai_chance = {factor = 70}
+		GAL = {
+			country_event = {
+				id = galfopof.18
+				days = 3
+			}
+		}
+		add_timed_idea = {
+			idea = idea_gal_getting_paid_for_oil
+			days = 60
+		}
+	}
+	option = { #fuck off
+		name = galfopof.17.o2
+		ai_chance = {factor = 30}
+		GAL = {
+			country_event = {
+				id = galfopof.19
+				days = 3
+			}
+		}
+	}
+}
+#faction leader sells us oil
+country_event = {
+	id = galfopof.18
+	title = galfopof.18.t
+	desc = galfopof.18.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopof.18.o1
+		add_resource = {
+			type = oil
+			amount = 20
+			state = 171
+		}
+		add_timed_idea = {
+			idea = idea_gal_paying_for_oil
+			days = 60
+		}
+	}
+}
+#no oil for us
+country_event = {
+	id = galfopof.19
+	title = galfopof.19.t
+	desc = galfopof.19.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopof.19.o1
+		add_political_power = -50
+	}
+}
+#galicia seeks our protection
+country_event = {
+	id = galfopof.20
+	title = galfopof.20.t
+	desc = galfopof.20.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = galfopof.20.o1
+		ai_chance = {factor = 60}
+		GAL = {
+			country_event = {
+				id = galfopof.21
+				days = 3
+			}
+		}
+		give_guarantee = GAL
+	}
+	option = { #fuck off
+		name = galfopof.20.o2
+		ai_chance = {factor = 40}
+		GAL = {
+			country_event = {
+				id = galfopof.22
+				days = 3
+			}
+		}
+	}
+}
+#country offers their protection
+country_event = {
+	id = galfopof.21
+	title = galfopof.21.t
+	desc = galfopof.21.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopof.21.o1
+	}
+}
+#country refuses to give protection
+country_event = {
+	id = galfopof.22
+	title = galfopof.22.t
+	desc = galfopof.22.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = galfopof.22.o1
+		add_political_power = -50
+	}
+}
+#the capital
+country_event = {
+	id = galfopof.23
+	title = galfopof.23.t
+	desc = galfopof.23.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #madrid
+		name = galfopof.23.o1
+		set_capital = {state = 41}
+	}
+	option = { #a coruna
+		name = galfopof.23.o2
+		set_capital = {state = 171}
+	}
+}
+
+
+#first election after Beiras does Honor Commitment to Democracy
+country_event = {
+	id = galelections.1
+	title = galelections.1.t
+	desc = galelections.1.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #modsocs stay
+		name = galelections.1.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.31
+				days = 1461
+			}
+			country_event = {
+				id = galelections.23
+				days = 138
+			}
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.1.o2
+		complete_national_focus = GAL_the_moderate_left
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.32
+				days = 1461
+			}
+			country_event = {
+				id = galelections.25
+				days = 157
+			}
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.1.o3
+		complete_national_focus = GAL_the_conservative_backlash
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.23
+				days = 138
+			}
+			country_event = {
+				id = galelections.25
+				days = 157
+			}
+		}
+	}
+}
+#elections after the civil guard overthrew beiras and the newdems won the election
+country_event = {
+	id = galelections.2
+	title = galelections.2.t
+	desc = galelections.2.d
+	picture = x
+
+	is_triggered_only = yes
+	
+	option = { #newdems win
+		name = galelections.2.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.33
+				days = 1461
+			}
+		}
+	}
+	option = { #natcons win
+		name = galelections.2.o2
+		complete_national_focus = GAL_the_conservative_backlash
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.23
+				days = 138
+			}
+		}
+	}
+}
+#election after beiras opens up elections in opening events and modsocs won
+country_event = {
+	id = galelections.3
+	title = galelections.3.t
+	desc = galelections.3.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #modsocs stay
+		name = galelections.3.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.23
+				days = 138
+			}
+			country_event = {
+				id = galelections.34
+				days = 1461
+			}
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.3.o2
+		complete_national_focus = GAL_the_moderate_left
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.25
+				days = 157
+			}
+			country_event = {
+				id = galelections.35
+				days = 1461
+			}
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.3.o3
+		complete_national_focus = GAL_the_conservative_backlash
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.23
+				days = 138
+			}
+			country_event = {
+				id = galelections.25
+				days = 157
+			}
+		}
+	}
+}
+#election after beiras opens up elections in opening events and newdems won
+country_event = {
+	id = galelections.4
+	title = galelections.4.t
+	desc = galelections.4.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #newdems stay
+		name = galelections.4.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.25
+				days = 157
+			}
+			country_event = {
+				id = galelections.37
+				days = 1461
+			}
+		}
+	}
+	
+	option = { #modsocs win
+		name = galelections.4.o1
+		complete_national_focus = GAL_the_champion_of_galician_independence
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.23
+				days = 138
+			}
+			country_event = {
+				id = galelections.36
+				days = 1461
+			}
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.4.o3
+		complete_national_focus = GAL_the_conservative_backlash
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.23
+				days = 138
+			}
+			country_event = {
+				id = galelections.25
+				days = 157
+			}
+		}
+	}
+}
+#election after feijoo survived the vonc
+country_event = {
+	id = galelections.5
+	title = galelections.5.t
+	desc = {
+		text = galelections.5.d1
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+	}
+	desc = {
+		text = galelections.5.d2
+		trigger = {
+			has_country_flag = GAL_beiras_got_purged
+		}
+	}
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #natcons stay
+		name = galelections.5.o3
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.23
+				days = 138
+			}
+			country_event = {
+				id = galelections.38
+				days = 1461
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.25
+					days = 157
+				}
+			}
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.5.o1
+		complete_national_focus = GAL_the_champion_of_galician_independence
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.27
+				days = 167
+			}
+			country_event = {
+				id = galelections.23
+				days = 138
+			}
+			country_event = {
+				id = galelections.40
+				days = 1461
+			}
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.5.o2
+		complete_national_focus = GAL_the_moderate_left
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.27
+				days = 167
+			}
+			country_event = {
+				id = galelections.39
+				days = 1461
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.25
+					days = 157
+				}
+			}
+		}
+	}
+}
+#election after feijoo gets voncd and fraga won snap elections
+country_event = {
+	id = galelections.6
+	title = galelections.6.t
+	desc = {
+		text = galelections.6.d1
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+	}
+	desc = {
+		text = galelections.6.d2
+		trigger = {
+			has_country_flag = GAL_beiras_got_purged
+		}
+	}
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #natcons stay
+		name = galelections.6.o3
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.23
+				days = 138
+			}
+			country_event = {
+				id = galelections.41
+				days = 1461
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.25
+					days = 157
+				}
+			}
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.6.o1
+		complete_national_focus = GAL_the_champion_of_galician_independence
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.27
+				days = 167
+			}
+			country_event = {
+				id = galelections.23
+				days = 138
+			}
+			country_event = {
+				id = galelections.43
+				days = 1461
+			}
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.6.o2
+		complete_national_focus = GAL_the_moderate_left
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.27
+				days = 167
+			}
+			country_event = {
+				id = galelections.42
+				days = 1461
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.25
+					days = 157
+				}
+			}
+		}
+	}
+}
+#election after feijoo gets voncd and newdems won snap elections
+country_event = {
+	id = galelections.7
+	title = galelections.7.t
+	desc = {
+		text = galelections.7.d1
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+	}
+	desc = {
+		text = galelections.7.d2
+		trigger = {
+			has_country_flag = GAL_beiras_got_purged
+		}
+	}
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #newdems stay
+		name = galelections.7.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+		hidden_effect = {
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.25
+					days = 157
+				}
+			}
+			country_event = {
+				id = galelections.44
+				days = 1461
+			}
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.7.o1
+		complete_national_focus = GAL_the_champion_of_galician_independence
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.23
+				days = 138
+			}
+			country_event = {
+				id = galelections.45
+				days = 1461
+			}
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.7.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+		complete_national_focus = GAL_legacy_of_the_peoples_party
+		hidden_effect = {
+			country_event = {
+				id = galelections.23
+				days = 138
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.25
+					days = 157
+				}
+			}
+			country_event = {
+				id = galelections.46
+				days = 1461
+			}
+		}
+	}
+}
+#election after feijoo gets voncd and modsocs won snap elections
+country_event = {
+	id = galelections.8
+	title = galelections.8.t
+	desc = galelections.8.d
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #modsocs stay
+		name = galelections.8.o1
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.23
+				days = 138
+			}
+			country_event = {
+				id = galelections.47
+				days = 1461
+			}
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.8.o2
+		complete_national_focus = GAL_the_moderate_left
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+		hidden_effect = {
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.25
+					days = 157
+				}
+			}
+			country_event = {
+				id = galelections.48
+				days = 1461
+			}
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.8.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+		complete_national_focus = GAL_legacy_of_the_peoples_party
+		hidden_effect = {
+			country_event = {
+				id = galelections.23
+				days = 138
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.25
+					days = 157
+				}
+			}
+			country_event = {
+				id = galelections.49
+				days = 1461
+			}
+		}
+	}
+}
+#election after feijoo gets voncd and fraga won snap elections and bruno is king
+country_event = {
+	id = galelections.9
+	title = galelections.9.t
+	desc = {
+		text = galelections.9.d1
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+	}
+	desc = {
+		text = galelections.9.d2
+		trigger = {
+			has_country_flag = GAL_beiras_got_purged
+		}
+	}
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #natcons stay
+		name = galelections.9.o3
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.23
+				days = 138
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.25
+					days = 157
+				}
+			}
+			country_event = {
+				id = galelections.50
+				days = 1461
+			}
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.9.o1
+		complete_national_focus = GAL_the_champion_of_galician_independence
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.23
+				days = 138
+			}
+			country_event = {
+				id = galelections.52
+				days = 1461
+			}
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.9.o2
+		complete_national_focus = GAL_the_moderate_left
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+		hidden_effect = {
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.25
+					days = 157
+				}
+			}
+			country_event = {
+				id = galelections.51
+				days = 1461
+			}
+		}
+	}
+}
+#election after feijoo gets voncd and newdems won snap elections and bruno is king
+country_event = {
+	id = galelections.10
+	title = galelections.10.t
+	desc = {
+		text = galelections.10.d1
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+	}
+	desc = {
+		text = galelections.10.d2
+		trigger = {
+			has_country_flag = GAL_beiras_got_purged
+		}
+	}
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #natcons win
+		name = galelections.10.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+		complete_national_focus = GAL_legacy_of_the_peoples_party
+		hidden_effect = {
+			country_event = {
+				id = galelections.23
+				days = 138
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.25
+					days = 157
+				}
+			}
+			country_event = {
+				id = galelections.54
+				days = 1461
+			}
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.10.o1
+		complete_national_focus = GAL_the_champion_of_galician_independence
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.23
+				days = 138
+			}
+			country_event = {
+				id = galelections.55
+				days = 1461
+			}
+		}
+	}
+	
+	option = { #newdems stay
+		name = galelections.10.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+		hidden_effect = {
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.25
+					days = 157
+				}
+			}
+			country_event = {
+				id = galelections.53
+				days = 1461
+			}
+		}
+	}
+}
+#election after feijoo gets voncd and modsocs won snap elections and bruno is king
+country_event = {
+	id = galelections.11
+	title = galelections.11.t
+	desc = {
+		text = galelections.11.d1
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+	}
+	desc = {
+		text = galelections.11.d2
+		trigger = {
+			has_country_flag = GAL_beiras_got_purged
+		}
+	}
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #modsocs stay
+		name = galelections.11.o1
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.23
+				days = 138
+			}
+			country_event = {
+				id = galelections.56
+				days = 1461
+			}
+		}
+	}
+
+	option = { #natcons win
+		name = galelections.11.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+		complete_national_focus = GAL_legacy_of_the_peoples_party
+		hidden_effect = {
+			country_event = {
+				id = galelections.23
+				days = 138
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.25
+					days = 157
+				}
+			}
+			country_event = {
+				id = galelections.58
+				days = 1461
+			}
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.11.o2
+		complete_national_focus = GAL_the_moderate_left
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+		hidden_effect = {
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.25
+					days = 157
+				}
+			}
+			country_event = {
+				id = galelections.57
+				days = 1461
+			}
+		}
+	}
+}
+#election after feijoo gets voncd and fraga won snap elections and alphonse is king
+country_event = {
+	id = galelections.12
+	title = galelections.12.t
+	desc = {
+		text = galelections.12.d1
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+	}
+	desc = {
+		text = galelections.12.d2
+		trigger = {
+			has_country_flag = GAL_beiras_got_purged
+		}
+	}
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #natcons stay
+		name = galelections.12.o3
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.23
+				days = 138
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.25
+					days = 157
+				}
+			}
+			country_event = {
+				id = galelections.59
+				days = 1461
+			}
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.12.o1
+		complete_national_focus = GAL_the_champion_of_galician_independence
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+		hidden_effect = {
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.25
+					days = 157
+				}
+			}
+			country_event = {
+				id = galelections.61
+				days = 1461
+			}
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.12.o2
+		complete_national_focus = GAL_the_moderate_left
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+		hidden_effect = {
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.25
+					days = 157
+				}
+			}
+			country_event = {
+				id = galelections.60
+				days = 1461
+			}
+		}
+	}
+}
+#election after feijoo gets voncd and newdems won snap elections and alphonse is king
+country_event = {
+	id = galelections.13
+	title = galelections.13.t
+	desc = {
+		text = galelections.13.d1
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+	}
+	desc = {
+		text = galelections.13.d2
+		trigger = {
+			has_country_flag = GAL_beiras_got_purged
+		}
+	}
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #newdems stay
+		name = galelections.13.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+		hidden_effect = {
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.25
+					days = 157
+				}
+			}
+			country_event = {
+				id = galelections.62
+				days = 1461
+			}
+		}
+	}
+
+	option = { #natcons win
+		name = galelections.13.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+		complete_national_focus = GAL_legacy_of_the_peoples_party
+		hidden_effect = {
+			country_event = {
+				id = galelections.23
+				days = 138
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.25
+					days = 157
+				}
+			}
+			country_event = {
+				id = galelections.63
+				days = 1461
+			}
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.13.o1
+		complete_national_focus = GAL_the_champion_of_galician_independence
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.23
+				days = 138
+			}
+			country_event = {
+				id = galelections.64
+				days = 1461
+			}
+		}
+	}
+
+}
+#election after feijoo gets voncd and modsocs won snap elections and alphonse is king
+country_event = {
+	id = galelections.14
+	title = galelections.14.t
+	desc = {
+		text = galelections.14.d1
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+	}
+	desc = {
+		text = galelections.14.d2
+		trigger = {
+			has_country_flag = GAL_beiras_got_purged
+		}
+	}
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #modsocs stay
+		name = galelections.14.o1
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.23
+				days = 138
+			}
+			country_event = {
+				id = galelections.65
+				days = 1461
+			}
+		}
+	}
+
+	option = { #natcons win
+		name = galelections.14.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+		complete_national_focus = GAL_legacy_of_the_peoples_party
+		hidden_effect = {
+			country_event = {
+				id = galelections.23
+				days = 138
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.25
+					days = 157
+				}
+			}
+			country_event = {
+				id = galelections.67
+				days = 1461
+			}
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.14.o2
+		complete_national_focus = GAL_the_moderate_left
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+		hidden_effect = {
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_got_purged
+					}
+				}
+				country_event = {
+					id = galelections.25
+					days = 157
+				}
+			}
+			country_event = {
+				id = galelections.66
+				days = 1461
+			}
+		}
+	}
+}
+#elections after carmen franco won the snap elections
+country_event = {
+	id = galelections.15
+	title = galelections.15.t
+	desc = galelections.15.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galelections.15.o1
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.16
+				days = 1461
+			}
+		}
+	}
+}
+#late game "elections" for franco
+country_event = {
+	id = galelections.16
+	title = galelections.16.t
+	desc = galelections.16.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galelections.16.o1
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.05
+		}
+	}
+}
+#fascist carmen franco dies
+country_event = {
+	id = galelections.17
+	title = galelections.17.t
+	desc = galelections.17.d
+	picture = x
+
+	trigger = {
+		has_country_leader = {
+			character = GAL_carmen_franco_I
+			ruling_only = yes
+		}
+		date > 2017.12.01
+		date < 2018.03.01
+	}
+	fire_only_once = yes
+
+	option = { #younger carmen franco
+		name = galelections.17.o1
+		kill_country_leader = yes
+		GAL_carmen_franco_II = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=francoist
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+		set_country_flag = GAL_carmen_succeeded_carmen
+	}
+	option = { #francis franco
+		name = galelections.17.o2
+		kill_country_leader = yes
+		GAL_francis_franco = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=francoist
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+		set_country_flag = GAL_francis_succeeded_carmen
+	}
+}
+#formation of liberal coalition commitment to galicia
+country_event = {
+	id = galelections.18
+	title = galelections.18.t
+	desc = galelections.18.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galelections.18.o1
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.02
+		}
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.01
+		}
+		set_party_name = {
+			ideology = liberal
+			long_name = GAL_liberal_coalition_long
+			name = GAL_liberal_coalition
+		}
+		set_party_name = {
+			ideology = centrist
+			long_name = GAL_centrist_coalition_long
+			name = GAL_centrist_coalition
+		}
+	}
+}
+#carmen franco withdraws from politics
+country_event = {
+	id = galelections.19
+	title = galelections.19.t
+	desc = galelections.19.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galelections.19.o1
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.02
+		}
+		GAL_jose_manuel_afonso = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=falangist
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+}
+#first elections under amedo
+country_event = {
+	id = galelections.20
+	title = galelections.20.t
+	desc = galelections.20.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #amedo stays
+		name = galelections.20.o1
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = galelections.28
+				days = 1461
+			}
+			country_event = {
+				id = galelections.26
+				days = 229
+			}
+		}
+	}
+	option = { #falangists
+		name = galelections.20.o2
+		set_politics = {
+			ruling_party = fascist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.20
+		}
+		complete_national_focus = GAL_maintain_the_path
+		hidden_effect = {
+			country_event = {
+				id = galelections.21
+				days = 150
+			}
+			country_event = {
+				id = galelections.26
+				days = 229
+			}
+			country_event = {
+				id = galelections.29
+				days = 1461
+			}
+		}
+	}
+	option = { #liberals
+		name = galelections.20.o3
+		set_politics = {
+			ruling_party = liberal
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.20
+		}
+		complete_national_focus = GAL_commitment_to_galicia
+		hidden_effect = {
+			country_event = {
+				id = galelections.21
+				days = 150
+			}
+			country_event = {
+				id = galelections.30
+				days = 1461
+			}
+		}
+	}
+}
+#amedo steps down from party leadership
+country_event = {
+	id = galelections.21
+	title = galelections.21.t
+	desc = galelections.21.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galelections.21.o1
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.02
+		}
+		GAL_alina_fernandez = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=neoconservative
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+}
+#carmela silva takes over PSdeG
+country_event = {
+	id = galelections.22
+	title = galelections.22.t
+	desc = galelections.22.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galelections.22.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.02
+		}
+		GAL_carmela_silva = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=new_democrat_ideology
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+}
+#gonzalo caballero takes over PSdeG
+country_event = {
+	id = galelections.23
+	title = galelections.23.t
+	desc = galelections.23.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galelections.23.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.02
+		}
+		GAL_gonzalo_caballero = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=new_democrat_ideology
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+}
+#ana belen ponton takes over galician left
+country_event = {
+	id = galelections.24
+	title = galelections.24.t
+	desc = galelections.24.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galelections.24.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.02
+		}
+		GAL_ana_belen_ponton_mondelo = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=austro_marxist
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+}
+#anton sanchez garcia takes over galician left
+country_event = {
+	id = galelections.25
+	title = galelections.25.t
+	desc = galelections.25.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galelections.25.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.02
+		}
+		GAL_Anton_Sanchez_Garcia = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=austro_marxist
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+}
+#Xoán Bascuas takes over liberal party
+country_event = {
+	id = galelections.26
+	title = galelections.26.t
+	desc = galelections.26.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galelections.26.o1
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.02
+		}
+		GAL_Xoan_Bascuas = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=social_liberal
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+}
+#Alfonso Rueda Valenzuela takes over peoples party
+country_event = {
+	id = galelections.27
+	title = galelections.27.t
+	desc = galelections.27.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = galelections.27.o1
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.02
+		}
+		GAL_Alfonso_Rueda_Valenzuela = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=european_conservative
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+}
+#late game elections under amedo after amedo won
+country_event = {
+	id = galelections.28
+	title = galelections.28.t
+	desc = galelections.28.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #amedo stays
+		name = galelections.28.o1
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.05
+		}
+	}
+	option = { #falangists
+		name = galelections.28.o2
+		set_politics = {
+			ruling_party = fascist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.20
+		}
+		complete_national_focus = GAL_maintain_the_path
+	}
+	option = { #liberals
+		name = galelections.28.o3
+		set_politics = {
+			ruling_party = liberal
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.20
+		}
+		complete_national_focus = GAL_commitment_to_galicia
+	}
+}
+#late game elections under amedo after fascists won
+country_event = {
+	id = galelections.29
+	title = galelections.29.t
+	desc = galelections.29.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #falangists stay
+		name = galelections.29.o2
+		set_politics = {
+			ruling_party = fascist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.05
+		}
+	}
+	option = { #nationalists
+		name = galelections.29.o1
+		set_politics = {
+			ruling_party = nationalist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.20
+		}
+	}
+	option = { #liberals
+		name = galelections.29.o3
+		set_politics = {
+			ruling_party = liberal
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.20
+		}
+		complete_national_focus = GAL_commitment_to_galicia
+	}
+}
+#late game elections under amedo after liberals won
+country_event = {
+	id = galelections.30
+	title = galelections.30.t
+	desc = galelections.30.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #liberals stay
+		name = galelections.30.o3
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.05
+		}
+	}
+	option = { #amedo
+		name = galelections.30.o1
+		set_politics = {
+			ruling_party = nationalist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.20
+		}
+	}
+	option = { #falangists
+		name = galelections.30.o2
+		set_politics = {
+			ruling_party = fascist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.20
+		}
+		complete_national_focus = GAL_maintain_the_path
+	}
+}
+#late game election after Beiras does Honor Commitment to Democracy and beiras wins
+country_event = {
+	id = galelections.31
+	title = galelections.31.t
+	desc = galelections.31.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #modsocs stay
+		name = galelections.31.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.31.o2
+		complete_national_focus = GAL_the_moderate_left
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.31.o3
+		complete_national_focus = GAL_the_conservative_backlash
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+	}
+}
+#late game election after Beiras does Honor Commitment to Democracy and newdem wins
+country_event = {
+	id = galelections.32
+	title = galelections.32.t
+	desc = galelections.32.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #newdems stay
+		name = galelections.32.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.32.o1
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.32.o3
+		complete_national_focus = GAL_the_conservative_backlash
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+	}
+}
+#late game elections after the civil guard overthrew beiras and the newdems won the election 4 years before
+country_event = {
+	id = galelections.33
+	title = galelections.33.t
+	desc = galelections.33.d
+	picture = x
+
+	is_triggered_only = yes
+	
+	option = { #newdems win
+		name = galelections.33.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+
+	}
+	option = { #natcons win
+		name = galelections.33.o2
+		complete_national_focus = GAL_the_conservative_backlash
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+	}
+}
+#late game election after beiras opens up elections in opening events and modsocs won both times
+country_event = {
+	id = galelections.34
+	title = galelections.34.t
+	desc = galelections.34.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #modsocs stay
+		name = galelections.34.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.34.o2
+		complete_national_focus = GAL_the_moderate_left
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.34.o3
+		complete_national_focus = GAL_the_conservative_backlash
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+	}
+}
+#late game election after beiras opens up elections in opening events and modsocs won and then newdems won
+country_event = {
+	id = galelections.35
+	title = galelections.35.t
+	desc = galelections.35.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #newdems stay
+		name = galelections.35.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.35.o1
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.35.o3
+		complete_national_focus = GAL_the_conservative_backlash
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+	}
+}
+#late game election after beiras opens up elections in opening events and newdems won then modsocs won
+country_event = {
+	id = galelections.36
+	title = galelections.36.t
+	desc = galelections.36.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #modsocs stay
+		name = galelections.36.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.36.o2
+		complete_national_focus = GAL_the_moderate_left
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.36.o3
+		complete_national_focus = GAL_the_conservative_backlash
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+	}
+}
+#late game election after beiras opens up elections in opening events and newdems won both times
+country_event = {
+	id = galelections.37
+	title = galelections.37.t
+	desc = galelections.37.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #newdems stay
+		name = galelections.37.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.37.o1
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.37.o3
+		complete_national_focus = GAL_the_conservative_backlash
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+	}
+}
+#late game election after feijoo survived the vonc and won reelection
+country_event = {
+	id = galelections.38
+	title = galelections.38.t
+	desc = {
+		text = galelections.38.d1
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+	}
+	desc = {
+		text = galelections.38.d2
+		trigger = {
+			has_country_flag = GAL_beiras_got_purged
+		}
+	}
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #natcons stay
+		name = galelections.38.o3
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.05
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.38.o1
+		complete_national_focus = GAL_the_champion_of_galician_independence
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.38.o2
+		complete_national_focus = GAL_the_moderate_left
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+	}
+}
+#late game election after feijoo survived the vonc and got beat by the newdems
+country_event = {
+	id = galelections.39
+	title = galelections.39.t
+	desc = {
+		text = galelections.39.d1
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+	}
+	desc = {
+		text = galelections.39.d2
+		trigger = {
+			has_country_flag = GAL_beiras_got_purged
+		}
+	}
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #newdems stay
+		name = galelections.39.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.39.o1
+		complete_national_focus = GAL_the_champion_of_galician_independence
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.39.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+	}
+}
+#late game election after feijoo survived the vonc and got beat by the modsocs
+country_event = {
+	id = galelections.40
+	title = galelections.40.t
+	desc = galelections.40.d
+	
+	picture = x
+	is_triggered_only = yes
+
+	option = { #modsocs win
+		name = galelections.40.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.40.o2
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.40.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+	}
+}
+#late game election after feijoo gets voncd and fraga won snap elections
+country_event = {
+	id = galelections.41
+	title = galelections.41.t
+	desc = {
+		text = galelections.41.d1
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+	}
+	desc = {
+		text = galelections.41.d2
+		trigger = {
+			has_country_flag = GAL_beiras_got_purged
+		}
+	}
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #natcons stay
+		name = galelections.41.o3
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.05
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.41.o1
+		complete_national_focus = GAL_the_champion_of_galician_independence
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.41.o2
+		complete_national_focus = GAL_the_moderate_left
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+	}
+}
+#late game election after fraga won and then got beat by the newdems
+country_event = {
+	id = galelections.42
+	title = galelections.42.t
+	desc = {
+		text = galelections.42.d1
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+	}
+	desc = {
+		text = galelections.42.d2
+		trigger = {
+			has_country_flag = GAL_beiras_got_purged
+		}
+	}
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #newdems stay
+		name = galelections.42.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.42.o1
+		complete_national_focus = GAL_the_champion_of_galician_independence
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.42.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+	}
+}
+#late game election after fraga won and then got beat by the modsocs
+country_event = {
+	id = galelections.43
+	title = galelections.43.t
+	desc = galelections.43.d
+	
+	picture = x
+	is_triggered_only = yes
+
+	option = { #modsocs win
+		name = galelections.43.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.43.o2
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.43.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+	}
+}
+#election after feijoo gets voncd and newdems won snap elections and got re-elected
+country_event = {
+	id = galelections.44
+	title = galelections.44.t
+	desc = {
+		text = galelections.44.d1
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+	}
+	desc = {
+		text = galelections.44.d2
+		trigger = {
+			has_country_flag = GAL_beiras_got_purged
+		}
+	}
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #newdems stay
+		name = galelections.44.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.44.o1
+		complete_national_focus = GAL_the_champion_of_galician_independence
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.44.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+	}
+}
+#election after feijoo gets voncd and newdems won snap elections and got replaced with modsocs
+country_event = {
+	id = galelections.45
+	title = galelections.45.t
+	desc = galelections.45.d
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #modsocs win
+		name = galelections.45.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.45.o2
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.45.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+	}
+}
+#election after feijoo gets voncd and newdems won snap elections and got replaced by natcons
+country_event = {
+	id = galelections.46
+	title = galelections.46.t
+	desc = {
+		text = galelections.46.d1
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+	}
+	desc = {
+		text = galelections.46.d2
+		trigger = {
+			has_country_flag = GAL_beiras_got_purged
+		}
+	}
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #natcons stay
+		name = galelections.46.o3
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.05
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.46.o1
+		complete_national_focus = GAL_the_champion_of_galician_independence
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+	}
+
+	option = { #newdems win
+		name = galelections.46.o2
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+	}
+}
+#election after feijoo gets voncd and modsocs won snap elections and got reelected
+country_event = {
+	id = galelections.47
+	title = galelections.47.t
+	desc = galelections.47.d
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #modsocs stay
+		name = galelections.47.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.47.o2
+		complete_national_focus = GAL_the_moderate_left
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.47.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+		complete_national_focus = GAL_legacy_of_the_peoples_party
+	}
+}
+#election after feijoo gets voncd and modsocs won snap elections and got replaced by newdems
+country_event = {
+	id = galelections.48
+	title = galelections.48.t
+	desc = galelections.48.d
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #newdems stay
+		name = galelections.48.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.48.o1
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.48.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+		complete_national_focus = GAL_legacy_of_the_peoples_party
+	}
+}
+#election after feijoo gets voncd and modsocs won snap elections and got replaced by natcons
+country_event = {
+	id = galelections.49
+	title = galelections.49.t
+	desc = galelections.49.d
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #natcons stay
+		name = galelections.49.o3
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.05
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.49.o1
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.49.o2
+		complete_national_focus = GAL_the_moderate_left
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+	}
+}
+#election after feijoo gets voncd and fraga won snap elections and bruno is king and natcons won again
+country_event = {
+	id = galelections.50
+	title = galelections.50.t
+	desc = {
+		text = galelections.50.d1
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+	}
+	desc = {
+		text = galelections.50.d2
+		trigger = {
+			has_country_flag = GAL_beiras_got_purged
+		}
+	}
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #natcons stay
+		name = galelections.50.o3
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.05
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.50.o1
+		complete_national_focus = GAL_the_champion_of_galician_independence
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.50.o2
+		complete_national_focus = GAL_the_moderate_left
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+	}
+}
+#election after feijoo gets voncd and fraga won snap elections and bruno is king and then newdems won
+country_event = {
+	id = galelections.51
+	title = galelections.51.t
+	desc = {
+		text = galelections.51.d1
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+	}
+	desc = {
+		text = galelections.51.d2
+		trigger = {
+			has_country_flag = GAL_beiras_got_purged
+		}
+	}
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #newdems stay
+		name = galelections.51.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.51.o1
+		complete_national_focus = GAL_the_champion_of_galician_independence
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.51.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+	}
+}
+#election after feijoo gets voncd and fraga won snap elections and bruno is king and then modsocs won
+country_event = {
+	id = galelections.52
+	title = galelections.52.t
+	desc = galelections.52.d
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #modsocs stay
+		name = galelections.52.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.52.o2
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.52.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+	}
+}
+#election after feijoo gets voncd and newdems won snap elections and bruno is king and the newdems won again
+country_event = {
+	id = galelections.53
+	title = galelections.53.t
+	desc = {
+		text = galelections.53.d1
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+	}
+	desc = {
+		text = galelections.53.d2
+		trigger = {
+			has_country_flag = GAL_beiras_got_purged
+		}
+	}
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #newdems stay
+		name = galelections.53.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.53.o1
+		complete_national_focus = GAL_the_champion_of_galician_independence
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.53.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+		complete_national_focus = GAL_legacy_of_the_peoples_party
+	}
+}
+#election after feijoo gets voncd and newdems won snap elections and bruno is king and the natcons won later
+country_event = {
+	id = galelections.54
+	title = galelections.54.t
+	desc = {
+		text = galelections.54.d1
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+	}
+	desc = {
+		text = galelections.54.d2
+		trigger = {
+			has_country_flag = GAL_beiras_got_purged
+		}
+	}
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #natcons stay
+		name = galelections.54.o3
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.05
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.54.o1
+		complete_national_focus = GAL_the_champion_of_galician_independence
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.54.o2
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+	}
+}
+#election after feijoo gets voncd and newdems won snap elections and bruno is king and the modsocs won later
+country_event = {
+	id = galelections.55
+	title = galelections.55.t
+	desc = galelections.55.d
+	
+	picture = x
+	is_triggered_only = yes
+
+	option = { #modsocs stay
+		name = galelections.55.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.55.o2
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.55.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+		complete_national_focus = GAL_legacy_of_the_peoples_party
+	}
+}
+#election after feijoo gets voncd and modsocs won snap elections and bruno is king and then the modsocs won again
+country_event = {
+	id = galelections.56
+	title = galelections.56.t
+	desc = galelections.56.d
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #modsocs stay
+		name = galelections.56.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+	}
+
+	option = { #natcons win
+		name = galelections.56.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+		complete_national_focus = GAL_legacy_of_the_peoples_party
+	}
+	
+	option = { #newdems win
+		name = galelections.56.o2
+		complete_national_focus = GAL_the_moderate_left
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+	}
+}
+#election after feijoo gets voncd and modsocs won snap elections and bruno is king and then the newdems won
+country_event = {
+	id = galelections.57
+	title = galelections.57.t
+	desc = galelections.57.d
+	
+	picture = x
+	is_triggered_only = yes
+
+	option = { #newdems stay
+		name = galelections.57.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.57.o1
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.57.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+		complete_national_focus = GAL_legacy_of_the_peoples_party
+	}
+}
+#election after feijoo gets voncd and modsocs won snap elections and bruno is king and then the natcons won
+country_event = {
+	id = galelections.58
+	title = galelections.58.t
+	desc = galelections.58.d
+	
+	picture = x
+	is_triggered_only = yes
+
+	option = { #natcons stay
+		name = galelections.58.o3
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.05
+		}
+	}
+	
+	option = { #modsocs win
+		name = galelections.58.o1
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.58.o2
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+	}
+}
+#election after feijoo gets voncd and fraga won snap elections and alphonse is king and fraga won
+country_event = {
+	id = galelections.59
+	title = galelections.59.t
+	desc = {
+		text = galelections.59.d1
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+	}
+	desc = {
+		text = galelections.59.d2
+		trigger = {
+			has_country_flag = GAL_beiras_got_purged
+		}
+	}
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #natcons stay
+		name = galelections.59.o3
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.05
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.59.o1
+		complete_national_focus = GAL_the_champion_of_galician_independence
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.59.o2
+		complete_national_focus = GAL_the_moderate_left
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+	}
+}
+#election after feijoo gets voncd and fraga won snap elections and alphonse is king and newdems won
+country_event = {
+	id = galelections.60
+	title = galelections.60.t
+	desc = {
+		text = galelections.60.d1
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+	}
+	desc = {
+		text = galelections.60.d2
+		trigger = {
+			has_country_flag = GAL_beiras_got_purged
+		}
+	}
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #newdems stay
+		name = galelections.60.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.60.o1
+		complete_national_focus = GAL_the_champion_of_galician_independence
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.60.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+	}
+}
+#election after feijoo gets voncd and fraga won snap elections and alphonse is king and modsocs won
+country_event = {
+	id = galelections.61
+	title = galelections.61.t
+	desc = galelections.61.d
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #modsocs stay
+		name = galelections.61.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.61.o2
+		complete_national_focus = GAL_the_moderate_left
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.61.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+	}
+}
+#election after feijoo gets voncd and newdems won snap elections and alphonse is king and newdems won again
+country_event = {
+	id = galelections.62
+	title = galelections.62.t
+	desc = {
+		text = galelections.62.d1
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+	}
+	desc = {
+		text = galelections.62.d2
+		trigger = {
+			has_country_flag = GAL_beiras_got_purged
+		}
+	}
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #newdems stay
+		name = galelections.62.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+	}
+
+	option = { #natcons win
+		name = galelections.62.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+		complete_national_focus = GAL_legacy_of_the_peoples_party
+	}
+
+	option = { #modsocs win
+		name = galelections.62.o1
+		complete_national_focus = GAL_the_champion_of_galician_independence
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+	}
+}
+#election after feijoo gets voncd and newdems won snap elections and alphonse is king and natcons won
+country_event = {
+	id = galelections.63
+	title = galelections.63.t
+	desc = {
+		text = galelections.63.d1
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+	}
+	desc = {
+		text = galelections.63.d2
+		trigger = {
+			has_country_flag = GAL_beiras_got_purged
+		}
+	}
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #natcons stay
+		name = galelections.63.o3
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.05
+		}
+	}
+
+	option = { #newdems win
+		name = galelections.63.o2
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.63.o1
+		complete_national_focus = GAL_the_champion_of_galician_independence
+		trigger = {
+			NOT = {
+				has_country_flag = GAL_beiras_got_purged
+			}
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+	}
+}
+#election after feijoo gets voncd and newdems won snap elections and alphonse is king and modsocs won
+country_event = {
+	id = galelections.64
+	title = galelections.64.t
+	desc = galelections.64.d
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #modsocs stay
+		name = galelections.64.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+	}
+
+	option = { #newdems win
+		name = galelections.64.o2
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+	}
+	
+	option = { #natcons win
+		name = galelections.64.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+		complete_national_focus = GAL_legacy_of_the_peoples_party
+	}
+}
+#election after feijoo gets voncd and modsocs won snap elections and alphonse is king and the modsocs won
+country_event = {
+	id = galelections.65
+	title = galelections.65.t
+	desc = galelections.65.d
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #modsocs stay
+		name = galelections.65.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+	}
+
+	option = { #natcons win
+		name = galelections.65.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+		complete_national_focus = GAL_legacy_of_the_peoples_party
+	}
+	
+	option = { #newdems win
+		name = galelections.65.o2
+		complete_national_focus = GAL_the_moderate_left
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+	}
+}
+#election after feijoo gets voncd and modsocs won snap elections and alphonse is king and the newdems won
+country_event = {
+	id = galelections.66
+	title = galelections.66.t
+	desc = galelections.66.d
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #newdems stay
+		name = galelections.66.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.66.o1
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+	}
+
+	option = { #natcons win
+		name = galelections.66.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.20
+		}
+		complete_national_focus = GAL_legacy_of_the_peoples_party
+	}
+}
+#election after feijoo gets voncd and modsocs won snap elections and alphonse is king and the natcons won
+country_event = {
+	id = galelections.67
+	title = galelections.67.t
+	desc = galelections.67.d
+	
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #natcons stay
+		name = galelections.67.o3
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.05
+		}
+	}
+
+	option = { #modsocs win
+		name = galelections.67.o1
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.20
+		}
+	}
+	
+	option = { #newdems win
+		name = galelections.67.o2
+		complete_national_focus = GAL_the_moderate_left
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+	}
+}

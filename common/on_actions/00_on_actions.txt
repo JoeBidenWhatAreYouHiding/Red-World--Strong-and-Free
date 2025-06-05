@@ -133,6 +133,52 @@ on_actions = {
 			if = {
 				limit = {
 					ROOT = {
+						tag = AMC
+					}
+					FROM = {
+						tag = NEA
+					}
+				}
+				every_country = {
+					limit = {
+						NOT = {
+							tag = NEA
+						}
+					}
+					news_event = {
+						id = commonwealthnews.3
+						days = 1
+					}
+				}
+			}
+		}
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						tag = NEA
+					}
+					FROM = {
+						tag = AMC
+					}
+				}
+				every_country = {
+					limit = {
+						NOT = {
+							tag = AMC
+						}
+					}
+					news_event = {
+						id = commonwealthnews.4
+						days = 1
+					}
+				}
+			}
+		}
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
 						tag = JAS
 					}
 					FROM = {
@@ -778,8 +824,219 @@ on_capitulation = {
 	#Not run on a specific country.
 	on_startup = {
 		effect = {
+			every_possible_country = {
+				#Opinion Modifiers Setup
+				every_possible_country = {
+					limit = { NOT = { tag = PREV } }
+					if = {
+						limit = { has_government = PREV }
+						add_opinion_modifier = {
+							target = PREV
+							modifier = same_ideology
+						}
+					}
+					else_if = {
+						limit = {
+							OR = {
+								AND = {
+									OR = {
+										has_government = national_conservative
+										has_government = centrist
+									}
+									PREV = {
+										OR = {
+											has_government = national_conservative
+											has_government = centrist
+										}
+									}
+								}
+								AND = {
+									OR = {
+										has_government = centrist
+										has_government = liberal
+									}
+									PREV = {
+										OR = {
+											has_government = centrist
+											has_government = liberal
+										}
+									}
+								}
+							}
+						}
+						add_opinion_modifier = {
+							target = PREV
+							modifier = similar_ideology_close
+						}
+					}
+					else_if = {
+						limit = {
+							OR = {
+								AND = {
+									has_government = new_democrat
+									PREV = {
+										OR = {
+											has_government = national_conservative
+											has_government = centrist
+										}
+									}
+								}
+								AND = {
+									OR = {
+										has_government = national_conservative
+										has_government = centrist
+									}
+									PREV = { has_government = new_democrat }
+								}
+								AND = {
+									has_government = liberal
+									PREV = { has_government = moderate_socialist }
+								}
+								AND = {
+									has_government = moderate_socialist
+									PREV = { has_government = liberal }
+								}
+							}
+						}
+						add_opinion_modifier = {
+							target = PREV
+							modifier = similar_ideology_distant
+						}
+					}
+					else_if = {
+						limit = {
+							OR = {
+								AND = {
+									OR = {
+										has_government = national_conservative
+										has_government = liberal
+									}
+									PREV = {
+										OR = {
+											has_government = national_conservative
+											has_government = liberal
+										}
+									}
+								}
+								AND = {
+									OR = {
+										has_government = liberal
+										has_government = new_democrat
+									}
+									PREV = {
+										OR = {
+											has_government = liberal
+											has_government = new_democrat
+										}
+									}
+								}
+								AND = {
+									OR = {
+										has_government = moderate_socialist
+										has_government = new_democrat
+									}
+									PREV = {
+										OR = {
+											has_government = moderate_socialist
+											has_government = new_democrat
+										}
+									}
+								}
+							}
+						}
+						add_opinion_modifier = {
+							target = PREV
+							modifier = similar_ideology
+						}
+					}
+					else_if = {
+						limit = {
+							OR = {
+								AND = {
+									has_government = revolutionary_socialist
+									PREV = { has_government = communist }
+								}
+								AND = {
+									has_government = communist
+									PREV = { has_government = revolutionary_socialist }
+								}
+								AND = {
+									has_government = monarchist
+									PREV = { has_government = national_conservative }
+								}
+								AND = {
+									has_government = national_conservative
+									PREV = { has_government = monarchist }
+								}
+								AND = {
+									has_government = nationalist
+									PREV = { has_government = monarchist }
+								}
+								AND = {
+									has_government = monarchist
+									PREV = { has_government = nationalist }
+								}
+								AND = {
+									has_government = nationalist
+									PREV = { has_government = national_conservative }
+								}
+								AND = {
+									has_government = national_conservative
+									PREV = { has_government = nationalist }
+								}
+								AND = {
+									has_government = national_conservative
+									PREV = { has_government = moderate_socialist }
+								}
+								AND = {
+									has_government = moderate_socialist
+									PREV = { has_government = national_conservative }
+								}
+								AND = {
+									has_government = centrist
+									PREV = { has_government = moderate_socialist }
+								}
+								AND = {
+									has_government = moderate_socialist
+									PREV = { has_government = centrist }
+								}
+								AND = {
+									has_government = fascist
+									PREV = { has_government = nationalist }
+								}
+								AND = {
+									has_government = nationalist
+									PREV = { has_government = fascist }
+								}
+								AND = {
+									has_government = moderate_socialist
+									PREV = { has_government = revolutionary_socialist }
+								}
+								AND = {
+									has_government = revolutionary_socialist
+									PREV = { has_government = moderate_socialist }
+								}
+							}
+						}
+						add_opinion_modifier = {
+							target = PREV
+							modifier = different_ideology_close
+						}
+					}
+					else = {
+						add_opinion_modifier = {
+							target = PREV
+							modifier = different_ideology
+						}
+					}
+				}
+			}
 			#Gaddafi's Fine Line division-making effect - removed in event
 			LBA = {
+				country_lock_all_division_template = yes
+			}
+			#UAR gets this effect too
+			UAR = {
 				country_lock_all_division_template = yes
 			}
 			UAR = {
@@ -800,7 +1057,7 @@ on_capitulation = {
 						tag = EGY
 					}
 				}
-				set_country_flag = UKR_elections_not_allowed
+				set_country_flag = Uelections_not_allowed
 			}
 			#American Isolation faction effects - removed via decision or focus
 			every_country = {
@@ -820,7 +1077,12 @@ on_capitulation = {
 			every_country = {
 				country_event = limiter.1
 			}
-
+			CEA = {
+				country_event = {
+					id = centroamerica.1
+					days = 1
+				}
+			}
 			#Ambition Areas
 			every_state = { create_ambition_areas = yes }
 		}
@@ -904,6 +1166,780 @@ on_capitulation = {
 				set_temp_variable = { new_compliance = compliance }
 				multiply_temp_variable = { new_compliance = 0.5 }
 				set_compliance = new_compliance
+			}
+			# Opinion Modifiers
+			every_possible_country = {
+				remove_opinion_modifier = {
+					target = ROOT
+					modifier = similar_ideology_close
+				}
+				remove_opinion_modifier = {
+					target = ROOT
+					modifier = similar_ideology
+				}
+				remove_opinion_modifier = {
+					target = ROOT
+					modifier = similar_ideology_distant
+				}
+				remove_opinion_modifier = {
+					target = ROOT
+					modifier = different_ideology_close
+				}
+				remove_opinion_modifier = {
+					target = ROOT
+					modifier = different_ideology
+				}
+				remove_opinion_modifier = {
+					target = ROOT
+					modifier = same_ideology
+				}
+				ROOT = {
+					remove_opinion_modifier = {
+						target = PREV
+						modifier = similar_ideology_close
+					}
+					remove_opinion_modifier = {
+						target = PREV
+						modifier = similar_ideology
+					}
+					remove_opinion_modifier = {
+						target = PREV
+						modifier = similar_ideology_distant
+					}
+					remove_opinion_modifier = {
+						target = PREV
+						modifier = different_ideology_close
+					}
+					remove_opinion_modifier = {
+						target = PREV
+						modifier = different_ideology
+					}
+					remove_opinion_modifier = {
+						target = PREV
+						modifier = same_ideology
+					}
+				}
+				if = {
+						limit = { has_government = PREV }
+						add_opinion_modifier = {
+						target = ROOT
+						modifier = same_ideology
+					}
+					reverse_add_opinion_modifier = {
+						target = ROOT
+						modifier = same_ideology
+					}
+				}
+				else_if = {
+					limit = {
+						OR = {
+							AND = {
+								OR = {
+									has_government = national_conservative
+									has_government = centrist
+								}
+								ROOT = {
+									OR = {
+										has_government = national_conservative
+										has_government = centrist
+									}
+								}
+							}
+							AND = {
+								OR = {
+									has_government = centrist
+									has_government = liberal
+								}
+								ROOT = {
+									OR = {
+										has_government = centrist
+										has_government = liberal
+									}
+								}
+							}
+						}
+					}
+					add_opinion_modifier = {
+						target = ROOT
+						modifier = similar_ideology_close
+					}
+					reverse_add_opinion_modifier = {
+						target = ROOT
+						modifier = similar_ideology_close
+					}
+				}
+				else_if = {
+					limit = {
+						OR = {
+							AND = {
+									has_government = new_democrat
+									ROOT = {
+										OR = {
+											has_government = national_conservative
+											has_government = centrist
+										}
+									}
+								}
+							AND = {
+									OR = {
+										has_government = national_conservative
+										has_government = centrist
+									}
+									ROOT = { has_government = new_democrat }
+								}
+								AND = {
+									has_government = liberal
+									ROOT = { has_government = moderate_socialist }
+								}
+								AND = {
+									has_government = moderate_socialist
+									ROOT = { has_government = liberal }
+								}
+						}
+					}
+					add_opinion_modifier = {
+						target = ROOT
+						modifier = similar_ideology_distant
+					}
+					reverse_add_opinion_modifier = {
+						target = ROOT
+						modifier = similar_ideology_distant
+					}
+				}
+				else_if = {
+					limit = {
+							OR = {
+								AND = {
+									OR = {
+										has_government = national_conservative
+										has_government = liberal
+									}
+									ROOT = {
+										OR = {
+											has_government = national_conservative
+											has_government = liberal
+										}
+									}
+								}
+								AND = {
+									OR = {
+										has_government = liberal
+										has_government = new_democrat
+									}
+									ROOT = {
+										OR = {
+											has_government = liberal
+											has_government = new_democrat
+										}
+									}
+								}
+								AND = {
+									OR = {
+										has_government = moderate_socialist
+										has_government = new_democrat
+									}
+									ROOT = {
+										OR = {
+											has_government = moderate_socialist
+											has_government = new_democrat
+										}
+									}
+								}
+							}
+						}
+					add_opinion_modifier = {
+						target = ROOT
+						modifier = similar_ideology
+					}
+					reverse_add_opinion_modifier = {
+						target = ROOT
+						modifier = similar_ideology
+					}
+				}
+				else_if = {
+					limit = {
+							OR = {
+								AND = {
+									has_government = revolutionary_socialist
+									ROOT = { has_government = communist }
+								}
+								AND = {
+									has_government = communist
+									ROOT = { has_government = revolutionary_socialist }
+								}
+								AND = {
+									has_government = monarchist
+									ROOT = { has_government = monarchist }
+								}
+								AND = {
+									has_government = monarchist
+									ROOT = { has_government = national_conservative }
+								}
+								AND = {
+									has_government = nationalist
+									ROOT = { has_government = national_conservative }
+								}
+								AND = {
+									has_government = monarchist
+									ROOT = { has_government = nationalist }
+								}
+								AND = {
+									has_government = nationalist
+									ROOT = { has_government = national_conservative }
+								}
+								AND = {
+									has_government = national_conservative
+									ROOT = { has_government = nationalist }
+								}
+								AND = {
+									has_government = national_conservative
+									ROOT = { has_government = moderate_socialist }
+								}
+								AND = {
+									has_government = moderate_socialist
+									ROOT = { has_government = national_conservative }
+								}
+								AND = {
+									has_government = national_conservative
+									ROOT = { has_government = moderate_socialist }
+								}
+								AND = {
+									has_government = moderate_socialist
+									ROOT = { has_government = national_conservative }
+								}
+								AND = {
+									has_government = centrist
+									ROOT = { has_government = moderate_socialist }
+								}
+								AND = {
+									has_government = moderate_socialist
+									ROOT = { has_government = centrist }
+								}
+								AND = {
+									has_government = liberal
+									ROOT = { has_government = moderate_socialist }
+								}
+								AND = {
+									has_government = moderate_socialist
+									ROOT = { has_government = liberal }
+								}
+								AND = {
+									has_government = fascist
+									ROOT = { has_government = nationalist }
+								}
+								AND = {
+									has_government = nationalist
+									ROOT = { has_government = fascist }
+								}
+								AND = {
+									has_government = moderate_socialist
+									ROOT = { has_government = revolutionary_socialist }
+								}
+								AND = {
+									has_government = revolutionary_socialist
+									ROOT = { has_government = moderate_socialist }
+								}
+							}
+						}
+					add_opinion_modifier = {
+						target = ROOT
+						modifier = different_ideology_close
+					}
+					reverse_add_opinion_modifier = {
+						target = ROOT
+						modifier = different_ideology_close
+					}
+				}
+				else = {
+					add_opinion_modifier = {
+						target = ROOT
+						modifier = different_ideology
+					}
+					reverse_add_opinion_modifier = {
+						target = ROOT
+						modifier = different_ideology
+					}
+				}
+			}
+		}
+	}
+	on_annex = { #Cascadian Uprising Defeated News Event
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						tag = PCA
+					}
+					FROM = {
+						tag = CSD
+					}
+					has_global_flag = the_cascadian_war_global
+				}
+				clr_global_flag = the_cascadian_war_global
+				every_country = {
+					news_event = news.336
+				}
+			}
+		}
+	}
+	on_annex = { #San Jose Uprising Crushed
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						tag = CEA
+					}
+					FROM = {
+						tag = COS
+					}
+					has_country_flag = CEA_hostille_occupation
+				}
+				every_country = {
+					news_event = centroamericanews.14
+				}
+			}
+		}
+	}
+	on_civil_war_end = { #marxist defeated
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						tag = RAJ
+					}
+					FROM = {
+						original_tag = RAJ
+						has_government = communist
+					}
+				}
+				every_country = {
+					news_event = news.344
+				}
+			}
+		}
+	}
+	on_civil_war_end = { #marxist victorious
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						original_tag = RAJ
+						has_government = communist
+					}
+					FROM = {
+						tag = RAJ
+					}
+				}
+				every_country = {
+					news_event = news.345
+				}
+			}
+		}
+	}
+	on_civil_war_end = { #panag defeated
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						tag = RAJ
+					}
+					FROM = {
+						original_tag = RAJ
+						has_government = centrist
+					}
+				}
+				every_country = {
+					news_event = news.351
+				}
+			}
+		}
+	}
+	on_civil_war_end = { #gandhi defeated
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						original_tag = RAJ
+						has_government = centrist
+					}
+					FROM = {
+						tag = RAJ
+					}
+				}
+				every_country = {
+					news_event = news.372
+				}
+			}
+		}
+	}
+	on_civil_war_end = { #constitutionalists defeated
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						original_tag = RAJ
+						has_government = revolutionary_socialist
+					}
+					FROM = {
+						tag = RAJ
+						has_government = centrist
+					}
+				}
+				every_country = {
+					news_event = news.373
+				}
+			}
+		}
+	}
+	on_civil_war_end = { #constitutionalists victorious
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						tag = RAJ
+						has_government = centrist
+					}
+					FROM = {
+						original_tag = RAJ
+						has_government = revolutionary_socialist
+					}
+				}
+				every_country = {
+					news_event = news.374
+				}
+			}
+		}
+	}
+	on_civil_war_end = { #vij mutineers victorious
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						original_tag = RAJ
+						has_government = nationalist
+						has_country_leader = {
+							character = RAJ_nirmal_chander_vij
+							ruling_only = yes
+						}
+					}
+					FROM = {
+						tag = RAJ
+						has_government = communist
+					}
+				}
+				every_country = {
+					news_event = news.377
+				}
+			}
+		}
+	}
+	on_civil_war_end = { #vij mutineers defeated
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						tag = RAJ
+						has_government = communist
+					}
+					FROM = {
+						original_tag = RAJ
+						has_government = nationalist
+						has_country_leader = {
+							character = RAJ_nirmal_chander_vij
+							ruling_only = yes
+						}
+					}
+				}
+				every_country = {
+					news_event = news.378
+				}
+			}
+		}
+	}
+	on_civil_war_end = { #hindu revolt defeated (yechury)
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						tag = RAJ
+						has_government = communist
+					}
+					FROM = {
+						original_tag = RAJ
+						has_government = nationalist
+						has_country_leader = {
+							character = RAJ_mohan_bhagwat
+							ruling_only = yes
+						}
+					}
+				}
+				every_country = {
+					news_event = news.380
+				}
+			}
+		}
+	}
+	on_civil_war_end = { #hindu revolt victorious (yechury)
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						original_tag = RAJ
+						has_government = nationalist
+						has_country_leader = {
+							character = RAJ_mohan_bhagwat
+							ruling_only = yes
+						}
+					}
+					FROM = {
+						tag = RAJ
+						has_government = communist
+					}
+				}
+				every_country = {
+					news_event = news.381
+				}
+			}
+		}
+	}
+	on_civil_war_end = { #politburo revolt defeated
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						tag = RAJ
+						has_government = communist
+					}
+					FROM = {
+						original_tag = RAJ
+						has_government = revolutionary_socialist
+					}
+				}
+				every_country = {
+					news_event = news.386
+				}
+			}
+		}
+	}
+	on_civil_war_end = { #politburo revolt victorious
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						original_tag = RAJ
+						has_government = revolutionary_socialist
+					}
+					FROM = {
+						tag = RAJ
+						has_government = communist
+					}
+				}
+				every_country = {
+					news_event = news.387
+				}
+			}
+		}
+	}
+	on_civil_war_end = { #hindu revolt defeated (bhosale)
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						tag = RAJ
+						OR = {
+							has_government = monarchist
+							has_idea = idea_raj_const_udayanraje
+						}
+					}
+					FROM = {
+						original_tag = RAJ
+						has_government = nationalist
+					}
+				}
+				every_country = {
+					news_event = news.391
+				}
+			}
+		}
+	}
+	on_civil_war_end = { #hindu revolt victorious (bhosale)
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						original_tag = RAJ
+						has_government = nationalist
+					}
+					FROM = {
+						tag = RAJ
+						OR = {
+							has_government = monarchist
+							has_idea = idea_raj_const_udayanraje
+						}
+					}
+				}
+				every_country = {
+					news_event = news.392
+				}
+			}
+		}
+	}
+	on_annex = { #naxalites victorious
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						tag = NAX
+					}
+					FROM = {
+						tag = RAJ
+					}
+				}
+				every_country = {
+					news_event = news.395
+				}
+			}
+		}
+	}
+	on_annex = { #naxalites victorious
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						tag = RAJ
+					}
+					FROM = {
+						tag = NAX
+					}
+				}
+				every_country = {
+					news_event = news.396
+				}
+			}
+		}
+	}
+	on_annex = { #dravidian uprising crushed
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						tag = RAJ
+					}
+					FROM = {
+						tag = DVN
+					}
+				}
+				every_country = {
+					news_event = news.400
+				}
+			}
+		}
+	}
+	on_civil_war_end = { #vij defeats shiv sena
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						original_tag = PUI
+						has_government = nationalist
+					}
+					FROM = {
+						tag = PUI
+					}
+				}
+				every_country = {
+					news_event = news.407
+				}
+			}
+		}
+	}
+	on_civil_war_end = { #shiv sena defeats vij
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						tag = PUI
+					}
+					FROM = {
+						original_tag = PUI
+						has_government = nationalist
+					}
+				}
+				every_country = {
+					news_event = news.408
+				}
+			}
+		}
+	}
+	on_civil_war_end = { #wirathu defeated
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						original_tag = MYA
+						has_government = revolutionary_socialist
+					}
+					FROM = {
+						tag = MYA
+					}
+				}
+				every_country = {
+					news_event = news.356
+				}
+			}
+		}
+	}
+	on_civil_war_end = { #council of monks defeated
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						tag = MYA
+					}
+					FROM = {
+						original_tag = MYA
+						has_government = revolutionary_socialist
+					}
+				}
+				every_country = {
+					news_event = news.357
+				}
+			}
+		}
+	}
+	on_civil_war_end = { #military defeated
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						tag = MYA
+					}
+					FROM = {
+						original_tag = MYA
+						has_government = nationalist
+					}
+				}
+				every_country = {
+					news_event = news.359
+				}
+			}
+		}
+	}
+	on_civil_war_end = { #military victorious
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						original_tag = MYA
+						has_government = nationalist
+					}
+					FROM = {
+						tag = MYA
+					}
+				}
+				every_country = {
+					news_event = news.360
+				}
 			}
 		}
 	}

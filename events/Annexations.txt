@@ -21,6 +21,42 @@ country_event = { #Afghanistan
 				}
 				remove_core_of = AFG
 			}
+			every_state = {
+				limit = {
+					is_core_of = AFG
+					NOT = {
+						is_in_array = {
+							array = AFG_starting_cores
+							value = THIS
+						}
+					}
+				}
+				remove_core_of = AFG
+			}
+			every_state = {
+				limit = {
+					NOT = {
+						is_claimed_by = AFG
+					}
+					is_in_array = {
+						array = AFG_starting_claims
+						value = THIS
+					}
+				}
+				add_claim_by = AFG
+			}
+			every_state = {
+				limit = {
+					is_claimed_by = AFG
+					NOT = {
+						is_in_array = {
+							array = AFG_starting_claims
+							value = THIS
+						}
+					}
+				}
+				remove_claim_by = AFG
+			}
 		}
 	}
 
@@ -163,6 +199,70 @@ country_event = { #Albania
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			AND = {
+				NOT = {
+					has_cosmetic_tag = SPR_SFKS
+				}
+				NOT = {
+					has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+				}
+				NOT = {
+					AND = {
+						tag = CAT
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = ALB
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			ALB = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			ALB = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = ALB_revolutionary_socialist_party
+					name = ALB_revolutionary_socialist_party
+				}
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = ALB_national_bolshevik_party
+					name = ALB_national_bolshevik_party
+				}
+				ALB_petrit_vasili = {
+					promote_character = yes
+				}
+				ALB_idajet_beqiri = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = ALB
+	}
+	
+	option = { #carlist titoist puppet
+		name = annex.3.o3
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			OR = {
+				has_cosmetic_tag = SPR_SFKS
+				has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = ALB
@@ -177,6 +277,107 @@ country_event = { #Albania
 			}
 		}
 		puppet = ALB
+		hidden_effect = {
+			ALB = {
+				ALB_Elia_First = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=titoist
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = "House of Zog"
+					name = "House of Zog"
+				}
+				set_cosmetic_tag = ALB_titocarlist
+			}
+		}
+	}
+	
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_government = national_bolshevik
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = ALB
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			ALB = {
+				transfer_state = PREV
+			}
+		}
+		puppet = ALB
+		hidden_effect = {
+			ALB = {
+				set_cosmetic_tag = ALB_revnazi_puppet
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "United Albania"
+					long_name = "United Albania"
+				}
+				ALB_Kastriot_Berissa = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 1009
+						any_country = {
+							owns_state = 1009
+							is_puppet_of = CAT
+						}
+					}
+				}
+				1009 = {
+					add_claim_by = ALB
+				}
+				ALB = {
+					transfer_state = 1009
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 785
+						any_country = {
+							owns_state = 785
+							is_puppet_of = CAT
+						}
+					}
+				}
+				785 = {
+					add_claim_by = ALB
+				}
+				ALB = {
+					transfer_state = 785
+				}
+			}
+		}
 	}
 
 	option = { #annex
@@ -299,6 +500,30 @@ country_event = { #Amalfi
 					}
 				}
 				remove_core_of = AMA
+			}
+			every_state = {
+				limit = {
+					NOT = {
+						is_claimed_by = AMA
+					}
+					is_in_array = {
+						array = AMA_starting_claims
+						value = THIS
+					}
+				}
+				add_claim_by = AMA
+			}
+			every_state = {
+				limit = {
+					is_claimed_by = AMA
+					NOT = {
+						is_in_array = {
+							array = AMA_starting_claims
+							value = THIS
+						}
+					}
+				}
+				remove_claim_by = AMA
 			}
 		}
 	}
@@ -537,6 +762,14 @@ country_event = { #Armenia
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = ARM
@@ -548,6 +781,19 @@ country_event = { #Armenia
 			}
 			ARM = {
 				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			ARM = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = ARM_national_bolshevik_party_long
+					name = ARM_national_bolshevik_party
+				}
+				ARM_vazgen_safaryan = {
+					promote_character = yes
+				}
 			}
 		}
 		puppet = ARM
@@ -580,6 +826,223 @@ country_event = { #Armenia
 			}
 			SOV = {
 				transfer_state = PREV
+			}
+		}
+	}
+	
+	option = { #revnazi puppet without transcaucasia
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_government = national_bolshevik
+				NOT = {
+					GEO = {
+						is_puppet_of = CAT
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = ARM
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			ARM = {
+				transfer_state = PREV
+			}
+		}
+		puppet = ARM
+		hidden_effect = {
+			ARM = {
+				set_cosmetic_tag = ARM_revnazi_puppet
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "Hayazn"
+					long_name = "Hayazn"
+				}
+				ARM_Armen_Aghayan = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 354
+						any_country = {
+							owns_state = 354
+							is_puppet_of = CAT
+						}
+					}
+				}
+				354 = {
+					add_claim_by = ARM
+				}
+				ARM = {
+					transfer_state = 354
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 353
+						any_country = {
+							owns_state = 353
+							is_puppet_of = CAT
+						}
+					}
+				}
+				353 = {
+					add_claim_by = ARM
+				}
+				ARM = {
+					transfer_state = 353
+				}
+			}
+		}
+	}
+	
+	option = { #revnazi puppet with transcaucasia
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_government = national_bolshevik
+				GEO = {
+					is_puppet_of = CAT
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = ARM
+				OR = {
+					is_owned_by = ARM
+					is_owned_by = ROOT
+				}
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			GEO = {
+				transfer_state = PREV
+			}
+			add_core_of = GEO
+		}
+		every_state = {
+			limit = {
+				is_core_of = AZR
+			}
+			add_claim_by = GEO
+		}
+		every_state = {
+			limit = {
+				is_owned_by = CAT
+				is_core_of = AZR
+			}
+			GEO = {
+				transfer_state = PREV
+			}
+		}
+		IF = {
+			limit = {
+				AZR = {
+					is_puppet_of = CAT
+				}
+			}
+			every_state = {
+				limit = {
+					is_core_of = AZR
+					is_owned_by = AZR
+				}
+				GEO = {
+					transfer_state = PREV
+				}
+			}
+		}
+		puppet = ARM
+		hidden_effect = {
+			ARM = {
+				set_cosmetic_tag = ARM_revnazi_puppet
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "Hayazn"
+					long_name = "Hayazn"
+				}
+				ARM_Armen_Aghayan = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+			GEO = {
+				set_cosmetic_tag = CAU_revnazi_puppet
+			}
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = ARM
+						is_core_of = AZR
+					}
+				}
+				add_claim_by = GEO
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 354
+						any_country = {
+							owns_state = 354
+							is_puppet_of = CAT
+						}
+					}
+				}
+				354 = {
+					add_claim_by = GEO
+				}
+				GEO = {
+					transfer_state = 354
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 353
+						any_country = {
+							owns_state = 353
+							is_puppet_of = CAT
+						}
+					}
+				}
+				353 = {
+					add_claim_by = GEO
+				}
+				GEO = {
+					transfer_state = 353
+				}
 			}
 		}
 	}
@@ -802,6 +1265,14 @@ country_event = { #Azerbaijan
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = AZR
@@ -815,7 +1286,20 @@ country_event = { #Azerbaijan
 				transfer_state = PREV
 			}
 		}
-		puppet = AZR
+		hidden_effect = {
+			AZR = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = AZR_national_bolshevik_party_long
+					name = AZR_national_bolshevik_party
+				}
+				AZR_telman_nurullayev = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = AZR	
 	}
 
 	option = { #give to SOV
@@ -845,6 +1329,191 @@ country_event = { #Azerbaijan
 			}
 			SOV = {
 				transfer_state = PREV
+			}
+		}
+	}
+	
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = AZR
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			AZR = {
+				transfer_state = PREV
+			}
+		}
+		puppet = AZR
+		hidden_effect = {
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					GEO = {
+						is_puppet_of = CAT
+					}
+				}
+				GEO = {
+					set_cosmetic_tag = CAU_revnazi_puppet
+				}
+				every_state = {
+					limit = {
+						is_core_of = AZR
+					}
+					add_claim_by = GEO
+				}
+			}
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					GEO = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+					OR = {
+						owns_state = 790
+						any_country = {
+							is_puppet_of = CAT
+							owns_state = 790
+						}
+					}
+				}
+				GEO = {
+					transfer_state = 790
+				}
+			}
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					GEO = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+					OR = {
+						owns_state = 878
+						any_country = {
+							is_puppet_of = CAT
+							owns_state = 878
+						}
+					}
+				}
+				GEO = {
+					transfer_state = 878
+				}
+			}
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					GEO = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+					OR = {
+						owns_state = 229
+						any_country = {
+							is_puppet_of = CAT
+							owns_state = 229
+						}
+					}
+				}
+				GEO = {
+					transfer_state = 229
+				}
+			}
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					GEO = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+					OR = {
+						owns_state = 877
+						any_country = {
+							is_puppet_of = CAT
+							owns_state = 877
+						}
+					}
+				}
+				GEO = {
+					transfer_state = 877
+				}
+			}
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					GEO = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+					OR = {
+						owns_state = 832
+						any_country = {
+							is_puppet_of = CAT
+							owns_state = 832
+						}
+					}
+				}
+				GEO = {
+					transfer_state = 832
+				}
+			}
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					GEO = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+					OR = {
+						owns_state = 980
+						any_country = {
+							is_puppet_of = CAT
+							owns_state = 980
+						}
+					}
+				}
+				GEO = {
+					transfer_state = 980
+				}
 			}
 		}
 	}
@@ -1199,7 +1868,24 @@ country_event = { #Barbados
 country_event = { #Basque
 	id = annex.21
 	title = annex.21.t
-	desc = annex.21.d
+	desc = {
+		text = annex.21.d
+		trigger = {
+			NOT = {
+				tag = SPR
+				tag = SPN
+			}
+		}
+	}
+	desc = {
+		text = annex.21.d2
+		trigger = {
+			OR = {
+				tag = SPR
+				tag = SPN
+			}
+		}
+	}
 	
 	is_triggered_only = yes
 
@@ -1207,6 +1893,165 @@ country_event = { #Basque
 		name = annex.21.o1
 		ai_chance = {
 			base = 100
+		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_government = national_bolshevik
+				}
+			}
+			OR = {
+				AND = {
+					NOT = {
+						tag = SPR
+					}
+					NOT = {
+						tag = SPN
+					}
+				}
+				AND = {
+					OR = {
+						tag = SPR
+						tag = SPN
+					}
+					NOT = {
+						has_completed_focus = SPR_a_confederate_spain
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = BSQ
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			BSQ = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			BSQ = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = BSQ_national_bolshevik_party
+					name = BSQ_national_bolshevik_party
+				}
+				BSQ_Jarrai_Executive_Council = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = BSQ
+		BSQ = {
+			load_focus_tree = generic_focus
+		}
+	}
+
+	option = { #give to SPR
+		name = annex.21.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = SPR
+			}
+			NOT = {
+				tag = SPN
+			}
+			SPR = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_government = national_bolshevik
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = BSQ
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SPR = {
+				transfer_state = PREV
+			}
+		}
+	}
+	
+	option = { #give to SPN
+		name = annex.21.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = SPN
+			}
+			NOT = {
+				tag = SPR
+			}
+			SPN = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_government = national_bolshevik
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = BSQ
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SPN = {
+				transfer_state = PREV
+			}
+		}
+	}
+	
+	option = { #create autonomous community
+		name = annex.21.o4
+		ai_chance = {
+			base = 100
+		}
+		trigger = {	
+			AND = {
+				OR = {
+					tag = SPR
+					tag = SPN
+				}
+				has_completed_focus = SPR_a_confederate_spain
+				NOT = {
+					has_completed_focus = SPR_nat_reunite_spain
+				}
+				NOT = {
+					has_completed_focus = SPR_liberal_recentralize_spain
+				}
+			}
 		}
 		every_state = {
 			limit = {
@@ -1222,22 +2067,33 @@ country_event = { #Basque
 			}
 		}
 		puppet = BSQ
+		BSQ = {
+			load_focus_tree = generic_focus
+		}
+		BSQ = {
+			set_cosmetic_tag = BSQ_autonomous
+		}
+		hidden_effect = {
+			BSQ = {
+				set_politics = {
+					ruling_party = new_democrat
+					elections_allowed = no
+					last_election = "1935.12.17"
+					election_frequency = 48
+				}
+			}
+		}
 	}
-
-	option = { #give to SPR
-		name = annex.21.o2
+	
+	option = { #revnazi puppet
+		name = annex.revnazi.option
 		ai_chance = {
 			base = 100
 		}
 		trigger = {
-			NOT = {
-				tag = SPR
-			}
-			SPR = {
-				OR = {
-					is_puppet_of = ROOT
-					is_in_faction_with = ROOT
-				}
+			AND = {
+				tag = CAT
+				has_government = national_bolshevik
 			}
 		}
 		every_state = {
@@ -1249,8 +2105,43 @@ country_event = { #Basque
 					is_claimed_by = ROOT
 				}
 			}
-			SPR = {
+			BSQ = {
 				transfer_state = PREV
+			}
+		}
+		puppet = BSQ
+		hidden_effect = {
+			BSQ = {
+				set_cosmetic_tag = BSQ_revnazi_puppet
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "National Socialists"
+					long_name = "Euskal National Socialists"
+				}
+				BSQ_Josue_Estebanez_de_la_Hija = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 927
+						any_country = {
+							is_puppet_of = ROOT
+							owns_state = 927
+						}
+					}
+				}
+				BSQ = {
+					transfer_state = 927
+				}
 			}
 		}
 	}
@@ -1278,10 +2169,7 @@ country_event = { #Bavaria (South German Confederation)
 		}
 		every_state = {
 			limit = {
-				OR = {
-					is_core_of = BAV
-					is_claimed_by = BAV
-				}
+				is_core_of = BAV
 				is_owned_by = ROOT
 				NOT = {
 					is_core_of = ROOT
@@ -1290,7 +2178,6 @@ country_event = { #Bavaria (South German Confederation)
 			}
 			BAV = {
 				transfer_state = PREV
-				add_state_core = PREV
 			}
 		}
 		hidden_effect = {
@@ -1353,6 +2240,14 @@ country_event = { #Belarus
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_government = national_bolshevik
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = BLR
@@ -1368,6 +2263,15 @@ country_event = { #Belarus
 		}
 		hidden_effect = {
 			BLR = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = BLR_national_bolshevik_party_long
+					name = BLR_national_bolshevik_party
+				}
+				BLR_sergei_gaidukevich = {
+					promote_character = yes
+				}
 				load_focus_tree = generic_focus
 			}
 		}
@@ -1404,6 +2308,53 @@ country_event = { #Belarus
 			}
 		}
 	}
+	
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_government = national_bolshevik
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = BLR
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			BLR = {
+				transfer_state = PREV
+			}
+		}
+		puppet = BLR
+		hidden_effect = {
+			BLR = {
+				set_cosmetic_tag = BLR_revnazi_puppet
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "National Socialists"
+					long_name = "Belarusian National Socialists"
+				}
+				BLR_Sergey_Korotkikh = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+		}
+	}
 
 	option = { #annex
 		name = annex.23.o3
@@ -1426,6 +2377,117 @@ country_event = { #Belgium
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			AND = {
+				NOT = {
+					has_cosmetic_tag = SPR_SFKS
+				}
+				NOT = {
+					has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = BEL
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			BEL = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			BEL = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = BEL_revolutionary_socialist_party
+					name = BEL_revolutionary_socialist_party
+				}
+				BEL_raoul_hedebouw = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = BEL
+		hidden_effect = {
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+				BEL = {
+					set_politics = {
+						ruling_party = fascist
+					}
+				}
+			}
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					FRA = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+				}
+				34 = {
+					add_claim_by = FRA
+				}
+				839 = {
+					add_claim_by = FRA
+				}
+				FRA = {
+					transfer_state = 34
+					transfer_state = 839
+				}
+			}
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					HOL = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+				}
+				6 = {
+					add_claim_by = HOL
+				}
+				HOL = {
+					transfer_state = 6
+				}
+				1022 = {
+					add_claim_by = HOL
+				}
+				HOL = {
+					transfer_state = 1022
+				}
+			}
+		}
+	}
+
+	option = { #carlist titoist puppet
+		name = annex.24.o3
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			OR = {
+				has_cosmetic_tag = SPR_SFKS
+				has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = BEL
@@ -1440,6 +2502,26 @@ country_event = { #Belgium
 			}
 		}
 		puppet = BEL
+		hidden_effect = {
+			BEL = {
+				set_cosmetic_tag = BEL_titocarlist
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = "House of Belgium"
+					name = "House of Belgium"
+				}
+				BEL_Marie_Esmeralda_First = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=titoist
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+		}
 	}
 
 	option = { #annex
@@ -1731,6 +2813,164 @@ country_event = { #Bosnia
 			}
 		}
 		puppet = BOS
+		hidden_effect = {
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					CRO = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+					OR = {
+						owns_state = 104
+						any_country = {
+							is_puppet_of = CAT
+							owns_state = 104
+						}
+					}
+				}
+				104 = {
+					add_claim_by = CRO
+				}
+				CRO = {
+					transfer_state = 104
+				}
+			}
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					CRO = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+					OR = {
+						owns_state = 851
+						any_country = {
+							is_puppet_of = CAT
+							owns_state = 851
+						}
+					}
+				}
+				851 = {
+					add_claim_by = CRO
+				}
+				CRO = {
+					transfer_state = 851
+				}
+			}
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					CRO = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+					OR = {
+						owns_state = 850
+						any_country = {
+							is_puppet_of = CAT
+							owns_state = 850
+						}
+					}
+				}
+				850 = {
+					add_claim_by = CRO
+				}
+				CRO = {
+					transfer_state = 850
+				}
+			}
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					CRO = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+					OR = {
+						owns_state = 848
+						any_country = {
+							is_puppet_of = CAT
+							owns_state = 848
+						}
+					}
+				}
+				848 = {
+					add_claim_by = CRO
+				}
+				CRO = {
+					transfer_state = 848
+				}
+			}
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					CRO = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+					OR = {
+						owns_state = 1003
+						any_country = {
+							is_puppet_of = CAT
+							owns_state = 1003
+						}
+					}
+				}
+				1003 = {
+					add_claim_by = CRO
+				}
+				CRO = {
+					transfer_state = 1003
+				}
+			}
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					SER = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+					OR = {
+						owns_state = 849
+						any_country = {
+							is_puppet_of = CAT
+							owns_state = 849
+						}
+					}
+				}
+				849 = {
+					add_claim_by = SER
+				}
+				SER = {
+					transfer_state = 849
+				}
+			}
+		}
 	}
 
 	option = { #give to YUG
@@ -1875,6 +3115,30 @@ country_event = { #British Raj (India)
 					}
 				}
 				remove_core_of = RAJ
+			}
+			every_state = {
+				limit = {
+					NOT = {
+						is_claimed_by = RAJ
+					}
+					is_in_array = {
+						array = RAJ_starting_claims
+						value = THIS
+					}
+				}
+				add_claim_by = RAJ
+			}
+			every_state = {
+				limit = {
+					is_claimed_by = RAJ
+					NOT = {
+						is_in_array = {
+							array = RAJ_starting_claims
+							value = THIS
+						}
+					}
+				}
+				remove_claim_by = RAJ
 			}
 		}
 	}
@@ -2067,6 +3331,69 @@ country_event = { #Bulgaria
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					OR = {
+						has_country_leader_ideology = anarcho_syndicalism
+						has_country_leader_ideology = syndicalism
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = BUL
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			BUL = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			BUL = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = BUL_revolutionary_socialist_party_long
+					name = BUL_revolutionary_socialist_party
+				}
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = BUL_national_bolshevik_party
+					name = BUL_national_bolshevik_party
+				}
+				BUL_pavel_ivanov = {
+					promote_character = yes
+				}
+				BUL_volen_siderov = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = BUL
+	}
+	
+	option = { #anarchist puppet
+		name = annex.36.o3
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				OR = {
+					has_country_leader_ideology = anarcho_syndicalism
+					has_country_leader_ideology = syndicalism
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = BUL
@@ -2081,6 +3408,90 @@ country_event = { #Bulgaria
 			}
 		}
 		puppet = BUL
+		hidden_effect = {
+			BUL = {
+				set_cosmetic_tag = BUL_ansynd
+				BUL_Mergul_Hasan = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=anarcho_syndicalism
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+				set_party_name = {
+					ideology = revolutionary_socialist
+					name = "ARS"
+					long_name = "Autonomous Workers' Union"
+				}
+			}
+		}
+	}
+	
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_government = national_bolshevik
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = BUL
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			BUL = {
+				transfer_state = PREV
+			}
+		}
+		puppet = BUL
+		hidden_effect = {
+			BUL = {
+				set_cosmetic_tag = BUL_revnazi_puppet
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "Great Bulgaria"
+					long_name = "Great Bulgaria Movement"
+				}
+				BUL_Yolo_Denev = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 106
+						any_country = {
+							owns_state = 106
+							is_puppet_of = CAT
+						}
+					}
+				}
+				106 = {
+					add_claim_by = BUL
+				}
+				BUL = {
+					transfer_state = 106
+				}
+			}
+		}
 	}
 
 	option = { #annex
@@ -2273,6 +3684,27 @@ country_event = { #Canada
 				remove_core_of = CAN
 			}
 			every_state = {
+				limit = {
+					NOT = {
+						is_claimed_by = CAN
+					}
+					is_in_array = {
+						array = CAN_starting_claims
+						value = THIS
+					}
+				}
+				add_claim_by = CAN
+			}
+			every_state = {
+				limit = {
+					is_claimed_by = CAN
+					NOT = {
+						is_in_array = {
+							array = CAN_starting_claims
+							value = THIS
+						}
+					}
+				}
 				remove_claim_by = CAN
 			}
 		}
@@ -2383,6 +3815,27 @@ country_event = { #Cascadia
 				remove_core_of = CSD
 			}
 			every_state = {
+				limit = {
+					NOT = {
+						is_claimed_by = CSD
+					}
+					is_in_array = {
+						array = CSD_starting_claims
+						value = THIS
+					}
+				}
+				add_claim_by = CSD
+			}
+			every_state = {
+				limit = {
+					is_claimed_by = CSD
+					NOT = {
+						is_in_array = {
+							array = CSD_starting_claims
+							value = THIS
+						}
+					}
+				}
 				remove_claim_by = CSD
 			}
 		}
@@ -2505,6 +3958,27 @@ country_event = { #Catalonia
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			OR = {
+				AND = {
+					NOT = {
+						tag = SPR
+					}
+					NOT = {
+						tag = SPN
+					}
+				}
+				AND = {
+					OR = {
+						tag = SPR
+						tag = SPN
+					}
+					NOT = {
+						has_completed_focus = SPR_a_confederate_spain
+					}
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = CAT
@@ -2519,6 +3993,9 @@ country_event = { #Catalonia
 			}
 		}
 		puppet = CAT
+		CAT = {
+			load_focus_tree = generic_focus
+		}
 	}
 
 	option = { #give to SPR
@@ -2529,6 +4006,9 @@ country_event = { #Catalonia
 		trigger = {
 			NOT = {
 				tag = SPR
+			}
+			NOT = {
+				tag = SPN
 			}
 			SPR = {
 				OR = {
@@ -2548,6 +4028,92 @@ country_event = { #Catalonia
 			}
 			SPR = {
 				transfer_state = PREV
+			}
+		}
+	}
+	
+	option = { #give to SPN
+		name = annex.43.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = SPN
+			}
+			NOT = {
+				tag = SPR
+			}
+			SPN = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = CAT
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SPN = {
+				transfer_state = PREV
+			}
+		}
+	}
+	
+	option = { #create autonomous community
+		name = annex.43.o4
+		ai_chance = {
+			base = 100
+		}
+		trigger = {	
+			AND = {
+				OR = {
+					tag = SPR
+					tag = SPN
+				}
+				has_completed_focus = SPR_a_confederate_spain
+				NOT = {
+					has_completed_focus = SPR_nat_reunite_spain
+				}
+				NOT = {
+					has_completed_focus = SPR_liberal_recentralize_spain
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = CAT
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			CAT = {
+				transfer_state = PREV
+			}
+		}
+		puppet = CAT
+		CAT = {
+			load_focus_tree = generic_focus
+		}
+		CAT = {
+			set_cosmetic_tag = CAT_autonomous
+		}
+		hidden_effect = {
+			CAT = {
+				set_politics = {
+					ruling_party = new_democrat
+					elections_allowed = no
+					last_election = "1935.12.17"
+					election_frequency = 48
+				}
 			}
 		}
 	}
@@ -2607,6 +4173,14 @@ country_event = { #Central America
 
 	option = { #puppet
 		name = annex.45.o1
+		trigger = {
+			NOT = {
+				tag = NIC
+				tag = HON
+				tag = ELS
+				tag = COS
+			}
+		}
 		ai_chance = {
 			base = 100
 		}
@@ -2628,6 +4202,9 @@ country_event = { #Central America
 				transfer_state = PREV
 			}
 		}
+		CEA = {
+			load_focus_tree = generic_focus
+		}
 		puppet = CEA
 	}
 
@@ -2641,6 +4218,14 @@ country_event = { #Central America
 
 	option = { #annex
 		name = annex.45.o3
+		trigger = {
+			NOT = {
+				tag = NIC
+				tag = HON
+				tag = ELS
+				tag = COS
+			}
+		}
 		ai_chance = {
 			base = 0
 		}
@@ -3331,6 +4916,14 @@ country_event = { #Croatia
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = CRO
@@ -3342,6 +4935,19 @@ country_event = { #Croatia
 			}
 			CRO = {
 				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			CRO = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = CRO_national_bolshevik_party
+					name = CRO_national_bolshevik_party
+				}
+				CRO_milan_bandic = {
+					promote_character = yes
+				}
 			}
 		}
 		puppet = CRO
@@ -3373,6 +4979,164 @@ country_event = { #Croatia
 			}
 			YUG = {
 				transfer_state = PREV
+			}
+		}
+	}
+	
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_government = national_bolshevik
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = CRO
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			CRO = {
+				transfer_state = PREV
+			}
+		}
+		puppet = CRO
+		hidden_effect = {
+			CRO = {
+				set_cosmetic_tag = CRO_revnazi_puppet
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "Croatian Revolutionaries"
+					long_name = "Croatian Revolutionary Movement"
+				}
+				CRO_Drazen_Keleminec = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					ITA = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+					OR = {
+						owns_state = 736
+						any_country = {
+							is_puppet_of = CAT
+							owns_state = 736
+						}
+					}
+				}
+				736 = {
+					add_claim_by = ITA
+				}
+				ITA = {
+					transfer_state = 736
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 1003
+						any_country = {
+							owns_state = 1003
+							is_puppet_of = CAT
+						}
+					}
+				}
+				1003 = {
+					add_claim_by = CRO
+				}
+				CRO = {
+					transfer_state = 1003
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 848
+						any_country = {
+							owns_state = 848
+							is_puppet_of = CAT
+						}
+					}
+				}
+				848 = {
+					add_claim_by = CRO
+				}
+				CRO = {
+					transfer_state = 848
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 104
+						any_country = {
+							owns_state = 104
+							is_puppet_of = CAT
+						}
+					}
+				}
+				104 = {
+					add_claim_by = CRO
+				}
+				CRO = {
+					transfer_state = 104
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 851
+						any_country = {
+							owns_state = 851
+							is_puppet_of = CAT
+						}
+					}
+				}
+				851 = {
+					add_claim_by = CRO
+				}
+				CRO = {
+					transfer_state = 851
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 850
+						any_country = {
+							owns_state = 850
+							is_puppet_of = CAT
+						}
+					}
+				}
+				850 = {
+					add_claim_by = CRO
+				}
+				CRO = {
+					transfer_state = 850
+				}
 			}
 		}
 	}
@@ -3493,6 +5257,180 @@ country_event = { #Czechoslovakia
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			OR = {
+				NOT = {
+					AND = {
+						tag = CAT
+						OR = {
+							has_country_leader_ideology = anarcho_syndicalism
+							has_country_leader_ideology = syndicalism
+							has_country_leader_ideology = revolutionary_nazi
+						}
+					}
+				}
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					NOT = {
+						owns_state = 70
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = CZE
+				OR = {
+					is_owned_by = ROOT
+					owner = {
+						is_puppet_of = ROOT
+					}
+				}
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			CZE = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			CZE = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = CZE_national_bolshevik_party
+					name = CZE_national_bolshevik_party
+				}
+				CZE_tomas_vandas = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = CZE
+		IF = {
+			limit = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+			CZE = {
+				set_cosmetic_tag = CZE_revnazi_puppet
+			}
+		}
+	}
+
+	option = { #balkanize
+		name = annex.60.o2
+		ai_chance = {
+			base = 50
+		}
+		trigger = {
+			owns_state = 70
+			NOT = {
+				AND = {
+					tag = CAT
+					OR = {
+						has_country_leader_ideology = anarcho_syndicalism
+						has_country_leader_ideology = syndicalism
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = CZE 
+				NOT = {
+					is_core_of = SLO
+				}
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			CZE = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			CZE = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = CZE_national_bolshevik_party
+					name = CZE_national_bolshevik_party
+				}
+				CZE_tomas_vandas = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = CZE
+		set_country_flag = CZE_balkanize
+	}
+	
+	option = { #revnazi balkanize
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 50
+		}
+		trigger = {
+			owns_state = 70
+			AND = {
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = CZE 
+				NOT = {
+					is_core_of = SLO
+				}
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			CZE = {
+				transfer_state = PREV
+			}
+		}
+		puppet = CZE
+		IF = {
+			limit = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+			CZE = {
+				set_cosmetic_tag = CZE_revnazi_puppet
+			}
+		}
+		set_country_flag = CZE_balkanize
+	}
+	
+	option = { #anarchist puppet
+		name = annex.60.o4
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				OR = {
+					has_country_leader_ideology = anarcho_syndicalism
+					has_country_leader_ideology = syndicalism
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = CZE
@@ -3512,34 +5450,26 @@ country_event = { #Czechoslovakia
 			}
 		}
 		puppet = CZE
-	}
-
-	option = { #balkanize
-		name = annex.60.o2
-		ai_chance = {
-			base = 50
-		}
-		trigger = {
-			owns_state = 70
-		}
-		every_state = {
-			limit = {
-				is_core_of = CZE 
-				NOT = {
-					is_core_of = SLO
-				}
-				is_owned_by = ROOT
-				NOT = {
-					is_core_of = ROOT
-					is_claimed_by = ROOT
-				}
-			}
+		hidden_effect = {
 			CZE = {
-				transfer_state = PREV
+				set_cosmetic_tag = CZE_ansynd
+				CZE_PA = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=anarcho_syndicalism
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+				set_party_name = {
+					ideology = revolutionary_socialist
+					name = "Direct Action"
+					long_name = "Direct Action"
+				}
 			}
 		}
-		puppet = CZE
-		set_country_flag = CZE_balkanize
 	}
 
 	option = { #annex
@@ -3563,6 +5493,54 @@ country_event = { #Denmark
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = DEN
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			DEN = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			DEN = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = DEN_national_bolshevik_party
+					name = DEN_national_bolshevik_party
+				}
+				DEN_jonni_hansen = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = DEN
+	}
+	
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = DEN
@@ -3577,6 +5555,44 @@ country_event = { #Denmark
 			}
 		}
 		puppet = DEN
+		hidden_effect = {
+			IF = {
+				limit = {
+					AND = {
+						tag = CAT
+						has_government = national_bolshevik
+					}
+				}
+				DEN = {
+					set_cosmetic_tag = DEN_revnazi_puppet
+				}
+			}
+			IF = {
+				limit = {
+					AND = {
+						tag = CAT
+						has_government = national_bolshevik
+					}
+					OR = {
+						owns_state = 101
+						any_country = {
+							is_puppet_of = CAT
+							owns_state = 101
+						}
+					}
+					DEN = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+				}
+				DEN = {
+					transfer_state = 101
+				}
+			}
+		}
 	}
 
 	option = { #annex
@@ -3838,6 +5854,27 @@ country_event = { #Egypt
 				remove_core_of = EGY
 			}
 			every_state = {
+				limit = {
+					NOT = {
+						is_claimed_by = EGY
+					}
+					is_in_array = {
+						array = EGY_starting_claims
+						value = THIS
+					}
+				}
+				add_claim_by = EGY
+			}
+			every_state = {
+				limit = {
+					is_claimed_by = EGY
+					NOT = {
+						is_in_array = {
+							array = EGY_starting_claims
+							value = THIS
+						}
+					}
+				}
 				remove_claim_by = EGY
 			}
 		}
@@ -4001,6 +6038,27 @@ country_event = { #Eritrea
 				remove_core_of = ERI
 			}
 			every_state = {
+				limit = {
+					NOT = {
+						is_claimed_by = ERI
+					}
+					is_in_array = {
+						array = ERI_starting_claims
+						value = THIS
+					}
+				}
+				add_claim_by = ERI
+			}
+			every_state = {
+				limit = {
+					is_claimed_by = ERI
+					NOT = {
+						is_in_array = {
+							array = ERI_starting_claims
+							value = THIS
+						}
+					}
+				}
 				remove_claim_by = ERI
 			}
 		}
@@ -4080,6 +6138,14 @@ country_event = { #Estonia
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+			   AND = {
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = EST
@@ -4099,6 +6165,59 @@ country_event = { #Estonia
 			}
 		}
 		puppet = EST
+		hidden_effect = {
+			IF = {
+				limit = {
+					AND = {
+						tag = CAT
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+				EST = {
+					set_cosmetic_tag = EST_revnazi_puppet
+				}
+			}
+		}
+	}
+	
+	option = { #puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = EST
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			EST = {
+				transfer_state = PREV
+			}
+		}
+		puppet = EST
+		hidden_effect = {
+			IF = {
+				limit = {
+					AND = {
+						tag = CAT
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+				EST = {
+					set_cosmetic_tag = EST_revnazi_puppet
+				}
+			}
+		}
 	}
 
 	option = { #give to SOV
@@ -4173,6 +6292,30 @@ country_event = { #Ethiopia
 					}
 				}
 				remove_core_of = ETH
+			}
+			every_state = {
+				limit = {
+					NOT = {
+						is_claimed_by = ETH
+					}
+					is_in_array = {
+						array = ETH_starting_claims
+						value = THIS
+					}
+				}
+				add_claim_by = ETH
+			}
+			every_state = {
+				limit = {
+					is_claimed_by = ETH
+					NOT = {
+						is_in_array = {
+							array = ETH_starting_claims
+							value = THIS
+						}
+					}
+				}
+				remove_claim_by = ETH
 			}
 		}
 	}
@@ -4297,6 +6440,14 @@ country_event = { #Finland
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = FIN
@@ -4310,7 +6461,203 @@ country_event = { #Finland
 				transfer_state = PREV
 			}
 		}
+		hidden_effect = {
+			FIN = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = FIN_national_bolshevik_party
+					name = FIN_national_bolshevik_party
+				}
+				FIN_olavi_mäenpää = {
+					promote_character = yes
+				}
+			}
+		}
 		puppet = FIN
+	}
+	
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = FIN
+				OR = {
+					is_owned_by = ROOT
+					owner = {
+						is_puppet_of = ROOT
+					}
+				}
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			FIN = {
+				transfer_state = PREV
+			}
+		}
+		puppet = FIN
+		hidden_effect = {
+			FIN = {
+				set_cosmetic_tag = FIN_revnazi_puppet
+				FIN_Antti_Niemi = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "Resistance Movement"
+					long_name = "Finnish Resistance Movement"
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 722
+						any_country = {
+							owns_state = 722
+							is_puppet_of = CAT
+						}
+					}
+				}
+				722 = {
+					add_claim_by = FIN
+				}
+				FIN = {
+					transfer_state = 722
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 213
+						any_country = {
+							owns_state = 213
+							is_puppet_of = CAT
+						}
+					}
+				}
+				213 = {
+					add_claim_by = FIN
+				}
+				FIN = {
+					transfer_state = 213
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 147
+						any_country = {
+							owns_state = 147
+							is_puppet_of = CAT
+						}
+					}
+				}
+				147 = {
+					add_claim_by = FIN
+				}
+				FIN = {
+					transfer_state = 147
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 215
+						any_country = {
+							owns_state = 215
+							is_puppet_of = CAT
+						}
+					}
+				}
+				215 = {
+					add_claim_by = FIN
+				}
+				FIN = {
+					transfer_state = 215
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 146
+						any_country = {
+							owns_state = 146
+							is_puppet_of = CAT
+						}
+					}
+				}
+				146 = {
+					add_claim_by = FIN
+				}
+				FIN = {
+					transfer_state = 146
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 216
+						any_country = {
+							owns_state = 216
+							is_puppet_of = CAT
+						}
+					}
+				}
+				216 = {
+					add_claim_by = FIN
+				}
+				FIN = {
+					transfer_state = 216
+				}
+			}
+			IF = {
+				limit = {
+					AND = {
+						OR = {
+							owns_state = 145
+							any_country = {
+								NOT = {
+									tag = SWE
+								}
+								is_puppet_of = CAT
+								owns_state = 145
+							}
+						}
+						SWE = {
+							OR = {
+								has_country_leader_ideology = national_socialist
+								has_country_leader_ideology = revolutionary_nazi
+								is_puppet_of = CAT
+							}
+						}
+					}
+				}
+				145 = {
+					add_claim_by = SWE
+				}
+				SWE = {
+					transfer_state = 145
+				}
+			}
+		}
 	}
 
 	option = { #annex
@@ -4334,6 +6681,26 @@ country_event = { #France
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			AND = {
+				NOT = {
+					has_cosmetic_tag = SPR_SFKS
+				}
+				NOT = {
+					has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+				}
+				NOT = {
+					AND = {
+						tag = CAT
+						OR = {
+							has_country_leader_ideology = anarcho_syndicalism
+							has_country_leader_ideology = syndicalism
+							has_country_leader_ideology = revolutionary_nazi
+						}
+					}
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = FRA
@@ -4352,6 +6719,27 @@ country_event = { #France
 				transfer_state = PREV
 			}
 		}
+		hidden_effect = {
+			FRA = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = FRA_revolutionary_socialist_party_long
+					name = FRA_revolutionary_socialist_party
+				}
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = FRA_national_bolshevik_party
+					name = FRA_national_bolshevik_party
+				}
+				FRA_charles_fiterman = {
+					promote_character = yes
+				}
+				FRA_christian_bouchet = {
+					promote_character = yes
+				}
+			}
+		}
 		puppet = FRA
 	}
 
@@ -4361,11 +6749,29 @@ country_event = { #France
 			base = 50
 		}
 		trigger = {
-			OR = {
-				owns_state = 15
-				owns_state = 14
-				owns_state = 21
-				owns_state = 1
+			AND = {
+				NOT = {
+					has_cosmetic_tag = SPR_SFKS
+				}
+				NOT = {
+					has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+				}
+				OR = {
+					owns_state = 15
+					owns_state = 14
+					owns_state = 21
+					owns_state = 1
+				}
+				NOT = {
+					AND = {
+						tag = CAT
+						OR = {
+							has_country_leader_ideology = anarcho_syndicalism
+							has_country_leader_ideology = syndicalism
+							has_country_leader_ideology = revolutionary_nazi
+						}
+					}
+				}
 			}
 		}
 		every_state = {
@@ -4387,8 +6793,304 @@ country_event = { #France
 				transfer_state = PREV
 			}
 		}
+		hidden_effect = {
+			FRA = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = FRA_revolutionary_socialist_party_long
+					name = FRA_revolutionary_socialist_party
+				}
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = FRA_national_bolshevik_party
+					name = FRA_national_bolshevik_party
+				}
+				FRA_charles_fiterman = {
+					promote_character = yes
+				}
+				FRA_christian_bouchet = {
+					promote_character = yes
+				}
+			}
+		}
 		puppet = FRA
 		set_country_flag = FRA_balkanize
+	}
+	
+	option = { #carlist titoist puppet
+		name = annex.74.o4
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			OR = {
+				has_cosmetic_tag = SPR_SFKS
+				has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = FRA
+				OR = {
+					is_owned_by = ROOT
+					owner = {
+						is_puppet_of = ROOT
+					}
+				}
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			FRA = {
+				transfer_state = PREV
+			}
+		}
+		puppet = FRA
+		hidden_effect = {
+			FRA = {
+				set_cosmetic_tag = FRA_titocarlist
+				FRA_James_First = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=titoist
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+				set_party_name = {
+					ideology = revolutionary_socialist
+					name = "Bourbon-Parma"
+				}
+			}
+		}
+	}
+	
+	option = { #anarchist puppet
+		name = annex.74.o5
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				OR = {
+					has_country_leader_ideology = anarcho_syndicalism
+					has_country_leader_ideology = syndicalism
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = FRA
+				OR = {
+					is_owned_by = ROOT
+					owner = {
+						is_puppet_of = ROOT
+					}
+				}
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			FRA = {
+				transfer_state = PREV
+			}
+		}
+		puppet = FRA
+		hidden_effect = {
+			FRA = {
+				set_cosmetic_tag = FRA_ansynd
+				FRA_CNT = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=anarcho_syndicalism
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+				set_party_name = {
+					ideology = revolutionary_socialist
+					name = "CNT"
+					long_name = "National Confederation of Labour"
+				}
+			}
+		}
+	}
+	
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = FRA
+				OR = {
+					is_owned_by = ROOT
+					owner = {
+						is_puppet_of = ROOT
+					}
+				}
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			FRA = {
+				transfer_state = PREV
+			}
+		}
+		puppet = FRA
+		hidden_effect = {
+			FRA = {
+				set_cosmetic_tag = FRA_revnazi_puppet
+				FRA_Pierre_Vial = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "Terre et Peuple"
+					long_name = "Terre et Peuple"
+				}
+			}
+			IF = {
+				limit = {
+					NOT = {
+						owns_state = 663
+					}
+					any_country = {
+						is_puppet_of = CAT
+						owns_state = 663
+					}
+				}
+				663 = {
+					add_claim_by = CAT
+				}
+				CAT = {
+					transfer_state = 663
+				}
+			}
+			IF = {
+				limit = {
+					BSQ = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+					BSQ = {
+						NOT = {
+							owns_state = 927
+						}
+					}
+					OR = {
+						owns_state = 927
+						any_country = {
+							is_puppet_of = CAT
+							owns_state = 927
+							NOT = {
+								tag = BSQ
+							}
+						}
+					}
+				}
+				927 = {
+					add_claim_by = BSQ
+				}
+				BSQ = {
+					transfer_state = 927
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 3
+						any_country = {
+							owns_state = 3
+							is_puppet_of = CAT
+						}
+					}
+				}
+				3 = {
+					add_claim_by = FRA
+				}
+				FRA = {
+					transfer_state = 3
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 34
+						any_country = {
+							owns_state = 34
+							is_puppet_of = CAT
+						}
+					}
+				}
+				34 = {
+					add_claim_by = FRA
+				}
+				FRA = {
+					transfer_state = 34
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 839
+						any_country = {
+							owns_state = 839
+							is_puppet_of = CAT
+						}
+					}
+				}
+				839 = {
+					add_claim_by = FRA
+				}
+				FRA = {
+					transfer_state = 839
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 8
+						any_country = {
+							owns_state = 8
+							is_puppet_of = CAT
+						}
+					}
+				}
+				8 = {
+					add_claim_by = FRA
+				}
+				FRA = {
+					transfer_state = 8
+				}
+			}
+		}
 	}
 
 	option = { #annex
@@ -4507,6 +7209,30 @@ country_event = { #Genoa
 				}
 				remove_core_of = GEN
 			}
+			every_state = {
+				limit = {
+					NOT = {
+						is_claimed_by = GEN
+					}
+					is_in_array = {
+						array = GEN_starting_claims
+						value = THIS
+					}
+				}
+				add_claim_by = GEN
+			}
+			every_state = {
+				limit = {
+					is_claimed_by = GEN
+					NOT = {
+						is_in_array = {
+							array = GEN_starting_claims
+							value = THIS
+						}
+					}
+				}
+				remove_claim_by = GEN
+			}
 		}
 	}
 
@@ -4552,6 +7278,14 @@ country_event = { #Georgia
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_government = national_bolshevik
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = GEO
@@ -4563,6 +7297,19 @@ country_event = { #Georgia
 			}
 			GEO = {
 				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			GEO = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = GEO_national_bolshevik_party
+					name = GEO_national_bolshevik_party
+				}
+				GEO_jondi_bagaturia = {
+					promote_character = yes
+				}
 			}
 		}
 		puppet = GEO
@@ -4598,6 +7345,257 @@ country_event = { #Georgia
 			}
 		}
 	}
+	
+	option = { #revnazi puppet without transcaucasia
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_government = national_bolshevik
+				NOT = {
+					ARM = {
+						is_puppet_of = CAT
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = GEO
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			GEO = {
+				transfer_state = PREV
+			}
+		}
+		puppet = GEO
+		hidden_effect = {
+			GEO = {
+				set_cosmetic_tag = GEO_revnazi_puppet
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "National Unity"
+					long_name = "Georgian National Unity"
+				}
+				GEO_Giorgi_Chelidze = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	option = { #revnazi puppet with transcaucasia
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_government = national_bolshevik
+				ARM = {
+					is_puppet_of = CAT
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = GEO
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			GEO = {
+				transfer_state = PREV
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = ARM
+				is_owned_by = ARM
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			GEO = {
+				transfer_state = PREV
+			}
+		}
+		puppet = GEO
+		hidden_effect = {
+			GEO = {
+				set_cosmetic_tag = CAU_revnazi_puppet
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "National Unity"
+					long_name = "Georgian National Unity"
+				}
+				GEO_Giorgi_Chelidze = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 354
+						any_country = {
+							owns_state = 354
+							is_puppet_of = CAT
+						}
+					}
+				}
+				354 = {
+					add_claim_by = GEO
+				}
+				GEO = {
+					transfer_state = 354
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 353
+						any_country = {
+							owns_state = 353
+							is_puppet_of = CAT
+						}
+					}
+				}
+				353 = {
+					add_claim_by = GEO
+				}
+				GEO = {
+					transfer_state = 353
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 790
+						any_country = {
+							owns_state = 790
+							is_puppet_of = CAT
+						}
+					}
+				}
+				790 = {
+					add_claim_by = GEO
+				}
+				GEO = {
+					transfer_state = 790
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 878
+						any_country = {
+							owns_state = 878
+							is_puppet_of = CAT
+						}
+					}
+				}
+				878 = {
+					add_claim_by = GEO
+				}
+				GEO = {
+					transfer_state = 878
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 229
+						any_country = {
+							owns_state = 229
+							is_puppet_of = CAT
+						}
+					}
+				}
+				229 = {
+					add_claim_by = GEO
+				}
+				GEO = {
+					transfer_state = 229
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 877
+						any_country = {
+							owns_state = 877
+							is_puppet_of = CAT
+						}
+					}
+				}
+				877 = {
+					add_claim_by = GEO
+				}
+				GEO = {
+					transfer_state = 877
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 832
+						any_country = {
+							owns_state = 832
+							is_puppet_of = CAT
+						}
+					}
+				}
+				832 = {
+					add_claim_by = GEO
+				}
+				GEO = {
+					transfer_state = 832
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 980
+						any_country = {
+							owns_state = 980
+							is_puppet_of = CAT
+						}
+					}
+				}
+				980 = {
+					add_claim_by = GEO
+				}
+				GEO = {
+					transfer_state = 980
+				}
+			}
+		}
+	}
 
 	option = { #annex
 		name = annex.78.o3
@@ -4620,6 +7618,18 @@ country_event = { #Germany
 		ai_chance = {
 			base = 20
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					OR = {
+						has_country_leader_ideology = anarcho_syndicalism
+						has_country_leader_ideology = syndicalism
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = GER
@@ -4640,6 +7650,23 @@ country_event = { #Germany
 		}
 		hidden_effect = {
 			GER = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = GER_revolutionary_socialist_party_long
+					name = GER_revolutionary_socialist_party
+				}
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = GER_national_bolshevik_party
+					name = GER_national_bolshevik_party
+				}
+				GER_herbert_mies = {
+					promote_character = yes
+				}
+				GER_heinzchristian_strache = {
+					promote_character = yes
+				}
 				load_focus_tree = generic_focus
 			}
 		}
@@ -4663,6 +7690,16 @@ country_event = { #Germany
 				}
 				is_core_of = AUS
 			}
+			NOT = {
+				AND = {
+					tag = CAT
+					OR = {
+						has_country_leader_ideology = anarcho_syndicalism
+						has_country_leader_ideology = syndicalism
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+			}
 		}
 		every_state = {
 			limit = {
@@ -4682,6 +7719,23 @@ country_event = { #Germany
 		}
 		hidden_effect = {
 			GER = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = GER_revolutionary_socialist_party_long
+					name = GER_revolutionary_socialist_party
+				}
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = GER_national_bolshevik_party
+					name = GER_national_bolshevik_party
+				}
+				GER_herbert_mies = {
+					promote_character = yes
+				}
+				GER_heinzchristian_strache = {
+					promote_character = yes
+				}
 				load_focus_tree = generic_focus
 			}
 		}
@@ -4706,6 +7760,16 @@ country_event = { #Germany
 				}
 				is_core_of = BAV
 			}
+			NOT = {
+				AND = {
+					tag = CAT
+					OR = {
+						has_country_leader_ideology = anarcho_syndicalism
+						has_country_leader_ideology = syndicalism
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+			}
 		}
 		every_state = {
 			limit = {
@@ -4725,11 +7789,186 @@ country_event = { #Germany
 		}
 		hidden_effect = {
 			GER = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = GER_revolutionary_socialist_party_long
+					name = GER_revolutionary_socialist_party
+				}
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = GER_national_bolshevik_party
+					name = GER_national_bolshevik_party
+				}
+				GER_herbert_mies = {
+					promote_character = yes
+				}
+				GER_heinzchristian_strache = {
+					promote_character = yes
+				}
 				load_focus_tree = generic_focus
 			}
 		}
 		puppet = GER
 		set_country_flag = GER_balkanize_BAV
+	}
+	
+	option = { #anarchist puppet
+		name = annex.79.o5
+		ai_chance = {
+			base = 20
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				OR = {
+					has_country_leader_ideology = anarcho_syndicalism
+					has_country_leader_ideology = syndicalism
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = GER
+				OR = {
+					is_owned_by = ROOT
+					owner = {
+						is_puppet_of = ROOT
+					}
+				}
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			GER = {
+				transfer_state = PREV
+			}
+		}
+		puppet = GER
+		hidden_effect = {
+			GER = {
+				set_cosmetic_tag = GER_ansynd
+				set_party_name = {
+					ideology = revolutionary_socialist
+					name = "FAUD"
+					long_name = "Free Workers’ Union of Germany"
+				}
+				GER_FAUD = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=anarcho_syndicalism
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = GER
+				OR = {
+					is_owned_by = ROOT
+					owner = {
+						is_puppet_of = ROOT
+					}
+				}
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			GER = {
+				transfer_state = PREV
+			}
+		}
+		puppet = GER
+		hidden_effect = {
+			GER = {
+				set_cosmetic_tag = GER_revnazi_puppet
+				GER_Matthias_Fischer = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "Third Way"
+					long_name = "Third Way"
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 151
+						any_country = {
+							owns_state = 151
+							is_puppet_of = CAT
+						}
+					}
+				}
+				151 = {
+					add_claim_by = GER
+				}
+				GER = {
+					transfer_state = 151
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 102
+						any_country = {
+							owns_state = 102
+							is_puppet_of = CAT
+						}
+					}
+				}
+				102 = {
+					add_claim_by = GER
+				}
+				GER = {
+					transfer_state = 102
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 855
+						any_country = {
+							owns_state = 855
+							is_puppet_of = CAT
+						}
+					}
+				}
+				855 = {
+					add_claim_by = GER
+				}
+				GER = {
+					transfer_state = 855
+				}
+			}
+		}
 	}
 
 	option = { #annex
@@ -4810,6 +8049,30 @@ country_event = { #Great Lakes
 					}
 				}
 				remove_core_of = GRL
+			}
+			every_state = {
+				limit = {
+					NOT = {
+						is_claimed_by = GRL
+					}
+					is_in_array = {
+						array = GRL_starting_claims
+						value = THIS
+					}
+				}
+				add_claim_by = GRL
+			}
+			every_state = {
+				limit = {
+					is_claimed_by = GRL
+					NOT = {
+						is_in_array = {
+							array = GRL_starting_claims
+							value = THIS
+						}
+					}
+				}
+				remove_claim_by = GRL
 			}
 		}
 	}
@@ -5077,6 +8340,69 @@ country_event = { #Greece
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					OR = {
+						has_country_leader_ideology = anarcho_syndicalism
+						has_country_leader_ideology = syndicalism
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = GRE
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			GRE = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			GRE = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = GRE_revolutionary_socialist_party
+					name = GRE_revolutionary_socialist_party
+				}
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = GRE_national_bolshevik_party
+					name = GRE_national_bolshevik_party
+				}
+				GRE_liana_kanelli = {
+					promote_character = yes
+				}
+				GRE_zoe_konstantopoulou = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = GRE
+	}
+	
+	option = { #anarchist puppet
+		name = annex.82.o3
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				OR = {
+					has_country_leader_ideology = anarcho_syndicalism
+					has_country_leader_ideology = syndicalism
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = GRE
@@ -5091,7 +8417,194 @@ country_event = { #Greece
 			}
 		}
 		puppet = GRE
+		hidden_effect = {
+			GRE = {
+				set_cosmetic_tag = GRE_ansynd
+				set_party_name = {
+					ideology = revolutionary_socialist
+					name = "ESE"
+					long_name = "Libertarian Syndicalist Union"
+				}
+				GRE_ESE = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=anarcho_syndicalism
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+		}
 	}
+	
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_government = national_bolshevik
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = GRE
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			GRE = {
+				transfer_state = PREV
+			}
+		}
+		puppet = GRE
+		hidden_effect = {
+			GRE = {
+				set_cosmetic_tag = GRE_revnazi_puppet
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "Workers' Power"
+					long_name = "Workers' Power"
+				}
+				GRE_Konstantinos_Plevris = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 791
+						any_country = {
+							owns_state = 791
+							is_puppet_of = CAT
+						}
+					}
+				}
+				791 = {
+					add_claim_by = GRE
+				}
+				GRE = {
+					transfer_state = 791
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 341
+						any_country = {
+							owns_state = 341
+							is_puppet_of = CAT
+						}
+					}
+				}
+				341 = {
+					add_claim_by = GRE
+				}
+				GRE = {
+					transfer_state = 341
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 347
+						any_country = {
+							owns_state = 347
+							is_puppet_of = CAT
+						}
+					}
+				}
+				347 = {
+					add_claim_by = GRE
+				}
+				GRE = {
+					transfer_state = 347
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 340
+						any_country = {
+							owns_state = 340
+							is_puppet_of = CAT
+						}
+					}
+				}
+				340 = {
+					add_claim_by = GRE
+				}
+				GRE = {
+					transfer_state = 340
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 339
+						any_country = {
+							owns_state = 339
+							is_puppet_of = CAT
+						}
+					}
+				}
+				339 = {
+					add_claim_by = GRE
+				}
+				GRE = {
+					transfer_state = 339
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 342
+						any_country = {
+							owns_state = 342
+							is_puppet_of = CAT
+						}
+					}
+				}
+				342 = {
+					add_claim_by = GRE
+				}
+				GRE = {
+					transfer_state = 342
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 356
+						any_country = {
+							owns_state = 356
+							is_puppet_of = CAT
+						}
+					}
+				}
+				356 = {
+					add_claim_by = GRE
+				}
+				GRE = {
+					transfer_state = 356
+				}
+			}
+		}
+	}
+
 
 	option = { #annex
 		name = annex.82.o2
@@ -5113,6 +8626,27 @@ country_event = { #Greenland
 		name = annex.83.o1
 		ai_chance = {
 			base = 100
+		}
+		trigger = {
+			OR = {
+				AND = {
+					NOT = {
+						DEN = {
+							is_puppet_of = ROOT
+						}
+					}
+					AND = {
+						tag = CAT
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+				NOT = {
+					AND = {
+						tag = CAT
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+			}
 		}
 		every_state = {
 			limit = {
@@ -5714,6 +9248,151 @@ country_event = { #Holland (The Netherlands)
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			AND = {
+				NOT = {
+					has_cosmetic_tag = SPR_SFKS
+				}
+				NOT = {
+					has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+				}
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = HOL
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			HOL = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			HOL = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = HOL_revolutionary_socialist_party
+					name = HOL_revolutionary_socialist_party
+				}
+				HOL_jesse_klaver = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = HOL
+	}
+	
+	option = { #puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = HOL
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			HOL = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			HOL = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = HOL_revolutionary_socialist_party
+					name = HOL_revolutionary_socialist_party
+				}
+				HOL_jesse_klaver = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = HOL
+		hidden_effect = {
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+				HOL = {
+					set_cosmetic_tag = HOL_revnazi_puppet
+				}
+			}
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					OR = {
+						owns_state = 6
+						any_country = {
+							is_puppet_of = CAT
+							owns_state = 6
+						}
+					}
+				}
+				6 = {
+					add_claim_by = HOL
+				}
+				HOL = {
+					transfer_state = 6
+				}
+			}
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					OR = {
+						owns_state = 1022
+						any_country = {
+							is_puppet_of = CAT
+							owns_state = 1022
+						}
+					}
+				}
+				1022 = {
+					add_claim_by = HOL
+				}
+				HOL = {
+					transfer_state = 1022
+				}
+			}
+		}
+	}
+	
+	option = { #carlist titoist puppet
+		name = annex.94.o3
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			OR = {
+				has_cosmetic_tag = SPR_SFKS
+				has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = HOL
@@ -5728,6 +9407,26 @@ country_event = { #Holland (The Netherlands)
 			}
 		}
 		puppet = HOL
+		hidden_effect = {
+			HOL = {
+				set_cosmetic_tag = HOL_titocarlist
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = "House of Orange-Nassau"
+					name = "Orange-Nassau"
+				}
+				HOL_Mabel_First = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=titoist
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+		}
 	}
 
 	option = { #annex
@@ -5819,6 +9518,54 @@ country_event = { #Hungary
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = HUN
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			HUN = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			HUN = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = HUN_national_bolshevik_party
+					name = HUN_national_bolshevik_party
+				}
+				HUN_endre_jános_domokos = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = HUN
+	}
+	
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_government = national_bolshevik
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = HUN
@@ -5833,6 +9580,28 @@ country_event = { #Hungary
 			}
 		}
 		puppet = HUN
+		hidden_effect = {
+			HUN = {
+				set_cosmetic_tag = HUN_revnazi_puppet
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 76
+						any_country = {
+							owns_state = 76
+							is_puppet_of = CAT
+						}
+					}
+				}
+				76 = {
+					add_claim_by = HUN
+				}
+				HUN = {
+					transfer_state = 76
+				}
+			}
+		}
 	}
 
 	option = { #annex
@@ -6140,6 +9909,49 @@ country_event = { #Ireland
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = IRE
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ULS
+				}
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			IRE = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			IRE = {
+				drop_cosmetic_tag = yes
+			}
+		}
+		puppet = IRE
+	}
+	
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = IRE
@@ -6157,6 +9969,39 @@ country_event = { #Ireland
 			}
 		}
 		puppet = IRE
+		hidden_effect = {
+			IRE = {
+				set_cosmetic_tag = IRE_revnazi_puppet
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = IRE_evropa_party
+					name = IRE_evropa_party
+				}
+				IRE_justin_barrett = {
+					promote_character = yes
+				}
+			}
+			IF = {
+				limit = {
+					AND = {
+						tag = CAT
+						has_country_leader_ideology = revolutionary_nazi
+						OR = {
+							owns_state = 119
+							any_country = {
+								AND = {
+									is_puppet_of = CAT
+									owns_state = 119
+								}
+							}
+						}
+					}
+				}
+				IRE = {
+					transfer_state = 119
+				}
+			}
+		}
 	}
 
 	option = { #give to ENG
@@ -6172,6 +10017,12 @@ country_event = { #Ireland
 				OR = {
 					is_puppet_of = ROOT
 					is_in_faction_with = ROOT
+				}
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
 				}
 			}
 		}
@@ -6232,6 +10083,30 @@ country_event = { #Italy
 				}
 				remove_core_of = ITA
 			}
+			every_state = {
+				limit = {
+					NOT = {
+						is_claimed_by = ITA
+					}
+					is_in_array = {
+						array = ITA_starting_claims
+						value = THIS
+					}
+				}
+				add_claim_by = ITA
+			}
+			every_state = {
+				limit = {
+					is_claimed_by = ITA
+					NOT = {
+						is_in_array = {
+							array = ITA_starting_claims
+							value = THIS
+						}
+					}
+				}
+				remove_claim_by = ITA
+			}
 		}
 	}
 
@@ -6239,6 +10114,18 @@ country_event = { #Italy
 		name = annex.103.o1
 		ai_chance = {
 			base = 90
+		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					OR = {
+						has_country_leader_ideology = anarcho_syndicalism
+						has_country_leader_ideology = syndicalism
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+			}
 		}
 		every_state = {
 			limit = {
@@ -6259,6 +10146,27 @@ country_event = { #Italy
 				transfer_state = PREV
 			}
 		}
+		hidden_effect = {
+			ITA = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = ITA_revolutionary_socialist_party_long
+					name = ITA_revolutionary_socialist_party
+				}
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = ITA_national_bolshevik_party
+					name = ITA_national_bolshevik_party
+				}
+				ITA_giuliano_amato = {
+					promote_character = yes
+				}
+				ITA_francesco_storace = {
+					promote_character = yes
+				}
+			}
+		}
 		puppet = ITA
 		hidden_effect = {
 			ITA = {
@@ -6272,6 +10180,18 @@ country_event = { #Italy
 		name = annex.103.o2
 		ai_chance = {
 			base = 5
+		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					OR = {
+						has_country_leader_ideology = anarcho_syndicalism
+						has_country_leader_ideology = syndicalism
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+			}
 		}
 		every_state = {
 			limit = {
@@ -6317,6 +10237,27 @@ country_event = { #Italy
 				transfer_state = PREV
 			}
 		}
+		hidden_effect = {
+			ITA = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = ITA_revolutionary_socialist_party_long
+					name = ITA_revolutionary_socialist_party
+				}
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = ITA_national_bolshevik_party
+					name = ITA_national_bolshevik_party
+				}
+				ITA_giuliano_amato = {
+					promote_character = yes
+				}
+				ITA_francesco_storace = {
+					promote_character = yes
+				}
+			}
+		}
 		puppet = ITA
 		set_country_flag = ITA_balkanize
 		ITA = {
@@ -6339,6 +10280,16 @@ country_event = { #Italy
 				has_government = centrist
 				has_government = national_conservative
 			}
+			NOT = {
+				AND = {
+					tag = CAT
+					OR = {
+						has_country_leader_ideology = anarcho_syndicalism
+						has_country_leader_ideology = syndicalism
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+			}
 		}
 		every_state = {
 			limit = {
@@ -6360,11 +10311,193 @@ country_event = { #Italy
 			}
 		}
 		set_country_flag = ITA_puppet_merch
+		hidden_effect = {
+			ITA = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = ITA_revolutionary_socialist_party_long
+					name = ITA_revolutionary_socialist_party
+				}
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = ITA_national_bolshevik_party
+					name = ITA_national_bolshevik_party
+				}
+				ITA_giuliano_amato = {
+					promote_character = yes
+				}
+				ITA_francesco_storace = {
+					promote_character = yes
+				}
+			}
+		}
 		puppet = ITA
 		hidden_effect = {
 			ITA = {
 				load_focus_tree = generic_focus
 				drop_cosmetic_tag = yes
+			}
+		}
+	}
+	
+	option = { #anarchist puppet
+		name = annex.103.o5
+		ai_chance = {
+			base = 90
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				OR = {
+					has_country_leader_ideology = anarcho_syndicalism
+					has_country_leader_ideology = syndicalism
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = ITA
+				OR = {
+					is_owned_by = ROOT
+					owner = {
+						is_puppet_of = ROOT
+					}
+				}
+				NOT = {
+					state = 39 #South Tyrol
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			ITA = {
+				transfer_state = PREV
+			}
+		}
+		puppet = ITA
+		hidden_effect = {
+			ITA = {
+				load_focus_tree = generic_focus
+				set_cosmetic_tag = ITA_ansynd
+				set_party_name = {
+					ideology = revolutionary_socialist
+					name = "USI"
+					long_name = "Italian Syndicalist Union"
+				}
+				ITA_USI = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=anarcho_syndicalism
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = ITA
+				OR = {
+					is_owned_by = ROOT
+					owner = {
+						is_puppet_of = ROOT
+					}
+				}
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			ITA = {
+				transfer_state = PREV
+			}
+		}
+		puppet = ITA
+		hidden_effect = {
+			ITA = {
+				load_focus_tree = generic_focus
+				set_cosmetic_tag = ITA_revnazi_puppet
+				ITA_Adriano_Tilgher = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "National Vanguard"
+					long_name = "National Vanguard"
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 838
+						any_country = {
+							owns_state = 838
+							is_puppet_of = CAT
+						}
+					}
+				}
+				838 = {
+					add_claim_by = ITA
+				}
+				ITA = {
+					transfer_state = 838
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 1005
+						any_country = {
+							owns_state = 1005
+							is_puppet_of = CAT
+						}
+					}
+				}
+				1005 = {
+					add_claim_by = ITA
+				}
+				ITA = {
+					transfer_state = 1005
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 736
+						any_country = {
+							owns_state = 736
+							is_puppet_of = CAT
+						}
+					}
+				}
+				736 = {
+					add_claim_by = ITA
+				}
+				ITA = {
+					transfer_state = 736
+				}
 			}
 		}
 	}
@@ -6829,6 +10962,27 @@ country_event = { #Kazakhstan
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			OR = {
+				AND = {
+					NOT = {
+						RUS = {
+							is_puppet_of = ROOT
+						}
+					}
+					AND = {
+						tag = CAT
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+				NOT = {
+					AND = {
+						tag = CAT
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = KZH
@@ -6844,6 +10998,15 @@ country_event = { #Kazakhstan
 		}
 		hidden_effect = {
 			KZH = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = KZH_national_bolshevik_party_long
+					name = KZH_national_bolshevik_party
+				}
+				KZH_serik_sultangaliev = {
+					promote_character = yes
+				}
 				load_focus_tree = generic_focus
 			}
 		}
@@ -6876,6 +11039,38 @@ country_event = { #Kazakhstan
 				}
 			}
 			SOV = {
+				transfer_state = PREV
+			}
+		}
+	}
+	
+	option = { #revnazi give to RUS
+		name = annex.242.o3
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			RUS = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			AND = {
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = KZH
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			RUS = {
 				transfer_state = PREV
 			}
 		}
@@ -7281,6 +11476,27 @@ country_event = { #Kyrgystan
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			OR = {
+				AND = {
+					NOT = {
+						RUS = {
+							is_puppet_of = ROOT
+						}
+					}
+					AND = {
+						tag = CAT
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+				NOT = {
+					AND = {
+						tag = CAT
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = KYR
@@ -7296,6 +11512,15 @@ country_event = { #Kyrgystan
 		}
 		hidden_effect = {
 			KYR = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = KYR_national_bolshevik_party_long
+					name = KYR_national_bolshevik_party
+				}
+				KYR_rayimberdi_duishenbiev = {
+					promote_character = yes
+				}
 				load_focus_tree = generic_focus
 			}
 		}
@@ -7328,6 +11553,41 @@ country_event = { #Kyrgystan
 				}
 			}
 			SOV = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #revnazi give to RUS
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = RUS
+			}
+			RUS = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			AND = {
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = KYR
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			RUS = {
 				transfer_state = PREV
 			}
 		}
@@ -7391,6 +11651,14 @@ country_event = { #Latvia
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = LAT
@@ -7410,6 +11678,46 @@ country_event = { #Latvia
 			}
 		}
 		puppet = LAT
+	}
+	
+	option = { #puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = LAT
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			LAT = {
+				transfer_state = PREV
+			}
+		}
+		puppet = LAT
+		hidden_effect = {
+			IF = {
+				limit = {
+					AND = {
+						tag = CAT
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+				LAT = {
+					set_cosmetic_tag = LAT_revnazi_puppet
+				}
+			}
+		}
 	}
 
 	option = { #give to SOV
@@ -8105,6 +12413,54 @@ country_event = { #Lithuania
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = LIT
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			LIT = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			LIT = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = LIT_national_bolshevik_party
+					name = LIT_national_bolshevik_party
+				}
+				LIT_zilvinas_razminas = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = LIT
+	}
+	
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = LIT
@@ -8124,6 +12480,19 @@ country_event = { #Lithuania
 			}
 		}
 		puppet = LIT
+		hidden_effect = {
+			IF = {
+				limit = {
+					AND = {
+						tag = CAT
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+				LIT = {
+					set_cosmetic_tag = LIT_revnazi_puppet
+				}
+			}
+		}
 	}
 
 	option = { #give to SOV
@@ -8275,6 +12644,84 @@ country_event = { #Luxemburg
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			AND = {
+				NOT = {
+					has_cosmetic_tag = SPR_SFKS
+				}
+				NOT = {
+					has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = LUX
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			LUX = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			LUX = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = LUX_revolutionary_socialist_party
+					name = LUX_revolutionary_socialist_party
+				}
+				LUX_andré_hoffmann = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = LUX
+		IF = {
+			limit = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					FRA = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+					OR = {
+						owns_state = 8
+						any_country = {
+							is_puppet_of = CAT
+							owns_state = 8
+						}
+					}
+				}
+			}
+			8 = {
+				add_claim_by = FRA
+			}
+			FRA = {
+				transfer_state = 8
+			}
+		}
+	}
+
+	option = { #carlist titoist puppet
+		name = annex.129.o3
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			OR = {
+				has_cosmetic_tag = SPR_SFKS
+				has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = LUX
@@ -8289,6 +12736,25 @@ country_event = { #Luxemburg
 			}
 		}
 		puppet = LUX
+		hidden_effect = {
+			LUX = {
+				set_cosmetic_tag = LUX_titocarlist
+				set_party_name = {
+					ideology = revolutionary_socialist
+					name = "Bourbon-Parma"
+				}
+				LUX_Maria_First = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=titoist
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+		}
 	}
 
 	option = { #annex
@@ -8326,6 +12792,75 @@ country_event = { #Macedonia
 			}
 		}
 		puppet = MAC
+		hidden_effect = {
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+				MAC = {
+					set_politics = {
+						ruling_party = fascist
+					}
+				}
+			}
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					BUL = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+					OR = {
+						106 = {
+							is_owned_by = CAT
+						}
+						any_country = {
+							owns_state = 106
+							is_puppet_of = CAT
+						}
+					}
+				}
+				106 = {
+					add_claim_by = BUL
+				}
+				BUL = {
+					transfer_state = 106
+				}
+			}
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					ALB = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+					OR = {
+						1009 = {
+							is_owned_by = CAT
+						}
+						any_country = {
+							owns_state = 1009
+							is_puppet_of = CAT
+						}
+					}
+				}
+				1009 = {
+					add_claim_by = ALB
+				}
+				ALB = {
+					transfer_state = 1009
+				}
+			}
+		}
 	}
 
 	option = { #give to YUG
@@ -8716,6 +13251,54 @@ country_event = { #Malta
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = MLT
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			MLT = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			MLT = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = MLT_national_bolshevik_party
+					name = MLT_national_bolshevik_party
+				}
+				MLT_norman_lowell = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = MLT
+	}
+	
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = MLT
@@ -8730,6 +13313,19 @@ country_event = { #Malta
 			}
 		}
 		puppet = MLT
+		hidden_effect = {
+			IF = {
+				limit = {
+					AND = {
+						tag = CAT
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+				MLT = {
+					set_cosmetic_tag = MLT_revnazi_puppet
+				}
+			}
+		}
 	}
 
 	option = { #annex
@@ -9436,6 +14032,7 @@ country_event = { #Montana
 			}
 		}
 		puppet = MOT
+		MOT = { drop_cosmetic_tag = yes }
 	}
 
 	option = { #give to american ally/puppet
@@ -9510,6 +14107,21 @@ country_event = { #Montenegro
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					SER = {
+						OR = {
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+							is_puppet_of = CAT
+						}
+					}
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = MNT
@@ -9521,6 +14133,19 @@ country_event = { #Montenegro
 			}
 			MNT = {
 				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			MNT = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = MNT_national_bolshevik_party
+					name = MNT_national_bolshevik_party
+				}
+				MNT_milan_knezevic = {
+					promote_character = yes
+				}
 			}
 		}
 		puppet = MNT
@@ -9541,6 +14166,12 @@ country_event = { #Montenegro
 					is_in_faction_with = ROOT
 				}
 			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
 		}
 		every_state = {
 			limit = {
@@ -9553,6 +14184,64 @@ country_event = { #Montenegro
 			}
 			YUG = {
 				transfer_state = PREV
+			}
+		}
+	}
+	
+	option = { #revnazi give to serbia
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+				SER = {
+					OR = {
+						has_country_leader_ideology = revolutionary_nazi
+						has_country_leader_ideology = national_socialist
+						is_puppet_of = CAT
+					}
+				}
+			}
+		}
+		IF = {
+			limit = {
+				OR = {
+					1009 = {
+						is_owned_by = CAT
+					}
+					any_country = {
+						owns_state = 1009
+						is_puppet_of = CAT
+					}
+				}	
+			}
+			1009 = {
+				add_claim_by = SER
+			}
+			SER = {
+				transfer_state = 1009
+			}
+		}
+		IF = {
+			limit = {
+				OR = {
+					105 = {
+						is_owned_by = CAT
+					}
+					any_country = {
+						owns_state = 105
+						is_puppet_of = CAT
+					}
+				}	
+			}
+			105 = {
+				add_claim_by = SER
+			}
+			SER = {
+				transfer_state = 105
 			}
 		}
 	}
@@ -9573,8 +14262,45 @@ country_event = { #Morocco
 	
 	is_triggered_only = yes
 
+	immediate = {
+		hidden_effect = {
+			every_state = {
+				limit = {
+					NOT = {
+						is_core_of = MOR
+					}
+					is_in_array = {
+						array = MOR_starting_cores
+						value = THIS
+					}
+				}
+				add_core_of = MOR
+			}
+			882 = {
+				add_claim_by = MOR
+			}
+			every_state = {
+				limit = {
+					is_core_of = MOR
+					NOT = {
+						is_in_array = {
+							array = MOR_starting_cores
+							value = THIS
+						}
+					}
+				}
+				remove_core_of = MOR
+			}
+		}
+	}
+
 	option = { #puppet
 		name = annex.149.o1
+		trigger = {
+			WSA = {
+				exists = no
+			}
+		}
 		ai_chance = {
 			base = 100
 		}
@@ -9593,6 +14319,19 @@ country_event = { #Morocco
 		}
 		882 = {
 			transfer_state_to = MOR
+		}
+		hidden_effect = {
+			MOR = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = MOR_revolutionary_socialist_party_long
+					name = MOR_revolutionary_socialist_party
+				}
+				MOR_nabila_mounib = {
+					promote_character = yes
+				}
+			}
 		}
 		puppet = MOR
 	}
@@ -9654,6 +14393,22 @@ country_event = { #Morocco
 		}
 		699 = {
 			remove_core_of = MOR
+		}
+		882 = {
+			remove_claim_by = MOR
+		}
+		hidden_effect = {
+			MOR = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = MOR_revolutionary_socialist_party_long
+					name = MOR_revolutionary_socialist_party
+				}
+				MOR_nabila_mounib = {
+					promote_character = yes
+				}
+			}
 		}
 		puppet = MOR
 
@@ -10994,6 +15749,74 @@ country_event = { #Norway
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			AND = {
+				NOT = {
+					has_cosmetic_tag = SPR_SFKS
+				}
+				NOT = {
+					has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+				}
+				NOT = {
+					AND = {
+						tag = CAT
+						OR = {
+							has_country_leader_ideology = anarcho_syndicalism
+							has_country_leader_ideology = syndicalism
+							has_country_leader_ideology = revolutionary_nazi
+						}
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = NOR
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			NOR = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			NOR = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = NOR_revolutionary_socialist_party
+					name = NOR_revolutionary_socialist_party
+				}
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = NOR_national_bolshevik_party
+					name = NOR_national_bolshevik_party
+				}
+				NOR_Øystein_meier_johannessen = {
+					promote_character = yes
+				}
+				NOR_makvan_kasheikal = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = NOR
+	}
+	
+	option = { # carlist titoist puppet
+		name = annex.167.o3
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			OR = {
+				has_cosmetic_tag = SPR_SFKS
+				has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = NOR
@@ -11008,6 +15831,120 @@ country_event = { #Norway
 			}
 		}
 		puppet = NOR
+		hidden_effect = {
+			NOR = {
+				set_cosmetic_tag = NOR_titocarlist
+				set_party_name = {
+					ideology = revolutionary_socialist
+					name = "House of Glücksburg"
+				}
+				NOR_harald_v_revsoc = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=titoist
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	option = { #anarchist puppet
+		name = annex.167.o4
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				OR = {
+					has_country_leader_ideology = anarcho_syndicalism
+					has_country_leader_ideology = syndicalism
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = NOR
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			NOR = {
+				transfer_state = PREV
+			}
+		}
+		puppet = NOR
+		hidden_effect = {
+			NOR = {
+				set_cosmetic_tag = NOR_ansynd
+				set_party_name = {
+					ideology = revolutionary_socialist
+					name = "Society Party"
+				}
+				NOR_Øystein_meier_johannessen_ancom = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=anarcho_communist
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+		}
+	}
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_government = national_bolshevik
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = NOR
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			NOR = {
+				transfer_state = PREV
+			}
+		}
+		puppet = NOR
+		hidden_effect = {
+			NOR = {
+				set_cosmetic_tag = NOR_revnazi_puppet
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "Resistance Movement"
+					long_name = "Norwegian Resistance Movement"
+				}
+				NOR_Tommy_Olsen = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+		}
 	}
 
 	option = { #annex
@@ -12278,6 +17215,63 @@ country_event = { #Poland
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					OR = {
+						has_country_leader_ideology = anarcho_syndicalism
+						has_country_leader_ideology = syndicalism
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = POL
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			POL = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			POL = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = POL_revolutionary_socialist_party
+					name = POL_revolutionary_socialist_party
+				}
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = POL_national_bolshevik_party
+					name = POL_national_bolshevik_party
+				}
+			}
+		}
+		puppet = POL
+	}
+	
+	option = { #anarchist puppet
+		name = annex.187.o3
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				OR = {
+					has_country_leader_ideology = anarcho_syndicalism
+					has_country_leader_ideology = syndicalism
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = POL
@@ -12292,6 +17286,73 @@ country_event = { #Poland
 			}
 		}
 		puppet = POL
+		hidden_effect = {
+			POL = {
+				set_cosmetic_tag = POL_ansynd
+				set_party_name = {
+					ideology = revolutionary_socialist
+					name = "ZSP"
+					long_name = "Union of Polish Syndicalists"
+				}
+				POL_SZP = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=anarcho_syndicalism
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+		}
+	}
+
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_government = national_bolshevik
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = POL
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			POL = {
+				transfer_state = PREV
+			}
+		}
+		puppet = POL
+		hidden_effect = {
+			POL = {
+				set_cosmetic_tag = POL_revnazi_puppet
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "National Revival"
+					long_name = "National Revival of Poland"
+				}
+				POL_Adam_Gmurczyk = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+		}
 	}
 
 	option = { #annex
@@ -12315,6 +17376,54 @@ country_event = { #Portugal
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_government = national_bolshevik
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = POR
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			POR = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			POR = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = POR_national_bolshevik_party
+					name = POR_national_bolshevik_party
+				}
+				POR_antónio_garcia_pereira = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = POR
+	}
+	
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_government = national_bolshevik
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = POR
@@ -12329,6 +17438,26 @@ country_event = { #Portugal
 			}
 		}
 		puppet = POR
+		hidden_effect = {
+			POR = {
+				set_cosmetic_tag = POR_revnazi_puppet
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "New Social Order"
+					long_name = "New Social Order"
+				}
+				POR_Ricardo_Pais = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+		}
 	}
 
 	option = { #annex
@@ -12911,6 +18040,11 @@ country_event = { #Rio Grande
 				transfer_state = PREV
 			}
 		}
+		479 = {
+			RIO = {
+				transfer_state = PREV
+			}
+		}
 		puppet = RIO
 	}
 
@@ -12958,6 +18092,14 @@ country_event = { #Romania
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = ROM
@@ -12976,6 +18118,19 @@ country_event = { #Romania
 				transfer_state = PREV
 			}
 		}
+		hidden_effect = {
+			ROM = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = ROM_national_bolshevik_party
+					name = ROM_national_bolshevik_party
+				}
+				ROM_dan_diaconescu = {
+					promote_character = yes
+				}
+			}
+		}
 		puppet = ROM
 	}
 
@@ -12986,6 +18141,12 @@ country_event = { #Romania
 		}
 		trigger = {
 			owns_state = 84
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
 		}
 		every_state = {
 			limit = {
@@ -13003,8 +18164,87 @@ country_event = { #Romania
 				transfer_state = PREV
 			}
 		}
+		hidden_effect = {
+			ROM = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = ROM_national_bolshevik_party
+					name = ROM_national_bolshevik_party
+				}
+				ROM_dan_diaconescu = {
+					promote_character = yes
+				}
+			}
+		}
 		puppet = ROM
 		set_country_flag = ROM_balkanize
+	}
+	
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_government = national_bolshevik
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = ROM
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			ROM = {
+				transfer_state = PREV
+			}
+		}
+		puppet = ROM
+		hidden_effect = {
+			ROM = {
+				set_cosmetic_tag = ROM_revnazi_puppet
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "New Patriotic Right"
+					long_name = "New Patriotic Right"
+				}
+				ROM_George_Grasu = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					HUN = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+				}
+				76 = {
+					add_claim_by = HUN
+				}
+				HUN = {
+					transfer_state = 76
+				}
+			}
+		}
 	}
 
 	option = { #annex
@@ -13057,6 +18297,67 @@ country_event = { #Russia
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					OR = {
+						has_country_leader_ideology = anarcho_syndicalism
+						has_country_leader_ideology = syndicalism
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = RUS
+				is_owned_by = ROOT
+				NOT = {
+					is_in_array = {
+						array = TAN_starting_cores
+						value = THIS
+					}
+				}
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			RUS = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			RUS = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = RUS_national_bolshevik_party
+					name = RUS_national_bolshevik_party
+				}
+				###   NOTE FOR THE FUTURE:
+				###   Replace this code snippet in RDRD to match the potential
+				###   leaders for Russia
+				RUS_Eduard_Limonov = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = RUS
+	}
+	
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_government = national_bolshevik
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = RUS
@@ -13082,8 +18383,378 @@ country_event = { #Russia
 			}
 		}
 		puppet = RUS
+		hidden_effect = {
+			RUS = {
+				set_cosmetic_tag = RUS_revnazi_puppet
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "Slavic Union"
+					long_name = "Slavic Union"
+				}
+				RUS_Dmitry_Demushkin = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = KZH
+						is_core_of = UZB
+						is_core_of = TRM
+						is_core_of = TJI
+						is_core_of = KYR
+						is_core_of = TAN
+					}
+				}
+				add_claim_by = RUS
+			}
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = KZH
+						is_core_of = UZB
+						is_core_of = TRM
+						is_core_of = TJI
+						is_core_of = KYR
+						is_core_of = TAN
+					}
+					is_owned_by = CAT
+				}
+				RUS = {
+					transfer_state = PREV
+				}
+			}
+			IF = {
+				limit = {
+					KZH = {
+						is_puppet_of = CAT
+					}
+				}
+				every_state = {
+					limit = {
+						is_owned_by = KZH
+					}
+					RUS = {
+						transfer_state = PREV
+					}
+				}
+			}
+			IF = {
+				limit = {
+					UZB = {
+						is_puppet_of = CAT
+					}
+				}
+				every_state = {
+					limit = {
+						is_owned_by = UZB
+					}
+					RUS = {
+						transfer_state = PREV
+					}
+				}
+			}
+			IF = {
+				limit = {
+					TRM = {
+						is_puppet_of = CAT
+					}
+				}
+				every_state = {
+					limit = {
+						is_owned_by = TRM
+					}
+					RUS = {
+						transfer_state = PREV
+					}
+				}
+			}
+			IF = {
+				limit = {
+					TJI = {
+						is_puppet_of = CAT
+					}
+				}
+				every_state = {
+					limit = {
+						is_owned_by = TJI
+					}
+					RUS = {
+						transfer_state = PREV
+					}
+				}
+			}
+			IF = {
+				limit = {
+					KYR = {
+						is_puppet_of = CAT
+					}
+				}
+				every_state = {
+					limit = {
+						is_owned_by = KYR
+					}
+					RUS = {
+						transfer_state = PREV
+					}
+				}
+			}
+			IF = {
+				limit = {
+					TAN = {
+						is_puppet_of = CAT
+					}
+				}
+				every_state = {
+					limit = {
+						is_owned_by = TAN
+					}
+					RUS = {
+						transfer_state = PREV
+					}
+				}
+			}
+			IF = {
+				limit = {
+					AND = {
+						OR = {
+							owns_state = 722
+							any_country = {
+								NOT = {
+									tag = FIN
+								}
+								is_puppet_of = CAT
+								owns_state = 722
+							}
+						}
+						FIN = {
+							OR = {
+								has_country_leader_ideology = national_socialist
+								has_country_leader_ideology = revolutionary_nazi
+								is_puppet_of = CAT
+							}
+						}
+					}
+				}
+				722 = {
+					add_claim_by = FIN
+				}
+				FIN = {
+					transfer_state = 722
+				}
+			}
+			IF = {
+				limit = {
+					AND = {
+						OR = {
+							owns_state = 213
+							any_country = {
+								NOT = {
+									tag = FIN
+								}
+								is_puppet_of = CAT
+								owns_state = 213
+							}
+						}
+						FIN = {
+							OR = {
+								has_country_leader_ideology = national_socialist
+								has_country_leader_ideology = revolutionary_nazi
+								is_puppet_of = CAT
+							}
+						}
+					}
+				}
+				213 = {
+					add_claim_by = FIN
+				}
+				FIN = {
+					transfer_state = 213
+				}
+			}
+			IF = {
+				limit = {
+					AND = {
+						OR = {
+							owns_state = 147
+							any_country = {
+								NOT = {
+									tag = FIN
+								}
+								is_puppet_of = CAT
+								owns_state = 147
+							}
+						}
+						FIN = {
+							OR = {
+								has_country_leader_ideology = national_socialist
+								has_country_leader_ideology = revolutionary_nazi
+								is_puppet_of = CAT
+							}
+						}
+					}
+				}
+				147 = {
+					add_claim_by = FIN
+				}
+				FIN = {
+					transfer_state = 147
+				}
+			}
+			IF = {
+				limit = {
+					AND = {
+						OR = {
+							owns_state = 215
+							any_country = {
+								NOT = {
+									tag = FIN
+								}
+								is_puppet_of = CAT
+								owns_state = 215
+							}
+						}
+						FIN = {
+							OR = {
+								has_country_leader_ideology = national_socialist
+								has_country_leader_ideology = revolutionary_nazi
+								is_puppet_of = CAT
+							}
+						}
+					}
+				}
+				215 = {
+					add_claim_by = FIN
+				}
+				FIN = {
+					transfer_state = 215
+				}
+			}
+			IF = {
+				limit = {
+					AND = {
+						OR = {
+							owns_state = 146
+							any_country = {
+								NOT = {
+									tag = FIN
+								}
+								is_puppet_of = CAT
+								owns_state = 146
+							}
+						}
+						FIN = {
+							OR = {
+								has_country_leader_ideology = national_socialist
+								has_country_leader_ideology = revolutionary_nazi
+								is_puppet_of = CAT
+							}
+						}
+					}
+				}
+				146 = {
+					add_claim_by = FIN
+				}
+				FIN = {
+					transfer_state = 146
+				}
+			}
+			IF = {
+				limit = {
+					AND = {
+						OR = {
+							owns_state = 216
+							any_country = {
+								NOT = {
+									tag = FIN
+								}
+								is_puppet_of = CAT
+								owns_state = 216
+							}
+						}
+						FIN = {
+							OR = {
+								has_country_leader_ideology = national_socialist
+								has_country_leader_ideology = revolutionary_nazi
+								is_puppet_of = CAT
+							}
+						}
+					}
+				}
+				216 = {
+					add_claim_by = FIN
+				}
+				FIN = {
+					transfer_state = 216
+				}
+			}
+			IF = {
+				limit = {
+					AND = {
+						OR = {
+							owns_state = 78
+							any_country = {
+								NOT = {
+									tag = UKR
+								}
+								is_puppet_of = CAT
+								owns_state = 78
+							}
+						}
+						UKR = {
+							OR = {
+								has_country_leader_ideology = national_socialist
+								has_country_leader_ideology = revolutionary_nazi
+								is_puppet_of = CAT
+							}
+						}
+					}
+				}
+				78 = {
+					add_claim_by = UKR
+				}
+				UKR = {
+					transfer_state = 78
+				}
+			}
+			IF = {
+				limit = {
+					AND = {
+						OR = {
+							owns_state = 857
+							any_country = {
+								NOT = {
+									tag = UKR
+								}
+								is_puppet_of = CAT
+								owns_state = 857
+							}
+						}
+						UKR = {
+							OR = {
+								has_country_leader_ideology = national_socialist
+								has_country_leader_ideology = revolutionary_nazi
+								is_puppet_of = CAT
+							}
+						}
+					}
+				}
+				857 = {
+					add_claim_by = UKR
+				}
+				UKR = {
+					transfer_state = 857
+				}
+			}
+		}
 	}
-
 	option = { #give to SOV
 		name = annex.200.o2
 		ai_chance = {
@@ -13111,6 +18782,65 @@ country_event = { #Russia
 			}
 			SOV = {
 				transfer_state = PREV
+			}
+		}
+	}
+	
+	option = { #anarchist puppet
+		name = annex.200.o4
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				OR = {
+					has_country_leader_ideology = anarcho_syndicalism
+					has_country_leader_ideology = syndicalism
+				}
+				NOT = {
+					is_in_faction_with = SOV
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = RUS
+				is_owned_by = ROOT
+				NOT = {
+					is_in_array = {
+						array = TAN_starting_cores
+						value = THIS
+					}
+				}
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			RUS = {
+				transfer_state = PREV
+			}
+		}
+		puppet = RUS
+		hidden_effect = {
+			RUS = {
+				set_cosmetic_tag = RUS_ansynd
+				set_party_name = {
+					ideology = revolutionary_socialist
+					name = "KAS"
+					long_name = "Confederation of Anarcho-Syndicalists"
+				}
+				RUS_Alexander_Shubin = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=anarcho_syndicalism
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
 			}
 		}
 	}
@@ -13491,6 +19221,14 @@ country_event = { #Scotland
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					has_country_leader_ideology = revolutionary_nazi
+					tag = CAT
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = SCO
@@ -13502,6 +19240,19 @@ country_event = { #Scotland
 			}
 			SCO = {
 				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			SCO = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = SCO_national_bolshevik_party
+					name = SCO_national_bolshevik_party
+				}
+				SCO_Matt_Lygate = {
+					promote_character = yes
+				}
 			}
 		}
 		puppet = SCO
@@ -13522,6 +19273,12 @@ country_event = { #Scotland
 					is_in_faction_with = ROOT
 				}
 			}
+			NOT = {
+				AND = {
+					has_country_leader_ideology = revolutionary_nazi
+					tag = CAT
+				}
+			}
 		}
 		every_state = {
 			limit = {
@@ -13534,6 +19291,53 @@ country_event = { #Scotland
 			}
 			ENG = {
 				transfer_state = PREV
+			}
+		}
+	}
+	
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_government = national_bolshevik
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = SCO
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SCO = {
+				transfer_state = PREV
+			}
+		}
+		puppet = SCO
+		hidden_effect = {
+			SCO = {
+				set_cosmetic_tag = SCO_revnazi_puppet
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "Scottish Dawn"
+					long_name = "Scottish Dawn"
+				}
+				SCO_Ruaidhri_McKim = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
 			}
 		}
 	}
@@ -13596,6 +19400,14 @@ country_event = { #Serbia
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = SER
@@ -13610,6 +19422,19 @@ country_event = { #Serbia
 			}
 			SER = {
 				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			SER = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = SER_national_bolshevik_party_long
+					name = SER_national_bolshevik_party
+				}
+				SER_ivica_dacic = {
+					promote_character = yes
+				}
 			}
 		}
 		puppet = SER
@@ -13630,6 +19455,12 @@ country_event = { #Serbia
 					is_in_faction_with = ROOT
 				}
 			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
 		}
 		every_state = {
 			limit = {
@@ -13642,6 +19473,123 @@ country_event = { #Serbia
 			}
 			YUG = {
 				transfer_state = PREV
+			}
+		}
+	}
+	
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_government = national_bolshevik
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = SER
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SER = {
+				transfer_state = PREV
+			}
+		}
+		puppet = SER
+		hidden_effect = {
+			SER = {
+				set_cosmetic_tag = SER_revnazi_puppet
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "Leviathan Movement"
+					long_name = "Leviathan Movement"
+				}
+				SER_Pavle_Bihali = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					ALB = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+				}
+				785 = {
+					add_claim_by = ALB
+				}
+				ALB = {
+					transfer_state = 785
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 1002
+						any_country = {
+							owns_state = 1002
+							is_puppet_of = CAT
+						}
+					}
+				}
+				1002 = {
+					add_claim_by = SER
+				}
+				SER = {
+					transfer_state = 1002
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 105
+						any_country = {
+							owns_state = 105
+							is_puppet_of = CAT
+						}
+					}
+				}
+				105 = {
+					add_claim_by = SER
+				}
+				SER = {
+					transfer_state = 105
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 849
+						any_country = {
+							owns_state = 849
+							is_puppet_of = CAT
+						}
+					}
+				}
+				849 = {
+					add_claim_by = SER
+				}
+				SER = {
+					transfer_state = 849
+				}
 			}
 		}
 	}
@@ -14245,6 +20193,14 @@ country_event = { #Slovakia
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = SLO
@@ -14256,6 +20212,19 @@ country_event = { #Slovakia
 			}
 			SLO = {
 				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			SLO = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = SLO_national_bolshevik_party
+					name = SLO_national_bolshevik_party
+				}
+				SLO_jan_slota = {
+					promote_character = yes
+				}
 			}
 		}
 		puppet = SLO
@@ -14276,6 +20245,12 @@ country_event = { #Slovakia
 					is_in_faction_with = ROOT
 				}
 			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
 		}
 		every_state = {
 			limit = {
@@ -14288,6 +20263,58 @@ country_event = { #Slovakia
 			}
 			CZE = {
 				transfer_state = PREV
+			}
+		}
+	}
+	
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = SLO
+				OR = {
+					is_owned_by = ROOT
+					owner = {
+						is_puppet_of = ROOT
+					}
+				}
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SLO = {
+				transfer_state = PREV
+			}
+		}
+		puppet = SLO
+		hidden_effect = {
+			SLO = {
+				set_cosmetic_tag = SLO_revnazi_puppet
+				SLO_Milan_Mazurek = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "Our Slovakia"
+					long_name = "Our Slovakia"
+				}
 			}
 		}
 	}
@@ -14327,6 +20354,60 @@ country_event = { #Slovenia
 			}
 		}
 		puppet = SLV
+		hidden_effect = {
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					GER = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+					OR = {
+						owns_state = 102
+						any_country = {
+							is_puppet_of = CAT
+							owns_state = 102
+						}
+					}
+				}
+				102 = {
+					add_claim_by = GER
+				}
+				GER = {
+					transfer_state = 102
+				}
+			}
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					ITA = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+					OR = {
+						owns_state = 1005
+						any_country = {
+							is_puppet_of = CAT
+							owns_state = 1005
+						}
+					}
+				}
+				1005 = {
+					add_claim_by = ITA
+				}
+				ITA = {
+					transfer_state = 1005
+				}
+			}
+		}
 	}
 
 	option = { #give to YUG
@@ -14737,6 +20818,18 @@ country_event = { #Soviet Union
 				}
 			}
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					OR = {
+						has_country_leader_ideology = anarcho_syndicalism
+						has_country_leader_ideology = syndicalism
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = SOV
@@ -14768,8 +20861,78 @@ country_event = { #Soviet Union
 		ai_chance = {
 			base = 100
 		}
-
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					OR = {
+						has_country_leader_ideology = anarcho_syndicalism
+						has_country_leader_ideology = syndicalism
+					}
+				}
+			}
+		}
 		set_country_flag = SOV_balkanize
+	}
+
+	option = { #anarchist puppet
+		name = annex.227.o4
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				OR = {
+					has_country_leader_ideology = anarcho_syndicalism
+					has_country_leader_ideology = syndicalism
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = SOV
+				OR = {
+					is_owned_by = ROOT
+					owner = {
+						is_puppet_of = ROOT
+					}
+				}
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SOV = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			SOV = {
+				load_focus_tree = generic_focus
+			}
+		}
+		puppet = SOV
+		hidden_effect = {
+			SOV = {
+				set_cosmetic_tag = SOV_ansynd
+				set_party_name = {
+					ideology = revolutionary_socialist
+					name = "KPAC"
+					long_name = "Confederation of Revolutionary Anarcho-Syndicalists"
+				}
+				SOV_Alexander_Shubin = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=anarcho_syndicalism
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+		}
 	}
 
 	option = { #annex
@@ -14793,6 +20956,14 @@ country_event = { #Spain
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = SPR
@@ -14811,19 +20982,237 @@ country_event = { #Spain
 				transfer_state = PREV
 			}
 		}
+		hidden_effect = {
+			SPR = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = SPR_revolutionary_socialist_party
+					name = SPR_revolutionary_socialist_party
+				}
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = SPR_national_bolshevik_party_long
+					name = SPR_national_bolshevik_party
+				}
+				SPR_alberto_garzon = {
+					promote_character = yes
+				}
+				SPR_luis_pio_moa_rodriguez = {
+					promote_character = yes
+				}
+			}
+		}
 		puppet = SPR
+		SPR = {
+			load_focus_tree = generic_focus
+		}
 	}
 
 	option = { #balkanize
 		name = annex.228.o2
+		ai_chance = {
+			base = 50
+		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = SPR
+				NOT = {
+					is_core_of = BSQ
+					is_core_of = CAT
+					is_core_of = GAL
+				}
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SPR = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			SPR = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = SPR_revolutionary_socialist_party
+					name = SPR_revolutionary_socialist_party
+				}
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = SPR_national_bolshevik_party_long
+					name = SPR_national_bolshevik_party
+				}
+				SPR_alberto_garzon = {
+					promote_character = yes
+				}
+				SPR_luis_pio_moa_rodriguez = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = SPR
+		SPR = {
+			load_focus_tree = generic_focus
+		}
+		set_country_flag = SPR_balkanize
+	}
+
+	option = { #balkanize more
+		name = annex.228.o3
+		ai_chance = {
+			base = 50
+		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = SPR
+				NOT = {
+					is_core_of = BSQ
+					is_core_of = CAT
+					is_core_of = GAL
+					is_core_of = ATA
+					is_core_of = ALU
+				}
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SPR = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			SPR = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = SPR_revolutionary_socialist_party
+					name = SPR_revolutionary_socialist_party
+				}
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = SPR_national_bolshevik_party_long
+					name = SPR_national_bolshevik_party
+				}
+				SPR_alberto_garzon = {
+					promote_character = yes
+				}
+				SPR_luis_pio_moa_rodriguez = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = SPR
+		SPR = {
+			load_focus_tree = generic_focus
+		}
+		set_country_flag = SPR_balkanize
+		set_country_flag = SPR_balkanize_2
+	}
+	
+	option = { #revnazi puppet not balkanization
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_government = national_bolshevik
+				NOT = {
+					owns_state = 172
+				}
+				NOT = {
+					owns_state = 171
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = SPR
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SPR = {
+				transfer_state = PREV
+			}
+		}
+		puppet = SPR
+		SPR = {
+			load_focus_tree = generic_focus
+		}
+		hidden_effect = {
+			SPR = {
+				set_cosmetic_tag = SPR_revnazi_puppet
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "National Alliance"
+					long_name = "National Alliance"
+				}
+				SPR_Pedro_Pablo_Pena = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 118
+						any_country = {
+							is_puppet_of = CAT
+							owns_state = 118
+						}
+					}
+				}
+				SPR = {
+					transfer_state = 118
+				}
+			}
+		}
+	}
+	
+	option = { #revnazi puppet balkanize
+		name = annex.revnazi.option
 		ai_chance = {
 			base = 0
 		}
 		trigger = {
 			OR = {
 				owns_state = 172
-				owns_state = 165
 				owns_state = 171
+			}
+			AND = {
+				tag = CAT
+				has_government = national_bolshevik
 			}
 		}
 		every_state = {
@@ -14845,11 +21234,48 @@ country_event = { #Spain
 			}
 		}
 		puppet = SPR
+		hidden_effect = {
+			SPR = {
+				set_cosmetic_tag = SPR_revnazi_puppet
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "National Alliance"
+					long_name = "National Alliance"
+				}
+				SPR_Pedro_Pablo_Pena = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 118
+						any_country = {
+							is_puppet_of = CAT
+							owns_state = 118
+						}
+					}
+				}
+				SPR = {
+					transfer_state = 118
+				}
+			}
+		}
+		SPR = {
+			load_focus_tree = generic_focus
+		}
 		set_country_flag = SPR_balkanize
 	}
 
 	option = { #annex
-		name = annex.228.o3
+		name = annex.228.o4
 		ai_chance = {
 			base = 0
 		}
@@ -15358,6 +21784,206 @@ country_event = { #Sweden
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			AND = {
+				NOT = {
+					has_cosmetic_tag = SPR_SFKS
+				}
+				NOT = {
+					has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+				}
+				NOT = {
+					AND = {
+						tag = CAT
+						OR = {
+							has_country_leader_ideology = anarcho_syndicalism
+							has_country_leader_ideology = syndicalism
+							has_country_leader_ideology = revolutionary_nazi
+						}
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = SWE
+				OR = {
+					is_owned_by = ROOT
+					owner = {
+						is_puppet_of = ROOT
+					}
+				}
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SWE = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			SWE = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = SWE_national_bolshevik_party
+					name = SWE_national_bolshevik_party
+				}
+				SWE_stefan_jacobsson = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = SWE
+	}
+	
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = SWE
+				OR = {
+					is_owned_by = ROOT
+					owner = {
+						is_puppet_of = ROOT
+					}
+				}
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SWE = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			SWE = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = SWE_revolutionary_socialist_party_long
+					name = SWE_revolutionary_socialist_party
+				}
+				SWE_perÅke_westerlund = {
+					promote_character = yes
+				}
+			}
+			IF = {
+				limit = {
+					AND = {
+						tag = CAT
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+				SWE = {
+					set_cosmetic_tag = SWE_revnazi_puppet
+				}
+			}
+			IF = {
+				limit = {
+					AND = {
+						tag = CAT
+						has_country_leader_ideology = revolutionary_nazi
+						OR = {
+							owns_state = 145
+							any_country = {
+								AND = {
+									owns_state = 145
+									is_puppet_of = CAT
+								}
+							}
+						}	
+					}
+				}
+				SWE = {
+					transfer_state = 145
+				}
+			}
+		}
+		puppet = SWE
+	}
+
+	option = { #balkanize
+		name = annex.236.o2
+		ai_chance = {
+			base = 0
+		}
+		trigger = {
+			AND = {
+				owns_state = 138
+				NOT = {
+					has_cosmetic_tag = SPR_SFKS
+				}
+				NOT = {
+					has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+				}
+				NOT = {
+					AND = {
+						tag = CAT
+						OR = {
+							has_country_leader_ideology = anarcho_syndicalism
+							has_country_leader_ideology = syndicalism
+							has_country_leader_ideology = revolutionary_nazi
+						}
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = SWE
+				NOT = {
+					is_core_of = SCA
+				}
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SWE = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			SWE = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = SWE_revolutionary_socialist_party_long
+					name = SWE_revolutionary_socialist_party
+				}
+				SWE_perÅke_westerlund = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = SWE
+		set_country_flag = SWE_balkanize
+	}
+	
+	option = { #carlist titoist puppet
+		name = annex.236.o4
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			OR = {
+				has_cosmetic_tag = SPR_SFKS
+				has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = SWE
@@ -15377,23 +22003,50 @@ country_event = { #Sweden
 			}
 		}
 		puppet = SWE
+		hidden_effect = {
+			SWE = {
+				set_cosmetic_tag = SWE_titocarlist
+				set_party_name = {
+					ideology = revolutionary_socialist
+					name = "House of Bernadotte"
+				}
+				SWE_carl_xvi_gustaf_revsoc = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=titoist
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+		}
 	}
-
-	option = { #balkanize
-		name = annex.236.o2
+	
+	option = { #anarchist puppet
+		name = annex.236.o5
 		ai_chance = {
-			base = 0
+			base = 100
 		}
 		trigger = {
-			owns_state = 138
+			AND = {
+				tag = CAT
+				OR = {
+					has_country_leader_ideology = anarcho_syndicalism
+					has_country_leader_ideology = syndicalism
+				}
+			}
 		}
 		every_state = {
 			limit = {
 				is_core_of = SWE
-				NOT = {
-					is_core_of = SCA
+				OR = {
+					is_owned_by = ROOT
+					owner = {
+						is_puppet_of = ROOT
+					}
 				}
-				is_owned_by = ROOT
 				NOT = {
 					is_core_of = ROOT
 					is_claimed_by = ROOT
@@ -15404,7 +22057,26 @@ country_event = { #Sweden
 			}
 		}
 		puppet = SWE
-		set_country_flag = SWE_balkanize
+		hidden_effect = {
+			SWE = {
+				set_cosmetic_tag = SWE_ansynd
+				set_party_name = {
+					ideology = revolutionary_socialist
+					name = "SAC"
+					long_name = "Central Organisation of the Workers of Sweden"
+				}
+				SWE_Liv_Marend = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=anarcho_syndicalism
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+		}
 	}
 
 	option = { #annex
@@ -15442,6 +22114,130 @@ country_event = { #Switzerland
 			}
 		}
 		puppet = SWI
+		IF = {
+			limit = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					OR = {
+						owns_state = 3
+						any_country = {
+							NOT = {
+								tag = FRA
+							}
+							is_puppet_of = CAT
+							owns_state = 3
+						}
+					}
+					FRA = {
+						OR = {
+							has_country_leader_ideology = national_socialist
+							has_country_leader_ideology = revolutionary_nazi
+							is_puppet_of = CAT
+						}
+					}
+				}
+			}
+			3 = {
+				add_claim_by = FRA
+			}
+			FRA = {
+				transfer_state = 3
+			}
+		}
+		IF = {
+			limit = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					OR = {
+						owns_state = 151
+						any_country = {
+							NOT = {
+								tag = GER
+							}
+							is_puppet_of = CAT
+							owns_state = 151
+						}
+					}
+					GER = {
+						OR = {
+							has_country_leader_ideology = national_socialist
+							has_country_leader_ideology = revolutionary_nazi
+							is_puppet_of = CAT
+						}
+					}
+				}
+			}
+			151 = {
+				add_claim_by = GER
+			}
+			GER = {
+				transfer_state = 151
+			}
+		}
+		IF = {
+			limit = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					OR = {
+						owns_state = 855
+						any_country = {
+							NOT = {
+								tag = GER
+							}
+							is_puppet_of = CAT
+							owns_state = 855
+						}
+					}
+					GER = {
+						OR = {
+							has_country_leader_ideology = national_socialist
+							has_country_leader_ideology = revolutionary_nazi
+							is_puppet_of = CAT
+						}
+					}
+				}
+			}
+			855 = {
+				add_claim_by = GER
+			}
+			GER = {
+				transfer_state = 855
+			}
+		}
+		IF = {
+			limit = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					OR = {
+						owns_state = 838
+						any_country = {
+							NOT = {
+								tag = ITA
+							}
+							is_puppet_of = CAT
+							owns_state = 838
+						}
+					}
+					ITA = {
+						OR = {
+							has_country_leader_ideology = national_socialist
+							has_country_leader_ideology = revolutionary_nazi
+							is_puppet_of = CAT
+						}
+					}
+				}
+			}
+			838 = {
+				add_claim_by = ITA
+			}
+			ITA = {
+				transfer_state = 838
+			}
+		}
 	}
 
 	option = { #annex
@@ -15581,6 +22377,27 @@ country_event = { #Tajikistan
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			OR = {
+				AND = {
+					NOT = {
+						RUS = {
+							is_puppet_of = ROOT
+						}
+					}
+					AND = {
+						tag = CAT
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+				NOT = {
+					AND = {
+						tag = CAT
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = TJI
@@ -15596,6 +22413,15 @@ country_event = { #Tajikistan
 		}
 		hidden_effect = {
 			TJI = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = TJI_national_bolshevik_party_long
+					name = TJI_national_bolshevik_party
+				}
+				TJI_emomali_rahmon = {
+					promote_character = yes
+				}
 				load_focus_tree = generic_focus
 			}
 		}
@@ -15628,6 +22454,41 @@ country_event = { #Tajikistan
 				}
 			}
 			SOV = {
+				transfer_state = PREV
+			}
+		}
+	}
+	
+	option = { #revnazi give to RUS
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = RUS
+			}
+			RUS = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			AND = {
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = TJI
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			RUS = {
 				transfer_state = PREV
 			}
 		}
@@ -15848,6 +22709,27 @@ country_event = { #Tannu Tuva (Tannu what?)
 		name = annex.242.o1
 		ai_chance = {
 			base = 100
+		}
+		trigger = {
+			OR = {
+				AND = {
+					NOT = {
+						RUS = {
+							is_puppet_of = ROOT
+						}
+					}
+					AND = {
+						tag = CAT
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+				NOT = {
+					AND = {
+						tag = CAT
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+			}
 		}
 		every_state = {
 			limit = {
@@ -16608,6 +23490,54 @@ country_event = { #Turkey
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = TUR
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			TUR = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			TUR = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = TUR_national_bolshevik_party
+					name = TUR_national_bolshevik_party
+				}
+				TUR_doğu_perinçek = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = TUR
+	}
+	
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_government = national_bolshevik
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = TUR
@@ -16622,6 +23552,310 @@ country_event = { #Turkey
 			}
 		}
 		puppet = TUR
+		hidden_effect = {
+			TUR = {
+				set_cosmetic_tag = TUR_revnazi_puppet
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "National Unity"
+					long_name = "Georgian National Unity"
+				}
+				TUR_Olcay_Klavuz = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 791
+						any_country = {
+							owns_state = 791
+							is_puppet_of = CAT
+						}
+					}
+					GRE = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+				}
+				791 = {
+					add_claim_by = GRE
+				}
+				GRE = {
+					transfer_state = 791
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 341
+						any_country = {
+							owns_state = 341
+							is_puppet_of = CAT
+						}
+					}
+					GRE = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+				}
+				341 = {
+					add_claim_by = GRE
+				}
+				GRE = {
+					transfer_state = 341
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 347
+						any_country = {
+							owns_state = 347
+							is_puppet_of = CAT
+						}
+					}
+					GRE = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+				}
+				347 = {
+					add_claim_by = GRE
+				}
+				GRE = {
+					transfer_state = 347
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 340
+						any_country = {
+							owns_state = 340
+							is_puppet_of = CAT
+						}
+					}
+					GRE = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+				}
+				340 = {
+					add_claim_by = GRE
+				}
+				GRE = {
+					transfer_state = 340
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 339
+						any_country = {
+							owns_state = 339
+							is_puppet_of = CAT
+						}
+					}
+					GRE = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+				}
+				339 = {
+					add_claim_by = GRE
+				}
+				GRE = {
+					transfer_state = 339
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 342
+						any_country = {
+							owns_state = 342
+							is_puppet_of = CAT
+						}
+					}
+					GRE = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+				}
+				342 = {
+					add_claim_by = GRE
+				}
+				GRE = {
+					transfer_state = 342
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 356
+						any_country = {
+							owns_state = 356
+							is_puppet_of = CAT
+						}
+					}
+					GRE = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+				}
+				356 = {
+					add_claim_by = GRE
+				}
+				GRE = {
+					transfer_state = 356
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 353
+						any_country = {
+							owns_state = 353
+							is_puppet_of = CAT
+						}
+					}
+					NOT = {
+						GEO = {
+							is_puppet_of = CAT
+						}
+					}
+					ARM = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+				}
+				353 = {
+					add_claim_by = ARM
+				}
+				ARM = {
+					transfer_state = 353
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 354
+						any_country = {
+							owns_state = 354
+							is_puppet_of = CAT
+						}
+					}
+					NOT = {
+						GEO = {
+							is_puppet_of = CAT
+						}
+					}
+					ARM = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+				}
+				354 = {
+					add_claim_by = ARM
+				}
+				ARM = {
+					transfer_state = 354
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 354
+						any_country = {
+							owns_state = 354
+							is_puppet_of = CAT
+						}
+					}
+					NOT = {
+						ARM = {
+							is_puppet_of = CAT
+						}
+					}
+					GEO = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+				}
+				354 = {
+					add_claim_by = GEO
+				}
+				GEO = {
+					transfer_state = 354
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 353
+						any_country = {
+							owns_state = 353
+							is_puppet_of = CAT
+						}
+					}
+					NOT = {
+						ARM = {
+							is_puppet_of = CAT
+						}
+					}
+					GEO = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+				}
+				353 = {
+					add_claim_by = GEO
+				}
+				GEO = {
+					transfer_state = 353
+				}
+			}
+		}
 	}
 
 	option = { #annex
@@ -16645,6 +23879,27 @@ country_event = { #Turkmenistan
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			OR = {
+				AND = {
+					NOT = {
+						RUS = {
+							is_puppet_of = ROOT
+						}
+					}
+					AND = {
+						tag = CAT
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+				NOT = {
+					AND = {
+						tag = CAT
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = TRM
@@ -16660,6 +23915,15 @@ country_event = { #Turkmenistan
 		}
 		hidden_effect = {
 			TRM = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = TRM_national_bolshevik_party_long
+					name = TRM_national_bolshevik_party
+				}
+				TRM_kasymguly_babaev = {
+					promote_character = yes
+				}
 				load_focus_tree = generic_focus
 			}
 		}
@@ -16692,6 +23956,41 @@ country_event = { #Turkmenistan
 				}
 			}
 			SOV = {
+				transfer_state = PREV
+			}
+		}
+	}
+	
+	option = { #revnazi give to RUS
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = RUS
+			}
+			RUS = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			AND = {
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = TRM
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			RUS = {
 				transfer_state = PREV
 			}
 		}
@@ -16918,6 +24217,14 @@ country_event = { #Ukraine
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = UKR
@@ -16933,6 +24240,15 @@ country_event = { #Ukraine
 		}
 		hidden_effect = {
 			UKR = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = UKR_national_bolshevik_party_long
+					name = UKR_national_bolshevik_party
+				}
+				UKR_nataliya_vitrenko = {
+					promote_character = yes
+				}
 				load_focus_tree = generic_focus
 			}
 		}
@@ -16969,6 +24285,87 @@ country_event = { #Ukraine
 			}
 		}
 	}
+	
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_government = national_bolshevik
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = UKR
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			UKR = {
+				transfer_state = PREV
+			}
+		}
+		puppet = UKR
+		hidden_effect = {
+			UKR = {
+				set_cosmetic_tag = UKR_revnazi_puppet
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "Patriots of Ukraine"
+					long_name = "Patriots of Ukraine"
+				}
+				UKR_Ivan_Vovk = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 78
+						any_country = {
+							owns_state = 78
+							is_puppet_of = CAT
+						}
+					}
+				}
+				78 = {
+					add_claim_by = UKR
+				}
+				UKR = {
+					transfer_state = 78
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 857
+						any_country = {
+							owns_state = 857
+							is_puppet_of = CAT
+						}
+					}
+				}
+				857 = {
+					add_claim_by = UKR
+				}
+				UKR = {
+					transfer_state = 857
+				}
+			}
+		}
+	}
 
 	option = { #annex
 		name = annex.257.o3
@@ -16990,6 +24387,31 @@ country_event = { #Ulster
 		name = annex.258.o1
 		ai_chance = {
 			base = 100
+		}
+		trigger = {
+			OR = {
+				NOT = {
+					AND = {
+						tag = CAT
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					NOT = {
+						IRE = {
+							OR = {
+								is_puppet_of = CAT
+								is_in_faction_with = CAT
+							}
+						}
+					}
+					NOT = {
+						owns_state = 113
+					}
+				}
+			}
 		}
 		every_state = {
 			limit = {
@@ -17051,6 +24473,12 @@ country_event = { #Ulster
 				OR = {
 					is_puppet_of = ROOT
 					is_in_faction_with = ROOT
+				}
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
 				}
 			}
 		}
@@ -17306,6 +24734,332 @@ country_event = { #United Kingdom
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				has_cosmetic_tag = SPR_SFKS
+			}
+			NOT = {
+				has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					OR = {
+						has_country_leader_ideology = anarcho_syndicalism
+						has_country_leader_ideology = syndicalism
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = ENG
+				OR = {
+					is_owned_by = ROOT
+					owner = {
+						is_puppet_of = ROOT
+					}
+				}
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			ENG = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			ENG = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = ENG_revolutionary_socialist_party_long
+					name = ENG_revolutionary_socialist_party
+				}
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = ENG_national_bolshevik_party_long
+					name = ENG_national_bolshevik_party
+				}
+				ENG_george_galloway = {
+					promote_character = yes
+				}
+				ENG_patrick_harrington = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = ENG
+		hidden_effect = {
+			ENG = {
+				load_focus_tree = generic_focus
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					has_government = communist
+					has_government = revolutionary_socialist
+					has_government = national_bolshevik
+				}
+			}
+			ENG = {
+				custom_effect_tooltip = AnnexDec_remove_monarchs
+				set_cosmetic_tag = ENG_Republic
+				hidden_effect = {
+					remove_ideas = idea_queen_elizabeth_ii
+					remove_ideas = idea_queen_elizabeth_humiliated
+					remove_ideas = idea_king_charles_third
+					remove_ideas = idea_king_william_fifth
+					remove_ideas = idea_king_edward_ix_andrew
+					remove_ideas = idea_king_edward_ix_edward
+				}
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_government = communist
+					has_government = revolutionary_socialist
+					has_government = national_bolshevik
+					has_government = monarchist
+				}
+			}
+			country_event = annex.314
+		}
+	}
+
+	option = { #balkanize
+		name = annex.261.o2
+		ai_chance = {
+			base = 0
+		}
+		trigger = {
+			AND = {
+				OR = {
+					owns_state = 121
+					owns_state = 122
+				}
+				NOT = {
+					has_cosmetic_tag = SPR_SFKS
+				}
+				NOT = {
+					has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+				}
+				NOT = {
+					AND = {
+						tag = CAT
+						OR = {
+							has_country_leader_ideology = anarcho_syndicalism
+							has_country_leader_ideology = syndicalism
+							has_country_leader_ideology = revolutionary_nazi
+						}
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = ENG
+				NOT = {
+					is_core_of = SCO
+					is_core_of = WAL
+				}
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			ENG = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			ENG = {
+				set_cosmetic_tag = ENG_england
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = ENG_revolutionary_socialist_party_long
+					name = ENG_revolutionary_socialist_party
+				}
+				ENG_george_galloway = {
+					promote_character = yes
+				}
+			}
+		}
+		hidden_effect = {
+			ENG = {
+				load_focus_tree = generic_focus
+			}
+		}
+		puppet = ENG
+		set_country_flag = ENG_balkanize
+		if = {
+			limit = {
+				OR = {
+					has_government = communist
+					has_government = revolutionary_socialist
+					has_government = national_bolshevik
+				}
+			}
+			ENG = {
+				custom_effect_tooltip = AnnexDec_remove_monarchs
+				hidden_effect = {
+					remove_ideas = idea_queen_elizabeth_ii
+					remove_ideas = idea_queen_elizabeth_humiliated
+					remove_ideas = idea_king_charles_third
+					remove_ideas = idea_king_william_fifth
+					remove_ideas = idea_king_edward_ix_andrew
+					remove_ideas = idea_king_edward_ix_edward
+				}
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_government = communist
+					has_government = revolutionary_socialist
+					has_government = national_bolshevik
+					has_government = monarchist
+				}
+			}
+			country_event = annex.314
+		}
+	}
+	
+	option = { #revnazi balkanize
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 0
+		}
+		trigger = {
+			AND = {
+				OR = {
+					owns_state = 121
+					owns_state = 122
+				}
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = ENG
+				NOT = {
+					is_core_of = SCO
+					is_core_of = WAL
+				}
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			ENG = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			ENG = {
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = ENG_revolutionary_socialist_party_long
+					name = ENG_revolutionary_socialist_party
+				}
+				ENG_george_galloway = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = ENG
+		hidden_effect = {
+			ENG = {
+				load_focus_tree = generic_focus
+			}
+			IF = {
+				limit = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+				ENG = {
+					set_party_name = {
+						ideology = national_bolshevik
+						name = "National Action"
+						long_name = "National Action"
+					}
+					ENG_Benjamin_Raymond = {
+						add_country_leader_role = {
+							promote_leader = yes		
+							country_leader={
+								ideology=revolutionary_nazi
+								expire="1.1.1.1"
+								id=-1
+							}
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 122
+						any_country = {
+							owns_state = 122
+							is_puppet_of = CAT
+						}
+					}
+				}
+				ENG = {
+					transfer_state = 122
+				}
+			}
+			IF = {
+				limit = {
+					SPR = {
+						OR = {
+							is_puppet_of = CAT
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = national_socialist
+						}
+					}
+					OR = {
+						owns_state = 118
+						any_country = {
+							is_puppet_of = CAT
+							owns_state = 118
+						}
+					}
+				}
+				118 = {
+					add_claim_by = SPR
+				}
+				SPR = {
+					transfer_state = 118
+				}
+			}
+			ENG = {
+				set_cosmetic_tag = ENG_revnazi_puppet
+			}
+		}
+		set_country_flag = ENG_balkanize
+	}
+	
+	option = { #carlist titoist puppet
+		name = annex.261.o4
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			OR = {
+				has_cosmetic_tag = SPR_SFKS
+				has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = ENG
@@ -17328,29 +25082,49 @@ country_event = { #United Kingdom
 		hidden_effect = {
 			ENG = {
 				load_focus_tree = generic_focus
+				ENG_Henry_Ninth = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=titoist
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = "House of Windsor"
+					name = "House of Windsor"
+				}
+				set_cosmetic_tag = ENG_titocarlist
 			}
 		}
 	}
-
-	option = { #balkanize
-		name = annex.261.o2
+	
+	option = { #anarchist puppet
+		name = annex.261.o5
 		ai_chance = {
-			base = 0
+			base = 100
 		}
 		trigger = {
-			OR = {
-				owns_state = 121
-				owns_state = 122
+			AND = {
+				tag = CAT
+				OR = {
+					has_country_leader_ideology = anarcho_syndicalism
+					has_country_leader_ideology = syndicalism
+				}
 			}
 		}
 		every_state = {
 			limit = {
 				is_core_of = ENG
-				NOT = {
-					is_core_of = SCO
-					is_core_of = WAL
+				OR = {
+					is_owned_by = ROOT
+					owner = {
+						is_puppet_of = ROOT
+					}
 				}
-				is_owned_by = ROOT
 				NOT = {
 					is_core_of = ROOT
 					is_claimed_by = ROOT
@@ -17364,9 +25138,24 @@ country_event = { #United Kingdom
 		hidden_effect = {
 			ENG = {
 				load_focus_tree = generic_focus
+				ENG_SF = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=anarcho_syndicalism
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = "Solidarity Federation"
+					name = "Solidarity Federation"
+				}
+				set_cosmetic_tag = ENG_ansynd
 			}
 		}
-		set_country_flag = ENG_balkanize
 	}
 
 	option = { #annex
@@ -17527,6 +25316,18 @@ country_event = { #USA (American Republic)
 					retire_character = USA_joseph_votel
 				}
 			}
+		}
+		if = {
+			limit = {
+				has_government = fascist
+			}
+			country_event = annex.296
+		}
+		if = {
+			limit = {
+				has_government = nationalist
+			}
+			country_event = annex.297
 		}
 	}
 
@@ -17993,6 +25794,27 @@ country_event = { #Uzbekistan
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			OR = {
+				AND = {
+					NOT = {
+						RUS = {
+							is_puppet_of = ROOT
+						}
+					}
+					AND = {
+						tag = CAT
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+				NOT = {
+					AND = {
+						tag = CAT
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = UZB
@@ -18008,6 +25830,15 @@ country_event = { #Uzbekistan
 		}
 		hidden_effect = {
 			UZB = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = UZB_national_bolshevik_party_long
+					name = UZB_national_bolshevik_party
+				}
+				UZB_vitaly_fen = {
+					promote_character = yes
+				}
 				load_focus_tree = generic_focus
 			}
 		}
@@ -18040,6 +25871,39 @@ country_event = { #Uzbekistan
 				}
 			}
 			SOV = {
+				transfer_state = PREV
+			}
+		}
+	}
+	
+	option = { #revnazi give to RUS
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = RUS
+			}
+			RUS = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			tag = CAT
+			has_country_leader_ideology = revolutionary_nazi
+		}
+		every_state = {
+			limit = {
+				is_core_of = UZB
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			RUS = {
 				transfer_state = PREV
 			}
 		}
@@ -18380,6 +26244,27 @@ country_event = { #Wales
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			OR = {
+				NOT = {
+					AND = {
+						has_country_leader_ideology = revolutionary_nazi
+						tag = CAT
+					}
+				}
+				AND = {
+					has_country_leader_ideology = revolutionary_nazi
+					tag = CAT
+					ENG = {
+						OR = {
+							has_country_leader_ideology = national_socialist
+							has_country_leader_ideology = revolutionary_nazi
+							is_puppet_of = CAT
+						}
+					}
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = WAL
@@ -18409,6 +26294,16 @@ country_event = { #Wales
 				OR = {
 					is_puppet_of = ROOT
 					is_in_faction_with = ROOT
+					AND = {
+						tag = CAT
+						has_country_leader_ideology = revolutionary_nazi
+						ENG = {
+							OR = {
+								has_country_leader_ideology = revolutionary_nazi
+								has_country_leader_ideology = national_socialist
+							}
+						}
+					}
 				}
 			}
 		}
@@ -19025,6 +26920,18 @@ country_event = { #Yugoslavia
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					OR = {
+						has_country_leader_ideology = anarcho_syndicalism
+						has_country_leader_ideology = syndicalism
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = YUG
@@ -19051,7 +26958,73 @@ country_event = { #Yugoslavia
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					OR = {
+						has_country_leader_ideology = anarcho_syndicalism
+						has_country_leader_ideology = syndicalism
+					}
+				}
+			}
+		}
 		set_country_flag = YUG_balkanize
+	}
+	
+	option = { #anarchist puppet
+		name = annex.280.o4
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				OR = {
+					has_country_leader_ideology = anarcho_syndicalism
+					has_country_leader_ideology = syndicalism
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = YUG
+				OR = {
+					is_owned_by = ROOT
+					owner = {
+						is_puppet_of = ROOT
+					}
+				}
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			YUG = {
+				transfer_state = PREV
+			}
+		}
+		puppet = YUG
+		hidden_effect = {
+			YUG = {
+				set_cosmetic_tag = YUG_ansynd
+				YUG_Ratibor_Trivunac = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=anarcho_syndicalism
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+				set_party_name = {
+					ideology = revolutionary_socialist
+					name = "SK-ASI"
+					long_name = "Union Confederation - Anarcho-Syndicalist Initiative"
+				}
+			}
+		}
 	}
 
 	option = { #annex
@@ -20003,7 +27976,7 @@ country_event = { #New England
 		}
 	}
 
-	option = { #give to AMC
+	option = { #puppet
 		name = annex.291.o1
 		ai_chance = {
 			base = 100
@@ -20030,6 +28003,11 @@ country_event = { #New England
 			}
 			AMC = {
 				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			AMC = {
+				load_focus_tree = generic_focus
 			}
 		}
 		puppet = AMC
@@ -20097,7 +28075,20 @@ country_event = { #New England
 country_event = { #NEA Leader
 	id = annex.292
 	title = annex.292.t
-	desc = annex.292.d
+	desc = {
+		text = annex.292.d.a
+		trigger = {
+			has_global_flag = bill_gates_assassinated
+		}
+	}
+	desc = {
+		text = annex.292.d.b
+		trigger = {
+			NOT = {
+				has_global_flag = bill_gates_assassinated
+			}
+		}
+	}
 	
 	is_triggered_only = yes
 
@@ -20120,7 +28111,7 @@ country_event = { #NEA Leader
 					date < 2020.8.1
 				}
 				set_country_flag = NEA_holdren_resigned
-				NEA_rod_blagojevich = {
+				NEA_bill_ayers = {
 					promote_character = american_revolutionary_socialism
 				}
 			}
@@ -20159,6 +28150,11 @@ country_event = { #NEA Leader
 
 	option = { #Bill Gates
 		name = annex.292.o4
+		trigger = {
+			NOT = {
+				has_global_flag = bill_gates_assassinated
+			}
+		}
 		ai_chance = {
 			base = 100
 		}
@@ -20380,6 +28376,156 @@ country_event = { #Galicia
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+			OR = {
+				AND = {
+					NOT = {
+						tag = SPR
+					}
+					NOT = {
+						tag = SPN
+					}
+				}
+				AND = {
+					OR = {
+						tag = SPR
+						tag = SPN
+					}
+					NOT = {
+						has_completed_focus = SPR_a_confederate_spain
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = GAL
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			GAL = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			GAL = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = GAL_national_bolshevik_party_long
+					name = GAL_national_bolshevik_party
+				}
+				GAL_nestor_rego = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = GAL
+		GAL = {
+			load_focus_tree = generic_focus
+		}
+	}
+
+	option = { #give to SPR
+		name = annex.295.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = SPR
+			}
+			NOT = {
+				tag = SPN
+			}
+			SPR = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = GAL
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SPR = {
+				transfer_state = PREV
+			}
+		}
+	}
+	
+	option = { #give to SPN
+		name = annex.295.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = SPR
+			}
+			NOT = {
+				tag = SPN
+			}
+			SPN = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = GAL
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SPN = {
+				transfer_state = PREV
+			}
+		}
+	}
+	
+	option = { #revnazi puppet
+		name = annex.revnazi.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = CAT
+				has_government = national_bolshevik
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = GAL
@@ -20394,21 +28540,48 @@ country_event = { #Galicia
 			}
 		}
 		puppet = GAL
+		hidden_effect = {
+			GAL = {
+				load_focus_tree = generic_focus
+			}
+			GAL = {
+				set_cosmetic_tag = GAL_revnazi_puppet
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "Aryan Movement"
+					long_name = "Aryan Movement of Galicia"
+				}
+				GAL_Xose_Carlos_Rios_Camacho = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=revolutionary_nazi
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+		}
 	}
 
-	option = { #give to SPR
-		name = annex.295.o2
+	option = { #create autonomous community
+		name = annex.295.o4
 		ai_chance = {
 			base = 100
 		}
-		trigger = {
-			NOT = {
-				tag = SPR
-			}
-			SPR = {
+		trigger = {	
+			AND = {
 				OR = {
-					is_puppet_of = ROOT
-					is_in_faction_with = ROOT
+					tag = SPR
+					tag = SPN
+				}
+				has_completed_focus = SPR_a_confederate_spain
+				NOT = {
+					has_completed_focus = SPR_nat_reunite_spain
+				}
+				NOT = {
+					has_completed_focus = SPR_liberal_recentralize_spain
 				}
 			}
 		}
@@ -20423,6 +28596,23 @@ country_event = { #Galicia
 			}
 			GAL = {
 				transfer_state = PREV
+			}
+		}
+		puppet = GAL
+		GAL = {
+			load_focus_tree = generic_focus
+		}
+		GAL = {
+			set_cosmetic_tag = GAL_autonomous
+		}
+		hidden_effect = {
+			GAL = {
+				set_politics = {
+					ruling_party = new_democrat
+					elections_allowed = no
+					last_election = "1935.12.17"
+					election_frequency = 48
+				}
 			}
 		}
 	}
@@ -20455,6 +28645,12 @@ country_event = { #USA Leader (Fascist)
 			}
 			set_country_flag = duke_puppet_leader
 			set_party_name = { ideology = fascist long_name = USA_national_renewal name = USA_national_renewal }
+			if = {
+				limit = {
+					has_country_flag = unifying_america
+				}
+				set_cosmetic_tag = USA_FreeState
+			}
 			hidden_effect = {
 				remove_ideas = idea_usa_flight_of_the_executives
 				remove_ideas = idea_usa_economic_renewal_gop_iu
@@ -20478,6 +28674,12 @@ country_event = { #USA Leader (Fascist)
 			}
 			set_country_flag = ancona_puppet_leader
 			set_party_name = { ideology = fascist long_name = USA_kkk name = USA_kkk }
+			if = {
+				limit = {
+					has_country_flag = unifying_america
+				}
+				set_cosmetic_tag = USA_Klan
+			}
 			hidden_effect = {
 				remove_ideas = idea_usa_flight_of_the_executives
 				remove_ideas = idea_usa_economic_renewal_gop_iu
@@ -21439,6 +29641,426 @@ country_event = { #East Cascadia
 						has_country_flag = unifying_america
 					}
 				}
+			}
+		}
+	}
+}
+
+country_event = { #Asturias
+	id = annex.311
+	title = annex.311.t
+	desc = annex.311.d
+
+	is_triggered_only = yes
+
+	option = { #puppet
+		name = annex.311.o1
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+			OR = {
+				AND = {
+					NOT = {
+						tag = SPR
+					}
+					NOT = {
+						tag = SPN
+					}
+				}
+				AND = {
+					OR = {
+						tag = SPR
+						tag = SPN
+					}
+					NOT = {
+						has_completed_focus = SPR_a_confederate_spain
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = ATA
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			ATA = {
+				transfer_state = PREV
+			}
+		}
+		puppet = ATA
+		ATA = {
+			load_focus_tree = generic_focus
+		}
+	}
+
+	option = { #give to SPR
+		name = annex.311.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = SPR
+			}
+			NOT = {
+				tag = SPN
+			}
+			SPR = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = ATA
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SPR = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #give to SPN
+		name = annex.311.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = SPR
+			}
+			NOT = {
+				tag = SPN
+			}
+			SPN = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = ATA
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SPN = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #annex
+		name = annex.311.o3
+		ai_chance = {
+			base = 0
+		}
+
+		set_country_flag = ATA_annex
+	}
+}
+
+country_event = { #Andalusia
+	id = annex.312
+	title = annex.312.t
+	desc = annex.312.d
+
+	is_triggered_only = yes
+
+	option = { #puppet
+		name = annex.312.o1
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+			OR = {
+				AND = {
+					NOT = {
+						tag = SPR
+					}
+					NOT = {
+						tag = SPN
+					}
+				}
+				AND = {
+					OR = {
+						tag = SPR
+						tag = SPN
+					}
+					NOT = {
+						has_completed_focus = SPR_a_confederate_spain
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = ALU
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			ALU = {
+				transfer_state = PREV
+			}
+		}
+		puppet = ALU
+		ALU = {
+			load_focus_tree = generic_focus
+		}
+	}
+
+	option = { #give to SPR
+		name = annex.312.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = SPR
+			}
+			NOT = {
+				tag = SPN
+			}
+			SPR = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = ALU
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SPR = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #give to SPN
+		name = annex.312.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = SPR
+			}
+			NOT = {
+				tag = SPN
+			}
+			SPN = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = ALU
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SPN = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #annex
+		name = annex.312.o3
+		ai_chance = {
+			base = 0
+		}
+
+		set_country_flag = ALU_annex
+	}
+}
+country_event = { #Faroe Islands
+	id = annex.313
+	title = annex.313.t
+	desc = annex.313.d
+	
+	is_triggered_only = yes
+
+	option = { #puppet
+		name = annex.313.o1
+		ai_chance = {
+			base = 100
+		}
+		every_state = {
+			limit = {
+				is_core_of = FRO
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			FRO = {
+				transfer_state = PREV
+			}
+		}
+		puppet = FRO
+	}
+
+	option = { #annex
+		name = annex.313.o2
+		ai_chance = {
+			base = 0
+		}
+
+		set_country_flag = FRO_annex
+	}
+}
+country_event = { #Republic or Monarchy (ENG)
+	id = annex.314
+	title = annex.314.t
+	desc = annex.314.d
+	
+	is_triggered_only = yes
+
+	option = { #Republic
+		name = annex.314.o1
+		ai_chance = {
+			base = 50
+		}
+		ENG = {
+			custom_effect_tooltip = AnnexDec_remove_monarchs
+			if = {
+				limit = {
+					NOT = {
+						has_cosmetic_tag = ENG_england
+					}
+				}
+				set_cosmetic_tag = ENG_Republic
+			}
+			hidden_effect = {
+				remove_ideas = idea_queen_elizabeth_ii
+				remove_ideas = idea_queen_elizabeth_humiliated
+				remove_ideas = idea_king_charles_third
+				remove_ideas = idea_king_william_fifth
+				remove_ideas = idea_king_edward_ix_andrew
+				remove_ideas = idea_king_edward_ix_edward
+			}
+		}
+	}
+
+	option = { #Monarchy
+		name = annex.314.o2
+		ai_chance = {
+			base = 50
+		}
+		ENG = {
+			if = {
+				limit = {
+					has_country_leader = {
+						character = ENG_elizabeth_ii
+						ruling_only = no
+					}
+				}
+				add_ideas = idea_queen_elizabeth_ii
+			}
+			else_if = {
+				limit = {
+					has_country_leader = {
+						character = ENG_charles_iii
+						ruling_only = no
+					}
+				}
+				add_ideas = idea_king_charles_third
+			}
+			else_if = {
+				limit = {
+					has_country_leader = {
+						character = ENG_william_v
+						ruling_only = no
+					}
+				}
+				add_ideas = idea_king_william_fifth
+			}
+			else_if = {
+				limit = {
+					has_country_leader = {
+						character = ENG_andrew_i
+						ruling_only = no
+					}
+				}
+				add_ideas = idea_king_edward_ix_andrew
+			}
+			else_if = {
+				limit = {
+					has_country_leader = {
+						character = ENG_edward_ix
+						ruling_only = no
+					}
+				}
+				add_ideas = idea_king_edward_ix_edward
 			}
 		}
 	}

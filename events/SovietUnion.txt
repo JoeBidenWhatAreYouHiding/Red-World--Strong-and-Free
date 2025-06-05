@@ -39,6 +39,14 @@ country_event = {
 			    id = news.6
 		    }
 		}
+		hidden_effect = {
+			CEA = {
+				country_event = {
+					id = centroamerica.268
+					days = 7
+				}
+			}
+		}
 	}
 }
 
@@ -876,6 +884,7 @@ country_event = {
 		hidden_effect = {
 		    RUS = {
 		        annex_country = { target = SOV transfer_troops = yes }
+				create_faction = moscow_pact
 		    }
 		}
 		hidden_effect = {
@@ -1473,6 +1482,7 @@ country_event = {
 		hidden_effect = {
 		    RUS = {
 		        annex_country = { target = SOV transfer_troops = yes }
+				create_faction = moscow_pact
 		    }
 		}
 		hidden_effect = {
@@ -3016,4 +3026,165 @@ country_event = {
 		}
 	}
 
+}
+
+country_event = { #Mikhail Gorbachev Passes Away
+	id = soviet.89
+	title = soviet.89.t
+	desc = {
+        trigger = {
+            has_government = revolutionary_socialist
+        }
+        text = soviet.89.d1
+    }
+    desc = {
+        trigger = {
+			has_completed_focus = SOV_root_out_corruption
+            NOT = { has_government = revolutionary_socialist }
+        }
+        text = soviet.89.d2
+    }
+	desc = {
+        trigger = {
+			has_completed_focus = SOV_support_elites
+            NOT = { has_government = revolutionary_socialist }
+        }
+        text = soviet.89.d3
+    }
+	picture = soviet_gorbachev_fucking_dies
+	
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+		date > 2022.8.20
+		date < 2022.9.20
+		has_country_leader = {
+			character = SOV_mikhail_gorbachev
+			ruling_only = yes
+		}
+	}
+	
+	option = {
+		name = soviet.89.o1
+		trigger = {
+            has_government = revolutionary_socialist
+        }
+		kill_country_leader = yes
+		SOV_valery_rashkin = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					ideology = orthodox_leninist
+					expire="1.1.1.1"
+				}
+			}
+		}
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.07
+		}
+	}
+	
+	option = {
+		name = soviet.89.o4
+		trigger = {
+            has_government = revolutionary_socialist
+        }
+		kill_country_leader = yes
+		SOV_roza_otunbayeva = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					ideology = libertarian_socialist
+					expire="1.1.1.1"
+				}
+			}
+		}
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.05
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.05
+		}
+	}
+	
+	option = {
+		name = soviet.89.o5
+		trigger = {
+            has_government = revolutionary_socialist
+        }
+		kill_country_leader = yes
+		SOV_dmitry_medvedev = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					ideology = moderate_socialist_ideology
+					expire="1.1.1.1"
+				}
+			}
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			long_name = "Democratic Unionist Electoral Bloc"
+			name = "Democratic Unionists"
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		hidden_effect = {
+			SOV_valery_rashkin = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						ideology = orthodox_leninist
+						expire="1.1.1.1"
+					}
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = soviet.89.o2
+		trigger = {
+            has_government = communist
+			has_completed_focus = SOV_root_out_corruption
+        }
+		kill_country_leader = yes
+		SOV_valery_rashkin = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					ideology = leninist
+					expire="1.1.1.1"
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = soviet.89.o2
+		trigger = {
+            has_government = communist
+			has_completed_focus = SOV_support_elites
+        }
+		kill_country_leader = yes
+		SOV_pavel_grudinin = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					ideology = leninist
+					expire="1.1.1.1"
+				}
+			}
+		}
+	}
 }

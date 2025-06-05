@@ -8,7 +8,7 @@ focus_tree = {
 		}
 	}
     continuous_focus_position = { x = 50 y = 2300 }
-	shared_focus = YEM_the_legitimate_government
+	shared_focus = YEM_restore_the_grand_alliance
 	shared_focus = YEM_restore_national_order
 	shared_focus = YEM_global_diplomacy
 }
@@ -25,37 +25,87 @@ focus_tree = {
 	shared_focus = YEM_the_officer_coup
 }
 shared_focus = {
-	id = YEM_the_legitimate_government
-	icon = anti_fascist
-	cost = 1
+	id = YEM_restore_the_grand_alliance
+	icon = GFX_arsenal_of_democracy
+	cost = 2
 	available = {
 		has_war = yes
 	}
-	x = 3
-	y = 1
+	x = 4
+	y = 0
 	completion_reward = {	
-		add_ideas = YEM_legitimate_government
-		add_manpower = 10000	
+		add_war_support = 0.05
+		add_stability = 0.03
+		add_ideas = limited_conscription
+		add_ideas = war_economy	
 	}
 }
 shared_focus = {
-	id = YEM_rally_the_remaining_loyal_tribes
-	icon = broken_star
-	cost = 1
+	id = YEM_appeal_to_saudi_delegates
+	icon = saudi_arabia
+	cost = 5
 	available = {
 		has_war = yes
 	}
-	x = -1
-	y = 1
-
+	bypass_if_unavailable = yes
 	prerequisite = {
-		focus = YEM_the_legitimate_government
+		focus = YEM_restore_the_grand_alliance
 	}
-
-	relative_position_id = YEM_the_legitimate_government
-	completion_reward = {
+	relative_position_id = YEM_restore_the_grand_alliance
+	x = -2
+	y = 1
+	completion_reward = {	
+		SAU = {
+			country_event = yemen.205
+		}
+	}
+}
+shared_focus = {
+	id = YEM_kickstart_factory_production
+	icon = GFX_goal_arms_factory
+	cost = 5
+	available = {
+		has_war = yes
+	}
+	bypass_if_unavailable = yes
+	prerequisite = {
+		focus = YEM_appeal_to_saudi_delegates
+	}
+	relative_position_id = YEM_appeal_to_saudi_delegates
+	x = -2
+	y = 1
+	completion_reward = {	
+		add_offsite_building = {
+			type = arms_factory
+			level = 2
+		}
+	}
+}
+shared_focus = {
+	id = YEM_open_the_al_hudaydah_reserves
+	icon = YEM_guns_artillery_stockpile
+	cost = 3
+	available = {
+		has_war = yes
+	}
+	bypass_if_unavailable = yes
+	prerequisite = {
+		focus = YEM_kickstart_factory_production
+	}
+	relative_position_id = YEM_kickstart_factory_production
+	x = 0
+	y = 1
+	completion_reward = {	
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 100
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 200
+		}
 		division_template = {
-			name = "Central Government Fighters"
+			name = "Reserve Units"
 			regiments = {
 				infantry = { x = 0 y = 0 }
 				infantry = { x = 0 y = 1 }
@@ -67,128 +117,325 @@ shared_focus = {
 		}
 		975 = {
 			create_unit = {
-				division = "name = \"Tribal Militia\" division_template = \"Central Government Fighters\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+				division = "name = \"1st Yemeni Reserves\" division_template = \"Reserve Units\" start_experience_factor = 1 start_equipment_factor = 1"
 				owner = YEM
+				allow_spawning_on_enemy_provs = yes
 			}
 			create_unit = {
-				division = "name = \"Tribal Militia\" division_template = \"Central Government Fighters\" start_experience_factor = 0.5  start_equipment_factor = 0.8"
+				division = "name = \"2nd Yemeni Reserves\" division_template = \"Reserve Units\" start_experience_factor = 1  start_equipment_factor = 1"
 				owner = YEM
+				allow_spawning_on_enemy_provs = yes
 			}
 			create_unit = {
-				division = "name = \"Tribal Militia\" division_template = \"Central Government Fighters\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+				division = "name = \"3rd Yemeni Reserves\" division_template = \"Reserve Units\" start_experience_factor = 1  start_equipment_factor = 1"
 				owner = YEM
-			 }
+				allow_spawning_on_enemy_provs = yes
+			}
 		}
 	}
 }
 shared_focus = {
-	id = YEM_kickstart_the_factories
-	icon = generic_electric
-	cost = 1
-	x = 1
-	y = 1
+	id = YEM_strengthen_the_political_security_organization
+	icon = YEM_political_security
+	cost = 5
 	available = {
 		has_war = yes
 	}
-
+	bypass_if_unavailable = yes
 	prerequisite = {
-		focus = YEM_the_legitimate_government
+		focus = YEM_appeal_to_saudi_delegates
 	}
-
-	relative_position_id = YEM_the_legitimate_government
-	completion_reward = {
+	relative_position_id = YEM_appeal_to_saudi_delegates
+	x = 0
+	y = 1
+	completion_reward = {	
+		if = {
+			limit = {
+				has_dlc = "La Resistance"
+			}
+			add_ideas = YEM_political_security_organization_lar
+		}
+		else = {
+			add_ideas = YEM_political_security_organization
+		}
+	}
+}
+shared_focus = {
+	id = YEM_split_the_national_coalition
+	icon = federalism_focus
+	cost = 6
+	available = {
+		has_war = yes
+		country_exists = JAS
+	}
+	bypass_if_unavailable = yes
+	prerequisite = {
+		focus = YEM_strengthen_the_political_security_organization
+	}
+	relative_position_id = YEM_strengthen_the_political_security_organization
+	x = 0
+	y = 1
+	completion_reward = {	
+		country_event = yemen.208	
+		add_timed_idea = {
+			idea = YEM_utilizing_the_jasmine_breakdown
+			days = 100
+		} 
+	}
+}
+shared_focus = {
+	id = YEM_petition_for_american_advisors
+	icon = american_republic
+	cost = 5
+	available = {
+		has_war = yes
+	}
+	bypass_if_unavailable = yes
+	prerequisite = {
+		focus = YEM_restore_the_grand_alliance
+	}
+	relative_position_id = YEM_restore_the_grand_alliance
+	x = 0
+	y = 1
+	completion_reward = {	
+		USA = {
+			country_event = yemen.209
+		}
+	}
+}
+shared_focus = {
+	id = YEM_rebuild_our_armored_corps
+	icon = YEM_rebuild_armored_corps
+	cost = 5
+	available = {
+		has_war = yes
+	}
+	bypass_if_unavailable = yes
+	prerequisite = {
+		focus = YEM_petition_for_american_advisors
+	}
+	relative_position_id = YEM_petition_for_american_advisors
+	x = 0
+	y = 1
+	completion_reward = {	
+		add_tech_bonus = {
+			bonus = 0.25
+			category = cat_light_armor
+		}
+		add_breakthrough_progress = {
+			specialization = specialization_land
+			value = 0.5
+		}
 		add_offsite_building = {
 			type = arms_factory
-			level = 2
+			level = 1
 		}
-	}
-}
-shared_focus = {
-	id = YEM_guns_for_the_front
-	icon = guns_blue
-	cost = 1
-	x = 0
-	y = 1
-	available = {
-		has_war = yes
-	}
-
-	prerequisite = {
-		focus = YEM_rally_the_remaining_loyal_tribes
-	}
-	prerequisite = {
-		focus = YEM_kickstart_the_factories
-	}
-
-	relative_position_id = YEM_rally_the_remaining_loyal_tribes
-	completion_reward = {
-		add_equipment_to_stockpile = {
-			type = infantry_equipment
-			amount = 1500
-			producer = YEM
+		if = {
+			limit = {
+				has_dlc = "No Step Back"
+			}
+			add_equipment_to_stockpile = {
+				type = light_tank_chassis_0
+				amount = 50
+				variant_name = "Cold War Light Tank"
+			}
+		}
+		else = {
+			add_equipment_to_stockpile = {
+				type = light_tank_equipment_1
+				amount = 50
+			}
 		}
 		add_equipment_to_stockpile = {
-			type = support_equipment
-			amount = 200
-			producer = YEM
-		}
-		add_equipment_to_stockpile = {
-			type = artillery_equipment
+			type = motorized_equipment
 			amount = 100
-			producer = YEM
 		}
 	}
 }
 shared_focus = {
-	id = YEM_petition_for_american_aid
-	icon = state_of_america
-	cost = 1
+	id = YEM_bribe_gpc_officials
+	icon = GFX_goal_bag_of_money
+	cost = 3
+	available = {
+		has_war = yes
+		country_exists = YAR
+	}
+	bypass_if_unavailable = yes
+	prerequisite = {
+		focus = YEM_rebuild_our_armored_corps
+	}
+	relative_position_id = YEM_rebuild_our_armored_corps
 	x = 0
 	y = 1
+	completion_reward = {	
+		add_timed_idea = {
+			idea = YEM_advancing_into_the_empire_of_sand
+			days = 90
+		}
+	}
+}
+shared_focus = {
+	id = YEM_request_omani_intervention
+	icon = YEM_omani_intervention
+	cost = 5
 	available = {
 		has_war = yes
 	}
-
+	bypass_if_unavailable = yes
 	prerequisite = {
-		focus = YEM_rally_the_remaining_loyal_tribes
+		focus = YEM_restore_the_grand_alliance
 	}
+	relative_position_id = YEM_restore_the_grand_alliance
+	x = 2
+	y = 1
+	completion_reward = {	
+		OMA = {
+			country_event = yemen.216
+		}
+	}
+}
+shared_focus = {
+	id = YEM_victory_on_our_own
+	icon = YEM_victory_on_our_own
+	cost = 5
+	available = {
+		has_war = yes
+	}
+	bypass_if_unavailable = yes
 	prerequisite = {
-		focus = YEM_kickstart_the_factories
+		focus = YEM_request_omani_intervention
 	}
-
-	relative_position_id = YEM_kickstart_the_factories
-	completion_reward = {
-		USA = {
-			country_event = {
-				id = yemen.26
-				days = 1
+	mutually_exclusive = {
+		focus = YEM_uphold_the_dhofar_agreement
+	}
+	relative_position_id = YEM_request_omani_intervention
+	x = 0
+	y = 1
+	completion_reward = {	
+		if = {
+			limit = {
+				has_country_flag = YEM_dhofar_agreement
+			}
+			OMA = {
+				add_opinion_modifier = {
+					target = YEM
+					modifier = oma_violated_agreement
+				}
+			}
+		}
+		add_ideas = YEM_hurried_training_programs
+	}
+}
+shared_focus = {
+	id = YEM_reach_out_to_southern_tribes
+	icon = YEM_tribal_autonomy
+	cost = 3
+	available = {
+		has_war = yes
+	}
+	bypass_if_unavailable = yes
+	prerequisite = {
+		focus = YEM_victory_on_our_own
+	}
+	relative_position_id = YEM_victory_on_our_own
+	x = 0
+	y = 1
+	completion_reward = {	
+		division_template = {
+			name = "Tribal Forces"
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 1 y = 0 }
+				infantry = { x = 1 y = 1 }
+			}
+		}
+		293 = {
+			create_unit = {
+				division = "name = \"Sayar Tribal Forces\" division_template = \"Tribal Forces\" start_experience_factor = 1 start_equipment_factor = 1"
+				owner = YEM
+				allow_spawning_on_enemy_provs = yes
+			}
+			create_unit = {
+				division = "name = \"Mahra Tribal Forces\" division_template = \"Tribal Forces\" start_experience_factor = 1  start_equipment_factor = 1"
+				owner = YEM
+				allow_spawning_on_enemy_provs = yes
+			}
+			create_unit = {
+				division = "name = \"Humum Tribal Forces\" division_template = \"Tribal Forces\" start_experience_factor = 1  start_equipment_factor = 1"
+				owner = YEM
+				allow_spawning_on_enemy_provs = yes
 			}
 		}
 	}
 }
 shared_focus = {
-	id = YEM_push_against_the_traitors
-	icon = air_defense
-	cost = 1
-	x = 1
+	id = YEM_uphold_the_dhofar_agreement
+	icon = YEM_dhofar_army_focus
+	cost = 6
+	available = {
+		has_war = yes
+		has_country_flag = YEM_dhofar_agreement
+	}
+	prerequisite = {
+		focus = YEM_request_omani_intervention
+	}
+	mutually_exclusive = {
+		focus = YEM_victory_on_our_own
+	}
+	relative_position_id = YEM_request_omani_intervention
+	x = 2
 	y = 1
+	completion_reward = {	
+		custom_effect_tooltip = YEM_uphold_dhofar_agreement_tt
+	}
+}
+shared_focus = {
+	id = YEM_reinforce_supply_lines
+	icon = infrastructure
+	cost = 5
 	available = {
 		has_war = yes
 	}
-
+	bypass_if_unavailable = yes
 	prerequisite = {
-		focus = YEM_guns_for_the_front
+		focus = YEM_uphold_the_dhofar_agreement
+	}
+	relative_position_id = YEM_uphold_the_dhofar_agreement
+	x = 0
+	y = 1
+	completion_reward = {	
+		add_ideas = YEM_rapid_supply_line_construction
+	}
+}
+shared_focus = {
+	id = YEM_the_legacy_of_1985
+	icon = YEM_1985_legacy
+	cost = 5
+	available = {
+		has_war = yes
+	}
+	bypass_if_unavailable = yes
+	prerequisite = {
+		focus = YEM_open_the_al_hudaydah_reserves
 	}
 	prerequisite = {
-		focus = YEM_petition_for_american_aid
+		focus = YEM_split_the_national_coalition
 	}
-
-	relative_position_id = YEM_guns_for_the_front
-	completion_reward = {
-		add_timed_idea = {
-			idea = YEM_the_final_struggle
-			days = 210
-		}
+	prerequisite = {
+		focus = YEM_bribe_gpc_officials
+	}
+	prerequisite = {
+		focus = YEM_reach_out_to_southern_tribes
+		focus = YEM_reinforce_supply_lines
+	}
+	relative_position_id = YEM_bribe_gpc_officials
+	x = 0
+	y = 1
+	completion_reward = {	
+		country_event = yemen.219	
+		add_stability = 0.07
 	}
 }
 shared_focus = {
@@ -215,6 +462,17 @@ shared_focus = {
 	completion_reward = {
 		add_political_power = 100
 		add_stability = 0.05
+		if = {
+			limit = {
+				has_idea = YEM_american_advisors
+			}
+			remove_ideas = YEM_american_advisors
+			USA = {
+				country_event = yemen.212
+			}
+		}
+		add_ideas = civilian_economy
+		add_ideas = volunteer_only
 		create_country_leader = {
 			name = "Tribal Council"
 			desc = "POLITICS_TRIBAL_COUNCIL_DESC"
@@ -263,6 +521,14 @@ shared_focus = {
 					days = 1
 				}
 			}
+		}
+		hidden_effect = {
+			remove_ideas = YEM_political_security_organization
+			remove_ideas = YEM_political_security_organization_lar
+			remove_ideas = YEM_utilizing_the_jasmine_breakdown
+			remove_ideas = YEM_advancing_into_the_empire_of_sand
+			remove_ideas = YEM_hurried_training_programs
+			remove_ideas = YEM_rapid_supply_line_construction
 		}
 	}
 }
@@ -926,7 +1192,7 @@ shared_focus = {
 
 shared_focus = {
 	id = YEM_promote_a_traditional_lifestyle
-	icon = focus_family_ties
+	icon = solidarity_of_the_ummah
 	cost = 7
 	x = 7
 	y = 12
@@ -1203,7 +1469,7 @@ shared_focus = {
 }
 shared_focus = {
 	id = YEM_theocratic_democratic_and_forevermore
-	icon = putins_inauguration
+	icon = islamic_focus_01
 	cost = 3.6
 	x = 6
 	y = 15
@@ -1269,7 +1535,7 @@ shared_focus = {
 }
 shared_focus = {
 	id = YEM_snap_election
-	icon = forceful_treaty
+	icon = GFX_goal_elections
 	cost = 6.5
 	x = 16
 	y = 7
@@ -1377,7 +1643,7 @@ shared_focus = {
 
 shared_focus = {
 	id = YEM_curtail_the_islamists
-	icon = flags_orange
+	icon = focus_islamists_crushed
 	cost = 5
 	x = 14
 	y = 9
@@ -1410,7 +1676,7 @@ shared_focus = {
 }
 shared_focus = {
 	id = YEM_ensure_internal_security
-	icon = allies_infantry
+	icon = GFX_goal_Generic_Espionage3
 	cost = 5
 	x = 14
 	y = 11
@@ -1425,7 +1691,7 @@ shared_focus = {
 
 shared_focus = {
 	id = YEM_attract_foreign_capital
-	icon = focus_freedom_for_the_top_hat
+	icon = invite_multinationals
 	cost = 5
 	x = 16
 	y = 9
@@ -1440,7 +1706,7 @@ shared_focus = {
 
 shared_focus = {
 	id = YEM_lower_company_taxes
-	icon = focus_reform_port_procedures
+	icon = Low_Company_Tax_2
 	cost = 6.5
 	x = 16
 	y = 10
@@ -1936,6 +2202,10 @@ shared_focus = {
 			bonus = 0.5
 			uses = 1
 			category = cas_bomber
+		}
+		add_breakthrough_progress = {
+			specialization = specialization_air
+			value = 0.5
 		}
 		navy_experience = 20
 	}
@@ -5096,6 +5366,11 @@ shared_focus = {
 			has_government = centrist
 		}
 	}
+	bypass = {
+			NOT = {
+				country_exists = USA
+			}
+		}
 
 	relative_position_id = YEM_its_time_for_business
 	completion_reward = {
@@ -5529,7 +5804,7 @@ shared_focus = {
 }
 shared_focus = {
 	id = YEM_end_the_emergency
-	icon = generic_strike
+	icon = crush_militias
 	cost = 3.6
 	x = 0
 	y = 1

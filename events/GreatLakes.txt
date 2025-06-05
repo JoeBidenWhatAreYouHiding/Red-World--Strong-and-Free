@@ -956,6 +956,7 @@ country_event = {
 		NOT = {
 			has_country_flag = democracy_is_gone
 		}
+		is_puppet = no
 	}
 	immediate = {
 		hidden_effect = {
@@ -1167,6 +1168,7 @@ country_event = {
 		NOT = {
 			has_country_flag = democracy_is_gone
 		}
+		is_puppet = no
 	}
 	option = {
 		name = greatlakes.38.o1		#DA
@@ -2812,8 +2814,13 @@ country_event = {
 			add_ideas = laker_nsm_thomas_william_piatek
 			add_ideas = laker_inm_joshua_matthew_stone
 		}
-		GRL_mike_vanderboegh = {
-			promote_character = american_nationalist
+		add_country_leader_role = {
+			character = GRL_mike_vanderboegh
+			promote_leader = yes
+			country_leader = {
+				ideology = american_nationalist
+				expire = "2030.1.1.1"
+			 }
 		}
 		set_party_name = {
 			ideology = nationalist
@@ -6162,6 +6169,7 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = greatlakes.249.o1		#The mutiny spreads...
+		if = { limit = { has_idea = idea_glr_prince_family_ties } remove_ideas = idea_glr_prince_family_ties }
 		add_stability = -0.04
 		add_political_power = -40
 		GRL_jack_bergman= {
@@ -6974,6 +6982,16 @@ country_event = {
 				}
 			}
 			AMC = {
+				clr_country_flag = unifying_america
+				clr_country_flag = can_core_ARI
+				clr_country_flag = can_core_PCA
+				clr_country_flag = can_core_LIN
+				clr_country_flag = can_core_MOT
+				clr_country_flag = can_core_TEX
+				clr_country_flag = can_core_GRL
+				clr_country_flag = can_core_ILL
+				clr_country_flag = can_core_USA
+				clr_country_flag = can_core_MWA
 				load_focus_tree = generic_focus
 				set_cosmetic_tag = AMC_NewEngland
 				AMC_sonia_sotomayor = {
@@ -6995,6 +7013,16 @@ country_event = {
 			puppet = AMC
 		}
 		NEA = {
+			clr_country_flag = unifying_america
+			clr_country_flag = can_core_ARI
+			clr_country_flag = can_core_PCA
+			clr_country_flag = can_core_LIN
+			clr_country_flag = can_core_MOT
+			clr_country_flag = can_core_TEX
+			clr_country_flag = can_core_GRL
+			clr_country_flag = can_core_ILL
+			clr_country_flag = can_core_USA
+			clr_country_flag = can_core_MWA
 			load_focus_tree = generic_focus
 			set_cosmetic_tag = NEA_Appalachia
 			NEA_vincent_r._stewart = {
@@ -7334,6 +7362,16 @@ country_event = {
 	option = {
 		name = greatlakes_diplo.16.o1
 		USA = {
+			clr_country_flag = unifying_america
+			clr_country_flag = can_core_ARI
+			clr_country_flag = can_core_PCA
+			clr_country_flag = can_core_LIN
+			clr_country_flag = can_core_MOT
+			clr_country_flag = can_core_TEX
+			clr_country_flag = can_core_GRL
+			clr_country_flag = can_core_ILL
+			clr_country_flag = can_core_NEA
+			clr_country_flag = can_core_MWA
 			load_focus_tree = generic_focus
 			set_cosmetic_tag = USA_military_command
 			USA_joseph_votel = {
@@ -7568,6 +7606,28 @@ country_event = {
 	option = {
 		name = greatlakes_diplo.24.o1
 		add_political_power = 50
+		if = {
+		limit = {
+		MOT = {
+		is_puppet_of = GRL
+				}
+			}
+		annex_country = {
+			target = MOT
+			transfer_troops = yes
+			}	
+		}
+		if = {
+		limit = {
+		MWA = {
+		is_puppet_of = GRL
+				}
+			}
+		annex_country = {
+			target = MWA
+			transfer_troops = yes
+			}	
+		}
 		annex_country = {
 			target = GRL
 			transfer_troops = yes
@@ -7641,6 +7701,28 @@ country_event = {
 		add_popularity = {
 			ideology = moderate_socialist
 			popularity = 0.1
+		}
+		if = {
+		limit = {
+		MOT = {
+		is_puppet_of = GRL
+				}
+			}
+		annex_country = {
+			target = MOT
+			transfer_troops = yes
+			}	
+		}
+		if = {
+		limit = {
+		MWA = {
+		is_puppet_of = GRL
+				}
+			}
+		annex_country = {
+			target = MWA
+			transfer_troops = yes
+			}	
 		}
 		annex_country = {
 			target = GRL

@@ -3,10 +3,9 @@
 calculate_maximum_divisions = {
 	### calculate base values - population and total factory count
 	clear_variable = non_core_base
-	set_variable = { base_units = 0 }
+	clear_variable = base_units
 	set_variable = { base_states = num_owned_states }
 	set_temp_variable = { factory_points = 0 }
-	set_temp_variable = { mils = 0 }
 	every_owned_state = {
 		if = {
 			limit = { is_core_of = ROOT }
@@ -15,12 +14,10 @@ calculate_maximum_divisions = {
 		else = {
 			add_to_variable = { ROOT.non_core_base = state_population_k }
 		}
-		add_to_temp_variable = { factory_points = industrial_complex_level }
+		add_to_temp_variable = { factory_points = building_level@industrial_complex }
 		add_to_temp_variable = { factory_points = building_level@dockyard }
-		add_to_temp_variable = { mils = arms_factory_level }
+		add_to_temp_variable = { factory_points = building_level@arms_factory }
 	}
-	multiply_temp_variable = { mils = 1.5 } #mils are worth 1.5x as much as civs/navs
-	add_to_temp_variable = { factory_points = mils }
 
 	# non-cores only give 10% of the population
 	if = {

@@ -1,0 +1,77 @@
+second_yankee_texan_war = {
+	kill_texas = {
+		days_mission_timeout = 180
+		selectable_mission = no
+		is_good = no
+		allowed = {
+			tag = USA
+		}
+		available = {
+		TEX = {
+		exists = no
+			}
+		}
+		activation = {
+			has_country_flag = USA_war_with_TEX
+			has_war_with = TEX
+		}
+		complete_effect = {
+			clr_country_flag = USA_war_with_TEX
+			add_political_power = 100
+		}
+		timeout_effect = {
+			clr_country_flag = USA_war_with_TEX
+			white_peace = TEX
+			add_political_power = -100
+			add_popularity = {
+			ideology = ROOT
+			popularity = -0.1
+		}
+		}
+	}
+	texan_survival = {
+		days_mission_timeout = 180
+		selectable_mission = no
+		is_good = no
+		allowed = {
+			tag = TEX
+		}
+		available = {
+		OR = {
+		AND = {
+		controls_state = 371
+		controls_state = 372
+		}
+		USA = {
+		surrender_progress > 0.29
+				}
+			}
+		}
+		activation = {
+			USA = {
+				has_country_flag = USA_war_with_TEX
+			}
+			has_war_with = USA
+		}
+		complete_effect = {
+			custom_effect_tooltip = yemen_survive_timeout_tt
+			white_peace = USA
+			if = {
+			limit = {
+			controls_state = 900
+					}
+			transfer_state = 900
+				}
+		}
+		timeout_effect = {
+			custom_effect_tooltip = yemen_survive_timeout_tt
+			white_peace = USA
+			if = {
+			limit = {
+			controls_state = 900
+					}
+			transfer_state = 900
+				}
+		}
+	}
+}

@@ -58,18 +58,291 @@ focus_tree = {
 
 	}
 	focus = {
+		id = SYR_military_reform
+		icon = focus_syrian_army
+		cost = 10
+		available = {
+		    OR = {
+			    has_completed_focus = SYR_designate_a_successor
+				has_completed_focus = SYR_syria_on_the_world_stage
+				has_completed_focus = SYR_royal_decrees
+				has_completed_focus = SYR_liberal_dominance
+				has_completed_focus = SYR_political_balance
+				has_completed_focus = SYR_conservative_dominance
+				has_completed_focus = SYR_down_with_the_president
+				has_completed_focus = SYR_iron_fisted_rule
+				has_completed_focus = SYR_syrian_revolution
+				has_completed_focus = SYR_convince_bashar
+				has_completed_focus = SYR_assassinate_bashar
+			}
+			is_puppet = no
+		}
+		x = 102
+		y = 0
+		completion_reward = {
+		    army_experience = 15
+		    air_experience = 15
+		    navy_experience = 15
+		}
+
+	}
+	focus = {
+		id = SYR_expand_tartus_base
+		icon = GFX_goal_naval_upgrade
+		cost = 7.2
+		available = {
+			is_puppet = no
+		}
+		prerequisite = { focus = SYR_military_reform }
+		x = 99
+		y = 1
+		completion_reward = {
+		    677 = {
+			add_building_construction = {
+				type = naval_base
+				level = 2
+				instant_build = yes
+				province = 10087
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = SYR_tartus_dockyards
+		icon = docks
+		cost = 7.2
+		available = {
+			is_puppet = no
+		}
+		prerequisite = { focus = SYR_expand_tartus_base }
+		x = 99
+		y = 2
+		completion_reward = {
+		    677 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = dockyard
+				level = 2
+				instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = SYR_expand_damascus_airbase
+		icon = GFX_goal_air_force
+		cost = 7.2
+		available = {
+			is_puppet = no
+		}
+		prerequisite = { focus = SYR_military_reform }
+		x = 105
+		y = 1
+		completion_reward = {
+		    554 = {
+			add_building_construction = {
+				type = air_base
+				level = 2
+				instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = SYR_fuel_reserve
+		icon = oil_focus
+		cost = 7.2
+		available = {
+			is_puppet = no
+		}
+		prerequisite = { focus = SYR_expand_damascus_airbase }
+		x = 105
+		y = 2
+		completion_reward = {
+		    random_owned_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = fuel_silo
+				level = 2
+				instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = SYR_conscripted_army
+		icon = GFX_goal_soldiers
+		cost = 10
+		available = {
+			is_puppet = no
+		}
+		mutually_exclusive = { focus = SYR_professional_army }
+		prerequisite = { focus = SYR_military_reform }
+		x = 101
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_syr_conscripted_army
+		}
+
+	}
+	focus = {
+		id = SYR_peoples_army
+		icon = army_marching_green
+		cost = 10
+		available = {
+			is_puppet = no
+		}
+		prerequisite = { focus = SYR_conscripted_army }
+		x = 101
+		y = 2
+		completion_reward = {
+		    swap_ideas = {
+					remove_idea = idea_syr_conscripted_army
+					add_idea = idea_syr_conscripted_army_2
+			}
+		}
+
+	}
+	focus = {
+		id = SYR_guerrilla_tactics
+		icon = GFX_goal_generic_entrenchment
+		cost = 10
+		available = {
+			is_puppet = no
+		}
+		prerequisite = { focus = SYR_peoples_army }
+		mutually_exclusive = {
+			focus = SYR_decentralized_tactics
+		}
+		x = 100
+		y = 3
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = SYR_guerrilla_tactics_doctrine
+				cost_reduction = 0.5
+				uses = 1
+				category = cat_grand_battle_plan
+				category = cat_mass_assault
+			}
+		}
+
+	}
+	focus = {
+		id = SYR_professional_army
+		icon = GFX_goal_soldiers2
+		cost = 10
+		available = {
+			is_puppet = no
+		}
+		mutually_exclusive = { focus = SYR_conscripted_army }
+		prerequisite = { focus = SYR_military_reform }
+		x = 103
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_syr_professional_army
+		}
+
+	}
+	focus = {
+		id = SYR_loyal_elite
+		icon = GFX_goal_soldier
+		cost = 10
+		available = {
+			is_puppet = no
+		}
+		prerequisite = { focus = SYR_professional_army }
+		x = 103
+		y = 2
+		completion_reward = {
+		    swap_ideas = {
+					remove_idea = idea_syr_professional_army
+					add_idea = idea_syr_professional_army_2
+			}
+		}
+
+	}
+	focus = {
+		id = SYR_centralized_tactics
+		icon = GFX_goal_counter
+		cost = 10
+		available = {
+			is_puppet = no
+		}
+		mutually_exclusive = {
+			focus = SYR_decentralized_tactics
+		}
+		prerequisite = { focus = SYR_loyal_elite }
+		x = 104
+		y = 3
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = SYR_decentralized_tactics_doctrine
+				cost_reduction = 0.5
+				uses = 1
+				category = cat_mobile_warfare
+				category = cat_superior_firepower
+			}
+		}
+
+	}
+	focus = {
+		id = SYR_decentralized_tactics
+		icon = military_drill
+		cost = 10
+		available = {
+			is_puppet = no
+		}
+		mutually_exclusive = {
+			focus = SYR_guerrilla_tactics
+			focus = SYR_centralized_tactics
+		}
+		prerequisite = { focus = SYR_loyal_elite focus = SYR_peoples_army}
+		x = 102
+		y = 3
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = SYR_decentralized_tactics_doctrine
+				cost_reduction = 0.5
+				uses = 1
+				category = cat_mobile_warfare
+				category = cat_mass_assault
+			}
+		}
+
+	}
+	focus = {
+		id = SYR_army_research_center
+		icon = GFX_goal_military_research
+		cost = 10
+		available = {
+			is_puppet = no
+		}
+		prerequisite = {
+		focus = SYR_guerrilla_tactics
+		focus = SYR_decentralized_tactics
+		focus = SYR_centralized_tactics
+		}
+		x = 102
+		y = 4
+		completion_reward = {
+			army_experience = 10
+			add_ideas = idea_syr_army_research_center
+		}
+
+	}
+	focus = {
 		id = SYR_the_world_stage
 		icon = focus_commonwealth_un_membership
 		cost = 5
 		available = {
 			date > 2012.1.1
 		    OR = {
-			    has_completed_focus = SYR_assadism
-				has_completed_focus = SYR_coalition_with_communists
-				has_completed_focus = SYR_coalition_with_democrats
-				has_completed_focus = SYR_coalition_with_the_right
-				has_completed_focus = SYR_restore_control
-				has_completed_focus = SYR_continue_rifaats_rule
+			    has_completed_focus = SYR_designate_a_successor
+				has_completed_focus = SYR_syria_on_the_world_stage
 				has_completed_focus = SYR_royal_decrees
 				has_completed_focus = SYR_liberal_dominance
 				has_completed_focus = SYR_political_balance
@@ -203,7 +476,7 @@ focus_tree = {
 	focus = {
 		id = SYR_cult_of_personality
 		icon = focus_syria_cult_of_personality
-		cost = 8
+		cost = 10
 		available = {
 		    is_puppet = no
 		}
@@ -361,7 +634,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_state_security
-		icon = small_arms
+		icon = GFX_goal_Generic_Espionage2
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -395,7 +668,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_nationalised_economy
-		icon = communist_construction
+		icon = GFX_goal_nationalize_industry
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -569,7 +842,7 @@ focus_tree = {
 	focus = {
 		id = SYR_empower_trade_unions
 		icon = focus_commonwealth_president
-		cost = 6.5
+		cost = 10
 		available = {
 		    is_puppet = no
 		}
@@ -650,6 +923,31 @@ focus_tree = {
 
 	}
 	focus = {
+		id = SYR_syria_on_the_world_stage
+		icon = focus_syria_on_the_world_stage
+		cost = 10
+		available = {
+		    is_puppet = no
+		}
+		prerequisite = {
+			focus = SYR_install_loyal_leader
+			focus = SYR_president_makhlouf
+			focus = SYR_the_puppet_family
+			focus = SYR_syrian_guns
+			focus = SYR_military_industry
+			focus = SYR_coastal_industry
+			focus = SYR_centralisation
+		}
+		x = 15
+		y = 10
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.025
+			add_war_support = 0.025
+		}
+
+	}
+	focus = {
 		id = SYR_coalition_with_the_right
 		icon = focus_syria_coalition_with_the_right
 		cost = 7.2
@@ -716,7 +1014,7 @@ focus_tree = {
 	focus = {
 		id = SYR_war_leadership
 		icon = start_war
-		cost = 7.2
+		cost = 10
 		available = {
 		    is_puppet = no
 		}
@@ -927,7 +1225,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_a_new_nationalism
-		icon = army_doctrine
+		icon = GFX_goal_Neo_Jingo
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -945,7 +1243,7 @@ focus_tree = {
 	focus = {
 		id = SYR_national_syndicalist_ideas
 		icon = focus_national_syndicalists
-		cost = 8
+		cost = 10
 		available = {
 		    is_puppet = no
 		}
@@ -965,8 +1263,8 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_create_a_business_council
-		icon = national_unity
-		cost = 5
+		icon = GFX_goal_bag_of_money
+		cost = 7.2
 		available = {
 		    is_puppet = no
 		}
@@ -1020,7 +1318,7 @@ focus_tree = {
 	focus = {
 		id = SYR_crackdown_on_dissent
 		icon = close_air_support
-		cost = 3.6
+		cost = 10
 		available = {
 		    is_puppet = no
 		}
@@ -1038,7 +1336,7 @@ focus_tree = {
 	focus = {
 		id = SYR_attack_islamists
 		icon = smashing_flag
-		cost = 2
+		cost = 3.6
 		available = {
 		    is_puppet = no
 		}
@@ -1059,7 +1357,7 @@ focus_tree = {
 	focus = {
 		id = SYR_corrective_movement
 		icon = against_communists
-		cost = 15
+		cost = 10
 		available = {
 		    is_puppet = no
 		}
@@ -1140,7 +1438,7 @@ focus_tree = {
 	focus = {
 		id = SYR_oligarchic_dictatorship
 		icon = anti_monarchy
-		cost = 5
+		cost = 10
 		available = {
 		    is_puppet = no
 		}
@@ -1158,7 +1456,7 @@ focus_tree = {
 	focus = {
 		id = SYR_propaganda_tools
 		icon = propaganda
-		cost = 7
+		cost = 7.9
 		available = {
 		    is_puppet = no
 		}
@@ -1175,7 +1473,7 @@ focus_tree = {
 	focus = {
 		id = SYR_military_alliance
 		icon = guns_purple
-		cost = 5
+		cost = 7.9
 		available = {
 		    is_puppet = no
 		}
@@ -1192,7 +1490,7 @@ focus_tree = {
 	focus = {
 		id = SYR_the_damascus_declaration
 		icon = shaking_hands_1
-		cost = 5
+		cost = 7.2
 		available = {
 		    is_puppet = no
 		}
@@ -1281,7 +1579,7 @@ focus_tree = {
 	focus = {
 		id = SYR_invited_mired
 		icon = focus_invited_mired
-		cost = 1
+		cost = 3.6
 		ai_will_do = {
 			modifier = {
 				NOT = {
@@ -1369,7 +1667,7 @@ focus_tree = {
 	focus = {
 		id = SYR_royal_decrees
 		icon = empower_the_house_of_lords
-		cost = 5
+		cost = 7.9
 		available = {
 		    is_puppet = no
 		}
@@ -1450,7 +1748,7 @@ focus_tree = {
 	focus = {
 		id = SYR_establish_a_privy_council
 		icon = concessions
-		cost = 4
+		cost = 5
 		available = {
 		    is_puppet = no
 		}
@@ -1476,7 +1774,7 @@ focus_tree = {
 	focus = {
 		id = SYR_status_quo
 		icon = political_pressure
-		cost = 4
+		cost = 5
 		available = {
 		    is_puppet = no
 		}
@@ -1499,7 +1797,7 @@ focus_tree = {
 	focus = {
 		id = SYR_absolute_control
 		icon = puppet
-		cost = 4
+		cost = 5
 		available = {
 		    is_puppet = no
 		}
@@ -1523,7 +1821,7 @@ focus_tree = {
 	focus = {
 		id = SYR_islamic_monarchy
 		icon = focus_syria_islamic_monarchy
-		cost = 7
+		cost = 7.9
 		available = {
 		    is_puppet = no
 		}
@@ -1548,7 +1846,7 @@ focus_tree = {
 	focus = {
 		id = SYR_secular_monarchy
 		icon = prestige_of_the_royals
-		cost = 7
+		cost = 7.9
 		available = {
 		    is_puppet = no
 		}
@@ -1571,7 +1869,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_benevolent_economic_system
-		icon = work_for_the_tsar
+		icon = welfare_statism
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -1595,7 +1893,7 @@ focus_tree = {
 	focus = {
 		id = SYR_republican_constitution
 		icon = focus_syria_republican_constitution
-		cost = 1
+		cost = 3.6
 		ai_will_do = {
 			modifier = {
 				NOT = {
@@ -1766,7 +2064,7 @@ focus_tree = {
 	focus = {
 		id = SYR_deregulated_capitalism
 		icon = focus_syria_unregulated_capitalism
-		cost = 5
+		cost = 10
 		available = {
 		    is_puppet = no
 		}
@@ -1784,7 +2082,7 @@ focus_tree = {
 	focus = {
 		id = SYR_a_republican_future
 		icon = focus_syria_a_republican_future
-		cost = 7
+		cost = 10
 		available = {
 		    is_puppet = no
 		}
@@ -1852,7 +2150,7 @@ focus_tree = {
 	focus = {
 		id = SYR_follow_in_switzerlands_footsteps
 		icon = focus_syria_follow_in_switzerlands_footsteps
-		cost = 5
+		cost = 10
 		available = {
 		    is_puppet = no
 		}
@@ -1864,7 +2162,7 @@ focus_tree = {
 		completion_reward = {
 		    country_event = { id = syria.88 }
 		    add_political_power = -100
-			add_stability = 0.02
+			add_stability = 0.025
 			add_ideas = idea_syr_swiss_civil_code
 		}
 
@@ -1883,6 +2181,10 @@ focus_tree = {
 		y = 7
 		completion_reward = {
 		    add_stability = 0.05
+		    add_popularity = {
+				ideology = centrist
+				popularity = -0.02
+			}
 		}
 
 	}
@@ -1905,7 +2207,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_nationwide_projects
-		icon = generic_ideology
+		icon = peace_money_development
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -1961,6 +2263,28 @@ focus_tree = {
 
 	}
 	focus = {
+		id = SYR_support_local_businesses
+		icon = GFX_goal_bag_of_money
+		cost = 10
+		prerequisite = {
+			focus = SYR_enshrine_secularism
+			focus = SYR_peace_and_reconciliation
+			focus = SYR_loyal_army
+			focus = SYR_welfare_reform
+		}
+		x = 34
+		y = 10
+
+
+		available = {
+		}
+
+		completion_reward = {
+			add_political_power = -25
+			add_ideas = idea_syr_local_businesses
+		}
+	}
+	focus = {
 		id = SYR_united_republic
 		icon = national_unity
 		cost = 10
@@ -1974,6 +2298,10 @@ focus_tree = {
 		y = 9
 		completion_reward = {
 		    add_ideas = idea_syr_united_republic
+		    add_popularity = {
+				ideology = centrist
+				popularity = 0.025
+			}
 		}
 
 	}
@@ -2004,7 +2332,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_traditional_values
-		icon = ideology_fist
+		icon = GFX_hijab
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -2021,7 +2349,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_islamic_politics
-		icon = focus_operation_forest_plain
+		icon = an_islamic_paradise
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -2055,14 +2383,24 @@ focus_tree = {
 		x = 36
 		y = 6
 		completion_reward = {
-		    add_stability = 0.01
+		    add_political_power = 50
+		    add_stability = 0.025
+		    add_ideas = idea_syr_minorities_respected
+		    814 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
 		}
 
 	}
 	focus = {
 		id = SYR_islamic_republic_of_syria
-		icon = focus_temporary_democracy
-		cost = 3.6
+		icon = focus_syria_islamic_republic_of_syria
+		cost = 10
 		available = {
 		    is_puppet = no
 		}
@@ -2079,15 +2417,16 @@ focus_tree = {
 		y = 6
 		completion_reward = {
 		    country_event = { id = syria.90 }
-		    add_stability = -0.05
-			add_political_power = 250
+		    add_stability = -0.025
+		    add_war_support = 0.025
+			add_political_power = 150
 			set_cosmetic_tag = SYR_IslamicRepublic
 		}
 
 	}
 	focus = {
 		id = SYR_maintain_mixed_economy
-		icon = focus_spread_democracy
+		icon = GFX_goal_promote_a_mixed_economy
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -2100,12 +2439,18 @@ focus_tree = {
 		y = 7
 		completion_reward = {
 		    add_ideas = idea_syr_mixed_economy
+		    random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+			}
+			random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+			}
 		}
 
 	}
 	focus = {
 		id = SYR_loyal_army
-		icon = cavalry
+		icon = focus_loyal_army
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -2117,13 +2462,14 @@ focus_tree = {
 		y = 8
 		completion_reward = {
 		    add_ideas = idea_syr_loyal_army
+		    army_experience = 10
 		}
 
 	}
 	focus = {
 		id = SYR_welfare_reform
-		icon = focus_friends_in_the_medicinal_council
-		cost = 5
+		icon = GFX_goal_welfare
+		cost = 7.2
 		available = {
 		    is_puppet = no
 		}
@@ -2235,7 +2581,7 @@ focus_tree = {
 	focus = {
 		id = SYR_demand_assads_resignation
 		icon = focus_demand_assads_resignation
-		cost = 3.6
+		cost = 5
 		available = {
 		    is_puppet = no
 		}
@@ -2278,7 +2624,7 @@ focus_tree = {
 	focus = {
 		id = SYR_assassinate_asma
 		icon = focus_assassinate_asma
-		cost = 2
+		cost = 5
 		available = {
 		    is_puppet = no
 		}
@@ -2382,6 +2728,10 @@ focus_tree = {
 		x = 44
 		y = 6
 		completion_reward = {
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.05
+			}
 		    add_political_power = 200
 		}
 
@@ -2423,7 +2773,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_workers_self_management
-		icon = focus_syria_workers_self_management
+		icon = direct_democracy
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -2441,7 +2791,7 @@ focus_tree = {
 	focus = {
 		id = SYR_union_councils
 		icon = focus_syria_union_councils
-		cost = 2
+		cost = 3.6
 		available = {
 		    is_puppet = no
 		}
@@ -2502,14 +2852,14 @@ focus_tree = {
 		    add_ideas = idea_syr_iron_fisted_rule
 			add_popularity = {
 				ideology = monarchist
-				popularity = 0.03
+				popularity = 0.05
 			}
 		}
 
 	}
 	focus = {
 		id = SYR_royal_guard
-		icon = army_marching_purple
+		icon = monarchist_army
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -2528,7 +2878,7 @@ focus_tree = {
 	focus = {
 		id = SYR_purge_dissident_allies
 		icon = tanks
-		cost = 2
+		cost = 7.2
 		available = {
 		    is_puppet = no
 		}
@@ -2637,7 +2987,7 @@ focus_tree = {
 	focus = {
 		id = SYR_aleppo_declaration
 		icon = focus_monarchist_diplomacy
-		cost = 3.6
+		cost = 10
 		available = {
 		    is_puppet = no
 		}
@@ -2658,7 +3008,7 @@ focus_tree = {
 	focus = {
 		id = SYR_radical_development_programs
 		icon = civ_factory
-		cost = 9
+		cost = 10
 		available = {
 		    is_puppet = no
 		}
@@ -2731,13 +3081,17 @@ focus_tree = {
 				uses = 1
 				category = nuclear
 			}
+			add_breakthrough_progress = {
+				specialization = specialization_nuclear
+				value = 1
+			}
 		}
 
 	}
 	focus = {
 		id = SYR_syria_rules_the_waves
 		icon = focus_syria_rules_the_waves
-		cost = 5
+		cost = 10
 		available = {
 		    is_puppet = no
 		}
@@ -2804,7 +3158,7 @@ focus_tree = {
 	focus = {
 		id = SYR_military_betrayal
 		icon = army_marching_red
-		cost = 1
+		cost = 2.9
 		available = {
 		    is_puppet = no
 		}
@@ -2816,6 +3170,10 @@ focus_tree = {
 		completion_reward = {
 		    add_political_power = -100
 			army_experience = 25
+			add_popularity = {
+				ideology = communist
+				popularity = 0.05
+			}
 		}
 
 	}
@@ -2846,7 +3204,7 @@ focus_tree = {
 	focus = {
 		id = SYR_syrian_revolution
 		icon = focus_syrian_revolution
-		cost = 8
+		cost = 7.9
 		available = {
 		    is_puppet = no
 		}
@@ -2874,7 +3232,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_defend_the_workers_movement
-		icon = territory_or_war
+		icon = GFX_goal_emergency_fortifications
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -2909,7 +3267,7 @@ focus_tree = {
 	focus = {
 		id = SYR_democratic_centralism
 		icon = communist_monarchy
-		cost = 5
+		cost = 7.9
 		available = {
 		    is_puppet = no
 		}
@@ -2927,7 +3285,7 @@ focus_tree = {
 	focus = {
 		id = SYR_death_to_pan_arabism
 		icon = focus_death_to_pan_arabism
-		cost = 8
+		cost = 7.9
 		available = {
 		    is_puppet = no
 		}
@@ -2945,7 +3303,7 @@ focus_tree = {
 	focus = {
 		id = SYR_seize_the_means
 		icon = focus_seize_the_means
-		cost = 2
+		cost = 7.2
 		available = {
 		    is_puppet = no
 		}
@@ -2963,7 +3321,7 @@ focus_tree = {
 	focus = {
 		id = SYR_attack_oligarchs
 		icon = parties
-		cost = 8
+		cost = 7.9
 		available = {
 		    is_puppet = no
 		}
@@ -2979,7 +3337,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_scientific_progress
-		icon = tech_sharing
+		icon = socialist_science
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -3033,7 +3391,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_social_progress
-		icon = focus_on_agriculture
+		icon = mass_socialist_organisation
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -3088,7 +3446,7 @@ focus_tree = {
 	focus = {
 		id = SYR_state_atheism
 		icon = focus_syria_state_atheism
-		cost = 5
+		cost = 7.9
 		available = {
 		    is_puppet = no
 		}
@@ -3126,7 +3484,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_far_right_resurgence
-		icon = fascism_2
+		icon = focus_syria_ssnp
 		cost = 10
 		available = {
 		    has_country_flag = far_right_sees_resurgence
@@ -3152,7 +3510,7 @@ focus_tree = {
 	focus = {
 		id = SYR_influence_coalition_members
 		icon = support_monarchy
-		cost = 4
+		cost = 5
 		available = {
 		    is_puppet = no
 		}
@@ -3181,8 +3539,8 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_state_security_act
-		icon = forceful_treaty
-		cost = 2
+		icon = surveillance_panopticon
+		cost = 5
 		available = {
 		    is_puppet = no
 		}
@@ -3193,13 +3551,14 @@ focus_tree = {
 		y = 3
 		completion_reward = {
 		    add_political_power = 120
+		    add_ideas = idea_syr_state_security_act
 		}
 
 	}
 	focus = {
 		id = SYR_promote_new_secularism
-		icon = major_war
-		cost = 4
+		icon = secularism
+		cost = 5
 		available = {
 		    is_puppet = no
 		}
@@ -3293,7 +3652,7 @@ focus_tree = {
 	focus = {
 		id = SYR_sideline_the_baathists
 		icon = attack_allies
-		cost = 2
+		cost = 5
 		available = {
 		    is_puppet = no
 		}
@@ -3327,7 +3686,7 @@ focus_tree = {
 	focus = {
 		id = SYR_crush_arab_nationalism
 		icon = demand_territory
-		cost = 8
+		cost = 7.9
 		available = {
 		    is_puppet = no
 		}
@@ -3337,14 +3696,18 @@ focus_tree = {
 		x = 65
 		y = 6
 		completion_reward = {
-		    add_political_power = 200
+		    add_political_power = 125
+		    add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.05
+			}
 		}
 
 	}
 	focus = {
 		id = SYR_love_syria
 		icon = focus_love_syria
-		cost = 5
+		cost = 7.2
 		available = {
 		    is_puppet = no
 		}
@@ -3362,7 +3725,7 @@ focus_tree = {
 	focus = {
 		id = SYR_subsidise_economic_sectors
 		icon = consumer_goods
-		cost = 7
+		cost = 7.2
 		available = {
 		    is_puppet = no
 		}
@@ -3446,7 +3809,7 @@ focus_tree = {
 	focus = {
 		id = SYR_the_syrian_brute
 		icon = political_pressure
-		cost = 10
+		cost = 7.2
 		available = {
 		    has_government = fascist
 			is_puppet = no
@@ -3480,8 +3843,8 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_purge_baathists
-		icon = military_salute
-		cost = 1
+		icon = GFX_goal_Generic_Espionage
+		cost = 3.6
 		available = {
 		    has_government = fascist
 			is_puppet = no
@@ -3526,7 +3889,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_syrian_corporatism
-		icon = air_doctrine
+		icon = corporatism
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -3547,7 +3910,7 @@ focus_tree = {
 	focus = {
 		id = SYR_drive_out_the_zionists
 		icon = focus_drive_out_the_zionists
-		cost = 2
+		cost = 3.6
 		available = {
 		    is_puppet = no
 		}
@@ -3557,7 +3920,7 @@ focus_tree = {
 		x = 72
 		y = 7
 		completion_reward = {
-		    add_manpower = -3000
+		    add_manpower = -5000
 			add_stability = 0.02
 			add_popularity = {
 				ideology = fascist
@@ -3568,8 +3931,8 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_education_reform
-		icon = fascism_1
-		cost = 3.6
+		icon = focus_ssnp_education
+		cost = 5
 		available = {
 		    is_puppet = no
 		}
@@ -3608,7 +3971,7 @@ focus_tree = {
 	focus = {
 		id = SYR_enshrine_conservative_modernism
 		icon = dangerous_deal
-		cost = 8
+		cost = 7.2
 		available = {
 		    is_puppet = no
 		}
@@ -3627,7 +3990,7 @@ focus_tree = {
 	focus = {
 		id = SYR_fertile_crescent
 		icon = focus_fertile_crescent
-		cost = 2
+		cost = 7.2
 		available = {
 		    OR = {
 			    has_government = monarchist 
@@ -3647,8 +4010,10 @@ focus_tree = {
 		x = 78
 		y = 1
 		completion_reward = {
+		custom_effect_tooltip = syr_crescent_tt
 		hidden_effect = {
 			add_named_threat = { threat = 5 name = SYR_redactado_lmao }
+			set_country_flag = SYR_fertile_crescent_integration
 			}
 		    add_political_power = 20
 		}
@@ -3657,7 +4022,7 @@ focus_tree = {
 	focus = {
 		id = SYR_claim_lebanon
 		icon = focus_claim_lebanon
-		cost = 7.9
+		cost = 7.2
 		available = {
 		    is_puppet = no
 		}
@@ -3676,7 +4041,7 @@ focus_tree = {
 	focus = {
 		id = SYR_claim_iraq
 		icon = focus_claim_iraq
-		cost = 7.9
+		cost = 7.2
 		available = {
 		    is_puppet = no
 		}
@@ -3715,7 +4080,7 @@ focus_tree = {
 	focus = {
 		id = SYR_claim_the_north
 		icon = focus_syria_claim_the_north
-		cost = 7.9
+		cost = 7.2
 		available = {
 		    is_puppet = no
 		}
@@ -3789,12 +4154,12 @@ focus_tree = {
 	focus = {
 		id = SYR_claim_western_persia
 		icon = focus_claim_western_persia
-		cost = 7.9
+		cost = 7.2
 		available = {
 		    is_puppet = no
 		}
 		prerequisite = {
-			focus = SYR_claim_jordan
+			focus = SYR_claim_sinai
 		}
 		x = 79
 		y = 4
@@ -3861,9 +4226,33 @@ focus_tree = {
 	focus = {
 		id = SYR_proclaim_a_new_state
 		icon = focus_family_ties
-		cost = 20
+		cost = 14.3
 		available = {
 		    is_puppet = no
+		    owns_state = 553
+		    owns_state = 827
+		    owns_state = 344
+		    owns_state = 345
+		    owns_state = 836
+		    owns_state = 183
+		    owns_state = 350
+		    owns_state = 352
+		    owns_state = 421
+		    owns_state = 413
+		    owns_state = 815
+		    owns_state = 939
+		    owns_state = 676
+		    owns_state = 941
+		    owns_state = 919
+		    owns_state = 675
+		    owns_state = 656
+		    owns_state = 455
+		    owns_state = 810
+		    owns_state = 454
+		    owns_state = 811
+		    owns_state = 812
+		    owns_state = 453
+		    owns_state = 813
 		}
 		prerequisite = {
 			focus = SYR_claim_cyprus
@@ -3872,7 +4261,7 @@ focus_tree = {
 			focus = SYR_claim_western_persia
 		}
 		prerequisite = {
-			focus = SYR_claim_sinai
+			focus = SYR_claim_jordan
 		}
 		x = 78
 		y = 5
@@ -3972,12 +4361,13 @@ focus_tree = {
 		cost = 10
 		available = {
 		    is_puppet = no
+		    has_army_manpower = {
+    		size > 175000
+			}
+			has_war = no
 		}
 		prerequisite = {
 			focus = SYR_greater_syria
-		}
-		available = {
-			has_war = no
 		}
 		x = 85
 		y = 2
@@ -4007,10 +4397,10 @@ focus_tree = {
 		y = 3
 		will_lead_to_war_with = IRQ
 		completion_reward = {
-		    676 = {
-			    add_claim_by = SYR
-			}
 			815 = {
+			    add_core_of = SYR
+			}
+		    676 = {
 			    add_claim_by = SYR
 			}
 			939 = {
@@ -4195,7 +4585,7 @@ focus_tree = {
 	focus = {
 		id = SYR_amman_treaty
 		icon = jordan
-		cost = 7
+		cost = 7.2
 		available = {
 		    JOR = {
 			    OR = {
@@ -4796,7 +5186,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_raw_military_strength
-		icon = build_tank
+		icon = GFX_goal_soldier
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -4813,8 +5203,8 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_central_planning
-		icon = position_armies
-		cost = 15
+		icon = focus_land_reform
+		cost = 10
 		available = {
 		    is_puppet = no
 		}
@@ -4901,7 +5291,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_populace_domination
-		icon = production_2
+		icon = puppet
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -4922,7 +5312,7 @@ focus_tree = {
 	focus = {
 		id = SYR_ban_trade_unions
 		icon = broken_star
-		cost = 3.6
+		cost = 5.2
 		available = {
 		    is_puppet = no
 		}
@@ -5013,7 +5403,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_loyal_military_command
-		icon = axis_helmet
+		icon = military_salute
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -5083,7 +5473,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_syrian_capitalism
-		icon = torch_industry
+		icon = GFX_goal_capitalist_economy
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -5104,7 +5494,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_major_subsidies
-		icon = infrastructure
+		icon = GFX_goal_state_economy
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -5180,7 +5570,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_modern_land_doctrine
-		icon = motorised
+		icon = GFX_goal_dark_truck
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -5222,7 +5612,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_modern_naval_doctrine
-		icon = navy_doctrine
+		icon = GFX_goal_Naval_Upgrade_2
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -5260,7 +5650,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_military_industry
-		icon = military_factory
+		icon = GFX_goal_arms_factory
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -5277,7 +5667,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_syrian_guns
-		icon = small_arms
+		icon = small_arms_east
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -5299,7 +5689,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_centralisation
-		icon = ensure_shengo_loyalty
+		icon = centralised_economy
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -5316,7 +5706,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_capitalism_revived
-		icon = democracy
+		icon = GFX_goal_Capitalism
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -5340,7 +5730,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_socialist_leanings
-		icon = communism_3
+		icon = communist_monarchy
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -5448,7 +5838,7 @@ focus_tree = {
 	focus = {
 		id = SYR_syrian_federation
 		icon = focus_syria_syrian_federation
-		cost = 5
+		cost = 10
 		available = {
 		    is_puppet = no
 		}
@@ -5471,7 +5861,7 @@ focus_tree = {
 	focus = {
 		id = SYR_enshrine_secularism
 		icon = focus_syria_enshrine_secularism
-		cost = 3.6
+		cost = 7.2
 		available = {
 		    is_puppet = no
 		}
@@ -5579,7 +5969,7 @@ focus_tree = {
 	focus = {
 		id = SYR_confederation_of_syria
 		icon = focus_reorganise_trade_councils
-		cost = 2
+		cost = 5
 		available = {
 		    is_puppet = no
 		}
@@ -5598,7 +5988,7 @@ focus_tree = {
 	focus = {
 		id = SYR_unite_with_kurdistan
 		icon = red_hands_shaking
-		cost = 2
+		cost = 7.2
 		available = {
 			OR = {
 			    KUR = {
@@ -5701,7 +6091,7 @@ focus_tree = {
 	focus = {
 		id = SYR_abolish_direct_action
 		icon = cut_ties_to_the_usa
-		cost = 8
+		cost = 7.9
 		available = {
 		    is_puppet = no
 		}
@@ -5743,7 +6133,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_welfare_state
-		icon = focus_north_egyptian_projects
+		icon = GFX_goal_Welfare_State
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -5809,7 +6199,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_meet_with_clerics
-		icon = focus_islamic_socialism
+		icon = islamic_focus_01
 		cost = 5
 		available = {
 		    is_puppet = no
@@ -5828,8 +6218,8 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_a_leftist_party
-		icon = communist_construction
-		cost = 8
+		icon = left_wing_win
+		cost = 7.9
 		available = {
 		    NOT = {
 			    has_country_flag = council_of_20_has_taken_control
@@ -5937,7 +6327,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SYR_private_military_corporations
-		icon = allies_infantry
+		icon = focus_utilise_our_might
 		cost = 10
 		available = {
 		    is_puppet = no
@@ -5971,6 +6361,10 @@ focus_tree = {
 				bonus = 0.5
 				uses = 1
 				category = nuclear
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_nuclear
+				value = 1
 			}
 		}
 

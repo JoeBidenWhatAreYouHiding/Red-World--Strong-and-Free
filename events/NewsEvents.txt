@@ -1,6 +1,7 @@
 add_namespace = news
 add_namespace = ukbad
-
+add_namespace = centroamericanews
+add_namespace = commonwealthnews
 news_event = {	#2010 Winter Olympics - Albertville, France 
 	id = news.1
 	title = news.1.t
@@ -1016,6 +1017,17 @@ news_event = {	#communist coup in djibouti
 	
 	option = {
 		name = news.77.o1
+		trigger = {
+		not = {
+		tag = ETH 
+			}
+		}
+	}
+
+	option = {
+		name = news.77.o2
+		trigger = { tag = ETH }
+		puppet = DJI
 	}
 }
 
@@ -1058,18 +1070,18 @@ news_event = {	#ethiopia joins democratic league
 	}
 }
 
-news_event = {	#chapel of the tablet destroyed by ethiopian government
-	id = news.81
-	title = news.81.t
-	desc = news.81.d
-	picture = news_chapel_of_the_tablet
-	
-	is_triggered_only = yes 
-	
-	option = {
-		name = news.81.o1
-	}
-}
+#news_event = {	#chapel of the tablet destroyed by ethiopian government
+#	id = news.81
+#	title = news.81.t
+#	desc = news.81.d
+#	picture = news_chapel_of_the_tablet
+#	
+#	is_triggered_only = yes 
+#	
+#	option = {
+#		name = news.81.o1
+#	}
+#}
 
 news_event = {	#prime minister owen assassinated
 	id = news.82
@@ -1094,6 +1106,24 @@ news_event = {	#queen dissolves parliament
 	
 	option = {
 		name = news.83.o1
+		trigger = {
+		not = {
+		has_government = communist
+		has_government = monarchist
+			}
+		}
+	}
+	option = {
+		name = news.83.o2
+		trigger = {
+		has_government = communist
+		}
+	}
+	option = {
+		name = news.83.o3
+		trigger = {
+		has_government = monarchist
+		}
 	}
 }
 
@@ -1107,6 +1137,30 @@ news_event = {	#queen humiliated, returns to palace
 	
 	option = {
 		name = news.84.o1
+		trigger = {
+		NOT = {
+		OR = {
+		has_government = communist
+		has_government = revolutionary_socialist
+		has_government = monarchist
+				}
+			}
+		}
+	}
+	option = {
+		name = news.84.o2
+		trigger = {
+		OR = {
+		has_government = communist
+		has_government = revolutionary_socialist
+			}
+		}
+	}
+	option = {
+		name = news.84.o3
+		trigger = {
+		has_government = monarchist
+		}
 	}
 }
 
@@ -1114,7 +1168,7 @@ news_event = {	#conservatives win snap election
 	id = news.85
 	title = news.85.t
 	desc = news.85.d
-	picture = news_british_election
+	picture = news_conservatives_wins_election
 	
 	is_triggered_only = yes 
 	
@@ -1127,7 +1181,7 @@ news_event = {	#liberal democrats win snap election
 	id = news.86
 	title = news.86.t
 	desc = news.86.d
-	picture = news_british_election
+	picture = news_liberal_wins_election
 	
 	is_triggered_only = yes 
 	
@@ -1140,7 +1194,7 @@ news_event = {	#social democrats win snap election
 	id = news.87
 	title = news.87.t
 	desc = news.87.d
-	picture = news_british_election
+	picture = news_sdp_wins_election
 	
 	is_triggered_only = yes 
 	
@@ -1153,7 +1207,7 @@ news_event = {	#labour party win snap election
 	id = news.88
 	title = news.88.t
 	desc = news.88.d
-	picture = news_british_election
+	picture = news_labour_wins_election
 	
 	is_triggered_only = yes 
 	
@@ -1166,7 +1220,7 @@ news_event = {	#independent labour win snap election
 	id = news.89
 	title = news.89.t
 	desc = news.89.d
-	picture = news_british_election
+	picture = news_independent_labour_wins_election
 	
 	is_triggered_only = yes 
 	
@@ -1335,12 +1389,25 @@ news_event = {	#Britain first wins post-false flag election
 	id = news.102
 	title = news.102.t
 	desc = news.102.d
-	picture = news_british_election
+	picture = news_bf_elections
 	
 	is_triggered_only = yes 
 	
 	option = {
 		name = news.102.o1
+		trigger = {
+		NOT = {
+		has_government = fascist
+		has_government = nationalist
+			}
+		}
+	}
+	option = {
+		name = news.102.o2
+		trigger = {
+		has_government = fascist
+		has_government = nationalist
+		}
 	}
 }
 
@@ -1348,12 +1415,25 @@ news_event = {	#british national party wins post-false flag election
 	id = news.103
 	title = news.103.t
 	desc = news.103.d
-	picture = news_british_election
+	picture = news_bnp_elections
 	
 	is_triggered_only = yes 
 	
 	option = {
 		name = news.103.o1
+		trigger = {
+		NOT = {
+		has_government = fascist
+		has_government = nationalist
+			}
+		}
+	}
+	option = {
+		name = news.103.o2
+		trigger = {
+		has_government = fascist
+		has_government = nationalist
+		}
 	}
 }
 
@@ -1367,6 +1447,17 @@ news_event = {	#phoenix front wins post-false flag election
 	
 	option = {
 		name = news.104.o1
+		trigger = {
+		NOT = {
+		has_government = fascist
+			}
+		}
+	}
+	option = {
+		name = news.104.o2
+		trigger = {
+		has_government = fascist
+		}
 	}
 }
 
@@ -1627,6 +1718,108 @@ news_event = {	#first concentration camps in britain
 	
 	option = {
 		name = news.124.o1
+		trigger = {
+            OR = {
+                OR = {
+                    has_government = moderate_socialist
+                    has_government = new_democrat
+                    has_government = national_conservative
+                    has_government = national_bolshevik
+                    has_government = monarchist
+                    has_government = centrist
+                    has_government = liberal
+					has_government = nationalist
+                }
+                AND = {
+                    has_government = fascist
+                    OR = {
+                        tag = MOR
+                        tag = ALG
+                        tag = UAR
+                        tag = SYR
+                        tag = EGY
+                        tag = ASS
+                        tag = AZA
+                        tag = BAH
+                        tag = COM
+                        tag = DJI
+                        tag = IRQ
+                        tag = PER
+                        tag = GNS
+                        tag = ISL
+                        tag = UAE
+                        tag = SUD
+                        tag = SAU
+                        tag = JAS
+                        tag = JOR
+                        tag = KUR
+                        tag = LBA
+                        tag = LEB
+                        tag = MRA
+                        tag = OMA
+                        tag = PAL
+                        tag = SOM
+                        tag = TUN
+                        tag = TUR
+                        tag = YEM
+                        tag = YAR
+                        tag = PDY
+                    }
+                }
+            }
+        }
+    }
+	option = {
+		name = news.124.o2
+		trigger = {
+		AND = {
+		has_government = fascist
+		NOT = {
+		OR = {
+		tag = MOR
+		tag = ALG
+		tag = UAR
+		tag = SYR
+		tag = EGY
+		tag = ASS
+		tag = AZA
+		tag = BAH
+		tag = COM
+		tag = DJI
+		tag = IRQ
+		tag = PER
+		tag = GNS
+		tag = ISL
+		tag = UAE
+		tag = SUD
+		tag = SAU
+		tag = JAS
+		tag = JOR
+		tag = KUR
+		tag = LBA
+		tag = LEB
+		tag = MRA
+		tag = OMA
+		tag = PAL
+		tag = SOM
+		tag = TUN
+		tag = TUR
+		tag = YEM
+		tag = YAR
+		tag = PDY
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = news.124.o3
+		trigger = {
+		OR = {
+		has_government = communist
+		has_government = revolutionary_socialist
+			}
+		}
 	}
 }
 
@@ -1796,6 +1989,23 @@ news_event = {	#royal palaces stormed
 	
 	option = {
 		name = news.137.o1
+		trigger = {
+		NOT = {
+			OR = {
+				has_government = communist
+				has_government = revolutionary_socialist
+				}
+			}
+		}
+	}
+	option = {
+		name = news.137.o2	 
+		trigger = {
+			OR = {
+				has_government = communist
+				has_government = revolutionary_socialist
+			}
+		}
 	}
 }
 
@@ -1809,6 +2019,23 @@ news_event = {	#windsors executed
 	
 	option = {
 		name = news.138.o1
+		trigger = {
+		NOT = {
+			OR = {
+				has_government = communist
+				has_government = revolutionary_socialist
+				}
+			}
+		}
+	}
+	option = {
+		name = news.138.o2	 
+		trigger = {
+			OR = {
+				has_government = communist
+				has_government = revolutionary_socialist
+			}
+		}
 	}
 }
 
@@ -1816,12 +2043,29 @@ news_event = {	#windsors exiled
 	id = news.139
 	title = news.139.t
 	desc = news.139.d
-	picture = news_british_monarchy_abolished
+	picture = news_windsors_exiled
 	
 	is_triggered_only = yes 
 	
 	option = {
 		name = news.139.o1
+		trigger = {
+		NOT = {
+			OR = {
+				has_government = communist
+				has_government = revolutionary_socialist
+				}
+			}
+		}
+	}
+	option = {
+		name = news.139.o2	 
+		trigger = {
+			OR = {
+				has_government = communist
+				has_government = revolutionary_socialist
+			}
+		}
 	}
 }
 
@@ -1916,31 +2160,31 @@ news_event = {	#charles dies
 	}
 }
 
-news_event = {	#princess diana killed
-	id = news.147
-	title = news.147.t
-	desc = news.147.d
-	picture = news_diana_killed
-	
-	is_triggered_only = yes 
-	
-	option = {
-		name = news.147.o1
-	}
-}
-
-news_event = {	#princess diana funeral
-	id = news.148
-	title = news.148.t
-	desc = news.148.d
-	picture = news_princess_diana_funeral
-	
-	is_triggered_only = yes 
-	
-	option = {
-		name = news.148.o1
-	}
-}
+#news_event = {	#princess diana killed
+#	id = news.147
+#	title = news.147.t
+#	desc = news.147.d
+#	picture = news_diana_killed
+#	
+#	is_triggered_only = yes 
+#	
+#	option = {
+#		name = news.147.o1
+#	}
+#}
+#
+#news_event = {	#princess diana funeral
+#	id = news.148
+#	title = news.148.t
+#	desc = news.148.d
+#	picture = news_princess_diana_funeral
+#	
+#	is_triggered_only = yes 
+#	
+#	option = {
+#		name = news.148.o1
+#	}
+#}
 
 news_event = {	#brasier becomes high secretary
 	id = news.149
@@ -1955,18 +2199,18 @@ news_event = {	#brasier becomes high secretary
 	}
 }
 
-news_event = {	#william and kate marry
-	id = news.150
-	title = news.150.t
-	desc = news.150.d
-	picture = news_william_kate_wedding
-	
-	is_triggered_only = yes 
-	
-	option = {
-		name = news.150.o1
-	}
-}
+#news_event = {	#william and kate marry
+#	id = news.150
+#	title = news.150.t
+#	desc = news.150.d
+#	picture = news_william_kate_wedding
+#	
+#	is_triggered_only = yes 
+#	
+#	option = {
+#		name = news.150.o1
+#	}
+#}
 
 news_event = {	#2011 england riots
 	id = news.151
@@ -2358,18 +2602,18 @@ news_event = {	#new york constitution
 	}
 }
 
-news_event = {	#cc starts hearings on 5/1
-	id = news.181
-	title = news.181.t
-	desc = news.181.d
-	picture = news_5_one_hearings
-	
-	is_triggered_only = yes 
-	
-	option = {
-		name = news.181.o1
-	}
-}
+#news_event = {	#cc starts hearings on 5/1
+#	id = news.181
+#	title = news.181.t
+#	desc = news.181.d
+#	picture = news_5_one_hearings
+#	
+#	is_triggered_only = yes 
+#	
+#	option = {
+#		name = news.181.o1
+#	}
+#}
 
 news_event = {	#chomsky caught in drug sex scandal
 	id = news.182
@@ -2423,18 +2667,18 @@ news_event = {	#commonwealth joins un
 	}
 }
 
-news_event = {	#support for democracy grows
-	id = news.186
-	title = news.186.t
-	desc = news.186.d
-	picture = news_democratic_support_grows
-	
-	is_triggered_only = yes 
-	
-	option = {
-		name = news.186.o1
-	}
-}
+#news_event = {	#support for democracy grows
+#	id = news.186
+#	title = news.186.t
+#	desc = news.186.d
+#	picture = news_democratic_support_grows
+#	
+#	is_triggered_only = yes 
+#	
+#	option = {
+#		name = news.186.o1
+#	}
+#}
 
 news_event = {	#sanders appointed to committee
 	id = news.187
@@ -3047,6 +3291,24 @@ news_event = {	#coup against presidnet and congress
 	
 	option = {
 		name = news.231.o1
+		trigger = {
+		NOT = {
+			OR = {
+				tag = PCA
+				tag = NEA
+				}
+			}
+		}
+		
+	}
+	option = {
+		name = news.231.o2
+		trigger = {
+			OR = {
+				tag = PCA
+				tag = NEA
+			}
+		}
 		
 	}
 }
@@ -3061,7 +3323,23 @@ news_event = {	#paul emery takes charge
 	
 	option = {
 		name = news.232.o1
-		
+		trigger = {
+		NOT = {
+			OR = {
+				has_government = communist
+				has_government = revolutionary_socialist
+				}
+			}
+		}
+	}
+	option = {
+		name = news.232.o2	 
+		trigger = {
+			OR = {
+				has_government = communist
+				has_government = revolutionary_socialist
+			}
+		}
 	}
 }
 
@@ -3272,7 +3550,60 @@ news_event = {	#Cascadia Revolts
 	
 	option = {
 		name = news.247.o1
-		
+		trigger = {
+			tag = PCA
+		}
+	}
+	option = {
+		name = news.247.o2
+		trigger = {
+			tag = CSD
+		}
+	}
+	option = {
+		name = news.247.o3
+		trigger = {
+			has_government = communist
+		}
+	}
+	option = {
+		name = news.247.o4
+		trigger = {
+			OR = {
+				tag = USA
+				tag = NEA
+				tag = MWA
+				tag = AMC
+				tag = TEX
+				tag = ILL
+				tag = GRL
+				tag = MOT
+				tag = UTA
+				tag = ARI
+				tag = LIN
+			}
+		}
+	}
+	option = {
+		name = news.247.o5
+		trigger = {
+			NOT = {
+				tag = PCA
+				tag = CSD
+				tag = USA
+				tag = NEA
+				tag = MWA
+				tag = AMC
+				tag = TEX
+				tag = ILL
+				tag = GRL
+				tag = MOT
+				tag = UTA
+				tag = ARI
+				tag = LIN
+				has_government = communist
+			}
+		}
 	}
 }
 news_event = {	#Syrian War breaks out
@@ -3818,7 +4149,7 @@ news_event = {	#Davis death
 		}
 	}
 }
-news_event = {	#Demolition of the White House
+news_event = {	#Demolition of the White House (defunct)
 	id = news.270
 	title = news.270.t
 	desc = news.270.d
@@ -3844,7 +4175,7 @@ news_event = {	#Demolition of the White House
 		}
 	}
 }
-news_event = {	#Mount Rushmore blown up
+news_event = {	#Mount Rushmore blown up (defunct)
 	id = news.271
 	title = news.271.t
 	desc = news.271.d
@@ -3864,7 +4195,7 @@ news_event = {	#Mount Rushmore blown up
 		}
 	}
 }
-news_event = {	#Lady Liberty to be radically altered
+news_event = {	#Lady Liberty to be radically altered (defunct)
 	id = news.272
 	title = news.272.t
 	desc = news.272.d
@@ -5183,6 +5514,1119 @@ news_event = {	#The Great Toyota War
 		}
 	}
 }
+news_event = {	#Jarvis Tyner dies
+	id = news.334
+	title = news.334.t
+	desc = news.334.d
+	picture = davis_death
+		
+	is_triggered_only = yes 
+	
+	option = {
+		name = news.334.o1
+		trigger = {
+			tag = PCA
+		}
+	}
+	option = {
+		name = news.334.o2
+		trigger = {
+			OR = {
+				has_government = communist
+			}
+		}
+	}
+	option = {
+		name = news.334.o3
+		trigger = {
+			NOT = {
+				tag = PCA
+				has_government = communist
+			}
+		}
+	}
+}
+news_event = {	#Treaty of Seattle
+	id = news.335
+	title = news.335.t
+	desc = news.335.d
+	picture = news_treaty_of_seattle
+	is_triggered_only = yes 
+	
+	option = {
+		name = news.335.o1
+		trigger = {
+			tag = PCA
+		}
+	}
+	option = {
+		name = news.335.o2
+		trigger = {
+			tag = CSD
+		}
+	}
+	option = {
+		name = news.335.o3
+		trigger = {
+			has_government = communist
+		}
+	}
+	option = {
+		name = news.335.o4
+		trigger = {
+			OR = {
+				tag = USA
+				tag = NEA
+				tag = MWA
+				tag = AMC
+				tag = TEX
+				tag = ILL
+				tag = GRL
+				tag = MOT
+				tag = UTA
+				tag = ARI
+				tag = LIN
+			}
+		}
+	}
+	option = {
+		name = news.335.o5
+		trigger = {
+			NOT = {
+				tag = PCA
+				tag = CSD
+				tag = USA
+				tag = NEA
+				tag = MWA
+				tag = AMC
+				tag = TEX
+				tag = ILL
+				tag = GRL
+				tag = MOT
+				tag = UTA
+				tag = ARI
+				tag = LIN
+				has_government = communist
+			}
+		}
+	}
+}
+news_event = {	#Cascadian Uprising Defeated
+	id = news.336
+	title = news.336.t
+	desc = news.336.d
+	picture = news_cascadian_uprising_defeated
+		
+	is_triggered_only = yes 
+	
+	option = {
+		name = news.336.o1
+		trigger = {
+			OR = {
+				tag = PCA
+				has_government = communist
+			}
+		}
+	}
+	option = {
+		name = news.336.o2
+		trigger = {
+			OR = {
+				tag = USA
+				tag = NEA
+				tag = MWA
+				tag = AMC
+				tag = TEX
+				tag = ILL
+				tag = GRL
+				tag = MOT
+				tag = UTA
+				tag = ARI
+				tag = LIN
+			}
+		}
+	}
+	option = {
+		name = news.336.o3
+		trigger = {
+			NOT = {
+				tag = PCA
+				tag = USA
+				tag = NEA
+				tag = MWA
+				tag = AMC
+				tag = TEX
+				tag = ILL
+				tag = GRL
+				tag = MOT
+				tag = UTA
+				tag = ARI
+				tag = LIN
+				has_government = communist
+			}
+		}
+	}
+}
+news_event = {	#Inaguartion of Manmohan Singh
+	id = news.337
+	title = news.337.t
+	desc = news.337.d
+	picture = singh_pm
+		
+	is_triggered_only = yes 
+	
+	option = { #let us see if his reputation precedes him
+		name = news.337.o1
+	}
+}
+news_event = {	#INC clings to problem
+	id = news.338
+	title = news.338.t
+	desc = news.338.d
+	picture = inc_victory
+		
+	is_triggered_only = yes 
+	
+	option = { #another chance for redemption
+		name = news.338.o1
+	}
+}
+news_event = {	#left front coalition elected in india
+	id = news.339
+	title = news.339.t
+	desc = news.339.d
+	picture = india_left_front
+		
+	is_triggered_only = yes 
+	
+	option = { #the red banner finally waves over new delhi
+		name = news.339.o1
+	}
+}
+news_event = {	# inauguration of moderate leftist pm
+	id = news.340
+	title = news.340.t
+	desc = news.340.d
+	picture = india_mod_soc_pm
+		
+	is_triggered_only = yes 
+	
+	option = { #the future of indian socialism has been determined
+		name = news.340.o1
+		trigger = {
+			NOT = {
+				has_government = communist
+			}
+		}
+	}
+
+	option = { #yechury is the rightful pm
+		name = news.340.o2
+		trigger = {
+			has_government = communist
+		}
+	}
+}
+news_event = {	#inauguration of sitaram yechury
+	id = news.341
+	title = news.341.t
+	desc = news.341.d
+	picture = india_yechury_pm
+		
+	is_triggered_only = yes 
+	
+	option = { #lenin's revolution spreads to new delhi
+		name = news.341.o1
+	}
+}
+news_event = {	#marxist uprising in india
+	id = news.342
+	title = news.342.t
+	desc = news.342.d
+	picture = yechury_revolt
+		
+	is_triggered_only = yes
+	
+	option = { #why would yechury so carelessly destroy the republic
+		name = news.342.o1
+		trigger = {
+			NOT = {
+				has_government = communist
+			}
+		}
+	}
+
+	option = { #the real revolution has begun
+		name = news.342.o2
+		trigger = {
+			has_government = communist
+		}
+	}
+}
+news_event = {	#china seizes arunachal pradesh
+	id = news.343
+	title = news.343.t
+	desc = news.343.d
+	picture = china_seizes_arunachal_pradesh
+		
+	is_triggered_only = yes 
+	
+	option = { #china expands its influence
+		name = news.343.o1
+	}
+}
+news_event = {	#indian marxist rebellion defeated
+	id = news.344
+	title = news.344.t
+	desc = news.344.d
+	picture = india_marxist_rebelion_defeated
+		
+	is_triggered_only = yes 
+	
+	option = { #and to think this conflict was so easily avoided
+		name = news.344.o1
+	}
+}
+news_event = {	#Indian marxist rebellion victorious
+	id = news.345
+	title = news.345.t
+	desc = news.345.d
+	picture = indian_marxism_victory
+		
+	is_triggered_only = yes 
+	
+	option = { #the world revolution lives on, but at what cost?
+		name = news.345.o1
+		trigger = {
+			NOT = {
+				has_government = communist
+			}
+		}
+	}
+
+	option = { #we shall assist our indian comrades
+		name = news.345.o2
+		trigger = {
+			has_government = communist
+		}
+	}
+}
+news_event = {	#bjs elected in india
+	id = news.346
+	title = news.346.t
+	desc = news.346.d
+	picture = india_bjs_elected
+		
+	is_triggered_only = yes 
+	
+	option = { #the hindu majority has spoken
+		name = news.346.o1
+	}
+}
+news_event = {	#indian prime minister assassinated
+	id = news.347
+	title = news.347.t
+	desc = news.347.d
+	picture = indian_pm_assassinated
+		
+	is_triggered_only = yes 
+	
+	option = { #a tragedy for the republic
+		name = news.347.o1
+	}
+}
+news_event = {	#hindu nationalist coup indian government
+	id = news.348
+	title = news.348.t
+	desc = news.348.d
+	picture = hindu_nationalist_coup
+		
+	is_triggered_only = yes 
+	
+	option = { #how was this allowed to happen
+		name = news.348.o1
+	}
+}
+news_event = {	#indian president declares state of emergency
+	id = news.349
+	title = news.349.t
+	desc = news.349.d
+	picture = president_singh
+		
+	is_triggered_only = yes 
+	
+	option = { #has indian democracy been lost forever
+		name = news.349.o1
+	}
+}
+news_event = { #failed military coup in india
+	id = news.350
+	title = news.350.t
+	desc = news.350.d
+	picture = india_army_coup
+		
+	is_triggered_only = yes 
+	
+	option = { #is there not a shred if stability left in india
+		name = news.350.o1
+	}
+}
+news_event = { #panag forces crushed by indian government
+	id = news.351
+	title = news.351.t
+	desc = news.351.d
+	picture = india_army_revolt_crushed
+		
+	is_triggered_only = yes 
+	
+	option = { #india belongs to gandhi now
+		name = news.351.o1
+	}
+}
+news_event = { #rajiv gandhi crowned emperor of india
+	id = news.352
+	title = news.352.t
+	desc = news.352.d
+	picture = emperor_gandhi
+		
+	is_triggered_only = yes 
+	
+	option = { #the knell rings
+		name = news.352.o1
+		trigger = {
+			NOT = {
+				has_government = monarchist
+			}
+		}
+	}
+
+	option = { #what divine right does he hold
+		name = news.352.o2
+		trigger = {
+			has_government = monarchist
+		}
+	}
+}
+news_event = { #crackdown on buddhist radicals
+	id = news.353
+	title = news.353.t
+	desc = news.353.d
+	picture = news_buddhist_crackdown
+		
+	is_triggered_only = yes 
+	
+	option = { #the fragile peace holds
+		name = news.353.o1
+	}
+}
+news_event = { #aung san suu kyi resign
+	id = news.354
+	title = news.354.t
+	desc = news.354.d
+	picture = news_aung_san_resigns
+		
+	is_triggered_only = yes 
+	
+	option = { #an evil come to light after 13 years
+		name = news.354.o1
+	}
+}
+news_event = { #council of monks revolt
+	id = news.355
+	title = news.355.t
+	desc = news.355.d
+	picture = news_council_of_monks_revolt
+		
+	is_triggered_only = yes 
+	
+	option = { #the council was unwise to be so trusting
+		name = news.355.o1
+	}
+}
+news_event = { #council of monks victorious against wirathu loyalists
+	id = news.356
+	title = news.356.t
+	desc = news.356.d
+	picture = news_council_of_monks_victorious
+		
+	is_triggered_only = yes 
+	
+	option = { #let us hope they do not repeat their mistakes
+		name = news.356.o1
+	}
+}
+news_event = { #wirathu loyalists victorious
+	id = news.357
+	title = news.357.t
+	desc = news.357.d
+	picture = news_wirathu_victorious
+		
+	is_triggered_only = yes 
+	
+	option = { #may allah be with the muslims of burma
+		name = news.357.o1
+	}
+}
+news_event = { #burmese military revolts
+	id = news.358
+	title = news.358.t
+	desc = news.358.d
+	picture = news_burma_military_revolt
+		
+	is_triggered_only = yes 
+	
+	option = { #the lotus has finally wilted
+		name = news.358.o1
+	}
+}
+news_event = { #burmese military revolt crushed
+	id = news.359
+	title = news.359.t
+	desc = news.359.d
+	picture = news_burma_military_defeated
+		
+	is_triggered_only = yes 
+	
+	option = { #burma has been freed from its military
+		name = news.359.o1
+	}
+}
+news_event = { #burmese military revolt victorious
+	id = news.360
+	title = news.360.t
+	desc = news.360.d
+	picture = news_burma_military_victory
+		
+	is_triggered_only = yes 
+	
+	option = { #powersharing could only last so long
+		name = news.360.o1
+	}
+}
+news_event = { #aung san suu kyi commits suicide
+	id = news.361
+	title = news.361.t
+	desc = news.361.d
+	picture = news_aung_san_suicide
+		
+	is_triggered_only = yes 
+	
+	option = { #a tragic loss for burma
+		name = news.361.o1
+	}
+}
+news_event = { #democratic elections in burma
+	id = news.362
+	title = news.362.t
+	desc = news.362.d
+	picture = news_burma_elections
+		
+	is_triggered_only = yes 
+	
+	option = { #a new begining
+		name = news.362.o1
+	}
+}
+news_event = { #moe saw impeached
+	id = news.363
+	title = news.363.t
+	desc = news.363.d
+	picture = news_moe_zaw_impeached
+		
+	is_triggered_only = yes 
+	
+	option = { #is another revolution imminent
+		name = news.363.o1
+	}
+}
+news_event = { #un condems rakhine genocide
+	id = news.364
+	title = news.364.t
+	desc = news.364.d
+	picture = news_rakhine_genocide
+		
+	is_triggered_only = yes 
+	
+	option = { #violence begets violence
+		name = news.364.o1
+	}
+}
+news_event = { #impeachement of aung san suu kyi
+	id = news.365
+	title = news.365.t
+	desc = news.365.d
+	picture = news_aung_san_impeached
+		
+	is_triggered_only = yes 
+	
+	option = { #will the military stand for this
+		name = news.365.o1
+	}
+}
+news_event = { #burma presidential elections
+	id = news.366
+	title = news.366.t
+	desc = news.366.d
+	picture = news_burma_presidential_elections
+		
+	is_triggered_only = yes 
+	
+	option = { #a new start, but has anything changed
+		name = news.366.o1
+	}
+}
+news_event = { #absolute monarchy burma
+	id = news.367
+	title = news.367.t
+	desc = news.367.d
+	picture = news_burmese_monarchy
+		
+	is_triggered_only = yes 
+	
+	option = { #so rings the death knell of burmese socialism
+		name = news.367.o1
+	}
+}
+news_event = { #constitutional monarchy burma
+	id = news.368
+	title = news.368.t
+	desc = news.368.d
+	picture = news_burmese_monarchy
+		
+	is_triggered_only = yes 
+	
+	option = { #time will tell how uniting phaya will be
+		name = news.368.o1
+	}
+}
+news_event = { #military coup in india (panag)
+	id = news.369
+	title = news.369.t
+	desc = news.369.d
+	picture = news_military_coup_india
+		
+	is_triggered_only = yes 
+	
+	option = { #and so the republic survives
+		name = news.369.o1
+	}
+}
+news_event = { #general panag steps down
+	id = news.370
+	title = news.370.t
+	desc = news.370.d
+	picture = news_deve_gowda
+		
+	is_triggered_only = yes 
+	
+	option = { #a rocky start for democracy
+		name = news.370.o1
+	}
+}
+news_event = { #constitutionalist revolt in india
+	id = news.371
+	title = news.371.t
+	desc = news.371.d
+	picture = news_india_constitutionalist_revolt
+		
+	is_triggered_only = yes 
+	
+	option = { #how could panag betray the republic so easily
+		name = news.371.o1
+	}
+}
+news_event = { #anti-gandhi uprising victorious
+	id = news.372
+	title = news.372.t
+	desc = news.372.d
+	picture = news_military_coup_india
+		
+	is_triggered_only = yes 
+	
+	option = { #india awaits the word of general panag
+		name = news.372.o1
+	}
+}
+news_event = { #panag crushes constitutionalist revolt
+	id = news.373
+	title = news.373.t
+	desc = news.373.d
+	picture = news_panag_victorious
+		
+	is_triggered_only = yes 
+	
+	option = { #india awaits the word of general panag
+		name = news.373.o1
+	}
+}
+news_event = { #constitutionalist revolt succeeds
+	id = news.374
+	title = news.374.t
+	desc = news.374.d
+	picture = news_deve_gowda
+		
+	is_triggered_only = yes 
+	
+	option = { #maybe now India can find peace
+		name = news.374.o1
+	}
+}
+news_event = { #declaration of the people's union of indian republics
+	id = news.375
+	title = news.375.t
+	desc = news.375.d
+	picture = news_harcharanjit_panag
+		
+	is_triggered_only = yes 
+	
+	option = { #a strange turn of events
+		name = news.375.o1
+		trigger = {
+			NOT = {
+				OR = {
+					has_government = communist
+					has_government = revolutionary_socialist
+				}
+			}
+		}
+	}
+
+	option = { #panag is as socialist as marx was capitalist
+		name = news.375.o2
+		trigger = {
+			OR = {
+				has_government = communist
+				has_government = revolutionary_socialist
+			}
+		}
+	}
+}
+news_event = { #army mutineers march on new delhi
+	id = news.376
+	title = news.376.t
+	desc = news.376.d
+	picture = news_india_army_mutiny
+		
+	is_triggered_only = yes 
+	
+	option = { #it seems yechury's power has yet to be secured
+		name = news.376.o1
+	}
+}
+news_event = { #general vij's mutineers emerge victorious
+	id = news.377
+	title = news.377.t
+	desc = news.377.d
+	picture = news_vij_victorious
+		
+	is_triggered_only = yes 
+	
+	option = { #stability has returned, for the time being
+		name = news.377.o1
+	}
+}
+news_event = { #general vij's mutineers defeated
+	id = news.378
+	title = news.378.t
+	desc = news.378.d
+	picture = news_yechury
+		
+	is_triggered_only = yes 
+	
+	option = { #the red tide consumes india
+		name = news.378.o1
+	}
+}
+news_event = { #hindu nationalists revolt over state atheism
+	id = news.379
+	title = news.379.t
+	desc = news.379.d
+	picture = news_hindu_revolt
+		
+	is_triggered_only = yes 
+	
+	option = { #only one can triumph
+		name = news.379.o1
+	}
+}
+news_event = { #hindu revolt subdued (yechury)
+	id = news.380
+	title = news.380.t
+	desc = news.380.d
+	picture = news_hindu_revolt_defeated
+		
+	is_triggered_only = yes 
+	
+	option = { #there is no god
+		name = news.380.o1
+	}
+}
+news_event = { #hindu revolt victorious (yechury)
+	id = news.381
+	title = news.381.t
+	desc = news.381.d
+	picture = news_hindu_revolt_defeated
+		
+	is_triggered_only = yes 
+	
+	option = { #from the oppression of all, to the oppresion of some
+		name = news.381.o1
+	}
+}
+news_event = { #prakash karat appointed gensec
+	id = news.382
+	title = news.382.t
+	desc = news.382.d
+	picture = news_prakash_karat
+		
+	is_triggered_only = yes 
+	
+	option = { #a moderate turn for the cpi(m)
+		name = news.382.o1
+	}
+}
+news_event = { #manik sarkar appointed gensec
+	id = news.383
+	title = news.383.t
+	desc = news.383.d
+	picture = news_manik_sarkar
+		
+	is_triggered_only = yes 
+	
+	option = { #a new begining for the indian revolution
+		name = news.383.o1
+	}
+}
+news_event = { #joint politburo rule in india
+	id = news.384
+	title = news.384.t
+	desc = news.384.d
+	picture = news_india_joint_rule
+		
+	is_triggered_only = yes 
+	
+	option = { #can joint rule last
+		name = news.384.o1
+	}
+}
+news_event = { #cpi(m) politburo revolts against yechury
+	id = news.385
+	title = news.385.t
+	desc = news.385.d
+	picture = news_india_politburo_revolt
+		
+	is_triggered_only = yes 
+	
+	option = { #to think a split could form so easily
+		name = news.385.o1
+	}
+}
+news_event = { #cpi(m) politburo revolts defeated
+	id = news.386
+	title = news.386.t
+	desc = news.386.d
+	picture = news_india_politburo_defeat
+		
+	is_triggered_only = yes 
+	
+	option = { #yechury has finally revealed his true self
+		name = news.386.o1
+	}
+}
+news_event = { #cpi(m) politburo revolts victorious
+	id = news.387
+	title = news.387.t
+	desc = news.387.d
+	picture = news_india_politburo_victorious
+		
+	is_triggered_only = yes 
+	
+	option = { #has anything truly changed
+		name = news.387.o1
+	}
+}
+news_event = { #indian military overthrows narendra modi
+	id = news.388
+	title = news.388.t
+	desc = news.388.d
+	picture = news_military_overthrows_modi
+		
+	is_triggered_only = yes 
+	
+	option = { #india belongs to the military now
+		name = news.388.o1
+	}
+}
+news_event = { #udayanraje bhosale crowned chhatrapati
+	id = news.389
+	title = news.389.t
+	desc = news.389.d
+	picture = news_bhosale_coronation
+		
+	is_triggered_only = yes 
+	
+	option = { #back from the dead, two centuries later
+		name = news.389.o1
+	}
+}
+news_event = { #hindu nationalist revolt against chhatrapati bhosale
+	id = news.390
+	title = news.390.t
+	desc = news.390.d
+	picture = news_hindu_revolt
+		
+	is_triggered_only = yes 
+	
+	option = { #history tends to rhyme
+		name = news.390.o1
+	}
+}
+news_event = { #hindu revolt crushed (bhosale)
+	id = news.391
+	title = news.391.t
+	desc = news.391.d
+	picture = emperor_gandhi
+		
+	is_triggered_only = yes 
+	
+	option = { #they have won the battle, but lost the war
+		name = news.391.o1
+	}
+}
+news_event = { #hindu revolt victorious (bhosale)
+	id = news.392
+	title = news.392.t
+	desc = news.392.d
+	picture = news_hindu_revolt_victorious
+		
+	is_triggered_only = yes 
+	
+	option = { #from an empire to a republic, in a matter of months
+		name = news.392.o1
+	}
+}
+news_event = { #the righeous union of bharatiya declared
+	id = news.393
+	title = news.393.t
+	desc = news.393.d
+	picture = news_bharatiya
+		
+	is_triggered_only = yes 
+	
+	option = { #if india did not belong to the hindus before, it does now
+		name = news.393.o1
+	}
+}
+news_event = { #naxalite uprising in india
+	id = news.394
+	title = news.394.t
+	desc = news.394.d
+	picture = news_naxalite_uprising
+		
+	is_triggered_only = yes 
+	
+	option = { #the red corridor bleeds
+		name = news.394.o1
+	}
+}
+news_event = { #naxalite victorious
+	id = news.395
+	title = news.395.t
+	desc = news.395.d
+	picture = news_naxalites_victorious
+		
+	is_triggered_only = yes 
+	
+	option = { #the revolution may have succeeded, but cab raos government
+		name = news.395.o1
+	}
+}
+news_event = { #naxalite defeated
+	id = news.396
+	title = news.396.t
+	desc = news.396.d
+	picture = news_naxalites_defeated
+		
+	is_triggered_only = yes 
+	
+	option = { #time will tell
+		name = news.396.o1
+	}
+}
+news_event = { #fourth indo-pakistani war
+	id = news.397
+	title = news.397.t
+	desc = news.397.d
+	picture = news_india_pakistan_war
+		
+	is_triggered_only = yes 
+	
+	option = { #and end once and for all
+		name = news.397.o1
+	}
+}
+news_event = { #dravidian uprising
+	id = news.398
+	title = news.398.t
+	desc = news.398.d
+	picture = news_dravadian_uprising
+		
+	is_triggered_only = yes 
+	
+	option = { #was there truly no way for a peaceful settlement
+		name = news.398.o1
+	}
+}
+news_event = { #dravidia nadu granted independence
+	id = news.399
+	title = news.399.t
+	desc = news.399.d
+	picture = news_dravida_nadu_independence
+		
+	is_triggered_only = yes 
+	
+	option = { #the beginning of the end of India?
+		name = news.399.o1
+	}
+}
+news_event = { #dravidian uprising crushed
+	id = news.400
+	title = news.400.t
+	desc = news.400.d
+	picture = news_dravidian_uprising_crushed
+		
+	is_triggered_only = yes 
+	
+	option = { #english lies dead in india
+		name = news.400.o1
+	}
+}
+news_event = { #independence granted to english speaking regions of india
+	id = news.401
+	title = news.401.t
+	desc = news.401.d
+	picture = news_end_of_india
+		
+	is_triggered_only = yes 
+	
+	option = { #the end of India as we know it
+		name = news.401.o1
+	}
+}
+news_event = { #indian president bal thackeray passes away
+	id = news.402
+	title = news.402.t
+	desc = news.402.d
+	picture = news_thackeray_death
+		
+	is_triggered_only = yes 
+	
+	option = { #this may be the beginning of the end for shiv sena
+		name = news.402.o1
+		trigger = {
+			NOT = {
+				OR = {
+					has_government = communist
+					has_government = revolutionary_socialist
+				}
+			}
+		}
+	}
+
+	option = { #hopefully this is the end for shiv sena
+		name = news.402.o2
+		trigger = {
+			OR = {
+				has_government = communist
+				has_government = revolutionary_socialist
+			}
+		}
+	}
+}
+news_event = { #raj thackeray appointed president of india
+	id = news.403
+	title = news.403.t
+	desc = news.403.d
+	picture = news_raj_thackeray
+		
+	is_triggered_only = yes 
+	
+	option = { #the dream of reform has died, india belongs to thackeray
+		name = news.403.o1
+	}
+}
+news_event = { #rajkumar dhoot appointed president of india
+	id = news.404
+	title = news.404.t
+	desc = news.404.d
+	picture = news_rajkumar_dhoot
+		
+	is_triggered_only = yes 
+	
+	option = { #a pragmatic face, but the dictatorship remains
+		name = news.404.o1
+	}
+}
+news_event = { #narayan rane appointed president of india
+	id = news.405
+	title = news.405.t
+	desc = news.405.d
+	picture = news_narayan_rane
+		
+	is_triggered_only = yes 
+	
+	option = { #a new reformist face, but can his support last?
+		name = news.405.o1
+	}
+}
+news_event = { #indian armed forces attempt to remove shiv sena government
+	id = news.406
+	title = news.406.t
+	desc = news.406.d
+	picture = india_army_coup
+		
+	is_triggered_only = yes 
+	
+	option = { #thackeray has much to answer for
+		name = news.406.o1
+	}
+}
+news_event = { #indian armed forces attempt to remove shiv sena government
+	id = news.407
+	title = news.407.t
+	desc = news.407.d
+	picture = news_vij_victorious
+		
+	is_triggered_only = yes 
+	
+	option = { #thackeray has much to answer for
+		name = news.407.o1
+	}
+}
+news_event = { #president rane subdues military revolt
+	id = news.408
+	title = news.408.t
+	desc = news.408.d
+	picture = news_india_rane_victorious
+		
+	is_triggered_only = yes 
+	
+	option = { #ranes reforms continue
+		name = news.408.o1
+	}
+}
+news_event = { #chhagan bhujbal appointed president of india
+	id = news.409
+	title = news.409.t
+	desc = news.409.d
+	picture = news_chhagan_bhujbal
+		
+	is_triggered_only = yes 
+	
+	option = { #a new, arguably democratic, face, but will it amount to anything?
+		name = news.409.o1
+	}
+}
 news_event = {	#Britain maintains control over Ulster
 	id = ukbad.1
 	title = ukbad.1.t
@@ -5228,4 +6672,698 @@ news_event = {	#Ulster beats both the UK and Ireland
 			tag = ENG
 		}
 	}
-}	
+}
+#Centroamerica News
+news_event = {
+	id = centroamericanews.1 #hurricane carlos
+	title = centroamericanews.1.t
+	desc = centroamericanews.1.d
+	picture = news_hurricane_carlos
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.1.o1 #ortega is fucked
+	}
+	option = {
+		name = centroamericanews.1.o2 #mexico and belize 
+		trigger = {
+			OR = {
+				tag = BLZ
+				tag = MEX
+			}
+		}
+	}
+}
+
+news_event = {
+	id = centroamericanews.2 #democracy brought to central america
+	title = centroamericanews.2.t
+	desc = centroamericanews.2.d
+	picture = news_democratic_centroamerica
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.2.o1 #who cares about central america?
+		trigger = {
+			NOT = {
+				has_government = communist
+			}
+		}
+	}
+	option = { #a setback for the latin proletariat
+		name = centroamericanews.2.o2
+		trigger = {
+			has_government = communist
+		}
+	}
+}
+
+news_event = {
+	id = centroamericanews.3 #central america collapses
+	title = centroamericanews.3.t
+	desc = centroamericanews.3.d
+	picture = news_centroamerica.collapse
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.3.o1 #¡Viva la independencia!
+		trigger = {
+			OR = {
+				tag = HON
+				tag = ELS
+				tag = COS
+			}
+		}
+	}
+
+	option = {
+		name = centroamericanews.3.o2 #back to where it all started
+		trigger = {
+			tag = NIC
+		}
+	}
+
+	option = {
+		name = centroamericanews.3.o3 #and so falls silent the revolution of centroamerica
+		trigger = {
+			has_government = communist
+		}
+	}
+
+	option = {
+		name = centroamericanews.3.o4 #the end of ortega's little project
+		trigger = {
+			NOT = {
+				OR = {
+					tag = HON
+					tag = ELS
+					tag = COS
+					tag = NIC
+					has_government = communist
+				}
+			}
+		}
+	}
+}
+
+news_event = {
+	id = centroamericanews.4 #flnc wins election
+	title = centroamericanews.4.t
+	desc = centroamericanews.4.d
+	picture = news_funes_president
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.4.o1 #the red flag is not ready to leave Central America just yet
+		trigger = {
+			NOT = {
+				has_government = communist
+			}
+		}
+	}
+
+	option = {
+		name = centroamericanews.4.o2 #this victory should belong to Ortega
+		trigger = {
+			has_government = communist
+		}
+	}
+}
+
+news_event = {
+	id = centroamericanews.5 #anti-corruption party wins election
+	title = centroamericanews.5.t
+	desc = centroamericanews.5.d
+	picture = news_nasralla_president
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.5.o1 #people care about corruption?
+	}
+}
+
+news_event = {
+	id = centroamericanews.6 #zelaya wins election
+	title = centroamericanews.6.t
+	desc = centroamericanews.6.d
+	picture = news_zelaya_president
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.6.o1 #the father of democracy remains
+	}
+}
+
+news_event = {
+	id = centroamericanews.7 #united opposition wins election
+	title = centroamericanews.7.t
+	desc = centroamericanews.7.d
+	picture = news_hernandez_president
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.7.o1 #christ and his teachings lead Managua forward
+		trigger = {
+			NOT = {
+				has_government = communist
+			}
+		}
+	}
+
+	option = {
+		name = centroamericanews.7.o2 #let us hope for his impeachement
+		trigger = {
+			has_government = communist
+		}
+	}
+}
+
+news_event = {
+	id = centroamericanews.8 #daniel ortega remains
+	title = centroamericanews.8.t
+	desc = centroamericanews.8.d
+	picture = news_daniel_ortega_remains
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.8.o1 #ortega is here to stay
+	}
+}
+
+news_event = {
+	id = centroamericanews.9 #humberto ortega secures leadership
+	title = centroamericanews.9.t
+	desc = centroamericanews.9.d
+	picture = news_humberto_president
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.9.o1 #the spirit of revolution has returned
+	}
+}
+
+news_event = {
+	id = centroamericanews.10 #nayib bukele secures leadership
+	title = centroamericanews.10.t
+	desc = centroamericanews.10.d
+	picture = news_bukele_president
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.10.o1 #a rising star
+	}
+}
+
+news_event = {
+	id = centroamericanews.11 #costa rica votes to leave
+	title = centroamericanews.11.t
+	desc = centroamericanews.11.d
+	picture = costa_rica_secedes
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.11.o1 #freedom will triumph
+		trigger = {
+			NOT = {
+				has_government = communist
+			}
+		}
+	}
+
+	option = {
+		name = centroamericanews.11.o2 #is this the end of the revolution?
+		trigger = {
+			has_government = communist
+		}
+	}
+}
+
+news_event = {
+	id = centroamericanews.12 #San Jose uprising
+	title = centroamericanews.12.t
+	desc = centroamericanews.12.d
+	picture = san_jose_uprising
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.12.o1 #corruption still runs deep in Central America
+	}
+}
+
+news_event = {
+	id = centroamericanews.13 #treaty of march 12th signed
+	title = centroamericanews.13.t
+	desc = centroamericanews.13.d
+	picture = treaty_march_12
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.13.o1 #will this end the central american revolution
+	}
+}
+
+news_event = {
+	id = centroamericanews.14 #san josé uprising crushed
+	title = centroamericanews.14.t
+	desc = centroamericanews.14.d
+	picture = san_jose_crushed
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.14.o1 #central america marches towards unification
+	}
+}
+
+news_event = {
+	id = centroamericanews.15 #ecological collapse in lake nicaragua
+	title = centroamericanews.15.t
+	desc = centroamericanews.15.d
+	picture = lake_nicaragua_disaster
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.15.o1 #a project doomed to fail from the start
+	}
+}
+
+news_event = {
+	id = centroamericanews.16 #sandino 5 overshoots the moon
+	title = centroamericanews.16.t
+	desc = centroamericanews.16.d
+	picture = sandino_5
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.16.o1 #do not go gentle into that good night
+	}
+}
+
+news_event = {
+	id = centroamericanews.17 #sandino 5 fucking explodes
+	title = centroamericanews.17.t
+	desc = centroamericanews.17.d
+	picture = sandino_5_explodes
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.17.o1 #what a disaster
+	}
+}
+
+news_event = {
+	id = centroamericanews.18 #sandino 5 lands on the moon
+	title = centroamericanews.18.t
+	desc = centroamericanews.18.d
+	picture = moon_landing
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.18.o1 #humanity returns to the stars
+		trigger = {
+			NOT = {
+				tag = USA
+			}
+		}
+	}
+
+	option = {
+		name = centroamericanews.18.o2 #they better only be visiting our landing site
+		trigger = {
+			tag = USA
+		}
+	}
+}
+
+news_event = {
+	id = centroamericanews.19 #vice president of centroamerica impeached
+	title = centroamericanews.19.t
+	desc = centroamericanews.19.d
+	picture = aleman_impeached
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.19.o1 #how ironic
+	}
+}
+
+news_event = {
+	id = centroamericanews.20 #vice president of central america survives no-confidence motion
+	title = centroamericanews.20.t
+	desc = centroamericanews.20.d
+	picture = aleman_persists
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.20.o1 #how ironic
+	}
+}
+
+news_event = {
+	id = centroamericanews.21 #siege of managua concludes
+	title = centroamericanews.21.t
+	desc = centroamericanews.21.d
+	picture = siege_of_managua
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.21.o1 #how the father of democracy has fallen
+	}
+}
+
+news_event = {
+	id = centroamericanews.22 #second central american constitutional convention
+	title = centroamericanews.22.t
+	desc = centroamericanews.22.d
+	picture = second_constitutional_convention
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.22.o1 #a dark day for central american democracy
+		trigger = {
+			NOT = {
+				OR = {
+					has_government = communist
+					has_government = national_bolshevik
+					has_government = nationalist
+					has_government = fascist
+				}
+			}
+		}
+	}
+
+	option = {
+		name = centroamericanews.22.o2 #central america has at last seen the light
+		trigger = {
+			OR = {
+				has_government = nationalist
+				has_government = fascist 
+			}
+		}
+	}
+
+	option = {
+		name = centroamericanews.22.o3 #the reactionaries have shown their true colors
+		trigger = {
+			OR = {
+				has_government = communist
+				has_government = national_bolshevik
+			}
+		}
+	}
+}
+
+news_event = {
+	id = centroamericanews.23 #juan antonio hernandez extradited to mexico
+	title = centroamericanews.23.t
+	desc = centroamericanews.23.d
+	picture = juan_hernandez_extradited
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.23.o1 #another blow to the cartels
+	}
+}
+
+news_event = {
+	id = centroamericanews.24 #juan orlando hernández extradited to mexico
+	title = centroamericanews.24.t
+	desc = centroamericanews.24.d
+	picture = juan_orlando_extradited
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.24.o1 #from one prison cell to another
+	}
+}
+
+news_event = {
+	id = centroamericanews.25 #humberto ortega resigns
+	title = centroamericanews.25.t
+	desc = centroamericanews.25.d
+	picture = news_humberto_president
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.25.o1 #can cruz keep the dream of reform alive
+	}
+}
+
+news_event = {
+	id = centroamericanews.26 #funes couped by halleslevens
+	title = centroamericanews.26.t
+	desc = centroamericanews.26.d
+	picture = flnc_hardline_coup
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.26.o1 #surely the people will reject halleslevens
+		trigger = {
+			NOT = {
+				has_government = communist
+			}
+		}
+	}
+
+	option = {
+		name = centroamericanews.26.o2 #central america is back in the hands of those who deserve it
+		trigger = {
+				has_government = communist
+		}
+	}
+}
+
+news_event = {
+	id = centroamericanews.27 #socialist unites central america
+	title = centroamericanews.27.t
+	desc = centroamericanews.27.d
+	picture = news_centroamerica_united_socialists
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.27.o1 #the lifeline of the world, severed
+		trigger = {
+			OR = {
+				has_government = national_conservative
+				has_government = centrist
+				has_government = liberal
+				has_government = new_democrat
+				has_government = moderate_socialist
+			}
+		}
+	}
+
+	option = {
+		name = centroamericanews.27.o2 #fifty years of revolution were not fought in vein
+		trigger = {
+			OR = {	
+				has_government = communist
+				has_government = revolutionary_socialist
+				has_government = national_bolshevik
+			}
+		}
+	}
+
+	option = {
+		name = centroamericanews.27.o3 #another monsterous state emerges
+		trigger = {
+			OR = {	
+				has_government = fascist
+				has_government = nationalist
+				has_government = monarchist
+			}
+		}
+	}
+}
+
+news_event = {
+	id = centroamericanews.28 #democrats unites central america
+	title = centroamericanews.28.t
+	desc = centroamericanews.28.d
+	picture = news_centroamerica_united_democracy
+
+	is_triggered_only = yes
+
+	option = {
+		name = centroamericanews.28.o1 #a once lost dream, now reclaimed from the hands of tyranny
+		trigger = {
+			NOT = {
+				OR = {	
+					has_government = communist
+					has_government = revolutionary_socialist
+					has_government = national_bolshevik
+				}
+			}
+		}
+	}
+
+	option = {
+		name = centroamericanews.28.o2 #a bastardization of Ortega's life work
+		trigger = {
+			OR = {	
+				has_government = communist
+				has_government = revolutionary_socialist
+				has_government = national_bolshevik
+			}
+		}
+	}
+}
+news_event = {
+	id = commonwealthnews.1 #[NEA.GetLeader] Elected to Succeed Noam Chomsky
+	title = commonwealthnews.1.t
+	desc = commonwealthnews.1.d
+	picture = news_chomsky_successor
+
+	is_triggered_only = yes
+
+	option = { #a new figurehead for philadelphia
+		name = commonwealthnews.1.o1
+	}
+}
+news_event = {
+	id = commonwealthnews.2 #James Mattis Appointed President of the [NEA.GetName]
+	title = commonwealthnews.2.t
+	desc = commonwealthnews.2.d
+	picture = news_james_mattis
+
+	is_triggered_only = yes
+
+	option = { #Politics makes for strange bedfellows
+		name = commonwealthnews.2.o1
+	}
+}
+news_event = {
+	id = commonwealthnews.3 #Commonwealth Revolt Crushed
+	title = commonwealthnews.3.t
+	desc = commonwealthnews.3.d
+	picture = news_commonwealth_revolt_crushed
+
+	is_triggered_only = yes
+
+	option = {#as expected
+		name = commonwealthnews.3.o1
+	}
+}
+news_event = {
+	id = commonwealthnews.4 #Commonwealth Revolt Victorious
+	title = commonwealthnews.4.t
+	desc = commonwealthnews.4.d
+	picture = news_commonwealth_revolt_victorious
+
+	is_triggered_only = yes
+
+	option = { #first 1776, then 1987, and now current year
+		name = commonwealthnews.4.o1
+	}
+}
+
+news_event = {
+	id = commonwealthnews.5 #William Ayers Elected to Succeed President John Holdren
+	title = commonwealthnews.5.t
+	desc = commonwealthnews.5.d
+	picture = news_bill_ayers
+
+	is_triggered_only = yes
+
+	option = { #idealism alone cannot shape a nation
+		name = commonwealthnews.5.o1
+	}
+}
+news_event = {
+	id = commonwealthnews.6 #Monica Moorehead Elected to Succeed President John Holdren
+	title = commonwealthnews.6.t
+	desc = commonwealthnews.6.d
+	picture = news_monica_moorehead
+
+	is_triggered_only = yes
+
+	option = {#internationalism returns to the People's Commonwealth
+		name = commonwealthnews.6.o1
+	}
+}
+news_event = {
+	id = commonwealthnews.7 #Bobby Rush Elected to Succeed President John Holdren
+	title = commonwealthnews.7.t
+	desc = commonwealthnews.7.d
+	picture = news_bobby_rush
+
+	is_triggered_only = yes
+
+	option = { #Serve the people, not the machine
+		name = commonwealthnews.7.o1
+	}
+}
+news_event = {
+	id = commonwealthnews.8 #Pete Buttigieg Elected President of the [NEA.GetName]
+	title = commonwealthnews.8.t
+	desc = commonwealthnews.8.d
+	picture = news_pete_buttigieg
+
+	is_triggered_only = yes
+
+	option = { #the next generation takes the reins
+		name = commonwealthnews.8.o1
+	}
+}
+news_event = {
+	id = commonwealthnews.9 #Rahm Emanuel Elected President of the [NEA.GetName]
+	title = commonwealthnews.9.t
+	desc = commonwealthnews.9.d
+	picture = news_rahm_emanuel
+
+	is_triggered_only = yes
+
+	option = { #a party man through and through
+		name = commonwealthnews.9.o1
+	}
+}
+news_event = {
+	id = commonwealthnews.10 #Alyson Kennedy Elected President of the [NEA.GetName]
+	title = commonwealthnews.10.t
+	desc = commonwealthnews.10.d
+	picture = news_alyson_kennedy
+
+	is_triggered_only = yes
+
+	option = { #a fight against the establishment is never without bloodshed
+		name = commonwealthnews.10.o1
+	}
+}
+news_event = {
+	id = commonwealthnews.11 #Sherrod Brown Elected President of the [NEA.GetName]
+	title = commonwealthnews.11.t
+	desc = commonwealthnews.11.d
+	picture = news_sherrod_brown
+
+	is_triggered_only = yes
+
+	option = { #sanders legacy lives on
+		name = commonwealthnews.11.o1
+	}
+}

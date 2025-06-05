@@ -15,13 +15,13 @@ if = {
 	set_oob = "PRC_2000_nsb"
 }
 
-#if = {
-#	limit = { has_dlc = "Man the Guns" }
-#		set_naval_oob = "PRC_2000_naval_mtg"
-#	else = {
+if = {
+	limit = { has_dlc = "Man the Guns" }
+		set_naval_oob = "PRC_2000_naval_mtg"
+	else = {
 		set_naval_oob = "PRC_2000_naval_legacy"
-#	}
-#}
+	}
+}
 
 add_ideas = {
 	idea_prc_legacy_of_maoism
@@ -280,4 +280,107 @@ if = {
 			special_type_slot_1 = empty
 		}
 	}
+}
+
+if = {
+	limit = { has_dlc = "Man the Guns" }
+	create_equipment_variant = {
+		name = "Type 051 Class"	
+		type = ship_hull_light_2
+#		name_group = SOV_DD_HISTORICAL
+		parent_version = 0
+		modules = {
+			fixed_ship_battery_slot = ship_light_battery_2
+			fixed_ship_anti_air_slot = ship_anti_air_4	
+			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+			fixed_ship_radar_slot = ship_sonar_1
+			fixed_ship_engine_slot = light_ship_engine_2
+			fixed_ship_torpedo_slot = ship_torpedo_1
+			mid_1_custom_slot = ship_torpedo_1
+			rear_1_custom_slot = ship_light_battery_2
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 054 Class"	
+		type = ship_hull_light_1
+#		name_group = SOV_DD_HISTORICAL
+		parent_version = 0
+		modules = {
+			fixed_ship_battery_slot = ship_light_battery_2
+			fixed_ship_anti_air_slot = ship_anti_air_3			
+			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+			fixed_ship_radar_slot = ship_sonar_1
+			fixed_ship_engine_slot = light_ship_engine_2
+			fixed_ship_torpedo_slot = ship_torpedo_1
+			mid_1_custom_slot = ship_anti_air_1
+			rear_1_custom_slot = ship_anti_air_3
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 035 Class" # conventional attack submarines
+		type = ship_hull_submarine_1
+#		name_group = SOV_SS_STALINETS
+		parent_version = 0
+		modules = {
+			fixed_ship_torpedo_slot = ship_torpedo_sub_2
+			fixed_ship_engine_slot = sub_ship_engine_1
+			rear_1_custom_slot = ship_mine_layer_sub
+		}
+	}	
+	create_equipment_variant = {
+		name = "Type 091 Class" # conventional attack submarines
+		type = ship_hull_submarine_1
+#		name_group = SOV_SS_STALINETS
+		parent_version = 0
+		modules = {
+			fixed_ship_torpedo_slot = ship_torpedo_sub_1
+			fixed_ship_engine_slot = sub_ship_engine_1
+			rear_1_custom_slot = ship_torpedo_sub_1
+		}
+	}	
+}
+
+if = {
+	limit = { not = { has_dlc = "Man the Guns" } }
+	create_equipment_variant = {
+		name = "Type 054 Class" #destroyers
+		type = destroyer_1
+		upgrades = {
+			ship_torpedo_upgrade = 3
+			destroyer_engine_upgrade = 1
+			ship_ASW_upgrade = 1
+			ship_anti_air_upgrade = 4
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 051 Class" #destroyers
+		type = destroyer_2
+		upgrades = {
+			ship_torpedo_upgrade = 3
+			destroyer_engine_upgrade = 1
+			ship_ASW_upgrade = 1
+			ship_anti_air_upgrade = 4
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 091 Class" #attack submarines
+		type = submarine_1
+		upgrades = {
+			ship_reliability_upgrade = 2
+			sub_engine_upgrade = 1
+			sub_stealth_upgrade = 3
+			sub_torpedo_upgrade = 3
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 035 Class" #attack submarines
+		type = submarine_1
+		upgrades = {
+			ship_reliability_upgrade = 2
+			sub_engine_upgrade = 1
+			sub_stealth_upgrade = 1
+			sub_torpedo_upgrade = 2
+		}
+	}
+	
 }

@@ -1,169 +1,399 @@
  #civil war
 	shared_focus = {
-        id = PDY_liberation_war
+        id = PDY_the_great_peoples_liberation_war
         ai_will_do = { factor = 1 }
-        icon = uk_workers_revolution
+        icon = GFX_the_great_peoples_war
         cost = 0
         available = {
             has_war = yes
         }
-        x = -7
+        x = -4
         y = 0
         completion_reward = {
             add_manpower = 10000
             add_ideas = PDY_peoples_war
+            add_ideas = war_economy
         }
     }
     shared_focus = {
-        id = PDY_rally_forces
+        id = PDY_rally_the_international_proletariat
         ai_will_do = { factor = 1 }
-        icon = pro_soviet_propaganda
+        icon = GFX_rally_the_international_proletariat
         cost = 1
         available = {
             has_war = yes
         }
+        bypass_if_unavailable = yes
+        prerequisite = {
+            focus = PDY_the_great_peoples_liberation_war
+        }
+        relative_position_id = PDY_the_great_peoples_liberation_war
         x = 0
         y = 1
-        relative_position_id = PDY_liberation_war
-        prerequisite = {
-            focus = PDY_liberation_war
-        }
         completion_reward = {
+            country_event = pdy.107
             add_ideas = PDY_worker_militias
-            hidden_effect = {
-                293 = {
-                    create_unit = {
-                        division = "name = \"1st People's Militia\" division_template = \"Communist Militia\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
-                        owner = PDY
-                    }
-                    create_unit = {
-                        division = "name = \"2nd People's Militia\" division_template = \"Communist Militia\" start_experience_factor = 0.5  start_equipment_factor = 0.8"
-                        owner = PDY
-                    }
-                    create_unit = {
-                        division = "name = \"3rd People's Militia\" division_template = \"Communist Militia\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
-                        owner = PDY
-                     }
-                    create_unit = {
-                        division = "name = \"4th People's Militia\" division_template = \"Communist Militia\" start_experience_factor = 0.5  start_equipment_factor = 0.8"
-                        owner = PDY
-                    }
+            division_template = {
+                name = "Workers Militia"
+                regiments = {
+                    infantry = { x = 0 y = 0 }
+                    infantry = { x = 0 y = 1 }
+                    infantry = { x = 0 y = 2 }
+                    infantry = { x = 1 y = 0 }
+                    infantry = { x = 1 y = 1 }
                 }
             }
-            custom_effect_tooltip = jas_divisions
-			country_event = { id = pdy.106 }
+            293 = {
+                create_unit = {
+                    division = "name = \"1st Workers Militia\" division_template = \"Workers Militia\" start_experience_factor = 2 start_equipment_factor = 1"
+                    owner = PDY
+                    allow_spawning_on_enemy_provs = yes
+                }
+                create_unit = {
+                    division = "name = \"2nd Workers Militia\" division_template = \"Workers Militia\" start_experience_factor = 2  start_equipment_factor = 1"
+                    owner = PDY
+                    allow_spawning_on_enemy_provs = yes
+                }
+                create_unit = {
+                    division = "name = \"3rd Workers Militia\" division_template = \"Workers Militia\" start_experience_factor = 2  start_equipment_factor = 1"
+                    owner = PDY
+                    allow_spawning_on_enemy_provs = yes
+                }
+            }
         }
     }
     shared_focus = {
-        id = PDY_guns
+        id = PDY_contact_our_allies_in_abu_dhabi
         ai_will_do = { factor = 1 }
-        icon = guns_for_people
-        cost = 1
+        icon = GFX_abu_dhabi
+        cost = 3
         available = {
             has_war = yes
         }
-        x = -1
-        y = 1
-        relative_position_id = PDY_rally_forces
+        bypass_if_unavailable = yes
         prerequisite = {
-            focus = PDY_rally_forces
+            focus = PDY_rally_the_international_proletariat
         }
+        relative_position_id = PDY_rally_the_international_proletariat
+        x = -2
+        y = 1
         completion_reward = {
             add_equipment_to_stockpile = {
                 type = infantry_equipment
                 amount = 2000
-            } 
-            add_equipment_to_stockpile = {
-                type = support_equipment
-                amount = 200
-            } 
+                producer = UAE
+            }
             add_equipment_to_stockpile = {
                 type = artillery_equipment
                 amount = 75
-            } 
-        }
-    }
-    shared_focus = {
-        id = PDY_seize_industry
-        ai_will_do = { factor = 1 }
-        icon = fortify_city
-        cost = 1
-        available = {
-            has_war = yes
-        }
-        x = 1
-        y = 1
-        relative_position_id = PDY_rally_forces
-        prerequisite = {
-            focus = PDY_rally_forces
-        }
-        completion_reward = {
-            add_offsite_building = {
-                type = arms_factory level = 1
-            }  
-        }
-    }
-    shared_focus = {
-        id = PDY_foreign_brigades
-        ai_will_do = { factor = 1 }
-        icon = soviet_military
-        cost = 2
-        available = {
-            has_war = yes
-        }
-        x = -1
-        y = 1
-        relative_position_id = PDY_seize_industry
-        prerequisite = {
-            focus = PDY_seize_industry
-        }
-        prerequisite = {
-            focus = PDY_guns
-        }
-        completion_reward = {
-			add_manpower = 15000
-            add_equipment_to_stockpile = {
-                type = infantry_equipment
-                amount = 750
-            } 
-            add_equipment_to_stockpile = {
-                type = artillery_equipment
-                amount = 100
-            } 
-            hidden_effect = {
-                293 = {
-                    create_unit = {
-                        division = "name = \"9th People's Liberation Army\" division_template = \"Communist Militia\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
-                        owner = PDY
-                    }
-                    create_unit = {
-                        division = "name = \"9th People's Liberation Army\" division_template = \"Communist Militia\" start_experience_factor = 0.5  start_equipment_factor = 0.8"
-                        owner = PDY
-                    }
-                }
+                producer = UAE
             }
-            custom_effect_tooltip = jas_divisions_two
-			country_event = { id = pdy.107 }
         }
     }
     shared_focus = {
-        id = PDY_liberty_push
+        id = PDY_utilize_pfloag_tactics
         ai_will_do = { factor = 1 }
-        icon = push_focus
-        cost = 1
+        icon = GFX_dhofar_rebellion_focus
+        cost = 5
         available = {
             has_war = yes
         }
+        bypass_if_unavailable = yes
+        prerequisite = {
+            focus = PDY_contact_our_allies_in_abu_dhabi
+        }
+        relative_position_id = PDY_contact_our_allies_in_abu_dhabi
+        x = -2
+        y = 1
+        completion_reward = {
+            add_ideas = PDY_lessons_of_exile
+        }
+    }
+    shared_focus = {
+        id = PDY_request_industrial_aid
+        ai_will_do = { factor = 1 }
+        icon = uk_workers_revolution
+        cost = 3
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        prerequisite = {
+            focus = PDY_contact_our_allies_in_abu_dhabi
+        }
+        relative_position_id = PDY_contact_our_allies_in_abu_dhabi
         x = 0
         y = 1
-        relative_position_id = PDY_foreign_brigades
-        prerequisite = {
-            focus = PDY_foreign_brigades
-        }
         completion_reward = {
-            add_timed_idea = {
-                idea = PDY_push_liberty
-                days = 210
+            add_offsite_building = {
+                type = arms_factory
+                level = 1
+            }
+        }
+    }
+    shared_focus = {
+        id = PDY_mimic_german_efficiency
+        ai_will_do = { factor = 1 }
+        icon = GFX_german_efficiency
+        cost = 5
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        prerequisite = {
+            focus = PDY_request_industrial_aid
+        }
+        relative_position_id = PDY_request_industrial_aid
+        x = 0
+        y = 1
+        completion_reward = {
+            add_ideas = PDY_endless_production
+        }
+    }
+    shared_focus = {
+        id = PDY_send_zoubaidi_to_berlin
+        ai_will_do = { factor = 1 }
+        icon = GFX_send_al_zoudibaidi_to_berlin
+        cost = 5
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        prerequisite = {
+            focus = PDY_rally_the_international_proletariat
+        }
+        relative_position_id = PDY_rally_the_international_proletariat
+        x = 0
+        y = 1
+        completion_reward = {
+            create_intelligence_agency = {
+                name = "Committee for State Security"
+                icon = GFX_intelligence_agency_logo_generic_1
+            }
+            GER = {
+                country_event = pdy.109
+            }
+        }
+    }
+    shared_focus = {
+        id = PDY_mass_propaganda_campaign
+        ai_will_do = { factor = 1 }
+        icon = GFX_PDY_propaganda_wave
+        cost = 3
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        prerequisite = {
+            focus = PDY_send_zoubaidi_to_berlin
+        }
+        relative_position_id = PDY_send_zoubaidi_to_berlin
+        x = 0
+        y = 1
+        completion_reward = {
+            add_manpower = 5000
+            add_war_support = 0.03
+        }
+    }
+    shared_focus = {
+        id = PDY_revive_the_national_democratic_front
+        ai_will_do = { factor = 1 }
+        icon = GFX_northern_communists
+        cost = 5
+        available = {
+            has_war = yes
+        }
+        bypass = {
+            OR = {
+                YAR = {
+                    exists = no
+                }
+                has_war = no
+            }
+        }
+        prerequisite = {
+            focus = PDY_mass_propaganda_campaign
+        }
+        relative_position_id = PDY_mass_propaganda_campaign
+        x = 0
+        y = 1
+        completion_reward = {
+            division_template = {
+                name = "NDF Division"
+                regiments = {
+                    infantry = { x = 0 y = 0 }
+                    infantry = { x = 0 y = 1 }
+                    infantry = { x = 0 y = 2 }
+                    infantry = { x = 1 y = 0 }
+                    infantry = { x = 1 y = 1 }
+                }
+            }
+            977 = {
+                create_unit = {
+                    division = "name = \"1st NDF Division\" division_template = \"NDF Division\" start_experience_factor = 1 start_equipment_factor = 1"
+                    owner = PDY
+                    allow_spawning_on_enemy_provs = yes
+                }
+                create_unit = {
+                    division = "name = \"2nd NDF Division\" division_template = \"NDF Division\" start_experience_factor = 1  start_equipment_factor = 1"
+                    owner = PDY
+                    allow_spawning_on_enemy_provs = yes
+                }
+            }
+        }
+    }
+    shared_focus = {
+        id = PDY_call_upon_new_delhi
+        ai_will_do = { factor = 1 }
+        icon = india
+        cost = 3
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        prerequisite = {
+            focus = PDY_rally_the_international_proletariat
+        }
+        relative_position_id = PDY_rally_the_international_proletariat
+        x = 2
+        y = 1
+        completion_reward = {
+            add_equipment_to_stockpile = {
+                type = support_equipment
+                amount = 100
+                producer = RAJ
+            }
+            add_equipment_to_stockpile = {
+                type = convoy
+                amount = 50
+                producer = RAJ
+            }
+        }
+    }
+    shared_focus = {
+        id = PDY_import_rail_technology
+        ai_will_do = { factor = 1 }
+        icon = infrastructure_building
+        cost = 5
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        prerequisite = {
+            focus = PDY_call_upon_new_delhi
+        }
+        relative_position_id = PDY_call_upon_new_delhi
+        x = 0
+        y = 1
+        completion_reward = {
+            set_technology = {
+                railway_gun = 1
+            }
+            create_railway_gun = {
+                equipment = railway_gun_equipment_1
+            }
+            add_equipment_to_stockpile = {
+                type = train_equipment
+                amount = 10
+            }
+        }
+    }
+    shared_focus = {
+        id = PDY_deploy_motorized_brigades
+        ai_will_do = { factor = 1 }
+        icon = GFX_motorized_brigade
+        cost = 5
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        prerequisite = {
+            focus = PDY_import_rail_technology
+        }
+        relative_position_id = PDY_import_rail_technology
+        x = 0
+        y = 1
+        completion_reward = {
+            division_template = {
+                name = "Motorized Brigade"
+                regiments = {
+                    motorized = { x = 0 y = 0 }
+                    motorized = { x = 0 y = 1 }
+                    motorized = { x = 0 y = 2 }
+                    motorized = { x = 1 y = 0 }
+                    motorized = { x = 1 y = 1 }
+                }
+            }
+            293 = {
+                create_unit = {
+                    division = "name = \"1st Motorized Brigade\" division_template = \"Motorized Brigade\" start_experience_factor = 2 start_equipment_factor = 1"
+                    owner = PDY
+                    allow_spawning_on_enemy_provs = yes
+                }
+                create_unit = {
+                    division = "name = \"2nd Motorized Brigade\" division_template = \"Motorized Brigade\" start_experience_factor = 2  start_equipment_factor = 1"
+                    owner = PDY
+                    allow_spawning_on_enemy_provs = yes
+                }
+            }
+        }
+    }
+    shared_focus = {
+        id = PDY_plead_to_the_united_nations
+        ai_will_do = { factor = 1 }
+        icon = focus_commonwealth_un_membership
+        cost = 5
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        prerequisite = {
+            focus = PDY_mimic_german_efficiency
+        }
+        prerequisite = {
+            focus = PDY_revive_the_national_democratic_front
+        }
+        prerequisite = {
+            focus = PDY_deploy_motorized_brigades
+        }
+        relative_position_id = PDY_revive_the_national_democratic_front
+        x = 0
+        y = 1
+        completion_reward = {
+            every_country = {
+                limit = {
+                    OR = {
+                        tag = GER
+                        tag = PRC
+                        tag = PCA
+                        tag = FRA
+                        tag = ENG
+                        tag = SOV
+                        tag = RUS
+                    }
+                }
+                country_event = pdy.115
+            }
+        }
+    }
+    shared_focus = {
+        id = PDY_request_iaf_aid
+        ai_will_do = { factor = 1 }
+        icon = GFX_indian_air_force_focus
+        cost = 6
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        prerequisite = {
+            focus = PDY_call_upon_new_delhi
+        }
+        relative_position_id = PDY_call_upon_new_delhi
+        x = 2
+        y = 1
+        completion_reward = {
+            RAJ = {
+                country_event = pdy.112
             }
         }
     }
@@ -179,9 +409,9 @@
         mutually_exclusive = {
             focus =  PDY_united
         }
-        x = 4
+        x = 9
         y = 0
-        relative_position_id = PDY_liberation_war
+        relative_position_id = PDY_the_great_peoples_liberation_war
         completion_reward = {
             set_capital = { state = 979 }
             add_popularity = {
@@ -194,6 +424,17 @@
 				news_event = {
 					id = news.321
 				}
+            }
+            add_ideas = civilian_economy
+            add_ideas = volunteer_only
+            hidden_effect = {
+                remove_ideas = PDY_peoples_war
+                remove_ideas = PDY_worker_militias
+                remove_ideas = PDY_lessons_of_exile
+                remove_ideas = PDY_endless_production
+                remove_ideas = PDY_lessons_of_exile
+                remove_ideas = PDY_stasi_guidance
+                remove_ideas = PDY_stasi_guidance_lar
             }
         }
     }
@@ -225,6 +466,17 @@
 					id = news.320
 				}
 			}
+            add_ideas = civilian_economy
+            add_ideas = volunteer_only
+            hidden_effect = {
+                remove_ideas = PDY_peoples_war
+                remove_ideas = PDY_worker_militias
+                remove_ideas = PDY_lessons_of_exile
+                remove_ideas = PDY_endless_production
+                remove_ideas = PDY_lessons_of_exile
+                remove_ideas = PDY_stasi_guidance
+                remove_ideas = PDY_stasi_guidance_lar
+            }
         }
     }
     shared_focus  = {
@@ -268,7 +520,7 @@
         id = PDY_armed_forces
         ai_will_do = { factor = 1 }
         icon = GFX_PDY_the_peoples_armed_forces
-        cost = 2
+        cost = 3.6
         x = 1
         y = 1
         relative_position_id = PDY_restoration
@@ -478,7 +730,7 @@
     shared_focus  = {
         id = PDY_full_nationalization
         ai_will_do = { factor = 1 }
-        icon = establish_nationalisation_ministry
+        icon = GFX_goal_nationalize_industry
         cost = 6.5
         x = 0
         y = 1
@@ -511,7 +763,7 @@
         id = PDY_tribes_root
         ai_will_do = { factor = 1 }
         icon = political_pressure
-        cost = 8
+        cost = 7.9
         x = 0
         y = 1
         relative_position_id = PDY_full_nationalization
@@ -527,7 +779,7 @@
         id = PDY_control
         ai_will_do = { factor = 1 }
         icon = GFX_maintain_party_control
-        cost = 5
+        cost = 7.2
         x = 0
         y = 1
         relative_position_id = PDY_tribes_root
@@ -586,7 +838,7 @@
         id = PDY_dialogue
         ai_will_do = { factor = 1 }
         icon = National_dialogue
-        cost = 8
+        cost = 7.9
         x = 0
         y = 1
         relative_position_id = PDY_joint_economic_ventures
@@ -603,7 +855,7 @@
         id = PDY_elections
         ai_will_do = { factor = 1 }
         icon = focus_syria_local_elections
-        cost = 8
+        cost = 7.2
         x = 0
         y = 1
         relative_position_id = PDY_dialogue
@@ -690,8 +942,8 @@
     shared_focus  = {
         id = PDY_healthcare
         ai_will_do = { factor = 1 }
-        icon = increase_healthcare_coverage
-        cost = 8
+        icon = hospital_focus
+        cost = 7.9
         prerequisite = {
             focus = PDY_rights
         }
@@ -706,7 +958,7 @@
         }
     }
     shared_focus  = {
-        id = PDY_secularism
+        id = PDY_secularism_focus
         ai_will_do = { factor = 1 }
         icon = GFX_a_secular_society
         cost = 5
@@ -738,11 +990,11 @@
         icon = focus_syria_woman_fighters
         cost = 6.5
         prerequisite = {
-            focus = PDY_secularism
+            focus = PDY_secularism_focus
         }
         x = 1
         y = 1
-        relative_position_id = PDY_secularism
+        relative_position_id = PDY_secularism_focus
         completion_reward = {
             add_ideas = PDY_recruitment 
         }
@@ -766,7 +1018,7 @@
         id = PDY_united_republic
         ai_will_do = { factor = 1 }
         icon = GFX_PDY_the_republic_united_forever
-        cost = 3.6
+        cost = 5
         prerequisite = {
             focus = PDY_morale
         }
@@ -985,7 +1237,7 @@
     shared_focus  = {
         id = PDY_defenses
         ai_will_do = { factor = 1 }
-        icon = build_tank
+        icon = AK_cog_focus
         cost = 6.5
         prerequisite = {
             focus =  PDY_development
@@ -1192,7 +1444,7 @@
         id = PDY_sufficiency
         ai_will_do = { factor = 1 }
         icon = ethiopia_self_sufficiency
-        cost = 3.6
+        cost = 5
         prerequisite = {
             focus = PDY_coast
         }
@@ -1230,7 +1482,7 @@
         id = PDY_socialism
         ai_will_do = { factor = 1 }
         icon = communist_star
-        cost = 1
+        cost = 2
         prerequisite = {
             focus =  PDY_internationalism
         }
@@ -1966,7 +2218,7 @@
         id = PDY_friends
         ai_will_do = { factor = 1 }
         icon = GFX_friends_of_the_world_revolution
-        cost = 1
+        cost = 2
         x = 3
         y = 1
         relative_position_id = PDY_internationalism
@@ -2104,7 +2356,7 @@
         id = PDY_equipment
         ai_will_do = { factor = 1 }
         icon = GFX_red_star_ak47
-        cost = 3.6
+        cost = 5
         x = -1
         y = 1
         relative_position_id = PDY_eu
@@ -2134,7 +2386,7 @@
         id = PDY_intel
         ai_will_do = { factor = 1 }
         icon = cooperate
-        cost = 3.6
+        cost = 5
         x = 1
         y = 1
         relative_position_id = PDY_eu
@@ -2149,7 +2401,7 @@
         id = PDY_warsaw_pact
         ai_will_do = { factor = 1 }
         icon = warsaw_pact
-        cost = 1
+        cost = 2
         x = -1
         y = 1
         relative_position_id = PDY_intel
@@ -2275,7 +2527,7 @@
         id = PDY_liberation
         ai_will_do = { factor = 1 }
         icon = focus_italian_socialist_international
-        cost = 7.9
+        cost = 10
         x = -1
         y = 1
         relative_position_id = PDY_navy
@@ -2790,9 +3042,9 @@
         ai_will_do = { factor = 1 }
         icon = communist_star
         cost = 1
-        x = 2
+        x = 7
         y = 0
-        relative_position_id = PDY_liberation_war
+        relative_position_id = PDY_the_great_peoples_liberation_war
         completion_reward = {
             hidden_effect = {
                 set_cosmetic_tag = YDR
@@ -3010,7 +3262,7 @@
         id = PDY_front
         ai_will_do = { factor = 1 }
         icon = red_brigades
-        cost = 8
+        cost = 7.9
         x = -2
         y = 1
         relative_position_id = PDY_trained
@@ -3303,7 +3555,7 @@
         id = PDY_false_prophet
         ai_will_do = { factor = 1 }
         icon = GFX_false_prophet
-        cost = 8
+        cost = 7.9
         x = 0
         y = 1
         relative_position_id = PDY_no_revolts
@@ -3384,6 +3636,10 @@
                 uses = 1
                 category = radar_tech
             }
+            add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
         }
     }
     shared_focus  = {
@@ -3687,6 +3943,10 @@
 				uses = 1
 				category = ss_tech
 			}
+            add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.5
+			}
         }
     }
     shared_focus  = {
@@ -3801,7 +4061,7 @@
         id = PDY_primacy
         ai_will_do = { factor = 1 }
         icon = communism_3
-        cost = 8
+        cost = 7.9
         x = 1
         y = 1
         relative_position_id = PDY_aden

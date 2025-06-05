@@ -32,11 +32,360 @@ focus_tree = {
 
 	}
 	focus = {
+		id = UAR_arab_armed_forces
+		icon = focus_arab_armed_forces
+		cost = 10
+		available = { 
+		or = {
+		has_completed_focus = UAR_restore_arab_unity
+		has_completed_focus = UAR_egypts_new_role
+		}
+		date > 2011.3.1 }
+		x = 100
+		y = 0
+		completion_reward = {
+		    army_experience = 10
+		    air_experience = 10
+		    navy_experience = 10
+		}
+
+	}
+	focus = {
+		id = UAR_arab_ground_forces
+		icon = focus_arab_ground_forces
+		cost = 10
+		available = {
+		}
+		prerequisite = { focus = UAR_arab_armed_forces }
+		x = 96
+		y = 1
+		completion_reward = {
+		    army_experience = 10
+		    add_tech_bonus = {
+				name = infantry_weapons_bonus
+				bonus = 0.35
+				uses = 2
+				category = infantry_weapons
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 1
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = UAR_army_modernization
+		icon = tanks
+		cost = 10
+		available = {
+		}
+		mutually_exclusive = { focus = UAR_traditional_army }
+		prerequisite = { focus = UAR_arab_ground_forces }
+		x = 95
+		y = 2
+		completion_reward = {
+			add_ideas = idea_egy_army_modernization
+		}
+	}
+	focus = {
+		id = UAR_further_modernization
+		icon = GFX_goal_tanks2
+		cost = 10
+		available = {
+		}
+		prerequisite = { focus = UAR_army_modernization }
+		x = 95
+		y = 3
+		completion_reward = {
+			swap_ideas = {
+					remove_idea = idea_egy_army_modernization
+					add_idea = idea_egy_army_modernization_2
+			}
+		}
+	}
+	focus = {
+		id = UAR_traditional_army
+		icon = GFX_goal_new_Artillery_Systems
+		cost = 10
+		available = {
+		}
+		mutually_exclusive = { focus = UAR_army_modernization }
+		prerequisite = { focus = UAR_arab_ground_forces }
+		x = 97
+		y = 2
+		completion_reward = {
+			add_ideas = idea_egy_traditional_army
+		}
+	}
+	focus = {
+		id = UAR_expand_arms_production
+		icon = small_arms_east
+		cost = 10
+		available = {
+		}
+		prerequisite = { focus = UAR_traditional_army }
+		x = 97
+		y = 3
+		completion_reward = {
+			swap_ideas = {
+					remove_idea = idea_egy_traditional_army
+					add_idea = idea_egy_traditional_army_2
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = UAR_arab_air_force
+		icon = focus_arab_air_force
+		cost = 10
+		available = {
+		}
+		prerequisite = { focus = UAR_arab_armed_forces }
+		x = 100
+		y = 1
+		completion_reward = {
+		    air_experience = 10
+		    add_tech_bonus = {
+				name = air_equipment_bonus
+				bonus = 0.35
+				uses = 2
+				category = air_equipment
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 1
+			}
+			453 = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = UAR_produce_fighters
+		icon = GFX_goal_advan_fighters
+		cost = 10
+		available = {
+		}
+		mutually_exclusive = { focus = UAR_produce_drones }
+		prerequisite = { focus = UAR_arab_air_force }
+		x = 99
+		y = 2
+		completion_reward = {
+		    add_ideas = idea_egy_fighter_focus
+		}
+	}
+
+	focus = {
+		id = UAR_purchase_foreign_fighters
+		icon = GFX_goal_bag_of_money
+		cost = 10
+		available = {
+		}
+		prerequisite = { focus = UAR_produce_fighters }
+		x = 99
+		y = 3
+		completion_reward = {
+			add_political_power = -50
+		    if = { limit = { has_dlc = "By Blood Alone" }
+		    add_equipment_to_stockpile = { type = small_plane_airframe_1 amount = 50 producer = SOV }
+		    add_equipment_to_stockpile = { type = small_plane_airframe_1 amount = 50 producer = GER }
+		    else = { add_equipment_to_stockpile = { type = fighter_equipment_0 amount = 50 producer = SOV }
+		    		 add_equipment_to_stockpile = { type = fighter_equipment_0 amount = 50 producer = GER }
+		    	}
+		    }
+		}
+	}
+	focus = {
+		id = UAR_produce_drones
+		icon = drone
+		cost = 10
+		available = {
+		}
+		mutually_exclusive = { focus = UAR_produce_fighters }
+		prerequisite = { focus = UAR_arab_air_force }
+		x = 101
+		y = 2
+		completion_reward = {
+		    add_ideas = idea_egy_drone_focus
+		}
+	}
+
+	focus = {
+		id = UAR_purchase_foreign_drones
+		icon = investigate_industrial_corruption
+		cost = 10
+		available = {
+		}
+		prerequisite = { focus = UAR_produce_drones }
+		x = 101
+		y = 3
+		completion_reward = {
+			add_political_power = -50
+			if = { limit = { has_dlc = "By Blood Alone" }
+		    add_equipment_to_stockpile = { type = medium_plane_airframe_1 amount = 50 producer = SOV }
+		    add_equipment_to_stockpile = { type = medium_plane_airframe_1 amount = 50 producer = GER }
+		    else = { add_equipment_to_stockpile = { type = tac_bomber_equipment_0 amount = 50 producer = SOV }
+		    		 add_equipment_to_stockpile = { type = tac_bomber_equipment_0 amount = 50 producer = GER }
+		    	}
+		    }
+		}
+	}
+	focus = {
+		id = UAR_arab_naval_force
+		icon = focus_arab_naval_force
+		cost = 10
+		available = {
+		}
+		prerequisite = { focus = UAR_arab_armed_forces }
+		x = 104
+		y = 1
+		completion_reward = {
+		    navy_experience = 10
+		    add_tech_bonus = {
+				name = air_equipment_bonus
+				bonus = 0.50
+				uses = 1
+				category = naval_equipment
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 1
+			}
+			446 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = UAR_defense_fleet
+		icon = light_cruiser_program
+		cost = 10
+		available = {
+		}
+		mutually_exclusive = { focus = UAR_attack_fleet }
+		prerequisite = { focus = UAR_arab_naval_force }
+		x = 103
+		y = 2
+		completion_reward = {
+		    navy_experience = 5
+			add_ideas = idea_egy_defense_fleet
+		}
+	}
+
+	focus = {
+		id = UAR_mediterranean_dockyards
+		icon = GFX_goal_naval_upgrade
+		cost = 10
+		available = {
+		}
+		prerequisite = { focus = UAR_defense_fleet }
+		x = 103
+		y = 3
+		completion_reward = {
+		    447 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+			677 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = UAR_attack_fleet
+		icon = submarine
+		cost = 10
+		available = {
+		}
+		mutually_exclusive = { focus = UAR_defense_fleet }
+		prerequisite = { focus = UAR_arab_naval_force }
+		x = 105
+		y = 2
+		completion_reward = {
+			navy_experience = 5
+			add_ideas = idea_egy_attack_fleet
+		}
+	}
+
+	focus = {
+		id = UAR_red_sea_dockyards
+		icon = naval_dockyard
+		cost = 10
+		available = {
+		}
+		prerequisite = { focus = UAR_attack_fleet }
+		x = 105
+		y = 3
+		completion_reward = {
+		    457 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = UAR_professional_arab_army
+		icon = GFX_goal_soldiers2
+		cost = 10
+		available = {
+		}
+		prerequisite = { focus = UAR_further_modernization focus = UAR_expand_arms_production }
+		prerequisite = { focus = UAR_purchase_foreign_fighters focus = UAR_purchase_foreign_drones }
+		prerequisite = { focus = UAR_mediterranean_dockyards focus = UAR_red_sea_dockyards }
+		x = 100
+		y = 4
+		completion_reward = {
+		    add_ideas = idea_uar_professional_arab_army
+		}
+	}
+
+	focus = {
 		id = UAR_foreign_affairs
 		icon = two_flags
 		cost = 5
 		x = 81
 		y = 0
+		available = { date > 2012.1.1 }
 		completion_reward = {
 		    add_political_power = 60
 		}
@@ -44,7 +393,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_rebuild_syria
-		icon = focus_rebuild_syria
+		icon = focus_UAR_economy_syria
 		cost = 5
 		prerequisite = {
 			focus = UAR_arab_civil_war
@@ -82,8 +431,8 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_damascus_project
-		icon = industry_generic_focus
-		cost = 7
+		icon = GFX_goal_city_construction_generic1
+		cost = 7.2
 		prerequisite = {
 			focus = UAR_rebuild_syria
 		}
@@ -112,7 +461,7 @@ focus_tree = {
 	focus = {
 		id = UAR_a_new_international_airport
 		icon = focus_a_new_international_airport
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = UAR_damascus_project
 		}
@@ -143,7 +492,14 @@ focus_tree = {
 		    677 = {
 				add_building_construction = {
 					type = infrastructure
-					level = 1
+					level = 2
+					instant_build = yes
+				}
+			}
+			814 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
 					instant_build = yes
 				}
 			}
@@ -248,11 +604,40 @@ focus_tree = {
 		x = 5
 		y = 4
 		completion_reward = {
+			add_stability = -0.05
+			554 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = -1
+					instant_build = yes
+				}
+			}
+			677 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = -1
+					instant_build = yes
+				}
+			}
+			554 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			677 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
 		    add_tech_bonus = {
-				name = industry_bonus
-				bonus = 1
+				name = infantry_weapons_bonus
+				bonus = 0.5
 				uses = 1
-				category = industry
+				category = infantry_weapons
 			}
 		}
 
@@ -260,7 +645,7 @@ focus_tree = {
 	focus = {
 		id = UAR_promote_civil_cooperation
 		icon = shaking_hands_1
-		cost = 10
+		cost = 7.2
 		prerequisite = {
 			focus = UAR_maintain_syrian_war_economy
 		}
@@ -276,8 +661,8 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_neglect_civilian_needs
-		icon = consumer_goods
-		cost = 7
+		icon = GFX_goal_neglect_civilian_needs1
+		cost = 7.2
 		prerequisite = {
 			focus = UAR_maintain_syrian_war_economy
 		}
@@ -290,13 +675,21 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_seize_assad_assets
-		icon = demand_territory
+		icon = focus_seize_assad_assets
 		cost = 3.6
 		prerequisite = {
 			focus = UAR_a_new_international_airport
 		}
 		prerequisite = {
 			focus = UAR_syrian_border_defence
+		}
+		available = {
+			NOT = {
+				has_country_leader = {
+					character = UAR_bashar_alassad
+					ruling_only = yes
+				}
+			}
 		}
 		x = 7
 		y = 4
@@ -308,7 +701,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_dissolve_the_central_bank
-		icon = tear_treaty
+		icon = GFX_goal_dissolve_bank_icon
 		cost = 5
 		prerequisite = {
 			focus = UAR_seize_assad_assets
@@ -326,7 +719,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_focus_on_egypt
-		icon = focus_focus_on_egypt
+		icon = focus_UAR_economy_egypt
 		cost = 5
 		available = {
 		    OR = {
@@ -347,13 +740,13 @@ focus_tree = {
 			    ideology = revolutionary_socialist
 			    popularity = 0.025
 	        }
-			add_political_power = 100
+			add_political_power = 50
 		}
 
 	}
 	focus = {
 		id = UAR_nile_river_development
-		icon = focus_nile_river_development
+		icon = dusty_cargo_ship_focus
 		cost = 5
 		prerequisite = {
 			focus = UAR_focus_on_egypt
@@ -388,21 +781,22 @@ focus_tree = {
 	focus = {
 		id = UAR_protect_autonomous_regions
 		icon = major_alliance
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = UAR_nile_river_development
 		}
 		x = 9
 		y = 3
 		completion_reward = {
-		    add_stability = 0.05
+		    add_stability = 0.08
+		    add_political_power = -150
 		}
 
 	}
 	focus = {
 		id = UAR_2015_with_sharaf
-		icon = defence
-		cost = 7
+		icon = focus_UAR_2015_plan
+		cost = 7.2
 		prerequisite = {
 			focus = UAR_protect_autonomous_regions
 		}
@@ -418,30 +812,14 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_north_egyptian_projects
-		icon = focus_north_egyptian_projects
-		cost = 7
+		icon = canal_building_focus
+		cost = 7.2
 		prerequisite = {
 			focus = UAR_2015_with_sharaf
 		}
 		x = 9
 		y = 5
 		completion_reward = {
-		    452 = {
-			    add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
-				}
-			}
-			447 = {
-			    add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
-				}
-			}
 			813 = {
 			    add_extra_state_shared_building_slots = 1
 				add_building_construction = {
@@ -449,43 +827,81 @@ focus_tree = {
 					level = 1
 					instant_build = yes
 				}
+				add_building_construction = {
+					type = naval_base
+					province = 4073
+					level = 5
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			813 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip = uar_ismailia_tt
+			add_victory_points = {
+			province = 9947
+			value = 5
 			}
 		}
 
 	}
 	focus = {
 		id = UAR_south_egyptian_projects
-		icon = focus_north_egyptian_projects
-		cost = 7
+		icon = GFX_goal_desert_irrigation_focus
+		cost = 7.2
 		prerequisite = {
 			focus = UAR_north_egyptian_projects
 		}
 		x = 9
 		y = 6
 		completion_reward = {
-		    457 = {
+		    456 = {
 			    add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = industrial_complex
 					level = 2
 					instant_build = yes
 				}
-			}
-			457 = {
-			    add_extra_state_shared_building_slots = 2
 				add_building_construction = {
-					type = dockyard
+					type = infrastructure
 					level = 2
 					instant_build = yes
 				}
 			}
+			552 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+				set_state_category = rural
+			}
+			custom_effect_tooltip = uar_toskha_tt
+			add_victory_points = {
+			province = 2064
+			value = 2
+			}
 		}
-
 	}
 	focus = {
 		id = UAR_hydroelectric_scheme
 		icon = focus_hydroelectric_scheme
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = UAR_south_egyptian_projects
 		}
@@ -500,6 +916,9 @@ focus_tree = {
 		id = UAR_new_egypt_proposal
 		icon = focus_new_egypt_proposal
 		cost = 5
+		available = {
+			has_government = nationalist
+		}
 		prerequisite = {
 			focus = UAR_focus_on_egypt
 		}
@@ -517,7 +936,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_support_military_endeavours
-		icon = construct_military
+		icon = UAR_military_endeavors
 		cost = 8
 		prerequisite = {
 			focus = UAR_new_egypt_proposal
@@ -531,7 +950,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_arab_military_industry
-		icon = torch_industry
+		icon = UAR_arab_military_industry
 		cost = 10
 		prerequisite = {
 			focus = UAR_support_military_endeavours
@@ -560,7 +979,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_egypt_sudan_industrial_link
-		icon = red_hands_shaking
+		icon = focus_UAR_Egypt_Sudan_link
 		cost = 5
 		prerequisite = {
 			focus = UAR_arab_military_industry
@@ -589,6 +1008,23 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
+			551 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			add_opinion_modifier = {
+			    target = SUD
+			    modifier = aided_industry
+		    }
+		    SUD = {
+		    	add_opinion_modifier = {
+				    target = UAR
+				    modifier = aided_industry
+			    }	
+		    }
 		}
 
 	}
@@ -607,31 +1043,42 @@ focus_tree = {
 
 	}
 	focus = {
-		id = UAR_promote_less_consumerism
-		icon = national_unity
+		id = UAR_a_new_capital
+		icon = GFX_goal_UAR_new_capital
 		cost = 5
 		prerequisite = {
 			focus = UAR_maximise_production
 		}
-		available = {
-		    OR = {
-			    has_government = communist 
-				has_government = revolutionary_socialist
-				has_government = moderate_socialist
-				has_government = national_bolshevik
-			}
-		} 
 		x = 11
 		y = 7
 		completion_reward = {
-		    add_ideas = idea_uar_reduced_consumerism
-			add_political_power = -45
+			446 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = arms_factory
+					level = 4
+					instant_build = yes
+				}
+			}
+			set_province_name = {
+				id = 12004
+				name = "New Misr City"
+			}
+			add_victory_points = {
+				province = 12004
+				value = 50
+			}
 		}
 
 	}
 	focus = {
 		id = UAR_aim_for_technological_superiority
-		icon = generic_research
+		icon = focus_UAR_egypt_technological_superiority
 		cost = 5
 		prerequisite = {
 			focus = UAR_focus_on_egypt
@@ -654,8 +1101,8 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_support_electronics_industry
-		icon = radar
-		cost = 7
+		icon = GFX_goal_computer
+		cost = 7.2
 		prerequisite = {
 			focus = UAR_aim_for_technological_superiority
 		}
@@ -674,7 +1121,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_bring_in_foreign_geniuses
-		icon = improve_relations
+		icon = focus_syria_scientific_endeavors
 		cost = 5
 		prerequisite = {
 			focus = UAR_support_electronics_industry
@@ -688,7 +1135,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_new_industrial_age
-		icon = production
+		icon = industry_paper
 		cost = 10
 		prerequisite = {
 			focus = UAR_bring_in_foreign_geniuses
@@ -732,7 +1179,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_restructure_the_treasury
-		icon = focus_enforce_1990_constitution
+		icon = focus_UAR_treasury_reform_tech
 		cost = 5
 		prerequisite = {
 			focus = UAR_factory_enhancements
@@ -740,7 +1187,7 @@ focus_tree = {
 		x = 13
 		y = 7
 		completion_reward = {
-		    add_political_power = -300
+		    add_political_power = -150
 		    add_research_slot = 1
 		}
 
@@ -758,7 +1205,7 @@ focus_tree = {
 		x = 17
 		y = 1
 		completion_reward = {
-		    add_political_power = 100 
+		    add_political_power = 50
 			add_stability = -0.03
 			country_event = { id = uar.49 }
 		}
@@ -780,7 +1227,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_trial_the_criminals
-		icon = neutrality
+		icon = UAR_trial_traitors
 		cost = 3.6
 		prerequisite = {
 			focus = UAR_persecute_assad_supporters
@@ -801,7 +1248,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_fear_campaign
-		icon = anti_fascist
+		icon = fear_campaign_focus
 		cost = 5
 		prerequisite = {
 			focus = UAR_trial_the_criminals
@@ -815,7 +1262,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_establish_military_tribunals
-		icon = generic_marching
+		icon = UAR_military_courts
 		cost = 3.6
 		prerequisite = {
 			focus = UAR_persecute_assad_supporters
@@ -831,16 +1278,16 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_purge_rebellious_generals
-		icon = small_arms
-		cost = 7
+		icon = UAR_purge_rebellious_generals_alt
+		cost = 7.2
 		prerequisite = {
 			focus = UAR_establish_military_tribunals
 		}
 		x = 18
 		y = 3
 		completion_reward = {
-		    army_experience = 25 
-			air_experience = 25 
+		    army_experience = -25 
+			air_experience = -25 
 			add_timed_idea = {
 			    idea = idea_uar_assads_generals_purged
 			    days = 365
@@ -851,7 +1298,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_anti_assad_propaganda
-		icon = propaganda
+		icon = UAR_anti_assad_propaganda
 		cost = 5
 		prerequisite = {
 			focus = UAR_fear_campaign
@@ -865,6 +1312,7 @@ focus_tree = {
 			    popularity = 0.05
 	        }
 			add_stability = 0.075
+			country_event = uar.88
 		}
 
 	}
@@ -908,7 +1356,7 @@ focus_tree = {
 	focus = {
 		id = UAR_promote_discipline
 		icon = military_salute
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = UAR_forge_a_new_military_order
 		}
@@ -921,7 +1369,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_peace_and_reconciliation_commission
-		icon = concessions
+		icon = UAR_peace_and_reconciliation
 		cost = 5
 		prerequisite = {
 			focus = UAR_arab_civil_war
@@ -933,7 +1381,7 @@ focus_tree = {
 		y = 1
 		completion_reward = {
 		    add_political_power = -100
-			add_stability = 0.02
+			add_stability = 0.03
 			country_event = { id = uar.53 }
 		}
 		ai_will_do = {
@@ -958,7 +1406,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_let_assad_go
-		icon = self_management
+		icon = UAR_let_assad_go
 		cost = 3.6
 		prerequisite = {
 			focus = UAR_peace_and_reconciliation_commission
@@ -970,7 +1418,7 @@ focus_tree = {
 			    ideology = revolutionary_socialist
 			    popularity = 0.08
 	        }
-			add_political_power = -20
+			add_political_power = -50
 			add_stability = 0.025
 			country_event = { id = uar.54 }
 		}
@@ -993,7 +1441,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_economic_support
-		icon = putins_inauguration
+		icon = focus_syria_reconstruction
 		cost = 5
 		prerequisite = {
 			focus = UAR_cooperate_with_remaining_forces
@@ -1002,10 +1450,10 @@ focus_tree = {
 		y = 3
 		completion_reward = {
 		    677 = {
-			    add_extra_state_shared_building_slots = 1
+			    add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = industrial_complex
-					level = 1
+					level = 2
 					instant_build = yes
 				}
 			}
@@ -1067,7 +1515,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_find_a_common_ground
-		icon = intelligence_exchange
+		icon = generic_peace_agreement
 		cost = 5
 		prerequisite = {
 			focus = UAR_let_assad_go
@@ -1107,8 +1555,10 @@ focus_tree = {
 		y = 2
 		completion_reward = {
 		    add_stability = 0.05
+			country_event = {
+				id = uar.86
+			}
 		}
-
 	}
 	focus = {
 		id = UAR_legalise_the_baath_party
@@ -1133,7 +1583,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_hold_elections_in_syria
-		icon = GFX_goal_elections
+		icon = GFX_goal_elections_rigged
 		cost = 2
 		prerequisite = {
 			focus = UAR_legalise_the_baath_party
@@ -1204,7 +1654,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_restore_arab_unity
-		icon = focus_emergency_party_convention
+		icon = focus_UAR_national_assembly
 		cost = 10
 		prerequisite = {
 			focus = UAR_ensure_an_arab_socialist_victory
@@ -1222,7 +1672,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_the_family_has_fallen
-		icon = focus_state_funeral_for_sanders
+		icon = GFX_goal_UAR_family_fallen
 		cost = 3.6
 		available = {
 		    has_completed_focus = UAR_reintegrate_the_nation
@@ -1256,7 +1706,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_convene_the_national_assembly
-		icon = embrace_the_revolution
+		icon = focus_UAR_national_assembly
 		cost = 1
 		prerequisite = {
 			focus = UAR_the_family_has_fallen
@@ -1269,7 +1719,7 @@ focus_tree = {
 
 	}
 	focus = {
-		id = UAR_islamic_socialism
+		id = UAR_islamic_socialism_focus
 		icon = focus_islamic_socialism
 		cost = 10
 		available = {
@@ -1294,10 +1744,10 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_zakat
-		icon = perestroika
-		cost = 10
+		icon = zakat
+		cost = 7.2
 		prerequisite = {
-			focus = UAR_islamic_socialism
+			focus = UAR_islamic_socialism_focus
 		}
 		x = 30
 		y = 4
@@ -1307,11 +1757,39 @@ focus_tree = {
 
 	}
 	focus = {
-		id = UAR_solidarity_of_the_ummah
-		icon = united_arab_republic
+		id = UAR_production_quotas
+		icon = work_quotas
 		cost = 10
 		prerequisite = {
-			focus = UAR_islamic_socialism
+			focus = UAR_zakat
+		}
+		x = 30
+		y = 5
+		completion_reward = {
+		    add_ideas = idea_uar_production_quotas
+		}
+
+	}
+	focus = {
+		id = UAR_forced_income_redistribution
+		icon = grab_money
+		cost = 10
+		prerequisite = {
+			focus = UAR_production_quotas
+		}
+		x = 31
+		y = 6
+		completion_reward = {
+		    add_ideas = idea_uar_forced_income_redistribution
+		} 
+
+	}
+	focus = {
+		id = UAR_solidarity_of_the_ummah
+		icon = solidarity_of_the_ummah
+		cost = 7.2
+		prerequisite = {
+			focus = UAR_islamic_socialism_focus
 		}
 		x = 32
 		y = 4
@@ -1322,7 +1800,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_islamic_unity
-		icon = generic_ideology
+		icon = islamic_unity
 		cost = 10
 		prerequisite = {
 			focus = UAR_solidarity_of_the_ummah
@@ -1330,142 +1808,7 @@ focus_tree = {
 		x = 32
 		y = 5
 		completion_reward = {
-		    add_stability = 0.07
-		}
-
-	}
-	focus = {
-		id = UAR_pray_for_the_leader
-		icon = propaganda
-		cost = 10
-		prerequisite = {
-			focus = UAR_islamic_unity
-		}
-		x = 32
-		y = 7
-		completion_reward = {
-		    add_ideas = idea_uar_pray_for_the_leader
-			UAR_ahmed_eltayeb = {
-				promote_character = islamic_socialism
-			}
-			country_event = { id = uar.60 }
-		}
-
-	}
-	focus = {
-		id = UAR_partial_sharia_implementation
-		icon = royal_strength
-		cost = 10
-		prerequisite = {
-			focus = UAR_pray_for_the_leader
-		}
-		x = 29
-		y = 8
-		completion_reward = {
-		    add_ideas = idea_uar_partial_sharia_implementation
-		}
-
-	}
-	focus = {
-		id = UAR_unified_arab_intelligence_agency
-		icon = intelligence_exchange
-		cost = 10
-		prerequisite = {
-			focus = UAR_pray_for_the_leader
-		}
-		x = 31
-		y = 8
-		completion_reward = {
-		    add_ideas = idea_uar_arab_intelligence_agency
-			country_event = { id = uar.61 }
-		}
-
-	}
-	focus = {
-		id = UAR_dissolve_the_national_assembly
-		icon = attack_allies
-		cost = 10
-		prerequisite = {
-			focus = UAR_pray_for_the_leader
-		}
-		x = 33
-		y = 8
-		completion_reward = {
-		    add_stability = 0.1
-			country_event = { id = uar.62 }
-		}
-
-	}
-	focus = {
-		id = UAR_merge_political_offices
-		icon = fascism_2
-		cost = 10
-		prerequisite = {
-			focus = UAR_unified_arab_intelligence_agency
-		}
-		prerequisite = {
-			focus = UAR_dissolve_the_national_assembly
-		}
-		x = 32
-		y = 9
-		completion_reward = {
-		    add_ideas = idea_uar_political_offices_merged
-		}
-
-	}
-	focus = {
-		id = UAR_social_security
-		icon = com_fascism
-		cost = 10
-		prerequisite = {
-			focus = UAR_islamic_socialism
-		}
-		x = 34
-		y = 4
-		completion_reward = {
-		    add_ideas = idea_uar_social_security
-		}
-
-	}
-	focus = {
-		id = UAR_save_the_people
-		icon = communists_marching
-		cost = 10
-		prerequisite = {
-			focus = UAR_social_security
-		}
-		x = 34
-		y = 5
-		completion_reward = {
-		    add_ideas = idea_uar_save_the_people
-		}
-
-	}
-	focus = {
-		id = UAR_abolish_democratic_thought
-		icon = political_pressure
-		cost = 10
-		prerequisite = {
-			focus = UAR_islamic_unity
-			focus = UAR_save_the_people
-		}
-		x = 33
-		y = 6
-		completion_reward = {
-		    add_ideas = idea_uar_undemocratic_thought
-		}
-
-	}
-	focus = {
-		id = UAR_trade_with_islamic_nations
-		icon = trade
-		cost = 10
-		prerequisite = {
-			focus = UAR_pray_for_the_leader
-		}
-		x = 35
-		y = 8
-		completion_reward = {
+		    add_stability = 0.05
 		    every_country = {
 			    limit = {
 				    AND = {
@@ -1487,23 +1830,172 @@ focus_tree = {
 				    modifier = trade_influence_3
 			    }
 			}
+			country_event = {
+				id = uar.89
+			}
+		}
+
+	}
+	focus = {
+		id = UAR_pray_for_the_leader
+		icon = pray_for_the_leader
+		cost = 10
+		prerequisite = {
+			focus = UAR_islamic_unity
+		}
+		x = 32
+		y = 7
+		completion_reward = {
+		    add_ideas = idea_uar_pray_for_the_leader
+			UAR_ahmed_eltayeb = {
+				promote_character = islamic_socialism
+			}
+			country_event = { id = uar.60 }
+		}
+
+	}
+	focus = {
+		id = UAR_dissolve_the_national_assembly
+		icon = GFX_goal_dissolve_parliament
+		cost = 10
+		prerequisite = {
+			focus = UAR_pray_for_the_leader
+		}
+		x = 30
+		y = 8
+		completion_reward = {
+		    add_stability = 0.1
+			country_event = { id = uar.62 }
+		}
+
+	}
+	focus = {
+		id = UAR_merge_political_offices
+		icon = GFX_goal_generic_government_deals
+		cost = 10
+		prerequisite = {
+			focus = UAR_dissolve_the_national_assembly
+		}
+		x = 31
+		y = 9
+		completion_reward = {
+		    add_ideas = idea_uar_political_offices_merged
+		}
+
+	}
+	focus = {
+		id = UAR_partial_sharia_implementation
+		icon = partial_sharia_implementation
+		cost = 10
+		prerequisite = {
+			focus = UAR_pray_for_the_leader
+		}
+		x = 32
+		y = 8
+		completion_reward = {
+		    add_ideas = idea_uar_partial_sharia_implementation
+		}
+
+	}
+	focus = {
+		id = UAR_strong_muslim_army
+		icon = strong_muslim_army
+		cost = 10
+		prerequisite = {
+			focus = UAR_pray_for_the_leader
+		}
+		x = 34
+		y = 8
+		completion_reward = {
+		    add_ideas = idea_uar_strong_muslim_army
+			country_event = { id = uar.74 }
 		}
 
 	}
 	focus = {
 		id = UAR_allah_defends_our_borders
-		icon = fortify_city
+		icon = allah_defends_our_borders
 		cost = 10
 		prerequisite = {
-			focus = UAR_dissolve_the_national_assembly
+			focus = UAR_strong_muslim_army
 		}
-		prerequisite = {
-			focus = UAR_trade_with_islamic_nations
-		}
-		x = 34
+		x = 33
 		y = 9
 		completion_reward = {
 		    add_ideas = idea_uar_allah_defends_our_borders
+		}
+
+	}
+	focus = {
+		id = UAR_protect_religious_minorities
+		icon = protect_muslims
+		cost = 7.2
+		prerequisite = {
+			focus = UAR_islamic_socialism_focus
+		}
+		x = 34
+		y = 4
+		completion_reward = {
+		    add_stability = 0.05
+		    country_event = uar.79
+		}
+
+	}
+	focus = {
+		id = UAR_strengthen_islamic_institutions
+		icon = an_islamic_paradise
+		cost = 7.2
+		prerequisite = {
+			focus = UAR_protect_religious_minorities
+		}
+		x = 34
+		y = 5
+		completion_reward = {
+		    add_ideas = idea_uar_strong_islamic_institutions
+		}
+
+	}
+	focus = {
+		id = UAR_islamic_modernism
+		icon = GFX_goal_islamic_secularism
+		cost = 7.2
+		prerequisite = {
+			focus = UAR_strengthen_islamic_institutions
+		}
+		x = 33
+		y = 6
+		completion_reward = {
+		    add_ideas = idea_uar_islamic_modernism
+		}
+
+	}
+	focus = {
+		id = UAR_abolish_democratic_thought
+		icon = crackdown_on_opposition
+		cost = 10
+		prerequisite = {
+			focus = UAR_strengthen_islamic_institutions
+			focus = UAR_hold_back_communists
+		}
+		x = 35
+		y = 6
+		completion_reward = {
+		    add_ideas = idea_uar_undemocratic_thought
+		}
+
+	}
+	focus = {
+		id = UAR_unified_arab_intelligence_agency
+		icon = unified_arab_intelligence_agency
+		cost = 10
+		prerequisite = {
+			focus = UAR_abolish_democratic_thought
+		}
+		x = 35
+		y = 7
+		completion_reward = {
+		    add_ideas = idea_uar_arab_intelligence_agency
+			country_event = { id = uar.61 }
 		}
 
 	}
@@ -1521,7 +2013,7 @@ focus_tree = {
 			focus = UAR_convene_the_national_assembly
 		}
 		mutually_exclusive = {
-			focus = UAR_islamic_socialism
+			focus = UAR_islamic_socialism_focus
 			focus = UAR_syndicalism
 		}
 		x = 39
@@ -1533,13 +2025,16 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_cult_of_sharaf
-		icon = territory_or_war
+		icon = focus_cult_of_sharaf
 		cost = 10
 		prerequisite = {
-			focus = UAR_maintain_nasserism
+			focus = UAR_isolation_from_major_powers
 		}
-		x = 37
-		y = 4
+		prerequisite = {
+			focus = UAR_final_land_reforms
+		}
+		x = 39
+		y = 8
 		completion_reward = {
 		    add_ideas = idea_uar_cult_of_sharaf
 		}
@@ -1547,13 +2042,13 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_secular_unity
-		icon = national_unity
+		icon = secularism
 		cost = 10
 		prerequisite = {
-			focus = UAR_cult_of_sharaf
+			focus = UAR_maintain_nasserism
 		}
-		x = 37
-		y = 5
+		x = 39
+		y = 4
 		completion_reward = {
 		    add_stability = 0.08
 		}
@@ -1561,31 +2056,32 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_hold_back_communists
-		icon = broken_star
+		icon = GFX_hunt_down_the_communists
 		cost = 10
 		prerequisite = {
-			focus = UAR_secular_unity
+			focus = UAR_strengthen_the_nation_state
 		}
 		x = 37
-		y = 6
+		y = 5
 		completion_reward = {
 		    add_popularity = {
 			    ideology = communist
 			    popularity = -0.07
 	        }
 			add_ideas = idea_uar_holding_back_communists
+			country_event = uar.90
 		}
 
 	}
 	focus = {
 		id = UAR_the_nationalist_dictatorship
-		icon = prestige_of_the_royals
+		icon = focus_nationalist_dictatorship
 		cost = 10
 		prerequisite = {
-			focus = UAR_hold_back_communists
+			focus = UAR_cult_of_sharaf
 		}
-		x = 38
-		y = 7
+		x = 39
+		y = 9
 		completion_reward = {
 		    add_popularity = {
 			    ideology = revolutionary_socialist
@@ -1603,13 +2099,13 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_attack_imperialist_elements
-		icon = crown_chains
+		icon = focus_attack_imperialist_elements
 		cost = 10
 		prerequisite = {
-			focus = UAR_maintain_nasserism
+			focus = UAR_hold_back_communists
 		}
-		x = 39
-		y = 4
+		x = 37
+		y = 6
 		completion_reward = {
 		    add_ideas = idea_uar_imperialist_elements_attacked
 			country_event = { id = uar.63 }
@@ -1618,10 +2114,10 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_crush_islamic_fundamentalists
-		icon = neutrality
+		icon = focus_islamists_crushed
 		cost = 10
 		prerequisite = {
-			focus = UAR_attack_imperialist_elements
+			focus = UAR_secular_unity
 		}
 		x = 39
 		y = 5
@@ -1633,15 +2129,15 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_arrest_baghdadi
-		icon = arrest_derg_members
-		cost = 10
+		icon = focus_impriosn_al_badri
+		cost = 7.2
 		prerequisite = {
 			focus = UAR_crush_islamic_fundamentalists
 		}
 		x = 39
 		y = 6
 		completion_reward = {
-		    add_political_power = 200
+		    add_political_power = 100
 			country_event = { id = uar.65 }
 		}
 
@@ -1653,7 +2149,7 @@ focus_tree = {
 		prerequisite = {
 			focus = UAR_maintain_nasserism
 		}
-		x = 41
+		x = 37
 		y = 4
 		completion_reward = {
 		    add_ideas = idea_uar_strong_nation_state
@@ -1662,10 +2158,10 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_rapid_economic_development
-		icon = civ_factory
+		icon = econ_expension
 		cost = 10
 		prerequisite = {
-			focus = UAR_strengthen_the_nation_state
+			focus = UAR_self_sufficiency
 		}
 		x = 41
 		y = 5
@@ -1679,7 +2175,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_three_year_plan
-		icon = production_2
+		icon = GFX_goal_Three_Year_Plan
 		cost = 10
 		prerequisite = {
 			focus = UAR_rapid_economic_development
@@ -1696,8 +2192,8 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_final_land_reforms
-		icon = focus_on_agriculture
-		cost = 10
+		icon = focus_land_reform
+		cost = 7.2
 		prerequisite = {
 			focus = UAR_three_year_plan
 		}
@@ -1710,18 +2206,53 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_self_sufficiency
-		icon = self_management
+		icon = focus_self_sufficiency
 		cost = 10
 		prerequisite = {
-			focus = UAR_the_nationalist_dictatorship
+			focus = UAR_maintain_nasserism
 		}
-		prerequisite = {
-			focus = UAR_final_land_reforms
-		}
-		x = 39
-		y = 8
+		x = 41
+		y = 4
 		completion_reward = {
 		    add_ideas = idea_uar_self_sufficiency
+		}
+
+	}
+	focus = {
+		id = UAR_reorganize_the_armed_forces
+		icon = focus_arab_armed_forces
+		cost = 10
+		prerequisite = {
+			focus = UAR_rapid_economic_development
+			focus = UAR_union_leadership
+		}
+		x = 43
+		y = 6
+		completion_reward = {
+		   add_political_power = -200
+		   add_popularity = {
+	  			ideology = nationalist
+	  			popularity = -0.05
+		   }
+		   add_ideas = idea_uar_military_reorganization_1
+		   country_event = uar.80
+		}
+
+	}
+	focus = {
+		id = UAR_divide_and_conquer
+		icon = GFX_goal_factionalism
+		cost = 10
+		prerequisite = {
+			focus = UAR_reorganize_the_armed_forces
+		}
+		x = 43
+		y = 7
+		completion_reward = {
+		   swap_ideas = {
+		   		remove_idea = idea_uar_military_reorganization_1
+		   		add_idea = idea_uar_military_reorganization_2
+		   }
 		}
 
 	}
@@ -1739,10 +2270,10 @@ focus_tree = {
 			focus = UAR_convene_the_national_assembly
 		}
 		mutually_exclusive = {
-			focus = UAR_islamic_socialism
+			focus = UAR_islamic_socialism_focus
 			focus = UAR_maintain_nasserism
 		}
-		x = 46
+		x = 47
 		y = 3
 		completion_reward = {
 		
@@ -1750,59 +2281,529 @@ focus_tree = {
 
 	}
 	focus = {
-		id = UAR_invite_trade_unions_into_politics
-		icon = focus_trade_council_influence
-		cost = 10
-		prerequisite = {
-			focus = UAR_syndicalism
-		}
-		x = 44
-		y = 4
-		completion_reward = {
-		    add_ideas = idea_uar_trade_unions_in_politics
-			country_event = { id = uar.66 }
-		}
-
-	}
-	focus = {
-		id = UAR_replace_our_national_assembly
-		icon = focus_commonwealth_president
-		cost = 10
-		prerequisite = {
-			focus = UAR_invite_trade_unions_into_politics
-		}
-		x = 44
-		y = 6
-		completion_reward = {
-		    add_political_power = 120
-		}
-
-	}
-	focus = {
 		id = UAR_structural_reforms
-		icon = focus_socialist_trading_network
+		icon = focus_structural_changes
 		cost = 10
 		prerequisite = {
 			focus = UAR_syndicalism
 		}
-		x = 46
+		x = 47
 		y = 4
 		completion_reward = {
 		    add_stability = 0.1
+			add_ideas = idea_uar_modern_welfare_state
 		}
 
 	}
 	focus = {
-		id = UAR_northern_syndicates_convention
-		icon = abolish_workers_party
+		id = UAR_populist_agenda
+		icon = focus_rejuvenate_arab_socialism
+		cost = 10
+		prerequisite = {
+			focus = UAR_structural_reforms
+		}
+		x = 47
+		y = 5
+		completion_reward = {
+		    add_war_support  = 0.05
+			add_popularity = {
+			    ideology = communist
+			    popularity = 0.1
+	        }
+			if = {
+				limit = {
+					MOR = {
+						exists = yes
+						OR = {
+							has_government = fascist
+							has_government = nationalist
+							has_government = monarchist
+							has_government = national_conservative
+						}
+					}
+				}
+				MOR = {
+					add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+					reverse_add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+				}
+			}
+			if = {
+				limit = {
+					ALG = {
+						exists = yes
+						OR = {
+							has_government = fascist
+							has_government = nationalist
+							has_government = monarchist
+							has_government = national_conservative
+						}
+					}
+				}
+				ALG = {
+					add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+					reverse_add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+				}
+			}
+			if = {
+				limit = {
+					TUN = {
+						exists = yes
+						OR = {
+							has_government = fascist
+							has_government = nationalist
+							has_government = monarchist
+							has_government = national_conservative
+						}
+					}
+				}
+				TUN = {
+					add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+					reverse_add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+				}
+			}
+			if = {
+				limit = {
+					LBA = {
+						exists = yes
+						OR = {
+							has_government = fascist
+							has_government = nationalist
+							has_government = monarchist
+							has_government = national_conservative
+						}
+					}
+				}
+				LBA = {
+					add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+					reverse_add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+				}
+			}
+			if = {
+				limit = {
+					ACS = {
+						exists = yes
+						OR = {
+							has_government = fascist
+							has_government = nationalist
+							has_government = monarchist
+							has_government = national_conservative
+						}
+					}
+				}
+				ACS = {
+					add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+					reverse_add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+				}
+			}
+			if = {
+				limit = {
+					RAL = {
+						exists = yes
+						OR = {
+							has_government = fascist
+							has_government = nationalist
+							has_government = monarchist
+							has_government = national_conservative
+						}
+					}
+				}
+				RAL = {
+					add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+					reverse_add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+				}
+			}
+			if = {
+				limit = {
+					FAL = {
+						exists = yes
+						OR = {
+							has_government = fascist
+							has_government = nationalist
+							has_government = monarchist
+							has_government = national_conservative
+						}
+					}
+				}
+				FAL = {
+					add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+					reverse_add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+				}
+			}
+			if = {
+				limit = {
+					GNS = {
+						exists = yes
+						OR = {
+							has_government = fascist
+							has_government = nationalist
+							has_government = monarchist
+							has_government = national_conservative
+						}
+					}
+				}
+				GNS = {
+					add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+					reverse_add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+				}
+			}
+			if = {
+				limit = {
+					ISL = {
+						exists = yes
+						OR = {
+							has_government = fascist
+							has_government = nationalist
+							has_government = monarchist
+							has_government = national_conservative
+						}
+					}
+				}
+				ISL = {
+					add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+					reverse_add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+				}
+			}
+			if = {
+				limit = {
+					PAL = {
+						exists = yes
+						NOT = {
+							OR = {
+								has_government = communist
+								has_government = revolutionary_socialist
+								has_government = national_bolshevik
+								has_government = nationalist
+							}
+						}
+					}
+				}
+				PAL = {
+					add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+					reverse_add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+				}
+			}
+			if = {
+				limit = {
+					tag = KIS
+					country_exists = KIS
+				}
+				KIS = {
+					add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+					reverse_add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+				}
+			}
+			if = {
+				limit = {
+					LEB = {
+						exists = yes
+						OR = {
+							has_government = fascist
+							has_government = nationalist
+							has_government = monarchist
+							has_government = national_conservative
+						}
+					}
+				}
+				LEB = {
+					add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+					reverse_add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+				}
+			}
+			if = {
+				limit = {
+					IRQ = {
+						exists = yes
+						OR = {
+							has_government = fascist
+							has_government = nationalist
+							has_government = monarchist
+							has_government = national_conservative
+						}
+					}
+				}
+				IRQ = {
+					add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+					reverse_add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+				}
+			}
+			if = {
+				limit = {
+					SAU = {
+						exists = yes
+						OR = {
+							has_government = fascist
+							has_government = nationalist
+							has_government = monarchist
+							has_government = national_conservative
+						}
+					}
+				}
+				SAU = {
+					add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+					reverse_add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+				}
+			}
+			if = {
+				limit = {
+					BAH = {
+						exists = yes
+						OR = {
+							has_government = fascist
+							has_government = nationalist
+							has_government = monarchist
+							has_government = national_conservative
+						}
+					}
+				}
+				BAH = {
+					add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+					reverse_add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+				}
+			}
+			if = {
+				limit = {
+					QAT = {
+						exists = yes
+						OR = {
+							has_government = fascist
+							has_government = nationalist
+							has_government = monarchist
+							has_government = national_conservative
+						}
+					}
+				}
+				QAT = {
+					add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+					reverse_add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+				}
+			}
+			if = {
+				limit = {
+					OMA = {
+						exists = yes
+						OR = {
+							has_government = fascist
+							has_government = nationalist
+							has_government = monarchist
+							has_government = national_conservative
+						}
+					}
+				}
+				OMA = {
+					add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+					reverse_add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+				}
+			}
+			if = {
+				limit = {
+					YEM = {
+						exists = yes
+						OR = {
+							has_government = fascist
+							has_government = nationalist
+							has_government = monarchist
+							has_government = national_conservative
+						}
+					}
+				}
+				YEM = {
+					add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+					reverse_add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+				}
+			}
+			if = {
+				limit = {
+					YAR = {
+						exists = yes
+						OR = {
+							has_government = fascist
+							has_government = nationalist
+							has_government = monarchist
+							has_government = national_conservative
+						}
+					}
+				}
+				YAR = {
+					add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+					reverse_add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+				}
+			}
+			if = {
+				limit = {
+					JAS = {
+						exists = yes
+						OR = {
+							has_government = fascist
+							has_government = nationalist
+							has_government = monarchist
+							has_government = national_conservative
+						}
+					}
+				}
+				JAS = {
+					add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+					reverse_add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+				}
+			}
+			if = {
+				limit = {
+					PDY = {
+						exists = yes
+						OR = {
+							has_government = fascist
+							has_government = nationalist
+							has_government = monarchist
+							has_government = national_conservative
+						}
+					}
+				}
+				PDY = {
+					add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+					reverse_add_opinion_modifier = {
+						target = UAR
+						modifier = yem_zindani_denounced_communists
+					}
+				}
+			}
+			country_event = { id = uar.83 }
+		}
+
+	}
+	focus = {
+		id = UAR_invite_trade_unions_into_politics
+		icon = break_chains
 		cost = 10
 		prerequisite = {
 			focus = UAR_syndicalism
 		}
-		x = 48
+		x = 45
 		y = 4
 		completion_reward = {
-		    452 = {
+		    add_ideas = idea_uar_trade_unions_in_politics
+			452 = {
 			    add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = industrial_complex
@@ -1834,104 +2835,159 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
-		}
-
-	}
-	focus = {
-		id = UAR_populist_agenda
-		icon = integrate_the_parties
-		cost = 10
-		prerequisite = {
-			focus = UAR_invite_trade_unions_into_politics
-		}
-		prerequisite = {
-			focus = UAR_northern_syndicates_convention
-		}
-		x = 46
-		y = 5
-		completion_reward = {
-		    add_stability = 0.05
-			add_popularity = {
-			    ideology = revolutionary_socialist
-			    popularity = 0.1
-	        }
+			country_event = { id = uar.66 }
 		}
 
 	}
 	focus = {
 		id = UAR_union_leadership
-		icon = GFX_goal_unions
+		icon = focus_UAR_reform_SLAC
 		cost = 10
 		prerequisite = {
-			focus = UAR_northern_syndicates_convention
+			focus = UAR_invite_trade_unions_into_politics
 		}
-		x = 48
-		y = 6
+		x = 45
+		y = 5
 		completion_reward = {
 		    add_ideas = idea_uar_union_leadership
 		}
 
 	}
 	focus = {
+		id = UAR_replace_our_national_assembly
+		icon = focus_national_vanguard
+		cost = 10
+		prerequisite = {
+			focus = UAR_union_leadership
+		}
+		x = 45
+		y = 6
+		completion_reward = {
+		    add_popularity = {
+				ideology = communist
+				popularity = 0.1
+			}
+		}
+
+	}
+	focus = {
+		id = UAR_sponsor_marxist_academics
+		icon = GFX_goal_CommunistScientists
+		cost = 10
+		prerequisite = {
+			focus = UAR_syndicalism
+		}
+		x = 49
+		y = 4
+		completion_reward = {
+			add_ideas = idea_uar_marxist_academia
+			add_stability = 0.05
+		}
+
+	}
+	focus = {
+		id = UAR_northern_syndicates_convention
+		icon = AK_cog_focus
+		cost = 10
+		prerequisite = {
+			focus = UAR_sponsor_marxist_academics
+		}
+		x = 49
+		y = 5
+		completion_reward = {
+		    add_ideas = idea_uar_commitees_of_popular_resistance
+			hidden_effect = {
+				country_event = { id = uar.84 }
+			}
+		}
+
+	}
+	focus = {
+		id = UAR_rural_syndicates
+		icon = focus_continue_agricultural_collecivisation
+		cost = 10
+		prerequisite = {
+			focus = UAR_northern_syndicates_convention
+		}
+		x = 49
+		y = 6
+		completion_reward = {
+		    add_popularity = {
+			    ideology = communist
+			    popularity = 0.08
+	        }
+			add_ideas = idea_uar_collectivized_agriculture
+		}
+
+	}
+	focus = {
 		id = UAR_remove_sharaf_from_power
-		icon = cooperate_with_somalia
+		icon = focus_remove_sharaf_from_power
 		cost = 10
 		prerequisite = {
 			focus = UAR_replace_our_national_assembly
 		}
 		prerequisite = {
-			focus = UAR_union_leadership
+			focus = UAR_rural_syndicates
 		}
-		x = 46
+		x = 47
 		y = 7
 		completion_reward = {
-			UAR_arab_trade_syndicates_assembly = {
-				promote_character = syndicalism
+			UAR_kamal_khalil = {
+				promote_character = marxist
 			}
-			set_cosmetic_tag = UAR_Syndicalist
+			set_politics = {
+				ruling_party = communist
+				elections_allowed = no
+				long_name = UAR_communist_asu_long
+				name = UAR_communist_asu
+			}
+			hidden_effect = {
+				add_ideas = uar_sic_kamal_abu_eita
+				add_ideas = uar_fom_hossam_el_hamalawy
+				add_ideas = uar_ind_kamal_abbas 
+				add_ideas = uar_nsm_haitham_mohamedain 
+				add_ideas = uar_inm_sameh_naguib 
+			}
+			add_popularity = {
+			    ideology = communist
+			    popularity = 0.1
+	        }
+			hidden_effect = {
+				set_cosmetic_tag = UAR_Syndicalist
+			}
 			country_event = { id = uar.67 }
 		}
 
 	}
 	focus = {
-		id = UAR_syndicalist_economic_overhaul
-		icon = GFX_goal_syndicalist_workers
-		cost = 10
-		prerequisite = {
-			focus = UAR_remove_sharaf_from_power
-		}
-		x = 43
-		y = 8
-		completion_reward = {
-		    add_ideas = idea_uar_syndicalist_economic_overhaul
-		}
-
-	}
-	focus = {
 		id = UAR_denounce_nasserism
-		icon = glasnost
+		icon = focus_more_nasserist_than_nasser
 		cost = 10
 		prerequisite = {
 			focus = UAR_remove_sharaf_from_power
 		}
-		x = 45
+		x = 46
 		y = 8
 		completion_reward = {
-		    add_stability = 0.045 
+		    add_stability = 0.045
 			add_political_power = 80 
+			add_popularity = {
+			    ideology = revolutionary_socialist
+			    popularity = -0.1
+	        }
 			country_event = { id = uar.68 }
 		}
 
 	}
 	focus = {
 		id = UAR_religious_freedoms_protected
-		icon = GFX_goal_islamic_healthcare
+		icon = protect_muslims
 		cost = 10
 		prerequisite = {
-			focus = UAR_syndicalist_economic_overhaul
 			focus = UAR_denounce_nasserism
 		}
-		x = 44
+		x = 45
 		y = 9
 		completion_reward = {
 		    add_ideas = idea_uar_religious_freedoms_protected
@@ -1940,12 +2996,12 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_workers_rights
-		icon = focus_direct_democracy
+		icon = GFX_goal_socialist_industry
 		cost = 10
 		prerequisite = {
 			focus = UAR_remove_sharaf_from_power
 		}
-		x = 47
+		x = 48
 		y = 8
 		completion_reward = {
 		    add_ideas = idea_uar_workers_rights
@@ -1953,80 +3009,27 @@ focus_tree = {
 
 	}
 	focus = {
-		id = UAR_rural_syndicates
-		icon = focus_commonwealth_collectivisation
+		id = UAR_syndicalist_economic_overhaul
+		icon = GFX_goal_generic_red_flag_torch
 		cost = 10
 		prerequisite = {
-			focus = UAR_remove_sharaf_from_power
+			focus = UAR_workers_rights
 		}
-		x = 49
-		y = 8
+		x = 47
+		y = 9
 		completion_reward = {
-		    add_popularity = {
-			    ideology = revolutionary_socialist
-			    popularity = 0.08
-	        }
-			random_owned_state = {
-				add_building_construction = {
-					type = infrastructure
-					level = 2
-					instant_build = yes
-				}
-			}
-			random_owned_state = {
-				add_building_construction = {
-					type = infrastructure
-					level = 2
-					instant_build = yes
-				}
-			}
-			random_owned_state = {
-				add_building_construction = {
-					type = infrastructure
-					level = 2
-					instant_build = yes
-				}
-			}
-			random_owned_state = {
-				add_building_construction = {
-					type = infrastructure
-					level = 2
-					instant_build = yes
-				}
-			}
-			random_owned_state = {
-				add_building_construction = {
-					type = infrastructure
-					level = 2
-					instant_build = yes
-				}
-			}
-			random_owned_state = {
-				add_building_construction = {
-					type = infrastructure
-					level = 2
-					instant_build = yes
-				}
-			}
-			random_owned_state = {
-				add_building_construction = {
-					type = infrastructure
-					level = 2
-					instant_build = yes
-				}
-			}
+		    add_ideas = idea_uar_syndicalist_economic_overhaul
 		}
 
 	}
 	focus = {
 		id = UAR_increased_output
-		icon = work_for_the_tsar
+		icon = direct_democracy
 		cost = 10
 		prerequisite = {
 			focus = UAR_workers_rights
-			focus = UAR_rural_syndicates
 		}
-		x = 48
+		x = 49
 		y = 9
 		completion_reward = {
 		    add_ideas = idea_uar_increased_output
@@ -2035,7 +3038,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_freedom_for_the_family
-		icon = democracy
+		icon = GFX_goal_UAR_freedom_for_the_family
 		cost = 3.6
 		available = {
 		    has_completed_focus = UAR_restore_arab_unity
@@ -2073,7 +3076,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_election_with_bashar
-		icon = neutrality
+		icon = GFX_goal_UAR_bashar_assad_candidate_approved
 		cost = 1
 		available = {
 		    OR = {
@@ -2104,7 +3107,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_revoke_bashars_candidacy
-		icon = anti_monarchy
+		icon = GFX_goal_UAR_bashar_assad_candidate_rejected
 		cost = 1
 		available = {
 		    has_country_flag = ensured_baath_victory
@@ -2149,21 +3152,23 @@ focus_tree = {
 			focus = UAR_election_with_bashar
 			focus = UAR_revoke_bashars_candidacy
 		}
-		x = 52
+		x = 53
 		y = 3
 		completion_reward = {
-		
+			country_event = {
+				id = uar.92
+			}
 		}
 
 	}
 	focus = {
 		id = UAR_crush_political_opposition
-		icon = smashing_flag
+		icon = crackdown_on_opposition
 		cost = 10
 		prerequisite = {
 			focus = UAR_hegazy_regime
 		}
-		x = 51
+		x = 52
 		y = 4
 		completion_reward = {
 		    add_political_power = 200 
@@ -2178,7 +3183,7 @@ focus_tree = {
 		prerequisite = {
 			focus = UAR_crush_political_opposition
 		}
-		x = 50
+		x = 51
 		y = 5
 		completion_reward = {
 		    add_popularity = {
@@ -2196,7 +3201,7 @@ focus_tree = {
 		prerequisite = {
 			focus = UAR_hegazy_regime
 		}
-		x = 53
+		x = 54
 		y = 4
 		completion_reward = {
 		    add_timed_idea = {
@@ -2214,7 +3219,7 @@ focus_tree = {
 		prerequisite = {
 			focus = UAR_halt_election_promises
 		}
-		x = 54
+		x = 55
 		y = 5
 		completion_reward = {
 		    add_ideas = idea_uar_low_political_freedoms
@@ -2258,7 +3263,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_authoritarian_democracy
-		icon = empower_the_house_of_lords
+		icon = GFX_goal_government_centralised
 		cost = 10
 		prerequisite = {
 			focus = UAR_welfare_state
@@ -2294,7 +3299,7 @@ focus_tree = {
 		x = 58
 		y = 7
 		completion_reward = {
-		    add_stability = 0.035
+		    add_stability = 0.05
 		}
 
 	}
@@ -2321,7 +3326,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_freedom_in_nasserism
-		icon = anti_fascist
+		icon = focus_maintain_nasserism
 		cost = 10
 		prerequisite = {
 			focus = UAR_president_sabahi
@@ -2335,7 +3340,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_working_class_spirit
-		icon = pro_soviet_propaganda
+		icon = GFX_goal_generic_worker
 		cost = 10
 		prerequisite = {
 			focus = UAR_freedom_in_nasserism
@@ -2364,7 +3369,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_production_returned_to_the_people
-		icon = torch_industry
+		icon = work_for_the_tsar
 		cost = 10
 		prerequisite = {
 			focus = UAR_unprecedented_freedom_of_speech
@@ -2399,7 +3404,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_invest_in_syria
-		icon = infrastructure
+		icon = focus_syria_reconstruction
 		cost = 10
 		prerequisite = {
 			focus = UAR_president_al_nouri
@@ -2408,27 +3413,51 @@ focus_tree = {
 		y = 4
 		completion_reward = {
 		    677 = {
-			    add_extra_state_shared_building_slots = 1
+			    add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = dockyard
 					level = 1
 					instant_build = yes
 				}
 			}
 			680 = {
-			    add_extra_state_shared_building_slots = 1
+			    add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = industrial_complex
 					level = 1
 					instant_build = yes
 				}
+				add_building_construction = {
+					type = rubber_factory
+					level = 1
+					instant_build = yes
+				}
 			}
+			554 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = steel_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_political_power = -50
 		}
 
 	}
 	focus = {
 		id = UAR_encourage_foreign_businesses
-		icon = positive_trade_relations
+		icon = focus_profits_from_republics
 		cost = 10
 		prerequisite = {
 			focus = UAR_invest_in_syria
@@ -2442,7 +3471,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_moderate_between_the_systems
-		icon = dangerous_deal
+		icon = GFX_goal_generic_stable_government
 		cost = 10
 		prerequisite = {
 			focus = UAR_encourage_foreign_businesses
@@ -2492,7 +3521,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_academic_influence
-		icon = socialist_science
+		icon = GFX_goal_brain_power
 		cost = 10
 		prerequisite = {
 			focus = UAR_president_qandil
@@ -2520,7 +3549,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_rapid_production
-		icon = focus_freedom_of_demonstration
+		icon = work_quotas
 		cost = 10
 		prerequisite = {
 			focus = UAR_national_development_act
@@ -2569,7 +3598,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_develop_democratic_branches
-		icon = GFX_goal_Social_Liberalism
+		icon = GFX_goal_human_rights
 		cost = 10
 		prerequisite = {
 			focus = UAR_rise_of_a_new_nation
@@ -2583,7 +3612,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_international_trade_goals
-		icon = focus_commonwealth_un_membership
+		icon = positive_trade_relations
 		cost = 10
 		prerequisite = {
 			focus = UAR_rise_of_a_new_nation
@@ -2613,7 +3642,7 @@ focus_tree = {
 		icon = focus_islamic_socialism
 		cost = 2
 		available = {
-		    has_completed_focus = UAR_abolish_democratic_thought
+		    has_completed_focus = UAR_pray_for_the_leader
 		}
 		prerequisite = {
 			focus = UAR_foreign_affairs
@@ -2698,6 +3727,8 @@ focus_tree = {
 			focus = UAR_claim_mecca
 		}
 		available = {
+			owns_state = 812
+			owns_state = 991
 			has_war = no
 		}
 		x = 69
@@ -2731,7 +3762,7 @@ focus_tree = {
 		icon = focus_maintain_nasserism
 		cost = 2
 		available = {
-		    has_completed_focus = UAR_isolation_from_major_powers
+		    has_completed_focus = UAR_the_nationalist_dictatorship
 		}
 		prerequisite = {
 			focus = UAR_foreign_affairs
@@ -3163,71 +4194,74 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_unification_through_war
-		icon = start_war
+		icon = focus_unification_through_war
 		cost = 14.4
 		prerequisite = {
 			focus = UAR_nasserist_policy
+			focus = UAR_syndicalist_policy
 		}
 		mutually_exclusive = {
 			focus = UAR_alliance_with_arab_states
 		}
-		x = 74
+		x = 75
 		y = 2
 		completion_reward = {
+			custom_effect_tooltip = UAR_arab_uni_tt
 		    add_ideas = idea_uar_unification_through_war
+		    hidden_effect = { set_country_flag = UAR_arab_unification }
 			every_state = {
 			    limit = {
 				    is_core_of = PAL
 				}
-				add_core_of = UAR
+				add_claim_by = UAR
 			}
 			every_state = {
 			    limit = {
 				    is_core_of = JOR
 				}
-				add_core_of = UAR
+				add_claim_by = UAR
 			}
 			every_state = {
 			    limit = {
 				    is_core_of = LEB
 				}
-				add_core_of = UAR
+				add_claim_by = UAR
 			}
 			every_state = {
 			    limit = {
 				    is_core_of = IRQ
 				}
-				add_core_of = UAR
+				add_claim_by = UAR
 			}
 			every_state = {
 			    limit = {
 				    is_core_of = SAU
 				}
-				add_core_of = UAR
+				add_claim_by = UAR
 			}
 			every_state = {
 			    limit = {
 				    is_core_of = KUW
 				}
-				add_core_of = UAR
+				add_claim_by = UAR
 			}
 			every_state = {
 			    limit = {
 				    is_core_of = UAE
 				}
-				add_core_of = UAR
+				add_claim_by = UAR
 			}
 			every_state = {
 			    limit = {
 				    is_core_of = QAT
 				}
-				add_core_of = UAR
+				add_claim_by = UAR
 			}
 			every_state = {
 			    limit = {
 				    is_core_of = OMA
 				}
-				add_core_of = UAR
+				add_claim_by = UAR
 			}
 			every_state = {
 			    limit = {
@@ -3238,38 +4272,41 @@ focus_tree = {
 						is_core_of = PDY
 					}
 				}
-				add_core_of = UAR
+				add_claim_by = UAR
 			}
 			every_state = {
 			    limit = {
 				    is_core_of = SUD
 				}
-				add_core_of = UAR
+				add_claim_by = UAR
 			}
 			every_state = {
 			    limit = {
 				    is_core_of = ALG
 				}
-				add_core_of = UAR
+				add_claim_by = UAR
 			}
 			every_state = {
 			    limit = {
 				    is_core_of = TUN
 				}
-				add_core_of = UAR
+				add_claim_by = UAR
 			}
 			every_state = {
 			    limit = {
 				    is_core_of = MOR
 				}
-				add_core_of = UAR
+				add_claim_by = UAR
 			}
 			every_state = {
 			    limit = {
 				    is_core_of = LBA
 				}
-				add_core_of = UAR
+				add_claim_by = UAR
 			}
+			413 = { add_claim_by = UAR }
+			268 = { add_claim_by = UAR }
+			269 = { add_claim_by = UAR }
 		}
 
 	}
@@ -3283,7 +4320,7 @@ focus_tree = {
 		available = {
 			has_war = no
 		}
-		x = 74
+		x = 75
 		y = 3
 		will_lead_to_war_with = PAL
 		completion_reward = {
@@ -3304,7 +4341,7 @@ focus_tree = {
 		available = {
 			has_war = no
 		}
-		x = 73
+		x = 74
 		y = 4
 		will_lead_to_war_with = JOR
 		completion_reward = {
@@ -3325,7 +4362,7 @@ focus_tree = {
 		available = {
 			has_war = no
 		}
-		x = 75
+		x = 76
 		y = 4
 		will_lead_to_war_with = SAU
 		will_lead_to_war_with = OMA
@@ -3348,22 +4385,50 @@ focus_tree = {
 			    type = annex_everything
 			    target = QAT
 		    }
+			if = {
+			limit = {
+			YEM = {
+			exists = yes
+				}
+			}
 			create_wargoal = {
 			    type = annex_everything
 			    target = YEM
-		    }
+				}
+			}
+			if = {
+			limit = {
+			YAR = {
+			exists = yes
+				}
+			}
 			create_wargoal = {
 			    type = annex_everything
 			    target = YAR
-		    }
+				}
+			}
+			if = {
+			limit = {
+			JAS = {
+			exists = yes
+				}
+			}
 			create_wargoal = {
 			    type = annex_everything
 			    target = JAS
-		    }
+				}
+			}
+			if = {
+			limit = {
+			PDY = {
+			exists = yes
+				}
+			}
 			create_wargoal = {
 			    type = annex_everything
 			    target = PDY
-		    }
+				}
+			}
 			create_wargoal = {
 			    type = annex_everything
 			    target = UAE
@@ -3384,7 +4449,7 @@ focus_tree = {
 		available = {
 			has_war = no
 		}
-		x = 74
+		x = 75
 		y = 5
 		will_lead_to_war_with = IRQ
 		completion_reward = {
@@ -3412,22 +4477,8 @@ focus_tree = {
 
 	}
 	focus = {
-		id = UAR_spread_the_revolution
-		icon = fourth_international
-		cost = 10
-		prerequisite = {
-			focus = UAR_syndicalist_policy
-		}
-		x = 76
-		y = 2
-		completion_reward = {
-		    add_ideas = idea_uar_spread_the_revolution
-		}
-
-	}
-	focus = {
 		id = UAR_new_socialist_alliance
-		icon = politburo_debate
+		icon = warsaw_pact
 		cost = 7.9
 		prerequisite = {
 			focus = UAR_syndicalist_policy
@@ -3438,7 +4489,27 @@ focus_tree = {
 		x = 78
 		y = 2
 		completion_reward = {
-		    create_faction = international_syndicates
+		    if = {
+                limit = {
+                    SOV = {
+                        exists = yes
+                        OR = {
+                            has_government = communist
+                            has_government = revolutionary_socialist
+                            has_government = moderate_socialist 
+                        }
+                        is_faction_leader = yes
+                    }
+                }
+                SOV = {
+                    country_event = { days = 1 id = generic.1 } 
+                }
+            }
+            else = {
+                GER = {
+                    country_event = { days = 1 id = generic.1 } 
+                }
+            }
 		}
 
 	}
@@ -3827,7 +4898,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_economic_injections
-		icon = communist_construction
+		icon = grab_money
 		cost = 6.5
 		prerequisite = {
 			focus = UAR_return_to_civilian_economy
@@ -3868,7 +4939,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_renew_sadats_mediterannean_plan
-		icon = naval_dockyard
+		icon = GFX_goal_UAR_anwar_sadat_ships
 		cost = 10
 		prerequisite = {
 			focus = UAR_return_to_civilian_economy
@@ -3905,10 +4976,10 @@ focus_tree = {
 		y = 6
 		completion_reward = {
 		    814 = {
-			    add_extra_state_shared_building_slots = 1
+			    add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = industrial_complex
-					level = 1
+					level = 2
 					instant_build = yes
 				}
 			}
@@ -3917,7 +4988,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_create_a_sustainable_target
-		icon = democracy
+		icon = GFX_goal_green_industry_focus
 		cost = 10
 		prerequisite = {
 			focus = UAR_promote_civil_cooperation
@@ -3953,7 +5024,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_tyranny_in_syria
-		icon = syria_attack
+		icon = UAR_tyranny_in_syria
 		cost = 5
 		prerequisite = {
 			focus = UAR_anti_assad_propaganda
@@ -3993,7 +5064,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_seize_disloyal_farms
-		icon = ethiopia_self_sufficiency
+		icon = agriculuture_agrarianism
 		cost = 5
 		prerequisite = {
 			focus = UAR_reintegrate_the_nation
@@ -4016,6 +5087,9 @@ focus_tree = {
 		y = 7
 		completion_reward = {
 		    add_political_power = 200
+			country_event = {
+				id = uar.87
+			}
 		}
 
 	}
@@ -4052,62 +5126,16 @@ focus_tree = {
 
 	}
 	focus = {
-		id = UAR_forced_income_redistribution
-		icon = investigate_industrial_corruption
-		cost = 10
-		prerequisite = {
-			focus = UAR_zakat
-		}
-		x = 30
-		y = 5
-		completion_reward = {
-		    add_ideas = idea_uar_forced_income_redistribution
-		} 
-
-	}
-	focus = {
-		id = UAR_production_quotas
-		icon = gorbachevs_kgb
-		cost = 10
-		prerequisite = {
-			focus = UAR_forced_income_redistribution
-		}
-		x = 31
-		y = 6
-		completion_reward = {
-		    add_ideas = idea_uar_production_quotas
-		}
-
-	}
-	focus = {
-		id = UAR_strong_muslim_army
-		icon = special_forces
-		cost = 10
-		prerequisite = {
-			focus = UAR_partial_sharia_implementation
-		}
-		prerequisite = {
-			focus = UAR_unified_arab_intelligence_agency
-		}
-		x = 30
-		y = 9
-		completion_reward = {
-		    add_ideas = idea_uar_strong_muslim_army
-			country_event = { id = uar.74 }
-		}
-
-	}
-	focus = {
 		id = UAR_isolation_from_major_powers
-		icon = army_doctrine
-		cost = 10
+		icon = GFX_goal_generic_city_hill
+		cost = 7.2
 		prerequisite = {
-			focus = UAR_self_sufficiency
+			focus = UAR_attack_imperialist_elements
 		}
-		x = 39
-		y = 9
+		x = 38
+		y = 7
 		completion_reward = {
-		    add_stability = 0.025
+		    add_stability = 0.035
 		}
 
 	}
@@ -4118,7 +5146,7 @@ focus_tree = {
 		prerequisite = {
 			focus = UAR_hegazy_regime
 		}
-		x = 52
+		x = 53
 		y = 5
 		completion_reward = {
 		    add_political_power = 100
@@ -4128,7 +5156,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_enforce_military_governance
-		icon = build_tank
+		icon = GFX_goal_Paternal_Autocrat
 		cost = 10
 		prerequisite = {
 			focus = UAR_condemn_nasserists
@@ -4139,21 +5167,23 @@ focus_tree = {
 		prerequisite = {
 			focus = UAR_maintain_low_political_freedoms
 		}
-		x = 52
+		x = 53
 		y = 6
 		completion_reward = {
 		    add_ideas = idea_uar_military_governance
+			country_event = {
+				id = uar.91
+			}
 		}
-
 	}
 	focus = {
 		id = UAR_discipline_in_schools
-		icon = generic_marching
+		icon = GFX_goal_education
 		cost = 10
 		prerequisite = {
 			focus = UAR_enforce_military_governance
 		}
-		x = 51
+		x = 52
 		y = 7
 		completion_reward = {
 		    add_ideas = idea_uar_discipline_in_schools
@@ -4162,7 +5192,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_train_generations_of_soldiers
-		icon = army_doctrine
+		icon = GFX_goal_soldiers
 		cost = 10
 		prerequisite = {
 			focus = UAR_discipline_in_schools
@@ -4175,134 +5205,30 @@ focus_tree = {
 
 	}
 	focus = {
-		id = UAR_order_in_the_streets
-		icon = tanks
-		cost = 10
-		prerequisite = {
-			focus = UAR_enforce_military_governance
-		}
-		x = 53
-		y = 7
-		completion_reward = {
-		    add_stability = 0.03
-			country_event = { id = uar.76 }
+	id = UAR_develop_military_capabilities
+	icon = small_arms_east
+	cost = 10
+	prerequisite = {
+		focus = UAR_train_generations_of_soldiers
+	}
+	x = 51
+	y = 9
+	completion_reward = {
+		army_experience = 50
+		navy_experience = 50
+		air_experience = 50
 		}
 
 	}
-	focus = {
-		id = UAR_privatise_various_sectors
-		icon = consumer_goods
-		cost = 10
-		prerequisite = {
-			focus = UAR_order_in_the_streets
-		}
-		x = 53
-		y = 8
-		completion_reward = {
-		    add_ideas = idea_uar_privatisation
-		}
 
-	}
-	focus = {
-		id = UAR_establish_socio_capitalism
-		icon = chinese_economy
-		cost = 10
-		prerequisite = {
-			focus = UAR_privatise_various_sectors
-		}
-		x = 53
-		y = 9
-		completion_reward = {
-			swap_ideas = {
-				remove_idea = idea_uar_privatisation
-				add_idea = idea_uar_socio_capitalism
-			}
-		}
-
-	}
-	focus = {
-		id = UAR_a_worthy_arab_army
-		icon = uar_attack
-		cost = 10
-		prerequisite = {
-			focus = UAR_train_generations_of_soldiers
-		}
-		x = 51
-		y = 9
-		completion_reward = {
-		    add_tech_bonus = {
-				name = infantry_weapons_bonus
-				bonus = 0.5
-				uses = 1
-				category = infantry_weapons
-			}
-			add_tech_bonus = {
-				name = motorized_equipment_bonus
-				bonus = 0.5
-				uses = 1
-				category = motorized_equipment
-			}
-			add_tech_bonus = {
-				name = cat_mechanized_equipment_bonus
-				bonus = 0.5
-				uses = 1
-				category = cat_mechanized_equipment
-			}
-		}
-
-	}
-	focus = {
-		id = UAR_allow_monopolies
-		icon = GFX_goal_capitalist_system
-		cost = 10
-		prerequisite = {
-			focus = UAR_establish_socio_capitalism
-		}
-		x = 53
-		y = 10
-		completion_reward = {
-		    add_ideas = idea_uar_allowing_monopolies
-		}
-
-	}
-	focus = {
-		id = UAR_protectionism
-		icon = GFX_goal_protectionist_economics
-		cost = 10
-		prerequisite = {
-			focus = UAR_privatise_various_sectors
-		}
-		x = 55
-		y = 9
-		completion_reward = {
-		    add_ideas = idea_uar_protectionism
-		}
-
-	}
-	focus = {
-		id = UAR_develop_military_capabilities
-		icon = air_defense
-		cost = 10
-		prerequisite = {
-			focus = UAR_a_worthy_arab_army
-		}
-		x = 51
-		y = 10
-		completion_reward = {
-		    army_experience = 50
-			navy_experience = 50
-			air_experience = 50
-		}
-
-	}
 	focus = {
 		id = UAR_nuclear_program
-		icon = research_nukes
+		icon = nukes
 		cost = 10
 		prerequisite = {
-			focus = UAR_a_worthy_arab_army
+			focus = UAR_develop_military_capabilities
 		}
-		x = 49
+		x = 51
 		y = 10
 		completion_reward = {
 		    add_tech_bonus = {
@@ -4311,26 +5237,121 @@ focus_tree = {
 				uses = 1
 				category = nuclear
 			}
+			add_breakthrough_progress = {
+				specialization = specialization_nuclear
+				value = 1
+			}
 		}
 
 	}
+
 	focus = {
 		id = UAR_promote_traditionalism
-		icon = focus_family_ties
+		icon = UAR_consolidate_government_support
 		cost = 10
 		prerequisite = {
-			focus = UAR_maintain_low_political_freedoms
+			focus = UAR_discipline_in_schools
 		}
-		x = 54
-		y = 6
+		x = 53
+		y = 8
 		completion_reward = {
 		    add_ideas = idea_uar_traditionalism
+			set_party_name = {
+				ideology = nationalist
+				long_name = "Rally for the National Unity of the Arab People"
+				name = "Rally for National Unity"
+			}
+			country_event = { id = uar.93 }
 		}
 
 	}
+
+	focus = {
+		id = UAR_order_in_the_streets
+		icon = GFX_goal_police_funding_bonus
+		cost = 10
+		prerequisite = {
+			focus = UAR_enforce_military_governance
+		}
+		x = 55
+		y = 7
+		completion_reward = {
+		    add_stability = 0.03
+			country_event = { id = uar.76 }
+		}
+
+	}
+
+	focus = {
+		id = UAR_renewed_infitah
+		icon = GFX_goal_Capitalism
+		cost = 10
+		prerequisite = {
+			focus = UAR_order_in_the_streets
+		}
+		x = 55
+		y = 8
+		completion_reward = {
+		add_ideas = idea_uar_infitah_one
+		}
+
+	}
+
+	focus = {
+		id = UAR_rakhaa
+		icon = GFX_goal_bag_of_money
+		cost = 10
+		prerequisite = {
+			focus = UAR_renewed_infitah
+		}
+		x = 55
+		y = 9
+		completion_reward = {
+		swap_ideas = {
+		remove_idea = idea_uar_infitah_one
+		add_idea = idea_uar_infitah_two
+			}
+		}
+
+	}
+
+	focus = { #stop having it closed
+		id = UAR_new_open_door_policy
+		icon = trade_focus
+		cost = 10
+		prerequisite = {
+			focus = UAR_rakhaa
+		}
+		x = 56
+		y = 10
+		completion_reward = {
+		add_ideas = idea_uar_open_door
+		add_offsite_building = { type = industrial_complex level = 4 }
+		}
+
+	}
+
+	focus = {
+		id = UAR_new_arab_elite
+		icon = focus_syria_unregulated_capitalism
+		cost = 10
+		prerequisite = {
+			focus = UAR_rakhaa
+		}
+		prerequisite ={
+			focus = UAR_train_generations_of_soldiers
+		}
+		x = 54
+		y = 10
+		completion_reward = {
+		add_ideas = idea_uar_new_arab_elite
+		}
+
+	}
+
 	focus = {
 		id = UAR_anti_corruption_campaign
-		icon = major_war
+		icon = Purge_Corruption_GRL
 		cost = 10
 		prerequisite = {
 			focus = UAR_rise_of_a_new_nation
@@ -4359,7 +5380,7 @@ focus_tree = {
 	}
 	focus = {
 		id = UAR_expand_state_corporations
-		icon = military_factory
+		icon = grab_money
 		cost = 6.5
 		prerequisite = {
 			focus = UAR_anti_corruption_campaign
@@ -4512,46 +5533,116 @@ focus_tree = {
 			    type = annex_everything
 			    target = OMA
 		    }
+			if = {
+			limit = {
+			YEM = {
+			exists = yes
+				}
+			}
 			create_wargoal = {
 			    type = annex_everything
 			    target = YEM
-		    }
+				}
+			}
+			if = {
+			limit = {
+			YAR = {
+			exists = yes
+				}
+			}
 			create_wargoal = {
 			    type = annex_everything
 			    target = YAR
-		    }
+				}
+			}
+			if = {
+			limit = {
+			JAS = {
+			exists = yes
+				}
+			}
 			create_wargoal = {
 			    type = annex_everything
 			    target = JAS
-		    }
+				}
+			}
+			if = {
+			limit = {
+			PDY = {
+			exists = yes
+				}
+			}
 			create_wargoal = {
 			    type = annex_everything
 			    target = PDY
-		    }
+				}
+			}
+			if = {
+			limit = {
+			LBA = {
+			exists = yes
+				}
+			}
 			create_wargoal = {
 			    type = annex_everything
 			    target = LBA
-		    }
+				}
+			}
+			if = {
+			limit = {
+			GNS = {
+			exists = yes
+				}
+			}
 			create_wargoal = {
 			    type = annex_everything
 			    target = GNS
-		    }
+				}
+			}
+			if = {
+			limit = {
+			ISL = {
+			exists = yes
+				}
+			}
 			create_wargoal = {
 			    type = annex_everything
 			    target = ISL
-		    }
+				}
+			}
+			if = {
+			limit = {
+			RAL = {
+			exists = yes
+				}
+			}
 			create_wargoal = {
 			    type = annex_everything
 			    target = RAL
-		    }
+				}
+			}
+			if = {
+			limit = {
+			FAL = {
+			exists = yes
+				}
+			}
 			create_wargoal = {
 			    type = annex_everything
 			    target = FAL
-		    }
+				}
+			}
+			if = {
+			limit = {
+			ACS = {
+			exists = yes
+				}
+			}
 			create_wargoal = {
 			    type = annex_everything
 			    target = ACS
-		    }
+				}
+			}
 			create_wargoal = {
 			    type = annex_everything
 			    target = TUN

@@ -19,6 +19,10 @@ types = {
 				is_major = no
 			}
 			modifier = {
+				factor = 0
+				date < 1939.5.1 # No one probably does anything interesting before this anyway :)
+			}
+			modifier = {
 				# Don't target anyone who is not a potential enemy
 				factor = 0
 				NOT = {
@@ -65,11 +69,11 @@ types = {
 		custom_map_icon = GFX_raid_type_icon_facility_raid
 
 		arrow = {
-			type = air
+		    type = air
 		}
-		unit_model = {
-			type = equipment
-		}
+        unit_model = {
+            type = equipment
+        }
 
 		unit_requirements = {
 			equipment = {
@@ -85,7 +89,7 @@ types = {
 		}
 
 		starting_point = {
-			types = { air_base }
+		    types = { air_base }
 		}
 
 		success_factors = {
@@ -167,10 +171,10 @@ types = {
 				visual_effect = {
 					entity = "raid_failed_entity"
 					animation = "attack"
-				}
+					}
 			}
 			limited_success = {
-				victim_effects = {
+			    victim_effects = {
 					var:target_state = {
 						custom_effect_tooltip = {
 							localization_key = raid_facility_damage_tt
@@ -187,7 +191,7 @@ types = {
 						raid_reduce_project_progress_ratio = 0.05
 					}
 
-				}
+			    }
 				actor_effects = {
 					raid_damage_units = {
 						plane_loss = 40
@@ -232,7 +236,7 @@ types = {
 				}
 			}
 			critical_success = {
-				victim_effects = {
+			    victim_effects = {
 					var:target_state = {
 						custom_effect_tooltip = {
 							localization_key = raid_facility_damage_tt
@@ -248,7 +252,7 @@ types = {
 						}
 						raid_reduce_project_progress_ratio = 0.25
 					}
-				}
+			    }
 				actor_effects = {
 					raid_damage_units = {
 						plane_loss = 10
@@ -314,11 +318,11 @@ types = {
 		launch_sound = raid_launch_air
 
 		arrow = {
-			type = air
+		    type = air
 		}
-		unit_model = {
-			type = equipment
-		}
+        unit_model = {
+            type = equipment
+        }
 
 		unit_requirements = {
 			equipment = {
@@ -335,7 +339,7 @@ types = {
 		}
 
 		starting_point = {
-			types = { air_base }
+		    types = { air_base }
 		}
 
 		success_factors = {
@@ -411,10 +415,10 @@ types = {
 				visual_effect = {
 					entity = "raid_failed_entity"
 					animation = "attack"
-				}
+					}
 			}
 			limited_success = {
-				victim_effects = {
+			    victim_effects = {
 					# Damage to Target
 					var:target_state = {
 						damage_building = {
@@ -423,7 +427,7 @@ types = {
 							province = var:ROOT.target_province
 						}
 					}
-				}
+			    }
 				actor_effects = {
 					# Damage to raiding units
 					raid_damage_units = {
@@ -440,7 +444,7 @@ types = {
 				}
 			}
 			success = {
-				victim_effects = {
+			    victim_effects = {
 					# Damage to Target
 					var:target_state = {
 						damage_building = {
@@ -450,7 +454,7 @@ types = {
 							repair_speed_modifier = -0.35
 						}
 					}
-				}
+			    }
 				actor_effects = {
 					# Damage to raiding units
 					raid_damage_units = {
@@ -471,7 +475,7 @@ types = {
 				}
 			}
 			critical_success = {
-				victim_effects = {
+			    victim_effects = {
 					# Damage to Target
 					var:target_state = {
 						damage_building = {
@@ -481,7 +485,7 @@ types = {
 							repair_speed_modifier = -0.55
 						}
 					}
-				}
+			    }
 				actor_effects = {
 					# Damage to raiding units
 					raid_damage_units = {
@@ -505,7 +509,7 @@ types = {
 
 	}
 
-
+	
 
 ###################################################
 
@@ -528,7 +532,7 @@ types = {
 			base = 1
 			modifier = {
 				factor = 3
-				is_major = yes
+				original_tag = ENG # Just for historical reasons
 			}
 		}
 
@@ -565,11 +569,11 @@ types = {
 		launch_sound = raid_launch_air
 
 		arrow = {
-			type = air
+		    type = air
 		}
-		unit_model = {
-			type = equipment
-		}
+        unit_model = {
+            type = equipment
+        }
 
 		unit_requirements = {
 			equipment = {
@@ -579,7 +583,7 @@ types = {
 		}
 
 		starting_point = {
-			types = { air_base }
+		    types = { air_base }
 		}
 
 		success_factors = {
@@ -659,10 +663,10 @@ types = {
 				visual_effect = {
 					entity = "raid_failed_entity"
 					animation = "attack"
-				}
+					}
 			}
 			limited_success = {
-				victim_effects = {
+			    victim_effects = {
 					# Damage to Target
 					var:target_state = {
 						damage_building = {
@@ -675,7 +679,7 @@ types = {
 							days = 60
 						}
 					}
-				}
+			    }
 				actor_effects = {
 					# Damage to raiding units
 					raid_damage_units = {
@@ -685,6 +689,19 @@ types = {
 
 					# XP etc
 					raid_add_unit_experience = 0.1
+
+					var:actor_country = {
+						hidden_effect = {
+							IF = {
+								limit = {
+									NOT = {
+										has_country_flag = successful_dam_busting_raid_flag
+									}
+								}
+								set_country_flag = successful_dam_busting_raid_flag
+							}
+						}
+					}
 				}
 				visual_effect = {
 					entity = "air_raids_1_limited_success_entity"
@@ -692,7 +709,7 @@ types = {
 				}
 			}
 			success = {
-				victim_effects = {
+			    victim_effects = {
 					# Damage to Target
 					var:target_state = {
 						damage_building = {
@@ -706,7 +723,7 @@ types = {
 							days = 180
 						}
 					}
-				}
+			    }
 				actor_effects = {
 					# Damage to raiding units
 					raid_damage_units = {
@@ -719,6 +736,16 @@ types = {
 
 					var:actor_country = {
 						air_experience = 10
+						hidden_effect = {
+							IF = {
+								limit = {
+									NOT = {
+										has_country_flag = successful_dam_busting_raid_flag
+									}
+								}
+								set_country_flag = successful_dam_busting_raid_flag
+							}
+						}
 					}
 				}
 				visual_effect = {
@@ -727,7 +754,7 @@ types = {
 				}
 			}
 			critical_success = {
-				victim_effects = {
+			    victim_effects = {
 					# Damage to Target
 					var:target_state = {
 						damage_building = {
@@ -741,7 +768,7 @@ types = {
 							days = 360
 						}
 					}
-				}
+			    }
 				actor_effects = {
 					# Damage to raiding units
 					raid_damage_units = {
@@ -754,6 +781,16 @@ types = {
 
 					var:actor_country = {
 						air_experience = 20
+						hidden_effect = {
+							IF = {
+								limit = {
+									NOT = {
+										has_country_flag = successful_dam_busting_raid_flag
+									}
+								}
+								set_country_flag = successful_dam_busting_raid_flag
+							}
+						}
 					}
 				}
 				visual_effect = {
@@ -764,8 +801,8 @@ types = {
 		}
 	}
 
-
-
+	
+	
 
 ########################################################
 
@@ -798,6 +835,15 @@ types = {
 				factor = 0.25
 				NOT = {
 					has_war_with = FROM
+				}
+			}
+			modifier = {
+				factor = 3 # Historical
+				original_tag = ENG
+				has_war_with = GER
+				FROM = {
+					original_tag = ROM
+					is_in_faction_with = GER
 				}
 			}
 		}
@@ -854,11 +900,11 @@ types = {
 		target_icon = GFX_oilfield_target_icon
 		target_loc_key = raid_target_name_oil_field
 		arrow = {
-			type = air
+		    type = air
 		}
-		unit_model = {
-			type = equipment
-		}
+        unit_model = {
+            type = equipment
+        }
 		launch_sound = raid_launch_air
 
 		unit_requirements = {
@@ -869,7 +915,7 @@ types = {
 		}
 
 		starting_point = {
-			types = { air_base }
+		    types = { air_base }
 		}
 
 		success_factors = {
@@ -925,9 +971,9 @@ types = {
 
 		success_levels = {
 			failure = {
-				victim_effects = {
+			    victim_effects = {
 
-				}
+			    }
 				actor_effects = {
 					# Damage to raiding units
 					raid_damage_units = {
@@ -943,10 +989,10 @@ types = {
 				visual_effect = {
 					entity = "raid_failed_entity"
 					animation = "attack"
-				}
+					}
 			}
 			limited_success = {
-				victim_effects = {
+			    victim_effects = {
 					# Damage to Target
 					var:target_state = {
 						add_dynamic_modifier = {
@@ -954,7 +1000,7 @@ types = {
 							days = 90
 						}
 					}
-				}
+			    }
 				actor_effects = {
 					# Damage to raiding units
 					raid_damage_units = {
@@ -971,7 +1017,7 @@ types = {
 				}
 			}
 			success = {
-				victim_effects = {
+			    victim_effects = {
 					# Damage to Target
 					var:target_state = {
 						add_dynamic_modifier = {
@@ -979,7 +1025,7 @@ types = {
 							days = 180
 						}
 					}
-				}
+			    }
 				actor_effects = {
 					# Damage to raiding units
 					raid_damage_units = {
@@ -1000,7 +1046,7 @@ types = {
 				}
 			}
 			critical_success = {
-				victim_effects = {
+			    victim_effects = {
 					# Damage to Target
 					var:target_state = {
 						add_dynamic_modifier = {
@@ -1008,7 +1054,7 @@ types = {
 							days = 360
 						}
 					}
-				}
+			    }
 				actor_effects = {
 					# Damage to raiding units
 					raid_damage_units = {
@@ -1046,8 +1092,8 @@ types = {
 		days_to_prepare = 90
 
 		ai_will_do = {
-			base = 1
-			modifier = {
+		    base = 1
+		    modifier = {
 				# Don't target anyone who is not a potential enemy
 				factor = 0
 				NOT = {
@@ -1065,7 +1111,7 @@ types = {
 
 		allowed = {
 			has_dlc = "Gotterdammerung"
-			has_dlc_bba = yes
+			has_dlc = "By Blood Alone"
 		}
 
 		# Raid Type is visible
@@ -1094,11 +1140,11 @@ types = {
 		launch_sound = raid_launch_air
 
 		arrow = {
-			type = air
+		    type = air
 		}
-		unit_model = {
-			type = equipment
-		}
+        unit_model = {
+            type = equipment
+        }
 
 		unit_requirements = {
 			equipment = {
@@ -1110,7 +1156,7 @@ types = {
 
 
 		starting_point = {
-			types = { air_base }
+		    types = { air_base }
 		}
 
 		success_factors = {
@@ -1185,10 +1231,10 @@ types = {
 				visual_effect = {
 					entity = "raid_failed_entity"
 					animation = "attack"
-				}
+					}
 			}
 			limited_success = {
-				victim_effects = {
+			    victim_effects = {
 					var:target_state = {
 						damage_building = {
 							type = mega_gun_emplacement
@@ -1197,7 +1243,7 @@ types = {
 						}
 					}
 
-				}
+			    }
 				actor_effects = {
 					raid_damage_units = {
 						plane_loss = 40
@@ -1239,7 +1285,7 @@ types = {
 				}
 			}
 			critical_success = {
-				victim_effects = {
+			    victim_effects = {
 					var:target_state = {
 						custom_effect_tooltip = {
 							localization_key = raid_building_destroyed_tt
@@ -1252,7 +1298,7 @@ types = {
 							}
 						}
 					}
-				}
+			    }
 				actor_effects = {
 					raid_damage_units = {
 						plane_loss = 10
@@ -1291,7 +1337,7 @@ types = {
 
 		allowed = {
 			has_dlc = "Gotterdammerung"
-			has_dlc_bba = no
+			NOT = { has_dlc = "By Blood Alone" }
 		}
 
 		# Raid Type is visible
@@ -1320,11 +1366,11 @@ types = {
 		launch_sound = raid_launch_air
 
 		arrow = {
-			type = air
+		    type = air
 		}
-		unit_model = {
-			type = equipment
-		}
+        unit_model = {
+            type = equipment
+        }
 
 		unit_requirements = {
 			equipment = {
@@ -1335,7 +1381,7 @@ types = {
 
 
 		starting_point = {
-			types = { air_base }
+		    types = { air_base }
 		}
 
 		success_factors = {
@@ -1410,10 +1456,10 @@ types = {
 				visual_effect = {
 					entity = "raid_failed_entity"
 					animation = "attack"
-				}
+					}
 			}
 			limited_success = {
-				victim_effects = {
+			    victim_effects = {
 					var:target_state = {
 						damage_building = {
 							type = mega_gun_emplacement
@@ -1421,7 +1467,7 @@ types = {
 							repair_speed_modifier = -0.20
 						}
 					}
-				}
+			    }
 				actor_effects = {
 					raid_damage_units = {
 						plane_loss = 40
@@ -1432,7 +1478,7 @@ types = {
 				visual_effect = {
 					entity = "air_raids_2_limited_success_entity"
 					animation = "attack"
-				}
+					}
 			}
 			success = {
 				victim_effects = {
@@ -1460,10 +1506,10 @@ types = {
 				visual_effect = {
 					entity = "air_raids_2_success_entity"
 					animation = "attack"
-				}
+					}
 			}
 			critical_success = {
-				victim_effects = {
+			    victim_effects = {
 					var:target_state = {
 						custom_effect_tooltip = {
 							localization_key = raid_building_destroyed_tt
@@ -1476,7 +1522,7 @@ types = {
 							}
 						}
 					}
-				}
+			    }
 				actor_effects = {
 					raid_damage_units = {
 						plane_loss = 10
@@ -1484,9 +1530,9 @@ types = {
 					}
 					raid_add_unit_experience = 0.35
 				}
-				visual_effect = {
-					entity = "air_raids_2_critical_success_entity"
-					animation = "attack"
+			visual_effect = {
+				entity = "air_raids_2_critical_success_entity"
+				animation = "attack"
 				}
 			}
 		}

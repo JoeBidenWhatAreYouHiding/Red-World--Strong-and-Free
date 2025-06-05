@@ -381,8 +381,20 @@ country_event = {
 	
 	option = {
 		name = uar.1552.o1
-		delete_units = {
-    		division_template = "Infantry Division (Syrian)"
+		delete_unit_template_and_units = {
+    		division_template = "Mechanized Division (Syrian)"
+		}
+		delete_unit_template_and_units = {
+    		division_template = "Armored Division (Syrian)"
+		}
+		delete_unit_template_and_units = {
+    		division_template = "Elite Armored Division (Syrian)"
+		}
+		delete_unit_template_and_units = {
+    		division_template = "Republican Guard Division (Syrian)"
+		}
+		delete_unit_template_and_units = {
+    		division_template = "Special Forces Division (Syrian)"
 		}
 		if = {
 		limit = { has_dlc = "By Blood Alone" }
@@ -422,7 +434,7 @@ country_event = {
 	is_triggered_only = yes
 	
 	option = {
-		name = uar.12.o1
+		name = uar.1553.o1
 		add_manpower = 10000
 		if = {
 		limit = { has_dlc = "By Blood Alone" }
@@ -444,8 +456,36 @@ country_event = {
 				}
 			}
 		}
-		hidden_effect = { delete_unit_template_and_units = {
-    division_template = "Infantry Division (Egyptian)"
+		hidden_effect = { 
+			delete_unit_template_and_units = {
+    			division_template = "Infantry Division (Egyptian)"
+			}
+			delete_unit_template_and_units = {
+    			division_template = "Mechanized Division (Egyptian)"
+			}
+			delete_unit_template_and_units = {
+    			division_template = "Armored Division (Egyptian)"
+			}
+			delete_unit_template_and_units = {
+    			division_template = "Republican Guard Division (Egyptian)"
+			}
+			delete_unit_template_and_units = {
+    			division_template = "Mechanized Division (Syrian)"
+			}
+			delete_unit_template_and_units = {
+    			division_template = "Armored Division (Syrian)"
+			}
+			delete_unit_template_and_units = {
+    			division_template = "Elite Armored Division (Syrian)"
+			}
+			delete_unit_template_and_units = {
+    			division_template = "Republican Guard Division (Syrian)"
+			}
+			delete_unit_template_and_units = {
+    			division_template = "Special Forces Division (Syrian)"
+			}
+			delete_unit_template_and_units = {
+    			division_template = "Marines"
 			}
 		}
 	}
@@ -498,9 +538,15 @@ country_event = {
 		}
 		set_country_flag = sharaf_invaded_syria
 		set_global_flag = sharaf_has_invaded_syria
+		country_lock_all_division_template = no
 		hidden_effect = {
 		add_named_threat = { threat = 2 name = UAR_syria_war }
 			every_country = {
+				limit = {
+					NOT = {
+						tag = UAR
+					}
+				}
 			    news_event = {
 			        hours = 4
 			        id = news.248
@@ -523,6 +569,7 @@ country_event = {
 		}
 		add_political_power = -150
 		set_global_flag = syria_has_gained_independence
+		country_lock_all_division_template = no
 		hidden_effect = {
 		    UAR = {
 		        country_event = { days = 2 id = uar.77 } 
@@ -586,7 +633,6 @@ country_event = {
 	option = {   #Syndicalism
 		name = uar.16.o3
 		set_country_flag = syndicalist_republic
-		set_party_name = { ideology = revolutionary_socialist long_name = UAR_arab_syndicalist_union name = UAR_arab_syndicalist_union }
 		ai_chance = {
 			base = 50
 			modifier = {
@@ -602,6 +648,9 @@ country_event = {
 				}
 				factor = 0
 			}
+		}
+		hidden_effect = {
+		    country_event = { days = 200 id = uar.85 } 
 		}
 	}
 }
@@ -920,6 +969,10 @@ country_event = {
 		uar_mahmoud_hegazy = {
 			promote_character = military_junta
 		}
+		hidden_effect = {
+		add_ideas = uar_ind_mohamed_moustafa
+		add_ideas = uar_sic_mohamed_hussein_tantawi
+		}
 		ai_chance = {
 			modifier = {
 				NOT = {
@@ -1210,10 +1263,8 @@ country_event = {
 	
 	option = { 
 		name = uar.34.o1
-		transfer_state = 551 
-		transfer_state = 763
+		transfer_state = 551
 		add_state_core = 551
-		add_state_core = 763
 	}
 }
 
@@ -1230,7 +1281,6 @@ country_event = {
 		name = uar.35.o1
 		add_political_power = -50 
 		add_state_core = 551
-		add_state_core = 763
 		create_wargoal = {
 			target = SUD
 			type = annex_everything
@@ -1897,6 +1947,11 @@ country_event = {
 					}
 				}
 				every_country = {
+					limit = {
+						NOT = {
+							tag = UAR
+						}
+					}
 					news_event = {
 						hours = 4
 						id = news.249
@@ -1904,5 +1959,281 @@ country_event = {
 				}
 			}
 		}
+	}
+}
+
+country_event = {
+	id = uar.78
+	title = uar.78.t
+	desc = uar.78.d
+	picture = el_tayeb_imam
+	
+	fire_only_once = yes
+	
+	trigger = {
+		tag = UAR
+		date > 2010.3.1
+		date < 2010.3.30
+	}
+	
+	option = {
+		name = uar.78.o1
+		add_stability = 0.01
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.02
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.01
+		}
+	}
+}
+
+country_event = { #protect religious minorities
+	id = uar.79
+	title = uar.79.t
+	desc = uar.79.d
+	picture = UAR_restoration_of_religious_freedom
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = uar.79.o1
+	}
+}
+
+country_event = { #reorganize the armed forces
+	id = uar.80
+	title = uar.80.t
+	desc = uar.80.d
+	picture = el_tayeb_imam
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = uar.80.o1
+	}
+}
+
+country_event = { #Strike Breaks Out in El-Mahalla El-Kubra
+	id = uar.81
+	title = uar.81.t
+	desc = uar.81.d
+	picture = uar_strikes_in_kubra
+	
+	fire_only_once = yes
+	trigger = {
+		tag = UAR
+		date > 2010.2.1
+		date < 2010.2.30
+	}
+	
+	option = {
+		name = uar.81.o1
+		add_political_power = -35
+		add_popularity = {
+			ideology = communist
+			popularity = 0.05
+		}
+		hidden_effect = {
+		    country_event = { days = 21 id = uar.82 } 
+		}
+	}
+}
+
+country_event = { #Industrial Workers’ Strike Broken Up
+	id = uar.82
+	title = uar.82.t
+	desc = uar.82.d
+	picture = uar_strike_broken
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = uar.82.o1
+	}
+}
+
+country_event = { #Syrian Unions Pledge Allegiance to the Center for Trade Unions and Workers Services
+	id = uar.83
+	title = uar.83.t
+	desc = uar.83.d
+	picture = uar_khalil_in_syria
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = uar.83.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+	}
+}
+
+country_event = { #Committee for Popular Resistance Lynches Landlord
+	id = uar.84
+	title = uar.84.t
+	desc = uar.84.d
+	picture = uar_trouble_in_aswan
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = uar.84.o1
+		456 = {
+			add_manpower = -1
+		}
+	}
+}
+
+country_event = { #Parliamentary Reform Bill Fails
+	id = uar.85
+	title = uar.85.t 
+	desc = uar.85.d
+	picture = uar_reform_bill_fails
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = uar.85.o1
+		add_political_power = -100
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = -0.05
+		}
+	}
+}
+
+country_event = { #Pass Major Reforms in Cairo
+	id = uar.86
+	title = uar.86.t 
+	desc = uar.86.d
+	picture = uar_syrian_regional_government_reestablished
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = uar.86.o1
+	}
+}
+
+country_event = { #Political Supremacy
+	id = uar.87
+	title = uar.87.t 
+	desc = uar.87.d
+	picture = uar_syrian_regional_government_abolished
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = uar.87.o1
+	}
+}
+
+country_event = { #Anti-Assad Propaganda
+	id = uar.88
+	title = uar.88.t 
+	desc = uar.88.d
+	picture = UAR_el_tayeb_tours_syria
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = uar.88.o1
+	}
+}
+
+country_event = { #TODO Islamic Unity
+	id = uar.89
+	title = uar.89.t 
+	desc = uar.89.d
+	picture = x
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = uar.89.o1
+	}
+}
+
+country_event = { #Suppress Communists
+	id = uar.90
+	title = uar.90.t 
+	desc = uar.90.d
+	picture = x
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = uar.90.o1
+	}
+}
+
+country_event = { #TODO Enforce Military Governance
+	id = uar.91
+	title = uar.91.t 
+	desc = uar.91.d
+	picture = uar_hegazy_presidente
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = uar.91.o1
+	}
+}
+
+country_event = { #TODO Hegazy Regime
+	id = uar.92
+	title = uar.92.t 
+	desc = uar.92.d
+	picture = x
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = uar.92.o1
+	}
+}
+
+country_event = { #Founding Hegazy's Party Event Placeholder
+	id = uar.93
+	title = uar.93.t
+	desc = uar.93.d
+	picture = uar_new_party_picture
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = uar.93.o1
+	}
+}
+
+country_event = { #Suppres Communists Placeholder 
+	id = uar.94
+	title = uar.94.t
+	desc = uar.94.d
+	picture = uar_communist_suppression
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = uar.94.o1
 	}
 }

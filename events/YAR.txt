@@ -1541,7 +1541,6 @@ country_event = {
 		transfer_state = 988
 		transfer_state = 987
 		transfer_state = 985
-		transfer_state = 989
 		transfer_state = 990
 	}
 }
@@ -2072,7 +2071,7 @@ country_event = {
 	is_triggered_only = yes
 
 	option = {
-		name = YAR.102.01
+		name = YAR.102.o1
 		add_political_power = -25
 		add_opinion_modifier = {
 			target = RAJ
@@ -3094,7 +3093,7 @@ country_event = { #UAR Welcomes Our Membership
 	is_triggered_only = yes
 	
 	option = {
-		name = YAR.141
+		name = YAR.141.o1
 		add_ideas = YAR_uar_confederation
 		set_country_flag = yar_uar_membership_flag
 	}
@@ -3968,6 +3967,7 @@ country_event = {
 		name = YAR.178.o1
 	}
 }
+
 ###Saleh detonates a nuke
 country_event = {
 	id = YAR.179
@@ -3979,8 +3979,161 @@ country_event = {
 	
 	option = {
 	hidden_effect = {
+		launch_nuke = {
+    	province = 13692
+		}
 		add_named_threat = { threat = 2 name = YAR_oh_god_oh_fuck }
 		}
 		name = YAR.179.o1
+	}
+}
+
+###PSO Resumes Covert Operations
+country_event = {
+	id = YAR.180
+	title = YAR.180.t
+	desc = YAR.180.d
+	picture = yar_pso
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = YAR.180.o1
+	}
+}
+
+###Ahmed Saleh Requests Our Support
+country_event = {
+	id = YAR.181
+	title = YAR.181.t
+	desc = YAR.181.d
+	picture = yar_pan_arab_coalition
+	
+	is_triggered_only = yes
+	
+	option = { #Send Equipment
+		name = YAR.181.o1
+		if = {
+			limit = {
+				has_dlc = "By Blood Alone"
+			}
+			send_equipment = {
+				equipment = small_plane_airframe
+				amount = 5
+				target = YAR
+			}
+			send_equipment = {
+				equipment = small_plane_cas_airframe
+				amount = 10
+				target = YAR
+			}
+		}
+		else = {
+			send_equipment = {
+				equipment = fighter_equipment_1
+				amount = 5
+				target = YAR
+			}
+			send_equipment = {
+				equipment = CAS_equipment_1
+				amount = 10
+				target = YAR
+			}
+		}
+		if = {
+			limit = {
+				has_dlc = "No Step Back"
+			}
+			send_equipment = {
+				equipment = light_tank_chassis
+				amount = 200
+				target = YAR
+			}
+		}
+		else = {
+			send_equipment = {
+				equipment = light_tank_equipment_1
+				amount = 200
+				target = YAR
+			}
+		}
+		send_equipment = {
+			equipment = infantry_equipment
+			amount = 500
+			target = YAR
+		}
+		YAR = {
+			country_event = {
+				id = YAR.182
+				days = 1
+			}
+		}
+	}
+
+	option = { #Send Volunteers
+		name = YAR.181.o2
+		add_ai_strategy = {
+			type = send_volunteers_desire
+			id = YAR
+			value = 200
+		}
+		YAR = {
+			country_event = {
+				id = YAR.183
+				days = 1
+			}
+		}
+	}
+
+	option = { #Send nothing
+		name = YAR.181.o3
+		YAR = {
+			country_event = {
+				id = YAR.184
+				days = 1
+			}
+		}
+	}
+}
+
+###[FROM.GetName] Agrees to Send Equipment
+country_event = {
+	id = YAR.182
+	title = YAR.182.t
+	desc = YAR.182.d
+	picture = yar_supplies
+	
+	is_triggered_only = yes
+	
+	option = { #Yay!
+		name = YAR.182.o1
+	}
+}
+
+###[FROM.GetName] Agrees to Pan-Arab Coalition
+country_event = {
+	id = YAR.183
+	title = YAR.183.t
+	desc = YAR.183.d
+	picture = yar_volunteers
+	
+	is_triggered_only = yes
+	
+	option = { #Yay!
+		name = YAR.183.o1
+	}
+}
+
+###[FROM.GetName] Rejects Our Plea
+country_event = {
+	id = YAR.184
+	title = YAR.184.t
+	desc = YAR.184.d
+	picture = yar_rejection
+	
+	is_triggered_only = yes
+	
+	option = { #Yay!
+		name = YAR.184.o1
 	}
 }

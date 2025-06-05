@@ -409,6 +409,14 @@ country_event = {
 		}
 		ai_chance = {
 			factor = 90
+			modifier = {
+        		OR = {
+					has_government = communist
+					has_government = revolutionary_socialist
+					has_government = moderate_socialist
+				}
+        		factor = 10
+    		}
 		}
 	}
 	#no
@@ -419,6 +427,14 @@ country_event = {
 		}
 		ai_chance = {
 			factor = 5
+			modifier = {
+        		OR = {
+					has_government = monarchist
+					has_government = fascist
+					has_government = nationalist
+				}
+        		factor = 45
+    		}
 		}
 	}     
 }
@@ -3004,5 +3020,321 @@ country_event = { #Rush of Foreign Volunteers
 	
 	option = {
 		name = pdy.108.o1
+	}
+}
+
+country_event = { #Comrade Zoubadi Requests Return of Stasi Agents
+	id = pdy.109
+	title = pdy.109.t
+	desc = pdy.109.d
+	picture = pdy_restored
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Sure
+		name = pdy.109.o1
+		ai_chance = {
+			base = 99
+		}
+		PDY = {
+			country_event = {
+				id = pdy.110
+				days = 1
+			}
+		}
+	}
+
+	option = { #No
+		name = pdy.109.o2
+		ai_chance = {
+			base = 1
+		}
+		PDY = {
+			country_event = {
+				id = pdy.111
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = { #MR Groups Return to Yemen
+	id = pdy.110
+	title = pdy.110.t
+	desc = pdy.110.d
+	picture = pdy_mr_groups_return
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Yay!
+		name = pdy.110.o1
+		if = {
+			limit = {
+				has_dlc = "La Resistance"
+			}
+			add_ideas = PDY_stasi_guidance_lar
+		}
+		else = {
+			add_ideas = PDY_stasi_guidance
+		}
+	}
+}
+
+country_event = { #Germany Refuses to Offer Support
+	id = pdy.111
+	title = pdy.111.t
+	desc = pdy.111.d
+	picture = pdy_no_mr_groups
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Boo!
+		name = pdy.111.o1
+		add_political_power = -100
+		add_war_support = -0.07
+		add_stability = -0.03
+	}
+}
+
+country_event = { #PDRY Requests Fighter Squadron
+	id = pdy.112
+	title = pdy.112.t
+	desc = pdy.112.d
+	picture = pdy_plane_request
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Sure
+		name = pdy.112.o1
+		ai_chance = {
+			base = 80
+		}
+		PDY = {
+			country_event = {
+				id = pdy.113
+				days = 1
+			}
+		}
+	}
+
+	option = { #No
+		name = pdy.112.o2
+		ai_chance = {
+			base = 20
+		}
+		PDY = {
+			country_event = {
+				id = pdy.114
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = { #India Agrees
+	id = pdy.113
+	title = pdy.113.t
+	desc = pdy.113.d
+	picture = pdy_indian_planes
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Yay!
+		name = pdy.113.o1
+		if = {
+			limit = {
+				has_dlc = "By Blood Alone"
+			}
+			add_equipment_to_stockpile = {
+				type = small_plane_airframe_1
+				amount = 15
+				variant_name = "Fighter I"
+			}
+			add_equipment_to_stockpile = {
+				type = small_plane_cas_airframe_1
+				amount = 15
+				variant_name = "CAS I"
+			}
+		}
+		else = {
+			add_equipment_to_stockpile = {
+				type = fighter_equipment_1
+				amount = 15
+			}
+			add_equipment_to_stockpile = {
+				type = cas_equipment_1
+				amount = 15
+			}
+		}
+	}
+}
+
+country_event = { #India Refuses to Offer Support
+	id = pdy.114
+	title = pdy.114.t
+	desc = pdy.114.d
+	picture = pdy_no_planes
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Boo!
+		name = pdy.114.o1
+		add_political_power = -50
+		add_opinion_modifier = {
+			target = RAJ
+			modifier = pdy_raj_refused_to_send_planes
+		}
+	}
+}
+
+country_event = { #PDRY Requests United Nations Intervention
+	id = pdy.115
+	title = pdy.115.t
+	desc = pdy.115.d
+	picture = pdy_un_intervention
+	
+	is_triggered_only = yes
+	
+	option = { #Send Volunteers
+		name = pdy.115.o1
+		ai_chance = {
+			base = 25
+			modifier = {
+				factor = 0.2
+				NOT = {
+					has_government = communist
+				}
+			}
+		}
+		add_ai_strategy = {
+			type = send_volunteers_desire
+			id = PDY
+			value = 200
+		}
+		PDY = {
+			country_event = {
+				id = pdy.116
+				days = 1
+			}
+		}
+	}
+
+	option = { #Send Equipment
+		name = pdy.115.o2
+		ai_chance = {
+			base = 50
+			modifier = {
+				factor = 0.3
+				NOT = {
+					has_government = communist
+				}
+			}
+		}
+		send_equipment = {
+			equipment = infantry_equipment
+			amount = 750
+			target = PDY
+		}
+		PDY = {
+			country_event = {
+				id = pdy.117
+				days = 1
+			}
+		}
+	}
+
+	option = { #Send Nothing
+		name = pdy.115.o3
+		ai_chance = {
+			base = 25
+			modifier = {
+				factor = 0.5
+				has_government = communist
+			}
+		}
+		PDY = {
+			country_event = {
+				id = pdy.118
+				days = 1
+			}
+		}
+	}
+
+	option = { #Send Volunteers to the Jasmines
+		name = pdy.115.o4
+		trigger = {
+			OR = {
+				has_government = moderate_socialist
+				has_government = new_democrat
+				has_government = centrist
+				has_government = liberal
+				has_government = national_conservative
+			}
+		}
+		ai_chance = {
+			base = 50
+			modifier = {
+				factor = 0.3
+				NOT = {
+					has_government = communist
+				}
+			}
+		}
+		JAS = {
+			country_event = {
+				id = jasmin.9
+				days = 1
+			}
+		}
+		add_ai_strategy = {
+			type = send_volunteers_desire
+			id = JAS
+			value = 200
+		}
+	}
+}
+
+country_event = { #[FROM.GetName] Sends Volunteers
+	id = pdy.116
+	title = pdy.116.t
+	desc = pdy.116.d
+	picture = pdy_volunteers
+	
+	is_triggered_only = yes
+	
+	option = { #Yay!
+		name = pdy.116.o1
+	}
+}
+
+country_event = { #[FROM.GetName] Sends Equipment
+	id = pdy.117
+	title = pdy.117.t
+	desc = pdy.117.d
+	picture = pdy_weapon_support
+	
+	is_triggered_only = yes
+	
+	option = { #Yay!
+		name = pdy.117.o1
+	}
+}
+
+country_event = { #[FROM.GetName] Sends Nothing
+	id = pdy.118
+	title = pdy.118.t
+	desc = pdy.118.d
+	picture = pdy_no_aid
+	
+	is_triggered_only = yes
+	
+	option = { #Boo!
+		name = pdy.118.o1
 	}
 }

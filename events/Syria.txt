@@ -828,8 +828,21 @@ country_event = {
 		SYR_revolutionary_government = {
 			promote_character = democratic_socialist
 		}
+		set_party_name = {
+		 ideology = moderate_socialist
+		 long_name = NAC_moderate_socialist_party_long
+		 name = NAC_moderate_socialist_party
+			}
+		custom_effect_tooltip = syria_nasserist_cabinet_tooltip
 		hidden_effect = {
 		    country_event = { days = 1 id = syria.14 } 
+			add_ideas = {
+			syria_inm_Qasim_Al_Khatib
+			syria_nsm_Hassan_Abdel_Azim
+			syria_ind_Gamal_Shaaban_Shaheen
+			syria_fom_Hassan_Al_Sari
+			syria_sic_Abdullah_Sallum_Abdullah
+			}
 		}
 	}
 }
@@ -917,6 +930,56 @@ country_event = {
 		hidden_effect = {
 		 load_focus_tree = nac_tree
 		 set_cosmetic_tag = NAC
+		 set_party_name = {
+		 ideology = fascist
+		 long_name = NAC_fascist_party
+		 name = NAC_fascist_party
+			}
+		set_party_name = {
+		 ideology = nationalist
+		 long_name = NAC_nationalist_party
+		 name = NAC_nationalist_party
+			}
+		set_party_name = {
+		 ideology = monarchist
+		 long_name = NAC_monarchist_party
+		 name = NAC_monarchist_party
+			}
+		set_party_name = {
+		 ideology = national_bolshevik
+		 long_name = NAC_national_bolshevik_party_long
+		 name = NAC_national_bolshevik_party
+			}
+		set_party_name = {
+		 ideology = national_conservative
+		 long_name = NAC_national_conservative_party
+		 name = NAC_national_conservative_party
+			}
+		set_party_name = {
+		 ideology = centrist
+		 long_name = NAC_centrist_party
+		 name = NAC_centrist_party
+			}
+		set_party_name = {
+		 ideology = liberal
+		 long_name = NAC_liberal_party
+		 name = NAC_liberal_party
+			}
+		set_party_name = {
+		 ideology = new_democrat
+		 long_name = NAC_new_democrat_party
+		 name = NAC_new_democrat_party
+			}
+		set_party_name = {
+		 ideology = revolutionary_socialist
+		 long_name = NAC_revolutionary_socialist_party
+		 name = NAC_revolutionary_socialist_party
+			}
+		set_party_name = {
+		 ideology = communist
+		 long_name = NAC_communist_party
+		 name = NAC_communist_party
+			}
 		}
 	}
 }
@@ -1465,6 +1528,9 @@ country_event = {
 			}
 		}
 		set_country_flag = bashar_visited_museum
+		CUB = {
+			country_event = { days = 3 id = cuba.454 }
+		}
 	}
 	
 	option = {  #Cabinet recommends not going
@@ -1515,6 +1581,7 @@ country_event = {
 		add_political_power = 20
 		custom_effect_tooltip = syria_king_assad_cabinet_tooltip
 		hidden_effect = {
+			set_cosmetic_tag = SYR_king_bashar_tag
 			add_ideas = syria_sic_assaf_shawkat
 			add_ideas = syria_fom_bashar_jaafari
 			add_ideas = syria_ind_ziyad_sabbagh
@@ -1546,6 +1613,7 @@ country_event = {
 		add_political_power = 20 
 		custom_effect_tooltip = syria_king_assad_cabinet_tooltip
 		hidden_effect = {
+			set_cosmetic_tag = SYR_king_bashar_tag
 			add_ideas = syria_sic_assaf_shawkat
 			add_ideas = syria_fom_bashar_jaafari
 			add_ideas = syria_ind_ziyad_sabbagh
@@ -2184,11 +2252,29 @@ country_event = {
 	
 	option = {  
 		name = syria.56.o1
-		create_wargoal = {
-			type = annex_everything
-			target = TUR
-		}
+		start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 677
+					num_provinces = 3
+					on_win = syria_bw.1
+					on_lose = syria_bw.2
+					on_cancel = borderwar_hidden.1
+				}
+				defender = {
+					state = 827
+					num_provinces = 1
+					on_win = turkey_bw.1
+					on_lose = turkey_bw.2
+					on_cancel = borderwar_hidden.1
+				}
+			}
 		add_political_power = -100
+	}
+	option = {  
+		name = syria.56.o2
+		add_political_power = -100
+		add_war_support = -0.025
 	}
 }
 
@@ -2584,6 +2670,7 @@ country_event = {
 	
 	option = {   
 		name = syria.76.o1
+		add_ideas = { syria_sic_hussam_awak syria_fom_salim_idris syria_inm_yasser_alhaffi }
 	}
 }
 
@@ -3445,3 +3532,63 @@ country_event = {
 		name = syria.137.o1
 	}
 }
+
+country_event = { #Hafez al-Assad Jr. Holds Grandiose 18th Birthday Celebrations
+	id = syria.138
+	title = syria.138.t
+	desc = {
+        trigger = {
+            has_government = national_bolshevik
+        }
+        text = syria.138.d1
+    }
+    desc = {
+        trigger = {
+            has_government = monarchist
+        }
+        text = syria.138.d2
+    }
+	picture = syria_assad_birthday
+	
+	fire_only_once = yes
+	trigger = {
+		tag = SYR
+		OR = {
+			has_country_leader = {
+				character = SYR_hafez_alassad
+				ruling_only = yes
+			}
+			has_country_leader = {
+				character = SYR_hafez_i
+				ruling_only = yes
+			}
+		}
+		date > 2019.12.1 
+		date < 2019.12.30
+	}
+	
+	option = {
+		name = syria.138.o1
+		trigger = {
+            has_government = national_bolshevik
+        }
+		hidden_effect = {
+			SYR_hafez_alassad_grown = {
+				promote_character = baathist
+			}
+		}
+	}
+	
+	option = {
+		name = syria.138.o2
+		trigger = {
+            has_government = monarchist
+        }
+		hidden_effect = {
+			SYR_hafez_i_grown = {
+				promote_character = absolute_monarchist
+			}
+		}
+	}
+}
+		

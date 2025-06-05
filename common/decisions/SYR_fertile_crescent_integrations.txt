@@ -1,0 +1,72 @@
+SYR_fertile_crescent_integration = {
+
+	SYR_integrate_claim = {
+
+		name = SYR_begin_integration
+
+		icon = GFX_decision_generic_civil_support
+
+		allowed = {
+			original_tag = SYR
+		}
+
+		available = {
+			FROM = {
+				is_controlled_by = SYR
+				OR = {
+					is_island_state = yes
+					any_neighbor_state = {
+						is_controlled_by = ROOT
+					}
+				}
+			}
+		}
+
+		state_target = yes
+
+		on_map_mode = map_only
+
+		#targets = {  }
+
+		target_array = controlled_states
+
+		target_trigger = {
+			has_completed_focus = SYR_fertile_crescent
+			FROM = {
+				is_claimed_by = ROOT
+			}
+		}
+
+		cost = 50
+
+		fire_only_once = yes
+
+		days_remove = 50
+
+		modifier = {
+			political_power_gain = -0.45
+		}
+
+		visible = {
+			tag = SYR
+			has_completed_focus = SYR_fertile_crescent
+			always = yes
+		}
+
+		complete_effect = {
+
+		}
+
+		remove_effect = {
+			FROM = {
+				add_compliance = 10
+				add_resistance = -10
+				add_state_modifier = {
+    				modifier = {
+        				compliance_gain = 0.1
+    				}
+				}
+			}
+		}
+	}
+}

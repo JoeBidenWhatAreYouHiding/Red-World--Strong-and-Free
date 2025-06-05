@@ -891,6 +891,7 @@ country_event = {
 
 	option = {   #Declare war
 		name = rebel.32.o1
+		custom_effect_tooltip = white_peace_5_tt
 		AMC = {
 		    declare_war_on = { target = CAN type = annex_everything }
 		}
@@ -2939,5 +2940,102 @@ country_event = {
 			ruling_party = nationalist
 		}
 		add_nationalist_popularity = yes
+	}
+}
+
+#Flag refedendum announces
+country_event = {
+	id = rebel.93
+	title = rebel.93.t
+	desc = rebel.93.d
+	picture = flag_ref_annoucement
+
+	trigger = {
+		tag = AMC
+		has_completed_focus = AMC_victory_at_last
+	}
+	fire_only_once = yes
+
+	option = {   # wow wonder what will happen
+		name = rebel.93.o1
+		country_event = {
+				id = rebel.94
+				days = 1
+			}
+	}
+}
+#Flag refedendum held
+country_event = {
+	id = rebel.94
+	title = rebel.94.t
+	desc = rebel.94.d
+	picture = flag_ref_choice
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {   # The Rose Flag
+		name = rebel.94.o1
+		set_cosmetic_tag = AMC_rose
+	}
+
+	option = {   #Thus Always to Tyrants
+		name = rebel.94.o2
+		set_cosmetic_tag = AMC_seal
+	}
+	option = {   # The Revolutionary Tricolor
+		name = rebel.94.o3
+		set_cosmetic_tag = AMC_diagonal_tricolor
+	}
+	option = {   #Join or die (should have been the APC flag, god i hate democracy -rob!)
+		name = rebel.94.o4
+		set_cosmetic_tag = AMC_join_or_die
+	}
+	option = {   #flag stays
+		name = rebel.94.o5
+
+	}
+}
+country_event = { #Party of Labor Reorganizes
+	id = rebel.95
+	title = rebel.95.t
+	desc = rebel.95.d
+	picture = commonwealth_three_purple_hearts
+	
+	fire_only_once = yes
+	trigger = {
+		tag = AMC
+		has_completed_focus = AMC_democratic_principles
+	}
+	
+	option = {
+		name = rebel.95.o1
+		AMC_john_kerry = {
+			promote_character = libertarian_socialist
+		}
+		set_party_name = {
+			ideology = revolutionary_socialist
+			long_name = "American Party of Labor"
+			name = "Party of Labor"
+		}
+	}
+}
+
+country_event = { #Philadelphia generals join us
+	id = rebel.96
+	title = rebel.96.t
+	desc = rebel.96.d
+	picture = commonwealth_military_defections
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {   # united against reaction
+		name = rebel.96.o1
+		custom_effect_tooltip = AMC_army_defections
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.1
+		}
 	}
 }

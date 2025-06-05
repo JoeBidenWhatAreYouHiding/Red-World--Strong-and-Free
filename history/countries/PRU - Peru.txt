@@ -15,6 +15,14 @@ if = {
 	set_oob = "PRU_2000_nsb"
 }
 
+if = {
+	limit = { has_dlc = "Man the Guns" }
+		set_naval_oob = "PRU_2000_naval_mtg"
+	else = {
+		set_naval_oob = "PRU_2000_naval_legacy"
+		}
+}
+
 add_ideas = {
 	idea_andean_community
 	idea_PRU_treaty_lima
@@ -26,6 +34,7 @@ set_stability = 0.6
 set_war_support = 0.1
 
 set_country_flag = catholic_nation
+set_country_flag = non_aligned_movement_flag
 
 set_technology = {
 	support_weapons = 1
@@ -178,6 +187,7 @@ recruit_character = PRU_victor_abraham_najar_carrera
 recruit_character = PRU_carlos_tijeda
 recruit_character = PRU_luis_paredes_lora
 recruit_character = PRU_victor_emanuel_pomar_calderon
+recruit_character = PRU_Kenji_Fujimori
 
 if = {
 	limit = {
@@ -232,6 +242,84 @@ if = {
 		upgrades = {
 			tank_nsb_engine_upgrade = 4
 			tank_nsb_armor_upgrade = 5
+		}
+	}
+}
+if = {
+	limit = { has_dlc = "Man the Guns" }
+	create_equipment_variant = {
+		name = "De Zeven Provinciën Class"
+		type = ship_hull_cruiser_1
+		parent_version = 0
+		modules = {
+			fixed_ship_battery_slot = ship_medium_battery_2
+			fixed_ship_anti_air_slot = ship_anti_air_3
+			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+			fixed_ship_radar_slot = ship_sonar_1
+			fixed_ship_engine_slot = cruiser_ship_engine_2
+			fixed_ship_secondaries_slot = ship_secondaries_2
+			fixed_ship_armor_slot = ship_armor_cruiser_1
+			mid_1_custom_slot = ship_secondaries_2
+			mid_2_custom_slot = ship_secondaries_2
+			rear_1_custom_slot = ship_medium_battery_2
+		}
+	}
+	create_equipment_variant = {
+		name = "Santa María Class"	
+		type = ship_hull_light_2
+		parent_version = 0
+		modules = {
+			fixed_ship_battery_slot = ship_light_battery_2
+			fixed_ship_anti_air_slot = ship_anti_air_3		
+			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+			fixed_ship_radar_slot = ship_sonar_1
+			fixed_ship_engine_slot = light_ship_engine_1
+			fixed_ship_torpedo_slot = ship_torpedo_2
+			mid_1_custom_slot = ship_light_battery_2	
+			rear_1_custom_slot = ship_torpedo_2
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 209 Class" # submarines
+		type = ship_hull_submarine_1
+		parent_version = 0
+		modules = {
+			fixed_ship_torpedo_slot = ship_torpedo_sub_2
+			fixed_ship_engine_slot = sub_ship_engine_1
+			rear_1_custom_slot = ship_torpedo_sub_2
+		}
+	}
+}
+if = {
+	limit = { not = { has_dlc = "Man the Guns" } }
+	create_equipment_variant = {
+		name = "De Zeven Provinciën Class"
+		type = heavy_cruiser_1
+		upgrades = {
+			ship_reliability_upgrade = 1
+			ship_engine_upgrade = 2
+			ship_armor_upgrade = 2
+			ship_gun_upgrade = 4
+		}
+	}
+	create_equipment_variant = {
+		name = "Santa María Class" #destroyers
+		type = destroyer_2
+		upgrades = {
+			ship_torpedo_upgrade = 1
+			destroyer_engine_upgrade = 1
+			ship_ASW_upgrade = 2
+			ship_anti_air_upgrade = 4
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 209 Class" #submarines
+		type = submarine_1
+		upgrades = {
+			ship_reliability_upgrade = 1
+			sub_engine_upgrade = 1
+			sub_stealth_upgrade = 1
+			sub_torpedo_upgrade = 1
 		}
 	}
 }

@@ -47,14 +47,7 @@ country_event = {
 	option = { #Canada
 		name = jasmin.3.o2
 	    CAN ={
-		    country_event = { id = jasmin.17 }
-		}
-    }
-	
-	option = { #Oman
-		name = jasmin.3.o3
-		OMA ={
-		    country_event = { id = jasmin.28 }
+		    country_event = { id = jasmin.7 }
 		}
     }
 }
@@ -68,20 +61,38 @@ country_event = {
 	
 	is_triggered_only = yes
 	
-	option = { 
+	option = { #yes
 		name = jasmin.4.o1
 	    JAS ={
 		    country_event = { id = jasmin.5 }
+		}
+		send_equipment = {
+			equipment = infantry_equipment
+			amount = 750
+			target = JAS
+		}
+		send_equipment = {
+			equipment = artillery_equipment
+			amount = 100
+			target = JAS
+		} 
+		send_equipment = {
+			equipment = CAS_equipment_1
+			amount = 10
+			target = JAS
 		}
 	    ai_chance = {
 			factor = 70
 		}
 	}  
 	
-	option = { 
+	option = { #no
 		name = jasmin.4.o2
 	    JAS ={
 		    country_event = { id = jasmin.6 }
+		}
+		hidden_effect = {
+			set_global_flag = jas_iran_refused
 		}
 	    ai_chance = {
 			factor = 30
@@ -89,7 +100,7 @@ country_event = {
 	}
 }
 
-country_event = {
+country_event = { #FROM.GetName sends aid
 	id = jasmin.5
 	title = jasmin.5.t
 	desc = jasmin.5.d
@@ -98,15 +109,7 @@ country_event = {
 	is_triggered_only = yes
 	
 	option = { 
-		name = jasmin.5.o1
-	    add_equipment_to_stockpile = {
-			type = infantry_equipment
-			amount = 750
-		} 
-		add_equipment_to_stockpile = {
-			type = artillery_equipment
-			amount = 100
-		} 
+		name = jasmin.5.o1 
 		hidden_effect = {
             979 = {
                 create_unit = {
@@ -123,7 +126,7 @@ country_event = {
     }     
 }
 
-country_event = {
+country_event = { #FROM.GetName refuses aid
 	id = jasmin.6
 	title = jasmin.6.t
 	desc = jasmin.6.d
@@ -131,59 +134,74 @@ country_event = {
 	
 	is_triggered_only = yes
 	
-	option = { 
+	option = { #Ask Iran
 		name = jasmin.6.o1
+		trigger = {
+			NOT = {
+				has_global_flag = jas_iran_refused
+			}
+		}
+	    add_political_power = -50
+		country_event = { id = jasmin.4 }
+    }
+	
+	option = { #Ask Canada
+		name = jasmin.6.o2
+		trigger = {
+			NOT = {
+				has_global_flag = jas_canada_refused
+			}
+		}
 	    add_political_power = -50
 		country_event = { id = jasmin.7 }
-    }     
+    }
+
+	option = { #Yemeni guns will win us our freedom
+		name = jasmin.6.o3
+	    add_political_power = -50
+    }
 }
 
-country_event = {
+country_event = { #Turn to Canada
 	id = jasmin.7
 	title = jasmin.7.t
 	desc = jasmin.7.d
-	picture = jas_seeking_support
-	
-	is_triggered_only = yes
-	
-	option = { #Canada
-		name = jasmin.7.o1
-	    CAN ={
-		    country_event = { id = jasmin.8 }
-		}
-    }
-    
-    option = { #Oman
-		name = jasmin.7.o2
-	    OMA ={
-		    country_event = { id = jasmin.13 }
-		}
-    }
-}
-
-#Turn to Canada
-country_event = {
-	id = jasmin.8
-	title = jasmin.8.t
-	desc = jasmin.8.d
 	picture = jas_turn_to_canada
 	
 	is_triggered_only = yes
 	
-	option = { 
-		name = jasmin.8.o1
+	option = { #yes
+		name = jasmin.7.o1
 	    JAS ={
 		    country_event = { id = jasmin.5 }
 		}
+		send_equipment = {
+			equipment = light_tank_chassis
+			amount = 200
+			target = JAS
+		}
+		send_equipment = {
+			equipment = motorized_equipment
+			amount = 50
+			target = JAS
+		}
+		send_equipment = {
+			equipment = fighter_equipment_1
+			amount = 10
+			target = JAS
+		}
 	    ai_chance = {
-			factor = 50
+			factor = 70
 		}
 	}  
 	
-	option = { 
-		name = jasmin.8.o2
+	option = { #no
+		name = jasmin.7.o2
 	    JAS ={
-		    country_event = { id = jasmin.9 }
+		    country_event = { id = jasmin.6 }
+		}
+		hidden_effect = {
+			set_global_flag = jas_canada_refused
 		}
 	    ai_chance = {
 			factor = 30
@@ -191,657 +209,41 @@ country_event = {
 	}
 }
 
-country_event = {
+country_event = { #jasmine council debates national flag
+	id = jasmin.8
+	title = jasmin.8.t
+	desc = jasmin.8.d
+	picture = jas_flag_debate
+	
+	fire_only_once = yes
+	trigger = {
+		tag = JAS
+		has_war = no
+	}
+	mean_time_to_happen = {
+		days = 30
+	}
+	
+	option = { # restore the tri-color
+		name = jasmin.8.o1
+		set_cosmetic_tag = JAS_tricolor
+	}
+
+	option = { # maintain the jasmine flag
+		name = jasmin.8.o2
+	}
+}
+
+country_event = { #FROM.GETNAME Recognizes us
 	id = jasmin.9
 	title = jasmin.9.t
 	desc = jasmin.9.d
-	picture = jas_selected_nation_refuses
+	picture = pdy_un_intervention
 	
 	is_triggered_only = yes
 	
 	option = { 
 		name = jasmin.9.o1
-	    add_political_power = -50
-		country_event = { id = jasmin.10 }
-    }     
-}
-country_event = {
-	id = jasmin.10
-	title = jasmin.10.t
-	desc = jasmin.10.d
-	picture = jas_seeking_support
-	
-	is_triggered_only = yes
-    
-    option = { #Oman
-		name = jasmin.10.o1
-	    OMA ={
-		    country_event = { id = jasmin.11 }
-		}
-    }
-}
-
-country_event = {
-	id = jasmin.11
-	title = jasmin.11.t
-	desc = jasmin.11.d
-	picture = jas_turn_to_oman
-	
-	is_triggered_only = yes
-    
-    option = { 
-		name = jasmin.11.o1
-	    JAS ={
-		    country_event = { id = jasmin.5 }
-		}
-	    ai_chance = {
-			factor = 40
-		}
-	}
-	
-	option = { 
-		name = jasmin.11.o2
-	    JAS ={
-		    country_event = { id = jasmin.12 }
-		}
-	    ai_chance = {
-			factor = 60
-		}
-	}
-}
-
-country_event = {
-	id = jasmin.12
-	title = jasmin.12.t
-	desc = jasmin.12.d
-	picture = jas_selected_nation_refuses
-	
-	is_triggered_only = yes
-    
-    option = { 
-		name = jasmin.12.o1
-	    add_political_power = -100
-	}
-}
-
-country_event = {
-	id = jasmin.13
-	title = jasmin.13.t
-	desc = jasmin.13.d
-	picture = jas_turn_to_oman
-	
-	is_triggered_only = yes
-    
-    option = { 
-		name = jasmin.13.o1
-	    JAS ={
-		    country_event = { id = jasmin.5 }
-		}
-	    ai_chance = {
-			factor = 10
-		}
-	}
-	
-	option = { 
-		name = jasmin.13.o2
-	    JAS ={
-		    country_event = { id = jasmin.16 }
-		}
-	    ai_chance = {
-			factor = 90
-		}
-	}
-}
-
-country_event = {
-	id = jasmin.14
-	title = jasmin.14.t
-	desc = jasmin.14.d
-	picture = jas_seeking_support
-	
-	is_triggered_only = yes
-    
-    option = { #Canada
-		name = jasmin.14.o1
-	    CAN ={
-		    country_event = { id = jasmin.15 }
-		}
-    }
-}
-
-country_event = {
-	id = jasmin.15
-	title = jasmin.15.t
-	desc = jasmin.15.d
-	picture = jas_turn_to_canada
-	
-	is_triggered_only = yes
-    
-    option = { 
-		name = jasmin.15.o1
-	    JAS ={
-		    country_event = { id = jasmin.5 }
-		}
-	    ai_chance = {
-			factor = 60
-		}
-	}
-	
-	option = { 
-		name = jasmin.15.o2
-	    JAS ={
-		    country_event = { id = jasmin.12 }
-		}
-	    ai_chance = {
-			factor = 40
-		}
-	}
-}
-
-country_event = {
-	id = jasmin.16
-	title = jasmin.16.t
-	desc = jasmin.16.d
-	picture = jas_selected_nation_refuses
-	
-	is_triggered_only = yes
-	
-	option = { 
-		name = jasmin.16.o1
-	    add_political_power = -50
-		country_event = { id = jasmin.14 }
-    }     
-}
-
-#Turn to Canada
-country_event = {
-	id = jasmin.17
-	title = jasmin.17.t
-	desc = jasmin.17.d
-	picture = jas_turn_to_canada
-	
-	is_triggered_only = yes
-	
-	option = { 
-		name = jasmin.17.o1
-	    JAS ={
-		    country_event = { id = jasmin.5 }
-		}
-	    ai_chance = {
-			factor = 60
-		}
-	}  
-	
-	option = { 
-		name = jasmin.17.o2
-	    JAS ={
-		    country_event = { id = jasmin.18 }
-		}
-	    ai_chance = {
-			factor = 40
-		}
-	}
-}
-
-country_event = {
-	id = jasmin.18
-	title = jasmin.18.t
-	desc = jasmin.18.d
-	picture = jas_selected_nation_refuses
-	
-	is_triggered_only = yes
-	
-	option = { 
-		name = jasmin.18.o1
-	    add_political_power = -50
-		country_event = { id = jasmin.19 }
-    }     
-}
-
-country_event = {
-	id = jasmin.19
-	title = jasmin.19.t
-	desc = jasmin.19.d
-	picture = jas_seeking_support
-	
-	is_triggered_only = yes
-	
-	option = { #Iran
-		name = jasmin.19.o1
-	    PER ={
-		    country_event = { id = jasmin.20 }
-		}
-    }
-    
-    option = { #Oman
-		name = jasmin.19.o2
-	    OMA ={
-		    country_event = { id = jasmin.24 }
-		}
-    }
-}
-
-#Turn to Iran
-country_event = {
-	id = jasmin.20
-	title = jasmin.20.t
-	desc = jasmin.20.d
-	picture = jas_turn_to_iran
-	
-	is_triggered_only = yes
-	
-	option = { 
-		name = jasmin.20.o1
-	    JAS ={
-		    country_event = { id = jasmin.5 }
-		}
-	    ai_chance = {
-			factor = 70
-		}
-	}  
-	
-	option = { 
-		name = jasmin.20.o2
-	    JAS ={
-		    country_event = { id = jasmin.21 }
-		}
-	    ai_chance = {
-			factor = 40
-		}
-	}
-}
-
-country_event = {
-	id = jasmin.21
-	title = jasmin.21.t
-	desc = jasmin.21.d
-	picture = jas_selected_nation_refuses
-	
-	is_triggered_only = yes
-	
-	option = { 
-		name = jasmin.21.o1
-	    add_political_power = -50
-		country_event = { id = jasmin.22 }
-    }     
-}
-country_event = {
-	id = jasmin.22
-	title = jasmin.22.t
-	desc = jasmin.22.d
-	picture = jas_seeking_support
-	
-	is_triggered_only = yes
-    
-    option = { #Oman
-		name = jasmin.22.o1
-	    OMA ={
-		    country_event = { id = jasmin.23 }
-		}
-    }
-}
-
-country_event = {
-	id = jasmin.23
-	title = jasmin.23.t
-	desc = jasmin.23.d
-	picture = jas_turn_to_oman
-	
-	is_triggered_only = yes
-    
-    option = { 
-		name = jasmin.23.o1
-	    JAS ={
-		    country_event = { id = jasmin.5 }
-		}
-	    ai_chance = {
-			factor = 40
-		}
-	}
-	
-	option = { 
-		name = jasmin.23.o2
-	    JAS ={
-		    country_event = { id = jasmin.12 }
-		}
-	    ai_chance = {
-			factor = 60
-		}
-	}
-}
-
-country_event = {
-	id = jasmin.24
-	title = jasmin.24.t
-	desc = jasmin.24.d
-	picture = jas_turn_to_oman
-	
-	is_triggered_only = yes
-    
-    option = { 
-		name = jasmin.24.o1
-	    JAS ={
-		    country_event = { id = jasmin.5 }
-		}
-	    ai_chance = {
-			factor = 60
-		}
-	}
-	
-	option = { 
-		name = jasmin.24.o2
-	    JAS ={
-		    country_event = { id = jasmin.25 }
-		}
-	    ai_chance = {
-			factor = 40
-		}
-	}
-}
-
-country_event = {
-	id = jasmin.25
-	title = jasmin.25.t
-	desc = jasmin.25.d
-	picture = jas_selected_nation_refuses
-	
-	is_triggered_only = yes
-    
-    option = { 
-		name = jasmin.25.o1
-	    add_political_power = -50
-		country_event = { id = jasmin.26 }
-    }
-}
-
-country_event = { 
-	id = jasmin.26
-	title = jasmin.26.t
-	desc = jasmin.26.d
-	picture = jas_seeking_support
-	
-	is_triggered_only = yes
-	
-	option = { #Turn to Iran
-		name = jasmin.26.o1
-	    PER ={
-		    country_event = { id = jasmin.27 }
-		}
-	}
-}
-
-country_event = {
-	id = jasmin.27
-	title = jasmin.27.t
-	desc = jasmin.27.d
-	picture = jas_turn_to_iran
-	
-	is_triggered_only = yes
-    
-    option = { 
-		name = jasmin.27.o1
-	    JAS ={
-		    country_event = { id = jasmin.5 }
-		}
-	    ai_chance = {
-			factor = 70
-		}
-	}
-	
-	option = { 
-		name = jasmin.27.o2
-	    JAS ={
-		    country_event = { id = jasmin.12 }
-		}
-	    ai_chance = {
-			factor = 40
-		}
-	}
-}
-
-#Turn to Oman
-country_event = {
-	id = jasmin.28
-	title = jasmin.28.t
-	desc = jasmin.28.d
-	picture = jas_turn_to_oman
-	
-	is_triggered_only = yes
-	
-	option = { 
-		name = jasmin.28.o1
-	    JAS ={
-		    country_event = { id = jasmin.5 }
-		}
-	    ai_chance = {
-			factor = 50
-		}
-	}  
-	
-	option = { 
-		name = jasmin.28.o2
-	    JAS ={
-		    country_event = { id = jasmin.29 }
-		}
-	    ai_chance = {
-			factor = 60
-		}
-	}
-}
-
-country_event = {
-	id = jasmin.29
-	title = jasmin.29.t
-	desc = jasmin.29.d
-	picture = jas_selected_nation_refuses
-	
-	is_triggered_only = yes
-	
-	option = { 
-		name = jasmin.29.o1
-	    add_political_power = -50
-		country_event = { id = jasmin.30 }
-    }     
-}
-
-country_event = {
-	id = jasmin.30
-	title = jasmin.30.t
-	desc = jasmin.30.d
-	picture = jas_seeking_support
-	
-	is_triggered_only = yes
-	
-	option = { #Iran
-		name = jasmin.30.o1
-	    PER ={
-		    country_event = { id = jasmin.31 }
-		}
-    }
-    
-    option = { #Canada
-		name = jasmin.30.o2
-	    CAN ={
-		    country_event = { id = jasmin.35 }
-		}
-    }
-}
-
-#Turn to Iran
-country_event = {
-	id = jasmin.31
-	title = jasmin.31.t
-	desc = jasmin.31.d
-	picture = jas_turn_to_iran
-	
-	is_triggered_only = yes
-	
-	option = { 
-		name = jasmin.31.o1
-	    JAS ={
-		    country_event = { id = jasmin.5 }
-		}
-	    ai_chance = {
-			factor = 70
-		}
-	}  
-	
-	option = { 
-		name = jasmin.31.o2
-	    JAS ={
-		    country_event = { id = jasmin.32 }
-		}
-	    ai_chance = {
-			factor = 40
-		}
-	}
-}
-
-country_event = {
-	id = jasmin.32
-	title = jasmin.32.t
-	desc = jasmin.32.d
-	picture = jas_selected_nation_refuses
-	
-	is_triggered_only = yes
-	
-	option = { 
-		name = jasmin.32.o1
-	    add_political_power = -50
-		country_event = { id = jasmin.33 }
-    }     
-}
-country_event = {
-	id = jasmin.33
-	title = jasmin.33.t
-	desc = jasmin.33.d
-	picture = jas_seeking_support
-	
-	is_triggered_only = yes
-    
-    option = { #Canada
-		name = jasmin.33.o1
-	    CAN ={
-		    country_event = { id = jasmin.34 }
-		}
-    }
-}
-
-country_event = {
-	id = jasmin.34
-	title = jasmin.34.t
-	desc = jasmin.34.d
-	picture = jas_turn_to_canada
-	
-	is_triggered_only = yes
-    
-    option = { 
-		name = jasmin.34.o1
-	    JAS ={
-		    country_event = { id = jasmin.5 }
-		}
-	    ai_chance = {
-			factor = 60
-		}
-	}
-	
-	option = { 
-		name = jasmin.34.o2
-	    JAS ={
-		    country_event = { id = jasmin.12 }
-		}
-	    ai_chance = {
-			factor = 40
-		}
-	}
-}
-
-country_event = {
-	id = jasmin.35
-	title = jasmin.35.t
-	desc = jasmin.35.d
-	picture = jas_turn_to_canada
-	
-	is_triggered_only = yes
-    
-    option = { 
-		name = jasmin.35.o1
-	    JAS ={
-		    country_event = { id = jasmin.5 }
-		}
-	    ai_chance = {
-			factor = 40
-		}
-	}
-	
-	option = { 
-		name = jasmin.35.o2
-	    JAS ={
-		    country_event = { id = jasmin.36 }
-		}
-	    ai_chance = {
-			factor = 60
-		}
-	}
-}
-
-country_event = {
-	id = jasmin.36
-	title = jasmin.36.t
-	desc = jasmin.36.d
-	picture = jas_selected_nation_refuses
-	
-	is_triggered_only = yes
-    
-    option = { 
-		name = jasmin.36.o1
-	    add_political_power = -50
-		country_event = { id = jasmin.26 }
-    }
-}
-
-country_event = { 
-	id = jasmin.37
-	title = jasmin.37.t
-	desc = jasmin.37.d
-	picture = yemen_join
-	
-	is_triggered_only = yes
-	
-	option = { #Turn to Iran
-		name = jasmin.37.o1
-	    PER = {
-		    country_event = { id = jasmin.38 }
-		}
-	}
-}
-
-country_event = {
-	id = jasmin.38
-	title = jasmin.38.t
-	desc = jasmin.38.d
-	picture = yemen_join
-	
-	is_triggered_only = yes
-    
-    option = { 
-		name = jasmin.38.o1
-	    JAS ={
-		    country_event = { id = jasmin.5 }
-		}
-	    ai_chance = {
-			factor = 70
-		}
-	}
-	
-	option = { 
-		name = jasmin.38.o2
-	    JAS ={
-		    country_event = { id = jasmin.12 }
-		}
-	    ai_chance = {
-			factor = 40
-		}
 	}
 }
 
@@ -996,6 +398,9 @@ country_event = {
             ideology = moderate_socialist
             popularity = 0.05
         }
+		set_politics = {
+			ruling_party = new_democrat
+		}
 		JAS_najeeb_qahtan_alshaabi = {
 			add_country_leader_role = {
 				promote_leader = yes
@@ -2256,7 +1661,7 @@ country_event = { #brits accepted
 	option = {
 		name = jasmin.98.o1
 		JAS = {
-			add_ideas = JAS_british_guns
+			add_ideas = JAS_british_guns_idea
 			add_offsite_building = { type = arms_factory level = 1 }
 		}
 		ENG = {
@@ -2525,5 +1930,185 @@ country_event = { #Aussies refused
 	option = {
 		name = jasmin.111.o1
 		add_political_power = -30
+	}
+}
+country_event = { #Jasmine Council Opts to Request International Support
+	id = jasmin.112
+	title = jasmin.112.t
+	desc = jasmin.112.d
+	picture = jas_aussies_say_no_diggy
+	
+	is_triggered_only = yes
+	
+	option = { #Turn to Iran
+		name = jasmin.112.o1
+		PER = {
+			country_event = jasmin.113
+		}
+	}
+
+	option = { #Turn to Canada
+		name = jasmin.112.o2
+		CAN = {
+			country_event = jasmin.116
+		}
+	}
+}
+country_event = { #Jasmine Council Asks for Support (Iran)
+	id = jasmin.113
+	title = jasmin.113.t
+	desc = jasmin.113.d
+	picture = jas_aussies_say_no_diggy
+	
+	is_triggered_only = yes
+	
+	option = { #Sure
+		name = jasmin.113.o1
+		send_equipment = {
+			equipment = infantry_equipment
+			target = JAS
+			amount = 750
+		}
+		send_equipment = {
+			equipment = artillery_equipment
+			target = JAS
+			amount = 100
+		}
+		if = {
+			limit = {
+				has_dlc = "By Blood Alone"
+			}
+			send_equipment = {
+				equipment = small_plane_cas_airframe
+				amount = 10
+				target = JAS
+			}
+		}
+		else = {
+			send_equipment = {
+				equipment = CAS_equipment_1
+				amount = 10
+				target = JAS
+			}
+		}
+		JAS = {
+			country_event = jasmin.114
+		}
+	}
+
+	option = { #No
+		name = jasmin.113.o2
+		JAS = {
+			country_event = jasmin.115
+		}
+	}
+}
+country_event = { #Iran Accepts
+	id = jasmin.114
+	title = jasmin.114.t
+	desc = jasmin.114.d
+	picture = jas_iran_does_not_want_to_commit_war_crimes_with_yemen
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.114.o1
+	}
+}
+country_event = { #Iran refused
+	id = jasmin.115
+	title = jasmin.115.t
+	desc = jasmin.115.d
+	picture = jas_iran_does_not_want_to_commit_war_crimes_with_yemen
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.115.o1
+	}
+}
+country_event = { #Jasmine Council Asks for Support (Canada)
+	id = jasmin.116
+	title = jasmin.116.t
+	desc = jasmin.116.d
+	picture = jas_aussies_say_no_diggy
+	
+	is_triggered_only = yes
+	
+	option = { #Sure
+		name = jasmin.116.o1
+		if = {
+			limit = {
+				has_dlc = "No Step Back"
+			}
+			send_equipment = {
+				equipment = light_tank_chassis
+				amount = 200
+				target = JAS
+			}
+		}
+		else = {
+			send_equipment = {
+				equipment = light_tank_equipment_1
+				amount = 200
+				target = JAS
+			}
+		}
+		send_equipment = {
+			equipment = motorized_equipment
+			target = JAS
+			amount = 100
+		}
+		if = {
+			limit = {
+				has_dlc = "By Blood Alone"
+			}
+			send_equipment = {
+				equipment = small_plane_airframe
+				amount = 10
+				target = JAS
+			}
+		}
+		else = {
+			send_equipment = {
+				equipment = fighter_equipment_1
+				amount = 10
+				target = JAS
+			}
+		}
+		JAS = {
+			country_event = jasmin.117
+		}
+	}
+
+	option = { #No
+		name = jasmin.116.o2
+		JAS = {
+			country_event = jasmin.118
+		}
+	}
+}
+country_event = { #Canada Accepts
+	id = jasmin.117
+	title = jasmin.117.t
+	desc = jasmin.117.d
+	picture = jas_iran_does_not_want_to_commit_war_crimes_with_yemen
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.117.o1
+	}
+}
+country_event = { #Canada Refuses
+	id = jasmin.118
+	title = jasmin.118.t
+	desc = jasmin.118.d
+	picture = jas_iran_does_not_want_to_commit_war_crimes_with_yemen
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.118.o1
 	}
 }

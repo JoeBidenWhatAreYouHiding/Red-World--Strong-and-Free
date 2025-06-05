@@ -1,0 +1,7160 @@
+focus_tree = {
+	id = galicia_tree
+	default = no
+	continuous_focus_position = { x = 2400 y = 3000 }
+
+	focus = {
+		id = GAL_seize_the_arms_factories
+		icon = RAJ_our_own_equipment
+		cost = 2
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		x = 10
+		y = 0
+		completion_reward = {
+		    171 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = GAL_request_portuguese_aid
+		icon = portugal
+		cost = 3
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = GAL_seize_the_arms_factories
+		}
+		relative_position_id = GAL_seize_the_arms_factories
+		x = -1
+		y = 1
+		completion_reward = {
+		    POR = {
+				country_event = {
+					id = galfopo.36
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_sympathizers_in_the_civil_guard
+		icon = GAL_preserve_the_civil_guard
+		cost = 3
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = GAL_seize_the_arms_factories
+		}
+		relative_position_id = GAL_seize_the_arms_factories
+		x = 1
+		y = 1
+		completion_reward = {
+			division_template = {
+				name = "Civil Guard Division"
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+				}
+			}
+			set_country_flag = spr_civil_guard_aided_galicia
+			random_owned_state = {
+				create_unit = {
+					division = "name = \"Civil Guard Division\" division_template = \"Civil Guard Division\" start_experience_factor = 0.4 start_equipment_factor = 1"
+					owner = GAL
+				}
+			}
+			add_field_marshal_role = {
+				Character = GAL_Jose_Hermida
+				traits = { old_guard politically_connected }
+				skill = 4
+				attack_skill = 3
+				defense_skill = 3
+				planning_skill = 4
+				logistics_skill = 4
+			}
+			add_advisor_role = {
+				character = GAL_Jose_Hermida
+				advisor = {
+					slot = army_chief
+					idea_token = GAL_Jose_Hermida
+					traits = {
+						army_chief_drill_2 
+					}
+				}
+			}
+			add_field_marshal_role = {
+				Character = GAL_jose_amedo_general
+				traits = { old_guard politically_connected logistics_wizard offensive_doctrine }
+				skill = 5
+				attack_skill = 4
+				defense_skill = 4
+				planning_skill = 4
+				logistics_skill = 4
+			}
+			add_corps_commander_role = {
+				Character = GAL_Jose_Luis_Tejada_Blanco
+				traits = { old_guard trait_cautious }
+				skill = 2
+				attack_skill = 3
+				defense_skill = 1
+				planning_skill = 3
+				logistics_skill = 1
+			}
+			add_corps_commander_role = {
+				Character = GAL_Jose_Antonio_Vilarino
+				traits = { infantry_officer engineer_officer }
+				skill = 2
+				attack_skill = 2
+				defense_skill = 3
+				planning_skill = 2
+				logistics_skill = 1
+			}
+			add_advisor_role = {
+				character = GAL_Jose_Antonio_Vilarino
+				advisor = {
+					slot = high_command
+					idea_token = GAL_Jose_Antonio_Vilarino
+					traits = {
+						army_armored_1 
+					}
+				}
+			}
+			add_corps_commander_role = {
+				Character = GAL_Jesus_Gayoso
+				traits = { infantry_officer engineer_officer career_officer}
+				skill = 3
+				attack_skill = 2
+				defense_skill = 3
+				planning_skill = 3
+				logistics_skill = 2
+			}
+			add_advisor_role = {
+				character = GAL_Jesus_Gayoso
+				advisor = {
+					slot = high_command
+					idea_token = GAL_Jesus_Gayoso
+					traits = {
+						army_infantry_3 
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_call_on_the_revolutionary_students
+		icon = push_focus
+		cost = 2
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = GAL_request_portuguese_aid
+		}
+		prerequisite = {
+			focus = GAL_sympathizers_in_the_civil_guard
+		}
+		relative_position_id = GAL_request_portuguese_aid
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_manpower = 10000
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 500
+				producer = GAL
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 3500
+				producer = POR
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1000
+				producer = SPR
+			}
+		}
+	}
+	focus = {
+		id = GAL_no_step_back
+		icon = defence
+		cost = 2
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = GAL_call_on_the_revolutionary_students
+		}
+		relative_position_id = GAL_call_on_the_revolutionary_students
+		x = 0
+		y = 1
+		completion_reward = {
+			add_timed_idea = {
+				idea = idea_gal_no_step_back
+				days = 120
+			}
+		}
+	}
+	
+	#democracy
+	
+	focus = {
+		id = GAL_first_galician_elections
+		icon = GAL_first_galician_elections
+		cost = 5
+		available = {
+			has_country_flag = GAL_democracy_prevails
+		}
+		prerequisite = {
+			focus = GAL_no_step_back
+		}
+		mutually_exclusive = {
+			focus = GAL_nationalist_bloc_dominance
+			focus = GAL_under_amedos_violence
+		}
+		relative_position_id = GAL_no_step_back
+		x = 0
+		y = 1
+		completion_reward = {
+		    
+		}
+	}
+	
+	#newdems
+	focus = {
+		id = GAL_the_moderate_left
+		icon = GAL_the_moderate_left
+		cost = 5
+		available = {
+			has_country_flag = GAL_psog_wins_election
+		}
+		prerequisite = {
+			focus = GAL_first_galician_elections
+		}
+		relative_position_id = GAL_first_galician_elections
+		x = 0
+		y = 1
+		completion_reward = {
+		    
+		}
+	}
+	focus = {
+		id = GAL_put_the_militants_on_trial
+		icon = threaten_socialists
+		cost = 10
+		available = {
+			has_government = new_democrat
+		}
+		bypass = {
+			OR = {
+				has_completed_focus = GAL_arrest_nationalist_bloc_terrorists
+				has_completed_focus = GAL_root_out_remaining_militants
+				has_completed_focus = GAL_sideline_nationalist_bloc_radicals
+			}
+		}
+		prerequisite = {
+			focus = GAL_the_moderate_left
+		}
+		bypass = {
+			has_completed_focus = GAL_sideline_nationalist_bloc_radicals
+		}
+		relative_position_id = GAL_the_moderate_left
+		x = -2
+		y = 1
+		completion_reward = {
+		    remove_ideas = {idea_gal_lingering_leftist_militancy}
+			retire_character = GAL_Xose_Cid_Cabido
+			retire_character = GAL_Anton_Arias_Curto
+			retire_character = GAL_Fernando_Silva_Sande
+			retire_character = GAL_Luis_Nieto_Pereira
+		}
+	}
+	focus = {
+		id = GAL_exorcise_the_far_right
+		icon = GAL_exorcise_the_far_right
+		cost = 6
+		available = {
+			has_government = new_democrat
+		}
+		bypass = {
+			has_completed_focus = GAL_sideline_the_far_right
+		}
+		prerequisite = {
+			focus = GAL_put_the_militants_on_trial
+		}
+		relative_position_id = GAL_put_the_militants_on_trial
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = nationalist
+				popularity = -0.10
+			}
+			add_popularity = {
+				ideology = fascist
+				popularity = -0.10
+			}
+			retire_character = GAL_jose_amedo_general
+		}
+	}
+	focus = {
+		id = GAL_preserve_the_civil_guard
+		icon = GAL_preserve_the_civil_guard
+		cost = 7.2
+		available = {
+			has_government = new_democrat
+			NOT = {
+				has_completed_focus = GAL_abolish_the_civil_guard
+			}
+		}
+		prerequisite = {
+			focus = GAL_the_moderate_left
+		}
+		mutually_exclusive = {
+			focus = GAL_disband_the_civil_guard
+		}
+		relative_position_id = GAL_the_moderate_left
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = idea_gal_preserved_civil_guard
+		}
+	}
+	focus = {
+		id = GAL_reduce_police_militarization
+		icon = police_action_plan2
+		cost = 5
+		available = {
+			has_government = new_democrat
+		}
+		prerequisite = {
+			focus = GAL_preserve_the_civil_guard
+		}
+		relative_position_id = GAL_preserve_the_civil_guard
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_police_demilitarization
+			IF = {
+				limit = {
+					has_idea = idea_glr_strong_police
+				}
+				remove_ideas = {
+					idea_glr_strong_police
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_disband_the_civil_guard
+		icon = GAL_disband_the_civil_guard
+		cost = 7.2
+		available = {
+			has_government = new_democrat
+		}
+		prerequisite = {
+			focus = GAL_the_moderate_left
+		}
+		bypass = {
+			has_completed_focus = GAL_abolish_the_civil_guard
+		}
+		mutually_exclusive = {
+			focus = GAL_preserve_the_civil_guard
+		}
+		relative_position_id = GAL_the_moderate_left
+		x = 2
+		y = 1
+		completion_reward = {
+			add_ideas = idea_gal_abolished_civil_guard
+			retire_character = GAL_Jose_Hermida
+			retire_character = GAL_Jose_Luis_Tejada_Blanco
+			retire_character = GAL_Jose_Antonio_Vilarino
+			retire_character = GAL_Jesus_Gayoso
+		}
+	}
+	focus = {
+		id = GAL_community_policing_act
+		icon = police_action_plan
+		cost = 5
+		available = {
+			has_government = new_democrat
+		}
+		prerequisite = {
+			focus = GAL_disband_the_civil_guard
+		}
+		relative_position_id = GAL_disband_the_civil_guard
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_SPR_community_policing
+		}
+	}
+	focus = {
+		id = GAL_mandate_galician_language_education
+		icon = minority_rights
+		cost = 8
+		available = {
+			has_government = new_democrat
+		}
+		prerequisite = {
+			focus = GAL_exorcise_the_far_right
+		}
+		prerequisite = {
+			focus = GAL_reduce_police_militarization
+			focus = GAL_community_policing_act
+		}
+		relative_position_id = GAL_exorcise_the_far_right
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_mandated_galician_education
+		}
+	}
+	focus = {
+		id = GAL_enact_free_education
+		icon = military_academy
+		cost = 10
+		available = {
+			has_government = new_democrat
+		}
+		prerequisite = {
+			focus = GAL_mandate_galician_language_education
+		}
+		bypass = {
+			has_completed_focus = GAL_the_right_to_higher_education
+		}
+		relative_position_id = GAL_mandate_galician_language_education
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_research_slot = 1
+		    171 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = research_center
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_subsidize_sustainable_agriculture
+		icon = GFX_cash_crop_agriculture
+		cost = 10
+		available = {
+			has_government = new_democrat
+		}
+		prerequisite = {
+			focus = GAL_enact_free_education
+		}
+		relative_position_id = GAL_enact_free_education
+		x = 0
+		y = 2
+		completion_reward = {
+		    add_ideas = idea_SPR_sustainable_farming_act
+			add_offsite_building = {
+				type = industrial_complex
+				level = 2
+			}
+		}
+	}
+	focus = {
+		id = GAL_expand_public_housing
+		icon = urban_housing
+		cost = 10
+		available = {
+			has_government = new_democrat
+		}
+		prerequisite = {
+			focus = GAL_enact_free_education
+		}
+		bypass = {
+			has_completed_focus = GAL_guarantee_right_to_housing
+		}
+		relative_position_id = GAL_enact_free_education
+		x = -1
+		y = 1
+		completion_reward = {
+		    171 = {
+			    add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_socialize_healthcare
+		icon = pill_testing
+		cost = 7.2
+		available = {
+			has_government = new_democrat
+		}
+		prerequisite = {
+			focus = GAL_expand_public_housing
+		}
+		bypass = {
+			has_completed_focus = GAL_guarantee_universal_healthcare
+		}
+		relative_position_id = GAL_expand_public_housing
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_SPR_socialized_healthcare
+		    171 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_invite_immigration
+		icon = Encourage_Immigration_2
+		cost = 6
+		available = {
+			has_government = new_democrat
+		}
+		prerequisite = {
+			focus = GAL_socialize_healthcare
+		}
+		prerequisite = {
+			focus = GAL_subsidize_sustainable_agriculture
+		}
+		relative_position_id = GAL_socialize_healthcare
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_relaxed_immigration_laws
+		}
+	}
+	focus = {
+		id = GAL_deradicalize_labor_movement
+		icon = CSD_ban_socialism
+		cost = 10
+		available = {
+			has_government = new_democrat
+		}
+		bypass = {
+			NOT = {
+				has_idea = idea_gal_disloyal_military
+			}
+		}
+		prerequisite = {
+			focus = GAL_mandate_galician_language_education
+		}
+		relative_position_id = GAL_mandate_galician_language_education
+		x = 2
+		y = 1
+		completion_reward = {
+		    remove_ideas = {idea_gal_disloyal_military}
+		}
+	}
+	focus = {
+		id = GAL_embrace_green_energy
+		icon = wind_power_initiative
+		cost = 7.2
+		available = {
+			has_government = new_democrat
+		}
+		prerequisite = {
+			focus = GAL_deradicalize_labor_movement
+		}
+		relative_position_id = GAL_deradicalize_labor_movement
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_SPR_renewable_energy_focus
+		    171 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_enshrine_secularization
+		icon = GFX_a_secular_society
+		cost = 7.2
+		available = {
+			has_government = new_democrat
+		}
+		prerequisite = {
+			focus = GAL_deradicalize_labor_movement
+		}
+		relative_position_id = GAL_deradicalize_labor_movement
+		x = 2
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_social_secularization
+			IF = {
+				limit = {
+					has_idea = idea_spr_revitalized_church
+				}
+				remove_ideas = {
+					idea_spr_revitalized_church
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_revolutionize_infrastructure
+		icon = roads
+		cost = 10
+		available = {
+			has_government = new_democrat
+		}
+		prerequisite = {
+			focus = GAL_deradicalize_labor_movement
+		}
+		relative_position_id = GAL_deradicalize_labor_movement
+		x = -2
+		y = 1
+		completion_reward = {
+		    171 = {
+				set_building_level = {
+					type = infrastructure
+					level = 10
+					instant_build = yes
+				}
+			}
+			add_offsite_building = {
+				type = industrial_complex
+				level = 2
+			}
+		}
+	}
+	focus = {
+		id = GAL_guarantee_unionization_rights
+		icon = socialist_industry_generic
+		cost = 5
+		available = {
+			has_government = new_democrat
+		}
+		prerequisite = {
+			focus = GAL_embrace_green_energy
+		}
+		prerequisite = {
+			focus = GAL_enshrine_secularization
+		}
+		prerequisite = {
+			focus = GAL_revolutionize_infrastructure
+		}
+		bypass = {
+			has_completed_focus = GAL_union_representation_in_parliament
+		}
+		relative_position_id = GAL_embrace_green_energy
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = new_democrat
+				popularity = 0.03
+			}
+			add_political_power = 50
+		    add_offsite_building = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+	}
+	focus = {
+		id = GAL_alliances_with_business_magnates
+		icon = lucrative_investment
+		cost = 10
+		available = {
+			has_government = new_democrat
+		}
+		prerequisite = {
+			focus = GAL_guarantee_unionization_rights
+		}
+		relative_position_id = GAL_guarantee_unionization_rights
+		x = 0
+		y = 1
+		completion_reward = {
+		    171 = {
+			    add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_enact_social_security
+		icon = generic_welfare_focus
+		cost = 8
+		available = {
+			has_government = new_democrat
+		}
+		prerequisite = {
+			focus = GAL_guarantee_unionization_rights
+		}
+		relative_position_id = GAL_guarantee_unionization_rights
+		x = 2
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_social_security
+		}
+	}
+	focus = {
+		id = GAL_improve_the_rail_networks
+		icon = infrastructure_building
+		cost = 7.2
+		available = {
+			has_government = new_democrat
+		}
+		prerequisite = {
+			focus = GAL_guarantee_unionization_rights
+		}
+		relative_position_id = GAL_guarantee_unionization_rights
+		x = -2
+		y = 1
+		completion_reward = {
+			build_railway = {
+			  level = 5
+			  build_only_on_allied = no
+			  fallback = yes
+			  start_province = 758
+			  target_province = 9686
+			}
+			build_railway = {
+			  level = 5
+			  build_only_on_allied = no
+			  fallback = yes
+			  start_province = 758
+			  target_province = 6734
+			}
+		}
+	}
+	focus = {
+		id = GAL_full_employment_program
+		icon = industry_paper
+		cost = 7.2
+		available = {
+			has_government = new_democrat
+		}
+		prerequisite = {
+			focus = GAL_invite_immigration
+		}
+		prerequisite = {
+			focus = GAL_improve_the_rail_networks
+		}
+		prerequisite = {
+			focus = GAL_alliances_with_business_magnates
+		}
+		prerequisite = {
+			focus = GAL_enact_social_security
+		}
+		relative_position_id = GAL_improve_the_rail_networks
+		x = 1
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_gal_social_security
+				add_idea = idea_gal_social_security2
+			}
+		}
+	}
+	focus = {
+		id = GAL_galicias_fair_deal
+		icon = GER_social_democratic_revival
+		cost = 10
+		available = {
+			has_government = new_democrat
+		}
+		prerequisite = {
+			focus = GAL_full_employment_program
+		}
+		relative_position_id = GAL_full_employment_program
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_SPR_fair_society
+			}
+		}
+	}
+	
+	#natcons
+	focus = {
+		id = GAL_the_conservative_backlash
+		icon = GAL_the_conservative_backlash
+		cost = 5
+		available = {
+			has_country_flag = GAL_pp_wins_election
+		}
+		prerequisite = {
+			focus = GAL_first_galician_elections
+		}
+		relative_position_id = GAL_first_galician_elections
+		x = 9
+		y = 1
+		completion_reward = {
+		    set_country_flag = gal_impending_political_subterfuge
+		}
+	}
+	focus = {
+		id = GAL_honor_heroes_in_law_enforcement
+		icon = GAL_honor_heroes_in_law_enforcement
+		cost = 7.2
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_the_conservative_backlash
+		}
+		relative_position_id = GAL_the_conservative_backlash
+		x = -1
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				idea_glr_strong_police
+			}
+		}
+	}
+	focus = {
+		id = GAL_arrest_nationalist_bloc_terrorists
+		icon = CSD_ban_socialism
+		cost = 10
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_the_conservative_backlash
+		}
+		bypass = {
+			NOT = {
+				has_idea = idea_gal_lingering_leftist_militancy
+			}
+		}
+		relative_position_id = GAL_the_conservative_backlash
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = national_bolshevik
+				popularity = -0.2
+			}
+		    add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.2
+			}
+			IF = {
+				limit = {
+					has_country_flag = GAL_beiras_delayed_democracy
+				}
+				add_popularity = {
+					ideology = moderate_socialist
+					popularity = -0.15
+				}
+				country_event = {
+					id = galicia.55
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					NOT = {
+						has_country_flag = GAL_beiras_delayed_democracy
+					}
+				}
+				country_event = {
+					id = galicia.56
+				}
+			}
+			remove_ideas = {
+				idea_gal_lingering_leftist_militancy
+			}
+			retire_character = GAL_Xose_Cid_Cabido
+			retire_character = GAL_Anton_Arias_Curto
+			retire_character = GAL_Fernando_Silva_Sande
+			retire_character = GAL_Luis_Nieto_Pereira
+		}
+	}
+	focus = {
+		id = GAL_suppress_unionization_efforts
+		icon = generic_crush_unions
+		cost = 7.2
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_arrest_nationalist_bloc_terrorists
+		}
+		prerequisite = {
+			focus = GAL_honor_heroes_in_law_enforcement
+		}
+		relative_position_id = GAL_arrest_nationalist_bloc_terrorists
+		x = -1
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				idea_gal_suppress_unions
+			}
+		}
+	}
+	focus = {
+		id = GAL_enshrine_market_deregulation
+		icon = GFX_further_privatisation
+		cost = 10
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_suppress_unionization_efforts
+		}
+		relative_position_id = GAL_suppress_unionization_efforts
+		x = -2
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_SPR_deregulation
+			}
+			IF = {
+				limit = {
+					has_idea = idea_SPR_renewable_energy_focus
+				}
+				remove_ideas = {
+					idea_SPR_renewable_energy_focus
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_invite_international_investment
+		icon = positive_trade_relations
+		cost = 10
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_suppress_unionization_efforts
+		}
+		relative_position_id = GAL_suppress_unionization_efforts
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = {free_trade}
+			add_offsite_building = {
+				type = industrial_complex
+				level = 3
+			}
+		}
+	}
+	focus = {
+		id = GAL_expand_galician_ports
+		icon = build_navy
+		cost = 7.2
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_suppress_unionization_efforts
+		}
+		relative_position_id = GAL_suppress_unionization_efforts
+		x = 2
+		y = 1
+		completion_reward = {
+			171 = {
+				add_building_construction = {
+					type = naval_base
+					level = 2
+					instant_build = yes
+					province = 758
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 5
+					instant_build = yes
+					province = 6734
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_a_new_education_plan
+		icon = GAL_a_new_education_plan
+		cost = 10
+		available = {
+			has_government = national_conservative
+		}
+		bypass = {
+			has_country_flag = GAL_education_plan_collapsed
+		}
+		prerequisite = {
+			focus = GAL_expand_galician_ports
+		}
+		prerequisite = {
+			focus = GAL_invite_international_investment
+		}
+		prerequisite = {
+			focus = GAL_enshrine_market_deregulation
+		}
+		relative_position_id = GAL_invite_international_investment
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_dummy_spanish_education_plan
+			}
+		}
+	}
+	focus = {
+		id = GAL_triumph_of_the_moderates
+		icon = GAL_triumph_of_the_moderates
+		cost = 5
+		available = {
+			has_government = national_conservative
+			has_country_flag = GAL_vonc_against_nunez_failed
+		}
+		prerequisite = {
+			focus = GAL_a_new_education_plan
+		}
+		mutually_exclusive = {
+			focus = GAL_legacy_of_the_peoples_party
+		}
+		relative_position_id = GAL_a_new_education_plan
+		x = -3
+		y = 1
+		completion_reward = {
+		    clr_country_flag = gal_impending_political_subterfuge
+		}
+	}
+	focus = {
+		id = GAL_legacy_of_the_peoples_party
+		icon = GAL_legacy_of_the_peoples_party
+		cost = 5
+		available = {
+			has_government = national_conservative
+			has_country_flag = GAL_vonc_against_nunez_succeeded
+		}
+		prerequisite = {
+			focus = GAL_a_new_education_plan
+		}
+		mutually_exclusive = {
+			focus = GAL_triumph_of_the_moderates
+		}
+		relative_position_id = GAL_a_new_education_plan
+		x = 3
+		y = 1
+		completion_reward = {
+		    clr_country_flag = gal_impending_political_subterfuge
+		}
+	}
+	focus = {
+		id = GAL_complete_the_education_package
+		icon = generic_welfare_focus
+		cost = 10
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_legacy_of_the_peoples_party
+			focus = GAL_triumph_of_the_moderates
+		}
+		relative_position_id = GAL_a_new_education_plan
+		x = 0
+		y = 2
+		completion_reward = {
+		    add_research_slot = 1
+		}
+	}
+	focus = {
+		id = GAL_codify_new_tax_codes
+		icon = trade
+		cost = 7.2
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_complete_the_education_package
+		}
+		relative_position_id = GAL_complete_the_education_package
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				idea_SPR_tax_cuts
+			}
+		}
+	}
+	focus = {
+		id = GAL_expand_galician_infrastructure
+		icon = infrastructure
+		cost = 7.2
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_codify_new_tax_codes
+		}
+		relative_position_id = GAL_codify_new_tax_codes
+		x = -1
+		y = 1
+		completion_reward = {
+			171 = {
+				set_building_level = {
+					type = infrastructure
+					level = 10
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_invest_in_galician_business
+		icon = train
+		cost = 10
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_codify_new_tax_codes
+		}
+		relative_position_id = GAL_codify_new_tax_codes
+		x = 1
+		y = 1
+		completion_reward = {
+			171 = {
+			    add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = industrial_complex
+					level = 4
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_sponsor_new_military_academies
+		icon = military_academy
+		cost = 5
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_invest_in_galician_business
+		}
+		prerequisite = {
+			focus = GAL_expand_galician_infrastructure
+		}
+		relative_position_id = GAL_expand_galician_infrastructure
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_new_military_academies
+		}
+	}
+	focus = {
+		id = GAL_invite_nobility_into_parliament
+		icon = allow_nobility_in_parliament
+		cost = 8
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_legacy_of_the_peoples_party
+		}
+		relative_position_id = GAL_legacy_of_the_peoples_party
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_nobility_in_parliament
+			}
+		}
+	}
+	focus = {
+		id = GAL_embrace_family_values
+		icon = traditional_values
+		cost = 7.2
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_invite_nobility_into_parliament
+		}
+		relative_position_id = GAL_invite_nobility_into_parliament
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_spr_traditional_gender_roles
+			}
+		}
+	}
+	focus = {
+		id = GAL_encourage_galician_linguistic_primacy
+		icon = self_management
+		cost = 5
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_invite_nobility_into_parliament
+		}
+		bypass = {
+			OR = {
+				has_completed_focus = GAL_mandate_galician_language_education
+				has_completed_focus = GAL_revoke_spanishs_official_language_status
+			}
+		}
+		relative_position_id = GAL_invite_nobility_into_parliament
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_galician_linguistic_primacy
+			}
+		}
+	}
+	focus = {
+		id = GAL_merge_the_civil_guard_into_the_army
+		icon = GAL_merge_the_civil_guard_into_the_army
+		cost = 8
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_encourage_galician_linguistic_primacy
+		}
+		bypass = {
+			OR = {
+				NOT = {
+					has_idea = idea_gal_disloyal_military
+				}
+				has_completed_focus = GAL_abolish_the_civil_guard
+				has_completed_focus = GAL_disband_the_civil_guard
+			}
+		}
+		relative_position_id = GAL_encourage_galician_linguistic_primacy
+		x = 0
+		y = 2
+		completion_reward = {
+		    remove_ideas = {
+				idea_gal_disloyal_military
+			}
+		}
+	}
+	focus = {
+		id = GAL_an_alliance_with_the_church
+		icon = focus_appease_catholics
+		cost = 7.2
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_encourage_galician_linguistic_primacy
+		}
+		prerequisite = {
+			focus = GAL_embrace_family_values
+		}
+		relative_position_id = GAL_encourage_galician_linguistic_primacy
+		x = 1
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				idea_spr_revitalized_church
+			}
+			IF = {
+				limit = {
+					has_idea = idea_gal_church_taxation
+				}
+				remove_ideas = {
+					idea_gal_church_taxation
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_extracting_the_wealth_of_galicias_soil
+		icon = rubber
+		cost = 8
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_an_alliance_with_the_church
+		}
+		relative_position_id = GAL_an_alliance_with_the_church
+		x = 1
+		y = 1
+		completion_reward = {
+		    171 = {
+				add_resource = {
+					type = tungsten
+					amount = 5
+					state = 171
+				}
+				add_resource = {
+					type = steel
+					amount = 10
+					state = 171
+				}
+				add_resource = {
+					type = aluminium
+					amount = 8
+					state = 171
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_the_beginnings_of_a_military_industrial_complex
+		icon = GFX_modernised_armed_forces
+		cost = 5
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_extracting_the_wealth_of_galicias_soil
+		}
+		prerequisite = {
+			focus = GAL_merge_the_civil_guard_into_the_army
+		}
+		relative_position_id = GAL_extracting_the_wealth_of_galicias_soil
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_bolstered_military_industrial_complex
+		}
+	}
+	focus = {
+		id = GAL_la_calle_es_mia
+		icon = generic_ideology
+		cost = 5
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_sponsor_new_military_academies
+		}
+		prerequisite = {
+			focus = GAL_merge_the_civil_guard_into_the_army
+		}
+		relative_position_id = GAL_sponsor_new_military_academies
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_centralization_of_the_executive
+		}
+	}
+	focus = {
+		id = GAL_inheritor_of_don_manuels_mantel
+		icon = GAL_inheritor_of_don_manuels_mantel
+		cost = 10
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_la_calle_es_mia
+		}
+		prerequisite = {
+			focus = GAL_the_beginnings_of_a_military_industrial_complex
+		}
+		relative_position_id = GAL_la_calle_es_mia
+		x = 1
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				idea_gal_the_legacy_of_manuel_fraga
+			}
+		}
+	}
+	focus = {
+		id = GAL_seek_compromise_with_the_workers_party
+		icon = focus_ideology_new_democrat
+		cost = 5
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_triumph_of_the_moderates
+		}
+		relative_position_id = GAL_triumph_of_the_moderates
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = new_democrat
+				popularity = 0.03
+			}
+			add_political_power = -50
+		}
+	}
+	focus = {
+		id = GAL_sideline_the_far_right
+		icon = anti_fascist
+		cost = 5
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_triumph_of_the_moderates
+		}
+		bypass = {
+			has_completed_focus = GAL_exorcise_the_far_right
+		}
+		relative_position_id = GAL_triumph_of_the_moderates
+		x = -2
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = nationalist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = fascist
+				popularity = -0.05
+			}
+		}
+	}
+	focus = {
+		id = GAL_demilitarize_the_civil_guard
+		icon = police_action_plan
+		cost = 10
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_sideline_the_far_right
+		}
+		bypass = {
+			OR = {
+				has_completed_focus = GAL_disband_the_civil_guard
+				has_completed_focus = GAL_abolish_the_civil_guard
+				has_completed_focus = GAL_reduce_police_militarization
+				NOT = {
+					has_idea = idea_gal_disloyal_military
+				}
+			}
+		}
+		relative_position_id = GAL_sideline_the_far_right
+		x = 0
+		y = 2
+		completion_reward = {
+		    remove_ideas = {
+				idea_gal_disloyal_military
+			}
+		}
+	}
+	focus = {
+		id = GAL_guarantee_unemployment_subsidies
+		icon = generic_welfare_focus
+		cost = 5
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_seek_compromise_with_the_workers_party
+		}
+		relative_position_id = GAL_seek_compromise_with_the_workers_party
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_unemployement_subsidies
+		}
+	}
+	focus = {
+		id = GAL_soften_the_churchs_political_influence
+		icon = limit_church_power
+		cost = 7.2
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_seek_compromise_with_the_workers_party
+		}
+		bypass = {
+			OR = {
+				has_completed_focus = GAL_enshrine_secularization
+				has_completed_focus = GAL_levy_taxes_on_the_church
+			}
+		}
+		relative_position_id = GAL_seek_compromise_with_the_workers_party
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_reduced_church_influence
+		}
+	}
+	focus = {
+		id = GAL_increased_privatization
+		icon = power_to_the_corporations
+		cost = 6
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_soften_the_churchs_political_influence
+		}
+		prerequisite = {
+			focus = GAL_guarantee_unemployment_subsidies
+		}
+		relative_position_id = GAL_soften_the_churchs_political_influence
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_increased_privatizations
+		}
+	}
+	focus = {
+		id = GAL_natcon_subsidize_sustainable_agriculture
+		icon = agriculuture_agrarianism
+		cost = 7.2
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_increased_privatization
+		}
+		prerequisite = {
+			focus = GAL_demilitarize_the_civil_guard
+		}
+		relative_position_id = GAL_increased_privatization
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_agricultural_subsidies
+		}
+	}
+	focus = {
+		id = GAL_increase_economic_austerity_measures
+		icon = CSD_abolish_corporate_taxation
+		cost = 7.2
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_increased_privatization
+		}
+		prerequisite = {
+			focus = GAL_expand_galician_infrastructure
+		}
+		relative_position_id = GAL_increased_privatization
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_austerity_measures
+		}
+	}
+	focus = {
+		id = GAL_victory_over_polarization
+		icon = GFX_freedom_focus
+		cost = 10
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = GAL_increase_economic_austerity_measures
+		}
+		prerequisite = {
+			focus = GAL_sponsor_new_military_academies
+		}
+		prerequisite = {
+			focus = GAL_natcon_subsidize_sustainable_agriculture
+		}
+		relative_position_id = GAL_increase_economic_austerity_measures
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_sensible_conservatism
+			}
+		}
+	}
+	
+	#nationalist bloc dominance
+	focus = {
+		id = GAL_nationalist_bloc_dominance
+		icon = GAL_nationalist_bloc
+		cost = 5
+		available = {
+			has_country_flag = GAL_nationalist_bloc_retains_power
+		}
+		prerequisite = {
+			focus = GAL_no_step_back
+		}
+		mutually_exclusive = {
+			focus = GAL_first_galician_elections
+			focus = GAL_under_amedos_violence
+		}
+		relative_position_id = GAL_no_step_back
+		x = -16
+		y = 1
+		completion_reward = {
+		    
+		}
+	}
+	focus = {
+		id = GAL_the_champion_of_galician_independence
+		icon = xose_beiras_focus
+		cost = 5
+		available = {
+			OR = {
+				has_country_flag = GAL_beiras_won_power_struggle
+				has_country_flag = GAL_galician_left_won_elections
+			}
+		}
+		prerequisite = {
+			focus = GAL_nationalist_bloc_dominance
+			focus = GAL_first_galician_elections
+		}
+		relative_position_id = GAL_first_galician_elections
+		x = -8
+		y = 1
+		completion_reward = {
+		    
+		}
+	}
+	focus = {
+		id = GAL_maintain_nationalist_bloc_dominance
+		icon = generic_ideology
+		cost = 7.2
+		available = {
+			has_completed_focus = GAL_nationalist_bloc_dominance
+			has_government = moderate_socialist
+		}
+		prerequisite = {
+			focus = GAL_the_champion_of_galician_independence
+		}
+		mutually_exclusive = {
+			focus = GAL_honor_commitment_to_democracy
+			focus = GAL_seek_accomodations_with_the_workers_party
+		}
+		relative_position_id = GAL_the_champion_of_galician_independence
+		x = -3
+		y = 1
+		completion_reward = {
+		    swap_ideas = {
+				remove_idea = idea_gal_divided_revolution
+				add_idea = idea_gal_nationalist_bloc_hegemony
+			}
+		}
+	}
+	focus = {
+		id = GAL_ensure_party_transparency
+		icon = RAJ_investigate_corruption
+		cost = 10
+		available = {
+			has_government = moderate_socialist
+		}
+		prerequisite = {
+			focus = GAL_maintain_nationalist_bloc_dominance
+		}
+		relative_position_id = GAL_maintain_nationalist_bloc_dominance
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_SPR_anti_corruption_campaign
+		}
+	}
+	focus = {
+		id = GAL_honor_commitment_to_democracy
+		icon = GFX_goal_human_rights
+		cost = 7.2
+		available = {
+			has_completed_focus = GAL_nationalist_bloc_dominance
+			has_government = moderate_socialist
+		}
+		prerequisite = {
+			focus = GAL_the_champion_of_galician_independence
+		}
+		mutually_exclusive = {
+			focus = GAL_maintain_nationalist_bloc_dominance
+			focus = GAL_seek_accomodations_with_the_workers_party
+		}
+		relative_position_id = GAL_the_champion_of_galician_independence
+		x = -1
+		y = 1
+		completion_reward = {
+		    swap_ideas = {
+				remove_idea = idea_gal_divided_revolution
+				add_idea = idea_gal_political_democratization
+			}
+			hidden_effect = {
+				country_event = {
+					id = galelection.1
+					days = 1461
+				}
+				set_cosmetic_tag = GAL_red_star_republic
+			}
+		}
+	}
+	focus = {
+		id = GAL_sideline_nationalist_bloc_radicals
+		icon = GFX_RAJ_greater_emergency_powers
+		cost = 10
+		available = {
+			has_government = moderate_socialist
+		}
+		prerequisite = {
+			focus = GAL_honor_commitment_to_democracy
+		}
+		relative_position_id = GAL_honor_commitment_to_democracy
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_sidelined_radicals
+		}
+	}
+	focus = {
+		id = GAL_seek_accomodations_with_the_workers_party
+		icon = focus_ideology_new_democrat
+		cost = 7.2
+		available = {
+			has_country_flag = GAL_democracy_prevails
+			has_government = moderate_socialist
+		}
+		prerequisite = {
+			focus = GAL_the_champion_of_galician_independence
+		}
+		mutually_exclusive = {
+			focus = GAL_honor_commitment_to_democracy
+			focus = GAL_maintain_nationalist_bloc_dominance
+		}
+		bypass = {
+			AND = {
+				has_completed_focus = GAL_first_galician_elections
+				NOT = {
+					has_idea = idea_gal_disloyal_military
+				}
+			}
+		}
+		relative_position_id = GAL_the_champion_of_galician_independence
+		x = 1
+		y = 1
+		completion_reward = {
+		    swap_ideas = {
+				remove_idea = idea_gal_disloyal_military
+				add_idea = idea_gal_political_compromise
+			}
+		}
+	}
+	focus = {
+		id = GAL_root_out_remaining_militants
+		icon = threaten_socialists
+		cost = 10
+		available = {
+			has_government = moderate_socialist
+		}
+		prerequisite = {
+			focus = GAL_seek_accomodations_with_the_workers_party
+		}
+		bypass = {
+			OR = {
+				has_completed_focus = GAL_put_the_militants_on_trial
+				has_completed_focus = GAL_arrest_nationalist_bloc_terrorists
+			}
+		}
+		relative_position_id = GAL_seek_accomodations_with_the_workers_party
+		x = 0
+		y = 1
+		completion_reward = {
+		    remove_ideas = idea_gal_lingering_leftist_militancy
+			retire_character = GAL_Xose_Cid_Cabido
+			retire_character = GAL_Anton_Arias_Curto
+			retire_character = GAL_Fernando_Silva_Sande
+			retire_character = GAL_Luis_Nieto_Pereira
+		}
+	}
+	focus = {
+		id = GAL_revoke_spanishs_official_language_status
+		icon = patriotic_education
+		cost = 8
+		available = {
+			has_government = moderate_socialist
+		}
+		prerequisite = {
+			focus = GAL_sideline_nationalist_bloc_radicals
+			focus = GAL_root_out_remaining_militants
+			focus = GAL_ensure_party_transparency
+		}
+		relative_position_id = GAL_sideline_nationalist_bloc_radicals
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_lingual_revival
+			IF = {
+				limit = {
+					has_idea = idea_gal_divided_revolution
+				}
+				remove_ideas = {
+					idea_gal_divided_revolution
+				}
+			}
+			add_stability = -0.03
+		}
+	}
+	focus = {
+		id = GAL_nationalize_natural_resources
+		icon = RAJ_steel_incentives
+		cost = 7.2
+		available = {
+			has_government = moderate_socialist
+		}
+		prerequisite = {
+			focus = GAL_revoke_spanishs_official_language_status
+		}
+		relative_position_id = GAL_revoke_spanishs_official_language_status
+		x = 1
+		y = 1
+		completion_reward = {
+		    171 = {
+				add_resource = {
+					type = tungsten
+					amount = 6
+					state = 171
+				}
+				add_resource = {
+					type = steel
+					amount = 9
+					state = 171
+				}
+			}
+
+		}
+	}
+	focus = {
+		id = GAL_the_right_to_higher_education
+		icon = GFX_future_minds_program
+		cost = 10
+		available = {
+			has_government = moderate_socialist
+		}
+		prerequisite = {
+			focus = GAL_revoke_spanishs_official_language_status
+		}
+		relative_position_id = GAL_revoke_spanishs_official_language_status
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_research_slot = 1
+		    171 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = research_center
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_guarantee_universal_healthcare
+		icon = pill_testing
+		cost = 7.2
+		available = {
+			has_government = moderate_socialist
+		}
+		prerequisite = {
+			focus = GAL_the_right_to_higher_education
+		}
+		prerequisite = {
+			focus = GAL_nationalize_natural_resources
+		}
+		relative_position_id = GAL_the_right_to_higher_education
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_universal_healthcare
+		}
+	}
+	focus = {
+		id = GAL_abolish_the_civil_guard
+		icon = GAL_disband_the_civil_guard
+		cost = 7.2
+		available = {
+			has_government = moderate_socialist
+		}
+		prerequisite = {
+			focus = GAL_the_champion_of_galician_independence
+		}
+		bypass = {
+			has_completed_focus = GAL_disband_the_civil_guard
+		}
+		relative_position_id = GAL_the_champion_of_galician_independence
+		x = 3
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_abolished_civil_guard
+			retire_character = GAL_Jose_Hermida
+			retire_character = GAL_Jose_Luis_Tejada_Blanco
+			retire_character = GAL_Jose_Antonio_Vilarino
+			retire_character = GAL_Jesus_Gayoso
+			IF = {
+				limit = {
+					has_idea = idea_gal_preserved_civil_guard
+				}
+				remove_ideas = {
+					idea_gal_preserved_civil_guard
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_create_galician_national_police
+		icon = galician_police_focus
+		cost = 5
+		available = {
+			has_government = moderate_socialist
+		}
+		prerequisite = {
+			focus = GAL_abolish_the_civil_guard
+		}
+		relative_position_id = GAL_abolish_the_civil_guard
+		x = 0
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_gal_abolished_civil_guard
+				add_idea = idea_gal_national_police
+			}
+		}
+	}
+	focus = {
+		id = GAL_levy_taxes_on_the_church
+		icon = restore_the_church_tax
+		cost = 7.2
+		available = {
+			has_government = moderate_socialist
+		}
+		prerequisite = {
+			focus = GAL_create_galician_national_police
+		}
+		relative_position_id = GAL_create_galician_national_police
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_church_taxation
+		}
+	}
+	focus = {
+		id = GAL_pass_accumulated_wealth_tax
+		icon = high_company_tax
+		cost = 8
+		available = {
+			has_government = moderate_socialist
+		}
+		prerequisite = {
+			focus = GAL_levy_taxes_on_the_church
+		}
+		relative_position_id = GAL_levy_taxes_on_the_church
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_spr_accumulated_wealth_tax
+		}
+	}
+	focus = {
+		id = GAL_foster_rural_development
+		icon = GFX_goal_generic_agriculture
+		cost = 8
+		available = {
+			has_government = moderate_socialist
+		}
+		prerequisite = {
+			focus = GAL_create_galician_national_police
+		}
+		relative_position_id = GAL_create_galician_national_police
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_rural_development
+		}
+	}
+	focus = {
+		id = GAL_encourage_industrial_collectivization
+		icon = socialist_industry_generic
+		cost = 7.2
+		available = {
+			has_government = moderate_socialist
+		}
+		prerequisite = {
+			focus = GAL_foster_rural_development
+		}
+		relative_position_id = GAL_foster_rural_development
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_industrial_collectivization
+		}
+	}
+	focus = {
+		id = GAL_no_economic_globalism_in_galicia
+		icon = GER_tariffs_on_foreign_goods
+		cost = 5
+		available = {
+			has_government = moderate_socialist
+		}
+		prerequisite = {
+			focus = GAL_encourage_industrial_collectivization
+		}
+		prerequisite = {
+			focus = GAL_pass_accumulated_wealth_tax
+		}
+		relative_position_id = GAL_encourage_industrial_collectivization
+		x = 1
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				closed_economy 
+			}
+		}
+	}
+	focus = {
+		id = GAL_undo_internal_colonialism
+		icon = generic_electric
+		cost = 8
+		available = {
+			has_government = moderate_socialist
+		}
+		prerequisite = {
+			focus = GAL_nationalize_natural_resources
+		}
+		prerequisite = {
+			focus = GAL_encourage_industrial_collectivization
+		}
+		relative_position_id = GAL_nationalize_natural_resources
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_self_sufficiency
+		}
+	}
+	focus = {
+		id = GAL_union_representation_in_parliament
+		icon = encourage_cooperatives
+		cost = 5
+		available = {
+			has_government = moderate_socialist
+		}
+		prerequisite = {
+			focus = GAL_undo_internal_colonialism
+		}
+		prerequisite = {
+			focus = GAL_no_economic_globalism_in_galicia
+		}
+		relative_position_id = GAL_undo_internal_colonialism
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.035
+			}
+			add_stability = 0.05
+		    add_offsite_building = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+	}
+	focus = {
+		id = GAL_invest_in_industrial_modernization
+		icon = GFX_uplift_saada
+		cost = 10
+		available = {
+			has_government = moderate_socialist
+		}
+		prerequisite = {
+			focus = GAL_union_representation_in_parliament
+		}
+		relative_position_id = GAL_union_representation_in_parliament
+		x = 0
+		y = 1
+		completion_reward = {
+			171 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_instate_universal_basic_income
+		icon = GFX_industry_act
+		cost = 5
+		available = {
+			has_government = moderate_socialist
+		}
+		prerequisite = {
+			focus = GAL_guarantee_universal_healthcare
+		}
+		relative_position_id = GAL_guarantee_universal_healthcare
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_universal_basic_income
+		}
+	}
+	focus = {
+		id = GAL_work_towards_galician_self_reliance
+		icon = roads
+		cost = 7.2
+		available = {
+			has_government = moderate_socialist
+		}
+		prerequisite = {
+			focus = GAL_instate_universal_basic_income
+		}
+		relative_position_id = GAL_instate_universal_basic_income
+		x = 1
+		y = 1
+		completion_reward = {
+			add_ideas = idea_gal_road_to_self_sufficiency
+		}
+	}
+	focus = {
+		id = GAL_guarantee_right_to_housing
+		icon = housing
+		cost = 10
+		available = {
+			has_government = moderate_socialist
+		}
+		prerequisite = {
+			focus = GAL_instate_universal_basic_income
+		}
+		relative_position_id = GAL_instate_universal_basic_income
+		x = -1
+		y = 1
+		completion_reward = {
+			171 = {
+			    add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_a_socialist_vision_for_galicia
+		icon = focus_ideology_moderate_socialist
+		cost = 10
+		available = {
+			has_government = moderate_socialist
+		}
+		prerequisite = {
+			focus = GAL_work_towards_galician_self_reliance
+		}
+		prerequisite = {
+			focus = GAL_invest_in_industrial_modernization
+		}
+		prerequisite = {
+			focus = GAL_guarantee_right_to_housing
+		}
+		relative_position_id = GAL_work_towards_galician_self_reliance
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_galizas_socialist_vision
+			}
+		}
+	}
+	focus = {
+		id = GAL_quintanas_bloc
+		icon = anxo_quintana_focus
+		cost = 5
+		available = {
+			has_country_flag = GAL_quintana_won_power_struggle
+		}
+		prerequisite = {
+			focus = GAL_nationalist_bloc_dominance
+		}
+		relative_position_id = GAL_nationalist_bloc_dominance
+		x = 0
+		y = 1
+		completion_reward = {
+		    
+		}
+	}
+	focus = {
+		id = GAL_peoples_union_triumphant
+		icon = upg_focus
+		cost = 5
+		available = {
+			has_country_flag = GAL_rego_won_power_struggle
+		}
+		prerequisite = {
+			focus = GAL_nationalist_bloc_dominance
+		}
+		relative_position_id = GAL_nationalist_bloc_dominance
+		x = -8
+		y = 1
+		completion_reward = {
+		    
+		}
+	}
+	focus = {
+		id = GAL_grant_unions_seats_in_government
+		icon = establish_nationalisation_ministry
+		cost = 5
+		available = {
+			has_government = revolutionary_socialist
+		}
+		prerequisite = {
+			focus = GAL_quintanas_bloc
+		}
+		relative_position_id = GAL_quintanas_bloc
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.03
+			}
+			add_political_power = 100
+		}
+	}
+	focus = {
+		id = GAL_rural_development_outreach
+		icon = GFX_goal_generic_agriculture
+		cost = 7.2
+		available = {
+			has_government = revolutionary_socialist
+		}
+		prerequisite = {
+			focus = GAL_grant_unions_seats_in_government
+		}
+		relative_position_id = GAL_grant_unions_seats_in_government
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_rural_development_outreach
+		}
+	}
+	focus = {
+		id = GAL_collectivize_heavy_industry
+		icon = socialist_industry_generic
+		cost = 10
+		available = {
+			has_government = revolutionary_socialist
+		}
+		prerequisite = {
+			focus = GAL_grant_unions_seats_in_government
+		}
+		relative_position_id = GAL_grant_unions_seats_in_government
+		x = 1
+		y = 1
+		completion_reward = {
+		    171 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_mandate_union_membership
+		icon = encourage_cooperatives
+		cost = 10
+		available = {
+			has_government = revolutionary_socialist
+		}
+		prerequisite = {
+			focus = GAL_rural_development_outreach
+		}
+		prerequisite = {
+			focus = GAL_collectivize_heavy_industry
+		}
+		relative_position_id = GAL_rural_development_outreach
+		x = 1
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				idea_SPR_fully_unionized_labor
+			}
+		}
+	}
+	focus = {
+		id = GAL_spanish_galician_co_officiality
+		icon = GAL_spanish_galician_co_officiality
+		cost = 7.2
+		available = {
+			has_government = revolutionary_socialist
+		}
+		prerequisite = {
+			focus = GAL_quintanas_bloc
+		}
+		relative_position_id = GAL_quintanas_bloc
+		x = -2
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_galician_bilingualism
+		}
+	}
+	focus = {
+		id = GAL_foster_alliance_with_spanish_trade_unions
+		icon = minority_rights
+		cost = 7.2
+		available = {
+			has_government = revolutionary_socialist
+		}
+		prerequisite = {
+			focus = GAL_spanish_galician_co_officiality
+		}
+		relative_position_id = GAL_spanish_galician_co_officiality
+		x = 0
+		y = 2
+		completion_reward = {
+		    add_ideas = idea_gal_alliance_spanish_unions
+			if = {
+				limit = {
+					country_exists = SPR
+					has_government = revolutionary_socialist
+				}
+				add_opinion_modifier = {
+					target = SPR
+					modifier = gal_spanish_union_alliance
+				}
+				SPR = {
+					add_opinion_modifier = {
+						target = SPR
+						modifier = gal_spanish_union_alliance
+					}
+				}
+			}
+			if = {
+				limit = {
+					country_exists = SPN
+					has_government = revolutionary_socialist
+				}
+				add_opinion_modifier = {
+					target = SPN
+					modifier = gal_spanish_union_alliance
+				}
+				SPN = {
+					add_opinion_modifier = {
+						target = SPN
+						modifier = gal_spanish_union_alliance
+					}
+				}
+			}
+			if = {
+				limit = {
+					country_exists = SPR
+					NOT = {
+						has_government = revolutionary_socialist
+					}
+				}
+				SPR = {
+					add_popularity = {
+						ideology = revolutionary_socialist
+						popularity = 0.05
+					}
+				}
+			}
+			if = {
+				limit = {
+					country_exists = SPN
+					NOT = {
+						has_government = revolutionary_socialist
+					}
+				}
+				SPN = {
+					add_popularity = {
+						ideology = revolutionary_socialist
+						popularity = 0.05
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_widespread_propaganda_campaign
+		icon = pro_soviet_propaganda
+		cost = 10
+		available = {
+			has_government = revolutionary_socialist
+		}
+		prerequisite = {
+			focus = GAL_quintanas_bloc
+		}
+		relative_position_id = GAL_quintanas_bloc
+		x = 2
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_propaganda_campaign
+		}
+	}
+	focus = {
+		id = GAL_centralize_executive_power
+		icon = focus_establish_embassies
+		cost = 7.2
+		available = {
+			has_government = revolutionary_socialist
+		}
+		prerequisite = {
+			focus = GAL_widespread_propaganda_campaign
+		}
+		relative_position_id = GAL_widespread_propaganda_campaign
+		x = 1
+		y = 1
+		completion_reward = {
+		    swap_ideas = {
+				remove_idea = idea_gal_divided_revolution
+				add_idea = idea_gal_centralized_executive_power
+			}
+		}
+	}
+	focus = {
+		id = GAL_seize_capitalist_wealth
+		icon = crush_minnesota_elites
+		cost = 10
+		available = {
+			has_government = revolutionary_socialist
+		}
+		prerequisite = {
+			focus = GAL_centralize_executive_power
+		}
+		relative_position_id = GAL_centralize_executive_power
+		x = -1
+		y = 1
+		completion_reward = {
+		    171 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_root_out_factionalism_in_nationalist_bloc
+		icon = uk_workers_revolution
+		cost = 5
+		available = {
+			has_government = revolutionary_socialist
+		}
+		prerequisite = {
+			focus = GAL_seize_capitalist_wealth
+		}
+		relative_position_id = GAL_seize_capitalist_wealth
+		x = 0
+		y = 1
+		completion_reward = {
+			add_popularity = {
+				ideology = national_bolshevik
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = -0.05
+			}
+		}
+	}
+	focus = {
+		id = GAL_celebrate_galicias_revolutionary_forces
+		icon = revolutionary_militia_focus
+		cost = 5
+		available = {
+			OR = {
+				has_government = revolutionary_socialist
+				has_government = national_bolshevik
+			}
+		}
+		prerequisite = {
+			focus = GAL_quintanas_bloc
+			focus = GAL_peoples_union_triumphant
+		}
+		relative_position_id = GAL_quintanas_bloc
+		x = -4
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.025
+			}
+			add_popularity = {
+				ideology = national_bolshevik
+				popularity = 0.025
+			}
+			add_war_support = 0.05
+			country_event = {
+				id = galicia.65
+			}	
+		}
+	}
+	focus = {
+		id = GAL_revolutionary_education_program
+		icon = GFX_starscience
+		cost = 10
+		available = {
+			OR = {
+				has_government = revolutionary_socialist
+				has_government = national_bolshevik
+			}
+		}
+		prerequisite = {
+			focus = GAL_celebrate_galicias_revolutionary_forces
+		}
+		relative_position_id = GAL_celebrate_galicias_revolutionary_forces
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_research_slot = 1
+		}
+	}
+	focus = {
+		id = GAL_crush_the_remainder_of_the_civil_guard
+		icon = GFX_red_terror
+		cost = 5
+		available = {
+			OR = {
+				has_government = revolutionary_socialist
+				has_government = national_bolshevik
+			}
+		}
+		prerequisite = {
+			focus = GAL_celebrate_galicias_revolutionary_forces
+		}
+		relative_position_id = GAL_celebrate_galicias_revolutionary_forces
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = fascist
+				popularity = -0.10
+			}
+            add_stability = 0.05
+			country_event = {
+				id = galicia.57
+			}
+			retire_character = GAL_Jose_Hermida
+			retire_character = GAL_Jose_Luis_Tejada_Blanco
+			retire_character = GAL_Jose_Antonio_Vilarino
+			retire_character = GAL_Jesus_Gayoso
+		}
+	}
+	focus = {
+		id = GAL_expand_arms_production_capacity
+		icon = galician_gun
+		cost = 7.2
+		available = {
+			OR = {
+				has_government = revolutionary_socialist
+				has_government = national_bolshevik
+			}
+		}
+		prerequisite = {
+			focus = GAL_crush_the_remainder_of_the_civil_guard
+		}
+		prerequisite = {
+			focus = GAL_revolutionary_education_program
+		}
+		relative_position_id = GAL_revolutionary_education_program
+		x = 1
+		y = 1
+		completion_reward = {
+		    171 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_unionize_the_military
+		icon = GAL_unionize_the_military
+		cost = 8
+		available = {
+			has_government = revolutionary_socialist
+		}
+		prerequisite = {
+			focus = GAL_expand_arms_production_capacity
+		}
+		prerequisite = {
+			focus = GAL_foster_alliance_with_spanish_trade_unions
+		}
+		prerequisite = {
+			focus = GAL_mandate_union_membership
+		}
+		relative_position_id = GAL_foster_alliance_with_spanish_trade_unions
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_unionized_military
+		}
+	}
+	focus = {
+		id = GAL_guarantee_workers_self_management
+		icon = support_workers
+		cost = 8
+		available = {
+			has_government = revolutionary_socialist
+		}
+		prerequisite = {
+			focus = GAL_expand_arms_production_capacity
+		}
+		prerequisite = {
+			focus = GAL_foster_alliance_with_spanish_trade_unions
+		}
+		prerequisite = {
+			focus = GAL_mandate_union_membership
+		}
+		relative_position_id = GAL_foster_alliance_with_spanish_trade_unions
+		x = 2
+		y = 1
+		completion_reward = {
+			add_ideas = {idea_apc_workers_self_management}
+		}
+	}
+	focus = {
+		id = GAL_encourage_immigration
+		icon = Encourage_Immigration_2
+		cost = 6
+		available = {
+			has_government = revolutionary_socialist
+		}
+		prerequisite = {
+			focus = GAL_root_out_factionalism_in_nationalist_bloc
+		}
+		prerequisite = {
+			focus = GAL_guarantee_workers_self_management
+		}
+		prerequisite = {
+			focus = GAL_unionize_the_military
+		}
+		relative_position_id = GAL_root_out_factionalism_in_nationalist_bloc
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_open_immigration_policy
+		}
+	}
+	focus = {
+		id = GAL_universal_rights_act
+		icon = YEM_social_alliance
+		cost = 7
+		available = {
+			has_government = revolutionary_socialist
+		}
+		prerequisite = {
+			focus = GAL_root_out_factionalism_in_nationalist_bloc
+		}
+		prerequisite = {
+			focus = GAL_guarantee_workers_self_management
+		}
+		prerequisite = {
+			focus = GAL_unionize_the_military
+		}
+		relative_position_id = GAL_root_out_factionalism_in_nationalist_bloc
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_universal_rights_act
+		}
+	}
+	focus = {
+		id = GAL_embrace_labor_nationalism
+		icon = socialist_youth
+		cost = 6
+		available = {
+			has_government = revolutionary_socialist
+		}
+		prerequisite = {
+			focus = GAL_root_out_factionalism_in_nationalist_bloc
+		}
+		prerequisite = {
+			focus = GAL_guarantee_workers_self_management
+		}
+		prerequisite = {
+			focus = GAL_unionize_the_military
+		}
+		relative_position_id = GAL_root_out_factionalism_in_nationalist_bloc
+		x = -3
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_labor_nationalism
+		}
+	}
+	focus = {
+		id = GAL_galician_workers_liberation
+		icon = focus_ideology_revolutionary_socialist
+		cost = 10
+		available = {
+			has_government = revolutionary_socialist
+		}
+		prerequisite = {
+			focus = GAL_embrace_labor_nationalism
+		}
+		prerequisite = {
+			focus = GAL_encourage_immigration
+		}
+		prerequisite = {
+			focus = GAL_universal_rights_act
+		}
+		relative_position_id = GAL_universal_rights_act
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_galizas_workers_liberation
+			}
+		}
+	}
+	focus = {
+		id = GAL_galician_as_the_official_language
+		icon = information_campaign_generic
+		cost = 7.2
+		available = {
+			has_government = national_bolshevik
+		}
+		prerequisite = {
+			focus = GAL_peoples_union_triumphant
+		}
+		relative_position_id = GAL_peoples_union_triumphant
+		x = 2
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_galician_superiority
+			country_event = {
+				id = galicia.62
+			}
+		}
+	}
+	focus = {
+		id = GAL_root_out_spanish_political_organizations
+		icon = SPR_attack_communist
+		cost = 6
+		available = {
+			has_government = national_bolshevik
+		}
+		prerequisite = {
+			focus = GAL_galician_as_the_official_language
+		}
+		relative_position_id = GAL_galician_as_the_official_language
+		x = -1
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_gal_galician_superiority
+				add_idea = idea_gal_galician_superiority2
+			}
+			country_event = {
+				id = galicia.59
+			}
+		}
+	}
+	focus = {
+		id = GAL_increase_agricultural_quotas
+		icon = expand_state_farms
+		cost = 8
+		available = {
+			has_government = national_bolshevik
+		}
+		prerequisite = {
+			focus = GAL_peoples_union_triumphant
+		}
+		relative_position_id = GAL_peoples_union_triumphant
+		x = -2
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_agricultural_quotas
+		}
+	}
+	focus = {
+		id = GAL_nationalize_heavy_industry
+		icon = GFX_seize_more_assets
+		cost = 10
+		available = {
+			has_government = national_bolshevik
+		}
+		prerequisite = {
+			focus = GAL_peoples_union_triumphant
+		}
+		relative_position_id = GAL_peoples_union_triumphant
+		x = 0
+		y = 1
+		completion_reward = {
+		    171 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_begin_rural_cooperation
+		icon = embrace_agrarian_socialism
+		cost = 7.2
+		available = {
+			has_government = national_bolshevik
+		}
+		prerequisite = {
+			focus = GAL_increase_agricultural_quotas
+		}
+		relative_position_id = GAL_increase_agricultural_quotas
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_SPR_rural_cooperation
+			country_event = {
+				id = galicia.63
+			}
+		}
+	}
+	focus = {
+		id = GAL_consolidate_small_businesses
+		icon = RUB_the_new_man
+		cost = 8
+		available = {
+			has_government = national_bolshevik
+		}
+		prerequisite = {
+			focus = GAL_increase_agricultural_quotas
+		}
+		prerequisite = {
+			focus = GAL_nationalize_heavy_industry
+		}
+		relative_position_id = GAL_increase_agricultural_quotas
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_consolidated_small_businesses
+			country_event = {
+				id = galicia.61
+			}
+		}
+	}
+	focus = {
+		id = GAL_heavy_industry_development
+		icon = industry_generic_focus
+		cost = 10
+		available = {
+			has_government = national_bolshevik
+		}
+		prerequisite = {
+			focus = GAL_begin_rural_cooperation
+		}
+		prerequisite = {
+			focus = GAL_consolidate_small_businesses
+		}
+		prerequisite = {
+			focus = GAL_root_out_spanish_political_organizations
+		}
+		relative_position_id = GAL_begin_rural_cooperation
+		x = 1
+		y = 1
+		completion_reward = {
+		    171 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_enact_state_atheism
+		icon = promote_atheism
+		cost = 8
+		available = {
+			has_government = national_bolshevik
+		}
+		prerequisite = {
+			focus = GAL_begin_rural_cooperation
+		}
+		prerequisite = {
+			focus = GAL_consolidate_small_businesses
+		}
+		prerequisite = {
+			focus = GAL_root_out_spanish_political_organizations
+		}
+		relative_position_id = GAL_begin_rural_cooperation
+		x = 3
+		y = 1
+		completion_reward = {
+		    add_ideas = {idea_SPR_state_atheism}
+			country_event = {
+				id = galicia.58
+			}
+		}
+	}
+	focus = {
+		id = GAL_centralize_a_vanguard_party
+		icon = socialism_focus
+		cost = 8
+		available = {
+			has_government = national_bolshevik
+		}
+		prerequisite = {
+			focus = GAL_begin_rural_cooperation
+		}
+		prerequisite = {
+			focus = GAL_consolidate_small_businesses
+		}
+		prerequisite = {
+			focus = GAL_root_out_spanish_political_organizations
+		}
+		relative_position_id = GAL_begin_rural_cooperation
+		x = 5
+		y = 1
+		completion_reward = {
+		    swap_ideas = {
+				remove_idea = idea_gal_divided_revolution
+				add_idea = idea_gal_centralized_vanguard_party
+			}
+		}
+	}
+	focus = {
+		id = GAL_nationalize_labor_organizations
+		icon = encourage_cooperatives
+		cost = 8
+		available = {
+			has_government = national_bolshevik
+		}
+		prerequisite = {
+			focus = GAL_enact_state_atheism
+		}
+		prerequisite = {
+			focus = GAL_centralize_a_vanguard_party
+		}
+		relative_position_id = GAL_enact_state_atheism
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_SPR_nationalized_unions
+			}
+		}
+	}
+	focus = {
+		id = GAL_unite_the_military_and_the_party
+		icon = GAL_unite_the_military_and_the_party
+		cost = 8
+		available = {
+			has_government = national_bolshevik
+		}
+		prerequisite = {
+			focus = GAL_expand_arms_production_capacity
+		}
+		prerequisite = {
+			focus = GAL_centralize_a_vanguard_party
+		}
+		relative_position_id = GAL_enact_state_atheism
+		x = 3
+		y = 1
+		completion_reward = {
+		    swap_ideas = {
+				remove_idea = idea_gal_centralized_vanguard_party
+				add_idea = idea_gal_centralized_vanguard_party2
+			}
+			country_event = {
+				id = galicia.64
+			}	
+		}
+	}
+	focus = {
+		id = GAL_urban_revitalization
+		icon = GFX_uplift_saada
+		cost = 7.2
+		available = {
+			has_government = national_bolshevik
+		}
+		prerequisite = {
+			focus = GAL_nationalize_labor_organizations
+		}
+		prerequisite = {
+			focus = GAL_unite_the_military_and_the_party
+		}
+		relative_position_id = GAL_nationalize_labor_organizations
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_urban_revitalization
+		}
+	}
+	focus = {
+		id = GAL_demand_higher_mining_output
+		icon = GFX_mining_contracts
+		cost = 10
+		available = {
+			has_government = national_bolshevik
+		}
+		prerequisite = {
+			focus = GAL_heavy_industry_development
+		}
+		relative_position_id = GAL_heavy_industry_development
+		x = 1
+		y = 1
+		completion_reward = {
+			171 = {
+				set_building_level = {
+					type = infrastructure
+					level = 10
+					instant_build = yes
+				}
+			}
+			add_resource = {
+				type = tungsten
+				amount = 2
+				state = 171
+			}
+			add_resource = {
+				type = steel
+				amount = 5
+				state = 171
+			}
+			add_resource = {
+				type = aluminium
+				amount = 4
+				state = 171
+			}
+		}
+	}
+	focus = {
+		id = GAL_complete_rural_collectivization
+		icon = collectivize_state_farms
+		cost = 10
+		available = {
+			has_government = national_bolshevik
+		}
+		prerequisite = {
+			focus = GAL_demand_higher_mining_output
+		}
+		relative_position_id = GAL_demand_higher_mining_output
+		x = 1
+		y = 1
+		completion_reward = {
+		    171 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_socialism_in_one_country
+		icon = GAL_socialism_in_one_country
+		cost = 6
+		available = {
+			has_government = national_bolshevik
+		}
+		prerequisite = {
+			focus = GAL_complete_rural_collectivization
+		}
+		prerequisite = {
+			focus = GAL_urban_revitalization
+		}
+		relative_position_id = GAL_complete_rural_collectivization
+		x = 1
+		y = 1
+		completion_reward = {
+		    swap_ideas = {
+				remove_idea = idea_gal_centralized_vanguard_party2
+				add_idea = idea_gal_socialism_in_one_country
+			}
+		}
+	}
+	focus = {
+		id = GAL_galician_national_proletarianism
+		icon = GAL_galician_national_proletarianism
+		cost = 10
+		available = {
+			has_government = national_bolshevik
+		}
+		prerequisite = {
+			focus = GAL_socialism_in_one_country
+		}
+		relative_position_id = GAL_socialism_in_one_country
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_national_proletarian_liberation
+			}
+		}
+	}
+	
+	#civil guard victory
+	focus = {
+		id = GAL_under_amedos_violence
+		icon = jose_amedo_focus
+		cost = 5
+		available = {
+			has_country_flag = GAL_civil_guard_kept_power
+		}
+		prerequisite = {
+			focus = GAL_no_step_back
+		}
+		mutually_exclusive = {
+			focus = GAL_first_galician_elections
+			focus = GAL_nationalist_bloc_dominance
+		}
+		relative_position_id = GAL_no_step_back
+		x = 20
+		y = 1
+		completion_reward = {
+		    
+		}
+	}
+	focus = {
+		id = GAL_increase_police_funding
+		icon = increase_police_funding
+		cost = 7.2
+		available = {
+			has_government = fascist
+		}
+		prerequisite = {
+			focus = GAL_under_amedos_violence
+		}
+		relative_position_id = GAL_under_amedos_violence
+		x = -2
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				idea_SPR_law_and_order
+			}
+		}
+	}
+	focus = {
+		id = GAL_seek_the_support_of_the_catholic_church
+		icon = english_clergy
+		cost = 7.2
+		available = {
+			has_government = fascist
+		}
+		prerequisite = {
+			focus = GAL_under_amedos_violence
+		}
+		relative_position_id = GAL_under_amedos_violence
+		x = 2
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				idea_spr_revitalized_church
+			}
+		}
+	}
+	focus = {
+		id = GAL_sideline_workers_party_influence
+		icon = GAL_sideline_workers_party_influence
+		cost = 5
+		available = {
+			has_government = fascist
+		}
+		prerequisite = {
+			focus = GAL_seek_the_support_of_the_catholic_church
+		}
+		relative_position_id = GAL_seek_the_support_of_the_catholic_church
+		x = -1
+		y = 1
+		completion_reward = {
+			add_popularity = {
+				ideology = new_democrat
+				popularity = -0.1
+			}
+		}
+	}
+	focus = {
+		id = GAL_crush_remaining_militants
+		icon = uproot_terrorist_cells
+		cost = 10
+		available = {
+			has_government = fascist
+		}
+		prerequisite = {
+			focus = GAL_under_amedos_violence
+		}
+		relative_position_id = GAL_under_amedos_violence
+		x = 0
+		y = 1
+		completion_reward = {
+			remove_ideas = {
+				idea_gal_lingering_leftist_militancy
+			}
+		}
+	}
+	focus = {
+		id = GAL_purge_the_military_of_leftism
+		icon = GAL_purge_the_military_of_leftism
+		cost = 10
+		available = {
+			has_government = fascist
+		}
+		prerequisite = {
+			focus = GAL_crush_remaining_militants
+		}
+		prerequisite = {
+			focus = GAL_increase_police_funding
+		}
+		relative_position_id = GAL_increase_police_funding
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_manpower = -1500
+			swap_ideas = {
+				remove_idea = idea_gal_disloyal_military
+				add_idea = idea_gal_right_wing_military
+			}
+			retire_character = GAL_Xose_Cid_Cabido
+			retire_character = GAL_Anton_Arias_Curto
+			retire_character = GAL_Fernando_Silva_Sande
+			retire_character = GAL_Luis_Nieto_Pereira
+		}
+	}
+	focus = {
+		id = GAL_trial_of_the_nationalist_bloc
+		icon = GAL_trial_of_the_nationalist_bloc
+		cost = 5
+		available = {
+			has_government = fascist
+		}
+		prerequisite = {
+			focus = GAL_purge_the_military_of_leftism
+		}
+		prerequisite = {
+			focus = GAL_sideline_workers_party_influence
+		}
+		relative_position_id = GAL_purge_the_military_of_leftism
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_stability = 0.05
+			add_political_power = 150
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = -0.2
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.2
+			}
+			add_popularity = {
+				ideology = national_bolshevik
+				popularity = -0.2
+			}
+		}
+	}
+	focus = {
+		id = GAL_implement_the_national_labor_syndicate
+		icon = focus_national_reorganisation_council
+		cost = 7.2
+		available = {
+			has_government = fascist
+		}
+		prerequisite = {
+			focus = GAL_purge_the_military_of_leftism
+		}
+		prerequisite = {
+			focus = GAL_sideline_workers_party_influence
+		}
+		relative_position_id = GAL_purge_the_military_of_leftism
+		x = 3
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				idea_spr_sindicato_vertical
+			}
+		}
+	}
+	focus = {
+		id = GAL_unite_the_military_and_the_police
+		icon = army_marching_red
+		cost = 8
+		available = {
+			has_government = fascist
+		}
+		prerequisite = {
+			focus = GAL_purge_the_military_of_leftism
+		}
+		prerequisite = {
+			focus = GAL_sideline_workers_party_influence
+		}
+		relative_position_id = GAL_purge_the_military_of_leftism
+		x = -1
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_gal_right_wing_military
+				add_idea = idea_gal_right_wing_military_2
+			}
+		}
+	}
+	focus = {
+		id = GAL_the_future_of_the_galician_state
+		icon = GAL_the_future_of_the_galician_state
+		cost = 5
+		available = {
+			has_government = fascist
+		}
+		prerequisite = {
+			focus = GAL_unite_the_military_and_the_police
+		}
+		prerequisite = {
+			focus = GAL_implement_the_national_labor_syndicate
+		}
+		prerequisite = {
+			focus = GAL_trial_of_the_nationalist_bloc
+		}
+		relative_position_id = GAL_trial_of_the_nationalist_bloc
+		x = 0
+		y = 1
+		completion_reward = {
+		    country_event = {
+				id = galicia.36
+			}
+		}
+	}
+	focus = {
+		id = GAL_maintain_the_path
+		icon = GAL_maintain_the_path
+		cost = 5
+		available = {
+			has_government = fascist
+			has_country_flag = GAL_amedo_maintained_the_dictatorship
+		}
+		prerequisite = {
+			focus = GAL_the_future_of_the_galician_state
+		}
+
+		relative_position_id = GAL_the_future_of_the_galician_state
+		x = -4
+		y = 1
+		completion_reward = {
+		    
+		}
+	}
+	focus = {
+		id = GAL_a_necessary_liberalization
+		icon = focus_ideology_nationalist
+		cost = 5
+		available = {
+			has_government = nationalist
+			has_country_flag = GAL_amedo_liberalized
+		}
+		prerequisite = {
+			focus = GAL_the_future_of_the_galician_state
+		}
+		relative_position_id = GAL_the_future_of_the_galician_state
+		x = 4
+		y = 1
+		completion_reward = {
+		    
+		}
+	}
+	focus = {
+		id = GAL_fortify_our_borders
+		icon = fortify_city
+		cost = 8
+		available = {
+			OR = {
+				has_government = nationalist
+				has_government = fascist
+			}
+		}
+		prerequisite = {
+			focus = GAL_a_necessary_liberalization
+			focus = GAL_maintain_the_path
+		}
+		relative_position_id = GAL_the_future_of_the_galician_state
+		x = 0
+		y = 2
+		completion_reward = {
+			171 = {
+				add_building_construction = {
+					type = bunker
+					level = 5
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+					}
+				}
+			}
+			IF = {
+				limit = {
+					owns_state = 928
+				}
+				928 = {
+					add_building_construction = {
+						type = bunker
+						level = 5
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					owns_state = 174
+				}
+				174 = {
+					add_building_construction = {
+						type = bunker
+						level = 5
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					owns_state = 180
+				}
+				180 = {
+					add_building_construction = {
+						type = bunker
+						level = 5
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					owns_state = 181
+				}
+				181 = {
+					add_building_construction = {
+						type = bunker
+						level = 5
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					owns_state = 179
+				}
+				179 = {
+					add_building_construction = {
+						type = bunker
+						level = 5
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_enforce_morality_laws
+		icon = promote_conservative_values
+		cost = 7.2
+		available = {
+			OR = {
+				has_government = nationalist
+				has_government = fascist
+			}
+		}
+		prerequisite = {
+			focus = GAL_fortify_our_borders
+		}
+		relative_position_id = GAL_fortify_our_borders
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_morality_laws
+			}
+		}
+	}
+	focus = {
+		id = GAL_establish_foreign_trade
+		icon = YEM_trade_with_the_west
+		cost = 10
+		available = {
+			has_government = nationalist
+		}
+		prerequisite = {
+			focus = GAL_a_necessary_liberalization
+		}
+		relative_position_id = GAL_a_necessary_liberalization
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				free_trade
+			}
+			add_offsite_building = {
+				type = industrial_complex
+				level = 3
+			}
+		}
+	}
+	focus = {
+		id = GAL_sponsor_new_mines
+		icon = GFX_mining_contracts
+		cost = 8
+		available = {
+			has_government = nationalist
+		}
+		prerequisite = {
+			focus = GAL_fortify_our_borders
+		}
+		prerequisite = {
+			focus = GAL_establish_foreign_trade
+		}
+		relative_position_id = GAL_establish_foreign_trade
+		x = -1
+		y = 1
+		completion_reward = {
+			171 = {
+				set_building_level = {
+					type = infrastructure
+					level = 10
+					instant_build = yes
+				}
+			}
+			add_resource = {
+				type = tungsten
+				amount = 2
+				state = 171
+			}
+			add_resource = {
+				type = steel
+				amount = 5
+				state = 171
+			}
+			add_resource = {
+				type = aluminium
+				amount = 4
+				state = 171
+			}
+		}
+	}
+	focus = {
+		id = GAL_increase_civilian_legal_protections
+		icon = generic_welfare_focus
+		cost = 5
+		available = {
+			has_government = nationalist
+		}
+		prerequisite = {
+			focus = GAL_a_necessary_liberalization
+		}
+		relative_position_id = GAL_a_necessary_liberalization
+		x = 2
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_civilian_protections
+			}
+		}
+	}
+	focus = {
+		id = GAL_invite_the_peoples_party_to_coalition
+		icon = focus_ideology_national_conservative
+		cost = 8
+		available = {
+			has_government = nationalist
+		}
+		prerequisite = {
+			focus = GAL_increase_civilian_legal_protections
+		}
+		relative_position_id = GAL_increase_civilian_legal_protections
+		x = 2
+		y = 1
+		completion_reward = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.15
+			}
+			add_ideas = {idea_gal_conservative_coalition}
+		}
+	}
+	focus = {
+		id = GAL_the_statute_of_transparency
+		icon = GFX_investigate_corruption_in_the_bureaucracy
+		cost = 5
+		available = {
+			has_government = nationalist
+		}
+		prerequisite = {
+			focus = GAL_increase_civilian_legal_protections
+		}
+		relative_position_id = GAL_increase_civilian_legal_protections
+		x = -2
+		y = 1
+		completion_reward = {
+		    add_ideas = {idea_SPR_anti_corruption_campaign}
+		}
+	}
+	focus = {
+		id = GAL_increase_education_funding
+		icon = focus_bribe_technology_council
+		cost = 8
+		available = {
+			has_government = nationalist
+		}
+		prerequisite = {
+			focus = GAL_increase_civilian_legal_protections
+		}
+		relative_position_id = GAL_increase_civilian_legal_protections
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = {idea_gal_extra_education_funding}
+		}
+	}
+	focus = {
+		id = GAL_protect_spanish_noble_titles
+		icon = protect_noble_titles
+		cost = 5
+		available = {
+			has_government = nationalist
+		}
+		prerequisite = {
+			focus = GAL_invite_the_peoples_party_to_coalition
+		}
+		prerequisite = {
+			focus = GAL_increase_education_funding
+		}
+		prerequisite = {
+			focus = GAL_the_statute_of_transparency
+		}
+		relative_position_id = GAL_increase_education_funding
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = {idea_gal_spanish_nobility_reinstated}
+		}
+	}
+	focus = {
+		id = GAL_welcome_foreign_manufacturers
+		icon = GFX_global_tax_haven
+		cost = 10
+		available = {
+			has_government = nationalist
+		}
+		prerequisite = {
+			focus = GAL_sponsor_new_mines
+		}
+		prerequisite = {
+			focus = GAL_enforce_morality_laws
+		}
+		relative_position_id = GAL_sponsor_new_mines
+		x = 1
+		y = 1
+		completion_reward = {
+			add_offsite_building = {
+				type = arms_factory
+				level = 2
+			}
+			add_offsite_building = {
+				type = industrial_complex
+				level = 2
+			}
+		}
+	}
+	focus = {
+		id = GAL_military_expansion
+		icon = GFX_mass_fund_the_army
+		cost = 7.2
+		available = {
+			has_government = nationalist
+		}
+		prerequisite = {
+			focus = GAL_welcome_foreign_manufacturers
+		}
+		prerequisite = {
+			focus = GAL_protect_spanish_noble_titles
+		}
+		relative_position_id = GAL_welcome_foreign_manufacturers
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = {idea_SPR_rapid_military_expansion}
+		}
+	}
+	focus = {
+		id = GAL_a_republic_born_from_the_ashes
+		icon = GFX_freedom_focus
+		cost = 10
+		available = {
+			has_government = nationalist
+		}
+		prerequisite = {
+			focus = GAL_military_expansion
+		}
+		relative_position_id = GAL_military_expansion
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = {idea_gal_the_new_republic}
+		}
+	}
+	focus = {
+		id = GAL_promote_galician_self_sufficiency
+		icon = GER_tariffs_on_foreign_goods
+		cost = 7.2
+		available = {
+			has_government = fascist
+		}
+		prerequisite = {
+			focus = GAL_maintain_the_path
+		}
+		relative_position_id = GAL_maintain_the_path
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_self_sufficiency
+			}
+			add_ideas = {
+				limited_exports 
+			}
+		}
+	}
+	focus = {
+		id = GAL_immigration_restrictions
+		icon = close_borders_2
+		cost = 8
+		available = {
+			has_government = fascist
+		}
+		prerequisite = {
+			focus = GAL_promote_galician_self_sufficiency
+		}
+		prerequisite = {
+			focus = GAL_fortify_our_borders
+		}
+		relative_position_id = GAL_promote_galician_self_sufficiency
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_spr_immigration_restrictions
+			}
+		}
+	}
+	focus = {
+		id = GAL_bridge_the_class_divide
+		icon = focus_profits_from_republics
+		cost = 7.2
+		available = {
+			has_government = fascist
+		}
+		prerequisite = {
+			focus = GAL_promote_galician_self_sufficiency
+		}
+		relative_position_id = GAL_promote_galician_self_sufficiency
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_spr_corporatist_welfare
+			}
+		}
+	}
+	focus = {
+		id = GAL_a_one_party_state
+		icon = SPR_reaffirm_ban_on_political_parties
+		cost = 5
+		available = {
+			has_government = fascist
+		}
+		bypass = {
+			has_completed_focus = GAL_a_necessary_liberalization
+		}
+		prerequisite = {
+			focus = GAL_maintain_the_path
+		}
+		relative_position_id = GAL_maintain_the_path
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_one_party_state
+			}
+		}
+	}
+	focus = {
+		id = GAL_seize_nobility_wealth
+		icon = Reform_Nobles_Fiscal_Responsibilities_SPR
+		cost = 7.2
+		available = {
+			has_government = fascist
+		}
+		prerequisite = {
+			focus = GAL_a_one_party_state
+		}
+		relative_position_id = GAL_a_one_party_state
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_seize_noble_wealth
+			}
+		}
+	}
+	focus = {
+		id = GAL_cement_a_galician_national_identity
+		icon = GAL_cement_a_galician_national_identity
+		cost = 8
+		available = {
+			has_government = fascist
+		}
+		prerequisite = {
+			focus = GAL_immigration_restrictions
+		}
+		prerequisite = {
+			focus = GAL_enforce_morality_laws
+		}
+		relative_position_id = GAL_immigration_restrictions
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_new_national_identity
+			}
+		}
+	}
+	focus = {
+		id = GAL_officially_adopt_corporatism
+		icon = side_with_the_falangists
+		cost = 6
+		available = {
+			has_government = fascist
+		}
+		prerequisite = {
+			focus = GAL_immigration_restrictions
+		}
+		prerequisite = {
+			focus = GAL_bridge_the_class_divide
+		}
+		relative_position_id = GAL_immigration_restrictions
+		x = -1
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_spr_corporatist_welfare
+				add_idea = idea_spr_corporatist_welfare_2
+			}
+		}
+	}
+	focus = {
+		id = GAL_strengthen_the_police_state
+		icon = GFX_modernised_armed_forces
+		cost = 7
+		available = {
+			has_government = fascist
+		}
+		prerequisite = {
+			focus = GAL_seize_nobility_wealth
+		}
+		prerequisite = {
+			focus = GAL_bridge_the_class_divide
+		}
+		relative_position_id = GAL_seize_nobility_wealth
+		x = 1
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_SPR_law_and_order
+				add_idea = idea_gal_law_and_order_2
+			}
+		}
+	}
+
+	focus = {
+		id = GAL_the_caretaker_of_the_nation
+		icon = GAL_the_caretaker_of_the_nation
+		cost = 7.2
+		available = {
+			has_government = fascist
+		}
+		prerequisite = {
+			focus = GAL_officially_adopt_corporatism
+		}
+		prerequisite = {
+			focus = GAL_strengthen_the_police_state
+		}
+		prerequisite = {
+			focus = GAL_cement_a_galician_national_identity
+		}
+		relative_position_id = GAL_officially_adopt_corporatism
+		x = 0
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_spr_corporatist_welfare_2
+				add_idea = idea_spr_corporatist_welfare_3
+			}
+		}
+	}
+	focus = {
+		id = GAL_the_revolution_against_the_revolution
+		icon = send_the_army_in
+		cost = 10
+		available = {
+			has_government = fascist
+		}
+		prerequisite = {
+			focus = GAL_the_caretaker_of_the_nation
+		}
+		relative_position_id = GAL_the_caretaker_of_the_nation
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_revolution_against_revolution
+			}
+		}
+	}
+	focus = {
+		id = GAL_commitment_to_galicia
+		icon = focus_ideology_liberal
+		cost = 5
+		available = {
+			has_government = liberal
+			has_country_flag = GAL_amedo_liberalized
+		}
+
+		relative_position_id = GAL_the_future_of_the_galician_state
+		x = 1
+		y = 6
+		completion_reward = {
+		    
+		}
+	}
+	focus = {
+		id = GAL_decentralize_the_national_labor_syndicate
+		icon = industry_generic_focus
+		cost = 10
+		available = {
+			has_government = liberal
+		}
+		prerequisite = {
+			focus = GAL_commitment_to_galicia
+		}
+		relative_position_id = GAL_commitment_to_galicia
+		x = -1
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				idea_SPR_semi_autonomous_unions
+			}
+		    random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		    random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_push_for_renewable_energy
+		icon = wind_power_initiative
+		cost = 7.2
+		available = {
+			has_government = liberal
+		}
+		prerequisite = {
+			focus = GAL_decentralize_the_national_labor_syndicate
+		}
+		relative_position_id = GAL_decentralize_the_national_labor_syndicate
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_SPR_renewable_energy_focus
+		    171 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_ensure_sustainable_agriculture
+		icon = GER_social_democratic_revival
+		cost = 8
+		available = {
+			has_government = liberal
+		}
+		prerequisite = {
+			focus = GAL_decentralize_the_national_labor_syndicate
+		}
+		relative_position_id = GAL_decentralize_the_national_labor_syndicate
+		x = 1
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				idea_SPR_sustainable_farming_act
+			}
+		}
+	}
+	focus = {
+		id = GAL_regulate_industrial_emissions
+		icon = train
+		cost = 10
+		available = {
+			has_government = liberal
+		}
+		prerequisite = {
+			focus = GAL_push_for_renewable_energy
+		}
+		prerequisite = {
+			focus = GAL_ensure_sustainable_agriculture
+		}
+		relative_position_id = GAL_ensure_sustainable_agriculture
+		x = -1
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				idea_gal_emissions_regulation
+			}
+		}
+	}
+	focus = {
+		id = GAL_repeal_morality_laws
+		icon = the_progressive_wave
+		cost = 5
+		available = {
+			has_government = liberal
+		}
+		bypass = {
+			NOT = {
+				has_idea = idea_gal_morality_laws
+			}
+		}
+		prerequisite = {
+			focus = GAL_commitment_to_galicia
+		}
+		relative_position_id = GAL_commitment_to_galicia
+		x = 1
+		y = 1
+		completion_reward = {
+			remove_ideas = {
+				idea_gal_morality_laws
+			}
+			add_stability = 0.07
+			add_political_power = 100
+		}
+	}
+	focus = {
+		id = GAL_secularize_education
+		icon = secularism
+		cost = 5
+		available = {
+			has_government = liberal
+		}
+		prerequisite = {
+			focus = GAL_repeal_morality_laws
+		}
+		relative_position_id = GAL_repeal_morality_laws
+		x = 1
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				idea_SPR_partial_secularization
+			}
+		}
+	}
+	focus = {
+		id = GAL_extend_protections_to_sexual_minorities
+		icon = focus_love_syria
+		cost = 7.2
+		available = {
+			has_government = liberal
+		}
+		prerequisite = {
+			focus = GAL_repeal_morality_laws
+		}
+		relative_position_id = GAL_repeal_morality_laws
+		x = 0
+		y = 2
+		completion_reward = {
+			add_ideas = {
+				idea_gal_progressive_values
+			}
+		}
+	}
+	focus = {
+		id = GAL_loosen_immigration_restrictions
+		icon = Encourage_Immigration_2
+		cost = 6
+		available = {
+			has_government = liberal
+		}
+		prerequisite = {
+			focus = GAL_secularize_education
+		}
+		relative_position_id = GAL_secularize_education
+		x = 1
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				idea_gal_relaxed_immigration_laws
+			}
+		}
+	}
+	focus = {
+		id = GAL_create_a_social_safety_net
+		icon = welfare_statism
+		cost = 10
+		available = {
+			has_government = liberal
+		}
+		prerequisite = {
+			focus = GAL_loosen_immigration_restrictions
+		}
+		prerequisite = {
+			focus = GAL_extend_protections_to_sexual_minorities
+		}
+		relative_position_id = GAL_loosen_immigration_restrictions
+		x = -1
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				idea_gal_liberal_social_safety_net
+			}
+		}
+	}
+	focus = {
+		id = GAL_tax_breaks_for_progressive_businesses
+		icon = peace_money_development
+		cost = 7.2
+		available = {
+			has_government = liberal
+		}
+		prerequisite = {
+			focus = GAL_regulate_industrial_emissions
+		}
+		prerequisite = {
+			focus = GAL_extend_protections_to_sexual_minorities
+		}
+		relative_position_id = GAL_extend_protections_to_sexual_minorities
+		x = -1
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_gal_progressive_values
+				add_idea = idea_gal_progressive_values2
+			}
+		}
+	}
+	focus = {
+		id = GAL_green_cities_initiative
+		icon = urban_housing
+		cost = 8
+		available = {
+			has_government = liberal
+		}
+		prerequisite = {
+			focus = GAL_regulate_industrial_emissions
+		}
+
+		relative_position_id = GAL_regulate_industrial_emissions
+		x = -1
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_gal_emissions_regulation
+				add_idea = idea_gal_emissions_regulation2
+			}
+		}
+	}
+	focus = {
+		id = GAL_a_green_galicia
+		icon = GER_green_revolution_program
+		cost = 10
+		available = {
+			has_government = liberal
+		}
+		prerequisite = {
+			focus = GAL_tax_breaks_for_progressive_businesses
+		}
+		prerequisite = {
+			focus = GAL_green_cities_initiative
+		}
+		prerequisite = {
+			focus = GAL_create_a_social_safety_net
+		}
+		relative_position_id = GAL_tax_breaks_for_progressive_businesses
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				idea_gal_a_green_galicia
+			}
+		}
+	}
+
+	##FOREIGN POLICY##
+	focus = {
+		id = GAL_galician_foreign_office
+		icon = focus_humanity_for_all
+		cost = 7.2
+		available = {
+			OR = {
+				has_completed_focus = GAL_the_future_of_the_galician_state
+				has_completed_focus = GAL_a_new_education_plan
+				has_completed_focus = GAL_invite_immigration
+				has_completed_focus = GAL_no_economic_globalism_in_galicia
+				has_completed_focus = GAL_unite_the_military_and_the_party
+				has_completed_focus = GAL_root_out_factionalism_in_nationalist_bloc
+			}
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+
+		x = 0
+		y = 15
+		completion_reward = {
+		    add_political_power = 100
+		}
+	}
+	focus = {
+		id = GAL_protect_galicians_outside_of_our_borders
+		icon = demand_territory
+		cost = 5
+		available = {
+			OR = {
+				has_government = national_bolshevik
+				has_government = revolutionary_socialist
+				has_government = nationalist
+				has_government = fascist
+				AND = {
+					has_government = national_conservative
+					has_country_flag = GAL_vonc_against_nunez_succeeded
+				}
+			}
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+		prerequisite = {
+			focus = GAL_galician_foreign_office
+		}
+		mutually_exclusive = {
+			focus = GAL_pursue_linguistic_reintegrationism
+			focus = GAL_adopt_a_good_neighbor_policy
+			focus = GAL_fulfill_point_ten
+		}
+		relative_position_id = GAL_galician_foreign_office
+		x = -2
+		y = 1
+		completion_reward = {
+		    add_war_support = 0.1
+		}
+	}
+	focus = {
+		id = GAL_demand_porto
+		icon = portugal_attack
+		cost = 3
+
+		prerequisite = {
+			focus = GAL_protect_galicians_outside_of_our_borders
+		}
+		
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+		relative_position_id = GAL_protect_galicians_outside_of_our_borders
+		x = -1
+		y = 1
+		completion_reward = {
+		    POR = {
+				country_event = {
+					id = galfopo.1
+				}
+			}
+			180 = {
+				add_claim_by = GAL
+			}
+		}
+	}
+	focus = {
+		id = GAL_integrate_porto
+		icon = unknown
+		cost = 10
+		available = {
+			controls_state = 180
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+		prerequisite = {
+			focus = GAL_demand_porto
+		}
+		relative_position_id = GAL_demand_porto
+		x = 0
+		y = 1
+		completion_reward = {
+		    180 = {
+				add_core_of = GAL
+			}
+		}
+	}
+	focus = {
+		id = GAL_demand_asturias_and_leon
+		icon = spain_attack
+		cost = 3
+
+		prerequisite = {
+			focus = GAL_protect_galicians_outside_of_our_borders
+		}
+		
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+		relative_position_id = GAL_protect_galicians_outside_of_our_borders
+		x = 1
+		y = 1
+		completion_reward = {
+		    IF = {
+				limit = {
+					country_exists = SPR
+				}
+				SPR = {
+					country_event = {
+						id = galfopo.4
+					}
+				}
+			}
+		    IF = {
+				limit = {
+					country_exists = SPN
+				}
+				SPN = {
+					country_event = {
+						id = galfopo.4
+					}
+				}
+			}
+			928 = {
+				add_claim_by = GAL
+			}
+			174 = {
+				add_claim_by = GAL
+			}
+		}
+	}
+	focus = {
+		id = GAL_repress_spanish_nationalism
+		icon = SPR_attack_communist
+		cost = 10
+
+		available = {
+			controls_state = 928
+			controls_state = 174
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+
+		prerequisite = {
+			focus = GAL_demand_asturias_and_leon
+		}
+		relative_position_id = GAL_demand_asturias_and_leon
+		x = 0
+		y = 1
+		completion_reward = {
+		    928 = {
+				add_compliance = 25
+			}
+			174 = {
+				add_compliance = 25
+			}
+		}
+	}
+	focus = {
+		id = GAL_integrate_asturias_and_leon
+		icon = unknown
+		cost = 10
+
+		prerequisite = {
+			focus = GAL_repress_spanish_nationalism
+		}
+		
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+		relative_position_id = GAL_repress_spanish_nationalism
+		x = 0
+		y = 1
+		completion_reward = {
+		    928 = {
+				add_core_of = GAL
+			}
+			174 = {
+				add_core_of = GAL
+			}
+		}
+	}
+	focus = {
+		id = GAL_pursue_linguistic_reintegrationism
+		icon = unknown
+		cost = 10
+		available = {
+			OR = {
+				has_government = national_bolshevik
+				has_government = revolutionary_socialist
+				has_government = moderate_socialist
+				has_government = new_democrat
+				has_government = liberal
+			}
+			NOT = {
+				has_country_flag = GAL_portugal_refused_integrationism
+			}
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+		prerequisite = {
+			focus = GAL_galician_foreign_office
+		}
+		mutually_exclusive = {
+			focus = GAL_protect_galicians_outside_of_our_borders
+			focus = GAL_adopt_a_good_neighbor_policy
+			focus = GAL_fulfill_point_ten
+		}
+		relative_position_id = GAL_galician_foreign_office
+		x = -6
+		y = 1
+		completion_reward = {
+		    POR = {
+				country_event = {
+					id = galfopo.7
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_integrate_our_economies
+		icon = production
+		cost = 10
+
+		prerequisite = {
+			focus = GAL_pursue_linguistic_reintegrationism
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+		relative_position_id = GAL_pursue_linguistic_reintegrationism
+		x = 1
+		y = 1
+		completion_reward = {
+		    random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		    random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			POR = {
+				random_owned_state = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_state = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		    POR = {
+				country_event = {
+					id = galfopo.14
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_infrastructural_integration
+		icon = infrastructure_2
+		cost = 10
+
+		prerequisite = {
+			focus = GAL_pursue_linguistic_reintegrationism
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+		relative_position_id = GAL_pursue_linguistic_reintegrationism
+		x = -1
+		y = 1
+		completion_reward = {
+			build_railway = {
+			  level = 5
+			  build_only_on_allied = no
+			  fallback = yes
+			  start_province = 758
+			  target_province = 11805
+			}
+		    POR = {
+				country_event = {
+					id = galfopo.13
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_centralize_our_bureaucracies
+		icon = cooperate
+		cost = 10
+
+		prerequisite = {
+			focus = GAL_infrastructural_integration
+		}
+		prerequisite = {
+			focus = GAL_integrate_our_economies
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+		relative_position_id = GAL_infrastructural_integration
+		x = 1
+		y = 1
+		completion_reward = {
+		    POR = {
+				country_event = {
+					id = galfopo.10
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_form_the_galizo_portuguese_union
+		icon = unknown
+		cost = 10
+
+		available = {
+			POR = {
+				is_puppet_of = GAL
+			}
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+
+		prerequisite = {
+			focus = GAL_centralize_our_bureaucracies
+		}
+		relative_position_id = GAL_centralize_our_bureaucracies
+		x = 0
+		y = 1
+		completion_reward = {
+			annex_country = {
+				target = POR
+				transfer_troops = yes
+			}
+			set_cosmetic_tag = GAL_portuguese_union
+			every_state = {
+				limit = {
+					is_core_of = POR
+				}
+				add_core_of = ROOT
+			}
+		}
+	}
+	focus = {
+		id = GAL_fulfill_point_ten
+		icon = SPR_codify_regional_autonomy
+		cost = 10
+		available = {
+			has_government = national_bolshevik
+			any_country = {
+				OR = {
+					tag = CAT
+					tag = POR
+					tag = BSQ
+				}
+				OR = {
+					has_government = communist
+					has_government = revolutionary_socialist
+					has_government = moderate_socialist
+					has_government = national_bolshevik
+				}
+			}
+		}
+		prerequisite = {
+			focus = GAL_galician_foreign_office
+		}
+		mutually_exclusive = {
+			focus = GAL_protect_galicians_outside_of_our_borders
+			focus = GAL_pursue_linguistic_reintegrationism
+			focus = GAL_adopt_a_good_neighbor_policy
+		}
+		relative_position_id = GAL_galician_foreign_office
+		x = -10
+		y = 1
+		completion_reward = {
+			every_country = {
+				limit = {
+					OR = {
+						tag = CAT
+						tag = POR
+						tag = BSQ
+					}
+					OR = {
+						has_government = moderate_socialist
+						has_government = revolutionary_socialist
+						has_government = communist
+						has_government = national_bolshevik
+					}
+				}
+				add_opinion_modifier = {
+					target = GAL
+					modifier = gal_iberian_socialist_solidarity
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = CAT
+					CAT = {
+						OR = {
+							has_government = national_bolshevik
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+							has_government = communist
+						}
+					}
+				}
+				add_opinion_modifier = {
+					target = CAT
+					modifier = gal_iberian_socialist_solidarity
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = POR
+					POR = {
+						OR = {
+							has_government = national_bolshevik
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+							has_government = communist
+						}
+					}
+				}
+				add_opinion_modifier = {
+					target = POR
+					modifier = gal_iberian_socialist_solidarity
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = BSQ
+					BSQ = {
+						OR = {
+							has_government = national_bolshevik
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+							has_government = communist
+						}
+					}
+				}
+				add_opinion_modifier = {
+					target = BSQ
+					modifier = gal_iberian_socialist_solidarity
+				}
+			}
+			swap_ideas = {
+				remove_idea = idea_gal_galician_superiority2
+				add_idea = idea_gal_galician_superiority3
+			}
+		}
+	}
+	focus = {
+		id = GAL_meet_with_basque_liberation_fighters
+		icon = unknown
+		cost = 4
+
+		prerequisite = {
+			focus = GAL_fulfill_point_ten
+		}
+
+		relative_position_id = GAL_fulfill_point_ten
+		x = -1
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					country_exists = BSQ
+					BSQ = {
+						OR = {
+							has_government = national_bolshevik
+							has_government = revolutionary_socialist
+							has_government = communist
+							has_government = moderate_socialist
+						}
+					}
+				}
+				BSQ = {
+					country_event = {
+						id = galfopo.63
+					}
+				}
+			}
+			custom_effect_tooltip = gal_unlocks_decisions_to_core_basque
+		}
+	}
+	focus = {
+		id = GAL_a_visit_to_barcelona
+		icon = unknown
+		cost = 4
+
+		prerequisite = {
+			focus = GAL_fulfill_point_ten
+		}
+
+		relative_position_id = GAL_fulfill_point_ten
+		x = 1
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					country_exists = CAT
+					CAT = {
+						OR = {
+							has_government = national_bolshevik
+							has_government = revolutionary_socialist
+							has_government = communist
+							has_government = moderate_socialist
+						}
+					}
+				}
+				CAT = {
+					country_event = {
+						id = galfopo.70
+					}
+				}
+			}
+			custom_effect_tooltip = gal_unlocks_decisions_to_core_cat
+		}
+	}
+	focus = {
+		id = GAL_our_portuguese_brethren
+		icon = portugal
+		cost = 4
+
+		prerequisite = {
+			focus = GAL_meet_with_basque_liberation_fighters
+			focus = GAL_a_visit_to_barcelona
+		}
+
+		relative_position_id = GAL_meet_with_basque_liberation_fighters
+		x = 1
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					country_exists = POR
+					POR = {
+						OR = {
+							has_government = national_bolshevik
+							has_government = revolutionary_socialist
+							has_government = communist
+							has_government = moderate_socialist
+						}
+					}
+				}
+				POR = {
+					country_event = {
+						id = galfopo.54
+					}
+				}
+			}
+			custom_effect_tooltip = gal_unlocks_decisions_to_core_portugal
+		}
+	}
+	focus = {
+		id = GAL_officiate_the_iberian_socialist_federation
+		icon = class_not_nation
+		cost = 10
+
+		prerequisite = {
+			focus = GAL_our_portuguese_brethren
+		}
+
+		relative_position_id = GAL_our_portuguese_brethren
+		x = 0
+		y = 1
+		completion_reward = {
+			set_cosmetic_tag = GAL_isf
+			every_country = {
+				limit = {
+					NOT = {
+						tag = GAL
+					}
+					has_idea = idea_gal_iberian_socialist_federation
+				}
+				country_event = {
+					id = galfopo.61
+				}
+			}
+			IF = {
+				limit = {
+					POR = {
+						NOT = {
+							has_idea = idea_gal_iberian_socialist_federation
+						}
+					}
+				}
+				every_state = {
+					limit = {
+						is_core_of = POR
+					}
+					add_claim_by = ROOT
+				}
+				IF = {
+					limit = {
+						country_exists = POR
+					}
+					create_wargoal = {
+						type = annex_everything
+						target = POR
+					}
+				}
+			}
+			IF = {
+				limit = {
+					CAT = {
+						NOT = {
+							has_idea = idea_gal_iberian_socialist_federation
+						}
+					}
+				}
+				every_state = {
+					limit = {
+						is_core_of = CAT
+					}
+					add_claim_by = ROOT
+				}
+				IF = {
+					limit = {
+						country_exists = CAT
+					}
+					create_wargoal = {
+						type = annex_everything
+						target = CAT
+					}
+				}
+			}
+			IF = {
+				limit = {
+					BSQ = {
+						NOT = {
+							has_idea = idea_gal_iberian_socialist_federation
+						}
+					}
+				}
+				every_state = {
+					limit = {
+						is_core_of = BSQ
+					}
+					add_claim_by = ROOT
+				}
+				IF = {
+					limit = {
+						country_exists = BSQ
+					}
+					create_wargoal = {
+						type = annex_everything
+						target = BSQ
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_avenge_centuries_of_occupation
+		icon = SPR_spain_for_spaniards
+		cost = 4
+
+		prerequisite = {
+			focus = GAL_officiate_the_iberian_socialist_federation
+		}
+
+		relative_position_id = GAL_officiate_the_iberian_socialist_federation
+		x = 0
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					country_exists = SPR
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = SPR
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = SPN
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = SPN
+				}
+			}
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = SPR
+						is_core_of = SPN
+					}
+				}
+				add_claim_by = ROOT
+			}
+		}
+	}
+	focus = {
+		id = GAL_carve_up_spain
+		icon = SPR_nat_reunite_spain
+		cost = 10
+
+		prerequisite = {
+			focus = GAL_avenge_centuries_of_occupation
+		}
+
+		relative_position_id = GAL_avenge_centuries_of_occupation
+		x = 1
+		y = 1
+		completion_reward = {
+			custom_effect_tooltip = gal_unlocks_decisions_to_core_spain
+		}
+	}
+	focus = {
+		id = GAL_claim_iparralde_and_roussillon
+		icon = france_attack
+		cost = 7.2
+
+		available = {
+			OR = {
+				NOT = {
+					owns_state = 663
+				}
+				NOT = {
+					owns_state = 927
+				}
+			}
+		}
+
+		prerequisite = {
+			focus = GAL_avenge_centuries_of_occupation
+		}
+
+		relative_position_id = GAL_avenge_centuries_of_occupation
+		x = -1
+		y = 1
+		completion_reward = {
+			927 = {
+				add_claim_by = ROOT
+			}
+			663 = {
+				add_claim_by = ROOT
+			}
+			FRA = {
+				country_event = {
+					id = galfopo.77
+				}
+			}
+			custom_effect_tooltip = gal_unlocks_decisions_to_core_france
+		}
+	}
+	focus = {
+		id = GAL_adopt_a_good_neighbor_policy
+		icon = GAL_adopt_a_good_neighbor_policy
+		cost = 10
+		available = {
+			OR = {
+				has_government = national_conservative
+				has_government = moderate_socialist
+				has_government = new_democrat
+				has_government = liberal
+			}
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+			custom_trigger_tooltip = {
+				tooltip = spain_is_not_hell_bent_on_reunification
+				OR = {
+					AND = {
+						country_exists = SPR
+						SPR = {
+							NOT = {
+								has_government = fascist
+							}
+						}
+						SPR = {
+							NOT = {
+								has_government = monarchist
+							}
+						}
+						SPR = {
+							NOT = {
+								has_government = national_conservative
+							}
+						}
+						SPR = {
+							NOT = {
+								has_government = centrist
+							}
+						}
+						SPR = {
+							NOT = {
+								has_government = liberal
+							}
+						}
+						SPR = {
+							NOT = {
+								has_government = nationalist
+							}
+						}
+						SPR = {
+							NOT = {
+								has_completed_focus = SPR_fopo_demand_reunification
+							}
+						}
+					}
+					AND = {
+						country_exists = SPN
+						SPN = {
+							NOT = {
+								has_government = fascist
+							}
+						}
+						SPN = {
+							NOT = {
+								has_government = monarchist
+							}
+						}
+						SPN = {
+							NOT = {
+								has_government = national_conservative
+							}
+						}
+						SPN = {
+							NOT = {
+								has_government = centrist
+							}
+						}
+						SPN = {
+							NOT = {
+								has_government = liberal
+							}
+						}
+						SPN = {
+							NOT = {
+								has_government = nationalist
+							}
+						}
+						SPN = {
+							NOT = {
+								has_completed_focus = SPR_fopo_demand_reunification
+							}
+						}
+					}
+				}
+			}
+		}
+		prerequisite = {
+			focus = GAL_galician_foreign_office
+		}
+		mutually_exclusive = {
+			focus = GAL_protect_galicians_outside_of_our_borders
+			focus = GAL_pursue_linguistic_reintegrationism
+			focus = GAL_fulfill_point_ten
+		}
+		relative_position_id = GAL_galician_foreign_office
+		x = -14
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_good_neighbor
+			}
+		}
+	}
+	focus = {
+		id = GAL_reproachment_with_spain
+		icon = spain
+		cost = 5
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = spain_is_not_hell_bent_on_reunification
+				OR = {
+					AND = {
+						country_exists = SPR
+						SPR = {
+							NOT = {
+								has_government = fascist
+							}
+						}
+						SPR = {
+							NOT = {
+								has_government = monarchist
+							}
+						}
+						SPR = {
+							NOT = {
+								has_government = national_conservative
+							}
+						}
+						SPR = {
+							NOT = {
+								has_government = centrist
+							}
+						}
+						SPR = {
+							NOT = {
+								has_government = liberal
+							}
+						}
+						SPR = {
+							NOT = {
+								has_government = nationalist
+							}
+						}
+						SPR = {
+							NOT = {
+								has_completed_focus = SPR_fopo_demand_reunification
+							}
+						}
+					}
+					AND = {
+						country_exists = SPN
+						SPN = {
+							NOT = {
+								has_government = fascist
+							}
+						}
+						SPN = {
+							NOT = {
+								has_government = monarchist
+							}
+						}
+						SPN = {
+							NOT = {
+								has_government = national_conservative
+							}
+						}
+						SPN = {
+							NOT = {
+								has_government = centrist
+							}
+						}
+						SPN = {
+							NOT = {
+								has_government = liberal
+							}
+						}
+						SPN = {
+							NOT = {
+								has_government = nationalist
+							}
+						}
+						SPN = {
+							NOT = {
+								has_completed_focus = SPR_fopo_demand_reunification
+							}
+						}
+					}
+				}
+			}
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+
+		prerequisite = {
+			focus = GAL_adopt_a_good_neighbor_policy
+		}
+		relative_position_id = GAL_adopt_a_good_neighbor_policy
+		x = 1
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					country_exists = SPR
+				}
+				add_opinion_modifier = {
+					target = SPR
+					modifier = gal_good_neighbor
+				}
+				SPR = {
+					country_event = {
+						id = galfopo.20
+					}
+				}
+				country_event = {
+					id = galfopo.21
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = SPN
+				}
+				add_opinion_modifier = {
+					target = SPN
+					modifier = gal_good_neighbor
+				}
+				SPN = {
+					country_event = {
+						id = galfopo.20
+					}
+				}
+				country_event = {
+					id = galfopo.22
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_galizo_spanish_worker_exchange
+		icon = SPR_liberal_immigration_reform
+		cost = 7.2
+
+		prerequisite = {
+			focus = GAL_reproachment_with_spain
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+		relative_position_id = GAL_reproachment_with_spain
+		x = 1
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					country_exists = SPR
+				}
+				SPR = {
+					country_event = {
+						id = galfopo.39
+					}
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = SPN
+				}
+				SPN = {
+					country_event = {
+						id = galfopo.39
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_meet_with_portuguese_leadership
+		icon = portugal
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_adopt_a_good_neighbor_policy
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+		relative_position_id = GAL_adopt_a_good_neighbor_policy
+		x = -1
+		y = 1
+		completion_reward = {
+            add_opinion_modifier = {
+				target = POR
+				modifier = gal_good_neighbor
+			}
+			country_event = {
+				id = galfopo.19
+			}
+			POR = {
+				country_event = {
+					id = galfopo.18
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_negotiate_mineral_treaties
+		icon = GFX_mining_contracts
+		cost = 7.2
+
+		prerequisite = {
+			focus = GAL_meet_with_portuguese_leadership
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+		relative_position_id = GAL_meet_with_portuguese_leadership
+		x = -1
+		y = 1
+		completion_reward = {
+			POR = {
+				country_event = {
+					id = galfopo.42
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_pursue_non_aggression_pacts
+		icon = improve_relations
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_meet_with_portuguese_leadership
+		}
+		prerequisite = {
+			focus = GAL_reproachment_with_spain
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+		relative_position_id = GAL_meet_with_portuguese_leadership
+		x = 1
+		y = 1
+		completion_reward = {
+			POR = {
+				country_event = {
+					id = galfopo.45
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = SPR
+				}
+				SPR = {
+					country_event = {
+						id = galfopo.45
+					}
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = SPN
+				}
+				SPN = {
+					country_event = {
+						id = galfopo.45
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_press_for_guarantees
+		icon = military_sphere
+		cost = 7.2
+
+		prerequisite = {
+			focus = GAL_pursue_non_aggression_pacts
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+		relative_position_id = GAL_pursue_non_aggression_pacts
+		x = 0
+		y = 1
+		completion_reward = {
+			POR = {
+				country_event = {
+					id = galfopo.48
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = SPR
+				}
+				SPR = {
+					country_event = {
+						id = galfopo.48
+					}
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = SPN
+				}
+				SPN = {
+					country_event = {
+						id = galfopo.48
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_our_place_on_the_world_stage
+		icon = focus_commonwealth_un_membership
+		cost = 1.5
+
+		available = {
+			threat > 0.25
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+
+		prerequisite = {
+			focus = GAL_galician_foreign_office
+		}
+		relative_position_id = GAL_galician_foreign_office
+		x = 5
+		y = 1
+		completion_reward = {
+		    add_political_power = 25
+		}
+	}
+	focus = {
+		id = GAL_approach_the_warsaw_pact
+		icon = warsaw_pact
+		cost = 7.2
+
+		available = {
+			AND = {
+				OR = {
+					AND = {
+						country_exists = SOV
+						SOV = {
+							is_faction_leader = yes
+							OR = {
+								has_government = communist
+								has_government = national_bolshevik
+							}
+						}
+					}
+					AND = {
+						country_exists = GER
+						GER = {
+							is_faction_leader = yes
+							has_government = communist
+						}
+					}
+				}
+				NOT = {
+					has_country_flag = GAL_warsaw_refused_to_ally_us
+				}
+				has_government = national_bolshevik
+			}
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+
+		prerequisite = {
+			focus = GAL_our_place_on_the_world_stage
+		}
+		mutually_exclusive = {
+			focus = GAL_finding_friends_amongst_global_revolutionaries
+			focus = GAL_galiza_stands_alone
+			focus = GAL_delegation_to_ottawa
+			focus = GAL_mission_to_moscow
+		}
+		relative_position_id = GAL_our_place_on_the_world_stage
+		x = 0
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					AND = {
+						country_exists = SOV
+						SOV = {
+							has_government = communist
+							is_faction_leader = yes
+						}
+					}
+				}
+				SOV = {
+					country_event = {
+						id = galfopo.30
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					AND = {
+						country_exists = GER
+						GER = {
+							has_government = communist
+							is_faction_leader = yes
+						}
+					}
+				}
+				GER = {
+					country_event = {
+						id = galfopo.33
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_heavy_industry_cooperation
+		icon = communist_construction
+		cost = 5
+
+		available = {
+			OR = {
+				is_in_faction_with = SOV
+				is_in_faction_with = GER
+			}
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+
+		prerequisite = {
+			focus = GAL_approach_the_warsaw_pact
+		}
+
+		relative_position_id = GAL_approach_the_warsaw_pact
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_warsaw_pact_aid
+			}
+		}
+	}
+	focus = {
+		id = GAL_delegation_to_ottawa
+		icon = democratic_league
+		cost = 7.2
+
+		available = {
+			AND = {
+				country_exists = CAN
+				CAN = {
+					is_faction_leader = yes
+				}
+				NOT = {
+					has_country_flag = GAL_canada_refused_to_ally_us
+				}
+				OR = {
+					has_government = national_conservative
+					has_government = nationalist
+					has_government = moderate_socialist
+					has_government = new_democrat
+					has_government = liberal
+				}
+			}
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+
+		prerequisite = {
+			focus = GAL_our_place_on_the_world_stage
+		}
+		mutually_exclusive = {
+			focus = GAL_finding_friends_amongst_global_revolutionaries
+			focus = GAL_approach_the_warsaw_pact
+			focus = GAL_galiza_stands_alone
+			focus = GAL_mission_to_moscow
+		}
+		relative_position_id = GAL_our_place_on_the_world_stage
+		x = -2
+		y = 1
+		completion_reward = {
+		    CAN = {
+				country_event = {
+					id = galfopo.27
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_request_canadian_research_assistance
+		icon = scientific_exchange
+		cost = 5
+
+		available = {
+			is_in_faction_with = CAN
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+
+		prerequisite = {
+			focus = GAL_delegation_to_ottawa
+		}
+		relative_position_id = GAL_delegation_to_ottawa
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_galizo_canadian_research_pact
+			}
+			CAN = {
+				add_ideas = {
+					idea_gal_galizo_canadian_research_pact
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_mission_to_moscow
+		icon = moscow_accords
+		cost = 7.2
+
+		available = {
+			AND = {
+				country_exists = RUS
+				RUS = {
+					is_faction_leader = yes
+				}
+				NOT = {
+					has_country_flag = GAL_russia_refused_to_ally_us
+				}
+				OR = {
+					has_government = national_conservative
+					has_government = nationalist
+					has_government = fascist
+				}
+			}
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+
+		prerequisite = {
+			focus = GAL_our_place_on_the_world_stage
+		}
+		mutually_exclusive = {
+			focus = GAL_finding_friends_amongst_global_revolutionaries
+			focus = GAL_approach_the_warsaw_pact
+			focus = GAL_delegation_to_ottawa
+			focus = GAL_galiza_stands_alone
+		}
+		relative_position_id = GAL_our_place_on_the_world_stage
+		x = -4
+		y = 1
+		completion_reward = {
+		    RUS = {
+				country_event = {
+					id = galfopo.24
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_negotiate_oil_rights
+		icon = GFX_russian_oil
+		cost = 5
+
+		available = {
+			is_in_faction_with = RUS
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+
+		prerequisite = {
+			focus = GAL_mission_to_moscow
+		}
+
+		relative_position_id = GAL_mission_to_moscow
+		x = 0
+		y = 1
+		completion_reward = {
+			add_resource = {
+				type = oil
+				amount = 20
+				state = 171
+			}
+			add_ideas = {
+				idea_gal_russian_oil_trade
+			}
+		}
+	}
+	focus = {
+		id = GAL_finding_friends_amongst_global_revolutionaries
+		icon = GFX_friends_of_the_world_revolution
+		cost = 7.2
+
+		available = {
+			has_government = revolutionary_socialist
+			any_country = { 
+				AND = {
+					has_government = revolutionary_socialist
+					is_faction_leader = yes
+				}
+			}
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+
+		prerequisite = {
+			focus = GAL_our_place_on_the_world_stage
+		}
+		mutually_exclusive = {
+			focus = GAL_galiza_stands_alone
+			focus = GAL_approach_the_warsaw_pact
+			focus = GAL_delegation_to_ottawa
+			focus = GAL_mission_to_moscow
+		}
+		relative_position_id = GAL_our_place_on_the_world_stage
+		x = 2
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					NEA = {
+						has_government = revolutionary_socialist
+						is_faction_leader = yes
+					}
+				}
+				NEA = {
+					country_event = {
+						id = galfopo.51
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					FRA = {
+						has_government = revolutionary_socialist
+						is_faction_leader = yes
+					}
+				}
+				FRA = {
+					country_event = {
+						id = galfopo.51
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					ENG = {
+						has_government = revolutionary_socialist
+						is_faction_leader = yes
+					}
+				}
+				ENG = {
+					country_event = {
+						id = galfopo.51
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					YUG = {
+						has_government = revolutionary_socialist
+						is_faction_leader = yes
+					}
+				}
+				YUG = {
+					country_event = {
+						id = galfopo.51
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					UAR = {
+						has_government = revolutionary_socialist
+						is_faction_leader = yes
+					}
+				}
+				UAR = {
+					country_event = {
+						id = galfopo.51
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					CUB = {
+						has_government = revolutionary_socialist
+						is_faction_leader = yes
+					}
+				}
+				CUB = {
+					country_event = {
+						id = galfopo.51
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					DEN = {
+						has_government = revolutionary_socialist
+						is_faction_leader = yes
+					}
+				}
+				DEN = {
+					country_event = {
+						id = galfopo.51
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					YAR = {
+						has_government = revolutionary_socialist
+						is_faction_leader = yes
+					}
+				}
+				YAR = {
+					country_event = {
+						id = galfopo.51
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					GRL = {
+						has_government = revolutionary_socialist
+						is_faction_leader = yes
+					}
+				}
+				GRL = {
+					country_event = {
+						id = galfopo.51
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_open_worker_exchange
+		icon = SPR_liberal_immigration_reform
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_finding_friends_amongst_global_revolutionaries
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+
+		relative_position_id = GAL_finding_friends_amongst_global_revolutionaries
+		x = 0
+		y = 1
+		completion_reward = {
+		    every_country = {
+				limit = {
+					is_in_faction_with = GAL
+				}
+				add_ideas = {
+					idea_gal_faction_labor_exchange
+				}
+			}
+			add_ideas = {
+				idea_gal_faction_labor_exchange
+			}
+		}
+	}
+	focus = {
+		id = GAL_galiza_stands_alone
+		icon = unknown
+		cost = 7.2
+
+		available = {
+			NOT = {
+				has_government = new_democrat
+				has_government = liberal
+			}
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+
+		prerequisite = {
+			focus = GAL_our_place_on_the_world_stage
+		}
+		mutually_exclusive = {
+			focus = GAL_finding_friends_amongst_global_revolutionaries
+			focus = GAL_approach_the_warsaw_pact
+			focus = GAL_delegation_to_ottawa
+			focus = GAL_mission_to_moscow
+		}
+		relative_position_id = GAL_our_place_on_the_world_stage
+		x = 4
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_neutrality_focus
+			}
+		}
+	}
+	focus = {
+		id = GAL_fuel_for_the_defense_industry
+		icon = military_factory
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_galiza_stands_alone
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+
+		relative_position_id = GAL_galiza_stands_alone
+		x = 0
+		y = 1
+		completion_reward = {
+			add_offsite_building = {
+				type = arms_factory
+				level = 1
+			}
+			add_resource = {
+				type = steel
+				amount = 6
+				state = 171
+			}
+		}
+	}
+	focus = {
+		id = GAL_every_mans_duty_to_the_nation
+		icon = military_salute
+		cost = 10
+
+		prerequisite = {
+			focus = GAL_fuel_for_the_defense_industry
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+
+		relative_position_id = GAL_fuel_for_the_defense_industry
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_every_mans_duty
+			}
+		}
+	}
+	focus = {
+		id = GAL_fortress_galiza
+		icon = coastal_fort
+		cost = 6
+
+		prerequisite = {
+			focus = GAL_fuel_for_the_defense_industry
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+
+		relative_position_id = GAL_fuel_for_the_defense_industry
+		x = -1
+		y = 1
+		completion_reward = {
+			171 = {
+				add_building_construction = {
+					type = coastal_bunker
+					level = 5
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_coastal = yes
+					}
+				}
+			}
+			IF = {
+				limit = {
+					owns_state = 928
+				}
+				928 = {
+					add_building_construction = {
+						type = coastal_bunker
+						level = 5
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_coastal = yes
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					owns_state = 180
+				}
+				180 = {
+					add_building_construction = {
+						type = coastal_bunker
+						level = 5
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_coastal = yes
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					owns_state = 112
+				}
+				112 = {
+					add_building_construction = {
+						type = coastal_bunker
+						level = 5
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_coastal = yes
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					owns_state = 179
+				}
+				179 = {
+					add_building_construction = {
+						type = coastal_bunker
+						level = 5
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_coastal = yes
+						}
+					}
+				}
+			}
+			add_ideas = {
+				idea_gal_fortification_effort
+			}
+		}
+	}
+	focus = {
+		id = GAL_seek_protection_from_world_powers
+		icon = play_off_both_sides
+		cost = 8
+
+		prerequisite = {
+			focus = GAL_fortress_galiza
+		}
+		prerequisite = {
+			focus = GAL_every_mans_duty_to_the_nation
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+
+		relative_position_id = GAL_fortress_galiza
+		x = 1
+		y = 1
+		completion_reward = {
+		    IF = {
+				limit = {
+					country_exists = CAN
+				}
+				CAN = {
+					country_event = {
+						id = galfopo.15
+					}
+				}
+			}
+		    IF = {
+				limit = {
+					country_exists = RUS
+				}
+				RUS = {
+					country_event = {
+						id = galfopo.15
+					}
+				}
+			}
+		    IF = {
+				limit = {
+					country_exists = SOV
+				}
+				SOV = {
+					country_event = {
+						id = galfopo.15
+					}
+				}
+			}
+		    IF = {
+				limit = {
+					country_exists = GER
+				}
+				GER = {
+					country_event = {
+						id = galfopo.15
+					}
+				}
+			}
+		    IF = {
+				limit = {
+					country_exists = ENG
+				}
+				ENG = {
+					country_event = {
+						id = galfopo.15
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_request_defense_investments
+		icon = unknown
+		cost = 6
+
+		prerequisite = {
+			focus = GAL_request_canadian_research_assistance
+			focus = GAL_heavy_industry_cooperation
+			focus = GAL_open_worker_exchange
+			focus = GAL_negotiate_oil_rights
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+
+		relative_position_id = GAL_request_canadian_research_assistance
+		x = 1
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.75
+				uses = 2
+				technology = improved_machine_tools	
+				technology = advanced_machine_tools
+				technology = assembly_line_production
+				technology = flexible_line
+				technology = streamlined_line
+			}
+			add_tech_bonus = {
+				bonus = 0.75
+				uses = 2
+				category = infantry_weapons
+			}
+			add_tech_bonus = {
+				bonus = 0.75
+				uses = 2
+				category = armor
+			}
+		}
+	}
+	focus = {
+		id = GAL_petition_for_equipment
+		icon = galician_gun
+		cost = 8
+
+		prerequisite = {
+			focus = GAL_request_defense_investments
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+
+		relative_position_id = GAL_request_defense_investments
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_faction_equipment_building
+			}
+		}
+	}
+	focus = {
+		id = GAL_cohesive_military_training
+		icon = generic_marching
+		cost = 10
+
+		prerequisite = {
+			focus = GAL_request_defense_investments
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+
+		relative_position_id = GAL_request_defense_investments
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_allied_military_cohesion
+			}
+		    every_country = {
+				limit = {
+					is_in_faction_with = GAL
+				}
+				add_ideas = {
+					idea_gal_allied_military_cohesion
+				}
+			}
+		}
+	}
+	
+	##ARMY TREE##
+	focus = {
+		id = GAL_found_the_galician_defence_force
+		icon = build_tank
+		cost = 7.2
+		
+		available = {
+			OR = {
+				has_completed_focus = GAL_a_new_education_plan
+				has_completed_focus = GAL_the_future_of_the_galician_state
+				has_completed_focus = GAL_deradicalize_labor_movement
+				has_completed_focus = GAL_create_galician_national_police
+				has_completed_focus = GAL_celebrate_galicias_revolutionary_forces			
+			}
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}
+		}
+
+		x = 21
+		y = 18
+		completion_reward = {
+		    army_experience = 25
+			add_ideas = {
+				idea_gal_military
+			}
+		}
+	}
+	focus = {
+		id = GAL_expand_urovesa_facilities
+		icon = UROVESA_focus
+		cost = 10
+
+		prerequisite = {
+			focus = GAL_found_the_galician_defence_force
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+
+		relative_position_id = GAL_found_the_galician_defence_force
+		x = 0
+		y = 2
+		completion_reward = {
+		    171 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = GAL_update_foreign_surplus
+		icon = army_reform
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_expand_urovesa_facilities
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+
+		relative_position_id = GAL_expand_urovesa_facilities
+		x = 0
+		y = 2
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.6
+				uses = 1
+				category = infantry_weapons
+			}
+		}
+	}
+	focus = {
+		id = GAL_focus_on_assault
+		icon = artillery_2
+		cost = 7.2
+
+		prerequisite = {
+			focus = GAL_found_the_galician_defence_force
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+		mutually_exclusive = {
+			focus = GAL_focus_on_speed
+		}
+		relative_position_id = GAL_found_the_galician_defence_force
+		x = 2
+		y = 1
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.75
+				uses = 2
+				category = cat_superior_firepower
+			}
+		}
+	}
+	focus = {
+		id = GAL_logistical_improvements
+		icon = infrastructure_building
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_focus_on_assault
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+
+		relative_position_id = GAL_focus_on_assault
+		x = 0
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = logistics_tech
+			}
+		}
+	}
+	focus = {
+		id = GAL_infantry_equipment_research
+		icon = galician_gun
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_logistical_improvements
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+
+		relative_position_id = GAL_logistical_improvements
+		x = 0
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1.5
+				uses = 1
+				category = infantry_weapons
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 1
+			}
+		}
+	}
+	focus = {
+		id = GAL_war_games_for_the_general_staff
+		icon = military_academy
+		cost = 7
+
+		prerequisite = {
+			focus = GAL_focus_on_assault
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+
+		relative_position_id = GAL_focus_on_assault
+		x = 2
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_gal_military
+				add_idea = idea_gal_military_a2
+			}
+		}
+	}
+	focus = {
+		id = GAL_commanding_officer_training
+		icon = military_salute
+		cost = 6
+
+		prerequisite = {
+			focus = GAL_war_games_for_the_general_staff
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+
+		relative_position_id = GAL_war_games_for_the_general_staff
+		x = 0
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_gal_military_a2
+				add_idea = idea_gal_military_a3
+			}   
+		}
+	}
+	focus = {
+		id = GAL_honor_bravery
+		icon = generic_marching
+		cost = 9
+
+		prerequisite = {
+			focus = GAL_commanding_officer_training
+		}
+		prerequisite = {
+			focus = GAL_infantry_equipment_research
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+
+		relative_position_id = GAL_infantry_equipment_research
+		x = 1
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_gal_military_a3
+				add_idea = idea_gal_military_a4
+			} 
+		}
+	}
+	focus = {
+		id = GAL_focus_on_speed
+		icon = cavalry
+		cost = 7.2
+
+		prerequisite = {
+			focus = GAL_found_the_galician_defence_force
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+		mutually_exclusive = {
+			focus = GAL_focus_on_assault
+		}
+		relative_position_id = GAL_found_the_galician_defence_force
+		x = -2
+		y = 1
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.75
+				uses = 2
+				category = cat_mobile_warfare
+			}
+		}
+	}
+	focus = {
+		id = GAL_ifv_tactics
+		icon = french_infantry_fighting_vehicle_VBCI_VCI_focus
+		cost = 8
+
+		prerequisite = {
+			focus = GAL_focus_on_speed
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+		relative_position_id = GAL_focus_on_speed
+		x = 0
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_gal_military
+				add_idea = idea_gal_military_s2
+			} 
+		}
+	}
+	focus = {
+		id = GAL_infantry_as_an_auxillary_force
+		icon = small_arms
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_ifv_tactics
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+		relative_position_id = GAL_ifv_tactics
+		x = 1
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 2
+				category = infantry_weapons
+			}
+		}
+	}
+	focus = {
+		id = GAL_honor_efficiency
+		icon = army_reform
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_infantry_as_an_auxillary_force
+			focus = GAL_armor_research
+			focus = GAL_maintain_vehicle_performance
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+
+		relative_position_id = GAL_infantry_as_an_auxillary_force
+		x = -2
+		y = 1
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = GAL_armor_research
+		icon = tanks
+		cost = 6
+
+		prerequisite = {
+			focus = GAL_ifv_tactics
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+		relative_position_id = GAL_ifv_tactics
+		x = -1
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1.5
+				uses = 2
+				category = armor
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 1
+			}
+		}
+	}
+	focus = {
+		id = GAL_maintain_vehicle_performance
+		icon = motorised
+		cost = 8
+
+		prerequisite = {
+			focus = GAL_ifv_tactics
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+		relative_position_id = GAL_ifv_tactics
+		x = -3
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_gal_military_s2
+				add_idea = idea_gal_military_s3
+			} 
+		}
+	}
+	
+	##NAVY##
+	focus = {
+		id = GAL_organize_the_galician_navy
+		icon = naval_occupation
+		cost = 7.2
+		available = {
+			OR = {
+				has_completed_focus = GAL_a_new_education_plan
+				has_completed_focus = GAL_the_future_of_the_galician_state
+				has_completed_focus = GAL_deradicalize_labor_movement
+				has_completed_focus = GAL_create_galician_national_police
+				has_completed_focus = GAL_celebrate_galicias_revolutionary_forces			
+			}
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+		x = 15
+		y = 17
+		completion_reward = {
+		    navy_experience = 50
+		}
+	}
+	focus = {
+		id = GAL_subsidize_vigo_shipbuilding
+		icon = build_navy
+		cost = 10
+
+		prerequisite = {
+			focus = GAL_organize_the_galician_navy
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+		relative_position_id = GAL_organize_the_galician_navy
+		x = 1
+		y = 1
+		completion_reward = {
+		    171 = {
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = GAL_invest_in_marin_naval_academy
+		icon = navy_doctrine
+		cost = 10
+
+		prerequisite = {
+			focus = GAL_organize_the_galician_navy
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+		relative_position_id = GAL_organize_the_galician_navy
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_naval_academy
+			}
+		}
+	}
+	focus = {
+		id = GAL_effective_destroyers
+		icon = battleship
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_organize_the_galician_navy
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+		relative_position_id = GAL_organize_the_galician_navy
+		x = -3
+		y = 1
+		completion_reward = {
+		   	add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = dd_tech
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.5
+			}
+		}
+	}
+	focus = {
+		id = GAL_efficient_cruisers
+		icon = cruiser
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_effective_destroyers
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+		relative_position_id = GAL_effective_destroyers
+		x = 1
+		y = 1
+		completion_reward = {
+		   	add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = cl_tech
+			}
+		   	add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = ca_tech
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.5
+			}
+		}
+	}
+	focus = {
+		id = GAL_expand_the_trading_fleet
+		icon = positive_trade_relations
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_organize_the_galician_navy
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+		relative_position_id = GAL_organize_the_galician_navy
+		x = 3
+		y = 1
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 350
+			}
+		}
+	}
+	focus = {
+		id = GAL_submarine_tactics
+		icon = wolf_pack
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_expand_the_trading_fleet
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+		relative_position_id = GAL_expand_the_trading_fleet
+		x = -1
+		y = 1
+		completion_reward = {
+		   	add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = ss_tech
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.5
+			}
+		}
+	}
+	
+	
+	##AIR FORCE##
+	focus = {
+		id = GAL_establish_the_galician_air_force
+		icon = build_airforce
+		cost = 7.2
+		
+		available = {
+			OR = {
+				has_completed_focus = GAL_a_new_education_plan
+				has_completed_focus = GAL_the_future_of_the_galician_state
+				has_completed_focus = GAL_deradicalize_labor_movement
+				has_completed_focus = GAL_create_galician_national_police
+				has_completed_focus = GAL_celebrate_galicias_revolutionary_forces			
+			}
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+
+		x = 29
+		y = 20
+		completion_reward = {
+			air_experience = 50
+		}
+	}
+	focus = {
+		id = GAL_forward_cas_aircraft_tech
+		icon = close_air_support
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_establish_the_galician_air_force
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+		relative_position_id = GAL_establish_the_galician_air_force
+		x = -2
+		y = 1
+		completion_reward = {
+		    add_tech_bonus = {
+				name = tactical_bomber_bonus
+				bonus = 0.75
+				uses = 2
+				category = cas_bomber
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
+		}
+	}
+	focus = {
+		id = GAL_advanced_infantry_support
+		icon = air_defense
+		cost = 8
+
+		prerequisite = {
+			focus = GAL_forward_cas_aircraft_tech
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+		relative_position_id = GAL_forward_cas_aircraft_tech
+		x = 0
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					NOT = {
+						has_completed_focus = GAL_precision_strike_tactics
+					}
+				}
+				add_ideas = {
+					idea_gal_air_force
+				}
+			}
+			IF = {
+				limit = {
+					has_completed_focus = GAL_precision_strike_tactics
+				}
+				swap_ideas = {
+					remove_idea = idea_gal_air_force2
+					add_idea = idea_gal_air_force3
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_expand_the_santiago_rosalia_de_castro_air_base
+		icon = air_icon
+		cost = 7.2
+
+		prerequisite = {
+			focus = GAL_establish_the_galician_air_force
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+		relative_position_id = GAL_establish_the_galician_air_force
+		x = 0
+		y = 1
+		completion_reward = {
+			171 = {
+				add_building_construction = {
+					type = air_base
+					level = 5
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_upgrade_our_fighters
+		icon = generic_fighter
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_expand_the_santiago_rosalia_de_castro_air_base
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+		relative_position_id = GAL_expand_the_santiago_rosalia_de_castro_air_base
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_tech_bonus = {
+				name = light_fighter_bonus
+				bonus = 0.75
+				uses = 2
+				category = light_fighter
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
+		}
+	}
+	focus = {
+		id = GAL_air_superiority_training
+		icon = air_doctrine
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_upgrade_our_fighters
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+		relative_position_id = GAL_upgrade_our_fighters
+		x = 0
+		y = 1
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
+				uses = 2
+				category = air_doctrine
+			}
+		}
+	}
+	focus = {
+		id = GAL_look_into_drone_and_strike_bombers
+		icon = drone
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_establish_the_galician_air_force
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+		relative_position_id = GAL_establish_the_galician_air_force
+		x = 2
+		y = 1
+		completion_reward = {
+		    add_tech_bonus = {
+				name = tactical_bomber_bonus
+				bonus = 0.75
+				uses = 2
+				category = tactical_bomber
+			}
+		    add_tech_bonus = {
+				name = tactical_bomber_bonus
+				bonus = 0.75
+				uses = 2
+				category = cat_strategic_bomber
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
+		}
+	}
+	focus = {
+		id = GAL_precision_strike_tactics
+		icon = naval_bomber
+		cost = 8
+
+		prerequisite = {
+			focus = GAL_look_into_drone_and_strike_bombers
+		}
+		available = {
+			NOT = {
+				has_country_flag = gal_impending_political_subterfuge
+			}		
+		}
+		relative_position_id = GAL_look_into_drone_and_strike_bombers
+		x = 0
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					NOT = {
+						has_completed_focus = GAL_advanced_infantry_support
+					}
+				}
+				add_ideas = {
+					idea_gal_air_force2
+				}
+			}
+			IF = {
+				limit = {
+					has_completed_focus = GAL_advanced_infantry_support
+				}
+				swap_ideas = {
+					remove_idea = idea_gal_air_force
+					add_idea = idea_gal_air_force3
+				}
+			}
+		}
+	}
+}

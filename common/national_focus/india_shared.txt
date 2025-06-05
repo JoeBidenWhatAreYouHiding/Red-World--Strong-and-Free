@@ -2,7 +2,7 @@
 		id = RAJ_infastructure_focus
 		ai_will_do = { factor = 1 }
 		icon = infrastructure
-		cost = 3
+		cost = 3.6
 		x = 7
 		y = 0
 		completion_reward = {
@@ -54,7 +54,7 @@
 		id = RAJ_infas_develop_odisha_mines
 		ai_will_do = { factor = 1 }
 		icon = GFX_aluminium_mines_in_odisha
-		cost = 8
+		cost = 7.9
 		prerequisite = {
 			focus = RAJ_infas_industrial_development
 		}
@@ -149,7 +149,7 @@
 		id = RAJ_infas_new_airports
 		ai_will_do = { factor = 1 }
 		icon = RAJ_new_airports
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_infas_transport_links
 		}
@@ -193,7 +193,7 @@
 		id = RAJ_infas_steel_incentives
 		ai_will_do = { factor = 1 }
 		icon = RAJ_steel_incentives
-		cost = 5
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_infas_industrial_development
 		}
@@ -240,8 +240,9 @@
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = naval_base
-					level = 2
+					level = 1
 					instant_build = yes
+					province = 1349
 				}
 			}
 		}
@@ -253,7 +254,7 @@
 		id = RAJ_infas_reform_port_procedures
 		ai_will_do = { factor = 1 }
 		icon = focus_reform_port_procedures
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_infas_port_faults
 		}
@@ -269,7 +270,7 @@
 		id = RAJ_infas_dehli_mumbai
 		ai_will_do = { factor = 1 }
 		icon = RAJ_delhi_to_mumbai
-		cost = 3
+		cost = 3.6
 		prerequisite = {
 			focus = RAJ_infas_golden_quadrilateral
 		}
@@ -355,7 +356,7 @@
 		id = RAJ_infas_expand_hindustan_steel
 		ai_will_do = { factor = 1 }
 		icon = steel
-		cost = 5
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_infas_steel_incentives
 		}
@@ -377,7 +378,7 @@
 		id = RAJ_infas_nepalese_industry
 		ai_will_do = { factor = 1 }
 		icon = focus_nepalese_industry
-		cost = 5
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_infas_steel_incentives
 		}
@@ -405,7 +406,7 @@
 		id = RAJ_infas_mumbai_chennai
 		ai_will_do = { factor = 1 }
 		icon = RAJ_mumbai_to_chennai
-		cost = 3
+		cost = 3.6
 		prerequisite = {
 			focus = RAJ_infas_dehli_mumbai
 		}
@@ -487,7 +488,7 @@
 		id = RAJ_infas_develop_nepalese_aluminium_industry
 		ai_will_do = { factor = 1 }
 		icon = RAJ_aluminium_production_in_nepal
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_infas_nepalese_industry
 		}
@@ -514,7 +515,7 @@
 		id = RAJ_infas_invest_nepalese_factories
 		ai_will_do = { factor = 1 }
 		icon = RAJ_invest_in_new_production_capabilities_in_nepal
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_infas_nepalese_industry
 		}
@@ -547,7 +548,7 @@
 		id = RAJ_infas_urban_renewal_mumbai
 		ai_will_do = { factor = 1 }
 		icon = RAJ_urban_renewal_mumbai
-		cost = 3
+		cost = 3.6
 		prerequisite = {
 			focus = RAJ_infas_upgrade_mumbai_ports
 		}
@@ -573,7 +574,7 @@
 		id = RAJ_infas_chennai_kolkata
 		ai_will_do = { factor = 1 }
 		icon = RAJ_chennai_to_kolkata
-		cost = 3
+		cost = 3.6
 		prerequisite = {
 			focus = RAJ_infas_mumbai_chennai
 		}
@@ -611,7 +612,7 @@
 		id = RAJ_infas_nepalese_public_works
 		ai_will_do = { factor = 1 }
 		icon = RAJ_nepalese_public_works
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_infas_invest_nepalese_factories
 		}
@@ -643,7 +644,7 @@
 		id = RAJ_infas_kolkata_dehli
 		ai_will_do = { factor = 1 }
 		icon = RAJ_kolkata_to_delhi
-		cost = 3
+		cost = 3.6
 		prerequisite = {
 			focus = RAJ_infas_chennai_kolkata
 		}
@@ -681,7 +682,7 @@
 		id = RAJ_infas_kashmir_railway
 		ai_will_do = { factor = 1 }
 		icon = RAJ_kashmir_railway
-		cost = 3
+		cost = 10
 		available = {
 					AND = {
     					  RAJ = { owns_state = 441 }
@@ -695,14 +696,36 @@
 		y = 7
 		completion_reward = {
 			441 = {
-				add_extra_state_shared_building_slots = 3
+				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = infrastructure
-					level = 3
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = 	supply_node
+					level = 1
+					province = 10905
 					instant_build = yes
 				}
 			}
-			add_political_power = 20
+			build_railway = {
+    			level = 2
+    			build_only_on_allied = yes
+    			controller_priority = {
+        			base = 1
+        			modifier = {
+            			tag = RAJ
+            			add = 2
+        			}
+    			}
+    			fallback = yes
+    			path = { 2076 7106 12754 10905 }
+    			start_state = 952
+    			target_state = 441
+			}
+
+			add_political_power = -25
 			PAK = {
 				add_opinion_modifier = {
 					target = RAJ
@@ -729,7 +752,7 @@
 		id = RAJ_kashmir_crush_dissent
 		ai_will_do = { factor = 5 }
 		icon = RAJ_kashmir_crush_dissent
-		cost = 3
+		cost = 5
 		prerequisite = {
 			focus = RAJ_kashmir_focus
 		}
@@ -799,7 +822,7 @@
 		id = RAJ_kashmir_increase_troops
 		ai_will_do = { factor = 5 }
 		icon = army_marching_orange
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_kashmir_crush_dissent
 		}
@@ -815,7 +838,7 @@
 		id = RAJ_kashmir_counterinsurgency
 		ai_will_do = { factor = 5 }
 		icon = focus_kashmir_counterinsurgency
-		cost = 3
+		cost = 3.6
 		prerequisite = {
 			focus = RAJ_kashmir_martial_law
 		}
@@ -861,7 +884,7 @@
 		id = RAJ_kashmir_censor_media
 		ai_will_do = { factor = 3 }
 		icon = focus_undermine_local_media
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_kashmir_crush_dissent
 			focus = RAJ_kashmir_negotiate
@@ -884,7 +907,7 @@
 		id = RAJ_kashmir_invite_kashmir_politicians
 		ai_will_do = { factor = 3 }
 		icon = major_alliance
-		cost = 3
+		cost = 3.6
 		prerequisite = {
 			focus = RAJ_kashmir_negotiate
 		}
@@ -905,7 +928,7 @@
 		id = RAJ_kashmir_amnesty
 		ai_will_do = { factor = 3 }
 		icon = GFX_kashmir_amnesty
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_kashmir_invite_kashmir_politicians
 		}
@@ -925,7 +948,7 @@
 		id = RAJ_kashmir_release_political_prisoners
 		ai_will_do = { factor = 3 }
 		icon = RAJ_release_political_prisoners
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_kashmir_invite_kashmir_politicians
 		}
@@ -978,7 +1001,7 @@
 		id = RAJ_kashmir_greater_autonomy
 		ai_will_do = { factor = 5 }
 		icon = concessions
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_kashmir_amnesty
 		}
@@ -1005,7 +1028,7 @@
 		id = RAJ_kashmir_india_peace
 		ai_will_do = { factor = 100 }
 		icon = peace_dove
-		cost = 7.00
+		cost = 7.2
 		mutually_exclusive = {
 		focus = RAJ_kashmir_plebiscite
 		}
@@ -1086,7 +1109,7 @@
 		}
 		}
 		icon = focus_democratic_india
-		cost = 3
+		cost = 3.6
 		x = 27
 		y = 12
 		completion_reward = {
@@ -1112,7 +1135,10 @@
 		available = { has_government = communist }
 		id = RAJ_communist_coup
 		icon = focus_india_communist_coup
-		cost = 0
+		available = {
+			has_civil_war = no
+		}
+		cost = 5
 		x = 66
 		y = 8
 		completion_reward = {
@@ -1159,7 +1185,7 @@
 		id = RAJ_dem_for_cooperation
 		ai_will_do = { factor = 30}
 		icon = two_flags
-		cost = 3
+		cost = 3.6
 		prerequisite = {
 			focus = RAJ_dem_foreign_policy
 		}
@@ -1197,7 +1223,7 @@
 		id = RAJ_dem_for_ease_relations_with_china
 		ai_will_do = { factor = 5 }
 		icon = ease_relations_with_china
-		cost = 3
+		cost = 3.6
 		prerequisite = {
 			focus = RAJ_dem_for_cooperation
 		}
@@ -1215,7 +1241,7 @@
 		id = RAJ_dem_for_ease_relations_with_pakistan
 		ai_will_do = { factor = 5 }
 		icon = red_hands_shaking
-		cost = 3
+		cost = 3.6
 		available = {
 		NOT = { has_idea = idea_raj_kashmir_separatism }
 		}
@@ -1282,7 +1308,7 @@
 		id = RAJ_dem_for_intervention
 		ai_will_do = { factor = 70 }
 		icon = focus_indian_democratic_intervention
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_dem_foreign_policy
 		}
@@ -1293,7 +1319,7 @@
 		y = 15
 		completion_reward = {
 			add_ideas = idea_raj_dem_for_intervention
-			add_political_power = 64
+			add_political_power = 50
 		}
 	}
 
@@ -1473,7 +1499,7 @@
 		id = RAJ_singh_trade_deal_with_soviets
 		ai_will_do = { factor = 5 }
 		icon = ussr
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_singh_trade_deal_with_bangladesh
 		}
@@ -1500,7 +1526,7 @@
 		id = RAJ_singh_safta
 		ai_will_do = { factor = 5 }
 		icon = flags_orange
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_singh_iran_pakistan_india_pipeline
 		}
@@ -1665,7 +1691,7 @@
 		id = RAJ_singh_reduce_union_power
 		ai_will_do = { factor = 5 }
 		icon = focus_freedom_for_the_top_hat
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_singh_lower_taxation
 		}
@@ -1722,7 +1748,7 @@
 		id = RAJ_singh_further_privatisation
 		ai_will_do = { factor = 5 }
 		icon = GFX_further_privatisation
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_singh_privatisation_of_underperforming_industries
 		}
@@ -1851,7 +1877,7 @@
 		id = RAJ_singh_abolish_capital_control
 		ai_will_do = { factor = 5 }
 		icon = remove_corporate_taxes
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_reduce_government_intervention
 		}
@@ -1870,7 +1896,7 @@
 		id = RAJ_singh_reduce_capital_control
 		ai_will_do = { factor = 5 }
 		icon = positive_trade_relations
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_reduce_government_intervention
 		}
@@ -1917,7 +1943,7 @@
 		id = RAJ_singh_reform_bankruptcy_codes
 		ai_will_do = { factor = 5 }
 		icon = low_company_tax
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_encourage_private_sector
 		}
@@ -1971,7 +1997,7 @@
 		id = RAJ_sovietloan_military_expertise
 		ai_will_do = { factor = 5 }
 		icon = red_gold_army
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_soviet_loan
 		}
@@ -1997,7 +2023,7 @@
 		id = RAJ_sovietloan_armament_development
 		ai_will_do = { factor = 5 }
 		icon = guns_red
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_sovietloan_military_expertise
 		}
@@ -2014,6 +2040,10 @@
 				uses = 1
 				category = artillery
 			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.5
+			}
 		}
 	}
 
@@ -2021,7 +2051,7 @@
 		id = RAJ_dem_political_reform
 		ai_will_do = { factor = 5 }
 		icon = indian_flag
-		cost = 3
+		cost = 3.6
 		prerequisite = {
 			focus = RAJ_democratic_india
 		}
@@ -2037,7 +2067,7 @@
 		id = RAJ_dem_pol_greater_power_to_states
 		ai_will_do = { factor = 5 }
 		icon = shaking_hands_1
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_dem_political_reform
 		}
@@ -2062,7 +2092,7 @@
 		id = RAJ_dem_pol_empower_central_government
 		ai_will_do = { factor = 5 }
 		icon = generic_india
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_dem_political_reform
 		}
@@ -2105,7 +2135,7 @@
 		x = 32
 		y = 16
 		completion_reward = {
-			add_political_power = 200
+			add_political_power = 100
 			add_stability = 0.08
 		}
 	}
@@ -2114,7 +2144,7 @@
 		id = RAJ_dem_pol_streamline_state_government
 		ai_will_do = { factor = 5 }
 		icon = self_management
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_dem_pol_empower_central_government
 			focus = RAJ_dem_pol_status_quo_gov
@@ -2130,7 +2160,7 @@
 		id = RAJ_dem_pol_bridge_state_federal_divide
 		ai_will_do = { factor = 5 }
 		icon = national_unity
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_dem_pol_status_quo_gov
 			focus = RAJ_dem_pol_greater_power_to_states
@@ -2147,7 +2177,7 @@
 		id = RAJ_sovietloan_scientists
 		ai_will_do = { factor = 5 }
 		icon = focus_establish_embassies
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_soviet_loan
 		}
@@ -2171,7 +2201,7 @@
 		id = RAJ_sovietloan_industry_in_mumbai
 		ai_will_do = { factor = 5 }
 		icon = soviet_investment
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_sovietloan_scientists
 			focus = RAJ_sovietloan_military_expertise
@@ -2199,7 +2229,7 @@
 		id = RAJ_soiet_loan_warm_water_ports
 		ai_will_do = { factor = 5 }
 		icon = naval_dockyard
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_sovietloan_industry_in_mumbai
 		}
@@ -2249,7 +2279,7 @@
 			has_completed_focus = RAJ_empower_panchayats
 		}
 		icon = dealmaker
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_dem_pol_greater_power_to_states
 		}
@@ -2267,7 +2297,7 @@
 		id = RAJ_sovietloan_electronics_development
 		ai_will_do = { factor = 5 }
 		icon = generic_electric
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_sovietloan_scientists
 		}
@@ -2284,6 +2314,10 @@
 				uses = 2
 				category = radar_tech
 			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
 		}
 	}
 
@@ -2291,7 +2325,7 @@
 		id = RAJ_dem_pol_sectarian_quotas
 		ai_will_do = { factor = 5 }
 		icon = concessions
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_dem_political_reform
 		}
@@ -2349,7 +2383,7 @@
 		id = RAJ_mining_subsidies
 		ai_will_do = { factor = 5 }
 		icon = focus_develop_odisha_mines
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_industrial_subsidies
 		}
@@ -2395,7 +2429,7 @@
 		id = RAJ_technology_subsidies
 		ai_will_do = { factor = 5 }
 		icon = radar
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_industrial_subsidies
 		}
@@ -2412,6 +2446,10 @@
 				uses = 1
 				category = electronics
 			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
 		}
 	}
 
@@ -2419,7 +2457,7 @@
 		id = RAJ_dem_pol_language
 		ai_will_do = { factor = 5 }
 		icon = scientific_exchange
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_dem_political_reform
 		}
@@ -2437,7 +2475,7 @@
 		id = RAJ_national_policy_on_education
 		ai_will_do = { factor = 5 }
 		icon = hindu_science
-		cost = 3
+		cost = 3.6
 		prerequisite = {
 			focus = RAJ_carryon_gandhi_leads_on
 			focus = RAJ_carryon_involve_singh
@@ -2493,7 +2531,7 @@
 		id = RAJ_dem_pol_criminal_cases_mps
 		ai_will_do = { factor = 5 }
 		icon = crown_shattered
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_dem_political_reform
 		}
@@ -2529,7 +2567,7 @@
 		id = RAJ_em_arrest_dissent
 		ai_will_do = { factor = 5 }
 		icon = swords
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_em_ban_dissent_groups
 		}
@@ -2554,7 +2592,7 @@
 		id = RAJ_industrial_renewal
 		ai_will_do = { factor = 5 }
 		icon = high_company_tax
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_carryon_gandhi_leads_on
 		}
@@ -2701,7 +2739,7 @@
 		id = RAJ_ir_build_support_in_inc
 		ai_will_do = { factor = 5 }
 		icon = indian_flag
-		cost = 3
+		cost = 3.6
 		prerequisite = {
 			focus = RAJ_industrial_renewal
 		}
@@ -2719,7 +2757,7 @@
 		id = RAJ_ir_armaments_industry
 		ai_will_do = { factor = 5 }
 		icon = industry_2
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_ir_build_support_in_inc
 			focus = RAJ_ir_work_with_communists
@@ -2738,7 +2776,7 @@
 		id = RAJ_ir_autobahn
 		ai_will_do = { factor = 5 }
 		icon = roads
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_ir_build_support_in_inc
 			focus = RAJ_ir_work_with_communists
@@ -2757,7 +2795,7 @@
 		id = RAJ_ir_new_dehli_industrial_complex
 		ai_will_do = { factor = 5 }
 		icon = new_cities
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_ir_autobahn
 			focus = RAJ_ir_armaments_industry
@@ -2780,7 +2818,7 @@
 		id = RAJ_ir_industry_in_madras
 		ai_will_do = { factor = 5 }
 		icon = factory_build
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_ir_armaments_industry
 			focus = RAJ_ir_autobahn
@@ -2808,7 +2846,7 @@
 		id = RAJ_ir_public_works_in_punjab
 		ai_will_do = { factor = 5 }
 		icon = focus_north_egyptian_projects
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_ir_industry_in_madras
 			focus = RAJ_ir_industry_in_sikkim
@@ -2838,7 +2876,7 @@
 		id = RAJ_ir_industry_in_sikkim
 		ai_will_do = { factor = 5 }
 		icon = GFX_industry_in_sikkim
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_ir_autobahn
 			focus = RAJ_ir_armaments_industry
@@ -2895,7 +2933,7 @@
 		id = RAJ_ir_eastern_rubber_production
 		ai_will_do = { factor = 5 }
 		icon = rubber
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_ir_industry_in_sikkim
 		}
@@ -2934,7 +2972,7 @@
 		id = RAJ_ir_aluminium_mines_in_odisha
 		ai_will_do = { factor = 5 }
 		icon = aluminium
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_ir_steel_plants_in_kashmir
 		}
@@ -3108,7 +3146,7 @@
 		id = RAJ_harsher_punishments
 		ai_will_do = { factor = 5 }
 		icon = arrest_derg_members
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_investigate_corruption_in_bureaucracy
 		}
@@ -3158,7 +3196,7 @@
 		id = RAJ_local_investigators
 		ai_will_do = { factor = 5 }
 		icon = focus_reform_port_procedures
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_appoint_new_officials
 		}
@@ -3382,7 +3420,7 @@
 		id = RAJ_under_carpet
 		ai_will_do = { factor = 100 }
 		icon = generic_ideology
-		cost = 7
+		cost = 7.2
 		available = { has_country_flag = flag_raj_gandhi_under_carpet }
 		prerequisite = {
 			focus = RAJ_investigate_cabinet
@@ -3424,7 +3462,7 @@
 		id = RAJ_retire_ministers
 		ai_will_do = { factor = 100 }
 		icon = anti_monarchy
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_under_carpet
 		}
@@ -3536,7 +3574,7 @@
 		id = RAJ_inc_merely_leader
 		ai_will_do = { factor = 5 }
 		icon = crown_shattered
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_inc_reform
 		}
@@ -3554,7 +3592,7 @@
 		id = RAJ_inc_promote_party
 		ai_will_do = { factor = 5 }
 		icon = ideology_fist
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_inc_merely_leader
 		}
@@ -3574,7 +3612,7 @@
 		id = RAJ_party_propaganda
 		ai_will_do = { factor = 5 }
 		icon = propaganda
-		cost = 3
+		cost = 3.6
 		prerequisite = {
 			focus = RAJ_inc_grip
 		}
@@ -3616,7 +3654,7 @@
 		id = RAJ_inc_funding
 		ai_will_do = { factor = 5 }
 		icon = lucrative_investment
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_party_propaganda
 		}
@@ -3646,7 +3684,7 @@
 		id = RAJ_bjp_cut_back_state_involvement
 		ai_will_do = { factor = 10 }
 		icon = focus_freedom_for_the_top_hat
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_ne_bjp_in_power
 		}
@@ -3668,7 +3706,7 @@
 		id = RAJ_bjp_reform_state_involvement
 		ai_will_do = { factor = 10 }
 		icon = torch_industry
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_ne_bjp_in_power
 		}
@@ -3687,7 +3725,7 @@
 		id = RAJ_bjp_privatisation_to_local
 		ai_will_do = { factor = 5 }
 		icon = industry_1
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_bjp_reform_state_involvement
 			focus = RAJ_bjp_cut_back_state_involvement
@@ -3703,7 +3741,7 @@
 		id = RAJ_bjp_reduce_restrictions_on_indian_companies
 		ai_will_do = { factor = 5 }
 		icon = peace_money_development
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_bjp_cut_back_state_involvement
 			focus = RAJ_bjp_reform_state_involvement
@@ -3713,7 +3751,7 @@
 		completion_reward = {
 			add_popularity = {
 				ideology = national_conservative
-				popularity = 0.02
+				popularity = 0.05
 			}
 			add_popularity = {
 				ideology = centrist
@@ -3733,7 +3771,7 @@
 				uses = 2
 				category = industry
 			}
-			add_stability = -0.15
+			add_stability = -0.10
 		}
 	}
 
@@ -3741,7 +3779,7 @@
 		id = RAJ_bjp_gov_foreign_spending_policy
 		ai_will_do = { factor = 5 }
 		icon = focus_trade_deal_with_pakistan
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_bjp_reduce_restrictions_on_indian_companies
 		}
@@ -3751,7 +3789,7 @@
 		x = 22
 		y = 5
 		completion_reward = {
-			add_stability = -0.08
+			add_stability = -0.035
 			add_political_power = -100
 			add_timed_idea = {
 				idea = idea_raj_bjp_for_pref_spend
@@ -3764,7 +3802,7 @@
 		id = RAJ_bjp_gov_preferential_spending_policy
 		ai_will_do = { factor = 5 }
 		icon = consumer_goods
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_bjp_reduce_restrictions_on_indian_companies
 		}
@@ -3785,7 +3823,7 @@
 		id = RAJ_bjp_promote_local_industry
 		ai_will_do = { factor = 1 }
 		icon = construct_civilian
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_bjp_reform_state_involvement
 			focus = RAJ_bjp_cut_back_state_involvement
@@ -3825,7 +3863,7 @@
 		id = RAJ_bjp_promote_indian_goods
 		ai_will_do = { factor = 5 }
 		icon = industry_paper
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_ne_bjp_in_power
 		}
@@ -3850,7 +3888,7 @@
 		id = RAJ_bjp_restrict_foreign_investment
 		ai_will_do = { factor = 5 }
 		icon = indian_flag
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_bjp_promote_local_industry
 		}
@@ -3875,7 +3913,7 @@
 		id = RAJ_bjp_cautious_foreign_investment
 		ai_will_do = { factor = 5 }
 		icon = infrastructure
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_bjp_promote_indian_goods
 		}
@@ -3920,14 +3958,13 @@
 				ideology = communist
 				popularity = -0.05
 			}
-			add_political_power = 13
 		}
 	}
 
 	shared_focus = {
 		id = RAJ_bjp_agricultural_intervention
 		ai_will_do = { factor = 5 }
-		icon = focus_on_agriculture
+		icon = GFX_cash_crop_agriculture
 		cost = 5
 		prerequisite = {
 			focus = RAJ_ne_bjp_in_power
@@ -3936,13 +3973,15 @@
 		y = 3
 		completion_reward = {
 			add_political_power = 25
-						}
+			323 = { set_state_category = town }
+			438 = { set_state_category = town }
+		}
 	}
 		shared_focus = {
 		id = RAJ_bjp_soil_health_card_scheme
 		ai_will_do = { factor = 5 }
-		icon = ethiopia_self_sufficiency
-		cost = 7
+		icon = focus_on_agriculture
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_bjp_agricultural_intervention
 		}
@@ -3955,8 +3994,8 @@
 					id = india.196
 				}
 			}
+			add_political_power = -25
 			add_ideas = idea_raj_bjp_soil_health
-			add_political_power = -20
 			add_popularity = {
 				ideology = national_conservative
 				popularity = 0.02
@@ -3968,7 +4007,7 @@
 		id = RAJ_bjp_increase_vat_exemptions
 		ai_will_do = { factor = 5 }
 		icon = low_company_tax
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_bjp_soil_health_card_scheme
 		}
@@ -3990,7 +4029,7 @@
 		id = RAJ_bjp_tax_reform
 		ai_will_do = { factor = 5 }
 		icon = consumer_goods
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_bjp_cautious_foreign_investment
 			focus = RAJ_bjp_restrict_foreign_investment
@@ -4015,7 +4054,7 @@
 		id = RAJ_bjp_abolish_service_tax
 		ai_will_do = { factor = 5 }
 		icon = production
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_bjp_restrict_foreign_investment
 			focus = RAJ_bjp_cautious_foreign_investment
@@ -4040,7 +4079,7 @@
 		id = RAJ_bjp_decentralize_taxation
 		ai_will_do = { factor = 5 }
 		icon = self_management
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_bjp_abolish_service_tax
 			focus = RAJ_bjp_tax_reform
@@ -4060,7 +4099,7 @@
 		id = RAJ_bjp_fund_mechanization
 		ai_will_do = { factor = 5 }
 		icon = free_some_farms
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_bjp_agricultural_intervention
 		}
@@ -4105,13 +4144,17 @@
 					instant_build = yes
 				}
 			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.5
+			}
 		}
 	}
 
 	shared_focus = {
 		id = RAJ_develop_farmland
 		ai_will_do = { factor = 5 }
-		icon = ethiopia_self_sufficiency
+		icon = GFX_goal_generic_agriculture
 		cost = 5
 		prerequisite = {
 			focus = RAJ_bjp_agricultural_intervention
@@ -4131,7 +4174,7 @@
 		id = RAJ_bjp_develop_irrigation_facilities
 		ai_will_do = { factor = 5 }
 		icon = generic_construction_2
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_bjp_fund_mechanization
 		}
@@ -4172,7 +4215,7 @@
 			}
 		}
 		icon = ethiopia_self_sufficiency
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_develop_farmland
 		}
@@ -4183,7 +4226,7 @@
 		y = 7
 		completion_reward = {
 			add_ideas = idea_raj_bjp_rollback_environment
-			add_political_power = -45
+			add_political_power = -50
 		}
 	}
 
@@ -4201,7 +4244,7 @@
 			add_political_power = 50
 			add_popularity = {
 				ideology = national_conservative
-				popularity = 0.01
+				popularity = 0.05
 			}
 		}
 	}
@@ -4217,6 +4260,7 @@
 		x = 37
 		y = 4
 		completion_reward = {
+			add_ideas = idea_raj_bjp_education_reform
 			hidden_effect = {
 				country_event = {
 					hours = 20
@@ -4247,7 +4291,7 @@
 		id = RAJ_bjp_national_symbols
 		ai_will_do = { factor = 5 }
 		icon = buddha
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_bjp_saffronisation_of_education
 		}
@@ -4255,7 +4299,6 @@
 		y = 5
 		completion_reward = {
 			add_ideas = idea_raj_bjp_national_symbols
-			add_political_power = 7
 		}
 	}
 
@@ -4270,8 +4313,7 @@
 		x = 39
 		y = 5
 		completion_reward = {
-			add_stability = 0.08
-			add_manpower = 3500
+			add_stability = 0.05
 		}
 	}
 
@@ -4279,7 +4321,7 @@
 		id = RAJ_bjp_protect_sacred_sites
 		ai_will_do = { factor = 5 }
 		icon = protect_muslims
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_bjp_legislate_on_religious_conversions
 		}
@@ -4301,15 +4343,14 @@
 		id = RAJ_bjp_uniform_civil_code
 		ai_will_do = { factor = 6 }
 		icon = neutrality
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_bjp_india
 		}
 		x = 41
 		y = 4
 		completion_reward = {
-			add_stability = 0.07
-			add_political_power = 10
+			add_stability = 0.05
 			hidden_effect = {
 				country_event = {
 					hours = 7
@@ -4346,7 +4387,7 @@
 			}
 		}
 		icon = flags_orange
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_bjp_uniform_civil_code
 		}
@@ -4357,7 +4398,6 @@
 		y = 5
 		completion_reward = {
 			 add_ideas = idea_raj_bjp_positive_secularism
-			 add_political_power = 32
 		}
 	}
 
@@ -4365,7 +4405,7 @@
 		id = RAJ_bjp_roll_back_secularism
 		ai_will_do = { factor = 5 }
 		icon = focus_ban_refugees
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_bjp_uniform_civil_code
 		}
@@ -4391,7 +4431,7 @@
 		id = RAJ_bjp_restritions_on_beef
 		ai_will_do = { factor = 10 }
 		icon = beef_restrictions
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_bjp_roll_back_secularism
 			focus = RAJ_bjp_positive_secularism
@@ -4399,14 +4439,12 @@
 		x = 43
 		y = 7
 		completion_reward = {
-			hidden_effect = {
 				country_event = {
 					hours = 10
 					id = india.205
-				}
 			}
-			add_political_power = 20
-			add_stability = -0.02
+			add_political_power = 25
+			add_stability = -0.05
 		}
 	}
 
@@ -4414,7 +4452,7 @@
 		id = RAJ_bjp_remove_western_influence
 		ai_will_do = { factor = 100 }
 		icon = propaganda
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_bjp_protect_sacred_sites
 			focus = RAJ_bjp_restritions_on_beef
@@ -4439,7 +4477,7 @@
 				ideology = new_democrat
 				popularity = -0.03
 			}
-			add_stability = 0.1
+			add_stability = 0.05
 		}
 	}
 
@@ -4474,7 +4512,7 @@
 		x = 45
 		y = 5
 		completion_reward = {
-			add_stability = 0.1
+			add_stability = 0.05
 			add_popularity = {
 				ideology = national_bolshevik
 				popularity = -0.2
@@ -4495,7 +4533,7 @@
 		id = RAJ_bjp_reduce_restrictions_on_rss
 		ai_will_do = { factor = 5 }
 		icon = two_flags
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_bjp_publicize_nuclear_tests
 		}
@@ -4513,11 +4551,9 @@
 				idea = idea_raj_bjp_reduce_restrictions_rss
 				days = 360
 			}
-			hidden_effect = {
 				country_event = {
-					hours = 12
-					id = india.214
-				}
+				hours = 12
+				id = india.214
 			}
 		}
 	}
@@ -4548,7 +4584,7 @@
 			}
 		}
 		icon = flags_orange
-		cost = 3
+		cost = 3.6
 		prerequisite = {
 			focus = RAJ_bjp_remove_western_influence
 		}
@@ -4580,7 +4616,7 @@
 			has_country_flag = flag_raj_jaitley_dead
 			}
 		icon = india_fascism
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_rss_extreme
 		}
@@ -4606,19 +4642,17 @@
 		id = RAJ_rss_purge_bjp
 		ai_will_do = { factor = 5 }
 		icon = arrest_derg_members
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_consolidate_power
 		}
 		x = 47
 		y = 13
 		completion_reward = {
-			hidden_effect = {
 				country_event = {
 					hours = 10
 					id = india.504
 				}
-			}
 			set_country_flag = flag_raj_rss_bjp_purged
 			add_popularity = {
 				ideology = national_conservative
@@ -4650,7 +4684,7 @@
 			}
 		}
 		icon = enpower_RSS_paramilitary
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_consolidate_power
 		}
@@ -4660,12 +4694,10 @@
 		x = 43
 		y = 13
 		completion_reward = {
-			hidden_effect = {
 				country_event = {
 					hours = 8
 					id = india.507
 				}
-			}
 			add_ideas = idea_raj_rss_empowered_paramilitary
 			add_popularity = {
 				ideology = nationalist
@@ -4678,7 +4710,7 @@
 		id = RAJ_rss_suppress_left_wing
 		ai_will_do = { factor = 5 }
 		icon = abolish_workers_party
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_consolidate_power
 		}
@@ -4696,13 +4728,15 @@
 		id = RAJ_bjp_publicize_nuclear_tests
 		ai_will_do = { factor = 5 }
 		icon = research_nukes
-		cost = 4
+		cost = 10
 		prerequisite = {
 			focus = RAJ_bjp_crackdown_on_leftist_extremism
 		}
 		x = 46
 		y = 6
 		completion_reward = {
+			add_political_power = -100
+			custom_effect_tooltip = raj_drop_nuke
 			433 = {
 				add_building_construction = {
 					type = nuclear_reactor
@@ -4758,18 +4792,16 @@
 		completion_reward = {
 			add_popularity = {
 				ideology = national_conservative
-				popularity = 0.03
+				popularity = 0.035
 			}
 			add_popularity = {
 				ideology = nationalist
 				popularity = -0.05
 			}
-			add_stability = 0.11
-			hidden_effect = {
-				country_event = {
-					hours = 66
-					id = india.215
-				}
+			add_stability = 0.075
+			country_event = {
+				hours = 66
+				id = india.215
 			}
 		}
 	}
@@ -4792,10 +4824,12 @@
 		id = RAJ_peoples_democracy
 		ai_will_do = { factor = 100 }
 		icon = focus_solidarity_front_government
-		cost = 0
+		cost = 5
 		available = {
 			AND = {
 				has_country_flag = modsoc_government
+				has_civil_war = no
+
 			}
 		}
 		prerequisite = {
@@ -4812,7 +4846,7 @@
 		id = RAJ_real_power_left_front
 		ai_will_do = { factor = 100 }
 		icon = cooperate_with_some_communists
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_peoples_democracy
 		}
@@ -4836,7 +4870,7 @@
 		id = RAJ_abolish_article_356
 		ai_will_do = { factor = 5 }
 		icon = GFX_use_article_356
-		cost = 3
+		cost = 3.6
 		prerequisite = {
 			focus = RAJ_real_power_left_front
 		}
@@ -4858,7 +4892,7 @@
 		id = RAJ_communist_reform_parliament
 		ai_will_do = { factor = 1 }
 		icon = focus_detroit_constitution
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_abolish_article_356
 		}
@@ -4880,7 +4914,7 @@
 		id = RAJ_empower_panchayats
 		ai_will_do = { factor = 1 }
 		icon = focus_enforce_1990_constitution
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_abolish_article_356
 		}
@@ -4899,7 +4933,7 @@
 		id = RAJ_protect_tribal_people
 		ai_will_do = { factor = 1 }
 		icon = improve_relations
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_empower_panchayats
 			focus = RAJ_communist_reform_parliament
@@ -4916,10 +4950,11 @@
 		id = RAJ_dictatorship_of_the_proletariat
 		ai_will_do = { factor = 100 }
 		icon = peoples_government
-		cost = 0
+		cost = 5
 		available = {
 			AND = {
 				has_country_flag = communist_government
+				has_civil_war = no
 			}
 		}
 		prerequisite = {
@@ -4936,7 +4971,7 @@
 		id = RAJ_agrarian_relations_bill
 		ai_will_do = { factor = 50 }
 		icon = focus_on_agriculture
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_peoples_democracy
 			focus = RAJ_dictatorship_of_the_proletariat
@@ -4961,7 +4996,7 @@
 		id = RAJ_work_with_rich_peasants
 		ai_will_do = { factor = 5 }
 		icon = investigate_industrial_corruption
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_agrarian_relations_bill
 		}
@@ -4985,7 +5020,7 @@
 		id = RAJ_nationalise_farms
 		ai_will_do = { factor = 50 }
 		icon = free_some_farms
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_dictatorship_of_the_proletariat
 			focus = RAJ_peoples_democracy
@@ -5014,7 +5049,7 @@
 		id = RAJ_attack_rich_peasants
 		ai_will_do = { factor = 5 }
 		icon = GFX_attack_rich_peasantry
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_nationalise_farms
 			focus = RAJ_agrarian_relations_bill
@@ -5042,7 +5077,7 @@
 		id = RAJ_nationalise_means_of_production
 		ai_will_do = { factor = 50 }
 		icon = focus_seize_the_means
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_nationalise_farms
 			focus = RAJ_agrarian_relations_bill
@@ -5066,7 +5101,7 @@
 		id = RAJ_means_of_prouction_reform
 		ai_will_do = { factor = 50 }
 		icon = perestroika
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_agrarian_relations_bill
 			focus = RAJ_nationalise_farms
@@ -5102,7 +5137,7 @@
 	shared_focus = {
 		id = RAJ_break_monopolies
 		icon = ideology_fist
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_means_of_prouction_reform
 		}
@@ -5146,7 +5181,7 @@
 		id = RAJ_peoples_taxation
 		ai_will_do = { factor = 5 }
 		icon = focus_syria_soviet_funding
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_nationalise_means_of_production
 			focus = RAJ_means_of_prouction_reform
@@ -5233,7 +5268,7 @@
 		id = RAJ_cultural_revolution
 		ai_will_do = { factor = 1 }
 		icon = glasnost
-		cost = 3
+		cost = 3.6
 		prerequisite = {
 			focus = RAJ_dictatorship_of_the_proletariat
 			focus = RAJ_peoples_democracy
@@ -5254,7 +5289,7 @@
 		id = RAJ_literacy_programme
 		ai_will_do = { factor = 1 }
 		icon = self_management
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_cultural_revolution
 		}
@@ -5272,7 +5307,7 @@
 			NOT = { has_government = communist }
 		}
 		icon = establish_nationalisation_ministry
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_literacy_programme
 		}
@@ -5319,7 +5354,7 @@
 		id = RAJ_fight_communalism
 		ai_will_do = { factor = 1 }
 		icon = agrarian_socialism
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_cultural_revolution
 		}
@@ -5358,7 +5393,7 @@
 		id = RAJ_communist_female_liberation
 		ai_will_do = { factor = 1 }
 		icon = GFX_female_liberation
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_fight_communalism
 		}
@@ -5381,7 +5416,7 @@
 		id = RAJ_judicial_control
 		ai_will_do = { factor = 1 }
 		icon = communism_2
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_fight_communalism
 		}
@@ -5397,7 +5432,7 @@
 		id = RAJ_true_secularism
 		ai_will_do = { factor = 1 }
 		icon = GFX_true_secularism
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_cultural_revolution
 		}
@@ -5427,7 +5462,7 @@
 		has_government = communist
 				}
 		icon = promote_atheism
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_cultural_revolution
 		}
@@ -5451,7 +5486,7 @@
 		id = RAJ_5_year_plan
 		ai_will_do = { factor = 5 }
 		icon = five_year_plan
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_dictatorship_of_the_proletariat
 			focus = RAJ_peoples_democracy
@@ -5467,7 +5502,7 @@
 		id = RAJ_recruit_state_entrepreneurs
 		ai_will_do = { factor = 5 }
 		icon = GFX_recruit_state_entrepeneurs
-		cost = 7
+		cost = 7.2
 		available = {
 			NOT = { has_government = communist }
 		}
@@ -5493,7 +5528,7 @@
 		id = RAJ_balanced_industry
 		ai_will_do = { factor = 50 }
 		icon = civ_factory
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus =  RAJ_5_year_plan
 		}
@@ -5514,7 +5549,7 @@
 		id = RAJ_intense_heavy_industry
 		ai_will_do = { factor = 50 }
 		icon = industry_1
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus =  RAJ_5_year_plan
 		}
@@ -5601,7 +5636,7 @@
 		id = RAJ_5_underdeveloped_end
 		ai_will_do = { factor = 50 }
 		icon = industry_in_alabama
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_5_bihar
 		}
@@ -5622,7 +5657,7 @@
 		id = RAJ_5_balanced_end
 		ai_will_do = { factor = 50 }
 		icon = focus_gleaming_reward
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_5_west_bengal
 		}
@@ -5644,7 +5679,7 @@
 		id = RAJ_self_reliance
 		ai_will_do = { factor = 50 }
 		icon = free_some_farms
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus =  RAJ_5_year_plan
 		}
@@ -5659,7 +5694,7 @@
 		id = RAJ_communist_soviet_support
 		ai_will_do = { factor = 5 }
 		icon = focus_the_soviet_order
-		cost = 3
+		cost = 3.6
 		available = {
 		    SOV = { has_government = communist }
 		}
@@ -5722,7 +5757,7 @@
 		id = RAJ_submission_left_front
 		ai_will_do = { factor = 5 }
 		icon = focus_syria_down_with_the_president
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_use_article_356
 		}
@@ -5745,7 +5780,7 @@
 		id = RAJ_vanguard_party
 		ai_will_do = { factor = 5 }
 		icon = focus_emergency_party_convention
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_submission_left_front
 		}
@@ -5764,7 +5799,7 @@
 		id = RAJ_reconcile_with_naxalites
 		ai_will_do = { factor = 5 }
 		icon = ensure_shengo_loyalty
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_vanguard_party
 		}
@@ -5798,7 +5833,7 @@
 		id = RAJ_crush_naxalites
 		ai_will_do = { factor = 5 }
 		icon = send_the_army_in
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_vanguard_party
 		}
@@ -5825,7 +5860,7 @@
 		id = RAJ_democratic_centralism
 		ai_will_do = { factor = 5 }
 		icon = politburo_debate
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_submission_left_front
 		}
@@ -5844,7 +5879,7 @@
 		id = RAJ_cult_of_personality
 		ai_will_do = { factor = 50 }
 		icon = communist_monarchy
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_submission_left_front
 		}
@@ -5869,7 +5904,7 @@
 		id = RAJ_communist_state_press
 		ai_will_do = { factor = 5 }
 		icon = pro_soviet_propaganda
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_cult_of_personality
 			focus = RAJ_democratic_centralism
@@ -5896,7 +5931,7 @@
 		id = RAJ_communist_rigged_elections
 		ai_will_do = { factor = 5 }
 		icon = GFX_RAJ_rigged_elections
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_communist_coup
 		}
@@ -5979,7 +6014,7 @@
 		id = RAJ_communist_army_purges
 		ai_will_do = { factor = 1 }
 		icon = Army_Purges
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_army_control
 		}
@@ -6006,7 +6041,7 @@
 		id = RAJ_communist_purge_police
 		ai_will_do = { factor = 5 }
 		icon = GFX_purge_police
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_communist_army_purges
 		}
@@ -6048,7 +6083,7 @@
 		id = RAJ_communist_integrate_party_into_administration
 		ai_will_do = { factor = 100 }
 		icon = embrace_conservatism
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_communist_ban_all_other_parties
 			focus = RAJ_left_front_veneer
@@ -6075,7 +6110,7 @@
 		id = RAJ_commissars
 		ai_will_do = { factor = 1 }
 		icon = GFX_commissars
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_army_control
 		}
@@ -6090,7 +6125,7 @@
 	shared_focus = {
 		id = RAJ_mil_unify_command
 		icon = unify_command
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mil_the_indian_lion_roars
 		}
@@ -6108,7 +6143,7 @@
 	shared_focus = {
 		id = RAJ_mil_maintain_divide
 		icon = maintain_divide
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mil_the_indian_lion_roars
 		}
@@ -6141,7 +6176,7 @@
 	shared_focus = {
 		id = RAJ_mil_upgrade_equipment
 		icon = guns_light_blue
-		cost = 3
+		cost = 3.6
 		prerequisite = {
 			focus = RAJ_mil_indian_armed_forces
 		}
@@ -6155,7 +6190,7 @@
 	shared_focus = {
 		id = RAJ_mil_own_equipment
 		icon = RAJ_our_own_equipment
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mil_upgrade_equipment
 		}
@@ -6174,13 +6209,13 @@
 	shared_focus = {
 		id = RAJ_mil_soviet_equipment
 		icon = GFX_red_star_ak47
-		cost = 7.00
+		cost = 7.2
 		available = {
 			AND = {
 				SOV = {
 					has_opinion = {
 						target = RAJ
-						value > 0
+						value > 49
 					}
 				}
 			}
@@ -6226,15 +6261,15 @@
 	shared_focus = {
 		id = RAJ_mil_soviet_tacticians
 		icon = soviet_military
-		cost = 2
+		cost = 5
 		prerequisite = {
 			focus = RAJ_mil_soviet_equipment
 		}
 		x = 90
 		y = 6
 		completion_reward = {
-			add_tech_bonus = {
-				bonus = 0.5
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
 				uses = 1
 				category = cat_grand_battle_plan
 			}
@@ -6244,7 +6279,7 @@
 	shared_focus = {
 		id = RAJ_mil_mechanized_focus
 		icon = cavalry
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_mil_soviet_equipment
 			focus = RAJ_mil_own_equipment
@@ -6256,14 +6291,14 @@
 		x = 88
 		y = 6
 		completion_reward = {
-			army_experience = 65
+			army_experience = 45
 		}
 	}
 
 	shared_focus = {
 		id = RAJ_mil_mechanized
 		icon = motorised
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mil_mechanized_focus
 		}
@@ -6275,13 +6310,17 @@
 				uses = 2
 				category = cat_mechanized_equipment
 			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.5
+			}
 		}
 	}
 
 	shared_focus = {
 		id = RAJ_mil_army_priority
 		icon = RAJ_army_priority
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mil_indian_armed_forces
 		}
@@ -6299,7 +6338,7 @@
 	shared_focus = {
 		id = RAJ_mil_recruitment_drive
 		icon = army_marching_green
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mil_army_priority
 		}
@@ -6307,7 +6346,7 @@
 		y = 5
 		completion_reward = {
 			add_manpower = 350000
-			add_stability = -0.01
+			add_stability = -0.025
 		}
 	}
 
@@ -6321,7 +6360,7 @@
 		x = 93
 		y = 6
 		completion_reward = {
-				army_experience = 120
+				army_experience = 50
 		}
 	}
 
@@ -6343,7 +6382,7 @@
 	shared_focus = {
 		id = RAJ_mil_navy_priority
 		icon = RAJ_navy_priority
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mil_indian_navy
 		}
@@ -6361,7 +6400,7 @@
 	shared_focus = {
 		id = RAJ_mil_naval_tacticians
 		icon = navy_doctrine
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mil_navy_priority
 		}
@@ -6391,13 +6430,17 @@
 				uses = 4
 				category = naval_equipment
 			}
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.5
+			}
 		}
 	}
 
 	shared_focus = {
 		id = RAJ_mil_expand_navy
 		icon = naval_dockyard
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mil_indian_navy
 		}
@@ -6414,7 +6457,7 @@
 	shared_focus = {
 		id = RAJ_mil_blue_water_navy
 		icon = cruiser
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mil_expand_navy
 		}
@@ -6427,7 +6470,7 @@
 		x = 98
 		y = 6
 		completion_reward = {
-			navy_experience = 50
+			navy_experience = 35
 			add_tech_bonus = {
 				bonus = 0.75
 				uses = 1
@@ -6438,24 +6481,32 @@
 				uses = 1
 				category = fleet_in_being_tree
 			}
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.5
+			}
 		}
 	}
 
 	shared_focus = {
 		id = RAJ_mil_light_cruiser_program
 		icon = light_cruiser_program
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mil_expand_navy
 		}
 		x = 103
 		y = 5
 		completion_reward = {
-			navy_experience = 12
+			navy_experience = 15
 			add_tech_bonus = {
 				bonus = 0.45
 				uses	= 1
 				category = cl_tech
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.5
 			}
 		}
 	}
@@ -6463,7 +6514,7 @@
 	shared_focus = {
 		id = RAJ_mil_submarine_development
 		icon = submarine
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mil_expand_navy
 		}
@@ -6473,7 +6524,7 @@
 		x = 100
 		y = 6
 		completion_reward = {
-			navy_experience = 50
+			navy_experience = 35
 			add_tech_bonus = {
 				bonus = 0.75
 				uses = 1
@@ -6484,13 +6535,17 @@
 				uses = 1
 				category = submarine_doctrine
 			}
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.5
+			}
 		}
 	}
 
 	shared_focus = {
 		id = RAJ_mil_naval_drills_in_bay_of_bengal
 		icon = naval_occupation
-		cost = 5
+		cost = 10
 		prerequisite = {
 			focus = RAJ_mil_submarine_development
 			focus = RAJ_mil_blue_water_navy
@@ -6498,7 +6553,7 @@
 		x = 99
 		y = 7
 		completion_reward = {
-			navy_experience = 180
+			navy_experience = 50
 			BNG = {
 				add_opinion_modifier = {
 					target = RAJ
@@ -6526,7 +6581,7 @@
 	shared_focus = {
 		id = RAJ_mil_better_pilot_training
 		icon = close_air_support
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mil_indian_air_force
 		}
@@ -6541,7 +6596,7 @@
 	shared_focus = {
 		id = RAJ_mil_new_air_doctrine
 		icon = air_doctrine
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mil_better_pilot_training
 		}
@@ -6572,13 +6627,17 @@
 				uses = 1
 				category = light_air
 			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
 		}
 	}
 
 	shared_focus = {
 		id = RAJ_mil_defense_of_india
 		icon = empress_of_india
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mil_the_indian_lion_roars
 		}
@@ -6672,7 +6731,7 @@
 		id = RAJ_dem_for_spread_democracy
 		ai_will_do = { factor = 90 }
 		icon = demand_territory
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_dem_for_intervention
 		}
@@ -6745,7 +6804,7 @@
 		id = RAJ_dem_for_reaffirm_panchsheel_treaty
 		ai_will_do = { factor = 2 }
 		icon = two_flags
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_dem_for_ease_relations_with_china
 		}
@@ -6781,7 +6840,7 @@
 	shared_focus = {
 		id = RAJ_dem_for_reduce_soviet_ties
 		icon = soviet_attack
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_dem_for_soviet_relations
 		}
@@ -6806,7 +6865,7 @@
 		id = RAJ_dem_for_guarantee_indian_ocean_democracies
 		ai_will_do = { factor = 100 }
 		icon = defence
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_dem_for_protect_democracy
 		}
@@ -6897,7 +6956,7 @@
 	shared_focus = {
 		id = RAJ_dem_pol_crackdown_on_political_violence
 		icon = indian_army
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_dem_pol_independent_allocation_of_resources_to_states
 		}
@@ -6907,7 +6966,6 @@
 		x = 37
 		y = 17
 		completion_reward = {
-			add_political_power = 70
 			add_stability = 0.05
 			add_popularity = {
 				ideology = communist
@@ -6927,7 +6985,7 @@
 	shared_focus = {
 		id = RAJ_dem_for_china_end_claims
 		icon = tear_treaty
-		cost = 3
+		cost = 3.6
 		prerequisite = {
 			focus = RAJ_dem_for_reaffirm_panchsheel_treaty
 		}
@@ -7003,7 +7061,7 @@
 	shared_focus = {
 		id = RAJ_dem_for_aid_afghanistan
 		icon = afghanistan
-		cost = 7.00
+		cost = 7.2
 		bypass = {
 		NOT = { is_in_faction_with = SOV }
 		}
@@ -7031,7 +7089,7 @@
 	shared_focus = {
 		id = RAJ_dem_for_trade_deal_eu
 		icon = european_union
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_dem_for_strengthen_soviet_ties
 		}
@@ -7062,7 +7120,7 @@
 	shared_focus = {
 		id = RAJ_dem_for_recognise_remnants
 		icon = american_republic
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_dem_for_reduce_soviet_ties
 		}
@@ -7094,7 +7152,7 @@
 	shared_focus = {
 		id = RAJ_dem_for_reduce_soviet_reliance
 		icon = soviet_military
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_dem_for_reduce_soviet_ties
 		}
@@ -7140,15 +7198,23 @@
 		y = 18
 		completion_reward = {
 		navy_experience = 70
-		add_tech_bonus = { bonus = 0.35 uses = 2 category = naval_doctrine }
+		add_doctrine_cost_reduction = {
+				cost_reduction = 0.35
+				uses = 2
+				category = naval_doctrine
+			}
 		add_tech_bonus = { bonus = 0.6 uses = 1 category = dd_tech }
+		add_breakthrough_progress = {
+			specialization = specialization_naval
+			value = 0.5
+		}
 		}
 	}
 
 	shared_focus = {
 		id = RAJ_dem_for_indian_diaspora
 		icon = india
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_dem_for_indians_abroad
 		}
@@ -7183,7 +7249,7 @@
 	shared_focus = {
 		id = RAJ_dem_pol_continue_antiinsurgency
 		icon = india_destroy_communists
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_dem_pol_crackdown_on_political_violence
 		}
@@ -7215,7 +7281,7 @@
 	shared_focus = {
 		id = RAJ_dem_pol_naxalite_amnesty
 		icon = red_hands_shaking
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_dem_pol_crackdown_on_political_violence
 		}
@@ -7238,7 +7304,7 @@
 	shared_focus = {
 		id = RAJ_dem_for_pact_cooperation
 		icon = warsaw_pact
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_dem_for_aid_afghanistan
 		}
@@ -7266,6 +7332,10 @@
 				uses = 1
 				category = cat_medium_armor
 			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 1
+			}
 			navy_experience = 25
 		}
 	}
@@ -7273,7 +7343,7 @@
 	shared_focus = {
 		id = RAJ_dem_for_repeal_indosoviet_treaty_of_friendship
 		icon = tear_treaty
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_dem_for_reduce_soviet_reliance
 		}
@@ -7328,7 +7398,7 @@
 			JAP = { is_in_faction = no }
 		}
 		icon = trade
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_dem_for_indians_abroad
 		}
@@ -7347,7 +7417,7 @@
 	shared_focus = {
 		id = RAJ_dem_for_soviet_aid
 		icon = soviet_military
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_dem_for_pact_cooperation
 		}
@@ -7390,7 +7460,7 @@
 	shared_focus = {
 		id = RAJ_dem_for_trade_with_democracies
 		icon = positive_trade_relations
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_dem_for_repeal_indosoviet_treaty_of_friendship
 		}
@@ -7417,7 +7487,7 @@
 	shared_focus = {
 		id = RAJ_dem_for_mobilize_canadian_indians
 		icon = canada
-		cost = 3
+		cost = 3.6
 		prerequisite = {
 			focus = RAJ_dem_for_fleet_manoeuvres
 		}
@@ -7448,7 +7518,7 @@
 	shared_focus = {
 		id = RAJ_dem_for_remitances
 		icon = production_2
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_dem_for_indian_diaspora
 		}
@@ -7467,7 +7537,7 @@
 			is_in_faction = no
 		}
 		icon = flags_blue
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_dem_for_pm_visit_japan
 		}
@@ -7492,7 +7562,7 @@
 	shared_focus = {
 		id = RAJ_dem_pol_subsidise_rebuilding
 		icon = generic_india
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_dem_pol_naxalite_amnesty
 			focus = RAJ_dem_pol_continue_antiinsurgency
@@ -7610,7 +7680,7 @@
 		available = {
 		has_country_flag = flag_raj_3pp_y
 		}
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_dem_for_3pp
 		}
@@ -7624,7 +7694,7 @@
 	shared_focus = {
 		id = RAJ_league_commonwealth_ties
 		icon = reform_the_commonwealth
-		cost = 4
+		cost = 5
 		available = {
 		CAN = { is_in_faction_with = RAJ }
 		}
@@ -7644,7 +7714,7 @@
 	shared_focus = {
 		id = RAJ_league_unified_command
 		icon = intelligence_exchange
-		cost = 7
+		cost = 7.2
 		available = {
 			CAN = { is_in_faction_with = RAJ }
 		}
@@ -7681,7 +7751,7 @@
 	shared_focus = {
 		id = RAJ_league_replace_soviet_equipment
 		icon = tech_sharing
-		cost = 7
+		cost = 7.2
 		available = {
 		CAN = { is_in_faction_with = RAJ }
 		}
@@ -7705,6 +7775,10 @@
 				bonus = 0.24
 				uses = 3
 				category = cat_mechanized_equipment
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 1
 			}
 		}
 	}
@@ -7732,7 +7806,7 @@
 			AST = { is_in_faction_with = RAJ }
 		}
 		icon = australia
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_league_unified_command
 		}
@@ -7787,7 +7861,7 @@
 		has_country_flag = flag_raj_3pp_y
 		}
 		icon = major_war
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_dem_for_3pp
 		}
@@ -7802,7 +7876,7 @@
 	shared_focus = {
 		id = RAJ_3pp_japanese_tech
 		icon = japan_zero
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_3pp_joint_military_drills
 		}
@@ -7823,6 +7897,10 @@
 				bonus = 0.1
 				uses = 3
 				category = decryption_tech
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 1
 			}
 		}
 	}
@@ -7849,7 +7927,7 @@
 	shared_focus = {
 		id = RAJ_3pp_iran
 		icon = iran
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_3pp_expand_pact
 		}
@@ -7868,7 +7946,7 @@
 	shared_focus = {
 		id = RAJ_3pp_thailand
 		icon = thailand
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_3pp_expand_pact
 		}
@@ -7887,7 +7965,7 @@
 	shared_focus = {
 		id = RAJ_dem_for_fortify_chinese_border
 		icon = position_armies
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = raj_dem_for_target_enemies
 		}
@@ -7940,7 +8018,7 @@
 	shared_focus = {
 		id = RAJ_dem_for_jai_hind
 		icon = focus_the_indian_lion_roars
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = raj_dem_for_target_enemies
 		}
@@ -7998,14 +8076,15 @@
 		x = 25
 		y = 27
 		completion_reward = {
-			add_political_power = 100
+			add_political_power = -50
+			PRC = { add_stability = -0.05 }
 		}
 	}
 
 	shared_focus = {
 		id = RAJ_3pp_expand_into_indian_ocean
 		icon = GFX_expand_into_indian_ocean
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_dem_for_freehand_indian_subcontinent
 		}
@@ -8036,7 +8115,7 @@
 	shared_focus = {
 		id = RAJ_3pp_pressure_burma
 		icon = pressure_burma
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_dem_for_freehand_indian_subcontinent
 		}
@@ -8062,7 +8141,28 @@
 		x = 24
 		y = 28
 		completion_reward = {
+			add_political_power = -75
 			army_experience = 10
+			619 = {	damage_building = {
+    		type = infrastructure
+    		damage = 2
+				} 
+			}
+			618 = {	damage_building = {
+    		type = infrastructure
+    		damage = 2
+				} 
+			}
+			617 = {	damage_building = {
+    		type = infrastructure
+    		damage = 1
+				} 
+			}
+			287 = {	damage_building = {
+    		type = infrastructure
+    		damage = 1
+				} 
+			}
 		}
 	}
 
@@ -8076,14 +8176,20 @@
 		x = 26
 		y = 28
 		completion_reward = {
-			add_stability = 0.02
+			add_political_power = -75
+			add_war_support = 0.025
+			322 = {	damage_building = {
+    		type = infrastructure
+    		damage = 2
+				} 
+			}
 		}
 	}
 
 	shared_focus = {
 		id = RAJ_dem_for_cut_chinese_trade
 		icon = GFX_cut_chinese_trade
-		cost = 3
+		cost = 3.6
 		prerequisite = {
 			focus = raj_dem_for_tibetan_militants
 		}
@@ -8109,7 +8215,7 @@
 	shared_focus = {
 		id = RAJ_dem_for_without_soviets
 		icon = soviet_attack
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_dem_for_xinjiang_militants
 		}
@@ -8122,8 +8228,8 @@
 		x = 27
 		y = 29
 		completion_reward = {
-			army_experience = 50
-			add_manpower = 50000
+			army_experience = 25
+			add_war_support = 0.035
 		}
 	}
 
@@ -8135,7 +8241,7 @@
 			}
 		}
 		icon = soviet_nationalist
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = raj_dem_for_tibetan_militants
 		}
@@ -8184,7 +8290,7 @@
 		has_country_flag = flag_raj_3pp_soviet_support
 		}
 		icon = soviet_advisors
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_dem_for_with_soviets
 		}
@@ -8202,7 +8308,7 @@
 		id = RAJ_dem_for_chinese_liberation
 		ai_will_do = { factor = 100 }
 		icon = china_attack
-		cost = 3
+		cost = 3.6
 		prerequisite = {
 			focus = RAJ_dem_for_cut_chinese_trade
 		}
@@ -8256,7 +8362,7 @@
 		id = RAJ_em_postpone_all_elections
 		ai_will_do = { factor = 5 }
 		icon = focus_temporary_democracy
-		cost = 3
+		cost = 3.6
 		prerequisite = {
 			focus = RAJ_the_emergency
 		}
@@ -8284,7 +8390,7 @@
 		id = RAJ_em_dissolve_uncooperative_state_legislature
 		ai_will_do = { factor = 5 }
 		icon = tear_treaty
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_em_postpone_all_elections
 		}
@@ -8312,7 +8418,7 @@
 		id = RAJ_em_secure_army_loyalty
 		ai_will_do = { factor = 5 }
 		icon = gold_indian_army
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_em_postpone_all_elections
 			focus = RAJ_em_ban_dissent_groups
@@ -8358,7 +8464,7 @@
 		id = RAJ_em_control_media
 		ai_will_do = { factor = 5 }
 		icon = GFX_RAJ_control_the_media
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_em_arrest_dissent
 		}
@@ -8490,7 +8596,7 @@
 		id = RAJ_gmon_secularism
 		ai_will_do = { factor = 7 }
 		icon = secularism
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_em_emperor_gandhi
 		}
@@ -8570,7 +8676,7 @@
 		id = RAJ_gmon_a_new_aristocracy
 		ai_will_do = { factor = 7 }
 		icon = empower_the_house_of_lords
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_gmon_the_new_raj
 		}
@@ -8601,7 +8707,7 @@
 		id = RAJ_gmon_the_new_government
 		ai_will_do = { factor = 7 }
 		icon = royal_institutions
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_gmon_the_new_raj
 		}
@@ -8620,7 +8726,7 @@
 		id = RAJ_gmon_attack_religious_taboos
 		ai_will_do = { factor = 7 }
 		icon = guns_orange
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_gmon_secularism
 		}
@@ -8639,7 +8745,7 @@
 		id = RAJ_gmon_dispute_the_partition
 		ai_will_do = { factor = 7 }
 		icon = india_pakistan
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_gmon_rebuilding_the_raj
 		}
@@ -8657,7 +8763,7 @@
 		id = RAJ_gmon_promise_minority_rights
 		ai_will_do = { factor = 7 }
 		icon = support_monarchy
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_gmon_rebuilding_the_raj
 		}
@@ -8793,7 +8899,7 @@
 		id = RAJ_gmon_solidify_nehrugandhi_cult
 		ai_will_do = { factor = 7 }
 		icon = RAJ_gmon_solidify_nehrugandhi_cult
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_gmon_secularism
 		}
@@ -8821,7 +8927,7 @@
 		id = RAJ_gmon_reclaim_pakistan
 		ai_will_do = { factor = 7 }
 		icon = claim_pakistan
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_gmon_dispute_the_partition
 		}
@@ -8860,7 +8966,7 @@
 		id = RAJ_gmon_royal_trade
 		ai_will_do = { factor = 7 }
 		icon = royal_trade
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_gmon_refute_the_soviets
 		}
@@ -8888,7 +8994,7 @@
 		id = RAJ_gmon_reclaim_bangladesh
 		ai_will_do = { factor = 7 }
 		icon = claim_bangladesh
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_gmon_dispute_the_partition
 		}
@@ -8954,7 +9060,7 @@
 		id = RAJ_gmon_status_of_inc
 		ai_will_do = { factor = 7 }
 		icon = inc_status
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_gmon_control_lok_sabha
 			focus = RAJ_gmon_greater_emergency_powers
@@ -8973,7 +9079,7 @@
 		id = RAJ_gmon_all_power_to_gandhi
 		ai_will_do = { factor = 7 }
 		icon = royal_strength
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_gmon_greater_emergency_powers
 		}
@@ -8993,7 +9099,7 @@
 		id = RAJ_gmon_lese_majeste
 		ai_will_do = { factor = 7 }
 		icon = focus_crown_the_new_king
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_gmon_solidify_nehrugandhi_cult
 		}
@@ -9023,7 +9129,7 @@
 		id = RAJ_gmon_the_royal_family
 		ai_will_do = { factor = 7 }
 		icon = indian_royal_family
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_gmon_solidify_nehrugandhi_cult
 		}
@@ -9116,7 +9222,7 @@
 		id = RAJ_gmon_soviet_advisors
 		ai_will_do = { factor = 7 }
 		icon = soviet_military
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_gmon_maintain_soviet_ties
 		}
@@ -9141,7 +9247,7 @@
 		id = RAJ_gmon_soviet_aid
 		ai_will_do = { factor = 7 }
 		icon = soviet_nationalist
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_gmon_maintain_soviet_ties
 		}
@@ -9156,7 +9262,7 @@
 		id = RAJ_gmon_veto_powers
 		ai_will_do = { factor = 7 }
 		icon = smashing_flag
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_gmon_sideline_opposition
 		}
@@ -9184,7 +9290,7 @@
 		id = RAJ_gmon_purge_politician_dissent
 		ai_will_do = { factor = 7 }
 		icon = focus_syria_secret_police
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_gmon_all_power_to_gandhi
 		}
@@ -9228,7 +9334,7 @@
 		id = RAJ_gmon_all_hail_nehrugandhi
 		icon = hail_royals
 		ai_will_do = { factor = 7 }
-		cost = 3
+		cost = 3.6
 		prerequisite = {
 			focus = RAJ_gmon_the_royal_family
 		}
@@ -9249,7 +9355,7 @@
 		id = RAJ_gmon_advisory_role
 		ai_will_do = { factor = 7 }
 		icon = generic_ideology
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_gmon_veto_powers
 		}
@@ -9293,7 +9399,7 @@
 		id = RAJ_gmon_dissolve_lok_sabha
 		ai_will_do = { factor = 7 }
 		icon = establish_the_council_of_princes
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_gmon_purge_politician_dissent
 		}
@@ -9317,7 +9423,7 @@
 		id = RAJ_gmon_name_rahul_heir
 		ai_will_do = { factor = 7 }
 		icon = name_rahul_heir
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_gmon_all_hail_nehrugandhi
 		}
@@ -9338,7 +9444,7 @@
 		id = RAJ_gmon_further_claims
 		ai_will_do = { factor = 7 }
 		icon = SRI_attack
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_gmon_burma_ultimatum
 		}
@@ -9400,7 +9506,7 @@
 		id = RAJ_gmon_integrate_burma
 		ai_will_do = { factor = 7 }
 		icon = integrate_burma
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_gmon_burma_ultimatum
 		}
@@ -9441,7 +9547,7 @@
 	shared_focus = {
 		id = RAJ_singh_trade_deal_china
 		icon = china
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_singh_trade_deal_with_pakistan
 		}
@@ -9464,7 +9570,7 @@
 		id = RAJ_singh_privatisation_of_failing_industries
 		ai_will_do = { factor = 5 }
 		icon = torch_industry
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_singh_abolish_capital_control
 			focus = RAJ_singh_reduce_capital_control
@@ -9486,7 +9592,7 @@
 		id = RAJ_singh_encourage_foreign_trade
 		ai_will_do = { factor = 5 }
 		icon = low_company_tax
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_singh_reduce_capital_control
 			focus = RAJ_singh_abolish_capital_control
@@ -9505,7 +9611,7 @@
 	shared_focus = {
 		id = RAJ_inc_nehrugandhi_cult
 		icon = propaganda
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_inc_first_family
 		}
@@ -9541,7 +9647,7 @@
 		id = RAJ_singh_end_the_license_raj
 		ai_will_do = { factor = 10 }
 		icon = abolish_the_license_raj
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_singh_reform_bankruptcy_codes
 		}
@@ -9566,7 +9672,7 @@
 		id = RAJ_singh_ease_license_giving
 		ai_will_do = { factor = 10 }
 		icon = consumer_goods
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_singh_reform_banking_sector
 		}
@@ -9704,7 +9810,7 @@
 		id = RAJ_singh_encourage_foreign_investment
 		ai_will_do = { factor = 10 }
 		icon = positive_trade_relations
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_singh_create_foreign_investment_framework
 		}
@@ -9724,7 +9830,7 @@
 		id = RAJ_singh_reduce_tariffs
 		ai_will_do = { factor = 10 }
 		icon = train
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_singh_end_the_license_raj
 			focus = RAJ_singh_create_foreign_investment_framework
@@ -9776,7 +9882,7 @@
 		id = RAJ_ir_industry_in_mmysore
 		ai_will_do = { factor = 10 }
 		icon = GFX_industry_in_karnataka
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_ir_industry_in_madras
 		}
@@ -9809,7 +9915,7 @@
 		id = RAJ_ir_breakup_mafia_raj
 		ai_will_do = { factor = 10 }
 		icon = GFX_breakup_mafia_raj
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_protect_whistleblowers
 		}
@@ -9886,7 +9992,7 @@
 		id = RAJ_singh_increase_foreign_currency_reserves
 		ai_will_do = { factor = 10 }
 		icon = industry_paper
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_singh_reduce_tariffs
 		}
@@ -9941,7 +10047,7 @@
 		id = RAJ_ir_labor_mobilization
 		ai_will_do = { factor = 10 }
 		icon = uk_workers_revolution
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_ir_visit_kerala
 			focus = RAJ_ir_deals_with_politburo
@@ -9958,7 +10064,7 @@
 		id = RAJ_ir_mobilize_bureaucrats
 		ai_will_do = { factor = 10 }
 		icon = intelligence_exchange
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_ir_purge_inc_opponents
 			focus = RAJ_ir_offer_positions
@@ -9975,7 +10081,7 @@
 		id = RAJ_new_bureaucratic_zeal
 		ai_will_do = { factor = 10 }
 		icon = forceful_treaty
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_ir_breakup_mafia_raj
 		}
@@ -9994,7 +10100,7 @@
 		id = RAJ_tackle_police_corruption
 		ai_will_do = { factor = 10 }
 		icon = GFX_tackle_police_corruption
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_local_investigators
 		}
@@ -10022,7 +10128,7 @@
 			}
 		}
 		icon = puppet
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_first_trial
 		}
@@ -10310,7 +10416,7 @@
 		id = RAJ_5_developed_end
 		ai_will_do = { factor = 100 }
 		icon = focus_construct_new_casinos
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_5_kerala
 		}
@@ -10331,7 +10437,7 @@
 		id = RAJ_communist_economy
 		ai_will_do = { factor = 100 }
 		icon = embrace_the_revolution
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_5_underdeveloped_end
 			focus = RAJ_5_developed_end
@@ -10365,7 +10471,7 @@
 		id = RAJ_swadeshi
 		ai_will_do = { factor = 100 }
 		icon = swadeshi_focus
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_bjp_decentralize_taxation
 		}
@@ -10378,7 +10484,6 @@
 		x = 31
 		y = 10
 		completion_reward = {
-			add_political_power = 33
 			set_country_flag = flag_raj_dem_tree
 			remove_ideas = idea_raj_bjp_decentralize_tax
 			swap_ideas = {
@@ -10392,7 +10497,7 @@
 		id = RAJ_nehru_vision_reformed
 		ai_will_do = { factor = 100 }
 		icon = perestroika
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mining_contracts
 		}
@@ -10425,7 +10530,7 @@
 		id = RAJ_highly_involved_state
 		ai_will_do = { factor = 100 }
 		icon = establish_nationalisation_ministry
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_ir_labor_mobilization
 			focus = RAJ_ir_mobilize_bureaucrats
@@ -10459,7 +10564,7 @@
 		id = RAJ_liberalised_market
 		ai_will_do = { factor = 100 }
 		icon = chinese_economy
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_singh_relax_business_visas
 		}
@@ -10494,7 +10599,7 @@
 		id = RAJ_free_market
 		ai_will_do = { factor = 100 }
 		icon = power_to_the_corporations
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_singh_increase_foreign_currency_reserves
 		}
@@ -10600,7 +10705,7 @@
 	shared_focus = {
 		id = RAJ_communist_employment_program
 		icon = work_for_the_tsar
-		cost = 3
+		cost = 3.6
 		prerequisite = {
 			focus = RAJ_communist_society
 		}
@@ -10647,7 +10752,7 @@
 	shared_focus = {
 		id = RAJ_rss_auxillary_police
 		icon = paramilitary_brigades
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_empower_paramilitary
 		}
@@ -10657,10 +10762,13 @@
 		x = 44
 		y = 14
 		completion_reward = {
-			army_experience = 40
-			add_manpower = 50000
-			load_oob = RAJ_rss_aux
+
+			army_experience = 25
+			custom_effect_tooltip = RAJ_rss_aux_tt
+			custom_effect_tooltip = special_fascist_brigades_tt
 			hidden_effect = {
+			set_technology = { fascist_assault_battalion_tech = 1 popup = no }
+				load_oob = RAJ_rss_aux
 				country_event = {
 					hours = 50
 					id = india.514
@@ -10676,7 +10784,7 @@
 	shared_focus = {
 		id = RAJ_communist_purge_reactionaries
 		icon = cut_ties_to_the_usa
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_communist_strengthen_grip
 		}
@@ -10694,7 +10802,7 @@
 	shared_focus = {
 		id = RAJ_communist_reeducation_camps
 		icon = gorbachevs_kgb
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_communist_strengthen_grip
 		}
@@ -10742,7 +10850,7 @@
 	shared_focus = {
 		id = RAJ_communist_full_nationalisation
 		icon = perestroika
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_communist_employment_program
 		}
@@ -10771,7 +10879,7 @@
 	shared_focus = {
 		id = RAJ_communist_labor_projects_in_northeast
 		icon = industry_1
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_communist_employment_program
 		}
@@ -10856,7 +10964,7 @@
 	shared_focus = {
 		id = RAJ_com_fund_bangladesh_coup
 		icon = communist_crusade
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_com_spread_the_revolution
 		}
@@ -10876,7 +10984,7 @@
 	shared_focus = {
 		id = RAJ_com_liberation_of_bhutan
 		icon = gurkhas
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_com_spread_the_revolution
 		}
@@ -10899,7 +11007,7 @@
 	shared_focus = {
 		id = RAJ_com_intervention_in_sri_lanka
 		icon = SRI_attack
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_com_spread_the_revolution
 		}
@@ -10945,7 +11053,7 @@
 	shared_focus = {
 		id = RAJ_com_ease_china_tensions
 		icon = socialism_through_peace
-		cost = 3
+		cost = 3.6
 		prerequisite = {
 			focus = RAJ_com_relations_with_china
 		}
@@ -10963,7 +11071,7 @@
 	shared_focus = {
 		id = RAJ_com_mission_to_berlin
 		icon = berlin_summit
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_com_strengthen_soviet_ties
 		}
@@ -10999,7 +11107,7 @@
 	shared_focus = {
 		id = RAJ_com_increased_soviet_aid
 		icon = soviet_investment
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_com_strengthen_soviet_ties
 		}
@@ -11013,7 +11121,7 @@
 	shared_focus = {
 		id = RAJ_com_military_access_soviet
 		icon = focus_syria_seek_soviet_funding
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_com_strengthen_soviet_ties
 		}
@@ -11032,7 +11140,7 @@
 	shared_focus = {
 		id = RAJ_com_bjp_purge
 		icon = anti_fascist
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_communist_purge_reactionaries
 		}
@@ -11079,7 +11187,7 @@
 	shared_focus = {
 		id = RAJ_com_work_camps
 		icon = uk_concentration_camps
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_communist_reeducation_camps
 		}
@@ -11113,7 +11221,7 @@
 	shared_focus = {
 		id = RAJ_com_hail_the_farmer
 		icon = GFX_hail_the_farmer
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_communist_the_partys_hand_over_all
 		}
@@ -11127,7 +11235,7 @@
 	shared_focus = {
 		id = RAJ_com_hail_the_soldier
 		icon = gold_indian_army
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_communist_the_partys_hand_over_all
 		}
@@ -11143,19 +11251,18 @@
 	shared_focus = {
 		id = RAJ_rss_lower_paramilitary_role
 		icon = political_pressure
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_rss_promote_sympathisers_in_army
 		}
 		x = 41
 		y = 15
 		completion_reward = {
-			remove_ideas = idea_raj_rss_brazen_action
-			hidden_effect = {
+			if = { limit = { has_idea = idea_raj_rss_brazen_action }
+			   remove_ideas = idea_raj_rss_brazen_action }
 				country_event  = {
 					days = 3
 					id = india.512
-				}
 			}
 		}
 	}
@@ -11198,7 +11305,8 @@
 		x = 43
 		y = 16
 		completion_reward = {
-			remove_ideas = idea_raj_rss_brazen_action
+		if = { limit = { has_idea = idea_raj_rss_brazen_action }
+			   remove_ideas = idea_raj_rss_brazen_action }
 			country_event = {
 				hours = 6
 				id = india.555
@@ -11235,7 +11343,7 @@
 			}
 		}
 		icon = focus_overthrow_congress
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_purge_bjp
 		}
@@ -11262,7 +11370,7 @@
 	shared_focus = {
 		id = RAJ_com_party_military_cooperation
 		icon = red_gold_army
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_com_hail_the_farmer
 		}
@@ -11283,7 +11391,7 @@
 	shared_focus = {
 		id = RAJ_com_red_terror
 		icon = GFX_red_terror
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_com_work_camps
 		}
@@ -11302,7 +11410,7 @@
 		id = RAJ_com_join_warsaw_pact
 		ai_will_do = { factor = 100 }
 		icon = focus_syria_join_the_warsaw_pact
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_com_military_access_soviet
 		}
@@ -11384,7 +11492,7 @@
 		NOT = { MYA = { has_government = communist } }
 		}
 		icon = gorbachevs_kgb
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_com_intervention_in_sri_lanka
 		}
@@ -11492,7 +11600,7 @@
 			}
 		}
 		icon = soviet_shaking_hands
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_com_diplomatic_mission_to_china
 		}
@@ -11534,7 +11642,7 @@
 	shared_focus = {
 		id = RAJ_com_red_marshals
 		icon = communist_star
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_com_party_military_cooperation
 		}
@@ -11555,7 +11663,7 @@
 	shared_focus = {
 		id = RAJ_com_indian_cheka
 		icon = uk_communist_ministries
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_com_party_military_cooperation
 		}
@@ -11645,7 +11753,7 @@
 		id = RAJ_rss_revanchism
 		ai_will_do = { factor = 100 }
 		icon = fascism_2
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_state
 		}
@@ -11672,7 +11780,7 @@
 		completion_reward = {
 			add_popularity = {
 				ideology = monarchist
-				popularity = 0.07
+				popularity = 0.08
 			}
 			add_political_power = 50
 		}
@@ -11703,7 +11811,7 @@
 	shared_focus = {
 		id = RAJ_mon_hindu_empire
 		icon = forceful_treaty
-		cost = 7.00
+		cost = 7.2
 		available = {
 			NOT = { has_country_flag = flag_raj_mon_peshwa_abdullah }
 		}
@@ -11730,7 +11838,7 @@
 	shared_focus = {
 		id = RAJ_mon_royal_propaganda
 		icon = royal_strength
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mon_legacy_of_maratha_empire
 		}
@@ -11738,11 +11846,11 @@
 		y = 20
 		completion_reward = {
 			add_ideas = idea_raj_mon_propoganda
-			hidden_effect = {
-				country_event = {
+			country_event = {
 					days = 50
 					id = india.688
 				}
+			hidden_effect = {
 				random_list = {
 					50 = { }
 					50 = {
@@ -11783,6 +11891,14 @@
 				}
 			army_experience = 20
 			navy_experience = 70
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.5
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.5
+			}
 		}
 	}
 
@@ -11802,16 +11918,18 @@
 		x = 16
 		y = 20
 		completion_reward = {
-			add_stability = 0.08
+			add_stability = 0.05
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.10
+			}
 			add_popularity = {
 				ideology = monarchist
 				popularity = 0.04
 			}
-			hidden_effect = {
 				country_event = {
 					days = 20
 					id = india.683
-				}
 			}
 		}
 	}
@@ -11861,7 +11979,7 @@
 	shared_focus = {
 		id = RAJ_mon_defense_of_the_empire
 		icon = defence
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mon_legacy_of_maratha_empire
 		}
@@ -11875,21 +11993,18 @@
 	shared_focus = {
 		id = RAJ_rss_nationalist_education
 		icon = RUB_patriotic_propaganda
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_national_reconstruction
 		}
 		x = 33
 		y = 20
 		completion_reward = {
-			hidden_effect = {
 				country_event = {
 					hours = 5
 					id = india.600
 				}
-			}
-			add_ideas = idea_raj_rss_nationalist_education
-			add_manpower = 50053
+			add_ideas = idea_raj_rss_nationalist_education	
 		}
 	}
 
@@ -11964,7 +12079,7 @@
 	shared_focus = {
 		id = RAJ_rss_anticommunism
 		icon = india_destroy_communists
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_national_reconstruction
 		}
@@ -12010,7 +12125,7 @@
 		x = 52
 		y = 20
 		completion_reward = {
-			add_manpower = 245226272
+			add_war_support	= 0.05
 			add_ideas = idea_raj_rss_mobilize_to_reclaim
 		}
 	}
@@ -12019,7 +12134,7 @@
 		id = RAJ_rss_revanchist_propoganda
 		ai_will_do = { factor = 100 }
 		icon = propaganda
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_rss_revanchism
 		}
@@ -12064,7 +12179,7 @@
 		id = RAJ_rss_claim_bengal_punjab_sindh
 		ai_will_do = { factor = 100 }
 		icon = provoke_border_clashes
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_rss_mobilize_to_reclaim
 		}
@@ -12097,7 +12212,7 @@
 		id = RAJ_rss_reclaim_all_the_lost_land
 		ai_will_do = { factor = 100 }
 		icon = generic_strike
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_revanchist_propoganda
 		}
@@ -12140,15 +12255,13 @@
 		y = 21
 		completion_reward = {
 			438 = {
-				add_extra_state_shared_building_slots = -2
+				add_extra_state_shared_building_slots = 2
 				add_manpower = 50000
 			}
-			add_political_power = 230
-			hidden_effect = {
+			add_political_power = 150
 				country_event = {
 					hours = 7
 					id = india.616
-				}
 			}
 		}
 	}
@@ -12156,7 +12269,7 @@
 	shared_focus = {
 		id = RAJ_rss_mutuality
 		icon = national_unity
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_anticapitalism
 		}
@@ -12176,7 +12289,7 @@
 	shared_focus = {
 		id = RAJ_rss_state_funding
 		icon = investigate_industrial_corruption
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_rss_membership_drive
 		}
@@ -12204,7 +12317,7 @@
 	shared_focus = {
 		id = RAJ_rss_life_for_motherland
 		icon = paramilitary_brigades
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_rss_membership_drive
 		}
@@ -12214,7 +12327,10 @@
 		x = 35
 		y = 21
 		completion_reward = {
+			custom_effect_tooltip = RAJ_rss_vol_tt
+			hidden_effect = {
 			load_oob = RAJ_rss_vol_units
+			}
 			add_ideas = idea_raj_rss_life_for_motherland
 		}
 	}
@@ -12237,7 +12353,7 @@
 	shared_focus = {
 		id = RAJ_rss_mon_maratha_navy
 		icon = build_navy
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_mon_militarisation
 		}
@@ -12250,14 +12366,14 @@
 				category = naval_doctrine
 			}
 			add_ideas = idea_raj_mon_navy_legacy
-			navy_experience = 150
+			navy_experience = 100
 		}
 	}
 
 	shared_focus = {
 		id = RAJ_rss_mon_anadaman_naval_control
 		icon = river_fort_focus
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_rss_mon_maratha_navy
 		}
@@ -12368,7 +12484,7 @@
 	shared_focus = {
 		id = RAJ_mon_establish_the_new_bureaucracy
 		icon = low_company_tax
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mon_hindu_empire
 			focus = RAJ_mon_reverse_hindu_nationalism
@@ -12522,7 +12638,7 @@
 	shared_focus = {
 		id = RAJ_mon_meritocratic_practices
 		icon = support_monarchy
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mon_reverse_hindu_nationalism
 		}
@@ -12546,7 +12662,7 @@
 	shared_focus = {
 		id = RAJ_mon_hindu_dominance
 		icon = RUB_hindu_values
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mon_establish_the_new_bureaucracy
 		}
@@ -12566,16 +12682,15 @@
 	shared_focus = {
 		id = RAJ_mon_build_royal_intelligence_service
 		icon = GFX_the_surveillance_state_perfected
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mon_defense_of_the_empire
 		}
 		x = 27
 		y = 21
 		completion_reward = {
-			add_political_power = 48
-			army_experience = 10
-			air_experience = 10
+			add_political_power = 25
+			add_ideas = idea_raj_mon_royal_intelligence_service
 			add_popularity = {
 				ideology = monarchist
 				popularity = 0.03
@@ -12586,7 +12701,7 @@
 	shared_focus = {
 		id = RAJ_rss_attack_antiindia_dissidents
 		icon = RUB_instigate_pogroms
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_life_for_motherland
 		}
@@ -12618,7 +12733,7 @@
 	shared_focus = {
 		id = RAJ_rss_welfare_programs
 		icon = pill_testing
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_membership_drive
 		}
@@ -12699,7 +12814,7 @@
 	shared_focus = {
 		id = RAJ_rss_voluntary_austerity
 		icon = consumer_goods
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_mutuality
 		}
@@ -12719,14 +12834,15 @@
 	shared_focus = {
 		id = RAJ_rss_ban_strikes
 		icon = puppet
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_rss_mutuality
 		}
 		x = 43
 		y = 22
 		completion_reward = {
-			add_stability = 0.05
+			add_stability = 0.035
+			add_manpower = -3500
 			army_experience = 15
 			add_popularity = {
 				ideology = revolutionary_socialist
@@ -12748,7 +12864,7 @@
 	shared_focus = {
 		id = RAJ_rss_true_hindus
 		icon = political_pressure
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_rebuild_ayodhya_temple
 		}
@@ -12759,7 +12875,7 @@
 		y = 22
 		completion_reward = {
 			set_country_flag = flag_raj_true_hindu
-			add_stability = -0.11
+			add_stability = -0.08
 			add_ideas = idea_raj_rss_true_hindu_nation
 			hidden_effect = {
 				random_list = {
@@ -12778,7 +12894,7 @@
 	shared_focus = {
 		id = RAJ_rss_all_hindus
 		icon = national_unity
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_rebuild_ayodhya_temple
 		}
@@ -12811,7 +12927,7 @@
 		id = RAJ_rss_reclaim_east_bengal
 		ai_will_do = { factor = 100 }
 		icon = BNG_attack
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_claim_bengal_punjab_sindh
 			focus = RAJ_rss_reclaim_all_the_lost_land
@@ -12829,7 +12945,7 @@
 	shared_focus = {
 		id = RAJ_rss_popular_mobilization
 		icon = generic_marching
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_rss_reclaim_all_the_lost_land
 			focus = RAJ_rss_claim_bengal_punjab_sindh
@@ -12849,7 +12965,7 @@
 		id = RAJ_rss_retake_pakistan
 		ai_will_do = { factor = 100 }
 		icon = pakistan_challenge
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_reclaim_all_the_lost_land
 		}
@@ -12867,7 +12983,7 @@
 		id = RAJ_rss_pakistan_ultimatum
 		ai_will_do = { factor = 100 }
 		icon = demand_territory
-		cost = 3
+		cost = 3.6
 		prerequisite = {
 			focus = RAJ_rss_claim_bengal_punjab_sindh
 		}
@@ -12898,7 +13014,7 @@
 			RAJ = { owns_state = 444 }
 		}
 		icon = generic_india
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_retake_pakistan
 		}
@@ -12941,7 +13057,7 @@
 			}
 		}
 		icon = RUB_expel_foreign_nationalists
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_reclaim_east_bengal
 		}
@@ -12961,7 +13077,7 @@
 			443 = { remove_core_of = PAK }
 			add_timed_idea = {
 				idea = idea_raj_rss_resettlement_program
-				days = 270
+				days = 365
 			}
 		}
 	}
@@ -12977,8 +13093,8 @@
 		x = 46
 		y = 23
 		completion_reward = {
-			add_stability = 0.07
-			add_political_power = 55
+			add_stability = 0.05
+			add_political_power = 50
 			country_event = {
 				hours = 7
 				id = india.624
@@ -12990,7 +13106,7 @@
 		id = RAJ_mon_smoothen_state_functions
 		ai_will_do = { factor = 100 }
 		icon = royal_institutions
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mon_meritocratic_practices
 			focus = RAJ_mon_hindu_dominance
@@ -12998,6 +13114,7 @@
 		x = 19
 		y = 23
 		completion_reward = {
+			add_stability = 0.025
 			remove_ideas = idea_raj_mon_new_gov_debuff
 		}
 	}
@@ -13005,7 +13122,7 @@
 	shared_focus = {
 		id = RAJ_mon_confederacy_of_knights
 		icon = red_hands_shaking
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mon_peshwa_control
 			focus = RAJ_mon_peshwa_servant
@@ -13024,14 +13141,14 @@
 				popularity = 0.06
 			}
 			add_ideas = idea_raj_mon_confederacy
-			add_stability = -0.2
+			add_stability = -0.1
 		}
 	}
 
 	shared_focus = {
 		id = RAJ_mon_maratha_clan_system
 		icon = shaking_hands_1
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mon_peshwa_control
 			focus = RAJ_mon_peshwa_servant
@@ -13053,7 +13170,7 @@
 	shared_focus = {
 		id = RAJ_mon_bhonsle_nepotism
 		icon = demand
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mon_chhatrapati_rule
 			focus = RAJ_mon_peshwa_servant
@@ -13069,7 +13186,7 @@
 		completion_reward = {
 			add_stability = 0.05
 			429 = {
-				add_extra_state_shared_building_slots = 7
+				add_extra_state_shared_building_slots = 10
 				add_building_construction = {
 					type = arms_factory
 					level = 5
@@ -13088,7 +13205,7 @@
 		id = RAJ_mon_restore_southeast_monarchies
 		ai_will_do = { factor = 100 }
 		icon = military_sphere
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mon_bhutan_ties
 		}
@@ -13183,7 +13300,7 @@
 		id = RAJ_mon_demand_chauth
 		ai_will_do = { factor = 100 }
 		icon = forceful_treaty
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mon_malaya_ties
 		}
@@ -13193,6 +13310,7 @@
 		x = 7
 		y = 23
 		completion_reward = {
+			custom_effect_tooltip = raj_chauth_tt
 			set_country_flag = flag_raj_mon_chauth
 		}
 	}
@@ -13201,7 +13319,7 @@
 		id = RAJ_mon_crush_the_democrats
 		icon = liberty_attack
 
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mon_crush_nationalists
 			focus = RAJ_mon_work_with_nationalists
@@ -13228,7 +13346,7 @@
 	shared_focus = {
 		id = RAJ_mon_autonomy
 		icon = Oath_of_Loyalty
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mon_confederacy_of_knights
 			focus = RAJ_mon_maratha_clan_system
@@ -13240,11 +13358,9 @@
 		y = 24
 		completion_reward = {
 			add_ideas = idea_raj_mon_autonomy
-			hidden_effect = {
 				country_event = {
 					hours = 5
 					id = india.673
-				}
 			}
 		}
 	}
@@ -13252,7 +13368,7 @@
 	shared_focus = {
 		id = RAJ_mon_the_princely_states
 		icon = keep_royalty_loyal
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mon_confederacy_of_knights
 		}
@@ -13267,11 +13383,9 @@
 				popularity = 0.05
 			}
 			add_stability = 0.1
-			hidden_effect = {
 				country_event = {
 					hours = 5
 					id = india.749
-				}
 			}
 		}
 	}
@@ -13294,13 +13408,11 @@
 		x = 10
 		y = 24
 		completion_reward = {
-			add_political_power = 60
+			add_political_power = 50
 			add_ideas = idea_raj_mon_nat_in_gov
-			hidden_effect = {
 				country_event = {
 					hours = 11
 					id = india.706
-				}
 			}
 		}
 	}
@@ -13308,7 +13420,7 @@
 	shared_focus = {
 		id = RAJ_mon_crush_nationalists
 		icon = anti_fascist
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_mon_bhonsle_nepotism
 			focus = RAJ_mon_maratha_clan_system
@@ -13320,10 +13432,10 @@
 		x = 12
 		y = 24
 		completion_reward = {
-			add_political_power = -50
+			add_stability = 0.05
 			add_popularity = {
 				ideology = nationalist
-				popularity = -0.03
+				popularity = -0.05
 			}
 		}
 	}
@@ -13332,7 +13444,7 @@
 		id = RAJ_rss_indian_dominance
 		ai_will_do = { factor = 100 }
 		icon = generic_india
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_resettlement
 			focus = RAJ_rss_india_undivided
@@ -13367,7 +13479,7 @@
 		id = RAJ_rss_greater_india
 		ai_will_do = { factor = 100 }
 		icon = india_fascism
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_india_undivided
 		}
@@ -13401,7 +13513,7 @@
 	shared_focus = {
 		id = RAJ_rss_annex_sri_lanka
 		icon = SRI_attack
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_rss_greater_india
 			focus = RAJ_rss_indian_dominance
@@ -13419,7 +13531,7 @@
 	shared_focus = {
 		id = RAJ_rss_indian_ocean_control
 		icon = GFX_expand_into_indian_ocean
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_indian_dominance
 		}
@@ -13455,7 +13567,7 @@
 	shared_focus = {
 		id = RAJ_rss_exert_dominance_in_south_east
 		icon = octopus_south_east_asia
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_indian_dominance
 		}
@@ -13481,10 +13593,8 @@
 		x = 14
 		y = 25
 		completion_reward = {
-			hidden_effect = {
-				country_event = {
-					days = 5 id = india.684
-				}
+			country_event = {
+				days = 5 id = india.684
 			}
 		}
 	}
@@ -13492,7 +13602,7 @@
 	shared_focus = {
 		id = RAJ_rss_puppet_malaya
 		icon = army_marching_purple
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_exert_dominance_in_south_east
 		}
@@ -13509,7 +13619,7 @@
 	shared_focus = {
 		id = RAJ_rss_contest_communist_dominance
 		icon = GFX_hunt_down_the_communists
-		cost = 7.00
+		cost = 7.2
 		available = {
 			OR = {
 				MYA = { is_puppet_of = RAJ }
@@ -13629,23 +13739,22 @@
 	shared_focus = {
 		id = RAJ_rss_southeast_conquest
 		icon = major_war
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_everything
 		}
 		x = 57
 		y = 27
 		completion_reward = {
-			army_experience = 110
-			add_manpower = 12000000
-			navy_experience = 200
+			army_experience = 100
+			navy_experience = 100
 		}
 	}
 
 	shared_focus = {
 		id = RAJ_rss_khmer_lands
 		icon = CMB_attack
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_the_burmese
 		}
@@ -13662,7 +13771,7 @@
 	shared_focus = {
 		id = RAJ_rss_thailand
 		icon = SIA_attack
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_the_burmese
 		}
@@ -13697,7 +13806,7 @@
 	shared_focus = {
 		id = RAJ_rss_install_hindu_values
 		icon = buddha
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_consolidate
 		}
@@ -13726,20 +13835,23 @@
 			owns_state = 954
 		}
 		icon = housing
-		cost = 16
+		cost = 16.4
 		prerequisite = {
 			focus = RAJ_rss_consolidate
 		}
 		x = 53
 		y = 27
 		completion_reward = {
-			422 = {
-				add_core_of = RAJ
-				add_manpower = 2000000
+			423 = {
+				add_manpower = -1500000
 			}
 			954 = {
 				add_core_of = RAJ
-				add_manpower = 100000000
+				add_manpower = 500000
+			}
+			422 = {
+				add_core_of = RAJ
+				add_manpower = 1000000
 			}
 		}
 	}
@@ -13747,7 +13859,7 @@
 	shared_focus = {
 		id = RAJ_rss_forced_assimilation
 		icon = puppet
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_rss_settle_sri_lanka
 		}
@@ -13757,7 +13869,7 @@
 		x = 52
 		y = 28
 		completion_reward = {
-			add_manpower = 500000
+			add_manpower = 25000
 			add_popularity = {
 				ideology = nationalist
 				popularity = 0.02
@@ -13768,7 +13880,7 @@
 	shared_focus = {
 		id = RAJ_rss_develop_sri_lanka
 		icon = factory_build
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_rss_settle_sri_lanka
 		}
@@ -13827,7 +13939,7 @@
 	shared_focus = {
 		id = RAJ_mil_our_words_are_backed_with_nuclear_weapons
 		icon = RAJ_our_words_are_backed_with_nuclear_weapons
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mil_defense_of_india
 		}
@@ -13841,7 +13953,7 @@
 	shared_focus = {
 		id = RAJ_mil_infantry_focus
 		icon = commonwealth_infantry
-		cost = 4
+		cost = 5
 		prerequisite = {
 			focus = RAJ_mil_own_equipment
 			focus = RAJ_mil_soviet_equipment
@@ -13858,8 +13970,8 @@
 
 	shared_focus = {
 		id = RAJ_mil_infantry_weapons
-		icon = small_arms
-		cost = 4
+		icon = small_arms_east
+		cost = 5
 		prerequisite = {
 			focus = RAJ_mil_infantry_focus
 		}
@@ -13877,7 +13989,7 @@
 	shared_focus = {
 		id = RAJ_mil_infantry_support
 		icon = artillery
-		cost = 7
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mil_infantry_focus
 		}
@@ -13895,7 +14007,7 @@
 	shared_focus = {
 		id = RAJ_mil_tanks
 		icon = tanks
-		cost = 7.00
+		cost = 7.2
 		prerequisite = {
 			focus = RAJ_mil_mechanized_focus
 		}

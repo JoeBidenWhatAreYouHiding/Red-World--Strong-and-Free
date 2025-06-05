@@ -26,6 +26,20 @@ focus_tree = {
         completion_reward = {
             add_political_power = 100
             hidden_effect = {
+                remove_ideas = JAS_democratic_unity
+                remove_ideas = JAS_removing_the_infiltrators
+                remove_ideas = JAS_jasmine_unity
+                remove_ideas = JAS_jasmine_unity2
+                remove_ideas = JAS_tribal_knowledge
+                remove_ideas = JAS_tribal_knowledge_lar
+                remove_ideas = JAS_operation_southern_coast
+                remove_ideas = JAS_popular_revolution
+                remove_ideas = JAS_organized_militias
+                remove_ideas = JAS_guided_by_the_truth
+            }
+            add_ideas = civilian_economy
+            add_ideas = volunteer_only
+            hidden_effect = {
                 add_state_core = 293
                 add_state_core = 977
                 add_state_core = 976
@@ -203,7 +217,7 @@ focus_tree = {
     focus = {
         id = JAS_elections
         ai_will_do = { factor = 1 }
-        icon = democracy
+        icon = GFX_goal_elections
         cost = 10
         prerequisite = {
             focus = JAS_peace
@@ -1243,6 +1257,14 @@ focus_tree = {
 				bonus = 0.50
 				uses = 1
 				category = light_fighter
+			}
+            add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.5
+			}
+            add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
 			}
         }
     }
@@ -2783,168 +2805,457 @@ focus_tree = {
     }
 	#civil war
 	focus = {
-        id = JAS_day_of_rage
+        id = JAS_the_day_of_rage
         ai_will_do = { factor = 1 }
         icon = GFX_the_days_of_rage
         cost = 0
         available = {
             has_war = yes
         }
-        x = -7
+        bypass_if_unavailable = yes
+        x = -10
         y = 0
         relative_position_id = JAS_blooms
         completion_reward = {
             add_manpower = 10000
             add_ideas = JAS_freedom_fight
             country_event = { id = jasmin.1 }
+            add_ideas = war_economy
         }
     }
     focus = {
-        id = JAS_council
+        id = JAS_last_chance_for_democracy
         ai_will_do = { factor = 1 }
-        icon = GFX_YEM_the_jasmin_council
-        cost = 1
+        icon = democracy
+        cost = 3
         prerequisite = {
-            focus =  JAS_day_of_rage
+            focus =  JAS_the_day_of_rage
         }
         available = {
             has_war = yes
         }
+        bypass_if_unavailable = yes
         x = 0
         y = 1
-        relative_position_id = JAS_day_of_rage
+        relative_position_id = JAS_the_day_of_rage
         completion_reward = {
             add_political_power = 100
-            add_stability = 0.10
-            add_war_support = 0.10
+            add_stability = 0.07
+            add_war_support = 0.04
             country_event = { id = jasmin.2 }
         }
     }
     focus = {
-        id = JAS_militias
+        id = JAS_turn_to_the_yemeni_national_front
         ai_will_do = { factor = 1 }
-        icon = military_drill
-        cost = 1
+        icon = GFX_yemeni_national_front
+        cost = 3
         prerequisite = {
-            focus =  JAS_council
+            focus =  JAS_last_chance_for_democracy
         }
         available = {
             has_war = yes
         }
-        x = -1
+        bypass_if_unavailable = yes
+        x = -2
         y = 1
-        relative_position_id = JAS_council
+        relative_position_id = JAS_last_chance_for_democracy
         completion_reward = {
-            add_ideas = JAS_organized_militias 
-            hidden_effect = {
-               979 = {
-                    create_unit = {
-                        division = "name = \"Aden Guard\" division_template = \"Democratic Guard\" start_experience_factor = 0.5 start_equipment_factor = 0.6"
-                        owner = JAS
-                    }
-                    create_unit = {
-                        division = "name = \"Aden Guard\" division_template = \"Democratic Guard\" start_experience_factor = 0.5  start_equipment_factor = 0.6"
-                        owner = JAS
-                    }
-                    create_unit = {
-                        division = "name = \"Aden Guard\" division_template = \"Democratic Guard\" start_experience_factor = 0.5 start_equipment_factor = 0.6"
-                        owner = JAS
-                    }
-                }
+            add_popularity = {
+                ideology = new_democrat
+                popularity = 0.03
             }
-            custom_effect_tooltip = jas_divisions
+            add_ideas = JAS_democratic_unity
         }
     }
     focus = {
-        id = JAS_guns
+        id = JAS_motivate_the_workers
         ai_will_do = { factor = 1 }
-        icon = guns_blue
-        cost = 2
+        icon = industry_paper
+        cost = 3
         prerequisite = {
-            focus =  JAS_council
+            focus =  JAS_turn_to_the_yemeni_national_front
         }
         available = {
             has_war = yes
         }
-        x = 1
+        bypass_if_unavailable = yes
+        x = -1
         y = 1
-        relative_position_id = JAS_council
+        relative_position_id = JAS_turn_to_the_yemeni_national_front
         completion_reward = {
             add_offsite_building = {
-                type = arms_factory level = 1
+                type = arms_factory
+                level = 2
             }
+        }
+    }
+    focus = {
+        id = JAS_counter_ysp_infiltration
+        ai_will_do = { factor = 1 }
+        icon = arab_insurgent_focus
+        cost = 5
+        prerequisite = {
+            focus =  JAS_motivate_the_workers
+        }
+        available = {
+            has_war = yes
+            country_exists = PDY
+        }
+        bypass_if_unavailable = yes
+        x = -2
+        y = 1
+        relative_position_id = JAS_motivate_the_workers
+        completion_reward = {
+            add_stability = 0.05
+            add_popularity = {
+                ideology = communist
+                popularity = -0.05
+            }
+            add_timed_idea = {
+                idea = JAS_removing_the_infiltrators
+                days = 100
+            }
+        }
+    }
+    focus = {
+        id = JAS_the_protector_of_the_masses
+        ai_will_do = { factor = 1 }
+        icon = GFX_freedom_focus
+        cost = 5
+        prerequisite = {
+            focus =  JAS_motivate_the_workers
+        }
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        x = 0
+        y = 1
+        relative_position_id = JAS_motivate_the_workers
+        completion_reward = {
+            create_intelligence_agency = {
+                name = "National Security Bureau"
+                icon = GFX_intelligence_agency_logo_generic_1
+            }
+            add_war_support = 0.03
+        }
+    }
+    focus = {
+        id = JAS_utilize_the_national_coalition
+        ai_will_do = { factor = 1 }
+        icon = GFX_national_coalition
+        cost = 5
+        prerequisite = {
+            focus =  JAS_last_chance_for_democracy
+        }
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        x = 0
+        y = 1
+        relative_position_id = JAS_last_chance_for_democracy
+        completion_reward = {
+            add_popularity = {
+                ideology = centrist
+                popularity = 0.05
+            }
+            add_offsite_building = {
+                type = arms_factory
+                level = 1
+            }
+            add_offsite_building = {
+                type = industrial_complex
+                level = 2
+            }
+        }
+    }
+    focus = {
+        id = JAS_alliance_with_friendly_tribes
+        ai_will_do = { factor = 1 }
+        icon = JAS_tribal_alliance
+        cost = 5
+        prerequisite = {
+            focus =  JAS_utilize_the_national_coalition
+        }
+        mutually_exclusive = {
+            focus = JAS_reach_out_to_al_islah_reformists
+        }
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        x = -1
+        y = 1
+        relative_position_id = JAS_utilize_the_national_coalition
+        completion_reward = {
+            division_template = {
+                name = "Tribal Division"
+                regiments = {
+                    militia = { x = 0 y = 0 }
+                    militia = { x = 0 y = 1 }
+                    militia = { x = 0 y = 2 }
+                    militia = { x = 1 y = 0 }
+                    militia = { x = 1 y = 1 }
+                }
+            }
+            capital_scope = {
+                create_unit = {
+                    division = "name = \"1st Tibal Division\" division_template = \"Tribal Division\" start_experience_factor = 2 start_equipment_factor = 1"
+                    owner = JAS
+                    allow_spawning_on_enemy_provs = yes
+                }
+                create_unit = {
+                    division = "name = \"2nd Tribal Division\" division_template = \"Tribal Division\" start_experience_factor = 2  start_equipment_factor = 1"
+                    owner = JAS
+                    allow_spawning_on_enemy_provs = yes
+                }
+                create_unit = {
+                    division = "name = \"3rd Tibal Division\" division_template = \"Tribal Division\" start_experience_factor = 2 start_equipment_factor = 1"
+                    owner = JAS
+                    allow_spawning_on_enemy_provs = yes
+                }
+                create_unit = {
+                    division = "name = \"4th Tribal Division\" division_template = \"Tribal Division\" start_experience_factor = 2  start_equipment_factor = 1"
+                    owner = JAS
+                    allow_spawning_on_enemy_provs = yes
+                }
+            }
+        }
+    }
+    focus = {
+        id = JAS_utilize_tribal_knowledge
+        ai_will_do = { factor = 1 }
+        icon = tribal_dominance
+        cost = 3
+        prerequisite = {
+            focus =  JAS_alliance_with_friendly_tribes
+        }
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        x = 0
+        y = 1
+        relative_position_id = JAS_alliance_with_friendly_tribes
+        completion_reward = {
+            if = {
+                limit = {
+                    has_dlc = "La Resistance"
+                }
+                add_ideas = JAS_tribal_knowledge_lar
+            }
+            else = {
+                add_ideas = JAS_tribal_knowledge
+            }
+        }
+    }
+    focus = {
+        id = JAS_reach_out_to_al_islah_reformists
+        ai_will_do = { factor = 1 }
+        icon = GFX_pardon_former_reformists
+        cost = 3
+        prerequisite = {
+            focus =  JAS_utilize_the_national_coalition
+        }
+        mutually_exclusive = {
+            focus = JAS_alliance_with_friendly_tribes
+        }
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        x = 1
+        y = 1
+        relative_position_id = JAS_utilize_the_national_coalition
+        completion_reward = {
+            add_popularity = {
+                ideology = national_conservative
+                popularity = 0.1
+            }
+            swap_ideas = {
+                remove_idea = JAS_jasmine_unity
+                add_idea = JAS_jasmine_unity2
+            }
+        }
+    }
+    focus = {
+        id = JAS_employ_operation_southern_coast
+        ai_will_do = { factor = 1 }
+        icon = desert_sandbags_focus
+        cost = 5
+        prerequisite = {
+            focus =  JAS_reach_out_to_al_islah_reformists
+        }
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        x = 0
+        y = 1
+        relative_position_id = JAS_reach_out_to_al_islah_reformists
+        completion_reward = {
+            979 = {
+                add_building_construction = {
+                    type = bunker
+                    level = 2
+                    instant_build = yes
+                    province = 13630
+                }
+            }
+            add_ideas = JAS_operation_southern_coast
+        }
+    }
+    focus = {
+        id = JAS_embrace_the_popular_revolution
+        ai_will_do = { factor = 1 }
+        icon = GFX_popular_revolution
+        cost = 3
+        prerequisite = {
+            focus =  JAS_last_chance_for_democracy
+        }
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        x = 2
+        y = 1
+        relative_position_id = JAS_last_chance_for_democracy
+        completion_reward = {
+            add_popularity = {
+                ideology = liberal
+                popularity = 0.05
+            }
+            add_ideas = JAS_popular_revolution
+        }
+    }
+    focus = {
+        id = JAS_organize_the_jasmine_militia
+        ai_will_do = { factor = 1 }
+        icon = JAS_militia
+        cost = 3
+        prerequisite = {
+            focus =  JAS_embrace_the_popular_revolution
+        }
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        x = 1
+        y = 1
+        relative_position_id = JAS_embrace_the_popular_revolution
+        completion_reward = {
+            add_ideas = JAS_organized_militias
+        }
+    }
+    focus = {
+        id = JAS_raid_the_aden_stockpiles
+        ai_will_do = { factor = 1 }
+        icon = aden_stockpile_focus
+        cost = 5
+        prerequisite = {
+            focus =  JAS_organize_the_jasmine_militia
+        }
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        x = 0
+        y = 1
+        relative_position_id = JAS_organize_the_jasmine_militia
+        completion_reward = {
             add_equipment_to_stockpile = {
                 type = infantry_equipment
                 amount = 2000
-            } 
+            }
             add_equipment_to_stockpile = {
                 type = support_equipment
                 amount = 200
-            } 
+            }
             add_equipment_to_stockpile = {
                 type = artillery_equipment
-                amount = 75
-            } 
+                amount = 150
+            }
+            add_offsite_building = {
+                type = arms_factory
+                level = 1
+            }
         }
     }
     focus = {
-        id = JAS_tribes_ally
+        id = JAS_request_international_support
         ai_will_do = { factor = 1 }
-        icon = red_hands_shaking
-        cost = 1
+        icon = canadian_armored_car_iranian_jet_focus
+        cost = 5
         prerequisite = {
-            focus = JAS_militias
+            focus = JAS_the_protector_of_the_masses
+        }
+        prerequisite = {
+            focus = JAS_utilize_tribal_knowledge
+            focus = JAS_employ_operation_southern_coast
+        }
+        prerequisite = {
+            focus =  JAS_raid_the_aden_stockpiles
         }
         available = {
             has_war = yes
         }
-        x = 0
+        bypass_if_unavailable = yes
+        x = 1
         y = 1
-        relative_position_id = JAS_militias
+        relative_position_id = JAS_utilize_tribal_knowledge
         completion_reward = {
-            add_ideas = JAS_tribes
+            division_template = {
+                name = "International Brigade"
+                regiments = {
+                    infantry = { x = 0 y = 0 }
+                    infantry = { x = 0 y = 1 }
+                    infantry = { x = 0 y = 2 }
+                    infantry = { x = 1 y = 0 }
+                    infantry = { x = 1 y = 1 }
+                }
+				support = {
+					artillery = { x = 0 y = 0 }
+				}
+            }
+            capital_scope = {
+                create_unit = {
+                    division = "name = \"1st International Brigade\" division_template = \"International Brigade\" start_experience_factor = 1 start_equipment_factor = 1"
+                    owner = JAS
+                    allow_spawning_on_enemy_provs = yes
+                }
+                create_unit = {
+                    division = "name = \"2nd International Brigade\" division_template = \"International Brigade\" start_experience_factor = 1  start_equipment_factor = 1"
+                    owner = JAS
+                    allow_spawning_on_enemy_provs = yes
+                }
+            }
+            country_event = jasmin.112
         }
     }
     focus = {
-        id = JAS_seek_support
+        id = JAS_truth_of_the_gpc
         ai_will_do = { factor = 1 }
-        icon = alliance
-        cost = 2
+        icon = GFX_total_gpc_control
+        cost = 5
         prerequisite = {
-            focus = JAS_guns
+            focus =  JAS_organize_the_jasmine_militia
         }
         available = {
             has_war = yes
+            country_exists = YAR
         }
-        x = 0
+        bypass_if_unavailable = yes
+        x = 2
         y = 1
-        relative_position_id = JAS_guns
-        completion_reward = {
-            country_event = { id = jasmin.3 }
-        }
-    }
-    focus = {
-        id = JAS_push_for_dignity
-        ai_will_do = { factor = 1 }
-        icon = military_salute
-        cost = 1
-        prerequisite = {
-            focus = JAS_seek_support
-        }
-        prerequisite = {
-            focus = JAS_tribes_ally
-        }
-        available = {
-            has_war = yes
-        }
-        x = -1
-        y = 1
-        relative_position_id = JAS_seek_support
+        relative_position_id = JAS_organize_the_jasmine_militia
         completion_reward = {
             add_timed_idea = {
-                idea = JAS_final_push 
-                days = 210
+                idea = JAS_guided_by_the_truth
+                days = 90
             }
+            add_political_power = -50
         }
     }
 }

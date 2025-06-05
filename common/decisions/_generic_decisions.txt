@@ -30,6 +30,36 @@ noughts = {
 
 political_actions = {
 
+	leave_ita_trade_league = {
+
+    	icon = GFX_decision_eng_trade_unions_support
+
+    	visible = {
+    		is_in_faction_with = ITA
+			or = { tag = VNT
+				   tag = GEN
+				   tag = PIS
+				   tag = AMA
+				}
+		}
+
+		available = {
+		ITA = { has_completed_focus = ITA_colonise_the_coasts }
+        }
+
+        modifier = { political_power_gain = -0.10 }
+
+		remove_effect = { leave_faction = yes }
+	
+		days_remove = 15
+		days_re_enable = -1
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+		}
+    }
+
 	arrest_pacifists = {
 
     	icon = GFX_decision_generic_arrest
@@ -46,8 +76,8 @@ political_actions = {
 	
 		modifier = {
 			political_power_cost = 0.1
-			war_support_weekly = 0.008
-			stability_weekly = -0.007
+			war_support_weekly = 0.006
+			stability_weekly = -0.006
 		}
 	
 		days_remove = 50
@@ -144,6 +174,7 @@ political_actions = {
 				add = 1
 				has_stability < 0.4
 				has_war_support > 0.8
+				has_political_power > 300
 			}
 		}
 	}
@@ -153,7 +184,7 @@ political_actions = {
 		icon = eng_install_government
 	
 		modifier = {
-			political_power_gain = -0.25
+			political_power_gain = -0.5
 		}
 
 		remove_effect = {
@@ -165,7 +196,11 @@ political_actions = {
 		cost = 150
 	
 		ai_will_do = {
-			factor = 1
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 300
+			}
 		}
 	}
 
@@ -203,7 +238,11 @@ political_actions = {
 		cost = 100
 	
 		ai_will_do = {
-			factor = 1
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 300
+			}
 		}
 	}
 	
@@ -234,7 +273,11 @@ political_actions = {
 		cost = 100
 	
 		ai_will_do = {
-			factor = 1
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 300
+			}
 		}
 	}
 
@@ -274,325 +317,325 @@ political_actions = {
 			modifier = {
 				add = 1
 				has_stability < 0.6
-				has_political_power > 155 #Spend on other things first
+				has_political_power > 300 #Spend on other things first
 			}
 		}
 	}
 
 	support_conservatism = {
-	icon = GFX_decision_generic_civil_support
+		icon = GFX_decision_generic_civil_support
 	
-	available = {
+		available = {
 			national_conservative > 0.1
-	}
-
-	visible = {
-		has_completed_focus = generic_national_conservative_focus
-		is_ai = no
-	}
-
-	fire_only_once = no
-
-	modifier = {
-			national_conservative_drift = 0.04
 		}
 
-	days_remove = 125
-	days_re_enable = 200
+		visible = {
+			has_completed_focus = generic_national_conservative_focus
+			is_ai = no
+		}
 
-	cost = 100
+		fire_only_once = no
 
-	complete_effect = {
+		modifier = {
+			national_conservative_drift = 0.05
+		}
+
+		days_remove = 125
+		days_re_enable = 200
+
+		cost = 100
+
+		complete_effect = {
 
 		}
 
 	}
 
 	support_centrism = {
-	icon = GFX_decision_generic_civil_support
+		icon = GFX_decision_generic_civil_support
 	
-	available = {
+		available = {
 			centrist > 0.1
-	}
-
-	visible = {
-		has_completed_focus = generic_centrist_focus
-		is_ai = no
-	}
-
-	fire_only_once = no
-
-	modifier = {
-			centrist_drift = 0.04
 		}
 
-	days_remove = 125
-	days_re_enable = 200
+		visible = {
+			has_completed_focus = generic_centrist_focus
+			is_ai = no
+		}
 
-	cost = 100
+		fire_only_once = no
 
-	complete_effect = {
+		modifier = {
+			centrist_drift = 0.05
+		}
+
+		days_remove = 125
+		days_re_enable = 200
+
+		cost = 100
+
+		complete_effect = {
 
 		}
 
 	}
 
 	support_liberalism = {
-	icon = GFX_decision_generic_civil_support
+		icon = GFX_decision_generic_civil_support
 	
-	available = {
+		available = {
 			liberal > 0.1
-	}
-
-	visible = {
-		has_completed_focus = generic_liberal_focus
-		is_ai = no
-	}
-
-	fire_only_once = no
-
-	modifier = {
-			liberal_drift = 0.04
 		}
 
-	days_remove = 125
-	days_re_enable = 200
+		visible = {
+			has_completed_focus = generic_liberal_focus
+			is_ai = no
+		}
 
-	cost = 100
+		fire_only_once = no
 
-	complete_effect = {
+		modifier = {
+			liberal_drift = 0.05
+		}
+
+		days_remove = 125
+		days_re_enable = 200
+
+		cost = 100
+
+		complete_effect = {
 
 		}
 
 	}
 
 	support_new_democracy = {
-	icon = GFX_decision_generic_civil_support
+		icon = GFX_decision_generic_civil_support
 	
-	available = {
+		available = {
 			new_democrat > 0.1
-	}
-
-	visible = {
-		has_completed_focus = generic_new_democrat_focus
-		is_ai = no
-	}
-
-	fire_only_once = no
-
-	modifier = {
-			new_democrat_drift = 0.04
 		}
 
-	days_remove = 125
-	days_re_enable = 200
+		visible = {
+			has_completed_focus = generic_new_democrat_focus
+			is_ai = no
+		}
 
-	cost = 100
+		fire_only_once = no
 
-	complete_effect = {
+		modifier = {
+			new_democrat_drift = 0.05
+		}
+
+		days_remove = 125
+		days_re_enable = 200
+
+		cost = 100
+
+		complete_effect = {
 
 		}
 
 	}
 
 	support_moderate_socialism = {
-	icon = GFX_decision_generic_civil_support
+		icon = GFX_decision_generic_civil_support
 	
-	available = {
+		available = {
 			moderate_socialist > 0.1
-	}
-
-	visible = {
-		has_completed_focus = generic_moderate_socialist_focus
-		is_ai = no
-	}
-
-	fire_only_once = no
-
-	modifier = {
-			moderate_socialist_drift = 0.04
 		}
 
-	days_remove = 125
-	days_re_enable = 200
+		visible = {
+			has_completed_focus = generic_moderate_socialist_focus
+			is_ai = no
+		}
 
-	cost = 100
+		fire_only_once = no
 
-	complete_effect = {
+		modifier = {
+			moderate_socialist_drift = 0.05
+		}
+
+		days_remove = 125
+		days_re_enable = 200
+
+		cost = 100
+
+		complete_effect = {
 
 		}
 
 	}
 
 	support_nationalism = {
-	icon = GFX_decision_generic_nationalism
+		icon = GFX_decision_generic_nationalism
 	
-	available = {
+		available = {
 			nationalist > 0.1
-	}
-
-	visible = {
-		has_completed_focus = generic_promote_ultranationalism
-		is_ai = no
-	}
-
-	fire_only_once = no
-
-	modifier = {
-			nationalist_drift = 0.04
 		}
 
-	days_remove = 125
-	days_re_enable = 200
+		visible = {
+			has_completed_focus = generic_promote_ultranationalism
+			is_ai = no
+		}
 
-	cost = 100
+		fire_only_once = no
 
-	complete_effect = {
+		modifier = {
+			nationalist_drift = 0.05
+		}
+
+		days_remove = 125
+		days_re_enable = 200
+
+		cost = 100
+
+		complete_effect = {
 
 		}
 
 	}
 
 	support_fascism = {
-	icon = GFX_decision_ger_reichskommissariats
+		icon = GFX_decision_ger_reichskommissariats
 	
-	available = {
+		available = {
 			fascist > 0.1
-	}
-
-	visible = {
-		has_completed_focus = generic_the_fallen_eagle
-		is_ai = no
-	}
-
-	fire_only_once = no
-
-	modifier = {
-			fascist_drift = 0.04
 		}
 
-	days_remove = 125
-	days_re_enable = 200
+		visible = {
+			has_completed_focus = generic_the_fallen_eagle
+			is_ai = no
+		}
 
-	cost = 100
+		fire_only_once = no
 
-	complete_effect = {
+		modifier = {
+			fascist_drift = 0.05
+		}
+
+		days_remove = 125
+		days_re_enable = 200
+
+		cost = 100
+
+		complete_effect = {
 
 		}
 
 	}
 
 	support_monarchism = {
-	icon = GFX_decision_generic_monarchy
+		icon = GFX_decision_generic_monarchy
 	
-	available = {
+		available = {
 			monarchist > 0.1
-	}
-
-	visible = {
-		has_completed_focus = generic_stronger_with_the_crown
-		is_ai = no
-	}
-
-	fire_only_once = no
-
-	modifier = {
-			monarchist_drift = 0.04
 		}
 
-	days_remove = 125
-	days_re_enable = 200
+		visible = {
+			has_completed_focus = generic_stronger_with_the_crown
+			is_ai = no
+		}
 
-	cost = 100
+		fire_only_once = no
 
-	complete_effect = {
+		modifier = {
+			monarchist_drift = 0.05
+		}
+
+		days_remove = 125
+		days_re_enable = 200
+
+		cost = 100
+
+		complete_effect = {
 
 		}
 
 	}
 
 	support_revolutionary_socialism = {
-	icon = GFX_decision_SOV_the_workers_dictatorship
+		icon = GFX_decision_SOV_the_workers_dictatorship
 	
-	available = {
+		available = {
 			revolutionary_socialist > 0.1
-	}
-
-	visible = {
-		has_completed_focus = generic_revolution
-		is_ai = no
-	}
-
-	fire_only_once = no
-
-	modifier = {
-			revolutionary_socialist_drift = 0.04
 		}
 
-	days_remove = 125
-	days_re_enable = 200
+		visible = {
+			has_completed_focus = generic_revolution
+			is_ai = no
+		}
 
-	cost = 100
+		fire_only_once = no
 
-	complete_effect = {
+		modifier = {
+			revolutionary_socialist_drift = 0.05
+		}
+
+		days_remove = 125
+		days_re_enable = 200
+
+		cost = 100
+
+		complete_effect = {
 
 		}
 
 	}
 
 	support_communism = {
-	icon = GFX_decision_SOV_secure_the_administration
+		icon = GFX_decision_SOV_secure_the_administration
 	
-	available = {
+		available = {
 			communist > 0.1
-	}
-
-	visible = {
-		has_completed_focus = generic_old_bolsheviks
-		is_ai = no
-	}
-
-	fire_only_once = no
-
-	modifier = {
-			communist_drift = 0.04
 		}
 
-	days_remove = 125
-	days_re_enable = 200
+		visible = {
+			has_completed_focus = generic_old_bolsheviks
+			is_ai = no
+		}
 
-	cost = 100
+		fire_only_once = no
 
-	complete_effect = {
+		modifier = {
+			communist_drift = 0.05
+		}
+
+		days_remove = 125
+		days_re_enable = 200
+
+		cost = 100
+
+		complete_effect = {
 
 		}
 
 	}
 
 	support_national_bolshevism = {
-	icon = GFX_decision_ger_reichskommissariats
+		icon = GFX_decision_ger_reichskommissariats
 	
-	available = {
+		available = {
 			national_bolshevik > 0.1
-	}
-
-	visible = {
-		has_completed_focus = generic_new_bolsheviks
-		is_ai = no
-	}
-
-	fire_only_once = no
-
-	modifier = {
-			national_bolshevik_drift = 0.04
 		}
 
-	days_remove = 125
-	days_re_enable = 200
+		visible = {
+			has_completed_focus = generic_new_bolsheviks
+			is_ai = no
+		}
 
-	cost = 100
+		fire_only_once = no
 
-	complete_effect = {
+		modifier = {
+			national_bolshevik_drift = 0.05
+		}
+
+		days_remove = 125
+		days_re_enable = 200
+
+		cost = 100
+
+		complete_effect = {
 
 		}
 
@@ -692,11 +735,15 @@ economy_decisions = {
 		}
 	
 		days_remove = 150
-		days_re_enable = 365
+		days_re_enable = 400
 		cost = 150
 	
 		ai_will_do = {
-			factor = 1
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 300
+			}
 		}
 	}
 
@@ -731,7 +778,11 @@ economy_decisions = {
 		cost = 150
 	
 		ai_will_do = {
-			factor = 1
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 300
+			}
 		}
 	}
 
@@ -765,7 +816,11 @@ economy_decisions = {
 		cost = 200
 	
 		ai_will_do = {
-			factor = 1
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 300
+			}
 		}
 	}
 
@@ -832,6 +887,7 @@ economy_decisions = {
 			modifier = {
 				add = 1
 				has_stability > 0.74
+				has_political_power > 300
 			}
 		}
 
@@ -898,10 +954,11 @@ economy_decisions = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			factor = 0
 			modifier = {
 				factor = 10
 				any_owned_state = { free_building_slots = { building = industrial_complex size < 1 include_locked = no } }
+				has_political_power > 300
 			}
 		}
     }
@@ -1221,6 +1278,7 @@ military_of_peace_category = {
 		icon = GFX_decision_generic_military
 
 		available = {
+			command_power > 25
 			has_war = no
 		}
 
@@ -1235,6 +1293,10 @@ military_of_peace_category = {
 			has_war = yes
         }
 
+        complete_effect = {
+			add_command_power = -25
+        }
+
 		modifier = {
 			experience_gain_army = 0.1
 			war_support_weekly = 0.005
@@ -1243,11 +1305,15 @@ military_of_peace_category = {
 		}
 
 		days_remove = 50
-		days_re_enable = 150
-		cost = 120
+		days_re_enable = 425
+		cost = 125
 
 		ai_will_do = {
-			base = 1
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 300
+			}
 		}
 	}
 	
@@ -1256,6 +1322,7 @@ military_of_peace_category = {
 		icon = generic_air
 
 		available = {
+			command_power > 25
 			has_war = no
 			if = { limit = { has_dlc = "By Blood Alone" }
 			has_tech = iw_small_airframe
@@ -1301,6 +1368,10 @@ military_of_peace_category = {
 			has_war = yes
         }
 
+        complete_effect = {
+			add_command_power = -25
+        }
+
 		modifier = {
 			experience_gain_air = 0.1
 			war_support_weekly = 0.005
@@ -1309,11 +1380,15 @@ military_of_peace_category = {
 		}
 
 		days_remove = 50
-		days_re_enable = 150
+		days_re_enable = 425
 		cost = 125
 
 		ai_will_do = {
-			base = 1
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 300
+			}
 		}
 	}
 	
@@ -1337,7 +1412,11 @@ military_of_peace_category = {
 		cost = 250
 	
 		ai_will_do = {
-			factor = 1
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 300
+			}
 		}
 	}
 }
@@ -1369,7 +1448,7 @@ war_measures = {
 		}
 
 		days_remove = 50
-		days_re_enable = 250
+		days_re_enable = 400
 
 		cost = 150
 
@@ -1395,16 +1474,19 @@ war_measures = {
 			has_war = yes
 			has_stability < 0.5
 			has_war_support < 0.5
+			NOT = { has_country_flag = GEN_held_a_speech }
 		}
 
 		remove_trigger = {
         }
 		
-		fire_only_once = no
+		fire_only_once = yes
 
 		remove_effect = {
+			custom_effect_tooltip = only_taken_once_tt
 			add_stability = 0.05
 			add_war_support = 0.05
+			hidden_effect = { set_country_flag = GEN_held_a_speech }
 		}
 
 		days_remove = 2
@@ -1455,6 +1537,7 @@ war_measures = {
 			modifier = {
 				add = 1
 				has_stability > 0.8
+				has_political_power > 300
 			}
 		}
 	}
@@ -1495,6 +1578,7 @@ war_measures = {
 			modifier = {
 				add = 1
 				has_war_support > 0.7
+				has_political_power > 300
 			}
 		}
 	}
@@ -1538,6 +1622,7 @@ war_measures = {
 			modifier = {
 				add = 1
 				has_stability < 0.6
+				has_political_power > 300
 			}
 		}
 	}

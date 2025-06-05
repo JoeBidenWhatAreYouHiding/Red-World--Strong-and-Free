@@ -1,0 +1,9834 @@
+###########################
+# Basque Events
+###########################
+
+add_namespace = basque
+add_namespace = basfopo
+add_namespace = bsqelection
+
+#ETA infighting
+country_event = {
+	id = basque.1
+	title = basque.1.t
+	desc = basque.1.d
+	picture = BSQ_ETA_infighting
+	
+	trigger = {
+		original_tag = BSQ
+		has_war = no
+		is_puppet = no
+		has_government = revolutionary_socialist
+	}
+	
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.1.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 8 id = basque.2 }
+			}
+			retire_character = BSQ_Arnaldo_Otegi_sus
+			BSQ_Arnaldo_Otegi = {
+				add_country_leader_role = {
+					promote_leader = yes		
+					country_leader={
+						desc = "POLITICS_ARNALDO_OTEGI_DESC"
+						ideology=orthodox_leninist
+						expire="1.1.1.1"
+						id=-1
+					}
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = SPR
+				}
+				SPR = {
+					set_country_flag = SPR_basques_broke_off
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = SPN
+				}
+				SPN = {
+					set_country_flag = SPR_basques_broke_off
+				}
+			}
+		}
+		IF = {
+			limit = {
+				has_idea = idea_bsq_eta_military_control_hispanophones
+			}
+			swap_ideas = {
+				remove_idea = idea_bsq_eta_military_control_hispanophones
+				add_idea = idea_bsq_eta_military_control
+			}
+		}
+		IF = {
+			limit = {
+				has_idea = idea_bsq_eta_military_control_duty
+			}
+			swap_ideas = {
+				remove_idea = idea_bsq_eta_military_control_duty
+				add_idea = idea_bsq_eta_military_control
+			}
+		}
+	}
+}
+#PSOE breaks with ETA
+country_event = {
+	id = basque.2
+	title = basque.2.t
+	desc = basque.2.d
+	picture = BSQ_socdems_hate_ETA
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { 
+		name = basque.2.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 3 id = basque.3 }
+			}
+		}
+	}
+}
+#Basque Nationalist Party denounces socialism
+country_event = {
+	id = basque.3
+	title = basque.3.t
+	desc = basque.3.d
+	picture = BSQ_libs_hate_ETA
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { 
+		name = basque.3.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 5 id = basque.4 }
+			}
+		}
+		remove_ideas = {
+			idea_bsq_revolutionary_solidarity
+		}
+	}
+}
+#protestors call for elections
+country_event = {
+	id = basque.4
+	title = basque.4.t
+	desc = basque.4.d
+	picture = BSQ_protesters_want_elections
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { 
+		name = basque.4.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 3 id = basque.5 }
+			}
+		}
+	}
+}
+#unionists take to the streets
+country_event = {
+	id = basque.5
+	title = basque.5.t
+	desc = basque.5.d
+	picture = BSQ_spaniards_hate_ETA
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { 
+		name = basque.5.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 4 id = basque.6 }
+			}
+		}
+	}
+}
+#Jarrai clashes with anti-ETA protestors
+country_event = {
+	id = basque.6
+	title = basque.6.t
+	desc = basque.6.d
+	picture = BSQ_jarrai_street_fights
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #condemn the actions of jarrai
+		name = basque.6.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 2 id = basque.7 }
+				country_event = { days = 7 id = basque.9 }
+			}
+		}
+	}
+	option = { #just passionate youths defending their country
+		name = basque.6.o2
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 2 id = basque.8 }
+				country_event = { days = 7 id = basque.9 }
+			}
+		}
+	}
+}
+#Jarrai breaks with Otegi
+country_event = {
+	id = basque.7
+	title = basque.7.t
+	desc = basque.7.d
+	picture = BSQ_jarrai_hate_ETA
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { 
+		name = basque.7.o1
+		hidden_effect = {
+			set_country_flag = BSQ_jarrai_disloyal
+		}
+	}
+}
+#Jarrai remains loyal to Otegi
+country_event = {
+	id = basque.8
+	title = basque.8.t
+	desc = basque.8.d
+	picture = BSQ_ETA_loves_jarrai
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { 
+		name = basque.8.o1
+		hidden_effect = {
+			set_country_flag = BSQ_jarrai_loyal
+		}
+	}
+}
+#ETA hardliners criticize Otegi's inaction
+country_event = {
+	id = basque.9
+	title = basque.9.t
+	desc = basque.9.d
+	picture = BSQ_ETA_hates_Otegi
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { 
+		name = basque.9.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 3 id = basque.10 }
+			}
+		}
+	}
+}
+#Otegi's decision
+country_event = {
+	id = basque.10
+	title = basque.10.t
+	desc = basque.10.d
+	picture = BSQ_nation_demands_action
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #Otegi resigns
+		name = basque.10.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 1 id = basque.11 }
+			}
+		}
+	}
+	option = { #Otegi stays
+		name = basque.10.o2
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 1 id = basque.25 }
+			}
+		}
+	}
+	option = { #Otegi calls for elections
+		name = basque.10.o3
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 1 id = basque.45 }
+			}
+		}
+	}
+}
+#Eta communists take power
+country_event = {
+	id = basque.11
+	title = basque.11.t
+	desc = basque.11.d
+	picture = BSQ_eta_pm_in_control
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.11.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 3 id = basque.12 }
+			}
+		}
+		set_politics = {
+			ruling_party = communist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = communist
+			popularity = 0.10
+		}
+	}
+}
+#Jarrai and unionists continue to clash
+country_event = {
+	id = basque.12
+	title = basque.12.t
+	desc = basque.12.d
+	picture = BSQ_jarrai_kills_some_people
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #support Jarrai
+		name = basque.12.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 3 id = basque.13 }
+			}
+		}
+	}
+	option = { #subvert Jarrai
+		name = basque.12.o2
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 3 id = basque.20 }
+			}
+		}
+	}
+}
+#street violence escalates
+country_event = {
+	id = basque.13
+	title = basque.13.t
+	desc = basque.13.d
+	picture = BSQ_street_violence_escalates
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.13.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 5 id = basque.14 }
+			}
+		}
+	}
+}
+#ETA military represses unionist demonstrations
+country_event = {
+	id = basque.14
+	title = basque.14.t
+	desc = basque.14.d
+	picture = BSQ_military_quells_violence
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.14.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 3 id = basque.15 }
+			}
+		}
+	}
+}
+#PSOE condemn ETA military actions
+country_event = {
+	id = basque.15
+	title = basque.15.t
+	desc = basque.15.d
+	picture = BSQ_socdems_hate_ETA_part_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.15.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 5 id = basque.16 }
+			}
+		}
+	}
+}
+#ETA conducts raids on PSOE
+country_event = {
+	id = basque.16
+	title = basque.16.t
+	desc = basque.16.d
+	picture = BSQ_ETA_hates_socdems
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.16.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 5 id = basque.17 }
+			}
+		}
+	}
+}
+#PSOE launches counter-strike on halls of government
+country_event = {
+	id = basque.17
+	title = basque.17.t
+	desc = basque.17.d
+	picture = BSQ_socdem_counterattack
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #PSOE is repulsed
+		name = basque.17.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 5 id = basque.18 }
+			}
+		}
+	}
+	option = { #PSOE is not repulsed
+		name = basque.17.o2
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 5 id = basque.19 }
+			}
+		}
+	}
+}
+#ETA retains power
+country_event = {
+	id = basque.18
+	title = basque.18.t
+	desc = basque.18.d
+	picture = BSQ_socdem_defeated
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.18.o1
+		#complete_national_focus = BSQ_for_the_preservation_of_homeland_and_liberty
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_the_people
+		complete_national_focus = generic_old_bolsheviks
+		set_country_flag = BSQ_eta_is_sticking_around
+		set_country_flag = BSQ_power_struggle_over
+		set_country_flag = BSQ_commie_eta_is_in_power
+	}
+}
+#PSOE overthrows ETA
+country_event = {
+	id = basque.19
+	title = basque.19.t
+	desc = basque.19.d
+	picture = BSQ_socdems_beat_eta
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.19.o1
+		IF = {
+			limit = {
+				country_exists = SPR
+			}
+			SPR = {
+				set_country_flag = SPR_ETA_got_overthrown
+			}
+		}
+		IF = {
+			limit = {
+				country_exists = SPN
+			}
+			SPN = {
+				set_country_flag = SPR_ETA_got_overthrown
+			}
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.15
+		}
+		hidden_effect = {
+#			country_event = {
+#				id = bsqelection.9
+#				days = 1461
+#			}
+		}
+		#complete_national_focus = BSQ_socialist_workers_party_of_euskadi
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_freedom
+		complete_national_focus = generic_new_democrat_focus
+		set_country_flag = BSQ_the_pse_ee_won_the_election
+		set_country_flag = BSQ_power_struggle_over
+		remove_ideas = {
+			idea_bsq_eta_military_control
+			idea_bsq_paramilitary_government
+		}
+		hidden_effect = {
+			retire_character = BSQ_Juan_Carlos_Ramos_general
+			retire_character = BSQ_Arnaldo_Otegi_sus_general
+			retire_character = BSQ_David_Pla_Marin
+			retire_character = BSQ_Arkaitz_Goikoetxea
+			retire_character = BSQ_Inaki_de_Juana_Chaos
+			retire_character = BSQ_Ines_del_rio_prada
+			retire_character = BSQ_Jurdan_Martitegi
+			retire_character = BSQ_Maria_Soledad_Iparraguirre
+			retire_character = BSQ_Miguel_Garikoitz_Aspiazu_Rubina
+		}
+	}
+}
+#sudden resignation of Jarrai figures
+country_event = {
+	id = basque.20
+	title = basque.20.t
+	desc = basque.20.d
+	picture = BSQ_jarrai_resignations
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.20.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 8 id = basque.21 }
+			}
+		}
+	}
+}
+#violence begins to subside
+country_event = {
+	id = basque.21
+	title = basque.21.t
+	desc = basque.21.d
+	picture = BSQ_violence_calms
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.21.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 4 id = basque.22 }
+			}
+		}
+	}
+}
+#anti ETA demonstrations continue
+country_event = {
+	id = basque.22
+	title = basque.22.t
+	desc = basque.22.d
+	picture = BSQ_anti_eta_protests_continue
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.22.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 6 id = basque.23 }
+			}
+		}
+	}
+}
+#ETA reaches out to PSOE
+country_event = {
+	id = basque.23
+	title = basque.23.t
+	desc = basque.23.d
+	picture = BSQ_eta_meets_with_socdems
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.23.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 8 id = basque.24 }
+			}
+		}
+	}
+}
+#ETA and PSOE announce renewed coalition
+country_event = {
+	id = basque.24
+	title = basque.24.t
+	desc = basque.24.d
+	picture = BSQ_eta_socdem_alliance
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.24.o1
+		hidden_effect = {
+			set_country_flag = BSQ_eta_worked_with_the_newdems
+			#set up elections through the "Guarantee Free and Fair Elections" focus
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.10
+		}
+		#complete_national_focus = BSQ_for_the_preservation_of_homeland_and_liberty
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_freedom
+		complete_national_focus = generic_moderate_socialist_focus
+		set_country_flag = BSQ_eta_is_sticking_around
+		set_country_flag = BSQ_power_struggle_over
+		set_country_flag = BSQ_modsoc_eta_is_in_power
+		remove_ideas = {
+			idea_bsq_paramilitary_government
+		}
+	}
+}
+#Otegi meets with other ETA leaders
+country_event = {
+	id = basque.25
+	title = basque.25.t
+	desc = basque.25.d
+	picture = BSQ_otegi_meets_with_allies
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.25.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 3 id = basque.26 }
+			}
+		}
+	}
+}
+#ETA forces deployed to maintain order
+country_event = {
+	id = basque.26
+	title = basque.26.t
+	desc = basque.26.d
+	picture = BSQ_eta_maintains_order
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.26.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 6 id = basque.27 }
+			}
+		}
+	}
+}
+#Otegi approaches the PSOE
+country_event = {
+	id = basque.27
+	title = basque.27.t
+	desc = basque.27.d
+	picture = BSQ_eta_meets_with_socdems
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.27.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 4 id = basque.28 }
+			}
+		}
+	}
+}
+#PSOE lends tentative support
+country_event = {
+	id = basque.28
+	title = basque.28.t
+	desc = basque.28.d
+	picture = BSQ_socdems_give_tentative_support
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.28.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 3 id = basque.29 }
+			}
+		}
+	}
+}
+#Civil Guard seen meeting with unionists
+country_event = {
+	id = basque.29
+	title = basque.29.t
+	desc = basque.29.d
+	picture = BSQ_cops_being_nazis
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.29.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 3 id = basque.30 }
+			}
+		}
+	}
+}
+#Otegi meets with Basque Nationalist Party
+country_event = {
+	id = basque.30
+	title = basque.30.t
+	desc = basque.30.d
+	picture = BSQ_eta_meets_with_libs
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #successful talks
+		name = basque.30.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 2 id = basque.31 }
+				country_event = { days = 9 id = basque.33 }
+			}
+		}
+	}
+	option = { #unsuccessful talks
+		name = basque.30.o2
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 2 id = basque.32 }
+				country_event = { days = 9 id = basque.33 }
+			}
+		}
+	}
+}
+#non-eta nationalists chill out
+country_event = {
+	id = basque.31
+	title = basque.31.t
+	desc = basque.31.d
+	picture = BSQ_libs_relax
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.31.o1
+		hidden_effect = {
+			BSQ = {
+		        set_country_flag = BSQ_successful_talks
+			}
+		}
+	}
+}
+#non-eta nationalists refuse to collaborate with socialists
+country_event = {
+	id = basque.32
+	title = basque.32.t
+	desc = basque.32.d
+	picture = BSQ_libs_still_hate_eta
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.32.o1
+		hidden_effect = {
+			BSQ = {
+		        set_country_flag = BSQ_unsuccessful_talks
+			}
+		}
+	}
+}
+#ETA troops wounded by well-armed unionists
+country_event = {
+	id = basque.33
+	title = basque.33.t
+	desc = basque.33.d
+	picture = BSQ_eta_guys_killed
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.33.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 3 id = basque.34 }
+			}
+		}
+	}
+}
+#Battle of Alde Zaharra
+country_event = {
+	id = basque.34
+	title = basque.34.t
+	desc = basque.34.d
+	picture = BSQ_battle_of_alde_zaharra
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #ETA victorious
+		name = basque.34.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 3 id = basque.35 }
+			}
+		}
+	}
+	option = { #shocking defeat
+		name = basque.34.o2
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 3 id = basque.41 }
+			}
+		}
+	}
+}
+#Unionists routed, spanish agents arrested
+country_event = {
+	id = basque.35
+	title = basque.35.t
+	desc = basque.35.d
+	picture = BSQ_eta_wins_the_battle
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.35.o1
+		trigger = {
+			has_country_flag = BSQ_unsuccessful_talks
+		}
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 5 id = basque.36 }
+			}
+		}
+	}
+	option = { 
+		name = basque.35.o1
+		trigger = {
+			has_country_flag = BSQ_successful_talks
+		}
+		#complete_national_focus = BSQ_for_the_preservation_of_homeland_and_liberty
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_the_people
+		complete_national_focus = generic_revolution
+		set_country_flag = BSQ_eta_is_sticking_around
+		set_country_flag = BSQ_power_struggle_over
+		set_country_flag = BSQ_revsoc_eta_is_in_power
+	}
+}
+#Non-eta nationalists demand concessions
+country_event = {
+	id = basque.36
+	title = basque.36.t
+	desc = basque.36.d
+	picture = BSQ_libs_want_concessions
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #agree
+		name = basque.36.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 4 id = basque.37 }
+			}
+		}
+	}
+	option = { #refuse
+		name = basque.36.o2
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 4 id = basque.40 }
+			}
+		}
+	}
+}
+#Otegi grants concessions, holds elections
+country_event = {
+	id = basque.37
+	title = basque.37.t
+	desc = basque.37.d
+	picture = BSQ_otegi_holds_elections
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #ETA retains support
+		name = basque.37.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { id = basque.38 }
+			}
+		}
+	}
+	option = { #Workers party
+		name = basque.37.o2
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.20
+		}
+		#complete_national_focus = BSQ_socialist_workers_party_of_euskadi
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_freedom
+		complete_national_focus = generic_new_democrat_focus
+		set_country_flag = BSQ_power_struggle_over
+		set_country_flag = BSQ_the_pse_ee_won_the_election
+		remove_ideas = {
+			idea_bsq_eta_military_control
+			idea_bsq_paramilitary_government
+		}
+		hidden_effect = {
+			retire_character = BSQ_Juan_Carlos_Ramos_general
+			retire_character = BSQ_Arnaldo_Otegi_sus_general
+			retire_character = BSQ_David_Pla_Marin
+			retire_character = BSQ_Arkaitz_Goikoetxea
+			retire_character = BSQ_Inaki_de_Juana_Chaos
+			retire_character = BSQ_Ines_del_rio_prada
+			retire_character = BSQ_Jurdan_Martitegi
+			retire_character = BSQ_Maria_Soledad_Iparraguirre
+			retire_character = BSQ_Miguel_Garikoitz_Aspiazu_Rubina
+#			country_event = {
+#				id = bsqelection.37
+#				days = 1461
+#			}
+#			country_event = {
+#				id = bsqelection.3
+#				days = 91
+#			}
+#			country_event = {
+#				id = bsqelection.5
+#				days = 118
+#			}
+		}
+	}
+	option = { #Basque Nationalist party
+		name = basque.37.o3
+		hidden_effect = {
+			BSQ = {
+		        country_event = { id = basque.39 }
+			}
+		}
+	}
+}
+#ETA wins elections
+country_event = {
+	id = basque.38
+	title = basque.38.t
+	desc = basque.38.d
+	picture = BSQ_eta_wins_elections
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #Otegi wins
+		name = basque.38.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.10
+		}
+		#complete_national_focus = BSQ_for_the_preservation_of_homeland_and_liberty
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_the_people
+		complete_national_focus = generic_revolution
+		set_country_flag = BSQ_eta_is_sticking_around
+		set_country_flag = BSQ_power_struggle_over
+		set_country_flag = BSQ_revsoc_eta_is_in_power
+	}
+	option = { #Madariaga wins
+		name = basque.38.o2
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.15
+		}
+		#complete_national_focus = BSQ_for_the_preservation_of_homeland_and_liberty
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_freedom
+		complete_national_focus = generic_moderate_socialist_focus
+		set_country_flag = BSQ_eta_is_sticking_around
+		set_country_flag = BSQ_power_struggle_over
+		set_country_flag = BSQ_modsocs_won_but_its_not_democracy_yet
+		set_country_flag = BSQ_modsoc_eta_is_in_power
+	}
+}
+#Basque Nationalist party wins election
+country_event = {
+	id = basque.39
+	title = basque.39.t
+	desc = basque.39.d
+	picture = BSQ_eta_wins_elections
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #Mainstream
+		name = basque.39.o1
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.10
+		}
+		#complete_national_focus = BSQ_basque_nationalist_party
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_freedom
+		complete_national_focus = generic_centrist_focus
+		set_country_flag = BSQ_power_struggle_over
+		set_country_flag = BSQ_the_eaj_pnv_won_the_election
+		remove_ideas = {
+			idea_bsq_eta_military_control
+			idea_bsq_paramilitary_government
+		}
+		hidden_effect = {
+			retire_character = BSQ_Juan_Carlos_Ramos_general
+			retire_character = BSQ_Arnaldo_Otegi_sus_general
+			retire_character = BSQ_David_Pla_Marin
+			retire_character = BSQ_Arkaitz_Goikoetxea
+			retire_character = BSQ_Inaki_de_Juana_Chaos
+			retire_character = BSQ_Ines_del_rio_prada
+			retire_character = BSQ_Jurdan_Martitegi
+			retire_character = BSQ_Maria_Soledad_Iparraguirre
+			retire_character = BSQ_Miguel_Garikoitz_Aspiazu_Rubina
+#			country_event = {
+#				id = bsqelection.1
+#				days = 91
+#			}
+#			country_event = {
+#				id = bsqelection.5
+#				days = 118
+#			}
+#			country_event = {
+#				id = bsqelection.41
+#				days = 1461
+#			}
+		}
+	}
+	option = { #Monarchist wing
+		name = basque.39.o2
+		set_politics = {
+			ruling_party = monarchist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.05
+		}
+		add_popularity = {
+			ideology = monarchist
+			popularity = 0.2
+		}
+		remove_ideas = {
+			idea_bsq_eta_military_control
+			idea_bsq_paramilitary_government
+		}
+		hidden_effect = {
+			retire_character = BSQ_Juan_Carlos_Ramos_general
+			retire_character = BSQ_Arnaldo_Otegi_sus_general
+			retire_character = BSQ_David_Pla_Marin
+			retire_character = BSQ_Arkaitz_Goikoetxea
+			retire_character = BSQ_Inaki_de_Juana_Chaos
+			retire_character = BSQ_Ines_del_rio_prada
+			retire_character = BSQ_Jurdan_Martitegi
+			retire_character = BSQ_Maria_Soledad_Iparraguirre
+			retire_character = BSQ_Miguel_Garikoitz_Aspiazu_Rubina
+			country_event = {
+				id = basque.91
+				days = 3
+			}
+		}
+	}
+}
+#Basque Nationalist Party labelled treasonous reactionaries
+country_event = {
+	id = basque.40
+	title = basque.40.t
+	desc = basque.40.d
+	picture = BSQ_eta_says_libs_are_treasonous
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = {
+		name = basque.40.o1
+		#complete_national_focus = BSQ_for_the_preservation_of_homeland_and_liberty
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_the_people
+		complete_national_focus = generic_revolution
+		set_country_flag = BSQ_eta_is_sticking_around
+		set_country_flag = BSQ_power_struggle_over
+		set_country_flag = BSQ_revsoc_eta_is_in_power
+	}
+}
+#Unionists take control of Bilbao
+country_event = {
+	id = basque.41
+	title = basque.41.t
+	desc = basque.41.d
+	picture = BSQ_unionists_take_bilbao
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = {
+		name = basque.41.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 5 id = basque.42 }
+			}
+		}
+	}
+}
+#Unionists overthrow ETA
+country_event = {
+	id = basque.42
+	title = basque.42.t
+	desc = basque.42.d
+	picture = BSQ_unionists_depose_ETA
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = {
+		name = basque.42.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 5 id = basque.43 }
+			}
+		}
+		IF = {
+			limit = {
+				country_exists = SPR
+			}
+			SPR = {
+				set_country_flag = SPR_ETA_got_overthrown
+			}
+		}
+		IF = {
+			limit = {
+				country_exists = SPN
+			}
+			SPN = {
+				set_country_flag = SPR_ETA_got_overthrown
+			}
+		}
+		set_politics = {
+			ruling_party = fascist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.10
+		}
+		retire_character = BSQ_Juan_Carlos_Ramos_general
+		retire_character = BSQ_Arnaldo_Otegi_sus_general
+		retire_character = BSQ_David_Pla_Marin
+		retire_character = BSQ_Arkaitz_Goikoetxea
+		retire_character = BSQ_Inaki_de_Juana_Chaos
+		retire_character = BSQ_Ines_del_rio_prada
+		retire_character = BSQ_Jurdan_Martitegi
+		retire_character = BSQ_Maria_Soledad_Iparraguirre
+		retire_character = BSQ_Miguel_Garikoitz_Aspiazu_Rubina
+		add_field_marshal_role = {
+			Character = BSQ_enrique_rodriguez_galindo_field_marshal
+			traits = { old_guard politically_connected brilliant_strategist fast_planner }
+			skill = 5
+			attack_skill = 6
+			defense_skill = 4
+			planning_skill = 5
+			logistics_skill = 5
+		}
+		add_advisor_role = {
+			character = BSQ_enrique_rodriguez_galindo_field_marshal
+			advisor = {
+				slot = high_command
+				idea_token = BSQ_enrique_rodriguez_galindo_field_marshal
+				traits = {
+					army_commando_3 
+				}
+			}
+		}
+		add_corps_commander_role = {
+			Character = BSQ_Miguel_Castro_Manterola
+			traits = { old_guard trait_reckless }
+			skill = 3
+			attack_skill = 4
+			defense_skill = 3
+			planning_skill = 2
+			logistics_skill = 3
+		}
+		add_advisor_role = {
+			character = BSQ_Miguel_Castro_Manterola
+			advisor = {
+				slot = high_command
+				idea_token = BSQ_Miguel_Castro_Manterola
+				traits = {
+					army_military_police_2 
+				}
+			}
+		}
+		add_corps_commander_role = {
+			Character = BSQ_Javier_Hernandez
+			traits = { old_guard infantry_leader skilled_staffer }
+			skill = 3
+			attack_skill = 4
+			defense_skill = 3
+			planning_skill = 2
+			logistics_skill = 3
+		}
+		add_advisor_role = {
+			character = BSQ_Javier_Hernandez
+			advisor = {
+				slot = high_command
+				idea_token = BSQ_Javier_Hernandez
+				traits = {
+					army_infantry_1
+				}
+			}
+		}
+		add_corps_commander_role = {
+			Character = BSQ_Jose_Raposo_Casares
+			traits = { politically_connected infantry_leader skilled_staffer infantry_expert }
+			skill = 4
+			attack_skill = 4
+			defense_skill = 5
+			planning_skill = 3
+			logistics_skill = 3
+		}
+		add_advisor_role = {
+			character = BSQ_Jose_Raposo_Casares
+			advisor = {
+				slot = army_chief
+				idea_token = BSQ_Jose_Raposo_Casares
+				traits = {
+					army_chief_organizational_2 
+				}
+			}
+		}
+	}
+}
+#rioting in the streets
+country_event = {
+	id = basque.43
+	title = basque.43.t
+	desc = basque.43.d
+	picture = BSQ_riots_after_elections
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = {
+		name = basque.43.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = {
+					id = basque.44 
+					days = 4
+				}
+			}
+		}
+	}
+}
+#Basque Nationalists fight back
+country_event = {
+	id = basque.44
+	title = basque.44.t
+	desc = basque.44.d
+	picture = BSQ_libs_try_coup
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #attempted counter-coup repulsed
+		name = basque.44.o1
+		trigger = {
+			has_country_flag = BSQ_successful_talks
+		}
+		hidden_effect = {
+			BSQ = {
+				country_event = { id = basque.57 }
+			}
+		}
+	}
+	option = { #Basque Nationalist Party successful counter-coup
+		name = basque.44.o1
+		trigger = {
+			has_country_flag = BSQ_unsuccessful_talks
+		}
+		hidden_effect = {
+			BSQ = {
+				country_event = { id = basque.58 }
+			}
+		}
+	}
+}
+#counter-coup repulsed
+country_event = {
+	id = basque.57
+	title = basque.57.t
+	desc = basque.57.d
+	picture = BSQ_lib_coup_fails
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = {
+		name = basque.57.o1
+		hidden_effect = {
+			BSQ = {
+				set_country_flag = BSQ_power_struggle_over
+			}
+		}
+		#complete_national_focus = BSQ_a_shocking_reversal
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_the_nation
+		complete_national_focus = generic_the_fallen_eagle
+		set_country_flag = BSQ_unionists_have_taken_over
+		remove_ideas = {
+			idea_bsq_eta_military_control
+			idea_bsq_paramilitary_government
+		}
+		hidden_effect = {
+			retire_character = BSQ_Juan_Carlos_Ramos_general
+			retire_character = BSQ_Arnaldo_Otegi_sus_general
+			retire_character = BSQ_David_Pla_Marin
+			retire_character = BSQ_Arkaitz_Goikoetxea
+			retire_character = BSQ_Inaki_de_Juana_Chaos
+			retire_character = BSQ_Ines_del_rio_prada
+			retire_character = BSQ_Jurdan_Martitegi
+			retire_character = BSQ_Maria_Soledad_Iparraguirre
+			retire_character = BSQ_Miguel_Garikoitz_Aspiazu_Rubina
+		}
+	}
+}
+#successful counter-coup
+country_event = {
+	id = basque.58
+	title = basque.58.t
+	desc = basque.58.d
+	picture = BSQ_lib_coup_wins
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = {
+		name = basque.58.o1
+		hidden_effect = {
+			country_event = {
+				id = basque.59
+				days = 3
+			}
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.10
+		}
+	}
+}
+#basque party decision
+country_event = {
+	id = basque.59
+	title = basque.59.t
+	desc = basque.59.d
+	picture = BSQ_eaj_pnv_leadership_contest
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #Mainstream
+		name = basque.59.o1
+		hidden_effect = {
+			BSQ = {
+		        set_country_flag = BSQ_power_struggle_over
+			}
+		}
+		#complete_national_focus = BSQ_basque_nationalist_party
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_freedom
+		complete_national_focus = generic_centrist_focus
+		set_country_flag = BSQ_the_eaj_pnv_won_the_election
+		remove_ideas = {
+			idea_bsq_eta_military_control
+			idea_bsq_paramilitary_government
+		}
+		hidden_effect = {
+			retire_character = BSQ_Juan_Carlos_Ramos_general
+			retire_character = BSQ_Arnaldo_Otegi_sus_general
+			retire_character = BSQ_David_Pla_Marin
+			retire_character = BSQ_Arkaitz_Goikoetxea
+			retire_character = BSQ_Inaki_de_Juana_Chaos
+			retire_character = BSQ_Ines_del_rio_prada
+			retire_character = BSQ_Jurdan_Martitegi
+			retire_character = BSQ_Maria_Soledad_Iparraguirre
+			retire_character = BSQ_Miguel_Garikoitz_Aspiazu_Rubina
+		}
+		hidden_effect = {
+#			country_event = {
+#				id = bsqelection.70
+#				days = 1461
+#			}
+		}
+	}
+}
+#Otegi announces elections
+country_event = {
+	id = basque.45
+	title = basque.45.t
+	desc = basque.45.d
+	picture = BSQ_otegi_announces_elections
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #eta only
+		name = basque.45.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 4 id = basque.47 }
+			}
+			set_country_flag = BSQ_otegi_tried_to_make_eta_supreme
+		}
+	}
+	option = { #everyone
+		name = basque.45.o2
+		hidden_effect = {
+			BSQ = {
+		        country_event = { days = 18 id = basque.48 }
+				country_event = { days = 7 id = basque.87 }
+				IF = {
+					limit = {
+						has_country_flag = BSQ_jarrai_disloyal
+					}
+					country_event = { days = 1 id = basque.46 }
+				}
+				set_country_flag = BSQ_otegi_already_democratized
+			}
+		}
+	}
+}
+#Jarrai riots
+country_event = {
+	id = basque.46
+	title = basque.46.t
+	desc = basque.46.d
+	picture = BSQ_more_jarrai_riots
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = {
+		name = basque.46.o1
+	}
+}
+#ETA only elections
+country_event = {
+	id = basque.47
+	title = basque.47.t
+	desc = basque.47.d
+	picture = BSQ_eta_only_elections
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #communists
+		name = basque.47.o1
+		set_politics = {
+			ruling_party = communist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = communist
+			popularity = 0.10
+		}
+		#complete_national_focus = BSQ_for_the_preservation_of_homeland_and_liberty
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_the_people
+		complete_national_focus = generic_old_bolsheviks
+		set_country_flag = BSQ_commie_eta_is_in_power
+		set_country_flag = BSQ_eta_is_sticking_around
+		set_country_flag = BSQ_power_struggle_over
+	}
+	option = { #revsoc
+		name = basque.47.o2
+		hidden_effect = {
+			set_country_flag = BSQ_otegi_made_eta_only_elections
+		}
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.10
+		}
+		#complete_national_focus = BSQ_for_the_preservation_of_homeland_and_liberty
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_the_people
+		complete_national_focus = generic_revolution
+		set_country_flag = BSQ_revsoc_eta_is_in_power
+		set_country_flag = BSQ_eta_is_sticking_around
+		set_country_flag = BSQ_power_struggle_over
+		hidden_effect = {
+#			country_event = {
+#				id = bsqelection.66
+#				days = 137
+#			}
+#			country_event = {
+#				id = bsqelection.68
+#				days = 94
+#			}
+		}
+	}
+	option = { #modsoc
+		name = basque.47.o3
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.10
+		}
+		#complete_national_focus = BSQ_for_the_preservation_of_homeland_and_liberty
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_freedom
+		complete_national_focus = generic_moderate_socialist_focus
+		set_country_flag = BSQ_modsoc_eta_is_in_power
+		set_country_flag = BSQ_eta_is_sticking_around
+		set_country_flag = BSQ_power_struggle_over
+		hidden_effect = {
+#			country_event = {
+#				id = bsqelection.66
+#				days = 137
+#			}
+#			country_event = {
+#				id = bsqelection.69
+#				days = 94
+#			}
+		}
+	}
+}
+#free and fair elections
+country_event = {
+	id = basque.48
+	title = basque.48.t
+	desc = basque.48.d
+	picture = BSQ_eta_only_elections
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #eta wins
+		name = basque.48.o1
+		hidden_effect = {
+			BSQ = {
+		        country_event = { id = basque.49 }
+			}
+		}
+	}
+	option = { #workers party
+		name = basque.48.o2
+		hidden_effect = {
+			BSQ = {
+		        set_country_flag = BSQ_power_struggle_over
+			}
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.15
+		}
+		#complete_national_focus = BSQ_socialist_workers_party_of_euskadi
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_freedom
+		complete_national_focus = generic_new_democrat_focus
+		set_country_flag = BSQ_the_pse_ee_won_the_election
+		remove_ideas = {
+			idea_bsq_eta_military_control
+			idea_bsq_paramilitary_government
+		}
+		hidden_effect = {
+			retire_character = BSQ_Juan_Carlos_Ramos_general
+			retire_character = BSQ_Arnaldo_Otegi_sus_general
+			retire_character = BSQ_David_Pla_Marin
+			retire_character = BSQ_Arkaitz_Goikoetxea
+			retire_character = BSQ_Inaki_de_Juana_Chaos
+			retire_character = BSQ_Ines_del_rio_prada
+			retire_character = BSQ_Jurdan_Martitegi
+			retire_character = BSQ_Maria_Soledad_Iparraguirre
+			retire_character = BSQ_Miguel_Garikoitz_Aspiazu_Rubina
+#			country_event = {
+#				id = bsqelection.55
+#				days = 1461
+#			}
+#			country_event = {
+#				id = bsqelection.3
+#				days = 93
+#			}
+#			country_event = {
+#				id = bsqelection.5
+#				days = 127
+#			}
+#			country_event = {
+#				id = bsqelection.7
+#				days = 192
+#			}
+		}
+	}
+	option = { #Basque nationalist party
+		name = basque.48.o3
+		hidden_effect = {
+			BSQ = {
+		        country_event = { id = basque.50 }
+			}
+		}
+	}
+	option = { #unionists
+		name = basque.48.o4
+		hidden_effect = {
+			BSQ = {
+		        country_event = { id = basque.51 }
+			}
+		}
+	}
+}
+#ETA wins elections
+country_event = {
+	id = basque.49
+	title = basque.49.t
+	desc = basque.49.d
+	picture = BSQ_eta_wins_elections
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #Otegi wins
+		name = basque.49.o1
+		hidden_effect = {
+			set_country_flag = BSQ_otegi_already_democratized
+		}
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.10
+		}
+		#_national_focus = BSQ_for_the_preservation_of_homeland_and_liberty
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_the_people
+		complete_national_focus = generic_revolution
+		set_country_flag = BSQ_revsoc_eta_is_in_power
+		set_country_flag = BSQ_eta_is_sticking_around
+		set_country_flag = BSQ_power_struggle_over
+		hidden_effect = {
+#			country_event = {
+#				id = bsqelection.45
+#				days = 1461
+#			}
+#			country_event = {
+#				id = bsqelection.1
+#				days = 93
+#			}
+#			country_event = {
+#				id = bsqelection.3
+#				days = 127
+#			}
+#			country_event = {
+#				id = bsqelection.5
+#				days = 192
+#			}
+		}
+	}
+	option = { #Madariaga wins
+		name = basque.49.o2
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.15
+		}
+		#complete_national_focus = BSQ_for_the_preservation_of_homeland_and_liberty
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_freedom
+		complete_national_focus = generic_moderate_socialist_focus
+		set_country_flag = BSQ_modsoc_eta_is_in_power
+		set_country_flag = BSQ_eta_is_sticking_around
+		set_country_flag = BSQ_power_struggle_over
+		hidden_effect = {
+#			country_event = {
+#				id = bsqelection.50
+#				days = 1461
+#			}
+#			country_event = {
+#				id = bsqelection.1
+#				days = 93
+#			}
+#			country_event = {
+#				id = bsqelection.3
+#				days = 127
+#			}
+#			country_event = {
+#				id = bsqelection.7
+#				days = 192
+#			}
+		}
+	}
+}
+#Basque Nationalist party wins election
+country_event = {
+	id = basque.50
+	title = basque.50.t
+	desc = basque.50.d
+	picture = BSQ_eta_wins_elections
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #Mainstream
+		name = basque.50.o1
+		hidden_effect = {
+			BSQ = {
+		        set_country_flag = BSQ_power_struggle_over
+			}
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.10
+		}
+		#complete_national_focus = BSQ_basque_nationalist_party
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_freedom
+		complete_national_focus = generic_centrist_focus
+		set_country_flag = BSQ_the_eaj_pnv_won_the_election
+		remove_ideas = {
+			idea_bsq_eta_military_control
+			idea_bsq_paramilitary_government
+		}
+		hidden_effect = {
+			retire_character = BSQ_Juan_Carlos_Ramos_general
+			retire_character = BSQ_Arnaldo_Otegi_sus_general
+			retire_character = BSQ_David_Pla_Marin
+			retire_character = BSQ_Arkaitz_Goikoetxea
+			retire_character = BSQ_Inaki_de_Juana_Chaos
+			retire_character = BSQ_Ines_del_rio_prada
+			retire_character = BSQ_Jurdan_Martitegi
+			retire_character = BSQ_Maria_Soledad_Iparraguirre
+			retire_character = BSQ_Miguel_Garikoitz_Aspiazu_Rubina
+#			country_event = {
+#				id = bsqelection.1
+#				days = 93
+#			}
+#			country_event = {
+#				id = bsqelection.5
+#				days = 127
+#			}
+#			country_event = {
+#				id = bsqelection.7
+#				days = 192
+#			}
+#			country_event = {
+#				id = bsqelection.60
+#				days = 1461
+#			}
+		}
+	}
+	option = { #Monarchist wing
+		name = basque.50.o2
+		BSQ_Inaki_Anasagasti = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=regency_monarchist
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+		set_politics = {
+			ruling_party = monarchist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.05
+		}
+		add_popularity = {
+			ideology = monarchist
+			popularity = 0.2
+		}
+		remove_ideas = {
+			idea_bsq_eta_military_control
+			idea_bsq_paramilitary_government
+		}
+		hidden_effect = {
+			retire_character = BSQ_Juan_Carlos_Ramos_general
+			retire_character = BSQ_Arnaldo_Otegi_sus_general
+			retire_character = BSQ_David_Pla_Marin
+			retire_character = BSQ_Arkaitz_Goikoetxea
+			retire_character = BSQ_Inaki_de_Juana_Chaos
+			retire_character = BSQ_Ines_del_rio_prada
+			retire_character = BSQ_Jurdan_Martitegi
+			retire_character = BSQ_Maria_Soledad_Iparraguirre
+			retire_character = BSQ_Miguel_Garikoitz_Aspiazu_Rubina
+			country_event = {
+				id = basque.91
+				days = 3
+			}
+		}
+	}
+}
+#unionists win election, otegi commits to peaceful transition
+country_event = {
+	id = basque.51
+	title = basque.51.t
+	desc = basque.51.d
+	picture = BSQ_unionists_win
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = {
+		name = basque.51.o1
+		hidden_effect = {
+			BSQ = {
+				country_event = { days = 4 id = basque.52 }
+			}
+		}
+	}
+}
+#Basque Nationalist Party protests transition, call on ETA to prevent unionist takeover
+country_event = {
+	id = basque.52
+	title = basque.52.t
+	desc = basque.52.d
+	picture = BSQ_libs_hate_democracy
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = {
+		name = basque.52.o1
+		hidden_effect = {
+			BSQ = {
+				country_event = { days = 5 id = basque.53 }
+			}
+		}
+	}
+}
+#ETA announces official disarmament
+country_event = {
+	id = basque.53
+	title = basque.53.t
+	desc = basque.53.d
+	picture = BSQ_eta_disarms
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = {
+		name = basque.53.o1
+		hidden_effect = {
+			BSQ = {
+				country_event = { days = 5 id = basque.54 }
+			}
+		}
+		trigger = {
+			has_country_flag = BSQ_jarrai_loyal
+		}
+		retire_character = BSQ_Juan_Carlos_Ramos_general
+		retire_character = BSQ_Arnaldo_Otegi_sus_general
+		retire_character = BSQ_David_Pla_Marin
+		retire_character = BSQ_Arkaitz_Goikoetxea
+		retire_character = BSQ_Inaki_de_Juana_Chaos
+		retire_character = BSQ_Ines_del_rio_prada
+		retire_character = BSQ_Jurdan_Martitegi
+		retire_character = BSQ_Maria_Soledad_Iparraguirre
+		retire_character = BSQ_Miguel_Garikoitz_Aspiazu_Rubina
+	}
+	option = {
+		name = basque.53.o1
+		hidden_effect = {
+			BSQ = {
+				country_event = { days = 5 id = basque.55 }
+			}
+		}
+		trigger = {
+			has_country_flag = BSQ_jarrai_disloyal
+		}
+		retire_character = BSQ_Juan_Carlos_Ramos_general
+		retire_character = BSQ_Arnaldo_Otegi_sus_general
+		retire_character = BSQ_David_Pla_Marin
+		retire_character = BSQ_Arkaitz_Goikoetxea
+		retire_character = BSQ_Inaki_de_Juana_Chaos
+		retire_character = BSQ_Ines_del_rio_prada
+		retire_character = BSQ_Jurdan_Martitegi
+		retire_character = BSQ_Maria_Soledad_Iparraguirre
+		retire_character = BSQ_Miguel_Garikoitz_Aspiazu_Rubina
+	}
+}
+#Unionists take charge
+country_event = {
+	id = basque.54
+	title = basque.54.t
+	desc = basque.54.d
+	picture = BSQ_unionists_take_office
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = {
+		name = basque.54.o1
+		IF = {
+			limit = {
+				country_exists = SPR
+			}
+			SPR = {
+				set_country_flag = SPR_ETA_got_overthrown
+			}
+		}
+		IF = {
+			limit = {
+				country_exists = SPN
+			}
+			SPN = {
+				set_country_flag = SPR_ETA_got_overthrown
+			}
+		}
+		hidden_effect = {
+			BSQ = {
+				set_country_flag = BSQ_power_struggle_over
+			}
+		}
+		set_politics = {
+			ruling_party = nationalist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.15
+		}
+		#complete_national_focus = BSQ_a_shocking_reversal
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_the_nation
+		complete_national_focus = generic_promote_ultranationalism
+		set_country_flag = BSQ_unionists_have_taken_over
+		remove_ideas = {
+			idea_bsq_eta_military_control
+			idea_bsq_paramilitary_government
+		}
+		hidden_effect = {
+			retire_character = BSQ_Juan_Carlos_Ramos_general
+			retire_character = BSQ_Arnaldo_Otegi_sus_general
+			retire_character = BSQ_David_Pla_Marin
+			retire_character = BSQ_Arkaitz_Goikoetxea
+			retire_character = BSQ_Inaki_de_Juana_Chaos
+			retire_character = BSQ_Ines_del_rio_prada
+			retire_character = BSQ_Jurdan_Martitegi
+			retire_character = BSQ_Maria_Soledad_Iparraguirre
+			retire_character = BSQ_Miguel_Garikoitz_Aspiazu_Rubina
+		}
+		add_field_marshal_role = {
+			Character = BSQ_enrique_rodriguez_galindo
+			traits = { old_guard politically_connected brilliant_strategist fast_planner }
+			skill = 5
+			attack_skill = 6
+			defense_skill = 4
+			planning_skill = 5
+			logistics_skill = 5
+		}
+		add_advisor_role = {
+			character = BSQ_enrique_rodriguez_galindo
+			advisor = {
+				slot = high_command
+				idea_token = BSQ_enrique_rodriguez_galindo
+				traits = {
+					army_commando_3 
+				}
+			}
+		}
+		add_corps_commander_role = {
+			Character = BSQ_Miguel_Castro_Manterola
+			traits = { old_guard trait_reckless }
+			skill = 3
+			attack_skill = 4
+			defense_skill = 3
+			planning_skill = 2
+			logistics_skill = 3
+		}
+		add_advisor_role = {
+			character = BSQ_Miguel_Castro_Manterola
+			advisor = {
+				slot = high_command
+				idea_token = BSQ_Miguel_Castro_Manterola
+				traits = {
+					army_military_police_2 
+				}
+			}
+		}
+		add_corps_commander_role = {
+			Character = BSQ_Javier_Hernandez
+			traits = { old_guard infantry_leader skilled_staffer }
+			skill = 3
+			attack_skill = 4
+			defense_skill = 3
+			planning_skill = 2
+			logistics_skill = 3
+		}
+		add_advisor_role = {
+			character = BSQ_Javier_Hernandez
+			advisor = {
+				slot = high_command
+				idea_token = BSQ_Javier_Hernandez
+				traits = {
+					army_infantry_1
+				}
+			}
+		}
+		add_corps_commander_role = {
+			Character = BSQ_Jose_Raposo_Casares
+			traits = { politically_connected infantry_leader skilled_staffer infantry_expert }
+			skill = 4
+			attack_skill = 4
+			defense_skill = 5
+			planning_skill = 3
+			logistics_skill = 3
+		}
+		add_advisor_role = {
+			character = BSQ_Jose_Raposo_Casares
+			advisor = {
+				slot = army_chief
+				idea_token = BSQ_Jose_Raposo_Casares
+				traits = {
+					army_chief_organizational_2 
+				}
+			}
+		}
+	}
+}
+#Jarrai refuses disarmament
+country_event = {
+	id = basque.55
+	title = basque.55.t
+	desc = basque.55.d
+	picture = BSQ_jarrai_refuses_disarmament
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = {
+		name = basque.55.o1
+		hidden_effect = {
+			BSQ = {
+				country_event = { days = 5 id = basque.56 }
+			}
+		}
+	}
+}
+#Jarrai coups the government
+country_event = {
+	id = basque.56
+	title = basque.56.t
+	desc = basque.56.d
+	picture = BSQ_jarrai_coup
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = {
+		name = basque.56.o1
+		IF = {
+			limit = {
+				country_exists = SPR
+			}
+			SPR = {
+				set_country_flag = SPR_ETA_got_overthrown
+			}
+		}
+		IF = {
+			limit = {
+				country_exists = SPN
+			}
+			SPN = {
+				set_country_flag = SPR_ETA_got_overthrown
+			}
+		}
+		set_politics = {
+			ruling_party = national_bolshevik
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = national_bolshevik
+			popularity = 0.10
+		}
+		#complete_national_focus = BSQ_the_youth_of_the_nation
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_the_people
+		complete_national_focus = generic_new_bolsheviks
+		set_country_flag = BSQ_power_struggle_over
+		set_country_flag = BSQ_jarrai_has_taken_over_the_government
+		retire_character = BSQ_Carlos_Villar_Turrau
+		retire_character = BSQ_Antonio_Martorell_Lacave
+		hidden_effect = {
+		
+			add_corps_commander_role = {
+				Character = BSQ_Jarrai_General_1
+				traits = { urban_assault_specialist }
+				skill = 1
+				attack_skill = 1
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 1
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Jarrai_General_2
+				traits = { urban_assault_specialist }
+				skill = 1
+				attack_skill = 1
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 1
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Jarrai_General_3
+				traits = { urban_assault_specialist }
+				skill = 1
+				attack_skill = 1
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 1
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Jarrai_General_4
+				traits = { urban_assault_specialist }
+				skill = 1
+				attack_skill = 1
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 1
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Jarrai_General_5
+				traits = { urban_assault_specialist }
+				skill = 1
+				attack_skill = 1
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 1
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Jarrai_General_6
+				traits = { urban_assault_specialist }
+				skill = 1
+				attack_skill = 1
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 1
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Jarrai_General_7
+				traits = { urban_assault_specialist }
+				skill = 1
+				attack_skill = 1
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 1
+			}
+		}
+	}
+}
+#[From.GetName] proposes a personal union
+country_event = {
+	id = basque.60
+	title = basque.60.t
+	desc = basque.60.d
+	picture = x
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #we shall be one
+		name = basque.60.o1
+		ai_chance = {base = 60}
+		BSQ = {
+			puppet = CAT
+			country_event = basque.61
+		}
+		hidden_effect = {
+			set_cosmetic_tag = CAT_basque
+		}
+	}
+	option = { #no
+		name = basque.60.o2
+		ai_chance = {base = 40}
+		BSQ = {
+			country_event = basque.62
+		}
+	}
+}
+#[From.GetName] enters into a personal union
+country_event = {
+	id = basque.61
+	title = basque.61.t
+	desc = basque.61.d
+	picture = x
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.61.o1
+		add_popularity = {
+			ideology = monarchist
+			popularity = 0.05
+		}
+	}
+}
+#[From.GetName] rejects a personal union
+country_event = {
+	id = basque.62
+	title = basque.62.t
+	desc = basque.62.d
+	picture = x
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.62.o1
+		every_state = {
+			limit = {
+				is_core_of = CAT
+			}
+			add_claim_by = BSQ
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = CAT
+		}
+	}
+}
+#[From.GetName] demands aragonese lands
+country_event = {
+	id = basque.63
+	title = basque.63.t
+	desc = basque.63.d
+	picture = x
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #fine 
+		name = basque.63.o1
+		ai_chance = {base = 20}
+		BSQ = {
+			if = {
+				limit = {
+					167 = {
+						NOT = {
+							is_owned_by = BSQ
+						}
+					}
+				}
+				set_state_owner = 167
+			}
+			set_state_owner = 166
+			set_state_owner = 177
+			country_event = basque.64
+		}
+	}
+	option = { #nay 
+		name = basque.63.o2
+		ai_chance = {base = 80}
+		BSQ = {
+			country_event = basque.65
+		}
+	}
+}
+#[From.GetName] hands over aragonese lands
+country_event = {
+	id = basque.64
+	title = basque.64.t
+	desc = basque.64.d
+	picture = x
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.64.o1
+	}
+}
+#[From.GetName] rejects handing over aragonese lands
+country_event = {
+	id = basque.65
+	title = basque.65.t
+	desc = basque.65.d
+	picture = x
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.65.o1
+        166 = {
+			add_claim_by = BSQ
+		}
+		177 = {
+			add_claim_by = BSQ
+		}
+		if = {
+			limit = {
+				country_exists = SPR
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = SPR
+			}
+		}
+		if = {
+			limit = {
+				country_exists = SPN
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = SPN
+			}
+		}
+	}
+}
+#Domingo I seeks Papal Support
+country_event = {
+	id = basque.66
+	title = basque.66.t
+	desc = basque.66.d
+	picture = x
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #we shall bless the kings efforts
+		name = basque.66.o1
+		ai_chance = {base = 80}
+		BSQ = {
+			country_event = basque.67
+		}
+	}
+	option = { #this is not the way of god
+		name = basque.66.o2
+		ai_chance = {base = 20}
+		BSQ = {
+			country_event = basque.68
+		}
+	}
+}
+#The Papal States Provides us with Aid
+country_event = {
+	id = basque.67
+	title = basque.67.t
+	desc = basque.67.d
+	picture = x
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #excellent
+		name = basque.67.o1
+		add_ideas = idea_bsq_papal_support
+	}
+}
+#The Papal States rejects our request
+country_event = {
+	id = basque.68
+	title = basque.68.t
+	desc = basque.68.d
+	picture = x
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #fuck
+		name = basque.68.o1
+		add_political_power = -50
+	}
+}
+#bloodbath at protest
+country_event = {
+	id = basque.69
+	title = basque.69.t
+	desc = basque.69.d
+	picture = x
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = {
+		name = basque.69.o1
+		add_manpower = -150
+	}
+}
+#[From.GetName] demands our submission
+country_event = {
+	id = basque.70
+	title = basque.70.t
+	desc = basque.70.d
+	picture = x
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { #we shall be one
+		name = basque.70.o1
+		ai_chance = {base = 20}
+		BSQ = {
+			country_event = {
+				id = basque.71
+			}
+		}
+	}
+	option = { #no
+		name = basque.70.o2
+		ai_chance = {base = 80}
+		BSQ = {
+			country_event = basque.72
+		}
+	}
+}
+#Catalonia submits
+country_event = {
+	id = basque.71
+	title = basque.71.t
+	desc = basque.71.d
+	picture = x
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.71.o1
+		annex_country = {
+			target = CAT
+			transfer_troops = yes
+		}
+		add_popularity = {
+			ideology = monarchist
+			popularity = 0.05
+		}
+	}
+}
+#catalonia defiant
+country_event = {
+	id = basque.72
+	title = basque.72.t
+	desc = basque.72.d
+	picture = x
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = { 
+		name = basque.72.o1
+		every_state = {
+			limit = {
+				is_core_of = CAT
+			}
+			add_claim_by = BSQ
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = CAT
+		}
+	}
+}
+#pope crowns Domingo I
+country_event = {
+	id = basque.73
+	title = basque.73.t
+	desc = basque.73.d
+	picture = x
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = basque.73.o1
+	}
+}
+#eta extradited
+country_event = {
+	id = basque.74
+	title = basque.74.t
+	desc = basque.74.d
+	picture = x
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = basque.74.o1
+		hidden_effect = {
+			IF = {
+				limit = {
+					country_exists = SPR
+				}
+				SPR = {
+					country_event = {
+						id = basque.75
+						days = 150
+					}
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = SPN
+				}
+				SPN = {
+					country_event = {
+						id = basque.75
+						days = 150
+					}
+				}
+			}
+		}
+	}
+}
+#eta trialed
+country_event = {
+	id = basque.75
+	title = basque.75.t
+	desc = basque.75.d
+	picture = x
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = basque.75.o1
+	}
+}
+#peace and reconciliation council for spain
+country_event = {
+	id = basque.76
+	title = basque.76.t
+	desc = basque.76.d
+	picture = x
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = basque.76.o1
+	}
+}
+#peace and reconciliation council for basques
+country_event = {
+	id = basque.77
+	title = basque.77.t
+	desc = basque.77.d
+	picture = x
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = basque.77.o1
+	}
+}
+#salvation of the crown
+country_event = {
+	id = basque.78
+	title = basque.78.t
+	desc = basque.78.d
+	picture = x
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = basque.78.o1
+	}
+}
+#navarra asks for canadian aid
+country_event = {
+	id = basque.80
+	title = basque.80.t
+	desc = basque.80.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = basque.80.o1
+		ai_chance = {base = 70}
+		BSQ = {
+			country_event = {
+				id = basque.81
+				days = 3
+			}
+		}
+	}
+	option = { #fuck off
+		name = basque.80.o2
+		ai_chance = {base = 30}
+		BSQ = {
+			country_event = {
+				id = basque.82
+				days = 3
+			}
+		}
+
+	}
+}
+#canada says yes
+country_event = {
+	id = basque.81
+	title = basque.81.t
+	desc = basque.81.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basque.81.o1
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 5000
+			producer = CAN
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 500
+			producer = CAN
+		}
+		add_equipment_to_stockpile = {
+			type = motorized_equipment
+			amount = 500
+			producer = CAN
+		}
+		add_equipment_to_stockpile = {
+			type = mechanized_equipment
+			amount = 500
+			producer = CAN
+		}
+		add_manpower = 2000
+	}
+}
+#canada says no
+country_event = {
+	id = basque.82
+	title = basque.82.t
+	desc = basque.82.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basque.82.o1
+		add_political_power = -50
+	}
+}
+#navarra asks for saudi oil
+country_event = {
+	id = basque.83
+	title = basque.83.t
+	desc = basque.83.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = basque.83.o1
+		ai_chance = {base = 80}
+		BSQ = {
+			country_event = {
+				id = basque.84
+				days = 3
+			}
+		}
+		add_ideas = {
+			idea_bsq_oil_payments
+		}
+	}
+	option = { #fuck off
+		name = basque.83.o2
+		ai_chance = {base = 20}
+		BSQ = {
+			country_event = {
+				id = basque.85
+				days = 3
+			}
+		}
+
+	}
+}
+#saudis say yes
+country_event = {
+	id = basque.84
+	title = basque.84.t
+	desc = basque.84.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basque.84.o1
+		add_resource = {
+			type = oil
+			amount = 40
+			state = 172
+		}
+	}
+}
+#saudis say no
+country_event = {
+	id = basque.85
+	title = basque.85.t
+	desc = basque.85.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basque.85.o1
+		add_political_power = -50
+	}
+}
+#Madariaga honors those lost in the struggle
+country_event = {
+	id = basque.86
+	title = basque.86.t
+	desc = basque.86.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basque.86.o1
+	}
+}
+#otegi forms Askatsuna ahead of elections
+country_event = {
+	id = basque.87
+	title = basque.87.t
+	desc = basque.87.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basque.87.o1
+		set_party_name = {
+			ideology = revolutionary_socialist
+			long_name = BSQ_revsoc_democrats_long
+			name = BSQ_revsoc_democrats
+		}
+		set_country_flag = BSQ_otegi_already_made_askatsuna
+	}
+}
+#electoralization of eta
+country_event = {
+	id = basque.88
+	title = basque.88.t
+	desc = basque.88.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basque.88.o1
+	}
+}
+#ramos forms ehak
+country_event = {
+	id = basque.89
+	title = basque.89.t
+	desc = basque.89.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basque.89.o1
+	}
+}
+#consolidation of eta
+country_event = {
+	id = basque.90
+	title = basque.90.t
+	desc = basque.90.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basque.90.o1
+	}
+}
+#anasagasti launches motion for a monarchy
+country_event = {
+	id = basque.91
+	title = basque.91.t
+	desc = basque.91.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basque.91.o1
+		country_event = {
+			id = basque.92
+			days = 11
+		}
+	}
+}
+#coronation of domingo I
+country_event = {
+	id = basque.92
+	title = basque.92.t
+	desc = basque.92.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basque.92.o1
+		country_event = {
+			id = basque.93
+			days = 5
+		}
+	}
+}
+#Anasagasti cedes power to the king
+country_event = {
+	id = basque.93
+	title = basque.93.t
+	desc = basque.93.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basque.93.o1
+		BSQ_Domingo_I = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=carlist_monarchist
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+		set_party_name = {
+			ideology = monarchist
+			long_name = "Basque Nationalist Party - Carlists (House of Habsburgo-Borbón-Lorraine)"
+			name = "Nationalist Party - C"
+		}
+		add_popularity = {
+			ideology = monarchist
+			popularity = 0.05
+		}
+		#complete_national_focus = BSQ_the_genesis_of_basque_identity
+		load_focus_tree = generic_focus
+		complete_national_focus = generic_political_focus
+		complete_national_focus = generic_spirit_of_the_nation
+		complete_national_focus = generic_stronger_with_the_crown
+		set_country_flag = BSQ_the_monarchist_wing_of_eaj_pnv_is_in_power
+		set_country_flag = BSQ_power_struggle_over
+	}
+}
+#split in the nationalist party
+country_event = {
+	id = basque.94
+	title = basque.94.t
+	desc = basque.94.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basque.94.o1
+		add_popularity = {
+			ideology = centrist
+			popularity = -0.08
+		}
+		set_party_name = {
+			ideology = monarchist
+			long_name = "Carlist Party"
+			name = "Carlist Party"
+		}
+		set_party_name = {
+			ideology = centrist
+			long_name = "Christian Democratic Republican Party"
+			name = "Republican Party"
+		}
+	}
+}
+#natbol crush the unionists
+country_event = {
+	id = basque.95
+	title = basque.95.t
+	desc = basque.95.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basque.95.o1
+	}
+}
+#natbol purges the traitors
+country_event = {
+	id = basque.96
+	title = basque.96.t
+	desc = basque.96.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basque.96.o1
+	}
+}
+#jarrai natbol conscription refrom
+country_event = {
+	id = basque.97
+	title = basque.97.t
+	desc = basque.97.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basque.97.o1
+	}
+}
+#jarrai natbol revolutionary guard
+country_event = {
+	id = basque.98
+	title = basque.98.t
+	desc = basque.98.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basque.98.o1
+	}
+}
+#jarrai natbol purge eaj pnv
+country_event = {
+	id = basque.99
+	title = basque.99.t
+	desc = basque.99.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basque.99.o1
+	}
+}
+#jarrai natbol demolish churches
+country_event = {
+	id = basque.100
+	title = basque.100.t
+	desc = basque.100.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basque.100.o1
+	}
+}
+#jarrai natbol ban spanish
+country_event = {
+	id = basque.101
+	title = basque.101.t
+	desc = basque.101.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basque.101.o1
+	}
+}
+#jarrai vanguard party
+country_event = {
+	id = basque.102
+	title = basque.102.t
+	desc = basque.102.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basque.102.o1
+	}
+}
+
+#Foreign policy
+#basque wants to join warsaw pact but for the soviets
+country_event = {
+	id = basfopo.1
+	title = basfopo.1.t
+	desc = basfopo.1.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = basfopo.1.o1
+		ai_chance = {base = 100}
+		BSQ = {
+			country_event = {
+				id = basfopo.2
+				days = 3
+			}
+		}
+		add_to_faction = BSQ
+		add_ai_strategy = {
+			type = alliance
+			id = BSQ
+			value = 200
+		}
+	}
+	option = { #fuck off
+		name = basfopo.1.o2
+		ai_chance = {base = 0}
+		BSQ = {
+			country_event = {
+				id = basfopo.3
+				days = 3
+			}
+		}
+
+	}
+}
+#warsaw wants us
+country_event = {
+	id = basfopo.2
+	title = basfopo.2.t
+	desc = basfopo.2.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.2.o1
+		IF = {
+			limit = {
+				any_country = {
+					AND = {
+						is_in_faction_with = ROOT
+						owns_state = 927
+					}
+				}
+			}
+			uncomplete_national_focus = {
+				focus = BSQ_fopo_expel_french_aides
+				uncomplete_children = yes
+				refund_political_power = no
+			}
+		}
+	}
+}
+#warsaw doesn't want us
+country_event = {
+	id = basfopo.3
+	title = basfopo.3.t
+	desc = basfopo.3.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.3.o1
+		add_political_power = -50
+		uncomplete_national_focus = {
+			focus = BSQ_fopo_draw_closer_to_the_warsaw_pact
+			uncomplete_children = yes
+			refund_political_power = no
+		}
+		set_country_flag = BSQ_warsaw_refused_to_ally_us
+	}
+}
+#basque wants to join the warsaw pact but this time it's germany
+country_event = {
+	id = basfopo.4
+	title = basfopo.4.t
+	desc = basfopo.4.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = basfopo.4.o1
+		ai_chance = {base = 100}
+		BSQ = {
+			country_event = {
+				id = basfopo.5
+				days = 3
+			}
+		}
+		add_to_faction = BSQ
+		add_ai_strategy = {
+			type = alliance
+			id = BSQ
+			value = 200
+		}
+	}
+	option = { #fuck off
+		name = basfopo.4.o2
+		ai_chance = {base = 0}
+		BSQ = {
+			country_event = {
+				id = basfopo.6
+				days = 3
+			}
+		}
+
+	}
+}
+#warsaw wants us
+country_event = {
+	id = basfopo.5
+	title = basfopo.5.t
+	desc = basfopo.5.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.5.o1
+		IF = {
+			limit = {
+				any_country = {
+					AND = {
+						is_in_faction_with = ROOT
+						owns_state = 927
+					}
+				}
+			}
+			uncomplete_national_focus = {
+				focus = BSQ_fopo_expel_french_aides
+				uncomplete_children = yes
+				refund_political_power = no
+			}
+		}
+	}
+}
+#warsaw doesn't want us
+country_event = {
+	id = basfopo.6
+	title = basfopo.6.t
+	desc = basfopo.6.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.6.o1
+		add_political_power = -50
+		uncomplete_national_focus = {
+			focus = BSQ_fopo_draw_closer_to_the_warsaw_pact
+			uncomplete_children = yes
+			refund_political_power = no
+		}
+		set_country_flag = BSQ_warsaw_refused_to_ally_us
+	}
+}
+#basque wants to join Canada
+country_event = {
+	id = basfopo.7
+	title = basfopo.7.t
+	desc = basfopo.7.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = basfopo.7.o1
+		ai_chance = {factor = 100}
+		BSQ = {
+			country_event = {
+				id = basfopo.8
+				days = 3
+			}
+		}
+	}
+	option = { #fuck off
+		name = basfopo.7.o2
+		ai_chance = {factor = 0}
+		BSQ = {
+			country_event = {
+				id = basfopo.9
+				days = 3
+			}
+		}
+	}
+}
+#Canada wants us
+country_event = {
+	id = basfopo.8
+	title = basfopo.8.t
+	desc = basfopo.8.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.8.o1
+		CAN = {
+			add_to_faction = ROOT
+			add_ai_strategy = {
+				type = alliance
+				id = BSQ
+				value = 200
+			}
+		}
+	}
+}
+#Canada doesn't want us
+country_event = {
+	id = basfopo.9
+	title = basfopo.9.t
+	desc = basfopo.9.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.9.o1
+		add_political_power = -50
+		uncomplete_national_focus = {
+			focus = BSQ_fopo_delegation_to_ottawa
+			uncomplete_children = yes
+			refund_political_power = no
+		}
+		set_country_flag = BSQ_canada_refused_to_ally_us
+	}
+}
+#basques want to buy the northern basque country
+country_event = {
+	id = basfopo.10
+	title = basfopo.10.t
+	desc = basfopo.10.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = basfopo.10.o1
+		ai_chance = {factor = 25}
+		add_stability = -0.05
+		hidden_effect = {
+			BSQ = {
+				country_event = {
+					id = basfopo.11
+					days = 3
+				}
+			}
+		}
+	}
+	option = { #fuck off
+		name = basfopo.10.o2
+		ai_chance = {factor = 20}
+		hidden_effect = {
+			BSQ = {
+				country_event = {
+					id = basfopo.12
+					days = 3
+				}
+			}
+		}
+	}
+	option = { #counter offer
+		name = basfopo.10.o3
+		ai_chance = {factor = 55}
+		hidden_effect = {
+			BSQ = {
+				country_event = {
+					id = basfopo.13
+					days = 3
+				}
+			}
+		}
+	}
+}
+#france sells the north
+country_event = {
+	id = basfopo.11
+	title = basfopo.11.t
+	desc = basfopo.11.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.11.o1
+		transfer_state = 927
+		927 = {
+			add_core_of = BSQ
+			set_state_name = "Iparralde"
+		}
+		add_timed_idea = {
+			idea = idea_bsq_payments_to_france
+			days = 365
+		}
+		FRA = {
+			add_timed_idea = {
+				idea = idea_bsq_payments_from_basques
+				days = 365
+			}
+		}
+	}
+}
+#france won't sell the north
+country_event = {
+	id = basfopo.12
+	title = basfopo.12.t
+	desc = basfopo.12.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.12.o1
+		add_political_power = -50
+		set_country_flag = BSQ_northern_negotiations_fell_through
+	}
+}
+#France makes puppet counter offer
+country_event = {
+	id = basfopo.13
+	title = basfopo.13.t
+	desc = basfopo.13.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #accept
+		name = basfopo.13.o1
+		ai_chance = {factor = 50}
+		transfer_state = 927
+		927 = {
+			add_core_of = BSQ
+			set_state_name = "Iparralde"
+		}
+		hidden_effect = {
+			IF = {
+				limit = {
+					has_government = communist
+				}
+				FRA = {
+					puppet = BSQ
+				}
+				set_politics = {
+					ruling_party = communist
+					elections_allowed = no
+					last_election = "1935.12.17"
+					election_frequency = 48
+				}
+				add_popularity = {
+					ideology = communist
+					popularity = 0.5
+				}
+			}
+			IF = {
+				limit = {
+					has_government = moderate_socialist
+				}
+				FRA = {
+					puppet = BSQ
+				}
+				set_politics = {
+					ruling_party = moderate_socialist
+					elections_allowed = no
+					last_election = "1935.12.17"
+					election_frequency = 48
+				}
+				add_popularity = {
+					ideology = moderate_socialist
+					popularity = 0.5
+				}
+			}
+			IF = {
+				limit = {
+					has_government = monarchist
+				}
+				FRA = {
+					puppet = BSQ
+				}
+				set_politics = {
+					ruling_party = monarchist
+					elections_allowed = no
+					last_election = "1935.12.17"
+					election_frequency = 48
+				}
+				add_popularity = {
+					ideology = monarchist
+					popularity = 0.5
+				}
+			}
+			IF = {
+				limit = {
+					has_government = revolutionary_socialist
+				}
+				FRA = {
+					puppet = BSQ
+				}
+				set_politics = {
+					ruling_party = revolutionary_socialist
+					elections_allowed = no
+					last_election = "1935.12.17"
+					election_frequency = 48
+				}
+				add_popularity = {
+					ideology = revolutionary_socialist
+					popularity = 0.5
+				}
+			}
+			IF = {
+				limit = {
+					has_government = centrist
+				}
+				FRA = {
+					puppet = BSQ
+				}
+				set_politics = {
+					ruling_party = centrist
+					elections_allowed = no
+					last_election = "1935.12.17"
+					election_frequency = 48
+				}
+				add_popularity = {
+					ideology = centrist
+					popularity = 0.5
+				}
+			}
+			IF = {
+				limit = {
+					has_government = new_democrat
+				}
+				FRA = {
+					puppet = BSQ
+				}
+				set_politics = {
+					ruling_party = new_democrat
+					elections_allowed = no
+					last_election = "1935.12.17"
+					election_frequency = 48
+				}
+				add_popularity = {
+					ideology = new_democrat
+					popularity = 0.5
+				}
+			}
+		}
+	}
+	option = { #propose co-rulership
+		name = basfopo.13.o2
+		ai_chance = {factor = 50}
+		FRA = {
+			country_event = {
+				id = basfopo.14
+			}
+		}
+	}
+}
+#basques propose co-rulership
+country_event = {
+	id = basfopo.14
+	title = basfopo.14.t
+	desc = basfopo.14.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #accept
+		name = basfopo.14.o1
+		ai_chance = {factor = 85}
+		BSQ = {
+			country_event = {
+				id = basfopo.15
+			}
+		}
+	}
+	option = { #no
+		name = basfopo.14.o2
+		ai_chance = {factor = 15}
+		BSQ = {
+			country_event = {
+				id = basfopo.16
+			}
+		}
+	}
+}
+#france accepts co-rulership
+country_event = {
+	id = basfopo.15
+	title = basfopo.15.t
+	desc = basfopo.15.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.15.o1
+		transfer_state = 927
+		927 = {
+			add_core_of = BSQ
+			add_dynamic_modifier = { modifier = autonomous_state }
+			set_demilitarized_zone = yes
+			set_state_name = "Iparralde"
+		}
+	}
+}
+#france denies co-rulership
+country_event = {
+	id = basfopo.16
+	title = basfopo.16.t
+	desc = basfopo.16.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.16.o1
+		add_political_power = -50
+		set_country_flag = BSQ_northern_negotiations_fell_through
+	}
+}
+#basques demand the north
+country_event = {
+	id = basfopo.17
+	title = basfopo.17.t
+	desc = basfopo.17.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = basfopo.17.o1
+		ai_chance = {factor = 10}
+		add_stability = -0.05
+		hidden_effect = {
+			BSQ = {
+				country_event = {
+					id = basfopo.18
+					days = 3
+				}
+			}
+		}
+	}
+	option = { #fuck off
+		name = basfopo.17.o2
+		ai_chance = {factor = 90}
+		hidden_effect = {
+			BSQ = {
+				country_event = {
+					id = basfopo.19
+					days = 3
+				}
+			}
+		}
+	}
+}
+#france surrenders the north
+country_event = {
+	id = basfopo.18
+	title = basfopo.18.t
+	desc = basfopo.18.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.18.o1
+		transfer_state = 927
+	}
+}
+#france won't cede the north
+country_event = {
+	id = basfopo.19
+	title = basfopo.19.t
+	desc = basfopo.19.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.19.o1
+		add_political_power = -50
+		custom_effect_tooltip = bsq_border_conflict_unlocked
+		set_country_flag = BSQ_france_refused_to_surrender_the_north
+	}
+}
+#we win the skirmish for the north
+country_event = {
+	id = basfopo.20
+	title = basfopo.20.t
+	desc = basfopo.20.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.20.o1
+		transfer_state = 927
+	}
+}
+#we lose the skirmish for the north
+country_event = {
+	id = basfopo.21
+	title = basfopo.21.t
+	desc = basfopo.21.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.21.o1
+		add_stability = -0.05
+		add_war_support = -0.05
+		set_country_flag = bsq_we_lost_the_border_conflict
+	}
+}
+#stalemate on the border war
+country_event = {
+	id = basfopo.22
+	title = basfopo.22.t
+	desc = basfopo.22.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.22.o1
+		add_political_power = -100
+	}
+}
+#we lost the skirmish but we're france
+country_event = {
+	id = basfopo.23
+	title = basfopo.23.t
+	desc = basfopo.23.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.23.o1
+		add_stability = -0.05
+		add_war_support = -0.05
+	}
+}
+#we won the skirmish but we're france
+country_event = {
+	id = basfopo.24
+	title = basfopo.24.t
+	desc = basfopo.24.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.24.o1
+		add_political_power = 50
+		add_war_support = 0.05
+	}
+}
+#stalemate on the border war but we're france
+country_event = {
+	id = basfopo.25
+	title = basfopo.25.t
+	desc = basfopo.25.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.25.o1
+		add_political_power = -100
+	}
+}
+#60 days after the invasion of france
+country_event = {
+	id = basfopo.26
+	
+	title = {
+		text = basfopo.26.t1
+		trigger = {
+			controls_state = 927
+		}
+	}
+	title = {
+		text = basfopo.26.t2
+		trigger = {
+			NOT = {
+				controls_state = 927
+			}
+		}
+	}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	desc = { #we control the north
+		text = basfopo.26.d1
+		trigger = {
+			controls_state = 927
+		}
+	}
+	desc = { #we don't control the north
+		text = basfopo.26.d2
+		trigger = {
+			NOT = {
+				controls_state = 927
+			}
+		}
+	}
+	option = { #we control the north
+		name = basfopo.26.o1
+		trigger = {
+			controls_state = 927
+		}
+		FRA = {
+			country_event = {
+				id = basfopo.27
+			}
+		}
+	}
+	option = { #we don't control the north, keep fighting
+		name = basfopo.26.o2
+		ai_chance = {base = 5}
+		trigger = {
+			NOT = {
+				controls_state = 927
+			}
+		}
+		FRA = {
+			remove_ideas = {
+				idea_bsq_basque_french_border_dispute
+			}
+		}
+	}
+	option = { #we don't control the north, don't keep fighting
+		name = basfopo.26.o3
+		ai_chance = {base = 95}
+		trigger = {
+			NOT = {
+				controls_state = 927
+			}
+		}
+		FRA = {
+			country_event = {
+				id = basfopo.28
+			}
+		}
+	}
+}
+#basques control the northern basque country and tell France to surrender
+country_event = {
+	id = basfopo.27
+	title = basfopo.27.t
+	desc = basfopo.27.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = basfopo.27.o1
+		ai_chance = {base = 100}
+		BSQ = {
+			country_event = {
+				id = basfopo.29
+				days = 3
+			}
+		}
+	}
+	option = { #no, fuck off
+		name = basfopo.27.o2
+		ai_chance = {base = 0}
+		BSQ = {
+			country_event = {
+				id = basfopo.30
+				days = 3
+			}
+		}
+	}
+}
+#the basques surrender
+country_event = {
+	id = basfopo.28
+	title = basfopo.28.t
+	desc = basfopo.28.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = basfopo.28.o1
+		ai_chance = {base = 100}
+		BSQ = {
+			country_event = {
+				id = basfopo.32
+			}
+		}
+	}
+	option = { #no, fuck off
+		name = basfopo.28.o2
+		ai_chance = {base = 0}
+		BSQ = {
+			country_event = {
+				id = basfopo.31
+			}
+		}
+	}
+}
+#France agrees to peace
+country_event = {
+	id = basfopo.29
+	title = basfopo.29.t
+	desc = basfopo.29.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.29.o1
+		white_peace = FRA
+		transfer_state = 927
+	}
+}
+#france refuses peace
+country_event = {
+	id = basfopo.30
+	title = basfopo.30.t
+	desc = basfopo.30.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.30.o1
+		FRA = {
+			remove_ideas = {
+				idea_bsq_basque_french_border_dispute
+			}
+		}
+	}
+}
+#france refuses peace after basques surrender
+country_event = {
+	id = basfopo.31
+	title = basfopo.31.t
+	desc = basfopo.31.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.31.o1
+		FRA = {
+			remove_ideas = {
+				idea_bsq_basque_french_border_dispute
+			}
+		}
+	}
+}
+#France agrees to peace after basques surrender
+country_event = {
+	id = basfopo.32
+	title = basfopo.32.t
+	desc = basfopo.32.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.32.o1
+		white_peace = FRA
+	}
+}
+#basques propose official friendship
+country_event = {
+	id = basfopo.33
+	title = basfopo.33.t
+	desc = basfopo.33.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = basfopo.33.o1
+		ai_chance = {base = 90}
+		BSQ = {
+			country_event = {
+				id = basfopo.34
+				days = 3
+			}
+		}
+	}
+	option = { #no, fuck off
+		name = basfopo.33.o2
+		ai_chance = {base = 10}
+		BSQ = {
+			country_event = {
+				id = basfopo.35
+				days = 3
+			}
+		}
+	}
+}
+#france agrees to friendship
+country_event = {
+	id = basfopo.34
+	title = basfopo.34.t
+	desc = basfopo.34.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.34.o1
+		diplomatic_relation = {
+			country = FRA
+			relation = non_aggression_pact
+			active = yes
+		}
+		FRA = {
+			diplomatic_relation = {
+				country = BSQ
+				relation = non_aggression_pact
+				active = yes
+			}
+		}
+	}
+}
+#France refuses friendship
+country_event = {
+	id = basfopo.35
+	title = basfopo.35.t
+	desc = basfopo.35.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.35.o1
+		add_political_power = -50
+	}
+}
+#basques propose open borders
+country_event = {
+	id = basfopo.36
+	title = basfopo.36.t
+	desc = basfopo.36.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = basfopo.36.o1
+		ai_chance = {base = 90}
+		BSQ = {
+			country_event = {
+				id = basfopo.37
+				days = 3
+			}
+		}
+	}
+	option = { #no, fuck off
+		name = basfopo.36.o2
+		ai_chance = {base = 10}
+		BSQ = {
+			country_event = {
+				id = basfopo.38
+				days = 3
+			}
+		}
+	}
+}
+#france agrees to open borders
+country_event = {
+	id = basfopo.37
+	title = basfopo.37.t
+	desc = basfopo.37.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.37.o1
+		diplomatic_relation = {
+			country = FRA
+			relation = military_access
+			active = yes
+		}
+		add_ideas = {
+			idea_bsq_basque_french_border_agreement
+		}
+		FRA = {
+			diplomatic_relation = {
+				country = BSQ
+				relation = military_access
+				active = yes
+			}
+			add_ideas = {
+				idea_bsq_basque_french_border_agreement
+			}
+		}
+	}
+}
+#France refuses open borders
+country_event = {
+	id = basfopo.38
+	title = basfopo.38.t
+	desc = basfopo.38.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.38.o1
+		add_political_power = -50
+	}
+}
+#basques want to be brought back into Spain
+country_event = {
+	id = basfopo.39
+	title = basfopo.39.t
+	desc = basfopo.39.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = basfopo.39.o1
+		ai_chance = {base = 100}
+		BSQ = {
+			country_event = {
+				id = basfopo.40
+				days = 3
+			}
+		}
+	}
+	option = { #no, fuck off
+		name = basfopo.39.o2
+		ai_chance = {base = 0}
+		BSQ = {
+			country_event = {
+				id = basfopo.41
+				days = 3
+			}
+		}
+	}
+}
+#spain brings us back
+country_event = {
+	id = basfopo.40
+	title = basfopo.40.t
+	desc = basfopo.40.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.40.o1
+		add_political_power = 100
+	}
+}
+#Spain doesn't want us
+country_event = {
+	id = basfopo.41
+	title = basfopo.41.t
+	desc = basfopo.41.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.41.o1
+		add_political_power = -50
+		set_country_flag = BSQ_spain_doesnt_want_us_back
+		uncomplete_national_focus = {
+		  focus = BSQ_reach_out_to_spain
+		  uncomplete_children = yes
+		  refund_political_power = no
+		}
+	}
+}
+#spain wants to ally Russia
+country_event = {
+	id = basfopo.42
+	title = basfopo.42.t
+	desc = basfopo.42.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = basfopo.42.o1
+		ai_chance = {factor = 80}
+		BSQ = {
+			country_event = {
+				id = basfopo.43
+				days = 3
+			}
+		}
+	}
+	option = { #fuck off
+		name = basfopo.42.o2
+		ai_chance = {factor = 20}
+		BSQ = {
+			country_event = {
+				id = basfopo.44
+				days = 3
+			}
+		}
+	}
+}
+#Russia wants us
+country_event = {
+	id = basfopo.43
+	title = basfopo.43.t
+	desc = basfopo.43.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.43.o1
+		RUS = {
+			add_to_faction = ROOT
+			add_ai_strategy = {
+				type = alliance
+				id = BSQ
+				value = 200
+			}
+		}
+		SOV = {
+			add_to_faction = ROOT
+			add_ai_strategy = {
+				type = alliance
+				id = BSQ
+				value = 200
+			}
+		}
+	}
+}
+#Russia doesn't want us
+country_event = {
+	id = basfopo.44
+	title = basfopo.44.t
+	desc = basfopo.44.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.44.o1
+		add_political_power = -50
+		uncomplete_national_focus = {
+			focus = BSQ_send_a_delegation_to_moscow
+			uncomplete_children = yes
+			refund_political_power = no
+		}
+		set_country_flag = BSQ_russia_refused_to_ally_us
+	}
+}
+#basques demands Gibraltar
+country_event = {
+	id = basfopo.45
+	title = basfopo.45.t
+	desc = basfopo.45.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = basfopo.45.o1
+		ai_chance = {base = 45}
+		BSQ = {
+			country_event = {
+				id = basfopo.46
+			}
+		}
+	}
+	option = { #fuck off
+		name = basfopo.45.o2
+		ai_chance = {base = 55}
+		BSQ = {
+			country_event = {
+				id = basfopo.47
+			}
+		}
+	}
+}
+#britain cedes us gibraltar
+country_event = {
+	id = basfopo.46
+	title = basfopo.46.t
+	desc = basfopo.46.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.46.o1
+		ROOT = {
+			transfer_state = 118
+		}
+	}
+}
+#britain wont cede gibraltar
+country_event = {
+	id = basfopo.47
+	title = basfopo.47.t
+	desc = basfopo.47.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.47.o1
+		create_wargoal = {
+			type = annex_everything
+			target = ENG
+		}
+	}
+}
+#buy russian/soviet oil rights
+country_event = {
+	id = basfopo.48
+	title = basfopo.48.t
+	desc = basfopo.48.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #yes
+		name = basfopo.48.o1
+		ai_chance = {base = 95}
+		add_timed_idea = {
+			idea = idea_spr_spanish_oil_payments
+			days = 200
+		}
+		BSQ = {
+			country_event = {
+				id = basfopo.49
+			}
+		}
+	}
+	option = { #no
+		name = basfopo.48.o2
+		ai_chance = {base = 5}
+		add_timed_idea = {
+			idea = idea_spr_spanish_oil_payments
+			days = 200
+		}
+		BSQ = {
+			country_event = {
+				id = basfopo.50
+			}
+		}
+	}
+}
+#russia accepts
+country_event = {
+	id = basfopo.49
+	title = basfopo.49.t
+	desc = basfopo.49.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.49.o1
+		add_resource = {
+			type = oil
+			amount = 25
+			state = 41
+		}
+		add_timed_idea = {
+			idea = idea_spr_paying_for_russian_oil
+			days = 200
+		}
+	}
+}
+#russia refuses
+country_event = {
+	id = basfopo.50
+	title = basfopo.50.t
+	desc = basfopo.50.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.50.o1
+		add_political_power = -50
+	}
+}
+#basques proposes nap with Spain
+country_event = {
+	id = basfopo.51
+	title = basfopo.51.t
+	desc = basfopo.51.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = basfopo.51.o1
+		ai_chance = {base = 70}
+		BSQ = {
+			country_event = {
+				id = basfopo.52
+				days = 3
+			}
+		}
+		diplomatic_relation = {
+			country = BSQ
+			relation = non_aggression_pact
+			active = yes
+		}
+		set_country_flag = spr_spain_decided_to_play_nice_with_the_basques
+	}
+	option = { #fuck off
+		name = basfopo.51.o2
+		ai_chance = {base = 30}
+		BSQ = {
+			country_event = {
+				id = basfopo.53
+				days = 3
+			}
+		}
+
+	}
+}
+#Spain agrees
+country_event = {
+	id = basfopo.52
+	title = basfopo.52.t
+	desc = basfopo.52.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.52.o1
+	}
+}
+#Spain declines
+country_event = {
+	id = basfopo.53
+	title = basfopo.53.t
+	desc = basfopo.53.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.53.o1
+		add_political_power = -50
+	}
+}
+#Basques seeks to buy resource rights from Spain
+country_event = {
+	id = basfopo.54
+	title = basfopo.54.t
+	desc = basfopo.54.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = basfopo.54.o1
+		ai_chance = {base = 70}
+		BSQ = {
+			country_event = {
+				id = basfopo.55
+				days = 3
+			}
+		}
+		add_timed_idea = {
+			idea = idea_bsq_getting_paid_for_tungsten
+			days = 60
+		}
+	}
+	option = { #fuck off
+		name = basfopo.54.o2
+		ai_chance = {base = 30}
+		BSQ = {
+			country_event = {
+				id = basfopo.56
+				days = 3
+			}
+		}
+
+	}
+}
+#Spain agrees
+country_event = {
+	id = basfopo.55
+	title = basfopo.55.t
+	desc = basfopo.55.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.55.o1
+		add_resource = {
+			type = tungsten
+			amount = 15
+			state = 1020
+		}
+		add_timed_idea = {
+			idea = idea_gal_paying_for_tungsten
+			days = 60
+		}
+	}
+}
+#Spain declines
+country_event = {
+	id = basfopo.56
+	title = basfopo.56.t
+	desc = basfopo.56.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.56.o1
+		add_political_power = -50
+	}
+}
+#Basques seek Spanish protection
+country_event = {
+	id = basfopo.57
+	title = basfopo.57.t
+	desc = basfopo.57.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = basfopo.57.o1
+		ai_chance = {base = 70}
+		BSQ = {
+			country_event = {
+				id = basfopo.58
+				days = 3
+			}
+		}
+		give_guarantee = BSQ
+	}
+	option = { #fuck off
+		name = basfopo.57.o2
+		ai_chance = {base = 30}
+		BSQ = {
+			country_event = {
+				id = basfopo.59
+				days = 3
+			}
+		}
+
+	}
+}
+#Spain agrees
+country_event = {
+	id = basfopo.58
+	title = basfopo.58.t
+	desc = basfopo.58.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.58.o1
+	
+	}
+}
+#Spain declines
+country_event = {
+	id = basfopo.59
+	title = basfopo.59.t
+	desc = basfopo.59.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.59.o1
+		add_political_power = -50
+	}
+}
+#Basques seek Spanish investment
+country_event = {
+	id = basfopo.60
+	title = basfopo.60.t
+	desc = basfopo.60.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = basfopo.60.o1
+		ai_chance = {base = 80}
+		BSQ = {
+			country_event = {
+				id = basfopo.61
+				days = 3
+			}
+		}
+	}
+	option = { #fuck off
+		name = basfopo.60.o2
+		ai_chance = {base = 20}
+		BSQ = {
+			country_event = {
+				id = basfopo.62
+				days = 3
+			}
+		}
+
+	}
+}
+#Spain agrees
+country_event = {
+	id = basfopo.61
+	title = basfopo.61.t
+	desc = basfopo.61.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.61.o1
+		add_offsite_building = {
+			type = industrial_complex
+			level = 2
+		}
+	}
+}
+#Spain declines
+country_event = {
+	id = basfopo.62
+	title = basfopo.62.t
+	desc = basfopo.62.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.62.o1
+		add_political_power = -50
+	}
+}
+#Basques seek propose joint military drills
+country_event = {
+	id = basfopo.63
+	title = basfopo.63.t
+	desc = basfopo.63.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #fine
+		name = basfopo.63.o1
+		ai_chance = {base = 80}
+		BSQ = {
+			country_event = {
+				id = basfopo.64
+				days = 3
+			}
+		}
+		add_ideas = {
+			idea_bsq_basque_spanish_military_drills
+		}
+	}
+	option = { #fuck off
+		name = basfopo.63.o2
+		ai_chance = {base = 20}
+		BSQ = {
+			country_event = {
+				id = basfopo.65
+				days = 3
+			}
+		}
+
+	}
+}
+#Spain agrees
+country_event = {
+	id = basfopo.64
+	title = basfopo.64.t
+	desc = basfopo.64.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.64.o1
+		add_ideas = {
+			idea_bsq_basque_spanish_military_drills
+		}
+	}
+}
+#Spain declines
+country_event = {
+	id = basfopo.65
+	title = basfopo.65.t
+	desc = basfopo.65.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.65.o1
+		add_political_power = -50
+	}
+}
+#separatist militias on the rise in spain
+country_event = {
+	id = basfopo.66
+	title = basfopo.66.t
+	desc = basfopo.66.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.66.o1
+	}
+}
+#separatist militias on the rise in england
+country_event = {
+	id = basfopo.67
+	title = basfopo.67.t
+	desc = basfopo.67.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.67.o1
+	}
+}
+#foreign militants join
+country_event = {
+	id = basfopo.68
+	title = basfopo.68.t
+	desc = basfopo.68.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.68.o1
+	}
+}
+#basques ask to join the united eu
+country_event = {
+	id = basfopo.69
+	title = basfopo.69.t
+	desc = basfopo.69.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #yes
+		name = basfopo.69.o1
+		ai_chance = {base = 100}
+		BSQ = {
+			country_event = {
+				id = basfopo.70
+			}
+		}
+	}
+	option = { #no
+		name = basfopo.69.o2
+		ai_chance = {base = 0}
+		BSQ = {
+			country_event = {
+				id = basfopo.71
+			}
+		}
+	}
+}
+#eu accepts
+country_event = {
+	id = basfopo.70
+	title = basfopo.70.t
+	desc = basfopo.70.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.70.o1
+		ITA = {
+			change_tag_from = ROOT
+		}
+		ITA = {
+			annex_country = {
+				target = BSQ
+				transfer_troops = yes
+			}
+			every_state = {
+				limit = {
+					is_core_of = BSQ
+				}
+				add_core_of = ITA
+			}
+		}
+	}
+}
+#eu refuses
+country_event = {
+	id = basfopo.71
+	title = basfopo.71.t
+	desc = basfopo.71.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.71.o1
+		add_political_power = -200
+	}
+}
+#basques requests military aid
+country_event = {
+	id = basfopo.72
+	title = basfopo.72.t
+	desc = basfopo.72.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #yes
+		name = basfopo.72.o1
+		ai_chance = {base = 40}
+		BSQ = {
+			country_event = {
+				id = basfopo.73
+			}
+		}
+	}
+	option = { #no
+		ai_chance = {base = 60}
+		name = basfopo.72.o2
+	}
+}
+#country agrees to send aid
+country_event = {
+	id = basfopo.73
+	title = basfopo.73.t
+	desc = basfopo.73.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.73.o1
+		add_offsite_building = {
+			type = industrial_complex
+			level = 1
+		}
+	}
+}
+#basques ask for Ireland help
+country_event = {
+	id = basfopo.74
+	title = basfopo.74.t
+	desc = basfopo.74.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #yes
+		name = basfopo.74.o1
+		ai_chance = {base = 75}
+		add_ai_strategy = {
+			type = send_lend_lease_desire
+			id = BSQ
+			value = 250
+		}
+		add_ai_strategy = {
+			type = send_volunteers_desire
+			id = BSQ
+			value = 250
+		}
+		BSQ = {
+			country_event = {
+				id = basfopo.75
+			}
+		}
+	}
+	option = { #no
+		name = basfopo.74.o2
+		ai_chance = {base = 25}
+		BSQ = {
+			country_event = {
+				id = basfopo.76
+			}
+		}
+	}
+}
+#ireland accepts
+country_event = {
+	id = basfopo.75
+	title = basfopo.75.t
+	desc = basfopo.75.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.75.o1
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 5000
+			producer = IRE
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 500
+			producer = IRE
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 500
+			producer = IRE
+		}
+	}
+}
+#ireland refuses
+country_event = {
+	id = basfopo.76
+	title = basfopo.76.t
+	desc = basfopo.76.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.76.o1
+		add_political_power = -25
+	}
+}
+#basques ask for Portugals help
+country_event = {
+	id = basfopo.77
+	title = basfopo.77.t
+	desc = basfopo.77.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #yes
+		name = basfopo.77.o1
+		ai_chance = {base = 75}
+		add_ai_strategy = {
+			type = send_lend_lease_desire
+			id = BSQ
+			value = 250
+		}
+		give_guarantee = BSQ
+		BSQ = {
+			country_event = {
+				id = basfopo.78
+			}
+		}
+	}
+	option = { #no
+		name = basfopo.77.o2
+		ai_chance = {base = 25}
+		BSQ = {
+			country_event = {
+				id = basfopo.79
+			}
+		}
+	}
+}
+#portugal accepts
+country_event = {
+	id = basfopo.78
+	title = basfopo.78.t
+	desc = basfopo.78.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.78.o1
+
+	}
+}
+#portugal refuses
+country_event = {
+	id = basfopo.79
+	title = basfopo.79.t
+	desc = basfopo.79.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.79.o1
+		add_political_power = -25
+	}
+}
+#basques ask for scandinavian help
+country_event = {
+	id = basfopo.80
+	title = basfopo.80.t
+	desc = basfopo.80.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #yes
+		name = basfopo.80.o1
+		ai_chance = {base = 75}
+		add_ai_strategy = {
+			type = send_lend_lease_desire
+			id = BSQ
+			value = 250
+		}
+		add_ai_strategy = {
+			type = send_volunteers_desire
+			id = BSQ
+			value = 250
+		}
+		send_equipment = {
+			equipment = infantry_equipment
+			amount = 3000
+			target = BSQ
+		}
+		send_equipment = {
+			equipment = artillery_equipment
+			amount = 1000
+			target = BSQ
+		}
+		send_equipment = {
+			equipment = support_equipment
+			amount = 1000
+			target = BSQ
+		}
+		BSQ = {
+			country_event = {
+				id = basfopo.81
+			}
+		}
+	}
+	option = { #no
+		name = basfopo.80.o2
+		ai_chance = {base = 25}
+	}
+}
+#scandinavia accepts
+country_event = {
+	id = basfopo.81
+	title = basfopo.81.t
+	desc = basfopo.81.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.81.o1
+
+	}
+}
+#basques ask for catalan help
+country_event = {
+	id = basfopo.82
+	title = basfopo.82.t
+	desc = basfopo.82.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #yes
+		name = basfopo.82.o1
+		ai_chance = {base = 75}
+		
+		set_country_flag = catalonia_agrees_to_help_the_basques
+		give_guarantee = BSQ
+		
+		BSQ = {
+			country_event = {
+				id = basfopo.83
+				days = 3
+			}
+		}
+	}
+	option = { #no
+		name = basfopo.82.o2
+		ai_chance = {base = 25}
+		BSQ = {
+			country_event = {
+				id = basfopo.84
+			}
+		}
+	}
+}
+#catalonia accepts
+country_event = {
+	id = basfopo.83
+	title = basfopo.83.t
+	desc = basfopo.83.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.83.o1
+		give_guarantee = CAT
+		IF = {
+			limit = {
+				GAL = {
+					has_country_flag = galicia_agrees_to_help_the_basques
+				}
+			}
+			GAL = {
+				give_guarantee = CAT
+			}
+		}
+	}
+}
+#catalonia refuses
+country_event = {
+	id = basfopo.84
+	title = basfopo.84.t
+	desc = basfopo.84.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.84.o1
+		add_political_power = -25
+	}
+}
+#basques ask for galician help
+country_event = {
+	id = basfopo.85
+	title = basfopo.85.t
+	desc = basfopo.85.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = { #yes
+		name = basfopo.85.o1
+		ai_chance = {base = 75}
+		
+		set_country_flag = galicia_agrees_to_help_the_basques
+		give_guarantee = BSQ
+		
+		BSQ = {
+			country_event = {
+				id = basfopo.86
+				days = 3
+			}
+		}
+	}
+	option = { #no
+		name = basfopo.85.o2
+		ai_chance = {base = 25}
+		BSQ = {
+			country_event = {
+				id = basfopo.87
+			}
+		}
+	}
+}
+#galicia accepts
+country_event = {
+	id = basfopo.86
+	title = basfopo.86.t
+	desc = basfopo.86.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.86.o1
+		give_guarantee = GAL
+		IF = {
+			limit = {
+				CAT = {
+					has_country_flag = catalonia_agrees_to_help_the_basques
+				}
+			}
+			CAT = {
+				give_guarantee = GAL
+			}
+		}
+	}
+}
+#galicia refuses
+country_event = {
+	id = basfopo.87
+	title = basfopo.87.t
+	desc = basfopo.87.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.87.o1
+		add_political_power = -25
+	}
+}
+#basque sympathizers and anti british militants gathering
+country_event = {
+	id = basfopo.88
+	title = basfopo.88.t
+	desc = basfopo.88.d
+	picture = x
+
+	trigger = {
+		tag = ENG
+		has_war_with = BSQ
+		BSQ = {
+			has_completed_focus = BSQ_fopo_stoke_the_flames_of_anti_british_sentiment
+		}
+		OR = {
+			BSQ = {
+				has_government = revolutionary_socialist
+			}
+			BSQ = {
+				has_government = national_bolshevik
+			}
+		}
+	}
+	fire_only_once = yes
+
+	option = {
+		name = basfopo.88.o1
+		hidden_effect = {
+			country_event = {
+				id = basfopo.89
+				days = 14
+			}
+			BSQ = {
+				country_event = {
+					id = basfopo.90
+					days = 14
+				}
+			}
+		}
+	}
+}
+#militants rise in scotland for england
+country_event = {
+	id = basfopo.89
+	title = basfopo.89.t
+	desc = basfopo.89.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.89.o1
+	}
+}
+#militants rise in scotland for basques
+country_event = {
+	id = basfopo.90
+	title = basfopo.90.t
+	desc = basfopo.90.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.90.o1
+		hidden_effect = {
+			load_oob = BSQ_scots
+		}
+	}
+}
+#basque sympathizers and anti spanish militants gathering
+country_event = {
+	id = basfopo.91
+	title = basfopo.91.t
+	desc = basfopo.91.d
+	picture = x
+
+	trigger = {
+		OR = {
+			tag = SPR
+			tag = SPN
+		}
+		has_war_with = BSQ
+		BSQ = {
+			has_completed_focus = BSQ_fopo_make_contact_with_anti_spanish_separatists
+		}
+		OR = {
+			BSQ = {
+				has_government = revolutionary_socialist
+			}
+			BSQ = {
+				has_government = national_bolshevik
+			}
+		}
+	}
+	fire_only_once = yes
+
+	option = {
+		name = basfopo.91.o1
+		hidden_effect = {
+			country_event = {
+				id = basfopo.92
+				days = 14
+			}
+			BSQ = {
+				country_event = {
+					id = basfopo.93
+					days = 14
+				}
+			}
+		}
+	}
+}
+#militants rise in spain for spain
+country_event = {
+	id = basfopo.92
+	title = basfopo.92.t
+	desc = basfopo.92.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.92.o1
+	}
+}
+#militants rise in spain for basques
+country_event = {
+	id = basfopo.93
+	title = basfopo.93.t
+	desc = basfopo.93.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.93.o1
+		hidden_effect = {
+			IF = {
+				limit = {
+					NOT = {
+						country_exists = GAL
+					}
+				}
+				load_oob = BSQ_galician
+			}
+			IF = {
+				limit = {
+					NOT = {
+						country_exists = CAT
+					}
+				}
+				load_oob = BSQ_catalans
+			}
+			IF = {
+				limit = {
+					NOT = {
+						country_exists = ALU
+					}
+				}
+				load_oob = BSQ_andalusian
+			}
+		}
+	}
+}
+#event for when the basques finally officially join Spain
+country_event = {
+	id = basfopo.94
+	title = basfopo.94.t
+	desc = basfopo.94.d
+	picture = x
+
+	is_triggered_only = yes
+
+	option = {
+		name = basfopo.94.o1
+		IF = {
+			limit = {
+				tag = SPR
+				NOT = {
+					has_country_flag = spr_integrated_basque_civil_guard
+				}
+			}
+			add_field_marshal_role = {
+				Character = SPR_enrique_rodriguez_galindo_field_marshal
+				traits = { old_guard politically_connected brilliant_strategist fast_planner }
+				skill = 5
+				attack_skill = 6
+				defense_skill = 4
+				planning_skill = 5
+				logistics_skill = 5
+			}
+			add_corps_commander_role = {
+				Character = SPR_Miguel_Castro_Manterola
+				traits = { old_guard trait_reckless }
+				skill = 3
+				attack_skill = 4
+				defense_skill = 3
+				planning_skill = 2
+				logistics_skill = 3
+			}
+			add_corps_commander_role = {
+				Character = SPR_Javier_Hernandez
+				traits = { old_guard infantry_leader skilled_staffer }
+				skill = 3
+				attack_skill = 4
+				defense_skill = 3
+				planning_skill = 2
+				logistics_skill = 3
+			}
+			add_corps_commander_role = {
+				Character = SPR_Jose_Raposo_Casares
+				traits = { politically_connected infantry_leader skilled_staffer infantry_expert }
+				skill = 4
+				attack_skill = 4
+				defense_skill = 5
+				planning_skill = 3
+				logistics_skill = 3
+			}
+			hidden_effect = {
+				add_advisor_role = {
+					character = SPR_Jose_Raposo_Casares
+					advisor = {
+						slot = army_chief
+						idea_token = SPR_Jose_Raposo_Casares
+						traits = {
+							army_chief_organizational_2 
+						}
+					}
+				}
+				add_advisor_role = {
+					character = SPR_Javier_Hernandez
+					advisor = {
+						slot = high_command
+						idea_token = SPR_Javier_Hernandez
+						traits = {
+							army_infantry_1
+						}
+					}
+				}
+				add_advisor_role = {
+					character = SPR_Miguel_Castro_Manterola
+					advisor = {
+						slot = high_command
+						idea_token = SPR_Miguel_Castro_Manterola
+						traits = {
+							army_military_police_2 
+						}
+					}
+				}
+				add_advisor_role = {
+					character = SPR_enrique_rodriguez_galindo_field_marshal
+					advisor = {
+						slot = high_command
+						idea_token = SPR_enrique_rodriguez_galindo_field_marshal
+						traits = {
+							army_commando_3 
+						}
+					}
+				}
+			}
+			set_country_flag = spr_integrated_basque_civil_guard
+		}
+		IF = {
+			limit = {
+				tag = SPN
+				NOT = {
+					has_country_flag = spr_integrated_basque_civil_guard
+				}
+			}
+			add_field_marshal_role = {
+				Character = SPN_enrique_rodriguez_galindo_field_marshal
+				traits = { old_guard politically_connected brilliant_strategist fast_planner }
+				skill = 5
+				attack_skill = 6
+				defense_skill = 4
+				planning_skill = 5
+				logistics_skill = 5
+			}
+			add_corps_commander_role = {
+				Character = SPN_Miguel_Castro_Manterola
+				traits = { old_guard trait_reckless }
+				skill = 3
+				attack_skill = 4
+				defense_skill = 3
+				planning_skill = 2
+				logistics_skill = 3
+			}
+			add_corps_commander_role = {
+				Character = SPN_Javier_Hernandez
+				traits = { old_guard infantry_leader skilled_staffer }
+				skill = 3
+				attack_skill = 4
+				defense_skill = 3
+				planning_skill = 2
+				logistics_skill = 3
+			}
+			add_corps_commander_role = {
+				Character = SPN_Jose_Raposo_Casares
+				traits = { politically_connected infantry_leader skilled_staffer infantry_expert }
+				skill = 4
+				attack_skill = 4
+				defense_skill = 5
+				planning_skill = 3
+				logistics_skill = 3
+			}
+			hidden_effect = {
+				add_advisor_role = {
+					character = SPN_Jose_Raposo_Casares
+					advisor = {
+						slot = army_chief
+						idea_token = SPN_Jose_Raposo_Casares
+						traits = {
+							army_chief_organizational_2 
+						}
+					}
+				}
+				add_advisor_role = {
+					character = SPN_Javier_Hernandez
+					advisor = {
+						slot = high_command
+						idea_token = SPN_Javier_Hernandez
+						traits = {
+							army_infantry_1
+						}
+					}
+				}
+				add_advisor_role = {
+					character = SPN_Miguel_Castro_Manterola
+					advisor = {
+						slot = high_command
+						idea_token = SPN_Miguel_Castro_Manterola
+						traits = {
+							army_military_police_2 
+						}
+					}
+				}
+				add_advisor_role = {
+					character = SPN_enrique_rodriguez_galindo_field_marshal
+					advisor = {
+						slot = high_command
+						idea_token = SPN_enrique_rodriguez_galindo_field_marshal
+						traits = {
+							army_commando_3 
+						}
+					}
+				}
+			}
+			set_country_flag = spr_integrated_basque_civil_guard
+		}
+	}
+}
+
+
+#election events
+
+#Idoia Mendia takes over socialist party
+country_event = {
+	id = bsqelection.1
+	title = bsqelection.1.t
+	desc = bsqelection.1.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = bsqelection.1.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.02
+		}
+		BSQ_Idoia_Mendia = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=new_democrat_ideology
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+}
+#Eneko Andueza takes over socialist party
+country_event = {
+	id = bsqelection.2
+	title = bsqelection.2.t
+	desc = bsqelection.2.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = bsqelection.2.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.02
+		}
+		BSQ_Eneko_Andueza = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=new_democrat_ideology
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+}
+#Andoni Ortuzar Arruabarrena takes over nationalist party
+country_event = {
+	id = bsqelection.3
+	title = bsqelection.3.t
+	desc = bsqelection.3.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = bsqelection.3.o1
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.02
+		}
+		BSQ_Andoni_Ortuzar_Arruabarren = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=christian_democrat
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+}
+#Itxaso Atutxa Atutxa takes over nationalist party
+country_event = {
+	id = bsqelection.4
+	title = bsqelection.4.t
+	desc = bsqelection.4.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = bsqelection.4.o1
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.02
+		}
+		BSQ_Itxaso_Atutxa_Atutxa = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=christian_democrat
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+}
+#Laura Mintegi takes over batasuna
+country_event = {
+	id = bsqelection.5
+	title = bsqelection.5.t
+	desc = bsqelection.5.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = bsqelection.5.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.02
+		}
+		BSQ_Laura_Mintegi = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=peoples_socialist_democracy
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+}
+#Maddalen Iriarte Okiñena takes over batasuna
+country_event = {
+	id = bsqelection.6
+	title = bsqelection.6.t
+	desc = bsqelection.6.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = bsqelection.6.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.02
+		}
+		BSQ_Maddalen_Iriarte_Okinena = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=peoples_socialist_democracy
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+}
+#Joseba Permach takes over askatasuna
+country_event = {
+	id = bsqelection.7
+	title = bsqelection.7.t
+	desc = bsqelection.7.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = bsqelection.7.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.02
+		}
+		BSQ_Joseba_Permach = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=orthodox_leninist
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+}
+#Pilar Zabala Artano takes over askatasuna
+country_event = {
+	id = bsqelection.8
+	title = bsqelection.8.t
+	desc = bsqelection.8.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = bsqelection.8.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.02
+		}
+		BSQ_Pilar_Zabala_Artano = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=orthodox_leninist
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+}
+#election 4 years after psoe overthrows eta
+country_event = {
+	id = bsqelection.9
+	title = bsqelection.9.t
+	desc = bsqelection.9.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #newdems stay
+		name = bsqelection.9.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.3
+				days = 189
+			}
+			country_event = {
+				id = bsqelection.10
+				days = 1461
+			}
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.9.o2
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.1
+				days = 189
+			}
+			country_event = {
+				id = bsqelection.11
+				days = 1461
+			}
+		}
+	}
+}
+#election 8 years after psoe overthrows eta and psoe won
+country_event = {
+	id = bsqelection.10
+	title = bsqelection.10.t
+	desc = bsqelection.10.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #newdems stay
+		name = bsqelection.10.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.4
+				days = 189
+			}
+			country_event = {
+				id = bsqelection.13
+				days = 1461
+			}
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.10.o2
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.2
+				days = 189
+			}
+			country_event = {
+				id = bsqelection.12
+				days = 1461
+			}
+		}
+	}
+}
+#election 8 years after psoe overthrows eta and centrists won
+country_event = {
+	id = bsqelection.11
+	title = bsqelection.11.t
+	desc = bsqelection.11.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #centrists stay
+		name = bsqelection.11.o2
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.2
+				days = 189
+			}
+			country_event = {
+				id = bsqelection.12
+				days = 1461
+			}
+		}
+	}
+
+	option = { #newdems win
+		name = bsqelection.11.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.4
+				days = 189
+			}
+			country_event = {
+				id = bsqelection.13
+				days = 1461
+			}
+		}
+	}
+}
+#election 12 years after psoe overthrows eta and centrists won the last one
+country_event = {
+	id = bsqelection.12
+	title = bsqelection.12.t
+	desc = bsqelection.12.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #centrists stay
+		name = bsqelection.12.o2
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.05
+		}
+	}
+
+	option = { #newdems win
+		name = bsqelection.12.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+	}
+}
+#election 12 years after psoe overthrows eta and newdems won the last one
+country_event = {
+	id = bsqelection.13
+	title = bsqelection.13.t
+	desc = bsqelection.13.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #newdems stay
+		name = bsqelection.13.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.13.o2
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+	}
+}
+#first eta primacy election
+country_event = {
+	id = bsqelection.14
+	title = bsqelection.14.t
+	desc = bsqelection.14.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #revsocs stay
+		name = bsqelection.14.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.15
+				days = 1461
+			}
+			country_event = {
+				id = bsqelection.17
+				days = 245
+			}
+			country_event = {
+				id = bsqelection.67
+				days = 304
+			}
+		}
+	}
+
+	option = { #modsocs win
+		name = bsqelection.14.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.16
+				days = 1461
+			}
+			country_event = {
+				id = bsqelection.18
+				days = 245
+			}
+			country_event = {
+				id = bsqelection.67
+				days = 304
+			}
+		}
+	}
+	
+	option = { #communists win
+		name = bsqelection.14.o3
+		add_popularity = {
+			ideology = communist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = communist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.17
+				days = 127
+			}
+			country_event = {
+				id = bsqelection.18
+				days = 245
+			}
+			country_event = {
+				id = bsqelection.65
+				days = 1461
+			}
+		}
+	}
+}
+#second eta only election revsocs won the last one
+country_event = {
+	id = bsqelection.15
+	title = bsqelection.15.t
+	desc = bsqelection.15.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #revsocs stay
+		name = bsqelection.15.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.05
+		}
+	}
+
+	option = { #modsocs win
+		name = bsqelection.15.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	
+	option = { #communists win
+		name = bsqelection.15.o3
+		add_popularity = {
+			ideology = communist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = communist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#second eta only election modsocs won the last one
+country_event = {
+	id = bsqelection.16
+	title = bsqelection.16.t
+	desc = bsqelection.16.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #modsocs stay
+		name = bsqelection.16.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+	}
+
+	option = { #revsocs win
+		name = bsqelection.16.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	
+	option = { #communists win
+		name = bsqelection.16.o3
+		add_popularity = {
+			ideology = communist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = communist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#Maddalen Iriarte Okiñena takes over modsoc eta
+country_event = {
+	id = bsqelection.17
+	title = bsqelection.17.t
+	desc = bsqelection.17.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = bsqelection.17.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.02
+		}
+		BSQ_Maddalen_Iriarte_Okinena = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=peoples_socialist_democracy
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+}
+#Pilar Zabala Artano takes over revsoc eta
+country_event = {
+	id = bsqelection.18
+	title = bsqelection.18.t
+	desc = bsqelection.18.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = bsqelection.18.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.02
+		}
+		BSQ_Pilar_Zabala_Artano = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=orthodox_leninist
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+}
+#first elections for modsocs after otegi tried to do eta supremacy
+country_event = {
+	id = bsqelection.19
+	title = bsqelection.19.t
+	desc = bsqelection.19.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #modsocs stay
+		name = bsqelection.19.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.4
+				days = 179
+			}
+			country_event = {
+				id = bsqelection.2
+				days = 94
+			}
+			country_event = {
+				id = bsqelection.20
+				days = 1461
+			}
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.19.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.4
+				days = 179
+			}
+			country_event = {
+				id = bsqelection.6
+				days = 94
+			}
+			country_event = {
+				id = bsqelection.21
+				days = 1461
+			}
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.19.o3
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.2
+				days = 179
+			}
+			country_event = {
+				id = bsqelection.6
+				days = 94
+			}
+			country_event = {
+				id = bsqelection.22
+				days = 1461
+			}
+		}
+	}
+}
+#second elections for modsocs after otegi tried to do eta supremacy and modsocs won
+country_event = {
+	id = bsqelection.20
+	title = bsqelection.20.t
+	desc = bsqelection.20.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #modsocs stay
+		name = bsqelection.20.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.20.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.20.o3
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#second elections for modsocs after otegi tried to do eta supremacy and newdems won
+country_event = {
+	id = bsqelection.21
+	title = bsqelection.21.t
+	desc = bsqelection.21.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #newdems stay
+		name = bsqelection.21.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+	}
+
+	option = { #modsocs win
+		name = bsqelection.21.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	
+	option = { #centrists win
+		name = bsqelection.21.o3
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#second elections for modsocs after otegi tried to do eta supremacy and centrists won
+country_event = {
+	id = bsqelection.22
+	title = bsqelection.22.t
+	desc = bsqelection.22.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #centrists stay
+		name = bsqelection.22.o3
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.05
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.22.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.22.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#first election after modsoc-newdem alliance
+country_event = {
+	id = bsqelection.23
+	title = bsqelection.23.t
+	desc = bsqelection.23.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #modsocs stay
+		name = bsqelection.23.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.24
+				days = 1461
+			}
+			country_event = {
+				id = bsqelection.4
+				days = 100
+			}
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.23.o2
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.6
+				days = 100
+			}
+			country_event = {
+				id = bsqelection.26
+				days = 137
+			}
+			country_event = {
+				id = bsqelection.25
+				days = 1461
+			}
+		}
+	}
+}
+#second election after modsoc-newdem alliance and modsocs won
+country_event = {
+	id = bsqelection.24
+	title = bsqelection.24.t
+	desc = bsqelection.24.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #modsocs stay
+		name = bsqelection.24.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.24.o2
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#second election after modsoc-newdem alliance and centrists won
+country_event = {
+	id = bsqelection.25
+	title = bsqelection.25.t
+	desc = bsqelection.25.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #centrists stay
+		name = bsqelection.25.o3
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.05
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.25.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.25.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#modsoc-newdem coalition falls and Eneko Andueza becomes newdem leader
+country_event = {
+	id = bsqelection.26
+	title = bsqelection.26.t
+	desc = bsqelection.26.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = bsqelection.26.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.01
+		}
+		BSQ_Eneko_Andueza = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=new_democrat_ideology
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+}
+#first election after otegi does the free and fair elections focus
+country_event = {
+	id = bsqelection.27
+	title = bsqelection.27.t
+	desc = bsqelection.27.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #revsocs stay
+		name = bsqelection.27.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.2
+				days = 74
+			}
+			country_event = {
+				id = bsqelection.4
+				days = 97
+			}
+			country_event = {
+				id = bsqelection.6
+				days = 114
+			}
+			country_event = {
+				id = bsqelection.28
+				days = 1461
+			}
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.27.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.2
+				days = 74
+			}
+			country_event = {
+				id = bsqelection.4
+				days = 97
+			}
+			country_event = {
+				id = bsqelection.8
+				days = 114
+			}
+			country_event = {
+				id = bsqelection.29
+				days = 1461
+			}
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.27.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.6
+				days = 74
+			}
+			country_event = {
+				id = bsqelection.4
+				days = 97
+			}
+			country_event = {
+				id = bsqelection.8
+				days = 114
+			}
+			country_event = {
+				id = bsqelection.30
+				days = 1461
+			}
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.27.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.2
+				days = 74
+			}
+			country_event = {
+				id = bsqelection.6
+				days = 97
+			}
+			country_event = {
+				id = bsqelection.8
+				days = 114
+			}
+			country_event = {
+				id = bsqelection.31
+				days = 1461
+			}
+		}
+	}
+}
+#second election after otegi does the free and fair elections focus and revsocs won
+country_event = {
+	id = bsqelection.28
+	title = bsqelection.28.t
+	desc = bsqelection.28.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #revsocs stay
+		name = bsqelection.28.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.05
+		}
+	}
+
+	option = { #modsocs win
+		name = bsqelection.28.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	
+	option = { #newdems win
+		name = bsqelection.28.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.28.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#second election after otegi does the free and fair elections focus and modsocs won
+country_event = {
+	id = bsqelection.29
+	title = bsqelection.29.t
+	desc = bsqelection.29.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #modsocs stay
+		name = bsqelection.29.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+	}
+	option = { #revsocs win
+		name = bsqelection.29.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.29.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.29.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#second election after otegi does the free and fair elections focus and newdems won
+country_event = {
+	id = bsqelection.30
+	title = bsqelection.30.t
+	desc = bsqelection.30.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #newdems stay
+		name = bsqelection.30.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+	}
+	option = { #revsocs win
+		name = bsqelection.30.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.30.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.30.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#second election after otegi does the free and fair elections focus and revsocs won
+country_event = {
+	id = bsqelection.31
+	title = bsqelection.31.t
+	desc = bsqelection.31.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #centrists stay
+		name = bsqelection.31.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.05
+		}
+	}
+	option = { #revsocs win
+		name = bsqelection.31.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.31.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.31.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#first election after madariaga does the free and fair elections focus
+country_event = {
+	id = bsqelection.32
+	title = bsqelection.32.t
+	desc = bsqelection.32.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #modsocs stay
+		name = bsqelection.32.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.33
+				days = 1461
+			}
+			country_event = {
+				id = bsqelection.2
+				days = 149
+			}
+			country_event = {
+				id = bsqelection.4
+				days = 183
+			}
+			country_event = {
+				id = bsqelection.8
+				days = 271
+			}
+		}
+	}
+	option = { #revsocs win
+		name = bsqelection.32.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.34
+				days = 1461
+			}
+			country_event = {
+				id = bsqelection.2
+				days = 149
+			}
+			country_event = {
+				id = bsqelection.4
+				days = 183
+			}
+			country_event = {
+				id = bsqelection.6
+				days = 271
+			}
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.32.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.35
+				days = 1461
+			}
+			country_event = {
+				id = bsqelection.6
+				days = 149
+			}
+			country_event = {
+				id = bsqelection.4
+				days = 183
+			}
+			country_event = {
+				id = bsqelection.8
+				days = 271
+			}
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.32.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.36
+				days = 1461
+			}
+			country_event = {
+				id = bsqelection.2
+				days = 149
+			}
+			country_event = {
+				id = bsqelection.6
+				days = 183
+			}
+			country_event = {
+				id = bsqelection.8
+				days = 271
+			}
+		}
+	}
+}
+#second election after madariaga does the free and fair elections focus and modsocs won
+country_event = {
+	id = bsqelection.33
+	title = bsqelection.33.t
+	desc = bsqelection.33.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #modsocs stay
+		name = bsqelection.33.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+	}
+	option = { #revsocs win
+		name = bsqelection.33.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.33.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.33.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#second election after madariaga does the free and fair elections focus and revsocs won
+country_event = {
+	id = bsqelection.34
+	title = bsqelection.34.t
+	desc = bsqelection.34.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #revsocs stay
+		name = bsqelection.34.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.05
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.34.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.34.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.34.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#second election after madariaga does the free and fair elections focus and newdems won
+country_event = {
+	id = bsqelection.35
+	title = bsqelection.35.t
+	desc = bsqelection.35.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #newdems stay
+		name = bsqelection.35.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+	}
+	option = { #revsocs win
+		name = bsqelection.35.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.35.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.35.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#second election after madariaga does the free and fair elections focus and centrists won
+country_event = {
+	id = bsqelection.36
+	title = bsqelection.36.t
+	desc = bsqelection.36.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #centrists stay
+		name = bsqelection.36.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.05
+		}
+	}
+	option = { #revsocs win
+		name = bsqelection.36.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.36.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.36.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#first election after newdems won otegi's elections in 37
+country_event = {
+	id = bsqelection.37
+	title = bsqelection.37.t
+	desc = bsqelection.37.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #newdems stay
+		name = bsqelection.37.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.38
+				days = 1461
+			}
+			country_event = {
+				id = bsqelection.4
+				days = 91
+			}
+			country_event = {
+				id = bsqelection.6
+				days = 118
+			}
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.37.o2
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.39
+				days = 1461
+			}
+			country_event = {
+				id = bsqelection.2
+				days = 91
+			}
+			country_event = {
+				id = bsqelection.6
+				days = 118
+			}
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.37.o3
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.40
+				days = 1461
+			}
+			country_event = {
+				id = bsqelection.4
+				days = 91
+			}
+			country_event = {
+				id = bsqelection.2
+				days = 118
+			}
+		}
+	}
+}
+#second election after newdems won otegi's elections in 37 and newdems won again
+country_event = {
+	id = bsqelection.38
+	title = bsqelection.38.t
+	desc = bsqelection.38.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #newdems stay
+		name = bsqelection.38.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.38.o2
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.38.o3
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#second election after newdems won otegi's elections in 37 and centrists won
+country_event = {
+	id = bsqelection.39
+	title = bsqelection.39.t
+	desc = bsqelection.39.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #centrists stay
+		name = bsqelection.39.o2
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.05
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.39.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.39.o3
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#second election after newdems won otegi's elections in 37 and modsocs won
+country_event = {
+	id = bsqelection.40
+	title = bsqelection.40.t
+	desc = bsqelection.40.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #modsocs stay
+		name = bsqelection.40.o3
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.40.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.40.o2
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#first election after centrists won otegi's elections in 37
+country_event = {
+	id = bsqelection.41
+	title = bsqelection.41.t
+	desc = bsqelection.41.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #centrists stay
+		name = bsqelection.41.o1
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.42
+				days = 1461
+			}
+			country_event = {
+				id = bsqelection.2
+				days = 91
+			}
+			country_event = {
+				id = bsqelection.6
+				days = 118
+			}
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.41.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.43
+				days = 1461
+			}
+			country_event = {
+				id = bsqelection.4
+				days = 91
+			}
+			country_event = {
+				id = bsqelection.6
+				days = 118
+			}
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.41.o3
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.44
+				days = 1461
+			}
+			country_event = {
+				id = bsqelection.2
+				days = 91
+			}
+			country_event = {
+				id = bsqelection.4
+				days = 118
+			}
+		}
+	}
+}
+#second election after centrists won otegi's elections in 37 and centrists won again
+country_event = {
+	id = bsqelection.42
+	title = bsqelection.42.t
+	desc = bsqelection.42.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #centrists stay
+		name = bsqelection.42.o1
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.05
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.42.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.42.o3
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#second election after centrists won otegi's elections in 37 and newdems won
+country_event = {
+	id = bsqelection.43
+	title = bsqelection.43.t
+	desc = bsqelection.43.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #newdems stay
+		name = bsqelection.43.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.43.o1
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.43.o3
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#second election after centrists won otegi's elections in 37 and modsocs won
+country_event = {
+	id = bsqelection.44
+	title = bsqelection.44.t
+	desc = bsqelection.44.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #modsocs stay
+		name = bsqelection.44.o3
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.44.o1
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.44.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#mid game election after otegi won elections in basque.48
+country_event = {
+	id = bsqelection.45
+	title = bsqelection.45.t
+	desc = bsqelection.45.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #revsocs stay
+		name = bsqelection.45.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.2
+				days = 74
+			}
+			country_event = {
+				id = bsqelection.4
+				days = 97
+			}
+			country_event = {
+				id = bsqelection.6
+				days = 114
+			}
+			country_event = {
+				id = bsqelection.46
+				days = 1461
+			}
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.45.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.2
+				days = 74
+			}
+			country_event = {
+				id = bsqelection.4
+				days = 97
+			}
+			country_event = {
+				id = bsqelection.8
+				days = 114
+			}
+			country_event = {
+				id = bsqelection.47
+				days = 1461
+			}
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.45.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.6
+				days = 74
+			}
+			country_event = {
+				id = bsqelection.4
+				days = 97
+			}
+			country_event = {
+				id = bsqelection.8
+				days = 114
+			}
+			country_event = {
+				id = bsqelection.48
+				days = 1461
+			}
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.45.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.2
+				days = 74
+			}
+			country_event = {
+				id = bsqelection.6
+				days = 97
+			}
+			country_event = {
+				id = bsqelection.8
+				days = 114
+			}
+			country_event = {
+				id = bsqelection.49
+				days = 1461
+			}
+		}
+	}
+}
+#late game election after otegi won elections in basque.48 and won again
+country_event = {
+	id = bsqelection.46
+	title = bsqelection.46.t
+	desc = bsqelection.46.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #revsocs stay
+		name = bsqelection.46.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.05
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.46.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.46.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.46.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#late game election after otegi won elections in basque.48 and modsocs won 4 years later
+country_event = {
+	id = bsqelection.47
+	title = bsqelection.47.t
+	desc = bsqelection.47.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #modsocs stay
+		name = bsqelection.47.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+	}
+	option = { #revsocs win
+		name = bsqelection.47.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.47.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.47.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#late game election after otegi won elections in basque.48 and newdems won 4 years later
+country_event = {
+	id = bsqelection.48
+	title = bsqelection.48.t
+	desc = bsqelection.48.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #newdems stay
+		name = bsqelection.48.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+	}
+	option = { #revsocs win
+		name = bsqelection.48.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.48.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.48.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#late game election after otegi won elections in basque.48 and centrists won 4 years later
+country_event = {
+	id = bsqelection.49
+	title = bsqelection.49.t
+	desc = bsqelection.49.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #centrists stay
+		name = bsqelection.49.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.05
+		}
+	}
+	option = { #revsocs win
+		name = bsqelection.49.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.49.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.49.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#mid game election after madariaga won elections in basque.48
+country_event = {
+	id = bsqelection.50
+	title = bsqelection.50.t
+	desc = bsqelection.50.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #modsocs stay
+		name = bsqelection.50.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.51
+				days = 1461
+			}
+			country_event = {
+				id = bsqelection.2
+				days = 149
+			}
+			country_event = {
+				id = bsqelection.4
+				days = 183
+			}
+			country_event = {
+				id = bsqelection.8
+				days = 271
+			}
+		}
+	}
+	option = { #revsocs win
+		name = bsqelection.50.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.52
+				days = 1461
+			}
+			country_event = {
+				id = bsqelection.2
+				days = 149
+			}
+			country_event = {
+				id = bsqelection.4
+				days = 183
+			}
+			country_event = {
+				id = bsqelection.6
+				days = 271
+			}
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.50.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.53
+				days = 1461
+			}
+			country_event = {
+				id = bsqelection.6
+				days = 149
+			}
+			country_event = {
+				id = bsqelection.4
+				days = 183
+			}
+			country_event = {
+				id = bsqelection.8
+				days = 271
+			}
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.50.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.54
+				days = 1461
+			}
+			country_event = {
+				id = bsqelection.2
+				days = 149
+			}
+			country_event = {
+				id = bsqelection.6
+				days = 183
+			}
+			country_event = {
+				id = bsqelection.8
+				days = 271
+			}
+		}
+	}
+}
+#late game election after madariaga won elections in basque.48 and won again
+country_event = {
+	id = bsqelection.51
+	title = bsqelection.51.t
+	desc = bsqelection.51.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #modsocs stay
+		name = bsqelection.51.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+	}
+	option = { #revsocs win
+		name = bsqelection.51.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.51.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.51.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#late game election after madariaga won elections in basque.48 and lost to the revsocs 4 years later
+country_event = {
+	id = bsqelection.52
+	title = bsqelection.52.t
+	desc = bsqelection.52.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #revsocs stay
+		name = bsqelection.52.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.05
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.52.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.52.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.52.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#late game election after madariaga won elections in basque.48 and lost to newdems 4 years later
+country_event = {
+	id = bsqelection.53
+	title = bsqelection.53.t
+	desc = bsqelection.53.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #newdems stay
+		name = bsqelection.53.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+	}
+	option = { #revsocs win
+		name = bsqelection.53.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.53.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.53.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#late game election after madariaga won elections in basque.48 and lost to centrists 4 years later
+country_event = {
+	id = bsqelection.54
+	title = bsqelection.54.t
+	desc = bsqelection.54.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #centrists stay
+		name = bsqelection.54.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.05
+		}
+	}
+	option = { #revsocs win
+		name = bsqelection.54.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.54.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.54.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#mid game election after newdems won elections in basque.48
+country_event = {
+	id = bsqelection.55
+	title = bsqelection.55.t
+	desc = bsqelection.55.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #newdems stay
+		name = bsqelection.55.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.56
+				days = 1461
+			}
+			country_event = {
+				id = bsqelection.6
+				days = 149
+			}
+			country_event = {
+				id = bsqelection.4
+				days = 183
+			}
+			country_event = {
+				id = bsqelection.8
+				days = 271
+			}
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.55.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.57
+				days = 1461
+			}
+			country_event = {
+				id = bsqelection.2
+				days = 149
+			}
+			country_event = {
+				id = bsqelection.6
+				days = 183
+			}
+			country_event = {
+				id = bsqelection.8
+				days = 271
+			}
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.55.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.58
+				days = 1461
+			}
+			country_event = {
+				id = bsqelection.2
+				days = 149
+			}
+			country_event = {
+				id = bsqelection.4
+				days = 183
+			}
+			country_event = {
+				id = bsqelection.8
+				days = 271
+			}
+		}
+	}
+	option = { #revsocs win
+		name = bsqelection.55.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.59
+				days = 1461
+			}
+			country_event = {
+				id = bsqelection.2
+				days = 149
+			}
+			country_event = {
+				id = bsqelection.4
+				days = 183
+			}
+			country_event = {
+				id = bsqelection.6
+				days = 271
+			}
+		}
+	}
+}
+#late game election after newdems won elections in basque.48 and won again 4 years later
+country_event = {
+	id = bsqelection.56
+	title = bsqelection.56.t
+	desc = bsqelection.56.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #newdems stay
+		name = bsqelection.56.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.56.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.56.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #revsocs win
+		name = bsqelection.56.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#late game election after newdems won elections in basque.48 and centrists won 4 years later
+country_event = {
+	id = bsqelection.57
+	title = bsqelection.57.t
+	desc = bsqelection.57.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #centrists stay
+		name = bsqelection.57.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.05
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.57.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.57.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #revsocs win
+		name = bsqelection.57.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#late game election after newdems won elections in basque.48 and modsocs won 4 years later
+country_event = {
+	id = bsqelection.58
+	title = bsqelection.58.t
+	desc = bsqelection.58.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #modsocs stay
+		name = bsqelection.58.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.58.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.58.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #revsocs win
+		name = bsqelection.58.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#late game election after newdems won elections in basque.48 and revsocs won 4 years later
+country_event = {
+	id = bsqelection.59
+	title = bsqelection.59.t
+	desc = bsqelection.59.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #revsocs stay
+		name = bsqelection.59.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.05
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.59.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.59.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.59.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#mid game election after centrists won elections in basque.48
+country_event = {
+	id = bsqelection.60
+	title = bsqelection.60.t
+	desc = bsqelection.60.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #centrists stay
+		name = bsqelection.60.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.61
+				days = 1461
+			}
+			country_event = {
+				id = bsqelection.2
+				days = 149
+			}
+			country_event = {
+				id = bsqelection.6
+				days = 183
+			}
+			country_event = {
+				id = bsqelection.8
+				days = 271
+			}
+		}
+	}
+	option = { #newdems stay
+		name = bsqelection.60.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.62
+				days = 1461
+			}
+			country_event = {
+				id = bsqelection.6
+				days = 149
+			}
+			country_event = {
+				id = bsqelection.4
+				days = 183
+			}
+			country_event = {
+				id = bsqelection.8
+				days = 271
+			}
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.60.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.63
+				days = 1461
+			}
+			country_event = {
+				id = bsqelection.2
+				days = 149
+			}
+			country_event = {
+				id = bsqelection.4
+				days = 183
+			}
+			country_event = {
+				id = bsqelection.8
+				days = 271
+			}
+		}
+	}
+	option = { #revsocs win
+		name = bsqelection.60.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.64
+				days = 1461
+			}
+			country_event = {
+				id = bsqelection.2
+				days = 149
+			}
+			country_event = {
+				id = bsqelection.4
+				days = 183
+			}
+			country_event = {
+				id = bsqelection.6
+				days = 271
+			}
+		}
+	}
+}
+#late game election after centrists won elections in basque.48 and won again 4 years later
+country_event = {
+	id = bsqelection.61
+	title = bsqelection.61.t
+	desc = bsqelection.61.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #centrists stay
+		name = bsqelection.61.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.05
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.61.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.61.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #revsocs win
+		name = bsqelection.61.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#late game election after centrists won elections in basque.48 and newdems won 4 years later
+country_event = {
+	id = bsqelection.62
+	title = bsqelection.62.t
+	desc = bsqelection.62.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #newdems stay
+		name = bsqelection.62.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.62.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.62.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #revsocs win
+		name = bsqelection.62.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#late game election after centrists won elections in basque.48 and modsocs won 4 years later
+country_event = {
+	id = bsqelection.63
+	title = bsqelection.63.t
+	desc = bsqelection.63.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #modsocs stay
+		name = bsqelection.63.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.05
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.63.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.63.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #revsocs win
+		name = bsqelection.63.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#late game election after centrists won elections in basque.48 and revsocs won 4 years later
+country_event = {
+	id = bsqelection.64
+	title = bsqelection.64.t
+	desc = bsqelection.64.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #revsocs stay
+		name = bsqelection.64.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.05
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.64.o4
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.64.o3
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.64.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#second eta only election communists won the last one
+country_event = {
+	id = bsqelection.65
+	title = bsqelection.65.t
+	desc = bsqelection.65.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #communists stay
+		name = bsqelection.65.o3
+		add_popularity = {
+			ideology = communist
+			popularity = 0.05
+		}
+	}
+	option = { #revsocs win
+		name = bsqelection.65.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = revolutionary_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+	option = { #modsocs win
+		name = bsqelection.65.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = moderate_socialist
+			elections_allowed = no
+			last_election = "1935.12.12"
+			election_frequency = 48
+		}
+	}
+}
+#Karmele Berasategi takes over commie eta
+country_event = {
+	id = bsqelection.66
+	title = bsqelection.66.t
+	desc = bsqelection.66.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = bsqelection.66.o1
+		add_popularity = {
+			ideology = communist
+			popularity = 0.02
+		}
+		BSQ_Karmele_Berasategi = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=leninist
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+}
+#Maite Aranburu takes over commie eta
+country_event = {
+	id = bsqelection.67
+	title = bsqelection.67.t
+	desc = bsqelection.67.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = bsqelection.67.o1
+		add_popularity = {
+			ideology = communist
+			popularity = 0.02
+		}
+		BSQ_Maite_Aranburu = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=leninist
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+}
+#Laura Mintegi takes over batasuna in eta only elections
+country_event = {
+	id = bsqelection.68
+	title = bsqelection.68.t
+	desc = bsqelection.68.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = bsqelection.68.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.02
+		}
+		BSQ_Laura_Mintegi = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=peoples_socialist_democracy
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+}
+#Joseba Permach takes over military branch in eta only elections
+country_event = {
+	id = bsqelection.69
+	title = bsqelection.69.t
+	desc = bsqelection.69.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = bsqelection.69.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.02
+		}
+		BSQ_Joseba_Permach = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=orthodox_leninist
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+}
+#election 4 years after nationalist party overthrows eta
+country_event = {
+	id = bsqelection.70
+	title = bsqelection.70.t
+	desc = bsqelection.70.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #centrists stay
+		name = bsqelection.70.o2
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.1
+				days = 189
+			}
+			country_event = {
+				id = bsqelection.72
+				days = 1461
+			}
+		}
+	}
+	option = { #newdems win
+		name = bsqelection.70.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.3
+				days = 189
+			}
+			country_event = {
+				id = bsqelection.71
+				days = 1461
+			}
+		}
+	}
+}
+#election 8 years after nationalist party overthrows eta and psoe won
+country_event = {
+	id = bsqelection.71
+	title = bsqelection.71.t
+	desc = bsqelection.71.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #newdems stay
+		name = bsqelection.71.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.4
+				days = 189
+			}
+			country_event = {
+				id = bsqelection.74
+				days = 1461
+			}
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.71.o2
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.2
+				days = 189
+			}
+			country_event = {
+				id = bsqelection.73
+				days = 1461
+			}
+		}
+	}
+}
+#election 8 years after nationalist party overthrows eta and centrists won
+country_event = {
+	id = bsqelection.72
+	title = bsqelection.72.t
+	desc = bsqelection.72.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #centrists stay
+		name = bsqelection.72.o2
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.2
+				days = 189
+			}
+			country_event = {
+				id = bsqelection.73
+				days = 1461
+			}
+		}
+	}
+
+	option = { #newdems win
+		name = bsqelection.72.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+		hidden_effect = {
+			country_event = {
+				id = bsqelection.4
+				days = 189
+			}
+			country_event = {
+				id = bsqelection.74
+				days = 1461
+			}
+		}
+	}
+}
+#election 12 years after nationalist party overthrows eta and centrists won the last one
+country_event = {
+	id = bsqelection.73
+	title = bsqelection.73.t
+	desc = bsqelection.73.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #centrists stay
+		name = bsqelection.73.o2
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.05
+		}
+	}
+
+	option = { #newdems win
+		name = bsqelection.73.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+	}
+}
+#election 12 years after nationalist party overthrows eta and newdems won the last one
+country_event = {
+	id = bsqelection.74
+	title = bsqelection.74.t
+	desc = bsqelection.74.d
+	picture = x
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #newdems stay
+		name = bsqelection.74.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+	}
+	option = { #centrists win
+		name = bsqelection.74.o2
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+			last_election = "1935.12.17"
+			election_frequency = 48
+		}
+	}
+}

@@ -13,140 +13,488 @@ focus_tree = {
 	focus = {
 		id = YAR_Success_of_the_Play
 		icon = GFX_success_of_the_play
-		cost = 1
+		cost = 0
 		available = {
 			has_war = yes
 		}
+		bypass_if_unavailable = yes
 		x = 14
-		y = 1
+		y = -2
 		completion_reward = {
-			add_political_power = 100
+			add_ideas = limited_conscription
+			add_ideas = war_economy
 			country_event = {
 				id = YAR.1
 			}
 		}
 	}
 	focus = {
-		id = YAR_Rally_Republican_Guard
-		icon = GFX_rally_the_republican_guard
-		cost = 1
-		x = 11
-		y = 2
+		id = YAR_utilize_the_houthis_knowledge
+		icon = YAR_houthi_knowledge
+		cost = 3
 		available = {
 			has_war = yes
 		}
+		bypass_if_unavailable = yes
 		prerequisite = {
 			focus = YAR_Success_of_the_Play
 		}
+		relative_position_id = YAR_Success_of_the_Play
+		x = -2
+		y = 1
 		completion_reward = {
-			add_timed_idea = {
-				idea = YAR_energised_republican_guard
-				days = 180
-			}
 			division_template = {
-				name = "Sa'dah Republican Guard"
-				regiments = {
-					infantry = { x = 0 y = 0 }
-					infantry = { x = 0 y = 1 }
-					infantry = { x = 0 y = 2 }
-					infantry = { x = 1 y = 0 }
-					infantry = { x = 1 y = 1 }
+                name = "Houthi Militia"
+                regiments = {
+                    infantry = { x = 0 y = 0 }
+                    infantry = { x = 0 y = 1 }
+                    infantry = { x = 0 y = 2 }
+                    infantry = { x = 1 y = 0 }
+                    infantry = { x = 1 y = 1 }
 					infantry = { x = 1 y = 2 }
-				}
-			}
-			976 = {
-				create_unit = {
-					division = "name = \"Sa'dah Republican Guard\" division_template = \"Sa'dah Republican Guard\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
-					owner = YAR
-				}
-				create_unit = {
-					division = "name = \"Sa'dah Republican Guard\" division_template = \"Sa'dah Republican Guard\" start_experience_factor = 0.5  start_equipment_factor = 0.8"
-					owner = YAR
-				}
-			}
+					infantry = { x = 2 y = 0 }
+                }
+            }
+            capital_scope = {
+                create_unit = {
+                    division = "name = \"1st Houthi Militia\" division_template = \"Houthi Militia\" start_experience_factor = 2 start_equipment_factor = 1"
+                    owner = YAR
+                    allow_spawning_on_enemy_provs = yes
+                }
+                create_unit = {
+                    division = "name = \"2nd Houthi Militia\" division_template = \"Houthi Militia\" start_experience_factor = 2  start_equipment_factor = 1"
+                    owner = YAR
+                    allow_spawning_on_enemy_provs = yes
+                }
+            }
+			add_ideas = YAR_houthi_warfare
 		}
 	}
 	focus = {
-		id = YAR_Legit_Government
-		icon = swords
-		cost = 2
-		x = 13
-		y = 2
+		id = YAR_military_tribal_links
+		icon = YAR_tribe_army
+		cost = 3
 		available = {
 			has_war = yes
 		}
+		bypass_if_unavailable = yes
 		prerequisite = {
-			focus = YAR_Success_of_the_Play
+			focus = YAR_utilize_the_houthis_knowledge
 		}
+		relative_position_id = YAR_utilize_the_houthis_knowledge
+		x = -3
+		y = 1
 		completion_reward = {
-			add_popularity = {
-				ideology = nationalist
-				popularity = 0.05
-			}
-			add_stability = 0.05
-			add_war_support = 0.05
 			country_event = {
-				id = YAR.2
+				id = YAR.3
 			}
-		}	
-	}
-	focus = {
-		id = YAR_Military_Tribal_Links
-		icon = investigate_industrial_corruption
-		cost = 2
-		x = 15
-		y = 2
-		available = {
-			has_war = yes
-		}
-		prerequisite = {
-			focus = YAR_Success_of_the_Play
-		}
-		completion_reward = {
 			add_offsite_building = {
 				type = arms_factory
 				level = 1
 			}
 			add_stability = 0.05
-			add_war_support = 0.05
-			country_event = {
-				id = YAR.3
+			add_war_support = 0.02
+			add_manpower = 3000
+		}
+	}
+	focus = {
+		id = YAR_push_through_sadah
+		icon = GFX_goal_Generic_Coup02
+		cost = 5
+		available = {
+			has_war = yes
+			country_exists = YEM
+		}
+		bypass_if_unavailable = yes
+		prerequisite = {
+			focus = YAR_military_tribal_links
+		}
+		mutually_exclusive = {
+			focus = YAR_strike_at_the_heart
+		}
+		relative_position_id = YAR_military_tribal_links
+		x = 0
+		y = 1
+		completion_reward = {
+			add_timed_idea = {
+				idea = YAR_encirclement_tactics
+				days = 45
 			}
 		}
 	}
 	focus = {
-		id = YAR_Iraq_Support
-		icon = GFX_request_iraqi_support
-		cost = 1
-		x = 17
-		y = 2
+		id = YAR_unearth_the_sadah_stockpile
+		icon = YAR_sadah_stockpile_focus
+		cost = 3
 		available = {
 			has_war = yes
 		}
+		bypass_if_unavailable = yes
 		prerequisite = {
-			focus = YAR_Success_of_the_Play
+			focus = YAR_utilize_the_houthis_knowledge
 		}
+		relative_position_id = YAR_utilize_the_houthis_knowledge
+		x = -1
+		y = 1
 		completion_reward = {
 			add_equipment_to_stockpile = {
 				type = infantry_equipment
-				amount = 2500
-				producer = IRQ
-			}
-			add_equipment_to_stockpile = {
-				type = support_equipment
-				amount = 250
-				producer = IRQ
+				amount = 1000
 			}
 			add_equipment_to_stockpile = {
 				type = artillery_equipment
-				amount = 100
-				producer = IRQ
+				amount = 300
 			}
-			IRQ = {
-				country_event = {
-					id = YAR.4
-					days = 1
+			add_equipment_to_stockpile = {
+				type = anti_air_equipment
+				amount = 100
+			}
+		}
+	}
+	focus = {
+		id = YAR_strike_at_the_heart
+		icon = backstab_our_backers
+		cost = 5
+		available = {
+			has_war = yes
+		}
+		bypass_if_unavailable = yes
+		prerequisite = {
+			focus = YAR_unearth_the_sadah_stockpile
+		}
+		mutually_exclusive = {
+			focus = YAR_push_through_sadah
+		}
+		relative_position_id = YAR_unearth_the_sadah_stockpile
+		x = 0
+		y = 1
+		completion_reward = {
+			add_timed_idea = {
+				idea = YAR_rush_for_the_sea
+				days = 50
+			}
+		}
+	}
+	focus = {
+		id = YAR_legitimize_the_government
+		icon = legitimate_rule
+		cost = 5
+		available = {
+			has_war = yes
+		}
+		bypass_if_unavailable = yes
+		prerequisite = {
+			focus = YAR_Success_of_the_Play
+		}
+		relative_position_id = YAR_Success_of_the_Play
+		x = 0
+		y = 1
+		completion_reward = {
+			create_intelligence_agency = {
+				name = "Political Security Organization"
+				icon = GFX_intelligence_agency_logo_generic_1
+			}
+			add_war_support = 0.03
+			add_political_power = 50
+			country_event = yar.180
+		}
+	}
+	focus = {
+		id = YAR_an_era_of_nostalgia
+		icon = restore_the_1970_constitution
+		cost = 2
+		available = {
+			has_war = yes
+		}
+		bypass_if_unavailable = yes
+		prerequisite = {
+			focus = YAR_legitimize_the_government
+		}
+		mutually_exclusive = {
+			focus = YAR_promise_a_brighter_future
+		}
+		relative_position_id = YAR_legitimize_the_government
+		x = -1
+		y = 1
+		completion_reward = {
+			add_war_support = 0.07
+			add_stability = -0.05
+			add_ideas = YAR_nostalgic_population
+		}
+	}
+	focus = {
+		id = YAR_promise_a_brighter_future
+		icon = worker_and_kolkhoz_woman
+		cost = 3
+		available = {
+			has_war = yes
+		}
+		bypass_if_unavailable = yes
+		prerequisite = {
+			focus = YAR_legitimize_the_government
+		}
+		mutually_exclusive = {
+			focus = YAR_an_era_of_nostalgia
+		}
+		relative_position_id = YAR_legitimize_the_government
+		x = 1
+		y = 1
+		completion_reward = {
+			add_stability = 0.05
+			add_manpower = 3000
+		}
+	}
+	focus = {
+		id = YAR_rally_the_republican_guard
+		icon = YAR_rally_the_republican_guard
+		cost = 3
+		available = {
+			has_war = yes
+		}
+		bypass_if_unavailable = yes
+		prerequisite = {
+			focus = YAR_an_era_of_nostalgia
+			focus = YAR_promise_a_brighter_future
+		}
+		relative_position_id = YAR_an_era_of_nostalgia
+		x = 0
+		y = 1
+		completion_reward = {
+			division_template = {
+                name = "Republican Guard"
+                regiments = {
+                    infantry = { x = 0 y = 0 }
+                    infantry = { x = 0 y = 1 }
+                    infantry = { x = 0 y = 2 }
+                    infantry = { x = 1 y = 0 }
+                    infantry = { x = 1 y = 1 }
+                }
+				support = {
+					artillery = { x = 0 y = 0 }
 				}
+            }
+            capital_scope = {
+                create_unit = {
+                    division = "name = \"1st Republican Guard\" division_template = \"Republican Guard\" start_experience_factor = 2 start_equipment_factor = 1"
+                    owner = YAR
+                    allow_spawning_on_enemy_provs = yes
+                }
+                create_unit = {
+                    division = "name = \"2nd Republican Guard\" division_template = \"Republican Guard\" start_experience_factor = 2  start_equipment_factor = 1"
+                    owner = YAR
+                    allow_spawning_on_enemy_provs = yes
+                }
+            }
+		}
+	}
+	focus = {
+		id = YAR_request_pan_arab_support
+		icon = YAR_arab_gun_focus
+		cost = 5
+		available = {
+			has_war = yes
+			YEM = {
+				exists = no
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = YAR_an_era_of_nostalgia
+			focus = YAR_promise_a_brighter_future
+		}
+		relative_position_id = YAR_an_era_of_nostalgia
+		x = 2
+		y = 1
+		completion_reward = {
+			every_country = {
+				limit = {
+					OR = {
+						tag = UAR
+						tag = EGY
+						tag = SYR
+						tag = IRQ
+					}
+				}
+				country_event = YAR.181
+			}
+		}
+	}
+	focus = {
+		id = YAR_embrace_nasserist_populism
+		icon = focus_maintain_nasserism
+		cost = 3
+		available = {
+			has_war = yes
+		}
+		bypass_if_unavailable = yes
+		prerequisite = {
+			focus = YAR_Success_of_the_Play
+		}
+		relative_position_id = YAR_Success_of_the_Play
+		x = 2
+		y = 1
+		completion_reward = {
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.06
+			}
+			add_war_support = 0.02
+			add_manpower = 2000
+		}
+	}
+	focus = {
+		id = YAR_permit_nasserist_economics
+		icon = GFX_goal_socialist_industry
+		cost = 5
+		available = {
+			has_war = yes
+		}
+		bypass_if_unavailable = yes
+		prerequisite = {
+			focus = YAR_embrace_nasserist_populism
+		}
+		relative_position_id = YAR_embrace_nasserist_populism
+		x = 1
+		y = 1
+		completion_reward = {
+			add_ideas = YAR_nasserist_economic_policy
+		}
+	}
+	focus = {
+		id = YAR_second_aden_offensive
+		icon = GFX_goal_soldiers2
+		cost = 5
+		available = {
+			has_war = yes
+		}
+		bypass ={
+			OR = {
+				has_war = no
+				JAS = {
+					exists = no
+				}
+			}
+		}
+		prerequisite = {
+			focus = YAR_permit_nasserist_economics
+		}
+		mutually_exclusive = {
+			focus = YAR_liberate_hadhramaut
+		}
+		relative_position_id = YAR_permit_nasserist_economics
+		x = 0
+		y = 1
+		completion_reward = {
+			add_timed_idea = {
+				idea = YAR_the_road_to_aden
+				days = 70
+			}
+		}
+	}
+	focus = {
+		id = YAR_the_peoples_militia
+		icon = YAR_arab_socialist_militia_focus
+		cost = 3
+		available = {
+			has_war = yes
+		}
+		bypass_if_unavailable = yes
+		prerequisite = {
+			focus = YAR_embrace_nasserist_populism
+		}
+		relative_position_id = YAR_embrace_nasserist_populism
+		x = 3
+		y = 1
+		completion_reward = {
+			division_template = {
+                name = "People's Militia"
+                regiments = {
+                    militia = { x = 0 y = 0 }
+                    militia = { x = 0 y = 1 }
+                    militia = { x = 0 y = 2 }
+                    militia = { x = 1 y = 0 }
+                    militia = { x = 1 y = 1 }
+                }
+				support = {
+					artillery = { x = 0 y = 0 }
+				}
+            }
+            capital_scope = {
+                create_unit = {
+                    division = "name = \"1st People's Militia\" division_template = \"People's Militia\" start_experience_factor = 2 start_equipment_factor = 1"
+                    owner = YAR
+                    allow_spawning_on_enemy_provs = yes
+                }
+                create_unit = {
+                    division = "name = \"2nd People's Militia\" division_template = \"People's Militia\" start_experience_factor = 2  start_equipment_factor = 1"
+                    owner = YAR
+                    allow_spawning_on_enemy_provs = yes
+                }
+            }
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+			add_manpower = 4000
+		}
+	}
+	focus = {
+		id = YAR_liberate_hadhramaut
+		icon = YEM_destroy_South
+		cost = 5
+		available = {
+			has_war = yes
+			country_exists = PDY
+		}
+		bypass_if_unavailable = yes
+		prerequisite = {
+			focus = YAR_the_peoples_militia
+		}
+		mutually_exclusive = {
+			focus = YAR_second_aden_offensive
+		}
+		relative_position_id = YAR_the_peoples_militia
+		x = 0
+		y = 1
+		completion_reward = {
+			add_timed_idea = {
+				idea = YAR_an_end_to_communism
+				days = 90
+			}
+		}
+	}
+	focus = {
+		id = YAR_death_over_defeat
+		icon = YAR_death_before_defeat
+		cost = 3
+		available = {
+			has_war = yes
+		}
+		bypass_if_unavailable = yes
+		prerequisite = {
+			focus = YAR_push_through_sadah
+			focus = YAR_strike_at_the_heart
+		}
+		prerequisite = {
+			focus = YAR_rally_the_republican_guard
+		}
+		prerequisite = {
+			focus = YAR_request_pan_arab_support
+		}
+		prerequisite = {
+			focus = YAR_second_aden_offensive
+			focus = YAR_liberate_hadhramaut
+		}
+		relative_position_id = YAR_rally_the_republican_guard
+		x = 1
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = YEM_civil_war
+				add_idea = YAR_civil_war
 			}
 		}
 	}
@@ -160,7 +508,7 @@ focus_tree = {
 		x = 12
 		y = 3
 		prerequisite = {
-			focus = YAR_Legit_Government
+			focus = YAR_death_over_defeat
 		}
 		completion_reward = {
 			add_popularity = {
@@ -182,9 +530,175 @@ focus_tree = {
 			add_state_core = 659
 			add_state_core = 979
 			add_state_core = 972
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = YAR_civil_war_over
+					}
+				}
+				set_country_flag = YAR_civil_war_over
+				add_ideas = civilian_economy
+				add_ideas = volunteer_only
+			}
 			hidden_effect = {
 				IF = {
 					limit = {
+						NOT = {
+							has_completed_focus = YAR_Islamist_Crackdown
+						}
+						NOT = {
+							has_completed_focus = YAR_Communist_Crackdown
+						}
+					}
+					IF = {
+						limit = {
+							country_exists = PDY
+						}
+						news_event = {
+							id = news.317
+						}
+					}
+					IF = {
+						limit = {
+							NOT = {
+								country_exists = PDY
+							}
+						}
+						news_event = {
+							id = news.316
+						}
+					}
+				}
+			}
+			hidden_effect = {
+				remove_ideas = YAR_houthi_warfare
+				remove_ideas = YAR_encirclement_tactics
+				remove_ideas = YAR_rush_for_the_sea
+				remove_ideas = YAR_nostalgic_population
+				remove_ideas = YAR_nasserist_economic_policy
+				remove_ideas = YAR_the_road_to_aden
+				remove_ideas = YAR_an_end_to_communism
+			}
+		}
+	}
+	focus = {
+		id = YAR_Islamist_Crackdown
+		icon = drone
+		cost = 2
+		available = {
+			has_war = no
+		}
+		x = 14
+		y = 3
+		prerequisite = {
+			focus = YAR_death_over_defeat	
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = national_conservative
+				popularity = -0.1
+			}
+			country_event = {
+				id = YAR.8
+			}
+			add_state_core = 975
+			add_state_core = 978
+			add_state_core = 973
+			set_capital = { state = 973 }
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = YAR_civil_war_over
+					}
+				}
+				set_country_flag = YAR_civil_war_over
+				add_ideas = civilian_economy
+				add_ideas = volunteer_only
+			}
+			hidden_effect = {
+				IF = {
+					limit = {
+						NOT = {
+							has_completed_focus = YAR_Jasmin_Crackdown
+						}
+						NOT = {
+							has_completed_focus = YAR_Communist_Crackdown
+						}
+					}
+					IF = {
+						limit = {
+							country_exists = PDY
+						}
+						news_event = {
+							id = news.317
+						}
+					}
+					IF = {
+						limit = {
+							NOT = {
+								country_exists = PDY
+							}
+						}
+						news_event = {
+							id = news.316
+						}
+					}
+				}
+			}
+			hidden_effect = {
+				remove_ideas = YAR_houthi_warfare
+				remove_ideas = YAR_encirclement_tactics
+				remove_ideas = YAR_rush_for_the_sea
+				remove_ideas = YAR_nostalgic_population
+				remove_ideas = YAR_nasserist_economic_policy
+				remove_ideas = YAR_the_road_to_aden
+				remove_ideas = YAR_an_end_to_communism
+			}
+		}
+	}
+	focus = {
+		id = YAR_Communist_Crackdown
+		icon = CSD_ban_socialism
+		cost = 2
+		available = {
+			has_war = no
+		}
+		x = 16
+		y = 3
+		prerequisite = {
+			focus = YAR_death_over_defeat
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = 	communist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = 	moderate_socialist
+				popularity = -0.05
+			}
+			country_event = {
+				id = YAR.9
+				days = 1
+			}
+			add_state_core = 293
+			add_state_core = 974
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = YAR_civil_war_over
+					}
+				}
+				set_country_flag = YAR_civil_war_over
+				add_ideas = civilian_economy
+				add_ideas = volunteer_only
+			}
+			hidden_effect = {
+				IF = {
+					limit = {
+						NOT = {
+							has_completed_focus = YAR_Jasmin_Crackdown
+						}
 						NOT = {
 							has_completed_focus = YAR_Islamist_Crackdown
 						}
@@ -209,91 +723,15 @@ focus_tree = {
 					}
 				}
 			}
-		}
-	}
-	focus = {
-		id = YAR_Islamist_Crackdown
-		icon = drone
-		cost = 2
-		available = {
-			has_war = no
-		}
-		x = 14
-		y = 3
-		prerequisite = {
-			focus = YAR_Legit_Government	
-		}
-		prerequisite = {
-			focus = YAR_Military_Tribal_Links
-		}
-		completion_reward = {
-			add_popularity = {
-				ideology = national_conservative
-				popularity = -0.1
-			}
-			country_event = {
-				id = YAR.8
-			}
-			add_state_core = 975
-			add_state_core = 978
-			add_state_core = 973
-			set_capital = { state = 973 }
 			hidden_effect = {
-				IF = {
-					limit = {
-						NOT = {
-							has_completed_focus = YAR_Jasmin_Crackdown
-						}
-					}
-					IF = {
-						limit = {
-							country_exists = PDY
-						}
-						news_event = {
-							id = news.317
-						}
-					}
-					IF = {
-						limit = {
-							NOT = {
-								country_exists = PDY
-							}
-						}
-						news_event = {
-							id = news.316
-						}
-					}
-				}
+				remove_ideas = YAR_houthi_warfare
+				remove_ideas = YAR_encirclement_tactics
+				remove_ideas = YAR_rush_for_the_sea
+				remove_ideas = YAR_nostalgic_population
+				remove_ideas = YAR_nasserist_economic_policy
+				remove_ideas = YAR_the_road_to_aden
+				remove_ideas = YAR_an_end_to_communism
 			}
-		}
-	}
-	focus = {
-		id = YAR_Communist_Crackdown
-		icon = CSD_ban_socialism
-		cost = 2
-		available = {
-			has_war = no
-		}
-		x = 16
-		y = 3
-		prerequisite = {
-			focus = YAR_Military_Tribal_Links
-		}
-		completion_reward = {
-			add_popularity = {
-				ideology = 	communist
-				popularity = -0.05
-			}
-			add_popularity = {
-				ideology = 	moderate_socialist
-				popularity = -0.05
-			}
-			country_event = {
-				id = YAR.9
-				days = 1
-			}
-			add_state_core = 293
-			add_state_core = 974
 		}
 	}
 	focus = {
@@ -399,7 +837,7 @@ focus_tree = {
 	focus = {
 		id = YAR_Destroy_Corruption
 		icon = GFX_RAJ_greater_emergency_powers
-		cost = 8
+		cost = 7.2.9
 		x = 2
 		y = 9
 		prerequisite = {
@@ -436,7 +874,7 @@ focus_tree = {
 	focus = {
 		id = YAR_Uplift_Saada
 		icon = GFX_uplift_saada
-		cost = 8
+		cost = 7.2.9
 		x = 2
 		y = 10
 		prerequisite = {
@@ -813,7 +1251,7 @@ focus_tree = {
 	focus = {
 		id = YAR_Nationwide_Investments
 		icon = roads
-		cost = 8
+		cost = 7.2.9
 		x = 3
 		y = 16
 
@@ -1464,7 +1902,7 @@ focus_tree = {
 	focus = {
 		id = YAR_Ruler_of_The_Skies
 		icon = GFX_ruler_of_the_skies
-		cost = 3.6
+		cost = 5
 		x = 11
 		y = 17
 
@@ -1481,6 +1919,10 @@ focus_tree = {
 				bonus = 0.5
 				uses = 1
 				category = cas_bomber
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
 			}
 			978 = {
 				add_building_construction = {
@@ -1585,7 +2027,7 @@ focus_tree = {
 	focus = {
 		id = YAR_The_New_Yemen
 		icon = GFX_a_new_yemen
-		cost = 3.6
+		cost = 5
 		x = 14
 		y = 17
 
@@ -1603,7 +2045,7 @@ focus_tree = {
 	focus = {
 		id = YAR_Subsidize_Substinence_Farming
 		icon = free_some_farms
-		cost = 7
+		cost = 7.2
 		x = 16
 		y = 13
 
@@ -1631,7 +2073,7 @@ focus_tree = {
 	focus = {
 		id = YAR_Push_for_Nuclear_Power
 		icon = GFX_push_for_nuclear_power
-		cost = 7
+		cost = 7.2
 		x = 17
 		y = 15
 
@@ -1643,6 +2085,10 @@ focus_tree = {
 				bonus = 1
 				uses = 2
 				category = nuclear
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_nuclear
+				value = 1
 			}
 		}
 	}
@@ -1680,6 +2126,7 @@ focus_tree = {
 			set_technology = {
 				nukes = 1
 			}
+			custom_effect_tooltip = yem_drop_nuke
 			country_event = {
 				id = YAR.179
 			}
@@ -2181,7 +2628,7 @@ focus_tree = {
 	focus = {
 		id = YAR_Phase_Out_Tribal_Conservativism
 		icon = GFX_phase_out_tribal_conservatism
-		cost = 8
+		cost = 7.2.9
 		x = 24
 		y = 15
 		prerequisite = {
@@ -2197,7 +2644,7 @@ focus_tree = {
 	focus = {
 		id = YAR_Riches_of_the_Earth
 		icon = infrastructure_2
-		cost = 7
+		cost = 7.2
 		x = 26
 		y = 15
 		prerequisite = {
@@ -2237,7 +2684,7 @@ focus_tree = {
 	focus = {
 		id = YAR_In_Defense_of_the_Nation
 		icon = surveillance_panopticon
-		cost = 7
+		cost = 7.2
 		x = 24
 		y = 16
 		prerequisite = {
@@ -2269,7 +2716,7 @@ focus_tree = {
 	focus = {
 		id = YAR_The_Modern_Republic
 		icon = GFX_the_modern_republic
-		cost = 3.6
+		cost = 5
 		x = 25
 		y = 17
 		prerequisite = {
@@ -3369,7 +3816,7 @@ focus_tree = {
 	focus = {
 		id = yar_join_the_democratic_league
 		icon = democratic_league
-		cost = 0
+		cost = 1
 
 		prerequisite = {
 			focus = yar_thrust_into_the_world
@@ -3447,7 +3894,7 @@ focus_tree = {
 	focus = {
 		id = yar_join_the_moscow_accords
 		icon = GFX_independent_russia
-		cost = 0
+		cost = 1
 
 		prerequisite = {
 			focus = yar_thrust_into_the_world
@@ -3540,6 +3987,10 @@ focus_tree = {
 				bonus = 0.5
 				uses = 2
 				category = cas_bomber
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
 			}
 		}
 	}
@@ -3774,7 +4225,7 @@ focus_tree = {
 	focus = {
 		id = remain_neutral
 		icon =	bulwark_against_communism 
-		cost = 0
+		cost = 1
 
 		prerequisite = {
 			focus = yar_thrust_into_the_world
@@ -4616,6 +5067,10 @@ focus_tree = {
 				bonus = 0.25
 				uses = 1
 				category = cat_light_armor
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.5
 			}
 		}
 	}

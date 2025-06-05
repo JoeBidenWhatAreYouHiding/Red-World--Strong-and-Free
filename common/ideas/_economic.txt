@@ -1,5 +1,5 @@
 ideas = {
-	economy = { 
+	economy = {
 		law = yes
 		use_list_view = yes
 		
@@ -16,6 +16,7 @@ ideas = {
 				conversion_cost_mil_to_civ_factor = 0.3
 				max_fuel_factor = -0.25
 				fuel_gain_factor = -0.4
+				political_power_gain = 0.05
 			}
 			
 			default = yes
@@ -26,8 +27,16 @@ ideas = {
 		low_economic_mobilisation = {
 			
 			available = {
+			or = {
+				and = {
+				has_war = yes
+				has_war_support > 0.10
+				}
+				and = {
 				threat > 0.2
 				has_war_support > 0.15
+					}
+				}
 			}
 			
 			cost = 150
@@ -57,8 +66,16 @@ ideas = {
 		partial_economic_mobilisation = {
 			
 			available = {
+			or = {
+				and = {
+				has_war = yes
+				has_war_support > 0.20
+				}
+				and = {
 				threat > 0.4
-				has_war_support > 0.25		
+				has_war_support > 0.25
+					}
+				}
 			}
 
 			cost = 150
@@ -71,6 +88,8 @@ ideas = {
 				conversion_cost_civ_to_mil_factor= -0.1
 				conversion_cost_mil_to_civ_factor = -0.1
 				fuel_gain_factor = -0.1
+				political_power_gain = -0.02
+				stability_factor = -0.01
 			}
 			
 			cancel_if_invalid = no
@@ -90,6 +109,7 @@ ideas = {
 			available = {
 				OR = {
 					has_government = fascist
+					has_government = national_bolshevik
 					has_government = monarchist
 					custom_trigger_tooltip = { tooltip = or_clarification_tooltip always = no }
 					AND = {
@@ -111,9 +131,12 @@ ideas = {
 			
 			modifier = {
 				consumer_goods_expected_value = 0.25
+				conscription = -0.01
 				production_speed_arms_factory_factor = 0.2
 				conversion_cost_civ_to_mil_factor= -0.2
 				conversion_cost_mil_to_civ_factor = -0.2
+				political_power_gain = -0.05
+				stability_factor = -0.025
 			}
 			
 			cancel_if_invalid = no
@@ -147,10 +170,12 @@ ideas = {
 			
 			modifier = {
 				consumer_goods_expected_value = 0.15
-				conscription = -0.03
+				conscription = -0.02
 				production_speed_arms_factory_factor = 0.3
 				conversion_cost_civ_to_mil_factor= -0.3
 				conversion_cost_mil_to_civ_factor = -0.3
+				political_power_gain = -0.1
+				stability_factor = -0.05
 			}
 			
 			cancel_if_invalid = no

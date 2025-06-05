@@ -82,7 +82,7 @@ focus_tree = {
 			    has_completed_focus = SOV_rutskoys_economy
 				has_completed_focus = SOV_economic_recovery_plan
 				has_completed_focus = SOV_end_the_trade_unions
-				has_completed_focus = SOV_gorbachev
+				has_completed_focus = SOV_true_reforms
 			}
 		}
 		x = 5
@@ -94,7 +94,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_increase_quotas
-		icon = production_2
+		icon = UAPR_quotas
 		cost = 10
 		prerequisite = {
 			focus = SOV_stagnating_economy
@@ -114,7 +114,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_soldiers_to_factories
-		icon = generic_marching
+		icon = communist_worker_icon
 		cost = 10
 		prerequisite = {
 			focus = SOV_increase_quotas
@@ -128,7 +128,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_decrease_quotas
-		icon = torch_industry
+		icon = Low_Company_Tax_2
 		cost = 10
 		prerequisite = {
 			focus = SOV_stagnating_economy
@@ -203,7 +203,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_divert_the_workforce
-		icon = political_pressure
+		icon = GFX_goal_agrarian_soldiers
 		cost = 10
 		prerequisite = {
 			focus = SOV_decrease_quotas
@@ -217,7 +217,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_focus_on_agriculture
-		icon = focus_on_agriculture
+		icon = GFX_goal_generic_agriculture
 		cost = 10
 		prerequisite = {
 			focus = SOV_divert_the_workforce
@@ -225,8 +225,10 @@ focus_tree = {
 		x = 7
 		y = 4
 		completion_reward = {
-		    remove_ideas = idea_soviet_diverted_workforce
-			add_ideas = idea_soviet_agriculture_focus
+		    swap_ideas = {
+    		remove_idea = idea_soviet_diverted_workforce
+    		add_idea = idea_soviet_agriculture_focus
+			}
 			hidden_effect = {
 			    country_event = { id = soviet.38 }
 			}
@@ -235,7 +237,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_steps_towards_growth
-		icon = consumer_goods
+		icon = econ_expension
 		cost = 10
 		prerequisite = {
 			focus = SOV_workers_in_the_dissident_republics
@@ -310,12 +312,20 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
+			random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
 		}
 
 	}
 	focus = {
 		id = SOV_military_industry
-		icon = construct_military
+		icon = GFX_goal_arms_factory
 		cost = 10
 		prerequisite = {
 			focus = SOV_steps_towards_growth
@@ -324,6 +334,14 @@ focus_tree = {
 		y = 6
 		completion_reward = {
 		    random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
 			    add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = arms_factory
@@ -398,7 +416,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_root_out_corruption
-		icon = attack_allies
+		icon = Purge_Corruption_GRL
 		cost = 25
 		prerequisite = {
 			focus = SOV_purge_the_politburo
@@ -417,7 +435,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_support_elites
-		icon = shaking_hands_1
+		icon = GFX_goal_collaborate_local_elites
 		cost = 10
 		prerequisite = {
 			focus = SOV_allies_in_the_republics
@@ -493,7 +511,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_true_reforms
-		icon = focus_syria_coalition_with_communists
+		icon = GFX_goal_socialist_constitution
 		cost = 10
 		prerequisite = {
 			focus = SOV_more_power_to_trade_unions
@@ -510,6 +528,7 @@ focus_tree = {
 				popularity = 0.15
 			}
 			add_stability = 0.02
+			set_cosmetic_tag = soviet_sane_flag_cosmetic
 			hidden_effect = {
 			    country_event = { id = soviet.42 }
 			}
@@ -569,7 +588,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_political_differences
-		icon = national_unity
+		icon = multiple_ideologies
 		cost = 10
 		prerequisite = {
 			focus = SOV_embrace_the_revolution
@@ -578,12 +597,28 @@ focus_tree = {
 		y = 9
 		completion_reward = {
 		    add_ideas = idea_soviet_united_nation
+		    add_popularity = {
+				ideology = national_conservative
+				popularity = 0.025
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.035
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.035
+			}
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.035
+			}
 		}
 
 	}
 	focus = {
 		id = SOV_individuality_in_work
-		icon = torch_industry
+		icon = GFX_goal_generic_worker
 		cost = 10
 		prerequisite = {
 			focus = SOV_embrace_the_revolution
@@ -597,7 +632,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_embrace_the_state
-		icon = com_fascism
+		icon = GFX_goal_red_flag_communist
 		cost = 10
 		ai_will_do = {
 			modifier = {
@@ -653,7 +688,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_strengthen_the_warsaw_pact
-		icon = political_pressure
+		icon = warsaw_pact
 		cost = 10
 		prerequisite = {
 			focus = SOV_embrace_the_state
@@ -779,14 +814,16 @@ focus_tree = {
 		x = 20
 		y = 5
 		completion_reward = {
-		    remove_ideas = idea_soviet_rampant_corruption
-			add_ideas = idea_soviet_rampant_political_corruption
+		    swap_ideas = {
+    		remove_idea = idea_soviet_rampant_corruption
+    		add_idea = idea_soviet_rampant_political_corruption
+			}
 		}
 
 	}
 	focus = {
 		id = SOV_rutskoys_unions
-		icon = continuous_non_factory_construct
+		icon = GFX_goal_unions
 		cost = 10
 		prerequisite = {
 			focus = SOV_free_some_farms
@@ -848,7 +885,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_free_market
-		icon = torch_industry
+		icon = license_production
 		cost = 10
 		prerequisite = {
 			focus = SOV_rutskoys_unions
@@ -1084,7 +1121,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_work_for_the_state
-		icon = production
+		icon = GFX_goal_socialist_industry
 		cost = 10
 		prerequisite = {
 			focus = SOV_truly_equal_politburo
@@ -1193,7 +1230,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_new_research_treaty
-		icon = continuous_research
+		icon = Technology_PCA
 		cost = 10
 		prerequisite = {
 			focus = SOV_guarantee_pact_protection
@@ -1213,7 +1250,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_joint_training_exercises
-		icon = continuous_training_time
+		icon = GFX_goal_soldiers
 		cost = 10
 		prerequisite = {
 			focus = SOV_new_research_treaty
@@ -1281,7 +1318,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_strengthen_the_biased_politburo
-		icon = two_flags
+		icon = ensure_shengo_loyalty
 		cost = 10
 		prerequisite = {
 			focus = SOV_break_up_independence_groups
@@ -1348,6 +1385,7 @@ focus_tree = {
 		x = 39
 		y = 6
 		completion_reward = {
+			add_political_power = -150
 		    random_owned_state = {
 			    add_extra_state_shared_building_slots = 1
 				add_building_construction = {
@@ -1460,10 +1498,12 @@ focus_tree = {
 		x = 37
 		y = 7
 		completion_reward = {
-		    remove_ideas = idea_soviet_zyuganovs_recovery_plan
-			add_ideas = idea_soviet_five_year_plan
+		remove_ideas = idea_soviet_zyuganovs_recovery_plan
+		add_timed_idea = {
+			    idea = idea_soviet_five_year_plan
+			    days = 1825
+		    }
 		}
-
 	}
 	focus = {
 		id = SOV_construction_advancements
@@ -1525,7 +1565,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_assassinate_gorbachev
-		icon = liberty_attack_2
+		icon = assasinate_gorbachev
 		cost = 10
 		prerequisite = {
 			focus = SOV_putin
@@ -1556,7 +1596,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_rapid_military_expansion
-		icon = build_tank
+		icon = GFX_goal_britain_increase_military_spending
 		cost = 10
 		prerequisite = {
 			focus = SOV_total_kgb_control
@@ -1594,7 +1634,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_end_the_trade_unions
-		icon = continuous_suppression
+		icon = generic_crush_unions
 		cost = 10
 		prerequisite = {
 			focus = SOV_total_kgb_control
@@ -1745,8 +1785,8 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_march_on_moscow
-		icon = generic_marching
-		cost = 30
+		icon = GFX_goal_Neo_Jingo
+		cost = 10
 		prerequisite = {
 			focus = SOV_putins_union
 		}
@@ -1879,6 +1919,10 @@ focus_tree = {
 				uses = 1
 				category = nuclear
 			}
+			add_breakthrough_progress = {
+				specialization = specialization_nuclear
+				value = 0.5
+			}
 		}
 
 	}
@@ -1959,7 +2003,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_solidify_grip_over_europe
-		icon = demand
+		icon = communism_over_europe
 		cost = 10
 		prerequisite = {
 			focus = SOV_maintain_the_path
@@ -2513,6 +2557,10 @@ focus_tree = {
 				uses = 1
 				category = light_air
 			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
 		}
 
 	}
@@ -2587,6 +2635,10 @@ focus_tree = {
 				bonus = 1
 				uses = 1
 				category = tactical_bomber
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
 			}
 		}
 
@@ -2707,6 +2759,10 @@ focus_tree = {
 				bonus = 1
 				uses = 1
 				category = infantry_weapons
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.5
 			}
 		}
 
@@ -2923,6 +2979,10 @@ focus_tree = {
 			hidden_effect = {
 			    country_event = { id = soviet.62 }
 			}
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.5
+			}
 		}
 
 	}
@@ -3118,7 +3178,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_industrial_methods_research
-		icon = torch_industry
+		icon = GFX_goal_brain_power
 		cost = 10
 		prerequisite = {
 			focus = SOV_western_industry
@@ -3138,7 +3198,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_weapons_production_research
-		icon = production
+		icon = small_arms_east
 		cost = 10
 		prerequisite = {
 			focus = SOV_western_military_capabilities
@@ -3152,6 +3212,10 @@ focus_tree = {
 				bonus = 0.5
 				uses = 1
 				category = infantry_weapons
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.5
 			}
 		}
 
@@ -3461,6 +3525,9 @@ focus_tree = {
 			SOV_gennady_zyuganov = {
 				promote_character = leninist
 			}
+			hidden_effect = {
+				drop_cosmetic_tag = yes
+			}
 			add_popularity = {
 				ideology = centrist
 			    popularity = 0.07
@@ -3476,7 +3543,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_purge_the_kgb
-		icon = generic_strike
+		icon = gorbachevs_kgb
 		cost = 10
 		prerequisite = {
 			focus = SOV_socialism
@@ -3513,7 +3580,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_befriend_the_kgb
-		icon = gorbachevs_kgb
+		icon = ensure_shengo_loyalty
 		cost = 10
 		prerequisite = {
 			focus = SOV_socialism
@@ -3631,7 +3698,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_ease_quotas_further
-		icon = consumer_goods
+		icon = GFX_goal_higher_socialist_wages
 		cost = 10
 		prerequisite = {
 			focus = SOV_embrace_the_state
@@ -3747,8 +3814,8 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_rutskoys_coup
-		icon = tanks
-		cost = 30
+		icon = GFX_goal_Generic_Coup02
+		cost = 10
 		prerequisite = {
 			focus = SOV_long_live_eurasia
 		}
@@ -4712,6 +4779,9 @@ focus_tree = {
 		id = SOV_peaceful_coexistence
 		icon = com_fascism
 		cost = 10
+		ai_will_do = {
+			factor = 25
+		}
 		prerequisite = {
 			focus = SOV_send_aid_to_europe
 			focus = SOV_send_aid_to_central_america
@@ -4735,6 +4805,9 @@ focus_tree = {
 		id = SOV_the_final_struggle
 		icon = GFX_goal_communist_anti_capitalism
 		cost = 10
+		ai_will_do = {
+			factor = 75
+		}
 		prerequisite = {
 			focus = SOV_send_aid_to_africa
 			focus = SOV_send_aid_to_asia
@@ -4754,11 +4827,114 @@ focus_tree = {
 
 	}
 	focus = {
+		id = SOV_secure_the_caribbean
+		icon = naval_occupation
+		cost = 10
+		prerequisite = {
+			focus = SOV_the_final_struggle
+		}
+		mutually_exclusive = {
+			focus = SOV_fortify_the_caribbean
+		}
+		x = 38
+		y = 12
+		completion_reward = {
+			create_wargoal = {
+    		type = annex_everything
+    		target = DOM
+			}
+		}
+
+	}
+	focus = {
+		id = SOV_fortify_the_caribbean
+		icon = generic_naval_base
+		cost = 10
+		prerequisite = {
+			focus = SOV_the_final_struggle
+		}
+		mutually_exclusive = {
+			focus = SOV_secure_the_caribbean
+		}
+		available = { FRA = { is_in_faction_with = SOV } }
+		x = 40
+		y = 12
+		completion_reward = {
+		    913 = {
+						#Fortify naval bases
+						add_building_construction = {
+							type = coastal_bunker
+							province = {
+								all_provinces = yes
+								limit_to_naval_base = yes
+							}
+							level = 2
+							instant_build = yes
+						}
+						add_building_construction = {
+            	    	    type = naval_base
+            	    	    province = {
+            	    	        all_provinces = yes
+            	    	        limit_to_coastal = yes
+            	    	    }
+            	    	    level = 4
+            	    	    instant_build = yes
+            	    	}
+					}
+			694 = {
+						#Fortify naval bases
+						add_building_construction = {
+							type = coastal_bunker
+							province = {
+								all_provinces = yes
+								limit_to_naval_base = yes
+							}
+							level = 2
+							instant_build = yes
+						}
+						add_building_construction = {
+            	    	    type = naval_base
+            	    	    province = {
+            	    	        all_provinces = yes
+            	    	        limit_to_coastal = yes
+            	    	    }
+            	    	    level = 4
+            	    	    instant_build = yes
+            	    	}
+					}
+		}
+
+	}
+
+	focus = {
+		id = SOV_prepare_the_invasion
+		icon = human_tsunami
+		cost = 10
+		prerequisite = {
+			focus = SOV_fortify_the_caribbean
+			focus = SOV_secure_the_caribbean
+		}
+		available = { 
+		OR = {
+				has_war_support > 0.5
+				date > 2014.1.1 }
+			}
+		x = 39
+		y = 13
+		completion_reward = {
+		    add_timed_idea = {
+    			idea = idea_soviet_invasion_preparations
+    			days = 140
+			}
+		}
+	}
+
+	focus = {
 		id = SOV_target_the_false_communists
 		icon = operation_new_england
 		cost = 10
 		prerequisite = {
-			focus = SOV_the_final_struggle
+			focus = SOV_prepare_the_invasion
 		}
 		cancel = {
 			OR = {
@@ -4772,7 +4948,7 @@ focus_tree = {
 		}
 
 		x = 38
-		y = 12
+		y = 14
 		will_lead_to_war_with = NEA
 		will_lead_to_war_with = AMC
 		completion_reward = {
@@ -4792,7 +4968,7 @@ focus_tree = {
 		icon = american_republic_attack
 		cost = 10
 		prerequisite = {
-			focus = SOV_the_final_struggle
+			focus = SOV_prepare_the_invasion
 		}
 		cancel = {
 			USA = {
@@ -4800,7 +4976,7 @@ focus_tree = {
 			}
 		}
 		x = 40
-		y = 12
+		y = 14
 		will_lead_to_war_with = USA
 		completion_reward = {
 		    create_wargoal = {
@@ -4995,7 +5171,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_monitor_work
-		icon = forceful_treaty
+		icon = surveillance_panopticon
 		cost = 10
 		prerequisite = {
 			focus = SOV_end_the_trade_unions
@@ -5129,7 +5305,7 @@ focus_tree = {
 	}
 	focus = {
 		id = SOV_coups_in_europe
-		icon = political_pressure
+		icon = demand
 		cost = 10
 		prerequisite = {
 			focus = SOV_military_junta

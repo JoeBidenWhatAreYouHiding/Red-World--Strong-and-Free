@@ -1,0 +1,267 @@
+focus_tree = {
+	id = basque_tree_short
+	country = {
+		factor = 0
+		modifier = {
+			add = 20
+			tag = BSQ
+		}
+	}
+	default = no
+	continuous_focus_position = { x = 2000 y = 3500 }
+
+	focus = {
+		id = BSQ_2_a_war_of_survival
+		icon = GFX_the_days_of_rage
+		cost = 0
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			OR = {
+				has_war = no
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		x = 25
+		y = 0
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = BSQ_2_call_on_french_eta
+		icon = BSQ_call_on_french_eta
+		cost = 2
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = BSQ_2_a_war_of_survival
+		}
+		relative_position_id = BSQ_2_a_war_of_survival
+		x = -2
+		y = 1
+		completion_reward = {
+		    division_template = {
+				name = "Northern Militia"
+				regiments = {
+					militia = { x = 0 y = 0 }
+					militia = { x = 0 y = 1 }
+					militia = { x = 0 y = 2 }
+					militia = { x = 0 y = 3 }
+				}
+			}
+			172 = {
+				create_unit = {
+					division = "name = \"Northern Militia\" division_template = \"Northern Militia\" start_experience_factor = 0.4 start_equipment_factor = 0.9"
+					owner = BSQ
+				}
+				create_unit = {
+					division = "name = \"Northern Militia\" division_template = \"Northern Militia\" start_experience_factor = 0.4 start_equipment_factor = 0.9"
+					owner = BSQ
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_2_raid_civil_guard_stockhouses
+		icon = BSQ_raid_guardia_civil_stockpiles
+		cost = 3
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = BSQ_2_a_war_of_survival
+		}
+		relative_position_id = BSQ_2_a_war_of_survival
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1500
+				producer = SPR
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = 500
+				producer = SPR
+			}
+		}
+	}
+	focus = {
+		id = BSQ_2_sabotage_spanish_supplies
+		icon = position_armies
+		cost = 2
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = BSQ_2_a_war_of_survival
+		}
+		relative_position_id = BSQ_2_a_war_of_survival
+		x = 2
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					has_war_with = SPR
+				}
+				SPR = {
+					add_timed_idea = {
+						idea = idea_bsq_supply_line_sabotage
+						days = 85
+					}
+				}
+			}
+			IF = {
+				limit = {
+					has_war_with = SPN
+				}
+				SPN = {
+					add_timed_idea = {
+						idea = idea_bsq_supply_line_sabotage
+						days = 85
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_2_call_on_allied_partisans
+		icon = communist_militia_focus
+		cost = 2
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = BSQ_2_sabotage_spanish_supplies
+		}
+		prerequisite = {
+			focus = BSQ_2_raid_civil_guard_stockhouses
+		}
+		prerequisite = {
+			focus = BSQ_2_call_on_french_eta
+		}
+		relative_position_id = BSQ_2_raid_civil_guard_stockhouses
+		x = 0
+		y = 1
+		completion_reward = {
+			random_owned_state = {
+				create_unit = {
+					division = "name = \"Northern Militia\" division_template = \"Northern Militia\" start_experience_factor = 0 start_equipment_factor = 0.7"
+					owner = BSQ
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_2_form_hispanophone_units
+		icon = BSQ_form_hispanophone_units
+		cost = 3
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = BSQ_2_call_on_allied_partisans
+		}
+		mutually_exclusive = {
+			focus = BSQ_2_the_duty_of_every_basque_man
+		}
+		relative_position_id = BSQ_2_call_on_allied_partisans
+		x = -1
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_bsq_eta_military_control
+				add_idea = idea_bsq_eta_military_control_hispanophones
+			}
+		}
+	}
+	focus = {
+		id = BSQ_2_the_duty_of_every_basque_man
+		icon = military_salute
+		cost = 3
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = BSQ_2_call_on_allied_partisans
+		}
+		mutually_exclusive = {
+			focus = BSQ_2_form_hispanophone_units
+		}
+		relative_position_id = BSQ_2_call_on_allied_partisans
+		x = 1
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_bsq_eta_military_control
+				add_idea = idea_bsq_eta_military_control_duty
+			}
+		}
+	}
+	focus = {
+		id = BSQ_2_independence_at_last
+		icon = BSQ_independence_at_last
+		cost = 5
+		available = {
+			has_war = no
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = BSQ_2_the_duty_of_every_basque_man
+			focus = BSQ_2_form_hispanophone_units
+		}
+
+		relative_position_id = BSQ_2_form_hispanophone_units
+		x = 1
+		y = 1
+		completion_reward = {
+		    
+		}
+	}
+}

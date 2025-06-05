@@ -1,0 +1,8824 @@
+focus_tree = {
+	id = basque_tree
+	default = no
+	continuous_focus_position = { x = 2000 y = 3500 }
+
+	focus = {
+		id = BSQ_a_war_of_survival
+		icon = GFX_the_days_of_rage
+		cost = 0
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			OR = {
+				has_war = no
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		x = 25
+		y = 0
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = BSQ_call_on_french_eta
+		icon = BSQ_call_on_french_eta
+		cost = 2
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = BSQ_a_war_of_survival
+		}
+		relative_position_id = BSQ_a_war_of_survival
+		x = -2
+		y = 1
+		completion_reward = {
+		    division_template = {
+				name = "Northern Militia"
+				regiments = {
+					militia = { x = 0 y = 0 }
+					militia = { x = 0 y = 1 }
+					militia = { x = 0 y = 2 }
+					militia = { x = 0 y = 3 }
+				}
+			}
+			172 = {
+				create_unit = {
+					division = "name = \"Northern Militia\" division_template = \"Northern Militia\" start_experience_factor = 0.4 start_equipment_factor = 0.9"
+					owner = BSQ
+				}
+				create_unit = {
+					division = "name = \"Northern Militia\" division_template = \"Northern Militia\" start_experience_factor = 0.4 start_equipment_factor = 0.9"
+					owner = BSQ
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_raid_civil_guard_stockhouses
+		icon = BSQ_raid_guardia_civil_stockpiles
+		cost = 3
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = BSQ_a_war_of_survival
+		}
+		relative_position_id = BSQ_a_war_of_survival
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1500
+				producer = SPR
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = 500
+				producer = SPR
+			}
+		}
+	}
+	focus = {
+		id = BSQ_sabotage_spanish_supplies
+		icon = position_armies
+		cost = 2
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = BSQ_a_war_of_survival
+		}
+		relative_position_id = BSQ_a_war_of_survival
+		x = 2
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					has_war_with = SPR
+				}
+				SPR = {
+					add_timed_idea = {
+						idea = idea_bsq_supply_line_sabotage
+						days = 85
+					}
+				}
+			}
+			IF = {
+				limit = {
+					has_war_with = SPN
+				}
+				SPN = {
+					add_timed_idea = {
+						idea = idea_bsq_supply_line_sabotage
+						days = 85
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_call_on_allied_partisans
+		icon = communist_militia_focus
+		cost = 2
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = BSQ_sabotage_spanish_supplies
+		}
+		prerequisite = {
+			focus = BSQ_raid_civil_guard_stockhouses
+		}
+		prerequisite = {
+			focus = BSQ_call_on_french_eta
+		}
+		relative_position_id = BSQ_raid_civil_guard_stockhouses
+		x = 0
+		y = 1
+		completion_reward = {
+			random_owned_state = {
+				create_unit = {
+					division = "name = \"Northern Militia\" division_template = \"Northern Militia\" start_experience_factor = 0 start_equipment_factor = 0.7"
+					owner = BSQ
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_form_hispanophone_units
+		icon = BSQ_form_hispanophone_units
+		cost = 3
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = BSQ_call_on_allied_partisans
+		}
+		mutually_exclusive = {
+			focus = BSQ_the_duty_of_every_basque_man
+		}
+		relative_position_id = BSQ_call_on_allied_partisans
+		x = -1
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_bsq_eta_military_control
+				add_idea = idea_bsq_eta_military_control_hispanophones
+			}
+		}
+	}
+	focus = {
+		id = BSQ_the_duty_of_every_basque_man
+		icon = military_salute
+		cost = 3
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = BSQ_call_on_allied_partisans
+		}
+		mutually_exclusive = {
+			focus = BSQ_form_hispanophone_units
+		}
+		relative_position_id = BSQ_call_on_allied_partisans
+		x = 1
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_bsq_eta_military_control
+				add_idea = idea_bsq_eta_military_control_duty
+			}
+		}
+	}
+	focus = {
+		id = BSQ_independence_at_last
+		icon = BSQ_independence_at_last
+		cost = 5
+		available = {
+			has_war = no
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = BSQ_the_duty_of_every_basque_man
+			focus = BSQ_form_hispanophone_units
+		}
+
+		relative_position_id = BSQ_form_hispanophone_units
+		x = 1
+		y = 1
+		completion_reward = {
+		    
+		}
+	}
+	
+	focus = {
+		id = BSQ_basque_nationalist_party
+		icon = BSQ_basque_nationalist_party
+		cost = 5
+		available = {
+			has_country_flag = BSQ_power_struggle_over
+			has_country_flag = BSQ_the_eaj_pnv_won_the_election
+		}
+		prerequisite = {
+			focus = BSQ_independence_at_last
+		}
+
+		relative_position_id = BSQ_independence_at_last
+		x = 0
+		y = 1
+		completion_reward = {
+		    
+		}
+	}
+	focus = {
+		id = BSQ_prosecture_eta_terrorists
+		icon = BSQ_trail_of_the_terrorists
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_basque_nationalist_party
+		}
+		mutually_exclusive = {
+			focus = BSQ_amnesty_for_eta_freedom_fighters
+		}
+		relative_position_id = BSQ_basque_nationalist_party
+		x = 3
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.05
+			}
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = BSQ_new_military_academies
+		icon = military_academy
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_prosecture_eta_terrorists
+		}
+
+		relative_position_id = BSQ_prosecture_eta_terrorists
+		x = 1
+		y = 1
+		completion_reward = {
+			add_ideas = idea_bsq_military_academies
+			add_field_marshal_role = {
+				Character = BSQ_Gervasio_Gabirondo
+				traits = {thorough_planner organizer unyielding_defender }
+				skill = 3
+				attack_skill = 4
+				defense_skill = 4
+				planning_skill = 2
+				logistics_skill = 2
+			}
+			add_advisor_role = {
+				character = BSQ_Gervasio_Gabirondo
+				advisor = {
+					slot = army_chief
+					idea_token = BSQ_Gervasio_Gabirondo
+					traits = {
+						army_chief_offensive_1
+					}
+				}
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Victoria_Landa_Monux
+				traits = {inflexible_strategist trait_cautious }
+				skill = 2
+				attack_skill = 1
+				defense_skill = 3
+				planning_skill = 2
+				logistics_skill = 2
+			}
+			add_advisor_role = {
+				character = BSQ_Victoria_Landa_Monux
+				advisor = {
+					slot = army_chief
+					idea_token = BSQ_Victoria_Landa_Monux
+					traits = {
+						army_chief_morale_2 
+					}
+				}
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Josu_Bujanda
+				traits = {brilliant_strategist trait_reckless }
+				skill = 2
+				attack_skill = 3
+				defense_skill = 1
+				planning_skill = 2
+				logistics_skill = 3
+			}
+			add_advisor_role = {
+				character = BSQ_Josu_Bujanda
+				advisor = {
+					slot = high_command
+					idea_token = BSQ_Josu_Bujanda
+					traits = {
+						army_logistics_1 
+					}
+				}
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Tono_Varela
+				traits = {trait_engineer infantry_leader }
+				skill = 2
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 3
+				logistics_skill = 3
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Jorge_Aldekoa_Garcia
+				traits = {}
+				skill = 1
+				attack_skill = 2
+				defense_skill = 1
+				planning_skill = 2
+				logistics_skill = 2
+			}
+			add_advisor_role = {
+				character = BSQ_Jorge_Aldekoa_Garcia
+				advisor = {
+					slot = high_command
+					idea_token = BSQ_Jorge_Aldekoa_Garcia
+					traits = {
+						army_regrouping_2 
+					}
+				}
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Torcuato_Munoz
+				traits = {}
+				skill = 1
+				attack_skill = 2
+				defense_skill = 1
+				planning_skill = 2
+				logistics_skill = 2
+			}
+			add_advisor_role = {
+				character = BSQ_Torcuato_Munoz
+				advisor = {
+					slot = high_command
+					idea_token = BSQ_Torcuato_Munoz
+					traits = {
+						army_cavalry_2
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_amnesty_for_eta_freedom_fighters
+		icon = right_wing_unity
+		cost = 5
+		prerequisite = {
+			focus = BSQ_basque_nationalist_party
+		}
+		mutually_exclusive = {
+			focus = BSQ_prosecture_eta_terrorists
+		}
+		relative_position_id = BSQ_basque_nationalist_party
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.05
+			}
+			add_war_support = 0.05
+		}
+	}
+	focus = {
+		id = BSQ_welcome_ex_eta_militants
+		icon = align_militias
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_amnesty_for_eta_freedom_fighters
+		}
+
+		relative_position_id = BSQ_amnesty_for_eta_freedom_fighters
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_reinterated_eta_militants
+			add_field_marshal_role = {
+				Character = BSQ_Arnaldo_Otegi_restored_by_the_centrists
+				traits = { thorough_planner politically_connected unyielding_defender inspirational_leader }
+				skill = 5
+				attack_skill = 5
+				defense_skill = 5
+				planning_skill = 3
+				logistics_skill = 2
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Inaki_de_Juana_Chaos_restored_by_the_centrists
+				traits = { harsh_leader organizer infantry_officer }
+				skill = 3
+				attack_skill = 3
+				defense_skill = 2
+				planning_skill = 3
+				logistics_skill = 2
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Ines_del_rio_prada_restored_by_the_centrists
+				traits = { skilled_staffer trickster infantry_officer }
+				skill = 3
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 3
+				logistics_skill = 3
+			}
+		}
+	}
+	focus = {
+		id = BSQ_urban_reconstruction
+		icon = industry_generic_focus
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_amnesty_for_eta_freedom_fighters
+			focus = BSQ_prosecture_eta_terrorists
+		}
+
+		relative_position_id = BSQ_amnesty_for_eta_freedom_fighters
+		x = 1
+		y = 1
+		completion_reward = {
+			random_owned_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_basque_as_the_official_language
+		icon = patriotic_education
+		cost = 6
+
+		prerequisite = {
+			focus = BSQ_basque_nationalist_party
+		}
+		mutually_exclusive = {
+			focus = BSQ_spanish_basque_coofficiality
+		}
+		relative_position_id = BSQ_basque_nationalist_party
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_lingual_primacy
+		}
+	}
+	focus = {
+		id = BSQ_spanish_basque_coofficiality
+		icon = minority_rights
+		cost = 6
+
+		prerequisite = {
+			focus = BSQ_basque_nationalist_party
+		}
+		mutually_exclusive = {
+			focus = BSQ_basque_as_the_official_language
+		}
+		relative_position_id = BSQ_basque_nationalist_party
+		x = -3
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_bilingualism
+		}
+	}
+	focus = {
+		id = BSQ_fund_basque_language_education
+		icon = scientific_exchange
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_spanish_basque_coofficiality
+			focus = BSQ_basque_as_the_official_language
+		}
+
+		relative_position_id = BSQ_spanish_basque_coofficiality
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_education_funding
+		}
+	}
+	focus = {
+		id = BSQ_ties_to_the_catholic_church
+		icon = focus_appease_catholics
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_fund_basque_language_education
+		}
+		prerequisite = {
+			focus = BSQ_urban_reconstruction
+			focus = BSQ_welcome_ex_eta_militants
+			focus = BSQ_new_military_academies
+		}
+
+		relative_position_id = BSQ_fund_basque_language_education
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_spr_revitalized_church
+		}
+	}
+	focus = {
+		id = BSQ_seek_friends_in_the_psoe
+		icon = focus_ideology_new_democrat
+		cost = 3
+
+		prerequisite = {
+			focus = BSQ_ties_to_the_catholic_church
+		}
+		mutually_exclusive = {
+			focus = BSQ_address_the_unionists
+		}
+		relative_position_id = BSQ_ties_to_the_catholic_church
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = liberal
+				popularity = 0.03
+			}
+		    add_popularity = {
+				ideology = centrist
+				popularity = 0.03
+			}
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = BSQ_address_the_unionists
+		icon = focus_ideology_national_conservative
+		cost = 3
+		
+		prerequisite = {
+			focus = BSQ_ties_to_the_catholic_church
+		}
+		mutually_exclusive = {
+			focus = BSQ_seek_friends_in_the_psoe
+		}
+		relative_position_id = BSQ_ties_to_the_catholic_church
+		x = -2
+		y = 1
+		completion_reward = {
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.03
+			}
+		    add_popularity = {
+				ideology = centrist
+				popularity = 0.03
+			}
+			add_war_support = 0.05
+		}
+	}
+	focus = {
+		id = BSQ_embrace_traditional_family_values
+		icon = traditional_values
+		cost = 6
+
+		prerequisite = {
+			focus = BSQ_address_the_unionists
+		}
+
+		relative_position_id = BSQ_address_the_unionists
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_social_conservatism
+		}
+	}
+	focus = {
+		id = BSQ_protect_spanish_noble_titles
+		icon = protect_noble_titles
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_embrace_traditional_family_values
+		}
+
+		relative_position_id = BSQ_embrace_traditional_family_values
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_SPR_strengthened_nobility
+		}
+	}
+	focus = {
+		id = BSQ_pass_progressive_social_agenda
+		icon = Commit_To_Progressivism_GRL
+		cost = 6
+
+		prerequisite = {
+			focus = BSQ_seek_friends_in_the_psoe
+		}
+
+		relative_position_id = BSQ_seek_friends_in_the_psoe
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_social_progressivism
+		}
+	}
+	focus = {
+		id = BSQ_protect_unionization_rights
+		icon = support_workers
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_pass_progressive_social_agenda
+		}
+
+		relative_position_id = BSQ_pass_progressive_social_agenda
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_unionization_rights
+		}
+	}
+	focus = {
+		id = BSQ_create_a_social_safety_net
+		icon = generic_welfare_focus
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_ties_to_the_catholic_church
+		}
+
+		relative_position_id = BSQ_ties_to_the_catholic_church
+		x = 3
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_safety_net
+		}
+	}
+	focus = {
+		id = BSQ_fund_public_housing
+		icon = urban_housing
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_create_a_social_safety_net
+		}
+
+		relative_position_id = BSQ_create_a_social_safety_net
+		x = -1
+		y = 1
+		completion_reward = {
+		    random_owned_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_completed_focus = BSQ_expand_public_healthcare
+					}
+				}
+				swap_ideas = {
+					remove_idea = idea_bsq_safety_net
+					add_idea = idea_bsq_safety_net_2
+				}
+			}
+			IF = {
+				limit = {
+					has_completed_focus = BSQ_expand_public_healthcare
+				}
+				swap_ideas = {
+					remove_idea = idea_bsq_safety_net_2
+					add_idea = idea_bsq_safety_net_3
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_expand_public_healthcare
+		icon = treatment_facilities
+		cost = 8
+
+		prerequisite = {
+			focus = BSQ_create_a_social_safety_net
+		}
+
+		relative_position_id = BSQ_create_a_social_safety_net
+		x = 1
+		y = 1
+		completion_reward = {
+		    random_owned_state = {
+				add_building_construction = {
+					type = hospital
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_completed_focus = BSQ_fund_public_housing
+					}
+				}
+				swap_ideas = {
+					remove_idea = idea_bsq_safety_net
+					add_idea = idea_bsq_safety_net_2
+				}
+			}
+			IF = {
+				limit = {
+					has_completed_focus = BSQ_fund_public_housing
+				}
+				swap_ideas = {
+					remove_idea = idea_bsq_safety_net_2
+					add_idea = idea_bsq_safety_net_3
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_guarantee_the_right_to_an_education
+		icon = GFX_future_minds_program
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_expand_public_healthcare
+		}
+		prerequisite = {
+			focus = BSQ_fund_public_housing
+		}
+
+		relative_position_id = BSQ_fund_public_housing
+		x = 1
+		y = 1
+		completion_reward = {
+			add_research_slot = 1
+			swap_ideas = {
+				remove_idea = idea_bsq_safety_net_3
+				add_idea = idea_bsq_safety_net_4
+			}
+		}
+	}
+	focus = {
+		id = BSQ_embrace_environmentalist_policies
+		icon = tree_focus
+		cost = 6
+
+		prerequisite = {
+			focus = BSQ_guarantee_the_right_to_an_education
+		}
+
+		relative_position_id = BSQ_guarantee_the_right_to_an_education
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_enviromentalism
+		}
+	}
+	focus = {
+		id = BSQ_an_alliance_with_business
+		icon = from_sheikhs_to_ceo
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_guarantee_the_right_to_an_education
+		}
+		prerequisite = {
+			focus = BSQ_protect_unionization_rights
+			focus = BSQ_protect_spanish_noble_titles
+		}
+
+		relative_position_id = BSQ_protect_unionization_rights
+		x = 1
+		y = 1
+		completion_reward = {
+		    random_owned_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		    random_owned_state = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	focus = {
+		id = BSQ_open_up_to_foreign_investment
+		icon = invite_multinationals
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_protect_unionization_rights
+			focus = BSQ_protect_spanish_noble_titles
+		}
+
+		relative_position_id = BSQ_protect_spanish_noble_titles
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_SPR_foreign_investments
+			}
+			add_ideas = {
+				free_trade
+			}
+		}
+	}
+	focus = {
+		id = BSQ_support_small_farmers
+		icon = agriculuture_agrarianism
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_an_alliance_with_business
+		}
+		prerequisite = {
+			focus = BSQ_open_up_to_foreign_investment
+		}
+		prerequisite = {
+			focus = BSQ_embrace_environmentalist_policies
+		}
+
+		relative_position_id = BSQ_an_alliance_with_business
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_SPR_sustainable_farming_act
+		}
+	}
+	focus = {
+		id = BSQ_measures_towards_self_sufficiency
+		icon = generic_electric
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_support_small_farmers
+		}
+
+		relative_position_id = BSQ_support_small_farmers
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_road_to_self_sufficiency
+		}
+	}
+	focus = {
+		id = BSQ_expand_the_ports_of_pasaia_and_bilbao
+		icon = naval_dockyard
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_support_small_farmers
+		}
+
+		relative_position_id = BSQ_support_small_farmers
+		x = -1
+		y = 1
+		completion_reward = {
+		    1020 = {
+				add_building_construction = {
+					type = naval_base
+					level = 3
+					instant_build = yes
+					province = 740
+				}
+			}
+			172 = {
+				add_building_construction = {
+					type = naval_base
+					level = 2
+					instant_build = yes
+					province = 3737
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_the_end_of_basque_extremism
+		icon = GFX_freedom_focus
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_expand_the_ports_of_pasaia_and_bilbao
+		}
+		prerequisite = {
+			focus = BSQ_measures_towards_self_sufficiency
+		}
+
+		relative_position_id = BSQ_expand_the_ports_of_pasaia_and_bilbao
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_a_new_euskandi
+		}
+	}
+
+	focus = {
+		id = BSQ_socialist_workers_party_of_euskadi
+		icon = BSQ_socialist_workers_party_of_euskadi
+		cost = 5
+		available = {
+			has_country_flag = BSQ_power_struggle_over
+			has_country_flag = BSQ_the_pse_ee_won_the_election
+		}
+		prerequisite = {
+			focus = BSQ_independence_at_last
+		}
+
+		relative_position_id = BSQ_independence_at_last
+		x = -8
+		y = 1
+		completion_reward = {
+		    
+		}
+	}
+	focus = {
+		id = BSQ_denounce_basque_nationalism
+		icon = we_step_on_snek
+		cost = 4
+
+		prerequisite = {
+			focus = BSQ_socialist_workers_party_of_euskadi
+		}
+
+		relative_position_id = BSQ_socialist_workers_party_of_euskadi
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = centrist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.05
+			}
+		}
+	}
+	focus = {
+		id = BSQ_guarantee_funding_for_spanish_schools
+		icon = focus_trade_council_influence
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_denounce_basque_nationalism
+		}
+
+		relative_position_id = BSQ_denounce_basque_nationalism
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_spanish_school_funding
+		    if = {
+				limit = {
+					country_exists = SPR
+				}
+				SPR = {
+					add_opinion_modifier = {
+						target = BSQ
+						modifier = bsq_funded_spanish_schools
+					}
+				}
+			}
+			if = {
+				limit = {
+					country_exists = SPN
+				}
+				SPN = {
+					add_opinion_modifier = {
+						target = BSQ
+						modifier = bsq_funded_spanish_schools
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_restructure_basque_military
+		icon = unify_command
+		cost = 6
+
+		prerequisite = {
+			focus = BSQ_socialist_workers_party_of_euskadi
+		}
+
+		relative_position_id = BSQ_socialist_workers_party_of_euskadi
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_timed_idea = {
+				idea = idea_bsq_military_restructuring
+				days = 150
+			}
+		}
+	}
+	focus = {
+		id = BSQ_found_a_new_police_agency
+		icon = police_action_plan
+		cost = 7.2
+
+		bypass = {
+			OR = {
+				has_completed_focus = BSQ_new_military_academies
+				has_completed_focus = BSQ_create_a_new_law_enforcement_agency
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_restructure_basque_military
+		}
+		mutually_exclusive = {
+			focus = BSQ_reconstitute_the_civil_guard
+		}
+
+		relative_position_id = BSQ_restructure_basque_military
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_national_police
+			add_field_marshal_role = {
+				Character = BSQ_Gervasio_Gabirondo
+				traits = {thorough_planner organizer unyielding_defender }
+				skill = 3
+				attack_skill = 4
+				defense_skill = 4
+				planning_skill = 2
+				logistics_skill = 2
+			}
+			add_advisor_role = {
+				character = BSQ_Gervasio_Gabirondo
+				advisor = {
+					slot = army_chief
+					idea_token = BSQ_Gervasio_Gabirondo
+					traits = {
+						army_chief_offensive_1
+					}
+				}
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Victoria_Landa_Monux
+				traits = {inflexible_strategist trait_cautious }
+				skill = 2
+				attack_skill = 1
+				defense_skill = 3
+				planning_skill = 2
+				logistics_skill = 2
+			}
+			add_advisor_role = {
+				character = BSQ_Victoria_Landa_Monux
+				advisor = {
+					slot = army_chief
+					idea_token = BSQ_Victoria_Landa_Monux
+					traits = {
+						army_chief_morale_2 
+					}
+				}
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Josu_Bujanda
+				traits = {brilliant_strategist trait_reckless }
+				skill = 2
+				attack_skill = 3
+				defense_skill = 1
+				planning_skill = 2
+				logistics_skill = 3
+			}
+			add_advisor_role = {
+				character = BSQ_Josu_Bujanda
+				advisor = {
+					slot = high_command
+					idea_token = BSQ_Josu_Bujanda
+					traits = {
+						army_logistics_1 
+					}
+				}
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Tono_Varela
+				traits = {trait_engineer infantry_leader }
+				skill = 2
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 3
+				logistics_skill = 3
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Jorge_Aldekoa_Garcia
+				traits = {}
+				skill = 1
+				attack_skill = 2
+				defense_skill = 1
+				planning_skill = 2
+				logistics_skill = 2
+			}
+			add_advisor_role = {
+				character = BSQ_Jorge_Aldekoa_Garcia
+				advisor = {
+					slot = high_command
+					idea_token = BSQ_Jorge_Aldekoa_Garcia
+					traits = {
+						army_regrouping_2 
+					}
+				}
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Torcuato_Munoz
+				traits = {}
+				skill = 1
+				attack_skill = 2
+				defense_skill = 1
+				planning_skill = 2
+				logistics_skill = 2
+			}
+			add_advisor_role = {
+				character = BSQ_Torcuato_Munoz
+				advisor = {
+					slot = high_command
+					idea_token = BSQ_Torcuato_Munoz
+					traits = {
+						army_cavalry_2
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_reconstitute_the_civil_guard
+		icon = align_militias
+		cost = 7.2
+		available = {
+			NOT = {
+				has_completed_focus = BSQ_abolish_the_civil_guard
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_restructure_basque_military
+		}
+		mutually_exclusive = {
+			focus = BSQ_found_a_new_police_agency
+		}
+
+		relative_position_id = BSQ_restructure_basque_military
+		x = 3
+		y = 1
+		completion_reward = {
+		    add_ideas = {idea_bsq_civil_guard}
+			add_field_marshal_role = {
+				Character = BSQ_enrique_rodriguez_galindo
+				traits = { old_guard politically_connected brilliant_strategist fast_planner }
+				skill = 5
+				attack_skill = 6
+				defense_skill = 4
+				planning_skill = 5
+				logistics_skill = 5
+			}
+			add_advisor_role = {
+				character = BSQ_enrique_rodriguez_galindo
+				advisor = {
+					slot = high_command
+					idea_token = BSQ_enrique_rodriguez_galindo
+					traits = {
+						army_commando_3 
+					}
+				}
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Miguel_Castro_Manterola
+				traits = { old_guard trait_reckless }
+				skill = 3
+				attack_skill = 4
+				defense_skill = 3
+				planning_skill = 2
+				logistics_skill = 3
+			}
+			add_advisor_role = {
+				character = BSQ_Miguel_Castro_Manterola
+				advisor = {
+					slot = high_command
+					idea_token = BSQ_Miguel_Castro_Manterola
+					traits = {
+						army_military_police_2 
+					}
+				}
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Javier_Hernandez
+				traits = { old_guard infantry_leader skilled_staffer }
+				skill = 3
+				attack_skill = 4
+				defense_skill = 3
+				planning_skill = 2
+				logistics_skill = 3
+			}
+			add_advisor_role = {
+				character = BSQ_Javier_Hernandez
+				advisor = {
+					slot = high_command
+					idea_token = BSQ_Javier_Hernandez
+					traits = {
+						army_infantry_1
+					}
+				}
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Jose_Raposo_Casares
+				traits = { politically_connected infantry_leader skilled_staffer infantry_expert }
+				skill = 4
+				attack_skill = 4
+				defense_skill = 5
+				planning_skill = 3
+				logistics_skill = 3
+			}
+			add_advisor_role = {
+				character = BSQ_Jose_Raposo_Casares
+				advisor = {
+					slot = army_chief
+					idea_token = BSQ_Jose_Raposo_Casares
+					traits = {
+						army_chief_organizational_2
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_trial_of_the_terrorists
+		icon = BSQ_trail_of_the_terrorists
+		cost = 4
+
+		bypass = {
+			has_completed_focus = BSQ_for_the_preservation_of_homeland_and_liberty
+		}
+
+		prerequisite = {
+			focus = BSQ_denounce_basque_nationalism
+		}
+		prerequisite = {
+			focus = BSQ_restructure_basque_military
+		}
+
+		relative_position_id = BSQ_denounce_basque_nationalism
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = -0.05
+			}
+		}
+	}
+	focus = {
+		id = BSQ_ensure_separation_of_church_and_state
+		icon = GFX_a_secular_society
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_trial_of_the_terrorists
+		}
+		prerequisite = {
+			focus = BSQ_guarantee_funding_for_spanish_schools
+		}
+		prerequisite = {
+			focus = BSQ_found_a_new_police_agency
+			focus = BSQ_reconstitute_the_civil_guard
+		}
+
+		relative_position_id = BSQ_trial_of_the_terrorists
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_SPR_secular_governance
+		}
+	}
+	focus = {
+		id = BSQ_condemn_pointless_traditionalism
+		icon = ban_christian_groups
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_ensure_separation_of_church_and_state
+		}
+
+		relative_position_id = BSQ_ensure_separation_of_church_and_state
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = centrist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = -0.05
+			}
+			add_ideas = {
+				idea_glr_committed_to_progress
+			}
+		}
+	}
+	focus = {
+		id = BSQ_socialize_healthcare
+		icon = pill_testing
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_condemn_pointless_traditionalism
+		}
+
+		relative_position_id = BSQ_condemn_pointless_traditionalism
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_SPR_socialized_healthcare
+		}
+	}
+	focus = {
+		id = BSQ_deradicalize_union_movement
+		icon = focus_gain_support_of_governors
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_condemn_pointless_traditionalism
+		}
+
+		relative_position_id = BSQ_condemn_pointless_traditionalism
+		x = -2
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_independent_trade_unions
+		}
+	}
+	focus = {
+		id = BSQ_new_safety_regulations
+		icon = aid_to_the_community
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_deradicalize_union_movement
+		}
+
+		relative_position_id = BSQ_deradicalize_union_movement
+		x = 1
+		y = 1
+		completion_reward = {
+		    swap_ideas = {
+				remove_idea = idea_bsq_independent_trade_unions
+				add_idea = idea_bsq_independent_trade_unions2
+			}
+		}
+	}
+	focus = {
+		id = BSQ_protect_workers_association_rights
+		icon = encourage_cooperatives
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_deradicalize_union_movement
+		}
+
+		relative_position_id = BSQ_deradicalize_union_movement
+		x = -1
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				idea_bsq_unionization_rights
+			}
+		}
+	}
+	focus = {
+		id = BSQ_pivot_to_green_energy
+		icon = wind_power_initiative
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_condemn_pointless_traditionalism
+		}
+
+		relative_position_id = BSQ_condemn_pointless_traditionalism
+		x = 2
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_SPR_renewable_energy_focus
+		}
+	}
+	focus = {
+		id = BSQ_invest_in_new_universities
+		icon = rename_the_university
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_pivot_to_green_energy
+		}
+		prerequisite = {
+			focus = BSQ_socialize_healthcare
+		}
+
+		relative_position_id = BSQ_socialize_healthcare
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_research_slot = 1
+		    random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = research_center
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_levy_taxes_on_former_nobles
+		icon = restore_the_church_tax
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_pivot_to_green_energy
+		}
+		prerequisite = {
+			focus = BSQ_socialize_healthcare
+		}
+
+		relative_position_id = BSQ_pivot_to_green_energy
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_spr_accumulated_wealth_tax
+		}
+	}
+	focus = {
+		id = BSQ_agricultural_sector_reform
+		icon = expand_state_farms
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_protect_workers_association_rights
+		}
+		prerequisite = {
+			focus = BSQ_new_safety_regulations
+		}
+
+		relative_position_id = BSQ_protect_workers_association_rights
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_agricultural_subsidies
+		}
+	}
+	focus = {
+		id = BSQ_introduce_larger_tax_margins
+		icon = high_company_tax
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_invest_in_new_universities
+		}
+		prerequisite = {
+			focus = BSQ_new_safety_regulations
+		}
+
+		relative_position_id = BSQ_new_safety_regulations
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_progressive_taxation
+		}
+	}
+	focus = {
+		id = BSQ_strive_for_full_employment
+		icon = peace_money_development
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_introduce_larger_tax_margins
+		}
+		prerequisite = {
+			focus = BSQ_agricultural_sector_reform
+		}
+
+		relative_position_id = BSQ_agricultural_sector_reform
+		x = 1
+		y = 1
+		completion_reward = {
+			random_owned_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 3
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+			}
+		}
+	}
+	focus = {
+		id = BSQ_open_up_to_immigration
+		icon = Encourage_Immigration_2
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_levy_taxes_on_former_nobles
+		}
+		prerequisite = {
+			focus = BSQ_introduce_larger_tax_margins
+		}
+
+		relative_position_id = BSQ_levy_taxes_on_former_nobles
+		x = -1
+		y = 2
+		completion_reward = {
+		    add_ideas = idea_gal_relaxed_immigration_laws
+		}
+	}
+	focus = {
+		id = BSQ_entrench_ties_to_PSOE
+		icon = psoe_victory
+		cost = 6
+
+		prerequisite = {
+			focus = BSQ_open_up_to_immigration
+		}
+		prerequisite = {
+			focus = BSQ_strive_for_full_employment
+		}
+
+		relative_position_id = BSQ_strive_for_full_employment
+		x = 1
+		y = 1
+		completion_reward = {
+		    if = {
+				limit = {
+					country_exists = SPR
+					has_government = new_democrat
+				}
+				add_opinion_modifier = {
+					target = SPR
+					modifier = declaration_of_friendship
+				}
+				SPR = {
+					add_opinion_modifier = {
+						target = BSQ
+						modifier = declaration_of_friendship
+					}
+				}
+			}
+			if = {
+				limit = {
+					country_exists = SPN
+					has_government = new_democrat
+				}
+				add_opinion_modifier = {
+					target = SPN
+					modifier = declaration_of_friendship
+				}
+				SPN = {
+					add_opinion_modifier = {
+						target = BSQ
+						modifier = declaration_of_friendship
+					}
+				}
+			}
+			if = {
+				limit = {
+					country_exists = SPR
+					NOT = {
+						has_government = new_democrat
+					}
+				}
+				SPR = {
+					add_popularity = {
+						ideology = new_democrat
+						popularity = 0.05
+					}
+				}
+			}
+			if = {
+				limit = {
+					country_exists = SPN
+					NOT = {
+						has_government = new_democrat
+					}
+				}
+				SPN = {
+					add_popularity = {
+						ideology = new_democrat
+						popularity = 0.05
+					}
+				}
+			}
+			add_ideas = {
+				idea_bsq_international_socialist_party
+			}
+		}
+	}
+	focus = {
+		id = BSQ_united_against_radicalism
+		icon = GFX_female_liberation
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_entrench_ties_to_PSOE
+		}
+
+		relative_position_id = BSQ_entrench_ties_to_PSOE
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_socialist_euskandi
+		}
+	}
+	focus = {
+		id = BSQ_for_the_preservation_of_homeland_and_liberty
+		icon = BSQ_for_the_preservation_of_homeland_and_liberty
+		cost = 5
+		available = {
+			has_country_flag = BSQ_power_struggle_over
+			has_country_flag = BSQ_eta_is_sticking_around
+		}
+
+		prerequisite = {
+			focus = BSQ_independence_at_last
+		}
+
+		relative_position_id = BSQ_independence_at_last
+		x = -23
+		y = 1
+		completion_reward = {
+		    
+		}
+	}
+	focus = {
+		id = BSQ_mandate_basque_language_education
+		icon = information_campaign_generic
+		cost = 7.2
+		bypass = {
+			NOT = {
+				has_idea = idea_bsq_eta_military_control
+			}
+		}
+		prerequisite = {
+			focus = BSQ_for_the_preservation_of_homeland_and_liberty
+		}
+
+		relative_position_id = BSQ_for_the_preservation_of_homeland_and_liberty
+		x = -2
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_bsq_eta_military_control
+				add_idea = idea_bsq_eta_military_control_2
+			}
+		}
+	}
+	focus = {
+		id = BSQ_root_out_spanish_unionists
+		icon = SPR_attack_communist
+		cost = 4
+		
+		bypass = {
+			OR = {
+				has_completed_focus = BSQ_socialist_workers_party_of_euskadi
+				has_completed_focus = BSQ_basque_nationalist_party
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_for_the_preservation_of_homeland_and_liberty
+		}
+
+		relative_position_id = BSQ_for_the_preservation_of_homeland_and_liberty
+		x = 2
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = national_conservative
+				popularity = -0.10
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.10
+			}
+			add_popularity = {
+				ideology = fascist
+				popularity = -0.10
+			}
+		}
+	}
+	focus = {
+		id = BSQ_rebuilding_the_nation
+		icon = roads
+		cost = 6
+		bypass = {
+			OR = {
+				has_completed_focus = BSQ_urban_reconstruction
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_for_the_preservation_of_homeland_and_liberty
+		}
+
+		relative_position_id = BSQ_for_the_preservation_of_homeland_and_liberty
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_timed_idea = {
+				idea = idea_bsq_reconstruction
+				days = 300
+			}
+		}
+	}
+	focus = {
+		id = BSQ_abolish_the_civil_guard
+		icon = we_step_on_snek
+		cost = 7.2
+		bypass = {
+			OR = {
+				has_completed_focus = BSQ_found_a_new_police_agency
+				has_completed_focus = BSQ_reconstitute_the_civil_guard
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_mandate_basque_language_education
+		}
+		prerequisite = {
+			focus = BSQ_rebuilding_the_nation
+		}
+		prerequisite = {
+			focus = BSQ_root_out_spanish_unionists
+		}
+
+		relative_position_id = BSQ_rebuilding_the_nation
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_disbanded_civil_guard
+		}
+	}
+	focus = {
+		id = BSQ_military_branch_dominance
+		icon = BSQ_military_branch_dominance
+		cost = 5
+		available = {
+			has_government = revolutionary_socialist
+			has_country_flag = BSQ_revsoc_eta_is_in_power
+		}
+		mutually_exclusive = {
+			focus = BSQ_the_end_of_the_revolution
+			focus = BSQ_military_political_branch_dominance
+		}
+
+		prerequisite = {
+			focus = BSQ_abolish_the_civil_guard
+		}
+
+		relative_position_id = BSQ_abolish_the_civil_guard
+		x = 0
+		y = 1
+		completion_reward = {
+		    
+		}
+	}
+	focus = {
+		id = BSQ_the_end_of_the_revolution
+		icon = BSQ_the_end_of_the_revolution
+		cost = 5
+		available = {
+			has_government = moderate_socialist
+			has_country_flag = BSQ_modsoc_eta_is_in_power
+		}
+		mutually_exclusive = {
+			focus = BSQ_military_branch_dominance
+			focus = BSQ_military_political_branch_dominance
+		}
+
+		prerequisite = {
+			focus = BSQ_abolish_the_civil_guard
+		}
+
+		relative_position_id = BSQ_abolish_the_civil_guard
+		x = 8
+		y = 1
+		completion_reward = {
+		    
+		}
+	}
+	focus = {
+		id = BSQ_military_political_branch_dominance
+		icon = BSQ_military_political_branch_dominance
+		cost = 5
+		available = {
+			has_government = communist
+			has_country_flag = BSQ_commie_eta_is_in_power
+		}
+		mutually_exclusive = {
+			focus = BSQ_the_end_of_the_revolution
+			focus = BSQ_military_branch_dominance
+		}
+
+		prerequisite = {
+			focus = BSQ_abolish_the_civil_guard
+		}
+
+		relative_position_id = BSQ_abolish_the_civil_guard
+		x = -7
+		y = 1
+		completion_reward = {
+		    
+		}
+	}
+	focus = {
+		id = BSQ_honor_commitment_to_democracy
+		icon = politburo_debate
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_military_branch_dominance
+			focus = BSQ_the_end_of_the_revolution
+		}
+
+		relative_position_id = BSQ_military_branch_dominance
+		x = 4
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.02
+			}
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = BSQ_restructure_the_party
+		icon = communist_star
+		cost = 10
+
+		bypass = {
+			OR = {
+				has_completed_focus = BSQ_a_military_with_a_state
+				has_completed_focus = BSQ_mold_eta_into_a_vanguard_party
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_the_end_of_the_revolution
+		}
+
+		relative_position_id = BSQ_the_end_of_the_revolution
+		x = 0
+		y = 1
+		completion_reward = {
+		    IF = {
+				limit = {
+					has_idea = idea_bsq_paramilitary_government
+				}
+				swap_ideas = {
+					remove_idea = idea_bsq_paramilitary_government
+					add_idea = idea_bsq_formalized_eta_party
+				}
+			}
+		    IF = {
+				limit = {
+					NOT = {
+						has_idea = idea_bsq_paramilitary_government
+					}
+				}
+				add_ideas = {
+					idea_bsq_formalized_eta_party
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_honor_those_lost_in_the_struggle
+		icon = GRL_emancipators
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_restructure_the_party
+		}
+
+		relative_position_id = BSQ_restructure_the_party
+		x = -2
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_bsq_formalized_eta_party
+				add_idea = idea_bsq_formalized_eta_party_2
+			}
+			country_event = {
+				id = basque.86
+			}
+		}
+	}
+	focus = {
+		id = BSQ_find_friends_in_the_psoe
+		icon = psoe_victory
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_restructure_the_party
+		}
+		mutually_exclusive = {
+			focus = BSQ_the_abertzale_left_stands_alone
+		}
+
+		relative_position_id = BSQ_restructure_the_party
+		x = 2
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = new_democrat
+				popularity = 0.05
+			}
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = BSQ_the_abertzale_left_stands_alone
+		icon = left_wing_win
+		cost = 5
+		available = {
+			NOT = {
+				has_country_flag = BSQ_eta_worked_with_the_newdems
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_restructure_the_party
+		}
+		mutually_exclusive = {
+			focus = BSQ_find_friends_in_the_psoe
+		}
+
+		relative_position_id = BSQ_restructure_the_party
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.05
+			}
+			add_political_power = 100
+		}
+	}
+	focus = {
+		id = BSQ_levy_taxes_on_the_catholic_church
+		icon = restore_the_church_tax
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_the_abertzale_left_stands_alone
+		}
+
+		relative_position_id = BSQ_the_abertzale_left_stands_alone
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_church_taxation
+			add_research_slot = 1
+		}
+	}
+	focus = {
+		id = BSQ_grant_spanish_language_coofficiality
+		icon = national_unity
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_find_friends_in_the_psoe
+		}
+
+		relative_position_id = BSQ_find_friends_in_the_psoe
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_lingual_coexistence
+			add_research_slot = 1
+		}
+	}
+	focus = {
+		id = BSQ_unify_the_basque_socialist_movement
+		icon = a_hand_to_conservatives
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_military_branch_dominance
+		}
+
+		relative_position_id = BSQ_military_branch_dominance
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_unified_socialist_movement
+		}
+	}
+	focus = {
+		id = BSQ_spread_unionization
+		icon = encourage_cooperatives
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_unify_the_basque_socialist_movement
+		}
+
+		relative_position_id = BSQ_unify_the_basque_socialist_movement
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_SPR_fully_unionized_labor
+		}
+	}
+	focus = {
+		id = BSQ_guarantee_free_and_fair_elections
+		icon = focus_syria_local_elections
+		cost = 5
+		available = {
+			NOT = {
+				has_country_flag = BSQ_otegi_made_eta_only_elections
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_honor_commitment_to_democracy
+		}
+		mutually_exclusive = {
+			focus = BSQ_ensure_eta_primacy
+		}
+
+		relative_position_id = BSQ_unify_the_basque_socialist_movement
+		x = 4
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_democracy
+			set_party_name = {
+				ideology = communist
+				long_name = BSQ_ehak_long
+				name = BSQ_ehak
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = BSQ_otegi_already_made_askatsuna
+					}
+				}
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = BSQ_revsoc_democrats_long
+					name = BSQ_revsoc_democrats
+				}
+				country_event = {
+					id = basque.88
+				}
+			}
+			IF = {
+				limit = {
+					has_country_flag = BSQ_otegi_already_made_askatsuna
+				}
+				country_event = {
+					id = basque.89
+				}
+			}
+			custom_effect_tooltip = BSQ_we_will_hold_elections_every_4_years
+			hidden_effect = {
+				IF = {
+					limit = {
+						has_government = moderate_socialist
+						has_country_flag = BSQ_otegi_tried_to_make_eta_supreme
+					}
+					country_event = {
+						id = bsqelection.19
+						days = 1461
+					}
+				}
+				IF = {
+					limit = {
+						has_government = moderate_socialist
+						has_country_flag = BSQ_eta_worked_with_the_newdems
+					}
+					country_event = {
+						id = bsqelection.23
+						days = 1461
+					}
+				}
+				IF = {
+					limit = {
+						has_government = moderate_socialist
+						has_country_flag = BSQ_modsocs_won_but_its_not_democracy_yet
+					}
+					country_event = {
+						id = bsqelection.32
+						days = 1461
+					}
+				}
+				IF = {
+					limit = {
+						has_government = revolutionary_socialist
+						NOT = {
+							has_country_flag = BSQ_otegi_already_democratized
+						}
+					}
+					country_event = {
+						id = bsqelection.27
+						days = 1461
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_ensure_eta_primacy
+		icon = SOV_political_reform_agenda
+		cost = 5
+		available = {
+			NOT = {
+				has_country_flag = BSQ_otegi_already_democratized
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_unify_the_basque_socialist_movement
+		}
+		prerequisite = {
+			focus = BSQ_honor_commitment_to_democracy
+		}
+		mutually_exclusive = {
+			focus = BSQ_guarantee_free_and_fair_elections
+		}
+
+		relative_position_id = BSQ_unify_the_basque_socialist_movement
+		x = 2
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_eta_political_dominance
+			set_party_name = {
+				ideology = revolutionary_socialist
+				long_name = BSQ_revsoc_eta_long
+				name = BSQ_revsoc_eta
+			}
+			set_party_name = {
+				ideology = communist
+				long_name = BSQ_commie_eta_long
+				name = BSQ_commie_eta
+			}
+			set_party_name = {
+				ideology = moderate_socialist
+				long_name = BSQ_modsoc_eta_long
+				name = BSQ_modsoc_eta
+			}
+			custom_effect_tooltip = BSQ_we_will_hold_elections_every_4_years_but_only_eta
+			hidden_effect = {
+				country_event = {
+					id = bsqelection.14
+					days = 1461
+				}
+				set_cosmetic_tag = BSQ_eta
+			}
+		}
+	}
+	focus = {
+		id = BSQ_eta_political_demilitarization
+		icon = crush_militias
+		cost = 10
+		prerequisite = {
+			focus = BSQ_honor_those_lost_in_the_struggle
+		}
+		prerequisite = {
+			focus = BSQ_guarantee_free_and_fair_elections
+			focus = BSQ_ensure_eta_primacy
+		}
+
+		relative_position_id = BSQ_guarantee_free_and_fair_elections
+		x = 1
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_bsq_eta_military_control_2
+				add_idea = idea_bsq_pacifism
+			}
+			hidden_effect = {
+				retire_character = BSQ_Juan_Carlos_Ramos_general
+				retire_character = BSQ_Arnaldo_Otegi_sus_general
+				retire_character = BSQ_David_Pla_Marin
+				retire_character = BSQ_Arkaitz_Goikoetxea
+				retire_character = BSQ_Inaki_de_Juana_Chaos
+				retire_character = BSQ_Ines_del_rio_prada
+				retire_character = BSQ_Jurdan_Martitegi
+				retire_character = BSQ_Maria_Soledad_Iparraguirre
+				retire_character = BSQ_Miguel_Garikoitz_Aspiazu_Rubina
+			}
+		}
+	}
+	focus = {
+		id = BSQ_commitment_to_pacifism
+		icon = peace_dove
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_eta_political_demilitarization
+		}
+		prerequisite = {
+			focus = BSQ_grant_spanish_language_coofficiality
+			focus = BSQ_levy_taxes_on_the_catholic_church
+		}
+
+		relative_position_id = BSQ_eta_political_demilitarization
+		x = 1
+		y = 1
+		completion_reward = {
+		    swap_ideas = {
+				remove_idea = idea_bsq_pacifism
+				add_idea = idea_bsq_pacifism2
+			}
+		}
+	}
+	focus = {
+		id = BSQ_construct_the_welfare_state
+		icon = socialist_industry_generic
+		cost = 8
+
+		prerequisite = {
+			focus = BSQ_grant_spanish_language_coofficiality
+			focus = BSQ_levy_taxes_on_the_catholic_church
+		}
+
+		relative_position_id = BSQ_levy_taxes_on_the_catholic_church
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_socialist_welfare_state
+		}
+	}
+	focus = {
+		id = BSQ_enact_universal_basic_income
+		icon = welfare_statism
+		cost = 7.2
+		prerequisite = {
+			focus = BSQ_construct_the_welfare_state
+		}
+
+		relative_position_id = BSQ_construct_the_welfare_state
+		x = 1
+		y = 1
+		completion_reward = {
+		    if = {
+				limit = {
+					has_idea = idea_bsq_socialist_welfare_state
+				}
+				swap_ideas = {
+					remove_idea = idea_bsq_socialist_welfare_state
+					add_idea = idea_bsq_socialist_welfare_state2
+				}
+			}
+			if = {
+				limit = {
+					has_idea = idea_bsq_socialist_welfare_state2
+				}
+				swap_ideas = {
+					remove_idea = idea_bsq_socialist_welfare_state2
+					add_idea = idea_bsq_socialist_welfare_state3
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_idea = idea_bsq_socialist_welfare_state
+					}
+				}
+				swap_ideas = {
+					remove_idea = idea_bsq_socialist_welfare_state
+					add_idea = idea_bsq_socialist_welfare_state2
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_a_living_wage_for_all
+		icon = peace_money_development
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_construct_the_welfare_state
+		}
+
+		relative_position_id = BSQ_construct_the_welfare_state
+		x = -1
+		y = 1
+		completion_reward = {
+		    if = {
+				limit = {
+					has_idea = idea_bsq_socialist_welfare_state
+				}
+				swap_ideas = {
+					remove_idea = idea_bsq_socialist_welfare_state
+					add_idea = idea_bsq_socialist_welfare_state2
+				}
+			}
+			if = {
+				limit = {
+					has_idea = idea_bsq_socialist_welfare_state2
+				}
+				swap_ideas = {
+					remove_idea = idea_bsq_socialist_welfare_state2
+					add_idea = idea_bsq_socialist_welfare_state3
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_idea = idea_bsq_socialist_welfare_state
+					}
+				}
+				swap_ideas = {
+					remove_idea = idea_bsq_socialist_welfare_state
+					add_idea = idea_bsq_socialist_welfare_state3
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_nationalize_housing_industry
+		icon = GFX_industry_act
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_enact_universal_basic_income
+		}
+
+		relative_position_id = BSQ_enact_universal_basic_income
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_nationalized_housing
+			random_owned_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = BSQ_create_a_new_law_enforcement_agency
+		icon = police_action_plan
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_commitment_to_pacifism
+		}
+
+		relative_position_id = BSQ_commitment_to_pacifism
+		x = 0
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_gal_disbanded_civil_guard
+				add_idea = idea_bsq_law_enforcement_agency
+			}
+			add_field_marshal_role = {
+				Character = BSQ_Gervasio_Gabirondo
+				traits = {thorough_planner organizer unyielding_defender }
+				skill = 3
+				attack_skill = 4
+				defense_skill = 4
+				planning_skill = 2
+				logistics_skill = 2
+			}
+			add_advisor_role = {
+				character = BSQ_Gervasio_Gabirondo
+				advisor = {
+					slot = army_chief
+					idea_token = BSQ_Gervasio_Gabirondo
+					traits = {
+						army_chief_offensive_1
+					}
+				}
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Victoria_Landa_Monux
+				traits = {inflexible_strategist trait_cautious }
+				skill = 2
+				attack_skill = 1
+				defense_skill = 3
+				planning_skill = 2
+				logistics_skill = 2
+			}
+			add_advisor_role = {
+				character = BSQ_Victoria_Landa_Monux
+				advisor = {
+					slot = army_chief
+					idea_token = BSQ_Victoria_Landa_Monux
+					traits = {
+						army_chief_morale_2 
+					}
+				}
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Josu_Bujanda
+				traits = {brilliant_strategist trait_reckless }
+				skill = 2
+				attack_skill = 3
+				defense_skill = 1
+				planning_skill = 2
+				logistics_skill = 3
+			}
+			add_advisor_role = {
+				character = BSQ_Josu_Bujanda
+				advisor = {
+					slot = high_command
+					idea_token = BSQ_Josu_Bujanda
+					traits = {
+						army_logistics_1 
+					}
+				}
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Tono_Varela
+				traits = {trait_engineer infantry_leader }
+				skill = 2
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 3
+				logistics_skill = 3
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Jorge_Aldekoa_Garcia
+				traits = {}
+				skill = 1
+				attack_skill = 2
+				defense_skill = 1
+				planning_skill = 2
+				logistics_skill = 2
+			}
+			add_advisor_role = {
+				character = BSQ_Jorge_Aldekoa_Garcia
+				advisor = {
+					slot = high_command
+					idea_token = BSQ_Jorge_Aldekoa_Garcia
+					traits = {
+						army_regrouping_2 
+					}
+				}
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Torcuato_Munoz
+				traits = {}
+				skill = 1
+				attack_skill = 2
+				defense_skill = 1
+				planning_skill = 2
+				logistics_skill = 2
+			}
+			add_advisor_role = {
+				character = BSQ_Torcuato_Munoz
+				advisor = {
+					slot = high_command
+					idea_token = BSQ_Torcuato_Munoz
+					traits = {
+						army_cavalry_2
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_embrace_ecological_prerogative
+		icon = wind_power_initiative
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_create_a_new_law_enforcement_agency
+		}
+		prerequisite = {
+			focus = BSQ_a_living_wage_for_all
+		}
+
+		relative_position_id = BSQ_create_a_new_law_enforcement_agency
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_ecological_prerogative
+		}
+	}
+	focus = {
+		id = BSQ_enshrine_unionization_rights
+		icon = focus_seize_the_means
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_embrace_ecological_prerogative
+		}
+		prerequisite = {
+			focus = BSQ_nationalize_housing_industry
+		}
+
+		relative_position_id = BSQ_embrace_ecological_prerogative
+		x = 2
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.05
+			}
+			add_ideas = {
+				idea_bsq_unionization_rights2
+			}
+		}
+	}
+	focus = {
+		id = BSQ_brothers_in_liberty
+		icon = CAN_fopo_pm_trudeau
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_enshrine_unionization_rights
+		}
+
+		relative_position_id = BSQ_enshrine_unionization_rights
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_brothers_in_liberty
+		}
+	}
+	focus = {
+		id = BSQ_three_hurrahs_for_etas_military
+		icon = red_brigades
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_military_branch_dominance
+			focus = BSQ_military_political_branch_dominance
+		}
+
+		relative_position_id = BSQ_military_branch_dominance
+		x = -3
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_bsq_eta_military_control_2
+				add_idea = idea_bsq_eta_military_control_3
+			}
+		}
+	}
+	focus = {
+		id = BSQ_welcome_revolutionaries_into_government
+		icon = soviet_military
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_three_hurrahs_for_etas_military
+		}
+
+		relative_position_id = BSQ_three_hurrahs_for_etas_military
+		x = 1
+		y = 1
+		completion_reward = {
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = 0.05
+			}
+			add_ideas = {
+				idea_bsq_revolutionary_government
+			}
+		}
+	}
+	focus = {
+		id = BSQ_open_revolutionary_training_academies
+		icon = military_academy
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_three_hurrahs_for_etas_military
+		}
+
+		relative_position_id = BSQ_three_hurrahs_for_etas_military
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_bsq_revolutionary_training_academy
+			}
+		}
+	}
+	focus = {
+		id = BSQ_a_military_with_a_state
+		icon = generic_marching
+		cost = 7.2
+
+		bypass = {
+			NOT = {
+				has_idea = idea_bsq_paramilitary_government
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_spread_unionization
+		}
+		prerequisite = {
+			focus = BSQ_welcome_revolutionaries_into_government
+		}
+		prerequisite = {
+			focus = BSQ_ensure_eta_primacy
+			focus = BSQ_guarantee_free_and_fair_elections
+		}
+
+		relative_position_id = BSQ_spread_unionization
+		x = 0
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_bsq_paramilitary_government
+				add_idea = idea_bsq_eta_military_state
+			}
+		}
+	}
+	focus = {
+		id = BSQ_staff_law_enforcement_with_eta_members
+		icon = align_militias
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_a_military_with_a_state
+		}
+
+		relative_position_id = BSQ_a_military_with_a_state
+		x = -1
+		y = 1
+		completion_reward = {
+		    swap_ideas = {
+				remove_idea = idea_gal_disbanded_civil_guard
+				add_idea = idea_bsq_eta_law_enforcement
+			}
+		}
+	}
+	focus = {
+		id = BSQ_ensure_the_permanent_revolution
+		icon = socialism_focus
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_staff_law_enforcement_with_eta_members
+		}
+
+		relative_position_id = BSQ_staff_law_enforcement_with_eta_members
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_pernament_revolution
+		}
+	}
+	focus = {
+		id = BSQ_formalize_eta_into_a_red_army
+		icon = BSQ_red_army
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_ensure_the_permanent_revolution
+		}
+
+		relative_position_id = BSQ_ensure_the_permanent_revolution
+		x = -1
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_bsq_eta_military_control_3
+				add_idea = idea_bsq_eta_otegis_red_army
+			}
+		}
+	}
+	focus = {
+		id = BSQ_protect_the_agrarian_proletariat
+		icon = collectivize_state_farms
+		cost = 6
+
+		prerequisite = {
+			focus = BSQ_ensure_the_permanent_revolution
+		}
+
+		relative_position_id = BSQ_ensure_the_permanent_revolution
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_protecting_the_farmer
+		}
+	}
+	focus = {
+		id = BSQ_foster_democratic_centralism_in_eta
+		icon = leningrad_conference
+		cost = 10
+		available = {
+			has_completed_focus = BSQ_ensure_eta_primacy
+		}
+
+		prerequisite = {
+			focus = BSQ_a_military_with_a_state
+		}
+		mutually_exclusive = {
+			focus = BSQ_decentralize_democratic_apparatuses
+		}
+
+		relative_position_id = BSQ_a_military_with_a_state
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_BSQ_democratic_centralism
+			}
+			add_research_slot = 1
+		}
+	}
+	focus = {
+		id = BSQ_decentralize_democratic_apparatuses
+		icon = left_wing_win
+		cost = 10
+		available = {
+			has_completed_focus = BSQ_guarantee_free_and_fair_elections
+		}
+
+		prerequisite = {
+			focus = BSQ_a_military_with_a_state
+		}
+		mutually_exclusive = {
+			focus = BSQ_foster_democratic_centralism_in_eta
+		}
+
+		relative_position_id = BSQ_a_military_with_a_state
+		x = 3
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				idea_SPR_union_elections
+			}
+			add_research_slot = 1
+		}
+	}
+	focus = {
+		id = BSQ_collectivize_essential_industries
+		icon = socialist_industry_generic
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_foster_democratic_centralism_in_eta
+			focus = BSQ_decentralize_democratic_apparatuses
+		}
+
+		relative_position_id = BSQ_foster_democratic_centralism_in_eta
+		x = 1
+		y = 1
+		completion_reward = {
+		    random_owned_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 3
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+			}
+		}
+	}
+	focus = {
+		id = BSQ_promise_full_employment
+		icon = industry_paper
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_collectivize_essential_industries
+		}
+
+		relative_position_id = BSQ_collectivize_essential_industries
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_national_employment_program
+		}
+	}
+	focus = {
+		id = BSQ_the_hero_of_basque_independence
+		icon = SOV_younger_leaders
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_promise_full_employment
+		}
+		prerequisite = {
+			focus = BSQ_protect_the_agrarian_proletariat
+		}
+		prerequisite = {
+			focus = BSQ_formalize_eta_into_a_red_army
+		}
+
+		relative_position_id = BSQ_promise_full_employment
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_for_homeland_and_liberty
+		}
+	}
+	focus = {
+		id = BSQ_ban_spanish_political_associations
+		icon = CAN_revert_article_5_enforcement
+		cost = 4
+
+		prerequisite = {
+			focus = BSQ_military_political_branch_dominance
+		}
+
+		relative_position_id = BSQ_military_political_branch_dominance
+		x = 1
+		y = 1
+		completion_reward = {
+			add_popularity = {
+				ideology = new_democrat
+				popularity = -0.10
+			}
+		    add_popularity = {
+				ideology = national_conservative
+				popularity = -0.10
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.10
+			}
+		}
+	}
+	focus = {
+		id = BSQ_seize_church_property
+		icon = promote_atheism
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_ban_spanish_political_associations
+		}
+
+		relative_position_id = BSQ_ban_spanish_political_associations
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = idea_bsq_nationalized_church_property
+		    random_owned_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	focus = {
+		id = BSQ_agricultural_revolution
+		icon = embrace_agrarian_socialism
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_military_political_branch_dominance
+		}
+
+		relative_position_id = BSQ_military_political_branch_dominance
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_agricultural_revolution
+		}
+	}
+	focus = {
+		id = BSQ_claim_the_wealth_of_the_nobility
+		icon = queens_estates
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_agricultural_revolution
+		}
+
+		relative_position_id = BSQ_agricultural_revolution
+		x = 0
+		y = 1
+		completion_reward = {
+		    random_owned_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = BSQ_mass_nationalization
+		icon = focus_seize_the_means
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_claim_the_wealth_of_the_nobility
+		}
+		prerequisite = {
+			focus = BSQ_seize_church_property
+		}
+
+		relative_position_id = BSQ_claim_the_wealth_of_the_nobility
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_mass_nationalization_scheme
+		    random_owned_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	focus = {
+		id = BSQ_separation_of_the_military_and_the_state
+		icon = maintain_divide
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_open_revolutionary_training_academies
+		}
+		prerequisite = {
+			focus = BSQ_seize_church_property
+		}
+
+		relative_position_id = BSQ_seize_church_property
+		x = 1
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_bsq_eta_military_control_3
+				add_idea = idea_bsq_eta_separated_military_and_state
+			}
+			hidden_effect = {
+				retire_character = BSQ_Juan_Carlos_Ramos_general
+			}
+		}
+	}
+	focus = {
+		id = BSQ_mold_eta_into_a_vanguard_party
+		icon = GFX_the_modern_republic
+		cost = 7.2
+		bypass = {
+			has_completed_focus = BSQ_ensure_eta_primacy
+		}
+		prerequisite = {
+			focus = BSQ_separation_of_the_military_and_the_state
+		}
+
+		relative_position_id = BSQ_separation_of_the_military_and_the_state
+		x = 0
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					has_idea = idea_bsq_paramilitary_government
+				}
+				swap_ideas = {
+					remove_idea = idea_bsq_paramilitary_government
+					add_idea = idea_bsq_a_new_vanguard_party
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					NOT = {
+						has_idea = idea_bsq_paramilitary_government
+					}
+				}
+				add_ideas = {
+					idea_bsq_a_new_vanguard_party
+				}
+			}
+			country_event = {
+				id = basque.90
+			}
+			set_party_name = {
+				ideology = revolutionary_socialist
+				long_name = BSQ_revsoc_ehak_long
+				name = BSQ_revsoc_ehak
+			}
+			set_party_name = {
+				ideology = communist
+				long_name = BSQ_commie_ehak_long
+				name = BSQ_commie_ehak
+			}
+			set_party_name = {
+				ideology = moderate_socialist
+				long_name = BSQ_modsoc_ehak_long
+				name = BSQ_modsoc_ehak
+			}
+		}
+	}
+	focus = {
+		id = BSQ_foment_socialist_patriotism
+		icon = SOV_younger_leaders
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_mold_eta_into_a_vanguard_party
+		}
+
+		relative_position_id = BSQ_mold_eta_into_a_vanguard_party
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_a_patriotic_socialism
+		}
+	}
+	focus = {
+		id = BSQ_restructure_university_curriculum
+		icon = GFX_future_minds_program
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_mold_eta_into_a_vanguard_party
+		}
+
+		relative_position_id = BSQ_mold_eta_into_a_vanguard_party
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_research_slot = 1
+			swap_ideas = {
+				remove_idea = idea_bsq_revolutionary_training_academy
+				add_idea = idea_bsq_revolutionary_training_academy_2
+			}
+		}
+	}
+	focus = {
+		id = BSQ_infrastructural_overhaul
+		icon = infrastructure_2
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_mass_nationalization
+		}
+
+		relative_position_id = BSQ_mass_nationalization
+		x = -2
+		y = 1
+		completion_reward = {
+			every_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_expand_heavy_industry
+		icon = industry_generic_focus
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_mass_nationalization
+		}
+
+		relative_position_id = BSQ_mass_nationalization
+		x = 0
+		y = 1
+		completion_reward = {
+			random_owned_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = BSQ_expand_access_to_healthcare
+		icon = treatment_facilities
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_expand_heavy_industry
+		}
+		prerequisite = {
+			focus = BSQ_infrastructural_overhaul
+		}
+
+		relative_position_id = BSQ_infrastructural_overhaul
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_universal_healthcare
+			1020 = {
+				add_building_construction = {
+					type = hospital
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	focus = {
+		id = BSQ_the_architect_of_basque_communism
+		icon = GFX_integrate_the_militaries
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_expand_access_to_healthcare
+		}
+		prerequisite = {
+			focus = BSQ_restructure_university_curriculum
+		}
+		prerequisite = {
+			focus = BSQ_foment_socialist_patriotism
+		}
+
+		relative_position_id = BSQ_restructure_university_curriculum
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_socialism_achieved
+		}
+	}
+	focus = {
+		id = BSQ_the_genesis_of_basque_identity
+		icon = BSQ_the_genesis_of_basque_identity
+		cost = 5
+		available = {
+			has_country_flag = BSQ_power_struggle_over
+			has_country_flag = BSQ_the_monarchist_wing_of_eaj_pnv_is_in_power
+		}
+		prerequisite = {
+			focus = BSQ_independence_at_last
+		}
+
+		relative_position_id = BSQ_independence_at_last
+		x = 9
+		y = 1
+		completion_reward = {
+		    
+		}
+	}
+	focus = {
+		id = BSQ_restore_the_courts_of_lizella
+		icon = dios_patria_fueros_rey
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_the_genesis_of_basque_identity
+		}
+
+		relative_position_id = BSQ_the_genesis_of_basque_identity
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_courts_of_lizella
+		}
+	}
+	focus = {
+		id = BSQ_purge_eta_loyalists_from_the_military
+		icon = GFX_red_terror
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_restore_the_courts_of_lizella
+		}
+
+		relative_position_id = BSQ_restore_the_courts_of_lizella
+		x = 3
+		y = 1
+		completion_reward = {
+		    add_timed_idea = {
+				idea = idea_bsq_eta_militant_purge
+				days = 120
+			}
+		}
+	}
+	focus = {
+		id = BSQ_invest_in_new_military_academies
+		icon = military_academy
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_purge_eta_loyalists_from_the_military
+		}
+
+		relative_position_id = BSQ_purge_eta_loyalists_from_the_military
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_gal_new_military_academies
+			add_field_marshal_role = {
+				Character = BSQ_Gervasio_Gabirondo
+				traits = {thorough_planner organizer unyielding_defender }
+				skill = 3
+				attack_skill = 4
+				defense_skill = 4
+				planning_skill = 2
+				logistics_skill = 2
+			}
+			add_advisor_role = {
+				character = BSQ_Gervasio_Gabirondo
+				advisor = {
+					slot = army_chief
+					idea_token = BSQ_Gervasio_Gabirondo
+					traits = {
+						army_chief_offensive_1
+					}
+				}
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Victoria_Landa_Monux
+				traits = {inflexible_strategist trait_cautious }
+				skill = 2
+				attack_skill = 1
+				defense_skill = 3
+				planning_skill = 2
+				logistics_skill = 2
+			}
+			add_advisor_role = {
+				character = BSQ_Victoria_Landa_Monux
+				advisor = {
+					slot = army_chief
+					idea_token = BSQ_Victoria_Landa_Monux
+					traits = {
+						army_chief_morale_2 
+					}
+				}
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Josu_Bujanda
+				traits = {brilliant_strategist trait_reckless }
+				skill = 2
+				attack_skill = 3
+				defense_skill = 1
+				planning_skill = 2
+				logistics_skill = 3
+			}
+			add_advisor_role = {
+				character = BSQ_Josu_Bujanda
+				advisor = {
+					slot = high_command
+					idea_token = BSQ_Josu_Bujanda
+					traits = {
+						army_logistics_1 
+					}
+				}
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Tono_Varela
+				traits = {trait_engineer infantry_leader }
+				skill = 2
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 3
+				logistics_skill = 3
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Jorge_Aldekoa_Garcia
+				traits = {}
+				skill = 1
+				attack_skill = 2
+				defense_skill = 1
+				planning_skill = 2
+				logistics_skill = 2
+			}
+			add_advisor_role = {
+				character = BSQ_Jorge_Aldekoa_Garcia
+				advisor = {
+					slot = high_command
+					idea_token = BSQ_Jorge_Aldekoa_Garcia
+					traits = {
+						army_regrouping_2 
+					}
+				}
+			}
+			add_corps_commander_role = {
+				Character = BSQ_Torcuato_Munoz
+				traits = {}
+				skill = 1
+				attack_skill = 2
+				defense_skill = 1
+				planning_skill = 2
+				logistics_skill = 2
+			}
+			add_advisor_role = {
+				character = BSQ_Torcuato_Munoz
+				advisor = {
+					slot = high_command
+					idea_token = BSQ_Torcuato_Munoz
+					traits = {
+						army_cavalry_2
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_loyalty_to_the_king
+		icon = Oath_of_Loyalty
+		cost = 6
+
+		prerequisite = {
+			focus = BSQ_invest_in_new_military_academies
+		}
+
+		relative_position_id = BSQ_invest_in_new_military_academies
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_the_kings_army
+		}
+	}
+	focus = {
+		id = BSQ_reform_tax_codes
+		icon = royal_trade
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_restore_the_courts_of_lizella
+		}
+
+		relative_position_id = BSQ_restore_the_courts_of_lizella
+		x = -3
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_SPR_tax_cuts
+		}
+	}
+	focus = {
+		id = BSQ_a_basque_capital
+		icon = BSQ_a_basque_capital
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_restore_the_courts_of_lizella
+		}
+		mutually_exclusive = {
+			focus = BSQ_a_navarrese_capital
+		}
+
+		relative_position_id = BSQ_restore_the_courts_of_lizella
+		x = -1
+		y = 1
+		completion_reward = {
+		    set_cosmetic_tag = BSQ_kingdom_of_euskadi
+			1020 = {
+				add_extra_state_shared_building_slots = 3
+			}
+		}
+	}
+	focus = {
+		id = BSQ_a_navarrese_capital
+		icon = one_coalition
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_restore_the_courts_of_lizella
+		}
+		mutually_exclusive = {
+			focus = BSQ_a_basque_capital
+		}
+
+		relative_position_id = BSQ_restore_the_courts_of_lizella
+		x = 1
+		y = 1
+		completion_reward = {
+		    set_capital = {state = 172}
+			172 = {
+				add_extra_state_shared_building_slots = 3
+			}
+		}
+	}
+	focus = {
+		id = BSQ_dual_language_officiality
+		icon = politburo_debate
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_a_navarrese_capital
+		}
+
+		relative_position_id = BSQ_a_navarrese_capital
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_bilingualism
+		}
+	}
+	focus = {
+		id = BSQ_basque_as_the_official_carlist_language
+		icon = focus_constitutional_referendum
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_a_basque_capital
+		}
+
+		relative_position_id = BSQ_a_basque_capital
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_lingual_primacy
+		}
+	}
+	focus = {
+		id = BSQ_build_an_economic_council
+		icon = industry_paper
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_reform_tax_codes
+		}
+
+		relative_position_id = BSQ_reform_tax_codes
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_economic_council
+		}
+	}
+	focus = {
+		id = BSQ_invite_foreign_investment
+		icon = GFX_further_privatisation
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_build_an_economic_council
+		}
+
+		relative_position_id = BSQ_build_an_economic_council
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_bsq_foreign_investment_flow
+		}
+	}
+	focus = {
+		id = BSQ_rebuild_the_bergara_research_institute
+		icon = BSQ_bergara_institute
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_build_an_economic_council
+		}
+
+		relative_position_id = BSQ_build_an_economic_council
+		x = -1
+		y = 1
+		completion_reward = {
+			add_research_slot = 1
+			172 = {
+				add_building_construction = {
+					type = research_center
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	focus = {
+		id = BSQ_expand_civilian_economy
+		icon = new_cities
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_rebuild_the_bergara_research_institute
+		}
+		prerequisite = {
+			focus = BSQ_invite_foreign_investment
+		}
+
+		relative_position_id = BSQ_rebuild_the_bergara_research_institute
+		x = 1
+		y = 1
+		completion_reward = {
+		    random_owned_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		    random_owned_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	focus = {
+		id = BSQ_navarrese_arms_manufacturing
+		icon = navarre_gun_making
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_expand_civilian_economy
+		}
+
+		relative_position_id = BSQ_expand_civilian_economy
+		x = 1
+		y = 1
+		completion_reward = {
+		    172 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = BSQ_basque_shipbuilding
+		icon = naval_dockyard
+		cost = 6
+
+		prerequisite = {
+			focus = BSQ_expand_civilian_economy
+		}
+
+		relative_position_id = BSQ_expand_civilian_economy
+		x = -1
+		y = 1
+		completion_reward = {
+		    1020 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_codify_fuerismo
+		icon = restore_fueros
+		cost = 6
+
+		prerequisite = {
+			focus = BSQ_basque_as_the_official_carlist_language
+			focus = BSQ_dual_language_officiality
+		}
+
+		relative_position_id = BSQ_basque_as_the_official_carlist_language
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = idea_SPR_decentralized_state
+		}
+	}
+	focus = {
+		id = BSQ_seek_the_support_of_the_pope
+		icon = focus_meet_the_pope
+		cost = 8
+
+		prerequisite = {
+			focus = BSQ_codify_fuerismo
+		}
+		prerequisite = {
+			focus = BSQ_loyalty_to_the_king
+		}
+
+		relative_position_id = BSQ_codify_fuerismo
+		x = 1
+		y = 1
+		completion_reward = {
+		    if = {
+				limit = {
+					ITA = {
+						has_cosmetic_tag = ITA_Papal
+					}
+				}
+				ITA = {
+					country_event = basque.66
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						ITA = {
+							has_cosmetic_tag = ITA_Papal
+						}
+					}
+				}
+				add_popularity = {
+					ideology = monarchist
+					popularity = 0.05
+				}
+				add_war_support = 0.05
+				add_ideas = {
+					idea_bsq_papal_support_weak
+				}
+				country_event = {
+					id = basque.73
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_lay_claim_to_catalonia
+		icon = focus_a_strong_leader
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_seek_the_support_of_the_pope
+		}
+
+		relative_position_id = BSQ_seek_the_support_of_the_pope
+		x = 0
+		y = 1
+		completion_reward = {
+			IF  = {
+				limit = {
+					country_exists = CAT
+				}
+				if = {
+					limit = {
+						CAT = {
+							has_government = monarchist
+						}
+					}
+					CAT = {
+						country_event = basque.60
+					}
+				}
+				if = {
+					limit = {
+						NOT = {
+							CAT = {
+								has_government = monarchist
+							}
+						}
+					}
+					every_state = {
+						limit = {
+							is_core_of = CAT
+						}
+						add_claim_by = BSQ
+					}
+					CAT = {
+						country_event = {
+							id = basque.70
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					NOT = {
+						country_exists = CAT
+					}
+				}
+				165 = {
+					add_claim_by = BSQ
+				}
+				852 = {
+					add_claim_by = BSQ
+				}
+				167 = {
+					add_claim_by = BSQ
+				}
+				177 = {
+					add_claim_by = BSQ
+				}
+				IF = {
+					limit = {
+						country_exists = SPR
+					}
+					create_wargoal = {
+						type = annex_everything
+						target = SPR
+					}
+				}
+				IF = {
+					limit = {
+						country_exists = SPN
+					}
+					create_wargoal = {
+						type = annex_everything
+						target = SPN
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_catalan_fueros
+		icon = napoleon_eagle
+		cost = 10
+		available = {
+			OR = {
+				owns_state = 165
+				AND = {
+					country_exists = CAT
+					CAT = {
+						is_puppet_of = ROOT
+					}
+				}
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_basque_shipbuilding
+		}
+		prerequisite = {
+			focus = BSQ_navarrese_arms_manufacturing
+		}
+		prerequisite = {
+			focus = BSQ_lay_claim_to_catalonia
+		}
+
+		relative_position_id = BSQ_lay_claim_to_catalonia
+		x = 0
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					CAT = {
+						is_puppet_of = ROOT
+					}
+				}
+				annex_country = {
+					target = CAT
+					transfer_troops = yes
+				}
+			}
+		    every_state = {
+				limit = {
+					is_core_of = CAT
+				}
+				add_core_of = BSQ
+			}
+		}
+	}
+	focus = {
+		id = BSQ_expand_the_industrial_heart_of_iberia
+		icon = crown_industries
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_catalan_fueros
+		}
+
+		relative_position_id = BSQ_catalan_fueros
+		x = 0
+		y = 1
+		completion_reward = {
+			165 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = BSQ_the_rightful_lands_of_the_crown
+		icon = BSQ_rightful_lands
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_lay_claim_to_catalonia
+		}
+
+		relative_position_id = BSQ_lay_claim_to_catalonia
+		x = -2
+		y = 1
+		completion_reward = {
+		    if = {
+				limit = {
+					country_exists = SPR
+				}
+				SPR = {
+					country_event = basque.63
+				}
+			}
+			if = {
+				limit = {
+					country_exists = SPN
+				}
+				SPN = {
+					country_event = basque.63
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_a_united_carlist_kingdom
+		icon = hail_the_king_father
+		cost = 10
+		available = {
+			177 = {
+				is_owned_by = BSQ
+			}
+			167 = {
+				is_owned_by = BSQ
+			}
+			166 = {
+				is_owned_by = BSQ
+			}
+			852 = {
+				is_owned_by = BSQ
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_the_rightful_lands_of_the_crown
+		}
+		prerequisite = {
+			focus = BSQ_expand_the_industrial_heart_of_iberia
+		}
+
+		relative_position_id = BSQ_the_rightful_lands_of_the_crown
+		x = 1
+		y = 2
+		completion_reward = {
+		    add_ideas = idea_bsq_united_kingdom
+			add_state_core = 177
+			add_state_core = 166
+			add_state_core = 167
+			add_state_core = 663
+			set_cosmetic_tag = BSQ_carlistkingdom
+			hidden_effect = {
+				BSQ_Josep_Pique = {
+					add_country_leader_role = {
+						promote_leader = yes
+						country_leader={
+							ideology=dengist
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+				BSQ_Alberto_Cubero_Serrano = {
+					add_country_leader_role = {
+						promote_leader = yes
+						country_leader={
+							ideology=leninist
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+				BSQ_Mitxel_Lakuntza = {
+					add_country_leader_role = {
+						promote_leader = yes
+						country_leader={
+							ideology=syndicalism
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+				set_party_name = {
+					ideology = communist
+					long_name = "Communist Party of East Iberia"
+					name = "Communist Party"
+				}
+				set_party_name = {
+					ideology = national_conservative
+					long_name = "People's Party of East Iberia"
+					name = "People's Party"
+				}
+				set_party_name = {
+					ideology = nationalist
+					long_name = "Spanish People's Union"
+					name = "People's Union"
+				}
+				set_party_name = {
+					ideology = liberal
+					long_name = "Solidarity"
+					name = "Solidarity"
+				}
+				set_party_name = {
+					ideology = new_democrat
+					long_name = "Socialist Party of East Iberia"
+					name = "Socialist Party"
+				}
+				set_party_name = {
+					ideology = moderate_socialist
+					long_name = "Popular Unity"
+					name = "Popular Unity"
+				}
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = "Communist Organization of East Iberia - Red Flag"
+					name = "Red Flag"
+				}
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = "Basque Workers' Solidarity"
+					name = "ELA"
+				}
+				country_event = {
+					id = basque.94
+					days = 7
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_the_youth_of_the_nation
+		icon = BSQ_the_youth_of_the_nation
+		cost = 5
+		available = {
+			has_country_flag = BSQ_power_struggle_over
+			has_country_flag = BSQ_jarrai_disloyal
+			has_country_flag = BSQ_jarrai_has_taken_over_the_government
+		}
+		prerequisite = {
+			focus = BSQ_independence_at_last
+		}
+
+		relative_position_id = BSQ_independence_at_last
+		x = 18
+		y = 1
+		completion_reward = {
+		    
+		}
+	}
+	focus = {
+		id = BSQ_crush_the_unionists
+		icon = gun_barrel_governance
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_the_youth_of_the_nation
+		}
+
+		relative_position_id = BSQ_the_youth_of_the_nation
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = nationalist
+				popularity = -0.05
+			}
+		    add_popularity = {
+				ideology = fascist
+				popularity = -0.05
+			}
+			172 = {
+				remove_core_of = BSQ
+			}
+			IF = {
+				limit = {
+					country_exists = SPR
+				}
+				172 = {
+					add_core_of = SPR
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = SPN
+				}
+				172 = {
+					add_core_of = SPN
+				}
+			}
+			172 = {
+				start_resistance = yes
+			}
+			hidden_effect = {
+				172 = {
+					add_compliance = -30
+					add_resistance = 45
+				}
+			}
+			country_event = {
+				id = basque.95
+			}
+		}
+	}
+	focus = {
+		id = BSQ_illegalize_spanish_political_parties
+		icon = anti_fascist
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_crush_the_unionists
+		}
+
+		relative_position_id = BSQ_crush_the_unionists
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = new_democrat
+				popularity = -0.05
+			}
+		    add_popularity = {
+				ideology = national_conservative
+				popularity = -0.10
+			}
+			172 = {
+				add_resistance = 10
+			}
+			country_event = {
+				id = basque.69
+			}
+		}
+	}
+	focus = {
+		id = BSQ_purge_the_traitors
+		icon = Army_Purges
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_illegalize_spanish_political_parties
+		}
+
+		relative_position_id = BSQ_illegalize_spanish_political_parties
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.10
+			}
+		    add_popularity = {
+				ideology = moderate_socialist
+				popularity = -0.10
+			}
+		    add_popularity = {
+				ideology = communist
+				popularity = -0.10
+			}
+			add_timed_idea = {
+				idea = idea_bsq_officer_purge
+				days = 300
+			}
+			country_event = {
+				id = basque.96
+			}
+		}
+	}
+	focus = {
+		id = BSQ_reorganize_eta_military_structure
+		icon = communists_marching
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_purge_the_traitors
+		}
+
+		relative_position_id = BSQ_purge_the_traitors
+		x = 0
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_bsq_eta_military_control
+				add_idea = idea_bsq_eta_jarrai_military_reorganization
+			}
+			country_event = {
+				id = basque.97
+			}
+		}
+	}
+	focus = {
+		id = BSQ_a_revolutionary_guard
+		icon = send_the_army_in
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_reorganize_eta_military_structure
+		}
+
+		relative_position_id = BSQ_reorganize_eta_military_structure
+		x = 0
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_bsq_eta_jarrai_military_reorganization
+				add_idea = idea_bsq_eta_jarrai_military_reorganization_2
+			}
+			country_event = {
+				id = basque.98
+			}
+		}
+	}
+	focus = {
+		id = BSQ_eliminate_liberal_nationalists
+		icon = GFX_goal_anti_democracy
+		cost = 4
+
+		prerequisite = {
+			focus = BSQ_purge_the_traitors
+		}
+
+		relative_position_id = BSQ_purge_the_traitors
+		x = -2
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = centrist
+				popularity = -0.15
+			}
+		    add_popularity = {
+				ideology = liberal
+				popularity = -0.05
+			}
+			country_event = {
+				id = basque.99
+			}
+		}
+	}
+	focus = {
+		id = BSQ_a_nationalist_education
+		icon = patriotic_education
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_eliminate_liberal_nationalists
+		}
+
+		relative_position_id = BSQ_eliminate_liberal_nationalists
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_bsq_nationalist_education
+			}
+		}
+	}
+	focus = {
+		id = BSQ_abolish_religious_institutions
+		icon = ban_christian_groups
+		cost = 4
+
+		prerequisite = {
+			focus = BSQ_purge_the_traitors
+		}
+
+		relative_position_id = BSQ_purge_the_traitors
+		x = -4
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = national_bolshevik
+				popularity = -0.03
+			}
+			every_owned_state = {
+				add_extra_state_shared_building_slots = 2
+			}
+		    add_ideas = {
+				idea_bsq_religious_persecution
+			}
+			country_event = {
+				id = basque.100
+			}
+		}
+	}
+	focus = {
+		id = BSQ_ban_spanish_language
+		icon = BSQ_ban_spanish_language
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_abolish_religious_institutions
+		}
+
+		relative_position_id = BSQ_abolish_religious_institutions
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_bsq_hispanophone_oppression
+			}
+			country_event = {
+				id = basque.101
+			}
+		}
+	}
+	focus = {
+		id = BSQ_a_new_vanguard_party
+		icon = socialism_focus
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_a_nationalist_education
+		}
+		prerequisite = {
+			focus = BSQ_ban_spanish_language
+		}
+		prerequisite = {
+			focus = BSQ_a_revolutionary_guard
+		}
+		
+		relative_position_id = BSQ_a_nationalist_education
+		x = 0
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_bsq_paramilitary_government
+				add_idea = idea_bsq_jarrai_dominance
+			}
+			country_event = {
+				id = basque.102
+			}
+		}
+	}
+	focus = {
+		id = BSQ_begin_rapid_nationalization
+		icon = communist_construction
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_illegalize_spanish_political_parties
+		}
+
+		relative_position_id = BSQ_illegalize_spanish_political_parties
+		x = 1
+		y = 1
+		completion_reward = {
+			1020 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		    add_ideas = {
+				idea_bsq_radical_nationalization
+			}
+		}
+	}
+	focus = {
+		id = BSQ_agricultural_collectivization
+		icon = embrace_agrarian_socialism
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_begin_rapid_nationalization
+		}
+
+		relative_position_id = BSQ_begin_rapid_nationalization
+		x = 0
+		y = 1
+		completion_reward = {
+		    1020 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			add_ideas = {
+				idea_bsq_agricultural_collectivization
+			}
+		}
+	}
+	focus = {
+		id = BSQ_increase_agricultural_quotas
+		icon = expand_state_farms
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_agricultural_collectivization
+		}
+
+		relative_position_id = BSQ_agricultural_collectivization
+		x = 0
+		y = 1
+		completion_reward = {
+		    1020 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			swap_ideas = {
+				remove_idea = idea_bsq_agricultural_collectivization
+				add_idea = idea_bsq_agricultural_collectivization2
+			}
+		}
+	}
+	focus = {
+		id = BSQ_enact_social_welfare
+		icon = welfare_statism
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_begin_rapid_nationalization
+		}
+
+		relative_position_id = BSQ_begin_rapid_nationalization
+		x = 2
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_bsq_basque_preferential_welfare
+			}
+		}
+	}
+	focus = {
+		id = BSQ_execute_the_nobility
+		icon = execution_focus
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_enact_social_welfare
+		}
+
+		relative_position_id = BSQ_enact_social_welfare
+		x = 0
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_bsq_radical_nationalization
+				add_idea = idea_bsq_radical_nationalization2
+			}
+			add_stability = -0.05
+		    add_popularity = {
+				ideology = monarchist
+				popularity = -0.1
+			}
+			172 = {
+				add_resistance = -5
+			}
+		}
+	}
+	focus = {
+		id = BSQ_ban_hispanophones_from_unions
+		icon = SPR_attack_communist
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_begin_rapid_nationalization
+		}
+
+		relative_position_id = BSQ_begin_rapid_nationalization
+		x = 4
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_bsq_nationalist_trade_unions
+			}
+		}
+	}
+	focus = {
+		id = BSQ_ban_private_industry
+		icon = socialist_industry_generic
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_ban_hispanophones_from_unions
+		}
+
+		relative_position_id = BSQ_ban_hispanophones_from_unions
+		x = 0
+		y = 1
+		completion_reward = {
+			random_owned_state = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			add_ideas = {
+				idea_bsq_fully_planned_economy
+			}
+		}
+	}
+	focus = {
+		id = BSQ_abolish_currency
+		icon = focus_abolish_wages
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_execute_the_nobility
+		}
+		prerequisite = {
+			focus = BSQ_increase_agricultural_quotas
+		}
+		prerequisite = {
+			focus = BSQ_ban_private_industry
+		}
+		
+		relative_position_id = BSQ_execute_the_nobility
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_bsq_currency_abolition
+			}
+		}
+	}
+	focus = {
+		id = BSQ_permanent_revolutionary_fervor
+		icon = GFX_red_terror
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_a_new_vanguard_party
+		}
+		prerequisite = {
+			focus = BSQ_abolish_currency
+		}
+		
+		relative_position_id = BSQ_illegalize_spanish_political_parties
+		x = 0
+		y = 5
+		completion_reward = {
+		    172 = {
+				add_core_of = BSQ
+			}
+			add_war_support = 0.1
+		    add_popularity = {
+				ideology = national_bolshevik
+				popularity = 0.05
+			}
+		}
+	}
+	focus = {
+		id = BSQ_the_youth_is_the_future
+		icon = secularism
+		cost = 10
+		prerequisite = {
+			focus = BSQ_permanent_revolutionary_fervor
+		}
+		
+		relative_position_id = BSQ_permanent_revolutionary_fervor
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_bsq_the_youth_is_the_future
+			}
+		}
+	}
+	focus = {
+		id = BSQ_a_shocking_reversal
+		icon = BSQ_a_shocking_reversal
+		cost = 5
+		available = {
+			has_country_flag = BSQ_power_struggle_over
+			has_country_flag = BSQ_unionists_have_taken_over
+		}
+		prerequisite = {
+			focus = BSQ_independence_at_last
+		}
+
+		relative_position_id = BSQ_independence_at_last
+		x = 28
+		y = 1
+		completion_reward = {
+		    
+		}
+	}
+	focus = {
+		id = BSQ_officiate_martial_law
+		icon = CSD_disperse_riots
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_a_shocking_reversal
+		}
+
+		relative_position_id = BSQ_a_shocking_reversal
+		x = 0
+		y = 1
+		completion_reward = {
+		    set_capital = {state = 172}
+			1020 = {
+				remove_core_of = BSQ
+			}
+			hidden_effect = {
+				1020 = {
+					start_resistance = yes
+				}
+			}
+			add_ideas = {
+				idea_bsq_martial_law_declared
+			}
+		}
+	}
+	focus = {
+		id = BSQ_illegalize_basque_nationalist_parties
+		icon = BSQ_illegalize_basque_nationalist_parties
+		cost = 4
+
+		prerequisite = {
+			focus = BSQ_officiate_martial_law
+		}
+
+		relative_position_id = BSQ_officiate_martial_law
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.15
+			}
+		    add_popularity = {
+				ideology = communist
+				popularity = -0.15
+			}
+		    add_popularity = {
+				ideology = moderate_socialist
+				popularity = -0.15
+			}
+		    add_popularity = {
+				ideology = centrist
+				popularity = -0.15
+			}
+		    add_popularity = {
+				ideology = national_bolshevik
+				popularity = -0.15
+			}
+		}
+	}
+	focus = {
+		id = BSQ_prepare_for_our_return
+		icon = territory_or_war
+		cost = 5
+		available = {
+			OR = {
+				AND = {
+					country_exists = SPR
+					SPR = {
+						OR = {
+							has_government = revolutionary_socialist
+							has_government = communist
+						}
+					}
+				}
+				AND = {
+					country_exists = SPN
+					SPN = {
+						OR = {
+							has_government = revolutionary_socialist
+							has_government = communist
+						}
+					}
+				}
+			}
+		}
+		mutually_exclusive = {
+			focus = BSQ_reach_out_to_spain
+		}
+
+		prerequisite = {
+			focus = BSQ_illegalize_basque_nationalist_parties
+		}
+
+		relative_position_id = BSQ_illegalize_basque_nationalist_parties
+		x = 1
+		y = 1
+		completion_reward = {
+		    every_state = {
+				limit = {
+					OR = {
+						is_core_of = SPR
+						is_core_of = SPN
+						is_core_of = CAT
+						is_core_of = GAL
+					}
+				}
+				add_claim_by = ROOT
+			}
+			add_war_support = 0.05
+		}
+	}
+	focus = {
+		id = BSQ_reach_out_to_spain
+		icon = BSQ_reach_out_to_spain
+		cost = 5
+		available = {
+			NOT = {
+				has_country_flag = BSQ_spain_doesnt_want_us_back
+			}
+			OR = {
+				AND = {
+					country_exists = SPR
+					NOT = {
+						SPR = {
+							has_government = revolutionary_socialist
+						}
+						SPR = {
+							has_government = communist
+						}
+					}
+				}
+				AND = {
+					country_exists = SPN
+					NOT = {
+						SPN = {
+							has_government = revolutionary_socialist
+						}
+						SPN = {
+							has_government = communist
+						}
+					}
+				}
+			}
+			NOT = {
+				SPR = {
+					has_war_with = SPN
+				}
+			}
+			NOT = {
+				SPN = {
+					has_war_with = SPR
+				}
+			}
+		}
+		mutually_exclusive = {
+			focus = BSQ_prepare_for_our_return
+		}
+
+		prerequisite = {
+			focus = BSQ_illegalize_basque_nationalist_parties
+		}
+
+		relative_position_id = BSQ_illegalize_basque_nationalist_parties
+		x = -1
+		y = 1
+		completion_reward = {
+		    IF = {
+				limit = {
+					country_exists = SPR
+				}
+				SPR = {
+					country_event = {
+						id = basfopo.39
+					}
+				}
+			}
+		    IF = {
+				limit = {
+					country_exists = SPN
+				}
+				SPN = {
+					country_event = {
+						id = basfopo.39
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_invite_the_spanish_civil_guard
+		icon = unknown
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_reach_out_to_spain
+		}
+
+		relative_position_id = BSQ_reach_out_to_spain
+		x = 0
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_bsq_martial_law_declared
+				add_idea = idea_bsq_martial_law_declared_civil_guard_is_here
+			}
+		}
+	}
+	focus = {
+		id = BSQ_extradite_eta_leaders_to_spanish_courts
+		icon = RAJ_release_political_prisoners
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_invite_the_spanish_civil_guard
+		}
+
+		relative_position_id = BSQ_invite_the_spanish_civil_guard
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = {
+				id = basque.74
+			}
+		    add_popularity = {
+				ideology = fascist
+				popularity = 0.05
+			}
+		    add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+		}
+	}
+	focus = {
+		id = BSQ_peace_and_reconciliation_council
+		icon = peace_dove
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_invite_the_spanish_civil_guard
+		}
+
+		relative_position_id = BSQ_invite_the_spanish_civil_guard
+		x = -2
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					country_exists = SPR
+				}
+				SPR = {
+					country_event = {
+						id = basque.76
+					}
+					add_opinion_modifier = {
+						target = BSQ
+						modifier = bsq_spain_reconciliation_council
+					}
+				}
+				add_opinion_modifier = {
+					target = SPR
+					modifier = bsq_spain_reconciliation_council
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = SPN
+				}
+				SPN = {
+					country_event = {
+						id = basque.76
+					}
+					add_opinion_modifier = {
+						target = BSQ
+						modifier = bsq_spain_reconciliation_council
+					}
+				}
+				add_opinion_modifier = {
+					target = SPN
+					modifier = bsq_spain_reconciliation_council
+				}
+			}
+			country_event = {
+				id = basque.77
+			}
+		}
+	}
+	focus = {
+		id = BSQ_where_we_belong
+		icon = live_up_to_the_name_one_spain
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_peace_and_reconciliation_council
+		}
+		prerequisite = {
+			focus = BSQ_extradite_eta_leaders_to_spanish_courts
+		}
+
+		relative_position_id = BSQ_peace_and_reconciliation_council
+		x = 1
+		y = 1
+		completion_reward = {
+		    IF = {
+				limit = {
+					country_exists = SPR
+				}
+				SPR = {
+					change_tag_from = BSQ
+				}
+				SPR = {
+					annex_country = {
+						target = BSQ
+						transfer_troops = yes
+					}
+				}
+				every_state = {
+					limit = {
+						is_core_of = BSQ
+					}
+					add_core_of = SPR
+				}
+				SPR = {
+					country_event = {
+						id = basfopo.94
+					}
+				}
+			}
+		    IF = {
+				limit = {
+					country_exists = SPN
+				}
+				SPN = {
+					change_tag_from = BSQ
+				}
+				SPN = {
+					annex_country = {
+						target = BSQ
+						transfer_troops = yes
+					}
+				}
+				every_state = {
+					limit = {
+						is_core_of = BSQ
+					}
+					add_core_of = SPN
+				}
+				SPN = {
+					country_event = {
+						id = basfopo.94
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_utilize_prison_labor
+		icon = unknown
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_prepare_for_our_return
+		}
+
+		relative_position_id = BSQ_prepare_for_our_return
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_bsq_prison_labor
+			}
+			add_offsite_building = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+	}
+	focus = {
+		id = BSQ_seize_eta_armaments
+		icon = RAJ_our_own_equipment
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_utilize_prison_labor
+		}
+
+		relative_position_id = BSQ_utilize_prison_labor
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 3000
+				producer = BSQ
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = 500
+				producer = BSQ
+			}
+			add_equipment_to_stockpile = {
+				type = motorized_equipment
+				amount = 500
+				producer = BSQ
+			}
+		}
+	}
+	focus = {
+		id = BSQ_salvation_of_the_crown
+		icon = BSQ_salvation_of_the_crown
+		cost = 4
+
+		prerequisite = {
+			focus = BSQ_prepare_for_our_return
+		}
+
+		relative_position_id = BSQ_prepare_for_our_return
+		x = 2
+		y = 1
+		completion_reward = {
+		    country_event = {
+				id = basque.78
+			}
+		    add_popularity = {
+				ideology = monarchist
+				popularity = 0.05
+			}
+		}
+	}
+	focus = {
+		id = BSQ_invite_spanish_nobility
+		icon = protect_noble_titles
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_salvation_of_the_crown
+		}
+
+		relative_position_id = BSQ_salvation_of_the_crown
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				idea_SPR_strengthened_nobility
+			}
+		}
+	}
+	focus = {
+		id = BSQ_sponsor_industrial_expansion
+		icon = industry_1
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_prepare_for_our_return
+		}
+
+		relative_position_id = BSQ_prepare_for_our_return
+		x = 4
+		y = 1
+		completion_reward = {
+		    172 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_slum_clearing
+		icon = construct_civilian
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_sponsor_industrial_expansion
+		}
+
+		relative_position_id = BSQ_sponsor_industrial_expansion
+		x = 0
+		y = 1
+		completion_reward = {
+		    1020 = {
+				add_extra_state_shared_building_slots = 2
+			}
+			1020 = {
+				add_core_of = ROOT
+			}
+			swap_ideas = {
+				remove_idea = idea_bsq_martial_law_declared
+				add_idea = idea_bsq_martial_law_declared_civil_guard_is_here
+			}
+		}
+	}
+	focus = {
+		id = BSQ_request_aid_from_canada
+		icon = canada
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_slum_clearing
+		}
+
+		relative_position_id = BSQ_slum_clearing
+		x = -1
+		y = 1
+		completion_reward = {
+		    CAN = {
+				country_event = {
+					id = basque.80
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_a_deal_with_the_saudis
+		icon = saudi_arabia
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_request_aid_from_canada
+		}
+
+		relative_position_id = BSQ_request_aid_from_canada
+		x = 1
+		y = 1
+		completion_reward = {
+		    SAU = {
+				country_event = {
+					id = basque.83
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_invite_foreign_businesses
+		icon = invite_multinationals
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_slum_clearing
+		}
+
+		relative_position_id = BSQ_slum_clearing
+		x = 1
+		y = 1
+		completion_reward = {
+			add_ideas = {free_trade}
+			add_offsite_building = {
+				type = industrial_complex
+				level = 3
+			}
+		}
+	}
+	focus = {
+		id = BSQ_invite_mercenary_firms
+		icon = align_militias
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_invite_foreign_businesses
+		}
+
+		relative_position_id = BSQ_invite_foreign_businesses
+		x = 1
+		y = 1
+		completion_reward = {
+		    division_template = {
+				name = "Mercenary Divisions"
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+
+					infantry = { x = 2 y = 0 }
+					infantry = { x = 2 y = 1 }
+					infantry = { x = 2 y = 2 }
+				}
+			}
+			random_owned_state = {
+				create_unit = {
+					division = "name = \"Mercenary Division\" division_template = \"Mercenary Divisions\" start_experience_factor = 1 start_equipment_factor = 1"
+					owner = BSQ
+				}
+				create_unit = {
+					division = "name = \"Mercenary Division\" division_template = \"Mercenary Divisions\" start_experience_factor = 1 start_equipment_factor = 1"
+					owner = BSQ
+				}
+			}
+			add_ideas = {
+				idea_bsq_mercenary_recruitment
+			}
+		}
+	}
+	focus = {
+		id = BSQ_contact_former_spanish_military_partisans
+		icon = the_saviours_of_francos_legacy
+		cost = 8
+
+		prerequisite = {
+			focus = BSQ_seize_eta_armaments
+		}
+		prerequisite = {
+			focus = BSQ_invite_spanish_nobility
+		}
+
+		relative_position_id = BSQ_seize_eta_armaments
+		x = 1
+		y = 1
+		completion_reward = {
+		    division_template = {
+				name = "Spanish Partisans"
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+
+					infantry = { x = 2 y = 0 }
+					infantry = { x = 2 y = 1 }
+					infantry = { x = 2 y = 2 }
+				}
+			}
+			172 = {
+				create_unit = {
+					division = "name = \"Spanish Partisans\" division_template = \"Spanish Partisans\" start_experience_factor = 1 start_equipment_factor = 1"
+					owner = BSQ
+				}
+				create_unit = {
+					division = "name = \"Spanish Partisans\" division_template = \"Spanish Partisans\" start_experience_factor = 1 start_equipment_factor = 1"
+					owner = BSQ
+				}
+				create_unit = {
+					division = "name = \"Spanish Partisans\" division_template = \"Spanish Partisans\" start_experience_factor = 1 start_equipment_factor = 1"
+					owner = BSQ
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_enact_mandatory_military_service
+		icon = celebrate_salvation_day
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_contact_former_spanish_military_partisans
+		}
+
+		relative_position_id = BSQ_contact_former_spanish_military_partisans
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = {service_by_requirement }
+			add_ideas = {idea_bsq_mandatory_military_service}
+		}
+	}
+	focus = {
+		id = BSQ_see_to_our_fortifications
+		icon = construct_military
+		cost = 6
+
+		prerequisite = {
+			focus = BSQ_contact_former_spanish_military_partisans
+		}
+
+		relative_position_id = BSQ_contact_former_spanish_military_partisans
+		x = -1
+		y = 1
+		completion_reward = {
+			172 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+					}
+				}
+			}
+			1020 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_doctrinal_advancements
+		icon = army_doctrine
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_see_to_our_fortifications
+		}
+		prerequisite = {
+			focus = BSQ_enact_mandatory_military_service
+		}
+
+		relative_position_id = BSQ_see_to_our_fortifications
+		x = 1
+		y = 1
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
+				uses = 2
+				category = land_doctrine
+			}
+		}
+	}
+	focus = {
+		id = BSQ_protect_our_skies
+		icon = generic_fighter
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_doctrinal_advancements
+		}
+
+		relative_position_id = BSQ_doctrinal_advancements
+		x = 0
+		y = 1
+		completion_reward = {
+			172 = {
+				add_building_construction = {
+					type = air_base
+					level = 5
+					instant_build = yes
+				}
+			}
+			add_ideas = {
+				idea_bsq_protecting_our_skies
+			}
+		}
+	}
+	focus = {
+		id = BSQ_new_mining_operations
+		icon = steel
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_a_deal_with_the_saudis
+		}
+		prerequisite = {
+			focus = BSQ_invite_mercenary_firms
+		}
+
+		relative_position_id = BSQ_a_deal_with_the_saudis
+		x = 1
+		y = 1
+		completion_reward = {
+			add_resource = {
+				type = steel
+				amount = 15
+				state = 172
+			}
+			add_resource = {
+				type = aluminium
+				amount = 6
+				state = 172
+			}
+		}
+	}
+	focus = {
+		id = BSQ_expand_arms_manufacturing
+		icon = spanish_basque_submachinegun_focus
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_new_mining_operations
+		}
+
+		relative_position_id = BSQ_new_mining_operations
+		x = 0
+		y = 1
+		completion_reward = {
+			172 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+			}
+		}
+	}
+	focus = {
+		id = BSQ_the_new_reconquista
+		icon = SPR_spain_for_spaniards
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_expand_arms_manufacturing
+		}
+		prerequisite = {
+			focus = BSQ_protect_our_skies
+		}
+
+		relative_position_id = BSQ_protect_our_skies
+		x = 2
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					country_exists = SPR
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = SPR
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = SPN
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = SPN
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = CAT
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = CAT
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = GAL
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = GAL
+				}
+			}
+			add_ideas = {
+				bsq_the_new_reconquista
+			}
+		}
+	}
+	focus = {
+		id = BSQ_balance_restored
+		icon = GFX_freedom_focus
+		cost = 10
+		available = {
+			owns_state = 41
+			owns_state = 928
+			owns_state = 1019
+			owns_state = 1020
+			owns_state = 172
+			owns_state = 174
+			owns_state = 176
+			owns_state = 166
+			owns_state = 165
+			owns_state = 177
+			owns_state = 167
+			owns_state = 175
+			owns_state = 168
+			owns_state = 170
+			owns_state = 169
+			owns_state = 173
+		}
+
+		prerequisite = {
+			focus = BSQ_the_new_reconquista
+		}
+
+		relative_position_id = BSQ_the_new_reconquista
+		x = 0
+		y = 1
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = SPR
+						is_core_of = SPN
+						is_core_of = GAL
+						is_core_of = BSQ
+						is_core_of = CAT
+					}
+				}
+				add_core_of = ROOT
+			}
+		    set_cosmetic_tag = SPR
+			set_capital = {state = 41}
+			remove_ideas = {
+				idea_bsq_martial_law_declared_civil_guard_is_here
+			}
+		}
+	}
+	focus = {
+		id = BSQ_seize_french_assets
+		icon = focus_anti_corruption_crusade
+		cost = 8
+
+		prerequisite = {
+			focus = BSQ_balance_restored
+		}
+
+		relative_position_id = BSQ_balance_restored
+		x = 1
+		y = 1
+		completion_reward = {
+			FRA = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = bsq_fra_seized_assets
+				}
+			}
+			add_ideas = {
+				idea_bsq_seized_french_assets
+			}
+		}
+	}
+	focus = {
+		id = BSQ_expand_northern_air_bases
+		icon = air_defense
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_seize_french_assets
+		}
+
+		relative_position_id = BSQ_seize_french_assets
+		x = 1
+		y = 1
+		completion_reward = {
+			172 = {
+				add_building_construction = {
+					type = air_base
+					level = 5
+					instant_build = yes
+				}
+			} 
+			166 = {
+				add_building_construction = {
+					type = air_base
+					level = 5
+					instant_build = yes
+				}
+			}
+			852 = {
+				add_building_construction = {
+					type = air_base
+					level = 5
+					instant_build = yes
+				}
+			}
+			165 = {
+				add_building_construction = {
+					type = air_base
+					level = 5
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_infiltrate_french_military
+		icon = infiltration
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_seize_french_assets
+		}
+
+		relative_position_id = BSQ_seize_french_assets
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_spr_infiltrated_french_military_command
+			}
+		}
+	}
+	focus = {
+		id = BSQ_revenge_for_french_meddling
+		icon = france
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_infiltrate_french_military
+		}
+		prerequisite = {
+			focus = BSQ_expand_northern_air_bases
+		}
+
+		relative_position_id = BSQ_infiltrate_french_military
+		x = 1
+		y = 1
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = FRA
+			}
+		}
+	}
+	focus = {
+		id = BSQ_secure_iberia
+		icon = portugal_attack
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_balance_restored
+		}
+
+		relative_position_id = BSQ_balance_restored
+		x = 3
+		y = 1
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = POR
+			}
+			every_state = {
+				limit = {
+					is_core_of = POR
+				}
+				add_claim_by = ROOT
+			}
+		}
+	}
+	focus = {
+		id = BSQ_demand_gibraltar
+		icon = unknown
+		cost = 6
+
+		prerequisite = {
+			focus = BSQ_secure_iberia
+		}
+
+		relative_position_id = BSQ_secure_iberia
+		x = 0
+		y = 2
+		completion_reward = {
+		    ENG = {
+				country_event = {
+					id = basfopo.45
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_crush_portuguese_resistance
+		icon = unknown
+		cost = 10
+		available = {
+			owns_state = 180
+			owns_state = 112
+			owns_state = 181
+			owns_state = 179
+			owns_state = 697
+			owns_state = 698
+		}
+
+		prerequisite = {
+			focus = BSQ_secure_iberia
+		}
+
+		relative_position_id = BSQ_secure_iberia
+		x = 1
+		y = 1
+		completion_reward = {
+			every_state = {
+				limit = {
+					is_core_of = POR
+				}
+				add_resistance = -10
+				add_compliance = 50
+			}
+		}
+	}
+	focus = {
+		id = BSQ_send_a_delegation_to_moscow
+		icon = GFX_independent_russia
+		cost = 5
+		available = {
+			NOT = {
+				has_country_flag = BSQ_russia_refused_to_ally_us
+			}
+			OR = {
+				AND = {
+					country_exists = SOV
+					SOV = {
+						NOT = {
+							has_government = communist
+							has_government = national_bolshevik
+							has_government = revolutionary_socialist
+						}
+						is_faction_leader = yes
+					}
+				}
+				AND = {
+					country_exists = RUS
+					RUS = {
+						is_faction_leader = yes
+					}
+				}
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_balance_restored
+		}
+		mutually_exclusive = {
+			focus = BSQ_splendid_isolation
+		}
+
+		relative_position_id = BSQ_balance_restored
+		x = -1
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					country_exists = RUS
+				}
+				RUS = {
+					add_opinion_modifier = {
+						target = BSQ
+						modifier = bsq_rus_delegation
+					}
+				}
+				BSQ = {
+					add_opinion_modifier = {
+						target = RUS
+						modifier = bsq_rus_delegation
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					country_exists = SOV
+				}
+				SOV = {
+					add_opinion_modifier = {
+						target = BSQ
+						modifier = bsq_rus_delegation
+					}
+				}
+				BSQ = {
+					add_opinion_modifier = {
+						target = SOV
+						modifier = bsq_rus_delegation
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_purchase_russian_oil_rights
+		icon = GFX_russian_oil
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_send_a_delegation_to_moscow
+		}
+
+		relative_position_id = BSQ_send_a_delegation_to_moscow
+		x = -1
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					country_exists = SOV
+					NOT = {
+						country_exists = RUS
+					}
+				}
+				SOV = {
+					country_event = {
+						id = basfopo.48
+					}
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = RUS
+					NOT = {
+						country_exists = SOV
+					}
+				}
+				RUS = {
+					country_event = {
+						id = basfopo.48
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_join_the_accords
+		icon = moscow_accords
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_purchase_russian_oil_rights
+		}
+
+		relative_position_id = BSQ_purchase_russian_oil_rights
+		x = 1
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					country_exists = RUS
+					RUS = {
+						is_faction_leader = yes
+					}
+				}
+				RUS = {
+					country_event = {
+						id = basfopo.42
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					country_exists = SOV
+					SOV = {
+						is_faction_leader = yes
+					}
+				}
+				SOV = {
+					country_event = {
+						id = basfopo.42
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_invite_russian_military_advisors
+		icon = GFX_russian_advisors
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_join_the_accords
+		}
+
+		relative_position_id = BSQ_join_the_accords
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				idea_spr_russian_military_advisors
+			}
+		}
+	}
+	focus = {
+		id = BSQ_splendid_isolation
+		icon = GFX_goal_generic_stable_government
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_balance_restored
+		}
+		mutually_exclusive = {
+			focus = BSQ_send_a_delegation_to_moscow
+		}
+
+		relative_position_id = BSQ_balance_restored
+		x = -4
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_neutrality_focus
+			}
+		}
+	}
+	focus = {
+		id = BSQ_prepare_for_potential_invasion
+		icon = construct_military
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_splendid_isolation
+		}
+
+		relative_position_id = BSQ_splendid_isolation
+		x = 0
+		y = 1
+		completion_reward = {
+		    every_owned_state = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_tighten_border_security
+		icon = close_borders_2
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_prepare_for_potential_invasion
+		}
+
+		relative_position_id = BSQ_prepare_for_potential_invasion
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_bsq_strict_border_security
+			}
+		}
+	}
+	focus = {
+		id = BSQ_expand_spanish_military_industry
+		icon = caliphate_build_up
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_prepare_for_potential_invasion
+		}
+
+		relative_position_id = BSQ_prepare_for_potential_invasion
+		x = -1
+		y = 1
+		completion_reward = {
+		    random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		    random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		    random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		    random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		    random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	#foreign policy
+	focus = {
+		id = BSQ_fopo_open_the_office_of_foreign_affairs
+		icon = intelligence_exchange
+		cost = 3
+		
+		available = {
+			OR = {
+				has_completed_focus = BSQ_a_military_with_a_state
+				has_completed_focus = BSQ_separation_of_the_military_and_the_state
+				has_completed_focus = BSQ_eta_political_demilitarization
+				has_completed_focus = BSQ_deradicalize_union_movement
+				has_completed_focus = BSQ_open_up_to_foreign_investment
+				has_completed_focus = BSQ_seek_the_support_of_the_pope
+				has_completed_focus = BSQ_a_new_vanguard_party
+			}
+		}
+
+		x = 10
+		y = 18
+		completion_reward = {
+		    add_political_power = 150
+		}
+	}
+	focus = {
+		id = BSQ_fopo_open_dialogue_with_france
+		icon = france
+		cost = 5
+
+		available = {
+			NOT = {
+				has_government = national_bolshevik
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_open_the_office_of_foreign_affairs
+		}
+		
+		mutually_exclusive = {
+			focus = BSQ_fopo_expel_french_aides
+		}
+
+		relative_position_id = BSQ_fopo_open_the_office_of_foreign_affairs
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_stability = 0.05
+			FRA = {
+				add_opinion_modifier = {
+					target = BSQ
+					modifier = bsq_fra_open_dialogue
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_expel_french_aides
+		icon = political_pressure
+		cost = 5
+
+		available = {
+			NOT = {
+				has_government = new_democrat
+			}
+			NOT = {
+				any_country = {
+					AND = {
+						owns_state = 927
+						is_in_faction_with = ROOT
+					}
+				}
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_open_the_office_of_foreign_affairs
+		}
+
+		mutually_exclusive = {
+			focus = BSQ_fopo_open_dialogue_with_france
+		}
+
+		relative_position_id = BSQ_fopo_open_the_office_of_foreign_affairs
+		x = 2
+		y = 1
+		completion_reward = {
+			every_country = {
+				limit = {
+					owns_state = 927
+				}
+				add_opinion_modifier = {
+					target = BSQ
+					modifier = bsq_fra_expelled_aides
+				}
+			}
+			add_war_support = 0.05
+		}
+	}
+	focus = {
+		id = BSQ_fopo_lay_claim_to_our_northern_territories
+		icon = territory_or_war
+		cost = 7.2
+
+		available = {
+			NOT = {
+				any_country = {
+					AND = {
+						owns_state = 927
+						is_in_faction_with = ROOT
+					}
+				}
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_expel_french_aides
+		}
+
+		relative_position_id = BSQ_fopo_expel_french_aides
+		x = 0
+		y = 1
+		completion_reward = {
+			927 = {
+				add_claim_by = BSQ
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_demand_the_northern_basque_country
+		icon = unknown
+		cost = 10
+
+		available = {
+			has_army_manpower = {
+				size > 75000
+			}
+			NOT = {
+				any_country = {
+					AND = {
+						owns_state = 927
+						is_in_faction_with = ROOT
+					}
+				}
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_lay_claim_to_our_northern_territories
+		}
+
+		relative_position_id = BSQ_fopo_lay_claim_to_our_northern_territories
+		x = 0
+		y = 1
+		completion_reward = {
+			every_country = {
+				limit = {
+					owns_state = 927
+				}
+				country_event = {
+					id = basfopo.17
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_the_children_of_euskadi_united_once_more
+		icon = unknown
+		cost = 10
+
+		available = {
+			controls_state = 927
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_demand_the_northern_basque_country
+		}
+
+		relative_position_id = BSQ_fopo_demand_the_northern_basque_country
+		x = 0
+		y = 1
+		completion_reward = {
+		    927 = {
+				add_core_of = BSQ
+				set_state_name = "Iparralde"
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_resource_extraction_in_the_north
+		icon = steel
+		cost = 10
+
+		available = {
+			controls_state = 927
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_the_children_of_euskadi_united_once_more
+		}
+
+		relative_position_id = BSQ_fopo_the_children_of_euskadi_united_once_more
+		x = 1
+		y = 1
+		completion_reward = {
+			add_resource = {
+				type = steel
+				amount = 15
+				state = 927
+			}
+			add_resource = {
+				type = aluminium
+				amount = 25
+				state = 927
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_develop_northern_manufacturing
+		icon = production
+		cost = 10
+
+		available = {
+			controls_state = 927
+		}
+
+		mutually_exclusive = {
+			focus = BSQ_fopo_invest_in_navarrese_communities
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_the_children_of_euskadi_united_once_more
+			focus = BSQ_fopo_negotiate_the_future_of_the_northern_basque_country
+		}
+
+		relative_position_id = BSQ_fopo_the_children_of_euskadi_united_once_more
+		x = -1
+		y = 1
+		completion_reward = {
+			927 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+					}
+				add_extra_state_shared_building_slots = 4
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_officiate_our_friendship_with_france
+		icon = cooperate
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_fopo_open_dialogue_with_france
+		}
+
+		relative_position_id = BSQ_fopo_open_dialogue_with_france
+		x = 0
+		y = 1
+		completion_reward = {
+		    FRA = {
+				country_event = {
+					id = basfopo.33
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_open_border_agreement
+		icon = focus_enforce_1990_constitution
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_fopo_officiate_our_friendship_with_france
+		}
+
+		relative_position_id = BSQ_fopo_officiate_our_friendship_with_france
+		x = -1
+		y = 1
+		completion_reward = {
+		    FRA = {
+				country_event = {
+					id = basfopo.36
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_improve_railway_connections
+		icon = infrastructure_building
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_fopo_officiate_our_friendship_with_france
+		}
+
+		relative_position_id = BSQ_fopo_officiate_our_friendship_with_france
+		x = 1
+		y = 1
+		completion_reward = {
+			build_railway = {
+				level = 2
+				build_only_on_allied = no
+				fallback = yes
+				start_province = 740
+				target_province = 11697
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_negotiate_the_future_of_the_northern_basque_country
+		icon = red_hands_shaking
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_fopo_improve_railway_connections
+		}
+		prerequisite = {
+			focus = BSQ_fopo_open_border_agreement
+		}
+
+		bypass = {
+			has_government = new_democrat
+		}
+
+		relative_position_id = BSQ_fopo_open_border_agreement
+		x = 1
+		y = 1
+		completion_reward = {
+		    FRA = {
+				country_event = {
+					id = basfopo.10
+				}
+			}
+			927 = {
+				add_claim_by = BSQ
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_invest_in_navarrese_communities
+		icon = housing
+		cost = 10
+
+		available = {
+			NOT = {
+				owns_state = 927
+			}
+			owns_state = 172
+			OR = {
+				has_government = new_democrat
+				has_country_flag = BSQ_northern_negotiations_fell_through
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_negotiate_the_future_of_the_northern_basque_country
+		}
+
+		mutually_exclusive = {
+			focus = BSQ_fopo_develop_northern_manufacturing
+		}
+
+		relative_position_id = BSQ_fopo_negotiate_the_future_of_the_northern_basque_country
+		x = -1
+		y = 1
+		completion_reward = {
+			172 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+			}
+			add_resource = {
+				type = steel
+				amount = 5
+				state = 172
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_condemn_imperialist_occupiers
+		icon = unknown
+		cost = 5
+
+		available = {
+			is_puppet = no
+			OR = {
+				has_government = national_bolshevik
+				has_government = revolutionary_socialist
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_open_the_office_of_foreign_affairs
+		}
+		
+		mutually_exclusive = {
+			focus = BSQ_fopo_mend_relations_with_spain
+			focus = BSQ_fopo_prepare_for_backlash
+		}
+
+		relative_position_id = BSQ_fopo_open_the_office_of_foreign_affairs
+		x = -6
+		y = 1
+		completion_reward = {
+			add_war_support = 0.1
+		    IF = {
+				limit = {
+					country_exists = SPR
+				}
+				SPR = {
+					add_opinion_modifier = {
+						target = BSQ
+						modifier = bsq_basque_condemnation
+					}
+				}
+				add_opinion_modifier = {
+					target = SPR
+					modifier = bsq_basque_condemnation
+				}
+			}
+		    IF = {
+				limit = {
+					country_exists = SPN
+				}
+				SPN = {
+					add_opinion_modifier = {
+						target = BSQ
+						modifier = bsq_basque_condemnation
+					}
+				}
+				add_opinion_modifier = {
+					target = SPN
+					modifier = bsq_basque_condemnation
+				}
+			}
+			ENG = {
+				add_opinion_modifier = {
+					target = BSQ
+					modifier = bsq_basque_condemnation
+				}
+			}
+			add_opinion_modifier = {
+				target = ENG
+				modifier = bsq_basque_condemnation
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_make_contact_with_anti_spanish_separatists
+		icon = SPR_attack_communist
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_fopo_condemn_imperialist_occupiers
+		}
+
+		relative_position_id = BSQ_fopo_condemn_imperialist_occupiers
+		x = 1
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					country_exists = SPR
+				}
+				SPR = {
+					country_event = {
+						id = basfopo.66
+					}
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = SPN
+				}
+				SPN = {
+					country_event = {
+						id = basfopo.66
+					}
+				}
+			}
+			custom_effect_tooltip = bsq_the_anti_spanish_will_support_us
+		}
+	}
+	focus = {
+		id = BSQ_fopo_exploit_spanish_intelligence_flaws
+		icon = unknown
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_fopo_make_contact_with_anti_spanish_separatists
+		}
+
+		relative_position_id = BSQ_fopo_make_contact_with_anti_spanish_separatists
+		x = 1
+		y = 1
+		completion_reward = {
+		    IF = {
+				limit = {
+					country_exists = SPR
+				}
+				add_ideas = {
+					idea_bsq_spr_intelligence_exploit
+				}
+			}
+		    IF = {
+				limit = {
+					country_exists = SPN
+				}
+				add_ideas = {
+					idea_bsq_spn_intelligence_exploit
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_stoke_the_flames_of_anti_british_sentiment
+		icon = unknown
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_fopo_condemn_imperialist_occupiers
+		}
+
+		relative_position_id = BSQ_fopo_condemn_imperialist_occupiers
+		x = -1
+		y = 1
+		completion_reward = {
+			ENG = {
+				country_event = {
+					id = basfopo.67
+				}
+			}
+			custom_effect_tooltip = bsq_the_celts_will_support_us
+		}
+	}
+	focus = {
+		id = BSQ_fopo_prepare_for_celtic_liberation
+		icon = BSQ_fopo_prepare_for_celtic_liberation
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_fopo_stoke_the_flames_of_anti_british_sentiment
+		}
+
+		relative_position_id = BSQ_fopo_stoke_the_flames_of_anti_british_sentiment
+		x = -1
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 2
+				uses = 1
+				category = tp_tech
+			}
+			random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_ideas = {
+				idea_bsq_eng_war_preparations
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_integrate_allied_terrorist_cells
+		icon = revolutionary_militia_focus
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_fopo_stoke_the_flames_of_anti_british_sentiment
+		}
+		prerequisite = {
+			focus = BSQ_fopo_make_contact_with_anti_spanish_separatists
+		}
+
+		relative_position_id = BSQ_fopo_stoke_the_flames_of_anti_british_sentiment
+		x = 1
+		y = 1
+		completion_reward = {
+		    country_event = {
+				id = basfopo.68
+			}
+		    division_template = {
+				name = "Anti-Colonial Liberation Militias"
+				regiments = {
+					militia = { x = 0 y = 0 }
+					militia = { x = 0 y = 1 }
+					militia = { x = 0 y = 2 }
+					militia = { x = 0 y = 3 }
+					
+					militia = { x = 1 y = 0 }
+					militia = { x = 1 y = 1 }
+					militia = { x = 1 y = 2 }
+					militia = { x = 1 y = 3 }
+				}
+				support = {
+					engineer = { x = 0 y = 0 }
+				}
+			}
+			random_owned_state = {
+				create_unit = {
+					division = "name = \"Anti-Colonial Liberation Militias\" division_template = \"Anti-Colonial Liberation Militias\" start_experience_factor = 1 start_equipment_factor = 1"
+					owner = BSQ
+				}
+				create_unit = {
+					division = "name = \"Anti-Colonial Liberation Militias\" division_template = \"Anti-Colonial Liberation Militias\" start_experience_factor = 1 start_equipment_factor = 1"
+					owner = BSQ
+				}
+				create_unit = {
+					division = "name = \"Anti-Colonial Liberation Militias\" division_template = \"Anti-Colonial Liberation Militias\" start_experience_factor = 1 start_equipment_factor = 1"
+					owner = BSQ
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_dismantle_the_spanish_imperial_state
+		icon = spain_attack
+		cost = 5
+
+		available = {
+			OR = {
+				is_in_faction = yes
+				has_army_manpower = {
+					size > 100000
+				}
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_integrate_allied_terrorist_cells
+		}
+		prerequisite = {
+			focus = BSQ_fopo_exploit_spanish_intelligence_flaws
+		}
+
+		relative_position_id = BSQ_fopo_integrate_allied_terrorist_cells
+		x = 1
+		y = 1
+		completion_reward = {
+		    IF = {
+				limit = {
+					country_exists = SPR
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = SPR
+				}
+			}
+		    IF = {
+				limit = {
+					country_exists = SPN
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = SPN
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_crush_the_british_empire
+		icon = britain_attack
+		cost = 5
+
+		available = {
+			OR = {
+				is_in_faction = yes
+				has_army_manpower = {
+					size > 100000
+				}
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_integrate_allied_terrorist_cells
+		}
+		prerequisite = {
+			focus = BSQ_fopo_prepare_for_celtic_liberation
+		}
+
+		relative_position_id = BSQ_fopo_integrate_allied_terrorist_cells
+		x = -1
+		y = 1
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = ENG
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_mend_relations_with_spain
+		icon = spain
+		cost = 5
+
+		available = {
+			is_puppet = no
+			NOT = {
+				has_government = national_bolshevik
+			}
+			custom_trigger_tooltip = {
+				tooltip = spain_is_not_hell_bent_on_reunification
+				OR = {
+					AND = {
+						country_exists = SPR
+						SPR = {
+							NOT = {
+								has_government = fascist
+							}
+						}
+						SPR = {
+							NOT = {
+								has_government = monarchist
+							}
+						}
+						SPR = {
+							NOT = {
+								has_government = national_conservative
+							}
+						}
+						SPR = {
+							NOT = {
+								has_government = centrist
+							}
+						}
+						SPR = {
+							NOT = {
+								has_government = liberal
+							}
+						}
+						SPR = {
+							NOT = {
+								has_government = nationalist
+							}
+						}
+						SPR = {
+							NOT = {
+								has_completed_focus = SPR_fopo_demand_reunification
+							}
+						}
+					}
+					AND = {
+						country_exists = SPN
+						SPN = {
+							NOT = {
+								has_government = fascist
+							}
+						}
+						SPN = {
+							NOT = {
+								has_government = monarchist
+							}
+						}
+						SPN = {
+							NOT = {
+								has_government = national_conservative
+							}
+						}
+						SPN = {
+							NOT = {
+								has_government = centrist
+							}
+						}
+						SPN = {
+							NOT = {
+								has_government = liberal
+							}
+						}
+						SPN = {
+							NOT = {
+								has_government = nationalist
+							}
+						}
+						SPN = {
+							NOT = {
+								has_completed_focus = SPR_fopo_demand_reunification
+							}
+						}
+					}
+				}
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_open_the_office_of_foreign_affairs
+		}
+
+		mutually_exclusive = {
+			focus = BSQ_fopo_condemn_imperialist_occupiers
+			focus = BSQ_fopo_prepare_for_backlash
+		}
+
+		relative_position_id = BSQ_fopo_open_the_office_of_foreign_affairs
+		x = -11
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					country_exists = SPR
+				}
+				SPR = {
+					add_opinion_modifier = {
+						target = BSQ
+						modifier = bsq_spain_mending_relations
+					}
+				}
+				BSQ = {
+					add_opinion_modifier = {
+						target = SPR
+						modifier = bsq_spain_mending_relations
+					}
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = SPN
+				}
+				SPN = {
+					add_opinion_modifier = {
+						target = BSQ
+						modifier = bsq_spain_mending_relations
+					}
+				}
+				BSQ = {
+					add_opinion_modifier = {
+						target = SPN
+						modifier = bsq_spain_mending_relations
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_no_further_aggression
+		icon = BSQ_fopo_no_further_aggression
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_fopo_mend_relations_with_spain
+		}
+
+		relative_position_id = BSQ_fopo_mend_relations_with_spain
+		x = 0
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					country_exists = SPR
+				}
+				SPR = {
+					country_event = {
+						id = basfopo.51
+					}
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = SPN
+				}
+				SPN = {
+					country_event = {
+						id = basfopo.51
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_negotiate_access_to_extremadura_tungsten_mines
+		icon = tungsten
+		cost = 8
+
+		prerequisite = {
+			focus = BSQ_fopo_no_further_aggression
+		}
+
+		relative_position_id = BSQ_fopo_no_further_aggression
+		x = 1
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					country_exists = SPR
+				}
+				SPR = {
+					country_event = {
+						id = basfopo.54
+					}
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = SPN
+				}
+				SPN = {
+					country_event = {
+						id = basfopo.54
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_relax_border_security
+		icon = CAN_revert_article_5_enforcement
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_fopo_no_further_aggression
+		}
+
+		relative_position_id = BSQ_fopo_no_further_aggression
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_bsq_relaxed_border_laws
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_joint_military_drills
+		icon = allies_infantry
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_fopo_relax_border_security
+		}
+		prerequisite = {
+			focus = BSQ_fopo_negotiate_access_to_extremadura_tungsten_mines
+		}
+
+		relative_position_id = BSQ_fopo_relax_border_security
+		x = -1
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					country_exists = SPR
+				}
+				SPR = {
+					country_event = {
+						id = basfopo.63
+					}
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = SPN
+				}
+				SPN = {
+					country_event = {
+						id = basfopo.63
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_lobby_for_spains_protection
+		icon = SPR_spain_for_spaniards
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_fopo_relax_border_security
+		}
+		prerequisite = {
+			focus = BSQ_fopo_negotiate_access_to_extremadura_tungsten_mines
+		}
+
+		relative_position_id = BSQ_fopo_relax_border_security
+		x = 1
+		y = 1
+		completion_reward = {
+		    IF = {
+				limit = {
+					country_exists = SPR
+				}
+				SPR = {
+					country_event = {
+						id = basfopo.57
+					}
+				}
+			}
+		    IF = {
+				limit = {
+					country_exists = SPN
+				}
+				SPN = {
+					country_event = {
+						id = basfopo.57
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_request_spanish_investment
+		icon = revive_the_royal_lottery
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_fopo_relax_border_security
+		}
+		prerequisite = {
+			focus = BSQ_fopo_negotiate_access_to_extremadura_tungsten_mines
+		}
+
+		relative_position_id = BSQ_fopo_relax_border_security
+		x = 3
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					country_exists = SPR
+				}
+				SPR = {
+					country_event = {
+						id = basfopo.60
+					}
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = SPN
+				}
+				SPN = {
+					country_event = {
+						id = basfopo.60
+					}
+				}
+			} 
+		}
+	}
+	focus = {
+		id = BSQ_fopo_prepare_for_backlash
+		icon = SPR_attack_communist
+		cost = 5
+
+		available = {
+			is_puppet = no
+			NOT = {
+				has_government = national_bolshevik
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_open_the_office_of_foreign_affairs
+		}
+		
+		mutually_exclusive = {
+			focus = BSQ_fopo_mend_relations_with_spain
+			focus = BSQ_fopo_condemn_imperialist_occupiers
+		}
+
+		relative_position_id = BSQ_fopo_open_the_office_of_foreign_affairs
+		x = -15
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					country_exists = SPR
+				}
+				add_ideas = {
+					idea_bsq_preservation_of_independence_spr
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = SPN
+				}
+				add_ideas = {
+					idea_bsq_preservation_of_independence_spn
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_prepare_a_trench_line
+		icon = unknown
+		cost = 8
+
+		prerequisite = {
+			focus = BSQ_fopo_prepare_for_backlash
+		}
+
+		relative_position_id = BSQ_fopo_prepare_for_backlash
+		x = 0
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					country_exists = SPR
+				}
+				swap_ideas = {
+					remove_idea = idea_bsq_preservation_of_independence_spr
+					add_idea = idea_bsq_preservation_of_independence_spr_2
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = SPN
+				}
+				swap_ideas = {
+					remove_idea = idea_bsq_preservation_of_independence_spn
+					add_idea = idea_bsq_preservation_of_independence_spn_2
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_ensure_supplies_for_the_front
+		icon = new_cities
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_fopo_prepare_for_backlash
+		}
+
+		relative_position_id = BSQ_fopo_prepare_for_backlash
+		x = 2
+		y = 1
+		completion_reward = {
+			172 = {
+				add_building_construction = {
+					type = supply_node
+					level = 1
+					instant_build = yes
+					province = 932
+				}
+			}
+			build_railway = {
+				level = 2
+				build_only_on_allied = yes
+				fallback = no
+				start_province = 3735
+				target_province = 932
+			}
+			hidden_effect = {
+				build_railway = {
+					level = 2
+					build_only_on_allied = yes
+					fallback = no
+					start_province = 740
+					target_province = 3735
+				}
+				build_railway = {
+					level = 2
+					build_only_on_allied = yes
+					fallback = no
+					start_province = 932
+					target_province = 9857
+				}
+				build_railway = {
+					level = 2
+					build_only_on_allied = yes
+					fallback = no
+					start_province = 9857
+					target_province = 3931
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_expand_fortifications
+		icon = construct_military
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_fopo_ensure_supplies_for_the_front
+		}
+		prerequisite = {
+			focus = BSQ_fopo_prepare_a_trench_line
+		}
+
+		relative_position_id = BSQ_fopo_ensure_supplies_for_the_front
+		x = -1
+		y = 1
+		completion_reward = {
+		    every_owned_state = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_a_gun_in_every_hand
+		icon = RAJ_our_own_equipment
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_fopo_expand_fortifications
+		}
+
+		relative_position_id = BSQ_fopo_expand_fortifications
+		x = -1
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					country_exists = SPR
+				}
+				swap_ideas = {
+					remove_idea = idea_bsq_preservation_of_independence_spr_2
+					add_idea = idea_bsq_preservation_of_independence_spr_3
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = SPN
+				}
+				swap_ideas = {
+					remove_idea = idea_bsq_preservation_of_independence_spn_2
+					add_idea = idea_bsq_preservation_of_independence_spn_3
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_anti_spanish_defensive_pact
+		icon = SPR_reclaim_the_breakaways
+		cost = 5
+
+		available = {
+			OR = {
+				AND = {
+					country_exists = CAT
+					CAT = {
+						is_puppet = no
+					}
+				}
+				AND = {
+					country_exists = GAL
+					GAL = {
+						is_puppet = no
+					}
+				}
+			}
+		}
+		
+		bypass = {
+			OR = {
+				AND = {
+					NOT = {
+						country_exists = CAT
+					}
+					NOT = {
+						country_exists = GAL
+					}
+				}
+				AND = {
+					CAT = {
+						is_puppet = yes
+					}
+					GAL = {
+						is_puppet = yes
+					}
+				}
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_prepare_for_backlash
+		}
+
+		relative_position_id = BSQ_fopo_prepare_for_backlash
+		x = -2
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					country_exists = CAT
+				}
+				CAT = {
+					country_event = {
+						id = basfopo.82
+					}
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = GAL
+				}
+				GAL = {
+					country_event = {
+						id = basfopo.85
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_seek_portuguese_protection
+		icon = portugal
+		cost = 5
+
+		available = {
+			country_exists = POR
+			POR = {
+				is_puppet = no
+				NOT = {
+					is_in_faction_with = SPR
+					is_in_faction_with = SPN
+				}
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_anti_spanish_defensive_pact
+		}
+
+		relative_position_id = BSQ_fopo_anti_spanish_defensive_pact
+		x = 0
+		y = 2
+		completion_reward = {
+			POR = {
+				country_event = {
+					id = basfopo.77
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_friends_in_ireland
+		icon = ireland
+		cost = 5
+
+		available = {
+			country_exists = IRE
+			IRE = {
+				is_puppet = no
+				NOT = {
+					is_in_faction_with = SPR
+					is_in_faction_with = SPN
+				}
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_anti_spanish_defensive_pact
+		}
+
+		relative_position_id = BSQ_fopo_anti_spanish_defensive_pact
+		x = -1
+		y = 1
+		completion_reward = {
+			IRE = {
+				country_event = {
+					id = basfopo.74
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_lobby_scandinavian_support
+		icon = unknown
+		cost = 5
+
+		available = {
+			any_country = {
+				OR = {
+					tag = DEN
+					tag = SWE
+					tag = FIN
+					tag = NOR
+				}
+				NOT = {
+					is_in_faction_with = SPR
+				}
+				NOT = {
+					is_in_faction_with = SPN
+				}
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_anti_spanish_defensive_pact
+		}
+
+		relative_position_id = BSQ_fopo_anti_spanish_defensive_pact
+		x = 1
+		y = 1
+		completion_reward = {
+			every_country = {
+				limit = {
+					OR = {
+						tag = DEN
+						tag = SWE
+						tag = FIN
+						tag = NOR
+					}
+					NOT = {
+						is_in_faction_with = SPR
+					}
+					NOT = {
+						is_in_faction_with = SPN
+					}
+				}
+				country_event = {
+					id = basfopo.80
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_our_international_alignment
+		icon = focus_commonwealth_un_membership
+		cost = 3
+
+		available = {
+			is_puppet = no
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_open_the_office_of_foreign_affairs
+		}
+
+		bypass = {
+			is_in_faction = yes	
+		}
+
+		relative_position_id = BSQ_fopo_open_the_office_of_foreign_affairs
+		x = 10
+		y = 1
+		completion_reward = {
+		    add_stability = 0.05
+			add_war_support = 0.05
+		}
+	}
+	focus = {
+		id = BSQ_fopo_draw_closer_to_the_warsaw_pact
+		icon = warsaw_pact
+		cost = 5
+
+		available = {
+			AND = {
+				is_in_faction = no
+				OR = {
+					AND = {
+						country_exists = SOV
+						SOV = {
+							has_government = communist
+							is_faction_leader = yes
+						}
+					}
+					AND = {
+						country_exists = GER
+						GER = {
+							OR = {
+								has_government = moderate_socialist
+								has_government = revolutionary_socialist
+								has_government = moderate_socialist
+							}
+							is_faction_leader = yes
+						}
+					}
+				}
+				OR = {
+					has_government = moderate_socialist
+					has_government = revolutionary_socialist
+					has_government = communist
+					has_government = national_bolshevik
+				}
+				NOT = {
+					has_country_flag = BSQ_warsaw_refused_to_ally_us
+				}
+			}
+		}
+		
+		bypass = {
+			OR = {
+				AND = {
+					is_in_faction_with = GER
+					GER = {
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+						}
+					}
+				}
+				is_in_faction_with = SOV
+			}
+		}
+		
+		prerequisite = {
+			focus = BSQ_fopo_our_international_alignment
+		}
+		
+		mutually_exclusive = {
+			focus = BSQ_fopo_delegation_to_ottawa
+			focus = BSQ_fopo_endeavor_for_isolationism
+		}
+
+		relative_position_id = BSQ_fopo_our_international_alignment
+		x = 0
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					AND = {
+						country_exists = SOV
+						SOV = {
+							is_faction_leader = yes
+						}
+					}
+				}
+				SOV = {
+					country_event = {
+						id = basfopo.1
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					AND = {
+						country_exists = GER
+						GER = {
+							is_faction_leader = yes
+						}
+					}
+				}
+				GER = {
+					country_event = {
+						id = basfopo.4
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_military_doctrine_training
+		icon = soviet_military
+		cost = 5
+		
+		available = {
+			OR = {
+				is_in_faction_with = SOV
+				AND = {
+					is_in_faction_with = GER
+					GER = {
+						Or = {
+							has_government = moderate_socialist
+							has_government = revolutionary_socialist
+							has_government = communist
+						}
+					}
+				}
+			}
+		}
+		
+		prerequisite = {
+			focus = BSQ_fopo_draw_closer_to_the_warsaw_pact
+		}
+
+		relative_position_id = BSQ_fopo_draw_closer_to_the_warsaw_pact
+		x = 0
+		y = 1
+		completion_reward = {
+			army_experience = 25
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.6
+				uses = 2
+				category = land_doctrine
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_request_heavy_industry_aid
+		icon = warsaw_pact_investment
+		cost = 7.2
+
+		available = {
+			OR = {
+				is_in_faction_with = SOV
+				AND = {
+					is_in_faction_with = GER
+					GER = {
+						Or = {
+							has_government = moderate_socialist
+							has_government = revolutionary_socialist
+							has_government = communist
+						}
+					}
+				}
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_military_doctrine_training
+		}
+
+		relative_position_id = BSQ_fopo_military_doctrine_training
+		x = -1
+		y = 1
+		completion_reward = {
+			every_country = {
+				limit = {
+					OR = {
+						has_idea = idea_eu_member
+						AND = {
+							has_government = communist
+							is_in_faction_with = BSQ
+						}
+					}
+				}
+				country_event = {
+					id = basfopo.72
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_codevelopment_agreement
+		icon = embrace_market_socialism
+		cost = 7.2
+
+		available = {
+			OR = {
+				is_in_faction_with = SOV
+				AND = {
+					is_in_faction_with = GER
+					GER = {
+						Or = {
+							has_government = moderate_socialist
+							has_government = revolutionary_socialist
+							has_government = communist
+						}
+					}
+				}
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_military_doctrine_training
+		}
+
+		relative_position_id = BSQ_fopo_military_doctrine_training
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_bsq_co_development_initiative
+			}
+			every_country = {
+				limit = {
+					is_in_faction_with = ROOT
+				}
+				add_ideas = {
+					idea_bsq_co_development_initiative
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_apply_for_EUSR_membership
+		icon = european_union
+		cost = 10
+
+		available = {
+			OR = {
+				is_in_faction_with = SOV
+				AND = {
+					is_in_faction_with = GER
+					GER = {
+						Or = {
+							has_government = moderate_socialist
+							has_government = revolutionary_socialist
+							has_government = communist
+						}
+					}
+				}
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_codevelopment_agreement
+		}
+		prerequisite = {
+			focus = BSQ_fopo_request_heavy_industry_aid
+		}
+
+		relative_position_id = BSQ_fopo_codevelopment_agreement
+		x = -1
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					ITA = {
+						has_completed_focus = ITA_unite_the_eu
+					}
+				}
+				ITA = {
+					country_event = {
+						id = basfopo.69
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					NOT = {
+						ITA = {
+							has_completed_focus = ITA_unite_the_eu
+						}
+					}
+				}
+				add_ideas = {
+					idea_eu_member
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_delegation_to_ottawa
+		icon = democratic_league
+		cost = 5
+
+		available = {
+			AND = {
+				is_in_faction = no
+				country_exists = CAN
+				CAN = {
+					is_faction_leader = yes
+				}
+				OR = {
+					has_government = new_democrat
+					has_government = centrist
+					has_government = monarchist
+					has_government = moderate_socialist
+				}
+				NOT = {
+					has_country_flag = BSQ_canada_refused_to_ally_us
+				}
+			}
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_our_international_alignment
+		}
+		
+		bypass = {
+			is_in_faction_with = CAN
+		}
+		
+		mutually_exclusive = {
+			focus = BSQ_fopo_draw_closer_to_the_warsaw_pact
+			focus = BSQ_fopo_endeavor_for_isolationism
+		}
+
+		relative_position_id = BSQ_fopo_our_international_alignment
+		x = -4
+		y = 1
+		completion_reward = {
+		    CAN = {
+				country_event = {
+					id = basfopo.7
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_work_on_league_intelligence
+		icon = GFX_the_surveillance_state_perfected
+		cost = 7.2
+
+		available = {
+			is_in_faction_with = CAN
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_delegation_to_ottawa
+		}
+		
+		relative_position_id = BSQ_fopo_delegation_to_ottawa
+		x = 2
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_bsq_intelligence_improvements
+			}
+			every_country = {
+				limit = {
+					is_in_faction_with = ROOT
+				}
+				add_ideas = {
+					idea_bsq_intelligence_improvements
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_train_with_canadian_special_forces
+		icon = CUB_build_ties_with_democratic_league_militaries
+		cost = 5
+
+		available = {
+			is_in_faction_with = CAN
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_delegation_to_ottawa
+		}
+		
+		relative_position_id = BSQ_fopo_delegation_to_ottawa
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_bsq_special_forces_training
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_joint_research_efforts
+		icon = GFX_future_minds_program
+		cost = 10
+
+		available = {
+			is_in_faction_with = CAN
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_delegation_to_ottawa
+		}
+		
+		relative_position_id = BSQ_fopo_delegation_to_ottawa
+		x = -2
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_bsq_basque_research_efforts
+			}
+			every_country = {
+				limit = {
+					is_in_faction_with = ROOT
+				}
+				add_ideas = {
+					idea_bsq_basque_research_efforts
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_prepare_to_be_a_front_line
+		icon = infrastructure
+		cost = 7.2
+
+		available = {
+			is_in_faction_with = CAN
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_joint_research_efforts
+		}
+		prerequisite = {
+			focus = BSQ_fopo_train_with_canadian_special_forces
+		}
+		prerequisite = {
+			focus = BSQ_fopo_work_on_league_intelligence
+		}
+
+		relative_position_id = BSQ_fopo_train_with_canadian_special_forces
+		x = 0
+		y = 1
+		completion_reward = {
+			172 = {
+				add_building_construction = {
+					type = supply_node
+					level = 1
+					instant_build = yes
+					province = 3737
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 3
+					instant_build = yes
+					province = 6756
+				}
+			}
+			1020 = {
+				add_building_construction = {
+					type = naval_base
+					level = 5
+					instant_build = yes
+					province = 740
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_endeavor_for_isolationism
+		icon = GFX_goal_generic_stable_government
+		cost = 5
+
+		available = {
+			is_in_faction = no
+		}
+
+		prerequisite = {
+			focus = BSQ_fopo_our_international_alignment
+		}
+		
+		mutually_exclusive = {
+			focus = BSQ_fopo_draw_closer_to_the_warsaw_pact
+			focus = BSQ_fopo_delegation_to_ottawa
+		}
+
+		relative_position_id = BSQ_fopo_our_international_alignment
+		x = 4
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_neutrality_focus
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_expand_recruitment_campaign
+		icon = propaganda
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_fopo_endeavor_for_isolationism
+		}
+
+		relative_position_id = BSQ_fopo_endeavor_for_isolationism
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_bsq_expand_recruitment_campaign
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_expand_domestic_arms_production
+		icon = GER_revitalize_military_industry
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_fopo_expand_recruitment_campaign
+		}
+
+		relative_position_id = BSQ_fopo_expand_recruitment_campaign
+		x = 0
+		y = 1
+		completion_reward = {
+		    random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			add_ideas = {
+				idea_bsq_domestic_arms_development
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_fortify_our_borders
+		icon = construct_military
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_fopo_endeavor_for_isolationism
+		}
+
+		relative_position_id = BSQ_fopo_endeavor_for_isolationism
+		x = -1
+		y = 1
+		completion_reward = {
+		    every_owned_state = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_fopo_entrench_defensive_doctrines
+		icon = position_armies
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_fopo_fortify_our_borders
+		}
+
+		relative_position_id = BSQ_fopo_fortify_our_borders
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_bsq_entrench_defensive_doctrines
+			}
+		}
+	}
+	
+	#Army trees
+	focus = {
+		id = BSQ_army_keeping_up_on_the_axe
+		icon = unknown
+		cost = 4
+
+		available = {
+			OR = {
+				has_completed_focus = BSQ_three_hurrahs_for_etas_military
+				has_completed_focus = BSQ_commitment_to_pacifism
+				has_completed_focus = BSQ_restructure_basque_military
+				has_completed_focus = BSQ_welcome_ex_eta_militants
+				has_completed_focus = BSQ_new_military_academies
+				has_completed_focus = BSQ_loyalty_to_the_king
+				has_completed_focus = BSQ_reorganize_eta_military_structure
+				has_completed_focus = BSQ_prepare_for_our_return
+			}
+		}
+
+		x = 32
+		y = 18
+		completion_reward = {
+			army_experience = 50
+		    
+		}
+	}
+	focus = {
+		id = BSQ_army_create_state_companies
+		icon = industry_2
+		cost = 8
+
+		prerequisite = {
+			focus = BSQ_army_keeping_up_on_the_axe
+		}
+
+		relative_position_id = BSQ_army_keeping_up_on_the_axe
+		x = 0
+		y = 3
+		completion_reward = {
+		    random_owned_state = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = infantry_weapons
+			}
+		}
+	}
+	focus = {
+		id = BSQ_army_develop_military_industry
+		icon = factory_build
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_army_create_state_companies
+		}
+
+		relative_position_id = BSQ_army_create_state_companies
+		x = 0
+		y = 1
+		completion_reward = {
+		    random_owned_state = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		    random_owned_state = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_army_adopt_conventional_warfare
+		icon = military_academy
+		cost = 7.2
+
+		available = {
+			NOT = {
+				OR = {
+					has_government = national_bolshevik
+					has_government = revolutionary_socialist
+				}
+			}
+		}
+
+		mutually_exclusive = {
+			focus = BSQ_army_maintain_unconventional_tactics
+		}
+
+		prerequisite = {
+			focus = BSQ_army_keeping_up_on_the_axe
+		}
+
+		relative_position_id = BSQ_army_keeping_up_on_the_axe
+		x = 3
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_bsq_modern_army
+			}
+		}
+	}
+	focus = {
+		id = BSQ_army_form_the_basque_marines
+		icon = BSQ_army_form_the_basque_marines
+		cost = 7.2
+
+
+		prerequisite = {
+			focus = BSQ_army_adopt_conventional_warfare
+		}
+
+		relative_position_id = BSQ_army_adopt_conventional_warfare
+		x = 2
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 2
+				category = marine_tech
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_completed_focus = BSQ_army_reorganize_the_command_staff
+					}
+				}
+				swap_ideas = {
+					remove_idea = idea_bsq_modern_army
+					add_idea = idea_bsq_modern_army_marines
+				}
+			}
+			IF = {
+				limit = {
+					has_completed_focus = BSQ_army_reorganize_the_command_staff
+				}
+				swap_ideas = {
+					remove_idea = idea_bsq_modern_army_marines
+					add_idea = idea_bsq_modern_army_marines_and_reorganized_staff
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_army_motorization_campaign
+		icon = french_apc_VAB_VTT_focus
+		cost = 5
+
+
+		prerequisite = {
+			focus = BSQ_army_adopt_conventional_warfare
+		}
+
+		relative_position_id = BSQ_army_adopt_conventional_warfare
+		x = 0
+		y = 1
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = motorized_equipment
+				amount = 1500
+				producer = BSQ
+			}
+			add_equipment_to_stockpile = {
+				type = mechanized_equipment
+				amount = 3000
+				producer = BSQ
+			}
+			add_tech_bonus = {
+				bonus = 0.7
+				uses = 2
+				category = cat_mechanized_equipment
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 1
+			}
+		}
+	}
+	focus = {
+		id = BSQ_army_reorganize_the_command_staff
+		icon = military_salute
+		cost = 10
+
+
+		prerequisite = {
+			focus = BSQ_army_adopt_conventional_warfare
+		}
+
+		relative_position_id = BSQ_army_adopt_conventional_warfare
+		x = -2
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					NOT = {
+						has_completed_focus = BSQ_army_form_the_basque_marines
+					}
+				}
+				swap_ideas = {
+					remove_idea = idea_bsq_modern_army
+					add_idea = idea_bsq_modern_army_reorganize_staff
+				}
+			}
+			IF = {
+				limit = {
+					has_completed_focus = BSQ_army_form_the_basque_marines
+				}
+				swap_ideas = {
+					remove_idea = idea_bsq_modern_army_reorganize_staff
+					add_idea = idea_bsq_modern_army_marines_and_reorganized_staff
+				}
+			} 
+		}
+	}
+	focus = {
+		id = BSQ_army_adopt_foreign_tactics
+		icon = army_doctrine
+		cost = 10
+
+
+		prerequisite = {
+			focus = BSQ_army_reorganize_the_command_staff
+		}
+		prerequisite = {
+			focus = BSQ_army_motorization_campaign
+		}
+		prerequisite = {
+			focus = BSQ_army_form_the_basque_marines
+		}
+
+		relative_position_id = BSQ_army_reorganize_the_command_staff
+		x = 1
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_bsq_modern_army_marines_and_reorganized_staff
+				add_idea = idea_bsq_modern_army_full
+			}
+		}
+	}
+	focus = {
+		id = BSQ_army_defend_the_borders
+		icon = build_tank
+		cost = 5
+
+
+		prerequisite = {
+			focus = BSQ_army_form_the_basque_marines
+		}
+		prerequisite = {
+			focus = BSQ_army_motorization_campaign
+		}
+
+		relative_position_id = BSQ_army_motorization_campaign
+		x = 1
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					owns_state = 1020
+				}
+				1020 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					owns_state = 172
+				}
+				172 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					owns_state = 927
+				}
+				927 = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_army_maintain_unconventional_tactics
+		icon = unknown
+		cost = 7.2
+
+		available = {
+			OR = {
+				has_government = moderate_socialist
+				has_government = revolutionary_socialist
+				has_government = communist
+				has_government = national_bolshevik
+			}
+		}
+
+		mutually_exclusive = {
+			focus = BSQ_army_adopt_conventional_warfare
+		}
+
+		prerequisite = {
+			focus = BSQ_army_keeping_up_on_the_axe
+		}
+
+		relative_position_id = BSQ_army_keeping_up_on_the_axe
+		x = -3
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_bsq_basque_military_tradition
+			}
+		}
+	}
+	focus = {
+		id = BSQ_army_expand_commando_groups
+		icon = special_forces
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_army_maintain_unconventional_tactics
+		}
+
+		relative_position_id = BSQ_army_maintain_unconventional_tactics
+		x = 2
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 2
+				category = mountaineers_tech
+			}
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 2
+				category = para_tech
+			}
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 2
+				category = marine_tech
+			}
+		}
+	}
+	focus = {
+		id = BSQ_army_guarantee_a_surplus
+		icon = spanish_guns
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_army_maintain_unconventional_tactics
+		}
+
+		relative_position_id = BSQ_army_maintain_unconventional_tactics
+		x = 0
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					NOT = {
+						has_completed_focus = BSQ_army_rely_on_the_kale_borroka
+					}
+				}
+				swap_ideas = {
+					remove_idea = idea_bsq_basque_military_tradition
+					add_idea = idea_bsq_basque_military_guaranteed_surplus
+				}
+			}
+			IF = {
+				limit = {
+					has_completed_focus = BSQ_army_rely_on_the_kale_borroka
+				}
+				swap_ideas = {
+					remove_idea = idea_bsq_basque_military_tradition_kale_borroka
+					add_idea = idea_bsq_basque_military_tradition_kale_borroka_and_surplus
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_army_rely_on_the_kale_borroka
+		icon = BSQ_kale_borroka
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_army_maintain_unconventional_tactics
+		}
+
+		relative_position_id = BSQ_army_maintain_unconventional_tactics
+		x = -2
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					NOT = {
+						has_completed_focus = BSQ_army_guarantee_a_surplus
+					}
+				}
+				swap_ideas = {
+					remove_idea = idea_bsq_basque_military_tradition
+					add_idea = idea_bsq_basque_military_tradition_kale_borroka
+				}
+			}
+			IF = {
+				limit = {
+					has_completed_focus = BSQ_army_guarantee_a_surplus
+				}
+				swap_ideas = {
+					remove_idea = idea_bsq_basque_military_guaranteed_surplus
+					add_idea = idea_bsq_basque_military_tradition_kale_borroka_and_surplus
+				}
+			}
+		}
+	}
+	focus = {
+		id = BSQ_army_paramilitary_defense_leagues
+		icon = red_brigades
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_army_rely_on_the_kale_borroka
+		}
+		prerequisite = {
+			focus = BSQ_army_guarantee_a_surplus
+		}
+		prerequisite = {
+			focus = BSQ_army_expand_commando_groups
+		}
+
+		relative_position_id = BSQ_army_rely_on_the_kale_borroka
+		x = 1
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_bsq_basque_military_tradition_kale_borroka_and_surplus
+				add_idea = idea_bsq_basque_military_tradition_final
+			} 
+		}
+	}
+	focus = {
+		id = BSQ_army_fortify_the_capital
+		icon = position_armies
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_army_expand_commando_groups
+		}
+		prerequisite = {
+			focus = BSQ_army_guarantee_a_surplus
+		}
+		prerequisite = {
+			focus = BSQ_army_rely_on_the_kale_borroka
+		}
+
+		relative_position_id = BSQ_army_guarantee_a_surplus
+		x = 1
+		y = 1
+		completion_reward = {
+			1020 = {
+				add_building_construction = {
+					type = bunker
+					level = 5
+					instant_build = yes
+					province = 740
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 3735
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 6756
+				}
+			}
+		}
+	}
+	
+	#navy
+	focus = {
+		id = BSQ_navy_eyes_on_the_bay
+		icon = navy_doctrine
+		cost = 4
+
+		available = {
+			OR = {
+				has_completed_focus = BSQ_three_hurrahs_for_etas_military
+				has_completed_focus = BSQ_commitment_to_pacifism
+				has_completed_focus = BSQ_restructure_basque_military
+				has_completed_focus = BSQ_welcome_ex_eta_militants
+				has_completed_focus = BSQ_new_military_academies
+				has_completed_focus = BSQ_loyalty_to_the_king
+				has_completed_focus = BSQ_reorganize_eta_military_structure
+				has_completed_focus = BSQ_prepare_for_our_return
+			}
+		}
+
+		x = 42
+		y = 18
+		completion_reward = {
+		    navy_experience = 50
+		}
+	}
+	focus = {
+		id = BSQ_navy_expand_the_civilian_fleet
+		icon = naval_occupation
+		cost = 4
+
+		prerequisite = {
+			focus = BSQ_navy_eyes_on_the_bay
+		}
+
+		relative_position_id = BSQ_navy_eyes_on_the_bay
+		x = 2
+		y = 1
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 350
+			}
+		}
+	}
+	focus = {
+		id = BSQ_navy_swarm_the_enemy_with_our_sharks
+		icon = BSQ_navy_swarm_the_enemy_with_our_sharks
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_navy_expand_the_civilian_fleet
+		}
+
+		relative_position_id = BSQ_navy_expand_the_civilian_fleet
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_bsq_shark_infested_waters
+			}
+		   	add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = ss_tech
+			}
+		}
+	}
+	focus = {
+		id = BSQ_navy_destroyer_development
+		icon = battleship
+		cost = 3
+
+		prerequisite = {
+			focus = BSQ_navy_eyes_on_the_bay
+		}
+
+		relative_position_id = BSQ_navy_eyes_on_the_bay
+		x = -2
+		y = 1
+		completion_reward = {
+		   	add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = dd_tech
+			}
+		}
+	}
+	focus = {
+		id = BSQ_navy_fund_cruiser_research
+		icon = carrier
+		cost = 3
+
+		prerequisite = {
+			focus = BSQ_navy_destroyer_development
+		}
+
+		relative_position_id = BSQ_navy_destroyer_development
+		x = 1
+		y = 1
+		completion_reward = {
+		   	add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = cl_tech
+			}
+		   	add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = ca_tech
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 1
+			}
+		}
+	}
+	focus = {
+		id = BSQ_navy_naval_construction_effort
+		icon = naval_dockyard
+		cost = 10
+
+		prerequisite = {
+			focus = BSQ_navy_eyes_on_the_bay
+		}
+
+		relative_position_id = BSQ_navy_eyes_on_the_bay
+		x = 0
+		y = 1
+		completion_reward = {
+		    1020 = {
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			add_ideas = {
+				idea_bsq_ship_building_effort
+			}
+		}
+	}
+	
+	#air
+	focus = {
+		id = BSQ_air_eyes_on_the_sky
+		icon = close_air_support
+		cost = 4
+
+		available = {
+			OR = {
+				has_completed_focus = BSQ_three_hurrahs_for_etas_military
+				has_completed_focus = BSQ_commitment_to_pacifism
+				has_completed_focus = BSQ_restructure_basque_military
+				has_completed_focus = BSQ_welcome_ex_eta_militants
+				has_completed_focus = BSQ_new_military_academies
+				has_completed_focus = BSQ_loyalty_to_the_king
+				has_completed_focus = BSQ_reorganize_eta_military_structure
+				has_completed_focus = BSQ_prepare_for_our_return
+			}
+		}
+
+		x = 48
+		y = 18
+		completion_reward = {
+		    air_experience = 50
+		}
+	}
+	focus = {
+		id = BSQ_air_look_into_naval_aviation
+		icon = naval_bomber
+		cost = 3
+
+		prerequisite = {
+			focus = BSQ_air_eyes_on_the_sky
+		}
+
+		relative_position_id = BSQ_air_eyes_on_the_sky
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_tech_bonus = {
+				name = tactical_bomber_bonus
+				bonus = 0.75
+				uses = 2
+				category = naval_bomber
+			}
+		}
+	}
+	focus = {
+		id = BSQ_air_fighter_effort
+		icon = generic_fighter_2
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_air_eyes_on_the_sky
+		}
+
+		relative_position_id = BSQ_air_eyes_on_the_sky
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_tech_bonus = {
+				name = tactical_bomber_bonus
+				bonus = 0.75
+				uses = 1
+				category = light_fighter
+			}
+			add_ideas = {
+				idea_bsq_fighter_focus
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 1
+			}
+		}
+	}
+	focus = {
+		id = BSQ_air_bomb_away_the_enemy
+		icon = drone
+		cost = 7.2
+
+		prerequisite = {
+			focus = BSQ_air_fighter_effort
+		}
+
+		relative_position_id = BSQ_air_fighter_effort
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_tech_bonus = {
+				name = tactical_bomber_bonus
+				bonus = 0.75
+				uses = 1
+				category = cas_bomber
+			}
+			add_ideas = {
+				idea_bsq_bomb_the_enemy
+			}
+		}
+	}
+	focus = {
+		id = BSQ_air_invest_into_field_support
+		icon = eagle_air
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_air_look_into_naval_aviation
+		}
+
+		relative_position_id = BSQ_air_look_into_naval_aviation
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_bsq_field_support
+			}
+		}
+	}
+	focus = {
+		id = BSQ_air_air_base_effort
+		icon = build_airforce
+		cost = 5
+
+		prerequisite = {
+			focus = BSQ_air_eyes_on_the_sky
+		}
+
+		relative_position_id = BSQ_air_eyes_on_the_sky
+		x = 0
+		y = 3
+		completion_reward = {
+			1020 = {
+				add_building_construction = {
+					type = air_base
+					level = 5
+					instant_build = yes
+				}
+			}
+		}
+	}
+}

@@ -2186,6 +2186,12 @@ country_event = { #No Majority can be found
 		name = yemen.40.o1
 		add_political_power = -50
 		add_stability = -0.07
+		hidden_effect = {
+			country_event = {
+				id = yemen.43
+				days = 7
+			}
+		}
 	}
 }
 
@@ -3903,7 +3909,6 @@ country_event = { #Yemen Demands South Hejaz
 			set_state_owner = 987
 			set_state_owner = 985
 			set_state_owner = 990
-			set_state_owner = 989
 			country_event = {
 				id = yemen.117
 				days = 1
@@ -6215,5 +6220,420 @@ country_event = { #yanks say no
 	
 	option = {
 		name = yemen.204.o1
+	}
+}
+
+country_event = { #Yemen Requests Significant Military Package
+	id = yemen.205
+	title = yemen.205.t
+	desc = yemen.205.d
+	picture = yem_military_package
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = yemen.205.o1 #send equipment
+		YEM = {
+			country_event = {
+				id = yemen.206
+				days = 3
+			}
+		}
+	}
+
+	option = {
+		name = yemen.205.o2 #send volunteers
+		add_ai_strategy = {
+			type = send_volunteers_desire
+			id = YEM
+			value = 200
+		}
+		YEM = {
+			add_opinion_modifier = {
+				target = SAU
+				modifier = yem_saudis_helped_small
+			}
+		}
+	}
+}
+
+country_event = { #Saudis Send Equipment
+	id = yemen.206
+	title = yemen.206.t
+	desc = yemen.206.d
+	picture = yem_saudi_weapons
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = yemen.206.o1
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1000
+			producer = SAU
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 250
+			producer = SAU
+		}
+		add_equipment_to_stockpile = {
+			type = motorized_equipment
+			amount = 100
+			producer = SAU
+		}
+		add_opinion_modifier = {
+			target = SAU
+			modifier = yem_saudis_helped_big
+		}
+	}
+}
+
+country_event = { #Saudis Send Volunteers
+	id = yemen.207
+	title = yemen.207.t
+	desc = yemen.207.d
+	picture = yem_saudi_volunteers
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = yemen.207.o1
+		SAU = {
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = YEM
+				value = 200
+			}
+		}
+		YEM = {
+			add_opinion_modifier = {
+				target = SAU
+				modifier = yem_saudis_helped_small
+			}
+		}
+	}
+}
+
+country_event = { #Operatives Meet With National Coalition Members
+	id = yemen.208
+	title = yemen.208.t
+	desc = yemen.208.d
+	picture = yem_meet_with_national_coalition
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = yemen.208.o1
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.1
+		}
+	}
+}
+
+country_event = { #[Yem.GetName] Seeks Military Aid
+	id = yemen.209
+	title = yemen.209.t
+	desc = yemen.209.d
+	picture = yem_usa_military_aid
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #Yes
+		name = yemen.209.o1
+		add_ideas = idea_usa_second_yemeni_intervention
+		YEM = {
+			country_event = {
+				id = yemen.210
+				days = 1
+			}
+		}
+	}
+	option = { #No
+		name = yemen.209.o2
+		add_stability = 0.03
+		add_popularity = {
+			ideology = var:current_party_ideology_group
+			popularity = 0.05
+		}
+		YEM = {
+			country_event = {
+				id = yemen.211
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = { #American Republic Returns to Yemen
+	id = yemen.210
+	title = yemen.210.t
+	desc = yemen.210.d
+	picture = yem_usa_military_advisors
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #Yay!
+		name = yemen.210.o1
+		division_template = {
+			name = "American Division"
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 1 y = 0 }
+				infantry = { x = 1 y = 1 }
+			}
+			support = {
+				artillery = { x = 0 y = 0 }
+			}
+		}
+		capital_scope = {
+			create_unit = {
+				division = "name = \"American Division\" division_template = \"American Division\" start_experience_factor = 2 start_equipment_factor = 1"
+				owner = YEM
+				allow_spawning_on_enemy_provs = yes
+			}
+			create_unit = {
+				division = "name = \"American Division\" division_template = \"American Division\" start_experience_factor = 2  start_equipment_factor = 1"
+				owner = YEM
+				allow_spawning_on_enemy_provs = yes
+			}
+		}
+		add_ideas = YEM_american_advisors
+	}
+}
+
+country_event = { #American Republic Refuses to Send Advisors
+	id = yemen.211
+	title = yemen.211.t
+	desc = yemen.211.d
+	picture = yem_usa_no_aid
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #Boo!
+		name = yemen.211.o1
+		add_opinion_modifier = {
+			target = USA
+			modifier = yem_usa_refused_aid
+		}
+	}
+}
+
+country_event = { #Advisors Return Home Triumphant
+	id = yemen.212
+	title = yemen.212.t
+	desc = yemen.212.d
+	picture = yem_advisors_return
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #Yay!
+		name = yemen.212.o1
+		add_war_support = 0.05
+		add_timed_idea = {
+			idea = idea_usa_triumph_in_yemen
+			days = 200
+		}
+	}
+}
+
+country_event = { #Advisors Return Home Defeated
+	id = yemen.213
+	title = yemen.213.t
+	desc = yemen.213.d
+	picture = yem_advisors_return_defeated
+
+	fire_only_once = yes
+	trigger = {
+		tag = USA
+		has_idea = idea_usa_second_yemeni_intervention
+		YEM = {
+			exists = no
+		}
+	}
+
+	option = { #Boo!
+		name = yemen.213.o1
+		add_popularity = {
+			ideology = var:current_party_ideology_group
+			popularity = -0.05
+		}
+		add_war_support = -0.04
+		add_timed_idea = {
+			idea = idea_usa_rethinking_our_military_strategy
+			days = 365
+		}
+	}
+}
+
+country_event = { #Advisors Recalled from Yemen
+	id = yemen.214
+	title = yemen.214.t
+	desc = yemen.214.d
+	picture = yem_advisors_recalled
+
+	fire_only_once = yes
+	trigger = {
+		tag = USA
+		has_idea = idea_usa_second_yemeni_intervention
+		has_war = yes
+	}
+
+	option = { #Welp so much for that
+		name = yemen.214.o1
+		add_popularity = {
+			ideology = var:current_party_ideology_group
+			popularity = -0.03
+		}
+		add_war_support = 0.02
+		add_timed_idea = {
+			idea = idea_usa_returning_advisors
+			days = 30
+		}
+		YEM = {
+			country_event = {
+				id = yemen.215
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = { #American Advisors Recalled
+	id = yemen.215
+	title = yemen.215.t
+	desc = yemen.215.d
+	picture = yem_american_advisors_leave
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #Boo!
+		name = yemen.215.o1
+		remove_ideas = YEM_american_advisors
+		add_timed_idea = {
+			idea = YEM_filling_the_gaps
+			days = 50
+		}
+	}
+}
+
+country_event = { #[Yem.GetName] Requests Logistical Support
+	id = yemen.216
+	title = yemen.216.t
+	desc = yemen.216.d
+	picture = yem_air_support
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #Yes
+		name = yemen.216.o1
+		ai_chance = {
+			base = 75
+		}
+		YEM = {
+			country_event = {
+				id = yemen.217
+				days = 1
+			}
+		}
+	}
+	option = { #No
+		name = yemen.216.o2
+		ai_chance = {
+			base = 25
+		}
+		YEM = {
+			country_event = {
+				id = yemen.218
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = { #Oman Accepts
+	id = yemen.217
+	title = yemen.217.t
+	desc = yemen.217.d
+	picture = yem_oman_aid
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #Yay!
+		name = yemen.217.o1
+		set_country_flag = YEM_dhofar_agreement
+		add_ideas = YEM_southern_reconnaissance
+		if = {
+			limit = {
+				has_dlc = "By Blood Alone"
+			}
+			add_equipment_to_stockpile = {
+				type = small_plane_airframe_1
+				amount = 15
+				variant_name = "Fighter I"
+				producer = OMA
+			}
+			add_equipment_to_stockpile = {
+				type = small_plane_airframe_1
+				amount = 5
+				variant_name = "CAS I"
+				producer = OMA
+			}
+		}
+		else = {
+			add_equipment_to_stockpile = {
+				type = fighter_equipment_1
+				amount = 15
+				producer = OMA
+			}
+			add_equipment_to_stockpile = {
+				type = CAS_equipment_1
+				amount = 5
+				producer = OMA
+			}
+		}
+	}
+}
+
+country_event = { #Oman Refuses
+	id = yemen.218
+	title = yemen.218.t
+	desc = yemen.218.d
+	picture = yem_no_oman_aid
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #Boo!
+		name = yemen.218.o1
+	}
+}
+
+country_event = { #Fighters of Sa'dah Honored
+	id = yemen.219
+	title = yemen.219.t
+	desc = yemen.219.d
+	picture = yem_usa_no_want_oil_rights
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #o7
+		name = yemen.219.o1
+		add_war_support = 0.05
 	}
 }

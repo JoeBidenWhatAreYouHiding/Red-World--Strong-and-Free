@@ -730,27 +730,28 @@ country_event = {
 
 	option = {#y#
 		name = pui.42.o1
-		ai_chance = { factor = 20 }
+		ai_chance = { factor = 85 }
 		set_politics = { ruling_party = revolutionary_socialist elections_allowed = no }
-		hidden_effect = {
-			PUI = { country_event = { hours = 5 id = pui.43 } }
+			PUI = { country_event = { days = 1 id = pui.43 } }
 			every_country = {
-				limit = { is_neighbor_of = SIA }
-				country_event = { hours = 5 id = pui.43 }
+				limit = { 
+				tag = PUI
+				is_neighbor_of = SIA }
+				country_event = { days = 1 id = pui.43 }
 			}
-		}
 	}
 	option = {#n#
 		name = pui.42.o2
-		ai_chance = { factor = 80 }
+		ai_chance = { factor = 15 }
 		hidden_effect = {
 			random_list = {
-				30 = { country_event = { hours = 20 id = pui.44 }
+				50 = { country_event = { days = 1 id = pui.44 }
 					PUI = { country_event = { hours = 20 id = pui.44 } }
-					start_civil_war = { ideology = revolutionary_socialist size = 0.35 }
+					set_politics = { ruling_party = revolutionary_socialist elections_allowed = no }
+					start_civil_war = { ideology = new_democrat size = 0.45 }
 				}
-				70 = { country_event = { hours = 20 id = pui.45 }
-				PUI = { country_event = { hours = 20 id = pui.45 } }}
+				50 = { country_event = { days = 1 id = pui.45 }
+				PUI = { country_event = { days = 1 id = pui.45 } }}
 			}
 		}
 	}
@@ -770,6 +771,14 @@ country_event = {
 	option = {
 		name = pui.43.o1
 	}
+	option = {
+		name = pui.43.o2
+		trigger = { tag = PUI }
+		puppet = {
+    		target = SIA
+    		end_wars = no
+		}
+	}
 }
 
 #civil war in thailand#
@@ -785,6 +794,14 @@ country_event = {
 
 	option = {
 		name = pui.44.o1
+	}
+	option = {
+		name = pui.44.o2
+		trigger = { tag = PUI }
+		puppet = {
+    		target = SIA
+    		end_wars = no
+		}
 	}
 }
 

@@ -1,0 +1,214 @@
+cea_lake_nicaragua_disaster = {
+	
+	clean_the_lake = {
+		allowed = {
+			tag = CEA
+		}
+		fire_only_once = yes
+		cost = 50
+		available = {
+			has_idea = idea_CEA_lake_nicaragua_disaster
+			num_of_civilian_factories_available_for_projects  > 5
+			NOT = {
+				has_decision = introduce_new_fish
+				has_decision = restore_wetlands
+				has_decision = return_dispered_tribes
+				has_decision = repair_corals_on_the_nicaragua_shelf
+				has_decision = repair_the_mesoamerican_biological_corridor
+			}
+		}
+		visible = {
+			has_idea = idea_CEA_lake_nicaragua_disaster
+		}
+		days_remove = 180
+		modifier = {
+			civilian_factory_use = 5
+			weekly_manpower = -200
+		} 
+		remove_effect = {
+			set_country_flag = cleaned_lake
+		}
+	}
+
+	introduce_new_fish = {
+		allowed = {
+			tag = CEA
+		}
+		fire_only_once = yes
+		cost = 50
+		available = {
+			has_idea = idea_CEA_lake_nicaragua_disaster
+			num_of_civilian_factories_available_for_projects  > 5
+			NOT = {
+				has_decision = clean_the_lake
+				has_decision = restore_wetlands
+				has_decision = return_dispered_tribes
+				has_decision = repair_corals_on_the_nicaragua_shelf
+				has_decision = repair_the_mesoamerican_biological_corridor
+			}
+		}
+		visible = {
+			has_idea = idea_CEA_lake_nicaragua_disaster
+		}
+		days_remove = 180
+		modifier = {
+			civilian_factory_use = 5
+			industrial_capacity_dockyard = -0.2
+		} 
+		remove_effect = {
+			set_country_flag = new_fish
+		}
+	}
+
+	restore_wetlands = {
+		allowed = {
+			tag = CEA
+		}
+		fire_only_once = yes
+		cost = 50
+		available = {
+			has_idea = idea_CEA_lake_nicaragua_disaster
+			num_of_civilian_factories_available_for_projects  > 5
+			NOT = {
+				has_decision = clean_the_lake
+				has_decision = introduce_new_fish
+				has_decision = return_dispered_tribes
+				has_decision = repair_corals_on_the_nicaragua_shelf
+				has_decision = repair_the_mesoamerican_biological_corridor
+			}
+		}
+		visible = {
+			has_idea = idea_CEA_lake_nicaragua_disaster
+		}
+		days_remove = 180
+		modifier = {
+			civilian_factory_use = 5
+			production_speed_buildings_factor = -0.2
+		} 
+		remove_effect = {
+			set_country_flag = wetlands_restored
+		}
+	}
+
+	return_dispered_tribes = {
+		allowed = {
+			tag = CEA
+		}
+		fire_only_once = yes
+		cost = 50
+		available = {
+			has_idea = idea_CEA_lake_nicaragua_disaster
+			num_of_civilian_factories_available_for_projects  > 5
+			NOT = {
+				has_decision = clean_the_lake
+				has_decision = introduce_new_fish
+				has_decision = restore_wetlands
+				has_decision = repair_corals_on_the_nicaragua_shelf
+				has_decision = repair_the_mesoamerican_biological_corridor
+			}
+		}
+		visible = {
+			has_idea = idea_CEA_lake_nicaragua_disaster
+		}
+		days_remove = 180
+		modifier = {
+			civilian_factory_use = 5
+			weekly_manpower = -200
+		} 
+		remove_effect = {
+			set_country_flag = returned_tribal_land
+		}
+	}
+
+	repair_corals_on_the_nicaragua_shelf = {
+		allowed = {
+			tag = CEA
+		}
+		fire_only_once = yes
+		cost = 50
+		available = {
+			has_idea = idea_CEA_lake_nicaragua_disaster
+			num_of_civilian_factories_available_for_projects  > 5
+			NOT = {
+				has_decision = clean_the_lake
+				has_decision = introduce_new_fish
+				has_decision = restore_wetlands
+				has_decision = return_dispered_tribes
+				has_decision = repair_the_mesoamerican_biological_corridor
+			}
+		}
+		visible = {
+			has_idea = idea_CEA_lake_nicaragua_disaster
+		}
+		days_remove = 180
+		modifier = {
+			civilian_factory_use = 5
+			industrial_capacity_dockyard = -0.2
+		} 
+		remove_effect = {
+			set_country_flag = coral_reef_restored
+		}
+	}
+
+	repair_the_mesoamerican_biological_corridor = {
+		allowed = {
+			tag = CEA
+		}
+		fire_only_once = yes
+		cost = 50
+		available = {
+			has_idea = idea_CEA_lake_nicaragua_disaster
+			num_of_civilian_factories_available_for_projects  > 5
+			NOT = {
+				has_decision = clean_the_lake
+				has_decision = introduce_new_fish
+				has_decision = restore_wetlands
+				has_decision = return_dispered_tribes
+				has_decision = repair_corals_on_the_nicaragua_shelf
+			}
+		}
+		visible = {
+			has_idea = idea_CEA_lake_nicaragua_disaster
+		}
+		days_remove = 180
+		modifier = {
+			civilian_factory_use = 5
+			production_speed_buildings_factor = -0.2
+		} 
+		remove_effect = {
+			set_country_flag = corridor_repaired
+		}
+	}
+
+	final_restoration = {
+		allowed = {
+			tag = CEA
+		}
+		fire_only_once = yes
+		cost = 100
+		available = {
+			has_idea = idea_CEA_lake_nicaragua_disaster
+			num_of_civilian_factories_available_for_projects  > 5
+			has_country_flag = cleaned_lake
+			has_country_flag = new_fish
+			has_country_flag = wetlands_restored
+			has_country_flag = returned_tribal_land
+			has_country_flag = coral_reef_restored
+			has_country_flag = corridor_repaired
+		}
+		visible = {
+			has_idea = idea_CEA_lake_nicaragua_disaster
+		}
+		days_remove = 120
+		modifier = {
+			civilian_factory_use = 5
+			production_speed_buildings_factor = -0.2
+		}
+		remove_effect = {
+			country_event = {
+				id = centroamerica.226
+				days = 1
+			}
+		}
+	}
+}

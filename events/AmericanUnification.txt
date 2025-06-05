@@ -3,36 +3,14 @@ add_namespace = american_unification
 #Unite the US?
 country_event = {
 	id = american_unification.1
-	title = {
-		text = american_unification.1.t
-		trigger = { 
-			NOT = { tag = CAN }
-		}
-	}
-	title = {
-		text = american_unification.1.t_canada
-		trigger = { 
-			tag = CAN
-		}
-	}
-	desc = {
-		text = american_unification.1.d
-		trigger = { 
-			NOT = { tag = CAN }
-		}
-	}
-	desc = {
-		text = american_unification.1.d_canada
-		trigger = { 
-			tag = CAN 
-		}
-	}
+	title = american_unification.1.t
+	desc = american_unification.1.d
 	picture = nebraska_farm
 	
 	is_triggered_only = yes
     
     immediate = {
-		if = {
+        if = {
             limit = {
                 original_tag = USA
                 OR = {
@@ -44,14 +22,13 @@ country_event = {
             hidden_effect = {
                 country_event = { days = 180 id = usa.173 } 
             }
-			if = {
-				limit = { has_global_flag = CAN_supported_ar }
-				country_event = { id = canada_diplo.37 days = 2 }
-			}
         }
         if = {
             limit = {
                 original_tag = NEA
+                NOT = {
+                    has_cosmetic_tag = GAU
+                }
             } 
             hidden_effect = {
                 country_event = { days = 180 id = commonwealth.231 } 
@@ -65,18 +42,6 @@ country_event = {
                 country_event = { days = 180 id =  pacific_america.112 } 
             }
         }
-		
-        if = {
-            limit = {
-                tag = CAN
-            } 
-            hidden_effect = {
-                every_country = {
-                    news_event = { id = rw_canada_news.11} 
-                }
-            }
-        }
-		
         if = {
             limit = {
                 has_country_leader = {
@@ -1027,7 +992,6 @@ country_event = {
 	
 	option = { #The USA
 		name = american_unification.1.o1
-		trigger = { NOT = { tag = CAN } }
 		ai_chance = {
 			factor = 100
 		}
@@ -1048,22 +1012,11 @@ country_event = {
 	
     option = { #The USA but keep our cosmetic tag
         name = american_unification.1.o2
-		trigger = { NOT = { tag = CAN } }
         ai_chance = {
             factor = 0
         }
         set_country_flag = the_united_states_are_back
         country_event = { days = 7 id = american_unification.2 } 
-    }
-	
-    option = { #Canada
-        name = american_unification.1.o3
-		trigger = { tag = CAN  }
-        ai_chance = {
-            factor = 0
-        }
-        set_country_flag = the_united_states_are_back
-        
     }
 }
 
@@ -1512,6 +1465,7 @@ country_event = {
     
     option = { #wrong choice
         name = american_unification.10.o1
+        custom_effect_tooltip = white_peace_tt
         create_wargoal = {
             type = annex_everything
             target = FROM
@@ -1538,7 +1492,11 @@ country_event = {
             country_event = {id = american_unification.12}
         }
         ai_chance = {
-            factor = 90
+            base = 90
+            modifier = {
+                factor = 100
+                is_in_faction_with = FROM
+            }
         }
     }
     option = { #fight for our land!
@@ -1548,7 +1506,11 @@ country_event = {
             country_event = {id = american_unification.13}
         }
         ai_chance = {
-            factor = 10
+            base = 10
+            modifier = {
+                factor = 0
+                is_in_faction_with = FROM
+            }
         }
     }
 }
@@ -1589,6 +1551,7 @@ country_event = {
     
     option = { #wrong choice
         name = american_unification.13.o1
+        custom_effect_tooltip = white_peace_2_tt
         create_wargoal = {
             type = annex_everything
             target = FROM
@@ -1669,6 +1632,7 @@ country_event = {
     
     option = { #wrong choice
         name = american_unification.16.o1
+        custom_effect_tooltip = white_peace_2_tt
         create_wargoal = {
             type = annex_everything
             target = FROM
@@ -1695,7 +1659,11 @@ country_event = {
             country_event = {id = american_unification.18}
         }
         ai_chance = {
-            factor = 90
+            base = 90
+            modifier = {
+                factor = 100
+                is_in_faction_with = FROM
+            }
         }
     }
     option = { #fight for our land!
@@ -1705,7 +1673,11 @@ country_event = {
             country_event = {id = american_unification.19}
         }
         ai_chance = {
-            factor = 10
+            base = 10
+            modifier = {
+                factor = 0
+                is_in_faction_with = FROM
+            }
         }
     }
 }
@@ -1726,7 +1698,6 @@ country_event = {
         add_state_core = 629
         add_state_core = 630
         add_state_core = 631
-        add_state_core = 727
     }
 }
 
@@ -1741,15 +1712,15 @@ country_event = {
     
     option = { #wrong choice
         name = american_unification.19.o1
+        custom_effect_tooltip = white_peace_2_tt
         create_wargoal = {
             type = annex_everything
             target = FROM
-            generator = { 629 630 631 727 }
+            generator = { 629 630 631 }
         }
         add_state_core = 629
         add_state_core = 630
         add_state_core = 631
-        add_state_core = 727
     }
 }
 
@@ -1799,7 +1770,6 @@ country_event = {
         transfer_state = 629
         transfer_state = 630
         transfer_state = 631
-        transfer_state = 727
     }
 }
 
@@ -1814,15 +1784,15 @@ country_event = {
     
     option = { #wrong choice
         name = american_unification.22.o1
+        custom_effect_tooltip = white_peace_2_tt
         create_wargoal = {
             type = annex_everything
             target = FROM
-            generator = { 629 630 631 727 }
+            generator = { 629 630 631 }
         }
         add_state_core = 629
         add_state_core = 630
         add_state_core = 631
-        add_state_core = 727
     }
 }
 
@@ -2015,6 +1985,7 @@ country_event = {
         add_state_core = 388
         add_state_core = 381
         add_state_core = 389
+        add_state_core = 1018
         ai_chance = {
             base = 100
             modifier = {
@@ -2034,6 +2005,7 @@ country_event = {
         add_state_core = 388
         add_state_core = 381
         add_state_core = 389
+        add_state_core = 1018
         ai_chance = {
             base = 100
             modifier = {

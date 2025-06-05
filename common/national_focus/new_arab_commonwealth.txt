@@ -8,7 +8,7 @@ focus_tree = {
 	focus = {
 		id = NAC_age_of_the_commonwealth
 		icon = focus_age_of_the_commonwealth
-		cost = 5
+		cost = 10
 		x = 9
 		y = 0
 		completion_reward = {
@@ -19,7 +19,7 @@ focus_tree = {
 	focus = {
 		id = NAC_internal_politics
 		icon = major_alliance
-		cost = 5
+		cost = 10
 		x = 24
 		y = 0
 		completion_reward = {
@@ -30,7 +30,7 @@ focus_tree = {
 	focus = {
 		id = NAC_reformed_military
 		icon = focus_nac_reformed_military
-		cost = 5
+		cost = 10
 		x = 35
 		y = 0
 		completion_reward = {
@@ -43,12 +43,24 @@ focus_tree = {
 	focus = {
 		id = NAC_meet_yemeni_leaders
 		icon = yemen
-		cost = 5
+		cost = 10
 		available = {
 		    OR = {
 			    country_exists = YEM 
+			    country_exists = YAR
+			    country_exists = JAS
+			    country_exists = PDY
 				NOT = {
 				    YEM = {
+					    is_puppet_of = SYR
+					}
+					YAR = {
+					    is_puppet_of = SYR
+					}
+					JAS = {
+					    is_puppet_of = SYR
+					}
+					PDY = {
 					    is_puppet_of = SYR
 					}
 				}
@@ -57,7 +69,16 @@ focus_tree = {
 		bypass = {
 		    OR = {
 			    YEM = {
-					is_puppet_of = SYR
+					    is_puppet_of = SYR
+					}
+					YAR = {
+					    is_puppet_of = SYR
+					}
+					JAS = {
+					    is_puppet_of = SYR
+					}
+					PDY = {
+					    is_puppet_of = SYR
 				}
 				AND = {
 				    SYR = { owns_state = 293 } 
@@ -71,11 +92,36 @@ focus_tree = {
 		x = 1
 		y = 1
 		completion_reward = {
+		if = { limit = { country_exists = YEM }
 		    YEM = {
 			    country_event = { id = nac.1 }
+				}
+			}
+		if = { limit = { country_exists = YAR }
+		    YAR = {
+			    country_event = { id = nac.1 }
+				}
+			}
+		if = { limit = { country_exists = JAS }
+		    JAS = {
+			    country_event = { id = nac.1 }
+				}
+			}
+		if = { limit = { country_exists = PDY }
+		    PDY = {
+			    country_event = { id = nac.1 }
+				}
+			}
+		every_state = {
+			    limit = {
+				    is_in_array = {
+						array = YEM_starting_cores
+						value = THIS
+					}
+				}
+				add_claim_by = SYR
 			}
 		}
-
 	}
 	focus = {
 		id = NAC_rebuild_yemen
@@ -98,35 +144,14 @@ focus_tree = {
 		x = 1
 		y = 2
 		completion_reward = {
-		293 = {
-			    add_core_of = SYR
-			}
-		659 = {
-			    add_core_of = SYR
-			}
-		977 = {
-			    add_core_of = SYR
-			}
-		976 = {
-			    add_core_of = SYR
-			}
-		978 = {
-			    add_core_of = SYR
-			}
-		973 = {
-			    add_core_of = SYR
-			}
-		975 = {
-			    add_core_of = SYR
-			}
-		972 = {
-			    add_core_of = SYR
-			}
-		659 = {
-			    add_core_of = SYR
-			}
-		974 = {
-			    add_core_of = SYR
+		every_state = {
+			    limit = {
+				    is_in_array = {
+						array = YEM_starting_cores
+						value = THIS
+					}
+				}
+				add_core_of = SYR
 			}
 		    293 = {
 			    add_extra_state_shared_building_slots = 1
@@ -153,7 +178,7 @@ focus_tree = {
 	focus = {
 		id = NAC_meet_egyptian_leaders
 		icon = egypt
-		cost = 5
+		cost = 10
 		available = {
 		    OR = {
 			    country_exists = EGY 
@@ -238,6 +263,15 @@ focus_tree = {
 			        country_event = { id = nac.10 }
 			    }
 			}
+			every_state = {
+			    limit = {
+				    is_in_array = {
+						array = EGY_starting_cores
+						value = THIS
+					}
+				}
+				add_claim_by = SYR
+			}
 		}
 
 	}
@@ -276,35 +310,14 @@ focus_tree = {
 		x = 3
 		y = 2
 		completion_reward = {
-		969 = {
-			    add_core_of = SYR
-			}
-		552 = {
-			    add_core_of = SYR
-			}
-		446 = {
-			    add_core_of = SYR
-			}
-		457 = {
-			    add_core_of = SYR
-			}
-		456 = {
-			    add_core_of = SYR
-			}
-		813 = {
-			    add_core_of = SYR
-			}
-		447 = {
-			    add_core_of = SYR
-			}
-		452 = {
-			    add_core_of = SYR
-			}
-		453 = {
-			    add_core_of = SYR
-			}
-		798 = {
-			    add_core_of = SYR
+		every_state = {
+			    limit = {
+				    is_in_array = {
+						array = EGY_starting_cores
+						value = THIS
+					}
+				}
+				add_core_of = SYR
 			}
 		    446 = {
 				add_building_construction = {
@@ -347,7 +360,7 @@ focus_tree = {
 	focus = {
 		id = NAC_meet_palestinian_leaders
 		icon = palestine
-		cost = 5
+		cost = 10
 		available = {
 		    OR = {
 			    country_exists = PAL 
@@ -380,6 +393,15 @@ focus_tree = {
 		    PAL = {
 			    country_event = { id = nac.13 }
 			}
+			every_state = {
+			    limit = {
+				    is_in_array = {
+						array = PAL_starting_cores
+						value = THIS
+					}
+				}
+				add_claim_by = SYR
+			}
 		}
 
 	}
@@ -406,17 +428,14 @@ focus_tree = {
 		x = 5
 		y = 2
 		completion_reward = {
-		454 = {
-			    add_core_of = SYR
-			}
-		810 = {
-			    add_core_of = SYR
-			}
-		811 = {
-			    add_core_of = SYR
-			}
-		812 = {
-			    add_core_of = SYR
+		every_state = {
+			    limit = {
+				    is_in_array = {
+						array = PAL_starting_cores
+						value = THIS
+					}
+				}
+				add_core_of = SYR
 			}
 		    454 = {
 				add_building_construction = { type = bunker province = 1201 level = 3 instant_build = yes }
@@ -440,7 +459,7 @@ focus_tree = {
 	focus = {
 		id = NAC_meet_lebanese_leaders
 		icon = lebanon
-		cost = 5
+		cost = 10
 		available = {
 		    OR = {
 			    country_exists = LEB 
@@ -470,6 +489,15 @@ focus_tree = {
 		    LEB = {
 			    country_event = { id = nac.16 }
 			}
+			every_state = {
+			    limit = {
+				    is_in_array = {
+						array = LEB_starting_cores
+						value = THIS
+					}
+				}
+				add_claim_by = SYR
+			}
 		}
 
 	}
@@ -493,8 +521,14 @@ focus_tree = {
 		x = 7
 		y = 2
 		completion_reward = {
-			553 = {
-	add_core_of = SYR
+			every_state = {
+			    limit = {
+				    is_in_array = {
+						array = LEB_starting_cores
+						value = THIS
+					}
+				}
+				add_core_of = SYR
 			}
 		    553 = {
 			    add_extra_state_shared_building_slots = 2
@@ -510,7 +544,7 @@ focus_tree = {
 	focus = {
 		id = NAC_meet_jordanian_leaders
 		icon = jordan
-		cost = 5
+		cost = 10
 		available = {
 		    OR = {
 			    country_exists = JOR 
@@ -540,6 +574,15 @@ focus_tree = {
 		    JOR = {
 			    country_event = { id = nac.19 }
 			}
+			every_state = {
+			    limit = {
+				    is_in_array = {
+						array = JOR_starting_cores
+						value = THIS
+					}
+				}
+				add_claim_by = SYR
+			}
 		}
 
 	}
@@ -563,8 +606,14 @@ focus_tree = {
 		x = 9
 		y = 2
 		completion_reward = {
-		455 = {
-	add_core_of = SYR
+		every_state = {
+			    limit = {
+				    is_in_array = {
+						array = JOR_starting_cores
+						value = THIS
+					}
+				}
+				add_core_of = SYR
 			}
 		    455 = {
 			    add_extra_state_shared_building_slots = 2
@@ -580,7 +629,7 @@ focus_tree = {
 	focus = {
 		id = NAC_meet_iraqi_leaders
 		icon = iraq
-		cost = 5
+		cost = 10
 		available = {
 		    OR = {
 			    country_exists = IRQ 
@@ -613,12 +662,21 @@ focus_tree = {
 		    IRQ = {
 			    country_event = { id = nac.22 }
 			}
+			every_state = {
+			    limit = {
+				    is_in_array = {
+						array = IRQ_starting_cores
+						value = THIS
+					}
+				}
+				add_claim_by = SYR
+			}
 		}
 
 	}
 	focus = {
 		id = NAC_fertile_iraq
-		icon = focus_on_agriculture
+		icon = generic_agriculture
 		cost = 10
 		available = {
 		    OR = {
@@ -639,29 +697,14 @@ focus_tree = {
 		x = 11
 		y = 2
 		completion_reward = {
-		291 = {
-	add_core_of = SYR
-			}
-	941 = {
-	add_core_of = SYR
-			}
-	676 = {
-	add_core_of = SYR
-			}
-	815 = {
-	add_core_of = SYR
-			}
-	939 = {
-	add_core_of = SYR
-			}
-	919 = {
-	add_core_of = SYR
-			}
-	675 = {
-	add_core_of = SYR
-			}
-	656 = {
-	add_core_of = SYR
+		every_state = {
+			    limit = {
+				    is_in_array = {
+						array = IRQ_starting_cores
+						value = THIS
+					}
+				}
+				add_core_of = SYR
 			}
 		add_ideas = idea_nac_fertile_iraq
 	}
@@ -670,7 +713,7 @@ focus_tree = {
 	focus = {
 		id = NAC_meet_tunisian_leaders
 		icon = tunisia
-		cost = 5
+		cost = 10
 		available = {
 		    OR = {
 			    country_exists = TUN 
@@ -705,6 +748,15 @@ focus_tree = {
 		    TUN = {
 			    country_event = { id = nac.25 }
 			}
+			every_state = {
+			    limit = {
+				    is_in_array = {
+						array = TUN_starting_cores
+						value = THIS
+					}
+				}
+				add_claim_by = SYR
+			}
 		}
 
 	}
@@ -733,23 +785,14 @@ focus_tree = {
 		x = 13
 		y = 2
 		completion_reward = {
-		458 = {
-			    add_core_of = SYR
-			}
-		665 = {
-			    add_core_of = SYR
-			}
-		903 = {
-			    add_core_of = SYR
-			}
-		906 = {
-			    add_core_of = SYR
-			}
-		904 = {
-			    add_core_of = SYR
-			}
-		905 = {
-			    add_core_of = SYR
+		every_state = {
+			    limit = {
+				    is_in_array = {
+						array = TUN_starting_cores
+						value = THIS
+					}
+				}
+				add_core_of = SYR
 			}
 		    458 = {
 			    add_extra_state_shared_building_slots = 2
@@ -774,7 +817,7 @@ focus_tree = {
 	focus = {
 		id = NAC_meet_algerian_leaders
 		icon = algeria
-		cost = 5
+		cost = 10
 		available = {
 		    OR = {
 			    country_exists = ALG 
@@ -807,6 +850,15 @@ focus_tree = {
 		    ALG = {
 			    country_event = { id = nac.28 }
 			}
+			every_state = {
+			    limit = {
+				    is_in_array = {
+						array = ALG_starting_cores
+						value = THIS
+					}
+				}
+				add_claim_by = SYR
+			}
 		}
 
 	}
@@ -833,17 +885,14 @@ focus_tree = {
 		x = 15
 		y = 2
 		completion_reward = {
-		459 = {
-			    add_core_of = SYR
-			}
-		460 = {
-			    add_core_of = SYR
-			}
-		513 = {
-			    add_core_of = SYR
-			}
-		514 = {
-			    add_core_of = SYR
+		every_state = {
+			    limit = {
+				    is_in_array = {
+						array = YEM_starting_cores
+						value = THIS
+					}
+				}
+				add_core_of = SYR
 			}
 		    459 = {
 				add_building_construction = { type = coastal_bunker province = 4116 level = 2 instant_build = yes }
@@ -869,7 +918,7 @@ focus_tree = {
 	focus = {
 		id = NAC_meet_omani_leaders
 		icon = oman
-		cost = 5
+		cost = 10
 		available = {
 		    OR = {
 			    country_exists = OMA 
@@ -899,6 +948,15 @@ focus_tree = {
 		    OMA = {
 			    country_event = { id = nac.31 }
 			}
+			every_state = {
+			    limit = {
+				    is_in_array = {
+						array = OMA_starting_cores
+						value = THIS
+					}
+				}
+				add_claim_by = SYR
+			}
 		}
 
 	}
@@ -922,17 +980,14 @@ focus_tree = {
 		x = 17
 		y = 2
 		completion_reward = {
-		294 = {
-			    add_core_of = SYR
-			}
-		986 = {
-			    add_core_of = SYR
-			}
-		996 = {
-			    add_core_of = SYR
-			}
-		995 = {
-			    add_core_of = SYR
+		every_state = {
+			    limit = {
+				    is_in_array = {
+						array = OMA_starting_cores
+						value = THIS
+					}
+				}
+				add_core_of = SYR
 			}
 		    294 = {
 				add_building_construction = { type = naval_base province = 10760 level = 5 instant_build = yes }
@@ -1072,7 +1127,7 @@ focus_tree = {
 	}
 	focus = {
 		id = NAC_secular_commonwealth
-		icon = self_management
+		icon = secularism
 		cost = 10
 		prerequisite = {
 			focus = NAC_internal_politics
@@ -1087,7 +1142,7 @@ focus_tree = {
 	}
 	focus = {
 		id = NAC_scientific_modernisation
-		icon = generic_research
+		icon = focus_UAR_egypt_technological_superiority
 		cost = 10
 		prerequisite = {
 			focus = NAC_internal_politics
@@ -1101,7 +1156,7 @@ focus_tree = {
 	}
 	focus = {
 		id = NAC_united_armies
-		icon = generic_marching
+		icon = army_marching_green
 		cost = 10
 		prerequisite = {
 			focus = NAC_secular_commonwealth
@@ -1118,7 +1173,7 @@ focus_tree = {
 	}
 	focus = {
 		id = NAC_industrial_modernisation
-		icon = production
+		icon = industry_paper
 		cost = 10
 		prerequisite = {
 			focus = NAC_internal_politics
@@ -1152,7 +1207,7 @@ focus_tree = {
 	}
 	focus = {
 		id = NAC_nationalise_industries
-		icon = red_hands_shaking
+		icon = GFX_goal_nationalize_industry
 		cost = 10
 		prerequisite = {
 			focus = NAC_internal_politics
@@ -1167,7 +1222,7 @@ focus_tree = {
 	}
 	focus = {
 		id = NAC_crush_political_opposition
-		icon = major_war
+		icon = crackdown_on_opposition
 		cost = 10
 		prerequisite = {
 			focus = NAC_internal_politics
@@ -1182,7 +1237,7 @@ focus_tree = {
 	}
 	focus = {
 		id = NAC_limited_political_participation
-		icon = tear_treaty
+		icon = focus_enforce_1990_constitution
 		cost = 10
 		prerequisite = {
 			focus = NAC_nationalise_industries
@@ -1219,7 +1274,7 @@ focus_tree = {
 	}
 	focus = {
 		id = NAC_healthcare_reforms
-		icon = increase_healthcare_coverage
+		icon = pill_testing
 		cost = 10
 		prerequisite = {
 			focus = NAC_eliminate_economic_corruption
@@ -1240,7 +1295,7 @@ focus_tree = {
 	}
 	focus = {
 		id = NAC_education_for_the_working_class
-		icon = glasnost
+		icon = GFX_goal_education
 		cost = 10
 		prerequisite = {
 			focus = NAC_limited_political_participation
@@ -1291,7 +1346,7 @@ focus_tree = {
 	}
 	focus = {
 		id = NAC_pump_out_weapons
-		icon = military_sphere
+		icon = small_arms_east
 		cost = 10
 		prerequisite = {
 			focus = NAC_inspire_more_arabs
@@ -1322,7 +1377,7 @@ focus_tree = {
 	}
 	focus = {
 		id = NAC_superior_weaponry
-		icon = small_arms
+		icon = UAR_arab_military_industry
 		cost = 10
 		prerequisite = {
 			focus = NAC_get_the_right_troops
@@ -1404,6 +1459,10 @@ focus_tree = {
 				uses = 1
 				category = light_fighter
 			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
 		}
 
 	}
@@ -1422,6 +1481,10 @@ focus_tree = {
 				bonus = 0.1
 				uses = 1
 				category = light_air
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
 			}
 		}
 
@@ -1447,7 +1510,7 @@ focus_tree = {
 	}
 	focus = {
 		id = NAC_invest_in_drones
-		icon = close_air_support
+		icon = drone
 		cost = 10
 		prerequisite = {
 			focus = NAC_modern_bombers
@@ -1460,6 +1523,10 @@ focus_tree = {
 				bonus = 0.25
 				uses = 1
 				category = tactical_bomber
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
 			}
 		}
 
@@ -1512,6 +1579,10 @@ focus_tree = {
 				bonus = 0.1
 				uses = 1
 				category = ss_tech
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.5
 			}
 		}
 

@@ -16,13 +16,13 @@ if = {
 }
 
 
-#if = {
-#	limit = { has_dlc = "Man the Guns" }
-#		set_naval_oob = "AST_2000_naval_mtg"
-#	else = {
-#		set_naval_oob = "AST_2000_naval_legacy"
-#	}
-#}
+if = {
+	limit = { has_dlc = "Man the Guns" }
+		set_naval_oob = "AST_2000_naval_mtg"
+	else = {
+		set_naval_oob = "AST_2000_naval_legacy"
+	}
+}
 
 set_research_slots = 4
 set_convoys = 603
@@ -31,12 +31,6 @@ set_war_support = 0.1
 
 add_ideas = {
 	idea_pacific_islands_forum
-	AST_govgen_quentin_bryce
-	AST_Civil_War_Legacy
-	AST_Power_Projection
-	AST_China_Issue
-	AST_South_Pacific_Powerhouse
-	AST_Land_of_Extremes
 }
 
 set_country_flag = was_in_british_empire
@@ -157,53 +151,26 @@ set_popularities = {
 		nationalist = 3
 		monarchist = 0
 		national_bolshevik = 0
-		national_conservative = 11
-		centrist = 36
-		liberal = 2
-		new_democrat = 38
-		moderate_socialist = 4
-		revolutionary_socialist = 2
-		communist = 4
+		national_conservative = 45
+		centrist = 0
+		liberal = 5
+		new_democrat = 40
+		moderate_socialist = 0
+		revolutionary_socialist = 0
+		communist = 7
 }
 
-country_event = { id = australia.1 days = 204 } #Replace Gillard?
-country_event = { id = australia.4 days = 520 } #Katter's Australia Party Formed
-country_event = { id = australia.2 days = 232 } #2010 elections
-country_event = { id = australia.8 days = 1375 } #2013 elections
-country_event = { id = australia.9 days = 2344 } #2016 elections
-country_event = { id = australia.10 days = 3424 } #2019 elections
-
-### Country Leaders ###
-
-recruit_character = AST_bob_briton #Communist (Communist Party of Australia)
-recruit_character = AST_blair_cottrell #Fascist (New Australia)
-recruit_character = AST_pauline_hanson #Nationalist (Pauline Hanson's One Nation)
-recruit_character = AST_quentin_i #Monarchist (Monarchist League)
-recruit_character = AST_jim_saleam #NazBol (Southern Cross Coalition)
-recruit_character = AST_warren_truss #NatCon (National Party of Australia)
-recruit_character = AST_tony_abbott #Centrist (Liberal Party of Australia )
-recruit_character = AST_wayne_swan #Liberal (Australian Democrats)
-recruit_character = AST_julia_gillard #NewDem (Labor)
-recruit_character = AST_sarah_hansonyoung #ModSoc (Australian Greens)
-recruit_character = AST_stephen_jolly #RevSoc (United Revolution)
-
-recruit_character = AST_kevin_rudd
-recruit_character = AST_bill_shorten
-recruit_character = AST_anthony_albanese
-
-recruit_character = AST_barnaby_joyce
-recruit_character = AST_michael_mccormack
-
-recruit_character = AST_bob_brown
-recruit_character = AST_richard_di_natale
-
-recruit_character = AST_malcolm_turnbull
-recruit_character = AST_scott_morrison
-
-recruit_character = AST_bob_katter
-
-### Corps Commanders ###
-
+recruit_character = AST_lee_rhiannon
+recruit_character = AST_blair_cottrell
+recruit_character = AST_pauline_hanson
+recruit_character = AST_quentin_i
+recruit_character = AST_jim_saleam
+recruit_character = AST_tony_abbott
+recruit_character = AST_jacqui_lambie
+recruit_character = AST_andrew_bartlett
+recruit_character = AST_julia_gillard
+recruit_character = AST_sarah_hansonyoung
+recruit_character = AST_stephen_jolly
 recruit_character = AST_mark_binskin
 recruit_character = AST_angus_campbell
 recruit_character = AST_rick_burr
@@ -223,9 +190,6 @@ recruit_character = AST_shane_caughey
 recruit_character = AST_mike_hindmarsh
 recruit_character = AST_stuart_smith
 recruit_character = AST_simone_wilkie
-
-### Admirals ###
-
 recruit_character = AST_ray_griggs
 recruit_character = AST_tim_barrett
 recruit_character = AST_michael_noonan
@@ -334,4 +298,86 @@ if = {
 			special_type_slot_1 = empty
 		}
 	}
+}
+
+if = {
+	limit = { has_dlc = "Man the Guns" }
+	create_equipment_variant = {
+		name = "Adelaide Class"	
+		type = ship_hull_light_1
+		name_group = AST_DD_HISTORICAL
+		parent_version = 0
+		modules = {
+			fixed_ship_battery_slot = ship_light_battery_2
+			fixed_ship_anti_air_slot = ship_anti_air_2		
+			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+			fixed_ship_radar_slot = ship_sonar_1
+			fixed_ship_engine_slot = light_ship_engine_1
+			fixed_ship_torpedo_slot = ship_torpedo_1
+			mid_1_custom_slot = empty	
+			rear_1_custom_slot = ship_torpedo_1
+		}
+	}
+	create_equipment_variant = {
+		name = "Anzac Class"	
+		type = ship_hull_light_2
+		name_group = AST_DD_HISTORICAL
+		parent_version = 0
+		modules = {
+			fixed_ship_battery_slot = ship_light_battery_2
+			fixed_ship_anti_air_slot = ship_anti_air_3			
+			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+			fixed_ship_radar_slot = ship_sonar_1
+			fixed_ship_engine_slot = light_ship_engine_2
+			fixed_ship_torpedo_slot = ship_torpedo_1
+			mid_1_custom_slot = ship_light_battery_1
+			rear_1_custom_slot = ship_light_battery_2
+		}
+	}
+	create_equipment_variant = {
+		name = "Collins Class" # conventional attack submarines
+		type = ship_hull_submarine_1
+		name_group = AST_SS_HISTORICAL
+		parent_version = 0
+		modules = {
+			fixed_ship_torpedo_slot = ship_torpedo_sub_2
+			fixed_ship_engine_slot = sub_ship_engine_1
+			rear_1_custom_slot = ship_mine_layer_sub
+		}
+	}	
+}
+
+if = {
+	limit = { not = { has_dlc = "Man the Guns" } }
+	create_equipment_variant = {
+		name = "Adelaide Class" #destroyers
+		type = destroyer_1
+		upgrades = {
+			ship_torpedo_upgrade = 1
+			destroyer_engine_upgrade = 1
+			ship_ASW_upgrade = 2
+			ship_anti_air_upgrade = 2
+		}
+	}
+	create_equipment_variant = {
+		name = "Anzac Class" #destroyers
+		type = destroyer_2
+		upgrades = {
+			ship_torpedo_upgrade = 3
+			destroyer_engine_upgrade = 1
+			ship_ASW_upgrade = 1
+			ship_anti_air_upgrade = 2
+		}
+	}
+	create_equipment_variant = {
+		name = "Collins Class" #attack submarines
+		type = submarine_1
+		upgrades = {
+			ship_reliability_upgrade = 2
+			sub_engine_upgrade = 1
+			sub_stealth_upgrade = 1
+			sub_torpedo_upgrade = 3
+		}
+	}
+	
 }

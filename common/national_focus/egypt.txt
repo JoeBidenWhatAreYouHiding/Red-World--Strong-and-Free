@@ -18,15 +18,359 @@ focus_tree = {
 				is_puppet = no
 			}
 		}
-		cost = 2
+		cost = 2.9
 		x = 20
 		y = 0
 		completion_reward = {
-		    add_political_power = -500
+		    add_political_power = -250
+		    add_stability = -0.025
 		}
 		
 
 	}
+
+	focus = {
+		id = EGY_egyptian_armed_forces
+		icon = focus_egyptian_armed_forces
+		cost = 10
+		available = {
+		    OR = {
+			    has_completed_focus = EGY_keep_revolution_at_bay
+				has_completed_focus = EGY_the_second_stage
+				has_completed_focus = EGY_president_morsi
+				has_completed_focus = EGY_president_aboul_fotouh
+				has_completed_focus = EGY_president_sawiris
+				has_completed_focus = EGY_president_moussa
+				has_completed_focus = EGY_crush_opposition
+				has_completed_focus = EGY_a_modern_kingdom
+				has_completed_focus = EGY_restore_the_sultan
+				has_completed_focus = EGY_parliamentary_elections
+				has_completed_focus = EGY_king_above_all
+			}
+		}
+		x = 75
+		y = 0
+		completion_reward = {
+		    army_experience = 10
+		    air_experience = 10
+		    navy_experience = 10
+		}
+
+	}
+
+	focus = {
+		id = EGY_egyptian_ground_forces
+		icon = focus_egyptian_ground_forces
+		cost = 10
+		available = {
+		}
+		prerequisite = { focus = EGY_egyptian_armed_forces }
+		x = 71
+		y = 1
+		completion_reward = {
+		    army_experience = 10
+		    add_tech_bonus = {
+				name = infantry_weapons_bonus
+				bonus = 0.35
+				uses = 1
+				category = infantry_weapons
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 1
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = EGY_army_modernization
+		icon = tanks
+		cost = 10
+		available = {
+		}
+		mutually_exclusive = { focus = EGY_traditional_army }
+		prerequisite = { focus = EGY_egyptian_ground_forces }
+		x = 70
+		y = 2
+		completion_reward = {
+			add_ideas = idea_egy_army_modernization
+		}
+	}
+
+	focus = {
+		id = EGY_further_modernization
+		icon = GFX_goal_tanks2
+		cost = 10
+		available = {
+		}
+		prerequisite = { focus = EGY_army_modernization }
+		x = 70
+		y = 3
+		completion_reward = {
+			swap_ideas = {
+					remove_idea = idea_egy_army_modernization
+					add_idea = idea_egy_army_modernization_2
+			}
+		}
+	}
+
+	focus = {
+		id = EGY_traditional_army
+		icon = GFX_goal_new_Artillery_Systems
+		cost = 10
+		available = {
+		}
+		mutually_exclusive = { focus = EGY_army_modernization }
+		prerequisite = { focus = EGY_egyptian_ground_forces }
+		x = 72
+		y = 2
+		completion_reward = {
+			add_ideas = idea_egy_traditional_army
+		}
+	}
+
+	focus = {
+		id = EGY_expand_arms_production
+		icon = small_arms_east
+		cost = 10
+		available = {
+		}
+		prerequisite = { focus = EGY_traditional_army }
+		x = 72
+		y = 3
+		completion_reward = {
+			swap_ideas = {
+					remove_idea = idea_egy_traditional_army
+					add_idea = idea_egy_traditional_army_2
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = EGY_egyptian_air_force
+		icon = focus_egyptian_air_force
+		cost = 10
+		available = {
+		}
+		prerequisite = { focus = EGY_egyptian_armed_forces }
+		x = 75
+		y = 1
+		completion_reward = {
+		    air_experience = 10
+		    add_tech_bonus = {
+				name = air_equipment_bonus
+				bonus = 0.35
+				uses = 2
+				category = air_equipment
+			}
+			453 = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 1
+			}
+		}
+	}
+
+	focus = {
+		id = EGY_produce_fighters
+		icon = GFX_goal_advan_fighters
+		cost = 10
+		available = {
+		}
+		mutually_exclusive = { focus = EGY_produce_drones }
+		prerequisite = { focus = EGY_egyptian_air_force }
+		x = 74
+		y = 2
+		completion_reward = {
+		    add_ideas = idea_egy_fighter_focus
+		}
+	}
+
+	focus = {
+		id = EGY_purchase_foreign_fighters
+		icon = GFX_goal_bag_of_money
+		cost = 10
+		available = {
+		}
+		prerequisite = { focus = EGY_produce_fighters }
+		x = 74
+		y = 3
+		completion_reward = {
+			add_political_power = -50
+		    if = { limit = { has_dlc = "By Blood Alone" }
+		    add_equipment_to_stockpile = { type = small_plane_airframe_1 amount = 50 producer = SOV }
+		    add_equipment_to_stockpile = { type = small_plane_airframe_1 amount = 50 producer = GER }
+		    else = { add_equipment_to_stockpile = { type = fighter_equipment_0 amount = 50 producer = SOV }
+		    		 add_equipment_to_stockpile = { type = fighter_equipment_0 amount = 50 producer = GER }
+		    	}
+		    }
+		}
+	}
+
+	focus = {
+		id = EGY_produce_drones
+		icon = drone
+		cost = 10
+		available = {
+		}
+		mutually_exclusive = { focus = EGY_produce_fighters }
+		prerequisite = { focus = EGY_egyptian_air_force }
+		x = 76
+		y = 2
+		completion_reward = {
+		    add_ideas = idea_egy_drone_focus
+		}
+	}
+
+	focus = {
+		id = EGY_purchase_foreign_drones
+		icon = investigate_industrial_corruption
+		cost = 10
+		available = {
+		}
+		prerequisite = { focus = EGY_produce_drones }
+		x = 76
+		y = 3
+		completion_reward = {
+			add_political_power = -50
+			if = { limit = { has_dlc = "By Blood Alone" }
+		    add_equipment_to_stockpile = { type = medium_plane_airframe_1 amount = 50 producer = SOV }
+		    add_equipment_to_stockpile = { type = medium_plane_airframe_1 amount = 50 producer = GER }
+		    else = { add_equipment_to_stockpile = { type = tac_bomber_equipment_0 amount = 50 producer = SOV }
+		    		 add_equipment_to_stockpile = { type = tac_bomber_equipment_0 amount = 50 producer = GER }
+		    	}
+		    }
+		}
+	}
+
+	focus = {
+		id = EGY_egyptian_naval_force
+		icon = focus_egyptian_naval_force
+		cost = 10
+		available = {
+		}
+		prerequisite = { focus = EGY_egyptian_armed_forces }
+		x = 79
+		y = 1
+		completion_reward = {
+		    navy_experience = 10
+		    add_tech_bonus = {
+				name = air_equipment_bonus
+				bonus = 0.50
+				uses = 1
+				category = naval_equipment
+			}
+			446 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 1
+			}
+		}
+	}
+
+	focus = {
+		id = EGY_defense_fleet
+		icon = light_cruiser_program
+		cost = 10
+		available = {
+		}
+		mutually_exclusive = { focus = EGY_attack_fleet }
+		prerequisite = { focus = EGY_egyptian_naval_force }
+		x = 78
+		y = 2
+		completion_reward = {
+		    navy_experience = 5
+			add_ideas = idea_egy_defense_fleet
+		}
+	}
+
+	focus = {
+		id = EGY_mediterranean_dockyards
+		icon = GFX_goal_naval_upgrade
+		cost = 10
+		available = {
+		}
+		prerequisite = { focus = EGY_defense_fleet }
+		x = 78
+		y = 3
+		completion_reward = {
+		    447 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = dockyard
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = EGY_attack_fleet
+		icon = submarine
+		cost = 10
+		available = {
+		}
+		mutually_exclusive = { focus = EGY_defense_fleet }
+		prerequisite = { focus = EGY_egyptian_naval_force }
+		x = 80
+		y = 2
+		completion_reward = {
+			navy_experience = 5
+			add_ideas = idea_egy_attack_fleet
+		}
+	}
+
+	focus = {
+		id = EGY_red_sea_dockyards
+		icon = naval_dockyard
+		cost = 10
+		available = {
+		}
+		prerequisite = { focus = EGY_attack_fleet }
+		x = 80
+		y = 3
+		completion_reward = {
+		    457 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
 	focus = {
 		id = EGY_egyptian_diplomacy
 		icon = focus_egyptian_diplomacy
@@ -162,7 +506,7 @@ focus_tree = {
 	focus = {
 		id = EGY_the_alexandria_summit
 		icon = scientific_exchange
-		cost = 2
+		cost = 10
 		prerequisite = {
 			focus = EGY_technological_advancements
 		}
@@ -189,7 +533,7 @@ focus_tree = {
 	focus = {
 		id = EGY_keep_revolution_at_bay
 		icon = secret_weapon
-		cost = 5
+		cost = 10
 		prerequisite = {
 			focus = EGY_intelligency_agency_control
 		}
@@ -212,7 +556,7 @@ focus_tree = {
 	focus = {
 		id = EGY_corporate_allegiances
 		icon = low_company_tax
-		cost = 3.6
+		cost = 7.2
 		prerequisite = {
 			focus = EGY_technological_advancements
 		}
@@ -229,7 +573,7 @@ focus_tree = {
 	focus = {
 		id = EGY_appoint_new_high_command
 		icon = army_doctrine
-		cost = 5
+		cost = 7.2
 		prerequisite = {
 			focus = EGY_keep_revolution_at_bay
 		}
@@ -250,7 +594,7 @@ focus_tree = {
 	focus = {
 		id = EGY_vice_president_el_sisi
 		icon = focus_vice_president_el_sisi
-		cost = 2
+		cost = 5
 		ai_will_do = {
 			modifier = {
 				NOT = {
@@ -303,7 +647,7 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_visit_naval_bases
-		icon = build_navy
+		icon = naval_occupation
 		cost = 10
 		prerequisite = {
 			focus = EGY_visit_barracks
@@ -327,9 +671,13 @@ focus_tree = {
 		completion_reward = {
 		    add_tech_bonus = {
 				name = nuclear_bonus
-				bonus = 0.35
+				bonus = 0.5
 				uses = 1
 				category = nuclear
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_nuclear
+				value = 1
 			}
 		}
 
@@ -351,7 +699,7 @@ focus_tree = {
 	focus = {
 		id = EGY_merge_the_posts
 		icon = focus_merge_the_posts
-		cost = 2
+		cost = 5
 		ai_will_do = {
 			modifier = {
 				NOT = {
@@ -413,7 +761,7 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_a_new_secret_police
-		icon = cavalry
+		icon = GFX_goal_Generic_Espionage
 		cost = 10
 		prerequisite = {
 			focus = EGY_mass_conscription
@@ -429,7 +777,7 @@ focus_tree = {
 	focus = {
 		id = EGY_vice_president_mekki
 		icon = focus_vice_president_mekki
-		cost = 2
+		cost = 5
 		ai_will_do = {
 			modifier = {
 				NOT = {
@@ -559,7 +907,7 @@ focus_tree = {
 	focus = {
 		id = EGY_president_el_sisi
 		icon = focus_president_el_sisi
-		cost = 2
+		cost = 5
 		ai_will_do = {
 			modifier = {
 				NOT = {
@@ -609,7 +957,7 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_a_military_clique
-		icon = license_production
+		icon = focus_military_clique
 		cost = 10
 		prerequisite = {
 			focus = EGY_cult_of_personality
@@ -624,14 +972,14 @@ focus_tree = {
 	focus = {
 		id = EGY_crush_civil_liberties
 		icon = puppet
-		cost = 2
+		cost = 10
 		prerequisite = {
 			focus = EGY_president_el_sisi
 		}
 		x = 11
 		y = 3
 		completion_reward = {
-		    add_political_power = 200
+		    add_political_power = 100
 			country_event = { id = egypt.43 }
 		}
 
@@ -639,7 +987,7 @@ focus_tree = {
 	focus = {
 		id = EGY_sisis_secret_police
 		icon = attack_allies
-		cost = 5
+		cost = 7.2
 		prerequisite = {
 			focus = EGY_crush_civil_liberties
 		}
@@ -652,8 +1000,8 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_increase_economic_freedom
-		icon = major_alliance
-		cost = 5
+		icon = GFX_goal_capitalist_economy
+		cost = 7.2
 		prerequisite = {
 			focus = EGY_president_el_sisi
 		}
@@ -667,7 +1015,7 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_egyptian_capitalism
-		icon = intelligence_exchange
+		icon = GFX_goal_Capitalism
 		cost = 10
 		prerequisite = {
 			focus = EGY_increase_economic_freedom
@@ -683,7 +1031,7 @@ focus_tree = {
 	focus = {
 		id = EGY_the_second_stage
 		icon = two_flags
-		cost = 2
+		cost = 10
 		prerequisite = {
 			focus = EGY_a_military_clique
 		}
@@ -704,7 +1052,7 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_enforce_wage_regulations
-		icon = uk_workers_revolution
+		icon = GFX_goal_state_economy
 		cost = 10
 		prerequisite = {
 			focus = EGY_the_second_stage
@@ -718,7 +1066,7 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_sustainable_cities
-		icon = generic_construction_2
+		icon = GFX_goal_generic_city_hill
 		cost = 10
 		prerequisite = {
 			focus = EGY_the_second_stage
@@ -726,7 +1074,7 @@ focus_tree = {
 		x = 13
 		y = 6
 		completion_reward = {
-		    random_owned_state = {
+		    446 = {
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = industrial_complex
@@ -734,7 +1082,7 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
-			random_owned_state = {
+			447 = {
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = industrial_complex
@@ -742,14 +1090,14 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
-			random_owned_state = {
+			446 = {
 				add_building_construction = {
 					type = infrastructure
 					level = 2
 					instant_build = yes
 				}
 			}
-			random_owned_state = {
+			447 = {
 				add_building_construction = {
 					type = infrastructure
 					level = 2
@@ -778,7 +1126,7 @@ focus_tree = {
 	focus = {
 		id = EGY_fresh_elections
 		icon = focus_syria_local_elections
-		cost = 2
+		cost = 7.2
 		ai_will_do = {
 			base = 50
 			modifier = {
@@ -862,7 +1210,7 @@ focus_tree = {
 	focus = {
 		id = EGY_harsh_crackdown
 		icon = smashing_flag
-		cost = 7.2
+		cost = 10
 		prerequisite = {
 			focus = EGY_president_morsi
 		}
@@ -877,7 +1225,7 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_islamic_awakening
-		icon = focus_syria_state_atheism
+		icon = islamic_focus_01
 		cost = 10
 		prerequisite = {
 			focus = EGY_harsh_crackdown
@@ -985,8 +1333,8 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_pardon_former_leaders
-		icon = royal_strength
-		cost = 7.2
+		icon = generic_peace_agreement
+		cost = 10
 		prerequisite = {
 			focus = EGY_president_aboul_fotouh
 		}
@@ -1008,7 +1356,7 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_social_moderation
-		icon = democracy
+		icon = GFX_goal_Generic_Centrism
 		cost = 10
 		prerequisite = {
 			focus = EGY_pardon_former_leaders
@@ -1036,7 +1384,7 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_support_islamic_traditionalism
-		icon = focus_syria_islamic_monarchy
+		icon = GFX_hijab
 		cost = 10
 		prerequisite = {
 			focus = EGY_rapid_national_development
@@ -1062,7 +1410,7 @@ focus_tree = {
 		x = 16
 		y = 7
 		completion_reward = {
-		    add_political_power = 250
+		    add_political_power = 125
 			add_popularity = {
 				ideology = centrist
 				popularity = 0.1
@@ -1075,6 +1423,20 @@ focus_tree = {
 			country_event = { id = egypt.50 }
 		}
 
+	}
+	focus = {
+		id = EGY_stability_in_islam
+		icon = GFX_goal_islamic_secularism
+		cost = 10
+		prerequisite = {
+			focus = EGY_islamic_republic
+			focus = EGY_arab_republic
+		}
+		x = 17
+		y = 8
+		completion_reward = {
+		    add_stability = 0.05
+		}
 	}
 	focus = {
 		id = EGY_arab_republic
@@ -1090,7 +1452,7 @@ focus_tree = {
 		x = 18
 		y = 7
 		completion_reward = {
-		    add_stability = 0.1
+		    add_stability = 0.05
 			add_popularity = {
 				ideology = liberal
 				popularity = 0.03
@@ -1209,8 +1571,8 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_promote_secularism
-		icon = concessions
-		cost = 7.2
+		icon = secularism
+		cost = 10
 		prerequisite = {
 			focus = EGY_corrupt_assembly
 		}
@@ -1302,7 +1664,7 @@ focus_tree = {
 		x = 22
 		y = 5
 		completion_reward = {
-		    random_owned_state = {
+		    452 = {
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = industrial_complex
@@ -1310,7 +1672,7 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
-			random_owned_state = {
+			447 = {
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = industrial_complex
@@ -1318,7 +1680,7 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
-			random_owned_state = {
+			447 = {
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = industrial_complex
@@ -1326,7 +1688,7 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
-			random_owned_state = {
+			446 = {
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = industrial_complex
@@ -1334,7 +1696,7 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
-			random_owned_state = {
+			813 = {
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = industrial_complex
@@ -1342,7 +1704,7 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
-			random_owned_state = {
+			453 = {
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = industrial_complex
@@ -1356,7 +1718,7 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_young_minds
-		icon = tech_sharing
+		icon = GFX_goal_brain_power
 		cost = 10
 		prerequisite = {
 			focus = EGY_north_egypt_advancement_project
@@ -1371,7 +1733,7 @@ focus_tree = {
 	focus = {
 		id = EGY_a_better_future_campaign
 		icon = democracy
-		cost = 7.2
+		cost = 10
 		prerequisite = {
 			focus = EGY_intellectual_governance
 			focus = EGY_young_minds
@@ -1385,7 +1747,7 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_welfare_programs
-		icon = anti_monarchy
+		icon = welfare_statism
 		cost = 10
 		prerequisite = {
 			focus = EGY_young_minds
@@ -1509,7 +1871,7 @@ focus_tree = {
 	focus = {
 		id = EGY_erect_portrait_of_lenin
 		icon = focus_erect_portrait_of_lenin
-		cost = 7.2
+		cost = 10
 		prerequisite = {
 			focus = EGY_crush_opposition
 		}
@@ -1522,14 +1884,63 @@ focus_tree = {
 
 	}
 	focus = {
-		id = EGY_centralise_the_nation
-		icon = focus_establish_embassies
+		id = EGY_seize_the_means
+		icon = focus_seize_the_means
 		cost = 10
 		prerequisite = {
 			focus = EGY_erect_portrait_of_lenin
 		}
 		x = 24
 		y = 5
+		completion_reward = {
+			446 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = steel_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			447 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = tungsten_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = EGY_centralise_the_nation
+		icon = focus_establish_embassies
+		cost = 10
+		prerequisite = {
+			focus = EGY_seize_the_means
+		}
+		x = 24
+		y = 6
 		completion_reward = {
 		    add_ideas = idea_egy_centralised_nation
 		}
@@ -1543,7 +1954,7 @@ focus_tree = {
 			focus = EGY_centralise_the_nation
 		}
 		x = 24
-		y = 6
+		y = 7
 		completion_reward = {
 		    add_ideas = idea_egy_egyptian_peoples_army
 			country_event = { id = egypt.57 }
@@ -1558,7 +1969,7 @@ focus_tree = {
 			focus = EGY_egyptian_peoples_army
 		}
 		x = 24
-		y = 7
+		y = 8
 		completion_reward = {
 		    add_ideas = idea_egy_socialism_forever
 		}
@@ -1567,7 +1978,7 @@ focus_tree = {
 	focus = {
 		id = EGY_an_idealist_president
 		icon = focus_an_idealist_president
-		cost = 2
+		cost = 5
 		ai_will_do = {
 			base = 20
 			modifier = {
@@ -1745,7 +2156,7 @@ focus_tree = {
 	focus = {
 		id = EGY_close_the_valley
 		icon = fortify_city
-		cost = 2
+		cost = 5
 		prerequisite = {
 			focus = EGY_renovate_wonders
 		}
@@ -1779,7 +2190,7 @@ focus_tree = {
 	focus = {
 		id = EGY_a_modern_kingdom
 		icon = focus_emergency_party_convention
-		cost = 5
+		cost = 10
 		prerequisite = {
 			focus = EGY_the_new_kingdom
 		}
@@ -1792,7 +2203,7 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_the_pyramid_complex
-		icon = tech_sharing
+		icon = focus_pyramid
 		cost = 10
 		prerequisite = {
 			focus = EGY_a_modern_kingdom
@@ -1802,13 +2213,13 @@ focus_tree = {
 		completion_reward = {
 		    add_tech_bonus = {
 				name = electronics_bonus
-				bonus = 0.1
+				bonus = 0.25
 				uses = 1
 				category = electronics
 			}
 			add_tech_bonus = {
 				name = construction_tech_bonus
-				bonus = 0.15
+				bonus = 0.35
 				uses = 1
 				category = construction_tech
 			}
@@ -1986,12 +2397,12 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_defence_of_the_sultan
-		icon = build_tank
-		cost = 5
+		icon = monarchist_army
+		cost = 7.2
 		prerequisite = {
 			focus = EGY_revoke_rights
 		}
-		x = 33
+		x = 35
 		y = 6
 		completion_reward = {
 		    add_ideas = idea_egy_defence_of_the_sultan
@@ -2000,7 +2411,7 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_central_planning
-		icon = position_armies
+		icon = focus_land_reform
 		cost = 10
 		prerequisite = {
 			focus = EGY_restore_the_sultan
@@ -2028,7 +2439,7 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_a_holy_era
-		icon = putins_inauguration
+		icon = islamic_focus_01
 		cost = 10
 		prerequisite = {
 			focus = EGY_revoke_rights
@@ -2036,7 +2447,7 @@ focus_tree = {
 		prerequisite = {
 			focus = EGY_regional_development
 		}
-		x = 35
+		x = 33
 		y = 6
 		completion_reward = {
 		    add_ideas = idea_egy_holy_era
@@ -2093,6 +2504,14 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
+			452 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
 		}
 
 	}
@@ -2117,7 +2536,7 @@ focus_tree = {
 	focus = {
 		id = EGY_stronger_as_the_sultanate
 		icon = dangerous_deal
-		cost = 5
+		cost = 10
 		prerequisite = {
 			focus = EGY_royal_military_positions
 		}
@@ -2230,7 +2649,7 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_parliamentary_elections
-		icon = common_african_judiciary
+		icon = GFX_goal_elections
 		cost = 1
 		prerequisite = {
 			focus = EGY_overturn_suleimans_demands
@@ -2246,7 +2665,7 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_constitutional_convention
-		icon = focus_freedom_of_demonstration
+		icon = GFX_goal_royal_edicts
 		cost = 5
 		prerequisite = {
 			focus = EGY_overturn_suleimans_demands
@@ -2297,7 +2716,7 @@ focus_tree = {
 	focus = {
 		id = EGY_abolish_the_secret_police
 		icon = red_hands_shaking
-		cost = 2
+		cost = 2.9
 		prerequisite = {
 			focus = EGY_constitutional_convention
 		}
@@ -2388,7 +2807,7 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_welfare_state
-		icon = concessions
+		icon = GFX_goal_Welfare_State
 		cost = 10
 		prerequisite = {
 			focus = EGY_leftist_years
@@ -2516,7 +2935,7 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_big_brother
-		icon = uk_communist_ministries
+		icon = surveillance_panopticon
 		cost = 10
 		prerequisite = {
 			focus = EGY_respect_suleimans_demands
@@ -2530,7 +2949,7 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_glory_to_egypt
-		icon = focus_focus_on_egypt
+		icon = GFX_goal_Paternal_Autocrat
 		cost = 10
 		prerequisite = {
 			focus = EGY_king_above_all
@@ -2577,7 +2996,7 @@ focus_tree = {
 	focus = {
 		id = EGY_tear_up_the_constitution
 		icon = tear_treaty
-		cost = 2
+		cost = 5
 		prerequisite = {
 			focus = EGY_big_brother
 		}
@@ -2604,7 +3023,7 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_arm_every_border
-		icon = start_war
+		icon = small_arms_east
 		cost = 10
 		prerequisite = {
 			focus = EGY_mixed_economy
@@ -2614,17 +3033,17 @@ focus_tree = {
 		completion_reward = {
 		    add_tech_bonus = {
 				name = infantry_tech_bonus
-				bonus = 0.1
+				bonus = 0.5
 				uses = 1
 				category = infantry_tech
 			}
-			add_political_power = -100
+			add_political_power = -75
 		}
 
 	}
 	focus = {
 		id = EGY_air_defence
-		icon = air_defense
+		icon = GFX_goal_antiair
 		cost = 10
 		prerequisite = {
 			focus = EGY_arm_every_border
@@ -2638,7 +3057,7 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_future_war_effort
-		icon = close_air_support
+		icon = GFX_goal_arms_factory
 		cost = 10
 		prerequisite = {
 			focus = EGY_air_defence
@@ -2646,11 +3065,11 @@ focus_tree = {
 		x = 48
 		y = 10
 		completion_reward = {
-		    random_owned_state = {
-				add_extra_state_shared_building_slots = 1
+		    447 = {
+				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = arms_factory
-					level = 1
+					level = 2
 					instant_build = yes
 				}
 			}
@@ -2677,11 +3096,9 @@ focus_tree = {
 		id = EGY_expansion
 		icon = demand
 		cost = 7.9
+		available = { date > 2012.5.1 }
 		prerequisite = {
 			focus = EGY_egyptian_diplomacy
-		}
-		available = {
-		    date > 2012.8.1
 		}
 		x = 53
 		y = 1
@@ -3067,7 +3484,8 @@ focus_tree = {
 	focus = {
 		id = EGY_diplomacy
 		icon = improve_relations
-		cost = 2
+		cost = 3.6
+		available = { date > 2012.1.1 }
 		prerequisite = {
 			focus = EGY_egyptian_diplomacy
 		}
@@ -3222,12 +3640,15 @@ focus_tree = {
 			if = {
 			    limit = {
 				    SUD = {
+					    AND = {
+						is_puppet = no
 					    OR = {
 						    has_government = national_conservative
 							has_government = centrist 
 							has_government = liberal 
 							has_government = new_democrat
 							has_government = moderate_socialist
+							}
 						}
 					}
 				}
@@ -3238,12 +3659,15 @@ focus_tree = {
 			if = {
 			    limit = {
 				    ALG = {
+					AND = {
+						is_puppet = no
 					    OR = {
 						    has_government = national_conservative
 							has_government = centrist 
 							has_government = liberal 
 							has_government = new_democrat
 							has_government = moderate_socialist
+							}
 						}
 					}
 				}
@@ -3254,12 +3678,15 @@ focus_tree = {
 			if = {
 			    limit = {
 				    MOR = {
+						AND = {
+						is_puppet = no
 					    OR = {
 						    has_government = national_conservative
 							has_government = centrist 
 							has_government = liberal 
 							has_government = new_democrat
 							has_government = moderate_socialist
+							}
 						}
 					}
 				}
@@ -3606,6 +4033,7 @@ focus_tree = {
 			    limit = {
 				    SUD = {
 					    has_government = nationalist
+					    is_subject = no
 					}
 				}
 				SUD = {
@@ -3616,6 +4044,7 @@ focus_tree = {
 			    limit = {
 				    PAL = {
 					    has_government = nationalist
+					    is_subject = no
 					}
 				}
 				PAL = {
@@ -3626,6 +4055,7 @@ focus_tree = {
 			    limit = {
 				    SAU = {
 					    has_government = nationalist
+					    is_subject = no
 					}
 				}
 				SAU = {
@@ -3636,6 +4066,7 @@ focus_tree = {
 			    limit = {
 				    LEB = {
 					    has_government = nationalist
+					    is_subject = no
 					}
 				}
 				LEB = {
@@ -3646,6 +4077,7 @@ focus_tree = {
 			    limit = {
 				    IRQ = {
 					    has_government = nationalist
+					    is_subject = no
 					}
 				}
 				IRQ = {
@@ -3656,6 +4088,7 @@ focus_tree = {
 			    limit = {
 				    YEM = {
 					    has_government = nationalist
+					    is_subject = no
 					}
 				}
 				YEM = {
@@ -3666,6 +4099,7 @@ focus_tree = {
 			    limit = {
 				    OMA = {
 					    has_government = nationalist
+					    is_subject = no
 					}
 				}
 				OMA = {
@@ -3676,6 +4110,7 @@ focus_tree = {
 			    limit = {
 				    ALG = {
 					    has_government = nationalist
+					    is_subject = no
 					}
 				}
 				ALG = {
@@ -3686,6 +4121,7 @@ focus_tree = {
 			    limit = {
 				    MOR = {
 					    has_government = nationalist
+					    is_subject = no
 					}
 				}
 				MOR = {
@@ -3696,6 +4132,7 @@ focus_tree = {
 			    limit = {
 				    CYP = {
 					    has_government = nationalist
+					    is_subject = no
 					}
 				}
 				CYP = {
@@ -3708,7 +4145,7 @@ focus_tree = {
 	focus = {
 		id = EGY_omars_propaganda
 		icon = propaganda
-		cost = 5
+		cost = 10
 		prerequisite = {
 			focus = EGY_corporate_allegiances
 		}
@@ -3721,8 +4158,8 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_modern_library
-		icon = royal_institutions
-		cost = 5
+		icon = GFX_goal_education
+		cost = 10
 		prerequisite = {
 			focus = EGY_the_alexandria_summit
 		}
@@ -3750,7 +4187,7 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_higher_taxes
-		icon = politburo_debate
+		icon = GFX_goal_capitalist_system
 		cost = 10
 		prerequisite = {
 			focus = EGY_enforce_wage_regulations
@@ -3785,7 +4222,7 @@ focus_tree = {
 	focus = {
 		id = EGY_islamists_crushed
 		icon = focus_islamists_crushed
-		cost = 5
+		cost = 10
 		available = {
 		    AND = {
 			    has_country_flag = sided_with_the_government
@@ -3803,7 +4240,7 @@ focus_tree = {
 		y = 8
 		completion_reward = {
 		    add_stability = 0.1 
-			add_political_power = 300
+			add_political_power = 125
 			random_owned_state = {
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
@@ -3887,6 +4324,7 @@ focus_tree = {
 		x = 30
 		y = 6
 		completion_reward = {
+			add_stability = 0.05
 		    add_political_power = 80
 		}
 
@@ -3952,8 +4390,8 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_new_kingdom_intelligence_agency
-		icon = power_to_the_president
-		cost = 5
+		icon = GFX_goal_Generic_Espionage
+		cost = 10
 		prerequisite = {
 			focus = EGY_massive_projects
 		}
@@ -4094,7 +4532,7 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_expand_nationalisation
-		icon = establish_nationalisation_ministry
+		icon = GFX_goal_nationalize_industry
 		cost = 10
 		prerequisite = {
 			focus = EGY_direct_democracy
@@ -4123,14 +4561,15 @@ focus_tree = {
 	focus = {
 		id = EGY_occupy_rebellious_businesses
 		icon = sabotage_conservative_leadership
-		cost = 2
+		cost = 10
 		prerequisite = {
 			focus = EGY_truly_egyptian_army
 		}
 		x = 45
 		y = 9
 		completion_reward = {
-		    random_owned_state = {
+			add_stability = -0.025
+		    447 = {
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = industrial_complex
@@ -4138,7 +4577,7 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
-			random_owned_state = {
+			447 = {
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = industrial_complex
@@ -4146,7 +4585,7 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
-			random_owned_state = {
+			446 = {
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = industrial_complex
@@ -4154,7 +4593,7 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
-			random_owned_state = {
+			446 = {
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = arms_factory
@@ -4167,8 +4606,8 @@ focus_tree = {
 	}
 	focus = {
 		id = EGY_abolish_trade_unions
-		icon = laws
-		cost = 5
+		icon = broken_star
+		cost = 10
 		prerequisite = {
 			focus = EGY_occupy_rebellious_businesses
 		}
