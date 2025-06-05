@@ -211,7 +211,7 @@ country_event = {
 				}
 				add_ideas = britain_sic_michael_gove
 			}
-			else = {
+			else_if = {
 				add_ideas = britain_sic_nigel_farage
 			}
 			add_ideas = britain_fom_damian_green
@@ -258,10 +258,6 @@ country_event = {
 		    }
 		}
 		hidden_effect = {
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_nsm_chris_leslie
 			add_ideas = britain_sic_simon_hughes
 			add_ideas = britain_fom_jeremy_browne
 			add_ideas = britain_ind_david_laws
@@ -349,24 +345,10 @@ country_event = {
 		    }
 		}
 		hidden_effect = {
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_nsm_chris_leslie
-			if = {
-				limit = {
-					has_country_leader = {
-						character = ENG_jo_cox
-					}
-				}
-				add_ideas = britain_sic_angela_eagle
-			}
-			else = {
-				add_ideas = britain_sic_jo_cox
-			}
-			add_ideas = britain_fom_keir_starmer
+			add_ideas = britain_sic_jon_cruddas
+			add_ideas = britain_fom_peter_hain
 			add_ideas = britain_ind_andy_burnham
-			add_ideas = britain_nsm_peter_mandelson
+			add_ideas = britain_nsm_emily_thornberry
 		}
 		custom_effect_tooltip = britain_labour_ministers_tooltip
 		ai_chance = {
@@ -412,14 +394,10 @@ country_event = {
 		    }
 		}
 		hidden_effect = {
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_nsm_chris_leslie
 			add_ideas = britain_sic_ken_livingstone 
 			add_ideas = britain_fom_margaret_beckett
 			add_ideas = britain_ind_john_mcdonnell
-			add_ideas = britain_nsm_clive_lewis
+			add_ideas = britain_nsm_george_galloway
 		}
 		custom_effect_tooltip = britain_ilp_ministers_tooltip
 		ai_chance = {
@@ -1191,7 +1169,7 @@ country_event = {
 			remove_ideas = britain_inm_john_sawers
 			add_ideas = britain_sic_jayda_fransen
 			add_ideas = britain_fom_michael_mclaughlin
-			add_ideas = britain_ind_max_mosley
+			add_ideas = britain_ind_alan_ayling
 			add_ideas = britain_nsm_mark_collett
 			add_ideas = britain_inm_mikko_vehvilainen
 		}
@@ -2053,6 +2031,18 @@ country_event = {
 			}
 			create_faction = international_socialist_pact
 			PRC = { add_to_faction = ENG }
+			ENG = {
+				add_ai_strategy = {
+					type = alliance
+					id = PRC
+					value = 200
+				}
+				add_ai_strategy = {
+					type = befriend
+					id = PRC
+					value = 200
+				}
+			}
 		}
 		if = {
 			limit = {
@@ -2062,6 +2052,18 @@ country_event = {
 				}
 			}
 			INS = { add_to_faction = ENG }
+			ENG = {
+				add_ai_strategy = {
+					type = alliance
+					id = INS
+					value = 200
+				}
+				add_ai_strategy = {
+					type = befriend
+					id = INS
+					value = 200
+				}
+			}
 		}
 		if = {
 			limit = {
@@ -2070,14 +2072,28 @@ country_event = {
 					is_faction_leader = yes
 				}
 			}
-			create_faction = international_socialist_pact
 			PRC = { add_to_faction = ENG }
+			ENG = {
+				add_ai_strategy = {
+					type = alliance
+					id = PRC
+					value = 200
+				}
+				add_ai_strategy = {
+					type = befriend
+					id = PRC
+					value = 200
+				}
+			}
 		}
 		hidden_effect = {
-		add_named_threat = { threat = 2 name = ENG_joining_dem_legue }
+			add_named_threat = { threat = 2 name = ENG_joining_dem_legue }
 			ENG = {
 				country_event = { days = 1 id = britain.221 }
 			}
+		}
+		ai_chance = {
+			factor = 70
 		}
 	}
 	option = {   #Refuse
@@ -3083,6 +3099,27 @@ country_event = {
 			        id = news.124
 		        }
 		    }
+		}
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOT = {
+						OR = {
+							has_government = fascist
+							has_country_leader_ideology = revolutionary_nazi
+							has_country_leader_ideology = pierceist_spencerist 
+						}
+					}
+				}
+				add_opinion_modifier = {
+					target = ENG
+					modifier = terrorist_menace
+				}
+				add_opinion_modifier = {
+					target = ENG
+					modifier = embargo
+				}
+			}
 		}
 	}
 }
@@ -4248,6 +4285,10 @@ country_event = {
 	
 	option = {   
 		name = britain.161.o1
+		create_wargoal = {
+			    type = annex_everything
+			    target = FRA
+		    }
 		hidden_effect = {
 		add_named_threat = { threat = 2 name = ENG_britain_normandy }
 			every_country = {
@@ -4383,19 +4424,6 @@ country_event = {
 		        country_event = { days = 9 id = britain.165 } 
 		    }
 		}
-		hidden_effect = {
-			every_country = {
-		        limit = {
-			        NOT = {
-				        tag = ENG
-				    }
-			    }
-			    news_event = {
-			        hours = 4
-			        id = news.147
-		        }
-		    }
-		}
 	}
 }
 
@@ -4411,19 +4439,6 @@ country_event = {
 	option = {   
 		name = britain.165.o1
 		add_political_power = -25
-		hidden_effect = {
-			every_country = {
-		        limit = {
-			        NOT = {
-				        tag = ENG
-				    }
-			    }
-			    news_event = {
-			        hours = 4
-			        id = news.148
-		        }
-		    }
-		}
 	}
 }
 
@@ -4532,23 +4547,6 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_simon_hughes
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_sic_jo_cox
-			remove_ideas = britain_sic_angela_eagle
-			remove_ideas = britain_sic_ken_livingstone
-			remove_ideas = britain_fom_jeremy_browne
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_fom_keir_starmer
-			remove_ideas = britain_fom_margaret_beckett
-			remove_ideas = britain_ind_david_laws
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_ind_andy_burnham
-			remove_ideas = britain_ind_john_mcdonnell
-			remove_ideas = britain_nsm_nick_harvey
-			remove_ideas = britain_nsm_chris_leslie
-			remove_ideas = britain_nsm_peter_mandelson
-			remove_ideas = britain_nsm_clive_lewis
 			if = {
 				limit = {
 					has_country_leader = {
@@ -4557,7 +4555,7 @@ country_event = {
 				}
 				add_ideas = britain_sic_michael_gove
 			}
-			else = {
+			else_if = {
 				add_ideas = britain_sic_nigel_farage
 			}
 			add_ideas = britain_fom_damian_green
@@ -4584,23 +4582,6 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_nigel_farage
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_sic_jo_cox
-			remove_ideas = britain_sic_angela_eagle
-			remove_ideas = britain_sic_ken_livingstone
-			remove_ideas = britain_fom_damian_green
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_fom_keir_starmer
-			remove_ideas = britain_fom_margaret_beckett
-			remove_ideas = britain_ind_philip_hammond
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_ind_andy_burnham
-			remove_ideas = britain_ind_john_mcdonnell
-			remove_ideas = britain_nsm_amber_rudd
-			remove_ideas = britain_nsm_chris_leslie
-			remove_ideas = britain_nsm_peter_mandelson
-			remove_ideas = britain_nsm_clive_lewis
 			add_ideas = britain_sic_simon_hughes
 			add_ideas = britain_fom_jeremy_browne
 			add_ideas = britain_ind_david_laws
@@ -4626,23 +4607,6 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_nigel_farage
-			remove_ideas = britain_sic_simon_hughes
-			remove_ideas = britain_sic_jo_cox
-			remove_ideas = britain_sic_angela_eagle
-			remove_ideas = britain_sic_ken_livingstone
-			remove_ideas = britain_fom_damian_green
-			remove_ideas = britain_fom_jeremy_browne
-			remove_ideas = britain_fom_keir_starmer
-			remove_ideas = britain_fom_margaret_beckett
-			remove_ideas = britain_ind_philip_hammond
-			remove_ideas = britain_ind_david_laws
-			remove_ideas = britain_ind_andy_burnham
-			remove_ideas = britain_ind_john_mcdonnell
-			remove_ideas = britain_nsm_amber_rudd
-			remove_ideas = britain_nsm_nick_harvey
-			remove_ideas = britain_nsm_peter_mandelson
-			remove_ideas = britain_nsm_clive_lewis
 			add_ideas = britain_sic_gordon_brown
 			add_ideas = britain_fom_mike_gapes
 			add_ideas = britain_ind_kenneth_clarke
@@ -4668,22 +4632,6 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_nigel_farage
-			remove_ideas = britain_sic_simon_hughes
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_sic_ken_livingstone
-			remove_ideas = britain_fom_damian_green
-			remove_ideas = britain_fom_jeremy_browne
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_fom_margaret_beckett
-			remove_ideas = britain_ind_philip_hammond
-			remove_ideas = britain_ind_david_laws
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_ind_john_mcdonnell
-			remove_ideas = britain_nsm_amber_rudd
-			remove_ideas = britain_nsm_nick_harvey
-			remove_ideas = britain_nsm_chris_leslie
-			remove_ideas = britain_nsm_clive_lewis
 			if = {
 				limit = {
 					has_country_leader = {
@@ -4692,12 +4640,12 @@ country_event = {
 				}
 			add_ideas = britain_sic_angela_eagle
 			}
-			else = {
-				add_ideas = britain_sic_jo_cox
+			else_if = {
+				add_ideas = britain_sic_jon_cruddas
 			}
-			add_ideas = britain_fom_keir_starmer
+			add_ideas = britain_fom_peter_hain
 			add_ideas = britain_ind_andy_burnham
-			add_ideas = britain_nsm_peter_mandelson
+			add_ideas = britain_nsm_emily_thornberry
 		}
 		custom_effect_tooltip = britain_labour_ministers_tooltip
 		add_newdem_popularity = yes
@@ -4718,26 +4666,19 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_nigel_farage
-			remove_ideas = britain_sic_simon_hughes
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_sic_jo_cox
-			remove_ideas = britain_fom_damian_green
-			remove_ideas = britain_fom_jeremy_browne
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_fom_keir_starmer
-			remove_ideas = britain_ind_philip_hammond
-			remove_ideas = britain_ind_david_laws
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_ind_andy_burnham
-			remove_ideas = britain_nsm_amber_rudd
-			remove_ideas = britain_nsm_nick_harvey
-			remove_ideas = britain_nsm_chris_leslie
-			remove_ideas = britain_nsm_peter_mandelson
 			add_ideas = britain_sic_ken_livingstone 
 			add_ideas = britain_fom_margaret_beckett
 			add_ideas = britain_ind_john_mcdonnell
 			add_ideas = britain_nsm_clive_lewis
+			if = {
+				limit = {
+					has_completed_focus = ENG_democratic_policies
+				}
+				add_ideas = britain_nsm_clive_lewis
+			}
+			else_if = {
+				add_ideas = britain_nsm_george_galloway
+			}
 		}
 		custom_effect_tooltip = britain_ilp_ministers_tooltip
 		add_modsoc_popularity = yes
@@ -4776,23 +4717,6 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_simon_hughes
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_sic_jo_cox
-			remove_ideas = britain_sic_angela_eagle
-			remove_ideas = britain_sic_ken_livingstone
-			remove_ideas = britain_fom_jeremy_browne
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_fom_keir_starmer
-			remove_ideas = britain_fom_margaret_beckett
-			remove_ideas = britain_ind_david_laws
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_ind_andy_burnham
-			remove_ideas = britain_ind_john_mcdonnell
-			remove_ideas = britain_nsm_nick_harvey
-			remove_ideas = britain_nsm_chris_leslie
-			remove_ideas = britain_nsm_peter_mandelson
-			remove_ideas = britain_nsm_clive_lewis
 			if = {
 				limit = {
 					has_country_leader = {
@@ -4801,7 +4725,7 @@ country_event = {
 				}
 				add_ideas = britain_sic_michael_gove
 			}
-			else = {
+			else_if = {
 				add_ideas = britain_sic_nigel_farage
 			}
 			add_ideas = britain_fom_damian_green
@@ -4822,23 +4746,6 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_nigel_farage
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_sic_jo_cox
-			remove_ideas = britain_sic_angela_eagle
-			remove_ideas = britain_sic_ken_livingstone
-			remove_ideas = britain_fom_damian_green
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_fom_keir_starmer
-			remove_ideas = britain_fom_margaret_beckett
-			remove_ideas = britain_ind_philip_hammond
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_ind_andy_burnham
-			remove_ideas = britain_ind_john_mcdonnell
-			remove_ideas = britain_nsm_amber_rudd
-			remove_ideas = britain_nsm_chris_leslie
-			remove_ideas = britain_nsm_peter_mandelson
-			remove_ideas = britain_nsm_clive_lewis
 			add_ideas = britain_sic_simon_hughes
 			add_ideas = britain_fom_jeremy_browne
 			add_ideas = britain_ind_david_laws
@@ -4858,23 +4765,6 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_nigel_farage
-			remove_ideas = britain_sic_simon_hughes
-			remove_ideas = britain_sic_jo_cox
-			remove_ideas = britain_sic_angela_eagle
-			remove_ideas = britain_sic_ken_livingstone
-			remove_ideas = britain_fom_damian_green
-			remove_ideas = britain_fom_jeremy_browne
-			remove_ideas = britain_fom_keir_starmer
-			remove_ideas = britain_fom_margaret_beckett
-			remove_ideas = britain_ind_philip_hammond
-			remove_ideas = britain_ind_david_laws
-			remove_ideas = britain_ind_andy_burnham
-			remove_ideas = britain_ind_john_mcdonnell
-			remove_ideas = britain_nsm_amber_rudd
-			remove_ideas = britain_nsm_nick_harvey
-			remove_ideas = britain_nsm_peter_mandelson
-			remove_ideas = britain_nsm_clive_lewis
 			add_ideas = britain_sic_gordon_brown
 			add_ideas = britain_fom_mike_gapes
 			add_ideas = britain_ind_kenneth_clarke
@@ -4894,22 +4784,6 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_nigel_farage
-			remove_ideas = britain_sic_simon_hughes
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_sic_ken_livingstone
-			remove_ideas = britain_fom_damian_green
-			remove_ideas = britain_fom_jeremy_browne
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_fom_margaret_beckett
-			remove_ideas = britain_ind_philip_hammond
-			remove_ideas = britain_ind_david_laws
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_ind_john_mcdonnell
-			remove_ideas = britain_nsm_amber_rudd
-			remove_ideas = britain_nsm_nick_harvey
-			remove_ideas = britain_nsm_chris_leslie
-			remove_ideas = britain_nsm_clive_lewis
 			if = {
 				limit = {
 					has_country_leader = {
@@ -4918,12 +4792,12 @@ country_event = {
 				}
 			add_ideas = britain_sic_angela_eagle
 			}
-			else = {
-				add_ideas = britain_sic_jo_cox
+			else_if = {
+				add_ideas = britain_sic_jon_cruddas
 			}
-			add_ideas = britain_fom_keir_starmer
+			add_ideas = britain_fom_peter_hain
 			add_ideas = britain_ind_andy_burnham
-			add_ideas = britain_nsm_peter_mandelson
+			add_ideas = britain_nsm_emily_thornberry
 		}
 		custom_effect_tooltip = britain_labour_ministers_tooltip
 		add_newdem_popularity = yes
@@ -4939,26 +4813,19 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_nigel_farage
-			remove_ideas = britain_sic_simon_hughes
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_sic_jo_cox
-			remove_ideas = britain_fom_damian_green
-			remove_ideas = britain_fom_jeremy_browne
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_fom_keir_starmer
-			remove_ideas = britain_ind_philip_hammond
-			remove_ideas = britain_ind_david_laws
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_ind_andy_burnham
-			remove_ideas = britain_nsm_amber_rudd
-			remove_ideas = britain_nsm_nick_harvey
-			remove_ideas = britain_nsm_chris_leslie
-			remove_ideas = britain_nsm_peter_mandelson
 			add_ideas = britain_sic_ken_livingstone 
 			add_ideas = britain_fom_margaret_beckett
 			add_ideas = britain_ind_john_mcdonnell
 			add_ideas = britain_nsm_clive_lewis
+			if = {
+				limit = {
+					has_completed_focus = ENG_democratic_policies
+				}
+			add_ideas = britain_nsm_clive_lewis
+			}
+			else_if = {
+				add_ideas = britain_nsm_george_galloway
+			}
 		}
 		custom_effect_tooltip = britain_ilp_ministers_tooltip
 		add_modsoc_popularity = yes
@@ -4997,23 +4864,6 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_simon_hughes
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_sic_jo_cox
-			remove_ideas = britain_sic_angela_eagle
-			remove_ideas = britain_sic_ken_livingstone
-			remove_ideas = britain_fom_jeremy_browne
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_fom_keir_starmer
-			remove_ideas = britain_fom_margaret_beckett
-			remove_ideas = britain_ind_david_laws
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_ind_andy_burnham
-			remove_ideas = britain_ind_john_mcdonnell
-			remove_ideas = britain_nsm_nick_harvey
-			remove_ideas = britain_nsm_chris_leslie
-			remove_ideas = britain_nsm_peter_mandelson
-			remove_ideas = britain_nsm_clive_lewis
 			if = {
 				limit = {
 					has_country_leader = {
@@ -5022,7 +4872,7 @@ country_event = {
 				}
 			add_ideas = britain_sic_michael_gove
 			}
-			else = {
+			else_if = {
 				add_ideas = britain_sic_nigel_farage
 			}
 			add_ideas = britain_fom_damian_green
@@ -5043,23 +4893,6 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_nigel_farage
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_sic_jo_cox
-			remove_ideas = britain_sic_angela_eagle
-			remove_ideas = britain_sic_ken_livingstone
-			remove_ideas = britain_fom_damian_green
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_fom_keir_starmer
-			remove_ideas = britain_fom_margaret_beckett
-			remove_ideas = britain_ind_philip_hammond
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_ind_andy_burnham
-			remove_ideas = britain_ind_john_mcdonnell
-			remove_ideas = britain_nsm_amber_rudd
-			remove_ideas = britain_nsm_chris_leslie
-			remove_ideas = britain_nsm_peter_mandelson
-			remove_ideas = britain_nsm_clive_lewis
 			add_ideas = britain_sic_simon_hughes
 			add_ideas = britain_fom_jeremy_browne
 			add_ideas = britain_ind_david_laws
@@ -5079,23 +4912,6 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_nigel_farage
-			remove_ideas = britain_sic_simon_hughes
-			remove_ideas = britain_sic_jo_cox
-			remove_ideas = britain_sic_angela_eagle
-			remove_ideas = britain_sic_ken_livingstone
-			remove_ideas = britain_fom_damian_green
-			remove_ideas = britain_fom_jeremy_browne
-			remove_ideas = britain_fom_keir_starmer
-			remove_ideas = britain_fom_margaret_beckett
-			remove_ideas = britain_ind_philip_hammond
-			remove_ideas = britain_ind_david_laws
-			remove_ideas = britain_ind_andy_burnham
-			remove_ideas = britain_ind_john_mcdonnell
-			remove_ideas = britain_nsm_amber_rudd
-			remove_ideas = britain_nsm_nick_harvey
-			remove_ideas = britain_nsm_peter_mandelson
-			remove_ideas = britain_nsm_clive_lewis
 			add_ideas = britain_sic_gordon_brown
 			add_ideas = britain_fom_mike_gapes
 			add_ideas = britain_ind_kenneth_clarke
@@ -5115,22 +4931,6 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_nigel_farage
-			remove_ideas = britain_sic_simon_hughes
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_sic_ken_livingstone
-			remove_ideas = britain_fom_damian_green
-			remove_ideas = britain_fom_jeremy_browne
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_fom_margaret_beckett
-			remove_ideas = britain_ind_philip_hammond
-			remove_ideas = britain_ind_david_laws
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_ind_john_mcdonnell
-			remove_ideas = britain_nsm_amber_rudd
-			remove_ideas = britain_nsm_nick_harvey
-			remove_ideas = britain_nsm_chris_leslie
-			remove_ideas = britain_nsm_clive_lewis
 			if = {
 				limit = {
 					has_country_leader = {
@@ -5139,12 +4939,12 @@ country_event = {
 				}
 			add_ideas = britain_sic_angela_eagle
 			}
-			else = {
-				add_ideas = britain_sic_jo_cox
+			else_if = {
+				add_ideas = britain_sic_jon_cruddas
 			}
-			add_ideas = britain_fom_keir_starmer
+			add_ideas = britain_fom_peter_hain
 			add_ideas = britain_ind_andy_burnham
-			add_ideas = britain_nsm_peter_mandelson
+			add_ideas = britain_nsm_emily_thornberry
 		}
 		custom_effect_tooltip = britain_labour_ministers_tooltip
 		add_newdem_popularity = yes
@@ -5160,26 +4960,19 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_nigel_farage
-			remove_ideas = britain_sic_simon_hughes
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_sic_jo_cox
-			remove_ideas = britain_fom_damian_green
-			remove_ideas = britain_fom_jeremy_browne
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_fom_keir_starmer
-			remove_ideas = britain_ind_philip_hammond
-			remove_ideas = britain_ind_david_laws
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_ind_andy_burnham
-			remove_ideas = britain_nsm_amber_rudd
-			remove_ideas = britain_nsm_nick_harvey
-			remove_ideas = britain_nsm_chris_leslie
-			remove_ideas = britain_nsm_peter_mandelson
 			add_ideas = britain_sic_ken_livingstone 
 			add_ideas = britain_fom_margaret_beckett
 			add_ideas = britain_ind_john_mcdonnell
 			add_ideas = britain_nsm_clive_lewis
+			if = {
+				limit = {
+					has_completed_focus = ENG_democratic_policies
+				}
+			add_ideas = britain_nsm_clive_lewis
+			}
+			else_if = {
+				add_ideas = britain_nsm_george_galloway
+			}
 		}
 		custom_effect_tooltip = britain_ilp_ministers_tooltip
 		add_modsoc_popularity = yes
@@ -5218,23 +5011,6 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_simon_hughes
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_sic_jo_cox
-			remove_ideas = britain_sic_angela_eagle
-			remove_ideas = britain_sic_ken_livingstone
-			remove_ideas = britain_fom_jeremy_browne
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_fom_keir_starmer
-			remove_ideas = britain_fom_margaret_beckett
-			remove_ideas = britain_ind_david_laws
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_ind_andy_burnham
-			remove_ideas = britain_ind_john_mcdonnell
-			remove_ideas = britain_nsm_nick_harvey
-			remove_ideas = britain_nsm_chris_leslie
-			remove_ideas = britain_nsm_peter_mandelson
-			remove_ideas = britain_nsm_clive_lewis
 			if = {
 				limit = {
 					has_country_leader = {
@@ -5243,7 +5019,7 @@ country_event = {
 				}
 			add_ideas = britain_sic_michael_gove
 			}
-			else = {
+			else_if = {
 				add_ideas = britain_sic_nigel_farage
 			}
 			add_ideas = britain_fom_damian_green
@@ -5264,23 +5040,6 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_nigel_farage
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_sic_jo_cox
-			remove_ideas = britain_sic_angela_eagle
-			remove_ideas = britain_sic_ken_livingstone
-			remove_ideas = britain_fom_damian_green
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_fom_keir_starmer
-			remove_ideas = britain_fom_margaret_beckett
-			remove_ideas = britain_ind_philip_hammond
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_ind_andy_burnham
-			remove_ideas = britain_ind_john_mcdonnell
-			remove_ideas = britain_nsm_amber_rudd
-			remove_ideas = britain_nsm_chris_leslie
-			remove_ideas = britain_nsm_peter_mandelson
-			remove_ideas = britain_nsm_clive_lewis
 			add_ideas = britain_sic_simon_hughes
 			add_ideas = britain_fom_jeremy_browne
 			add_ideas = britain_ind_david_laws
@@ -5300,23 +5059,6 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_nigel_farage
-			remove_ideas = britain_sic_simon_hughes
-			remove_ideas = britain_sic_jo_cox
-			remove_ideas = britain_sic_angela_eagle
-			remove_ideas = britain_sic_ken_livingstone
-			remove_ideas = britain_fom_damian_green
-			remove_ideas = britain_fom_jeremy_browne
-			remove_ideas = britain_fom_keir_starmer
-			remove_ideas = britain_fom_margaret_beckett
-			remove_ideas = britain_ind_philip_hammond
-			remove_ideas = britain_ind_david_laws
-			remove_ideas = britain_ind_andy_burnham
-			remove_ideas = britain_ind_john_mcdonnell
-			remove_ideas = britain_nsm_amber_rudd
-			remove_ideas = britain_nsm_nick_harvey
-			remove_ideas = britain_nsm_peter_mandelson
-			remove_ideas = britain_nsm_clive_lewis
 			add_ideas = britain_sic_gordon_brown
 			add_ideas = britain_fom_mike_gapes
 			add_ideas = britain_ind_kenneth_clarke
@@ -5336,22 +5078,6 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_nigel_farage
-			remove_ideas = britain_sic_simon_hughes
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_sic_ken_livingstone
-			remove_ideas = britain_fom_damian_green
-			remove_ideas = britain_fom_jeremy_browne
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_fom_margaret_beckett
-			remove_ideas = britain_ind_philip_hammond
-			remove_ideas = britain_ind_david_laws
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_ind_john_mcdonnell
-			remove_ideas = britain_nsm_amber_rudd
-			remove_ideas = britain_nsm_nick_harvey
-			remove_ideas = britain_nsm_chris_leslie
-			remove_ideas = britain_nsm_clive_lewis
 			if = {
 				limit = {
 					has_country_leader = {
@@ -5360,9 +5086,12 @@ country_event = {
 				}
 			add_ideas = britain_sic_angela_eagle
 			}
-			else = {
-				add_ideas = britain_sic_jo_cox
+			else_if = {
+				add_ideas = britain_sic_jon_cruddas
 			}
+			add_ideas = britain_fom_peter_hain
+			add_ideas = britain_ind_andy_burnham
+			add_ideas = britain_nsm_emily_thornberry
 		}
 		custom_effect_tooltip = britain_labour_ministers_tooltip
 		add_newdem_popularity = yes
@@ -5378,26 +5107,19 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_nigel_farage
-			remove_ideas = britain_sic_simon_hughes
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_sic_jo_cox
-			remove_ideas = britain_fom_damian_green
-			remove_ideas = britain_fom_jeremy_browne
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_fom_keir_starmer
-			remove_ideas = britain_ind_philip_hammond
-			remove_ideas = britain_ind_david_laws
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_ind_andy_burnham
-			remove_ideas = britain_nsm_amber_rudd
-			remove_ideas = britain_nsm_nick_harvey
-			remove_ideas = britain_nsm_chris_leslie
-			remove_ideas = britain_nsm_peter_mandelson
 			add_ideas = britain_sic_ken_livingstone 
 			add_ideas = britain_fom_margaret_beckett
 			add_ideas = britain_ind_john_mcdonnell
 			add_ideas = britain_nsm_clive_lewis
+			if = {
+				limit = {
+					has_completed_focus = ENG_democratic_policies
+				}
+			add_ideas = britain_nsm_clive_lewis
+			}
+			else_if = {
+				add_ideas = britain_nsm_george_galloway
+			}
 		}
 		custom_effect_tooltip = britain_ilp_ministers_tooltip
 		add_modsoc_popularity = yes
@@ -5436,23 +5158,6 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_simon_hughes
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_sic_jo_cox
-			remove_ideas = britain_sic_angela_eagle
-			remove_ideas = britain_sic_ken_livingstone
-			remove_ideas = britain_fom_jeremy_browne
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_fom_keir_starmer
-			remove_ideas = britain_fom_margaret_beckett
-			remove_ideas = britain_ind_david_laws
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_ind_andy_burnham
-			remove_ideas = britain_ind_john_mcdonnell
-			remove_ideas = britain_nsm_nick_harvey
-			remove_ideas = britain_nsm_chris_leslie
-			remove_ideas = britain_nsm_peter_mandelson
-			remove_ideas = britain_nsm_clive_lewis
 			if = {
 				limit = {
 					has_country_leader = {
@@ -5461,7 +5166,7 @@ country_event = {
 				}
 			add_ideas = britain_sic_michael_gove
 			}
-			else = {
+			else_if = {
 				add_ideas = britain_sic_nigel_farage
 			}
 			add_ideas = britain_fom_damian_green
@@ -5482,23 +5187,6 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_nigel_farage
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_sic_jo_cox
-			remove_ideas = britain_sic_angela_eagle
-			remove_ideas = britain_sic_ken_livingstone
-			remove_ideas = britain_fom_damian_green
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_fom_keir_starmer
-			remove_ideas = britain_fom_margaret_beckett
-			remove_ideas = britain_ind_philip_hammond
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_ind_andy_burnham
-			remove_ideas = britain_ind_john_mcdonnell
-			remove_ideas = britain_nsm_amber_rudd
-			remove_ideas = britain_nsm_chris_leslie
-			remove_ideas = britain_nsm_peter_mandelson
-			remove_ideas = britain_nsm_clive_lewis
 			add_ideas = britain_sic_simon_hughes
 			add_ideas = britain_fom_jeremy_browne
 			add_ideas = britain_ind_david_laws
@@ -5518,23 +5206,6 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_nigel_farage
-			remove_ideas = britain_sic_simon_hughes
-			remove_ideas = britain_sic_jo_cox
-			remove_ideas = britain_sic_angela_eagle
-			remove_ideas = britain_sic_ken_livingstone
-			remove_ideas = britain_fom_damian_green
-			remove_ideas = britain_fom_jeremy_browne
-			remove_ideas = britain_fom_keir_starmer
-			remove_ideas = britain_fom_margaret_beckett
-			remove_ideas = britain_ind_philip_hammond
-			remove_ideas = britain_ind_david_laws
-			remove_ideas = britain_ind_andy_burnham
-			remove_ideas = britain_ind_john_mcdonnell
-			remove_ideas = britain_nsm_amber_rudd
-			remove_ideas = britain_nsm_nick_harvey
-			remove_ideas = britain_nsm_peter_mandelson
-			remove_ideas = britain_nsm_clive_lewis
 			add_ideas = britain_sic_gordon_brown
 			add_ideas = britain_fom_mike_gapes
 			add_ideas = britain_ind_kenneth_clarke
@@ -5554,22 +5225,6 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_nigel_farage
-			remove_ideas = britain_sic_simon_hughes
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_sic_ken_livingstone
-			remove_ideas = britain_fom_damian_green
-			remove_ideas = britain_fom_jeremy_browne
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_fom_margaret_beckett
-			remove_ideas = britain_ind_philip_hammond
-			remove_ideas = britain_ind_david_laws
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_ind_john_mcdonnell
-			remove_ideas = britain_nsm_amber_rudd
-			remove_ideas = britain_nsm_nick_harvey
-			remove_ideas = britain_nsm_chris_leslie
-			remove_ideas = britain_nsm_clive_lewis
 			if = {
 				limit = {
 					has_country_leader = {
@@ -5578,9 +5233,12 @@ country_event = {
 				}
 			add_ideas = britain_sic_angela_eagle
 			}
-			else = {
-				add_ideas = britain_sic_jo_cox
+			else_if = {
+				add_ideas = britain_sic_jon_cruddas
 			}
+			add_ideas = britain_fom_peter_hain
+			add_ideas = britain_ind_andy_burnham
+			add_ideas = britain_nsm_emily_thornberry
 		}
 		custom_effect_tooltip = britain_labour_ministers_tooltip
 		add_newdem_popularity = yes
@@ -5596,26 +5254,19 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_nigel_farage
-			remove_ideas = britain_sic_simon_hughes
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_sic_jo_cox
-			remove_ideas = britain_fom_damian_green
-			remove_ideas = britain_fom_jeremy_browne
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_fom_keir_starmer
-			remove_ideas = britain_ind_philip_hammond
-			remove_ideas = britain_ind_david_laws
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_ind_andy_burnham
-			remove_ideas = britain_nsm_amber_rudd
-			remove_ideas = britain_nsm_nick_harvey
-			remove_ideas = britain_nsm_chris_leslie
-			remove_ideas = britain_nsm_peter_mandelson
 			add_ideas = britain_sic_ken_livingstone 
 			add_ideas = britain_fom_margaret_beckett
 			add_ideas = britain_ind_john_mcdonnell
 			add_ideas = britain_nsm_clive_lewis
+			if = {
+				limit = {
+					has_completed_focus = ENG_democratic_policies
+				}
+			add_ideas = britain_nsm_clive_lewis
+			}
+			else_if = {
+				add_ideas = britain_nsm_george_galloway
+			}
 		}
 		custom_effect_tooltip = britain_ilp_ministers_tooltip
 		add_modsoc_popularity = yes
@@ -5654,23 +5305,6 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_simon_hughes
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_sic_jo_cox
-			remove_ideas = britain_sic_angela_eagle
-			remove_ideas = britain_sic_ken_livingstone
-			remove_ideas = britain_fom_jeremy_browne
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_fom_keir_starmer
-			remove_ideas = britain_fom_margaret_beckett
-			remove_ideas = britain_ind_david_laws
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_ind_andy_burnham
-			remove_ideas = britain_ind_john_mcdonnell
-			remove_ideas = britain_nsm_nick_harvey
-			remove_ideas = britain_nsm_chris_leslie
-			remove_ideas = britain_nsm_peter_mandelson
-			remove_ideas = britain_nsm_clive_lewis
 			if = {
 				limit = {
 					has_country_leader = {
@@ -5679,7 +5313,7 @@ country_event = {
 				}
 			add_ideas = britain_sic_michael_gove
 			}
-			else = {
+			else_if = {
 				add_ideas = britain_sic_nigel_farage
 			}
 			add_ideas = britain_fom_damian_green
@@ -5700,23 +5334,6 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_nigel_farage
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_sic_jo_cox
-			remove_ideas = britain_sic_angela_eagle
-			remove_ideas = britain_sic_ken_livingstone
-			remove_ideas = britain_fom_damian_green
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_fom_keir_starmer
-			remove_ideas = britain_fom_margaret_beckett
-			remove_ideas = britain_ind_philip_hammond
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_ind_andy_burnham
-			remove_ideas = britain_ind_john_mcdonnell
-			remove_ideas = britain_nsm_amber_rudd
-			remove_ideas = britain_nsm_chris_leslie
-			remove_ideas = britain_nsm_peter_mandelson
-			remove_ideas = britain_nsm_clive_lewis
 			add_ideas = britain_sic_simon_hughes
 			add_ideas = britain_fom_jeremy_browne
 			add_ideas = britain_ind_david_laws
@@ -5736,23 +5353,6 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_nigel_farage
-			remove_ideas = britain_sic_simon_hughes
-			remove_ideas = britain_sic_jo_cox
-			remove_ideas = britain_sic_angela_eagle
-			remove_ideas = britain_sic_ken_livingstone
-			remove_ideas = britain_fom_damian_green
-			remove_ideas = britain_fom_jeremy_browne
-			remove_ideas = britain_fom_keir_starmer
-			remove_ideas = britain_fom_margaret_beckett
-			remove_ideas = britain_ind_philip_hammond
-			remove_ideas = britain_ind_david_laws
-			remove_ideas = britain_ind_andy_burnham
-			remove_ideas = britain_ind_john_mcdonnell
-			remove_ideas = britain_nsm_amber_rudd
-			remove_ideas = britain_nsm_nick_harvey
-			remove_ideas = britain_nsm_peter_mandelson
-			remove_ideas = britain_nsm_clive_lewis
 			add_ideas = britain_sic_gordon_brown
 			add_ideas = britain_fom_mike_gapes
 			add_ideas = britain_ind_kenneth_clarke
@@ -5772,22 +5372,6 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_nigel_farage
-			remove_ideas = britain_sic_simon_hughes
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_sic_ken_livingstone
-			remove_ideas = britain_fom_damian_green
-			remove_ideas = britain_fom_jeremy_browne
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_fom_margaret_beckett
-			remove_ideas = britain_ind_philip_hammond
-			remove_ideas = britain_ind_david_laws
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_ind_john_mcdonnell
-			remove_ideas = britain_nsm_amber_rudd
-			remove_ideas = britain_nsm_nick_harvey
-			remove_ideas = britain_nsm_chris_leslie
-			remove_ideas = britain_nsm_clive_lewis
 			if = {
 				limit = {
 					has_country_leader = {
@@ -5796,9 +5380,12 @@ country_event = {
 				}
 			add_ideas = britain_sic_angela_eagle
 			}
-			else = {
-				add_ideas = britain_sic_jo_cox
+			else_if = {
+				add_ideas = britain_sic_jon_cruddas
 			}
+			add_ideas = britain_fom_peter_hain
+			add_ideas = britain_ind_andy_burnham
+			add_ideas = britain_nsm_emily_thornberry
 		}
 		custom_effect_tooltip = britain_labour_ministers_tooltip
 		add_newdem_popularity = yes
@@ -5814,26 +5401,19 @@ country_event = {
 	        elections_allowed = no
         }
 		hidden_effect = {
-			remove_ideas = britain_sic_nigel_farage
-			remove_ideas = britain_sic_simon_hughes
-			remove_ideas = britain_sic_gordon_brown
-			remove_ideas = britain_sic_jo_cox
-			remove_ideas = britain_fom_damian_green
-			remove_ideas = britain_fom_jeremy_browne
-			remove_ideas = britain_fom_mike_gapes
-			remove_ideas = britain_fom_keir_starmer
-			remove_ideas = britain_ind_philip_hammond
-			remove_ideas = britain_ind_david_laws
-			remove_ideas = britain_ind_kenneth_clarke
-			remove_ideas = britain_ind_andy_burnham
-			remove_ideas = britain_nsm_amber_rudd
-			remove_ideas = britain_nsm_nick_harvey
-			remove_ideas = britain_nsm_chris_leslie
-			remove_ideas = britain_nsm_peter_mandelson
 			add_ideas = britain_sic_ken_livingstone 
 			add_ideas = britain_fom_margaret_beckett
 			add_ideas = britain_ind_john_mcdonnell
 			add_ideas = britain_nsm_clive_lewis
+			if = {
+				limit = {
+					has_completed_focus = ENG_democratic_policies
+				}
+			add_ideas = britain_nsm_clive_lewis
+			}
+			else_if = {
+				add_ideas = britain_nsm_george_galloway
+			}
 		}
 		custom_effect_tooltip = britain_ilp_ministers_tooltip
 		add_modsoc_popularity = yes
@@ -5971,8 +5551,13 @@ country_event = {
 	
 	option = {   #George Osborne
 		name = britain.176.o1
-		ENG_george_osborne = {
-			promote_character = progressive_conservative
+		add_country_leader_role = {
+			character = ENG_george_osborne
+			promote_leader = yes
+			country_leader = {
+				ideology = progressive_conservative
+				expire = "2030.1.1.1"
+			}
 		}
 		ai_chance = {
 			factor = 15
@@ -6460,19 +6045,6 @@ country_event = {
 	
 	option = {
 		name = britain.189.o1
-		hidden_effect = {
-			every_country = {
-		        limit = {
-			        NOT = {
-				        tag = ENG
-				    }
-			    }
-			    news_event = {
-			        hours = 4
-			        id = news.150
-		        }
-		    }
-		}
 	}
 }
 
@@ -7293,19 +6865,7 @@ country_event = {
 	is_triggered_only = yes
 	
 	option = {
-		if = {
-		    limit = {
-			    ENG = {
-					is_in_faction = yes
-				}
-			}
-			ENG = {
-				leave_faction = yes
-			}
-		}
-		PRC = {
-			add_to_faction = ENG
-		}
+		add_political_power = 50
 	}
 }
 
@@ -7392,15 +6952,15 @@ country_event = {
 	fire_only_once = yes
 	
 	trigger = {
-	has_completed_focus = ENG_execute_them
-	OR = {
-	has_government = monarchist
-	has_government = national_conservative
-	has_government = centrist
-	has_government = liberal
-	has_government = new_democrat
-	}
-	has_country_flag = ENG_andrew
+		has_completed_focus = ENG_execute_them
+		OR = {
+			has_government = monarchist
+			has_government = national_conservative
+			has_government = centrist
+			has_government = liberal
+			has_government = new_democrat
+		}
+		has_country_flag = ENG_andrew
 	}
 	
 	option = {
@@ -7425,15 +6985,15 @@ country_event = {
 	fire_only_once = yes
 	
 	trigger = {
-	has_completed_focus = ENG_execute_them
-	OR = {
-	has_government = monarchist
-	has_government = national_conservative
-	has_government = centrist
-	has_government = liberal
-	has_government = new_democrat
-	}
-	has_country_flag = ENG_edward
+		has_completed_focus = ENG_execute_them
+		OR = {
+			has_government = monarchist
+			has_government = national_conservative
+			has_government = centrist
+			has_government = liberal
+			has_government = new_democrat
+		}
+		has_country_flag = ENG_edward
 	}
 	
 	option = {
@@ -7467,6 +7027,15 @@ country_event = {
 			NOT = {
 				has_war_with = ROOT
 			}
+		}
+		NOT = {
+			is_puppet_of = CAT
+		}
+		NOT = {
+			is_puppet_of = SPR
+		}
+		NOT = {
+			is_puppet_of = SPN
 		}
 	}
 	mean_time_to_happen = {
@@ -8852,8 +8421,11 @@ country_event = { #McDonnell election part 2
 		}
 		ENG_jeremy_corbyn = {
 			promote_character = orthodox_leninist
-			set_portraits = {
-				civilian = { large = "gfx/leaders/ENG/Portrait_ENG_Jeremy_Corbyn_Revsoc.dds" }
+		}
+		set_portraits = {
+			character = ENG_jeremy_corbyn
+			civilian = {
+				large="gfx/leaders/ENG/Portrait_ENG_Jeremy_Corbyn_Revsoc.dds"
 			}
 		}
 		add_popularity = {
@@ -9282,6 +8854,7 @@ country_event = { #George Galloway Secures Control over Party
 		}
 		add_ideas = britain_fom_arshad_ali
 		add_ideas = britain_ind_paul_cockshott
+		add_ideas = britain_nsm_keir_starmer
 		hidden_effect = {
 		    ENG = {
 		        country_event = { days = 35 id = britain.277 } 
@@ -10250,7 +9823,7 @@ country_event = { #Canada Refuses
 	}
   }
   
-country_event = { #LANCE project
+  country_event = { #LANCE project
 	id = britain.1001
 	title = britain.1001.t
 	desc = britain.1001.d

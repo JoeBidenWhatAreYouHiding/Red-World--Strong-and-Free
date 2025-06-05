@@ -1902,7 +1902,13 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			country_event = rw_canada.71
+			if = {
+				limit = { NOT = { has_global_flag = CUB_cruz_is_in_cuba } }
+				country_event = rw_canada.71
+			}
+			else = {
+				country_event = rw_canada.231
+			}
 			add_popularity = {
 				ideology = national_conservative
 				popularity = 0.05
@@ -8881,7 +8887,15 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_court_neo_nationalists
-		icon = GFX_goal_CAN_court_neo_nationalists
+		icon = {
+			value = GFX_goal_CAN_court_neo_nationalists_alt
+			trigger = {
+				has_global_flag = CUB_cruz_is_in_cuba
+			}
+		}
+		icon = {
+			value = GFX_goal_CAN_court_neo_nationalists
+		}
 		cost = 6
 		
 		prerequisite = {
@@ -8913,7 +8927,13 @@ focus_tree = {
 				remove_idea = CAN_nationalist_policies
 				add_idea = CAN_nationalist_policies2
 			}
-			country_event = rw_canada.151
+			if = {
+				limit = { NOT = { has_global_flag = CUB_cruz_is_in_cuba } }
+				country_event = rw_canada.151
+			}
+			else = {
+				country_event = rw_canada.232
+			}
 		}
 	}
 
@@ -11879,7 +11899,10 @@ focus_tree = {
 				idea = CAN_right_wing_purge
 				days = 2200
 			}
-			country_event = rw_canada.195
+			if = {
+				limit = { NOT = { has_global_flag = CUB_cruz_is_in_cuba } }
+				country_event = rw_canada.195
+			}
 		}
 	}
  
@@ -19311,12 +19334,11 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			PAN = {
-				transfer_state = 685
-				add_political_power = 50
+			diplomatic_relation = {
+				country = PAN
+				relation = guarantee
+				active = yes
 			}
-			add_to_faction = PAN
-			add_political_power = 50
 		}
 	}	
 	
@@ -19344,9 +19366,9 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			add_political_power = -100
-			add_stability = -0.06
-			CAN_subtract_3_percent_popularity = yes
+			PAN = {
+				country_event = canada_diplo.70
+			}
 			CEA = {
 				add_opinion_modifier = {
 					target = PAN
@@ -19377,7 +19399,6 @@ focus_tree = {
 					modifier = kept_canal_PAN
 				}
 			}
-			add_state_core = 685
 		}
 	}	
 		
@@ -19395,7 +19416,12 @@ focus_tree = {
 		y = 2
 
 		available = {
-			
+			CEA = {
+				OR = {
+					has_government = revolutionary_socialist
+					has_government = communist
+				}
+			}
 		}
 
 		available_if_capitulated = yes
@@ -19439,7 +19465,31 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_take_down_ortega
-		icon = GFX_goal_CAN_take_down_ortega
+		icon = {
+			value = GFX_goal_CAN_take_down_bukele
+			trigger = {
+				CEA = {
+					has_country_leader = {
+						name = "Nayib Bukele"
+						ruling_only = yes 
+					}
+				}
+			}
+		}
+		icon = {
+			value = GFX_goal_CAN_take_down_ortega_brother
+			trigger = {
+				CEA = {
+					has_country_leader = {
+						name = "Humberto Ortega"
+						ruling_only = yes 
+					}
+				}
+			}
+		}
+		icon = {
+			value = GFX_goal_CAN_take_down_ortega
+		}
 		cost = 4
 		
 		prerequisite = {

@@ -970,6 +970,10 @@ country_event = {
 				days = 40
 				random_days = 20
 			}
+			country_event = {
+				id = rw_canada.54
+				days = 9
+			}
 		}
 		add_to_variable = {
 		   var = CAN_alberta_tension
@@ -1088,6 +1092,10 @@ country_event = {
 				days = 40
 				random_days = 20
 			}
+			country_event = {
+				id = rw_canada.54
+				days = 9
+			}
 		}
 	}
 	
@@ -1146,6 +1154,10 @@ country_event = {
 						hours = 4
 						id = rw_canada_news.3
 					}
+				}
+				country_event = {
+					id = rw_canada.54
+					days = 9
 				}
 			}
 		}
@@ -2142,17 +2154,6 @@ country_event = {
 			ideology = national_conservative
 			popularity = 0.05
 		}
-		if = {
-			limit = {
-				fascist < 0.1
-			}
-			hidden_effect = {
-				country_event = {
-					id = rw_canada.54
-					days = 124
-				}
-			}
-		}
 	}
 }
 
@@ -2201,6 +2202,13 @@ country_event = {
 	
 	option = {
 		name = rw_canada.54.o1
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 50
+				CUB = { is_ai = no }
+			}
+		}
 		add_political_power = 10
 		add_popularity = {
 			ideology = fascist 
@@ -2209,13 +2217,25 @@ country_event = {
 		hidden_effect = {
 			country_event = {
 				id = rw_canada.55
-				days = 34
+				days = 2
 			}
+		}
+	}
+	
+	option = {
+		name = rw_canada.54.o2
+		ai_chance = {
+			factor = 50
+		}
+		add_stability = 0.02
+		add_popularity = {
+			ideology = fascist 
+			popularity = 0.02
 		}
 	}
 }
 
-#CA Folds
+#Cruz Flees to Cuba
 country_event = {
 	id = rw_canada.55
 	title = rw_canada.55.t
@@ -2227,16 +2247,20 @@ country_event = {
 	
 	option = {
 		name = rw_canada.55.o1
-		add_political_power = 10
-		add_popularity = {
-			ideology = fascist 
-			popularity = -0.1
+		CAN_rafael_edward_cruz = {
+			remove_country_leader_role = { ideology = fascist_reform_populism }
+			hidden_effect = {
+				set_nationality = CUB
+			}
 		}
-		set_party_name = {
-			long_name = CAN_fascists_party
-			name = CAN_fascists_party_long_long
+		set_global_flag = CUB_cruz_is_in_cuba
+		CUB = {
+			set_country_flag = CUB_cruz_arrives
 		}
-		clr_country_flag = canadian_alliance_exists
+		set_country_flag = CAN_alliance_leader_is_not_cruz
+		CAN_brian_jean = {
+			promote_character = fascist_reform_populism
+		}
 	}
 }
 
@@ -8973,6 +8997,151 @@ country_event = { #I'm a pimp, you're a nerd
 	}
 }
 
+#Harper Attacks Cruz
+country_event = {
+	id = rw_canada.231
+	title = rw_canada.231.t
+	desc = {
+		text = rw_canada.231.d_pm
+		trigger = {
+			has_country_leader = { name = "Stephen Harper" ruling_only = yes }
+		}
+	}
+	desc = {
+		text = rw_canada.231.d_deputy_pm
+		trigger = {
+			NOT = { has_country_leader = { name = "Stephen Harper" ruling_only = yes } }
+		}
+	}
+	picture = jean_and_harper
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.231.o1
+		add_popularity = {
+			ideology = nationalist
+			popularity = -0.05
+		}
+	}
+}
+
+#Approach Jean
+country_event = {
+	id = rw_canada.232
+	title = rw_canada.232.t
+	desc = rw_canada.232.d
+	picture = approach_brian_jean
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Merger
+		name = rw_canada.232.o1
+		set_country_flag = CAN_jean_merger
+		hidden_effect = {
+			random_list = {
+				50 = { country_event = { id = rw_canada.234 days = 1 }  } #Jean Accepts
+				50 = { country_event = { id = rw_canada.233 days = 1 }  } #Jean Refuses
+			}
+		}
+	}
+	
+	option = { #Supply/Confidence
+		name = rw_canada.232.o2
+		set_country_flag = CAN_jean_supplyconfidence
+		hidden_effect = {
+			random_list = {
+				50 = { country_event = { id = rw_canada.234 days = 1 }  } #Jean Accepts
+				50 = { country_event = { id = rw_canada.233 days = 1 }  } #Jean Refuses
+			}
+		}
+	}
+	
+	option = { #Screw him
+		name = rw_canada.232.o3
+		add_political_power = 50
+		add_stability = 0.02
+	}
+}
+
+#Jean Refuses
+country_event = {
+	id = rw_canada.233
+	title = rw_canada.233.t
+	desc = {
+		text = rw_canada.233.d_merger
+		trigger = { has_country_flag = CAN_jean_merger }
+	}
+	desc = {
+		text = rw_canada.233.d_supplyconfidence
+		trigger = { has_country_flag = CAN_jean_supplyconfidence }
+	}
+	picture = jean_refuses
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.233.o1
+		add_political_power = -60
+		add_popularity = {
+			ideology = nationalist
+			popularity = -0.02
+		}
+	}
+}
+
+#Jean Accepts
+country_event = {
+	id = rw_canada.234
+	title = rw_canada.234.t
+	desc = {
+		text = rw_canada.234.d_merger
+		trigger = { has_country_flag = CAN_jean_merger }
+	}
+	desc = {
+		text = rw_canada.153.d_supplyconfidence
+		trigger = { has_country_flag = CAN_jean_supplyconfidence }
+	}
+	picture = jean_accepts
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rw_canada.234.o1
+		trigger = {
+			has_country_flag = CAN_cruz_merger
+		}
+		set_party_name = {
+			long_name = CAN_cruz_pc_party_long
+			name = CAN_cruz_pc_party
+			ideology = fascist
+		}
+		add_ideas = canada_sic_brian_jean
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.02
+		}
+		add_fash_to_coalition = yes
+	}
+	
+	option = {
+		name = rw_canada.234.o1
+		trigger = {
+			has_country_flag = CAN_cruz_supplyconfidence
+		}
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.02
+		}
+		add_fash_to_coalition = yes
+	}
+}
+
+
 ### 2019 Elections Stuff ###
 
 #Liberal Primarty
@@ -14051,6 +14220,75 @@ country_event = {
 		name = canada_diplo.69.o1
 		add_war_support = 0.05
 		add_manpower = 1100
+	}
+}
+
+#Canada Demands Canal
+country_event = {
+	id = canada_diplo.70
+	title = canada_diplo.70.t
+	desc = canada_diplo.70.d
+	picture = battle_for_the_canal
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Sounds Promising
+		name = canada_diplo.70.o1
+		CAN = { 
+			country_event = canada_diplo.71 
+			change_tag_from = ROOT
+		}
+	}
+	
+	option = { #No
+		name = canada_diplo.70.o2
+		CAN = { country_event = canada_diplo.71 }
+	}
+}
+
+#Panama Accepts
+country_event = {
+	id = canada_diplo.67
+	title = canada_diplo.67.t
+	desc = canada_diplo.67.d
+	picture = battle_for_the_canal
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Excellent
+		name = canada_diplo.67.o1
+		transfer_state = 685
+
+	}
+}
+
+#Panama Refuses
+country_event = {
+	id = canada_diplo.71
+	title = canada_diplo.71.t
+	desc = canada_diplo.71.d
+	picture = battle_for_the_canal
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Eh fuck it
+		name = canada_diplo.71.o1
+		add_political_power = -10
+	}
+	
+	option = { #We shall take the Canal by Force
+		name = canada_diplo.71.o2
+		declare_war_on = {
+			type = annex_everything
+			target = PAN
+		}
+		add_state_claim  = 685
 	}
 }
 
