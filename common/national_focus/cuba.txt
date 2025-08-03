@@ -1971,7 +1971,43 @@ focus_tree = {
 	
 	focus = {
 		id = CUB_raise_antillean_flag
-		icon = CUB_raise_antillean_flag
+		icon = {
+			trigger = {
+				OR = {
+					has_government = communist
+					has_government = national_bolshevik
+				}
+			}
+			value = CUB_raise_antillean_flag
+		}
+		icon = {
+			trigger = {
+				OR = {
+					has_government = new_democrat
+					has_government = liberal
+					has_government = centrist
+					has_government = moderate_socialist
+					has_government = national_conservative
+					has_government = nationalist
+					has_country_leader_ideology = national_populist
+				}
+			}
+			value = CUB_raise_antiliberal_flag
+		}
+		icon = {
+			trigger = {
+				OR = {
+					AND = {
+						has_government = fascist
+						NOT = {
+							has_country_leader_ideology = national_populist
+						}
+					}
+				}
+			}
+			value = CUB_raise_antillean_fascist
+		}
+		dynamic = yes
 		cost = 4
 		available = {
 			OR = {
@@ -3479,7 +3515,37 @@ focus_tree = {
 	
 	focus = {
 		id = CUB_set_up_supply_lines_to_libya
-		icon = CUB_set_up_supply_lines_to_libya
+		icon = {
+			trigger = {
+				OR = {
+					has_government = communist
+					has_government = moderate_socialist
+					has_government = national_bolshevik
+				}
+			}
+			value = CUB_set_up_supply_lines_to_libya
+		}
+		icon = {
+			trigger = {
+				OR = {
+					has_government = new_democrat
+					has_government = liberal
+					has_government = centrist
+				}
+			}
+			value = CUB_set_up_supply_lines_to_liberalya
+		}
+		icon = {
+			trigger = {
+				OR = {
+					has_government = national_conservative
+					has_government = nationalist
+					has_government = fascist
+				}
+			}
+			value = CUB_set_up_supply_lines_to_libya_fascist
+		}
+		dynamic = yes
 		cost = 4
 		available = {
 			OR = {
@@ -5456,6 +5522,12 @@ focus_tree = {
 				NOT = {
 					has_completed_focus = CUB_democratic_restoration
 				}
+				NOT = {
+					has_completed_focus = CUB_fidel_returns
+				}
+				NOT = {
+					has_completed_focus = CUB_the_exiles_return
+				}
 			}
 		}
 		x = 23
@@ -6157,6 +6229,12 @@ focus_tree = {
 				}
 				NOT = {
 					has_completed_focus = CUB_irrevocability_of_socialism
+				}
+				NOT = {
+					has_completed_focus = CUB_fidel_returns
+				}
+				NOT = {
+					has_completed_focus = CUB_the_exiles_return
 				}
 			}
 		}
@@ -9003,7 +9081,22 @@ focus_tree = {
 			}
 		}
 		allow_branch = {
-			has_country_flag = cuba_fidel_realisation
+		if = {
+				limit = {
+					has_game_rule = {
+						rule = obsolete_focus_branches_visibility
+						option = HIDE
+					}
+				}
+				has_country_flag = cuba_fidel_realisation
+				NOT = {
+					has_completed_focus = CUB_the_new_constitution
+				}
+				NOT = {
+					has_completed_focus = CUB_the_exiles_return
+				}
+			}
+		has_country_flag = cuba_fidel_realisation
 		}
 		prerequisite = {
 			focus = CUB_avenge_raul
@@ -9027,9 +9120,6 @@ focus_tree = {
 				name = "Fidel Castro"
 				ruling_only = yes
 			}
-		}
-		allow_branch = {
-			has_country_flag = cuba_fidel_realisation
 		}
 		prerequisite = {
 			focus = CUB_rectify_the_great_injustices
@@ -9076,9 +9166,6 @@ focus_tree = {
 				ruling_only = yes
 			}
 		}
-		allow_branch = {
-			has_country_flag = cuba_fidel_realisation
-		}
 		prerequisite = {
 			focus = CUB_reconcile_with_the_church
 		}
@@ -9119,9 +9206,6 @@ focus_tree = {
 				name = "Fidel Castro"
 				ruling_only = yes
 			}
-		}
-		allow_branch = {
-			has_country_flag = cuba_fidel_realisation
 		}
 		prerequisite = {
 			focus = CUB_rectify_the_great_injustices
@@ -9167,9 +9251,6 @@ focus_tree = {
 				ruling_only = yes
 			}
 		}
-		allow_branch = {
-			has_country_flag = cuba_fidel_realisation
-		}
 		prerequisite = {
 			focus = CUB_rectify_the_great_injustices
 		}
@@ -9214,9 +9295,6 @@ focus_tree = {
 				ruling_only = yes
 			}
 		}
-		allow_branch = {
-			has_country_flag = cuba_fidel_realisation
-		}
 		prerequisite = {
 			focus = CUB_apologise_to_the_LGBTQ_community
 		}
@@ -9253,9 +9331,6 @@ focus_tree = {
 				ruling_only = yes
 			}
 		}
-		allow_branch = {
-			has_country_flag = cuba_fidel_realisation
-		}
 		prerequisite = {
 			focus = CUB_rectify_the_great_injustices
 		}
@@ -9279,9 +9354,6 @@ focus_tree = {
 				name = "Fidel Castro"
 				ruling_only = yes
 			}
-		}
-		allow_branch = {
-			has_country_flag = cuba_fidel_realisation
 		}
 		prerequisite = {
 			focus = CUB_meet_with_cuban_federation_of_women
@@ -9312,9 +9384,6 @@ focus_tree = {
 				name = "Fidel Castro"
 				ruling_only = yes
 			}
-		}
-		allow_branch = {
-			has_country_flag = cuba_fidel_realisation
 		}
 		prerequisite = {
 			focus = CUB_form_a_broad_progressive_alliance
@@ -9348,9 +9417,6 @@ focus_tree = {
 				ruling_only = yes
 			}
 		}
-		allow_branch = {
-			has_country_flag = cuba_fidel_realisation
-		}
 		prerequisite = {
 			focus = CUB_reverse_the_movement
 		}
@@ -9374,9 +9440,6 @@ focus_tree = {
 				name = "Fidel Castro"
 				ruling_only = yes
 			}
-		}
-		allow_branch = {
-			has_country_flag = cuba_fidel_realisation
 		}
 		prerequisite = {
 			focus = CUB_reverse_the_movement
@@ -9407,9 +9470,6 @@ focus_tree = {
 				ruling_only = yes
 			}
 		}
-		allow_branch = {
-			has_country_flag = cuba_fidel_realisation
-		}
 		prerequisite = {
 			focus = CUB_return_state_farms_to_campesinos
 		}
@@ -9430,9 +9490,6 @@ focus_tree = {
 				name = "Fidel Castro"
 				ruling_only = yes
 			}
-		}
-		allow_branch = {
-			has_country_flag = cuba_fidel_realisation
 		}
 		prerequisite = {
 			focus = CUB_return_state_farms_to_campesinos
@@ -9466,9 +9523,6 @@ focus_tree = {
 				ruling_only = yes
 			}
 		}
-		allow_branch = {
-			has_country_flag = cuba_fidel_realisation
-		}
 		prerequisite = {
 			focus = CUB_launch_war_against_waste
 		}
@@ -9501,9 +9555,6 @@ focus_tree = {
 				ruling_only = yes
 			}
 		}
-		allow_branch = {
-			has_country_flag = cuba_fidel_realisation
-		}
 		prerequisite = {
 			focus = CUB_reverse_the_movement
 		}
@@ -9534,9 +9585,6 @@ focus_tree = {
 				name = "Fidel Castro"
 				ruling_only = yes
 			}
-		}
-		allow_branch = {
-			has_country_flag = cuba_fidel_realisation
 		}
 		prerequisite = {
 			focus = CUB_the_empire_is_gone
@@ -9569,9 +9617,6 @@ focus_tree = {
 				name = "Fidel Castro"
 				ruling_only = yes
 			}
-		}
-		allow_branch = {
-			has_country_flag = cuba_fidel_realisation
 		}
 		prerequisite = {
 			focus = CUB_remind_the_military_of_their_purpose
@@ -10655,9 +10700,6 @@ focus_tree = {
 				ruling_only = yes
 			}
 		}
-		allow_branch = {
-			has_country_flag = cuba_fidel_realisation
-		}
 		prerequisite = {
 			focus = CUB_the_empire_is_gone
 		}
@@ -10683,9 +10725,6 @@ focus_tree = {
 				name = "Fidel Castro"
 				ruling_only = yes
 			}
-		}
-		allow_branch = {
-			has_country_flag = cuba_fidel_realisation
 		}
 		prerequisite = {
 			focus = CUB_transform_the_cdrs
@@ -10719,9 +10758,6 @@ focus_tree = {
 				ruling_only = yes
 			}
 		}
-		allow_branch = {
-			has_country_flag = cuba_fidel_realisation
-		}
 		prerequisite = {
 			focus = CUB_red_ecology
 		}
@@ -10750,9 +10786,6 @@ focus_tree = {
 				ruling_only = yes
 			}
 		}
-		allow_branch = {
-			has_country_flag = cuba_fidel_realisation
-		}
 		prerequisite = {
 			focus = CUB_red_ecology
 		}
@@ -10780,9 +10813,6 @@ focus_tree = {
 				name = "Fidel Castro"
 				ruling_only = yes
 			}
-		}
-		allow_branch = {
-			has_country_flag = cuba_fidel_realisation
 		}
 		prerequisite = {
 			focus = CUB_affirm_our_non_partisan_democracy
@@ -17334,7 +17364,7 @@ focus_tree = {
 	
 	focus = {
 		id = CUB_end_corporate_stranglehold
-		icon = dissolve_bank_icon
+		icon = GFX_goal_dissolve_bank_icon
 		cost = 6
 		available = {
 		}
@@ -17372,7 +17402,7 @@ focus_tree = {
 	
 	focus = {
 		id = CUB_expel_the_american_mobsters
-		icon = Crackdown_on_Organized_Crime
+		icon = GFX_goal_Crackdown_on_Organized_Crime
 		cost = 6
 		available = {
 		}
@@ -17404,7 +17434,18 @@ focus_tree = {
 				ideology = new_democrat
 				popularity = 0.07
 			}
-			remove_ideas = idea_CUB_honest_american_business_deals_2
+			if = {
+				limit = {
+					has_idea = idea_CUB_honest_american_business_deals
+				}
+				remove_ideas = idea_CUB_honest_american_business_deals
+			}
+			if = {
+				limit = {
+					has_idea = idea_CUB_honest_american_business_deals_2
+				}
+				remove_ideas = idea_CUB_honest_american_business_deals_2
+			}
 			if = {
 				limit = {
 					has_idea = idea_CUB_mafia_influence
@@ -17500,7 +17541,7 @@ focus_tree = {
 	
 	focus = {
 		id = CUB_abolish_the_repressive_regime
-		icon = human_rights
+		icon = GFX_goal_human_rights
 		cost = 6
 		available = {
 		}
@@ -17628,7 +17669,7 @@ focus_tree = {
 	
 	focus = {
 		id = CUB_further_our_welfare_guarantees
-		icon = Welfare_State
+		icon = GFX_goal_Welfare_State
 		cost = 6
 		available = {
 		}

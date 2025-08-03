@@ -2956,6 +2956,7 @@ country_event = { #Hunting Down El Cabro
 		   var = cuba_fidel_stress_variable
 		   value = 1
 		}
+		custom_effect_tooltip = fidel_stress_tooltip
 		ai_chance = {
 			base = 50
 			modifier = {
@@ -3021,6 +3022,7 @@ country_event = { #Mass-Mobilisation for Counter-Terrorist Operations
 		   var = cuba_fidel_stress_variable
 		   value = 1
 		}
+		custom_effect_tooltip = fidel_stress_tooltip
 		hidden_effect = {
 			USA = {
 				country_event = {
@@ -3182,6 +3184,7 @@ country_event = { #Our Domestic Counterrevolution
 		   var = cuba_fidel_stress_variable
 		   value = 1
 		}
+		custom_effect_tooltip = fidel_stress_tooltip
 		hidden_effect = {
 			add_popularity = {
 				ideology = nationalist
@@ -3861,6 +3864,15 @@ country_event = { #Operation Venganza Begins
 		}
 		custom_effect_tooltip = cuba_secret_operation_venganza_tooltip
 		hidden_effect = {
+		every_state = {
+		limit = {
+		is_owned_by = USA
+		}
+		add_dynamic_modifier = {
+		modifier = fallout_atomic
+		days = 365
+		}
+	}
 			launch_nuke = {
 				province = 1843
 				controller = USA
@@ -7920,6 +7932,14 @@ country_event = { #2016 General Election - Roca Gone Wild
 			add_ideas = cuba_nsm_hilda_molina
 			add_ideas = cuba_inm_alejandro_gonzales_rega
 		}
+		hidden_effect = {
+			if = {
+				limit = {
+					has_completed_focus = CUB_raise_antillean_flag
+				}
+				set_cosmetic_tag = CUB_antillean_federation_voz
+			}
+		}
 		ai_chance = {
 			factor = 40
 		}
@@ -9700,7 +9720,7 @@ country_event = { #Fund for Small Businesses Established
 	is_triggered_only = yes
 	
 	option = {
-		name = cuba.273
+		name = cuba.273.o1
 		add_political_power = -15
 		add_popularity = {
 			ideology = communist
@@ -12529,11 +12549,11 @@ country_event = { #[ROOT.GetLeader] Visits Jamaica
 				}
 				JAM = {
 					add_popularity = {
-						ideology = new_democrat
+						ideology = moderate_socialist
 						popularity = 0.20
 					}
 					set_politics = {
-						ruling_party = new_democrat
+						ruling_party = moderate_socialist
 						elections_allowed = no
 					}
 				}
@@ -12935,7 +12955,20 @@ country_event = { #The Antillean Federation is Formed
 	
 	option = {
 		name = cuba.382.o1
-		set_cosmetic_tag = CUB_antillean_federation
+		if = {
+			limit = {
+				NOT = {
+					has_country_leader_ideology = national_populist
+				}
+			}
+			set_cosmetic_tag = CUB_antillean_federation
+		}
+		if = {
+			limit = {
+				has_country_leader_ideology = national_populist
+			}
+			set_cosmetic_tag = CUB_antillean_federation_voz
+		}
 		set_capital = { state = 920 }
 		every_state = {
 			limit = {
@@ -16432,6 +16465,14 @@ country_event = { #2021 General Election - Roca Gone Wild
 			add_ideas = cuba_ind_rene_bolio
 			add_ideas = cuba_nsm_hilda_molina
 			add_ideas = cuba_inm_alejandro_gonzales_rega
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					has_completed_focus = CUB_raise_antillean_flag
+				}
+				set_cosmetic_tag = CUB_antillean_federation_voz
+			}
 		}
 		ai_chance = {
 			factor = 50

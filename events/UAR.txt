@@ -527,13 +527,51 @@ country_event = {
 				factor = 0
 			}
 		}
+		every_state = {
+		limit = {
+		is_core_of = SYR
+		}
+		remove_core_of = UAR
+		}
+		every_state = {
+		limit = {
+		is_core_of = SYR
+		}
+		add_claim_by = UAR
+		}
 		add_political_power = 150
 		UAR = {
-		    declare_war_on = { target = SYR type = annex_everything }
+		declare_war_on = { target = SYR type = annex_everything }
+		}
+		UAR = {
+			set_state_owner = 677
+			set_state_controller = 677
+			add_ideas = idea_uar_civil_war
+		}
+		677 = {
+		set_resistance = 70
+		set_compliance = 20
+		start_resistance = yes
 		}
 		hidden_effect = {
 		    UAR = {
-			    load_oob = UAR_syrian_war
+			    if = {
+					limit = {
+						NOT = {
+							has_dlc = "No Step Back"
+						}
+					}
+					load_oob = "UAR_syrian_war"
+				}
+				if = {
+					limit = {
+						has_dlc = "No Step Back"
+					}
+					load_oob = "UAR_syrian_war_nsb"
+				}
+			}
+			SYR = {
+			add_ideas = idea_uar_civil_war
 			}
 		}
 		set_country_flag = sharaf_invaded_syria

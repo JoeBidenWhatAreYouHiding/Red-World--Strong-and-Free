@@ -6601,7 +6601,7 @@ country_event = { #learn from France's mistakes part 3
 	id = spain.70
 	title = spain.70.t
 	desc = spain.70.d
-	picture = spr_commie_new_economy_plan_pays_off
+	picture = spr_commie_miracle
 
 	is_triggered_only = yes
 	fire_only_once = yes
@@ -6617,6 +6617,7 @@ country_event = {
 	id = spain.73
 	title = spain.73.t
 	desc = spain.73.d
+	
 	picture = spr_far_left_calls_for_general_strike
 
 	fire_only_once = yes
@@ -23336,7 +23337,12 @@ country_event = {
 	option = { #they join spanish confederation
 		name = spain_diplo.194.o2
 		trigger = {
-			has_cosmetic_tag = SPR_confederate
+			OR = {
+				has_cosmetic_tag = SPR_confederate
+				has_cosmetic_tag = SPR_confederate_wreath
+				has_cosmetic_tag = SPR_confederal_iberia
+				has_cosmetic_tag = SPR_confederal_iberia_wreath
+			}
 		}
 		WSA = {
 			set_cosmetic_tag = WSA_conf
@@ -29759,10 +29765,13 @@ country_event = {
 	picture = spr_frutos_fucking_dies
 
 	trigger = {
-		has_completed_focus = stalinist_committee_elects_frutos
-		has_government = communist
+		has_country_leader = {
+			name = "Francisco Frutos"
+			ruling_only = yes
+		}
 		date > 2020.6.6
 	}
+
 	mean_time_to_happen = {
 		days = 30
 	}

@@ -151,7 +151,7 @@ country_event = { #War begins here
 		    declare_war_on = { target = NAM type = annex_everything }
 			set_cosmetic_tag = SWP_civil_war
 			load_oob = SWP_2000
-			add_ideas = idea_nam_civil_war
+			add_ideas = idea_nam_civil_war_swp
 		}
 		NAM = {
 		add_ideas = idea_nam_civil_war
@@ -173,13 +173,13 @@ country_event = { #War begins here
 		    }
 		}
 		hidden_effect = {
-		ANG = {
-		country_event = { id = namibia_war.4 days = 1 }
-		}
-		SWP = {
-			    NAM = { transfer_technology = yes }
-		989  = {
-		add_core_of = SWP
+			ANG = {
+				country_event = { id = namibia_war.4 days = 1 }
+			}
+			SWP = {
+					NAM = { transfer_technology = yes }
+			989  = {
+					add_core_of = SWP
 				}
 		    }
 		    every_state = {
@@ -187,6 +187,26 @@ country_event = { #War begins here
 				    is_core_of = NAM
 				}
 				add_core_of = SWP
+			}
+		}
+		hidden_effect = {
+			set_party_name = {
+				ideology = communist
+				long_name = "South West Africa National Union"
+				name = "SWANU"
+			}
+			NAM_usutuaije_maamberua = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						ideology = marxist_leninist_maoist
+						expire="1.1.1.1"
+					}
+				}
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = -0.3
 			}
 		}
 	}
@@ -243,6 +263,26 @@ country_event = { #War begins here
 				add_core_of = SWP
 			}
 		}
+		hidden_effect = {
+			set_party_name = {
+				ideology = communist
+				long_name = "South West Africa National Union"
+				name = "SWANU"
+			}
+			NAM_usutuaije_maamberua = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						ideology = marxist_leninist_maoist
+						expire="1.1.1.1"
+					}
+				}
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = -0.3
+			}
+		}
 	}
 }
 
@@ -283,11 +323,16 @@ country_event = { #they agree
 	
 	option = { #yay
 		name = namibia_war.5.o1
-		create_faction = "Southwestern Liberation Front"
-		SWP = { add_to_faction = ANG }
+		create_faction = "Frontline States"
 		ANG = {
-		set_major = yes
+		declare_war_on = {
+		target = NAM
+		type = annex_everything
 			}
+		set_major = yes
+		set_faction_leader = yes
+		}
+		SWP = { add_to_faction = ANG }
 	}
 }
 country_event = { #they refuse
@@ -319,7 +364,7 @@ country_event = { #Southafrican intervention
 	option = { #they can only say yes
 		name = namibia_war.7.o1
 		SAF = {
-		create_faction = "South West African Defense Force"
+		create_faction = "Southern African Defense Force"
 		add_to_faction = NAM
 		add_ideas = idea_nam_civil_war
 		declare_war_on = {
@@ -340,21 +385,25 @@ country_event = { #South African Forces Retreat Across the Border, Cuba isnt at 
 	trigger = {
 		tag = SWP
 		has_war_with = SAF
+		AND = {
 		OR = {
+		AND = {
 		NAM = {
 			has_capitulated = yes
 			}
-		SAF = {
-		surrender_progress > 0.35
-			}
-		}
-		CUB = {
-		NOT = {
-		has_completed_focus = CUB_send_troops_to_namibian_war_of_independence
+		war_length_with = {
+		tag = SAF
+		months > 5
+				}
 			}
 		}
 		OR = {
-			SWP = {
+		AND = {
+		NAM = {
+			has_capitulated = yes
+			}
+		OR = {
+		SWP = {
 				controls_state = 541
 			}
 			any_country = {
@@ -377,6 +426,14 @@ country_event = { #South African Forces Retreat Across the Border, Cuba isnt at 
 					is_in_faction_with = SWP
 				}
 				controls_state = 1034
+					}
+				}
+			}
+		}
+	}
+		CUB = {
+		NOT = {
+		has_completed_focus = CUB_send_troops_to_namibian_war_of_independence
 			}
 		}
 	}
@@ -519,7 +576,7 @@ country_event = { #South Africa Surrenders Namibia
 			popularity = 0.05
 		}
 		clr_country_flag = cuba_war_with_south_africa_flag
-		remove_ideas = idea_nam_civil_war
+		remove_ideas = idea_nam_civil_war_swp
 		SWP = {
 		drop_cosmetic_tag = yes
 		leave_faction = yes
@@ -581,19 +638,28 @@ country_event = { #South African Forces Retreat Across the Border, Cuba is at wa
 	trigger = {
 		tag = CUB
 		has_war_with = SAF
-		OR = {
-		NAM = {
-			has_capitulated = yes
-		}
-		SAF = {
-		surrender_progress > 0.35
-			}
-		}
 		CUB = {
 		has_completed_focus = CUB_send_troops_to_namibian_war_of_independence
 		}
+		AND = {
 		OR = {
-			SWP = {
+		AND = {
+		NAM = {
+			has_capitulated = yes
+			}
+		war_length_with = {
+		tag = SAF
+		months > 5
+				}
+			}
+		}
+		OR = {
+		AND = {
+		NAM = {
+			has_capitulated = yes
+			}
+		OR = {
+		SWP = {
 				controls_state = 541
 			}
 			any_country = {
@@ -607,18 +673,21 @@ country_event = { #South African Forces Retreat Across the Border, Cuba is at wa
 			any_country = {
 				OR = {
 					tag = SWP
-					is_in_faction_with = SWP
 					has_country_flag = cuba_angola_supports_war_flag
+					is_in_faction_with = SWP
 				}
 				controls_state = 1036
 			}
 			any_country = {
 				OR = {
 					tag = SWP
-					is_in_faction_with = SWP
 					has_country_flag = cuba_angola_supports_war_flag
+					is_in_faction_with = SWP
 				}
 				controls_state = 1034
+						}
+					}
+				}
 			}
 		}
 	}
@@ -771,7 +840,7 @@ country_event = { #South Africa Surrenders Namibia
 		}
 		SWP = {
 		leave_faction = yes
-		remove_ideas = idea_nam_civil_war
+		remove_ideas = idea_nam_civil_war_swp
 		drop_cosmetic_tag = yes
 		}
 		ANG = {
@@ -896,11 +965,25 @@ country_event = { #South african victory, no cuba
 		NOT = {
 		has_war_with = CUB
 		}
+		AND = {
 		OR = {
+		AND = {
 		SWP = {
 			has_capitulated = yes
+			}
+		war_length_with = {
+		tag = ANG
+		months > 5
+				}
+			}
 		}
-		any_country = {
+		OR = {
+		AND = {
+		SWP = {
+			has_capitulated = yes
+			}
+		OR = {
+			any_country = {
 				OR = {
 					tag = SAF
 					is_in_faction_with = SAF
@@ -913,8 +996,11 @@ country_event = { #South african victory, no cuba
 					is_in_faction_with = SAF
 				}
 				controls_state = 844
+					}
+				}
 			}
 		}
+	}
 	}
 	
 	option = { #GG
@@ -935,6 +1021,29 @@ country_event = { #South african victory, no cuba
 			ideology = ROOT
 			popularity = 0.1
 		}
+		hidden_effect = {
+		NAM = {
+		set_popularities = {
+		fascist = 0
+		nationalist = 3
+		monarchist = 0
+		national_bolshevik = 0
+		national_conservative = 5
+		centrist = 28
+		liberal = 10
+		new_democrat = 8
+		moderate_socialist = 3
+		revolutionary_socialist = 5
+		communist = 38
+				}
+			}
+		}
+		NAM = {
+		set_politics = {
+	        ruling_party = centrist
+	        elections_allowed = no
+        }
+			}
 		}
 		ai_chance = {
 			factor = 100
@@ -942,7 +1051,7 @@ country_event = { #South african victory, no cuba
 	}
 	
 	option = { #keep going north
-		name = namibia_war.21.o1.o2
+		name = namibia_war.21.o2
 		hidden_effect = {
 		SAF = {
 		country_event = { id = namibia_war.25 days = 1 }
@@ -1083,14 +1192,27 @@ country_event = { #Defeat in Namibia?, cuba
 	trigger = {
 		tag = CUB
 		has_war_with = SAF
+		AND = {
 		OR = {
+		AND = {
 		SWP = {
 			has_capitulated = yes
+			}
+		war_length_with = {
+		tag = SAF
+		months > 5
+				}
+			}
 		}
-		any_country = {
+		OR = {
+		AND = {
+		SWP = {
+			has_capitulated = yes
+			}
+		OR = {
+			any_country = {
 				OR = {
 					tag = SAF
-					tag = CUB
 					is_in_faction_with = SAF
 				}
 				controls_state = 846
@@ -1098,10 +1220,12 @@ country_event = { #Defeat in Namibia?, cuba
 			any_country = {
 				OR = {
 					tag = SAF
-					tag = CUB
 					is_in_faction_with = SAF
 				}
 				controls_state = 844
+					}
+				}
+				}
 			}
 		}
 	}
@@ -1136,6 +1260,10 @@ country_event = { #Defeat in Namibia?, cuba
 		leave_faction = yes
 		}
 		NAM = {
+		set_politics = {
+	        ruling_party = centrist
+	        elections_allowed = no
+        }
 		white_peace = CUB
 		white_peace = ANG
 		remove_ideas = idea_nam_civil_war
@@ -1143,6 +1271,23 @@ country_event = { #Defeat in Namibia?, cuba
 		annex_country = {
 		target = SWP
 		transfer_troops = no
+			}
+		}
+		hidden_effect = {
+		NAM = {
+		set_popularities = {
+		fascist = 0
+		nationalist = 3
+		monarchist = 0
+		national_bolshevik = 0
+		national_conservative = 5
+		centrist = 28
+		liberal = 10
+		new_democrat = 8
+		moderate_socialist = 3
+		revolutionary_socialist = 5
+		communist = 38
+				}
 			}
 		}
 		ai_chance = {
@@ -1234,11 +1379,25 @@ country_event = { #SAF, Victory in Namibia with exiles cuba
 		CUB = {
 		has_war_with = ANG
 		}
+		AND = {
 		OR = {
+		AND = {
 		SWP = {
 			has_capitulated = yes
+			}
+		war_length_with = {
+		tag = ANG
+		months > 5
+				}
+			}
 		}
-		any_country = {
+		OR = {
+		AND = {
+		SWP = {
+			has_capitulated = yes
+			}
+		OR = {
+			any_country = {
 				OR = {
 					tag = SAF
 					tag = CUB
@@ -1253,8 +1412,11 @@ country_event = { #SAF, Victory in Namibia with exiles cuba
 					is_in_faction_with = SAF
 				}
 				controls_state = 844
+					}
+				}
 			}
 		}
+	}
 	}
 	
 	option = { #call for peace
@@ -1373,12 +1535,33 @@ country_event = { #Angola accepts peace, for SAF
 		remove_ideas = idea_nam_civil_war_cub
 		}
 		NAM = {
+		set_politics = {
+	        ruling_party = centrist
+	        elections_allowed = no
+        }
 		white_peace = ANG
 		remove_ideas = idea_nam_civil_war
 		leave_faction = yes
 		annex_country = {
 		target = SWP
 		transfer_troops = no
+			}
+		}
+		hidden_effect = {
+		NAM = {
+		set_popularities = {
+		fascist = 0
+		nationalist = 3
+		monarchist = 0
+		national_bolshevik = 0
+		national_conservative = 5
+		centrist = 28
+		liberal = 10
+		new_democrat = 8
+		moderate_socialist = 3
+		revolutionary_socialist = 5
+		communist = 38
+				}
 			}
 		}
 		every_country = {
@@ -1429,6 +1612,10 @@ country_event = { #SAF, Defeat in Namibia with exiles cuba
 		NAM = {
 			has_capitulated = yes
 		}
+		war_length_with = {
+		tag = SAF
+		months > 3
+				}
 	}
 	
 	option = { #call for peace
@@ -1598,7 +1785,57 @@ country_event = { #Angola rejects peace, for SAF
 		}
 	}
 }
-
+country_event = { #NAM, if they somehow win on their own lol
+	id = namibia_war.900
+	
+	trigger = {
+	tag = NAM
+	AND = {
+	SAF = {
+	NOT  = {
+	has_war_with = ANG
+			}
+		}
+	NAM = {
+	has_war_with = ANG
+	has_idea = idea_nam_civil_war
+		}
+	SWP = {
+	has_capitulated = yes
+			}
+		}
+	}
+	hidden = yes
+	
+	option = {
+		name = namibia_war.900.o1
+		if = {
+		limit = {
+		CUB = {
+		has_idea = idea_nam_civil_war_cub
+			}
+		}
+		CUB = {
+		remove_ideas = idea_nam_civil_war_cub
+			}
+		}
+		ANG = {
+		remove_ideas = idea_nam_civil_war
+		leave_faction = yes
+		}
+		NAM = {
+		remove_ideas = idea_nam_civil_war
+		annex_country = {
+		target = SWP
+		transfer_troops = no
+			}
+		white_peace = {
+			tag = ANG
+			message = "The PLAN insurgency has been driven away for good."
+			}
+		}
+	}
+}
 country_event = { #event for the case that players go total war so factions arent permanent lol
 	id = namibia_war.999
 	title = namibia_war.999.t
