@@ -9215,6 +9215,95 @@ country_event = {
 	}
 }
 
+#Death of Laxer
+country_event = {
+	id = rw_canada.235
+	title = rw_canada.235.t
+	desc = rw_canada.235.d
+	picture = trump_dead
+
+	is_triggered_only = yes
+	
+	trigger = {
+		has_country_leader = {
+			name = "James Laxer"
+			ruling_only = yes
+		}
+	}
+	
+	option = { #Niki Ashton
+		name = rw_canada.235.o1
+		CAN_niki_ashton = {
+			promote_character = democratic_socialist
+		}
+	}
+	
+	option = { #Avi Lewis
+		name = rw_canada.235.o2
+		CAN_avi_lewis = {
+			promote_character = democratic_socialist
+		}
+	}
+	
+	option = { #HUTU POWER
+		name = rw_canada.235.o3
+		CAN_yves_engler = {
+			promote_character = democratic_socialist
+		}
+	}
+	
+	option = { #Zohran Mamdani
+		name = rw_canada.235.o4
+		CAN_zohran_mamdani = {
+			promote_character = democratic_socialist
+		}
+	}
+}
+
+#Death of Watkins
+country_event = {
+	id = rw_canada.236
+	title = rw_canada.236.t
+	desc = rw_canada.236.d
+	picture = trump_dead
+
+	is_triggered_only = yes
+	
+	trigger = {
+		has_country_leader = {
+			name = "Mel Watkins"
+			ruling_only = yes
+		}
+	}
+	
+	option = { #Niki Ashton
+		name = rw_canada.236.o1
+		CAN_niki_ashton = {
+			promote_character = democratic_socialist
+		}
+	}
+	
+	option = { #Avi Lewis
+		name = rw_canada.236.o2
+		CAN_avi_lewis = {
+			promote_character = democratic_socialist
+		}
+	}
+	
+	option = { #HUTU POWER
+		name = rw_canada.236.o3
+		CAN_yves_engler = {
+			promote_character = democratic_socialist
+		}
+	}
+	
+	option = { #Zohran Mamdani
+		name = rw_canada.236.o4
+		CAN_zohran_mamdani = {
+			promote_character = democratic_socialist
+		}
+	}
+}
 
 ### 2019 Elections Stuff ###
 
@@ -9710,7 +9799,49 @@ country_event = {
 			custom_effect_tooltip = CAN_pc_become_natcon_tt
 		}
 		if = {
-			limit = { has_country_flag = CAN_red_tories_in_power }
+			limit = { 
+				OR = {
+					has_country_flag = CAN_red_tories_in_power 
+					has_country_flag = CAN_blue_tories_in_power
+				}
+			}
+			set_party_name = {
+				name = CAN_national_conservative_party
+				long_name  = CAN_national_conservative_party_long
+				ideology = national_conservative
+			}
+			clr_country_flag = CAN_red_tories_in_power
+		}
+	}
+	
+	option = { #Ben Mulroney
+		name = rw_canada.299.o8
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = nationalist
+					has_government = national_conservative
+				}
+				has_country_flag = pc_leader_resigns_2015
+			}
+		}
+		set_country_flag = pc_ben_mulroney_2019
+		CAN_ben_mulroney = {
+			promote_character = progressive_conservative
+		}
+		if = {
+			limit = { has_country_flag = pcs_are_nationalist }
+			clr_country_flag = pcs_are_nationalist
+			set_country_flag = pcs_are_natcon
+			custom_effect_tooltip = CAN_pc_become_natcon_tt
+		}
+		if = {
+			limit = { 
+				OR = {
+					has_country_flag = CAN_red_tories_in_power 
+					has_country_flag = CAN_blue_tories_in_power
+				}
+			}
 			set_party_name = {
 				name = CAN_national_conservative_party
 				long_name  = CAN_national_conservative_party_long
@@ -10284,9 +10415,34 @@ country_event = {
 				}
 				has_country_flag = liberal_leader_resigns_2015
 			}
+			NOT = { has_country_flag = CAN_red_tories_in_power }
 		}
 		set_country_flag = liberal_mark_carney_2023
 		CAN_mark_carney = {
+			promote_character = social_liberal
+		}
+		if = {
+			limit = { has_country_flag = liberals_are_centrist }
+			clr_country_flag = liberals_are_centrist
+			set_country_flag = liberals_are_liberal
+			custom_effect_tooltip = CAN_liberals_become_liberal_tt
+		}
+	}
+	
+	option = { #Nathaniel Erskine-Smith
+		name = rw_canada.301.o6
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = centrist
+					has_government = liberal
+				}
+				has_country_flag = liberal_leader_resigns_2015
+			}
+			has_country_flag = CAN_red_tories_in_power
+		}
+		set_country_flag = liberal_nathaniel_erskine_smith_2023
+		CAN_nathaniel_erskine_smith = {
 			promote_character = social_liberal
 		}
 		if = {
@@ -10581,7 +10737,12 @@ country_event = {
 			custom_effect_tooltip = CAN_pc_become_natcon_tt
 		}
 		if = {
-			limit = { has_country_flag = CAN_red_tories_in_power }
+			limit = { 
+				OR = {
+					has_country_flag = CAN_red_tories_in_power 
+					has_country_flag = CAN_blue_tories_in_power
+				}
+			}
 			set_party_name = {
 				name = CAN_national_conservative_party
 				long_name  = CAN_national_conservative_party_long
@@ -10589,6 +10750,43 @@ country_event = {
 			}
 			clr_country_flag = CAN_red_tories_in_power
 		}
+	}
+
+	option = { #Mark Carney
+		name = rw_canada.303.o7
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = nationalist
+					has_government = national_conservative
+				}
+				has_country_flag = pc_leader_resigns_2015
+			}
+			has_country_flag = CAN_red_tories_in_power
+			NOT = { has_country_flag = jobs_leads_liberals }
+		}
+		set_country_flag = pc_mark_carney_2023
+		CAN_mark_carney = {
+			add_country_leader_role = {
+				country_leader = {
+					expire = "1.1.1.1"
+					ideology = progressive_conservative
+				}
+			}
+			promote_character = progressive_conservative
+		}
+		if = {
+			limit = { has_country_flag = pcs_are_nationalist }
+			clr_country_flag = pcs_are_nationalist
+			set_country_flag = pcs_are_natcon
+			custom_effect_tooltip = CAN_pc_become_natcon_tt
+		}
+		set_party_name = {
+			name = CAN_red_tory_pcs_party
+			long_name  = CAN_red_tory_pcs_party_long
+			ideology = national_conservative
+		}
+		set_country_flag = CAN_red_tories_in_power
 	}
 
 	option = { #Pierre Poilievre
@@ -17543,6 +17741,23 @@ country_event = {
 			ideology = fascist
 			popularity = -0.02
 		}
+	}
+}
+
+#Royal Canadian Air Farce
+country_event = {
+	id = can_flavour.62
+	title = can_flavour.62.t
+	desc = can_flavour.62.d
+	picture = royal_canadian_air_farce
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #RIP
+		name = can_flavour.62.o1
+		add_manpower = -1
+		add_stability = -0.02
 	}
 }
 
