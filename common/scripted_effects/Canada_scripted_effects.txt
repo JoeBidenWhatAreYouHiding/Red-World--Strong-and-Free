@@ -6,13 +6,13 @@ get_current_government_type = {
 	add_to_array = { original_popularities = party_popularity_100@national_bolshevik }
 	add_to_array = { original_popularities = party_popularity_100@communist }
 	add_to_array = { original_popularities = party_popularity_100@revolutionary_socialist }
+	add_to_array = { original_popularities = party_popularity_100@moderate_socialist }
 	add_to_array = { original_popularities = party_popularity_100@new_democrat }
 	add_to_array = { original_popularities = party_popularity_100@liberal }
 	add_to_array = { original_popularities = party_popularity_100@centrist }
 	add_to_array = { original_popularities = party_popularity_100@national_conservative }
 	add_to_array = { original_popularities = party_popularity_100@nationalist }
 	add_to_array = { original_popularities = party_popularity_100@fascist }
-	#add_to_array = { original_popularities = party_popularity_100@monarchist }
 
 	set_temp_variable = { sum = 100 }
 	for_each_loop = {
@@ -20,6 +20,14 @@ get_current_government_type = {
 		subtract_from_temp_variable = { sum = v }
 	}
 	add_to_array = { original_popularities = sum } #last value (natpop), calculated directly to avoid rounding errors
+	
+	if = {
+		limit = { has_coalition = yes }
+		for_each_loop = {
+			array = coalition_partners
+			add_to_array = { original_coalitions = v }
+		}
+	}
 }
 
 restore_previous_government_type = {
@@ -38,13 +46,14 @@ restore_previous_government_type = {
 				national_bolshevik = original_popularities^0
 				communist = original_popularities^1
 				revolutionary_socialist = original_popularities^2
-				new_democrat = original_popularities^3
-				liberal = original_popularities^4
-				centrist = original_popularities^5
-				national_conservative = original_popularities^6
-				nationalist = original_popularities^7
-				fascist = original_popularities^8
-				monarchist = original_popularities^9
+				moderate_socialist = original_popularities^3
+				new_democrat = original_popularities^4
+				liberal = original_popularities^5
+				centrist = original_popularities^6
+				national_conservative = original_popularities^7
+				nationalist = original_popularities^8
+				fascist = original_popularities^9
+				monarchist = original_popularities^10
 			}
 			clear_array = original_popularities
 		}
