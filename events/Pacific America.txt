@@ -517,12 +517,12 @@ country_event = {
 		    transfer_state = 970 
 			transfer_state = 971
 		}
+		declare_war_on = { target = CSD type = annex_everything } 
+		hidden_effect = {
+			add_named_threat = { threat = 2 name = PCA_cascadia_war }
+		}
 		hidden_effect = {
 		    PCA = {
-				country_event = {
-					days = 1
-					id = pacific_america.111
-				}
 			    CSD = { transfer_technology = yes }
 		    }
 	    }
@@ -547,6 +547,24 @@ country_event = {
 				promote_character = old_american_democrats
 			}
 		}
+		hidden_effect = {
+			if = {
+				limit = {
+					is_ai = yes
+					OR = {
+						has_game_rule = {
+							rule = PCA_ai_behavior
+							option = PCA_DEMOCRACY
+						}
+						has_game_rule = {
+							rule = PCA_ai_behavior
+							option = PCA_GGL
+						}
+					}
+				}
+				country_event = { days = 3 id = pacific_america.22}
+			}
+		}
 	}
 	
 	option = {   #Switch to Cascadia
@@ -563,12 +581,12 @@ country_event = {
 		CSD = {
             change_tag_from = PCA
         }
+		declare_war_on = { target = CSD type = annex_everything } 
+		hidden_effect = {
+			add_named_threat = { threat = 2 name = PCA_cascadia_war }
+		}
 		hidden_effect = {
 		    PCA = {
-				country_event = {
-					days = 1
-					id = pacific_america.111
-				}
 			    CSD = { transfer_technology = yes }
 		    }
 	    }
@@ -589,6 +607,24 @@ country_event = {
 			    id = news.247
 		    }
 		}
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					is_ai = yes
+					OR = {
+						has_game_rule = {
+							rule = PCA_ai_behavior
+							option = PCA_DEMOCRACY
+						}
+						has_game_rule = {
+							rule = PCA_ai_behavior
+							option = PCA_GGL
+						}
+					}
+				}
+				country_event = { days = 3 id = pacific_america.22}
+			}
 		}
 	}
 }
@@ -671,6 +707,14 @@ country_event = {
 			PCA = {
 			    country_event = { days = 1 id = pacific_america.23 } 
 			}
+			hidden_effect = {
+				every_country = {
+					news_event = {
+						id = news.335
+						days = 3
+					}
+				}
+			}
 		}
 	}
 	
@@ -704,6 +748,7 @@ country_event = {
 		}
 		name = pacific_america.23.o1
 		set_country_flag = treaty_of_seattle
+		clr_global_flag = the_cascadian_war_global
 		hidden_effect = {
 			CSD = { 
 				set_capital = { state = 386 } 
@@ -1106,7 +1151,7 @@ country_event = {
 			popularity = 0.13
 		}
 		PCA_kamala_harris = {
-			promote_character = social_liberal
+			promote_character = managerial_liberalism
 		}
 		custom_effect_tooltip = uapr_goldengate_ministers
 		hidden_effect = {
@@ -1116,7 +1161,7 @@ country_event = {
 			add_ideas = uapr_nsm_xavier_becerra
 			add_ideas = uapr_inm_john_brennan
 		}
-		set_party_name = { ideology = liberal long_name = PCA_golden_gate_league name = PCA_golden_gate_league }
+		set_party_name = { ideology = liberal long_name = PCA_golden_gate_league_party name = PCA_golden_gate_league_party }
 		set_country_flag = golden_gate_league_coup
 		set_cosmetic_tag = PCA_GoldenGate
 	}
@@ -1180,7 +1225,7 @@ country_event = {
 			popularity = 0.13
 		}
 		PCA_kamala_harris = {
-			promote_character = social_liberal
+			promote_character = managerial_liberalism
 		}
 		custom_effect_tooltip = uapr_goldengate_ministers
 		hidden_effect = {
@@ -1190,7 +1235,7 @@ country_event = {
 			add_ideas = uapr_nsm_xavier_becerra
 			add_ideas = uapr_inm_john_brennan
 		}
-		set_party_name = { ideology = liberal long_name = PCA_golden_gate_league name = PCA_golden_gate_league }
+		set_party_name = { ideology = liberal long_name = PCA_golden_gate_league_party name = PCA_golden_gate_league_party }
 		set_country_flag = battle_of_los_angeles_won
 		set_cosmetic_tag = PCA_GoldenGate
 	}
@@ -2575,7 +2620,7 @@ country_event = {
 	option = {  
 		name = pacific_america.104.o1
 		PCA_kamala_harris = {
-			promote_character = social_liberal
+			promote_character = managerial_liberalism
 		}
 	}
 }
@@ -2711,76 +2756,81 @@ country_event = {
 		add_ideas = uapr_sic_tupac_amaru_shakur
 		add_political_power = -250
 		add_stability = -0.06
-	}
-}
-
-#Declare war on Cascadia
-country_event = {
-	id = pacific_america.111
-	title = pacific_america.111.t
-	desc = pacific_america.111.d
-	picture = cascadia_marching
-
-	is_triggered_only = yes
-
-	option = { #war
-		name = pacific_america.111.o1
-		declare_war_on = { target = CSD type = annex_everything } 
-		ai_chance = {
-			base = 100
-			modifier = {
-				has_game_rule = {
-					rule = PCA_ai_behavior_cascadia
-					option = PCA_SURRENDER
-				}
-				factor = 0
-			}
-		}
 		hidden_effect = {
-		add_named_threat = { threat = 2 name = PCA_cascadia_war }
-		}
-	}
-	option = { #surrender
-		name = pacific_america.111.o2
-		add_political_power = -250
-		CSD = {
-		    transfer_state = 385 
-			transfer_state = 386
-		}
-		385 = {
-		    remove_core_of = PCA
-		}
-		386 = {
-		    remove_core_of = PCA
-		}
-		970 = {
-		    remove_core_of = PCA
-		}
-		971 = {
-		    remove_core_of = PCA
-		}
-		hidden_effect = {
-		    CSD = {
-			    country_event = { days = 1 id = pacific_america.23 } 
-			}
-			PCA = {
-			    country_event = { days = 1 id = pacific_america.23 } 
-			}
-		}
-		ai_chance = {
-			base = 100
-			modifier = {
-				NOT = {
-					has_game_rule = {
-						rule = PCA_ai_behavior_cascadia
-						option = PCA_SURRENDER
-					}
-				}
-				factor = 0
+			every_country = {
+				news_event = news.334
 			}
 		}
 	}
 }
+
+##Declare war on Cascadia
+#country_event = {
+#	id = pacific_america.111
+#	title = pacific_america.111.t
+#	desc = pacific_america.111.d
+#	picture = cascadia_marching
+#
+#	is_triggered_only = yes
+#
+#	option = { #war
+#		name = pacific_america.111.o1
+#		declare_war_on = { target = CSD type = annex_everything } 
+#		ai_chance = {
+#			base = 100
+#			modifier = {
+#				has_game_rule = {
+#					rule = PCA_ai_behavior_cascadia
+#					option = PCA_SURRENDER
+#				}
+#				factor = 0
+#			}
+#		}
+#		hidden_effect = {
+#		add_named_threat = { threat = 2 name = PCA_cascadia_war }
+#		}
+#	}
+#	option = { #surrender
+#		name = pacific_america.111.o2
+#		add_political_power = -250
+#		CSD = {
+#		    transfer_state = 385 
+#			transfer_state = 386
+#		}
+#		385 = {
+#		    remove_core_of = PCA
+#		}
+#		386 = {
+#		    remove_core_of = PCA
+#		}
+#		970 = {
+#		    remove_core_of = PCA
+#		}
+#		971 = {
+#		    remove_core_of = PCA
+#		}
+#		hidden_effect = {
+#		    CSD = {
+#			    country_event = { days = 1 id = pacific_america.23 } 
+#			}
+#			PCA = {
+#			    country_event = { days = 1 id = pacific_america.23 } 
+#			}
+#		}
+#		ai_chance = {
+#			base = 100
+#			modifier = {
+#				NOT = {
+#					has_game_rule = {
+#						rule = PCA_ai_behavior_cascadia
+#						option = PCA_SURRENDER
+#					}
+#				}
+#				factor = 0
+#			}
+#		}
+#	}
+#}
 
 
 #Memorials Act
@@ -2865,7 +2915,7 @@ country_event = {
 		hidden_effect = {
             every_country = {
 			    news_event = {
-                    id = news.272
+                    id = news.150
                     days = 365
 				}
             }
@@ -2964,6 +3014,9 @@ country_event = {
 		}
 		379 = { 
 			set_state_name = "Yazov" 
+		}
+		621 = {
+			set_state_name = "South Calderwood"
 		}
     }
 }
@@ -3688,6 +3741,9 @@ country_event = {
 		379 = { 
 			set_state_name = "Nevada" 
 		}
+		621 = {
+			set_state_name = "Western Slope"
+		}
     }
 }
 
@@ -4228,5 +4284,56 @@ country_event = {
     option = {
 		name = pacific_america.147.o1
 		
+    }
+}
+#Demolition of the White House
+country_event = {
+    id = pacific_america.148
+    title = pacific_america.148.t
+    desc = pacific_america.148.d
+    picture = white_house_demolition
+
+    is_triggered_only = yes
+    
+    option = {
+		name = pacific_america.148.o1
+		hidden_effect = {
+			country_event = { days = 547 id = pacific_america.118 }
+		}
+		hidden_effect = {
+			country_event = { days = 14 id = pacific_america.149 }
+		}
+    }
+}
+#Mount Rushmore blown up
+country_event = {
+    id = pacific_america.149
+    title = pacific_america.149.t
+    desc = pacific_america.149.d
+    picture = rushmore_explosion
+
+    is_triggered_only = yes
+    
+    option = {
+		name = pacific_america.149.o1
+		hidden_effect = {
+			country_event = { days = 182 id = pacific_america.115 }
+		}
+    }
+}
+
+country_event = { #Lady Liberty to be radically altered
+    id = pacific_america.150
+    title = pacific_america.150.t
+    desc = pacific_america.150.d
+    picture = lady_liberty_removed
+
+    is_triggered_only = yes
+    
+    option = {
+		name = pacific_america.150.o1
+		hidden_effect = {
+			country_event = { days = 365 id = pacific_america.117 }
+		}
     }
 }
