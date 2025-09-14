@@ -6,13 +6,13 @@ get_current_government_type = {
 	add_to_array = { original_popularities = party_popularity_100@national_bolshevik }
 	add_to_array = { original_popularities = party_popularity_100@communist }
 	add_to_array = { original_popularities = party_popularity_100@revolutionary_socialist }
+	add_to_array = { original_popularities = party_popularity_100@moderate_socialist }
 	add_to_array = { original_popularities = party_popularity_100@new_democrat }
 	add_to_array = { original_popularities = party_popularity_100@liberal }
 	add_to_array = { original_popularities = party_popularity_100@centrist }
 	add_to_array = { original_popularities = party_popularity_100@national_conservative }
 	add_to_array = { original_popularities = party_popularity_100@nationalist }
 	add_to_array = { original_popularities = party_popularity_100@fascist }
-	#add_to_array = { original_popularities = party_popularity_100@monarchist }
 
 	set_temp_variable = { sum = 100 }
 	for_each_loop = {
@@ -20,6 +20,14 @@ get_current_government_type = {
 		subtract_from_temp_variable = { sum = v }
 	}
 	add_to_array = { original_popularities = sum } #last value (natpop), calculated directly to avoid rounding errors
+	
+	if = {
+		limit = { has_coalition = yes }
+		for_each_loop = {
+			array = coalition_partners
+			add_to_array = { original_coalitions = v }
+		}
+	}
 }
 
 restore_previous_government_type = {
@@ -38,13 +46,14 @@ restore_previous_government_type = {
 				national_bolshevik = original_popularities^0
 				communist = original_popularities^1
 				revolutionary_socialist = original_popularities^2
-				new_democrat = original_popularities^3
-				liberal = original_popularities^4
-				centrist = original_popularities^5
-				national_conservative = original_popularities^6
-				nationalist = original_popularities^7
-				fascist = original_popularities^8
-				monarchist = original_popularities^9
+				moderate_socialist = original_popularities^3
+				new_democrat = original_popularities^4
+				liberal = original_popularities^5
+				centrist = original_popularities^6
+				national_conservative = original_popularities^7
+				nationalist = original_popularities^8
+				fascist = original_popularities^9
+				monarchist = original_popularities^10
 			}
 			clear_array = original_popularities
 		}
@@ -471,6 +480,16 @@ CAN_remove_first_term_spirits = {
 		remove_ideas = CAN_repairing_chretiens_legacy3
 		remove_ideas = CAN_philosophical_liberalism_left
 		remove_ideas = CAN_liberal_support_surge
+		# Jobs #
+		remove_ideas = CAN_keynote_democracy
+		remove_ideas = CAN_deregulation_spree
+		remove_ideas = CAN_progressive_vision
+		remove_ideas = CAN_technocratic_liberalism
+		remove_ideas = CAN_libertarian_fever_dream_idea
+		remove_ideas = CAN_deregulation_spree
+		remove_ideas = CAN_utopia_divided
+		remove_ideas = CAN_utopia_divided2
+		remove_ideas = CAN_think_different
 	}
 }
 
@@ -569,6 +588,19 @@ CAN_remove_all_first_term_spirits = {
 		remove_ideas = CAN_national_child_care_program
 		remove_ideas = CAN_new_canada_pension_plan
 		remove_ideas = CAN_strategic_innovation_fund
+		# Jobs #
+		remove_ideas = CAN_keynote_democracy
+		remove_ideas = CAN_deregulation_spree
+		remove_ideas = CAN_progressive_vision
+		remove_ideas = CAN_technocratic_liberalism
+		remove_ideas = CAN_libertarian_fever_dream_idea
+		remove_ideas = CAN_deregulation_spree
+		remove_ideas = CAN_think_different
+		remove_ideas = CAN_digital_economy
+		remove_ideas = CAN_digital_economy2
+		remove_ideas = CAN_spirit_of_innovation
+		remove_ideas = CAN_productive_deindustrialization
+		remove_ideas = CAN_vancouver_model
 	}
 }
 
@@ -737,5 +769,183 @@ increase_state_category_by_one_level = {
 	else_if = {
 		limit = { has_state_category = metropolis }
 		set_state_category = megalopolis
+	}
+}
+
+#Gives a random agency upgrade or grants a free agency if one has not yet been established
+gain_random_agency_upgrade = {
+	custom_effect_tooltip = free_agency_upgrade_tt
+	hidden_effect = {
+		if = {
+			limit = {
+				has_intelligence_agency = no
+			}
+			create_intelligence_agency = yes
+		}
+		else = {
+			random_list = {
+				1 = {
+					upgrade_intelligence_agency = upgrade_economy_civilian
+					modifier = {
+						factor = 0
+						has_done_agency_upgrade = upgrade_economy_civilian
+					}
+				}
+				1 = {
+					upgrade_intelligence_agency = upgrade_army_department
+					modifier = {
+						factor = 0
+						has_done_agency_upgrade = upgrade_army_department
+					}
+				}
+				1 = {
+					upgrade_intelligence_agency = upgrade_naval_department
+					modifier = {
+						factor = 0
+						has_done_agency_upgrade = upgrade_naval_department
+					}
+				}
+				1 = {
+					upgrade_intelligence_agency = upgrade_airforce_department
+					modifier = {
+						factor = 0
+						has_done_agency_upgrade = upgrade_airforce_department
+					}
+				}
+				1 = {
+					upgrade_intelligence_agency = upgrade_passive_defense
+					modifier = {
+						factor = 0
+						has_done_agency_upgrade = upgrade_passive_defense
+					}
+				}
+				1 = {
+					upgrade_intelligence_agency = upgrade_anti_partisan
+					modifier = {
+						factor = 0
+						has_done_agency_upgrade = upgrade_anti_partisan
+					}
+				}
+				1 = {
+					upgrade_intelligence_agency = upgrade_blueprint_stealing
+					modifier = {
+						factor = 0
+						has_done_agency_upgrade = upgrade_blueprint_stealing
+					}
+				}
+				1 = {
+					upgrade_intelligence_agency = upgrade_portable_radios
+					modifier = {
+						factor = 0
+						has_done_agency_upgrade = upgrade_portable_radios
+					}
+				}
+				1 = {
+					upgrade_intelligence_agency = upgrade_invisible_ink
+					modifier = {
+						factor = 0
+						has_done_agency_upgrade = upgrade_invisible_ink
+					}
+				}
+				1 = {
+					upgrade_intelligence_agency = upgrade_plastic_explosives
+					modifier = {
+						factor = 0
+						has_done_agency_upgrade = upgrade_plastic_explosives
+					}
+				}
+				1 = {
+					upgrade_intelligence_agency = upgrade_suicide_pills
+					modifier = {
+						factor = 0
+						has_done_agency_upgrade = upgrade_suicide_pills
+					}
+				}
+				1 = {
+					upgrade_intelligence_agency = upgrade_training_centers
+					modifier = {
+						factor = 0
+						has_done_agency_upgrade = upgrade_training_centers
+					}
+				}
+				1 = {
+					upgrade_intelligence_agency = upgrade_commando_training
+					modifier = {
+						factor = 0
+						has_done_agency_upgrade = upgrade_commando_training
+					}
+				}
+				1 = {
+					upgrade_intelligence_agency = upgrade_interrogation_techniques
+					modifier = {
+						factor = 0
+						has_done_agency_upgrade = upgrade_interrogation_techniques
+					}
+				}
+				1 = {
+					upgrade_intelligence_agency = upgrade_diplo_training
+					modifier = {
+						factor = 0
+						has_done_agency_upgrade = upgrade_diplo_training
+					}
+				}
+				1 = {
+					upgrade_intelligence_agency = upgrade_psycho_warfare
+					modifier = {
+						factor = 0
+						has_done_agency_upgrade = upgrade_psycho_warfare
+					}
+				}
+				1 = {
+					upgrade_intelligence_agency = upgrade_form_department
+					modifier = {
+						factor = 0
+						has_done_agency_upgrade = upgrade_form_department
+					}
+				}
+				1 = {
+					upgrade_intelligence_agency = upgrade_decryption_boost
+					modifier = {
+						factor = 0
+						OR = {
+							has_done_agency_upgrade = upgrade_decryption_boost
+							NOT = { has_done_agency_upgrade = upgrade_form_department }
+						}
+					}
+				}
+				1 = {
+					upgrade_intelligence_agency = upgrade_decryption_boost_2
+					modifier = {
+						factor = 0
+						OR = {
+							has_done_agency_upgrade = upgrade_decryption_boost_2
+							NOT = { has_done_agency_upgrade = upgrade_form_department }
+							NOT = { has_done_agency_upgrade = upgrade_decryption_boost }
+						}
+					}
+				}
+				1 = {
+					upgrade_intelligence_agency = upgrade_crypto_strength
+					modifier = {
+						factor = 0
+						OR = {
+							has_done_agency_upgrade = upgrade_crypto_strength
+							NOT = { has_done_agency_upgrade = upgrade_form_department }
+						}
+					}
+				}
+				1 = {
+					upgrade_intelligence_agency = upgrade_crypto_strength_2
+					modifier = {
+						factor = 0
+						OR = {
+							has_done_agency_upgrade = upgrade_crypto_strength_2
+							NOT = { has_done_agency_upgrade = upgrade_form_department }
+							NOT = { has_done_agency_upgrade = upgrade_crypto_strength }
+						}
+					}
+				}
+			}
+		}
 	}
 }

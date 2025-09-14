@@ -1,3 +1,5 @@
+
+
 CAN_nuclear_policy = {
 
 	CAN_abandon_non_nuclear_policy = {
@@ -31,6 +33,12 @@ CAN_nuclear_policy = {
 					remove_idea = CAN_chalk_river_labs
 					add_idea = CAN_chalk_river_labs2
 				}
+			}
+			complete_special_project = {
+				project = sp:sp_thermo_nuclear_bomb
+			}
+			complete_special_project = {
+				project = sp:sp_nuclear_bomb
 			}
 		}
 
@@ -387,7 +395,19 @@ uniting_north_america = {
 		}
 
 		complete_effect = {
-			set_cosmetic_tag = CAN_NAU
+			if = {
+				limit = { has_country_leader_ideology = neo_reactionary }
+				set_cosmetic_tag = CAN_NAU_dark_enlightenment
+				set_country_flag = CAN_no_mexico_cosmetic
+			}
+			else_if = {
+				limit = { has_country_leader_ideology = q_theology }
+				set_cosmetic_tag = CAN_NAU_qanada
+				set_country_flag = CAN_no_mexico_cosmetic
+			}
+			else = {
+				set_cosmetic_tag = CAN_NAU
+			}
 			unlock_decision_tooltip = CAN_demand_mexican_unification
 			set_country_flag = CAN_north_american_union
 		}
@@ -461,7 +481,10 @@ uniting_north_america = {
 				limit = { is_core_of = MEX }
 				CAN = { add_state_core = PREV }
 			}
-			set_cosmetic_tag = CAN_NAU_MEX
+			if = {
+				limit = { NOT = { has_country_flag = CAN_no_mexico_cosmetic } }
+				set_cosmetic_tag = CAN_NAU_MEX
+			}
 		}
 	}
 }
@@ -492,30 +515,30 @@ eighties = {
 		}
 	}
 	
-	CAN_battle_for_the_canal = {
+	# CAN_battle_for_the_canal = {
 
-		icon = canal
+		# icon = canal
 
-		allowed = {
-			OR = {
-			    original_tag = CAN
-			}
-		}
+		# allowed = {
+			# OR = {
+			    # original_tag = CAN
+			# }
+		# }
 
-		available = {
-			always = yes
-		}
+		# available = {
+			# always = yes
+		# }
 
-		cost = 0
-		fire_only_once = no
-		ai_will_do = {
-			factor = 0
-		}
+		# cost = 0
+		# fire_only_once = no
+		# ai_will_do = {
+			# factor = 0
+		# }
 
-		complete_effect = {
-			country_event = { id = can_history.5 }
-		}
-	}
+		# complete_effect = {
+			# country_event = { id = can_history.5 }
+		# }
+	# }
 }
 
 nineties = {	
@@ -618,6 +641,33 @@ noughts = {
 
 		complete_effect = {
 			country_event = { id = can_history.3 }
+		}
+	}
+}
+
+path_guides = {
+	CAN_path_guides = {
+
+		icon = SWI_dismiss_council
+
+		allowed = {
+			OR = {
+			    original_tag = CAN
+			}
+		}
+
+		available = {
+			always = yes
+		}
+
+		cost = 0
+		fire_only_once = no
+		ai_will_do = {
+			factor = 0
+		}
+
+		complete_effect = {
+			country_event = { id = can_guides.1 }
 		}
 	}
 }
