@@ -23,10 +23,10 @@ if = {
 		}
 }
 
-give_guarantee = ICE
+set_variable = { USA_state_count_var = 12 }
 
 set_research_slots = 3
-set_convoys = 255
+set_convoys = 500
 set_stability = 0.8
 set_war_support = 0.5
 
@@ -55,33 +55,6 @@ set_technology = {
 	interwar_antitank = 1
 	basic_train = 1
 }
-
-#Nuclear projects
-complete_special_project = {
-	project = sp:sp_nuclear_reactor
-}
-complete_special_project = {
-	project = sp:sp_commercial_nuclear_reactor
-}
-#Naval Projects
-complete_special_project = {
-	project = sp:sp_naval_torpedo_cruiser
-}
-#Air Projects
-complete_special_project = {
-	project = sp:sp_air_radar
-}
-complete_special_project = {
-	project = sp:sp_air_helicopter
-}
-complete_special_project = {
-	project = sp:sp_rockets_ground_to_air_missile
-}
-#Land Projects
-complete_special_project = {
-	project = sp:sp_land_military_engineering_vehicles
-}
-
 if = {
 	limit = { has_dlc = "By Blood Alone" }
 		set_air_oob = "USA_2000_air_bba"
@@ -137,11 +110,10 @@ if = {
 		early_submarine = 1
 		basic_submarine = 1
 		early_destroyer = 1
-		basic_destroyer = 1
 		early_light_cruiser = 1
 		basic_light_cruiser = 1
 		early_heavy_cruiser = 1
-		basic_heavy_cruiser = 1
+		
 		
 		early_carrier = 1
 		basic_carrier = 1
@@ -183,26 +155,147 @@ set_politics = {
 	elections_allowed = no
 }
 
-set_popularities = {
-        fascist = 8
-		nationalist = 55
+set_popularities = { #95
+        fascist = 9
+		nationalist = 29
 		monarchist = 0
 		national_bolshevik = 0
-		national_conservative = 31
-		centrist = 0
-		liberal = 4
+		national_conservative = 19
+		centrist = 34
+		liberal = 6
 		new_democrat = 2
 		moderate_socialist = 0
 		revolutionary_socialist = 0
-		communist = 0
+		communist = 1
 }
 
+add_opinion_modifier = {
+	target = SOV
+	modifier = rival
+}
+
+add_opinion_modifier = {
+	target = NEA
+	modifier = rival
+}
+
+SOV = {
+add_opinion_modifier = {
+	target = USA
+	modifier = embargo
+}
+}
+
+every_country = {
+limit = { is_in_faction_with = SOV }
+add_opinion_modifier = {
+	target = USA
+	modifier = embargo
+}
+add_opinion_modifier = {
+	target = USA
+	modifier = sanctions 
+}
+}
+
+CUB = {
+add_opinion_modifier = {
+	target = USA
+	modifier = embargo
+}
+add_opinion_modifier = {
+	target = USA
+	modifier = sanctions 
+}
+}
+
+NEA = {
+add_opinion_modifier = {
+	target = USA
+	modifier = embargo
+}
+add_opinion_modifier = {
+	target = USA
+	modifier = sanctions 
+}
+}
+
+PCA = {
+add_opinion_modifier = {
+	target = USA
+	modifier = embargo
+}
+add_opinion_modifier = {
+	target = USA
+	modifier = sanctions 
+}
+}
+
+VEN = {
+add_opinion_modifier = {
+	target = USA
+	modifier = embargo
+}
+add_opinion_modifier = {
+	target = USA
+	modifier = sanctions 
+}
+}
+
+BOL = {
+add_opinion_modifier = {
+	target = USA
+	modifier = embargo
+}
+add_opinion_modifier = {
+	target = USA
+	modifier = sanctions 
+}
+}
+
+FIN = {
+add_opinion_modifier = {
+	target = USA
+	modifier = embargo
+}
+add_opinion_modifier = {
+	target = USA
+	modifier = sanctions 
+}
+}
+
+CEA = {
+add_opinion_modifier = {
+	target = USA
+	modifier = embargo
+}
+add_opinion_modifier = {
+	target = USA
+	modifier = sanctions 
+}
+}
+
+add_opinion_modifier = {
+	target = PCA
+	modifier = embargo
+}
+
+add_opinion_modifier = {
+	target = NEA
+	modifier = embargo
+}
+
+give_guarantee = TEX
+
 add_ideas = {
-	idea_standing_firm_remnants
-	idea_usa_flight_of_the_executives
-	idea_usa_international_stigma
+	RWE_USA_extreme_rural_poverty 
+	RWE_USA_Anti_Soviet_Laws
+	RWE_USA_hostile_congress 
+	RWE_USA_Unrecognized_Government 
+	RWE_Military_Forces_Burden
+	#RWE_USA_Anti_Gay_Military_Policy  
 	idea_america_neutrality
-	limited_conscription
+
 	usa_thomas_ridge
 	usa_fom_john_bolton
 	usa_ind_henry_paulson
@@ -210,12 +303,23 @@ add_ideas = {
 	usa_inm_michael_hayden
 }
 
+set_variable = { USA_Oligarchic_Influence = 0.18 }
+
 recruit_character = USA_donald_rumsfeld
+recruit_character = USA_Thomas_Ridge 
+recruit_character = USA_rick_santorum 
+recruit_character = USA_benjamin_netanyahu 
+recruit_character = USA_dan_crenshaw 
+recruit_character = USA_Ron_DeSantis 
+recruit_character = USA_Robert_Gates 
+recruit_character = USA_Paul_Wolfowitz 
+recruit_character = USA_MTG 
+recruit_character = USA_mark_meadows 
 recruit_character = USA_david_duke
+recruit_character = USA_joe_biden
 recruit_character = USA_paul_i
-recruit_character = USA_tom_metzger
+recruit_character = USA_amelia_b_robinson 
 recruit_character = USA_robert_bentley
-recruit_character = USA_david_nolan
 recruit_character = USA_mark_warner
 recruit_character = USA_elizabeth_warren
 recruit_character = USA_greg_pason
@@ -269,7 +373,6 @@ recruit_character = USA_james_carter
 recruit_character = USA_robert_neugebauer
 recruit_character = USA_gerald_long
 recruit_character = USA_nikki_haley
-recruit_character = USA_joseph_biden
 recruit_character = USA_loretta_lynch
 recruit_character = USA_timothy_kaine
 recruit_character = USA_shelley_capito
@@ -282,7 +385,7 @@ recruit_character = USA_douglas_hamilton
 recruit_character = USA_bill_washington
 recruit_character = USA_robert_lee
 recruit_character = USA_lucian_truscott
-recruit_character = USA_joe_exotic
+recruit_character = USA_tucker_carlson
 recruit_character = USA_sonny_perdue
 recruit_character = USA_roy_moore
 recruit_character = USA_andrew_gillum
@@ -295,64 +398,38 @@ recruit_character = USA_congress_of_corporations
 recruit_character = USA_frank_ancona
 recruit_character = USA_carly_fiorina
 recruit_character = usa_william_mcraven
-recruit_character = USA_leopoldo_cintra_frias
-recruit_character = USA_alexandra_techet
-recruit_character = USA_nathan_a_moore
-recruit_character = USA_frank_bowman
-recruit_character = USA_harold_palmer_smith_jr
-recruit_character = USA_dennis_spurgeon
-recruit_character = USA_taylor_wilson
-recruit_character = USA_michael_eismann
-recruit_character = USA_sean_kirkpatrick
-recruit_character = USA_johnnie_wilson
-recruit_character = USA_john_coburn
-recruit_character = USA_merdith_w_b_temple
 
-add_opinion_modifier = {
-	target = CHI
-	modifier = close_friendship
-}
+recruit_character = USA_monarchist_convention
+recruit_character = USA_Jean_Christophe_Napoleon 
+recruit_character = USA_Philip_of_Belgium 
+recruit_character = USA_Robert_Lee 
+recruit_character = USA_Shannon_LaNier 
+recruit_character = USA_Sam_Houston 
+recruit_character = USA_Douglas_Hamilton 
+recruit_character = USA_Georg_Friedrich 
+recruit_character = USA_Reza_Pahlavi 
+recruit_character = USA_Mengesha 
 
-add_opinion_modifier = {
-	target = SOV
-	modifier = rival
-}
-add_opinion_modifier = {
-	target = CUB
-	modifier = rival
-}
-add_opinion_modifier = {
-	target = NEA
-	modifier = rival
-}
-add_opinion_modifier = {
-	target = PCA
-	modifier = rival
-}
-add_opinion_modifier = {
-	target = CUB
-	modifier = rival_trade
-}
+recruit_character = USA_george_bush_sr 
+
 
 if = {
 	limit = {
 		has_dlc = "No Step Back"
 	}
 	create_equipment_variant = {
-		name = "M2 Bradley"
+		name = "Cold War Light Tank"
 		type = light_tank_chassis_0
 		parent_version = 0
 		modules = {
 			main_armament_slot = tank_small_cannon
 			turret_type_slot = tank_light_one_man_tank_turret
-			suspension_type_slot = tank_torsion_bar_suspension
+			suspension_type_slot = tank_bogie_suspension
 			armor_type_slot = tank_riveted_armor
-			engine_type_slot = tank_diesel_engine
-			special_type_slot_1 = additional_machine_guns
-			special_type_slot_2 = secondary_turret_small_cannon
+			engine_type_slot = tank_gasoline_engine
 		}
 		upgrades = {
-			tank_nsb_engine_upgrade = 9
+			tank_nsb_engine_upgrade = 1
 			tank_nsb_armor_upgrade = 2
 		}
 	}
@@ -588,6 +665,5 @@ if = {
 			fixed_auxiliary_weapon_slot_1 = medium_bomb_bay
 			engine_type_slot = engine_2_2x
 			special_type_slot_1 = empty
-		}
 	}
-}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ﻿
+}
