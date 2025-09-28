@@ -7557,7 +7557,10 @@ focus_tree = {
 		}
 		
 		bypass = {
-			has_completed_focus = CAN_legalize_marijuana
+			OR = {
+				has_completed_focus = CAN_legalize_marijuana
+				has_completed_focus = CAN_legalize_pot_and_lsd
+			}
 		}
 		
 		ai_will_do = {
@@ -23451,41 +23454,12 @@ focus_tree = {
 			custom_effect_tooltip = CAN_democratic_uprising_tt
 			every_country = {
 				limit = { 
-					capital_scope = {
-						is_on_continent = europe
-					}
-					is_in_faction_with = GER
-					communist < 0.50
+					has_idea = CAN_democratic_support_surge
 				}
-				hidden_effect = {
-					random_list = {
-						25 = {
-							start_civil_war = {
-								ideology = national_conservative
-								size = 0.5
-							}
-						}
-						25 = {
-							start_civil_war = {
-								ideology = centrist
-								size = 0.5
-							}
-						}
-						25 = {
-							start_civil_war = {
-								ideology = liberal
-								size = 0.5
-							}
-						}
-						25 = {
-							start_civil_war = {
-								ideology = new_democrat
-								size = 0.5
-							}
-						}
-					}
+				swap_ideas = {
+					remove_idea = CAN_democratic_support_surge
+					add_idea = CAN_european_spring_idea
 				}
-				
 			}
 			custom_effect_tooltip = CAN_wait_for_communist_support_to_erode
 			hidden_effect = {
@@ -23748,7 +23722,7 @@ focus_tree = {
 		}
 		
 		ai_will_do = {
-			factor = 5
+			factor = 1
 		}
 
 		available_if_capitulated = yes
