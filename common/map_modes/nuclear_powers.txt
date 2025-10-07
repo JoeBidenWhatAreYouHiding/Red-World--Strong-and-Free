@@ -1,0 +1,91 @@
+
+scripted_map_modes = {
+  nuclear_powers_map = {
+  	top = {
+  		type = country
+  		
+			color = {
+				FROM = {
+					set_temp_variable = { alpha = 25.0 }
+					set_temp_variable = { thickness = 8.0 }
+					if = {
+						limit = {
+							num_of_nukes > 0
+						}
+						set_temp_variable = { red = 1.0 }
+						set_temp_variable = { green = 0.85 }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								AND = {
+									tag = CAN
+									num_of_nukes < 1
+								}
+								has_idea = GEN_nuclear_development
+							}
+						}
+						set_temp_variable = { red = 1.0 }
+						set_temp_variable = { green = 0.80 }
+						set_temp_variable = { highlighted = 3.0 }
+					}
+					else_if = {
+						limit = {
+							tag = PAL
+						}
+						set_temp_variable = { green = 0.3 }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								tag = PCA
+								tag = CSD
+								tag = MOT
+								tag = LIN
+								tag = MWA
+								tag = ARI
+								tag = UTA
+								tag = TEX
+								tag = GRL
+								tag = ILL
+								tag = NEA
+								tag = AMC
+								tag = USA
+							}
+						}
+						# set_temp_variable = { red = 0.45 }
+						# set_temp_variable = { green = 0.35 }
+						# set_temp_variable = { blue = 0.1 }
+						set_temp_variable = { red = 1.0 }
+						set_temp_variable = { green = 0.65 }
+					}
+					else = {
+						set_temp_variable = { red = 0.50 }
+						set_temp_variable = { green = 0.50 }
+						set_temp_variable = { blue = 0.50 }
+					}
+				}
+
+			}
+			
+			thickness = no
+  	}
+  	
+  	bottom = {
+  		type = none
+		
+			color = {
+				set_temp_variable = { alpha = 25.0 }
+				set_temp_variable = { thickness = 8.0 }
+			}
+			
+			thickness = yes
+  	}
+  	
+  	far_text = country
+  	near_text = none
+
+ 	update_daily = yes
+ 
+  }
+}
