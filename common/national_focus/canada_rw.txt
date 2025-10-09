@@ -23322,7 +23322,7 @@ focus_tree = {
 				SOV = {
 					add_timed_idea = {
 						idea = CAN_bad_intel_idea_lar
-						days = 900
+						days = 500
 					}
 				}
 				if = {
@@ -23332,7 +23332,7 @@ focus_tree = {
 					GER = {
 						add_timed_idea = {
 							idea = CAN_bad_intel_idea_lar
-							days = 900
+							days = 500
 						}
 					}
 				}
@@ -23341,7 +23341,7 @@ focus_tree = {
 				SOV = {
 					add_timed_idea = {
 						idea = CAN_bad_intel_idea
-						days = 900
+						days = 500
 					}
 				}
 				if = {
@@ -23351,7 +23351,7 @@ focus_tree = {
 					GER = {
 						add_timed_idea = {
 							idea = CAN_bad_intel_idea
-							days = 900
+							days = 500
 						}
 					}
 				}
@@ -23529,6 +23529,12 @@ focus_tree = {
 			}
 		}
 		
+		bypass = {
+			GER = {
+				GER_is_ddr = no
+			}
+		}
+		
 		ai_will_do = {
 			factor = 5
 		}
@@ -23594,7 +23600,19 @@ focus_tree = {
 		y = 5
 
 		available = {
-			
+			OR = {	
+				AND = {
+					country_exists = SOV
+					SOV = {
+						is_faction_leader = yes 
+					}
+				}
+				AND = {
+					country_exists = GER
+					GER = { is_faction_leader = yes }
+					hidden_trigger = { GER = { GER_is_ddr = yes } }
+				}
+			}
 		}
 		
 		bypass = {
