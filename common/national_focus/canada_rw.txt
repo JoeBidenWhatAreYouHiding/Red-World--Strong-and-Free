@@ -23084,7 +23084,7 @@ focus_tree = {
 				OR = {
 					is_in_faction_with = CAN
 					hidden_trigger = {
-						GER_is_ddr = yes
+						GER_is_ddr = no
 					}
 				}
 			}
@@ -23122,7 +23122,7 @@ focus_tree = {
 				OR = {
 					is_in_faction_with = CAN
 					hidden_trigger = {
-						GER_is_ddr = yes
+						GER_is_ddr = no
 					}
 				}
 			}
@@ -23259,6 +23259,62 @@ focus_tree = {
 		}
 
 		available_if_capitulated = yes
+
+		bypass = {
+			AND = {	
+				NOT = { country_exists = SOV }
+				GER = { 
+					OR = {
+						is_in_faction_with = CAN
+						hidden_trigger = {
+							GER_is_ddr = no
+						}
+					}
+				}
+			}
+		}
+
+		bypass_effect = {
+			if = {
+				limit = { has_dlc = "La Resistance" }
+				if = {
+					limit = { has_intelligence_agency = yes }
+					if = {
+						limit = { NOT = { has_done_agency_upgrade = upgrade_commando_training } }
+						upgrade_intelligence_agency = upgrade_commando_training
+					}
+					if = {
+						limit = { NOT = { has_done_agency_upgrade = upgrade_crypto_strength } }
+						upgrade_intelligence_agency = upgrade_crypto_strength
+					}
+					if = {
+						limit = { NOT = { has_done_agency_upgrade = upgrade_decryption_boost } }
+						upgrade_intelligence_agency = upgrade_decryption_boost
+					}
+					if = {
+						limit = {
+							OR = {
+								has_done_agency_upgrade = upgrade_commando_training
+								has_done_agency_upgrade = upgrade_crypto_strength
+								has_done_agency_upgrade = upgrade_decryption_boost
+							}
+							NOT = { has_done_agency_upgrade = upgrade_training_centers }
+						}
+						upgrade_intelligence_agency = upgrade_training_centers
+					}
+			}
+			else_if = {
+				limit = { has_intelligence_agency = no }
+				create_intelligence_agency = yes
+				upgrade_intelligence_agency = upgrade_commando_training
+				upgrade_intelligence_agency = upgrade_decryption_boost
+			}
+			add_ideas = CAN_strenthened_csis_lar
+			}
+			else = {
+				add_ideas = CAN_strenthened_csis_idea
+			}
+		}
 
 		completion_reward = {
 			if = {
