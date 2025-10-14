@@ -10795,10 +10795,6 @@
 				days = 7
 			}
 			country_event = {
-				id = rw_ger_democratic.18
-				days = 10
-			}
-			country_event = {
 				id = rw_ger_democratic.19
 				days = 14
 			}
@@ -15719,64 +15715,54 @@
 				ideology = monarchist
 			}
 			GER_georg_friedrich = {
-				hidden_effect = {
-					add_country_leader_role = {
-						country_leader={
-							ideology=christian_democracy
-							expire="1.1.1.1"
-							id=-1
-						}
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader={
+						ideology=christian_democracy
+						expire="1.1.1.1"
+						id=-1
 					}
 				}
-				promote_character = christian_democracy
 			}
 			GER_georg_friedrich = {
-				hidden_effect = {
-					add_country_leader_role = {
-						country_leader={
-							ideology=social_liberal
-							expire="1.1.1.1"
-							id=-1
-						}
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader={
+						ideology=social_liberal
+						expire="1.1.1.1"
+						id=-1
 					}
 				}
-				promote_character = social_liberal
 			}
 			GER_georg_friedrich = {
-				hidden_effect = {
-					add_country_leader_role = {
-						country_leader={
-							ideology=centrist_ideology
-							expire="1.1.1.1"
-							id=-1
-						}
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader={
+						ideology=centrist_ideology
+						expire="1.1.1.1"
+						id=-1
 					}
 				}
-				promote_character = centrist_ideology
 			}
 			GER_georg_friedrich = {
-				hidden_effect = {
-					add_country_leader_role = {
-						country_leader={
-							ideology=new_democrat_ideology
-							expire="1.1.1.1"
-							id=-1
-						}
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader={
+						ideology=new_democrat_ideology
+						expire="1.1.1.1"
+						id=-1
 					}
 				}
-				promote_character = new_democrat_ideology
 			}
 			GER_georg_friedrich = {
-				hidden_effect = {
-					add_country_leader_role = {
-						country_leader={
-							ideology=moderate_socialist_ideology
-							expire="1.1.1.1"
-							id=-1
-						}
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader={
+						ideology=moderate_socialist_ideology
+						expire="1.1.1.1"
+						id=-1
 					}
 				}
-				promote_character = moderate_socialist_ideology
 			}
 			hidden_effect = {
 				remove_ideas = GER_kaiser_georg_freidrich
@@ -26317,6 +26303,7 @@
 			hidden_trigger = {
 				is_faction_leader = yes
 				NOT = { is_in_faction_with = AFG }
+				AFG = { NOT = { is_in_faction_with = SOV }}
 			}
 		}
 
@@ -26418,7 +26405,14 @@
 		}
 
 		available = {
-			
+			ENG = {
+				NOT = { is_subject_of = GER }
+			}
+		}
+		bypass = {
+			ENG = {
+				is_subject_of = GER
+			}
 		}
 
 		available_if_capitulated = yes
@@ -28328,7 +28322,10 @@
 		}
 		
 		bypass = {
-			NOT = { country_exists = DEN }
+			OR = {
+				NOT = { country_exists = DEN }
+				DEN = { has_idea = idea_eu_member }
+			}
 		}
 
 		available_if_capitulated = yes
@@ -34596,6 +34593,7 @@
 
 		available = {
 			has_country_flag = GER_dealt_with_austria
+			has_completed_focus = GER_investigate_strache
 		}
 
 		available_if_capitulated = yes
@@ -34746,6 +34744,7 @@
 		available = {
 			has_country_flag = GER_dealt_with_austria
 			has_completed_focus = GER_restore_the_national_front
+			has_completed_focus = GER_investigate_strache
 		}
 
 		available_if_capitulated = yes
@@ -34998,9 +34997,9 @@
 		completion_reward = {
 			remove_ideas = GER_austrian_clusterfuck2
 			hidden_effect = {
-				remove_idea = GER_austrian_clusterfuck
-				remove_idea = GER_southern_separatism
-				remove_idea = GER_southern_separatism2
+				remove_ideas = GER_austrian_clusterfuck
+				remove_ideas = GER_southern_separatism
+				remove_ideas = GER_southern_separatism2
 			}
 			every_owned_state = {
 				limit = { is_core_of = AUS }
