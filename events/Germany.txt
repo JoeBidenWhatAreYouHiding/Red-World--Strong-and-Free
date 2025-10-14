@@ -2639,11 +2639,11 @@ country_event = {
 		if = {
 			limit = {
 				check_variable = { GER_gysi_conservative > 3 }
-				hidden_effect = {
-					country_event = {
-						id = rw_germany.103
-						days = 4
-					}
+			}
+			hidden_effect = {
+				country_event = {
+					id = rw_germany.103
+					days = 4
 				}
 			}
 		}
@@ -15354,14 +15354,22 @@ country_event = {
 						option = GER_MONARCHIST_FORPOL_IMPERIALIST
 					}
 				}	
-			factor = 0
+				factor = 0
 			}
 		}		
 		unlock_national_focus = GER_democratic_foreign_policy
 		set_country_flag = GER_monarchist_dem_forpol
 		custom_effect_tooltip = GER_dem_fp_warning_tt
-		set_country_flag = GER_show_democratic_forpol_tree
-		mark_focus_tree_layout_dirty = yes
+		if = {
+			limit = {
+				has_game_rule = {
+					rule = obsolete_focus_branches_visibility
+					option = HIDE
+				}
+			}
+			set_country_flag = GER_show_democratic_forpol_tree
+			mark_focus_tree_layout_dirty = yes
+		}
 	}
 	
 	option = { #Nah
