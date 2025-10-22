@@ -5144,14 +5144,6 @@ focus_tree = {
 					trait = CAN_philosopher_prime_minister
 				}
 			}
-			
-			hidden_effect = {
-				country_event = {
-					id = rw_canada.309
-					days = 45
-					random_days = 20
-				}
-			}
 		}
 	}
 	
@@ -21476,9 +21468,18 @@ focus_tree = {
 		completion_reward = {
 			CUB = {
 				CAN_subtract_5_percent_popularity = yes
-				add_timed_idea = {
-					idea = GER_empowered_democratic_resistance
-					days = 6500
+				if = {
+					limit = { is_ai = yes }
+					add_timed_idea = {
+						idea = CAN_democratic_support_surge
+						days = 6500
+					}
+				}
+				else = {
+					add_timed_idea = {
+						idea = CAN_democratic_support_surge
+						days = 400
+					}
 				}
 			}
 		}
@@ -23100,7 +23101,7 @@ focus_tree = {
 			GER = {
 				add_stability = -0.06
 				if = {
-					limit = { is_ai = no }
+					limit = { GER = { is_ai = yes } }
 					add_timed_idea = {
 						idea = CAN_canadian_sabatoge
 						days = 2300
@@ -23200,7 +23201,7 @@ focus_tree = {
 			SOV = {
 				add_stability = -0.06
 				if = {
-					limit = { is_ai = no }
+					limit = { GER = { is_ai = yes } }
 					add_timed_idea = {
 						idea = CAN_canadian_sabatoge
 						days = 2300

@@ -977,7 +977,10 @@ GER_keeping_austria_happy = {
 		fire_only_once = no
 
 		cancel_trigger = {
-			has_country_flag = GER_austrian_infra_decision_selected
+			OR = {
+				has_country_flag = GER_austrian_infra_decision_selected
+				NOT = { has_power_balance = { id = GER_austrian_separatism_balance } }
+			}
 		}
 		
 		cancel_effect = {
@@ -1408,6 +1411,26 @@ GER_european_union_decisions = {
 			}
 		}
 		
+		visible = {
+			FROM = {
+				custom_trigger_tooltip = {
+					tooltip = GER_more_than_5_euroskeptic_support
+					check_variable = { 
+						var = EUU_pp_gain
+						compare = less_than
+						value = 0.01
+					}
+				}
+				NOT = {
+					check_variable = { 
+						var = EUU_pp_gain
+						compare = equals
+						value = 0.0
+					}
+				}
+			}
+		}
+		
 		allowed = {
 			tag = GER
 		}
@@ -1438,6 +1461,10 @@ GER_european_union_decisions = {
 		
 		complete_effect = {
 			set_country_flag = GER_fighting_euroskeptics_in_country
+		}
+		
+		cancel_effect = {
+			clr_country_flag = GER_fight_euroskeptics_in_tag
 		}
 
 		remove_effect = {
@@ -1510,7 +1537,7 @@ GER_european_union_decisions = {
 		fire_only_once = no
 		
 		ai_will_do = {
-			factor = 100
+			factor = 1
 		}
 	}
 }
@@ -1754,8 +1781,8 @@ GER_dem_european_union_decisions = {
 			political_power_cost = 0.05
 		}
 		
-		cost = 50
-		days_remove = 20
+		cost = 20
+		days_remove = 10
 		
 		on_map_mode = map_and_decisions_view
 		highlight_states = {
@@ -1807,13 +1834,14 @@ GER_dem_european_union_decisions = {
 		
 		visible = {
 			has_global_flag = GER_dem_eurofed 
+			NOT = { has_cosmetic_tag = EUU_BLUE }
 		}
 		
 		allowed = {
 			tag = GER
 		}
 		
-		cost = 200
+		cost = 50
 		
 		complete_effect = {
 		}
@@ -1828,6 +1856,7 @@ GER_dem_european_union_decisions = {
 				add_to_variable = { EUU_eurofederalist_support = 0.05 }
 				custom_effect_tooltip = GER_increase_eurofed_5_tt
 			}
+			add_political_power = 150
 		}
 		days_remove = 40
 		days_re_enable = 10
@@ -1852,7 +1881,7 @@ GER_dem_european_union_decisions = {
 			tag = GER
 		}
 		
-		cost = 150
+		cost = 100
 		
 		complete_effect = {
 		}
@@ -1898,7 +1927,7 @@ GER_dem_european_union_decisions = {
 			tag = GER
 		}
 		
-		cost = 200
+		cost = 0
 		
 		complete_effect = {
 		}
@@ -1983,6 +2012,12 @@ GER_foreign_policy_decisions = {
 		available = {
 			has_country_flag = GER_conmon
 			NOT = { has_government = monarchist }
+		}
+		
+		visible = {
+			hidden_trigger = {
+				NOT = { has_country_flag = GER_monarchist_dem_forpol }
+			}
 		}
 		
 		allowed = {

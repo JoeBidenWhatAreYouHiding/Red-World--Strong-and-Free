@@ -1137,7 +1137,7 @@ country_event = {
 		set_party_name = {
 			name = GER_progressive_mainline_party
 			long_name = GER_progressive_mainline_party_long
-			ideology = communists
+			ideology = communist
 		}
 		set_country_flag = GER_sorting_shit_out
 		set_country_flag = GER_congress_concluded
@@ -14146,6 +14146,7 @@ country_event = {
 			has_government = monarchist
 			has_country_flag = GER_conmon
 		}
+		NOT = { has_country_flag = GER_monarchist_dem_forpol }
 		LIT = { is_subject_of = GER }
 	}
 	fire_only_once = yes
@@ -14191,6 +14192,7 @@ country_event = {
 			has_government = monarchist
 			has_country_flag = GER_conmon
 		}
+		NOT = { has_country_flag = GER_monarchist_dem_forpol }
 		BLR = { is_subject_of = GER }
 	}
 	fire_only_once = yes
@@ -14236,6 +14238,7 @@ country_event = {
 			has_government = monarchist
 			has_country_flag = GER_conmon
 		}
+		NOT = { has_country_flag = GER_monarchist_dem_forpol }
 		UKR = { is_subject_of = GER }
 	}
 	fire_only_once = yes
@@ -16254,9 +16257,6 @@ country_event = {
 	
 	option = {
 		name = rw_ger_democratic_diplo.23.o1
-		trigger = {
-			NOT = { is_subject_of = GER }
-		}
 		hidden_effect = {
 		    every_state = {
 			    limit = {
@@ -16279,6 +16279,9 @@ country_event = {
 	
 	option = {
 		name = rw_ger_democratic_diplo.22.o2
+		trigger = {
+			NOT = { is_subject_of = GER }
+		}
 		remove_ideas = idea_dem_eu_member
 		add_political_power = 25
 		GER = {
@@ -17246,7 +17249,6 @@ country_event = {
 		add_political_power = -100
 		add_manpower = -400
 		set_country_flag = GER_forced_to_leave_austria
-		clr_country_flag = GER_austria_in_crisis
 		hidden_effect = {
 			every_country = {
 				news_event = {
@@ -18654,11 +18656,6 @@ country_event = {
 	
 	option = {
 		name = rw_ger_european_union.38.o1
-		trigger = {
-			NOT = { 
-				is_subject_of = GER
-			}
-		}
 		hidden_effect = {
 		    every_state = {
 			    limit = {
@@ -18681,12 +18678,25 @@ country_event = {
 	
 	option = {
 		name = rw_ger_european_union.38.o2
+		trigger = {
+			NOT = { 
+				is_subject_of = GER
+			}
+		}
 		remove_ideas = idea_eu_member
 	    remove_ideas = idea_ita_euro
 		add_political_power = 25
 		GER = {
 		    country_event = rw_ger_european_union.40
 		}
+		hidden_effect = {
+		    every_state = {
+			    limit = {
+				    is_core_of = ROOT
+				}
+				add_core_of = GER
+			}
+		} 
 		ai_chance = {
 			factor = 20
 		}
@@ -18757,7 +18767,10 @@ country_event = {
 			NOT = { is_in_faction_with = GER }
 			OR = {
 				exists = no
-				NOT = { has_government = communist }
+				NOT = { 
+					has_government = communist 
+					has_government = revolutionary_socialist 
+				}
 			}	
 		}
 		GER_is_ddr = yes
@@ -21755,7 +21768,7 @@ country_event = {
 			factor = 25
 		}
 		GER = {
-			country_event = rw_ger_diplo.7
+			country_event = rw_ger_diplo.71
 		}
 		declare_war_on = {
 			type = puppet_wargoal_focus
@@ -21891,7 +21904,7 @@ country_event = {
 	option = { #Sure
 		name = rw_ger_diplo.77.o1
 		ai_chance = {
-			factor = 75
+			factor = 65
 		}
 		GER = {
 			country_event = rw_ger_diplo.80
@@ -21902,7 +21915,7 @@ country_event = {
 	option = { #No
 		name = rw_ger_diplo.77.o1
 		ai_chance = {
-			factor = 75
+			factor = 35
 		}
 		GER = {
 			country_event = rw_ger_diplo.82
@@ -21923,7 +21936,7 @@ country_event = {
 	option = { #Sure
 		name = rw_ger_diplo.78.o1
 		ai_chance = {
-			factor = 75
+			factor = 65
 		}
 		GER = {
 			country_event = rw_ger_diplo.79
@@ -21934,7 +21947,7 @@ country_event = {
 	option = { #No
 		name = rw_ger_diplo.77.o1
 		ai_chance = {
-			factor = 75
+			factor = 35
 		}
 		GER = {
 			country_event = rw_ger_diplo.81
@@ -22907,10 +22920,11 @@ country_event = {
 	title = rw_germany_flavour.16.t
 	desc = {
 		text = rw_germany_flavour.16.d_2
-		trigger = { GER_is_ddr = yes }
+		trigger = { GER_is_ddr = no }
 	}
 	desc = {
 		text = rw_germany_flavour.16.d
+		trigger = { GER_is_ddr = yes }
 	}
 	picture = oktoberfest_arrives
 	
@@ -23123,8 +23137,9 @@ country_event = {
 					compare = less_than
 					value = 0.01
 				}
+				NOT = { tag = GER }
 			}
-			subtract_from_variable = { EUU_pp_gain = 0.01 }
+			add_to_variable = { EUU_pp_gain = 0.05 }
 			force_update_dynamic_modifier = yes
 			custom_effect_tooltip = GER_modify_euroskeptics_minor_tt
 		}
@@ -23140,7 +23155,7 @@ country_event = {
 			}
 		}
 		GER = {
-			subtract_from_variable = { EUU_pp_gain = 0.01 }
+			add_to_variable = { EUU_pp_gain = 0.05 }
 			force_update_dynamic_modifier = yes
 			custom_effect_tooltip = GER_modify_euroskeptics_minor_tt
 		}
@@ -23728,6 +23743,10 @@ country_event = {
 	
 	is_triggered_only = yes
 	
+	trigger = {
+		GER_is_ddr = yes
+	}
+	
 	option = {   
 		name = rw_germany_flavour.53.o1
 		add_stability = 0.02
@@ -23941,6 +23960,7 @@ country_event = {
 	}
 	desc = {
 		text = rw_germany_flavour.62.d
+		trigger = { GER_is_ddr = yes }
 	}
 	picture = german_unification_day
 	
@@ -24021,6 +24041,7 @@ country_event = { #E. Coli Outbreak
 	}
 	desc = {
 		text = rw_germany_flavour.66.d
+		trigger = { GER_is_ddr = yes }
 	}
 	
 	picture = e-coli_outbreak
@@ -24042,6 +24063,7 @@ country_event = { #Werner Herzog
 	}
 	desc = {
 		text = rw_germany_flavour.67.d
+		trigger = { GER_is_ddr = yes }
 	}
 	
 	picture = werner_herzog_event
@@ -24063,6 +24085,7 @@ country_event = { #European Flood
 	}
 	desc = {
 		text = rw_germany_flavour.68.d
+		trigger = { GER_is_ddr = yes }
 	}
 	
 	picture = europe_2013_flood
@@ -24212,6 +24235,7 @@ country_event = { #Kiel Week
 	}
 	desc = {
 		text = rw_germany_flavour.72.d
+		trigger = { GER_is_ddr = yes }
 	}
 	picture = kiel_week
 	
@@ -24232,6 +24256,7 @@ country_event = { #CeBIT
 	}
 	desc = {
 		text = rw_germany_flavour.73.d
+		trigger = { GER_is_ddr = yes }
 	}
 	picture = cebit_expo
 	
@@ -24262,6 +24287,10 @@ country_event = { #NVA 60th Birthday
 	title = rw_germany_flavour.75.t
 	desc = rw_germany_flavour.75.d
 	picture = nationale_volksarmee_birthday
+	
+	trigger = {
+		GER_is_ddr = yes
+	}
 	
 	is_triggered_only = yes
 	
@@ -24317,6 +24346,7 @@ country_event = { #Helmut Kohl Dead
 	}
 	desc = {
 		text = rw_germany_flavour.78.d
+		trigger = { GER_is_ddr = yes }
 	}
 	picture = helmut_kohn_death
 	
@@ -24336,6 +24366,7 @@ country_event = { #Flight 9525
 	}
 	title = {
 		text = rw_germany_flavour.79.t
+		trigger = { GER_is_ddr = yes }
 	}
 	desc = {
 		text = rw_germany_flavour.79.d_2
@@ -24343,6 +24374,7 @@ country_event = { #Flight 9525
 	}
 	desc = {
 		text = rw_germany_flavour.79.d
+		trigger = { GER_is_ddr = yes }
 	}
 	picture = plane_crash_in_austria
 	
@@ -24363,6 +24395,7 @@ country_event = { #Truck Attack
 	}
 	desc = {
 		text = rw_germany_flavour.80.d
+		trigger = { GER_is_ddr = yes }
 	}
 	picture = berlin_truck_attack
 	
@@ -24437,6 +24470,7 @@ country_event = { #XTREME
 	}
 	desc = {
 		text = rw_germany_flavour.83.d
+		trigger = { GER_is_ddr = yes }
 	}
 	picture = westside_xtreme_wrestling
 	
@@ -24729,6 +24763,7 @@ country_event = { #SPD Birthday
 	}
 	desc = {
 		text = rw_germany_flavour.96.d
+		trigger = { GER_is_ddr = yes }
 	}
 	picture = 150_years_of_the_spd
 	
