@@ -9886,7 +9886,7 @@ country_event = {
 		}
 	}
 	
-	option = { #Pierre Poilievre
+	option = { #Will Romney
 		name = rw_canada.299.o6
 		trigger = {
 			OR = {
@@ -9897,21 +9897,35 @@ country_event = {
 				has_country_flag = pc_leader_resigns_2015
 			}
 			NOT = {
-				has_country_flag = nationalists_are_canadian_alliance
+				has_country_flag = trump_leads_progcons
 			}
 		}
-		set_country_flag = pc_pierre_poilievre_2019
-		CAN_pierre_poilievre = {
-			promote_character = reform_populism
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = nationalist
+					has_government = national_conservative
+				}
+				has_country_flag = pc_leader_resigns_2015
+			}
+		}
+		set_country_flag = pc_ben_mulroney_2019
+		CAN_will_romney = {
+			promote_character = progressive_conservative
 		}
 		if = {
-			limit = { has_country_flag = pcs_are_natcon }
-			clr_country_flag = pcs_are_natcon
-			set_country_flag = pcs_are_nationalist
-			custom_effect_tooltip = CAN_pc_become_nationalist_tt
+			limit = { has_country_flag = pcs_are_nationalist }
+			clr_country_flag = pcs_are_nationalist
+			set_country_flag = pcs_are_natcon
+			custom_effect_tooltip = CAN_pc_become_natcon_tt
 		}
 		if = {
-			limit = { has_country_flag = CAN_red_tories_in_power }
+			limit = { 
+				OR = {
+					has_country_flag = CAN_red_tories_in_power 
+					has_country_flag = CAN_blue_tories_in_power
+				}
+			}
 			set_party_name = {
 				name = CAN_national_conservative_party
 				long_name  = CAN_national_conservative_party_long
@@ -9919,12 +9933,6 @@ country_event = {
 			}
 			clr_country_flag = CAN_red_tories_in_power
 		}
-		set_party_name = {
-			name = CAN_true_blue_pcs_party
-			long_name  = CAN_true_blue_pcs_party_long
-			ideology = nationalist
-		}
-		set_country_flag = CAN_blue_tories_in_power
 	}
 	
 	option = { #Brad Trost
@@ -10502,6 +10510,29 @@ country_event = {
 			clr_country_flag = liberals_are_liberal
 			set_country_flag = liberals_are_centrist
 			set_country_flag = CAN_liberals_become_centrist_tt
+		}
+	}
+	
+	option = { #JB Pritzker
+		name = rw_canada.301.o7
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = centrist
+					has_government = liberal
+				}
+				has_country_flag = liberal_leader_resigns_2015
+			}
+		}
+		set_country_flag = liberal_jb_pritzker_2023
+		CAN_jb_pritzker = {
+			promote_character = centrist_ideology
+		}
+		if = {
+			limit = { has_country_flag = liberals_are_centrist }
+			clr_country_flag = liberals_are_centrist
+			set_country_flag = liberals_are_liberal
+			set_country_flag = CAN_liberals_become_liberal_tt
 		}
 	}
 }
