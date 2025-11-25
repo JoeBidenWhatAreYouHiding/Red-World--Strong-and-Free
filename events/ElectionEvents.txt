@@ -1,0 +1,379 @@
+add_namespace = election
+
+#Election event
+country_event = {
+	id = election.1
+	title = election.1.t
+	desc = election.1.d
+	picture = generic_election_event
+	
+	is_triggered_only = yes
+
+	fire_only_once = yes
+	
+	option = {	#National Conservatives
+		name = election.1.o1
+		ai_chance = {
+			factor = 3
+		}
+		
+		complete_national_focus = generic_national_conservative_focus
+		add_popularity = {
+    	ideology = national_conservative
+    	popularity = 0.075
+		}
+	}
+	
+	option = {	#Centrists
+		name = election.1.o2
+		ai_chance = {
+			factor = 3
+		}
+		
+		complete_national_focus = generic_centrist_focus
+		add_popularity = {
+    	ideology = centrist
+    	popularity = 0.075
+		}
+	}
+	
+	option = {	#Liberals
+		name = election.1.o3
+		ai_chance = {
+			factor = 3
+		}
+		
+		complete_national_focus = generic_liberal_focus
+		add_popularity = {
+    	ideology = liberal
+    	popularity = 0.075
+		}
+	}
+	
+	option = {	#New Democrats
+		name = election.1.o4
+		ai_chance = {
+			factor = 3
+		}
+		
+		complete_national_focus = generic_new_democrat_focus
+		add_popularity = {
+    	ideology = new_democrat
+    	popularity = 0.075
+		}
+	}
+	
+	option = {	#Moderate Socialists
+		name = election.1.o5
+		ai_chance = {
+			factor = 3
+		}
+		
+		complete_national_focus = generic_moderate_socialist_focus
+		add_popularity = {
+    	ideology = moderate_socialist
+    	popularity = 0.075
+		}
+	}
+	
+}
+
+#We can call an election again
+country_event = {
+	id = election.2
+	title = election.2.t
+	desc = election.2.d
+	picture = generic_election_event
+	
+	is_triggered_only = yes
+	
+	option = {	#National Conservatives
+		name = election.1.o1
+		ai_chance = {
+			factor = 3
+		}
+		if = {
+		limit = { not = { has_completed_focus = generic_national_conservative_focus } }
+		complete_national_focus = generic_national_conservative_focus
+		}
+		add_popularity = {
+    	ideology = national_conservative
+    	popularity = 0.15
+		}
+		hidden_effect = {
+		if = { limit = {
+		has_completed_focus = generic_centrist_focus
+				} 
+		uncomplete_national_focus = { 
+		focus = generic_centrist_focus
+		uncomplete_children = yes
+				}
+			}
+		if = { limit = {
+		has_completed_focus = generic_liberal_focus
+				} 
+		uncomplete_national_focus = { 
+		focus = generic_liberal_focus
+		uncomplete_children = yes
+				}
+			}
+		if = { limit = {
+		has_completed_focus = generic_new_democrat_focus
+				} 
+		uncomplete_national_focus = { 
+		focus = generic_new_democrat_focus
+		uncomplete_children = yes
+				}
+			}
+		if = { limit = {
+		has_completed_focus = generic_moderate_socialist_focus
+				} 
+		uncomplete_national_focus = { 
+		focus = generic_moderate_socialist_focus
+		uncomplete_children = yes
+				}
+			}
+		if = { limit = {
+		has_completed_focus = generic_national_conservative_focus
+				}
+		country_event = { 
+        		days = 1460
+        		id = election.2
+        		}
+			}
+		}
+	}
+	
+	option = {	#Centrists
+		name = election.1.o2
+		ai_chance = {
+			factor = 3
+		}
+		
+		if = {
+		limit = { not = { has_completed_focus = generic_centrist_focus } }
+		complete_national_focus = generic_centrist_focus
+		}
+		add_popularity = {
+    	ideology = centrist
+    	popularity = 0.15
+		}
+		hidden_effect = {
+		if = { limit = {
+		has_completed_focus = generic_national_conservative_focus
+				} 
+		uncomplete_national_focus = { 
+		focus = generic_national_conservative_focus
+		uncomplete_children = yes
+				}
+			}
+		if = { limit = {
+		has_completed_focus = generic_liberal_focus
+				} 
+		uncomplete_national_focus = { 
+		focus = generic_liberal_focus
+		uncomplete_children = yes
+				}
+			}
+		if = { limit = {
+		has_completed_focus = generic_new_democrat_focus
+				} 
+		uncomplete_national_focus = { 
+		focus = generic_new_democrat_focus
+		uncomplete_children = yes
+				}
+			}
+		if = { limit = {
+		has_completed_focus = generic_moderate_socialist_focus
+				} 
+		uncomplete_national_focus = { 
+		focus = generic_moderate_socialist_focus
+		uncomplete_children = yes
+				}
+			}
+		if = { limit = {
+		has_completed_focus = generic_centrist_focus
+				}
+		country_event = { 
+        		days = 1460
+        		id = election.2
+        		}
+			}
+		}
+	}
+	
+	option = {	#Liberals
+		name = election.1.o3
+		ai_chance = {
+			factor = 3
+		}
+		
+		if = {
+		limit = { not = { has_completed_focus = generic_liberal_focus } }
+		complete_national_focus = generic_liberal_focus
+		}
+		add_popularity = {
+    	ideology = liberal
+    	popularity = 0.15
+		}
+		hidden_effect = {
+		if = { limit = {
+		has_completed_focus = generic_national_conservative_focus
+				} 
+		uncomplete_national_focus = { 
+		focus = generic_national_conservative_focus
+		uncomplete_children = yes
+				}
+			}
+		if = { limit = {
+		has_completed_focus = generic_centrist_focus
+				} 
+		uncomplete_national_focus = { 
+		focus = generic_centrist_focus
+		uncomplete_children = yes
+				}
+			}
+		if = { limit = {
+		has_completed_focus = generic_new_democrat_focus
+				} 
+		uncomplete_national_focus = { 
+		focus = generic_new_democrat_focus
+		uncomplete_children = yes
+				}
+			}
+		if = { limit = {
+		has_completed_focus = generic_moderate_socialist_focus
+				} 
+		uncomplete_national_focus = { 
+		focus = generic_moderate_socialist_focus
+		uncomplete_children = yes
+				}
+			}
+		if = { limit = {
+		has_completed_focus = generic_liberal_focus
+				}
+		country_event = { 
+        		days = 1460
+        		id = election.2
+        		}
+			}
+		}
+	}
+	
+	option = {	#New Democrats
+		name = election.1.o4
+		ai_chance = {
+			factor = 3
+		}
+		
+		if = {
+		limit = { not = { has_completed_focus = generic_new_democrat_focus } }
+		complete_national_focus = generic_new_democrat_focus
+		}
+		add_popularity = {
+    	ideology = new_democrat
+    	popularity = 0.15
+		}
+		hidden_effect = {
+		if = { limit = {
+		has_completed_focus = generic_national_conservative_focus
+				} 
+		uncomplete_national_focus = { 
+		focus = generic_national_conservative_focus
+		uncomplete_children = yes
+				}
+			}
+		if = { limit = {
+		has_completed_focus = generic_centrist_focus
+				} 
+		uncomplete_national_focus = { 
+		focus = generic_centrist_focus
+		uncomplete_children = yes
+				}
+			}
+		if = { limit = {
+		has_completed_focus = generic_liberal_focus
+				} 
+		uncomplete_national_focus = { 
+		focus = generic_liberal_focus
+		uncomplete_children = yes
+				}
+			}
+		if = { limit = {
+		has_completed_focus = generic_moderate_socialist_focus
+				} 
+		uncomplete_national_focus = { 
+		focus = generic_moderate_socialist_focus
+		uncomplete_children = yes
+				}
+			}
+		if = { limit = {
+		has_completed_focus = generic_new_democrat_focus
+				}
+		country_event = { 
+        		days = 1460
+        		id = election.2
+        		}
+			}
+		}
+	}
+	
+	option = {	#Moderate Socialists
+		name = election.1.o5
+		ai_chance = {
+			factor = 3
+		}
+		
+		if = {
+		limit = { not = { has_completed_focus = generic_moderate_socialist_focus } }
+		complete_national_focus = generic_moderate_socialist_focus
+		}
+		add_popularity = {
+    	ideology = moderate_socialist
+    	popularity = 0.15
+		}
+		hidden_effect = {
+		if = { limit = {
+		has_completed_focus = generic_national_conservative_focus
+				} 
+		uncomplete_national_focus = { 
+		focus = generic_national_conservative_focus
+		uncomplete_children = yes
+				}
+			}
+		if = { limit = {
+		has_completed_focus = generic_centrist_focus
+				} 
+		uncomplete_national_focus = { 
+		focus = generic_centrist_focus
+		uncomplete_children = yes
+				}
+			}
+		if = { limit = {
+		has_completed_focus = generic_liberal_focus
+				} 
+		uncomplete_national_focus = { 
+		focus = generic_liberal_focus
+		uncomplete_children = yes
+				}
+			}
+		if = { limit = {
+		has_completed_focus = generic_new_democrat_focus
+				} 
+		uncomplete_national_focus = { 
+		focus = generic_new_democrat_focus
+		uncomplete_children = yes
+				}
+			}
+		if = { limit = {
+		has_completed_focus = generic_moderate_socialist_focus
+				}
+		country_event = { 
+        		days = 1460
+        		id = election.2
+        		}
+			}
+		}
+	}
+
+}

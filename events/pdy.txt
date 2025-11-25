@@ -1,0 +1,3340 @@
+add_namespace = pdy
+
+#SAPC invitation
+country_event = {
+	id = pdy.1
+	title = pdy.1.t
+	desc = pdy.1.d
+	picture = pdy_sapc_invitation
+	
+	is_triggered_only = yes
+	
+	option = {  #Accept
+		name = pdy.1.o1
+		PDY = {
+		    country_event = { id = pdy.2 } 
+		}
+        add_ideas = PDY_sapc_member
+        ai_chance = {
+			factor = 70
+        }
+    }    
+    option = { #refuse
+		name = pdy.1.o2
+	    PDY = {
+		    country_event = { id = pdy.3 }
+		}
+		ai_chance = {
+			factor = 50
+		}
+    }
+}
+
+#they accepted
+country_event = {
+	id = pdy.2
+	title = pdy.2.t
+	desc = pdy.2.d
+	picture = pdy_sapc_accepts
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = pdy.2.o1
+    }     
+}
+
+#they refused
+country_event = {
+	id = pdy.3
+	title = pdy.3.t
+	desc = pdy.3.d
+	picture = pdy_sapc_rejects
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = pdy.3.o1
+        add_political_power = -25
+    }     
+}
+
+#join as observer member?
+country_event = {
+	id = pdy.4
+	title = pdy.4.t
+	desc = pdy.4.d
+	picture = pdy_sapc_invitation
+	
+	is_triggered_only = yes
+	
+	#accept
+	option = { 
+		name = pdy.4.o1
+        PDY = {
+		    country_event = { id = pdy.5 }
+		}
+		add_ideas = PDY_sapc_observer
+		ai_chance = {
+			factor = 95
+        }
+    }
+
+	#decline
+    option = { 
+		name = pdy.4.o2
+        PDY = {
+		    country_event = { id = pdy.6 }
+		}
+		ai_chance = {
+			factor = 10
+        }
+    }    
+}
+
+#they accepted
+country_event = {
+	id = pdy.5
+	title = pdy.5.t
+	desc = pdy.5.d
+	picture = pdy_sapc_invitation
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = pdy.5.o1
+    }     
+}
+
+#they refused
+country_event = {
+	id = pdy.6
+	title = pdy.6.t
+	desc = pdy.6.d
+	picture = pdy_sapc_invitation
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = pdy.6.o1
+    }     
+}
+
+#establishment of the SAA
+country_event = {
+	id = pdy.7
+	title = pdy.7.t
+	desc = pdy.7.d
+	picture = pdy_establish_saa
+	
+	is_triggered_only = yes
+	
+	#accept
+	option = { 
+		name = pdy.7.o1
+		PDY = { add_to_faction = ROOT }
+		PDY = {
+		    country_event = { id = pdy.8 }
+		}
+		ai_chance = {
+			factor = 90
+        }
+    }     
+	#decline
+	option = { 
+		name = pdy.7.o2
+		PDY = {
+		    country_event = { id = pdy.9 }
+		}
+		ai_chance = {
+			factor = 5
+        }
+    }     
+}
+
+#they accepted
+country_event = {
+	id = pdy.8
+	title = pdy.8.t
+	desc = pdy.8.d
+	picture = pdy_establish_saa
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = pdy.8.o1
+    }     
+}
+
+#they declined
+country_event = {
+	id = pdy.9
+	title = pdy.9.t
+	desc = pdy.9.d
+	picture = pdy_establish_saa
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = pdy.9.o1
+    }     
+}
+
+#status of religion?
+country_event = {
+	id = pdy.10
+	title = pdy.10.t
+	desc = pdy.10.d
+	picture = pdy_sapc_religion
+	
+	is_triggered_only = yes
+	
+	#atheism
+	option = { 
+		name = pdy.10.o1
+		add_stability = -0.20
+		add_popularity = {
+            ideology = communist
+            popularity = 0.05
+        }
+		add_political_power = -100
+		add_ideas = PDY_atheism
+    }
+
+	#secularism
+	option = { 
+		name = pdy.10.o2
+		add_stability = -0.05
+		add_popularity = {
+            ideology = communist
+            popularity = 0.03
+        }
+		add_popularity = {
+            ideology = moderate_socialist
+            popularity = 0.03
+        }
+		add_popularity = {
+            ideology = revolutionary_socialist
+            popularity = 0.03
+        }
+		add_political_power = 50
+		add_ideas = PDY_secular
+    }
+
+	#self determination
+	option = { 
+		name = pdy.10.o3
+		add_stability = 0.05
+		add_popularity = {
+            ideology = communist
+            popularity = 0.03
+        }
+		add_popularity = {
+            ideology = moderate_socialist
+            popularity = 0.05
+        }
+		add_popularity = {
+            ideology = revolutionary_socialist
+            popularity = 0.05
+        }
+		add_political_power = 100
+		add_ideas = PDY_choice
+    }      
+}
+
+#centralize union?
+country_event = {
+	id = pdy.11
+	title = pdy.11.t
+	desc = pdy.11.d
+	picture = pdy_sapc_centralisation
+	
+	is_triggered_only = yes
+	
+	#centralize
+	option = { 
+		name = pdy.11.o1
+		add_ideas = PDY_centralization
+    }
+
+	#equal union
+	option = { 
+		name = pdy.11.o2
+		add_ideas = PDY_equal_union 
+    }      
+}
+
+#integration of parties?
+country_event = {
+	id = pdy.12
+	title = pdy.12.t
+	desc = pdy.12.d
+	picture = pdy_sapc_party_integration
+	
+	is_triggered_only = yes
+	
+	#yes
+	option = { 
+		name = pdy.12.o1
+		if = {
+            limit = {
+                has_government = communist
+            }   
+            set_party_name = { 
+                ideology = communist
+                long_name = PDY_arabian_communist_party_long 
+                name = PDY_arabian_communist_party 
+            }
+		}
+		if = {
+            limit = {
+                has_government = moderate_socialist
+            }   
+            set_party_name = { 
+                ideology = moderate_socialist
+                long_name = PDY_arabian_communist_party_long 
+                name = PDY_arabian_communist_party 
+            }
+		}
+		if = {
+            limit = {
+                has_government = revolutionary_socialist
+            }   
+            set_party_name = { 
+                ideology = revolutionary_socialist
+                long_name = PDY_arabian_communist_party_long 
+                name = PDY_arabian_communist_party 
+            }
+		}
+		if = {
+            limit = {
+                has_government = revolutionary_socialist
+            }   
+            add_popularity = {
+                ideology = communist
+                popularity = 0.05
+            }
+		   add_popularity = {
+               ideology = moderate_socialist
+               popularity = 0.05
+            }
+		    add_popularity = {
+                ideology = revolutionary_socialist
+                popularity = 0.15
+            }
+		}
+		if = {
+            limit = {
+                has_government = communist
+            }   
+            add_popularity = {
+                ideology = communist
+                popularity = 0.15
+            }
+		   add_popularity = {
+               ideology = moderate_socialist
+               popularity = 0.05
+            }
+		    add_popularity = {
+                ideology = revolutionary_socialist
+                popularity = 0.05
+            }
+		}
+		if = {
+            limit = {
+                has_government = moderate_socialist
+            }   
+            add_popularity = {
+                ideology = communist
+                popularity = 0.05
+            }
+		   add_popularity = {
+               ideology = moderate_socialist
+               popularity = 0.15
+            }
+		    add_popularity = {
+                ideology = revolutionary_socialist
+                popularity = 0.05
+            }
+		}
+    }
+
+	#no
+	option = { 
+		name = pdy.12.o2
+		set_party_name = { 
+            ideology = revolutionary_socialist
+            long_name = PDY_revsoc_long
+            name = PDY_revsoc 
+        }
+		set_party_name = { 
+            ideology = moderate_socialist
+            long_name = PDY_modsoc_long
+            name = PDY_modsoc 
+        }
+		set_party_name = { 
+            ideology = communist
+			long_name = PDY_com_long
+            name = PDY_com 
+        }
+    }      
+}
+
+#join UOSA?
+country_event = {
+	id = pdy.13
+	title = pdy.13.t
+	desc = pdy.13.d
+	picture = pdy_sapc_party_integration
+	
+	is_triggered_only = yes
+	
+	#yes
+	option = { 
+		name = pdy.13.o1
+        hidden_effect = {
+		    every_state = {
+			    limit = {
+				    is_core_of = ROOT
+				}
+				add_core_of = PDY
+			}
+		} 
+		PDY = {
+			annex_country = { 
+				target = ROOT
+				transfer_troops = yes
+			}
+			country_event = pdy.14
+		}
+		ai_chance = {
+			factor = 90
+			modifier = {
+        		OR = {
+					has_government = communist
+					has_government = revolutionary_socialist
+					has_government = moderate_socialist
+				}
+        		factor = 10
+    		}
+		}
+	}
+	#no
+	option = {
+		name = pdy.13.o2
+		PDY = {
+		    country_event = pdy.15
+		}
+		ai_chance = {
+			factor = 5
+			modifier = {
+        		OR = {
+					has_government = monarchist
+					has_government = fascist
+					has_government = nationalist
+				}
+        		factor = 45
+    		}
+		}
+	}     
+}
+
+#they accepted
+country_event = {
+	id = pdy.14
+	title = pdy.14.t
+	desc = pdy.14.d
+	picture = pdy_sapc_integration_yes
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = pdy.14.o1
+    }     
+}
+
+#they declined
+country_event = {
+	id = pdy.15
+	title = pdy.15.t
+	desc = pdy.15.d
+	picture = pdy_establish_saa
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = pdy.15.o1
+    }     
+}
+
+#strong opposition
+country_event = {
+	id = pdy.16
+	title = pdy.16.t
+	desc = pdy.16.d
+	picture = pdy_strong_opposition_showing
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = pdy.16.o1
+		hidden_effect = {
+		    country_event = { days = 2 id = pdy.17 } 
+		}
+    }     
+}
+
+#opp calls for liberalization
+country_event = {
+	id = pdy.17
+	title = pdy.17.t
+	desc = pdy.17.d
+	picture = pdy_opposition_demands_liberalisation
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = pdy.17.o1
+		hidden_effect = {
+		    country_event = { days = 2 id = pdy.18 } 
+		}
+    }
+}
+
+#meeting with opposition
+country_event = {
+	id = pdy.18
+	title = pdy.18.t
+	desc = pdy.18.d
+	picture = pdy_meeting_with_opposition
+	
+	is_triggered_only = yes
+	
+	#ysp supremacy
+	option = { 
+		name = pdy.18.o1
+		hidden_effect = {
+		    country_event = { days = 2 id = pdy.23 } 
+		}
+		ai_chance = {
+			base = 50
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = PDY_MOD
+					}
+				}
+				factor = 0
+			}
+		}
+    }
+
+	#meet them halfway
+	option = { 
+		name = pdy.18.o2
+		hidden_effect = {
+		    country_event = { days = 2 id = pdy.19 }
+			if = {
+		        limit = {
+			        PDY = {
+				        is_ai = no
+				    }
+			    }
+                hidden_effect = {
+		            sound_effect = stasi_coup_sound
+				}
+		    }
+		}
+		ai_chance = {
+			base = 50
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = PDY_STASI
+					}
+				}
+				factor = 0
+			}
+		}
+    }     
+}
+
+#successful
+country_event = {
+	id = pdy.19
+	title = pdy.19.t
+	desc = pdy.19.d
+	picture = pdy_opposition_talks_succeed
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = pdy.19.o1
+		hidden_effect = {
+		    country_event = { days = 2 id = pdy.20 } 
+		}
+    }     
+}
+
+#beginning implementation
+country_event = {
+	id = pdy.20
+	title = pdy.20.t
+	desc = pdy.20.d
+	picture = pdy_liberalisation_begins
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = pdy.20.o1
+		hidden_effect = {
+		    country_event = { days = 2 id = pdy.21 } 
+		}
+		add_popularity = {
+            ideology = new_democrat
+            popularity = 0.05
+        }
+		add_popularity = {
+            ideology = moderate_socialist
+            popularity = 0.05
+        }
+    }     
+}
+
+#strange army movements
+country_event = {
+	id = pdy.21
+	title = pdy.21.t
+	desc = pdy.21.d
+	picture = pdy_not_a_coup
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = pdy.21.o1
+		hidden_effect = {
+		    country_event = { days = 2 id = pdy.22 } 
+		}
+    }     
+}
+
+#intelligence coup!
+country_event = {
+	id = pdy.22
+	title = pdy.22.t
+	desc = pdy.22.d
+	picture = pdy_intelligence_coup
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = pdy.22.o1
+		hidden_effect = {
+		    load_focus_tree = { tree = pdy_stasi_tree keep_completed = yes }
+		}
+		add_stability = -0.15
+		set_politics = {
+			ruling_party = communist
+		}
+		PDY_aidarus_al_zoubaidi = {
+			promote_character = stalinist
+		}
+		set_country_flag = PDY_stasi_takeover
+		custom_effect_tooltip = pdy_zoubaidi_ministers_tooltip
+		hidden_effect = {
+			add_ideas = pdry_sic_jaafar_mohammed_saad
+			add_ideas = pdry_fom_abd_al_rahman_ali_al_jifri
+			add_ideas = pdry_ind_abdullatif_al_sayed
+			add_ideas = pdry_nsm_ahmed_hamid_lamlas
+			add_ideas = pdry_inm_mohammed_mansour_al_ghadra
+		}
+    }     
+}
+
+#opposition protests
+country_event = {
+	id = pdy.23
+	title = pdy.23.t
+	desc = pdy.23.d
+	picture = pdy_opposition_protests
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = pdy.23.o1
+		hidden_effect = {
+		    country_event = { days = 2 id = pdy.24 } 
+		}
+    }     
+}
+
+#carrot and stick
+country_event = {
+	id = pdy.24
+	title = pdy.24.t
+	desc = pdy.24.d
+	picture = pdy_carrot_and_stick
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = pdy.24.o1
+		hidden_effect = {
+		    country_event = { days = 2 id = pdy.25 } 
+		}
+    }     
+}
+
+#opposition concedes
+country_event = {
+	id = pdy.25
+	title = pdy.25.t
+	desc = pdy.25.d
+	picture = pdy_opposition_concessions
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = pdy.20.o1
+		add_political_power = 15
+		add_popularity = {
+            ideology = moderate_socialist
+            popularity = 0.05
+        }
+    }     
+}
+
+country_event = {
+	id = pdy.26 #starting event for pdy, choose whether you want a unified yemen or an independent south yemen
+	title = pdy.26.t
+	desc = pdy.26.d
+	picture = pdy_north_or_south
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = pdy.26.o1
+		set_country_flag = PDY_Unified_Yemen_Flag
+		ai_chance = {
+			factor = 40
+        }
+	}
+	option = { 
+		name = pdy.26.o2
+		set_country_flag = PDY_Southern_Yemen_Flag
+		add_timed_idea = {
+			idea = PDY_southern_focus
+			days = 365
+		}
+		ai_chance = {
+			factor = 60
+        }
+	}
+}
+
+country_event = {
+	id = pdy.27 #Jasmines have capitulated, south reaches out to the north
+	title = pdy.27.t
+	desc = pdy.27.d
+	picture = pdy_reach_out_to_norf
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = pdy.27.o1
+		remove_ideas = PDY_southern_focus
+		IF = {
+			limit = {
+				country_exists = YEM
+				country_exists = YAR
+			}
+			YAR = {
+				country_event = {
+					id = pdy.28
+					days = 1
+				}
+			}
+			YEM = {
+				country_event = {
+					id = pdy.29
+					days = 1
+				}
+			}
+		}
+		ELSE_IF = {
+			limit = {
+				country_exists = YEM
+				NOT = {
+					country_exists = YAR
+				}
+			}
+			YEM = {
+				country_event = {
+					id = pdy.30
+					days = 1
+				}
+			}
+		}
+		ELSE_IF = {
+			limit = {
+				country_exists = YAR
+				NOT = {
+					country_exists = YEM
+				}
+			}
+			YAR = {
+				country_event = {
+					id = pdy.31
+					days = 1
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = pdy.28 #peace with the PDRY? (YAR, Both Alive)
+	title = pdy.28.t
+	desc = pdy.28.d
+	picture = pdy_asks_for_peace_yar
+	
+	is_triggered_only = yes
+	
+	option = { #yes
+	ai_chance = {
+		factor = 60
+	}
+		name = pdy.28.o1
+		white_peace = PDY
+		PDY = {
+			IF = {
+				limit = {
+					has_country_flag = YEM_says_no_Flag
+				}
+				set_country_flag = YAR_says_yes_Flag
+			}
+			ELSE_IF = {
+				limit = {
+					NOT = {
+						has_country_flag = YEM_says_no_Flag
+					}
+				}
+				country_event = {
+					id = pdy.32
+					days = 1
+				}
+			}
+		}
+	}
+	option = { #no
+		name = pdy.28.o2
+		ai_chance = {
+			factor = 40
+        }
+		PDY = {
+			country_event = {
+				id = pdy.33
+				days = 1
+			}
+			set_country_flag = YAR_says_no_Flag
+		}
+	}
+}
+
+country_event = {
+	id = pdy.29 #peace with the PDRY? (YEM, Both Alive)
+	title = pdy.29.t
+	desc = pdy.29.d
+	picture = pdy_asks_for_peace_yar
+	
+	is_triggered_only = yes
+	
+	option = { #yes
+		name = pdy.29.o1
+		ai_chance = {
+			factor = 60
+        }
+		white_peace = PDY
+		PDY = {
+			IF = {
+				limit = {
+					has_country_flag = YAR_says_no_Flag
+				}
+				set_country_flag = YEM_says_yes_Flag
+			}
+			ELSE_IF = {
+				limit = {
+					NOT = {
+						has_country_flag = YAR_says_no_Flag
+					}
+				}
+				country_event = {
+					id = pdy.32
+					days = 1
+				}
+			}
+		}
+	}
+	option = { #no
+		name = pdy.29.o2
+		ai_chance = {
+			factor = 40
+        }
+		PDY = {
+			country_event = {
+				id = pdy.34
+				days = 1
+			}
+			set_country_flag = YEM_says_no_Flag
+		}
+	}
+}
+
+country_event = {
+	id = pdy.30 #peace with the PDRY? (YEM)
+	title = pdy.30.t
+	desc = pdy.30.d
+	picture = pdy_asks_for_peace_yar
+	
+	is_triggered_only = yes
+	
+	option = { #yes
+		name = pdy.30.o1
+		ai_chance = {
+			factor = 60
+        }
+		white_peace = PDY
+		PDY = {
+			country_event = {
+				id = pdy.35
+				days = 1
+			}
+		}
+	}
+	option = { #no
+		name = pdy.30.o2
+		ai_chance = {
+			factor = 40
+        }
+		PDY = {
+			country_event = {
+				id = pdy.36
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = {
+	id = pdy.31 #peace with the PDRY? (YAR)
+	title = pdy.31.t
+	desc = pdy.31.d
+	picture = pdy_asks_for_peace_yar
+	
+	is_triggered_only = yes
+	
+	option = { #yes
+		name = pdy.31.o1
+		ai_chance = {
+			factor = 60
+        }
+		white_peace = PDY
+		PDY = {
+			country_event = {
+				id = pdy.37
+				days = 1
+			}
+		}
+	}
+	option = { #no
+		name = pdy.31.o2
+		ai_chance = {
+			factor = 40
+        }
+		PDY = {
+			country_event = {
+				id = pdy.38
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = {
+	id = pdy.32 #deunification if both north yemeni factions agree
+	title = pdy.32.t
+	desc = pdy.32.d
+	picture = pdy_peace_in_yemen
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = pdy.32.o1
+		
+		PDY = {
+			set_state_controller = 659
+			set_state_owner = 659
+			set_state_controller = 979
+			set_state_owner = 979
+			set_state_controller = 293
+			set_state_owner = 293
+			set_state_controller = 974
+			set_state_owner = 974
+		}
+		YEM = {
+			set_state_controller = 972
+			set_state_owner = 972
+		}	
+	}
+}
+
+country_event = {
+	id = pdy.33 #YAR says no to a peace deal
+	title = pdy.33.t
+	desc = pdy.33.d
+	picture = pdy_no_peace_in_yemen
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.33.o1
+	}
+}
+	
+country_event = {
+	id = pdy.34 #YEM says no to a peace deal
+	title = pdy.34.t
+	desc = pdy.34.d
+	picture = pdy_no_peace_in_yemen
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.34.o1
+	}
+}
+
+country_event = {
+	id = pdy.35 #yemen secedes (YEM)
+	title = pdy.35.t
+	desc = pdy.35.d
+	picture = pdy_yes_peace_in_yemen
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = pdy.35.o1
+		PDY = {
+			set_state_controller = 659
+			set_state_owner = 659
+			set_state_controller = 979
+			set_state_owner = 979
+			set_state_controller = 293
+			set_state_owner = 293
+			set_state_controller = 974
+			set_state_owner = 974
+		}
+		YEM = {
+			set_state_controller = 972
+			set_state_owner = 972
+			set_state_controller = 977
+			set_state_owner = 977
+			set_state_controller = 978
+			set_state_owner = 978
+			set_state_controller = 976
+			set_state_owner = 976
+		}
+	}
+}
+
+country_event = {
+	id = pdy.37 #south yemen secedes (YAR)
+	title = pdy.37.t
+	desc = pdy.37.d
+	picture = pdy_yes_peace_in_yemen
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = pdy.37.o1
+		PDY = {
+			set_state_controller = 659
+			set_state_owner = 659
+			set_state_controller = 979
+			set_state_owner = 979
+			set_state_controller = 293
+			set_state_owner = 293
+			set_state_controller = 974
+			set_state_owner = 974
+		}
+		YAR = {
+			set_state_controller = 972
+			set_state_owner = 972
+			set_state_controller = 975
+			set_state_owner = 975
+			set_state_controller = 973
+			set_state_owner = 973
+			set_state_controller = 978
+			set_state_owner = 978
+		}
+	}
+}
+
+country_event = {
+	id = pdy.38 #peacedeal refused (YAR)
+	title = pdy.38.t
+	desc = pdy.38.d
+	picture = pdy_no_peace_in_yemen
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = pdy.38.o1
+		set_country_flag = YAR_peacedeal_refused_Flag
+	}
+}
+
+country_event = {
+	id = pdy.36 #peacedeal refused (YEM)
+	title = pdy.36.t
+	desc = pdy.36.d
+	picture = pdy_no_peace_in_yemen
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = pdy.36.o1
+		set_country_flag = YEM_peacedeal_refused_Flag
+	}
+}
+
+country_event = {
+	id = pdy.39 #we now own north yemen, what should we do with it (YAR & YEM)
+	title = pdy.39.t
+	desc = pdy.39.d
+	picture = pdy_fate_of_the_north
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = pdy.39.o1
+		ai_chance = {
+			factor = 25
+        }
+		clr_country_flag = YAR_peacedeal_refused_Flag
+		clr_country_flag = YEM_peacedeal_refused_Flag
+		clr_country_flag = PDY_Southern_Yemen_Flag
+		set_country_flag = PDY_Unified_Yemen_Flag
+		add_political_power = -50
+		add_stability = -0.05
+	}
+	option = { 
+		name = pdy.39.o2
+		ai_chance = {
+			factor = 75
+        }
+		972 = {
+			set_demilitarized_zone = yes
+		}
+		975 = {
+			set_demilitarized_zone = yes
+		}
+		978 = {
+			set_demilitarized_zone = yes
+		}
+		973 = {
+			set_demilitarized_zone = yes
+		}
+		977 = {
+			set_demilitarized_zone = yes
+		}
+		976 = {
+			set_demilitarized_zone = yes
+		}
+		hidden_effect = {
+			SAU = {
+				country_event = {
+					id = pdy.40
+					days = 3
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = pdy.40 #saudi event for north yemen
+	title = pdy.40.t
+	desc = pdy.40.d
+	picture = pdy_saudi_puppet
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = pdy.40.o1
+		ai_chance = {
+			factor = 80
+        }
+		972 = {
+			set_demilitarized_zone = no
+		}
+		975 = {
+			set_demilitarized_zone = no
+		}
+		978 = {
+			set_demilitarized_zone = no
+		}
+		973 = {
+			set_demilitarized_zone = no
+		}
+		977 = {
+			set_demilitarized_zone = no
+		}
+		976 = {
+			set_demilitarized_zone = no
+		}
+		set_state_controller = 972
+		set_state_owner = 972
+		set_state_controller = 975
+		set_state_owner = 975
+		set_state_controller = 978
+		set_state_owner = 978
+		set_state_controller = 973
+		set_state_owner = 973
+		set_state_controller = 976
+		set_state_owner = 976
+		set_state_controller = 977
+		set_state_owner = 977
+		YEM = {
+			add_state_core = 977
+			add_state_core = 978
+			add_state_core = 972
+			add_state_core = 976
+		}
+		release_puppet = YEM
+		every_country = {
+				news_event = {
+			id = news.322
+		}
+		}
+	
+		
+		hidden_effect = {
+			YEM = {
+				load_focus_tree = saudi_yemen_tree
+				set_cosmetic_tag = YEM_saudi
+				set_politics = {
+					ruling_party = nationalist
+				}
+				set_popularities = {
+					nationalist = 40
+					communist = 30
+					national_conservative = 30
+				}
+				set_party_name = {
+					ideology = nationalist
+					name = YEM_SAU_nationalist_party
+					long_name = YEM_SAU_nationalist_party
+				}
+				YEM_mohhamad_ali_al_ahwal = {
+					add_country_leader_role = {
+						promote_leader = yes
+						country_leader = {
+						desc = "MOHAMMAD_ALI_AL_AHWAL_DESC"
+						expire = "1.1.1.1"
+						ideology = nationalist_ideology
+						}
+					}
+				}
+				set_country_flag = saudi_yemen_flag
+					add_ideas = yemen_Abdul_Wahab_al_Ansi
+					add_ideas = yemen_Ahmad_Daifallah_Al_Azeib
+					add_ideas = yemen_ind_ahmed_abdul_rahman_al_samawi
+					add_ideas = yemen_Adnan_al_Audaini
+					add_ideas = yemen_inm_mohammed_ali_al_maqdashi
+					add_ideas = YEM_saudi_devestated_economy
+					add_ideas = YEM_saudi_influence
+					add_ideas = YEM_saudi_fractured_nation
+					add_ideas = YEM_saudi_buffer_state
+			}
+			
+		}
+	}
+	option = { 
+		name = pdy.40.o2
+		ai_chance = {
+			factor = 20
+        }
+		972 = {
+			set_demilitarized_zone = no
+		}
+		975 = {
+			set_demilitarized_zone = no
+		}
+		978 = {
+			set_demilitarized_zone = no
+		}
+		973 = {
+			set_demilitarized_zone = no
+		}
+		977 = {
+			set_demilitarized_zone = no
+		}
+		976 = {
+			set_demilitarized_zone = no
+		}
+		set_state_controller = 972
+		set_state_owner = 972
+		set_state_controller = 975
+		set_state_owner = 975
+		set_state_controller = 978
+		set_state_owner = 978
+		set_state_controller = 973
+		set_state_owner = 973
+		set_state_controller = 976
+		set_state_owner = 976
+		set_state_controller = 977
+		set_state_owner = 977
+		add_state_claim = 972
+		add_state_claim = 975
+		add_state_claim = 978
+		add_state_claim = 973
+		add_state_claim = 976
+		add_state_claim = 977
+		add_political_power = -75
+		add_stability = -0.10
+		hidden_effect = {
+			news_event = {
+				id = news.326
+			}
+		}
+	}
+}
+
+country_event = {
+	id = pdy.41 #fate of the jasmine council
+	title = pdy.41.t
+	desc = pdy.41.d
+	picture = pdy_fate_of_jasmines
+	
+	is_triggered_only = yes
+	
+	#dissolve the jasmine council
+	option = { 
+		name = pdy.41.o1
+		ai_chance = {
+			factor = 70
+        }
+		set_country_flag = pdry_jasmine_council_dissolved
+	}
+	
+	#allow the yemeni national front to operate
+	option = { 
+		name = pdy.41.o2
+		ai_chance = {
+			factor = 30
+        }
+		set_country_flag = pdry_maintained_national_front
+	}
+	
+}
+
+country_event = {
+	id = pdy.42 #trials of the reactionaries
+	title = pdy.42.t
+	desc = pdy.42.d
+	picture = pdy_reactionary_trials
+	
+	is_triggered_only = yes
+	
+	#dissolve the jasmine council
+	option = { 
+		name = pdy.42.o1
+		ai_chance = {
+			factor = 100
+		}
+		
+	}
+	
+}
+
+country_event = {
+	id = pdy.43 #pacify resurgent tribals
+	title = pdy.43.t
+	desc = pdy.43.d
+	picture = pdy_pacify_the_tribes
+	
+	is_triggered_only = yes
+	
+	#dissolve the jasmine council
+	option = { 
+		name = pdy.43.o1
+		ai_chance = {
+			factor = 100
+		}
+		
+	}
+	
+}
+
+country_event = {
+	id = pdy.44 #calling the congress
+	title = pdy.44.t
+	desc = pdy.44.d
+	picture = pdy_congress_begins
+	
+	is_triggered_only = yes
+	
+	#dissolve the jasmine council
+	option = { 
+		name = pdy.44.o1
+		ai_chance = {
+			factor = 100
+		}
+		set_variable = {
+			var = PDY_communist_support
+			value = 0
+		}
+		set_variable = {
+			var = PDY_moderate_support
+			value = 0
+		}
+		country_event = {
+			id = pdy.46
+			days = 1
+		}
+	}
+	
+}
+
+country_event = {
+	id = pdy.45
+	title = pdy.45.t
+	desc = pdy.45.d
+	picture = pdy_local_elections
+
+	is_triggered_only = yes
+
+	#Strong support for the YSP
+	option = {
+		name = pdy.45.o1
+		add_popularity = {
+			ideology = communist
+			popularity = 0.05
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.15
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.05
+		}
+		ai_chance = {
+			base = 50
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = PDY_MOD
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+
+	#Strong showing for opposition
+	option = {
+		name = pdy.45.o2
+		add_popularity = {
+			ideology = communist
+			popularity = -0.10
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = -0.05
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		hidden_effect = {
+			country_event = {
+				id = pdy.16
+				days = 1
+			}
+		}
+		ai_chance = {
+			base = 50
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = PDY_STASI
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+#Future of the Party
+country_event = {
+	id = pdy.46
+	title = pdy.46.t
+	desc = pdy.46.d
+	picture = pdy_party_structure
+
+	is_triggered_only = yes
+
+	#Strict adherence to ML thought
+	option = {
+		name = pdy.46.o1
+		add_popularity = {
+			ideology = communist
+			popularity = 0.03
+		}
+		add_to_variable = {
+			var = PDY_communist_support
+			value = 1
+		}
+		country_event = {
+			id = pdy.47
+			days = 1
+		}
+		ai_chance = {
+			base = 50
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = PDY_COM
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+
+	#Democratic socialism
+	option = {
+		name = pdy.46.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.03
+		}
+		add_to_variable = {
+			var = PDY_moderate_support
+			value = 1
+		}
+		country_event = {
+			id = pdy.47
+			days = 1
+		}
+		ai_chance = {
+			base = 50
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = PDY_MOD
+					}
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = PDY_STASI
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+#Role of the General Secretary
+country_event = {
+	id = pdy.47
+	title = pdy.47.t
+	desc = pdy.47.d
+	picture = pdy_general_secretary
+
+	is_triggered_only = yes
+
+	#Strengthen the GenSec
+	option = {
+		name = pdy.47.o1
+		add_popularity = {
+			ideology = communist
+			popularity = 0.03
+		}
+		add_to_variable = {
+			var = PDY_communist_support
+			value = 1
+		}
+		country_event = {
+			id = pdy.48
+			days = 1
+		}
+		ai_chance = {
+			base = 50
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = PDY_COM
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+
+	#Limit the GenSec's Power
+	option = {
+		name = pdy.47.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.03
+		}
+		add_to_variable = {
+			var = PDY_moderate_support
+			value = 1
+		}
+		country_event = {
+			id = pdy.48
+			days = 1
+		}
+		ai_chance = {
+			base = 50
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = PDY_MOD
+					}
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = PDY_STASI
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+#Future of the Economy
+country_event = {
+	id = pdy.48
+	title = pdy.48.t
+	desc = pdy.48.d
+	picture = pdy_planned_economy
+
+	is_triggered_only = yes
+
+	#Full nationalization of economy
+	option = {
+		name = pdy.48.o1
+		add_popularity = {
+			ideology = communist
+			popularity = 0.03
+		}
+		add_to_variable = {
+			var = PDY_communist_support
+			value = 1
+		}
+		country_event = {
+			id = pdy.49
+			days = 1
+		}
+		ai_chance = {
+			base = 50
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = PDY_COM
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+
+	#Measured transition to communism
+	option = {
+		name = pdy.48.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.03
+		}
+		add_to_variable = {
+			var = PDY_moderate_support
+			value = 1
+		}
+		country_event = {
+			id = pdy.49
+			days = 1
+		}
+		ai_chance = {
+			base = 50
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = PDY_MOD
+					}
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = PDY_STASI
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+#Role of the State Police
+country_event = {
+	id = pdy.49
+	title = pdy.49.t
+	desc = pdy.49.d
+	picture = pdy_role_of_cops
+
+	is_triggered_only = yes
+
+	#Strong state police
+	option = {
+		name = pdy.49.o1
+		add_popularity = {
+			ideology = communist
+			popularity = 0.03
+		}
+		add_to_variable = {
+			var = PDY_communist_support
+			value = 1
+		}
+		country_event = {
+			id = pdy.50
+			days = 1
+		}
+		ai_chance = {
+			base = 50
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = PDY_COM
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+
+	#Moderate enforcement
+	option = {
+		name = pdy.49.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.03
+		}
+		add_to_variable = {
+			var = PDY_moderate_support
+			value = 1
+		}
+		country_event = {
+			id = pdy.50
+			days = 1
+		}
+		ai_chance = {
+			base = 50
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = PDY_MOD
+					}
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = PDY_STASI
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+#Legality of the Opposition
+country_event = {
+	id = pdy.50
+	title = pdy.50.t
+	desc = pdy.50.d
+	picture = pdy_role_of_opposition
+
+	is_triggered_only = yes
+
+	#Outlaw opposition, allow party front orgs
+	option = {
+		name = pdy.50.o1
+		add_popularity = {
+			ideology = communist
+			popularity = 0.03
+		}
+		add_to_variable = {
+			var = PDY_communist_support
+			value = 1
+		}
+		country_event = {
+			id = pdy.51
+			days = 1
+		}
+		ai_chance = {
+			base = 50
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = PDY_COM
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+
+	#Legalize opposition
+	option = {
+		name = pdy.50.o2
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.03
+		}
+		add_to_variable = {
+			var = PDY_moderate_support
+			value = 1
+		}
+		country_event = {
+			id = pdy.51
+			days = 1
+		}
+		ai_chance = {
+			base = 50
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = PDY_MOD
+					}
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = PDY_STASI
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+#A new flag?
+country_event = {
+	id = pdy.51
+	title = pdy.51.t
+	  desc = {
+        trigger = {
+            has_country_flag = PDY_Unified_Yemen_Flag
+        }
+        text = pdy.51.d1
+    }
+    desc = {
+        trigger = {
+            NOT = { has_country_flag = PDY_Unified_Yemen_Flag }
+        }
+        text = pdy.51.d2
+    }
+	picture = pdy_new_flag_event
+
+	is_triggered_only = yes
+
+	#Keep current flag
+	option = {
+		name = pdy.51.o1
+		country_event = {
+			id = pdy.52
+			days = 1
+		}
+	}
+
+	#Yemeni Socialist Party flag
+	option = {
+		name = pdy.51.o2
+		set_cosmetic_tag = PDY_ysp_flag_cosmetic
+		set_country_flag = pdy_changed_flag_flag
+		country_event = {
+			id = pdy.52
+			days = 1
+		}
+	}
+
+	#Brotherhood flag (only with united Yemen)
+	option = {
+		name = pdy.51.o3
+		trigger = {
+			has_country_flag = PDY_Unified_Yemen_Flag
+		}
+		set_cosmetic_tag = PDY_brotherhood_cosmetic
+		set_country_flag = pdy_changed_flag_flag
+		country_event = {
+			id = pdy.52
+			days = 1
+		}
+	}
+
+	#Presidential Standard flag
+	option = {
+		name = pdy.51.o4
+		set_cosmetic_tag = PDY_presidential_standard_cosmetic
+		set_country_flag = pdy_changed_flag_flag
+		country_event = {
+			id = pdy.52
+			days = 1
+		}
+	}
+}
+
+#Outcome of the Conference
+country_event = {
+	id = pdy.52
+	title = pdy.52.t
+	desc = pdy.52.d
+	picture = jasmin_council
+
+	is_triggered_only = yes
+
+	#Who will win?
+	option = {
+		name = pdy.52.o1
+		if = {
+			limit = {
+				check_variable = { PDY_communist_support < PDY_moderate_support }
+			}
+			country_event = {
+				id = pdy.53
+				days = 1
+			}
+		}
+		else = {
+			country_event = {
+				id = pdy.54
+				days = 1
+			}
+		}
+	}
+}
+
+#Moderate Victory!
+country_event = {
+	id = pdy.53
+	title = pdy.53.t
+	desc = pdy.53.d
+	picture = pdy_moderate_victory
+
+	is_triggered_only = yes
+
+	#For democracy and socialism!
+	option = {
+		name = pdy.53.o1
+		set_country_flag = PDY_moderates_win
+		complete_national_focus = PDY_moderates
+		set_politics = {
+			ruling_party = moderate_socialist
+		}
+		custom_effect_tooltip = pdy_modsoc_ministers_tooltip
+		hidden_effect = {
+			add_ideas = pdry_sic_mohammed_qubaty
+			add_ideas = pdry_fom_majed_abdul_latif_al_humaidi
+			add_ideas = pdry_ind_jarallah_omar_al_kuhali
+			add_ideas = pdry_nsm_abdul_wahed_al_jamra
+			add_ideas = pdry_inm_aidarus_al_zoubaidi
+		}
+	}
+}
+
+#Loyalist Victory!
+country_event = {
+	id = pdy.54
+	title = pdy.54.t
+	desc = pdy.54.d
+	picture = pdy_loyalist_victory
+
+	is_triggered_only = yes
+
+	#For the revolution!
+	option = {
+		name = pdy.54.o1
+		set_country_flag = PDY_loyalists_win
+		complete_national_focus = PDY_loyalists
+	}
+}
+
+#Protests Against Intelligence Coup
+country_event = {
+	id = pdy.55
+	title = pdy.55.t
+	desc = pdy.55.d
+	picture = pdy_intelligence_protests
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.55.o1
+	}
+}
+
+#news event for intelligence coup
+news_event = {
+	id = pdy.56
+	title = pdy.56.t
+	desc = pdy.56.d
+	picture = pdy_intelligence_coup_news
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.56.o1
+		trigger = {
+			NOT = {
+				OR = {
+					tag = PDY
+					tag = YEM
+					tag = YAR
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = pdy.56.o2
+		trigger = {
+			OR = {
+				tag = YEM
+				tag = YAR
+			}
+		}
+	}
+	
+	option = {
+		name = pdy.56.o3
+		trigger = {
+			tag = PDY
+		}
+	}
+}
+
+#protest leaders killed in shootout
+country_event = {
+	id = pdy.57
+	title = pdy.57.t
+	desc = pdy.57.d
+	picture = pdy_fratricidal_rebels
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.57.o1
+	}
+}
+
+#stasi nationwide crackdown
+country_event = {
+	id = pdy.58
+	title = pdy.58.t
+	desc = pdy.58.d
+	picture = pdy_national_crackdown
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.58.o1
+	}
+}
+
+#national security council formed
+country_event = {
+	id = pdy.59
+	title = pdy.59.t
+	desc = pdy.59.d
+	picture = pdy_nsc_formed
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.59.o1
+	}
+}
+
+#mandatory urbanization program
+country_event = {
+	id = pdy.60
+	title = pdy.60.t
+	desc = pdy.60.d
+	picture = pdy_mandatory_urbanisation
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.60.o1
+	}
+}
+
+#NSC embarks on grand education campaign
+country_event = {
+	id = pdy.61
+	title = pdy.61.t
+	desc = pdy.61.d
+	picture = pdy_grand_education
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.61.o1
+	}
+}
+
+#shakeup in command structure
+country_event = {
+	id = pdy.62
+	title = pdy.62.t
+	desc = pdy.62.d
+	picture = pdy_army_reforms
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.62.o1
+	}
+}
+
+#opposition figures missing
+country_event = {
+	id = pdy.63
+	title = pdy.63.t
+	desc = pdy.63.d
+	picture = pdy_disappearing_opposition
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.63.o1
+	}
+}
+
+#NSC revises legislation
+country_event = {
+	id = pdy.64
+	title = pdy.64.t
+	desc = pdy.64.d
+	picture = pdy_revised_legislation
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.64.o1
+	}
+}
+
+#transition to automation
+country_event = {
+	id = pdy.65
+	title = pdy.65.t
+	desc = pdy.65.d
+	picture = pdy_intelligence_automation
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.65.o1
+	}
+}
+
+#RedStar 3.0 update rolls out
+country_event = {
+	id = pdy.66
+	title = pdy.66.t
+	desc = pdy.66.d
+	picture = pdy_redstar_30
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.66.o1
+	}
+}
+
+#Operation: False Prophet
+country_event = {
+	id = pdy.67
+	title = pdy.67.t
+	desc = pdy.67.d
+	picture = pdy_operation_false_prophet
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.67.o1
+	}
+}
+
+#party cult intensifies
+country_event = {
+	id = pdy.68
+	title = pdy.68.t
+	desc = pdy.68.d
+	picture = pdy_party_cult
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.68.o1
+	}
+}
+
+#grand military parade
+country_event = {
+	id = pdy.69
+	title = pdy.69.t
+	desc = pdy.69.d
+	picture = pdy_military_parade
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.69.o1
+	}
+}
+
+#settling securocracy
+country_event = {
+	id = pdy.70
+	title = pdy.70.t
+	desc = pdy.70.d
+	picture = pdy_settling_securocracy
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.70.o1
+	}
+}
+
+#listening in
+country_event = {
+	id = pdy.71
+	title = pdy.71.t
+	desc = pdy.71.d
+	picture = pdy_theyre_in_your_walls
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.71.o1
+	}
+}
+
+#military training increases
+country_event = {
+	id = pdy.72
+	title = pdy.72.t
+	desc = pdy.72.d
+	picture = pdy_military_discipline
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.72.o1
+	}
+}
+
+#televisions distributed to the people
+country_event = {
+	id = pdy.73
+	title = pdy.73.t
+	desc = pdy.73.d
+	picture = pdy_new_tvs
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.73.o1
+	}
+}
+
+#mass disappearances across the nation
+country_event = {
+	id = pdy.74
+	title = pdy.74.t
+	desc = pdy.74.d
+	picture = pdy_mass_disappearances
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.74.o1
+	}
+}
+
+#student protests disrupted in aden
+country_event = {
+	id = pdy.75
+	title = pdy.75.t
+	desc = pdy.75.d
+	picture = pdy_student_protests_cancelled
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.75.o1
+	}
+}
+
+country_event = { #Democratic Parties Legalized
+	id = pdy.76
+	title = pdy.76.t
+	desc = pdy.76.d
+	picture = pdy_democratic_return
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = pdy.76.o1
+		add_stability = 0.05
+		add_popularity = {
+            ideology = moderate_socialist
+            popularity = 0.1
+        }
+		add_popularity = {
+            ideology = new_democrat
+            popularity = 0.1
+        }
+		add_popularity = {
+            ideology = liberal
+            popularity = 0.05
+        }
+		add_popularity = {
+            ideology = centrist
+            popularity = 0.05
+        }
+		add_popularity = {
+            ideology = revolutionary_socialist
+            popularity = 0.01
+        }
+		set_country_flag = pdry_on_path_to_democracy
+	}
+}
+
+country_event = { #Yemeni National Front Reestablishes Itself
+	id = pdy.77
+	title = pdy.77.t
+	desc = pdy.77.d
+	picture = pdy_ynf_returns
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = pdy.77.o1
+		add_political_power = 15
+		add_popularity = {
+            ideology = moderate_socialist
+            popularity = 0.1
+        }
+		add_popularity = {
+            ideology = new_democrat
+            popularity = 0.15
+        }
+		set_country_flag = pdry_on_path_to_democracy
+	}
+}
+
+country_event = { #General Elections in the People's Democratic Republic
+	id = pdy.78
+	title = pdy.78.t
+	desc = pdy.78.d
+	picture = pdy_general_elections
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #YSP Reelected
+		name = pdy.78.o1
+		add_popularity = {
+            ideology = moderate_socialist
+            popularity = 0.1
+        }
+		ai_chance = {
+			base = 50
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = PDY_MOD
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	
+	option = { #YNF Elected
+		name = pdy.78.o2
+		set_politics = {
+			ruling_party = new_democrat
+		}
+		add_popularity = {
+            ideology = new_democrat
+            popularity = 0.15
+        }
+		if = {
+			limit = {
+				NOT = {
+					has_country_flag = pdy_changed_flag_flag
+				}
+			}
+			set_cosmetic_tag = PDRY_new_democrat_cosmetic
+		}
+		custom_effect_tooltip = pdy_newdem_ministers_tooltip
+		hidden_effect = {
+			add_ideas = jasmine_sic_refat_hasan_hamoud_braz
+			add_ideas = jasmine_ind_shawki_ahmed_hayel_saeed
+			add_ideas = jasmine_nsm_abdel_karim_al_khaiwani
+			add_ideas = jasmine_inm_ahmad_saif_al_yaffi
+		}
+		hidden_effect = {
+			hidden_effect = {
+				country_event = { days = 10 id = pdy.21 } 
+			}
+		}
+		ai_chance = {
+			base = 50
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = PDY_ai_behavior
+						option = PDY_STASI
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = { #Start of the new Four Year Plan
+	id = pdy.79
+	title = pdy.79.t
+	desc = pdy.79.d
+	picture = pdy_new_four_year_plan
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = pdy.79.o1
+	}
+}
+
+country_event = { #Construction of the Aden Water Purifier Station
+	id = pdy.80
+	title = pdy.80.t
+	desc = pdy.80.d
+	picture = pdy_aden_water_plant
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = pdy.80.o1
+	}
+}
+
+country_event = { #Establishment of New Farming Cooperatives
+	id = pdy.81
+	title = pdy.81.t
+	desc = pdy.81.d
+	picture = pdy_farmers_coops
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = pdy.81.o1
+	}
+}
+
+country_event = { #Upgrading the Al-Mansoura Power Station
+	id = pdy.82
+	title = pdy.82.t
+	desc = pdy.82.d
+	picture = pdy_new_power_plant
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = pdy.82.o1
+	}
+}
+
+country_event = { #Linking Up the Coast
+	id = pdy.83
+	title = pdy.83.t
+	desc = pdy.83.d
+	picture = pdy_new_highways
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = pdy.83.o1
+	}
+}
+
+country_event = { #Renewed Interest in the Aden Port
+	id = pdy.84
+	title = pdy.84.t
+	desc = pdy.84.d
+	picture = pdy_aden_port
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = pdy.84.o1
+	}
+}
+
+country_event = { #Establishment of the Socotran National Park
+	id = pdy.85
+	title = pdy.85.t
+	desc = pdy.85.d
+	picture = pdy_national_park
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = pdy.85.o1
+	}
+}
+
+country_event = { #New Mining Business
+	id = pdy.86
+	title = pdy.86.t
+	desc = pdy.86.d
+	picture = pdy_diggy_diggy_hole
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = pdy.86.o1
+	}
+}
+
+country_event = { #PDRY Wants to Join Warsaw Pact
+	id = pdy.87
+	title = pdy.87.t
+	desc = pdy.87.d
+	picture = india_com_warsaw_pact_n
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Yes
+		name = pdy.87.o1
+		PDY = {
+			country_event = pdy.88
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+
+	option = { #No
+		name = pdy.87.o2
+		PDY = {
+			country_event = pdy.89
+		}
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+country_event = { #WP Accepts PDRY Entry
+	id = pdy.88
+	title = pdy.88.t
+	desc = pdy.88.d
+	picture = warsaw_agree_to_benefits
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = pdy.88.o1
+		SOV = {
+			add_to_faction = PDY
+		}
+	}
+}
+
+country_event = { #WP Denies PDRY Entry
+	id = pdy.89
+	title = pdy.89.t
+	desc = pdy.89.d
+	picture = warsaw_refuses_to_give_benefits
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = pdy.89.o1
+	}
+}
+
+#Assassination Attempt Foiled
+country_event = {
+	id = pdy.90
+	title = pdy.90.t
+	desc = pdy.90.d
+	picture = pdy_no_assassinations
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.90.o1
+	}
+}
+
+
+#Al-Attas Supports Joint Ventures
+country_event = {
+	id = pdy.91
+	title = pdy.91.t
+	desc = pdy.91.d
+	picture = pdy_joint_ventures
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.91.o1
+	}
+}
+
+#Naval Exercises in the Indian Ocean
+country_event = {
+	id = pdy.92
+	title = pdy.92.t
+	desc = pdy.92.d
+	picture = pdy_naval_exercises
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.92.o1
+	}
+}
+
+#Combat Exercises in the Desert
+country_event = {
+	id = pdy.93
+	title = pdy.93.t
+	desc = pdy.93.d
+	picture = pdy_desert_exercises
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.93.o1
+	}
+}
+
+#Meetings in the Kremlin
+country_event = {
+	id = pdy.94
+	title = pdy.94.t
+	desc = pdy.94.d
+	picture = pdy_soviet_alliance
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.94.o1
+	}
+}
+
+#The Cuban Deal
+country_event = {
+	id = pdy.95
+	title = pdy.95.t
+	desc = pdy.95.d
+	picture = pdy_cuban_deal
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.95.o1
+		PDY = {
+			country_event = pdy.96
+		}
+		ai_chance = {
+			factor = 85
+        }
+	}
+	
+	option = {
+		name = pdy.95.o2
+		PDY = {
+			country_event = pdy.97
+		}
+		ai_chance = {
+			factor = 15
+        }
+	}
+}
+
+#Cuba Agrees to Trade Agreements
+country_event = {
+	id = pdy.96
+	title = pdy.96.t
+	desc = pdy.96.d
+	picture = pdy_cuba_yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.96.o1
+		add_stability = 0.01
+		add_ideas = PDY_cuban_healthcare
+	}
+}
+
+#Cuba Rejects Trade Agreements
+country_event = {
+	id = pdy.97
+	title = pdy.97.t
+	desc = pdy.97.d
+	picture = pdy_cuba_no
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.97.o1
+	}
+}
+
+
+#Touring the Southern Americas
+country_event = {
+	id = pdy.98
+	title = pdy.98.t
+	desc = pdy.98.d
+	picture = pdy_going_to_brazil
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.98.o1
+	}
+}
+
+#Fruits for Minerals
+country_event = {
+	id = pdy.99
+	title = pdy.99.t
+	desc = pdy.99.d
+	picture = pdy_fruits_for_minerals
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.99.o1
+		PDY = {
+			country_event = pdy.100
+		}
+		add_resource = {
+			type = steel
+			amount = 10
+			state = 317
+		}
+		ai_chance = {
+			factor = 85
+        }
+	}
+	
+	option = {
+		name = pdy.99.o2
+		PDY = {
+			country_event = pdy.101
+		}
+		ai_chance = {
+			factor = 15
+        }
+	}
+}
+
+#Centroamerica Agrees to Trade Agreements
+country_event = {
+	id = pdy.100
+	title = pdy.100.t
+	desc = pdy.100.d
+	picture = pdy_centroamerica_yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.100.o1
+		add_stability = 0.01
+		add_ideas = PDY_centroamerican_fruit
+	}
+}
+
+#Centroamerica Rejects Trade Agreements
+country_event = {
+	id = pdy.101
+	title = pdy.101.t
+	desc = pdy.101.d
+	picture = pdy_centroamerica_no
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.101.o1
+	}
+}
+
+#Visiting Los Angelas
+country_event = {
+	id = pdy.102
+	title = pdy.102.t
+	desc = pdy.102.d
+	picture = pdy_going_to_la
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.102.o1
+		386 = {
+			add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+                }
+            add_extra_state_shared_building_slots = 2
+		}
+		add_resource = {
+			type = steel
+			amount = 6
+			state = 378
+		}
+		add_resource = {
+			type = oil
+			amount = 10
+			state = 378
+		}
+		PDY = {
+			country_event = pdy.103
+		}
+		ai_chance = {
+			factor = 85
+        }
+	}
+	
+	option = {
+		name = pdy.102.o2
+		PDY = {
+			country_event = pdy.104
+		}
+		ai_chance = {
+			factor = 15
+        }
+	}
+}
+
+#UAPR Agrees to Trade Agreements
+country_event = {
+	id = pdy.103
+	title = pdy.103.t
+	desc = pdy.103.d
+	picture = pdy_uapr_yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.103.o1
+		add_ideas = PDY_american_investments
+		659 = {
+			add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+                }
+            add_extra_state_shared_building_slots = 2
+		}
+	}
+}
+
+#UAPR Rejects Trade Agreements
+country_event = {
+	id = pdy.104
+	title = pdy.104.t
+	desc = pdy.104.d
+	picture = pdy_uapr_no
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.104.o1
+	}
+}
+
+#Al-Beidh Unveils His Plan for Yemeni Society
+country_event = {
+	id = pdy.105
+	title = pdy.105.t
+	desc = pdy.105.d
+	picture = pdy_al_beidh_five_year_plan
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdy.105.o1
+	}
+}
+
+country_event = { #The Start of the Great People's War
+	id = pdy.106 
+	title = pdy.106.t
+	desc = pdy.106.d
+	picture = pdy_great_peoples_war
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = pdy.106.o1
+	}
+}
+
+country_event = { #Rush of Foreign Volunteers
+	id = pdy.107
+	title = pdy.107.t
+	desc = pdy.107.d
+	picture = pdy_foreign_volunteers
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = pdy.107.o1
+	}
+}
+
+country_event = { #Rush of Foreign Volunteers
+	id = pdy.108
+	title = pdy.108.t
+	desc = pdy.108.d
+	picture = pdy_restored
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = pdy.108.o1
+	}
+}
+
+country_event = { #Comrade Zoubadi Requests Return of Stasi Agents
+	id = pdy.109
+	title = pdy.109.t
+	desc = pdy.109.d
+	picture = pdy_restored
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Sure
+		name = pdy.109.o1
+		ai_chance = {
+			base = 99
+		}
+		PDY = {
+			country_event = {
+				id = pdy.110
+				days = 1
+			}
+		}
+	}
+
+	option = { #No
+		name = pdy.109.o2
+		ai_chance = {
+			base = 1
+		}
+		PDY = {
+			country_event = {
+				id = pdy.111
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = { #MR Groups Return to Yemen
+	id = pdy.110
+	title = pdy.110.t
+	desc = pdy.110.d
+	picture = pdy_mr_groups_return
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Yay!
+		name = pdy.110.o1
+		if = {
+			limit = {
+				has_dlc = "La Resistance"
+			}
+			add_ideas = PDY_stasi_guidance_lar
+		}
+		else = {
+			add_ideas = PDY_stasi_guidance
+		}
+	}
+}
+
+country_event = { #Germany Refuses to Offer Support
+	id = pdy.111
+	title = pdy.111.t
+	desc = pdy.111.d
+	picture = pdy_no_mr_groups
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Boo!
+		name = pdy.111.o1
+		add_political_power = -100
+		add_war_support = -0.07
+		add_stability = -0.03
+	}
+}
+
+country_event = { #PDRY Requests Fighter Squadron
+	id = pdy.112
+	title = pdy.112.t
+	desc = pdy.112.d
+	picture = pdy_plane_request
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Sure
+		name = pdy.112.o1
+		ai_chance = {
+			base = 80
+		}
+		PDY = {
+			country_event = {
+				id = pdy.113
+				days = 1
+			}
+		}
+	}
+
+	option = { #No
+		name = pdy.112.o2
+		ai_chance = {
+			base = 20
+		}
+		PDY = {
+			country_event = {
+				id = pdy.114
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = { #India Agrees
+	id = pdy.113
+	title = pdy.113.t
+	desc = pdy.113.d
+	picture = pdy_indian_planes
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Yay!
+		name = pdy.113.o1
+		if = {
+			limit = {
+				has_dlc = "By Blood Alone"
+			}
+			add_equipment_to_stockpile = {
+				type = small_plane_airframe_1
+				amount = 15
+				variant_name = "Fighter I"
+			}
+			add_equipment_to_stockpile = {
+				type = small_plane_cas_airframe_1
+				amount = 15
+				variant_name = "CAS I"
+			}
+		}
+		else = {
+			add_equipment_to_stockpile = {
+				type = fighter_equipment_1
+				amount = 15
+			}
+			add_equipment_to_stockpile = {
+				type = cas_equipment_1
+				amount = 15
+			}
+		}
+	}
+}
+
+country_event = { #India Refuses to Offer Support
+	id = pdy.114
+	title = pdy.114.t
+	desc = pdy.114.d
+	picture = pdy_no_planes
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Boo!
+		name = pdy.114.o1
+		add_political_power = -50
+		add_opinion_modifier = {
+			target = RAJ
+			modifier = pdy_raj_refused_to_send_planes
+		}
+	}
+}
+
+country_event = { #PDRY Requests United Nations Intervention
+	id = pdy.115
+	title = pdy.115.t
+	desc = pdy.115.d
+	picture = pdy_un_intervention
+	
+	is_triggered_only = yes
+	
+	option = { #Send Volunteers
+		name = pdy.115.o1
+		ai_chance = {
+			base = 25
+			modifier = {
+				factor = 0.2
+				NOT = {
+					has_government = communist
+				}
+			}
+		}
+		add_ai_strategy = {
+			type = send_volunteers_desire
+			id = PDY
+			value = 200
+		}
+		PDY = {
+			country_event = {
+				id = pdy.116
+				days = 1
+			}
+		}
+	}
+
+	option = { #Send Equipment
+		name = pdy.115.o2
+		ai_chance = {
+			base = 50
+			modifier = {
+				factor = 0.3
+				NOT = {
+					has_government = communist
+				}
+			}
+		}
+		send_equipment = {
+			equipment = infantry_equipment
+			amount = 750
+			target = PDY
+		}
+		PDY = {
+			country_event = {
+				id = pdy.117
+				days = 1
+			}
+		}
+	}
+
+	option = { #Send Nothing
+		name = pdy.115.o3
+		ai_chance = {
+			base = 25
+			modifier = {
+				factor = 0.5
+				has_government = communist
+			}
+		}
+		PDY = {
+			country_event = {
+				id = pdy.118
+				days = 1
+			}
+		}
+	}
+
+	option = { #Send Volunteers to the Jasmines
+		name = pdy.115.o4
+		trigger = {
+			OR = {
+				has_government = moderate_socialist
+				has_government = new_democrat
+				has_government = centrist
+				has_government = liberal
+				has_government = national_conservative
+			}
+		}
+		ai_chance = {
+			base = 50
+			modifier = {
+				factor = 0.3
+				NOT = {
+					has_government = communist
+				}
+			}
+		}
+		JAS = {
+			country_event = {
+				id = jasmin.9
+				days = 1
+			}
+		}
+		add_ai_strategy = {
+			type = send_volunteers_desire
+			id = JAS
+			value = 200
+		}
+	}
+}
+
+country_event = { #[FROM.GetName] Sends Volunteers
+	id = pdy.116
+	title = pdy.116.t
+	desc = pdy.116.d
+	picture = pdy_volunteers
+	
+	is_triggered_only = yes
+	
+	option = { #Yay!
+		name = pdy.116.o1
+	}
+}
+
+country_event = { #[FROM.GetName] Sends Equipment
+	id = pdy.117
+	title = pdy.117.t
+	desc = pdy.117.d
+	picture = pdy_weapon_support
+	
+	is_triggered_only = yes
+	
+	option = { #Yay!
+		name = pdy.117.o1
+	}
+}
+
+country_event = { #[FROM.GetName] Sends Nothing
+	id = pdy.118
+	title = pdy.118.t
+	desc = pdy.118.d
+	picture = pdy_no_aid
+	
+	is_triggered_only = yes
+	
+	option = { #Boo!
+		name = pdy.118.o1
+	}
+}

@@ -1,0 +1,2114 @@
+add_namespace = jasmin
+
+#Day of rage
+country_event = {
+	id = jasmin.1
+	title = jasmin.1.t
+	desc = jasmin.1.d
+	picture = day_of_rage
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = jasmin.1.o1
+	}
+}
+
+#Establishment of the jasmine council
+country_event = {
+	id = jasmin.2
+	title = jasmin.2.t
+	desc = jasmin.2.d
+	picture = jasmin_council
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = jasmin.2.o1
+	}
+}
+
+#seeking support
+country_event = {
+	id = jasmin.3
+	title = jasmin.3.t
+	desc = jasmin.3.d
+	picture = jas_seeking_support
+	
+	is_triggered_only = yes
+	
+	option = { #Iran
+		name = jasmin.3.o1
+	    PER ={
+		    country_event = { id = jasmin.4 }
+		}
+	}
+	
+	option = { #Canada
+		name = jasmin.3.o2
+	    CAN ={
+		    country_event = { id = jasmin.7 }
+		}
+    }
+}
+
+#Turn to Iran
+country_event = {
+	id = jasmin.4
+	title = jasmin.4.t
+	desc = jasmin.4.d
+	picture = jas_turn_to_iran
+	
+	is_triggered_only = yes
+	
+	option = { #yes
+		name = jasmin.4.o1
+	    JAS ={
+		    country_event = { id = jasmin.5 }
+		}
+		send_equipment = {
+			equipment = infantry_equipment
+			amount = 750
+			target = JAS
+		}
+		send_equipment = {
+			equipment = artillery_equipment
+			amount = 100
+			target = JAS
+		} 
+		send_equipment = {
+			equipment = CAS_equipment_1
+			amount = 10
+			target = JAS
+		}
+	    ai_chance = {
+			factor = 70
+		}
+	}  
+	
+	option = { #no
+		name = jasmin.4.o2
+	    JAS ={
+		    country_event = { id = jasmin.6 }
+		}
+		hidden_effect = {
+			set_global_flag = jas_iran_refused
+		}
+	    ai_chance = {
+			factor = 30
+		}
+	}
+}
+
+country_event = { #FROM.GetName sends aid
+	id = jasmin.5
+	title = jasmin.5.t
+	desc = jasmin.5.d
+	picture = jas_selected_nation_accepts
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = jasmin.5.o1 
+		hidden_effect = {
+            979 = {
+                create_unit = {
+                    division = "name = \"Aden Guard\" division_template = \"Democratic Guard\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+                    owner = JAS
+                }
+                create_unit = {
+                    division = "name = \"Aden Guard\" division_template = \"Democratic Guard\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+                    owner = JAS
+                }
+			}
+		}
+		custom_effect_tooltip = jas_divisions_two
+    }     
+}
+
+country_event = { #FROM.GetName refuses aid
+	id = jasmin.6
+	title = jasmin.6.t
+	desc = jasmin.6.d
+	picture = jas_selected_nation_refuses
+	
+	is_triggered_only = yes
+	
+	option = { #Ask Iran
+		name = jasmin.6.o1
+		trigger = {
+			NOT = {
+				has_global_flag = jas_iran_refused
+			}
+		}
+	    add_political_power = -50
+		country_event = { id = jasmin.4 }
+    }
+	
+	option = { #Ask Canada
+		name = jasmin.6.o2
+		trigger = {
+			NOT = {
+				has_global_flag = jas_canada_refused
+			}
+		}
+	    add_political_power = -50
+		country_event = { id = jasmin.7 }
+    }
+
+	option = { #Yemeni guns will win us our freedom
+		name = jasmin.6.o3
+	    add_political_power = -50
+    }
+}
+
+country_event = { #Turn to Canada
+	id = jasmin.7
+	title = jasmin.7.t
+	desc = jasmin.7.d
+	picture = jas_turn_to_canada
+	
+	is_triggered_only = yes
+	
+	option = { #yes
+		name = jasmin.7.o1
+	    JAS ={
+		    country_event = { id = jasmin.5 }
+		}
+		send_equipment = {
+			equipment = light_tank_chassis
+			amount = 200
+			target = JAS
+		}
+		send_equipment = {
+			equipment = motorized_equipment
+			amount = 50
+			target = JAS
+		}
+		send_equipment = {
+			equipment = fighter_equipment_1
+			amount = 10
+			target = JAS
+		}
+	    ai_chance = {
+			factor = 70
+		}
+	}  
+	
+	option = { #no
+		name = jasmin.7.o2
+	    JAS ={
+		    country_event = { id = jasmin.6 }
+		}
+		hidden_effect = {
+			set_global_flag = jas_canada_refused
+		}
+	    ai_chance = {
+			factor = 30
+		}
+	}
+}
+
+country_event = { #jasmine council debates national flag
+	id = jasmin.8
+	title = jasmin.8.t
+	desc = jasmin.8.d
+	picture = jas_flag_debate
+	
+	fire_only_once = yes
+	trigger = {
+		tag = JAS
+		has_war = no
+	}
+	mean_time_to_happen = {
+		days = 30
+	}
+	
+	option = { # restore the tri-color
+		name = jasmin.8.o1
+		set_cosmetic_tag = JAS_tricolor
+	}
+
+	option = { # maintain the jasmine flag
+		name = jasmin.8.o2
+	}
+}
+
+country_event = { #FROM.GETNAME Recognizes us
+	id = jasmin.9
+	title = jasmin.9.t
+	desc = jasmin.9.d
+	picture = pdy_un_intervention
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = jasmin.9.o1
+	}
+}
+
+#Establishing a provisional government
+country_event = {
+	id = jasmin.39
+	title = jasmin.39.t
+	desc = jasmin.39.d
+	picture = jas_establish_a_provisional_government
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = jasmin.39.o1
+	}
+}
+
+#Restructuring of the army
+country_event = {
+	id = jasmin.40
+	title = jasmin.40.t
+	desc = jasmin.40.d
+	picture = jas_army_restructuring
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = jasmin.40.o1
+	}
+}
+
+#Ratifying the new Yemeni constitution
+country_event = {
+	id = jasmin.41
+	title = jasmin.41.t
+	desc = jasmin.41.d
+	picture = jas_ratifying_the_constitution
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = jasmin.41.o1
+	}
+}
+
+#Elections in Yemen!
+country_event = {
+	id = jasmin.42
+	title = jasmin.42.t
+	desc = jasmin.42.d
+	picture = jas_the_first_election
+	
+	is_triggered_only = yes
+	
+	option = { #national coalition
+		name = jasmin.42.o1
+		add_popularity = {
+            ideology = centrist
+            popularity = 0.30
+        }
+		add_popularity = {
+            ideology = liberal
+            popularity = 0.05
+        }
+		add_popularity = {
+            ideology = national_conservative
+            popularity = 0.05
+        }
+		set_politics = {
+	        ruling_party = centrist
+        }
+		custom_effect_tooltip = jasmines_centrist_ministers_tooltip
+		hidden_effect = {
+			add_ideas = jasmine_sic_abdel_aziz_bin_habtour
+			add_ideas = jasmine_fom_hisham_sharaf
+			add_ideas = jasmine_ind_mohamed_awad_bin_humam
+			add_ideas = jasmine_nsm_nayef_al_bakri
+			add_ideas = jasmine_inm_ahmad_saif_al_yaffi
+		}
+		set_country_flag = flag_national_coalition
+		ai_chance = {
+			base = 33
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = JAS_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = JAS_ai_behavior
+						option = JAS_NC
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = { #popular Revolution
+		name = jasmin.42.o2
+		add_popularity = {
+            ideology = liberal
+            popularity = 0.30
+        }
+		add_popularity = {
+            ideology = centrist
+            popularity = 0.05
+        }
+		add_popularity = {
+            ideology = new_democrat
+            popularity = 0.05
+        }
+		set_politics = {
+	        ruling_party = liberal
+        }
+		set_country_flag = flag_popular_revolution
+		custom_effect_tooltip = jasmines_liberal_ministers_tooltip
+		hidden_effect = {
+			add_ideas = jasmine_sic_arwa_othman
+			add_ideas = jasmine_fom_abdullah_al_saidi
+			add_ideas = jasmine_ind_abdulaziz_al_saqqaf
+			add_ideas = jasmine_nsm_huda_al_sarari
+			add_ideas = jasmine_inm_ahmad_saif_al_yaffi
+		}
+		ai_chance = {
+			base = 33
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = JAS_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = JAS_ai_behavior
+						option = JAS_PR
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = { #Yemeni National Front
+		name = jasmin.42.o3
+		add_popularity = {
+            ideology = new_democrat
+            popularity = 0.30
+        }
+		add_popularity = {
+            ideology = liberal
+            popularity = 0.05
+        }
+		add_popularity = {
+            ideology = moderate_socialist
+            popularity = 0.05
+        }
+		set_politics = {
+			ruling_party = new_democrat
+		}
+		JAS_najeeb_qahtan_alshaabi = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					expire = "1.1.1.1"
+					ideology = paleosocialist
+					desc = "SHABI_DESC"
+				}
+			}
+		}
+		set_country_flag = flag_national_front
+		custom_effect_tooltip = pdy_newdem_ministers_tooltip
+		hidden_effect = {
+			add_ideas = jasmine_sic_refat_hasan_hamoud_braz
+			add_ideas = jasmine_fom_majed_abdul_latif_al_humaidi
+			add_ideas = jasmine_ind_shawki_ahmed_hayel_saeed
+			add_ideas = jasmine_nsm_abdel_karim_al_khaiwani
+			add_ideas = jasmine_inm_ahmad_saif_al_yaffi
+		}
+		ai_chance = {
+			base = 34
+			modifier = {
+				NOT = {
+					has_game_rule = {
+						rule = JAS_ai_behavior
+						option = DEFAULT
+					}
+					has_game_rule = {
+						rule = JAS_ai_behavior
+						option = JAS_YNF
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = { #Jasmine Yemen Seeks to Join our Alliance
+	id = jasmin.43
+	title = jasmin.43.t
+	desc = jasmin.43.d
+	picture = jas_yemen_in_the_democratic_league
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #yes
+		name = jasmin.43.o1
+		JAS = {
+		    country_event = { id = jasmin.44 }
+		}
+	    ai_chance = {
+			factor = 70
+		}
+	}
+	
+	option = { #no
+		name = jasmin.43.o2
+		JAS = {
+		    country_event = { id = jasmin.45 }
+		}
+	    ai_chance = {
+			factor = 30
+		}
+	}
+}
+
+country_event = { #Canada Allows Us Into the Democratic League
+	id = jasmin.44
+	title = jasmin.44.t
+	desc = jasmin.44.d
+	picture = jas_canada_says_yes	
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.44.o1
+		CAN = { add_to_faction = JAS }
+	}
+}
+
+country_event = { #Canada Bans us from the League
+	id = jasmin.45
+	title = jasmin.45.t
+	desc = jasmin.45.d
+	picture = jas_canada_says_no
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.45.o1
+		add_political_power = -50
+	}
+}
+
+country_event = { #Yemen Invites us to the Alliance of Arab States
+	id = jasmin.46
+	title = jasmin.46.t
+	desc = jasmin.46.d 
+	picture = jas_join_the_alliance
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.46.o1 
+		JAS = {
+		    add_to_faction = ROOT
+		}
+		add_ai_strategy = {
+		    type = alliance
+		    id = "JAS"
+		    value = 150
+	    }
+		add_ai_strategy = {
+		    type = befriend
+		    id = "JAS"
+		    value = 50
+	    }
+		JAS = {
+		    country_event = { id = jasmin.47 }
+		}
+		ai_chance = {
+			factor = 60
+		}
+	}
+	
+	option = {  #no
+		name = jasmin.46.o2
+		add_political_power = -25
+		add_stability = -0.05
+		JAS = {
+		    country_event = { id = jasmin.48 }
+		}
+		ai_chance = {
+			factor = 40
+		}
+	}
+}
+
+country_event = { #[From.GetName] Accepts
+	id = jasmin.47
+	title = jasmin.47.t
+	desc = jasmin.47.d
+	picture = jas_they_join_the_alliance
+	
+	is_triggered_only = yes
+	
+	option = {  
+		name = jasmin.47.o1
+	}
+}
+
+country_event = { #[From.GetName] Refuses
+	id = jasmin.48
+	title = jasmin.48.t
+	desc = jasmin.48.d
+	picture = jas_they_dont_join_the_alliance
+	
+	is_triggered_only = yes
+	
+	option = {  
+		name = jasmin.48.o1
+	}
+}
+
+country_event = { #New Agricultural Focus
+	id = jasmin.49
+	title = jasmin.49.t
+	desc = jasmin.49.d
+	picture = jas_new_agricultural_methods
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Increased Self-Sufficiency 
+		name = jasmin.49.o1
+		add_ideas = JAS_self_sufficiency
+	}
+	
+	option = { #Focus on Exports
+		name = jasmin.49.o2
+		add_ideas = JAS_cash_crop
+	}
+}
+
+country_event = { #Picking Our Side
+	id = jasmin.50
+	title = jasmin.50.t
+	picture = yemen_monarchy_military_loyalty #its the same picture that's already coded in
+	
+	desc = { #UAR has a valid faction
+		text = jasmin.50.d1
+		trigger = {
+			country_exists = UAR
+			UAR = {
+				is_faction_leader = yes
+				OR = {
+					has_government = national_conservative
+					has_government = centrist
+					has_government = liberal
+					has_government = new_democrat
+					has_government = moderate_socialist
+					}
+				}
+			}
+		}
+	desc = { #only egypt has a faction
+		text = jasmin.50.d2
+		trigger = {
+			NOT = {country_exists = UAR}
+			EGY = {
+				is_faction_leader = yes
+				OR = {
+					has_government = national_conservative
+					has_government = centrist
+					has_government = liberal
+					has_government = new_democrat
+					has_government = moderate_socialist
+				}
+			}
+			SYR = {
+				is_faction_leader = no
+					OR = {
+						has_government = communist
+						has_government = revolutionary_socialist
+						has_government = fascist
+						has_government = nationalist
+						has_government = national_bolshevik
+						has_government = monarchist
+					}
+				}
+			}
+		}
+	desc = { #only Syria has a faction
+		text = jasmin.50.d3
+		trigger = {
+			SYR = {
+				is_faction_leader = yes
+				OR = {
+					has_government = national_conservative
+					has_government = centrist
+					has_government = liberal
+					has_government = new_democrat
+					has_government = moderate_socialist
+				}
+			}
+			AND = {
+				EGY = {
+					is_faction_leader = no
+					OR = {
+						has_government = communist
+						has_government = revolutionary_socialist
+						has_government = fascist
+						has_government = nationalist
+						has_government = national_bolshevik
+						has_government = monarchist
+						}
+					}
+				}
+			}
+		}
+	desc = { #Syria and egypt both have faction
+		text = jasmin.50.d4
+		trigger = {
+			SYR = {
+				is_faction_leader = yes
+				OR = {
+					has_government = national_conservative
+					has_government = centrist
+					has_government = liberal
+					has_government = new_democrat
+					has_government = moderate_socialist
+				}
+			}
+			AND = {
+				EGY = {
+					is_faction_leader = yes
+					OR = {
+						has_government = national_conservative
+						has_government = centrist
+						has_government = liberal
+						has_government = new_democrat
+						has_government = moderate_socialist
+						}
+					}
+				}
+			}
+		}
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = jasmin.50.o1
+		trigger = {
+			UAR = {
+				is_faction_leader = yes
+				OR = {
+					has_government = national_conservative
+					has_government = centrist
+					has_government = liberal
+					has_government = new_democrat
+					has_government = moderate_socialist
+				}
+			}
+		}
+		UAR = {
+			country_event = { id = jasmin.51 }
+		}
+	}
+	
+	option = {
+		name = jasmin.50.o2
+		trigger = {
+			EGY = {
+				is_faction_leader = yes
+				OR = {
+					has_government = national_conservative
+					has_government = centrist
+					has_government = liberal
+					has_government = new_democrat
+					has_government = moderate_socialist
+				}
+			}
+		}
+		EGY = {
+			country_event = { id = jasmin.51 }
+		}
+	}
+	
+	option = {
+		name = jasmin.50.o3
+		trigger = {
+			SYR = {
+				is_faction_leader = yes
+				OR = {
+					has_government = national_conservative
+					has_government = centrist
+					has_government = liberal
+					has_government = new_democrat
+					has_government = moderate_socialist
+				}
+			}
+		}
+		SYR = {
+			country_event = { id = jasmin.51 }
+		}
+	}
+}
+
+country_event = { #Yemen Requests to Join EGY or SYR or UAR
+	id = jasmin.51
+	title = jasmin.51.t
+	desc = jasmin.51.d
+	picture = jasmin_wants_in_me_faction
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Let them in
+		name = jasmin.51.o1
+		JAS = {
+			country_event = {
+				id = jasmin.52
+				days = 1
+			}
+		}
+		ROOT = { add_to_faction = JAS }
+		ai_chance = {
+			factor = 90
+		}
+	}
+	
+	option = {
+		name = jasmin.51.o2
+		JAS = {
+			country_event = {
+				id = jasmin.53
+				days = 1
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+country_event = { #EGY or SYR or UAR accepts
+	id = jasmin.52
+	title = jasmin.52.t
+	desc = jasmin.52.d
+	picture = jas_they_join_the_alliance
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.52.o1
+	}
+}
+
+country_event = { #[From.GetName] Rejects Our Petition
+	id = jasmin.53
+	title = jasmin.53.t
+	desc = jasmin.53.d
+	picture = jas_they_dont_join_the_alliance
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.53.o1
+		add_political_power = -25
+	}
+}
+
+country_event = { #Saleh's Trial
+	id = jasmin.54
+	title = jasmin.54.t
+	desc = jasmin.54.d
+	picture = jas_salehs_trial
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Life Imprisonment
+		name = jasmin.54.o1
+		add_stability = 0.05
+	}
+	
+	option = { #Exile in Iraq
+		name = jasmin.54.o2
+		IRQ = {
+			country_event = { id = jasmin.55 }
+		}
+	}
+}
+
+country_event = { #Ahmed Saleh Arrives in Baghdad
+	id = jasmin.55
+	title = jasmin.55.t
+	desc = jasmin.55.d
+	picture = jas_saleh_in_iraq
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Offer Him a Role in the Republican Guard
+		name = jasmin.55.o1
+		add_corps_commander_role = {
+			Character = IRQ_ahmed_saleh
+			traits = { media_personality politically_connected }
+			skill = 2
+			attack_skill = 3
+			defense_skill = 2
+			planning_skill = 1
+			logistics_skill = 2
+		}
+	}
+	
+	option = { #Allow him to form a government in exile
+		name = jasmin.55.o2
+		add_political_power = 50
+	}
+}
+
+country_event = { #Arrest Hardline Islamists 
+	id = jasmin.56 
+	title = jasmin.56.t
+	desc = jasmin.56.d
+	picture = jas_arrest_hardline_islamists
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.56.o1
+	}
+}
+
+country_event = { #Meeting with the Socialist Party Leadership
+	id = jasmin.57
+	title = jasmin.57.t
+	desc = jasmin.57.d
+	picture = jas_meet_with_socialist_party
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.57.o1
+	}
+}
+
+country_event = { #Meeting Minor Tribal Leaders
+	id = jasmin.58
+	title = jasmin.58.t
+	desc = jasmin.58.d
+	picture = jas_meet_with_minor_tribes
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.58.o1
+	}
+}
+
+country_event = { #Bahah Unveils his New Approach
+	id = jasmin.59
+	title = jasmin.59.t
+	desc = jasmin.59.d
+	picture = jas_bahahs_new_approach
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.59.o1
+	}
+}
+
+country_event = { #Further Tribal Negotiations
+	id = jasmin.60
+	title = jasmin.60.t
+	desc = jasmin.60.d
+	picture = jas_further_tribal_negotiations
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.60
+	}
+}
+
+country_event = { #Establishment of Direct Democracy
+	id = jasmin.61
+	title = jasmin.61.t
+	desc = jasmin.61.d
+	picture = jas_establishment_of_direct_democracy
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.61.o1
+	}
+}
+
+country_event = { #Bahah Unveils the New Tax Plan
+	id = jasmin.62
+	title = jasmin.62.t
+	desc = jasmin.62.d
+	picture = jas_bahahs_tax_plan
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.62.o1
+	}
+}
+
+country_event = { #Signing the Liberty Decree
+	id = jasmin.63
+	title = jasmin.63.t
+	desc = jasmin.63.d
+	picture = jas_signing_the_liberty_decree
+	
+	fire_only_once = yes 
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.63.o1
+	}
+}
+
+country_event = { #Pardon Former Reformists
+	id = jasmin.64
+	title = jasmin.64.t
+	desc = jasmin.64.d
+	picture = jas_pardon_former_reformists
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.64.o1
+	}
+}
+
+country_event = { #Abolition of Press Restrictions
+	id = jasmin.65
+	title = jasmin.65.t
+	desc = jasmin.65.d
+	picture = jas_press_freedom
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.65.o1
+	}
+}
+
+country_event = { #Mass Arrests of Corrupt Officials
+	id = jasmin.66
+	title = jasmin.66.t
+	desc = jasmin.66.d
+	picture = jas_corruption_mass_arrests
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.66.o1
+	}
+}
+
+country_event = { #Tawakkols Speech
+	id = jasmin.67
+	title = jasmin.67.t
+	desc = jasmin.67.d
+	picture = jas_tawakkols_speech
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.67.o1
+	}
+}
+
+country_event = { #Shaabi Unveils the Establishment of Literacy and Higher Education Programs
+	id = jasmin.68
+	title = jasmin.68.t
+	desc = jasmin.68.d
+	picture = jas_literacy_and_education
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.68.o1
+	}
+}
+
+country_event = { #Backroom Negotiations
+	id = jasmin.69
+	title = jasmin.69.t
+	desc = jasmin.69.d
+	picture = jas_backroom_negotiations
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.69.o1
+	}
+}
+
+country_event = { #Widespread Vaccination Campaign
+	id = jasmin.70
+	title = jasmin.70.t
+	desc = jasmin.70.d
+	picture = jas_vaccination_drive
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.70.o1
+		#add_popularity = { #all hail bill gates
+        #    ideology = revolutionary_socialist
+        #    popularity = 1
+        #}
+	}
+}
+
+country_event = { #Shaabi Meets with the Unions
+	id = jasmin.71
+	title = jasmin.71.t
+	desc = jasmin.71.d
+	picture = jas_shaabi_meets_with_unions
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.71.o1
+	}
+}
+
+country_event = { #Analysis Shows High Productivity in New Cooperatives
+	id = jasmin.72
+	title = jasmin.72.t
+	desc = jasmin.72.d
+	picture = jas_cooperatives
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.72.o1
+	}
+}
+
+country_event = { #The Federalisation of Yemen
+	id = jasmin.73
+	title = jasmin.73.t
+	desc = jasmin.73.d
+	picture = jas_yemen_federation
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.73.o1
+	}
+}
+
+country_event = { #World Leaders Applaud the Yemeni Federation
+	id = jasmin.74
+	title = jasmin.74.t
+	desc = jasmin.74.d
+	picture = jas_albert_einstein
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.74.o1
+	}
+}
+
+country_event = { #Start of the National Recovery Plan
+	id = jasmin.75
+	title = jasmin.75.t
+	desc = jasmin.75.d
+	picture = jas_national_recovery_plan
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.75.o1
+	}
+}
+
+country_event = { #Urban Reconstruction
+	id = jasmin.76
+	title = jasmin.76.t
+	desc = jasmin.76.d
+	picture = jas_urban_rebuilding
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.76.o1
+	}
+}
+
+country_event = { #Rural Development
+	id = jasmin.77
+	title = jasmin.77.t
+	desc = jasmin.77.d
+	picture = jas_rural_development
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.77.o1
+	}
+}
+
+country_event = { #Start of the Electrification Project
+	id = jasmin.78
+	title = jasmin.78.t
+	desc = jasmin.78.d
+	picture = jas_rural_electrification
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.78.o1
+	}
+}
+
+country_event = { #President Unveils Harbour Extensions
+	id = jasmin.79
+	title = jasmin.79.t
+	desc = jasmin.79.d
+	picture = jas_ports_and_shit
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.79.o1
+	}
+}
+
+country_event = { #Tourism Boom
+	id = jasmin.80
+	title = jasmin.80.t
+	desc = jasmin.80.d
+	picture = jas_tourism
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.80.o
+	}
+}
+
+country_event = { #Discovery of New Ore Deposits
+	id = jasmin.81
+	title = jasmin.81.t
+	desc = jasmin.81.d
+	picture = jas_new_ore_deposits
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.81.o1
+	}
+}
+
+country_event = { #New Drilling Operations
+	id = jasmin.82
+	title = jasmin.82.t
+	desc = jasmin.82.d
+	picture = jas_oil
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.82.o1
+	}
+}
+
+country_event = { #Shaabi meets Mekhlafi
+	id = jasmin.83
+	title = jasmin.83.t
+	desc = jasmin.83.d
+	picture = jas_shaabi_meets_mekhalfi
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.83.o1
+		if = {
+			limit = {
+				has_completed_focus = JAS_nationalization
+			}
+			hidden_effect = {
+				country_event = { id = jasmin.84 days = 10 }
+			}
+		}
+	}
+}
+
+country_event = { #Marxist agitation
+	id = jasmin.84
+	title = jasmin.84.t
+	desc = jasmin.84.d
+	picture = jas_marxist_agitation
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = jasmin.84.o1
+		hidden_effect = {
+			country_event = { id = jasmin.85 days = 10 }
+		}
+	}
+}
+
+country_event = { #Rising popular NF politician
+	id = jasmin.85
+	title = jasmin.85.t
+	desc = jasmin.85.d
+	picture = jas_rising_popular_nf_politician
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = jasmin.85.o1
+		hidden_effect = {
+			country_event = { id = jasmin.86 days = 7 }
+		}
+		add_political_power = 50
+		add_popularity = {
+            ideology = new_democrat
+            popularity = 0.01
+        }
+	}
+}
+
+country_event = { #Formation of the United National Front
+	id = jasmin.86
+	title = jasmin.86.t
+	desc = jasmin.86.d
+	picture = jas_formation_of_the_unf
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = jasmin.86.o1
+		hidden_effect = {
+			country_event = { id = jasmin.87 days = 5 }
+		}
+		set_party_name = {
+			name = "National Front - N"
+			long_name = "United National Front - Nasserists"
+			ideology = revolutionary_socialist
+		}
+		set_party_name = {
+			name = "National Front"
+			long_name = "United National Front"
+			ideology = new_democrat
+		}
+	}
+}
+
+country_event = { #Al-Beidh critiques Shaabi
+	id = jasmin.87
+	title = jasmin.87.t
+	desc = jasmin.87.d
+	picture = jas_beidh_critiques_shaabi
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = jasmin.87.o1
+		hidden_effect = {
+			country_event = { id = jasmin.88 days = 10 }
+		}
+	}
+}
+
+country_event = { #Rift forms in the Socialist Party
+	id = jasmin.88
+	title = jasmin.88.t
+	desc = jasmin.88.d
+	picture = jas_rift_forms_in_socialist_party
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = jasmin.88.o1
+		hidden_effect = {
+			country_event = { id = jasmin.89 days = 14 }
+		}
+		set_party_name = {
+			name = "Socialist Party"
+			long_name = "Democratic Socialist Party of Yemen"
+			ideology = moderate_socialist
+		}
+		add_popularity = {
+            ideology = communist
+            popularity = -0.08
+        }
+		add_popularity = {
+            ideology = moderate_socialist
+            popularity = -0.04
+        }
+	}
+}
+
+country_event = { #Parliamentary majority for the National Front
+	id = jasmin.89
+	title = jasmin.89.t
+	desc = jasmin.89.d
+	picture = yemen_assembly
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = jasmin.89.o1
+		hidden_effect = {
+			country_event = { id = jasmin.90 days = 7 }
+		}
+		add_popularity = {
+            ideology = new_democrat
+            popularity = 0.07
+        }
+		add_popularity = {
+            ideology = revolutionary_socialist
+            popularity = 0.015
+        }
+		add_popularity = {
+            ideology = moderate_socialist
+            popularity = 0.01
+        }
+	}
+}
+country_event = { #Expansion of the United National Front
+	id = jasmin.90
+	title = jasmin.90.t
+	desc = jasmin.90.d
+	picture = jas_expansion_of_unf
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = jasmin.90.o1
+		hidden_effect = {
+			country_event = { id = jasmin.91 days = 15 }
+		}
+		set_party_name = {
+			name = "National Front - C"
+			long_name = "United National Front - Communists"
+			ideology = moderate_socialist
+		}
+		add_timed_idea = {
+            idea = JAS_marxist_agitation
+            days = 90
+        }
+	}
+}
+country_event = { #The Defence of Democracy Act
+	id = jasmin.91
+	title = jasmin.91.t
+	desc = jasmin.91.d
+	picture = jas_defence_of_democracy_act
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = jasmin.91.o1
+		hidden_effect = {
+			country_event = { id = jasmin.92 days = 14 }
+		}
+		swap_ideas = {
+            remove_idea = JAS_jasmine_unity
+            add_idea = JAS_jasmine_breakdown
+        }
+	}
+}
+country_event = { #Motion of no-confidence called
+	id = jasmin.92
+	title = jasmin.92.t
+	desc = jasmin.92.d
+	picture = yar_united_front
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = jasmin.92.o1
+		hidden_effect = {
+			country_event = { id = jasmin.94 days = 5 }
+		}
+		swap_ideas = {
+            remove_idea = JAS_jasmine_breakdown
+            add_idea = JAS_jasmine_cooperation
+        }
+		ai_chance = {
+			factor = 65
+		}
+	}
+	option = {
+		name = jasmin.92.o2
+		hidden_effect = {
+			country_event = { id = jasmin.93 days = 5 }
+		}
+		ai_chance = {
+			factor = 35
+		}
+	}
+}
+country_event = { #Motion of no-confidence fails
+	id = jasmin.93
+	title = jasmin.93.t
+	desc = jasmin.93.d
+	picture = pdy_sapc_party_integration
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = jasmin.93.o1
+		hidden_effect = {
+			country_event = { id = jasmin.96 days = 3 }
+		}
+	}
+}
+country_event = { #Motion of no-confidence passes
+	id = jasmin.94
+	title = jasmin.94.t
+	desc = jasmin.94.d
+	picture = pdy_sapc_party_integration
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.94.o1
+		hidden_effect = {
+			country_event = { id = jasmin.95 days = 7 }
+		}
+	}
+}
+country_event = { #New presidential elections!
+	id = jasmin.95
+	title = jasmin.95.t
+	desc = jasmin.95.d
+	picture = jas_establishment_of_direct_democracy
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.95.o1
+		ai_chance = {
+			factor = 30
+		}
+		swap_ideas = {
+            remove_idea = JAS_jasmine_cooperation
+            add_idea = JAS_jasmine_unity2
+        }
+		add_popularity = {
+            ideology = new_democrat
+            popularity = 0.05
+        }
+		custom_effect_tooltip = pdy_newdem_ministers_tooltip
+		hidden_effect = {
+			add_ideas = jasmine_sic_refat_hasan_hamoud_braz
+			add_ideas = jasmine_fom_majed_abdul_latif_al_humaidi
+			add_ideas = jasmine_ind_shawki_ahmed_hayel_saeed
+			add_ideas = jasmine_nsm_abdel_karim_al_khaiwani
+			add_ideas = jasmine_inm_ahmad_saif_al_yaffi
+		}
+	}
+	option = {
+		name = jasmin.95.o2
+		ai_chance = {
+			factor = 15
+		}
+		swap_ideas = {
+            remove_idea = JAS_jasmine_cooperation
+            add_idea = JAS_jasmine_unity2
+        }
+		set_politics = {
+	        ruling_party = liberal
+        }
+		add_popularity = {
+            ideology = liberal
+            popularity = 0.15
+        }
+		custom_effect_tooltip = jasmines_liberal_ministers_tooltip
+		hidden_effect = {
+			add_ideas = jasmine_sic_arwa_othman
+			add_ideas = jasmine_fom_abdullah_al_saidi
+			add_ideas = jasmine_ind_abdulaziz_al_saqqaf
+			add_ideas = jasmine_nsm_huda_al_sarari
+			add_ideas = jasmine_inm_ahmad_saif_al_yaffi
+		}
+		set_country_flag = flag_popular_revolution
+	}
+	option = {
+		name = jasmin.95.o3
+		ai_chance = {
+			factor = 45
+		}
+		swap_ideas = {
+            remove_idea = JAS_jasmine_cooperation
+            add_idea = JAS_jasmine_unity2
+        }
+		set_politics = {
+	        ruling_party = centrist
+        }
+		add_popularity = {
+            ideology = centrist
+            popularity = 0.15
+        }
+		custom_effect_tooltip = jasmines_centrist_ministers_tooltip
+		hidden_effect = {
+			add_ideas = jasmine_sic_abdel_aziz_bin_habtour
+			add_ideas = jasmine_fom_hisham_sharaf
+			add_ideas = jasmine_ind_mohamed_awad_bin_humam
+			add_ideas = jasmine_nsm_nayef_al_bakri
+			add_ideas = jasmine_inm_ahmad_saif_al_yaffi
+		}
+		set_country_flag = flag_national_coalition
+	}
+}
+country_event = { #To defend the Republic...
+	id = jasmin.96
+	title = jasmin.96.t
+	desc = jasmin.96.d
+	picture = jasmin_council
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.96.o1
+		add_popularity = {
+            ideology = centrist
+            popularity = -0.05
+        }
+		add_popularity = {
+            ideology = liberal
+            popularity = -0.05
+        }
+		add_popularity = {
+            ideology = communist
+            popularity = -0.07
+        }
+		add_ideas = JAS_national_front_eternal
+	}
+}
+country_event = { #JAS asks brits for guns
+	id = jasmin.97
+	title = jasmin.97.t
+	desc = jasmin.97.d
+	picture = jas_britain_a_yemeni_deal
+	
+	is_triggered_only = yes
+	
+	option = { #send guns to yemen 
+		name = jasmin.97.o1
+		JAS = {
+			country_event = { id = jasmin.98 days = 1 }
+		}
+	}
+	option = { #don't send guns to yemen 
+		name = jasmin.97.o2
+		JAS = {
+			country_event = { id = jasmin.99 days = 1}
+		}
+	}
+}
+country_event = { #brits accepted
+	id = jasmin.98
+	title = jasmin.98.t
+	desc = jasmin.98.d
+	picture = jas_britain_accepted_a_yemeni_deal
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.98.o1
+		JAS = {
+			add_ideas = JAS_british_guns_idea
+			add_offsite_building = { type = arms_factory level = 1 }
+		}
+		ENG = {
+			add_ideas = JAS_ENG_yemeni_arms_deal
+			add_offsite_building = { type = industrial_complex level = 1 }
+		}
+	}
+}
+country_event = { #brits refused
+	id = jasmin.99
+	title = jasmin.99.t
+	desc = jasmin.99.d
+	picture = jas_britain_refused_a_yemeni_deal
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.99.o1
+		add_political_power = -30
+	}
+}
+country_event = { #JAS asks raj for workers
+	id = jasmin.100
+	title = jasmin.100.t
+	desc = jasmin.100.d
+	picture = jas_india_meeting_in_aden
+	
+	is_triggered_only = yes
+	
+	option = { #send guns to yemen 
+		name = jasmin.100.o1
+		JAS = {
+			country_event = { id = jasmin.101 days = 1 }
+		}
+	}
+	option = { #don't send guns to yemen 
+		name = jasmin.100.o2
+		JAS = {
+			country_event = { id = jasmin.102 days = 1}
+		}
+	}
+}
+country_event = { #india accepted
+	id = jasmin.101
+	title = jasmin.101.t
+	desc = jasmin.101.d
+	picture = jas_india_accepted_the_deal
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.101.o1
+		JAS = {
+			add_ideas = JAS_indian_workers
+			add_offsite_building = { type = arms_factory level = 1 }
+		}
+		RAJ = {
+			add_ideas = JAS_RAJ_yemeni_employment_deal
+			add_offsite_building = { type = industrial_complex level = 1 }
+		}
+	}
+}
+country_event = { #india refused
+	id = jasmin.102
+	title = jasmin.102.t
+	desc = jasmin.102.d
+	picture = jas_india_refused_worker_deal
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.102.o1
+		add_political_power = -30
+	}
+}
+country_event = { #JAS asks japan for electronics
+	id = jasmin.103
+	title = jasmin.103.t
+	desc = jasmin.103.d
+	picture = jas_japan_visitors_from_yemen
+	
+	is_triggered_only = yes
+	
+	option = { #accept 
+		name = jasmin.103.o1
+		JAS = {
+			country_event = { id = jasmin.104 days = 1 }
+		}
+	}
+	option = { #refuse 
+		name = jasmin.103.o2
+		JAS = {
+			country_event = { id = jasmin.105 days = 1}
+		}
+	}
+}
+country_event = { #japan accepted
+	id = jasmin.104
+	title = jasmin.104.t
+	desc = jasmin.104.d
+	picture = jas_japan_wants_to_cyber
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.104.o1
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = electronics
+		}
+		JAS = {
+			add_ideas = JAS_japanese_electronics
+			add_offsite_building = { type = industrial_complex level = 1 }
+			
+		}
+		JAP = {
+			add_ideas = JAS_JAP_yemeni_exports
+			add_offsite_building = { type = industrial_complex level = 1 }
+			528 = {
+				add_resource = {
+					type = oil
+					amount = 20
+				}
+			}
+		}
+	}
+}
+country_event = { #japan refused
+	id = jasmin.105
+	title = jasmin.105.t
+	desc = jasmin.105.d
+	picture = jas_japan_no_want_cyber
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.105.o1
+		add_political_power = -30
+	}
+}
+country_event = { #JAS asks Iran for military aid
+	id = jasmin.106
+	title = jasmin.106.t
+	desc = jasmin.106.d
+	picture = jas_iran_yemeni_delegation
+	
+	is_triggered_only = yes
+	
+	option = { #accept
+		name = jasmin.106.o1
+		JAS = {
+			country_event = { id = jasmin.107 days = 1 }
+		}
+	}
+	option = { #refuse
+		name = jasmin.106.o2
+		JAS = {
+			country_event = { id = jasmin.108 days = 1}
+		}
+	}
+}
+country_event = { #iran accepted
+	id = jasmin.107
+	title = jasmin.107.t
+	desc = jasmin.107.d
+	picture = jas_iran_wants_to_be_buddies
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.107.o1
+		JAS = {
+			add_ideas = JAS_iranian_cooperation
+			add_offsite_building = { type = arms_factory level = 1 }
+		}
+		PER = {
+			add_ideas = JAS_PER_yemeni_exports
+			add_offsite_building = { type = industrial_complex level = 1 }
+		}
+	}
+}
+country_event = { #iran refused
+	id = jasmin.108
+	title = jasmin.108.t
+	desc = jasmin.108.d
+	picture = jas_iran_does_not_want_to_commit_war_crimes_with_yemen
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.108.o1
+		add_political_power = -30
+	}
+}
+country_event = { #JAS asks Aussies for mining help
+	id = jasmin.109
+	title = jasmin.109.t
+	desc = jasmin.109.d
+	picture = jas_australia_yemeni_mining_deal
+	
+	is_triggered_only = yes
+	
+	option = { #accept
+		name = jasmin.109.o1
+		JAS = {
+			country_event = { id = jasmin.110 days = 1 }
+		}
+	}
+	option = { #refuse
+		name = jasmin.109.o2
+		JAS = {
+			country_event = { id = jasmin.111 days = 1}
+		}
+	}
+}
+country_event = { #Aussies accepted
+	id = jasmin.110
+	title = jasmin.110.t
+	desc = jasmin.110.d
+	picture = jas_australia_accepted_mining
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.110.o1
+		JAS = {
+			add_ideas = JAS_australian_mining_expertise
+			978 = {
+				add_resource = {
+					type = steel
+					amount = 6
+				}
+			}
+			977 = {
+				add_resource = {
+					type = aluminium
+					amount = 12
+				}
+			}
+		}
+		AST = {
+			add_ideas = JAS_AST_yemeni_mining
+			add_offsite_building = { type = industrial_complex level = 1 }
+			521 = {
+				add_resource = {
+					type = steel
+					amount = 6
+				}
+				add_resource = {
+					type = aluminium
+					amount = 12
+				}
+			}
+		}
+	}
+}
+country_event = { #Aussies refused
+	id = jasmin.111
+	title = jasmin.111.t
+	desc = jasmin.111.d
+	picture = jas_aussies_say_no_diggy
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.111.o1
+		add_political_power = -30
+	}
+}
+country_event = { #Jasmine Council Opts to Request International Support
+	id = jasmin.112
+	title = jasmin.112.t
+	desc = jasmin.112.d
+	picture = jas_aussies_say_no_diggy
+	
+	is_triggered_only = yes
+	
+	option = { #Turn to Iran
+		name = jasmin.112.o1
+		PER = {
+			country_event = jasmin.113
+		}
+	}
+
+	option = { #Turn to Canada
+		name = jasmin.112.o2
+		CAN = {
+			country_event = jasmin.116
+		}
+	}
+}
+country_event = { #Jasmine Council Asks for Support (Iran)
+	id = jasmin.113
+	title = jasmin.113.t
+	desc = jasmin.113.d
+	picture = jas_aussies_say_no_diggy
+	
+	is_triggered_only = yes
+	
+	option = { #Sure
+		name = jasmin.113.o1
+		send_equipment = {
+			equipment = infantry_equipment
+			target = JAS
+			amount = 750
+		}
+		send_equipment = {
+			equipment = artillery_equipment
+			target = JAS
+			amount = 100
+		}
+		if = {
+			limit = {
+				has_dlc = "By Blood Alone"
+			}
+			send_equipment = {
+				equipment = small_plane_cas_airframe
+				amount = 10
+				target = JAS
+			}
+		}
+		else = {
+			send_equipment = {
+				equipment = CAS_equipment_1
+				amount = 10
+				target = JAS
+			}
+		}
+		JAS = {
+			country_event = jasmin.114
+		}
+	}
+
+	option = { #No
+		name = jasmin.113.o2
+		JAS = {
+			country_event = jasmin.115
+		}
+	}
+}
+country_event = { #Iran Accepts
+	id = jasmin.114
+	title = jasmin.114.t
+	desc = jasmin.114.d
+	picture = jas_iran_does_not_want_to_commit_war_crimes_with_yemen
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.114.o1
+	}
+}
+country_event = { #Iran refused
+	id = jasmin.115
+	title = jasmin.115.t
+	desc = jasmin.115.d
+	picture = jas_iran_does_not_want_to_commit_war_crimes_with_yemen
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.115.o1
+	}
+}
+country_event = { #Jasmine Council Asks for Support (Canada)
+	id = jasmin.116
+	title = jasmin.116.t
+	desc = jasmin.116.d
+	picture = jas_aussies_say_no_diggy
+	
+	is_triggered_only = yes
+	
+	option = { #Sure
+		name = jasmin.116.o1
+		if = {
+			limit = {
+				has_dlc = "No Step Back"
+			}
+			send_equipment = {
+				equipment = light_tank_chassis
+				amount = 200
+				target = JAS
+			}
+		}
+		else = {
+			send_equipment = {
+				equipment = light_tank_equipment_1
+				amount = 200
+				target = JAS
+			}
+		}
+		send_equipment = {
+			equipment = motorized_equipment
+			target = JAS
+			amount = 100
+		}
+		if = {
+			limit = {
+				has_dlc = "By Blood Alone"
+			}
+			send_equipment = {
+				equipment = small_plane_airframe
+				amount = 10
+				target = JAS
+			}
+		}
+		else = {
+			send_equipment = {
+				equipment = fighter_equipment_1
+				amount = 10
+				target = JAS
+			}
+		}
+		JAS = {
+			country_event = jasmin.117
+		}
+	}
+
+	option = { #No
+		name = jasmin.116.o2
+		JAS = {
+			country_event = jasmin.118
+		}
+	}
+}
+country_event = { #Canada Accepts
+	id = jasmin.117
+	title = jasmin.117.t
+	desc = jasmin.117.d
+	picture = jas_iran_does_not_want_to_commit_war_crimes_with_yemen
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.117.o1
+	}
+}
+country_event = { #Canada Refuses
+	id = jasmin.118
+	title = jasmin.118.t
+	desc = jasmin.118.d
+	picture = jas_iran_does_not_want_to_commit_war_crimes_with_yemen
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = jasmin.118.o1
+	}
+}

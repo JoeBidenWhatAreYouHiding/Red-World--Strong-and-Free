@@ -1,0 +1,1903 @@
+add_namespace = namibia
+add_namespace = namibia_war
+add_namespace = namibia_news
+
+news_event = { #South West african war
+	id = namibia_news.1
+	title = namibia_news.1.t
+	desc = namibia_news.1.d
+	picture = namibia_war_begins_news
+	
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { 
+		name = namibia_news.1.o1
+		trigger = {
+		NOT = {
+		OR = {
+			tag = NAM
+			tag = SWP
+			tag = SAF
+			tag = CUB
+				}
+			}
+		}
+	}
+	option = { 
+		name = namibia_news.1.o2
+		trigger = {
+		OR = {
+			tag = SWP
+			tag = CUB
+			}
+		}
+	}
+	option = { 
+		name = namibia_news.1.o3
+		trigger = {
+		OR = {
+			tag = SAF
+			tag = NAM
+			}
+		}
+	}
+}
+
+news_event = { #South West african war
+	id = namibia_news.2
+	title = namibia_news.2.t
+	desc = namibia_news.2.d
+	picture = namibia_cuban_intervention_news
+	
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { 
+		name = namibia_news.2.o1
+	}
+}
+
+news_event = { #Treaty of Walvis - Anti-Apartheid Victory
+	id = namibia_news.3
+	title = namibia_news.3.t
+	desc = namibia_news.3.d
+	picture = namibia_treaty_of_walvis_good
+	
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { 
+		name = namibia_news.3.o1
+	}
+}
+
+news_event = { #Treaty of Walvis - Apartheid Victory
+	id = namibia_news.4
+	title = namibia_news.4.t
+	desc = namibia_news.4.d
+	picture = namibia_treaty_of_walvis_bad
+	
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { 
+		name = namibia_news.4.o1
+	}
+}
+
+country_event = { #Spike on SWAPO activity
+	id = namibia_war.1
+	title = namibia_war.1.t
+	desc = namibia_war.1.d
+	picture = namibia_SWAPO_activity_spikes
+	
+	fire_only_once = yes
+	trigger = {
+	TAG = NAM
+	date > 2012.8.1
+	date < 2012.9.1
+	}
+	
+	option = { #Ay caramba
+		name = namibia_war.1.o1
+		country_event = { id = namibia_war.2 days = 7 }
+	}
+}
+
+country_event = { #SWAPO overruns military base, steal equipment
+	id = namibia_war.2
+	title = namibia_war.2.t
+	desc = namibia_war.2.d
+	picture = namibia_border_base_overrun
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #this is not ok
+		name = namibia_war.2.o1
+		country_event = { id = namibia_war.3 days = 7 }
+		hidden_effect = {
+		658 = {
+		add_core_of = SWP
+		set_demilitarized_zone = yes
+			}
+		}
+	}
+}
+
+country_event = { #War begins here
+	id = namibia_war.3
+	title = namibia_war.3.t
+	desc = namibia_war.3.d
+	picture = namibia_swapo_strikes
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #this is very much not ok, stay a cuck
+		name = namibia_war.3.o1
+		SWP = {
+		    transfer_state = 658
+		}
+		SAF = {
+		end_puppet = NAM
+		}
+		SWP = {
+		    declare_war_on = { target = NAM type = annex_everything }
+			set_cosmetic_tag = SWP_civil_war
+			load_oob = SWP_2000
+			add_ideas = idea_nam_civil_war_swp
+		}
+		NAM = {
+		add_ideas = idea_nam_civil_war
+		}
+		every_country = {
+		    limit = {
+			    NOT = {
+					OR = {
+						tag = SAF
+						tag = SWP
+						tag = ANG
+						tag = NAM
+					}
+				}
+			}
+			news_event = {
+			    hours = 4
+			    id = namibia_news.1
+		    }
+		}
+		hidden_effect = {
+			ANG = {
+				country_event = { id = namibia_war.4 days = 1 }
+			}
+			SWP = {
+					NAM = { transfer_technology = yes }
+			989  = {
+					add_core_of = SWP
+				}
+		    }
+		    every_state = {
+			    limit = {
+				    is_core_of = NAM
+				}
+				add_core_of = SWP
+			}
+		}
+		hidden_effect = {
+			set_party_name = {
+				ideology = communist
+				long_name = "South West Africa National Union"
+				name = "SWANU"
+			}
+			NAM_usutuaije_maamberua = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						ideology = marxist_leninist_maoist
+						expire="1.1.1.1"
+					}
+				}
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = -0.3
+			}
+		}
+	}
+	option = { #this is very much ok, join SWAPO
+		name = namibia_war.3.o2
+		SWP = {
+		    transfer_state = 658
+		}
+		SAF = {
+		end_puppet = NAM
+		}
+		SWP = {
+		    declare_war_on = { target = NAM type = annex_everything }
+			set_cosmetic_tag = SWP_civil_war
+			load_oob = SWP_2000
+			add_ideas = idea_nam_civil_war
+		}
+		NAM = {
+		add_ideas = idea_nam_civil_war
+		}
+		every_country = {
+		    limit = {
+			    NOT = {
+					OR = {
+						tag = SAF
+						tag = SWP
+						tag = ANG
+						tag = NAM
+					}
+				}
+			}
+			news_event = {
+			    hours = 4
+			    id = namibia_news.1
+		    }
+		}
+		SWP = {
+            change_tag_from = NAM
+        }
+		hidden_effect = {
+		ANG = {
+		country_event = { id = namibia_war.4 days = 1 }
+		}
+		SWP = {
+			    NAM = { transfer_technology = yes }
+		    }
+		989  = {
+		add_core_of = SWP
+				}
+		    every_state = {
+			    limit = {
+				    is_core_of = NAM
+				}
+				add_core_of = SWP
+			}
+		}
+		hidden_effect = {
+			set_party_name = {
+				ideology = communist
+				long_name = "South West Africa National Union"
+				name = "SWANU"
+			}
+			NAM_usutuaije_maamberua = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						ideology = marxist_leninist_maoist
+						expire="1.1.1.1"
+					}
+				}
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = -0.3
+			}
+		}
+	}
+}
+
+country_event = { #Angolan intervention for ANG
+	id = namibia_war.4
+	title = namibia_war.4.t
+	desc = namibia_war.4.d
+	picture = namibia_ask_angola_for_help
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #aye
+		name = namibia_war.4.o1
+		SWP = {
+		country_event = { id = namibia_war.5 days = 2 }
+		}
+		 ai_chance = {
+            base = 100
+        }
+	}
+	option = { #nay
+		name = namibia_war.4.o2
+		country_event = { id = namibia_war.6 days = 2 }
+		 ai_chance = {
+            base = 0 
+        }
+	}
+}
+country_event = { #they agree
+	id = namibia_war.5
+	title = namibia_war.5.t
+	desc = namibia_war.5.d
+	picture = namibia_angola_says_aye
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #yay
+		name = namibia_war.5.o1
+		create_faction = "Frontline States"
+		ANG = {
+		declare_war_on = {
+		target = NAM
+		type = annex_everything
+			}
+		set_major = yes
+		set_faction_leader = yes
+		}
+		SWP = { add_to_faction = ANG }
+	}
+}
+country_event = { #they refuse
+	id = namibia_war.6
+	title = namibia_war.6.t
+	desc = namibia_war.6.d
+	picture = namibia_angolan_betrayal
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #this is not ok
+		name = namibia_war.6.o1
+	}
+}
+country_event = { #Southafrican intervention
+	id = namibia_war.7
+	title = namibia_war.7.t
+	desc = namibia_war.7.d
+	picture = namibia_apartheid_intervention
+	
+	fire_only_once = yes
+	trigger = {
+	NAM = {
+	surrender_progress > 0.7
+		}
+	}
+	
+	option = { #they can only say yes
+		name = namibia_war.7.o1
+		SAF = {
+		create_faction = "Southern African Defense Force"
+		add_to_faction = NAM
+		add_ideas = idea_nam_civil_war
+		declare_war_on = {
+		target = SWP
+		type = annex_everything
+			}
+		}
+	}
+}
+
+country_event = { #South African Forces Retreat Across the Border, Cuba isnt at war
+	id = namibia_war.8
+	title = namibia_war.8.t
+	desc = namibia_war.8.d
+	picture = cuba_south_africa_flees
+	
+	fire_only_once = yes
+	trigger = {
+		tag = SWP
+		has_war_with = SAF
+		AND = {
+		OR = {
+		AND = {
+		NAM = {
+			has_capitulated = yes
+			}
+		war_length_with = {
+		tag = SAF
+		months > 5
+				}
+			}
+		}
+		OR = {
+		AND = {
+		NAM = {
+			has_capitulated = yes
+			}
+		OR = {
+		SWP = {
+				controls_state = 541
+			}
+			any_country = {
+				OR = {
+					tag = SWP
+					is_in_faction_with = SWP
+				}
+				controls_state = 541
+			}
+			any_country = {
+				OR = {
+					tag = SWP
+					is_in_faction_with = SWP
+				}
+				controls_state = 1036
+			}
+			any_country = {
+				OR = {
+					tag = SWP
+					is_in_faction_with = SWP
+				}
+				controls_state = 1034
+					}
+				}
+			}
+		}
+	}
+		CUB = {
+		NOT = {
+		has_completed_focus = CUB_send_troops_to_namibian_war_of_independence
+			}
+		}
+	}
+	
+	option = { #Let us end this. Run them down.
+		name = namibia_war.8.o1
+		add_war_support = 0.1
+		ai_chance = {
+		base = 0
+		}
+		ANG = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		SWP = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		SAF = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		NAM = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		hidden_effect = {
+			SAF = {
+				country_event = { id = namibia_war.9 days = 1 }
+			}
+		}
+	}
+	
+	option = { #Namibia is free. Let's petition for peace.
+		name = namibia_war.8.o2
+		hidden_effect = {
+			SAF = {
+				country_event = { id = namibia_war.10 days = 1 }
+			}
+		}
+	}
+}
+
+country_event = { #SWAPO Commits to the Destruction of our Nation
+	id = namibia_war.9
+	title = namibia_war.9.t
+	desc = namibia_war.9.d
+	picture = cuba_will_destroy_apartheid
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = namibia_war.9.o1
+		add_stability = -0.1
+		add_war_support = 0.1
+		add_popularity = {
+			ideology = ROOT
+			popularity = 0.15
+		}
+		SWP = {
+		drop_cosmetic_tag = yes
+		}
+	}
+}
+
+country_event = { #Havana Offers Peace for Namibian Freedom
+	id = namibia_war.10
+	title = namibia_war.10.t
+	desc = namibia_war.10.d 
+	picture = cuba_peace_for_namibia
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #It's better than nothing, let's agree
+		name = namibia_war.10.o1
+		every_country = {
+			limit = {
+				OR = {
+					tag = SWP
+					tag = ANG
+				}
+			}
+			white_peace = {
+				tag = ROOT
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+		remove_ideas = idea_nam_civil_war
+		hidden_effect = {
+			SWP = {
+				country_event = { id = namibia_war.11 days = 1 }
+				annex_country = {
+				target = NAM
+				transfer_troops = no
+				}
+				set_state_owner = 989
+			}
+		}
+	}
+	
+	option = { #We'll fight to the last
+		name = namibia_war.10.o2
+		hidden_effect = {
+			SWP = {
+				country_event = { id = namibia_war.12 days = 1 }
+			}
+		}
+		ANG = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		SWP = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		SAF = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		NAM = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = { #South Africa Surrenders Namibia
+	id = namibia_war.11
+	title = namibia_war.11.t
+	desc = namibia_war.11.d 
+	picture = cuba_victory_in_namibia
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = namibia_war.11.o1
+		add_political_power = 50
+		add_popularity = {
+			ideology = ROOT
+			popularity = 0.05
+		}
+		clr_country_flag = cuba_war_with_south_africa_flag
+		remove_ideas = idea_nam_civil_war_swp
+		SWP = {
+		drop_cosmetic_tag = yes
+		leave_faction = yes
+		white_peace = {
+				tag = SAF
+			}
+		}
+		ANG = {
+			remove_ideas = idea_nam_civil_war
+			leave_faction = yes
+			white_peace = {
+				tag = SAF
+			}
+		}
+		SAF = {
+		leave_faction = yes
+		}
+		every_country = {
+		    limit = {
+			    NOT = {
+					OR = {
+						tag = SAF
+						tag = SWP
+						tag = ANG
+					}
+				}
+			}
+			news_event = {
+			    hours = 4
+			    id = namibia_news.3
+		    }
+		}
+	}
+}
+
+country_event = { #South Africa Refuses to Surrender Namibia
+	id = namibia_war.12
+	title = namibia_war.12.t
+	desc = namibia_war.12.d
+	picture = cuba_namibia_no_peace
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Then we shall fight till the bitter end
+		name = namibia_war.12.o1
+		clr_country_flag = cuba_war_with_south_africa_flag
+		drop_cosmetic_tag = yes
+	}
+}
+
+country_event = { #South African Forces Retreat Across the Border, Cuba is at war
+	id = namibia_war.13
+	title = namibia_war.13.t
+	desc = namibia_war.13.d
+	picture = cuba_south_africa_flees
+	
+	fire_only_once = yes
+	trigger = {
+		tag = CUB
+		has_war_with = SAF
+		CUB = {
+		has_completed_focus = CUB_send_troops_to_namibian_war_of_independence
+		}
+		AND = {
+		OR = {
+		AND = {
+		NAM = {
+			has_capitulated = yes
+			}
+		war_length_with = {
+		tag = SAF
+		months > 5
+				}
+			}
+		}
+		OR = {
+		AND = {
+		NAM = {
+			has_capitulated = yes
+			}
+		OR = {
+		SWP = {
+				controls_state = 541
+			}
+			any_country = {
+				OR = {
+					tag = SWP
+					has_country_flag = cuba_angola_supports_war_flag
+					is_in_faction_with = SWP
+				}
+				controls_state = 541
+			}
+			any_country = {
+				OR = {
+					tag = SWP
+					has_country_flag = cuba_angola_supports_war_flag
+					is_in_faction_with = SWP
+				}
+				controls_state = 1036
+			}
+			any_country = {
+				OR = {
+					tag = SWP
+					has_country_flag = cuba_angola_supports_war_flag
+					is_in_faction_with = SWP
+				}
+				controls_state = 1034
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	option = { #Let us end this. Run them down.
+		name = namibia_war.13.o1
+		add_war_support = 0.1
+		ai_chance = {
+		base = 0
+		}
+		ANG = {  #event about if they drop from the war not here
+		country_event = { id = namibia_war.18 days = 1 }
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		SWP = {
+		country_event = { id = namibia_war.18 days = 1 }
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		SAF = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		NAM = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		hidden_effect = {
+			SAF = {
+				country_event = { id = namibia_war.14 days = 1 }
+			}
+		}
+	}
+	
+	option = { #Namibia is free. Let's petition for peace.
+		name = namibia_war.13.o2
+		hidden_effect = {
+			SAF = {
+				country_event = { id = namibia_war.15 days = 1 }
+			}
+		}
+	}
+}
+
+country_event = { #SWAPO and cuba Commit to the Destruction of our Nation
+	id = namibia_war.14
+	title = namibia_war.14.t
+	desc = namibia_war.14.d
+	picture = cuba_will_destroy_apartheid
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = namibia_war.14.o1
+		add_stability = -0.1
+		add_war_support = 0.1
+		add_popularity = {
+			ideology = ROOT
+			popularity = 0.15
+		}
+		SWP = {
+		drop_cosmetic_tag = yes
+		}
+	}
+}
+
+country_event = { #Havana Offers Peace for Namibian Freedom
+	id = namibia_war.15
+	title = namibia_war.15.t
+	desc = namibia_war.15.d 
+	picture = cuba_peace_for_namibia
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #It's better than nothing, let's agree
+		name = namibia_war.15.o1
+		every_country = {
+			limit = {
+				OR = {
+					tag = SWP
+					tag = ANG
+				}
+			}
+			white_peace = {
+				tag = ROOT
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+		remove_ideas = idea_nam_civil_war
+		hidden_effect = {
+			SWP = {
+				country_event = { id = namibia_war.16 days = 1 }
+				annex_country = {
+				target = NAM
+				transfer_troops = no
+				}
+				set_state_owner = 989
+			}
+			CUB = {
+				country_event = { id = namibia_war.16 days = 1 }
+			}
+		}
+	}
+	
+	option = { #We'll fight to the last
+		name = namibia_war.15.o2
+		hidden_effect = {
+			CUB = {
+				country_event = { id = namibia_war.17 days = 1 }
+			}
+		}
+		ANG = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		SWP = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		SAF = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		NAM = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = { #South Africa Surrenders Namibia
+	id = namibia_war.16
+	title = namibia_war.16.t
+	desc = namibia_war.16.d 
+	picture = cuba_victory_in_namibia
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = namibia_war.16.o1
+		add_political_power = 50
+		add_popularity = {
+			ideology = ROOT
+			popularity = 0.05
+		}
+		clr_country_flag = cuba_war_with_south_africa_flag
+		CUB = {
+		remove_ideas = idea_nam_civil_war_cub
+		}
+		SWP = {
+		leave_faction = yes
+		remove_ideas = idea_nam_civil_war_swp
+		drop_cosmetic_tag = yes
+		}
+		ANG = {
+			clr_country_flag = cuba_angola_supports_war_flag
+			remove_ideas = idea_nam_civil_war
+			leave_faction = yes
+		}
+		SAF = {
+		leave_faction = yes
+		}
+		every_country = {
+		    limit = {
+			    NOT = {
+					OR = {
+						tag = SAF
+						tag = SWP
+						tag = ANG
+					}
+				}
+			}
+			news_event = {
+			    hours = 4
+			    id = namibia_news.3
+		    }
+		}
+	}
+}
+
+country_event = { #South Africa Refuses to Surrender Namibia
+	id = namibia_war.17
+	title = namibia_war.17.t
+	desc = namibia_war.17.d
+	picture = cuba_namibia_no_peace
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Then we shall fight till the bitter end
+		name = namibia_war.17.o1
+		clr_country_flag = cuba_war_with_south_africa_flag
+		SWP = {
+		remove_ideas = idea_nam_civil_war
+		drop_cosmetic_tag = yes
+		}
+		ANG = {
+			clr_country_flag = cuba_angola_supports_war_flag
+			remove_ideas = idea_nam_civil_war
+		}
+		CUB = {
+		remove_ideas = idea_nam_civil_war_cub
+		}
+	}
+}
+country_event = { #Cuba has invaded south africa should we join?
+	id = namibia_war.18
+	title = namibia_war.18.t
+	desc = namibia_war.18.d
+	picture = cuba_will_destroy_apartheid
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {#keep going
+		name = namibia_war.18.o1
+		CUB = {
+				country_event = { id = namibia_war.19 days = 1 }
+			}
+	}
+	option = { #peace out
+		name = namibia_war.18.o2
+		ai_chance = {
+		base = 50
+		modifier = { tag = SWP factor = 0 }
+		}
+		white_peace = {
+				tag = SAF
+			}
+		white_peace = {
+				tag = NAM
+			}
+		CUB = {
+				country_event = { id = namibia_war.20 days = 1 }
+			}
+	}
+}
+country_event = { #stand by us
+	id = namibia_war.19
+	title = namibia_war.19.t
+	desc = namibia_war.19.d
+	picture = cuba_namibia_no_peace
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Then we shall fight till the bitter end
+		name = namibia_war.19.o1
+	}
+}
+country_event = { #doesnt stand by us
+	id = namibia_war.20
+	title = namibia_war.20.t
+	desc = namibia_war.20.d
+	picture = cuba_namibia_no_peace
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Then we shall fight till the bitter end
+		name = namibia_war.20.o1
+	}
+}
+country_event = { #South african victory, no cuba
+	id = namibia_war.21
+	title = namibia_war.21.t
+	desc = namibia_war.21.d 
+	picture = cuba_defeat_in_namibia
+	
+	fire_only_once = yes
+	trigger = {
+		tag = SAF
+		has_war_with = ANG
+		NOT = {
+		has_war_with = CUB
+		}
+		AND = {
+		OR = {
+		AND = {
+		SWP = {
+			has_capitulated = yes
+			}
+		war_length_with = {
+		tag = ANG
+		months > 5
+				}
+			}
+		}
+		OR = {
+		AND = {
+		SWP = {
+			has_capitulated = yes
+			}
+		OR = {
+			any_country = {
+				OR = {
+					tag = SAF
+					is_in_faction_with = SAF
+				}
+				controls_state = 846
+			}
+			any_country = {
+				OR = {
+					tag = SAF
+					is_in_faction_with = SAF
+				}
+				controls_state = 844
+					}
+				}
+			}
+		}
+	}
+	}
+	
+	option = { #GG
+		name = namibia_war.21.o1
+		add_political_power = 100
+		add_popularity = {
+			ideology = ROOT
+			popularity = 0.1
+		}
+		ANG = {
+		country_event = { id = namibia_war.22 days = 1 }
+		}
+		SAF = {
+		puppet = NAM
+		remove_ideas = idea_nam_civil_war
+		add_political_power = 100
+		add_popularity = {
+			ideology = ROOT
+			popularity = 0.1
+		}
+		hidden_effect = {
+		NAM = {
+		set_popularities = {
+		fascist = 0
+		nationalist = 3
+		monarchist = 0
+		national_bolshevik = 0
+		national_conservative = 5
+		centrist = 28
+		liberal = 10
+		new_democrat = 8
+		moderate_socialist = 3
+		revolutionary_socialist = 5
+		communist = 38
+				}
+			}
+		}
+		NAM = {
+		set_politics = {
+	        ruling_party = centrist
+	        elections_allowed = no
+        }
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+	
+	option = { #keep going north
+		name = namibia_war.21.o2
+		hidden_effect = {
+		SAF = {
+		country_event = { id = namibia_war.25 days = 1 }
+		set_country_flag = SAF_TOTAL_WAR
+			}
+		}
+		NAM = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		ANG = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		SWP = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = { #SAF offers peace
+	id = namibia_war.22
+	title = namibia_war.22.t
+	desc = namibia_war.22.d
+	picture = namibia_angolan_apartheid_peace
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #accpet
+		name = namibia_war.22.o1
+		SAF = {
+		country_event = { id = namibia_war.23 days = 1 }
+		}
+		ai_chance = {
+			factor = 110
+		}
+	}
+	option = { #refuse
+		name = namibia_war.22.o1
+		SAF = {
+		country_event = { id = namibia_war.24 days = 1 }
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+country_event = { #Angola accpets
+	id = namibia_war.23
+	title = namibia_war.23.t
+	desc = namibia_war.23.d
+	picture = namibia_angola_accepts_peace
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #accpet
+		name = namibia_war.23.o1
+		ANG = {
+		white_peace = SAF
+		remove_ideas = idea_nam_civil_war
+		leave_faction = yes
+		}
+		SAF = {
+		leave_faction = yes
+		}
+		NAM = {
+		white_peace = ANG
+		remove_ideas = idea_nam_civil_war
+		leave_faction = yes
+		annex_country = {
+		target = SWP
+		transfer_troops = no
+			}
+		}
+		every_country = {
+		    limit = {
+			    NOT = {
+					OR = {
+						tag = SAF
+						tag = SWP
+						tag = ANG
+					}
+				}
+			}
+			news_event = {
+			    hours = 4
+			    id = namibia_news.4
+		    }
+		}
+	}
+}
+country_event = { #Angola refuses
+	id = namibia_war.24
+	title = namibia_war.24.t
+	desc = namibia_war.24.d
+	picture = namibia_angola_rejects_peace
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #then they will die
+		name = namibia_war.24.o1
+		ANG = {
+		remove_ideas = idea_nam_civil_war
+		}
+		NAM = {
+		annex_country = {
+		target = SWP
+		transfer_troops = no
+			}
+		}
+	}
+}
+country_event = { #South Africa doesnt stop
+	id = namibia_war.25
+	title = namibia_war.25.t
+	desc = namibia_war.25.d
+	picture = namibia_angola_rejects_peace
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #we are fucked
+		name = namibia_war.25.o1
+	}
+}
+
+country_event = { #Defeat in Namibia?, cuba
+	id = namibia_war.26
+	title = namibia_war.26.t
+	desc = namibia_war.26.d 
+	picture = cuba_defeat_in_namibia
+	
+	fire_only_once = yes
+	trigger = {
+		tag = CUB
+		has_war_with = SAF
+		AND = {
+		OR = {
+		AND = {
+		SWP = {
+			has_capitulated = yes
+			}
+		war_length_with = {
+		tag = SAF
+		months > 5
+				}
+			}
+		}
+		OR = {
+		AND = {
+		SWP = {
+			has_capitulated = yes
+			}
+		OR = {
+			any_country = {
+				OR = {
+					tag = SAF
+					is_in_faction_with = SAF
+				}
+				controls_state = 846
+			}
+			any_country = {
+				OR = {
+					tag = SAF
+					is_in_faction_with = SAF
+				}
+				controls_state = 844
+					}
+				}
+				}
+			}
+		}
+	}
+	
+	option = { #GG
+		name = namibia_war.26.o1
+		add_political_power = -100
+		add_popularity = {
+			ideology = ROOT
+			popularity = -0.1
+		}
+		CUB = {
+		remove_ideas = idea_nam_civil_war_cub
+		white_peace = SAF
+		white_peace = NAM
+		}
+		SAF = {
+		country_event = { id = namibia_war.27 days = 1 }
+		puppet = NAM
+		remove_ideas = idea_nam_civil_war
+		leave_faction = yes
+		add_political_power = 100
+		add_popularity = {
+			ideology = ROOT
+			popularity = 0.1
+		}
+		}
+		ANG = {
+		white_peace = SAF
+		white_peace = NAM
+		remove_ideas = idea_nam_civil_war
+		leave_faction = yes
+		}
+		NAM = {
+		set_politics = {
+	        ruling_party = centrist
+	        elections_allowed = no
+        }
+		white_peace = CUB
+		white_peace = ANG
+		remove_ideas = idea_nam_civil_war
+		leave_faction = yes
+		annex_country = {
+		target = SWP
+		transfer_troops = no
+			}
+		}
+		hidden_effect = {
+		NAM = {
+		set_popularities = {
+		fascist = 0
+		nationalist = 3
+		monarchist = 0
+		national_bolshevik = 0
+		national_conservative = 5
+		centrist = 28
+		liberal = 10
+		new_democrat = 8
+		moderate_socialist = 3
+		revolutionary_socialist = 5
+		communist = 38
+				}
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+	
+	option = { #We are down but not out
+		name = namibia_war.26.o1.o2
+		hidden_effect = {
+			SAF = {
+				country_event = { id = namibia_war.28 days = 1 }
+			}
+		}
+		ANG = {
+			white_peace = SAF
+			white_peace = NAM
+			}
+		ANG = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		SWP = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		SAF = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		NAM = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = { #Cuba capitulates
+	id = namibia_war.27
+	title = namibia_war.27.t
+	desc = namibia_war.27.d
+	picture = namibia_angola_accepts_peace
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = namibia_war.27.o1
+		every_country = {
+		    limit = {
+			    NOT = {
+					OR = {
+						tag = SAF
+						tag = SWP
+						tag = ANG
+					}
+				}
+			}
+			news_event = {
+			    hours = 4
+			    id = namibia_news.3
+		    }
+		}
+	}
+}
+country_event = { #Cuba does not capitulates
+	id = namibia_war.28
+	title = namibia_war.28.t
+	desc = namibia_war.28.d
+	picture = namibia_angola_rejects_peace
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = namibia_war.28.o1
+	}
+}
+
+country_event = { #SAF, Victory in Namibia with exiles cuba 
+	id = namibia_war.29
+	title = namibia_war.29.t
+	desc = namibia_war.29.d 
+	picture = namibia_apartheid_squared_victory
+	
+	fire_only_once = yes
+	trigger = {
+		tag = SAF
+		has_war_with = ANG
+		CUB = {
+		has_war_with = ANG
+		}
+		AND = {
+		OR = {
+		AND = {
+		SWP = {
+			has_capitulated = yes
+			}
+		war_length_with = {
+		tag = ANG
+		months > 5
+				}
+			}
+		}
+		OR = {
+		AND = {
+		SWP = {
+			has_capitulated = yes
+			}
+		OR = {
+			any_country = {
+				OR = {
+					tag = SAF
+					tag = CUB
+					is_in_faction_with = SAF
+				}
+				controls_state = 846
+			}
+			any_country = {
+				OR = {
+					tag = SAF
+					tag = CUB
+					is_in_faction_with = SAF
+				}
+				controls_state = 844
+					}
+				}
+			}
+		}
+	}
+	}
+	
+	option = { #call for peace
+		name = namibia_war.29.o1
+		ANG = {
+		country_event = { id = namibia_war.30 days = 1 }
+		}
+	}
+	option = { #commit to total victory
+		name = namibia_war.29.o2
+		ai_chance = {
+			factor = 0
+		}
+		SAF = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		NAM = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		SWP = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		ANG = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		ANG = {
+		country_event = { id = namibia_war.31 days = 1 }
+		}
+	}
+	
+}
+
+country_event = { #SAF offers peace, for ANG
+	id = namibia_war.30
+	title = namibia_war.30.t
+	desc = namibia_war.30.d
+	picture = namibia_angolan_apartheid_peace
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #accept
+		name = namibia_war.30.o1
+		SAF = {
+		country_event = { id = namibia_war.32 days = 1 }
+		}
+	}
+	option = { #refuse
+		name = namibia_war.30.o2
+		ai_chance = {
+			factor = 0
+		}
+		ANG = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		SWP = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		SAF = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		NAM = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		SAF = {
+		country_event = { id = namibia_war.33 days = 1 }
+		}
+	}
+}
+
+country_event = { #SAF comes to kill ANG
+	id = namibia_war.31
+	title = namibia_war.31.t
+	desc = namibia_war.31.d
+	picture = namibia_apartheid_goes_for_kill
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = namibia_war.31.o1
+	}
+}
+
+country_event = { #Angola accepts peace, for SAF
+	id = namibia_war.32
+	title = namibia_war.32.t
+	desc = namibia_war.32.d
+	picture = namibia_angola_accepts_peace
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = namibia_war.32.o1
+		SAF = {
+		puppet = NAM
+		remove_ideas = idea_nam_civil_war
+		add_political_power = 100
+		add_popularity = {
+			ideology = ROOT
+			popularity = 0.1
+		}
+		}
+		ANG = {
+		white_peace = SAF
+		remove_ideas = idea_nam_civil_war
+		leave_faction = yes
+		}
+		SAF = {
+		leave_faction = yes
+		}
+		CUB = {
+		white_peace = ANG
+		white_peace = SWP
+		remove_ideas = idea_nam_civil_war_cub
+		}
+		NAM = {
+		set_politics = {
+	        ruling_party = centrist
+	        elections_allowed = no
+        }
+		white_peace = ANG
+		remove_ideas = idea_nam_civil_war
+		leave_faction = yes
+		annex_country = {
+		target = SWP
+		transfer_troops = no
+			}
+		}
+		hidden_effect = {
+		NAM = {
+		set_popularities = {
+		fascist = 0
+		nationalist = 3
+		monarchist = 0
+		national_bolshevik = 0
+		national_conservative = 5
+		centrist = 28
+		liberal = 10
+		new_democrat = 8
+		moderate_socialist = 3
+		revolutionary_socialist = 5
+		communist = 38
+				}
+			}
+		}
+		every_country = {
+		    limit = {
+			    NOT = {
+					OR = {
+						tag = SAF
+						tag = SWP
+						tag = ANG
+					}
+				}
+			}
+			news_event = {
+			    hours = 4
+			    id = namibia_news.3
+		    }
+		}
+	}
+}
+
+country_event = { #Angola rejects peace, for SAF
+	id = namibia_war.33
+	title = namibia_war.33.t
+	desc = namibia_war.33.d
+	picture = namibia_angola_rejects_peace
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = namibia_war.33.o1
+	}
+}
+
+country_event = { #SAF, Defeat in Namibia with exiles cuba 
+	id = namibia_war.34
+	title = namibia_war.34.t
+	desc = namibia_war.34.d 
+	picture = namibia_angola_total_victory
+	
+	fire_only_once = yes
+	trigger = {
+		tag = ANG
+		has_war_with = SAF
+		CUB = {
+		has_war_with = ANG
+		}
+		NAM = {
+			has_capitulated = yes
+		}
+		war_length_with = {
+		tag = SAF
+		months > 3
+				}
+	}
+	
+	option = { #call for peace
+		name = namibia_war.34.o1
+		SAF = {
+		country_event = { id = namibia_war.35 days = 1 }
+		}
+	}
+	option = { #commit to total victory
+		name = namibia_war.34.o2
+		ai_chance = {
+			factor = 0
+		}
+		ANG = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		SWP = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		SAF = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		NAM = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		SAF = {
+		country_event = { id = namibia_war.36 days = 1 }
+		}
+	}
+	
+}
+
+country_event = { #ANG offers peace, for SAF
+	id = namibia_war.35
+	title = namibia_war.35.t
+	desc = namibia_war.35.d
+	picture = namibia_angola_victory_peace
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #accept
+		name = namibia_war.35.o1
+		ANG = {
+		country_event = { id = namibia_war.37 days = 1 }
+		}
+	}
+	option = { #refuse
+		name = namibia_war.35.o2
+		ai_chance = {
+			factor = 0
+		}
+		ANG = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		SWP = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		SAF = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		NAM = {
+		set_country_flag = SAF_TOTAL_WAR
+		}
+		ANG = {
+		country_event = { id = namibia_war.38 days = 1 }
+		}
+	}
+}
+
+country_event = { #ANG comes to kill SAF, for ANG
+	id = namibia_war.36
+	title = namibia_war.36.t
+	desc = namibia_war.36.d
+	picture = namibia_apartheid_on_backfoot
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = namibia_war.36.o1
+	}
+}
+
+country_event = { #SAF accepts peace, for ANG
+	id = namibia_war.37
+	title = namibia_war.37.t
+	desc = namibia_war.37.d
+	picture = namibia_angola_beat_apartheid
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = namibia_war.37.o1
+		CUB = {
+		remove_ideas = idea_nam_civil_war_cub
+		white_peace = SWP
+		white_peace = ANG
+		clr_country_flag = cuba_war_with_south_africa_flag
+		}
+		SWP = {
+		leave_faction = yes
+		white_peace = SAF
+		white_peace = CUB
+		remove_ideas = idea_nam_civil_war
+		drop_cosmetic_tag = yes
+		annex_country = {
+				target = NAM
+				transfer_troops = no
+				}
+		set_state_owner = 989
+		}
+		ANG = {
+			clr_country_flag = cuba_angola_supports_war_flag
+			remove_ideas = idea_nam_civil_war
+			leave_faction = yes
+			white_peace = SAF
+			white_peace = CUB
+		}
+		SAF = {
+		leave_faction = yes
+		remove_ideas = idea_nam_civil_war
+		white_peace = SWP
+		white_peace = ANG
+		}
+		every_country = {
+		    limit = {
+			    NOT = {
+					OR = {
+						tag = SAF
+						tag = SWP
+						tag = ANG
+					}
+				}
+			}
+			news_event = {
+			    hours = 4
+			    id = namibia_news.3
+		    }
+		}
+	}
+}
+
+country_event = { #Angola rejects peace, for SAF
+	id = namibia_war.38
+	title = namibia_war.38.t
+	desc = namibia_war.38.d
+	picture = cuba_namibia_no_peace
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = namibia_war.38.o1
+		CUB = {
+		remove_ideas = idea_nam_civil_war_cub
+		}
+		ANG = {
+		remove_ideas = idea_nam_civil_war
+		}
+		SAF = {
+		remove_ideas = idea_nam_civil_war
+		}
+		SWP = {
+		remove_ideas = idea_nam_civil_war
+		}
+	}
+}
+country_event = { #NAM, if they somehow win on their own lol
+	id = namibia_war.900
+	
+	trigger = {
+	tag = NAM
+	AND = {
+	SAF = {
+	NOT  = {
+	has_war_with = ANG
+			}
+		}
+	NAM = {
+	has_war_with = ANG
+	has_idea = idea_nam_civil_war
+		}
+	SWP = {
+	has_capitulated = yes
+			}
+		}
+	}
+	hidden = yes
+	
+	option = {
+		name = namibia_war.900.o1
+		if = {
+		limit = {
+		CUB = {
+		has_idea = idea_nam_civil_war_cub
+			}
+		}
+		CUB = {
+		remove_ideas = idea_nam_civil_war_cub
+			}
+		}
+		ANG = {
+		remove_ideas = idea_nam_civil_war
+		leave_faction = yes
+		}
+		NAM = {
+		remove_ideas = idea_nam_civil_war
+		annex_country = {
+		target = SWP
+		transfer_troops = no
+			}
+		white_peace = {
+			tag = ANG
+			message = "The PLAN insurgency has been driven away for good."
+			}
+		}
+	}
+}
+country_event = { #event for the case that players go total war so factions arent permanent lol
+	id = namibia_war.999
+	title = namibia_war.999.t
+	desc = namibia_war.999.d
+	picture = cuba_namibia_no_peace
+	
+	fire_only_once = yes
+	trigger = {
+	date > 2012.2.1
+	OR = {
+	SAF = {
+	has_country_flag = SAF_TOTAL_WAR
+	has_war = no
+	is_puppet = no
+			}
+	CUB = {
+	has_country_flag = SAF_TOTAL_WAR
+	has_war = no
+	is_puppet = no
+			}
+	ANG = {
+	has_country_flag = SAF_TOTAL_WAR
+	has_war = no
+	is_puppet = no
+			}
+		}
+	}
+	hidden = yes
+	
+	option = {
+		name = namibia_war.999.o1
+		ANG = {
+		if = {
+		limit = {
+		is_in_faction = yes
+				}
+		leave_faction = yes
+			}
+		}
+		SAF = {
+		if = {
+		limit = {
+		is_in_faction = yes
+				}
+		leave_faction = yes
+			}
+		}
+		NAM = {
+		if = {
+		limit = {
+		is_in_faction = yes
+				}
+		leave_faction = yes
+			}
+		}
+		SWP = {
+		if = {
+		limit = {
+		is_in_faction = yes
+				}
+		leave_faction = yes
+			}
+		}
+	}
+}

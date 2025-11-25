@@ -1,0 +1,220 @@
+﻿add_namespace = montana
+#Covington Suffers Stroke
+country_event = {
+	id = montana.1
+	title = montana.1.t
+	desc = montana.1.d
+	picture = covington_heart_attack
+	trigger = {
+		tag = MOT
+		date > 2010.4.1
+		date < 2010.4.30
+	}
+	fire_only_once = yes
+	option = {
+		#Call a special congress
+		name = montana.1.o1
+		add_stability = -0.03
+		add_popularity = {
+			ideology = fascist
+			popularity = -0.03
+		}
+		hidden_effect = {
+			country_event = {
+				id = montana.2
+				days = 35
+			}
+		}
+	}
+}
+
+#White Freedom Alliance Congress
+country_event = {
+	id = montana.2
+	title = montana.2.t
+	desc = montana.2.d
+	picture = great_falls_capitol
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		#Louis Beam - loyal to Covington and militias
+		name = montana.2.o1
+		MOT_louis_beam = {
+			promote_character = national_socialist
+		}
+		hidden_effect = {
+			every_country = {
+				limit = {
+					exists = yes
+				}
+				news_event = {
+					hours = 4
+					id = news.304
+				}
+			}
+		}
+	}
+	option = {
+		#Matthew Shea - fusion between Aryan Nations and Covington
+		name = montana.2.o2
+		MOT_matthew_shea = {
+			promote_character = clerical_fascist
+		}
+		hidden_effect = {
+			every_country = {
+				limit = {
+					exists = yes
+				}
+				news_event = {
+					hours = 4
+					id = news.305
+				}
+			}
+		}
+	}
+	option = {
+		#Morris Gulett - absolutely insane
+		name = montana.2.o3
+		MOT_morris_gulett = {
+			promote_character = national_socialist
+		}
+		hidden_effect = {
+			set_cosmetic_tag = MOT_CC
+			set_party_name = {
+				ideology = fascist
+				name = MOT_aryan_nations_party
+				long_name = MOT_aryan_nations_party_long
+			}
+			every_country = {
+				limit = {
+					exists = yes
+				}
+				news_event = {
+					hours = 4
+					id = news.306
+				}
+			}
+		}
+	}
+	option = {
+		#John Trochmann
+		name = montana.2.o4
+		MOT_john_trochmann = {
+			promote_character = patriot_movement
+		}
+		hidden_effect = {
+			set_party_name = {
+				ideology = fascist
+				name = MOT_nationalist_party
+				long_name = MOT_nationalist_party_long
+			}
+			set_party_name = {
+				ideology = nationalist
+				name = MOT_republican_party
+				long_name = MOT_republican_party_long
+			}
+			every_country = {
+				limit = {
+					exists = yes
+				}
+				news_event = {
+					hours = 4
+					id = news.307
+				}
+			}
+		}
+	}
+}
+
+#Militias gather to defend
+country_event = {
+	id = montana.3
+	title = montana.3.t
+	desc = montana.3.d
+	picture = militia_mobilisation
+	trigger = {
+		tag = MOT
+		has_defensive_war = yes
+	}
+	fire_only_once = yes
+	option = {
+		#Defending the homestead
+		name = montana.3.o1
+		add_ideas = service_by_requirement
+		MOT = {
+			division_template = {
+				name = "Montana Armored Defence Unit"
+		
+				regiments = {
+					light_armor = { x = 0 y = 0 }
+					light_armor = { x = 0 y = 1 }
+					motorized = { x = 1 y = 0 }
+					motorized = { x = 1 y = 1 }
+					motorized = { x = 1 y = 2 }
+				}
+				
+				support = {
+					engineer = { x = 0 y = 0 }
+				}
+			}
+			division_template = {
+				name = "Motorised Militia"
+		
+				regiments = {
+					motorized = { x = 0 y = 0 }
+					motorized = { x = 0 y = 1 }
+					motorized = { x = 1 y = 0 }
+					motorized = { x = 1 y = 1 }
+				}
+			}
+			388 = {
+				create_unit = {
+					division = "name = \"Montana Armored Defence Unit\" division_template = \"Montana Armored Defence Unit\" start_experience_factor = 0.5 start_equipment_factor = 1"
+					owner = MOT
+				}
+				create_unit = {
+					division = "name = \"FEAR Militia East Montana Division\" division_template = \"Motorised Militia\" start_experience_factor = 0.5 start_equipment_factor = 1"
+					owner = MOT
+				}
+				create_unit = {
+					division = "name = \"1st Montana Militia\" division_template = \"Infantry Division\" start_experience_factor = 0.5 start_equipment_factor = 1"
+					owner = MOT
+				}
+			}
+			1016 = {
+				create_unit = {
+					division = "name = \"2nd Montana Freeman Militia\" division_template = \"Motorised Militia\" start_experience_factor = 0.5 start_equipment_factor = 1"
+					owner = MOT
+				}
+			}
+			389 = {
+				create_unit = {
+					division = "name = \"Minot Minutemen Militia\" division_template = \"Motorised Militia\" start_experience_factor = 0.5 start_equipment_factor = 1"
+					owner = MOT
+				}		
+			}
+			1018 = {
+				create_unit = {
+					division = "name = \"Missouri Watch Militia\" division_template = \"Motorised Militia\" start_experience_factor = 0.5 start_equipment_factor = 1"
+					owner = MOT
+				}
+				create_unit = {
+					division = "name = \"Dakota Defence League Militia\" division_template = \"Motorised Militia\" start_experience_factor = 0.5 start_equipment_factor = 1"
+					owner = MOT
+				}
+			}
+			1017 = {
+				create_unit = {
+					division = "name = \"Casper Devils Militia\" division_template = \"Motorised Militia\" start_experience_factor = 0.5 start_equipment_factor = 1"
+					owner = MOT
+				}
+			}
+			381 = {
+				create_unit = {
+					division = "name = \"Wyoming Standing Militia\" division_template = \"Infantry Division\" start_experience_factor = 0.5 start_equipment_factor = 1"
+					owner = MOT
+				}
+			}
+		}
+	}
+}
