@@ -1,0 +1,39 @@
+clear_sabotaged_resources_if_necesary = {
+	if = {
+		limit = {
+			not = {
+				has_dynamic_modifier = {
+					modifier = sabotaged_resources
+				}
+			}
+		}
+		
+		clear_variable = sabotaged_oil
+		clear_variable = sabotaged_aluminium
+		clear_variable = sabotaged_rubber
+		clear_variable = sabotaged_tungsten
+		clear_variable = sabotaged_steel
+		clear_variable = sabotaged_chromium
+	}
+}
+
+add_potential_special_forces_tree = {
+	custom_effect_tooltip = add_potential_special_forces_tree_tt
+	if = {
+		limit = { NOT = { has_variable = sf_trees } }
+		set_variable = { sf_trees = 2 }
+	}
+	else = {
+		add_to_variable = { sf_trees = 1 }
+	}
+}
+
+remove_potential_special_forces_tree = {
+	if = {
+		limit = { NOT = { has_variable = sf_trees } }
+		set_variable = { sf_trees = 0 }
+	}
+	else = {
+		subtract_from_variable = { sf_trees = 1 }
+	}
+}

@@ -1,0 +1,5678 @@
+focus_tree = {
+	id = generic_focus
+	
+	country = {
+		factor = 15
+	}
+	
+    continuous_focus_position = { x = 50 y = 1100 }
+	default = yes
+	reset_on_civilwar = no
+	
+	focus = {
+		id = generic_economic_focus
+		icon = consumer_goods
+		cost = 10
+		x = 6
+		y = 0
+		completion_reward = {
+		    add_political_power = 40
+		}
+
+	}
+	focus = {
+		id = generic_political_focus
+		icon = GFX_goal_torchbearer
+		cost = 10
+		x = 28
+		y = 0
+		completion_reward = {
+		    add_political_power = 120
+		}
+
+	}
+	focus = {
+		id = generic_foreign_affairs
+		icon = two_flags
+		cost = 5
+		x = 59
+		y = 0
+		available = {
+			NOT = {
+				has_idea = idea_america_neutrality
+			}
+		}
+		completion_reward = {
+		    add_political_power = 40
+		}
+
+	}
+	focus = {
+		id = generic_military_focus
+		icon = red_gold_army
+		cost = 10
+		x = 79
+		y = 0
+		completion_reward = {
+		    army_experience = 5
+			air_experience = 5
+			navy_experience = 5
+		}
+
+	}
+	focus = {
+		id = generic_infrastructure_plan
+		icon = infrastructure
+		cost = 10
+		prerequisite = {
+			focus = generic_economic_focus
+		}
+		x = 2
+		y = 2
+		completion_reward = {
+		    random_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_broad_civilian_plan
+		icon = peace_money_development
+		cost = 10
+		prerequisite = {
+			focus = generic_infrastructure_plan
+		}
+		mutually_exclusive = {
+			focus = generic_work_with_the_military
+		}
+		x = 1
+		y = 3
+		completion_reward = {
+		    random_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_work_with_the_military
+		icon = GFX_goal_Focus_Military_Mobilisation
+		cost = 10
+		prerequisite = {
+			focus = generic_infrastructure_plan
+		}
+		mutually_exclusive = {
+			focus = generic_broad_civilian_plan
+		}
+		x = 3
+		y = 3
+		completion_reward = {
+		    add_ideas = idea_supply_focus
+		}
+
+	}
+	focus = {
+		id = generic_strengthen_our_borders
+		icon = fortify_city
+		cost = 10
+		prerequisite = {
+			focus = generic_work_with_the_military
+		}
+		x = 3
+		y = 4
+		completion_reward = {
+		    add_timed_idea = {
+				idea = idea_strengthening_our_borders
+				days = 365
+			}
+		}
+
+	}
+	focus = {
+		id = generic_industrial_advancements
+		icon = GFX_goal_generic_improve_industry
+		cost = 10
+		prerequisite = {
+			focus = generic_economic_focus
+		}
+		x = 6
+		y = 2
+		completion_reward = {
+		    add_tech_bonus = {
+				name = industry_bonus
+				bonus = 0.5
+				uses = 1
+				category = industry
+			}
+		}
+
+	}
+	focus = {
+		id = generic_cooperate_with_corporations
+		icon = GFX_goal_bag_of_money
+		cost = 10
+		prerequisite = {
+			focus = generic_industrial_advancements
+		}
+		mutually_exclusive = {
+			focus = generic_government_knows_best
+		}
+		x = 5
+		y = 3
+		completion_reward = {
+		    add_ideas = idea_corporate_cooperation
+		}
+
+	}
+	focus = {
+		id = generic_construction_subsidies
+		icon = generic_construction
+		cost = 10
+		prerequisite = {
+			focus = generic_cooperate_with_corporations
+		}
+		x = 5
+		y = 4
+		completion_reward = {
+		    add_tech_bonus = {
+				name = construction_bonus
+				bonus = 0.5
+				uses = 1
+				category = construction_tech
+			}
+		}
+
+	}
+	focus = {
+		id = generic_promote_research
+		icon = tech_sharing
+		cost = 10
+		prerequisite = {
+			focus = generic_construction_subsidies
+		}
+		x = 5
+		y = 5
+		completion_reward = {
+		    add_research_slot = 1
+		}
+
+	}
+	focus = {
+		id = generic_government_knows_best
+		icon = GFX_goal_state_economy
+		cost = 10
+		prerequisite = {
+			focus = generic_industrial_advancements
+		}
+		mutually_exclusive = {
+			focus = generic_cooperate_with_corporations
+		}
+		x = 7
+		y = 3
+		completion_reward = {
+		    add_ideas = idea_government_knows_best
+		}
+
+	}
+	focus = {
+		id = generic_national_initiative
+		icon = alliance
+		cost = 10
+		prerequisite = {
+			focus = generic_government_knows_best
+		}
+		x = 7
+		y = 4
+		completion_reward = {
+		    add_stability = 0.05
+		}
+
+	}
+	focus = {
+		id = generic_focus_on_output
+		icon = production_2
+		cost = 10
+		prerequisite = {
+			focus = generic_national_initiative
+		}
+		x = 7
+		y = 5
+		completion_reward = {
+		    add_ideas = idea_output_focus
+		}
+
+	}
+	focus = {
+		id = generic_focus_on_construction_tech
+		icon = generic_construction_2
+		cost = 10
+		prerequisite = {
+			focus = generic_promote_research
+			focus = generic_focus_on_output
+		}
+		mutually_exclusive = {
+			focus = generic_focus_on_industrial_tech
+			focus = generic_focus_on_engineering
+		}
+		x = 4
+		y = 6
+		completion_reward = {
+		    add_tech_bonus = {
+				name = construction_bonus
+				bonus = 0.5
+				uses = 1
+				category = construction_tech
+			}
+		}
+
+	}
+	focus = {
+		id = generic_focus_on_engineering
+		icon = generic_research
+		cost = 10
+		prerequisite = {
+			focus = generic_focus_on_output
+			focus = generic_promote_research
+		}
+		mutually_exclusive = {
+			focus = generic_focus_on_construction_tech
+			focus = generic_focus_on_industrial_tech
+		}
+		x = 6
+		y = 6
+		completion_reward = {
+		    add_tech_bonus = {
+				name = electronics_bonus
+				bonus = 0.5
+				uses = 1
+				category = electronics
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
+		}
+
+	}
+	focus = {
+		id = generic_focus_on_industrial_tech
+		icon = civ_factory
+		cost = 10
+		prerequisite = {
+			focus = generic_focus_on_output
+			focus = generic_promote_research
+		}
+		mutually_exclusive = {
+			focus = generic_focus_on_construction_tech
+			focus = generic_focus_on_engineering
+		}
+		x = 8
+		y = 6
+		completion_reward = {
+		    add_tech_bonus = {
+				name = industry_bonus
+				bonus = 0.5
+				uses = 1
+				category = industry
+			}
+		}
+
+	}
+	focus = {
+		id = generic_industrial_plan
+		icon = GFX_goal_factory_complex
+		cost = 10
+		prerequisite = {
+			focus = generic_economic_focus
+		}
+		x = 9
+		y = 2
+		completion_reward = {
+		    random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_consumer_goods_focus
+		icon = econ_expension
+		cost = 10
+		prerequisite = {
+			focus = generic_industrial_plan
+		}
+		x = 9
+		y = 3
+		completion_reward = {
+		    random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_civilian_factories
+		icon = construct_civilian
+		cost = 10
+		prerequisite = {
+			focus = generic_consumer_goods_focus
+		}
+		x = 9
+		y = 4
+		completion_reward = {
+		    random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_military_factories
+		icon = GFX_goal_munitions_factories
+		cost = 10
+		prerequisite = {
+			focus = generic_consumer_goods_focus
+		}
+		x = 11
+		y = 4
+		completion_reward = {
+		    random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_military_program
+		icon = military_factory
+		cost = 10
+		prerequisite = {
+			focus = generic_military_factories
+		}
+		mutually_exclusive = {
+			focus = generic_civilian_program
+		}
+		x = 11
+		y = 5
+		completion_reward = {
+		    random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_military_industry_2
+		icon = small_arms
+		cost = 10
+		prerequisite = {
+			focus = generic_military_program
+		}
+		x = 11
+		y = 7
+		completion_reward = {
+		    random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_spirit_of_freedom
+		icon = GFX_goal_blue_democracy
+		cost = 10
+		prerequisite = {
+			focus = generic_political_focus
+		}
+		ai_will_do = {
+  		factor = 1
+
+    	modifier = {
+    	factor = 0
+    	OR = {
+    	has_government = nationalist
+    	has_government = fascist
+    	has_government = monarchist
+    	has_government = revolutionary_socialist
+    	has_government = communist
+    	has_government = national_bolshevik
+    			}
+    		}
+		}
+		mutually_exclusive = {
+			focus = generic_spirit_of_the_nation
+			focus = generic_spirit_of_the_people
+		}
+		x = 23
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = national_conservative
+				popularity = 0.01
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.01
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.01
+			}
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.01
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.01
+			}
+		}
+	}
+	focus = {
+		id = generic_spring
+		icon = democracy
+		cost = 10
+		prerequisite = {
+			focus = generic_spirit_of_freedom
+		}
+		available = {
+			date > 2011.1.1
+			is_ai = no
+		    OR = {
+			    has_government = communist
+				has_government = revolutionary_socialist 
+				has_government = national_bolshevik
+				has_government = nationalist
+				has_government = monarchist
+				has_government = fascist
+			}
+		}
+		x = 11
+		y = 2
+		completion_reward = {
+			add_popularity = {
+				ideology = ROOT
+				popularity = -0.15
+			}
+		    add_popularity = {
+				ideology = national_conservative
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.05
+			}
+			set_politics = {
+				ruling_party = centrist
+				elections_allowed = yes
+			}
+			if = {
+				limit = {
+					is_in_faction_with = SOV
+				}
+					leave_faction = yes
+			}
+			if = {
+				limit = {
+					has_idea = idea_eu_member
+				}
+					remove_ideas = idea_eu_member
+			}
+        	if = {
+				limit = {
+					has_idea = idea_comecon_member
+				}
+					remove_ideas = idea_comecon_member
+			}
+        	if = {
+				limit = {
+					has_idea = idea_comecon_observer
+				}
+					remove_ideas = idea_comecon_observer
+			}
+			if = {
+				limit = {
+					has_idea = idea_shield_and_sword
+				}
+					remove_ideas = idea_shield_and_sword
+			}
+			if = {
+				limit = {
+					has_idea = idea_comrade_general
+				}
+					remove_ideas = idea_comrade_general
+			}
+			if = {
+				limit = {
+					has_idea = idea_FRA_national_unrest
+				}
+					remove_ideas = idea_FRA_national_unrest
+			}
+			if = {
+				limit = {
+					has_idea = idea_DEN_headache
+				}
+					remove_ideas = idea_DEN_headache
+			}
+			if = {
+				limit = {
+					has_idea = idea_DEN_reform_policy
+				}
+					remove_ideas = idea_DEN_reform_policy
+			}
+			if = {
+				limit = {
+					has_idea = idea_DEN_red_europe
+				}
+					remove_ideas = idea_DEN_red_europe
+			}
+			if = {
+				limit = {
+					has_idea = idea_NOR_soviet_democracy
+				}
+					remove_ideas = idea_NOR_soviet_democracy
+			}
+			if = {
+				limit = {
+					has_idea = idea_NOR_state_of_mind
+				}
+					remove_ideas = idea_NOR_state_of_mind
+			}
+			if = {
+				limit = {
+					has_idea = idea_yug_yugoslav_model
+				}
+					remove_ideas = idea_yug_yugoslav_model
+			}
+			if = {
+				limit = {
+					has_idea = idea_ALB_red_widow
+				}
+					remove_ideas = idea_ALB_red_widow
+			}
+			if = {
+				limit = {
+					has_idea = idea_ALB_socialisms_forge
+				}
+					remove_ideas = idea_ALB_socialisms_forge
+			}
+			if = {
+				limit = {
+					has_idea = idea_POR_politicised_military
+				}
+					remove_ideas = idea_POR_politicised_military
+			}
+			if = {
+				limit = {
+					has_idea = idea_POR_restrictive_economy
+				}
+					remove_ideas = idea_POR_restrictive_economy
+			}
+			if = {
+				limit = {
+					has_idea = idea_POR_restrictive_economy
+				}
+					remove_ideas = idea_POR_restrictive_economy
+			}
+			if = {
+				limit = {
+					has_idea = idea_IRQ_carrot_stick
+				}
+					remove_ideas = idea_IRQ_carrot_stick
+			}
+			if = {
+				limit = {
+					has_idea = idea_prc_legacy_of_maoism
+				}
+					remove_ideas = idea_prc_legacy_of_maoism
+			}
+			if = {
+				limit = {
+					has_idea = idea_prc_reform_and_opening
+				}
+					remove_ideas = idea_prc_reform_and_opening
+			}
+			if = {
+				limit = {
+					has_idea = idea_prc_reform_and_opening
+				}
+					remove_ideas = idea_prc_reform_and_opening
+			}
+			if = {
+				limit = {
+					has_idea = idea_admiral_winston
+				}
+					remove_ideas = idea_admiral_winston
+			}
+			if = {
+				limit = {
+					has_idea = idea_CHL_enigmatic_democratic_decline
+				}
+					remove_ideas = idea_CHL_enigmatic_democratic_decline
+			}
+			if = {
+				limit = {
+					has_idea = idea_CHL_divided_military
+				}
+					remove_ideas = idea_CHL_divided_military
+			}
+			if = {
+				limit = {
+					has_idea = idea_HUN_happiest_barracks
+				}
+					remove_ideas = idea_HUN_happiest_barracks
+			}
+			if = {
+				limit = {
+					has_idea = idea_HUN_new_economic_mechanism
+				}
+					remove_ideas = idea_HUN_new_economic_mechanism
+			}
+			if = {
+				limit = {
+					has_idea = idea_ROM_securitate_idea
+				}
+					remove_ideas = idea_ROM_securitate_idea
+			}
+			if = {
+				limit = {
+					has_idea = idea_ROM_ceausescu_legacy
+				}
+					remove_ideas = idea_ROM_ceausescu_legacy
+			}
+			country_event = {
+    		id = election.1
+    		days = 7
+    		random_days = 10
+			}
+		}
+	}
+	focus = {
+		id = generic_national_conservative_focus
+		icon = focus_ideology_national_conservative
+		cost = 10
+		prerequisite = {
+			focus = generic_spirit_of_freedom
+		}
+		mutually_exclusive = {
+			focus = generic_centrist_focus
+			focus = generic_liberal_focus
+			focus = generic_new_democrat_focus
+			focus = generic_moderate_socialist_focus
+		}
+		ai_will_do = {
+  		factor = 1
+
+    	modifier = {
+    	factor = 0
+    	OR = {
+    	has_government = centrist
+    	has_government = liberal
+    	has_government = new_democrat
+    	has_government = moderate_socialist
+    			}
+    		}
+		}
+		available = {
+			date > 2011.1.1
+		    OR = {
+		    	NOT = {
+			    has_government = communist
+				has_government = revolutionary_socialist 
+				has_government = national_bolshevik
+				has_government = nationalist
+				has_government = monarchist
+				has_government = fascist
+				}
+			}
+		}
+		x = 13
+		y = 2
+		completion_reward = {
+			if = {
+        	limit = {
+            	is_ai = no
+        		}
+        		custom_effect_tooltip = generic_elections_tt
+        		hidden_effect = { 
+        		country_event = { 
+        		days = 1460
+        		id = election.2
+        			}
+        		}
+			}
+			if = {
+        	limit = {
+            	has_government = national_conservative
+        		}
+        		add_popularity = {
+				ideology = national_conservative
+				popularity = 0.1
+				}
+			}
+			else_if = {
+        	limit = {
+            	NOT = { has_government = national_conservative }
+            	is_ai = no
+        		}
+        		set_politics = {
+				ruling_party = national_conservative
+			}
+        		add_popularity = {
+				ideology = national_conservative
+				popularity = 0.1
+				}
+			}
+			if = {
+				limit = {
+					has_idea = idea_PER_national_pact
+				}
+					remove_ideas = idea_PER_national_pact
+			}
+			if = {
+				limit = {
+					has_idea = idea_HOL_tulip_socialism
+				}
+					remove_ideas = idea_HOL_tulip_socialism
+			}
+		}
+
+	}
+	focus = {
+		id = generic_enforce_traditional_values
+		icon = GFX_goal_traditional_gender_roles
+		cost = 10
+		prerequisite = {
+			focus = generic_national_conservative_focus
+		}
+		x = 14
+		y = 3
+		completion_reward = {
+		    add_ideas = idea_traditional_values
+		}
+
+	}
+	focus = {
+		id = generic_strengthen_the_military
+		icon = GFX_goal_Generic_Soldier_Aiming
+		cost = 10
+		prerequisite = {
+			focus = generic_national_conservative_focus
+		}
+		x = 12
+		y = 3
+		completion_reward = {
+		    add_ideas = idea_strengthened_military
+		}
+
+	}
+	focus = {
+		id = generic_fiscal_economics
+		icon = consumer_goods
+		cost = 10
+		prerequisite = {
+			focus = generic_enforce_traditional_values
+		}
+		prerequisite = {
+			focus = generic_strengthen_the_military
+		}
+		x = 13
+		y = 5
+		completion_reward = {
+		    add_ideas = idea_fiscal_economics
+		}
+
+	}
+	focus = {
+		id = generic_corporate_aid
+		icon = GFX_goal_capitalist_system
+		cost = 10
+		prerequisite = {
+			focus = generic_fiscal_economics
+		}
+		x = 13
+		y = 6
+		completion_reward = {
+		    add_ideas = idea_corporate_aid
+		}
+
+	}
+	focus = {
+		id = generic_centrist_focus
+		icon = focus_ideology_centrist
+		cost = 10
+		prerequisite = {
+			focus = generic_spirit_of_freedom
+		}
+		mutually_exclusive = {
+			focus = generic_national_conservative_focus
+			focus = generic_liberal_focus
+			focus = generic_new_democrat_focus
+			focus = generic_moderate_socialist_focus
+		}
+		ai_will_do = {
+  		factor = 1
+
+    	modifier = {
+    	factor = 0
+    	OR = {
+    	has_government = national_conservative
+    	has_government = liberal
+    	has_government = new_democrat
+    	has_government = moderate_socialist
+    			}
+    		}
+		}
+		available = {
+			date > 2011.1.1
+		    OR = {
+		    	NOT = {
+			    has_government = communist
+				has_government = revolutionary_socialist 
+				has_government = national_bolshevik
+				has_government = nationalist
+				has_government = monarchist
+				has_government = fascist
+				}
+			}
+		}
+		x = 16
+		y = 2
+		completion_reward = {
+			if = {
+        	limit = {
+            	is_ai = no
+        		}
+        		custom_effect_tooltip = generic_elections_tt
+        		hidden_effect = { 
+        		country_event = { 
+        		days = 1460
+        		id = election.2
+        			}
+        		}
+			}
+			if = {
+        	limit = {
+            	has_government = centrist
+        		}
+        		add_popularity = {
+				ideology = centrist
+				popularity = 0.1
+				}
+			}
+			else_if = {
+        	limit = {
+            	NOT = { has_government = centrist }
+            	is_ai = no
+        		}
+        		set_politics = {
+				ruling_party = centrist
+			}
+        		add_popularity = {
+				ideology = centrist
+				popularity = 0.1
+				}
+			}
+			if = {
+				limit = {
+					has_idea = idea_PER_national_pact
+				}
+					remove_ideas = idea_PER_national_pact
+			}
+			if = {
+				limit = {
+					has_idea = idea_HOL_tulip_socialism
+				}
+					remove_ideas = idea_HOL_tulip_socialism
+			}
+		}
+
+	}
+	focus = {
+		id = generic_unite_the_centre
+		icon = GFX_goal_generic_stable_government
+		cost = 10
+		prerequisite = {
+			focus = generic_centrist_focus
+		}
+		x = 16
+		y = 3
+		completion_reward = {
+		    add_ideas = idea_united_centre
+		}
+
+	}
+	focus = {
+		id = generic_economic_liberalism
+		icon = production
+		cost = 10
+		prerequisite = {
+			focus = generic_unite_the_centre
+		}
+		x = 16
+		y = 5
+		completion_reward = {
+		    add_ideas = idea_economic_liberalism
+		}
+
+	}
+	focus = {
+		id = generic_moral_government
+		icon = democracy
+		cost = 10
+		prerequisite = {
+			focus = generic_economic_liberalism
+		}
+		x = 16
+		y = 6
+		completion_reward = {
+		    add_ideas = idea_moral_government
+		}
+
+	}
+	focus = {
+		id = generic_promote_social_liberalism
+		icon = GFX_goal_Social_Liberalism
+		cost = 10
+		prerequisite = {
+			focus = generic_moral_government
+		}
+		x = 16
+		y = 7
+		completion_reward = {
+		    add_ideas = idea_social_liberalism
+		}
+
+	}
+	focus = {
+		id = generic_liberal_focus
+		icon = focus_ideology_liberal
+		cost = 10
+		prerequisite = {
+			focus = generic_spirit_of_freedom
+		}
+		mutually_exclusive = {
+			focus = generic_national_conservative_focus
+			focus = generic_centrist_focus
+			focus = generic_new_democrat_focus
+			focus = generic_moderate_socialist_focus
+		}
+		ai_will_do = {
+  		factor = 1
+
+    	modifier = {
+    	factor = 0
+    	OR = {
+    	has_government = national_conservative
+    	has_government = centrist
+    	has_government = new_democrat
+    	has_government = moderate_socialist
+    			}
+    		}
+		}
+		available = {
+			date > 2011.1.1
+		    OR = {
+		    	NOT = {
+			    has_government = communist
+				has_government = revolutionary_socialist 
+				has_government = national_bolshevik
+				has_government = nationalist
+				has_government = monarchist
+				has_government = fascist
+				}
+			}
+		}
+		x = 19
+		y = 2
+		completion_reward = {
+			if = {
+        	limit = {
+            	is_ai = no
+        		}
+        		custom_effect_tooltip = generic_elections_tt
+        		hidden_effect = { 
+        		country_event = { 
+        		days = 1460
+        		id = election.2
+        			}
+        		}
+			}
+			if = {
+        	limit = {
+            	has_government = liberal
+        		}
+        		add_popularity = {
+				ideology = liberal
+				popularity = 0.1
+				}
+			}
+			else_if = {
+        	limit = {
+            	NOT = { has_government = liberal }
+            	is_ai = no
+        		}
+        		set_politics = {
+				ruling_party = liberal
+			}
+        		add_popularity = {
+				ideology = liberal
+				popularity = 0.1
+				}
+			}
+			if = {
+				limit = {
+					has_idea = idea_HOL_tulip_socialism
+				}
+					remove_ideas = idea_HOL_tulip_socialism
+			}
+		}
+
+	}
+	focus = {
+		id = generic_cooperate_with_new_democrats
+		icon = GFX_goal_social_democracy
+		cost = 10
+		prerequisite = {
+			focus = generic_liberal_focus
+		}
+		mutually_exclusive = {
+			focus = generic_cooperate_with_centrists
+		}
+		x = 18
+		y = 3
+		completion_reward = {
+		    add_popularity = {
+				ideology = new_democrat
+				popularity = 0.05
+			}
+			add_ideas = idea_welfare_lite
+		}
+
+	}
+	focus = {
+		id = generic_stronger_central_government
+		icon = GFX_goal_government_icon
+		cost = 10
+		prerequisite = {
+			focus = generic_cooperate_with_new_democrats
+		}
+		x = 18
+		y = 5
+		completion_reward = {
+			add_stability = 0.05
+		    add_political_power = 100
+		}
+
+	}
+	focus = {
+		id = generic_cooperate_with_centrists
+		icon = GFX_goal_Generic_Centrism
+		cost = 10
+		prerequisite = {
+			focus = generic_liberal_focus
+		}
+		mutually_exclusive = {
+			focus = generic_cooperate_with_new_democrats
+		}
+		x = 20
+		y = 3
+		completion_reward = {
+		    add_ideas = idea_economic_centrism
+		}
+
+	}
+	focus = {
+		id = generic_stronger_free_market
+		icon = GFX_goal_Capitalism
+		cost = 10
+		prerequisite = {
+			focus = generic_cooperate_with_centrists
+		}
+		x = 20
+		y = 5
+		completion_reward = {
+		    add_ideas = idea_stronger_free_market
+		}
+
+	}
+	focus = {
+		id = generic_united_nation
+		icon = national_unity
+		cost = 10
+		prerequisite = {
+			focus = generic_stronger_central_government
+			focus = generic_stronger_free_market
+		}
+		x = 19
+		y = 6
+		completion_reward = {
+		    add_ideas = idea_united_nation
+		}
+
+	}
+	focus = {
+		id = generic_new_democrat_focus
+		icon = focus_ideology_new_democrat
+		cost = 10
+		prerequisite = {
+			focus = generic_spirit_of_freedom
+		}
+
+		mutually_exclusive = {
+			focus = generic_national_conservative_focus
+			focus = generic_centrist_focus
+			focus = generic_liberal_focus
+			focus = generic_moderate_socialist_focus
+		}
+		ai_will_do = {
+  		factor = 1
+
+    	modifier = {
+    	factor = 0
+    	OR = {
+    	has_government = national_conservative
+    	has_government = centrist
+    	has_government = liberal
+    	has_government = moderate_socialist
+    			}
+    		}
+		}
+		available = {
+			date > 2011.1.1
+		    OR = {
+		    	NOT = {
+			    has_government = communist
+				has_government = revolutionary_socialist 
+				has_government = national_bolshevik
+				has_government = nationalist
+				has_government = monarchist
+				has_government = fascist
+				}
+			}
+		}
+		x = 22
+		y = 2
+		completion_reward = {
+			if = {
+        	limit = {
+            	is_ai = no
+        		}
+        		custom_effect_tooltip = generic_elections_tt
+        		hidden_effect = { 
+        		country_event = { 
+        		days = 1460
+        		id = election.2
+        			}
+        		}
+			}
+			if = {
+        	limit = {
+            	has_government = new_democrat
+        		}
+        		add_popularity = {
+				ideology = new_democrat
+				popularity = 0.1
+				}
+			}
+			else_if = {
+        	limit = {
+            	NOT = { has_government = new_democrat }
+            	is_ai = no
+        		}
+        		set_politics = {
+				ruling_party = new_democrat
+			}
+        		add_popularity = {
+				ideology = new_democrat
+				popularity = 0.1
+				}
+			}
+			if = {
+        	limit = {
+            	has_idea = idea_SAF_apartheid_system
+        		}
+        		remove_ideas = {
+    				idea_SAF_apartheid_system
+					}
+				remove_ideas = {
+    				idea_SAF_international_isolation
+				}
+        	}
+        	if = {
+				limit = {
+					has_idea = idea_PER_national_pact
+				}
+					remove_ideas = idea_PER_national_pact
+			}
+			if = {
+				limit = {
+					has_idea = idea_heisei_system
+				}
+					remove_ideas = idea_heisei_system
+			}
+		}
+
+	}
+	focus = {
+		id = generic_promote_equality
+		icon = improve_relations
+		cost = 10
+		prerequisite = {
+			focus = generic_new_democrat_focus
+		}
+		x = 22
+		y = 3
+		completion_reward = {
+		    add_ideas = idea_promoting_equality
+		}
+
+	}
+	focus = {
+		id = generic_promote_soft_nationalisation
+		icon = GFX_goal_NationalizeTrade
+		cost = 10
+		prerequisite = {
+			focus = generic_promote_equality
+		}
+		x = 22
+		y = 5
+		completion_reward = {
+		    add_ideas = idea_soft_nationalisation
+		}
+
+	}
+	focus = {
+		id = generic_social_programs
+		icon = communist_construction
+		cost = 10
+		prerequisite = {
+			focus = generic_promote_soft_nationalisation
+		}
+		x = 22
+		y = 6
+		completion_reward = {
+		    add_timed_idea = {
+				idea = idea_social_programs
+				days = 365
+			}
+		}
+
+	}
+	focus = {
+		id = generic_welfare_state
+		icon = GFX_goal_Welfare_State
+		cost = 10
+		prerequisite = {
+			focus = generic_social_programs
+		}
+		x = 22
+		y = 7
+		completion_reward = {
+		    add_ideas = idea_welfare_state
+		}
+
+	}
+	focus = {
+		id = generic_moderate_socialist_focus
+		icon = focus_ideology_moderate_socialist
+		cost = 10
+		prerequisite = {
+			focus = generic_spirit_of_freedom
+		}
+
+		mutually_exclusive = {
+			focus = generic_national_conservative_focus
+			focus = generic_centrist_focus
+			focus = generic_liberal_focus
+			focus = generic_new_democrat_focus
+		}
+		ai_will_do = {
+  		factor = 1
+
+    	modifier = {
+    	factor = 0
+    	OR = {
+    	has_government = national_conservative
+    	has_government = centrist
+    	has_government = liberal
+    	has_government = new_democrat
+    			}
+    		}
+		}
+		available = {
+			date > 2011.1.1
+		    OR = {
+		    	NOT = {
+			    has_government = communist
+				has_government = revolutionary_socialist 
+				has_government = national_bolshevik
+				has_government = nationalist
+				has_government = monarchist
+				has_government = fascist
+				}
+			}
+		}
+		x = 25
+		y = 2
+		completion_reward = {
+			if = {
+        	limit = {
+            	is_ai = no
+        		}
+        		custom_effect_tooltip = generic_elections_tt
+        		hidden_effect = { 
+        		country_event = { 
+        		days = 1460
+        		id = election.2
+        			}
+        		}
+			}
+			if = {
+        	limit = {
+            	has_government = moderate_socialist
+        		}
+        		add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.1
+				}
+			}
+			else_if = {
+        	limit = {
+            	NOT = { has_government = moderate_socialist }
+            	is_ai = no
+        		}
+        		set_politics = {
+				ruling_party = moderate_socialist
+			}
+        		add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.1
+				}
+			}
+			if = {
+        	limit = {
+            	has_idea = idea_SAF_apartheid_system
+        		}
+        		remove_ideas = {
+    				idea_SAF_apartheid_system
+					}
+				remove_ideas = {
+    				idea_SAF_international_isolation
+				}
+        	}
+        	if = {
+				limit = {
+					has_idea = idea_PER_national_pact
+				}
+					remove_ideas = idea_PER_national_pact
+			}
+			if = {
+				limit = {
+					has_idea = idea_heisei_system
+				}
+					remove_ideas = idea_heisei_system
+			}
+			if = {
+				limit = {
+					has_idea = idea_peronist_old_guard
+				}
+					remove_ideas = idea_peronist_old_guard
+			}
+		}
+
+	}
+	focus = {
+		id = generic_significant_nationalisation
+		icon = socialist_industry_generic
+		cost = 10
+		prerequisite = {
+			focus = generic_moderate_socialist_focus
+		}
+		x = 24
+		y = 3
+		completion_reward = {
+		    add_ideas = idea_significant_nationalisation
+		}
+
+	}
+	focus = {
+		id = generic_sideline_leftist_extremists
+		icon = broken_star
+		cost = 10
+		prerequisite = {
+			focus = generic_moderate_socialist_focus
+		}
+		x = 26
+		y = 5
+		completion_reward = {
+		    add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = -0.05
+			}
+			add_political_power = 100
+		}
+
+	}
+	focus = {
+		id = generic_socialist_welfare_state
+		icon = GFX_goal_welfare
+		cost = 10
+		prerequisite = {
+			focus = generic_significant_nationalisation
+		}
+		prerequisite = {
+			focus = generic_sideline_leftist_extremists
+		}
+		x = 24
+		y = 5
+		completion_reward = {
+		    add_ideas = idea_socialist_welfare_state
+		}
+
+	}
+	focus = {
+		id = generic_promote_science
+		icon = socialist_science
+		cost = 10
+		prerequisite = {
+			focus = generic_socialist_welfare_state
+		}
+		x = 24
+		y = 6
+		completion_reward = {
+		    add_ideas = idea_promotion_of_science
+		}
+
+	}
+	focus = {
+		id = generic_spirit_of_the_nation
+		icon = GFX_goal_Ultranationalist_Government
+		cost = 10
+		prerequisite = {
+			focus = generic_political_focus
+		}
+		mutually_exclusive = {
+			focus = generic_spirit_of_freedom
+			focus = generic_spirit_of_the_people
+		}
+		ai_will_do = {
+  		factor = 1
+
+    	modifier = {
+    	factor = 0
+    	OR = {
+    	has_government = national_conservative
+    	has_government = centrist
+    	has_government = liberal
+    	has_government = new_democrat
+    	has_government = moderate_socialist
+    	has_government = revolutionary_socialist
+    	has_government = communist
+    	has_government = national_bolshevik
+    			}
+    		}
+		}
+		x = 28
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = fascist
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = monarchist
+				popularity = 0.04
+			}
+		}
+
+	}
+	focus = {
+		id = generic_promote_ultranationalism
+		icon = focus_ideology_nationalist
+		cost = 10
+		prerequisite = {
+			focus = generic_spirit_of_the_nation
+		}
+		mutually_exclusive = {
+			focus = generic_the_fallen_eagle
+			focus = generic_stronger_with_the_crown
+		}
+		ai_will_do = {
+  		factor = 1
+
+    	modifier = {
+    	factor = 0
+    	OR = {
+    	has_government = fascist
+    	has_government = monarchist
+    			}
+    		}
+		}
+		x = 28
+		y = 2
+		completion_reward = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				add_popularity = {
+				ideology = nationalist
+				popularity = 0.075
+				}
+				effect_tooltip = {
+				custom_effect_tooltip = Generic_ai_idea_tt
+		    	add_timed_idea = {
+    			idea = idea_nationalism_promoted
+    			days = 365
+					}
+				}
+        		add_popularity = {
+				ideology = nationalist
+				popularity = 0.075
+				}
+			}
+			else_if = {
+        	limit = {
+            	has_government = nationalist
+        		}
+        		add_popularity = {
+				ideology = nationalist
+				popularity = 0.075
+				}
+			}
+			else_if = {
+        	limit = {
+            	NOT = { has_government = nationalist }
+        		}
+        		add_timed_idea = {
+    			idea = idea_nationalism_promoted
+    			days = 365
+					}
+        		add_popularity = {
+				ideology = nationalist
+				popularity = 0.075
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_nationalist_education
+		icon = forceful_treaty
+		cost = 10
+		prerequisite = {
+			focus = generic_promote_ultranationalism
+		}
+		x = 27
+		y = 3
+		completion_reward = {
+		    add_ideas = idea_nationalist_education
+		}
+
+	}
+	focus = {
+		id = generic_military_coup
+		icon = GFX_goal_Generic_Coup02
+		cost = 10
+		prerequisite = {
+			focus = generic_nationalist_education
+		}
+		prerequisite = {
+			focus = generic_a_nationalist_military
+		}
+		available = { nationalist > 0.25 }
+		x = 28
+		y = 4
+		completion_reward = {
+			if = {
+				limit = {
+					is_in_faction_with = SOV
+				}
+					leave_faction = yes
+			}
+			if = {
+				limit = {
+					is_in_faction_with = CAN
+				}
+					leave_faction = yes
+			}
+			if = {
+				limit = {
+					has_idea = idea_eu_member
+				}
+					remove_ideas = idea_eu_member
+			}
+        	if = {
+				limit = {
+					has_idea = idea_comecon_member
+				}
+					remove_ideas = idea_comecon_member
+			}
+        	if = {
+				limit = {
+					has_idea = idea_comecon_observer
+				}
+					remove_ideas = idea_comecon_observer
+			}
+			if = {
+				limit = {
+					has_idea = idea_prc_legacy_of_maoism
+				}
+					remove_ideas = idea_prc_legacy_of_maoism
+			}
+			if = {
+				limit = {
+					has_idea = idea_prc_reform_and_opening
+				}
+					remove_ideas = idea_prc_reform_and_opening
+			}
+			if = {
+				limit = {
+					has_idea = idea_prc_reform_and_opening
+				}
+					remove_ideas = idea_prc_reform_and_opening
+			}
+			if = {
+				limit = {
+					has_idea = idea_yug_yugoslav_model
+				}
+					remove_ideas = idea_yug_yugoslav_model
+			}
+			if = {
+				limit = {
+					has_idea = idea_ALB_red_widow
+				}
+					remove_ideas = idea_ALB_red_widow
+			}
+			if = {
+				limit = {
+					has_idea = idea_ALB_socialisms_forge
+				}
+					remove_ideas = idea_ALB_socialisms_forge
+			}
+			if = {
+				limit = {
+					has_idea = idea_FRA_national_unrest
+				}
+					remove_ideas = idea_FRA_national_unrest
+			}
+			if = {
+				limit = {
+					has_idea = idea_DEN_headache
+				}
+					remove_ideas = idea_DEN_headache
+			}
+			if = {
+				limit = {
+					has_idea = idea_DEN_reform_policy
+				}
+					remove_ideas = idea_DEN_reform_policy
+			}
+			if = {
+				limit = {
+					has_idea = idea_DEN_red_europe
+				}
+					remove_ideas = idea_DEN_red_europe
+			}
+			if = {
+				limit = {
+					has_idea = idea_NOR_soviet_democracy
+				}
+					remove_ideas = idea_NOR_soviet_democracy
+			}
+			if = {
+				limit = {
+					has_idea = idea_NOR_state_of_mind
+				}
+					remove_ideas = idea_NOR_state_of_mind
+			}
+			if = {
+				limit = {
+					has_idea = idea_shield_and_sword
+				}
+					remove_ideas = idea_shield_and_sword
+			}
+			if = {
+				limit = {
+					has_idea = idea_PER_national_pact
+				}
+					remove_ideas = idea_PER_national_pact
+			}
+			if = {
+				limit = {
+					has_idea = idea_bastion_of_european_democracy
+				}
+					remove_ideas = idea_bastion_of_european_democracy
+			}
+			if = {
+				limit = {
+					has_idea = idea_HOL_terrorism
+				}
+					remove_ideas = idea_HOL_terrorism
+			}
+			if = {
+				limit = {
+					has_idea = idea_HOL_tulip_socialism
+				}
+					remove_ideas = idea_HOL_tulip_socialism
+			}
+			if = {
+				limit = {
+					has_idea = idea_HUN_happiest_barracks
+				}
+					remove_ideas = idea_HUN_happiest_barracks
+			}
+			if = {
+				limit = {
+					has_idea = idea_HUN_new_economic_mechanism
+				}
+					remove_ideas = idea_HUN_new_economic_mechanism
+			}
+			if = {
+				limit = {
+					has_idea = idea_ROM_ceausescu_legacy
+				}
+					remove_ideas = idea_ROM_ceausescu_legacy
+			}
+		    if = {
+        	limit = {
+            	has_government = nationalist
+        		}
+        		add_popularity = {
+				ideology = nationalist
+				popularity = 0.1
+				}
+			}
+			else_if = {
+        	limit = {
+            	NOT = { has_government = nationalist }
+            	is_ai = no
+        		}
+        		add_stability = -0.1
+        		set_politics = {
+				ruling_party = nationalist
+			}
+        		add_popularity = {
+				ideology = nationalist
+				popularity = 0.1
+				}
+			}
+		}
+		
+
+	}
+	focus = {
+		id = generic_jingoism
+		icon = air_defense
+		cost = 10
+		prerequisite = {
+			focus = generic_military_coup
+		}
+		x = 28
+		y = 5
+		completion_reward = {
+		    add_ideas = idea_jingoism
+		}
+
+	}
+	focus = {
+		id = generic_a_nationalist_military
+		icon = GFX_goal_ultranationalist_volunteers
+		cost = 10
+		prerequisite = {
+			focus = generic_promote_ultranationalism
+		}
+		x = 29
+		y = 3
+		completion_reward = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				effect_tooltip = {
+				custom_effect_tooltip = Generic_ai_idea_tt
+		    	add_ideas = idea_nationalist_military
+				}
+			}
+			else_if = {
+		    add_ideas = idea_nationalist_military
+			}
+		}
+	}
+	focus = {
+		id = generic_all_for_the_nation
+		icon = GFX_goal_Paternal_Autocrat
+		cost = 10
+		prerequisite = {
+			focus = generic_jingoism
+		}
+		prerequisite = {
+			focus = generic_a_nationalist_military
+		}
+		prerequisite = {
+			focus = generic_nationalist_education
+		}
+		x = 28
+		y = 6
+		completion_reward = {
+		    add_ideas = idea_all_for_the_nation
+		    if = {
+		    limit = { is_ai = no }
+			set_rule = {
+				can_create_factions = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_the_fallen_eagle
+		icon = focus_ideology_fascist
+		cost = 10
+		prerequisite = {
+			focus = generic_spirit_of_the_nation
+		}
+		mutually_exclusive = {
+			focus = generic_promote_ultranationalism
+			focus = generic_stronger_with_the_crown
+		}
+		ai_will_do = {
+  		factor = 1
+
+    	modifier = {
+    	factor = 0
+    	OR = {
+    	has_government = nationalist
+    	has_government = monarchist
+    			}
+    		}
+		}
+		x = 31
+		y = 2
+		completion_reward = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				add_popularity = {
+				ideology = fascist
+				popularity = 0.075
+				}
+				effect_tooltip = {
+					custom_effect_tooltip = Generic_ai_idea_tt
+		    	add_timed_idea = {
+    			idea = idea_fascism_promoted
+    			days = 365
+					}
+				}
+        		add_popularity = {
+				ideology = fascist
+				popularity = 0.075
+				}
+			}
+			else_if = {
+        	limit = {
+            	has_government = fascist
+        		}
+        		add_popularity = {
+				ideology = fascist
+				popularity = 0.075
+				}
+			}
+			else_if = {
+        	limit = {
+            	NOT = { has_government = fascist }
+        		}
+        		add_timed_idea = {
+    			idea = idea_fascism_promoted
+    			days = 365
+					}
+        		add_popularity = {
+				ideology = fascist
+				popularity = 0.075
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_purge_leftists
+		icon = GFX_goal_purgesocial
+		cost = 10
+		prerequisite = {
+			focus = generic_the_fallen_eagle
+		}
+		x = 30
+		y = 4
+		completion_reward = {
+		    add_popularity = {
+				ideology = communist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = new_democrat
+				popularity = -0.03
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.03
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = -0.01
+			}
+			add_political_power = 200
+		}
+
+	}
+	focus = {
+		id = generic_march_fascist
+		icon = GFX_goal_Neo_Jingo
+		cost = 10
+		prerequisite = {
+			focus = generic_purge_leftists
+		}
+		available = { fascist > 0.25 }
+		x = 30
+		y = 5
+		completion_reward = {
+			if = {
+				limit = {
+					is_in_faction_with = SOV
+				}
+					leave_faction = yes
+			}
+			if = {
+				limit = {
+					is_in_faction_with = CAN
+				}
+					leave_faction = yes
+			}
+			if = {
+				limit = {
+					has_idea = idea_eu_member
+				}
+					remove_ideas = idea_eu_member
+			}
+        	if = {
+				limit = {
+					has_idea = idea_comecon_member
+				}
+					remove_ideas = idea_comecon_member
+			}
+        	if = {
+				limit = {
+					has_idea = idea_comecon_observer
+				}
+					remove_ideas = idea_comecon_observer
+			}
+			if = {
+				limit = {
+					has_idea = idea_prc_legacy_of_maoism
+				}
+					remove_ideas = idea_prc_legacy_of_maoism
+			}
+			if = {
+				limit = {
+					has_idea = idea_prc_reform_and_opening
+				}
+					remove_ideas = idea_prc_reform_and_opening
+			}
+			if = {
+				limit = {
+					has_idea = idea_prc_reform_and_opening
+				}
+					remove_ideas = idea_prc_reform_and_opening
+			}
+			if = {
+				limit = {
+					has_idea = idea_yug_yugoslav_model
+				}
+					remove_ideas = idea_yug_yugoslav_model
+			}
+			if = {
+				limit = {
+					has_idea = idea_ALB_red_widow
+				}
+					remove_ideas = idea_ALB_red_widow
+			}
+			if = {
+				limit = {
+					has_idea = idea_ALB_socialisms_forge
+				}
+					remove_ideas = idea_ALB_socialisms_forge
+			}
+			if = {
+				limit = {
+					has_idea = idea_carl_xvi_gustaf
+				}
+					remove_ideas = idea_carl_xvi_gustaf
+			}
+			if = {
+				limit = {
+					has_idea = idea_DEN_headache
+				}
+					remove_ideas = idea_DEN_headache
+			}
+			if = {
+				limit = {
+					has_idea = idea_DEN_reform_policy
+				}
+					remove_ideas = idea_DEN_reform_policy
+			}
+			if = {
+				limit = {
+					has_idea = idea_DEN_red_europe
+				}
+					remove_ideas = idea_DEN_red_europe
+			}
+			if = {
+				limit = {
+					has_idea = idea_NOR_soviet_democracy
+				}
+					remove_ideas = idea_NOR_soviet_democracy
+			}
+			if = {
+				limit = {
+					has_idea = idea_NOR_state_of_mind
+				}
+					remove_ideas = idea_NOR_state_of_mind
+			}
+			if = {
+				limit = {
+					has_idea = idea_shield_and_sword
+				}
+					remove_ideas = idea_shield_and_sword
+			}
+			if = {
+				limit = {
+					has_idea = idea_PER_national_pact
+				}
+					remove_ideas = idea_PER_national_pact
+			}
+			if = {
+				limit = {
+					has_idea = idea_heisei_system
+				}
+					remove_ideas = idea_heisei_system
+			}
+			if = {
+				limit = {
+					has_idea = idea_admiral_winston
+				}
+					remove_ideas = idea_admiral_winston
+			}
+			if = {
+				limit = {
+					has_idea = idea_bra_terrorist_menace
+				}
+					remove_ideas = idea_bra_terrorist_menace
+			}
+			if = {
+				limit = {
+					has_idea = idea_bastion_of_european_democracy
+				}
+					remove_ideas = idea_bastion_of_european_democracy
+			}
+			if = {
+				limit = {
+					has_idea = idea_HOL_terrorism
+				}
+					remove_ideas = idea_HOL_terrorism
+			}
+			if = {
+				limit = {
+					has_idea = idea_HOL_tulip_socialism
+				}
+					remove_ideas = idea_HOL_tulip_socialism
+			}
+			if = {
+				limit = {
+					has_idea = idea_HUN_happiest_barracks
+				}
+					remove_ideas = idea_HUN_happiest_barracks
+			}
+			if = {
+				limit = {
+					has_idea = idea_HUN_new_economic_mechanism
+				}
+					remove_ideas = idea_HUN_new_economic_mechanism
+			}
+			if = {
+				limit = {
+					has_idea = idea_ROM_ceausescu_legacy
+				}
+					remove_ideas = idea_ROM_ceausescu_legacy
+			}
+		    if = {
+        	limit = {
+            	has_government = fascist
+        		}
+        		add_popularity = {
+				ideology = fascist
+				popularity = 0.1
+				}
+			}
+			else_if = {
+        	limit = {
+            	NOT = { has_government = fascist }
+            	is_ai = no
+        		}
+        		add_stability = -0.1
+        		set_politics = {
+				ruling_party = fascist
+			}
+        		add_popularity = {
+				ideology = fascist
+				popularity = 0.1
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_restore_military_prowess
+		icon = generic_marching
+		cost = 10
+		prerequisite = {
+			focus = generic_pure_nation
+		}
+		x = 32
+		y = 5
+		completion_reward = {
+		    add_ideas = idea_restored_military_prowess
+		}
+
+	}
+	focus = {
+		id = generic_pure_nation
+		icon = GFX_goal_Generic_Fascist_Guy
+		cost = 10
+		prerequisite = {
+			focus = generic_the_fallen_eagle
+		}
+		x = 32
+		y = 3
+		completion_reward = {
+		    add_ideas = idea_pure_nation
+		}
+
+	}
+	focus = {
+		id = generic_age_of_glory
+		icon = GFX_goal_fascist_nationalisation
+		cost = 10
+		prerequisite = {
+			focus = generic_march_fascist
+		}
+		prerequisite = {
+			focus = generic_restore_military_prowess
+		}
+		x = 31
+		y = 6
+		completion_reward = {
+		    add_ideas = idea_age_of_glory
+		    if = {
+		    limit = { is_ai = no }
+			set_rule = {
+				can_create_factions = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = generic_justify_the_unjustifiable
+		icon = GFX_goal_Skull_Focus
+		cost = 10
+		prerequisite = {
+			focus = generic_work_for_the_crown
+		}
+		x = 35
+		y = 6
+		completion_reward = {
+		    add_ideas = idea_neo_imperialism
+			if = {
+		    limit = { is_ai = no }
+			set_rule = {
+				can_create_factions = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = generic_stronger_with_the_crown
+		icon = focus_ideology_monarchist
+		cost = 10
+		prerequisite = {
+			focus = generic_spirit_of_the_nation
+		}
+		mutually_exclusive = {
+			focus = generic_promote_ultranationalism
+			focus = generic_the_fallen_eagle
+		}
+		ai_will_do = {
+  		factor = 1
+
+    	modifier = {
+    	factor = 0
+    	OR = {
+    	has_government = fascist
+    	has_government = nationalist
+    			}
+    		}
+		}
+		x = 34
+		y = 2
+		completion_reward = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				add_popularity = {
+				ideology = monarchist
+				popularity = 0.075
+				}
+				effect_tooltip = {
+					custom_effect_tooltip = Generic_ai_idea_tt
+		    	add_timed_idea = {
+    			idea = idea_monarchism_promoted
+    			days = 365
+					}
+				}
+        		add_popularity = {
+				ideology = monarchist
+				popularity = 0.075
+				}
+			}
+			else_if = {
+        	limit = {
+            	has_government = monarchist
+        		}
+        		add_popularity = {
+				ideology = monarchist
+				popularity = 0.075
+				}
+			}
+			else_if = {
+        	limit = {
+            	NOT = { has_government = monarchist }
+        		}
+        		add_timed_idea = {
+    			idea = idea_monarchism_promoted
+    			days = 365
+					}
+        		add_popularity = {
+				ideology = monarchist
+				popularity = 0.075
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_royal_institutions
+		icon = GFX_goal_royal_edicts
+		cost = 10
+		prerequisite = {
+			focus = generic_stronger_with_the_crown
+		}
+		x = 34
+		y = 3
+		completion_reward = {
+		    add_popularity = {
+				ideology = monarchist
+				popularity = 0.05
+			}
+			add_ideas = idea_royal_institutions
+		}
+
+	}
+	focus = {
+		id = generic_army_for_the_crown
+		icon = swords
+		cost = 10
+		prerequisite = {
+			focus = generic_royal_institutions
+		}
+		x = 33
+		y = 4
+		completion_reward = {
+		    add_ideas = idea_royal_army
+			
+		}
+
+	}
+	focus = {
+		id = generic_enforce_the_familys_rule
+		icon = royal_strength
+		cost = 10
+		prerequisite = {
+			focus = generic_royal_institutions
+		}
+		available = { monarchist > 0.25 }
+		x = 35
+		y = 4
+		completion_reward = {
+			if = {
+				limit = {
+					is_in_faction_with = SOV
+				}
+					leave_faction = yes
+			}
+			if = {
+				limit = {
+					is_in_faction_with = CAN
+				}
+					leave_faction = yes
+			}
+			if = {
+				limit = {
+					has_idea = idea_eu_member
+				}
+					remove_ideas = idea_eu_member
+			}
+        	if = {
+				limit = {
+					has_idea = idea_comecon_member
+				}
+					remove_ideas = idea_comecon_member
+			}
+        	if = {
+				limit = {
+					has_idea = idea_comecon_observer
+				}
+					remove_ideas = idea_comecon_observer
+			}
+			if = {
+				limit = {
+					has_idea = idea_prc_legacy_of_maoism
+				}
+					remove_ideas = idea_prc_legacy_of_maoism
+			}
+			if = {
+				limit = {
+					has_idea = idea_prc_reform_and_opening
+				}
+					remove_ideas = idea_prc_reform_and_opening
+			}
+			if = {
+				limit = {
+					has_idea = idea_prc_reform_and_opening
+				}
+					remove_ideas = idea_prc_reform_and_opening
+			}
+			if = {
+				limit = {
+					has_idea = idea_yug_yugoslav_model
+				}
+					remove_ideas = idea_yug_yugoslav_model
+			}
+			if = {
+				limit = {
+					has_idea = idea_ALB_red_widow
+				}
+					remove_ideas = idea_ALB_red_widow
+			}
+			if = {
+				limit = {
+					has_idea = idea_ALB_socialisms_forge
+				}
+					remove_ideas = idea_ALB_socialisms_forge
+			}
+			if = {
+				limit = {
+					has_idea = idea_DEN_headache
+				}
+					remove_ideas = idea_DEN_headache
+			}
+			if = {
+				limit = {
+					has_idea = idea_DEN_reform_policy
+				}
+					remove_ideas = idea_DEN_reform_policy
+			}
+			if = {
+				limit = {
+					has_idea = idea_DEN_red_europe
+				}
+					remove_ideas = idea_DEN_red_europe
+			}
+			if = {
+				limit = {
+					has_idea = idea_NOR_soviet_democracy
+				}
+					remove_ideas = idea_NOR_soviet_democracy
+			}
+			if = {
+				limit = {
+					has_idea = idea_NOR_state_of_mind
+				}
+					remove_ideas = idea_NOR_state_of_mind
+			}
+			if = {
+				limit = {
+					has_idea = idea_shield_and_sword
+				}
+					remove_ideas = idea_shield_and_sword
+			}
+			if = {
+				limit = {
+					has_idea = idea_PER_national_pact
+				}
+					remove_ideas = idea_PER_national_pact
+			}
+			if = {
+				limit = {
+					has_idea = idea_heisei_system
+				}
+					remove_ideas = idea_heisei_system
+			}
+			if = {
+				limit = {
+					has_idea = idea_admiral_winston
+				}
+					remove_ideas = idea_admiral_winston
+			}
+			if = {
+        	limit = {
+            	has_idea = idea_SAF_apartheid_system
+        		}
+        		remove_ideas = {
+    				idea_SAF_apartheid_system
+					}
+				remove_ideas = {
+    				idea_SAF_international_isolation
+					}
+        		}
+        	if = {
+				limit = {
+					has_idea = idea_bastion_of_european_democracy
+				}
+					remove_ideas = idea_bastion_of_european_democracy
+			}
+			if = {
+				limit = {
+					has_idea = idea_HOL_tulip_socialism
+				}
+					remove_ideas = idea_HOL_tulip_socialism
+			}
+			if = {
+				limit = {
+					has_idea = idea_HUN_happiest_barracks
+				}
+					remove_ideas = idea_HUN_happiest_barracks
+			}
+			if = {
+				limit = {
+					has_idea = idea_HUN_new_economic_mechanism
+				}
+					remove_ideas = idea_HUN_new_economic_mechanism
+			}
+			if = {
+				limit = {
+					has_idea = idea_ROM_ceausescu_legacy
+				}
+					remove_ideas = idea_ROM_ceausescu_legacy
+			}
+		    add_ideas = idea_enforced_royal_rule
+			if = {
+        	limit = {
+            	has_government = monarchist
+        		}
+        		add_popularity = {
+				ideology = monarchist
+				popularity = 0.1
+				}
+			}
+			else_if = {
+        	limit = {
+            	NOT = { has_government = monarchist }
+            	is_ai = no
+        		}
+        		set_politics = {
+				ruling_party = monarchist
+			}
+        		add_popularity = {
+				ideology = monarchist
+				popularity = 0.1
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_work_for_the_crown
+		icon = production
+		cost = 10
+		prerequisite = {
+			focus = generic_army_for_the_crown
+		}
+		prerequisite = {
+			focus = generic_enforce_the_familys_rule
+		}
+		x = 34
+		y = 5
+		completion_reward = {
+		    add_ideas = idea_working_for_the_crown
+		}
+
+	}
+	focus = {
+		id = generic_work_with_right_parties
+		icon = dangerous_deal
+		cost = 10
+		prerequisite = {
+			focus = generic_work_for_the_crown
+		}
+		x = 33
+		y = 6
+		completion_reward = {
+		    add_stability = 0.1
+			add_political_power = 50
+			add_popularity = {
+				ideology = fascist
+				popularity = 0.06
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.06
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.06
+			}
+		}
+	}
+	focus = {
+		id = generic_strike_bolshevism
+		icon = GFX_goal_Anti_Communist
+		cost = 14.4
+		prerequisite = {
+			or = {
+				focus = generic_justify_the_unjustifiable
+				focus = generic_all_for_the_nation
+				focus = generic_age_of_glory
+		}
+		available = {
+					 date > 2013.1.1
+					 is_ai = no
+					 OR = {
+					  has_government = nationalist
+					  has_government = fascist
+					  has_government = monarchist 
+					  }
+					}
+		x = 31
+		y = 7
+		completion_reward = {
+		    every_neighbor_country = {
+				limit = { # some sanity checks
+					not = {
+						is_guaranteed_by = ROOT # not guaranteed by us
+						is_in_faction_with = ROOT # not in faction with us
+						has_non_aggression_pact_with = ROOT #  # no non aggression by us
+						is_subject_of = ROOT # not our puppet or subject
+					}
+					or = { 
+						has_government = communist
+						has_government = revolutionary_socialist
+					}	
+				}
+			ROOT = { # we scope back to our own country
+				create_wargoal= { # create wargoal against
+                target = PREV # previous scope (random neighbor)
+                type = annex_everything # standard wargoal
+            }
+        }
+    }
+		}
+	}
+	focus = {
+		id = generic_strike_capitalism
+		icon = parties
+		cost = 14.4
+		prerequisite = {
+			or = {
+				focus = generic_fight_on_two_fronts
+				focus = generic_glorious_leader
+				focus = generic_spread_the_glory
+		}
+		x = 42
+		y = 7
+		available = { date > 2013.1.1
+					  is_ai = no
+					  or = {
+					  has_government = revolutionary_socialist
+					  has_government = communist
+					  has_government = national_bolshevik 
+						}
+					}
+		completion_reward = {
+		    every_neighbor_country = {
+				limit = { # some sanity checks
+					not = {
+						is_guaranteed_by = ROOT # not guaranteed by us
+						is_in_faction_with = ROOT # not in faction with us
+						has_non_aggression_pact_with = ROOT #  # no non aggression by us
+						is_subject_of = ROOT # not our puppet or subject
+					}
+					or = { 
+						has_government = centrist
+						has_government = national_conservative
+						has_government = liberal
+						has_government = new_democrat
+						has_government = moderate_socialist
+						has_government = nationalist
+						has_government = fascist
+						has_government = monarchist
+					}	
+				}
+			ROOT = { # we scope back to our own country
+				create_wargoal= { # create wargoal against
+                target = PREV # previous scope (random neighbor)
+                type = annex_everything # standard wargoal
+            }
+        }
+    }
+		}
+	}
+	focus = {
+		id = generic_spirit_of_the_people
+		icon = GFX_goal_communist_propaganda
+		cost = 10
+		prerequisite = {
+			focus = generic_political_focus
+		}
+		mutually_exclusive = {
+			focus = generic_spirit_of_the_nation
+			focus = generic_spirit_of_freedom
+		}
+		ai_will_do = {
+  		factor = 1
+
+    	modifier = {
+    	factor = 0
+    	OR = {
+    	has_government = national_conservative
+    	has_government = centrist
+    	has_government = liberal
+    	has_government = new_democrat
+    	has_government = moderate_socialist
+    	has_government = nationalist
+    	has_government = fascist
+    	has_government = monarchist
+    	}
+    		}
+		}
+		x = 39
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = communist
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = national_bolshevik
+				popularity = 0.04
+			}
+			if = { limit = { tag = JAP }
+			add_popularity = {
+				ideology = communist
+				popularity = 0.06
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.06
+			}
+			add_popularity = {
+				ideology = national_bolshevik
+				popularity = 0.06
+				} 
+			}
+		}
+
+	}
+	focus = {
+		id = generic_revolution
+		icon = focus_ideology_revolutionary_socialist
+		cost = 10
+		prerequisite = {
+			focus = generic_spirit_of_the_people
+		}
+		mutually_exclusive = {
+			focus = generic_old_bolsheviks
+			focus = generic_new_bolsheviks
+		}
+		ai_will_do = {
+  		factor = 1
+
+    	modifier = {
+    	factor = 0
+    	OR = {
+    	has_government = communist
+    	has_government = national_bolshevik
+    			}
+    		}
+		}
+		x = 38
+		y = 2
+		completion_reward = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.075
+				}
+				effect_tooltip = {
+					custom_effect_tooltip = Generic_ai_idea_tt
+		    	add_timed_idea = {
+    			idea = idea_revsoc_promoted
+    			days = 365
+					}
+				}
+        		add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.075
+				}
+			}
+			else_if = {
+        	limit = {
+            	has_government = revolutionary_socialist
+        		}
+        		add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.075
+				}
+			}
+			else_if = {
+        	limit = {
+            	NOT = { has_government = revolutionary_socialist }
+        		}
+        		add_timed_idea = {
+    			idea = idea_revsoc_promoted
+    			days = 365
+					}
+        		add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.075
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_strengthen_unions
+		icon = GFX_goal_unions
+		cost = 10
+		prerequisite = {
+			focus = generic_revolution
+		}
+		x = 38
+		y = 3
+		completion_reward = {
+		    add_ideas = idea_strengthened_unions
+		}
+
+	}
+	focus = {
+		id = generic_enforce_socialist_rule
+		icon = GFX_goal_Focus_Liberationist
+		cost = 10
+		prerequisite = {
+			focus = generic_strengthen_unions
+		}
+		available = { revolutionary_socialist > 0.25 }
+		x = 38
+		y = 4
+		completion_reward = {
+			if = {
+				limit = {
+					is_in_faction_with = CAN
+				}
+					leave_faction = yes
+			}
+			if = {
+        	limit = {
+            	has_idea = idea_SAF_apartheid_system
+        		}
+        		remove_ideas = {
+    				idea_SAF_apartheid_system
+					}
+				remove_ideas = {
+    				idea_SAF_international_isolation
+					}
+        		}
+        	if = {
+				limit = {
+					has_idea = idea_FRA_national_unrest
+				}
+					remove_ideas = idea_FRA_national_unrest
+			}
+        	if = {
+				limit = {
+					has_idea = idea_PER_national_pact
+				}
+					remove_ideas = idea_PER_national_pact
+			}
+			if = {
+				limit = {
+					has_idea = idea_heisei_system
+				}
+					remove_ideas = idea_heisei_system
+			}
+			if = {
+				limit = {
+					has_idea = idea_jap_akihito
+				}
+					remove_ideas = idea_jap_akihito
+			}
+			if = {
+				limit = {
+					has_idea = idea_carl_xvi_gustaf
+				}
+					remove_ideas = idea_carl_xvi_gustaf
+			}
+			if = {
+				limit = {
+					has_idea = idea_admiral_winston
+				}
+					remove_ideas = idea_admiral_winston
+			}
+			if = {
+				limit = {
+					has_idea = idea_peronist_old_guard
+				}
+					remove_ideas = idea_peronist_old_guard
+			}
+			if = {
+				limit = {
+					has_idea = idea_arg_interventionist_military
+				}
+					remove_ideas = idea_arg_interventionist_military
+			}
+			if = {
+				limit = {
+					has_idea = idea_bra_terrorist_menace
+				}
+					remove_ideas = idea_bra_terrorist_menace
+			}
+			if = {
+				limit = {
+					has_idea = idea_bra_politically_involved_military
+				}
+					remove_ideas = idea_bra_politically_involved_military
+			}
+			if = {
+				limit = {
+					has_idea = idea_bastion_of_european_democracy
+				}
+					remove_ideas = idea_bastion_of_european_democracy
+			}
+			if = {
+				limit = {
+					has_idea = idea_LEB_endemic_corruption
+				}
+					remove_ideas = idea_LEB_endemic_corruption
+			}
+		    if = {
+        	limit = {
+            	has_government = revolutionary_socialist
+        		}
+        		add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.15
+				}
+			}
+			else_if = {
+        	limit = {
+            	NOT = { has_government = revolutionary_socialist }
+            	is_ai = no
+        		}
+        		set_politics = {
+				ruling_party = revolutionary_socialist
+			}
+        		add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.10
+				}
+			}
+			add_political_power = 100
+		}
+
+	}
+	focus = {
+		id = generic_revolutionary_fervour
+		icon = GFX_goal_revolution
+		cost = 10
+		prerequisite = {
+			focus = generic_rapid_nationalisation
+		}
+		x = 37
+		y = 6
+		completion_reward = {
+		    if = {
+		    limit = { is_ai = no }
+			set_rule = {
+				can_create_factions = yes
+				}
+			}
+			add_war_support = 0.15
+		}
+
+	}
+	focus = {
+		id = generic_rapid_nationalisation
+		icon = GFX_goal_nationalize_industry
+		cost = 10
+		prerequisite = {
+			focus = generic_enforce_socialist_rule
+		}
+		x = 38
+		y = 5
+		completion_reward = {
+		    add_timed_idea = {
+				idea = idea_rapid_nationalisation
+				days = 200
+			}
+		}
+
+	}
+	focus = {
+		id = generic_fight_on_two_fronts
+		icon = major_war
+		cost = 10
+		prerequisite = {
+			focus = generic_rapid_nationalisation
+		}
+		x = 39
+		y = 6
+		completion_reward = {
+		    add_ideas = idea_fighting_on_two_fronts
+		}
+
+	}
+	focus = {
+		id = generic_old_bolsheviks
+		icon = focus_ideology_communist
+		cost = 10
+		prerequisite = {
+			focus = generic_spirit_of_the_people
+		}
+		mutually_exclusive = {
+			focus = generic_revolution
+			focus = generic_new_bolsheviks
+		}
+		ai_will_do = {
+  		factor = 1
+
+    	modifier = {
+    	factor = 0
+    	OR = {
+    	has_government = revolutionary_socialist
+    	has_government = national_bolshevik
+    			}
+    		}
+		}
+		x = 42
+		y = 2
+		completion_reward = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				add_popularity = {
+				ideology = communist
+				popularity = 0.075
+				}
+				effect_tooltip = {
+					custom_effect_tooltip = Generic_ai_idea_tt
+		    	add_timed_idea = {
+    			idea = idea_communism_promoted
+    			days = 365
+					}
+				}
+        		add_popularity = {
+				ideology = communist
+				popularity = 0.075
+				}
+			}
+			else_if = {
+        	limit = {
+            	has_government = communist
+        		}
+        		add_popularity = {
+				ideology = communist
+				popularity = 0.075
+				}
+			}
+			else_if = {
+        	limit = {
+            	NOT = { has_government = communist }
+        		}
+        		add_timed_idea = {
+    			idea = idea_communism_promoted
+    			days = 365
+					}
+        		add_popularity = {
+				ideology = communist
+				popularity = 0.075
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_bolshevik_revolution
+		icon = GFX_goal_Generic_Socialist_Revolution
+		cost = 10
+		prerequisite = {
+			focus = generic_old_bolsheviks
+		}
+		available = {
+			communist > 0.25
+		    NOT = {
+			    has_government = communist
+			}
+		}
+		x = 42
+		y = 3
+		completion_reward = {
+			if = {
+				limit = {
+					is_in_faction_with = CAN
+				}
+					leave_faction = yes
+			}
+			if = {
+        	limit = {
+            	has_idea = idea_SAF_apartheid_system
+        		}
+        		remove_ideas = {
+    				idea_SAF_apartheid_system
+					}
+				remove_ideas = {
+    				idea_SAF_international_isolation
+					}
+        		}
+        	if = {
+				limit = {
+					has_idea = idea_yug_yugoslav_model
+				}
+					remove_ideas = idea_yug_yugoslav_model
+			}
+        	if = {
+				limit = {
+					has_idea = idea_heisei_system
+				}
+					remove_ideas = idea_heisei_system
+			}
+			if = {
+				limit = {
+					has_idea = idea_jap_akihito
+				}
+					remove_ideas = idea_jap_akihito
+			}
+			if = {
+				limit = {
+					has_idea = idea_carl_xvi_gustaf
+				}
+					remove_ideas = idea_carl_xvi_gustaf
+			}
+			if = {
+				limit = {
+					has_idea = idea_DEN_headache
+				}
+					remove_ideas = idea_DEN_headache
+			}
+			if = {
+				limit = {
+					has_idea = idea_DEN_reform_policy
+				}
+					remove_ideas = idea_DEN_reform_policy
+			}
+			if = {
+				limit = {
+					has_idea = idea_DEN_red_europe
+				}
+					remove_ideas = idea_DEN_red_europe
+			}
+			if = {
+				limit = {
+					has_idea = idea_NOR_soviet_democracy
+				}
+					remove_ideas = idea_NOR_soviet_democracy
+			}
+			if = {
+				limit = {
+					has_idea = idea_NOR_state_of_mind
+				}
+					remove_ideas = idea_NOR_state_of_mind
+			}
+			if = {
+				limit = {
+					has_idea = idea_admiral_winston
+				}
+					remove_ideas = idea_admiral_winston
+			}
+			if = {
+				limit = {
+					has_idea = idea_BOL_native_unrest
+				}
+					remove_ideas = idea_BOL_native_unrest
+			}
+			if = {
+				limit = {
+					has_idea = idea_peronist_old_guard
+				}
+					remove_ideas = idea_peronist_old_guard
+			}
+			if = {
+				limit = {
+					has_idea = idea_arg_interventionist_military
+				}
+					remove_ideas = idea_arg_interventionist_military
+			}
+			if = {
+				limit = {
+					has_idea = idea_bra_terrorist_menace
+				}
+					remove_ideas = idea_bra_terrorist_menace
+			}
+			if = {
+				limit = {
+					has_idea = idea_bra_politically_involved_military
+				}
+					remove_ideas = idea_bra_politically_involved_military
+			}
+			if = {
+				limit = {
+					has_idea = idea_bastion_of_european_democracy
+				}
+					remove_ideas = idea_bastion_of_european_democracy
+			}
+			if = {
+				limit = {
+					has_idea = idea_LEB_endemic_corruption
+				}
+					remove_ideas = idea_LEB_endemic_corruption
+			}
+			if = {
+        	limit = {
+            	has_government = communist
+        		}
+        		add_popularity = {
+				ideology = communist
+				popularity = 0.15
+				}
+			}
+			else_if = {
+        	limit = {
+            	NOT = { has_government = communist }
+            	is_ai = no
+        		}
+        		set_politics = {
+				ruling_party = communist
+			}
+        		add_popularity = {
+				ideology = communist
+				popularity = 0.10
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_glory_of_the_state
+		icon = com_fascism
+		cost = 10
+		prerequisite = {
+			focus = generic_old_bolsheviks
+		}
+		x = 41
+		y = 4
+		completion_reward = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				effect_tooltip = {
+				custom_effect_tooltip = Generic_ai_idea_tt
+		    	add_ideas = idea_glory_of_the_state
+				}
+			}
+			else_if = {
+		    add_ideas = idea_glory_of_the_state
+			}
+		}
+
+	}
+	focus = {
+		id = generic_a_loyal_military
+		icon = GFX_goal_generic_socialist_army
+		cost = 10
+		prerequisite = {
+			focus = generic_glory_of_the_state
+		}
+		available = {
+	        has_government = communist
+		}
+		x = 40
+		y = 5
+		completion_reward = {
+		    add_ideas = idea_loyal_military
+		}
+
+	}
+	focus = {
+		id = generic_enforce_quotas
+		icon = work_quotas
+		cost = 10
+		prerequisite = {
+			focus = generic_old_bolsheviks
+		}
+		available = {
+	        has_government = communist
+		}
+		x = 43
+		y = 4
+		completion_reward = {
+		    add_ideas = idea_enforced_quotas
+		}
+
+	}
+	focus = {
+		id = generic_socialist_science
+		icon = socialist_science
+		cost = 10
+		prerequisite = {
+			focus = generic_enforce_quotas
+		}
+		available = {
+	        has_government = communist
+		}
+		x = 44
+		y = 5
+		completion_reward = {
+		    add_ideas = idea_socialist_science
+		}
+	}
+	focus = {
+		id = generic_glorious_leader
+		icon = GFX_goal_communist_army
+		cost = 10
+		prerequisite = {
+			focus = generic_a_loyal_military
+		}
+		available = {
+	        has_government = communist
+		}
+		x = 41
+		y = 6
+		completion_reward = {
+		    add_ideas = idea_glorious_leader
+		}
+
+	}
+	focus = {
+		id = generic_socialist_education
+		icon = GFX_goal_CommunistScientists
+		cost = 10
+		prerequisite = {
+			focus = generic_socialist_science
+		}
+		available = {
+	        has_government = communist
+		}
+		x = 43
+		y = 6
+		completion_reward = {
+		    add_research_slot = 1
+		}
+	}
+	focus = {
+		id = generic_new_bolsheviks
+		icon = focus_ideology_national_bolshevik
+		cost = 10
+		prerequisite = {
+			focus = generic_spirit_of_the_people
+		}
+		mutually_exclusive = {
+			focus = generic_old_bolsheviks
+			focus = generic_revolution
+		}
+		ai_will_do = {
+  		factor = 1
+
+    	modifier = {
+    	factor = 0
+    	OR = {
+    	has_government = revolutionary_socialist
+    	has_government = communist
+    			}
+    		}
+		}
+		x = 46
+		y = 2
+		completion_reward = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				add_popularity = {
+				ideology = national_bolshevik
+				popularity = 0.075
+				}
+				effect_tooltip = {
+					custom_effect_tooltip = Generic_ai_idea_tt
+		    	add_timed_idea = {
+    			idea = idea_nazbol_promoted
+    			days = 365
+					}
+				}
+        		add_popularity = {
+				ideology = national_bolshevik
+				popularity = 0.075
+				}
+			}
+			else_if = {
+        	limit = {
+            	has_government = national_bolshevik
+        		}
+        		add_popularity = {
+				ideology = national_bolshevik
+				popularity = 0.075
+				}
+			}
+			else_if = {
+        	limit = {
+            	NOT = { has_government = national_bolshevik }
+        		}
+        		add_timed_idea = {
+    			idea = idea_nazbol_promoted
+    			days = 365
+					}
+        		add_popularity = {
+				ideology = national_bolshevik
+				popularity = 0.075
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_national_pride
+		icon = GFX_goal_Generic_Socialist_Man
+		cost = 10
+		prerequisite = {
+			focus = generic_new_bolsheviks
+		}
+		x = 45
+		y = 3
+		completion_reward = {
+		    if = {
+				limit = {
+					is_ai = yes
+				}
+				effect_tooltip = {
+				custom_effect_tooltip = Generic_ai_idea_tt
+		    	add_ideas = idea_national_pride
+				}
+			}
+			else_if = {
+		    add_ideas = idea_national_pride
+			}
+		}
+
+	}
+	focus = {
+		id = generic_red_economy
+		icon = GFX_goal_communist_factories
+		cost = 10
+		prerequisite = {
+			focus = generic_new_bolsheviks
+		}
+		x = 47
+		y = 3
+		completion_reward = {
+		    add_ideas = idea_red_economy
+		}
+
+	}
+	focus = {
+		id = generic_new_order
+		icon = GFX_goal_nazbol_gang
+		cost = 10
+		prerequisite = {
+			focus = generic_national_pride
+		}
+		prerequisite = {
+			focus = generic_red_economy
+		}
+		available = { national_bolshevik > 0.25 }
+		x = 46
+		y = 4
+		completion_reward = {
+			if = {
+				limit = {
+					is_in_faction_with = CAN
+				}
+					leave_faction = yes
+			}
+			if = {
+				limit = {
+					is_in_faction_with = SOV
+				}
+					leave_faction = yes
+			}
+			if = {
+        	limit = {
+            	has_idea = idea_SAF_apartheid_system
+        		}
+        		remove_ideas = {
+    				idea_SAF_apartheid_system
+					}
+				remove_ideas = {
+    				idea_SAF_international_isolation
+					}
+        		}
+        	if = {
+				limit = {
+					has_idea = idea_yug_yugoslav_model
+				}
+					remove_ideas = idea_yug_yugoslav_model
+			}
+        	if = {
+				limit = {
+					has_idea = idea_PER_national_pact
+				}
+					remove_ideas = idea_PER_national_pact
+			}
+			if = {
+				limit = {
+					has_idea = idea_heisei_system
+				}
+					remove_ideas = idea_heisei_system
+			}
+			if = {
+				limit = {
+					has_idea = idea_jap_akihito
+				}
+					remove_ideas = idea_jap_akihito
+			}
+			if = {
+				limit = {
+					has_idea = idea_carl_xvi_gustaf
+				}
+					remove_ideas = idea_carl_xvi_gustaf
+			}
+			if = {
+				limit = {
+					has_idea = idea_NOR_soviet_democracy
+				}
+					remove_ideas = idea_NOR_soviet_democracy
+			}
+			if = {
+				limit = {
+					has_idea = idea_NOR_state_of_mind
+				}
+					remove_ideas = idea_NOR_state_of_mind
+			}
+			if = {
+				limit = {
+					has_idea = idea_DEN_headache
+				}
+					remove_ideas = idea_DEN_headache
+			}
+			if = {
+				limit = {
+					has_idea = idea_DEN_reform_policy
+				}
+					remove_ideas = idea_DEN_reform_policy
+			}
+			if = {
+				limit = {
+					has_idea = idea_DEN_red_europe
+				}
+					remove_ideas = idea_DEN_red_europe
+			}
+			if = {
+				limit = {
+					has_idea = idea_admiral_winston
+				}
+					remove_ideas = idea_admiral_winston
+			}
+			if = {
+				limit = {
+					has_idea = idea_peronist_old_guard
+				}
+					remove_ideas = idea_peronist_old_guard
+			}
+			if = {
+				limit = {
+					has_idea = idea_arg_interventionist_military
+				}
+					remove_ideas = idea_arg_interventionist_military
+			}
+			if = {
+				limit = {
+					has_idea = idea_bastion_of_european_democracy
+				}
+					remove_ideas = idea_bastion_of_european_democracy
+			}
+			if = {
+				limit = {
+					has_idea = idea_prc_reform_and_opening
+				}
+					remove_ideas = idea_prc_reform_and_opening
+			}
+			if = {
+				limit = {
+					has_idea = idea_HOL_tulip_socialism
+				}
+					remove_ideas = idea_HOL_tulip_socialism
+			}
+			if = {
+				limit = {
+					has_idea = idea_HUN_happiest_barracks
+				}
+					remove_ideas = idea_HUN_happiest_barracks
+			}
+			if = {
+				limit = {
+					has_idea = idea_HUN_new_economic_mechanism
+				}
+					remove_ideas = idea_HUN_new_economic_mechanism
+			}
+			if = {
+				limit = {
+					has_idea = idea_LEB_endemic_corruption
+				}
+					remove_ideas = idea_LEB_endemic_corruption
+			}
+		    add_ideas = idea_new_order
+			if = {
+        	limit = {
+            	has_government = national_bolshevik
+        		}
+        		add_popularity = {
+				ideology = national_bolshevik
+				popularity = 0.15
+				}
+			}
+			else_if = {
+        	limit = {
+            	NOT = { has_government = national_bolshevik }
+            	is_ai = no
+        		}
+        		set_politics = {
+				ruling_party = national_bolshevik
+			}
+        		add_popularity = {
+				ideology = national_bolshevik
+				popularity = 0.10
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_socialism_characteristics
+		icon = GFX_goal_generic_nazbol_focus
+		cost = 10
+		prerequisite = {
+			focus = generic_new_order
+		}
+		x = 46
+		y = 5
+		completion_reward = {
+		    add_ideas = idea_nationalistic_bolshevism
+			add_political_power = 100
+		}
+
+	}
+	focus = {
+		id = generic_spread_the_glory
+		icon = GFX_focus_generic_annex_country_2
+		cost = 10
+		prerequisite = {
+			focus = generic_socialism_characteristics
+		}
+		x = 46
+		y = 6
+		completion_reward = {
+		    add_ideas = idea_spreading_the_glory
+			if = {
+		    limit = { is_ai = no }
+			set_rule = {
+				can_create_factions = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_establish_connections
+		icon = demand_territory
+		cost = 5
+		prerequisite = {
+			focus = generic_foreign_affairs
+		}
+		x = 59
+		y = 1
+		completion_reward = {
+		    add_political_power = 80
+		}
+
+	}
+	focus = {
+		id = generic_europe
+		icon = GFX_goal_europe
+		cost = 5
+		prerequisite = {
+			focus = generic_establish_connections
+		}
+		x = 51
+		y = 2
+
+	}
+	focus = {
+		id = generic_befriend_the_ussr
+		icon = ussr
+		cost = 10
+		prerequisite = {
+			focus = generic_europe
+		}
+		mutually_exclusive = {
+			focus = generic_condemn_the_ussr
+		}
+		x = 50
+		y = 3
+		completion_reward = {
+		    SOV = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = declaration_of_friendship
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_befriend_germany
+		icon = germany
+		cost = 10
+		prerequisite = {
+			focus = generic_befriend_the_ussr
+		}
+		bypass = {
+		    tag = GER
+		}
+		x = 48
+		y = 4
+		completion_reward = {
+		    GER = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = declaration_of_friendship
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_condemn_the_ussr
+		icon = soviet_attack
+		cost = 10
+		prerequisite = {
+			focus = generic_europe
+		}
+		mutually_exclusive = {
+			focus = generic_befriend_the_ussr
+		}
+		x = 52
+		y = 3
+		completion_reward = {
+		    SOV = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = declaration_of_hostility
+				}
+			}
+		}
+	}
+	focus = {
+		id = generic_befriend_spain
+		icon = spain
+		cost = 10
+		prerequisite = {
+			focus = generic_condemn_the_ussr
+		}
+		bypass = {
+		    tag = SPR
+		}
+		x = 51
+		y = 5
+		completion_reward = {
+			IF = {
+				limit = {
+					country_exists = SPR
+				}
+				SPR = {
+					add_opinion_modifier = {
+						target = ROOT
+						modifier = declaration_of_friendship
+					}
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = SPN
+				}
+				SPN = {
+					add_opinion_modifier = {
+						target = ROOT
+						modifier = declaration_of_friendship
+					}
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_befriend_the_uk
+		icon = britain
+		cost = 10
+		prerequisite = {
+			focus = generic_condemn_the_ussr
+		}
+		x = 53
+		y = 5
+		completion_reward = {
+		    ENG = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = declaration_of_friendship
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_trade_with_the_free
+		icon = remove_corporate_taxes
+		cost = 10
+		prerequisite = {
+			focus = generic_befriend_spain
+		}
+		prerequisite = {
+			focus = generic_befriend_the_uk
+		}
+		x = 52
+		y = 6
+		completion_reward = {
+		    every_country = {
+			    limit = {
+				    is_in_faction_with = CAN
+				}
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = trade_influence_1
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_befriend_turkey
+		icon = turkey
+		cost = 10
+		prerequisite = {
+			focus = generic_trade_with_the_free
+		}
+		bypass = {
+		    tag = TUR
+		}
+		x = 52
+		y = 7
+		completion_reward = {
+		    TUR = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = declaration_of_friendship
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_asia
+		icon = GFX_goal_asia
+		cost = 5
+		prerequisite = {
+			focus = generic_establish_connections
+		}
+		x = 55
+		y = 2
+
+	}
+	focus = {
+		id = generic_befriend_china
+		icon = china
+		cost = 10
+		prerequisite = {
+			focus = generic_asia
+		}
+		mutually_exclusive = {
+			focus = generic_befriend_japan
+		}
+		x = 54
+		y = 3
+		completion_reward = {
+		    PRC = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = declaration_of_friendship
+				}
+			}
+			set_country_flag = befriended_china
+		}
+
+	}
+	focus = {
+		id = generic_befriend_japan
+		icon = japan
+		cost = 10
+		prerequisite = {
+			focus = generic_asia
+		}
+		mutually_exclusive = {
+			focus = generic_befriend_china
+		}
+		bypass = {
+		    tag = JAP
+		}
+		x = 56
+		y = 3
+		completion_reward = {
+		    JAP = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = declaration_of_friendship
+				}
+			}
+			set_country_flag = befriended_japan
+		}
+
+	}
+	focus = {
+		id = generic_free_trade_agreements
+		icon = trade
+		cost = 10
+		prerequisite = {
+			focus = generic_befriend_china
+			focus = generic_befriend_japan
+		}
+		bypass = {
+		    OR = {
+			    tag = PRC
+				tag = JAP
+			}
+		}
+		x = 55
+		y = 4
+		completion_reward = {
+		    if = {
+			    limit = {
+				    has_country_flag = befriended_china
+				}
+				PRC = {
+			        add_opinion_modifier = {
+					    target = ROOT
+					    modifier = trade_influence_3
+				    }
+			    }
+			
+			}
+			if = {
+			    limit = {
+				    has_country_flag = befriended_japan
+				}
+				JAP = {
+			        add_opinion_modifier = {
+					    target = ROOT
+					    modifier = trade_influence_3
+				    }
+			    }
+			
+			}
+		}
+
+	}
+	focus = {
+		id = generic_support_the_uar
+		icon = united_arab_republic
+		cost = 10
+		prerequisite = {
+			focus = generic_free_trade_agreements
+		}
+		mutually_exclusive = {
+			focus = generic_push_for_uar_dissolution
+		}
+		x = 54
+		y = 6
+		completion_reward = {
+		    UAR = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = declaration_of_friendship
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_push_for_uar_dissolution
+		icon = uar_attack
+		cost = 10
+		prerequisite = {
+			focus = generic_free_trade_agreements
+		}
+		mutually_exclusive = {
+			focus = generic_support_the_uar
+		}
+		x = 56
+		y = 6
+		completion_reward = {
+		    UAR = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = declaration_of_hostility
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_befriend_india
+		icon = india
+		cost = 10
+		prerequisite = {
+			focus = generic_push_for_uar_dissolution
+			focus = generic_support_the_uar
+		}
+		x = 56
+		y = 7
+		completion_reward = {
+		    RAJ = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = declaration_of_friendship
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_push_for_the_pact
+		icon = warsaw_pact
+		cost = 10
+		prerequisite = {
+			focus = generic_glory_of_the_state
+			focus = generic_enforce_quotas
+		}
+		available = {
+		    AND = {
+				SOV = { has_opinion = { target = ROOT value > 79 } }
+				SOV = {
+				    is_faction_leader = yes
+				}
+				NOT = {
+				    is_in_faction_with = SOV
+				}
+				is_in_faction = no
+			}
+			NOT = {
+				has_idea = idea_CUB_non_aligned_neutrality_pact
+			}
+		}
+		x = 42
+		y = 5
+		completion_reward = {
+		    SOV = {
+			    country_event = { days = 1 id = generic.1 } 
+			}
+		}
+
+	}
+	focus = {
+		id = generic_push_for_the_league
+		icon = democratic_league
+		cost = 10
+		prerequisite = {
+			focus = generic_unite_the_centre
+			focus = generic_enforce_traditional_values
+			focus = generic_cooperate_with_centrists
+			focus = generic_cooperate_with_new_democrats
+			focus = generic_promote_equality
+			focus = generic_significant_nationalisation
+		}
+		available = {
+		    AND = {
+				CAN = { has_opinion = { target = ROOT value > 79 } }
+			    NOT = {
+				    tag = CAN
+				}
+				CAN = {
+				    is_faction_leader = yes
+				}
+				NOT = {
+				    is_in_faction_with = CAN
+				}
+				is_in_faction = no
+			}
+			NOT = {
+				has_idea = idea_CUB_non_aligned_neutrality_pact
+			}
+		}
+		x = 19
+		y = 4
+		completion_reward = {
+		    CAN = {
+			    country_event = { days = 1 id = generic.4 } 
+			}
+		}
+
+	}
+	focus = {
+		id = generic_africa
+		icon = GFX_goal_africa
+		cost = 5
+		prerequisite = {
+			focus = generic_establish_connections
+		}
+		x = 63
+		y = 2
+
+	}
+
+
+	focus = {
+		id = generic_condemn_south_africa
+		icon = south_africa_attack
+		cost = 10
+		prerequisite = {
+			focus = generic_africa
+		}
+		mutually_exclusive = {
+			focus = generic_support_south_africa
+		}
+		available = {
+		    NOT = {
+			    tag = SAF
+			}
+		}
+		x = 62
+		y = 3
+		completion_reward = {
+		    SAF = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = declaration_of_hostility
+				}
+			}
+			ANG = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = declaration_of_friendship
+				}
+			}
+			MZB = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = declaration_of_friendship
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_support_south_africa
+		icon = south_africa
+		cost = 10
+		prerequisite = {
+			focus = generic_africa
+		}
+		mutually_exclusive = {
+			focus = generic_condemn_south_africa
+		}
+		bypass = {
+		    tag = SAF
+		}
+		x = 64
+		y = 3
+		completion_reward = {
+		    SAF = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = declaration_of_friendship
+				}
+			}
+			SAF = {
+			    add_opinion_modifier = {
+				    target = ROOT
+				    modifier = trade_influence_1
+			   }
+			}
+		}
+
+	}
+	focus = {
+		id = generic_trade_with_africa
+		icon = positive_trade_relations
+		cost = 10
+		prerequisite = {
+			focus = generic_condemn_south_africa
+			focus = generic_support_south_africa
+		}
+		x = 63
+		y = 5
+		completion_reward = {
+		    every_country = {
+		        limit = {
+			        capital_scope = { is_on_continent = africa }
+			    }
+			    add_opinion_modifier = {
+				    target = ROOT
+				    modifier = trade_influence_1
+			   }
+		    }
+		}
+
+	}
+	focus = {
+		id = generic_befriend_west_africa
+		icon = improve_relations
+		cost = 10
+		prerequisite = {
+			focus = generic_trade_with_africa
+		}
+		bypass = {
+		    tag = WAF
+		}
+		x = 61
+		y = 6
+		completion_reward = {
+		    WAF = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = declaration_of_friendship
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_befriend_morocco
+		icon = morocco
+		cost = 10
+		prerequisite = {
+			focus = generic_trade_with_africa
+		}
+		x = 63
+		y = 7
+		bypass = {
+		    tag = MOR
+		}
+		completion_reward = {
+		    MOR = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = declaration_of_friendship
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_befriend_ethiopia
+		icon = ethiopia
+		cost = 10
+		prerequisite = {
+			focus = generic_trade_with_africa
+		}
+		x = 65
+		y = 6
+		completion_reward = {
+		    ETH = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = declaration_of_friendship
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_america
+		icon = GFX_goal_north_america
+		cost = 5
+		prerequisite = {
+			focus = generic_establish_connections
+		}
+		x = 68
+		y = 2
+
+	}
+	focus = {
+		id = generic_recognise_the_remnants
+		icon = american_republic
+		cost = 10
+		prerequisite = {
+			focus = generic_america
+		}
+		mutually_exclusive = {
+			focus = generic_recognise_the_union
+			focus = generic_recognise_the_commonwealth
+		}
+		x = 66
+		y = 3
+		completion_reward = {
+		    USA = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = has_expressed_loyalty
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_promote_military_cooperation
+		icon = generic_marching
+		cost = 10
+		prerequisite = {
+			focus = generic_recognise_the_remnants
+		}
+		x = 66
+		y = 4
+		completion_reward = {
+		    army_experience = 25
+			air_experience = 25
+			navy_experience = 25
+		}
+
+	}
+	focus = {
+		id = generic_recognise_the_union
+		icon = uapr
+		cost = 10
+		prerequisite = {
+			focus = generic_america
+		}
+		mutually_exclusive = {
+			focus = generic_recognise_the_remnants
+			focus = generic_recognise_the_commonwealth
+		}
+		x = 68
+		y = 3
+		completion_reward = {
+		    PCA = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = has_expressed_loyalty
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_learn_from_the_uapr
+		icon = communist_construction
+		cost = 10
+		prerequisite = {
+			focus = generic_recognise_the_union
+		}
+		x = 68
+		y = 4
+		completion_reward = {
+		    add_stability = 0.05
+		}
+
+	}
+	focus = {
+		id = generic_recognise_the_commonwealth
+		icon = commonwealth
+		cost = 10
+		prerequisite = {
+			focus = generic_america
+		}
+		mutually_exclusive = {
+			focus = generic_recognise_the_remnants
+			focus = generic_recognise_the_union
+		}
+		x = 70
+		y = 3
+		completion_reward = {
+		    NEA = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = has_expressed_loyalty
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_scientific_agreements
+		icon = scientific_exchange
+		cost = 10
+		prerequisite = {
+			focus = generic_recognise_the_commonwealth
+		}
+		x = 70
+		y = 4
+		completion_reward = {
+		    add_tech_bonus = {
+				name = industry_bonus
+				bonus = 0.25
+				uses = 1
+				category = industry
+			}
+			add_tech_bonus = {
+				name = electronics_bonus
+				bonus = 0.25
+				uses = 1
+				category = electronics
+			}
+		}
+
+	}
+	focus = {
+		id = generic_befriend_canada
+		icon = canada
+		cost = 10
+		prerequisite = {
+			focus = generic_promote_military_cooperation
+			focus = generic_learn_from_the_uapr
+			focus = generic_scientific_agreements
+		}
+		mutually_exclusive = {
+			focus = generic_condemn_canada
+		}
+		bypass = {
+		    tag = CAN
+		}
+		x = 67
+		y = 5
+		completion_reward = {
+		    CAN = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = declaration_of_friendship
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_condemn_canada
+		icon = canada_attack
+		cost = 10
+		prerequisite = {
+			focus = generic_promote_military_cooperation
+			focus = generic_learn_from_the_uapr
+			focus = generic_scientific_agreements
+		}
+		mutually_exclusive = {
+			focus = generic_befriend_canada
+		}
+		available = {
+		    NOT = {
+			    tag = CAN
+			}
+		}
+		x = 69
+		y = 5
+		completion_reward = {
+		    CAN = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = declaration_of_hostility
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_south_american_trade
+		icon = focus_trade_deal_with_pakistan
+		cost = 10
+		prerequisite = {
+			focus = generic_befriend_canada
+			focus = generic_condemn_canada
+		}
+		x = 68
+		y = 6
+		completion_reward = {
+		    every_country = {
+		        limit = {
+			        capital_scope = { is_on_continent = south_america }
+			    }
+			    add_opinion_modifier = {
+				    target = ROOT
+				    modifier = trade_influence_1
+			    }
+		    }
+		}
+
+	}
+	focus = {
+		id = generic_befriend_brazil
+		icon = brazil
+		cost = 10
+		prerequisite = {
+			focus = generic_south_american_trade
+		}
+		x = 66
+		y = 7
+		bypass = {
+		    tag = BRA
+		}
+		completion_reward = {
+		    BRA = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = declaration_of_friendship
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_befriend_mexico
+		icon = mexico
+		cost = 10
+		prerequisite = {
+			focus = generic_south_american_trade
+		}
+		bypass = {
+		    tag = MEX
+		}
+		x = 70
+		y = 7
+		completion_reward = {
+		    MEX = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = declaration_of_friendship
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_land
+		icon = GFX_goal_soldiers
+		cost = 10
+		prerequisite = {
+			focus = generic_military_focus
+		}
+		x = 77
+		y = 1
+		completion_reward = {
+		    army_experience = 10
+		}
+		
+
+	}
+	focus = {
+		id = generic_command
+		icon = GFX_goal_generic_army_high_command
+		cost = 10
+		prerequisite = {
+			focus = generic_land
+		}
+		x = 72
+		y = 2
+		completion_reward = {
+		    army_experience = 10
+		    add_doctrine_cost_reduction = {
+				cost_reduction = 0.3
+				uses = 1
+				category = land_doctrine
+			}
+		}
+
+	}
+	focus = {
+		id = generic_reformed_army_structure
+		icon = army_doctrine
+		cost = 10
+		prerequisite = {
+			focus = generic_command
+		}
+		x = 72
+		y = 3
+		completion_reward = {
+		    army_experience = 25
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.25
+				uses = 1
+				category = land_doctrine
+			}
+			add_tech_bonus = {
+				name = synth_resources_bonus
+				bonus = 0.25
+				uses = 1
+				category = synth_resources
+			}
+		}
+
+	}
+	focus = {
+		id = generic_army_doctrine_1
+		icon = army_doctrine
+		cost = 10
+		prerequisite = {
+			focus = generic_reformed_army_structure
+		}
+		x = 72
+		y = 4
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.25
+				uses = 1
+				category = land_doctrine
+			}
+		}
+
+	}
+	focus = {
+		id = generic_army_doctrine_2
+		icon = army_doctrine
+		cost = 10
+		prerequisite = {
+			focus = generic_army_doctrine_1
+		}
+		x = 72
+		y = 5
+		completion_reward = {
+			if = { limit = { has_idea = idea_prc_antiquated_military
+				   has_completed_focus = generic_medium_armor
+				   has_completed_focus = generic_artillery 
+				   }
+			remove_ideas = idea_prc_antiquated_military
+			}
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+		}
+
+	}
+	focus = {
+		id = generic_armor
+		icon = GFX_goal_generic_apc
+		cost = 10
+		prerequisite = {
+			focus = generic_land
+		}
+		x = 74
+		y = 2
+		completion_reward = {
+		    army_experience = 10
+		    add_tech_bonus = {
+				name = armor_bonus
+				bonus = 0.5
+				uses = 1
+				category = armor
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.5
+			}
+		}
+
+	}
+	focus = {
+		id = generic_heavy_armor
+		icon = GFX_goal_tanks2
+		cost = 10
+		prerequisite = {
+			focus = generic_light_armor
+		}
+		x = 74
+		y = 4
+		completion_reward = {
+		    army_experience = 5
+		    add_tech_bonus = {
+				name = cat_heavy_armor_bonus
+				bonus = 0.5
+				uses = 1
+				category = cat_heavy_armor
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.5
+			}
+		}
+
+	}
+	focus = {
+		id = generic_medium_armor
+		icon = tanks
+		cost = 10
+		prerequisite = {
+			focus = generic_heavy_armor
+		}
+		x = 74
+		y = 5
+		completion_reward = {
+			if = { limit = { has_idea = idea_prc_antiquated_military
+				   has_completed_focus = generic_army_doctrine_2
+				   has_completed_focus = generic_artillery 
+				   }
+			remove_ideas = idea_prc_antiquated_military
+			}
+		    army_experience = 5
+		    add_tech_bonus = {
+				name = cat_medium_armor_bonus
+				bonus = 0.5
+				uses = 1
+				category = cat_medium_armor
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.5
+			}
+		}
+
+	}
+	focus = {
+		id = generic_force
+		icon = GFX_focus_generic_military_equipment
+		cost = 10
+		prerequisite = {
+			focus = generic_land
+		}
+		x = 76
+		y = 2
+		completion_reward = {
+		   army_experience = 10
+		    add_tech_bonus = {
+				name = infantry_weapons_bonus
+				bonus = 0.5
+				uses = 1
+				category = infantry_weapons
+			}
+		}
+
+	}
+	focus = {
+		id = generic_motorised
+		icon = GFX_goal_dark_truck
+		cost = 10
+		prerequisite = {
+			focus = generic_force
+		}
+		x = 76
+		y = 3
+		completion_reward = {
+		    army_experience = 2
+		    add_tech_bonus = {
+				name = motorized_equipment_bonus
+				bonus = 0.5
+				uses = 1
+				category = motorized_equipment
+			}
+		}
+
+	}
+	focus = {
+		id = generic_special_forces
+		icon = GFX_goal_counter
+		cost = 10
+		prerequisite = {
+			focus = generic_motorised
+		}
+		x = 76
+		y = 4
+		completion_reward = {
+		    army_experience = 15
+		    add_tech_bonus = {
+				name = para_tech_bonus
+				bonus = 0.25
+				uses = 1
+				category = para_tech
+			}
+			add_tech_bonus = {
+				name = night_vision_bonus
+				bonus = 0.25
+				uses = 1
+				category = night_vision
+			}
+			add_tech_bonus = {
+				name = marine_tech_bonus
+				bonus = 0.25
+				uses = 1
+				category = marine_tech
+			}
+		}
+
+	}
+	focus = {
+		id = generic_artillery
+		icon = GFX_goal_new_Artillery_Systems
+		cost = 10
+		prerequisite = {
+			focus = generic_special_forces
+		}
+		x = 76
+		y = 5
+		completion_reward = {
+			if = { limit = { has_idea = idea_prc_antiquated_military
+				   has_completed_focus = generic_army_doctrine_2
+				   has_completed_focus = generic_medium_armor 
+				   }
+			remove_ideas = idea_prc_antiquated_military
+			}
+		    army_experience = 15
+		    add_tech_bonus = {
+				name = artillery_bonus
+				bonus = 0.5
+				uses = 1
+				category = artillery
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.5
+			}
+		}
+
+	}
+	focus = {
+		id = generic_light_armor
+		icon = GFX_goal_ifv
+		cost = 10
+		prerequisite = {
+			focus = generic_armor
+		}
+		x = 74
+		y = 3
+		completion_reward = {
+		    add_tech_bonus = {
+				name = cat_light_armor_bonus
+				bonus = 0.5
+				uses = 1
+				category = cat_light_armor
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.5
+			}
+		}
+
+	}
+	focus = {
+		id = generic_sea
+		icon = GFX_goal_Naval_Upgrade_2
+		cost = 10
+		prerequisite = {
+			focus = generic_military_focus
+		}
+		x = 79
+		y = 2
+		completion_reward = {
+		    navy_experience = 15
+		}
+
+	}
+	focus = {
+		id = generic_naval_doctrine
+		icon = navy_doctrine
+		cost = 10
+		prerequisite = {
+			focus = generic_sea
+		}
+		x = 78
+		y = 3
+		completion_reward = {
+		    navy_experience = 5
+		    add_doctrine_cost_reduction = {
+				cost_reduction = 0.25
+				uses = 1
+				category = land_doctrine
+			}
+		}
+
+	}
+	focus = {
+		id = generic_naval_doctrine_2
+		icon = navy_doctrine
+		cost = 10
+		prerequisite = {
+			focus = generic_dockyard_project
+		}
+		x = 78
+		y = 5
+		completion_reward = {
+		    navy_experience = 5
+		    add_doctrine_cost_reduction = {
+				cost_reduction = 0.25
+				uses = 2
+				category = land_doctrine
+			}
+		}
+
+	}
+	focus = {
+		id = generic_naval_doctrine_3
+		icon = navy_doctrine
+		cost = 10
+		prerequisite = {
+			focus = generic_naval_doctrine_2
+		}
+		x = 78
+		y = 6
+		completion_reward = {
+		    navy_experience = 5
+		    add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+		}
+
+	}
+	focus = {
+		id = generic_dockyard_project
+		icon = GFX_goal_naval_upgrade
+		cost = 10
+		prerequisite = {
+			focus = generic_naval_doctrine
+		}
+		x = 78
+		y = 4
+		completion_reward = {
+		    add_timed_idea = { 
+				idea = idea_dockyard_project
+				days = 250
+			}	
+		}
+	}
+	focus = {
+		id = generic_dockyard_project_2
+		icon = naval_dockyard
+		cost = 10
+		prerequisite = {
+			focus = generic_naval_research_3
+		}
+		x = 80
+		y = 6
+		completion_reward = {
+		    add_timed_idea = { 
+				idea = idea_dockyard_project
+				days = 250
+			}	
+		}
+	}
+	focus = {
+		id = generic_naval_research
+		icon = build_navy
+		cost = 10
+		prerequisite = {
+			focus = generic_sea
+		}
+		x = 80
+		y = 3
+		completion_reward = {
+		    navy_experience = 5
+		    add_tech_bonus = {
+				name = dd_tech_bonus
+				bonus = 0.5
+				uses = 1
+				category = dd_tech
+			}
+			add_tech_bonus = {
+				name = ss_tech_bonus
+				bonus = 0.5
+				uses = 1
+				category = ss_tech
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.5
+			}
+		}
+
+	}
+	focus = {
+		id = generic_naval_research_3
+		icon = submarine
+		cost = 10
+		prerequisite = {
+			focus = generic_naval_research_2
+		}
+		x = 80
+		y = 5
+		completion_reward = {
+		    navy_experience = 5
+		    add_tech_bonus = {
+				name = cl_tech_bonus
+				bonus = 0.5
+				uses = 1
+				category = cl_tech
+			}
+			add_tech_bonus = {
+				name = shbb_tech_bonus
+				bonus = 0.5
+				uses = 1
+				category = shbb_tech
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.5
+			}
+		}
+
+	}
+	focus = {
+		id = generic_naval_research_2
+		icon = battleship
+		cost = 10
+		prerequisite = {
+			focus = generic_naval_research
+		}
+		x = 80
+		y = 4
+		completion_reward = {
+		    add_tech_bonus = {
+				name = bb_tech_bonus
+				bonus = 0.5
+				uses = 1
+				category = bb_tech
+			}
+		}
+		completion_reward = {
+		    add_tech_bonus = {
+				name = bc_tech_bonus
+				bonus = 0.5
+				uses = 1
+				category = bc_tech
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.5
+			}
+		}
+
+	}
+	focus = {
+		id = generic_air
+		icon = GFX_goal_advan_fighters
+		cost = 10
+		prerequisite = {
+			focus = generic_military_focus
+		}
+		x = 81
+		y = 1
+		completion_reward = {
+		    air_experience = 15
+		}
+
+	}
+	focus = {
+		id = generic_air_bases
+		icon = GFX_goal_air_force
+		cost = 10
+		prerequisite = {
+			focus = generic_air
+		}
+		x = 82
+		y = 2
+		completion_reward = {
+		    random_owned_state = {
+			    add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_air_doctrine
+		icon = air_doctrine
+		cost = 10
+		prerequisite = {
+			focus = generic_air_bases
+		}
+		x = 82
+		y = 3
+		completion_reward = {
+		    air_experience = 10
+		    add_doctrine_cost_reduction = {
+				cost_reduction = 0.25
+				uses = 1
+				category = land_doctrine
+			}
+		}
+
+	}
+	focus = {
+		id = generic_air_doctrine_2
+		icon = air_doctrine
+		cost = 10
+		prerequisite = {
+			focus = generic_air_doctrine
+		}
+		x = 82
+		y = 4
+		completion_reward = {
+		    air_experience = 10
+		    add_doctrine_cost_reduction = {
+				cost_reduction = 0.3
+				uses = 1
+				category = land_doctrine
+			}
+		}
+
+	}
+	focus = {
+		id = generic_air_doctrine_3
+		icon = air_doctrine
+		cost = 10
+		prerequisite = {
+			focus = generic_air_doctrine_2
+		}
+		x = 82
+		y = 5
+		completion_reward = {
+		    air_experience = 10
+		    add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+		}
+
+	}
+	focus = {
+		id = generic_bombers
+		icon = generic_bomber
+		cost = 10
+		prerequisite = {
+			focus = generic_air
+		}
+		x = 84
+		y = 2
+		completion_reward = {
+		    air_experience = 5
+		    add_tech_bonus = {
+				name = cat_strategic_bomber_bonus
+				bonus = 0.5
+				uses = 1
+				category = cat_strategic_bomber
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
+		}
+
+	}
+	focus = {
+		id = generic_fighters
+		icon = generic_fighter
+		cost = 10
+		prerequisite = {
+			focus = generic_air
+		}
+		x = 86
+		y = 2
+		completion_reward = {
+		
+		    air_experience = 5
+		    add_tech_bonus = {
+				name = light_fighter_bonus
+				bonus = 0.5
+				uses = 1
+				category = light_fighter
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
+		}
+
+	}
+	focus = {
+		id = generic_cas
+		icon = GFX_goal_modern_fighter
+		cost = 10
+		prerequisite = {
+			focus = generic_fighters
+		}
+		x = 86
+		y = 3
+		completion_reward = {
+		
+		    air_experience = 5
+		    add_tech_bonus = {
+				name = light_air_bonus
+				bonus = 0.5
+				uses = 1
+				category = light_air
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
+		}
+	}
+	focus = {
+		id = generic_naval_bomber
+		icon = GFX_goal_modern_bomber
+		cost = 10
+		prerequisite = {
+			focus = generic_drones
+		}
+		x = 88
+		y = 3
+		completion_reward = {
+		
+		    air_experience = 5
+		    add_tech_bonus = {
+				name = naval_bomber_bonus
+				bonus = 0.5
+				uses = 1
+				category = naval_bomber
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
+		}
+
+	}
+	focus = {
+		id = generic_jet_technology
+		icon = GFX_goal_Jet_Fighters
+		cost = 10
+		prerequisite = {
+			focus = generic_naval_bomber
+			focus = generic_cas
+			focus = generic_heavy_fighters
+		}
+		x = 86
+		y = 4
+		completion_reward = {
+		
+		    air_experience = 5
+		    add_tech_bonus = {
+				name = jet_technology_bonus
+				bonus = 0.75
+				uses = 1
+				category = jet_technology
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 1
+			}
+		}
+
+	}
+	focus = {
+		id = generic_heavy_fighters
+		icon = GFX_goal_fighters2
+		cost = 10
+		prerequisite = {
+			focus = generic_bombers
+		}
+		x = 84
+		y = 3
+		completion_reward = {
+		
+		    air_experience = 5
+		    add_tech_bonus = {
+				name = heavy_air_bonus
+				bonus = 0.5
+				uses = 1
+				category = heavy_air
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
+		}
+
+	}
+	focus = {
+		id = generic_reform_air_command
+		icon = GFX_goal_generic_air_command
+		cost = 10
+		prerequisite = {
+			focus = generic_air_doctrine_3
+		}
+		x = 82
+		y = 6
+		completion_reward = {
+		    add_doctrine_cost_reduction = {
+				cost_reduction = 0.75
+				uses = 1
+				category = land_doctrine
+			}
+			air_experience = 25
+		}
+
+	}
+	focus = {
+		id = generic_civilian_program
+		icon = high_company_tax
+		cost = 10
+		prerequisite = {
+			focus = generic_civilian_factories
+		}
+		mutually_exclusive = {
+			focus = generic_military_program
+		}
+		x = 9
+		y = 5
+		completion_reward = {
+		    random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_civilian_industry_2
+		icon = torch_industry
+		cost = 10
+		prerequisite = {
+			focus = generic_civilian_program
+		}
+		x = 9
+		y = 7
+		completion_reward = {
+		    random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_civilian_industry_3
+		icon = industry_1
+		cost = 10
+		prerequisite = {
+			focus = generic_civilian_industry_2
+		}
+		x = 9
+		y = 8
+		completion_reward = {
+		    random_owned_state = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_military_industry_3
+		icon = industry_2
+		cost = 10
+		prerequisite = {
+			focus = generic_military_industry_2
+		}
+		x = 11
+		y = 8
+		completion_reward = {
+		    random_owned_state = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_ensure_liberal_military_command
+		icon = army_doctrine
+		cost = 10
+		prerequisite = {
+			focus = generic_united_nation
+		}
+		x = 19
+		y = 7
+		completion_reward = {
+		    add_ideas = idea_liberal_command
+		}
+
+	}
+	focus = {
+		id = generic_befriend_france
+		icon = france
+		cost = 10
+		prerequisite = {
+			focus = generic_befriend_the_ussr
+		}
+		x = 50
+		y = 4
+		bypass = {
+		    tag = FRA
+		}
+		completion_reward = {
+		    FRA = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = declaration_of_friendship
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_befriend_italy
+		icon = italy
+		cost = 10
+		prerequisite = {
+			focus = generic_befriend_germany
+		}
+		prerequisite = {
+			focus = generic_befriend_france
+		}
+		x = 49
+		y = 5
+		completion_reward = {
+		    ITA = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = declaration_of_friendship
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_cooperate_with_the_eu
+		icon = european_union
+		cost = 10
+		prerequisite = {
+			focus = generic_befriend_italy
+		}
+		x = 49
+		y = 6
+		completion_reward = {
+		    every_country = {
+		        limit = {
+			        has_idea = idea_eu_member 
+			    }
+			    add_opinion_modifier = {
+				    target = ROOT
+				    modifier = trade_influence_1
+			    }
+		    }
+		}
+
+	}
+	focus = {
+		id = generic_join_comecon
+		icon = GFX_goal_COMECON_alt
+		cost = 10
+		prerequisite = {
+			focus = generic_cooperate_with_the_eu
+		}
+		mutually_exclusive = { focus = generic_join_comecon_observer }
+		available = { 
+			country_exists = SOV
+				SOV = {
+					has_government = communist
+				}
+				NOT = {
+					has_war_with = SOV
+				}
+		OR = {
+					  has_government = revolutionary_socialist
+					  has_government = communist
+								}
+					  not = { has_idea = idea_comecon_member }
+							}
+		x = 48
+		y = 7
+		completion_reward = {
+		    if = {
+				limit = {
+					has_idea = idea_comecon_observer
+				}
+					swap_ideas = { 
+  				remove_idea = idea_comecon_observer 
+  				add_idea = idea_comecon_member 
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {
+					has_idea = idea_comecon_member
+					}
+				}
+  				add_ideas = idea_comecon_member 
+			}
+		}
+
+	}
+	focus = {
+		id = generic_join_comecon_observer
+		icon = GFX_goal_the_comecon
+		cost = 10
+		prerequisite = {
+			focus = generic_cooperate_with_the_eu
+		}
+		mutually_exclusive = { focus = generic_join_comecon }
+		available = { 
+				country_exists = SOV
+				SOV = {
+					has_government = communist
+				}
+				NOT = {
+					has_war_with = SOV
+				}
+		OR = {
+					  has_government = revolutionary_socialist
+					  has_government = communist
+					  has_government = national_bolshevik 
+								}
+					  not = { has_idea = idea_comecon_member }
+					  not = { has_idea = idea_comecon_observer }
+							}
+		x = 50
+		y = 7
+		completion_reward = {
+		    add_ideas = idea_comecon_observer
+		}
+
+	}
+	focus = {
+		id = generic_befriend_iran
+		icon = iran
+		cost = 10
+		prerequisite = {
+			focus = generic_support_the_uar
+			focus = generic_push_for_uar_dissolution
+		}
+		x = 54
+		y = 7
+		completion_reward = {
+		    PER = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = declaration_of_friendship
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_befriend_argentina
+		icon = argentina
+		cost = 10
+		prerequisite = {
+			focus = generic_south_american_trade
+		}
+		x = 68
+		y = 8
+		completion_reward = {
+		    ARG = {
+			    add_opinion_modifier = {
+					target = ROOT
+					modifier = declaration_of_friendship
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = generic_drones
+		icon = drone
+		cost = 10
+		prerequisite = {
+			focus = generic_air
+		}
+		x = 88
+		y = 2
+		completion_reward = {
+		    add_tech_bonus = {
+				name = tactical_bomber_bonus
+				bonus = 0.5
+				uses = 1
+				category = tactical_bomber
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
+		}
+
+	}
+}

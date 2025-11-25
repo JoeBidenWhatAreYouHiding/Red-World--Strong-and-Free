@@ -1,0 +1,121 @@
+#Tanks
+uralvagon_zavod = {
+	include = generic_infantry_tank_organization
+	icon = GFX_idea_uralvagonzavod
+	
+	allowed = {	
+		original_tag = CUB
+	}
+
+	equipment_type = { mio_cat_eq_all_light_tank mio_cat_eq_all_medium_tank mio_cat_eq_all_heavy_tank }
+	research_categories = { mio_cat_tech_light_armor_and_modules mio_cat_tech_medium_armor_and_modules mio_cat_tech_heavy_armor_and_modules }
+
+	initial_trait = {
+		organization_modifier = {
+			military_industrial_organization_research_bonus = 0.10
+		}
+	}
+	
+	available = {
+		# When in a Foreign MIO, countries need to be at peace with original country
+		IF = {
+			limit = {
+				FROM = { NOT = { original_tag = CUB } }
+			}
+			FROM = { NOT = { has_war_with = CUB } }
+		}
+	}
+}
+
+#Ships
+havana_shipyards = {
+	include = generic_task_force_ship_organization
+	icon = GFX_idea_caribbean_drydock_company
+	
+	allowed = {	
+		original_tag = CUB
+	}
+}
+
+#Planes
+mig_cuba = {
+	include = generic_general_aircraft_organization
+	icon = GFX_idea_mikoyan
+	
+	allowed = {	
+		original_tag = CUB
+	}
+}
+
+#Materiel
+guanajay_automobile_industries = {
+	include = generic_motorized_mechanized_organization
+	icon = industria_automotriz_de_guanajay
+	
+	allowed = {	
+		original_tag = CUB
+	}
+
+	initial_trait = {
+		equipment_bonus = {
+			maximum_speed = 0.05
+			defense = 0.05
+		}
+	}
+
+	available = {
+		# When in a Foreign MIO, countries need to be at peace with original country
+		IF = {
+			limit = {
+				FROM = { NOT = { original_tag = CUB } }
+			}
+			FROM = { NOT = { has_war_with = CUB } }
+		}
+	}
+}
+
+union_military_industries = {
+	include = generic_infantry_equipment_organization
+	icon = union_de_industrias_militares
+	
+	allowed = {	
+		original_tag = CUB
+	}
+	initial_trait = {
+		equipment_bonus = {
+			hard_attack = 0.05
+		}
+	}
+	available = {
+		# When in a Foreign MIO, countries need to be at peace with original country
+		IF = {
+			limit = {
+				FROM = { NOT = { original_tag = CUB } }
+			}
+			FROM = { NOT = { has_war_with = CUB } }
+		}
+	}
+}
+petrov_arty_Cuba = {
+	include = generic_artillery_organization
+	icon = Petrov_Artillery_Design_Bureau_Factory_9
+
+	initial_trait = {
+		equipment_bonus = {
+			hard_attack = 0.05
+		}
+	}
+
+	allowed = {	
+		original_tag  = CUB
+	}
+	available = {
+		# When in a Foreign MIO, countries need to be at peace with original country
+		IF = {
+			limit = {
+				FROM = { NOT = { original_tag   = CUB } }
+			}
+			FROM = { NOT = { has_war_with = CUB } }
+		}
+	}
+}

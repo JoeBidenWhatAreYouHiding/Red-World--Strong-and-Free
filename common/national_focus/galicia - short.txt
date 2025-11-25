@@ -1,0 +1,247 @@
+focus_tree = {
+	id = galicia_tree_short
+	country = {
+		factor = 0
+		modifier = {
+			add = 20
+			tag = GAL
+		}
+	}
+	default = no
+	continuous_focus_position = { x = 2400 y = 3000 }
+
+	focus = {
+		id = GAL_2_seize_the_arms_factories
+		icon = RAJ_our_own_equipment
+		cost = 2
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		x = 10
+		y = 0
+		completion_reward = {
+		    171 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = GAL_2_request_portuguese_aid
+		icon = portugal
+		cost = 3
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = GAL_2_seize_the_arms_factories
+		}
+		relative_position_id = GAL_2_seize_the_arms_factories
+		x = -1
+		y = 1
+		completion_reward = {
+		    POR = {
+				country_event = {
+					id = galfopo.36
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_2_sympathizers_in_the_civil_guard
+		icon = GAL_preserve_the_civil_guard
+		cost = 3
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = GAL_2_seize_the_arms_factories
+		}
+		relative_position_id = GAL_2_seize_the_arms_factories
+		x = 1
+		y = 1
+		completion_reward = {
+			division_template = {
+				name = "Civil Guard Division"
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+				}
+			}
+			set_country_flag = spr_civil_guard_aided_galicia
+			random_owned_state = {
+				create_unit = {
+					division = "name = \"Civil Guard Division\" division_template = \"Civil Guard Division\" start_experience_factor = 0.4 start_equipment_factor = 1"
+					owner = GAL
+				}
+			}
+			add_field_marshal_role = {
+				Character = GAL_Jose_Hermida
+				traits = { old_guard politically_connected }
+				skill = 4
+				attack_skill = 3
+				defense_skill = 3
+				planning_skill = 4
+				logistics_skill = 4
+			}
+			add_advisor_role = {
+				character = GAL_Jose_Hermida
+				advisor = {
+					slot = army_chief
+					idea_token = GAL_Jose_Hermida
+					traits = {
+						army_chief_drill_2 
+					}
+				}
+			}
+			add_field_marshal_role = {
+				Character = GAL_jose_amedo_general
+				traits = { old_guard politically_connected logistics_wizard offensive_doctrine }
+				skill = 5
+				attack_skill = 4
+				defense_skill = 4
+				planning_skill = 4
+				logistics_skill = 4
+			}
+			add_corps_commander_role = {
+				Character = GAL_Jose_Luis_Tejada_Blanco
+				traits = { old_guard trait_cautious }
+				skill = 2
+				attack_skill = 3
+				defense_skill = 1
+				planning_skill = 3
+				logistics_skill = 1
+			}
+			add_corps_commander_role = {
+				Character = GAL_Jose_Antonio_Vilarino
+				traits = { infantry_officer engineer_officer }
+				skill = 2
+				attack_skill = 2
+				defense_skill = 3
+				planning_skill = 2
+				logistics_skill = 1
+			}
+			add_advisor_role = {
+				character = GAL_Jose_Antonio_Vilarino
+				advisor = {
+					slot = high_command
+					idea_token = GAL_Jose_Antonio_Vilarino
+					traits = {
+						army_armored_1 
+					}
+				}
+			}
+			add_corps_commander_role = {
+				Character = GAL_Jesus_Gayoso
+				traits = { infantry_officer engineer_officer career_officer}
+				skill = 3
+				attack_skill = 2
+				defense_skill = 3
+				planning_skill = 3
+				logistics_skill = 2
+			}
+			add_advisor_role = {
+				character = GAL_Jesus_Gayoso
+				advisor = {
+					slot = high_command
+					idea_token = GAL_Jesus_Gayoso
+					traits = {
+						army_infantry_3 
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_2_call_on_the_revolutionary_students
+		icon = push_focus
+		cost = 2
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = GAL_2_request_portuguese_aid
+		}
+		prerequisite = {
+			focus = GAL_2_sympathizers_in_the_civil_guard
+		}
+		relative_position_id = GAL_2_request_portuguese_aid
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_manpower = 10000
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 500
+				producer = GAL
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 3500
+				producer = POR
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1000
+				producer = SPR
+			}
+		}
+	}
+	focus = {
+		id = GAL_2_no_step_back
+		icon = defence
+		cost = 2
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = GAL_2_call_on_the_revolutionary_students
+		}
+		relative_position_id = GAL_2_call_on_the_revolutionary_students
+		x = 0
+		y = 1
+		completion_reward = {
+			add_timed_idea = {
+				idea = idea_gal_no_step_back
+				days = 120
+			}
+		}
+	}
+}

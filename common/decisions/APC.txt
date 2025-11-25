@@ -1,0 +1,863 @@
+APC_establish_syndicates = {
+
+	NEA_establish_syndicate = {
+
+		name = NEA_establish_a_syndicate
+
+		icon = establish_syndicate
+
+		allowed = {
+			original_tag = NEA
+		}
+
+		available = {
+			FROM = {
+				is_controlled_by = NEA
+				OR = {
+					is_island_state = yes
+					any_neighbor_state = {
+						is_controlled_by = ROOT
+					}
+				}
+			}
+		}
+
+		state_target = yes
+
+		on_map_mode = map_only
+
+		#targets = {  }
+
+		target_array = controlled_states
+
+		target_trigger = {
+			has_completed_focus = NEA_establish_syndicates
+			FROM = {
+				NOT = {
+					is_core_of = ROOT
+				}
+			}
+		}
+
+		cost = 50
+
+		fire_only_once = yes
+
+		days_remove = 50
+
+		modifier = {
+			political_power_gain = -0.5
+		}
+
+		visible = {
+			tag = NEA
+			has_completed_focus = NEA_establish_syndicates
+			always = yes
+		}
+
+		complete_effect = {
+
+		}
+
+		remove_effect = {
+			FROM = {
+				add_compliance = 10
+				add_resistance = -10
+				add_state_modifier = {
+    				modifier = {
+        				compliance_gain = 0.1
+    				}
+				}
+			}
+		}
+	}
+}
+
+APC_unification_wars = {
+
+NEA_war_with_USA = {
+
+	name = NEA_invade_usa
+
+		icon = ger_military_buildup
+		ai_will_do = {
+		base = 10
+			modifier = {
+				factor = 0
+				has_war = yes
+			}
+		}
+
+		allowed = {
+			original_tag = NEA
+		}
+
+		available = {
+		NOT = {
+			has_decision = NEA_war_with_ARI
+			has_decision = NEA_war_with_CSD
+			has_decision = NEA_war_with_GRL
+			has_decision = NEA_war_with_ILL
+			has_decision = NEA_war_with_LIN
+			has_decision = NEA_war_with_MOT
+			has_decision = NEA_war_with_MWA
+			has_decision = NEA_war_with_PCA
+			has_decision = NEA_war_with_UTA
+			has_decision = NEA_war_with_TEX
+			has_decision = NEA_war_with_AMC
+			}
+			NEA = {
+			has_completed_focus = NEA_unite_a_broken_america
+			has_war = no
+			is_neighbor_of = USA
+			}
+		}
+		
+		visible = {
+			tag = NEA
+			has_completed_focus = NEA_utilise_our_might
+			always = yes
+			USA = {
+			exists = yes
+			}
+		}
+		cost = 10
+
+		fire_only_once = yes
+
+		days_remove = 30
+		war_with_on_remove = USA
+		remove_effect = {
+            create_wargoal = {
+                target = USA
+                type = annex_everything
+            }
+        }
+	}
+
+NEA_war_with_ILL = {
+
+	name = NEA_invade_ill
+
+		icon = ger_military_buildup
+		ai_will_do = {
+		base = 10
+			modifier = {
+				factor = 0
+				has_war = yes
+			}
+		}
+
+		allowed = {
+			original_tag = NEA
+		}
+
+		available = {
+		NOT = {
+			has_decision = NEA_war_with_ARI
+			has_decision = NEA_war_with_CSD
+			has_decision = NEA_war_with_GRL
+			has_decision = NEA_war_with_USA
+			has_decision = NEA_war_with_LIN
+			has_decision = NEA_war_with_MOT
+			has_decision = NEA_war_with_MWA
+			has_decision = NEA_war_with_PCA
+			has_decision = NEA_war_with_UTA
+			has_decision = NEA_war_with_TEX
+			has_decision = NEA_war_with_AMC
+			}
+			NEA = {
+			has_completed_focus = NEA_unite_a_broken_america
+			has_war = no
+			is_neighbor_of = ILL
+			}
+		}
+		
+		visible = {
+			tag = NEA
+			has_completed_focus = NEA_utilise_our_might
+			always = yes
+			ILL = {
+			exists = yes
+			}
+		}
+		cost = 10
+
+		fire_only_once = yes
+
+		days_remove = 30
+		war_with_on_remove = ILL
+		remove_effect = {
+            create_wargoal = {
+                target = ILL
+                type = annex_everything
+            }
+        }
+	}
+NEA_war_with_GRL = {
+
+	name = NEA_invade_grl
+
+		icon = ger_military_buildup
+		ai_will_do = {
+		base = 10
+			modifier = {
+				factor = 0
+				has_war = yes
+			}
+		}
+
+		allowed = {
+			original_tag = NEA
+		}
+
+		available = {
+		NOT = {
+			has_decision = NEA_war_with_ARI
+			has_decision = NEA_war_with_CSD
+			has_decision = NEA_war_with_USA
+			has_decision = NEA_war_with_ILL
+			has_decision = NEA_war_with_LIN
+			has_decision = NEA_war_with_MOT
+			has_decision = NEA_war_with_MWA
+			has_decision = NEA_war_with_PCA
+			has_decision = NEA_war_with_UTA
+			has_decision = NEA_war_with_TEX
+			has_decision = NEA_war_with_AMC
+			}
+			NEA = {
+			has_completed_focus = NEA_unite_a_broken_america
+			has_war = no
+			is_neighbor_of = GRL
+			}
+		}
+		
+		visible = {
+			tag = NEA
+			has_completed_focus = NEA_utilise_our_might
+			always = yes
+			GRL = {
+			exists = yes
+			}
+		}
+		cost = 10
+
+		fire_only_once = yes
+
+		days_remove = 30
+		war_with_on_remove = GRL
+		remove_effect = {
+        if = {
+				limit = {
+					GRL = {
+						has_country_flag = GRL_socialist_apc_alignment
+					}
+				}
+				GRL = {
+					country_event = greatlakes_diplo.23
+				}
+			}
+			else_if = {
+				limit = {
+					GRL = {
+						has_country_leader = {
+							name = "Steve Fletcher"
+							ruling_only = yes
+						}
+					}
+				}
+				GRL = {
+					country_event = greatlakes_diplo.26
+				}
+			}
+			else = {
+				create_wargoal = {
+					target = GRL
+					type = annex_everything
+				}
+			}
+        }
+	}
+NEA_war_with_MOT = {
+
+	name = NEA_invade_mot
+
+		icon = ger_military_buildup
+		ai_will_do = {
+		base = 10
+			modifier = {
+				factor = 0
+				has_war = yes
+			}
+		}
+
+		allowed = {
+			original_tag = NEA
+		}
+
+		available = {
+		NOT = {
+			has_decision = NEA_war_with_ARI
+			has_decision = NEA_war_with_CSD
+			has_decision = NEA_war_with_GRL
+			has_decision = NEA_war_with_ILL
+			has_decision = NEA_war_with_LIN
+			has_decision = NEA_war_with_USA
+			has_decision = NEA_war_with_MWA
+			has_decision = NEA_war_with_PCA
+			has_decision = NEA_war_with_UTA
+			has_decision = NEA_war_with_TEX
+			has_decision = NEA_war_with_AMC
+			}
+			NEA = {
+			has_completed_focus = NEA_unite_a_broken_america
+			has_war = no
+			is_neighbor_of = MOT
+			}
+			MOT = {
+			OR = {
+			has_government = revolutionary_socialist
+			NOT = {
+			is_puppet_of = GRL
+					}
+				}
+			}
+		}
+		
+		visible = {
+			tag = NEA
+			has_completed_focus = NEA_utilise_our_might
+			always = yes
+			MOT = {
+			exists = yes
+			}
+		}
+		cost = 10
+
+		fire_only_once = yes
+
+		days_remove = 30
+		war_with_on_remove = MOT
+		remove_effect = {
+        if = {
+				limit = {
+					AND = {
+						GRL = {
+							has_country_flag = GRL_socialist_apc_alignment
+						}
+						MOT = {
+							is_puppet_of = GRL
+						}
+					}
+				}
+				annex_country = {
+					target = MOT
+					transfer_troops = yes
+				}
+			}
+			else = {
+				create_wargoal = {
+					type = annex_everything
+					target = MOT
+				}
+			}
+        }
+	}
+NEA_war_with_LIN = {
+
+	name = NEA_invade_lin
+
+		icon = ger_military_buildup
+		ai_will_do = {
+		base = 10
+			modifier = {
+				factor = 0
+				has_war = yes
+			}
+		}
+
+		allowed = {
+			original_tag = NEA
+		}
+
+		available = {
+		NOT = {
+			has_decision = NEA_war_with_ARI
+			has_decision = NEA_war_with_CSD
+			has_decision = NEA_war_with_GRL
+			has_decision = NEA_war_with_ILL
+			has_decision = NEA_war_with_USA
+			has_decision = NEA_war_with_MOT
+			has_decision = NEA_war_with_MWA
+			has_decision = NEA_war_with_PCA
+			has_decision = NEA_war_with_UTA
+			has_decision = NEA_war_with_TEX
+			has_decision = NEA_war_with_AMC
+			}
+			NEA = {
+			has_completed_focus = NEA_unite_a_broken_america
+			has_war = no
+			is_neighbor_of = LIN
+			}
+		}
+		
+		visible = {
+			tag = NEA
+			has_completed_focus = NEA_utilise_our_might
+			always = yes
+			LIN = {
+			exists = yes
+			}
+		}
+		cost = 10
+
+		fire_only_once = yes
+
+		days_remove = 30
+		war_with_on_remove = LIN
+		remove_effect = {
+            create_wargoal = {
+                target = LIN
+                type = annex_everything
+            }
+        }
+	}
+NEA_war_with_PCA = {
+
+	name = NEA_invade_pca
+
+		icon = ger_military_buildup
+		ai_will_do = {
+		base = 10
+			modifier = {
+				factor = 0
+				has_war = yes
+			}
+		}
+
+		allowed = {
+			original_tag = NEA
+		}
+
+		available = {
+		NOT = {
+			has_decision = NEA_war_with_ARI
+			has_decision = NEA_war_with_CSD
+			has_decision = NEA_war_with_GRL
+			has_decision = NEA_war_with_ILL
+			has_decision = NEA_war_with_LIN
+			has_decision = NEA_war_with_MOT
+			has_decision = NEA_war_with_MWA
+			has_decision = NEA_war_with_USA
+			has_decision = NEA_war_with_UTA
+			has_decision = NEA_war_with_TEX
+			has_decision = NEA_war_with_AMC
+			}
+			NEA = {
+			has_completed_focus = NEA_unite_a_broken_america
+			has_war = no
+			is_neighbor_of = PCA
+			}
+		}
+		
+		visible = {
+			tag = NEA
+			has_completed_focus = NEA_utilise_our_might
+			always = yes
+			PCA = {
+			exists = yes
+			}
+		}
+		cost = 10
+
+		fire_only_once = yes
+
+		days_remove = 30
+		war_with_on_remove = PCA
+		remove_effect = {
+            create_wargoal = {
+                target = PCA
+                type = annex_everything
+            }
+        }
+	}
+NEA_war_with_CSD = {
+
+	name = NEA_invade_csd
+
+		icon = ger_military_buildup
+		ai_will_do = {
+		base = 10
+			modifier = {
+				factor = 0
+				has_war = yes
+			}
+		}
+
+		allowed = {
+			original_tag = NEA
+		}
+
+		available = {
+		NOT = {
+			has_decision = NEA_war_with_ARI
+			has_decision = NEA_war_with_USA
+			has_decision = NEA_war_with_GRL
+			has_decision = NEA_war_with_ILL
+			has_decision = NEA_war_with_LIN
+			has_decision = NEA_war_with_MOT
+			has_decision = NEA_war_with_MWA
+			has_decision = NEA_war_with_PCA
+			has_decision = NEA_war_with_UTA
+			has_decision = NEA_war_with_TEX
+			has_decision = NEA_war_with_AMC
+			}
+			NEA = {
+			has_completed_focus = NEA_unite_a_broken_america
+			has_war = no
+			is_neighbor_of = CSD
+			}
+		}
+		
+		visible = {
+			tag = NEA
+			has_completed_focus = NEA_utilise_our_might
+			always = yes
+			CSD = {
+			exists = yes
+			}
+		}
+		cost = 10
+
+		fire_only_once = yes
+
+		days_remove = 30
+		war_with_on_remove = CSD
+		remove_effect = {
+            create_wargoal = {
+                target = CSD
+                type = annex_everything
+            }
+        }
+	}
+NEA_war_with_TEX = {
+
+	name = NEA_invade_tex
+
+		icon = ger_military_buildup
+		ai_will_do = {
+		base = 10
+			modifier = {
+				factor = 0
+				has_war = yes
+			}
+		}
+
+		allowed = {
+			original_tag = NEA
+		}
+
+		available = {
+		NOT = {
+			has_decision = NEA_war_with_ARI
+			has_decision = NEA_war_with_CSD
+			has_decision = NEA_war_with_GRL
+			has_decision = NEA_war_with_ILL
+			has_decision = NEA_war_with_LIN
+			has_decision = NEA_war_with_MOT
+			has_decision = NEA_war_with_MWA
+			has_decision = NEA_war_with_PCA
+			has_decision = NEA_war_with_UTA
+			has_decision = NEA_war_with_USA
+			has_decision = NEA_war_with_AMC
+			}
+			NEA = {
+			has_completed_focus = NEA_unite_a_broken_america
+			has_war = no
+			is_neighbor_of = TEX
+			}
+		}
+		
+		visible = {
+			tag = NEA
+			has_completed_focus = NEA_utilise_our_might
+			always = yes
+			TEX = {
+			exists = yes
+			}
+		}
+		cost = 10
+
+		fire_only_once = yes
+
+		days_remove = 30
+		war_with_on_remove = TEX
+		remove_effect = {
+            create_wargoal = {
+                target = TEX
+                type = annex_everything
+            }
+        }
+	}
+NEA_war_with_ARI = {
+
+	name = NEA_invade_ari
+
+		icon = ger_military_buildup
+		ai_will_do = {
+		base = 10
+			modifier = {
+				factor = 0
+				has_war = yes
+			}
+		}
+
+		allowed = {
+			original_tag = NEA
+		}
+
+		available = {
+		NOT = {
+			has_decision = NEA_war_with_TEX
+			has_decision = NEA_war_with_CSD
+			has_decision = NEA_war_with_GRL
+			has_decision = NEA_war_with_ILL
+			has_decision = NEA_war_with_LIN
+			has_decision = NEA_war_with_MOT
+			has_decision = NEA_war_with_MWA
+			has_decision = NEA_war_with_PCA
+			has_decision = NEA_war_with_UTA
+			has_decision = NEA_war_with_USA
+			has_decision = NEA_war_with_AMC
+			}
+			NEA = {
+			has_completed_focus = NEA_unite_a_broken_america
+			has_war = no
+			is_neighbor_of = ARI
+			}
+		}
+		
+		visible = {
+			tag = NEA
+			has_completed_focus = NEA_utilise_our_might
+			always = yes
+			ARI = {
+			exists = yes
+			}
+		}
+		cost = 10
+
+		fire_only_once = yes
+
+		days_remove = 30
+		war_with_on_remove = ARI
+		remove_effect = {
+            create_wargoal = {
+                target = ARI
+                type = annex_everything
+            }
+        }
+	}
+NEA_war_with_UTA = {
+
+	name = NEA_invade_uta
+
+		icon = ger_military_buildup
+		ai_will_do = {
+		base = 10
+			modifier = {
+				factor = 0
+				has_war = yes
+			}
+		}
+
+		allowed = {
+			original_tag = NEA
+		}
+
+		available = {
+		NOT = {
+			has_decision = NEA_war_with_ARI
+			has_decision = NEA_war_with_CSD
+			has_decision = NEA_war_with_GRL
+			has_decision = NEA_war_with_ILL
+			has_decision = NEA_war_with_LIN
+			has_decision = NEA_war_with_MOT
+			has_decision = NEA_war_with_MWA
+			has_decision = NEA_war_with_PCA
+			has_decision = NEA_war_with_TEX
+			has_decision = NEA_war_with_USA
+			has_decision = NEA_war_with_AMC
+			}
+			NEA = {
+			has_completed_focus = NEA_unite_a_broken_america
+			has_war = no
+			is_neighbor_of = UTA
+			}
+		}
+		
+		visible = {
+			tag = NEA
+			has_completed_focus = NEA_utilise_our_might
+			always = yes
+			UTA = {
+			exists = yes
+			}
+		}
+		cost = 10
+
+		fire_only_once = yes
+
+		days_remove = 30
+		war_with_on_remove = UTA
+		remove_effect = {
+            create_wargoal = {
+                target = UTA
+                type = annex_everything
+            }
+        }
+	}
+NEA_war_with_MWA = {
+
+	name = NEA_invade_mwa
+
+		icon = ger_military_buildup
+		ai_will_do = {
+		base = 10
+			modifier = {
+				factor = 0
+				has_war = yes
+			}
+		}
+
+		allowed = {
+			original_tag = NEA
+		}
+
+		available = {
+			NOT = {
+			has_decision = NEA_war_with_ARI
+			has_decision = NEA_war_with_CSD
+			has_decision = NEA_war_with_GRL
+			has_decision = NEA_war_with_ILL
+			has_decision = NEA_war_with_LIN
+			has_decision = NEA_war_with_MOT
+			has_decision = NEA_war_with_TEX
+			has_decision = NEA_war_with_PCA
+			has_decision = NEA_war_with_UTA
+			has_decision = NEA_war_with_USA
+			has_decision = NEA_war_with_AMC
+			}
+			NEA = {
+			has_completed_focus = NEA_unite_a_broken_america
+			has_war = no
+			is_neighbor_of = MWA
+			}
+			MWA = {
+			OR = {
+			has_government = revolutionary_socialist
+			NOT = {
+			is_puppet_of = GRL
+					}
+				}
+			}
+		}
+		
+		visible = {
+			tag = NEA
+			has_completed_focus = NEA_utilise_our_might
+			always = yes
+			MWA = {
+			exists = yes
+			}
+		}
+		cost = 10
+
+		fire_only_once = yes
+
+		days_remove = 30
+		war_with_on_remove = MWA
+		remove_effect = {
+			if = {
+				limit = {
+					AND = {
+						GRL = {
+							has_country_flag = GRL_socialist_apc_alignment
+						}
+						MWA = {
+							is_puppet_of = GRL
+						}
+					}
+				}
+				annex_country = {
+					target = MWA
+					transfer_troops = yes
+				}
+			}
+			else = {
+				create_wargoal = {
+					type = annex_everything
+					target = MWA
+				}
+			}
+        }
+	}
+NEA_war_with_AMC = {
+
+	name = NEA_invade_amc
+
+		icon = ger_military_buildup
+		ai_will_do = {
+		base = 10
+			modifier = {
+				factor = 0
+				has_war = yes
+			}
+		}
+
+		allowed = {
+			original_tag = NEA
+		}
+
+		available = {
+		NOT = {
+			has_decision = NEA_war_with_ARI
+			has_decision = NEA_war_with_CSD
+			has_decision = NEA_war_with_GRL
+			has_decision = NEA_war_with_ILL
+			has_decision = NEA_war_with_USA
+			has_decision = NEA_war_with_MOT
+			has_decision = NEA_war_with_MWA
+			has_decision = NEA_war_with_PCA
+			has_decision = NEA_war_with_UTA
+			has_decision = NEA_war_with_TEX
+			}
+			NEA = {
+			has_completed_focus = NEA_unite_a_broken_america
+			has_war = no
+			is_neighbor_of = LIN
+			}
+		}
+		
+		visible = {
+			tag = NEA
+			has_completed_focus = NEA_utilise_our_might
+			always = yes
+			AMC = {
+			exists = yes
+			}
+		}
+		cost = 10
+
+		fire_only_once = yes
+
+		days_remove = 30
+		war_with_on_remove = AMC
+		remove_effect = {
+            create_wargoal = {
+                target = AMC
+                type = annex_everything
+            }
+        }
+	}
+}

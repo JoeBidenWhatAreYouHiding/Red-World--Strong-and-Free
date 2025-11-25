@@ -1,0 +1,4129 @@
+ #civil war
+	shared_focus = {
+        id = PDY_the_great_peoples_liberation_war
+        ai_will_do = { factor = 1 }
+        icon = GFX_the_great_peoples_war
+        cost = 0
+        available = {
+            has_war = yes
+        }
+        x = -4
+        y = 0
+        completion_reward = {
+            add_manpower = 10000
+            add_ideas = PDY_peoples_war
+            add_ideas = war_economy
+        }
+    }
+    shared_focus = {
+        id = PDY_rally_the_international_proletariat
+        ai_will_do = { factor = 1 }
+        icon = GFX_rally_the_international_proletariat
+        cost = 1
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        prerequisite = {
+            focus = PDY_the_great_peoples_liberation_war
+        }
+        relative_position_id = PDY_the_great_peoples_liberation_war
+        x = 0
+        y = 1
+        completion_reward = {
+            country_event = pdy.107
+            add_ideas = PDY_worker_militias
+            division_template = {
+                name = "Workers Militia"
+                regiments = {
+                    infantry = { x = 0 y = 0 }
+                    infantry = { x = 0 y = 1 }
+                    infantry = { x = 0 y = 2 }
+                    infantry = { x = 1 y = 0 }
+                    infantry = { x = 1 y = 1 }
+                }
+            }
+            293 = {
+                create_unit = {
+                    division = "name = \"1st Workers Militia\" division_template = \"Workers Militia\" start_experience_factor = 2 start_equipment_factor = 1"
+                    owner = PDY
+                    allow_spawning_on_enemy_provs = yes
+                }
+                create_unit = {
+                    division = "name = \"2nd Workers Militia\" division_template = \"Workers Militia\" start_experience_factor = 2  start_equipment_factor = 1"
+                    owner = PDY
+                    allow_spawning_on_enemy_provs = yes
+                }
+                create_unit = {
+                    division = "name = \"3rd Workers Militia\" division_template = \"Workers Militia\" start_experience_factor = 2  start_equipment_factor = 1"
+                    owner = PDY
+                    allow_spawning_on_enemy_provs = yes
+                }
+            }
+        }
+    }
+    shared_focus = {
+        id = PDY_contact_our_allies_in_abu_dhabi
+        ai_will_do = { factor = 1 }
+        icon = GFX_abu_dhabi
+        cost = 3
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        prerequisite = {
+            focus = PDY_rally_the_international_proletariat
+        }
+        relative_position_id = PDY_rally_the_international_proletariat
+        x = -2
+        y = 1
+        completion_reward = {
+            add_equipment_to_stockpile = {
+                type = infantry_equipment
+                amount = 2000
+                producer = UAE
+            }
+            add_equipment_to_stockpile = {
+                type = artillery_equipment
+                amount = 75
+                producer = UAE
+            }
+        }
+    }
+    shared_focus = {
+        id = PDY_utilize_pfloag_tactics
+        ai_will_do = { factor = 1 }
+        icon = GFX_dhofar_rebellion_focus
+        cost = 5
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        prerequisite = {
+            focus = PDY_contact_our_allies_in_abu_dhabi
+        }
+        relative_position_id = PDY_contact_our_allies_in_abu_dhabi
+        x = -2
+        y = 1
+        completion_reward = {
+            add_ideas = PDY_lessons_of_exile
+        }
+    }
+    shared_focus = {
+        id = PDY_request_industrial_aid
+        ai_will_do = { factor = 1 }
+        icon = uk_workers_revolution
+        cost = 3
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        prerequisite = {
+            focus = PDY_contact_our_allies_in_abu_dhabi
+        }
+        relative_position_id = PDY_contact_our_allies_in_abu_dhabi
+        x = 0
+        y = 1
+        completion_reward = {
+            add_offsite_building = {
+                type = arms_factory
+                level = 1
+            }
+        }
+    }
+    shared_focus = {
+        id = PDY_mimic_german_efficiency
+        ai_will_do = { factor = 1 }
+        icon = GFX_german_efficiency
+        cost = 5
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        prerequisite = {
+            focus = PDY_request_industrial_aid
+        }
+        relative_position_id = PDY_request_industrial_aid
+        x = 0
+        y = 1
+        completion_reward = {
+            add_ideas = PDY_endless_production
+        }
+    }
+    shared_focus = {
+        id = PDY_send_zoubaidi_to_berlin
+        ai_will_do = { factor = 1 }
+        icon = GFX_send_al_zoudibaidi_to_berlin
+        cost = 5
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        prerequisite = {
+            focus = PDY_rally_the_international_proletariat
+        }
+        relative_position_id = PDY_rally_the_international_proletariat
+        x = 0
+        y = 1
+        completion_reward = {
+            create_intelligence_agency = {
+                name = "Committee for State Security"
+                icon = GFX_intelligence_agency_logo_generic_1
+            }
+            GER = {
+                country_event = pdy.109
+            }
+        }
+    }
+    shared_focus = {
+        id = PDY_mass_propaganda_campaign
+        ai_will_do = { factor = 1 }
+        icon = GFX_PDY_propaganda_wave
+        cost = 3
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        prerequisite = {
+            focus = PDY_send_zoubaidi_to_berlin
+        }
+        relative_position_id = PDY_send_zoubaidi_to_berlin
+        x = 0
+        y = 1
+        completion_reward = {
+            add_manpower = 5000
+            add_war_support = 0.03
+        }
+    }
+    shared_focus = {
+        id = PDY_revive_the_national_democratic_front
+        ai_will_do = { factor = 1 }
+        icon = GFX_northern_communists
+        cost = 5
+        available = {
+            has_war = yes
+        }
+        bypass = {
+            OR = {
+                YAR = {
+                    exists = no
+                }
+                has_war = no
+            }
+        }
+        prerequisite = {
+            focus = PDY_mass_propaganda_campaign
+        }
+        relative_position_id = PDY_mass_propaganda_campaign
+        x = 0
+        y = 1
+        completion_reward = {
+            division_template = {
+                name = "NDF Division"
+                regiments = {
+                    infantry = { x = 0 y = 0 }
+                    infantry = { x = 0 y = 1 }
+                    infantry = { x = 0 y = 2 }
+                    infantry = { x = 1 y = 0 }
+                    infantry = { x = 1 y = 1 }
+                }
+            }
+            977 = {
+                create_unit = {
+                    division = "name = \"1st NDF Division\" division_template = \"NDF Division\" start_experience_factor = 1 start_equipment_factor = 1"
+                    owner = PDY
+                    allow_spawning_on_enemy_provs = yes
+                }
+                create_unit = {
+                    division = "name = \"2nd NDF Division\" division_template = \"NDF Division\" start_experience_factor = 1  start_equipment_factor = 1"
+                    owner = PDY
+                    allow_spawning_on_enemy_provs = yes
+                }
+            }
+        }
+    }
+    shared_focus = {
+        id = PDY_call_upon_new_delhi
+        ai_will_do = { factor = 1 }
+        icon = india
+        cost = 3
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        prerequisite = {
+            focus = PDY_rally_the_international_proletariat
+        }
+        relative_position_id = PDY_rally_the_international_proletariat
+        x = 2
+        y = 1
+        completion_reward = {
+            add_equipment_to_stockpile = {
+                type = support_equipment
+                amount = 100
+                producer = RAJ
+            }
+            add_equipment_to_stockpile = {
+                type = convoy
+                amount = 50
+                producer = RAJ
+            }
+        }
+    }
+    shared_focus = {
+        id = PDY_import_rail_technology
+        ai_will_do = { factor = 1 }
+        icon = infrastructure_building
+        cost = 5
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        prerequisite = {
+            focus = PDY_call_upon_new_delhi
+        }
+        relative_position_id = PDY_call_upon_new_delhi
+        x = 0
+        y = 1
+        completion_reward = {
+            set_technology = {
+                railway_gun = 1
+            }
+            create_railway_gun = {
+                equipment = railway_gun_equipment_1
+            }
+            add_equipment_to_stockpile = {
+                type = train_equipment
+                amount = 10
+            }
+        }
+    }
+    shared_focus = {
+        id = PDY_deploy_motorized_brigades
+        ai_will_do = { factor = 1 }
+        icon = GFX_motorized_brigade
+        cost = 5
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        prerequisite = {
+            focus = PDY_import_rail_technology
+        }
+        relative_position_id = PDY_import_rail_technology
+        x = 0
+        y = 1
+        completion_reward = {
+            division_template = {
+                name = "Motorized Brigade"
+                regiments = {
+                    motorized = { x = 0 y = 0 }
+                    motorized = { x = 0 y = 1 }
+                    motorized = { x = 0 y = 2 }
+                    motorized = { x = 1 y = 0 }
+                    motorized = { x = 1 y = 1 }
+                }
+            }
+            293 = {
+                create_unit = {
+                    division = "name = \"1st Motorized Brigade\" division_template = \"Motorized Brigade\" start_experience_factor = 2 start_equipment_factor = 1"
+                    owner = PDY
+                    allow_spawning_on_enemy_provs = yes
+                }
+                create_unit = {
+                    division = "name = \"2nd Motorized Brigade\" division_template = \"Motorized Brigade\" start_experience_factor = 2  start_equipment_factor = 1"
+                    owner = PDY
+                    allow_spawning_on_enemy_provs = yes
+                }
+            }
+        }
+    }
+    shared_focus = {
+        id = PDY_plead_to_the_united_nations
+        ai_will_do = { factor = 1 }
+        icon = focus_commonwealth_un_membership
+        cost = 5
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        prerequisite = {
+            focus = PDY_mimic_german_efficiency
+        }
+        prerequisite = {
+            focus = PDY_revive_the_national_democratic_front
+        }
+        prerequisite = {
+            focus = PDY_deploy_motorized_brigades
+        }
+        relative_position_id = PDY_revive_the_national_democratic_front
+        x = 0
+        y = 1
+        completion_reward = {
+            every_country = {
+                limit = {
+                    OR = {
+                        tag = GER
+                        tag = PRC
+                        tag = PCA
+                        tag = FRA
+                        tag = ENG
+                        tag = SOV
+                        tag = RUS
+                    }
+                }
+                country_event = pdy.115
+            }
+        }
+    }
+    shared_focus = {
+        id = PDY_request_iaf_aid
+        ai_will_do = { factor = 1 }
+        icon = GFX_indian_air_force_focus
+        cost = 6
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        prerequisite = {
+            focus = PDY_call_upon_new_delhi
+        }
+        relative_position_id = PDY_call_upon_new_delhi
+        x = 2
+        y = 1
+        completion_reward = {
+            RAJ = {
+                country_event = pdy.112
+            }
+        }
+    }
+    shared_focus = {
+        id = PDY_south
+        ai_will_do = { factor = 1 }
+        icon = GFX_the_southern_movement
+        cost = 0
+        available = {
+            has_war = no
+            has_country_flag = PDY_Southern_Yemen_Flag
+        }
+        mutually_exclusive = {
+            focus =  PDY_united
+        }
+        x = 9
+        y = 0
+        relative_position_id = PDY_the_great_peoples_liberation_war
+        completion_reward = {
+            set_capital = { state = 979 }
+            add_popularity = {
+                ideology = communist
+                popularity = 0.02
+            }
+			set_cosmetic_tag = pdy_south_cosmetic
+            hidden_effect = {
+				set_country_flag = pdy_changed_flag_flag
+				news_event = {
+					id = news.321
+				}
+            }
+            add_ideas = civilian_economy
+            add_ideas = volunteer_only
+            hidden_effect = {
+                remove_ideas = PDY_peoples_war
+                remove_ideas = PDY_worker_militias
+                remove_ideas = PDY_lessons_of_exile
+                remove_ideas = PDY_endless_production
+                remove_ideas = PDY_lessons_of_exile
+                remove_ideas = PDY_stasi_guidance
+                remove_ideas = PDY_stasi_guidance_lar
+            }
+        }
+    }
+    shared_focus = {
+        id = PDY_united
+        ai_will_do = { factor = 1 }
+        icon = GFX_YEM_a_united_yemen
+        cost = 0
+
+        available = {
+            has_war = no
+            has_country_flag = PDY_Unified_Yemen_Flag
+        }
+        x = 2
+        y = 0
+        relative_position_id = PDY_south
+        mutually_exclusive = {
+            focus =  PDY_south
+        }
+        completion_reward = {
+            set_capital = { state = 973 }
+            add_popularity = {
+                ideology = moderate_socialist
+                popularity = 0.02
+            }
+			set_country_flag = integrated_north
+			hidden_effect = {
+				news_event = {
+					id = news.320
+				}
+			}
+            add_ideas = civilian_economy
+            add_ideas = volunteer_only
+            hidden_effect = {
+                remove_ideas = PDY_peoples_war
+                remove_ideas = PDY_worker_militias
+                remove_ideas = PDY_lessons_of_exile
+                remove_ideas = PDY_endless_production
+                remove_ideas = PDY_lessons_of_exile
+                remove_ideas = PDY_stasi_guidance
+                remove_ideas = PDY_stasi_guidance_lar
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_restoration
+        ai_will_do = { factor = 1 }
+        icon = embrace_the_revolution
+        cost = 1
+        x = -1
+        y = 1
+        relative_position_id = PDY_united
+        prerequisite = { focus = PDY_united focus = PDY_south }
+        completion_reward = {
+            add_political_power = 100
+            add_popularity = {
+                ideology = communist
+                popularity = 0.02
+            }
+            add_popularity = {
+                ideology = moderate_socialist
+                popularity = 0.01
+            }
+			country_event = { id = pdy.108 }
+        }
+    }
+    shared_focus  = {
+        id = PDY_constitution_restoration
+        ai_will_do = { factor = 1 }
+        icon = focus_syria_coalition_with_communists
+        cost = 3.6
+        x = -1
+        y = 1
+        relative_position_id = PDY_restoration
+        prerequisite = {
+            focus = PDY_restoration
+        }
+        completion_reward = {
+            add_ideas = PDY_constitution
+        }
+    }
+    shared_focus  = {
+        id = PDY_armed_forces
+        ai_will_do = { factor = 1 }
+        icon = GFX_PDY_the_peoples_armed_forces
+        cost = 3.6
+        x = 1
+        y = 1
+        relative_position_id = PDY_restoration
+        prerequisite = {
+            focus = PDY_restoration
+        }
+        completion_reward = {
+            add_ideas = PDY_army
+        }
+    }
+    shared_focus  = {
+        id = PDY_tribes
+        ai_will_do = { factor = 1 }
+        icon = GFX_the_tribes
+        cost = 2
+        x = 1
+        y = 1
+        relative_position_id = PDY_armed_forces
+        prerequisite = {
+            focus =  PDY_armed_forces
+        }
+        prerequisite = {
+            focus =  PDY_constitution_restoration
+        }
+        completion_reward = {
+		PDY = {
+        country_event = { id = pdy.43 }
+			}
+            add_popularity = {
+                ideology = nationalist
+                popularity = -0.05
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_jasmins
+        ai_will_do = { factor = 1 }
+        icon = GFX_PDY_the_jasmines
+        cost = 2
+        x = -1
+        y = 1
+        relative_position_id = PDY_armed_forces
+        prerequisite = {
+            focus =  PDY_armed_forces
+        }
+        prerequisite = {
+            focus =  PDY_constitution_restoration
+        }
+        completion_reward = {
+		PDY = {
+        country_event = { id = pdy.41 }
+			}
+        }
+    }
+    shared_focus  = {
+        id = PDY_trials
+        ai_will_do = { factor = 1 }
+        icon = anti_fascist
+        cost = 2
+        x = -3
+        y = 1
+        relative_position_id = PDY_armed_forces
+        prerequisite = {
+            focus =  PDY_armed_forces
+        }
+        prerequisite = {
+            focus =  PDY_constitution_restoration
+        }
+        completion_reward = {
+		PDY = {
+        country_event = { id = pdy.42 }
+			}
+            add_popularity = {
+                ideology = nationalist
+                popularity = -0.05
+            }
+            add_popularity = {
+                ideology = national_conservative
+                popularity = -0.05
+            }
+            add_popularity = {
+                ideology = fascist
+                popularity = -0.05
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_reorganization
+        ai_will_do = { factor = 1 }
+        icon = self_management
+        cost = 1
+        x = 0
+        y = 1
+        relative_position_id = PDY_jasmins
+        prerequisite = {
+            focus = PDY_jasmins
+        }
+        prerequisite = {
+            focus =  PDY_trials
+        }
+        prerequisite = {
+            focus = PDY_tribes
+        }
+        completion_reward = {
+            add_political_power = 100
+            659 = {
+                add_core_of = PDY
+            }
+            979 = {
+                add_core_of = PDY
+            }
+			IF = {
+				limit = { has_completed_focus = PDY_united }
+				972 = {
+					add_core_of = PDY
+				}
+				976 = {
+					add_core_of = PDY
+				}
+				975 = {
+					add_core_of = PDY
+				}
+				978 = {
+					add_core_of = PDY
+				}
+				973 = {
+					add_core_of = PDY
+				}
+				977 = {
+					add_core_of = PDY
+				}
+			}
+        }
+    }
+    shared_focus  = {
+        id = PDY_congress
+        ai_will_do = { factor = 1 }
+        icon = GFX_call_a_general_party_congress
+        cost = 10
+        x = 0
+        y = 1
+        relative_position_id = PDY_reorganization
+        prerequisite = {
+            focus = PDY_reorganization
+        }
+        completion_reward = {
+		PDY = {
+        country_event = { id = pdy.44 }
+			}
+        }
+    }
+    shared_focus  = {
+        id = PDY_moderates
+        ai_will_do = { factor = 1 }
+        icon = focus_ideology_moderate_socialist
+        cost = 0
+        x = 3
+        y = 1
+        relative_position_id = PDY_congress
+        prerequisite = {
+            focus = PDY_congress
+        }
+        available = {
+            has_country_flag = PDY_moderates_win
+        }
+        mutually_exclusive = {
+            focus =  PDY_loyalists
+        }
+        completion_reward = {
+        }
+    }
+    shared_focus  = {
+        id = PDY_loyalists
+        ai_will_do = { factor = 1 }
+        icon = focus_ideology_communist
+        cost = 0
+        x = -3
+        y = 1
+        relative_position_id = PDY_congress
+        prerequisite = {
+            focus = PDY_congress
+        }
+        available = {
+            has_country_flag = PDY_loyalists_win
+        }
+        mutually_exclusive = {
+            focus =  PDY_moderates
+        }
+        completion_reward = {
+        }
+    }
+    shared_focus  = {
+        id = PDY_marxism_leninism
+        ai_will_do = { factor = 1 }
+        icon = focus_syria_propaganda_effort
+        cost = 3.6
+        x = 0
+        y = 1
+        relative_position_id = PDY_loyalists
+        prerequisite = {
+            focus = PDY_loyalists
+        }
+        completion_reward = {
+            add_ideas = PDY_marxism
+        }
+    }
+    shared_focus  = {
+        id = PDY_full_nationalization
+        ai_will_do = { factor = 1 }
+        icon = GFX_goal_nationalize_industry
+        cost = 6.5
+        x = 0
+        y = 1
+        relative_position_id = PDY_marxism_leninism
+        prerequisite = {
+            focus = PDY_marxism_leninism
+        }
+        completion_reward = {
+            add_ideas = PDY_nationalization
+            659 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+            }
+            293 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+            }
+			country_event = pdy.105
+        }
+    }
+    shared_focus  = {
+        id = PDY_tribes_root
+        ai_will_do = { factor = 1 }
+        icon = political_pressure
+        cost = 7.9
+        x = 0
+        y = 1
+        relative_position_id = PDY_full_nationalization
+        prerequisite = {
+            focus = PDY_full_nationalization
+        }
+        completion_reward = {
+            add_political_power = 100
+            add_stability = 0.05
+        }
+    }
+    shared_focus  = {
+        id = PDY_control
+        ai_will_do = { factor = 1 }
+        icon = GFX_maintain_party_control
+        cost = 7.2
+        x = 0
+        y = 1
+        relative_position_id = PDY_tribes_root
+        prerequisite = {
+            focus =  PDY_tribes_root
+        }
+        completion_reward = {
+            add_ideas = PDY_ysp_control
+        }
+    }
+    shared_focus  = {
+        id = PDY_freedoms
+        ai_will_do = { factor = 1 }
+        icon = politburo_debate
+        cost = 3.6
+        x = 0
+        y = 1
+        relative_position_id = PDY_moderates
+        prerequisite = {
+            focus = PDY_moderates
+        }
+        completion_reward = {
+            add_stability = 0.05
+            add_ideas = PDY_freedom
+			if = {
+				limit = {
+					has_country_flag = pdry_jasmine_council_dissolved
+				}
+				country_event = pdy.77
+			}
+			if = {
+				limit = {
+					has_country_flag = pdry_maintained_national_front
+				}
+				country_event = pdy.76
+			}
+        }
+    }
+    shared_focus  = {
+        id = PDY_joint_economic_ventures
+        ai_will_do = { factor = 1 }
+        icon = investigate_industrial_corruption
+        cost = 6.5
+        x = 0
+        y = 1
+        relative_position_id = PDY_freedoms
+        prerequisite = {
+            focus =  PDY_freedoms
+        }
+        completion_reward = {
+            add_ideas = PDY_economic_ventures
+			country_event = pdy.91
+        }
+    }
+    shared_focus  = {
+        id = PDY_dialogue
+        ai_will_do = { factor = 1 }
+        icon = National_dialogue
+        cost = 7.9
+        x = 0
+        y = 1
+        relative_position_id = PDY_joint_economic_ventures
+        prerequisite = {
+            focus =  PDY_joint_economic_ventures
+        }
+        completion_reward = {
+            add_political_power = 100
+            add_war_support = 0.05
+            add_stability = 0.05
+        }
+    }
+    shared_focus  = {
+        id = PDY_elections
+        ai_will_do = { factor = 1 }
+        icon = focus_syria_local_elections
+        cost = 7.2
+        x = 0
+        y = 1
+        relative_position_id = PDY_dialogue
+        prerequisite = {
+            focus = PDY_dialogue
+        }
+        completion_reward = {
+            country_event = pdy.45
+        }
+    }
+    shared_focus  = {
+        id = PDY_suffrage
+        ai_will_do = { factor = 1 }
+        icon = GFX_reaffirms_universal_suffragge
+        cost = 5
+        prerequisite = { focus = PDY_loyalists  focus = PDY_moderates }
+        x = -3
+        y = 1
+        relative_position_id = PDY_moderates
+        completion_reward = {
+            add_ideas = PDY_equal_nation
+        }
+    }
+    shared_focus  = {
+        id = PDY_welfare_benefits
+        ai_will_do = { factor = 1 }
+        icon = focus_love_syria
+        cost = 6.5
+        prerequisite = {
+            focus = PDY_suffrage
+        }
+        x = -1
+        y = 1
+        relative_position_id = PDY_suffrage
+        completion_reward = {
+            add_ideas = PDY_welfare
+        }
+    }
+    shared_focus  = {
+        id = PDY_literacy_program
+        ai_will_do = { factor = 1 }
+        icon = GFX_yemen_literacy_programs
+        cost = 6.5
+        prerequisite = {
+            focus = PDY_suffrage
+        }
+        x = 1
+        y = 1
+        relative_position_id = PDY_suffrage
+        completion_reward = {
+            add_ideas = PDY_literacy
+        }
+    }
+    shared_focus  = {
+        id = PDY_rights
+        ai_will_do = { factor = 1 }
+        icon = democracy
+        cost = 6.5
+        prerequisite = {
+            focus = PDY_welfare_benefits
+        }
+        x = 0
+        y = 1
+        relative_position_id = PDY_welfare_benefits
+        completion_reward = {
+            add_ideas = PDY_unions
+        }
+    }
+    shared_focus  = {
+        id = PDY_university
+        ai_will_do = { factor = 1 }
+        icon = GFX_starscience
+        cost = 6.5
+        prerequisite = {
+            focus = PDY_literacy_program
+        }
+        x = 0
+        y = 1
+        relative_position_id = PDY_literacy_program
+        completion_reward = {
+            add_research_slot = 1
+        }
+    }
+    shared_focus  = {
+        id = PDY_healthcare
+        ai_will_do = { factor = 1 }
+        icon = hospital_focus
+        cost = 7.9
+        prerequisite = {
+            focus = PDY_rights
+        }
+        prerequisite = {
+            focus = PDY_university
+        }
+        x = -1
+        y = 1
+        relative_position_id = PDY_university
+        completion_reward = {
+            add_ideas = PDY_universal_healthcare
+        }
+    }
+    shared_focus  = {
+        id = PDY_secularism_focus
+        ai_will_do = { factor = 1 }
+        icon = GFX_a_secular_society
+        cost = 5
+        prerequisite = { focus = PDY_control  focus = PDY_elections focus = PDY_healthcare }
+        x = 0
+        y = 1
+        relative_position_id = PDY_control
+        completion_reward = {
+            add_ideas = PDY_secular
+        }
+    }
+    shared_focus  = {
+        id = PDY_support
+        ai_will_do = { factor = 1 }
+        icon = communist_star
+        cost = 5
+        prerequisite = { focus = PDY_control  focus = PDY_elections focus = PDY_healthcare  }
+        x = 0
+        y = 1
+        relative_position_id = PDY_elections
+        completion_reward = {
+            add_political_power = 100
+            add_war_support = 0.05
+        }
+    }
+    shared_focus  = {
+        id = PDY_recruits
+        ai_will_do = { factor = 1 }
+        icon = focus_syria_woman_fighters
+        cost = 6.5
+        prerequisite = {
+            focus = PDY_secularism_focus
+        }
+        x = 1
+        y = 1
+        relative_position_id = PDY_secularism_focus
+        completion_reward = {
+            add_ideas = PDY_recruitment 
+        }
+    }
+    shared_focus  = {
+        id = PDY_morale
+        ai_will_do = { factor = 1 }
+        icon = GFX_high_morale
+        cost = 6.5
+        prerequisite = {
+            focus = PDY_support
+        }
+        x = -1
+        y = 1
+        relative_position_id = PDY_support
+        completion_reward = {
+            add_ideas = PDY_proud_army
+        }
+    }
+    shared_focus  = {
+        id = PDY_united_republic
+        ai_will_do = { factor = 1 }
+        icon = GFX_PDY_the_republic_united_forever
+        cost = 5
+        prerequisite = {
+            focus = PDY_morale
+        }
+        prerequisite = {
+            focus = PDY_recruits
+        }
+        x = -2
+        y = 1
+        relative_position_id = PDY_morale
+        completion_reward = {
+            add_political_power = 100
+            add_stability = 0.10
+            add_ideas = PDY_proud_republic
+			IF = {
+				limit = {
+					has_country_flag = pdry_on_path_to_democracy
+				}
+				country_event = {
+					id = pdy.78
+				}
+			}
+        }
+    }
+    shared_focus = {
+        id = PDY_plan
+        ai_will_do = { factor = 1 }
+        icon = GFX_the_four_year_plan
+        cost = 3.6
+        available = {
+            OR = {
+                has_completed_focus = PDY_full_nationalization
+                has_completed_focus = PDY_joint_economic_ventures
+				has_country_flag = PDY_stasi_takeover
+            }
+        }
+        x = 9
+        y = 0
+        relative_position_id = PDY_united
+        completion_reward = {
+            every_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+                }
+            }
+            add_stability = 0.05
+            add_war_support = 0.05
+            add_political_power = 25
+            add_timed_idea = {
+                idea = PDY_plan_idea 
+                days = 1460
+            }
+            country_event = pdy.79
+        }
+    }
+    shared_focus = {
+        id = PDY_development
+        ai_will_do = { factor = 1 }
+        icon = industry_paper
+        cost = 5
+        prerequisite = {
+            focus =  PDY_plan
+        }
+        x = 0
+        y = 1
+        relative_position_id = PDY_plan
+        completion_reward = {
+            every_owned_state = {
+                add_extra_state_shared_building_slots = 1
+            }
+            979 = {
+                add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+                }
+            }
+            293 = {
+                add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+                }
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_water
+        ai_will_do = { factor = 1 }
+        icon = GFX_yemen_water_and_irrigation_works
+        cost = 6.5
+        prerequisite = {
+            focus =  PDY_development
+        }
+        x = -3
+        y = 1
+        relative_position_id = PDY_development
+        completion_reward = {
+            972 = {
+                add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+                }
+            }
+            293 = {
+                add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+                }
+                add_extra_state_shared_building_slots = 1
+            }
+            add_ideas = PDY_water_idea 
+            country_event = pdy.80
+        }
+    }
+    shared_focus  = {
+        id = PDY_farming
+        ai_will_do = { factor = 1 }
+        icon = free_some_farms
+        cost = 3.6
+        prerequisite = {
+            focus = PDY_water
+        }
+        x = 0
+        y = 1
+        relative_position_id = PDY_water
+        completion_reward = {
+            add_ideas = PDY_farming_idea
+            country_event = pdy.81
+        }
+    }
+    shared_focus  = {
+        id = PDY_electricity
+        ai_will_do = { factor = 1 }
+        icon = generic_electric
+        cost = 6.5
+        prerequisite = {
+            focus = PDY_development
+        }
+        x = -1
+        y = 1
+        relative_position_id = PDY_development
+        completion_reward = {
+            add_ideas = PDY_electricity_idea
+            country_event = pdy.82
+        }
+    }
+    shared_focus  = {
+        id = PDY_manufacturing
+        ai_will_do = { factor = 1 }
+        icon = production
+        cost = 5
+        prerequisite = {
+            focus = PDY_electricity
+        }
+        x = 0
+        y = 1
+        relative_position_id = PDY_electricity
+        completion_reward = {
+            659 = {
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+                }
+            }
+            979 = {
+                add_extra_state_shared_building_slots = 2
+            }
+            add_ideas = PDY_manufacturing_idea
+        }
+    }
+    shared_focus  = {
+        id = PDY_coast
+        ai_will_do = { factor = 1 }
+        icon = GFX_YEM_yemen_coastal_highway
+        cost = 6.5
+        prerequisite = {
+            focus = PDY_manufacturing
+        }
+        prerequisite = {
+            focus = PDY_farming
+        }
+        x = -1
+        y = 1
+        relative_position_id = PDY_manufacturing
+        completion_reward = {
+            293 = {
+                add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+                }
+            }
+            659 = {
+                add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+                }
+            }
+            974 = {
+                add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+                }
+            }
+            country_event = pdy.83
+        }
+    }
+    shared_focus  = {
+        id = PDY_defenses
+        ai_will_do = { factor = 1 }
+        icon = AK_cog_focus
+        cost = 6.5
+        prerequisite = {
+            focus =  PDY_development
+        }
+        x = 1
+        y = 1
+        relative_position_id = PDY_development
+        completion_reward = {
+            659 = {
+                add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+                }
+            }
+            293 = {
+                add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+                }
+            }
+            979 = {
+                add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+                }
+                add_building_construction = {
+					type = coastal_bunker
+					level = 1
+					instant_build = yes
+                }
+            }
+            293 = {
+                add_building_construction = {
+                    type = bunker
+                    level = 1
+                    instant_build = yes
+                    province = 13685
+                }
+                add_building_construction = {
+                    type = coastal_bunker
+                    level = 1
+                    instant_build = yes
+                    province = 13685
+                 }
+                 add_building_construction = {
+                    type = bunker
+                    level = 1
+                    instant_build = yes
+                    province = 13689
+                }
+                add_building_construction = {
+                    type = coastal_bunker
+                    level = 1
+                    instant_build = yes
+                    province = 13689
+                }
+            }  
+        }
+    }
+    shared_focus  = {
+        id = PDY_workers
+        ai_will_do = { factor = 1 }
+        icon = builders
+        cost = 5
+        prerequisite = {
+            focus = PDY_defenses
+        }
+        x = 0
+        y = 1
+        relative_position_id = PDY_defenses
+        completion_reward = {
+            add_ideas = PDY_workers_idea
+        }
+    }
+    shared_focus  = {
+        id = PDY_hub
+        ai_will_do = { factor = 1 }
+        icon = GFX_the_aden_hub
+        cost = 6.5
+        prerequisite = {
+            focus = PDY_development
+        }
+        x = 3
+        y = 1
+        relative_position_id = PDY_development
+        completion_reward = {
+             979 = {
+                add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+                }
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = {
+					type = naval_base
+					level = 2
+					instant_build = yes
+                }
+            }
+            293 = {
+                add_building_construction = {
+                    type = naval_base
+                    level = 1
+                    instant_build = yes
+                    province = 13685
+                }
+                add_building_construction = {
+                    type = naval_base
+                    level = 1
+                    instant_build = yes
+                    province = 13689
+                }
+            }
+            add_ideas = PDY_hub_idea
+            country_event = pdy.84
+        }
+    }
+    shared_focus  = {
+        id = PDY_tourism
+        ai_will_do = { factor = 1 }
+        icon = GFX_YEM_promote_tourism
+        cost = 3.6
+        prerequisite = {
+            focus = PDY_hub
+        }
+        x = 0
+        y = 1
+        relative_position_id = PDY_hub
+        completion_reward = {
+            974 = {
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = {
+					type = naval_base
+					level = 1
+					instant_build = yes
+                }
+                add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+                }
+                set_building_level = {
+                    type = air_base
+                    level = 1
+                    instant_build = yes
+                }
+            }
+            country_event = pdy.85
+        }
+    }
+    shared_focus  = {
+        id = PDY_resources
+        ai_will_do = { factor = 1 }
+        icon = oil
+        cost = 6.5
+        prerequisite = {
+            focus = PDY_workers
+        }
+        prerequisite = {
+            focus = PDY_tourism
+        }
+        x = -1
+        y = 1
+        relative_position_id = PDY_tourism
+        completion_reward = {
+            add_resource = {
+                type = oil
+                amount = 30
+                state = 293
+            }
+            add_resource = {
+                type = steel
+                amount = 20
+                state = 293
+            }
+            add_resource = {
+                type = tungsten
+                amount = 6
+                state = 293
+            }
+            add_resource = {
+                type = chromium
+                amount = 6
+                state = 659
+            }
+            add_resource = {
+                type = steel
+                amount = 4
+                state = 659
+            }
+            add_resource = {
+                type = tungsten
+                amount = 4
+                state = 659
+            }
+            add_ideas = PDY_resources_idea
+            country_event = pdy.86
+        }
+    }
+    shared_focus  = {
+        id = PDY_sufficiency
+        ai_will_do = { factor = 1 }
+        icon = ethiopia_self_sufficiency
+        cost = 5
+        prerequisite = {
+            focus = PDY_coast
+        }
+        prerequisite = {
+            focus = PDY_resources
+        }
+        x = 2
+        y = 1
+        relative_position_id = PDY_coast
+        completion_reward = {
+            add_ideas = PDY_sufficiency_idea
+        }
+    }
+    shared_focus  = {
+        id = PDY_internationalism
+        ai_will_do = { factor = 1 }
+        icon = focus_commonwealth_un_membership
+        cost = 1
+        available = {
+            OR = {
+                has_completed_focus = PDY_elections
+                has_completed_focus = PDY_control
+				has_country_flag = PDY_stasi_takeover
+            }
+            has_completed_focus = PDY_development
+        }
+        x = 12
+        y = 0
+        relative_position_id = PDY_plan
+        completion_reward = {
+            add_political_power = 25
+        }
+    }
+    shared_focus  = {
+        id = PDY_socialism
+        ai_will_do = { factor = 1 }
+        icon = communist_star
+        cost = 2
+        prerequisite = {
+            focus =  PDY_internationalism
+        }
+        x = -4
+        y = 1
+        relative_position_id = PDY_internationalism
+        completion_reward = {
+            if = {
+                limit = {
+                    UAR = {
+                        OR = {
+                            has_government = moderate_socialist
+                            has_government = communist
+                            has_government = revolutionary_socialist
+                        }
+                    }
+                }
+                add_opinion_modifier = {
+                    target = UAR
+                    modifier = pdy_relations
+                }
+                add_opinion_modifier = {
+                    target = UAR
+                    modifier = pdy_trade 
+                }
+            }
+            if = {
+                limit = {
+                    EGY = {
+                        OR = {
+                            has_government = moderate_socialist
+                            has_government = communist
+                            has_government = revolutionary_socialist
+                        }
+                    }
+                }
+                add_opinion_modifier = {
+                    target = EGY
+                    modifier = pdy_relations
+                }
+                add_opinion_modifier = {
+                    target = EGY
+                    modifier = pdy_trade 
+                }
+            }
+            if = {
+                limit = {
+                    SYR = {
+                        OR = {
+                            has_government = moderate_socialist
+                            has_government = communist
+                            has_government = revolutionary_socialist
+                        }
+                    }
+                }
+                add_opinion_modifier = {
+                    target = SYR
+                    modifier = pdy_relations
+                }
+                add_opinion_modifier = {
+                    target = SYR
+                    modifier = pdy_trade 
+                }
+            }
+            if = {
+                limit = {
+                    OMA = {
+                        OR = {
+                            has_government = moderate_socialist
+                            has_government = communist
+                            has_government = revolutionary_socialist
+                        }
+                    }
+                }
+                add_opinion_modifier = {
+                    target = OMA
+                    modifier = pdy_relations
+                }
+                add_opinion_modifier = {
+                    target = OMA
+                    modifier = pdy_trade 
+                }
+            }
+            if = {
+                limit = {
+                    UAE = {
+                        OR = {
+                            has_government = moderate_socialist
+                            has_government = communist
+                            has_government = revolutionary_socialist
+                        }
+                    }
+                }
+                add_opinion_modifier = {
+                    target = UAE
+                    modifier = pdy_relations
+                }
+                add_opinion_modifier = {
+                    target = UAE
+                    modifier = pdy_trade 
+                }
+            }
+            if = {
+                limit = {
+                    SAU = {
+                        OR = {
+                            has_government = moderate_socialist
+                            has_government = communist
+                            has_government = revolutionary_socialist
+                        }
+                    }
+                }
+                add_opinion_modifier = {
+                    target = SAU
+                    modifier = pdy_relations
+                }
+                add_opinion_modifier = {
+                    target = SAU
+                    modifier = pdy_trade 
+                }
+            }
+            if = {
+                limit = {
+                    IRQ = {
+                        OR = {
+                            has_government = moderate_socialist
+                            has_government = communist
+                            has_government = revolutionary_socialist
+                        }
+                    }
+                }
+                add_opinion_modifier = {
+                    target = IRQ
+                    modifier = pdy_relations
+                }
+                add_opinion_modifier = {
+                    target = IRQ
+                    modifier = pdy_trade 
+                }
+            }
+            if = {
+                limit = {
+                    JOR = {
+                        OR = {
+                            has_government = moderate_socialist
+                            has_government = communist
+                            has_government = revolutionary_socialist
+                        }
+                    }
+                }
+                add_opinion_modifier = {
+                    target = JOR
+                    modifier = pdy_relations
+                }
+                add_opinion_modifier = {
+                    target = JOR
+                    modifier = pdy_trade 
+                }
+            }
+            if = {
+                limit = {
+                    PAL = {
+                        OR = {
+                            has_government = moderate_socialist
+                            has_government = communist
+                            has_government = revolutionary_socialist
+                        }
+                    }
+                }
+                add_opinion_modifier = {
+                    target = PAL
+                    modifier = pdy_relations
+                }
+                add_opinion_modifier = {
+                    target = PAL
+                    modifier = pdy_trade 
+                }
+            }
+            if = {
+                limit = {
+                    SOM = {
+                        OR = {
+                            has_government = moderate_socialist
+                            has_government = communist
+                            has_government = revolutionary_socialist
+                        }
+                    }
+                }
+                add_opinion_modifier = {
+                    target = SOM
+                    modifier = pdy_relations
+                }
+                add_opinion_modifier = {
+                    target = SOM
+                    modifier = pdy_trade 
+                }
+            }
+            if = {
+                limit = {
+                    QAT = {
+                        OR = {
+                            has_government = moderate_socialist
+                            has_government = communist
+                            has_government = revolutionary_socialist
+                        }
+                    }
+                }
+                add_opinion_modifier = {
+                    target = QAT
+                    modifier = pdy_relations
+                }
+                add_opinion_modifier = {
+                    target = QAT
+                    modifier = pdy_trade 
+                }
+            }
+            if = {
+                limit = {
+                    LEB = {
+                        OR = {
+                            has_government = moderate_socialist
+                            has_government = communist
+                            has_government = revolutionary_socialist
+                        }
+                    }
+                }
+                add_opinion_modifier = {
+                    target = LEB
+                    modifier = pdy_relations
+                }
+                add_opinion_modifier = {
+                    target = LEB
+                    modifier = pdy_trade 
+                }
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_pop_coucil
+        ai_will_do = { factor = 1 }
+        icon = GFX_the_south_arabian_popular_council
+        cost = 5
+        prerequisite = {
+            focus = PDY_socialism
+        }
+        x = 0
+        y = 1
+        relative_position_id = PDY_socialism
+        completion_reward = {
+            add_ideas = PDY_sapc_leader
+            OMA = {
+                country_event = { id = pdy.1 }
+            }
+            QAT = {
+                country_event = { id = pdy.1 }
+            }
+            UAE = {
+                country_event = { id = pdy.1 }
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_observers
+        ai_will_do = { factor = 1 }
+        icon = shaking_hands_1
+        cost = 2
+        prerequisite = {
+            focus = PDY_pop_coucil
+        }
+        x = 0
+        y = 1
+        relative_position_id = PDY_pop_coucil
+        completion_reward = {
+            if = {
+                limit = {
+                   country_exists = DJI
+                }
+                DJI = {
+                    country_event = { id = pdy.4 }
+                }
+            }
+            if = {
+                limit = {
+                   country_exists = SOM
+                }
+                SOM = {
+                    country_event = { id = pdy.4 }
+                }
+            }
+            if = {
+                limit = {
+                   country_exists = PER
+                }
+                PER = {
+                    country_event = { id = pdy.4 }
+                }
+            }
+            if = {
+                limit = {
+                   country_exists = UAR
+                }
+                UAR = {
+                    country_event = { id = pdy.4 }
+                }
+            }
+            if = {
+                limit = {
+                   country_exists = EGY
+                }
+                EGY = {
+                    country_event = { id = pdy.4 }
+                }
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_market
+        ai_will_do = { factor = 1 }
+        icon = focus_socialist_trading_network
+        cost = 3.6
+        prerequisite = {
+            focus = PDY_observers
+        }
+        x = -1
+        y = 1
+        relative_position_id = PDY_observers
+        completion_reward = {
+            if = {
+                limit = {
+                    has_idea = PDY_sapc_leader
+                }   
+                swap_ideas = {
+                    remove_idea = PDY_sapc_leader
+                    add_idea = PDY_sapc_leader_two
+                }
+            }
+            if = {
+                limit = {
+                    has_idea = PDY_sapc_leader_three
+                }   
+                swap_ideas = {
+                    remove_idea = PDY_sapc_leader_three
+                    add_idea = PDY_sapc_leader_four
+                }
+            }
+            every_country = {
+			    limit = {
+				    has_idea = PDY_sapc_member
+			    }
+			    swap_ideas = {
+                    remove_idea = PDY_sapc_member
+                    add_idea = PDY_sapc_member_two
+                }
+            }
+            every_country = {
+			    limit = {
+				    has_idea = PDY_sapc_member_three
+			    }
+			    swap_ideas = {
+                    remove_idea = PDY_sapc_member_three
+                    add_idea = PDY_sapc_member_four
+                }
+            }
+            every_country = {
+			    limit = {
+				    has_idea = PDY_sapc_observer
+			    }
+			    swap_ideas = {
+                    remove_idea = PDY_sapc_observer
+                    add_idea = PDY_sapc_observer_two
+                }
+            }
+            every_country = {
+			    limit = {
+				    has_idea = PDY_sapc_observer_three
+			    }
+			    swap_ideas = {
+                    remove_idea = PDY_sapc_observer_three
+                    add_idea = PDY_sapc_observer_four
+                }
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_common_army
+        ai_will_do = { factor = 1 }
+        icon = red_gold_army
+        cost = 3.6
+        prerequisite = {
+            focus = PDY_observers
+        }
+        x = 1
+        y = 1
+        relative_position_id = PDY_observers
+        completion_reward = {
+            if = {
+                limit = {
+                    has_idea = PDY_sapc_leader
+                }   
+                swap_ideas = {
+                    remove_idea = PDY_sapc_leader
+                    add_idea = PDY_sapc_leader_three
+                }
+            }
+            if = {
+                limit = {
+                    has_idea = PDY_sapc_leader_two
+                }   
+                swap_ideas = {
+                    remove_idea = PDY_sapc_leader_two
+                    add_idea = PDY_sapc_leader_four
+                }
+            }
+            every_country = {
+			    limit = {
+				    has_idea = PDY_sapc_member
+			    }
+			    swap_ideas = {
+                    remove_idea = PDY_sapc_member
+                    add_idea = PDY_sapc_member_three
+                }
+            }
+            every_country = {
+			    limit = {
+				    has_idea = PDY_sapc_member_two
+			    }
+			    swap_ideas = {
+                    remove_idea = PDY_sapc_member_two
+                    add_idea = PDY_sapc_member_four
+                }
+            }
+            every_country = {
+			    limit = {
+				    has_idea = PDY_sapc_observer
+			    }
+			    swap_ideas = {
+                    remove_idea = PDY_sapc_observer
+                    add_idea = PDY_sapc_observer_three
+                }
+            }
+            every_country = {
+			    limit = {
+				    has_idea = PDY_sapc_observer_two
+			    }
+			    swap_ideas = {
+                    remove_idea = PDY_sapc_observer_two
+                    add_idea = PDY_sapc_observer_four
+                }
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_alliance
+        ai_will_do = { factor = 1 }
+        icon = red_hands_shaking
+        cost = 2
+		available = {
+			is_in_faction = no
+		}
+        prerequisite = {
+            focus = PDY_common_army
+        }
+        prerequisite = {
+            focus = PDY_market
+        }
+        mutually_exclusive = {
+            focus =  PDY_warsaw_pact
+        }
+        x = -1
+        y = 1
+        relative_position_id = PDY_common_army
+        completion_reward = {
+            create_faction = "South Arabian Alliance"
+            every_country = {
+			    limit = {
+				    has_idea = PDY_sapc_member_four
+			    }
+			    country_event = { id = pdy.7 }
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_unity_dream
+        ai_will_do = { factor = 1 }
+        icon = national_unity
+        cost = 1
+        prerequisite = {
+            focus = PDY_alliance
+        }
+        x = 0
+        y = 1
+        relative_position_id = PDY_alliance
+        completion_reward = {
+            add_political_power = 25
+        }
+    }
+    shared_focus  = {
+        id = PDY_religion
+        ai_will_do = { factor = 1 }
+        icon = protect_muslims
+        cost = 3.6
+        prerequisite = {
+            focus = PDY_unity_dream
+        }
+        x = -2
+        y = 1
+        relative_position_id = PDY_unity_dream
+        completion_reward = {
+            country_event = { id = pdy.10 }
+        }
+    }
+    shared_focus  = {
+        id = PDY_federal
+        ai_will_do = { factor = 1 }
+        icon = forceful_treaty
+        cost = 3.6
+        prerequisite = {
+            focus = PDY_unity_dream
+        }
+        x = 0
+        y = 1
+        relative_position_id = PDY_unity_dream
+        completion_reward = {
+            country_event = { id = pdy.11 }
+        }
+    }
+    shared_focus  = {
+        id = PDY_parties
+        ai_will_do = { factor = 1 }
+        icon = com_fascism
+        cost = 3.6
+        prerequisite = {
+            focus = PDY_unity_dream
+        }
+        x = 2
+        y = 1
+        relative_position_id = PDY_unity_dream
+        completion_reward = {
+            country_event = { id = pdy.12 }
+        }
+    }
+    shared_focus  = {
+        id = PDY_treaties
+        ai_will_do = { factor = 1 }
+        icon = focus_enforce_1990_constitution
+        cost = 6.5
+        prerequisite = {
+            focus = PDY_parties
+        }
+        prerequisite = {
+            focus = PDY_federal
+        }
+        prerequisite = {
+            focus = PDY_religion
+        }
+        x = -2
+        y = 1
+        relative_position_id = PDY_parties
+        completion_reward = {
+            add_political_power = 100
+        }
+    }
+    shared_focus  = {
+        id = PDY_south_arabia
+        ai_will_do = { factor = 1 }
+        icon = GFX_PDY_the_union_of_south_arabia
+        cost = 3.6
+        prerequisite = {
+            focus = PDY_treaties
+        }
+        x = 0
+        y = 1
+        relative_position_id = PDY_treaties
+        completion_reward = {
+			set_cosmetic_tag = PDY_southern_arabia_union_cosmetic
+            set_country_flag = integrated_OMA
+            set_country_flag = integrated_UAE
+            set_country_flag = integrated_QAT
+            every_country = {
+			    limit = {
+				    has_idea = PDY_sapc_member_four
+                }
+                country_event = { id = pdy.13 }
+			}
+		}
+    }
+    shared_focus  = {
+        id = PDY_workers_unite
+        ai_will_do = { factor = 1 }
+        icon = GFX_workers_of_the_arab_world_unite
+        cost = 7.9
+        x = 0
+        y = 1
+        relative_position_id = PDY_south_arabia
+        prerequisite = {
+            focus = PDY_south_arabia
+        }
+        will_lead_to_war_with = UAR
+        will_lead_to_war_with = EGY
+        will_lead_to_war_with = SYR
+        will_lead_to_war_with = OMA
+        will_lead_to_war_with = UAE
+        will_lead_to_war_with = QAT
+        will_lead_to_war_with = YEM
+        will_lead_to_war_with = YAR
+        will_lead_to_war_with = IRQ
+        will_lead_to_war_with = JOR
+        will_lead_to_war_with = PAL
+        will_lead_to_war_with = LEB
+        will_lead_to_war_with = SAU
+        completion_reward = {
+            if = {
+                limit = {
+                    country_exists = OMA
+                }   
+                create_wargoal = {
+                    type = annex_everything
+                    target = OMA
+                }  
+            }
+            if = {
+                limit = {
+                    country_exists = SAU
+                }   
+                create_wargoal = {
+                    type = annex_everything
+                    target = SAU
+                }  
+            }
+            if = {
+                limit = {
+                    country_exists = UAE
+                }   
+                create_wargoal = {
+                    type = annex_everything
+                    target = UAE
+                }  
+            }
+            if = {
+                limit = {
+                    country_exists = YAR
+                }   
+                create_wargoal = {
+                    type = annex_everything
+                    target = YAR
+                }  
+            }
+            if = {
+                limit = {
+                    country_exists = YEM
+                }   
+                create_wargoal = {
+                    type = annex_everything
+                    target = YEM
+                }  
+            }
+            if = {
+                limit = {
+                    country_exists = QAT
+                }   
+                create_wargoal = {
+                    type = annex_everything
+                    target = QAT
+                }  
+            }
+            if = {
+                limit = {
+                    country_exists = IRQ
+                }   
+                create_wargoal = {
+                    type = annex_everything
+                    target = IRQ
+                }  
+            }
+            if = {
+                limit = {
+                    country_exists = JOR
+                }   
+                create_wargoal = {
+                    type = annex_everything
+                    target = JOR
+                }  
+            }
+            if = {
+                limit = {
+                    country_exists = PAL
+                }   
+                create_wargoal = {
+                    type = annex_everything
+                    target = PAL
+                }  
+            }
+            if = {
+                limit = {
+                    country_exists = LEB
+                }   
+                create_wargoal = {
+                    type = annex_everything
+                    target = LEB
+                }  
+            }
+            if = {
+                limit = {
+                    country_exists = SYR
+                }   
+                create_wargoal = {
+                    type = annex_everything
+                    target = SYR
+                }  
+            }
+            if = {
+                limit = {
+                    country_exists = UAR
+                }   
+                create_wargoal = {
+                    type = annex_everything
+                    target = UAR
+                }  
+            }
+            if = {
+                limit = {
+                    country_exists = EGY
+                }   
+                create_wargoal = {
+                    type = annex_everything
+                    target = EGY
+                }  
+            }
+            set_country_flag = unifying_arabia
+        }
+    }
+    shared_focus  = {
+        id = PDY_friends
+        ai_will_do = { factor = 1 }
+        icon = GFX_friends_of_the_world_revolution
+        cost = 2
+        x = 3
+        y = 1
+        relative_position_id = PDY_internationalism
+        prerequisite = {
+            focus = PDY_internationalism
+        }
+        completion_reward = {
+            add_political_power = 10
+        }
+    }
+    shared_focus  = {
+        id = PDY_route
+        ai_will_do = { factor = 1 }
+        icon = GFX_PDY_the_oriental_route
+        cost = 1
+        x = -3
+        y = 1
+        relative_position_id = PDY_friends
+        prerequisite = {
+            focus = PDY_friends
+        }
+        completion_reward = {
+            add_ideas = PDY_route_idea 
+        }
+    }
+    shared_focus  = {
+        id = PDY_china
+        ai_will_do = { factor = 1 }
+        icon = GFX_the_chinese_dragon
+        cost = 3.6
+        x = -1
+        y = 1
+        relative_position_id = PDY_route
+        prerequisite = {
+            focus = PDY_route
+        }
+		available = {
+			country_exists = PRC
+		}
+        completion_reward = {
+            add_opinion_modifier = {
+                target = PRC
+                modifier = pdy_china_relation
+            }
+            add_opinion_modifier = {
+                target = PRC
+                modifier = trade_influence_3
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_india
+        ai_will_do = { factor = 1 }
+        icon = GFX_the_indian_tiger
+        cost = 3.6
+        x = 1
+        y = 1
+        relative_position_id = PDY_route
+        prerequisite = {
+            focus = PDY_route
+        }
+		available = {
+			country_exists = RAJ
+			RAJ = {
+				OR = {
+					has_government = communist
+					has_government = revolutionary_socialist
+					has_government = moderate_socialist
+					has_government = new_democrat
+					has_government = liberal
+				}
+			}
+		}
+        completion_reward = {
+            add_opinion_modifier = {
+                target = RAJ
+                modifier = pdy_india_relation
+            }
+            add_opinion_modifier = {
+                target = RAJ
+                modifier = trade_influence_3
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_germany
+        ai_will_do = { factor = 1 }
+        icon = GFX_the_yemen_german_treaty
+        cost = 3.6
+        x = 0
+        y = 1
+        relative_position_id = PDY_friends
+        prerequisite = {
+            focus = PDY_friends
+        }
+        completion_reward = {
+            add_opinion_modifier = {
+                target = GER
+                modifier = pdy_germany_relation
+            }
+            add_opinion_modifier = {
+                target = GER
+                modifier = trade_influence_3
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_eu
+        ai_will_do = { factor = 1 }
+        icon = uk_join_the_eu
+        cost = 5
+        x = 0
+        y = 1
+        relative_position_id = PDY_germany
+        prerequisite = {
+            focus = PDY_germany
+        }
+        completion_reward = {
+            293 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+                add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_equipment
+        ai_will_do = { factor = 1 }
+        icon = GFX_red_star_ak47
+        cost = 5
+        x = -1
+        y = 1
+        relative_position_id = PDY_eu
+        prerequisite = {
+            focus = PDY_eu
+        }
+        completion_reward = {
+            add_equipment_to_stockpile = {
+                type = infantry_equipment
+                amount = 3000
+            } 
+            add_equipment_to_stockpile = {
+                type = support_equipment
+                amount = 200
+            } 
+            add_equipment_to_stockpile = {
+                type = artillery_equipment
+                amount = 150 
+            } 
+            add_equipment_to_stockpile = {
+                type = fighter_equipment_1
+                amount = 75
+            } 
+        }
+    }
+    shared_focus  = {
+        id = PDY_intel
+        ai_will_do = { factor = 1 }
+        icon = cooperate
+        cost = 5
+        x = 1
+        y = 1
+        relative_position_id = PDY_eu
+        prerequisite = {
+            focus = PDY_eu
+        }
+        completion_reward = {
+            add_ideas = PDY_intel_idea
+        }
+    }
+    shared_focus  = {
+        id = PDY_warsaw_pact
+        ai_will_do = { factor = 1 }
+        icon = warsaw_pact
+        cost = 2
+        x = -1
+        y = 1
+        relative_position_id = PDY_intel
+        prerequisite = {
+            focus = PDY_intel
+        }
+        prerequisite = {
+            focus = PDY_equipment
+        }
+        mutually_exclusive = {
+            focus =  PDY_alliance
+        }
+		available = {
+			is_in_faction = no
+		}
+        completion_reward = {
+            if = {
+                limit = {
+                    SOV = {
+                        exists = yes
+                        OR = {
+                            has_government = communist
+                            has_government = revolutionary_socialist
+                            has_government = moderate_socialist 
+                        }
+                        is_faction_leader = yes
+                    }
+                }
+                SOV = {
+                    country_event = pdy.87
+                }
+            }
+            else = {
+                GER = {
+                    country_event = pdy.87
+                }
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_training
+        ai_will_do = { factor = 1 }
+        icon = soviet_military
+        cost = 3.6
+        x = -1
+        y = 1
+        relative_position_id = PDY_warsaw_pact
+        prerequisite = {
+            focus = PDY_warsaw_pact
+        }
+        completion_reward = {
+            add_ideas = PDY_advisors
+            add_tech_bonus = {
+                bonus = 0.75
+                uses = 2
+                category = land_doctrine
+            }
+            add_tech_bonus = {
+                bonus = 0.50
+                uses = 1
+                category = air_doctrine
+            }
+            add_tech_bonus = {
+                bonus = 0.25
+                uses = 1
+                category = infantry_weapons
+            }
+            add_offsite_building = {
+                type = arms_factory 
+                level = 1
+            }
+			country_event = pdy.93
+        }
+    }
+    shared_focus  = {
+        id = PDY_navy
+        ai_will_do = { factor = 1 }
+        icon = battleship
+        cost = 3.6
+        x = 1
+        y = 1
+        relative_position_id = PDY_warsaw_pact
+        prerequisite = {
+            focus = PDY_warsaw_pact
+        }
+        completion_reward = {
+            add_tech_bonus = {
+                bonus = 0.75
+                uses = 2
+                category = naval_doctrine
+            }
+            add_tech_bonus = {
+                bonus = 0.50
+                uses = 1
+                category = dd_tech
+            }
+            659 = {
+                add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+                }
+                add_extra_state_shared_building_slots = 1
+            }
+            293 = {
+                add_building_construction = {
+                    type = naval_base
+                    level = 1
+                    instant_build = yes
+                    province = 13685
+                }
+                add_building_construction = {
+                    type = naval_base
+                    level = 1
+                    instant_build = yes
+                    province = 13689
+                }
+            }
+			country_event = pdy.92
+        }
+    }
+    shared_focus  = {
+        id = PDY_liberation
+        ai_will_do = { factor = 1 }
+        icon = focus_italian_socialist_international
+        cost = 10
+        x = -1
+        y = 1
+        relative_position_id = PDY_navy
+        prerequisite = {
+            focus =  PDY_navy
+        }
+        prerequisite = {
+            focus =  PDY_training
+        }
+        will_lead_to_war_with = UAR
+        will_lead_to_war_with = EGY
+        will_lead_to_war_with = SYR
+        will_lead_to_war_with = OMA
+        will_lead_to_war_with = UAE
+        will_lead_to_war_with = QAT
+        will_lead_to_war_with = YEM
+        will_lead_to_war_with = YAR
+        will_lead_to_war_with = IRQ
+        will_lead_to_war_with = JOR
+        will_lead_to_war_with = PAL
+        will_lead_to_war_with = LEB
+        will_lead_to_war_with = SAU
+        completion_reward = {
+            if = {
+                limit = {
+                    country_exists = OMA
+                }   
+                create_wargoal = {
+                    type = annex_everything
+                    target = OMA
+                }  
+            }
+            if = {
+                limit = {
+                    country_exists = SAU
+                }   
+                create_wargoal = {
+                    type = annex_everything
+                    target = SAU
+                }  
+            }
+            if = {
+                limit = {
+                    country_exists = UAE
+                }   
+                create_wargoal = {
+                    type = annex_everything
+                    target = UAE
+                }  
+            }
+            if = {
+                limit = {
+                    country_exists = YAR
+                }   
+                create_wargoal = {
+                    type = annex_everything
+                    target = YAR
+                }  
+            }
+            if = {
+                limit = {
+                    country_exists = YEM
+                }   
+                create_wargoal = {
+                    type = annex_everything
+                    target = YEM
+                }  
+            }
+            if = {
+                limit = {
+                    country_exists = QAT
+                }   
+                create_wargoal = {
+                    type = annex_everything
+                    target = QAT
+                }  
+            }
+            if = {
+                limit = {
+                    country_exists = IRQ
+                }   
+                create_wargoal = {
+                    type = annex_everything
+                    target = IRQ
+                }  
+            }
+            if = {
+                limit = {
+                    country_exists = JOR
+                }   
+                create_wargoal = {
+                    type = annex_everything
+                    target = JOR
+                }  
+            }
+            if = {
+                limit = {
+                    country_exists = PAL
+                }   
+                create_wargoal = {
+                    type = annex_everything
+                    target = PAL
+                }  
+            }
+            if = {
+                limit = {
+                    country_exists = LEB
+                }   
+                create_wargoal = {
+                    type = annex_everything
+                    target = LEB
+                }  
+            }
+            if = {
+                limit = {
+                    country_exists = SYR
+                }   
+                create_wargoal = {
+                    type = annex_everything
+                    target = SYR
+                }  
+            }
+            if = {
+                limit = {
+                    country_exists = UAR
+                }   
+                create_wargoal = {
+                    type = annex_everything
+                    target = UAR
+                }  
+            }
+            if = {
+                limit = {
+                    country_exists = EGY
+                }   
+                create_wargoal = {
+                    type = annex_everything
+                    target = EGY
+                }  
+            }
+            set_country_flag = unifying_arabia
+        }
+    }
+    shared_focus  = {
+        id = PDY_soviets
+        ai_will_do = { factor = 1 }
+        icon = soviet_shaking_hands
+        cost = 3.6
+        x = 5
+        y = 1
+        relative_position_id = PDY_internationalism
+        prerequisite = {
+            focus = PDY_internationalism
+        }
+		available = {
+			country_exists = SOV
+			SOV = {
+				OR = {
+					has_government = communist
+					has_government = revolutionary_socialist
+					has_government = moderate_socialist 
+				}
+			}
+		}
+        completion_reward = {
+            add_opinion_modifier = {
+                target = SOV
+                modifier = pdy_soviet_relation
+            }
+            add_opinion_modifier = {
+                target = SOV
+                modifier = trade_influence_3
+            }
+			country_event = pdy.94
+        }
+    }
+    shared_focus  = {
+        id = PDY_soviet_aid
+        ai_will_do = { factor = 1 }
+        icon = soviet_investment
+        cost = 3.6
+        x = 0
+        y = 1
+        relative_position_id = PDY_soviets
+        prerequisite = {
+            focus = PDY_soviets
+        }
+        completion_reward = {
+            979 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+            }
+            659 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+            }
+            293 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+            }
+			add_ideas = {
+				idea_comecon_member
+			}
+        }
+    }
+    shared_focus  = {
+        id = PDY_caribbean
+        ai_will_do = { factor = 1 }
+        icon = cuba
+        cost = 3.6
+        x = 8
+        y = 1
+        relative_position_id = PDY_internationalism
+        prerequisite = {
+            focus = PDY_internationalism
+        }
+        completion_reward = {
+            add_opinion_modifier = {
+                target = CUB
+                modifier = pdy_caribbean_relation
+            }
+            add_opinion_modifier = {
+                target = CUB
+                modifier = trade_influence_1
+            }
+            add_opinion_modifier = {
+                target = JAM
+                modifier = pdy_caribbean_relation
+            }
+            add_opinion_modifier = {
+                target = JAM
+                modifier = trade_influence_1
+            }
+            add_opinion_modifier = {
+                target = DOM
+                modifier = pdy_caribbean_relation
+            }
+            add_opinion_modifier = {
+                target = DOM
+                modifier = trade_influence_1
+            }
+            add_opinion_modifier = {
+                target = HAI
+                modifier = pdy_caribbean_relation
+            }
+            add_opinion_modifier = {
+                target = HAI
+                modifier = trade_influence_1
+            }
+            add_opinion_modifier = {
+                target = BHM
+                modifier = pdy_caribbean_relation
+            }
+            add_opinion_modifier = {
+                target = BHM
+                modifier = trade_influence_1
+            }
+            add_opinion_modifier = {
+                target = ANT
+                modifier = pdy_caribbean_relation
+            }
+            add_opinion_modifier = {
+                target = ANT
+                modifier = trade_influence_1
+            }
+            add_opinion_modifier = {
+                target = DMN
+                modifier = pdy_caribbean_relation
+            }
+            add_opinion_modifier = {
+                target = DMN
+                modifier = trade_influence_1
+            }
+            add_opinion_modifier = {
+                target = BRB
+                modifier = pdy_caribbean_relation
+            }
+            add_opinion_modifier = {
+                target = BRB
+                modifier = trade_influence_1
+            }
+            add_opinion_modifier = {
+                target = STV
+                modifier = pdy_caribbean_relation
+            }
+            add_opinion_modifier = {
+                target = STV
+                modifier = trade_influence_1
+            }
+            add_opinion_modifier = {
+                target = GND
+                modifier = pdy_caribbean_relation
+            }
+            add_opinion_modifier = {
+                target = GND
+                modifier = trade_influence_1
+            }
+            add_opinion_modifier = {
+                target = TAT
+                modifier = pdy_caribbean_relation
+            }
+            add_opinion_modifier = {
+                target = TAT
+                modifier = trade_influence_1
+            }
+			if = {
+				limit = {
+					CUB = {
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+							has_government = centrist
+						}
+					}
+				}
+				CUB = {
+					country_event = pdy.95
+				}
+			}
+        }
+    }
+    shared_focus  = {
+        id = PDY_south_america
+        ai_will_do = { factor = 1 }
+        icon = brazil
+        cost = 3.6
+        x = -1
+        y = 1
+        relative_position_id = PDY_caribbean
+        prerequisite = {
+            focus = PDY_caribbean
+        }
+        completion_reward = {
+			country_event = pdy.98
+            add_opinion_modifier = {
+                target = GUY
+                modifier = pdy_south_america_relation 
+            }
+            add_opinion_modifier = {
+                target = GUY
+                modifier = trade_influence_1
+            }
+            add_opinion_modifier = {
+                target = VEN
+                modifier = pdy_south_america_relation 
+            }
+            add_opinion_modifier = {
+                target = VEN
+                modifier = trade_influence_1
+            }
+            add_opinion_modifier = {
+                target = COL
+                modifier = pdy_south_america_relation 
+            }
+            add_opinion_modifier = {
+                target = COL
+                modifier = trade_influence_1
+            }
+            add_opinion_modifier = {
+                target = ECU
+                modifier = pdy_south_america_relation 
+            }
+            add_opinion_modifier = {
+                target = ECU
+                modifier = trade_influence_1
+            }
+            add_opinion_modifier = {
+                target = PRU
+                modifier = pdy_south_america_relation 
+            }
+            add_opinion_modifier = {
+                target = PRU
+                modifier = trade_influence_1
+            }
+            add_opinion_modifier = {
+                target = BOL
+                modifier = pdy_south_america_relation 
+            }
+            add_opinion_modifier = {
+                target = BOL
+                modifier = trade_influence_1
+            }
+            add_opinion_modifier = {
+                target = BRA
+                modifier = pdy_south_america_relation 
+            }
+            add_opinion_modifier = {
+                target = BRA
+                modifier = trade_influence_1
+            }
+            add_opinion_modifier = {
+                target = GUY
+                modifier = pdy_south_america_relation 
+            }
+            add_opinion_modifier = {
+                target = GUY
+                modifier = trade_influence_1
+            }
+            add_opinion_modifier = {
+                target = PAR
+                modifier = pdy_south_america_relation 
+            }
+            add_opinion_modifier = {
+                target = PAR
+                modifier = trade_influence_1
+            }
+            add_opinion_modifier = {
+                target = URG
+                modifier = pdy_south_america_relation 
+            }
+            add_opinion_modifier = {
+                target = URG
+                modifier = trade_influence_1
+            }
+            add_opinion_modifier = {
+                target = CHL
+                modifier = pdy_south_america_relation 
+            }
+            add_opinion_modifier = {
+                target = CHL
+                modifier = trade_influence_1
+            }
+            add_opinion_modifier = {
+                target = ARG
+                modifier = pdy_south_america_relation 
+            }
+            add_opinion_modifier = {
+                target = ARG
+                modifier = trade_influence_1
+            }
+            add_resource = {
+                type = tungsten
+                amount = 10
+                state = 293
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_central_america
+        ai_will_do = { factor = 1 }
+        icon = GFX_fruits_of_centro_america
+        cost = 3.6
+        x = 1
+        y = 1
+        available = {
+            country_exists = CEA
+        }
+        relative_position_id = PDY_caribbean
+        prerequisite = {
+            focus = PDY_caribbean
+        }
+        completion_reward = {
+            add_opinion_modifier = {
+                target = CEA
+                modifier = pdy_central_america_relation 
+            }
+            add_opinion_modifier = {
+                target = CEA
+                modifier = trade_influence_1
+            }
+			CEA = {
+				country_event = pdy.99
+			}
+        }
+    }
+    shared_focus  = {
+        id = PDY_uapr
+        ai_will_do = { factor = 1 }
+        icon = GFX_a_visit_to_la
+        cost = 5
+        x = 0
+        y = 2
+        available = {
+            country_exists = PCA
+            PCA = {
+                has_government = communist
+            }
+        }
+        relative_position_id = PDY_caribbean
+        prerequisite = {
+            focus = PDY_caribbean
+        }
+        completion_reward = {
+            add_opinion_modifier = {
+                target = PCA
+                modifier = pdy_uapr_relation 
+            }
+            add_opinion_modifier = {
+                target = PCA
+                modifier = uapr_trade
+            }
+			PCA = {
+				country_event = pdy.102
+			}
+        }
+    }
+    shared_focus  = {
+        id = PDY_preserve_revolution
+        ai_will_do = { factor = 1 }
+        icon = communist_star
+        cost = 1
+        x = 7
+        y = 0
+        relative_position_id = PDY_the_great_peoples_liberation_war
+        completion_reward = {
+            hidden_effect = {
+                set_cosmetic_tag = YDR
+                every_country = {
+                    news_event = pdy.56
+                }
+            }
+            custom_effect_tooltip = YDR_tag
+            country_event = pdy.55
+        }
+    }
+    shared_focus  = {
+        id = PDY_agents
+        ai_will_do = { factor = 1 }
+        icon = GFX_agents_in_the_rebellion
+        cost = 2
+        x = 2
+        y = 1
+        relative_position_id = PDY_preserve_revolution
+        prerequisite = {
+            focus = PDY_preserve_revolution
+        }
+        completion_reward = {
+            add_stability = 0.05
+            country_event = pdy.57
+        }
+    }
+    shared_focus  = {
+        id = PDY_tanks
+        ai_will_do = { factor = 1 }
+        icon = GFX_tanks_in_the_streets
+        cost = 2
+        x = -2
+        y = 1
+        relative_position_id = PDY_preserve_revolution
+        prerequisite = {
+            focus = PDY_preserve_revolution
+        }
+        completion_reward = {
+            add_manpower = -4000
+            country_event = pdy.58
+        }
+    }
+    shared_focus  = {
+        id = PDY_purges
+        ai_will_do = { factor = 1 }
+        icon = gorbachevs_kgb
+        cost = 3.6
+        x = 0
+        y = 1
+        relative_position_id = PDY_preserve_revolution
+        prerequisite = {
+            focus = PDY_preserve_revolution
+        }
+        completion_reward = {
+            add_popularity = {
+                ideology = moderate_socialist
+                popularity = -0.10
+            }
+            add_stability = -0.10
+            add_political_power = 50
+            #replace modsoc ministers with communist ministers
+        }
+    }
+    shared_focus  = {
+        id = PDY_sword
+        ai_will_do = { factor = 1 }
+        icon = GFX_PDY_welding_party_and_secret_police
+        cost = 5
+        x = 0
+        y = 1
+        relative_position_id = PDY_purges
+        prerequisite = {
+            focus = PDY_purges
+        }
+        prerequisite = {
+            focus = PDY_tanks
+        }
+        prerequisite = {
+            focus = PDY_agents
+        }
+        completion_reward = {
+            remove_ideas = {
+                PDY_freedom
+                PDY_economic_ventures
+                PDY_equal_nation
+                PDY_literacy
+                PDY_unions
+                PDY_universal_healthcare
+            }
+			add_ideas = {
+				PDY_constitution_2
+			}
+            add_political_power = 100
+            set_party_name = { 
+                ideology = communist
+			    long_name = PDY_stasi_long
+                name = PDY_stasi
+            }
+            country_event = pdy.59
+        }
+    }
+    shared_focus  = {
+        id = PDY_trained
+        ai_will_do = { factor = 1 }
+        icon = military_academy
+        cost = 5
+        x = -1
+        y = 1
+        relative_position_id = PDY_sword
+        prerequisite = {
+            focus = PDY_sword
+        }
+        completion_reward = {
+            add_tech_bonus = {
+                name = land_doctrine
+                bonus = 0.25
+                uses = 1
+                category = land_doctrine
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_no_revolts
+        ai_will_do = { factor = 1 }
+        icon = ideology_fist
+        cost = 5
+        x = 1
+        y = 1
+        relative_position_id = PDY_sword
+        prerequisite = {
+            focus = PDY_sword
+        }
+        completion_reward = {
+            add_timed_idea = {
+                idea = PDY_no_more_revolts
+                days = 35
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_loyalty
+        ai_will_do = { factor = 1 }
+        icon = propaganda
+        cost = 2
+        x = -4
+        y = 1
+        relative_position_id = PDY_trained
+        prerequisite = {
+            focus = PDY_trained
+        }
+        completion_reward = {
+            add_political_power = 50
+            add_stability = 0.1
+        }
+    }
+    shared_focus  = {
+        id = PDY_root_tribes
+        ai_will_do = { factor = 1 }
+        icon = send_the_army_in
+        cost = 5
+        x = -1
+        y = 1
+        relative_position_id = PDY_loyalty
+        prerequisite = {
+            focus = PDY_loyalty
+        }
+        completion_reward = {
+            add_political_power = -50
+            every_owned_state = {
+                limit = {
+                    is_core_of = YAR
+                }
+                remove_core_of = YAR
+            }
+            every_owned_state = {
+                limit = {
+                    is_core_of = YEM
+                }
+                remove_core_of = YEM
+            }
+            every_owned_state = {
+                limit = {
+                    is_core_of = JAS
+                }
+                remove_core_of = JAS
+            }
+            293 = {
+                add_manpower = 5000
+            }
+            659 = {
+                add_manpower = 5000
+            }
+            country_event = pdy.60
+        }
+    }
+    shared_focus  = {
+        id = PDY_enlighten
+        ai_will_do = { factor = 1 }
+        icon = communists_marching
+        cost = 3.6
+        x = -1
+        y = 1
+        relative_position_id = PDY_root_tribes
+        prerequisite = {
+            focus = PDY_root_tribes
+        }
+        completion_reward = {
+            add_ideas = PDY_enlight
+            add_research_slot = 1
+            country_event = pdy.61
+        }
+    }
+    shared_focus  = {
+        id = PDY_front
+        ai_will_do = { factor = 1 }
+        icon = red_brigades
+        cost = 7.9
+        x = -2
+        y = 1
+        relative_position_id = PDY_trained
+        prerequisite = {
+            focus = PDY_trained
+        }
+        completion_reward = {
+            add_ideas = PDY_commisars
+        }
+    }
+    shared_focus  = {
+        id = PDY_identity
+        ai_will_do = { factor = 1 }
+        icon = focus_syria_propaganda_effort
+        cost = 3.6
+        x = -1
+        y = 1
+        relative_position_id = PDY_front
+        prerequisite = {
+            focus = PDY_front
+        }
+        completion_reward = {
+            add_manpower = 10000
+            add_popularity = {
+                ideology = communist
+                popularity = 0.05
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_state
+        ai_will_do = { factor = 1 }
+        icon = embrace_the_revolution
+        cost = 5
+        x = 1
+        y = 1
+        relative_position_id = PDY_front
+        prerequisite = {
+            focus = PDY_front
+        }
+        completion_reward = {
+            random_owned_controlled_state = {
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = {
+                    type = arms_factory
+                    level = 1
+                    instant_build = yes
+                }
+            }
+            random_owned_controlled_state = {
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = {
+                    type = arms_factory
+                    level = 1
+                    instant_build = yes
+                }
+            }
+            add_war_support = 0.1
+        }
+    }
+    shared_focus  = {
+        id = PDY_direct_control
+        ai_will_do = { factor = 1 }
+        icon = laws
+        cost = 3.6
+        x = -1
+        y = 1
+        relative_position_id = PDY_state
+        prerequisite = {
+            focus = PDY_state
+        }
+        prerequisite = {
+            focus = PDY_identity
+        }
+        completion_reward = {
+            add_tech_bonus = {
+                bonus = 0.50
+                uses = 2
+                category = cat_grand_battle_plan
+            }
+            country_event = pdy.62
+        }
+    }
+    shared_focus  = {
+        id = PDY_dagger
+        ai_will_do = { factor = 1 }
+        icon = GFX_communism_with_a_cloak_and_dagger
+        cost = 5
+        x = 0
+        y = 1
+        relative_position_id = PDY_trained
+        prerequisite = {
+            focus = PDY_trained
+        }
+        completion_reward = {
+            add_popularity = {
+                ideology = moderate_socialist
+                popularity = -0.05
+            }
+            add_popularity = {
+                ideology = revolutionary_socialist
+                popularity = -0.05
+            }
+            add_popularity = {
+                ideology = national_conservative
+                popularity = -0.05
+            }
+            add_popularity = {
+                ideology = national_bolshevik
+                popularity = -0.05
+            }
+            add_popularity = {
+                ideology = fascist
+                popularity = -0.05
+            }
+            add_popularity = {
+                ideology = monarchist
+                popularity = -0.05
+            }
+            add_popularity = {
+                ideology = nationalist
+                popularity = -0.05
+            }
+            add_popularity = {
+                ideology = centrist
+                popularity = -0.05
+            }
+            add_popularity = {
+                ideology = liberal
+                popularity = -0.05
+            }
+            add_popularity = {
+                ideology = new_democrat
+                popularity = -0.05
+            }
+            every_country = {
+                limit = {
+                    is_neighbor_of = PDY
+                }
+                add_popularity = {
+                    ideology = communist
+                    popularity = 0.05
+                }
+            }
+            country_event = pdy.63
+        }
+    }
+    shared_focus  = {
+        id = PDY_keep
+        ai_will_do = { factor = 1 }
+        icon = focus_ideology_moderate_socialist
+        cost = 2
+        x = 6
+        y = 1
+        relative_position_id = PDY_trained
+        prerequisite = {
+            focus = PDY_trained
+        }
+        completion_reward = {
+            add_popularity = {
+                ideology = moderate_socialist
+                popularity = 0.01
+            }
+            add_stability = 0.05
+            country_event = pdy.64
+			add_ideas = PDY_universal_healthcare
+			add_ideas = PDY_welfare
+        }
+    }
+    shared_focus  = {
+        id = PDY_support_base
+        ai_will_do = { factor = 1 }
+        icon = cooperate_with_some_communists
+        cost = 5
+        x = 1
+        y = 1
+        relative_position_id = PDY_keep
+        prerequisite = {
+            focus = PDY_keep
+        }
+        completion_reward = {
+            293 = {
+                add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+                }
+                add_extra_state_shared_building_slots = 1
+            }
+            add_popularity = {
+                ideology = communist
+                popularity = 0.05
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_vanguard
+        ai_will_do = { factor = 1 }
+        icon = GFX_vanguard_of_the_women
+        cost = 3.6
+        x = 1
+        y = 1
+        relative_position_id = PDY_support_base
+        prerequisite = {
+            focus =  PDY_support_base
+        }
+        completion_reward = {
+            add_ideas = PDY_equal_army
+        }
+    }
+    shared_focus  = {
+        id = PDY_automated
+        ai_will_do = { factor = 1 }
+        icon = chinese_economy
+        cost = 2
+        x = 2
+        y = 1
+        relative_position_id = PDY_no_revolts
+        prerequisite = {
+            focus = PDY_no_revolts
+        }
+        completion_reward = {
+            add_ideas = PDY_economy
+            country_event = pdy.65
+        }
+    }
+    shared_focus  = {
+        id = PDY_online
+        ai_will_do = { factor = 1 }
+        icon = GFX_PDY_always_online_nation
+        cost = 5
+        x = -1
+        y = 1
+        relative_position_id = PDY_automated
+        prerequisite = {
+            focus = PDY_automated
+        }
+        completion_reward = {
+            swap_ideas = {
+                remove_idea = PDY_economy
+                add_idea = PDY_economy2
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_aden_cables
+        ai_will_do = { factor = 1 }
+        icon = GFX_all_cables_lead_to_aden
+        cost = 6.5
+        x = 1
+        y = 1
+        relative_position_id = PDY_automated
+        prerequisite = {
+            focus = PDY_automated
+        }
+        completion_reward = {
+            every_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+                }
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_chip
+        ai_will_do = { factor = 1 }
+        icon = GFX_PDY_microchipping_a_nation
+        cost = 6.5
+        x = -1
+        y = 1
+        relative_position_id = PDY_aden_cables
+        prerequisite = {
+            focus =  PDY_aden_cables
+        }
+        prerequisite = {
+            focus =  PDY_online
+        }
+        completion_reward = {
+            add_tech_bonus = {
+                bonus = 0.50
+                uses = 2
+                category = computing_tech
+            }
+            country_event = pdy.66
+        }
+    }
+    shared_focus  = {
+        id = PDY_false_prophet
+        ai_will_do = { factor = 1 }
+        icon = GFX_false_prophet
+        cost = 7.9
+        x = 0
+        y = 1
+        relative_position_id = PDY_no_revolts
+        prerequisite = {
+            focus = PDY_no_revolts
+        }
+        completion_reward = {
+            add_ideas = PDY_faith
+            country_event = pdy.67
+        }
+    }
+    shared_focus  = {
+        id = PDY_socialism_nurture
+        ai_will_do = { factor = 1 }
+        icon = glasnost
+        cost = 3.6
+        x = -1
+        y = 1
+        relative_position_id = PDY_false_prophet
+        prerequisite = {
+            focus =  PDY_false_prophet
+        }
+        prerequisite = {
+            focus =  PDY_dagger
+        }
+        completion_reward = {
+            add_stability = 0.05
+            add_war_support = 0.05
+            country_event = pdy.68
+        }
+    }
+    shared_focus  = {
+        id = PDY_revolution_preserved
+        ai_will_do = { factor = 1 }
+        icon = GFX_PDY_the_revolution_preserved
+        cost = 1
+        x = 0
+        y = 1
+        relative_position_id = PDY_socialism_nurture
+        prerequisite = {
+            focus = PDY_socialism_nurture
+        }
+        completion_reward = {
+            add_stability = 0.05
+            add_war_support = 0.05
+            country_event = pdy.69
+        }
+    }
+    shared_focus  = {
+        id = PDY_shadows
+        ai_will_do = { factor = 1 }
+        icon = GFX_our_place_in_the_shadows
+        cost = 2
+        x = -4
+        y = 1
+        relative_position_id = PDY_revolution_preserved
+        prerequisite = {
+            focus = PDY_revolution_preserved
+        }
+        completion_reward = {
+            add_ideas =  JAS_neutrality
+        }
+    }
+    shared_focus  = {
+        id = PDY_warfare
+        ai_will_do = { factor = 1 }
+        icon = GFX_intelligent_warfare
+        cost = 2
+        x = 0
+        y = 1
+        relative_position_id = PDY_revolution_preserved
+        prerequisite = {
+            focus = PDY_revolution_preserved
+        }
+        completion_reward = {
+            add_tech_bonus = {
+                bonus = 0.5
+                uses = 1
+                category = radar_tech
+            }
+            add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
+        }
+    }
+    shared_focus  = {
+        id = PDY_politics
+        ai_will_do = { factor = 1 }
+        icon = dangerous_deal
+        cost = 2
+        x = 4
+        y = 1
+        relative_position_id = PDY_revolution_preserved
+        prerequisite = {
+            focus = PDY_revolution_preserved
+        }
+        completion_reward = {
+            add_political_power = 100
+            country_event = pdy.70
+        }
+    }
+    shared_focus  = {
+        id = PDY_infiltrate
+        ai_will_do = { factor = 1 }
+        icon = dealmaker
+        cost = 5
+        x = -1
+        y = 1
+        relative_position_id = PDY_shadows
+        prerequisite = {
+            focus = PDY_shadows
+        }
+        completion_reward = {
+            if = {
+                limit = {
+                    country_exists = OMA
+                }   
+                OMA = {
+                    add_ideas = PDY_infiltration
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = SAU
+                }   
+                SAU = {
+                    add_ideas = PDY_infiltration
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = UAE
+                }   
+                UAE = {
+                    add_ideas = PDY_infiltration
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = IRQ
+                }   
+                IRQ = {
+                    add_ideas = PDY_infiltration
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = JOR
+                }   
+                JOR = {
+                    add_ideas = PDY_infiltration
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = PAL
+                }   
+                PAL = {
+                    add_ideas = PDY_infiltration
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = SYR
+                }   
+                SYR = {
+                    add_ideas = PDY_infiltration
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = LEB
+                }   
+                LEB = {
+                    add_ideas = PDY_infiltration
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = UAR
+                }   
+                UAR = {
+                    add_ideas = PDY_infiltration
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = EGY
+                }   
+                EGY = {
+                    add_ideas = PDY_infiltration
+                }
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_info
+        ai_will_do = { factor = 1 }
+        icon = low_company_tax
+        cost = 5
+        x = 0
+        y = 1
+        relative_position_id = PDY_infiltrate
+        prerequisite = {
+            focus = PDY_infiltrate
+        }
+        completion_reward = {
+            add_ideas = PDY_eyes_and_ears_everywhere
+            country_event = pdy.71
+        }
+    }
+    shared_focus  = {
+        id = PDY_connections
+        ai_will_do = { factor = 1 }
+        icon = investigate_industrial_corruption
+        cost = 3.6
+        x = 1
+        y = 1
+        relative_position_id = PDY_shadows
+        prerequisite = {
+            focus = PDY_shadows
+        }
+        completion_reward = {
+            add_resource = {
+                type = oil
+                amount = 10
+                state = 293
+            }
+            add_political_power = -10
+        }
+    }
+    shared_focus  = {
+        id = PDY_abduct
+        ai_will_do = { factor = 1 }
+        icon = GFX_abduct_their_brightest_minds
+        cost = 7
+        x = 0
+        y = 1
+        relative_position_id = PDY_connections
+        prerequisite = {
+            focus = PDY_connections
+        }
+        completion_reward = {
+            add_ideas = PDY_research 
+        }
+    }
+    shared_focus  = {
+        id = PDY_spies
+        ai_will_do = { factor = 1 }
+        icon = GFX_crimson_shadow_over_Arabia
+        cost = 5
+        x = -1
+        y = 1
+        relative_position_id = PDY_abduct
+        prerequisite = {
+            focus = PDY_abduct
+        }
+        prerequisite = {
+            focus = PDY_info
+        }
+        completion_reward = {
+            add_ideas = PDY_spymaster
+        }
+    }
+    shared_focus  = {
+        id = PDY_german_guns
+        ai_will_do = { factor = 1 }
+        icon = small_arms
+        cost = 3.6
+        x = -1
+        y = 1
+        relative_position_id = PDY_warfare
+        prerequisite = {
+            focus = PDY_warfare
+        }
+        mutually_exclusive = {
+            focus = PDY_supply
+        }
+        available = {
+            GER = {
+				OR = {
+					has_government = communist
+					has_government = revolutionary_socialist
+				}
+            }
+        }
+        completion_reward = {
+            add_equipment_to_stockpile = {
+                type = infantry_equipment
+                amount = 2000
+                producer = GER
+            } 
+            add_equipment_to_stockpile = {
+                type = support_equipment
+                amount = 200
+                producer = GER
+            } 
+            add_equipment_to_stockpile = {
+                type = artillery_equipment
+                amount = 75
+                producer = GER
+            } 
+        }
+    }
+    shared_focus  = {
+        id = PDY_supply
+        ai_will_do = { factor = 1 }
+        icon = industry_2
+        cost = 3.6
+        x = 1
+        y = 1
+        relative_position_id = PDY_warfare
+        prerequisite = {
+            focus = PDY_warfare
+        }
+        mutually_exclusive = {
+            focus = PDY_german_guns
+        }
+        completion_reward = {
+            659 = {
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+                }
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_nva
+        ai_will_do = { factor = 1 }
+        icon = GFX_NVA
+        cost = 5
+        x = 1
+        y = 1
+        relative_position_id = PDY_german_guns
+        prerequisite = { focus = PDY_german_guns focus = PDY_supply }
+        completion_reward = {
+            add_tech_bonus = {
+                bonus = 0.50
+                uses = 2
+                category = land_doctrine
+            }
+            country_event = pdy.72
+        }
+    }
+    shared_focus  = {
+        id = PDY_sky
+        ai_will_do = { factor = 1 }
+        icon = drone
+        cost = 6.5
+        x = -1
+        y = 1
+        relative_position_id = PDY_nva
+        prerequisite = {
+            focus = PDY_nva
+        }
+        completion_reward = {
+            659 = {
+                add_building_construction = {
+                    type = radar_station
+                    level = 2
+                    instant_build = yes
+                }
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_navy_secret
+        ai_will_do = { factor = 1 }
+        icon = wolf_pack
+        cost = 5
+        x = 1
+        y = 1
+        relative_position_id = PDY_nva
+        prerequisite = {
+            focus = PDY_nva
+        }
+        completion_reward = {
+            add_tech_bonus = {
+				name = ss_tech_bonus
+				bonus = 0.25
+				uses = 1
+				category = ss_tech
+			}
+            add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.5
+			}
+        }
+    }
+    shared_focus  = {
+        id = PDY_unison
+        ai_will_do = { factor = 1 }
+        icon = communist_monarchy
+        cost = 3.6
+        x = 1
+        y = 1
+        relative_position_id = PDY_sky
+        prerequisite = {
+            focus = PDY_navy_secret
+        }
+        prerequisite = {
+            focus = PDY_sky
+        }
+        completion_reward = {
+            swap_ideas = {
+                remove_idea = PDY_commisars
+                add_idea = PDY_commisars2
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_prune
+        ai_will_do = { factor = 1 }
+        icon = puppet
+        cost = 6.5
+        x = -1
+        y = 1
+        relative_position_id = PDY_politics
+        prerequisite = {
+            focus = PDY_politics
+        }
+        completion_reward = {
+            add_ideas = PDY_ideological_supremacy
+        }
+    }
+    shared_focus  = {
+        id = PDY_aden
+        ai_will_do = { factor = 1 }
+        icon = From_Aden_to_the_Nation
+        cost = 5
+        x = 0
+        y = 1
+        relative_position_id = PDY_prune
+        prerequisite = {
+            focus = PDY_prune
+        }
+        completion_reward = {
+            293 = {
+                add_building_construction = {
+                    type = industrial_complex
+                    level = 1
+                    instant_build = yes
+                }
+                add_extra_state_shared_building_slots = 1
+            }
+            659 = {
+                add_building_construction = {
+                    type = industrial_complex
+                    level = 1
+                    instant_build = yes
+                }
+                add_extra_state_shared_building_slots = 1
+            }
+            add_popularity = {
+                ideology = communist
+                popularity = 0.10
+            }
+            country_event = pdy.73
+        }
+    }
+    shared_focus  = {
+        id = PDY_network
+        ai_will_do = { factor = 1 }
+        icon = liberty_attack
+        cost = 5
+        x = 1
+        y = 1
+        relative_position_id = PDY_politics
+        prerequisite = {
+            focus = PDY_politics
+        }
+        completion_reward = {
+            swap_ideas = {
+                remove_idea = PDY_economy2
+                add_idea = PDY_economy3
+            }
+            country_event = pdy.74
+        }
+    }
+    shared_focus  = {
+        id = PDY_stone
+        ai_will_do = { factor = 1 }
+        icon = smashing_flag
+        cost = 5
+        x = 0
+        y = 1
+        relative_position_id = PDY_network
+        prerequisite = {
+            focus = PDY_network
+        }
+        completion_reward = {
+            swap_ideas = {
+                remove_idea = PDY_economy3
+                add_idea = PDY_economy4
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_primacy
+        ai_will_do = { factor = 1 }
+        icon = communism_3
+        cost = 7.9
+        x = 1
+        y = 1
+        relative_position_id = PDY_aden
+        prerequisite = {
+            focus = PDY_aden
+        }
+        prerequisite = {
+            focus = PDY_stone
+        }
+        completion_reward = {
+            add_political_power = 150
+            add_stability = 0.15
+            set_party_name = {
+                ideology = moderate_socialist
+                long_name = PDY_modsoc_opp_long
+                name = PDY_modsoc_opp
+            }
+        }
+    }
+    shared_focus  = {
+        id = PDY_surveilence
+        ai_will_do = { factor = 1 }
+        icon = GFX_the_surveillance_state_perfected
+        cost = 3.6
+        x = 0
+        y = 1
+        relative_position_id = PDY_primacy
+        prerequisite = {
+            focus = PDY_primacy
+        }
+        completion_reward = {
+			add_ideas = PDY_panopticon
+            country_event = pdy.75
+        }
+    }
+    shared_focus  = {
+        id = PDY_intel_state
+        ai_will_do = { factor = 1 }
+        icon = arrest_derg_members
+        cost = 5
+        x = 0
+        y = 1
+        relative_position_id = PDY_spies
+        prerequisite = {
+            focus = PDY_spies
+        }
+        completion_reward = {
+            add_ideas = PDY_intelligence_agency_with_a_state
+            country_event = pdy.90
+        }
+    }
+
+
+    
+
+
+    
+    
+
+
+
+
+
+
+    

@@ -1,0 +1,2873 @@
+focus_tree = {
+	id = saudi_yemen_tree
+	country = {
+		factor = 0
+		modifier = {
+			add = 5
+			tag = YEM
+		}
+	}
+	default = no
+	continuous_focus_position = { x = 50 y = 2200 }
+
+	focus = {
+		id = YEM_asserting_control
+		icon = asserting_control
+		cost = 1
+		x = 10
+		y = 0
+		completion_reward = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+			add_stability = 0.02
+			add_political_power = 50
+			country_event = saudi_yemen.75
+		}
+	}
+	focus = {
+		id = YEM_fate_of_the_republican_guard
+		icon = GFX_fate_of_the_successor
+		cost = 5
+		relative_position_id = YEM_asserting_control
+		prerequisite = { focus = YEM_asserting_control }
+		x = 1
+		y = 1
+		completion_reward = {
+			country_event = saudi_yemen.4
+		}
+	}
+	focus = {
+		id = YEM_request_saudi_support
+		icon = saudi_allies
+		cost = 3
+		relative_position_id = YEM_asserting_control
+		prerequisite = { focus = YEM_asserting_control }
+		x = -1
+		y = 1
+		completion_reward = {
+			SAU = {
+				country_event = saudi_yemen.1
+			}
+		}
+	}
+	focus = {
+		id = YEM_study_the_civil_war
+		icon = position_armies
+		cost = 3
+		relative_position_id = YEM_fate_of_the_republican_guard
+		prerequisite = { focus = YEM_fate_of_the_republican_guard }
+		x = 0
+		y = 1
+		completion_reward = {
+			975 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			add_tech_bonus = {
+				bonus = 0.50
+				uses = 1
+				category = land_doctrine
+			}
+			add_tech_bonus = {
+				bonus = 0.50
+				uses = 1
+				category = infantry_weapons
+			}
+		}
+	}
+	focus = {
+		id = YEM_quick_response_units
+		icon = YEM_military_loyalty
+		cost = 8
+		relative_position_id = YEM_request_saudi_support
+		prerequisite = { focus = YEM_request_saudi_support }
+		x = 0
+		y = 1
+		completion_reward = {
+			army_experience = 50
+			add_tech_bonus = {
+				bonus = 0.50
+				uses = 1
+				category = armor
+			}
+			973 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			division_template = {
+				name = "Sanaa Armored Division"
+				
+				regiments = {
+					heavy_armor = { x = 0 y = 0 }
+				    heavy_armor = { x = 0 y = 1 }
+				    heavy_armor = { x = 0 y = 2 }
+				    heavy_armor = { x = 1 y = 0 }
+				    heavy_armor = { x = 1 y = 1 }
+				    heavy_armor = { x = 1 y = 2 }
+				}
+			}
+			973 = {
+				create_unit = {
+					division = "name = \"Sanaa Armored Division\" division_template = \"Sanaa Armored Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					owner = YEM
+				}
+			}
+		}
+	}
+	focus = {
+		id = YEM_stability_in_yemen
+		icon = peace_chance
+		cost = 2
+		relative_position_id = YEM_quick_response_units
+		prerequisite = { focus = YEM_quick_response_units }
+		prerequisite = { focus = YEM_study_the_civil_war }
+		x = 1
+		y = 1
+		available = {
+			has_completed_focus = YEM_initial_stabilization
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = YEM_saudi_fractured_nation
+				add_idea = YEM_saudi_fractured_nation2
+			}
+			add_political_power = 100
+			country_event = saudi_yemen.5
+		}
+	}
+	focus = {
+		id = YEM_militarize_the_southern_border
+		icon = focus_syrian_border_defence
+		cost = 5
+		relative_position_id = YEM_stability_in_yemen
+		prerequisite = { focus = YEM_stability_in_yemen }
+		x = 0
+		y = 1
+		completion_reward = {
+			division_template = {
+				name = "Yemeni Border Guards"
+				
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+				}
+			}
+			972 = {
+				create_unit = {
+					division = "name = \"Yemeni Border Guards\" division_template = \"Yemeni Border Guards\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					owner = YEM
+				}
+			}
+			977 = {
+				create_unit = {
+					division = "name = \"Yemeni Border Guards\" division_template = \"Yemeni Border Guards\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					owner = YEM
+				}
+			}
+		}
+	}
+	focus = {
+		id = YEM_defend_our_masters
+		icon = defend_our_masters
+		cost = 5
+		relative_position_id = YEM_militarize_the_southern_border
+		prerequisite = { focus = YEM_militarize_the_southern_border }
+		x = 2
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = YEM_saudi_buffer_state
+				add_idea = YEM_saudi_buffer_state2
+			}
+			977 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			975 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	focus = {
+		id = YEM_construct_the_al_bayad_line
+		icon = defence
+		cost = 5
+		relative_position_id = YEM_militarize_the_southern_border
+		prerequisite = { focus = YEM_militarize_the_southern_border }
+		x = -2
+		y = 1
+		completion_reward = {
+			972 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 13623
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 13624
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 13626
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			977 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 13661
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 13660
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 13662
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 13664
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 13665
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 13671
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 13679
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 13681
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 13682
+				}
+			}
+		}
+	}
+	focus = {
+		id = YEM_our_duty_to_riyadh
+		icon = saudi_arabia
+		cost = 6
+		relative_position_id = YEM_militarize_the_southern_border
+		prerequisite = { focus = YEM_militarize_the_southern_border }
+		x = 0
+		y = 1
+		completion_reward = {
+			add_timed_idea = {
+				idea = YEM_fueling_the_saudi_economy
+				days = 200
+			}
+			add_offsite_building = { 
+				type = arms_factory 
+				level = 2 
+			}
+			add_offsite_building = { 
+				type = industrial_complex 
+				level = 2 
+			}
+		}
+	}
+	focus = {
+		id = YEM_a_future_for_yemen
+		icon = YEM_country_pride
+		cost = 2
+		relative_position_id = YEM_our_duty_to_riyadh
+		prerequisite = { focus = YEM_our_duty_to_riyadh }
+		prerequisite = { focus = YEM_defend_our_masters }
+		prerequisite = { focus = YEM_construct_the_al_bayad_line }
+		x = 0
+		y = 1
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 100
+		}
+	}
+	focus = {
+		id = YEM_riyadh_conference
+		icon = the_riyadh_conference
+		cost = 10
+		relative_position_id = YEM_a_future_for_yemen
+		prerequisite = { focus = YEM_a_future_for_yemen }
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = {
+					check_variable = {
+						var = saudi_influence
+						value = 2
+						compare = greater_than_or_equals
+					}
+				}
+				hidden_effect = {
+					country_event = {
+						id = saudi_yemen.10
+					    days = 1
+					}
+				}
+			}
+			if = {
+				limit = {
+					check_variable = {
+						var = yemeni_influence
+						value = 2
+						compare = greater_than_or_equals
+					}
+				}
+				hidden_effect = {
+					country_event = {
+						id = saudi_yemen.20
+					    days = 1
+					}
+				}
+			}
+			custom_effect_tooltip = riyadh_conference_tt
+		}
+	}
+	focus = {
+		id = YEM_a_new_era
+		icon = A_new_era
+		cost = 1
+		relative_position_id = YEM_riyadh_conference
+		prerequisite = { focus = YEM_riyadh_conference }
+		available = {
+			has_country_flag = yemeni_win
+		}
+		x = 3
+		y = 1
+		completion_reward = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+			add_war_support = 0.05
+			YEM_ahmed_ali_alashwal = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						expire = "1.1.1.1"
+						ideology = military_junta
+					}
+				}
+			}
+			hidden_effect = {
+				add_ideas = yemen_Jamal_Abdullah_al_Sallal
+				add_ideas = yemen_Shaher_Abdulhak
+				add_ideas = yemen_Maeen_Abdulmalik_Saeed
+				add_ideas = yemen_Taher_Ali_Al_Aqil
+				add_ideas = yemen_Abdullah_Ali_Elewa
+			}
+		}
+	}
+	focus = {
+		id = YEM_yemen_triumphant
+		icon = YEM_reformist_victory
+		cost = 3
+		relative_position_id = YEM_a_new_era
+		prerequisite = { focus = YEM_a_new_era }
+		available = { 
+			has_war = no
+			has_country_flag = yemeni_win
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_stability = 0.05
+			remove_ideas = YEM_saudi_fractured_nation2
+		}
+	}
+	focus = {
+		id = YEM_restore_the_1970_constitution
+		icon = restore_the_1970_constitution
+		cost = 5
+		relative_position_id = YEM_yemen_triumphant
+		prerequisite = { focus = YEM_yemen_triumphant }
+		available = {
+			has_country_flag = yemeni_win
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_1970_constitution
+			country_event = saudi_yemen.21
+			set_cosmetic_tag = YEM_YAR
+		}
+	}
+	focus = {
+		id = YEM_restore_president_hamdis_pragmatism
+		icon = president_hamdi
+		cost = 2
+		relative_position_id = YEM_restore_the_1970_constitution
+		prerequisite = { focus = YEM_restore_the_1970_constitution }
+		mutually_exclusive = { focus = YEM_honor_president_saleh focus = YEM_learn_from_president_eryani }
+		available = {
+			has_country_flag = yemeni_win
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			country_event = saudi_yemen.29
+			country_event = saudi_yemen.70
+			YEM_sagheer_bin_aziz = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						expire = "1.1.1.1"
+						ideology = nationalist_ideology
+					}
+				}
+			}
+			hidden_effect = {
+				add_ideas = yemen_Ali_Al_Uqbi
+				add_ideas = yem_ind_shawki_ahmed_hayel_saeed
+				add_ideas = yemen_Ahmad_Awad_bin_Mubarak
+				add_ideas = yemen_Yahya_Saree
+				add_ideas = yemen_Abdullah_Ali_Elewa
+			}
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = YEM_learn_from_president_eryani
+		icon = president_eryani
+		cost = 2
+		relative_position_id = YEM_restore_the_1970_constitution
+		prerequisite = { focus = YEM_restore_the_1970_constitution }
+		mutually_exclusive = { focus = YEM_honor_president_saleh focus = YEM_restore_president_hamdis_pragmatism }
+		available = {
+			has_country_flag = yemeni_win
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			add_war_support = 0.07
+			add_stability = 0.07
+			add_political_power = 100
+		}
+	}
+	focus = {
+		id = YEM_honor_president_saleh
+		icon = president_saleh
+		cost = 2
+		relative_position_id = YEM_restore_the_1970_constitution
+		prerequisite = { focus = YEM_restore_the_1970_constitution }
+		mutually_exclusive = { focus = YEM_learn_from_president_eryani focus = YEM_restore_president_hamdis_pragmatism }
+		available = {
+			has_country_flag = yemeni_win
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_war_support = 0.05
+			add_stability = -0.05
+			add_political_power = 75
+		}
+	}
+	focus = {
+		id = YEM_amend_the_constitution
+		icon = focus_demand_assads_resignation
+		cost = 8
+		relative_position_id = YEM_restore_president_hamdis_pragmatism
+		prerequisite = { focus = YEM_restore_president_hamdis_pragmatism }
+		available = {
+			has_country_flag = yemeni_win
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = YEM_1970_constitution
+				add_idea = YEM_1970_constitution2
+			}
+			country_event = saudi_yemen.30
+			hidden_effect = {
+				country_event = {
+					id = saudi_yemen.73
+					days = 304
+				}
+			}
+		}
+	}
+	focus = {
+		id = YEM_promote_collectivism
+		icon = collectivist_focus
+		cost = 8
+		relative_position_id = YEM_amend_the_constitution
+		prerequisite = { focus = YEM_amend_the_constitution }
+		available = {
+			has_country_flag = yemeni_win
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = saudi_yemen.31
+			add_ideas = YEM_a_nation_for_all
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.10
+			}
+		}
+	}
+	focus = {
+		id = YEM_root_out_corruption
+		icon = GFX_investigate_corruption_in_the_bureaucracy
+		cost = 5
+		relative_position_id = YEM_promote_collectivism
+		prerequisite = { focus = YEM_promote_collectivism }
+		available = {
+			has_country_flag = yemeni_win
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_anti_corruption_agencies
+			978 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			977 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = YEM_the_peoples_junta
+		icon = peoples_junta_yemen
+		cost = 6
+		relative_position_id = YEM_root_out_corruption
+		prerequisite = { focus = YEM_root_out_corruption }
+		available = {
+			has_country_flag = yemeni_win
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			972 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			975 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 4
+			}
+		}
+	}
+	focus = {
+		id = YEM_dominate_parliament
+		icon = yemeni_parliament_dominated
+		cost = 5
+		relative_position_id = YEM_learn_from_president_eryani
+		prerequisite = { focus = YEM_learn_from_president_eryani }
+		available = {
+			has_country_flag = yemeni_win
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = saudi_yemen.25
+			add_ideas = YEM_political_dominance
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+		}
+	}
+	focus = {
+		id = YEM_second_national_conciliation_agreement
+		icon = national_unity
+		cost = 8
+		relative_position_id = YEM_dominate_parliament
+		prerequisite = { focus = YEM_dominate_parliament }
+		available = {
+			has_country_flag = yemeni_win
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			SAU = {
+				country_event = saudi_yemen.22
+			}
+		}
+	}
+	focus = {
+		id = YEM_embolden_revolutionary_spirit
+		icon = YEM_tribal_autonomy
+		cost = 8
+		relative_position_id = YEM_second_national_conciliation_agreement
+		prerequisite = { focus = YEM_second_national_conciliation_agreement }
+		available = {
+			has_country_flag = yemeni_win
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_defending_the_revolution
+			add_tech_bonus = {
+				bonus = 0.25
+				uses = 2
+				category = armor
+			}
+		}
+	}
+	focus = {
+		id = YEM_iron_fisted_rule
+		icon = GFX_RAJ_greater_emergency_powers
+		cost = 6
+		relative_position_id = YEM_embolden_revolutionary_spirit
+		prerequisite = { focus = YEM_embolden_revolutionary_spirit }
+		available = {
+			has_country_flag = yemeni_win
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = saudi_yemen.26
+			add_ideas = YEM_a_nation_for_the_junta
+			973 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = YEM_a_deal_with_the_gpc
+		icon = gpc_deal
+		cost = 5
+		relative_position_id = YEM_honor_president_saleh
+		prerequisite = { focus = YEM_honor_president_saleh }
+		available = {
+			has_country_flag = yemeni_win
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = saudi_yemen.27
+			YEM_mohammed_saleh_al_ahmar = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						expire = "1.1.1.1"
+						ideology = ultranationalist
+					}
+				}
+			}
+			set_party_name = { 
+				ideology = nationalist 
+				name = YEM_gpc
+				long_name = YEM_gpc
+			}
+			hidden_effect = {
+				add_ideas = yemen_Abdul_Aziz_Abdul_Ghani
+				add_ideas = yemen_Sinan_Abu_Lahoum
+				add_ideas = yemen_Ali_Muhammad_Mujawar
+				add_ideas = yemen_Abdo_al_Janadi
+				add_ideas = yemen_Mohammed_Nasser_Ahmed
+			}
+			if = {
+				limit = {
+					has_country_flag = yemen_republican_guard_banned
+				}
+				country_event = saudi_yemen.72
+			}
+		}
+	}
+	focus = {
+		id = YEM_saudi_bolster_the_military
+		icon = GFX_mass_fund_the_army
+		cost = 6
+		relative_position_id = YEM_a_deal_with_the_gpc
+		prerequisite = { focus = YEM_a_deal_with_the_gpc }
+		available = {
+			has_country_flag = yemeni_win
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			973 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			978 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			975 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			add_tech_bonus = {
+				bonus = 0.50
+				uses = 2
+				category = land_doctrine
+			}
+		}
+	}
+	focus = {
+		id = YEM_saudi_mass_privatizations
+		icon = from_sheikhs_to_ceo
+		cost = 6
+		relative_position_id = YEM_saudi_bolster_the_military
+		prerequisite = { focus = YEM_saudi_bolster_the_military }
+		available = {
+			has_country_flag = yemeni_win
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = YEM_nationalized_industries
+				}
+				remove_ideas = YEM_nationalized_industries
+			}
+			add_ideas = YEM_privatized_economy
+			add_stability = -0.03
+		}
+	}
+	focus = {
+		id = YEM_cult_of_personality
+		icon = cult_of_personality_yem
+		cost = 8
+		relative_position_id = YEM_saudi_mass_privatizations
+		prerequisite = { focus = YEM_saudi_mass_privatizations }
+		available = {
+			has_country_flag = yemeni_win
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = YEM_1970_constitution
+				add_idea = YEM_saleh_constitution
+			}
+			country_event = saudi_yemen.28
+		}
+	}
+	focus = {
+		id = YEM_yemen_indivisible
+		icon = Yemen_indivisible
+		cost = 6
+		relative_position_id = YEM_cult_of_personality
+		prerequisite = { focus = YEM_iron_fisted_rule focus = YEM_the_peoples_junta focus = YEM_cult_of_personality }
+		available = {
+			has_country_flag = yemeni_win
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_stability = 0.07
+			add_ideas = YEM_indivisible
+			country_event = saudi_yemen.32
+		}
+	}
+	focus = {
+		id = YEM_the_status_quo
+		icon = neutrality
+		cost = 1
+		relative_position_id = YEM_riyadh_conference
+		prerequisite = { focus = YEM_riyadh_conference }
+		available = {
+			has_country_flag = status_quo_win
+		}
+		x = -3
+		y = 1
+		completion_reward = {
+			add_popularity = {
+				ideology = monarchist
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+			add_political_power = 10
+		}
+	}
+	focus = {
+		id = YEM_mantain_ahwals_presidency
+		icon = Ahwal_president
+		cost = 3
+		relative_position_id = YEM_the_status_quo
+		prerequisite = { focus = YEM_the_status_quo }
+		mutually_exclusive = { focus = YEM_invite_prince_turki }
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = saudi_yemen.16
+			add_ideas = YEM_martial_law
+			add_stability = -0.03
+		}
+	}
+	focus = {
+		id = YEM_establish_a_police_state
+		icon = YEM_establish_police_state
+		cost = 5
+		relative_position_id = YEM_mantain_ahwals_presidency
+		prerequisite = { focus = YEM_mantain_ahwals_presidency }
+		x = 0
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.50
+				uses = 2
+				category = support_tech
+			}
+			973 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	focus = {
+		id = YEM_saudi_controlled_press
+		icon = YEM_saudi_controlled_press
+		cost = 8
+		relative_position_id = YEM_establish_a_police_state
+		prerequisite = { focus = YEM_establish_a_police_state }
+		x = 1
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_saudi_media
+		}
+	}
+	focus = {
+		id = YEM_silence_tribal_voices
+		icon = tribal_dominance
+		cost = 8
+		relative_position_id = YEM_establish_a_police_state
+		prerequisite = { focus = YEM_establish_a_police_state }
+		x = -1
+		y = 1
+		completion_reward = {
+			country_event = saudi_yemen.17
+			add_ideas = YEM_silenced_tribes
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_0
+				amount = 5000
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment_1
+				amount = 750
+			}
+		}
+	}
+	focus = {
+		id = YEM_a_blind_eye_to_saudi_infuence
+		icon = saudi_money
+		cost = 6
+		relative_position_id = YEM_silence_tribal_voices
+		prerequisite = { focus = YEM_saudi_controlled_press }
+		prerequisite = { focus = YEM_silence_tribal_voices }
+		x = 1
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = YEM_saudi_influence
+				add_idea = YEM_saudi_corruption
+			}
+		}
+	}
+	focus = {
+		id = YEM_reform_the_central_bank
+		icon = lucrative_investment
+		cost = 5
+		relative_position_id = YEM_a_blind_eye_to_saudi_infuence
+		prerequisite = { focus = YEM_a_blind_eye_to_saudi_infuence }
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_banking_reforms
+		}
+	}
+	focus = {
+		id = YEM_invite_corporations_into_government
+		icon = invite_multinationals
+		cost = 6
+		relative_position_id = YEM_reform_the_central_bank
+		prerequisite = { focus = YEM_reform_the_central_bank }
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_corporate_alliance
+			add_ideas = yemen_Ibrahim_Ahmed_Al_Hothi
+			add_ideas = yemen_Muhammad_Abu_Bakr_Ishaq
+			country_event = saudi_yemen.19
+		}
+	}
+	focus = {
+		id = YEM_yemen_lives_on
+		icon = YEM_yemen_lives_on
+		cost = 8
+		relative_position_id = YEM_invite_corporations_into_government
+		prerequisite = { focus = YEM_invite_corporations_into_government }
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = saudi_yemen.18
+			remove_ideas = YEM_saudi_fractured_nation2
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = YEM_invite_prince_turki
+		icon = prince_turki
+		cost = 5
+		relative_position_id = YEM_the_status_quo
+		prerequisite = { focus = YEM_the_status_quo }
+		mutually_exclusive = { focus = YEM_mantain_ahwals_presidency }
+		x = -4
+		y = 1
+		completion_reward = {
+			YEM_turki_bin_faisal_al_saud = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						expire = "1.1.1.1"
+						ideology = dynastic_monarchist
+					}
+				}
+			}
+			set_politics = {
+				ruling_party = monarchist
+			}
+			set_party_name = { 
+				ideology = monarchist 
+				name = YEM_house_of_saud 
+				long_name = YEM_house_of_saud
+			}
+			set_cosmetic_tag = YEM_turki
+			swap_ideas = {
+				remove_idea = YEM_saudi_influence
+				add_idea = YEM_saudi_influence2
+			}
+			country_event = saudi_yemen.12
+		}
+	}
+	focus = {
+		id = YEM_outlaw_the_yemeni_peoples_union
+		icon = GFX_PDY_the_jasmines
+		cost = 5
+		relative_position_id = YEM_invite_prince_turki
+		prerequisite = { focus = YEM_invite_prince_turki }
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = saudi_yemen.13
+			add_ideas = YEM_saudi_led_nation
+			add_political_power = 50
+			hidden_effect = {
+				add_ideas = yemen_Ali_bin_Mohammed_Al_Hamdan
+				add_ideas = yemen_Mohammed_Al_Jaber
+				add_ideas = yemen_Mohammad_bin_Khalid_Al_Saud
+				add_ideas = yemen_Mutlaq_bin_Salem_Al_Azima
+				add_ideas = yemen_Abdul_Aziz_al_Humain
+			}
+			custom_effect_tooltip = turki_cabinet
+		}
+	}
+	focus = {
+		id = YEM_encourage_saudi_immigration
+		icon = saudi_connections
+		cost = 6
+		relative_position_id = YEM_outlaw_the_yemeni_peoples_union
+		prerequisite = { focus = YEM_outlaw_the_yemeni_peoples_union }
+		x = 0
+		y = 1
+		completion_reward = {
+			978 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			973 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			every_state = {
+				limit = {
+					is_core_of = YEM
+				}
+				add_extra_state_shared_building_slots = 1
+				add_manpower = 1000
+			}
+		}
+	}
+	focus = {
+		id = YEM_establish_saudi_employment_quotas
+		icon = time_for_business
+		cost = 6
+		relative_position_id = YEM_encourage_saudi_immigration
+		prerequisite = { focus = YEM_encourage_saudi_immigration }
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_employment_quotas
+			add_political_power = -100
+			976 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			972 = {
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	focus = {
+		id = YEM_phase_out_yemeni_culture
+		icon = GFX_phase_out_tribal_conservatism
+		cost = 8
+		relative_position_id = YEM_establish_saudi_employment_quotas
+		prerequisite = { focus = YEM_establish_saudi_employment_quotas }
+		x = 1
+		y = 1
+		completion_reward = {
+			add_popularity = {
+				ideology = monarchist
+				popularity = 0.10
+			}
+			976 = {
+				add_manpower = -5000
+			}
+			973 = {
+				add_manpower = -5000
+			}
+			add_victory_points = {
+				province = 16643
+				value = -2
+			}
+			country_event = saudi_yemen.14
+		}
+	}
+	focus = {
+		id = YEM_destroy_the_houthis
+		icon = houthis_bad
+		cost = 8
+		relative_position_id = YEM_establish_saudi_employment_quotas
+		prerequisite = { focus = YEM_establish_saudi_employment_quotas }
+		x = -1
+		y = 1
+		completion_reward = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.10
+			}
+			add_stability = 0.10
+			add_political_power = 100
+			country_event = saudi_yemen.15
+		}
+	}
+	focus = {
+		id = YEM_codify_saudi_law
+		icon = focus_syria_islamic_monarchy
+		cost = 5
+		relative_position_id = YEM_destroy_the_houthis
+		prerequisite = { focus = YEM_destroy_the_houthis }
+		prerequisite = { focus = YEM_phase_out_yemeni_culture }
+		x = 1
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_saudi_legal_system
+			add_popularity = {
+				ideology = monarchist
+				popularity = 0.05
+			}
+		}
+	}
+	focus = {
+		id = YEM_an_extension_of_riyadh
+		icon = abdullah_saud
+		cost = 8
+		relative_position_id = YEM_codify_saudi_law
+		prerequisite = { focus = YEM_codify_saudi_law }
+		x = 0
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = YEM_saudi_influence2
+				add_idea = YEM_saudi_dominant_society
+			}
+			add_popularity = {
+				ideology = monarchist
+				popularity = 0.05
+			}
+			add_political_power = 100
+		}
+	}
+	focus = {
+		id = YEM_begin_reconstruction
+		icon = YEM_rebuild
+		cost = 5
+		x = 20
+		y = 0
+		completion_reward = {
+			add_timed_idea = {
+				idea = YEM_reconstruction
+				days = 210
+			}
+		}
+	}
+	focus = {
+		id = YEM_protect_our_agriculture
+		icon = agriculuture_agrarianism
+		cost = 8
+		relative_position_id = YEM_begin_reconstruction
+		prerequisite = { focus = YEM_begin_reconstruction }
+		x = 2
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_agricultural_revival
+		}
+	}
+	focus = {
+		id = YEM_request_admission_into_opec
+		icon = joining_the_opec
+		cost = 8
+		relative_position_id = YEM_begin_reconstruction
+		prerequisite = { focus = YEM_begin_reconstruction }
+		x = -2
+		y = 1
+		completion_reward = {
+			SAU = {
+				country_event = saudi_yemen.33
+			}
+		}
+	}
+	focus = {
+		id = YEM_rebuild_sanaa
+		icon = industry_generic_focus
+		cost = 5
+		relative_position_id = YEM_begin_reconstruction
+		prerequisite = { focus = YEM_begin_reconstruction }
+		x = 0
+		y = 1
+		completion_reward = {
+			973 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = YEM_initial_stabilization
+		icon = consumer_goods
+		cost = 5
+		relative_position_id = YEM_rebuild_sanaa
+		prerequisite = { focus = YEM_rebuild_sanaa }
+		prerequisite = { focus = YEM_request_admission_into_opec }
+		prerequisite = { focus = YEM_protect_our_agriculture }
+		x = 0
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = YEM_saudi_devestated_economy
+				add_idea = YEM_depressed_economy
+			}
+		}
+	}
+	focus = {
+		id = YEM_new_economic_model
+		icon = chinese_economy
+		cost = 3
+		relative_position_id = YEM_initial_stabilization
+		prerequisite = { focus = YEM_initial_stabilization }
+		available = { has_country_flag = yemen_economic_model_followed }
+		mutually_exclusive = { focus = YEM_saudi_economic_model focus = YEM_legacy_of_islah }
+		x = 2
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.50
+				uses = 2
+				category = construction_tech
+			}
+			add_tech_bonus = {
+				bonus = 0.50
+				uses = 2
+				category = industry
+			}
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = YEM_revive_the_local_development_agencies
+		icon = GFX_YEM_allow_workers_cooperatives
+		cost = 8
+		relative_position_id = YEM_new_economic_model
+		prerequisite = { focus = YEM_new_economic_model }
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_development_agencies
+			973 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			978 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.10
+			}
+		}
+	}
+	focus = {
+		id = YEM_nationalize_vital_industries
+		icon = GFX_industry_act
+		cost = 6
+		relative_position_id = YEM_revive_the_local_development_agencies
+		prerequisite = { focus = YEM_revive_the_local_development_agencies }
+		bypass = {
+			has_country_leader = {
+				name = "Mohammed Saleh Al-Ahmar"
+				ruling_only = yes
+			}
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_nationalized_industries
+			add_offsite_building = { 
+				type = industrial_complex 
+				level = 2 
+			}
+		}
+	}
+	focus = {
+		id = YEM_connect_sanaa_to_the_sea
+		icon = GFX_coastal_development_scheme
+		cost = 8
+		relative_position_id = YEM_nationalize_vital_industries
+		prerequisite = { focus = YEM_nationalize_vital_industries }
+		x = 0
+		y = 1
+		completion_reward = {
+			build_railway = {
+				level = 1
+				build_only_on_allied = yes
+				controller_priority = {
+				    base = 1
+				 
+				    modifier = {
+					    tag = YEM
+					    add = 1
+				    }
+				}
+				fallback = yes
+				path = { 13643 13644 13683 13616 13615 }
+				start_state = 973
+				target_state = 975
+			}
+		}
+	}
+	focus = {
+		id = YEM_saudi_economic_model
+		icon = saudi_money
+		cost = 3
+		relative_position_id = YEM_initial_stabilization
+		prerequisite = { focus = YEM_initial_stabilization }
+		available = { has_country_flag = saudi_economic_model_followed }
+		mutually_exclusive = { focus = YEM_legacy_of_islah focus = YEM_new_economic_model }
+		x = -2
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.25
+				uses = 2
+				category = construction_tech
+			}
+			972 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			975 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	focus = {
+		id = YEM_build_the_sanaa_riyadh_railway
+		icon = roads
+		cost = 8
+		relative_position_id = YEM_saudi_economic_model
+		prerequisite = { focus = YEM_saudi_economic_model }
+		x = 0
+		y = 1
+		completion_reward = {
+			SAU = {
+				country_event = saudi_yemen.36
+			}
+		}
+	}
+	focus = {
+		id = YEM_establish_an_export_economy
+		icon = trade
+		cost = 5
+		relative_position_id = YEM_build_the_sanaa_riyadh_railway
+		prerequisite = { focus = YEM_build_the_sanaa_riyadh_railway }
+		x = 0
+		y = 1
+		completion_reward = {
+			remove_ideas = {
+				limited_exports
+				closed_economy
+				export_focus
+			}
+			add_ideas = free_trade
+			975 = {
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = YEM_bolster_oil_production
+		icon = oil_focus
+		cost = 6
+		relative_position_id = YEM_establish_an_export_economy
+		prerequisite = { focus = YEM_establish_an_export_economy }
+		x = 0
+		y = 1
+		completion_reward = {
+			add_resource = {
+				type = oil
+				amount = 10
+				state = 977
+			}
+			add_tech_bonus = {
+				bonus = 0.50
+				uses = 1
+				category = synth_resources
+			}
+		}
+	}
+	focus = {
+		id = YEM_legacy_of_islah
+		icon = deal_focus
+		cost = 3
+		relative_position_id = YEM_initial_stabilization
+		prerequisite = { focus = YEM_initial_stabilization }
+		available = { has_country_flag = alislah_economic_model_followed }
+		mutually_exclusive = { focus = YEM_saudi_economic_model focus = YEM_new_economic_model }
+		x = 0
+		y = 1
+		completion_reward = {
+            975 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			add_stability = 0.03
+			978 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = YEM_attract_foreign_investment
+		icon = lucrative_investment
+		cost = 6
+		relative_position_id = YEM_legacy_of_islah
+		prerequisite = { focus = YEM_legacy_of_islah }
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_foreign_investment
+			972 = {
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = YEM_lower_corpo_tax
+		icon = CSD_abolish_corporate_taxation
+		cost = 8
+		relative_position_id = YEM_attract_foreign_investment
+		prerequisite = { focus = YEM_attract_foreign_investment }
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_corpo_tax_cuts
+		}
+	}
+	focus = {
+		id = YEM_turn_to_america
+		icon = corporatism
+		cost = 8
+		relative_position_id = YEM_lower_corpo_tax
+		prerequisite = { focus = YEM_lower_corpo_tax }
+		x = 0
+		y = 1
+		completion_reward = {
+			add_opinion_modifier = {
+				target = USA
+				modifier = trade_influence_2
+			}
+			USA = {
+				add_opinion_modifier = {
+					target = YEM
+					modifier = trade_influence_2
+				}
+				country_event = saudi_yemen.39
+			}
+		}
+	}
+	focus = {
+		id = YEM_an_end_to_depression
+		icon = GFX_national_recovery_plan
+		cost = 8
+		relative_position_id = YEM_turn_to_america
+		prerequisite = { focus = YEM_bolster_oil_production focus = YEM_connect_sanaa_to_the_sea focus = YEM_turn_to_america }
+		x = 0
+		y = 1
+		completion_reward = {
+			remove_ideas = YEM_depressed_economy
+			add_political_power = 100
+		}
+	}
+	focus = {
+		id = YEM_continued_economic_reform
+		icon = low_company_tax
+		cost = 5
+		relative_position_id = YEM_an_end_to_depression
+		prerequisite = { focus = YEM_an_end_to_depression }
+		x = 0
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.25
+				uses = 1
+				category = construction_tech
+			}
+		}
+	}
+	focus = {
+		id = YEM_assert_economic_independence
+		icon = caliphate_build_up
+		cost = 8
+		relative_position_id = YEM_continued_economic_reform
+		prerequisite = { focus = YEM_continued_economic_reform }
+		mutually_exclusive = { focus = YEM_deepen_ties_with_saudi_arabia }
+		x = 1
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_economic_independence
+			add_tech_bonus = {
+				bonus = 0.50
+				uses = 2
+				category = construction_tech
+			}
+		}
+	}
+	focus = {
+		id = YEM_cast_out_saudi_influence
+		icon = GFX_curtail_the_Sheiks
+		cost = 5
+		relative_position_id = YEM_assert_economic_independence
+		prerequisite = { focus = YEM_assert_economic_independence }
+		x = 0
+		y = 1
+		completion_reward = {
+			add_opinion_modifier = {
+				target = SAU
+				modifier = yem_saudi_distancing
+			}
+			SAU = {
+				add_opinion_modifier = {
+					target = YEM
+					modifier = yem_saudi_distancing
+				}
+			}
+			add_resource = {
+				type = oil
+				amount = 10
+				state = 976
+			}
+			swap_ideas = {
+				remove_idea = YEM_economic_independence
+				add_idea = YEM_economic_independence2
+			}
+		}
+	}
+	focus = {
+		id = YEM_reopen_the_markets
+		icon = GFX_seize_more_assets
+		cost = 8
+		relative_position_id = YEM_cast_out_saudi_influence
+		prerequisite = { focus = YEM_cast_out_saudi_influence }
+		x = 0
+		y = 1
+		completion_reward = {
+			remove_ideas = {
+				export_focus
+				limited_exports
+				free_trade
+			}
+			add_ideas = closed_economy
+		}
+	}
+	focus = {
+		id = YEM_develop_yemeni_business
+		icon = desert_capitalism
+		cost = 8
+		relative_position_id = YEM_reopen_the_markets
+		prerequisite = { focus = YEM_reopen_the_markets }
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_yemeni_business_support
+		}
+	}
+	focus = {
+		id = YEM_deepen_ties_with_saudi_arabia
+		icon = fellow_sheikhs
+		cost = 5
+		relative_position_id = YEM_continued_economic_reform
+		prerequisite = { focus = YEM_continued_economic_reform }
+		mutually_exclusive = { focus = YEM_assert_economic_independence }
+		x = -1
+		y = 1
+		completion_reward = {
+			add_opinion_modifier = {
+				target = SAU
+				modifier = yem_saudi_trade
+			}
+			add_opinion_modifier = {
+				target = SAU
+				modifier = yem_saudi_relations
+			}
+			SAU = {
+				add_opinion_modifier = {
+					target = YEM
+					modifier = yem_saudi_trade
+				}
+				add_opinion_modifier = {
+					target = YEM
+					modifier = yem_saudi_relations
+				}
+			}
+		}
+	}
+	focus = {
+		id = YEM_invite_saudi_investors
+		icon = saudi_connections
+		cost = 3
+		relative_position_id = YEM_deepen_ties_with_saudi_arabia
+		prerequisite = { focus = YEM_deepen_ties_with_saudi_arabia }
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_saudi_investment
+		}
+	}
+	focus = {
+		id = YEM_develop_shared_oilfields
+		icon = offshore_oil
+		cost = 8
+		relative_position_id = YEM_invite_saudi_investors
+		prerequisite = { focus = YEM_invite_saudi_investors }
+		x = 0
+		y = 1
+		completion_reward = {
+			SAU = {
+				country_event = saudi_yemen.42
+			}
+		}
+	}
+	focus = {
+		id = YEM_expand_tahama_port
+		icon = docks
+		cost = 5
+		relative_position_id = YEM_develop_shared_oilfields
+		prerequisite = { focus = YEM_develop_shared_oilfields }
+		x = 0
+		y = 1
+		completion_reward = {
+			975 = {
+				add_building_construction = {
+					type = naval_base
+					level = 2
+					instant_build = yes
+					province = 13619
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					instant_build = yes
+					province = 13615
+				}
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = YEM_a_new_golden_age
+		icon = YEM_modern_nation
+		cost = 5
+		relative_position_id = YEM_expand_tahama_port
+		prerequisite = { focus = YEM_develop_yemeni_business focus = YEM_expand_tahama_port }
+		x = 1
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_an_economic_boom
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = YEM_our_place_in_arabia
+		icon = GFX_the_middle_east_connections
+		cost = 2
+		x = 34
+		y = 0
+		completion_reward = {
+			add_political_power = 30
+		}
+	}
+	focus = {
+		id = YEM_reestablish_the_sanaa_doctrine
+		icon = The_Sanaa_Convention
+		cost = 3
+		relative_position_id = YEM_our_place_in_arabia
+		prerequisite = { focus = YEM_our_place_in_arabia }
+		available = {
+			OR = {
+				has_completed_focus = YEM_embolden_revolutionary_spirit
+				has_completed_focus = YEM_saudi_bolster_the_military
+				has_completed_focus = YEM_amend_the_constitution
+			}
+		}
+		mutually_exclusive = { focus = YEM_reject_saudi_hejemony }
+		x = 5
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_sanaa_doctrine
+			country_event = saudi_yemen.53
+		}
+	}
+	focus = {
+		id = YEM_mantain_arabian_ties
+		icon = GFX_alliance_of_arab_states
+		cost = 6
+		relative_position_id = YEM_reestablish_the_sanaa_doctrine
+		prerequisite = { focus = YEM_reestablish_the_sanaa_doctrine }
+		x = 0
+		y = 1
+		completion_reward = {
+			add_opinion_modifier = {
+				target = SAU
+				modifier = yar_arab_trade
+			}
+			add_opinion_modifier = {
+				target = SAU
+				modifier = yem_arabian_cooperation
+			}
+			SAU = {
+				add_opinion_modifier = {
+					target = YEM
+					modifier = yem_arabian_cooperation
+				}
+				add_opinion_modifier = {
+					target = YEM
+					modifier = yar_arab_trade
+				}
+			}
+			add_opinion_modifier = {
+				target = OMA
+				modifier = yar_arab_trade
+			}
+			add_opinion_modifier = {
+				target = OMA
+				modifier = yem_arabian_cooperation
+			}
+			OMA = {
+				add_opinion_modifier = {
+					target = YEM
+					modifier = yem_arabian_cooperation
+				}
+				add_opinion_modifier = {
+					target = YEM
+					modifier = yar_arab_trade
+				}
+			}
+			add_opinion_modifier = {
+				target = IRQ
+				modifier = yem_arabian_cooperation
+			}
+			add_opinion_modifier = {
+				target = IRQ
+				modifier = yar_arab_trade
+			}
+			IRQ = {
+				add_opinion_modifier = {
+					target = YEM
+					modifier = yem_arabian_cooperation
+				}
+				add_opinion_modifier = {
+					target = YEM
+					modifier = yar_arab_trade
+				}
+			}
+		}
+	}
+	focus = {
+		id = YEM_the_future_of_yemen
+		icon = military_deal
+		cost = 2
+		relative_position_id = YEM_mantain_arabian_ties
+		prerequisite = { focus = YEM_mantain_arabian_ties }
+		x = 0
+		y = 1
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = YEM_splendid_isolation
+		icon = neutrality
+		cost = 1
+		relative_position_id = YEM_the_future_of_yemen
+		prerequisite = { focus = YEM_the_future_of_yemen }
+		mutually_exclusive = { focus = YEM_pursue_reunification }
+		x = 3
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_isolationism
+		}
+	}
+	focus = {
+		id = YEM_a_profitable_co_existence
+		icon = GFX_YAR_recognise_the_pdry
+		cost = 8
+		relative_position_id = YEM_splendid_isolation
+		prerequisite = { focus = YEM_splendid_isolation }
+		x = 0
+		y = 1
+		completion_reward = {
+			PDY = {
+				country_event = saudi_yemen.55
+			}
+		}
+	}
+	focus = {
+		id = YEM_defend_our_homeland
+		icon = military_salute
+		cost = 5
+		relative_position_id = YEM_a_profitable_co_existence
+		prerequisite = { focus = YEM_a_profitable_co_existence }
+		x = 1
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_defending_the_nation
+			973 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = YEM_all_eyes_on_the_border
+		icon = military_drill
+		cost = 6
+		relative_position_id = YEM_a_profitable_co_existence
+		prerequisite = { focus = YEM_a_profitable_co_existence }
+		x = -1
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_border_fortification_focus
+		}
+	}
+	focus = {
+		id = YEM_invest_into_the_tribes
+		icon = yemen_for_the_tribes
+		cost = 6
+		relative_position_id = YEM_all_eyes_on_the_border
+		prerequisite = { focus = YEM_all_eyes_on_the_border }
+		prerequisite = { focus = YEM_defend_our_homeland }
+		x = 1
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_renewed_tribal_focus
+			country_event = saudi_yemen.58
+		}
+	}
+	focus = {
+		id = YEM_develop_self_sufficiency
+		icon = caliphate_build_up
+		cost = 8
+		relative_position_id = YEM_invest_into_the_tribes
+		prerequisite = { focus = YEM_invest_into_the_tribes }
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_self_sufficiency
+			add_resource = {
+				type = steel
+				amount = 15
+				state = 972
+			}
+			add_resource = {
+				type = aluminium
+				amount = 10
+				state = 978
+			}
+		}
+	}
+	focus = {
+		id = YEM_promote_a_northern_identity
+		icon = YEM_promote_a_northern_identity
+		cost = 5
+		relative_position_id = YEM_develop_self_sufficiency
+		prerequisite = { focus = YEM_develop_self_sufficiency }
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_northern_identity
+			country_event = saudi_yemen.59
+		}
+	}
+	focus = {
+		id = YEM_freedom_in_isolation
+		icon = YEM_tribal_autonomy
+		cost = 6
+		relative_position_id = YEM_promote_a_northern_identity
+		prerequisite = { focus = YEM_promote_a_northern_identity }
+		x = 0
+		y = 1
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = -0.05
+			add_tech_bonus = {
+				bonus = 0.25
+				uses = 2
+				category = industry
+			}
+		}
+	}
+	focus = {
+		id = YEM_pursue_reunification
+		icon = GFX_YAR_vanquish_the_communists
+		cost = 1
+		relative_position_id = YEM_the_future_of_yemen
+		prerequisite = { focus = YEM_the_future_of_yemen }
+		mutually_exclusive = { focus = YEM_splendid_isolation }
+		x = -3
+		y = 1
+		completion_reward = {
+			add_war_support = 0.07
+		}
+	}
+	focus = {
+		id = YEM_bolster_military_production
+		icon = military_factory
+		cost = 5
+		relative_position_id = YEM_pursue_reunification
+		prerequisite = { focus = YEM_pursue_reunification }
+		x = 1
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_recruitment_drive
+			978 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			972 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = YEM_reject_foreign_interference
+		icon = YEM_reformist_victory
+		cost = 5
+		relative_position_id = YEM_pursue_reunification
+		prerequisite = { focus = YEM_pursue_reunification }
+		x = -1
+		y = 1
+		completion_reward = {
+			add_timed_idea = {
+				idea = YEM_local_production
+				days = 90
+			}
+		}
+	}
+	focus = {
+		id = YEM_begin_the_third_yemenite_war
+		icon = GFX_reintegrate_the_communists
+		cost = 8
+		relative_position_id = YEM_reject_foreign_interference
+		prerequisite = { focus = YEM_bolster_military_production }
+		prerequisite = { focus = YEM_reject_foreign_interference }
+		x = 1
+		y = 1
+		completion_reward = {
+			declare_war_on = {
+				target = PDY
+				type = annex_everything
+			}
+			add_war_support = 0.05
+		}
+	}
+	focus = {
+		id = YEM_uplift_the_southern_tribes
+		icon = GFX_phase_out_tribal_conservatism
+		cost = 5
+		relative_position_id = YEM_begin_the_third_yemenite_war
+		prerequisite = { focus = YEM_begin_the_third_yemenite_war }
+		x = 2
+		y = 1
+		available = {
+			NOT = {
+				country_exists = PDY
+			}
+			owns_state = 979
+		}
+		completion_reward = {
+			country_event = saudi_yemen.54
+			293 = {
+				add_manpower = 5000
+			}
+			659 = {
+				add_manpower = 5000
+			}
+		}
+	}
+	focus = {
+		id = YEM_improve_the_aden_sanaa_railway
+		icon = infrastructure_2
+		cost = 8
+		relative_position_id = YEM_begin_the_third_yemenite_war
+		prerequisite = { focus = YEM_begin_the_third_yemenite_war }
+		x = -2
+		y = 1
+		available = {
+			NOT = {
+				country_exists = PDY
+			}
+			owns_state = 979
+		}
+		completion_reward = {
+			build_railway = {
+				level = 1
+				build_only_on_allied = yes
+				controller_priority = {
+				    base = 1
+				 
+				    modifier = {
+					    tag = YEM
+					    add = 1
+				    }
+				}
+				fallback = yes
+				path = { 13630 13631 13632 13626 13645 13646 13643 }
+				start_state = 979
+				target_state = 973
+			}
+			659 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = YEM_rebuild_the_south_saudi
+		icon = GFX_all_cables_lead_to_aden
+		cost = 6
+		relative_position_id = YEM_begin_the_third_yemenite_war
+		prerequisite = { focus = YEM_begin_the_third_yemenite_war }
+		x = 0
+		y = 1
+		available = {
+			NOT = {
+				country_exists = PDY
+			}
+			owns_state = 979
+		}
+		completion_reward = {
+			add_timed_idea = {
+				idea = YEM_reconstruction_efforts
+				days = 180
+			}
+		}
+	}
+	focus = {
+		id = YEM_united_once_more
+		icon = serve_yemen
+		cost = 3
+		relative_position_id = YEM_rebuild_the_south_saudi
+		prerequisite = { focus = YEM_improve_the_aden_sanaa_railway }
+		prerequisite = { focus = YEM_uplift_the_southern_tribes }
+		prerequisite = { focus = YEM_rebuild_the_south_saudi }
+		x = 0
+		y = 1
+		completion_reward = {
+			add_stability = 0.05
+			add_popularity = {
+				ideology = communist
+				popularity = -0.10
+			}
+			every_state = {
+				limit = {
+					is_core_of = PDY
+				}
+				add_core_of = YEM
+			}
+		}
+	}
+	focus = {
+		id = YEM_de_construct_the_al_bayda_line
+		icon = production
+		cost = 5
+		relative_position_id = YEM_united_once_more
+		prerequisite = { focus = YEM_united_once_more }
+		x = 0
+		y = 1
+		completion_reward = {
+			972 = {
+				remove_building = {
+					type = bunker
+					level = 1
+					province = 13623
+				}
+				remove_building = {
+					type = bunker
+					level = 1
+					province = 13624
+				}
+				remove_building = {
+					type = bunker
+					level = 1
+					province = 13626
+				}
+			}
+			977 = {
+				remove_building = {
+					type = bunker
+					level = 1
+					province = 13661
+				}
+				remove_building = {
+					type = bunker
+					level = 1
+					province = 13660
+				}
+				remove_building = {
+					type = bunker
+					level = 1
+					province = 13662
+				}
+				remove_building = {
+					type = bunker
+					level = 1
+					province = 13664
+				}
+				remove_building = {
+					type = bunker
+					level = 1
+					province = 13665
+				}
+				remove_building = {
+					type = bunker
+					level = 1
+					province = 13671
+				}
+				remove_building = {
+					type = bunker
+					level = 1
+					province = 13679
+				}
+				remove_building = {
+					type = bunker
+					level = 1
+					province = 13681
+				}
+				remove_building = {
+					type = bunker
+					level = 1
+					province = 13682
+				}
+			}
+			659 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			293 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = YEM_ever_lasting_peace
+		icon = peace_chance
+		cost = 6
+		relative_position_id = YEM_de_construct_the_al_bayda_line
+		prerequisite = { focus = YEM_de_construct_the_al_bayda_line }
+		x = 0
+		y = 1
+		completion_reward = {
+			army_experience = 10
+			add_stability = 0.07
+			add_ideas = YEM_defence_focus
+		}
+	}
+	focus = {
+		id = YEM_reject_saudi_hejemony
+		icon = saudi_allies
+		cost = 5
+		relative_position_id = YEM_our_place_in_arabia
+		prerequisite = { focus = YEM_our_place_in_arabia }
+		available = {
+			OR = {
+				has_completed_focus = YEM_establish_saudi_employment_quotas
+				has_completed_focus = YEM_a_blind_eye_to_saudi_infuence
+			}
+		}
+		mutually_exclusive = { focus = YEM_reestablish_the_sanaa_doctrine }
+		x = -5
+		y = 1
+		completion_reward = {
+			add_war_support = 0.03
+			add_political_power = -50
+		}
+	}
+	focus = {
+		id = YEM_mantain_our_sovereignty
+		icon = GFX_freedom_focus
+		cost = 5
+		relative_position_id = YEM_reject_saudi_hejemony
+		prerequisite = { focus = YEM_reject_saudi_hejemony }
+		available = {
+			NOT = {
+				has_country_leader = {
+					name = "Turki bin Faisal Al Saud"
+					ruling_only = yes
+				}
+			}
+		}
+		mutually_exclusive = { focus = YEM_concede_to_the_demands_of_the_king }
+		x = 2
+		y = 1
+		completion_reward = {
+			add_stability = 0.07
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = YEM_limit_saudi_influence
+		icon = GFX_defeat_the_saudi_goliath
+		cost = 5
+		relative_position_id = YEM_mantain_our_sovereignty
+		prerequisite = { focus = YEM_mantain_our_sovereignty }
+		x = 0
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.50
+				uses = 1
+				category = land_doctrine
+			}
+			add_tech_bonus = {
+				bonus = 0.50
+				uses = 1
+				category = air_doctrine
+			}
+			army_experience = 25
+			air_experience = 25
+		}
+	}
+	focus = {
+		id = YEM_gain_the_peoples_trust
+		icon = YEM_country_pride
+		cost = 6
+		relative_position_id = YEM_limit_saudi_influence
+		prerequisite = { focus = YEM_limit_saudi_influence }
+		x = 1
+		y = 1
+		completion_reward = {
+			add_stability = 0.07
+			add_war_support = 0.07
+		}
+	}
+	focus = {
+		id = YEM_concede_to_the_demands_of_the_king
+		icon = abdullah_saud
+		cost = 5
+		relative_position_id = YEM_reject_saudi_hejemony
+		prerequisite = { focus = YEM_reject_saudi_hejemony }
+		mutually_exclusive = { focus = YEM_mantain_our_sovereignty }
+		x = -2
+		y = 1
+		completion_reward = {
+			add_political_power = -100
+			add_war_support = 0.05
+			add_popularity = {
+				ideology = ROOT
+				popularity = -0.05
+			}
+		}
+	}
+	focus = {
+		id = YEM_sell_off_yemeni_companies
+		icon = GFX_uplift_saada
+		cost = 3
+		relative_position_id = YEM_concede_to_the_demands_of_the_king
+		prerequisite = { focus = YEM_concede_to_the_demands_of_the_king }
+		x = 1
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_companies_for_sale
+			country_event = saudi_yemen.45
+		}
+	}
+	focus = {
+		id = YEM_ramp_up_military_spending
+		icon = GFX_mass_fund_the_army
+		cost = 8
+		relative_position_id = YEM_concede_to_the_demands_of_the_king
+		prerequisite = { focus = YEM_concede_to_the_demands_of_the_king }
+		x = -1
+		y = 1
+		completion_reward = {
+			remove_ideas = {
+				civilian_economy
+				low_economic_mobilisation
+				partial_economic_mobilisation
+			}
+			add_ideas = war_economy
+		}
+	}
+	focus = {
+		id = YEM_saada_for_aid
+		icon = GFX_reap_in_the_benefits
+		cost = 6
+		relative_position_id = YEM_sell_off_yemeni_companies
+		prerequisite = { focus = YEM_sell_off_yemeni_companies }
+		x = 0
+		y = 1
+		completion_reward = {
+			SAU = {
+				country_event = saudi_yemen.46
+			}
+		}
+	}
+	focus = {
+		id = YEM_copy_saudi_tank_designs
+		icon = YEM_copy_saudi_tank_designs
+		cost = 6
+		relative_position_id = YEM_ramp_up_military_spending
+		prerequisite = { focus = YEM_ramp_up_military_spending }
+		x = 0
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.50
+				uses = 1
+				category = armor
+			}
+			add_ideas = YEM_saudi_tank_designs
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.5
+			}
+		}
+	}
+	focus = {
+		id = YEM_fund_the_intelligence_services
+		icon = GFX_the_surveillance_state_perfected
+		cost = 6
+		relative_position_id = YEM_limit_saudi_influence
+		prerequisite = { focus = YEM_limit_saudi_influence }
+		x = -1
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_intelligence_funding
+		}
+	}
+	focus = {
+		id = YEM_abandon_the_south
+		icon = PDY_diplomacy_focus
+		cost = 6
+		relative_position_id = YEM_fund_the_intelligence_services
+		prerequisite = { focus = YEM_fund_the_intelligence_services focus = YEM_gain_the_peoples_trust focus = YEM_copy_saudi_tank_designs focus = YEM_saada_for_aid }
+		mutually_exclusive = { focus = YEM_prepare_for_the_inevitable }
+		x = 1
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_northern_focus
+			972 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			975 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	focus = {
+		id = YEM_prepare_for_the_inevitable
+		icon = YEM_taizz_crisis
+		cost = 8
+		relative_position_id = YEM_copy_saudi_tank_designs
+		prerequisite = { focus = YEM_fund_the_intelligence_services focus = YEM_gain_the_peoples_trust focus = YEM_copy_saudi_tank_designs focus = YEM_saada_for_aid }
+		mutually_exclusive = { focus = YEM_abandon_the_south }
+		x = 1
+		y = 1
+		completion_reward = {
+			972 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			978 = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	focus = {
+		id = YEM_extend_the_al_bayad_line
+		icon = GFX_intelligent_warfare
+		cost = 5
+		relative_position_id = YEM_abandon_the_south
+		prerequisite = { focus = YEM_abandon_the_south }
+		x = 0
+		y = 1
+		completion_reward = {
+			972 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 13623
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 13624
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 13626
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+			977 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 13661
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 13660
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 13662
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 13664
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 13665
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 13671
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 13679
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 13681
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 13682
+				}
+			}
+		}
+	}
+	focus = {
+		id = YEM_learn_our_place
+		icon = intelligence_exchange
+		cost = 5
+		relative_position_id = YEM_extend_the_al_bayad_line
+		prerequisite = { focus = YEM_extend_the_al_bayad_line }
+		x = 0
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = YEM_saudi_buffer_state2
+				add_idea = YEM_saudi_buffer_state3
+			}
+			add_stability = -0.03
+		}
+	}
+	focus = {
+		id = YEM_increase_exports
+		icon = invite_multinationals
+		cost = 5
+		relative_position_id = YEM_learn_our_place
+		prerequisite = { focus = YEM_learn_our_place }
+		x = 0
+		y = 1
+		completion_reward = {
+			add_resource = {
+				type = steel
+				amount = 7
+				state = 978
+			}
+			add_resource = {
+				type = aluminium
+				amount = 7
+				state = 978
+			}
+			add_resource = {
+				type = chromium
+				amount = 10
+				state = 975
+			}
+			add_resource = {
+				type = oil
+				amount = 10
+				state = 975
+			}
+			add_opinion_modifier = {
+				target = SAU
+				modifier = yem_monarchist_world_trade
+			}
+			SAU = {
+				add_opinion_modifier = {
+					target = YEM
+					modifier = yem_monarchist_world_trade
+				}
+			}
+		}
+	}
+	focus = {
+		id = YEM_increase_border_patrols
+		icon = focus_syrian_border_defence
+		cost = 2
+		relative_position_id = YEM_increase_exports
+		prerequisite = { focus = YEM_increase_exports }
+		x = 1
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_border_patrols
+		}
+	}
+	focus = {
+		id = YEM_utilize_saudi_technology
+		icon = YEM_utilize_saudi_technology
+		cost = 3
+		relative_position_id = YEM_increase_exports
+		prerequisite = { focus = YEM_increase_exports }
+		x = -1
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.50
+				uses = 2
+				category = support_tech
+			}
+			add_tech_bonus = {
+				bonus = 0.25
+				uses = 1
+				category = artillery
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.5
+			}
+		}
+	}
+	focus = {
+		id = YEM_a_future_under_jackboot
+		icon = GFX_the_freedom_decree
+		cost = 6
+		relative_position_id = YEM_utilize_saudi_technology
+		prerequisite = { focus = YEM_utilize_saudi_technology }
+		prerequisite = { focus = YEM_increase_border_patrols }
+		x = 1
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = YEM_saudi_buffer_state3
+				add_idea = YEM_saudi_buffer_state4
+			}
+			add_stability = -0.05
+            add_popularity = {
+				ideology = ROOT
+				popularity = 0.10
+			}
+			country_event = saudi_yemen.52
+		}
+	}
+	focus = {
+		id = YEM_march_towards_aden
+		icon = YEM_destroy_South
+		cost = 6
+		relative_position_id = YEM_prepare_for_the_inevitable
+		prerequisite = { focus = YEM_prepare_for_the_inevitable }
+		x = 0
+		y = 1
+		completion_reward = {
+			declare_war_on = {
+				target = PDY
+				type = annex_everything
+			}
+			add_war_support = 0.05
+		}
+	}
+	focus = {
+		id = YEM_dismantle_the_communist_system
+		icon = no_good_muslim_is_a_communist
+		cost = 6
+		relative_position_id = YEM_march_towards_aden
+		prerequisite = { focus = YEM_march_towards_aden }
+		x = 0
+		y = 1
+		available = {
+			NOT = {
+				country_exists = PDY
+			}
+			owns_state = 979
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = communist
+				popularity = -0.10
+			}
+			add_war_support = 0.05
+			country_event = saudi_yemen.50
+		}
+	}
+	focus = {
+		id = YEM_develop_the_railways
+		icon = GFX_coastal_development_scheme
+		cost = 5
+		relative_position_id = YEM_dismantle_the_communist_system
+		prerequisite = { focus = YEM_dismantle_the_communist_system }
+		x = 1
+		y = 1
+		completion_reward = {
+			293 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			build_railway = {
+				level = 1
+				build_only_on_allied = yes
+				controller_priority = {
+				    base = 1
+				 
+				    modifier = {
+					    tag = YEM
+					    add = 1
+				    }
+				}
+				fallback = yes
+				path = { 13636 13637 13639 13683 13684 13685 }
+				start_state = 659
+				target_state = 293
+			}
+			build_railway = {
+				level = 1
+				build_only_on_allied = no
+				controller_priority = {
+				    base = 1
+				 
+				    modifier = {
+					    tag = YEM
+					    add = 1
+				    }
+				}
+				fallback = yes
+				path = { 13685 13686 13687 13683 13688 13689 }
+				start_province = 13685
+                target_province = 13689
+			}
+		}
+	}
+	focus = {
+		id = YEM_exploit_the_oil_fields
+		icon = focus_fossil_fuels
+		cost = 6
+		relative_position_id = YEM_dismantle_the_communist_system
+		prerequisite = { focus = YEM_dismantle_the_communist_system }
+		x = -1
+		y = 1
+		completion_reward = {
+			add_ideas = YEM_oil_exploitation
+			add_resource = {
+				type = oil
+				amount = 7
+				state = 979
+			}
+			add_resource = {
+				type = oil
+				amount = 7
+				state = 293
+			}
+		}
+	}
+	focus = {
+		id = YEM_a_new_dawn
+		icon = GFX_a_new_yemen
+		cost = 5
+		relative_position_id = YEM_exploit_the_oil_fields
+		prerequisite = { focus = YEM_exploit_the_oil_fields }
+		prerequisite = { focus = YEM_develop_the_railways }
+		x = 1
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = YEM_saudi_buffer_state2
+				add_idea = YEM_a_nation_for_riyadh
+			}
+			country_event = saudi_yemen.51
+		}
+	}
+}

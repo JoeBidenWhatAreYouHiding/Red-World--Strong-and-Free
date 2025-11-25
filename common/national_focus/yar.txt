@@ -1,0 +1,6072 @@
+focus_tree = {
+	id = yar_tree
+	country = {
+		factor = 0
+		modifier = {
+			add = 20
+			tag = YAR
+		}
+	}	
+	continuous_focus_position = { x = 100 y = 3200 }
+	default = no
+
+	focus = {
+		id = YAR_Success_of_the_Play
+		icon = GFX_success_of_the_play
+		cost = 0
+		available = {
+			has_war = yes
+		}
+		bypass_if_unavailable = yes
+		x = 14
+		y = -2
+		completion_reward = {
+			add_ideas = limited_conscription
+			add_ideas = war_economy
+			country_event = {
+				id = YAR.1
+			}
+		}
+	}
+	focus = {
+		id = YAR_utilize_the_houthis_knowledge
+		icon = YAR_houthi_knowledge
+		cost = 3
+		available = {
+			has_war = yes
+		}
+		bypass_if_unavailable = yes
+		prerequisite = {
+			focus = YAR_Success_of_the_Play
+		}
+		relative_position_id = YAR_Success_of_the_Play
+		x = -2
+		y = 1
+		completion_reward = {
+			division_template = {
+                name = "Houthi Militia"
+                regiments = {
+                    infantry = { x = 0 y = 0 }
+                    infantry = { x = 0 y = 1 }
+                    infantry = { x = 0 y = 2 }
+                    infantry = { x = 1 y = 0 }
+                    infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+					infantry = { x = 2 y = 0 }
+                }
+            }
+            capital_scope = {
+                create_unit = {
+                    division = "name = \"1st Houthi Militia\" division_template = \"Houthi Militia\" start_experience_factor = 2 start_equipment_factor = 1"
+                    owner = YAR
+                    allow_spawning_on_enemy_provs = yes
+                }
+                create_unit = {
+                    division = "name = \"2nd Houthi Militia\" division_template = \"Houthi Militia\" start_experience_factor = 2  start_equipment_factor = 1"
+                    owner = YAR
+                    allow_spawning_on_enemy_provs = yes
+                }
+            }
+			add_ideas = YAR_houthi_warfare
+		}
+	}
+	focus = {
+		id = YAR_military_tribal_links
+		icon = YAR_tribe_army
+		cost = 3
+		available = {
+			has_war = yes
+		}
+		bypass_if_unavailable = yes
+		prerequisite = {
+			focus = YAR_utilize_the_houthis_knowledge
+		}
+		relative_position_id = YAR_utilize_the_houthis_knowledge
+		x = -3
+		y = 1
+		completion_reward = {
+			country_event = {
+				id = YAR.3
+			}
+			add_offsite_building = {
+				type = arms_factory
+				level = 1
+			}
+			add_stability = 0.05
+			add_war_support = 0.02
+			add_manpower = 3000
+		}
+	}
+	focus = {
+		id = YAR_push_through_sadah
+		icon = GFX_goal_Generic_Coup02
+		cost = 5
+		available = {
+			has_war = yes
+			country_exists = YEM
+		}
+		bypass_if_unavailable = yes
+		prerequisite = {
+			focus = YAR_military_tribal_links
+		}
+		mutually_exclusive = {
+			focus = YAR_strike_at_the_heart
+		}
+		relative_position_id = YAR_military_tribal_links
+		x = 0
+		y = 1
+		completion_reward = {
+			add_timed_idea = {
+				idea = YAR_encirclement_tactics
+				days = 45
+			}
+		}
+	}
+	focus = {
+		id = YAR_unearth_the_sadah_stockpile
+		icon = YAR_sadah_stockpile_focus
+		cost = 3
+		available = {
+			has_war = yes
+		}
+		bypass_if_unavailable = yes
+		prerequisite = {
+			focus = YAR_utilize_the_houthis_knowledge
+		}
+		relative_position_id = YAR_utilize_the_houthis_knowledge
+		x = -1
+		y = 1
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1000
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = 300
+			}
+			add_equipment_to_stockpile = {
+				type = anti_air_equipment
+				amount = 100
+			}
+		}
+	}
+	focus = {
+		id = YAR_strike_at_the_heart
+		icon = backstab_our_backers
+		cost = 5
+		available = {
+			has_war = yes
+		}
+		bypass_if_unavailable = yes
+		prerequisite = {
+			focus = YAR_unearth_the_sadah_stockpile
+		}
+		mutually_exclusive = {
+			focus = YAR_push_through_sadah
+		}
+		relative_position_id = YAR_unearth_the_sadah_stockpile
+		x = 0
+		y = 1
+		completion_reward = {
+			add_timed_idea = {
+				idea = YAR_rush_for_the_sea
+				days = 50
+			}
+		}
+	}
+	focus = {
+		id = YAR_legitimize_the_government
+		icon = legitimate_rule
+		cost = 5
+		available = {
+			has_war = yes
+		}
+		bypass_if_unavailable = yes
+		prerequisite = {
+			focus = YAR_Success_of_the_Play
+		}
+		relative_position_id = YAR_Success_of_the_Play
+		x = 0
+		y = 1
+		completion_reward = {
+			create_intelligence_agency = {
+				name = "Political Security Organization"
+				icon = GFX_intelligence_agency_logo_generic_1
+			}
+			add_war_support = 0.03
+			add_political_power = 50
+			country_event = yar.180
+		}
+	}
+	focus = {
+		id = YAR_an_era_of_nostalgia
+		icon = restore_the_1970_constitution
+		cost = 2
+		available = {
+			has_war = yes
+		}
+		bypass_if_unavailable = yes
+		prerequisite = {
+			focus = YAR_legitimize_the_government
+		}
+		mutually_exclusive = {
+			focus = YAR_promise_a_brighter_future
+		}
+		relative_position_id = YAR_legitimize_the_government
+		x = -1
+		y = 1
+		completion_reward = {
+			add_war_support = 0.07
+			add_stability = -0.05
+			add_ideas = YAR_nostalgic_population
+		}
+	}
+	focus = {
+		id = YAR_promise_a_brighter_future
+		icon = worker_and_kolkhoz_woman
+		cost = 3
+		available = {
+			has_war = yes
+		}
+		bypass_if_unavailable = yes
+		prerequisite = {
+			focus = YAR_legitimize_the_government
+		}
+		mutually_exclusive = {
+			focus = YAR_an_era_of_nostalgia
+		}
+		relative_position_id = YAR_legitimize_the_government
+		x = 1
+		y = 1
+		completion_reward = {
+			add_stability = 0.05
+			add_manpower = 3000
+		}
+	}
+	focus = {
+		id = YAR_rally_the_republican_guard
+		icon = YAR_rally_the_republican_guard
+		cost = 3
+		available = {
+			has_war = yes
+		}
+		bypass_if_unavailable = yes
+		prerequisite = {
+			focus = YAR_an_era_of_nostalgia
+			focus = YAR_promise_a_brighter_future
+		}
+		relative_position_id = YAR_an_era_of_nostalgia
+		x = 0
+		y = 1
+		completion_reward = {
+			division_template = {
+                name = "Republican Guard"
+                regiments = {
+                    infantry = { x = 0 y = 0 }
+                    infantry = { x = 0 y = 1 }
+                    infantry = { x = 0 y = 2 }
+                    infantry = { x = 1 y = 0 }
+                    infantry = { x = 1 y = 1 }
+                }
+				support = {
+					artillery = { x = 0 y = 0 }
+				}
+            }
+            capital_scope = {
+                create_unit = {
+                    division = "name = \"1st Republican Guard\" division_template = \"Republican Guard\" start_experience_factor = 2 start_equipment_factor = 1"
+                    owner = YAR
+                    allow_spawning_on_enemy_provs = yes
+                }
+                create_unit = {
+                    division = "name = \"2nd Republican Guard\" division_template = \"Republican Guard\" start_experience_factor = 2  start_equipment_factor = 1"
+                    owner = YAR
+                    allow_spawning_on_enemy_provs = yes
+                }
+            }
+		}
+	}
+	focus = {
+		id = YAR_request_pan_arab_support
+		icon = YAR_arab_gun_focus
+		cost = 5
+		available = {
+			has_war = yes
+			YEM = {
+				exists = no
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = YAR_an_era_of_nostalgia
+			focus = YAR_promise_a_brighter_future
+		}
+		relative_position_id = YAR_an_era_of_nostalgia
+		x = 2
+		y = 1
+		completion_reward = {
+			every_country = {
+				limit = {
+					OR = {
+						tag = UAR
+						tag = EGY
+						tag = SYR
+						tag = IRQ
+					}
+				}
+				country_event = YAR.181
+			}
+		}
+	}
+	focus = {
+		id = YAR_embrace_nasserist_populism
+		icon = focus_maintain_nasserism
+		cost = 3
+		available = {
+			has_war = yes
+		}
+		bypass_if_unavailable = yes
+		prerequisite = {
+			focus = YAR_Success_of_the_Play
+		}
+		relative_position_id = YAR_Success_of_the_Play
+		x = 2
+		y = 1
+		completion_reward = {
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.06
+			}
+			add_war_support = 0.02
+			add_manpower = 2000
+		}
+	}
+	focus = {
+		id = YAR_permit_nasserist_economics
+		icon = GFX_goal_socialist_industry
+		cost = 5
+		available = {
+			has_war = yes
+		}
+		bypass_if_unavailable = yes
+		prerequisite = {
+			focus = YAR_embrace_nasserist_populism
+		}
+		relative_position_id = YAR_embrace_nasserist_populism
+		x = 1
+		y = 1
+		completion_reward = {
+			add_ideas = YAR_nasserist_economic_policy
+		}
+	}
+	focus = {
+		id = YAR_second_aden_offensive
+		icon = GFX_goal_soldiers2
+		cost = 5
+		available = {
+			has_war = yes
+		}
+		bypass ={
+			OR = {
+				has_war = no
+				JAS = {
+					exists = no
+				}
+			}
+		}
+		prerequisite = {
+			focus = YAR_permit_nasserist_economics
+		}
+		mutually_exclusive = {
+			focus = YAR_liberate_hadhramaut
+		}
+		relative_position_id = YAR_permit_nasserist_economics
+		x = 0
+		y = 1
+		completion_reward = {
+			add_timed_idea = {
+				idea = YAR_the_road_to_aden
+				days = 70
+			}
+		}
+	}
+	focus = {
+		id = YAR_the_peoples_militia
+		icon = YAR_arab_socialist_militia_focus
+		cost = 3
+		available = {
+			has_war = yes
+		}
+		bypass_if_unavailable = yes
+		prerequisite = {
+			focus = YAR_embrace_nasserist_populism
+		}
+		relative_position_id = YAR_embrace_nasserist_populism
+		x = 3
+		y = 1
+		completion_reward = {
+			division_template = {
+                name = "People's Militia"
+                regiments = {
+                    militia = { x = 0 y = 0 }
+                    militia = { x = 0 y = 1 }
+                    militia = { x = 0 y = 2 }
+                    militia = { x = 1 y = 0 }
+                    militia = { x = 1 y = 1 }
+                }
+				support = {
+					artillery = { x = 0 y = 0 }
+				}
+            }
+            capital_scope = {
+                create_unit = {
+                    division = "name = \"1st People's Militia\" division_template = \"People's Militia\" start_experience_factor = 2 start_equipment_factor = 1"
+                    owner = YAR
+                    allow_spawning_on_enemy_provs = yes
+                }
+                create_unit = {
+                    division = "name = \"2nd People's Militia\" division_template = \"People's Militia\" start_experience_factor = 2  start_equipment_factor = 1"
+                    owner = YAR
+                    allow_spawning_on_enemy_provs = yes
+                }
+            }
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+			add_manpower = 4000
+		}
+	}
+	focus = {
+		id = YAR_liberate_hadhramaut
+		icon = YEM_destroy_South
+		cost = 5
+		available = {
+			has_war = yes
+			country_exists = PDY
+		}
+		bypass_if_unavailable = yes
+		prerequisite = {
+			focus = YAR_the_peoples_militia
+		}
+		mutually_exclusive = {
+			focus = YAR_second_aden_offensive
+		}
+		relative_position_id = YAR_the_peoples_militia
+		x = 0
+		y = 1
+		completion_reward = {
+			add_timed_idea = {
+				idea = YAR_an_end_to_communism
+				days = 90
+			}
+		}
+	}
+	focus = {
+		id = YAR_death_over_defeat
+		icon = YAR_death_before_defeat
+		cost = 3
+		available = {
+			has_war = yes
+		}
+		bypass_if_unavailable = yes
+		prerequisite = {
+			focus = YAR_push_through_sadah
+			focus = YAR_strike_at_the_heart
+		}
+		prerequisite = {
+			focus = YAR_rally_the_republican_guard
+		}
+		prerequisite = {
+			focus = YAR_request_pan_arab_support
+		}
+		prerequisite = {
+			focus = YAR_second_aden_offensive
+			focus = YAR_liberate_hadhramaut
+		}
+		relative_position_id = YAR_rally_the_republican_guard
+		x = 1
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = YEM_civil_war
+				add_idea = YAR_civil_war
+			}
+		}
+	}
+	focus = {
+		id = YAR_Jasmin_Crackdown
+		icon = GFX_PDY_the_jasmines
+		cost = 2
+		available = {
+			has_war = no
+		}
+		x = 12
+		y = 3
+		prerequisite = {
+			focus = YAR_death_over_defeat
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = centrist
+				popularity = -0.1
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.1
+			}
+			add_popularity = {
+				ideology = new_democrat
+				popularity = -0.1
+			}
+			country_event = {
+				id = YAR.7
+				days = 1
+			}
+			add_state_core = 659
+			add_state_core = 979
+			add_state_core = 972
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = YAR_civil_war_over
+					}
+				}
+				set_country_flag = YAR_civil_war_over
+				add_ideas = civilian_economy
+				add_ideas = volunteer_only
+			}
+			hidden_effect = {
+				IF = {
+					limit = {
+						NOT = {
+							has_completed_focus = YAR_Islamist_Crackdown
+						}
+						NOT = {
+							has_completed_focus = YAR_Communist_Crackdown
+						}
+					}
+					IF = {
+						limit = {
+							country_exists = PDY
+						}
+						news_event = {
+							id = news.317
+						}
+					}
+					IF = {
+						limit = {
+							NOT = {
+								country_exists = PDY
+							}
+						}
+						news_event = {
+							id = news.316
+						}
+					}
+				}
+			}
+			hidden_effect = {
+				remove_ideas = YAR_houthi_warfare
+				remove_ideas = YAR_encirclement_tactics
+				remove_ideas = YAR_rush_for_the_sea
+				remove_ideas = YAR_nostalgic_population
+				remove_ideas = YAR_nasserist_economic_policy
+				remove_ideas = YAR_the_road_to_aden
+				remove_ideas = YAR_an_end_to_communism
+			}
+		}
+	}
+	focus = {
+		id = YAR_Islamist_Crackdown
+		icon = drone
+		cost = 2
+		available = {
+			has_war = no
+		}
+		x = 14
+		y = 3
+		prerequisite = {
+			focus = YAR_death_over_defeat	
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = national_conservative
+				popularity = -0.1
+			}
+			country_event = {
+				id = YAR.8
+			}
+			add_state_core = 975
+			add_state_core = 978
+			add_state_core = 973
+			set_capital = { state = 973 }
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = YAR_civil_war_over
+					}
+				}
+				set_country_flag = YAR_civil_war_over
+				add_ideas = civilian_economy
+				add_ideas = volunteer_only
+			}
+			hidden_effect = {
+				IF = {
+					limit = {
+						NOT = {
+							has_completed_focus = YAR_Jasmin_Crackdown
+						}
+						NOT = {
+							has_completed_focus = YAR_Communist_Crackdown
+						}
+					}
+					IF = {
+						limit = {
+							country_exists = PDY
+						}
+						news_event = {
+							id = news.317
+						}
+					}
+					IF = {
+						limit = {
+							NOT = {
+								country_exists = PDY
+							}
+						}
+						news_event = {
+							id = news.316
+						}
+					}
+				}
+			}
+			hidden_effect = {
+				remove_ideas = YAR_houthi_warfare
+				remove_ideas = YAR_encirclement_tactics
+				remove_ideas = YAR_rush_for_the_sea
+				remove_ideas = YAR_nostalgic_population
+				remove_ideas = YAR_nasserist_economic_policy
+				remove_ideas = YAR_the_road_to_aden
+				remove_ideas = YAR_an_end_to_communism
+			}
+		}
+	}
+	focus = {
+		id = YAR_Communist_Crackdown
+		icon = CSD_ban_socialism
+		cost = 2
+		available = {
+			has_war = no
+		}
+		x = 16
+		y = 3
+		prerequisite = {
+			focus = YAR_death_over_defeat
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = 	communist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = 	moderate_socialist
+				popularity = -0.05
+			}
+			country_event = {
+				id = YAR.9
+				days = 1
+			}
+			add_state_core = 293
+			add_state_core = 974
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = YAR_civil_war_over
+					}
+				}
+				set_country_flag = YAR_civil_war_over
+				add_ideas = civilian_economy
+				add_ideas = volunteer_only
+			}
+			hidden_effect = {
+				IF = {
+					limit = {
+						NOT = {
+							has_completed_focus = YAR_Jasmin_Crackdown
+						}
+						NOT = {
+							has_completed_focus = YAR_Islamist_Crackdown
+						}
+					}
+					IF = {
+						limit = {
+							country_exists = PDY
+						}
+						news_event = {
+							id = news.317
+						}
+					}
+					IF = {
+						limit = {
+							NOT = {
+								country_exists = PDY
+							}
+						}
+						news_event = {
+							id = news.316
+						}
+					}
+				}
+			}
+			hidden_effect = {
+				remove_ideas = YAR_houthi_warfare
+				remove_ideas = YAR_encirclement_tactics
+				remove_ideas = YAR_rush_for_the_sea
+				remove_ideas = YAR_nostalgic_population
+				remove_ideas = YAR_nasserist_economic_policy
+				remove_ideas = YAR_the_road_to_aden
+				remove_ideas = YAR_an_end_to_communism
+			}
+		}
+	}
+	focus = {
+		id = YAR_Unity_In_Government
+		icon = ideology_fist
+		cost = 2
+		x = 14
+		y = 4
+		prerequisite = {
+			focus = YAR_Jasmin_Crackdown
+		}
+		prerequisite = {
+			focus = YAR_Communist_Crackdown
+		}
+		prerequisite = {
+			focus = YAR_Islamist_Crackdown
+		}
+		completion_reward = {
+			country_event = {
+				id = YAR.10
+			}
+		}
+	}
+	focus = {
+		id = YAR_Questions_of_Loyalty
+		icon = dealmaker
+		cost = 2
+		x = 14
+		y = 5
+		available = {
+			has_country_flag = YAR_salehs_a_weirdo_flag
+		}
+		prerequisite = {
+			focus = YAR_Unity_In_Government
+		}
+		completion_reward = {
+			country_event = {
+				id = YAR.13
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = YAR_Game_of_Chess
+		icon = GFX_a_game_of_chess
+		cost = 1
+		x = 14
+		y = 6
+		available = {
+			has_country_flag = YAR_salehs_a_weirdo_2_flag
+		}
+		prerequisite = {
+			focus = YAR_Questions_of_Loyalty
+		}
+		completion_reward = {
+			country_event = {
+				id = YAR.14
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = YAR_Houthi_Gamble
+		icon = GFX_YAR_the_houthi_gamble
+		cost = 0
+		x = 3
+		y = 7
+		available = {
+			has_country_flag = YAR_second_start_flag
+		}
+		prerequisite = {
+			focus = YAR_Game_of_Chess
+		}
+		completion_reward = {
+			
+		}
+	}
+
+	focus = {
+		id = YAR_Purge_GPC
+		icon = GFX_purge_the_gpc
+		cost = 2
+		x = 3
+		y = 8
+		prerequisite = {
+			focus = YAR_Houthi_Gamble
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.15
+			}
+			add_stability = 0.05
+			add_political_power = 100
+			country_event = {
+				id = YAR.21
+				days = 1
+			}
+			remove_unit_leader = 15000
+			remove_unit_leader = 15001
+		}
+	}
+	focus = {
+		id = YAR_Destroy_Corruption
+		icon = GFX_RAJ_greater_emergency_powers
+		cost = 7.2.9
+		x = 2
+		y = 9
+		prerequisite = {
+			focus = YAR_Purge_GPC
+		}
+		completion_reward = {
+			add_ideas = YAR_anti_corruption_measures
+			country_event = {
+				id = YAR.22
+			}
+		}
+	}
+	focus = {
+		id = YAR_Install_Loyal_Rule
+		icon = GFX_RAJ_rigged_elections
+		cost = 5
+		x = 4
+		y = 9
+		prerequisite = {
+			focus = YAR_Purge_GPC
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.1
+			}
+			add_political_power = 50
+			country_event = {
+				id = YAR.24
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = YAR_Uplift_Saada
+		icon = GFX_uplift_saada
+		cost = 7.2.9
+		x = 2
+		y = 10
+		prerequisite = {
+			focus = YAR_Destroy_Corruption
+		}
+		completion_reward = {
+			976 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			country_event = {
+				id = YAR.23
+			}
+		}
+	}
+	focus = {
+		id = YAR_Curtail_Sheikhs
+		icon = GFX_curtail_the_Sheiks
+		cost = 3.6
+		x = 4
+		y = 10
+		prerequisite = {
+			focus = YAR_Install_Loyal_Rule
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.03
+			}
+			country_event = {
+				id = YAR.25
+			}
+		}
+	}
+	focus = {
+		id = YAR_Restore_Democratic_Institutions
+		icon = focus_enforce_1990_constitution
+		cost = 3.6
+		x = 2
+		y = 11
+		prerequisite = {
+			focus = YAR_Curtail_Sheikhs
+			focus = YAR_Uplift_Saada
+		}
+		mutually_exclusive = {
+			focus = YAR_Ensure_Ansar_Allah_Domination
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+			add_stability = 0.05
+			add_political_power = -100
+			add_ideas = YAR_democratic_institutions
+		}
+	}
+
+	focus = {
+		id = YAR_Ensure_Ansar_Allah_Domination
+		icon = GFX_goal_Paternal_Autocrat
+		cost = 2
+		x = 4
+		y = 11
+		prerequisite = {
+			focus = YAR_Curtail_Sheikhs
+			focus = YAR_Uplift_Saada
+		}
+
+		mutually_exclusive = {
+			focus = YAR_Restore_Democratic_Institutions
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.1
+			}
+			add_stability = -0.05
+			add_political_power = 100
+		}
+	}
+
+	focus = {
+		id = YAR_United_Faith
+		icon = an_islamic_paradise
+		cost = 2
+		x = 3
+		y = 12
+		prerequisite = {
+			focus = YAR_Ensure_Ansar_Allah_Domination
+			focus = YAR_Restore_Democratic_Institutions
+		}
+		completion_reward = {
+			add_ideas = YAR_sunni_zaidi_peace
+			country_event = {
+				id = YAR.26
+			}
+		}
+	}
+	focus = {
+		id = YAR_Push_For_Decentralization
+		icon = ethiopia_allow_autonomy
+		cost = 5
+		x = 2
+		y = 13
+		prerequisite = {
+			focus = YAR_United_Faith
+		}
+		completion_reward = {
+			add_political_power = -200
+			YAR = {
+				every_owned_state = {
+					add_extra_state_shared_building_slots = 1
+				}
+			}
+			add_ideas = YAR_decentralisation
+			country_event = {
+				id = YAR.27
+			}
+		}
+	}
+	focus = {
+		id = YAR_Reform_Bureaucracy
+		icon = focus_reform_port_procedures
+		cost = 5
+		x = 4
+		y = 13
+		prerequisite = {
+			focus = YAR_United_Faith
+		}
+		completion_reward = {
+			add_political_power = 75
+			add_ideas = YAR_streamlined_bureaucracy
+		}
+	}
+	focus = {
+		id = YAR_Denounce_Foreign_Powers
+		icon = focus_showcase_public_opinion
+		cost = 3.6
+		x = 1
+		y = 14
+		prerequisite = {
+			focus = YAR_Push_For_Decentralization
+		}
+		completion_reward = {
+			add_opinion_modifier = {
+				target = USA
+				modifier = jas_houthis_damaged_relations
+			}
+			add_opinion_modifier = {
+				target = USA
+				modifier = yar_trade_modifier
+			}
+			add_opinion_modifier = {
+				target = PAL
+				modifier = jas_houthis_damaged_relations
+			}
+			add_opinion_modifier = {
+				target = PAL
+				modifier = yar_trade_modifier
+			}
+			add_opinion_modifier = {
+				target = GER
+				modifier = jas_houthis_damaged_relations
+			}
+			add_opinion_modifier = {
+				target = GER
+				modifier = yar_trade_modifier
+			}
+			add_opinion_modifier = {
+				target = CAN
+				modifier = jas_houthis_damaged_relations
+			}
+			add_opinion_modifier = {
+				target = CAN
+				modifier = yar_trade_modifier
+			}
+			add_opinion_modifier = {
+				target = ENG
+				modifier = jas_houthis_damaged_relations
+			}
+			add_opinion_modifier = {
+				target = ENG
+				modifier = yar_trade_modifier
+			}
+			if = {
+				limit = {
+					country_exists = RUS
+				}
+				add_opinion_modifier = {
+					target = RUS
+					modifier = jas_houthis_damaged_relations
+				}
+				add_opinion_modifier = {
+					target = RUS
+					modifier = yar_trade_modifier
+				}
+			}
+			if = {
+				limit = {
+					country_exists = SOV
+				}
+				add_opinion_modifier = {
+					target = SOV
+					modifier = jas_houthis_damaged_relations
+				}
+				add_opinion_modifier = {
+					target = SOV
+					modifier = yar_trade_modifier
+				}
+			}
+			country_event = {
+				id = YAR.28
+			}
+		}
+	}
+	focus = {
+		id = YAR_Self_Sufficiency
+		icon = ethiopia_self_sufficiency
+		cost = 5
+		x = 3
+		y = 14
+		prerequisite = {
+			focus = YAR_Push_For_Decentralization
+		}
+
+		prerequisite = {
+			focus = YAR_Reform_Bureaucracy
+		}
+		completion_reward = {
+			add_ideas = YAR_self_sufficiency
+		}
+	}
+	focus = {
+		id = YAR_Houthi_Investment
+		icon = civ_factory
+		cost = 6.5
+		x = 5
+		y = 14
+
+		prerequisite = {
+			focus = YAR_Reform_Bureaucracy
+		}
+		completion_reward = {
+			IF = {
+				limit = {
+					owns_state = 293
+					owns_state = 974
+					owns_state = 659
+					owns_state = 979
+				}
+				293 = {
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				979 = {
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				975 = {
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				978 = {
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				977 = {
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					NOT = {
+						owns_state = 293
+						owns_state = 974
+						owns_state = 659
+						owns_state = 979
+					}
+				}
+				975 = {
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				978 = {
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				977 = {
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			country_event = {
+				id = YAR.29
+			}
+		}
+	}
+	focus = {
+		id = YAR_Improve_Agriculture
+		icon = GFX_goal_generic_agriculture
+		cost = 6.5
+		x = 2
+		y = 15
+
+		prerequisite = {
+			focus = YAR_Self_Sufficiency
+		}
+		completion_reward = {
+			add_ideas = YAR_agricultural_focus
+		}
+	}
+	focus = {
+		id = YAR_Develop_Ore
+		icon = RAJ_steel_incentives
+		cost = 6.5
+		x = 4
+		y = 15
+
+		prerequisite = {
+			focus = YAR_Self_Sufficiency
+		}
+		completion_reward = {
+			add_resource = {
+				type = steel
+				amount = 10
+				state = 977
+			}
+			add_resource = {
+				type = aluminium
+				amount = 5
+				state = 977
+			}
+			add_resource = {
+				type = tungsten
+				amount = 3
+				state = 977
+			}
+		}
+	}
+	focus = {
+		id = YAR_Nationwide_Investments
+		icon = roads
+		cost = 7.2.9
+		x = 3
+		y = 16
+
+		prerequisite = {
+			focus = YAR_Develop_Ore
+		}
+		prerequisite = {
+			focus = YAR_Improve_Agriculture
+		}
+		completion_reward = {
+			973 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			975 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			978 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			add_ideas = YAR_investment_schemes
+			country_event = {
+				id = YAR.30
+			}
+		}
+	}
+	focus = {
+		id = YAR_Soverign_Army
+		icon = cavalry
+		cost = 5
+		x = 3
+		y = 17
+
+		prerequisite = {
+			focus = YAR_Nationwide_Investments
+		}
+
+		completion_reward = {
+			add_ideas = YAR_the_houthi_army
+			country_event = {
+				id = YAR.31
+			}
+		}
+	}
+	focus = {
+		id = YAR_Teach_Children
+		icon = GFX_goal_education
+		cost = 6.5
+		x = 1
+		y = 16
+
+		prerequisite = {
+			focus = YAR_Improve_Agriculture
+		}
+
+		completion_reward = {
+			add_ideas = YAR_teach_our_children
+		}
+	}
+	focus = {
+		id = YAR_Higher_Learning
+		icon = GFX_future_minds_program
+		cost = 6.5
+		x = 1
+		y = 17
+
+		prerequisite = {
+			focus = YAR_Teach_Children
+		}
+
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+	focus = {
+		id = YAR_Infastructure_Works
+		icon = infrastructure_2
+		cost = 6.5
+		x = 5
+		y = 16
+
+		prerequisite = {
+			focus = YAR_Develop_Ore
+		}
+
+		completion_reward = {
+			every_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_ideas = YAR_mass_infrastructure_renewal
+		}
+	}
+	focus = {
+		id = YAR_Functioning_Public_Services
+		icon = GFX_functioning_public_services
+		cost = 6.5
+		x = 5
+		y = 17
+
+		prerequisite = {
+			focus = YAR_Infastructure_Works
+		}
+
+		completion_reward = {
+			add_ideas = YAR_houthi_public_services
+		}
+	}
+	focus = {
+		id = YAR_Successor
+		icon = GFX_the_successor
+		cost = 0
+		x = 14
+		y = 7
+		available = {
+			has_country_flag = YAR_second_start_flag
+		}
+
+		prerequisite = {
+			focus = YAR_Game_of_Chess
+		}
+
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = YAR_Purge_Nasserites
+		icon = GFX_purge_the_nasserites
+		cost = 2
+		x = 15
+		y = 8
+
+		prerequisite = {
+			focus = YAR_Successor
+		}
+
+		completion_reward = {
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.2
+			}
+			add_stability = 0.05
+			add_political_power = 50
+			country_event = {
+				id = YAR.57
+			}
+		}
+	}
+	focus = {
+		id = YAR_Destroy_Houthi_Menace
+		icon = GFX_destroy_the_houthi_menace
+		cost = 2
+		x = 13
+		y = 8
+
+		prerequisite = {
+			focus = YAR_Successor
+		}
+
+		completion_reward = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.1
+			}
+			add_stability = 0.05
+			add_political_power = 25
+			country_event = {
+				id = YAR.58
+			}
+		}
+	}
+	focus = {
+		id = YAR_Total_GPC_Control
+		icon = GFX_total_gpc_control
+		cost = 1
+		x = 14
+		y = 9
+
+		prerequisite = {
+			focus = YAR_Purge_Nasserites
+		}
+		prerequisite = {
+			focus = YAR_Destroy_Houthi_Menace
+		}
+		completion_reward = {
+			add_timed_idea = {
+				idea = YAR_salehs_nation
+				days = 90
+			}
+		}
+	}
+	focus = {
+		id = YAR_Reinforce_Tribal_Alliances
+		icon = YEM_tribal_autonomy
+		cost = 3.6
+		x = 13
+		y = 10
+
+		prerequisite = {
+			focus = YAR_Total_GPC_Control
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+			add_ideas = YAR_tribal_concessions
+		}
+	}
+	focus = {
+		id = YAR_Mass_Fund_the_Army
+		icon = GFX_mass_fund_the_army
+		cost = 3.6
+		x = 15
+		y = 10
+
+		prerequisite = {
+			focus = YAR_Total_GPC_Control
+		}
+		completion_reward = {
+			973 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			978 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			977 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}	
+			add_ideas = YAR_new_army_of_yemen
+		}
+	}
+	focus = {
+		id = YAR_Local_Development_Agencies
+		icon = focus_trade_council_influence
+		cost = 5
+		x = 13
+		y = 11
+
+		prerequisite = {
+			focus = YAR_Reinforce_Tribal_Alliances
+		}
+		completion_reward = {
+			979 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			978 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			972 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+
+			}
+			975 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			add_ideas = YAR_development_agencies
+		}
+	}
+	focus = {
+		id = YAR_Full_Military_Industrial_Complex
+		icon = drone
+		cost = 5
+		x = 15
+		y = 11
+
+		prerequisite = {
+			focus = YAR_Mass_Fund_the_Army
+		}
+		completion_reward = {
+			add_ideas = YAR_redirected_funding
+			973 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 3
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+			}
+			country_event = {
+				id = YAR.59
+			}
+		}
+	}
+	focus = {
+		id = YAR_Mass_Infastructure_Works
+		icon = infrastructure_building
+		cost = 6.5
+		x = 13
+		y = 12
+
+		prerequisite = {
+			focus = YAR_Local_Development_Agencies
+		}
+		completion_reward = {
+			IF = {
+				limit = {
+					NOT = {
+						owns_state = 293
+						owns_state = 974
+						owns_state = 659
+						owns_state = 979
+					}
+				}
+				973 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}
+				976 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+				975 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+				978 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+				977 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+				972 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					owns_state = 293
+					owns_state = 974
+					owns_state = 659
+					owns_state = 979
+				}
+				973 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}
+				976 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+				975 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+				978 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+				977 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+				972 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+				293 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+				974 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+				979 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+				659 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			add_ideas = YAR_mass_infrastructure_projects
+		}
+	}
+	focus = {
+		id = YAR_New_Mining_Grants
+		icon = focus_develop_odisha_mines
+		cost = 6.5
+		x = 15
+		y = 12
+
+		prerequisite = {
+			focus = YAR_Full_Military_Industrial_Complex
+		}
+		completion_reward = {
+			add_resource = {
+				type = steel
+				amount = 15
+				state = 978
+			}
+			add_resource = {
+				type = chromium
+				amount = 10
+				state = 978
+			}
+			add_resource = {
+				type = tungsten
+				amount = 20
+				state = 978
+			}
+		}
+	}
+	focus = {
+		id = YAR_Faith_In_Allah
+		icon = islamic_focus_01
+		cost = 5
+		x = 10
+		y = 13
+
+		prerequisite = {
+			focus = YAR_Mass_Infastructure_Works
+		}
+		completion_reward = {
+			add_ideas = YAR_devotion_to_allah
+		}
+	}
+	focus = {
+		id = YAR_Traditional_Gender_Roles
+		icon = GFX_hijab
+		cost = 5
+		x = 10
+		y = 14
+
+		prerequisite = {
+			focus = YAR_Faith_In_Allah
+		}
+		completion_reward = {
+			add_ideas = YAR_traditional_gender_roles
+		}
+	}
+	focus = {
+		id = YAR_New_Industrial_Hubs
+		icon = scottish_military_industry
+		cost = 6.5
+		x = 12
+		y = 13
+
+		prerequisite = {
+			focus = YAR_Mass_Infastructure_Works
+		}
+		completion_reward = {
+			976 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			974 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	focus = {
+		id = YAR_Develop_Tourism_Sector
+		icon = GFX_YEM_promote_tourism
+		cost = 5
+		x = 12
+		y = 14
+
+		prerequisite = {
+			focus = YAR_New_Industrial_Hubs
+		}
+		completion_reward = {
+			975 = {
+				add_building_construction = {
+					type = air_base
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+			976 = {
+				add_building_construction = {
+					type = air_base
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = YAR_Upgrade_Sanaa_Airport
+		icon = RAJ_existing_airports
+		cost = 3.6
+		x = 11
+		y = 15
+
+		prerequisite = {
+			focus = YAR_Develop_Tourism_Sector
+		}
+		completion_reward = {
+			973 = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = YAR_Reap_In_The_Benefits
+		icon = GFX_reap_in_the_benefits
+		cost = 5
+		x = 11
+		y = 16
+
+		prerequisite = {
+			focus = YAR_Upgrade_Sanaa_Airport
+		}
+		completion_reward = {
+			add_ideas = YAR_tourism_hotspot
+		}
+	}
+	focus = {
+		id = YAR_Ruler_of_The_Skies
+		icon = GFX_ruler_of_the_skies
+		cost = 5
+		x = 11
+		y = 17
+
+		prerequisite = {
+			focus = YAR_Reap_In_The_Benefits
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = light_fighter
+			}
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = cas_bomber
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
+			978 = {
+				add_building_construction = {
+					type = arms_factory 
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = YAR_Culture_of_Corruption
+		icon = RAJ_investigate_corruption
+		cost = 3.6
+		x = 14
+		y = 13
+
+		prerequisite = {
+			focus = YAR_Mass_Infastructure_Works
+		}
+		prerequisite = {
+			focus = YAR_New_Mining_Grants
+		}
+		completion_reward = {
+			country_event = {
+				id = YAR.60
+			}
+			add_ideas = YAR_corrupt_society
+		}
+	}
+	focus = {
+		id = YAR_Open_For_Buisness
+		icon = GFX_YAR_open_for_business
+		cost = 3.6
+		x = 14
+		y = 14
+
+		prerequisite = {
+			focus = YAR_Culture_of_Corruption
+		}
+		completion_reward = {
+			remove_ideas = {
+				export_focus
+				limited_exports
+				closed_economy
+			}
+			add_ideas = free_trade
+		}
+	}
+
+	focus = {
+		id = YAR_Salehs_Personal_Gold_Mine
+		icon = generic_construction_2
+		cost = 5
+		x = 13
+		y = 15
+
+		prerequisite = {
+			focus = YAR_Open_For_Buisness
+		}
+		completion_reward = {
+			country_event = {
+				id = YAR.61
+			}
+			add_ideas = YAR_salehs_personal_wealth
+		}
+	}
+	focus = {
+		id = YAR_Global_Tax_Haven
+		icon = GFX_global_tax_haven
+		cost = 5
+		x = 15
+		y = 15
+
+		prerequisite = {
+			focus = YAR_Open_For_Buisness
+		}
+		completion_reward = {
+			add_ideas = YAR_global_tax_haven
+		}
+	}
+	focus = {
+		id = YAR_Monuments_To_Our_Leaders
+		icon = GFX_monuments_to_our_leaders
+		cost = 5
+		x = 14
+		y = 16
+
+		prerequisite = {
+			focus = YAR_Global_Tax_Haven
+		}
+		prerequisite = {
+			focus = YAR_Salehs_Personal_Gold_Mine
+		}
+		completion_reward = {
+			add_war_support = 0.05
+			country_event = {
+				id = YAR.62
+			}
+		}
+	}
+	focus = {
+		id = YAR_The_New_Yemen
+		icon = GFX_a_new_yemen
+		cost = 5
+		x = 14
+		y = 17
+
+		prerequisite = {
+			focus = YAR_Monuments_To_Our_Leaders
+		}
+
+		completion_reward = {
+			add_ideas = YAR_golden_age
+			country_event = {
+				id = YAR.63
+			}
+		}
+	}
+	focus = {
+		id = YAR_Subsidize_Substinence_Farming
+		icon = free_some_farms
+		cost = 7.2
+		x = 16
+		y = 13
+
+		prerequisite = {
+			focus = YAR_New_Mining_Grants
+		}
+		completion_reward = {
+			add_ideas = YAR_substinence_farming_subsidised
+		}
+	}
+	focus = {
+		id = YAR_Lynchpin_in_the_Khat_Trade
+		icon = GFX_lynchpin_in_the_khat_trade
+		cost = 5
+		x = 16
+		y = 14
+
+		prerequisite = {
+			focus = YAR_Subsidize_Substinence_Farming
+		}
+		completion_reward = {
+			add_ideas = YAR_khat_trade
+		}
+	}
+	focus = {
+		id = YAR_Push_for_Nuclear_Power
+		icon = GFX_push_for_nuclear_power
+		cost = 7.2
+		x = 17
+		y = 15
+
+		prerequisite = {
+			focus = YAR_Lynchpin_in_the_Khat_Trade
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = nuclear
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_nuclear
+				value = 1
+			}
+		}
+	}
+	focus = {
+		id = YAR_The_Sanaa_Reactor
+		icon = GFX_the_sanaa_reactor
+		cost = 10
+		x = 17
+		y = 16
+
+		available = {
+			has_tech = nuclear_reactor
+		}
+
+		prerequisite = {
+			focus = YAR_Push_for_Nuclear_Power
+		}
+		completion_reward = {
+			country_event = {
+				id = YAR.64
+			}
+		}
+	}
+	focus = {
+		id = YAR_Backed_by_Nuclear_Weapons
+		icon = GFX_backed_by_nuclear_weapons
+		cost = 5
+		x = 17
+		y = 17
+
+		prerequisite = {
+			focus = YAR_The_Sanaa_Reactor
+		}
+		completion_reward = {
+			set_technology = {
+				nukes = 1
+			}
+			custom_effect_tooltip = yem_drop_nuke
+			country_event = {
+				id = YAR.179
+			}
+			hidden_effect = {
+				news_event = {
+					id = news.325
+					days = 2
+				}
+			}
+		}
+	}
+	focus = {
+		id = YAR_Privatized_Healthcare
+		icon = ease_soviet_dependence
+		cost = 5
+		x = 18
+		y = 13
+
+		prerequisite = {
+			focus = YAR_New_Mining_Grants
+		}
+		completion_reward = {
+			add_ideas = YAR_privatised_healthcare
+		}
+	}
+	focus = {
+		id = YAR_Scientific_Revolution
+		icon = GFX_goal_brain_power
+		cost = 5
+		x = 18
+		y = 14
+
+		prerequisite = {
+			focus = YAR_Privatized_Healthcare
+		}
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+	focus = {
+		id = YAR_Nasserite_Revolution
+		icon = GFX_nasserist_revolution
+		cost = 0
+		x = 25
+		y = 7
+		available = {
+			has_country_flag = YAR_second_start_flag
+		}
+
+		prerequisite = {
+			focus = YAR_Game_of_Chess
+		}
+
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = YAR_Popular_Revolution
+		icon = red_brigades
+		cost = 2
+		x = 24
+		y = 8
+
+		prerequisite = {
+			focus = YAR_Nasserite_Revolution
+		}
+
+		completion_reward = {
+			add_political_power = 100
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.05
+			}
+			country_event = {
+				id = YAR.79
+			}
+		}
+	}
+	focus = {
+		id = YAR_Arrest_GPC_Leaders
+		icon = GFX_arrest_gpc_leaders
+		cost = 2
+		x = 26
+		y = 8
+
+		prerequisite = {
+			focus = YAR_Nasserite_Revolution
+		}
+
+		completion_reward = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.15
+			}
+			add_political_power = 75
+			country_event = {
+				id = YAR.81
+			}
+			remove_unit_leader = 15000
+			remove_unit_leader = 15001
+		}
+	}
+	focus = {
+		id = YAR_Negotiate_With_Houthis
+		icon = major_alliance
+		cost = 2
+		x = 24
+		y = 9
+
+		prerequisite = {
+			focus = YAR_Popular_Revolution
+		}
+
+		completion_reward = {
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.03
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.03
+			}
+			976 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			add_stability = 0.05
+			country_event = {
+				id = YAR.80
+			}
+		}
+	}
+	focus = {
+		id = YAR_Promote_Local_Branches
+		icon = focus_establish_embassies
+		cost = 2
+		x = 26
+		y = 9
+
+		prerequisite = {
+			focus = YAR_Arrest_GPC_Leaders
+		}
+
+		completion_reward = {
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.1
+			}
+		}
+	}
+	focus = {
+		id = YAR_Pluralist_Society
+		icon = uk_federation
+		cost = 3.6
+		x = 25
+		y = 10
+
+		prerequisite = {
+			focus = YAR_Promote_Local_Branches
+		}
+		prerequisite = {
+			focus = YAR_Negotiate_With_Houthis
+		}
+
+		completion_reward = {
+			add_ideas = YAR_pluralism_promoted
+			country_event = {
+				id = YAR.82
+			}
+		}
+	}
+	focus = {
+		id = YAR_Direct_Democracy
+		icon = glasnost
+		cost = 5
+		x = 22
+		y = 11
+
+		prerequisite = {
+			focus = YAR_Pluralist_Society
+		}
+
+		completion_reward = {
+			country_event = {
+				id = YAR.83
+			}
+			add_political_power = 75
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = YAR_Progressive_Social_Values
+		icon = push_focus
+		cost = 5
+		x = 22
+		y = 12
+
+		prerequisite = {
+			focus = YAR_Direct_Democracy
+		}
+
+		completion_reward = {
+			add_ideas = YAR_progressive_social_values
+			country_event = {
+				id = YAR.84
+			}
+		}
+	}
+	focus = {
+		id = YAR_Strengthen_Labor_Syndicates
+		icon = GFX_goal_unions
+		cost = 6.5
+		x = 24
+		y = 11
+
+		prerequisite = {
+			focus = YAR_Pluralist_Society
+		}
+
+		completion_reward = {
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.03
+			}
+			add_ideas = YAR_nasserist_labour_unions
+			country_event = {
+				id = YAR.85
+			}
+		}
+	}
+	focus = {
+		id = YAR_Nationalization_Effort
+		icon = establish_nationalisation_ministry
+		cost = 6.5
+		x = 24
+		y = 12
+
+		prerequisite = {
+			focus = YAR_Strengthen_Labor_Syndicates
+		}
+
+		completion_reward = {
+			every_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			973 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = YAR_Jobs_For_Workers
+		icon = factory_build
+		cost = 6.5
+		x = 26
+		y = 11
+
+		prerequisite = {
+			focus = YAR_Pluralist_Society
+		}
+
+		completion_reward = {
+			977 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			975 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			972 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_ideas = YAR_nasserist_job_programs
+		}
+	}
+	focus = {
+		id = YAR_Defend_The_Revolution
+		icon = GFX_red_star_ak47
+		cost = 6.5
+		x = 26
+		y = 12
+
+		prerequisite = {
+			focus = YAR_Jobs_For_Workers
+		}
+
+		completion_reward = {
+			973 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			972 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	focus = {
+		id = YAR_Establish_Public_Healthcare
+		icon = focus_friends_in_the_medicinal_council
+		cost = 5
+		x = 28
+		y = 11
+
+		prerequisite = {
+			focus = YAR_Pluralist_Society
+		}
+
+		completion_reward = {
+			add_ideas = YAR_reformed_hospital_system
+		}
+	}
+	focus = {
+		id = YAR_Promote_Higher_Education
+		icon = GFX_starscience
+		cost = 5
+		x = 28
+		y = 12
+
+		prerequisite = {
+			focus = YAR_Establish_Public_Healthcare
+		}
+
+		completion_reward = {
+			add_research_slot = 1
+			country_event = {
+				id = YAR.86
+			}
+		}
+	}
+	focus = {
+		id = YAR_Freedom_In_Nasserism
+		icon = focus_freedom_of_demonstration
+		cost = 5
+		x = 23
+		y = 13
+
+		prerequisite = {
+			focus = YAR_Progressive_Social_Values
+		}
+		prerequisite = {
+			focus = YAR_Nationalization_Effort
+		}
+
+		completion_reward = {
+			add_stability = 0.05
+			add_ideas = YAR_freedom_in_nasserism
+		}
+	}
+	focus = {
+		id = YAR_Develop_the_Marib_Dam
+		icon = GFX_develop_the_marib_dam
+		cost = 6.5
+		x = 25
+		y = 13
+
+		prerequisite = {
+			focus = YAR_Defend_The_Revolution
+		}
+		prerequisite = {
+			focus = YAR_Nationalization_Effort
+		}
+
+		completion_reward = {
+			977 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = YAR_Modernized_Infastructure
+		icon = new_cities
+		cost = 5
+		x = 27
+		y = 13
+
+		prerequisite = {
+			focus = YAR_Defend_The_Revolution
+		}
+		prerequisite = {
+			focus = YAR_Promote_Higher_Education
+		}
+
+		completion_reward = {
+			every_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_ideas = YAR_infrastructure_modernisation
+			country_event = {
+				id = YAR.87
+			}
+		}
+	}
+	focus = {
+		id = YAR_High_Morale
+		icon = GFX_high_morale
+		cost = 3.6
+		x = 23
+		y = 14
+		prerequisite = {
+			focus = YAR_Freedom_In_Nasserism
+		}
+
+		completion_reward = {
+			add_war_support = 0.1
+			add_ideas = YAR_high_morale
+		}
+	}
+	focus = {
+		id = YAR_Self_Sufficent_Agriculture
+		icon = uk_peasants_revolution
+		cost = 6.5
+		x = 25
+		y = 14
+
+		prerequisite = {
+			focus = YAR_Develop_the_Marib_Dam
+		}
+
+		completion_reward = {
+			add_ideas = YAR_agricultural_self_sufficiency
+		}
+	}
+	focus = {
+		id = YAR_Socialist_Trading_Network
+		icon = focus_socialist_trading_network
+		cost = 3.6
+		x = 27
+		y = 14
+
+		prerequisite = {
+			focus = YAR_Modernized_Infastructure
+		}
+
+		completion_reward = {
+			add_ideas = YAR_socialist_trading_network
+			every_country = {
+			    limit = {
+				    has_government = revolutionary_socialist
+				}
+				add_opinion_modifier = {
+					target = YAR
+					modifier = yar_socialist_trade
+				}
+				reverse_add_opinion_modifier = {
+					target = YAR
+					modifier = yar_socialist_trade
+				}
+			}
+		}
+	}
+	focus = {
+		id = YAR_Phase_Out_Tribal_Conservativism
+		icon = GFX_phase_out_tribal_conservatism
+		cost = 7.2.9
+		x = 24
+		y = 15
+		prerequisite = {
+			focus = YAR_High_Morale
+		}
+		prerequisite = {
+			focus = YAR_Self_Sufficent_Agriculture
+		}
+		completion_reward = {
+			add_ideas = YAR_destroyed_tribalism
+		}
+	}
+	focus = {
+		id = YAR_Riches_of_the_Earth
+		icon = infrastructure_2
+		cost = 7.2
+		x = 26
+		y = 15
+		prerequisite = {
+			focus = YAR_Socialist_Trading_Network
+		}
+		prerequisite = {
+			focus = YAR_Self_Sufficent_Agriculture
+		}
+		completion_reward = {
+			add_resource = {
+				type = steel
+				amount = 18
+				state = 977
+			}
+			add_resource = {
+				type = steel
+				amount = 4
+				state = 978
+			}
+			add_resource = {
+				type = aluminium
+				amount = 12
+				state = 977
+			}
+			add_resource = {
+				type = tungsten
+				amount = 4
+				state = 978
+			}
+			add_resource = {
+				type = oil
+				amount = 30
+				state = 977
+			}
+		}
+	}
+	focus = {
+		id = YAR_In_Defense_of_the_Nation
+		icon = surveillance_panopticon
+		cost = 7.2
+		x = 24
+		y = 16
+		prerequisite = {
+			focus = YAR_Phase_Out_Tribal_Conservativism
+		}
+		completion_reward = {
+			add_ideas = YAR_eyes_and_ears
+			country_event = {
+				id = YAR.88
+			}
+		}
+	}
+	focus = {
+		id = YAR_Promote_Enviormentalism
+		icon = wind_power_initiative
+		cost = 5
+		x = 26
+		y = 16
+		prerequisite = {
+			focus = YAR_Riches_of_the_Earth
+		}
+		completion_reward = {
+			add_ideas = YAR_new_national_parks
+			country_event = {
+				id = YAR.89
+			}
+		}
+	}
+	focus = {
+		id = YAR_The_Modern_Republic
+		icon = GFX_the_modern_republic
+		cost = 5
+		x = 25
+		y = 17
+		prerequisite = {
+			focus = YAR_In_Defense_of_the_Nation
+		}
+		prerequisite = {
+			focus = YAR_Promote_Enviormentalism
+		}
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.1
+			add_war_support = 0.1
+			country_event = {
+				id = YAR.90
+			}
+		}
+	}
+
+
+	
+	focus = {
+		id = yar_houthi_policies
+		icon = GFX_houthi_policies
+		cost = 1
+
+		available = {
+			has_completed_focus = YAR_Self_Sufficiency
+		}
+		bypass = {
+			has_completed_focus = YAR_Self_Sufficiency
+		}
+		prerequisite = {
+			focus = yar_foreign_diplomacy
+		}
+
+		x = 38
+		y = 1
+		
+	}
+		
+	focus = {
+		id = yar_friends_in_shia
+		icon = red_hands_shaking
+		cost = 1
+
+		prerequisite = {
+			focus = yar_houthi_policies
+		}
+		x = 36
+		y = 2
+		
+		completion_reward = {
+			add_opinion_modifier = {
+				target = PER
+				modifier = yar_shia_relations
+			}
+			add_opinion_modifier = {
+				target = IRQ
+				modifier = yar_shia_relations
+			}
+			add_opinion_modifier = {
+				target = LEB
+				modifier = yar_shia_relations
+			}
+			add_opinion_modifier = {
+				target = SYR
+				modifier = yar_shia_relations
+			}
+			if = {
+				limit = {
+					country_exists = AZR
+				}
+				add_opinion_modifier = {
+					target = AZR
+					modifier = yar_shia_relations
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = yar_mission_to_tehran
+		icon = iran
+		cost = 3.6
+	
+		prerequisite = {
+			focus = yar_friends_in_shia
+		}
+		
+		x = 35
+		y = 3
+
+		completion_reward = {
+			PER = {
+				country_event = {
+					id = YAR.32
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = yar_lebanese_approachment
+		icon = lebanon
+		cost = 3.6
+	
+		prerequisite = {
+			focus = yar_friends_in_shia
+		}
+		x = 37
+		y = 3
+		completion_reward = {
+			LEB = {
+				country_event = {
+					id = YAR.35
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = yar_yareni_iranian_friendship_treaty
+		icon = two_flags
+		cost = 5
+	
+		prerequisite = {
+			focus = yar_mission_to_tehran
+		}
+		x = 35
+		y = 4
+
+		completion_reward = {
+			PER = {
+				country_event = {
+					id = YAR.38
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = yar_a_shia_alliance
+		icon = GFX_a_shia_alliance
+		cost = 5
+		
+		mutually_exclusive = {
+			focus = pursue_trade_relations
+		}
+			
+		prerequisite = {
+			focus = yar_yareni_iranian_friendship_treaty
+		}
+		x = 35
+		y = 5
+		
+		completion_reward = {
+			create_faction = YAR_HOUTHI_FACTION
+			PER = {
+				country_event = {
+					id = YAR.40
+				}
+			}
+			LEB = {
+				country_event = {
+					id = YAR.40
+				}
+			}
+			IRQ = {
+				country_event = {
+					id = YAR.40
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = iraqi_negotiations
+		icon = iraq
+		cost = 5
+	
+		prerequisite = {
+			focus = yar_lebanese_approachment
+		}
+		x = 37
+		y = 4
+
+		completion_reward = {
+			IRQ = {
+				country_event = {
+					id = YAR.47
+				}
+			}
+		}
+	}
+
+
+	focus = {
+		id = pursue_trade_relations
+		icon = trade
+		cost = 3.6	
+		
+		mutually_exclusive = {
+			focus = yar_a_shia_alliance
+		}
+			
+		prerequisite = {
+			focus = iraqi_negotiations
+		}
+		x = 37
+		y = 5
+		
+		completion_reward = {
+			IRQ = {
+				country_event = {
+					id = YAR.50
+				}
+			}
+		}
+	}
+
+	
+		focus = {
+		id = yar_questions_of_arabia
+		icon = GFX_questions_of_arabia
+		cost = 1
+
+		prerequisite = {
+			focus = yar_houthi_policies
+		}
+		x = 40
+		y = 2
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+	
+	focus = {
+		id = yar_fully_recognize_south_yaren
+		icon = GFX_YAR_fully_recognize_south_yemen
+		cost = 5
+		
+		mutually_exclusive = {
+			focus = yar_reintegrate_the_communists
+		}
+		
+		prerequisite = {
+			focus = yar_questions_of_arabia
+		}
+
+		bypass = {
+			NOT = {
+				country_exists = PDY
+			}
+		}
+
+		x = 39
+		y = 3
+		
+		completion_reward = {
+			country_event = {
+				id = YAR.53
+			}
+		}
+	}
+	
+	focus = {
+		id = yar_reintegrate_the_communists
+		icon = GFX_reintegrate_the_communists
+		cost = 3.6
+		
+		mutually_exclusive = {
+			focus = yar_fully_recognize_south_yaren
+		}
+		
+		prerequisite = {
+			focus = yar_questions_of_arabia
+		}
+		x = 41
+		y = 3
+
+		will_lead_to_war_with = PDY
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = PDY
+			}
+		}
+	}
+
+
+	focus = {
+		id = yar_omani_trade_deals
+		icon = GFX_omani_trade_deals
+		cost = 5
+		
+		mutually_exclusive = {
+			focus = yar_strike_at_oman
+		}
+		
+		prerequisite = {
+			focus = yar_fully_recognize_south_yaren
+			focus = yar_reintegrate_the_communists
+		}
+		
+		x = 39
+		y = 4
+		completion_reward = {
+			OMA = {
+				country_event = {
+					id = YAR.54
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = yar_strike_at_oman
+		icon = GFX_strike_at_oman
+		cost = 3.6
+		
+		mutually_exclusive = {
+			focus = yar_omani_trade_deals
+			
+		}
+		
+		prerequisite = {
+			focus = yar_fully_recognize_south_yaren		
+			focus = yar_reintegrate_the_communists
+		}
+		
+		x = 41
+		y = 4
+
+		will_lead_to_war_with = OMA
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = OMA
+			}
+			add_war_support = 0.05
+		}
+	}
+
+
+	focus = {
+		id = yar_embargo_the_saudis
+		icon = GFX_embargo_the_saudis
+		cost = 5
+		
+		mutually_exclusive = {
+			focus = yar_defeat_the_saudi_goliath
+			
+		}
+		
+		prerequisite = {
+			focus = yar_omani_trade_deals		
+			focus = yar_strike_at_oman
+		}
+		
+		x = 39
+		y = 5
+
+		completion_reward = {
+			add_opinion_modifier = {
+				target = SAU
+				modifier = yar_saudi_yemen_conflict
+			}
+			add_opinion_modifier = {
+				target = SAU
+				modifier = yar_saudi_yemen_conflict_trade
+			}
+		}
+	}
+	
+	
+	focus = {
+		id = yar_defeat_the_saudi_goliath
+		icon = GFX_defeat_the_saudi_goliath
+		cost = 5
+		
+		mutually_exclusive = {
+			focus = yar_embargo_the_saudis
+			
+		}
+		
+		prerequisite = {
+			focus = yar_omani_trade_deals		
+			focus = yar_strike_at_oman
+		}
+		
+		x = 41
+		y = 5
+
+		will_lead_to_war_with = SAU
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = SAU
+			}
+		}
+	}
+	
+	focus = {
+		id = yar_peace_for_yaren
+		icon = GFX_peace_for_yemen
+		cost = 2
+
+		available = {
+			has_war = no
+		}
+		
+		prerequisite = {		
+			focus = yar_embargo_the_saudis
+			focus = yar_defeat_the_saudi_goliath
+		}
+		
+		x = 40
+		y = 6
+
+		completion_reward = {
+			country_event = {
+				id = YAR.56
+			}
+		}
+	}
+	
+	focus = {
+		id = yar_foreign_diplomacy
+		icon = focus_commonwealth_un_membership
+		cost = 2
+		available = {
+			OR = {
+				has_completed_focus = YAR_Self_Sufficiency
+				has_completed_focus = YAR_Open_For_Buisness
+				has_completed_focus = YAR_High_Morale
+			}
+		}
+	
+		x = 50
+		y = 0
+
+		completion_reward = {
+			add_political_power = 25
+		}
+	}
+	
+	
+	
+	focus = {
+		id = yar_saleh_policies
+		icon = GFX_saleh_policies
+		cost = 2
+
+		prerequisite = {
+			focus = yar_foreign_diplomacy
+		}
+		available = {
+			has_completed_focus = YAR_Total_GPC_Control
+		}
+		bypass = {
+			has_completed_focus = YAR_Total_GPC_Control
+		}
+
+		x = 50
+		y = 1
+	}
+	
+	
+	focus = {
+		id = yar_all_the_worlds_a_stage
+		icon = GFX_YAR_all_the_worlds_a_stage
+		cost = 1
+
+		prerequisite = {
+			focus = yar_saleh_policies
+		}
+
+		completion_reward = {
+			add_political_power = 50
+		}
+
+		x = 50
+		y = 2
+	}
+	
+	focus = {
+		id = yar_business_above_all
+		icon = YAR_business_above_all_new
+		cost = 2
+
+		prerequisite = {
+			focus = yar_all_the_worlds_a_stage
+		}
+		
+		mutually_exclusive = {
+			focus = yar_for_a_greater_yaren
+			
+		}
+		
+		completion_reward = {
+			add_stability = 0.10
+			add_political_power = 100
+			add_ideas = YEM_opec_member
+		}
+
+		x = 46
+		y = 3
+	}
+	
+	focus = {
+		id = yar_ties_to_saudi_arabia
+		icon = GFX_ties_with_saudi_arabia
+		cost = 3.6
+
+		prerequisite = {
+			focus = yar_business_above_all
+		}
+		
+		completion_reward = {
+			add_opinion_modifier = {
+				target = SAU
+				modifier = yar_yemen_saudi_relations_improve
+			}
+			add_opinion_modifier = {
+				target = SAU
+				modifier = yar_saudi_ties
+			}
+		}
+
+		x = 45
+		y = 4
+	}
+	
+	
+	focus = {
+		id = yar_omani_trade_deals2
+		icon = lucrative_investment
+		cost = 3.6
+
+		prerequisite = {
+			focus = yar_business_above_all
+		}
+		
+		completion_reward = {
+			add_opinion_modifier = {
+				target = OMA
+				modifier = yar_oman_trade_deals
+			}
+		}
+		
+		x = 47
+		y = 4
+	}
+	
+	focus = {
+		id = yar_canadian_mining
+		icon = canada
+		cost = 3.6
+
+		prerequisite = {
+			focus = yar_ties_to_saudi_arabia
+		}
+		
+		prerequisite = {
+			focus = yar_omani_trade_deals2
+		}
+
+		completion_reward = {
+			CAN = {
+  				country_event = {
+   				id = YAR.91
+    			days = 1
+  				}
+			}
+		}
+			
+		x = 44
+		y = 5
+	}
+	
+	
+	focus = {
+		id = yar_american_weapons
+		icon = GFX_american_weapons
+		cost = 3.6
+
+		prerequisite = {
+			focus = yar_canadian_mining
+		}		
+		
+		completion_reward = {
+			USA = {
+  				country_event = {
+   				id = YAR.94
+    			days = 1
+  				}
+			}
+		}
+
+		x = 45
+		y = 6
+	}
+	
+	focus = {
+		id = yar_iraqi_cooperation
+		icon = iraq
+		cost = 5
+
+		prerequisite = {
+			focus = yar_ties_to_saudi_arabia
+		}
+		
+		prerequisite = {
+			focus = yar_omani_trade_deals2
+		}	
+
+		completion_reward = {
+			add_opinion_modifier = {
+				target = IRQ
+				modifier = yar_iraq_cooperation
+			}
+			add_opinion_modifier = {
+				target = IRQ
+				modifier = yar_iraqi_cooperation_trade
+			}
+		}
+
+		x = 46
+		y = 5
+		
+	}
+	
+	
+	focus = {
+		id = yar_russian_oil
+		icon = GFX_russian_oil
+		cost = 3.6
+
+		prerequisite = {
+			focus = yar_ties_to_saudi_arabia
+		}
+		prerequisite = {
+			focus = yar_omani_trade_deals2
+		}
+		bypass = {
+			NOT = {
+				country_exists = SOV
+				country_exists = RUS
+			}
+		}
+		
+		completion_reward = {
+			if = {
+				limit = {
+					country_exists = SOV
+				}
+				SOV = {
+					country_event = {
+					id = YAR.97
+					days = 1
+					}
+				}
+			}
+			if = {
+				limit = {
+					country_exists = RUS
+				}
+				RUS = {
+					country_event = {
+					id = YAR.97
+					days = 1
+					}
+				}
+			}
+		}
+
+		x = 48
+		y = 5
+	}
+	
+	focus = {
+		id = yar_indian_electronics
+		icon = india
+		cost = 3.6
+
+		prerequisite = {
+			focus = yar_russian_oil
+		}
+		
+		completion_reward = {
+			RAJ = {
+  				country_event = {
+   				id = YAR.100
+    			days = 1
+  				}
+			}
+		}	
+			
+		x = 47
+		y = 6
+	}
+	
+	focus = {
+		id = yar_meetings_in_baghdad
+		icon = major_alliance
+		cost = 3.6
+
+		prerequisite = {
+			focus = yar_iraqi_cooperation
+		}
+		
+		completion_reward = {
+			YAR = {
+				country_event = {
+   				id = YAR.103
+    			days = 2
+  				}
+			}
+			IRQ = {
+				country_event = {
+   				id = YAR.103
+    			days = 2
+  				}
+			}
+		}	
+			
+		x = 46
+		y = 7
+	}
+	
+	focus = {
+		id = yar_an_arab_alliance
+		icon = GFX_alliance_of_arab_states
+		cost = 3.6
+
+		prerequisite = {
+			focus = yar_meetings_in_baghdad
+		}
+		available = {
+			is_in_faction = no
+		}
+		
+		completion_reward = {
+			create_faction = "Pan-Arab Alliance"
+			IF = {
+				limit = {
+					IRQ = {
+						is_in_faction = no
+					}
+				}
+				IRQ = {
+					country_event = {
+						id = YAR.104
+						days = 1
+					}
+				}
+			}
+			IF = {
+				limit = {
+					OMA = {
+						is_in_faction = no
+					}
+				}
+				OMA = {
+					country_event = {
+						id = YAR.105
+						days = 1
+					}
+				}
+			}
+			IF = {
+				limit = {
+					SAU = {
+						is_in_faction = no
+					}
+				}
+				SAU = {
+					country_event = {
+						id = YAR.106
+						days = 1
+					}
+				}
+			}
+			IF = {
+				limit = {
+					QAT = {
+						is_in_faction = no
+					}
+				}
+				QAT = {
+					country_event = {
+						id = YAR.108
+						days = 1
+					}
+				}
+			}
+			IF = {
+				limit = {
+					JOR = {
+						is_in_faction = no
+					}
+				}
+				JOR = {
+					country_event = {
+						id = YAR.107
+						days = 1
+					}
+				}
+			}
+		}
+
+		x = 46
+		y = 8
+		
+	}
+	
+	focus = {
+		id = economic_co-operation
+		icon = peace_money_development
+		cost = 5
+
+		prerequisite = {
+			focus = yar_an_arab_alliance
+		}
+		
+		x = 45
+		y = 9
+		
+		completion_reward = {
+			add_ideas = YAR_economic_cooperation
+			every_country = {
+				limit = {
+					is_in_faction_with = YAR
+				}
+				add_ideas = YAR_economic_cooperation
+			}
+		}
+	}
+	
+	focus = {
+		id = military_training_exercises
+		icon = military_drill
+		cost = 5
+
+		prerequisite = {
+			focus = yar_an_arab_alliance
+		}
+		
+		x = 47
+		y = 9
+		
+		completion_reward = {
+			add_ideas = YAR_joint_arab_training
+			every_country = {
+				limit = {
+					is_in_faction_with = YAR
+				}
+				add_ideas = YAR_joint_arab_training
+			}
+		}			
+	}
+	
+	focus = {
+		id = mobilise_the_army
+		icon = unify_command
+		cost = 3.6
+
+		prerequisite = {
+			focus = military_training_exercises
+		}
+		
+		prerequisite = {
+			focus = economic_co-operation
+		}
+		
+		x = 46
+		y = 10
+		
+		completion_reward = {
+			add_manpower = 20000
+			973 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 3
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+			}
+			add_ideas = YAR_mobilised_army
+		}
+	}
+	
+	focus = {
+		id = the_war_for_national_reclamation
+		icon = against_communists
+		cost = 3.6
+
+		prerequisite = {
+			focus = military_training_exercises
+		}
+		
+		bypass = {
+			NOT = {
+				country_exists = PDY
+			}
+		}
+		
+		x = 46
+		y = 11
+		
+		will_lead_to_war_with = PDY
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = PDY
+			}
+		}
+	}
+	
+	
+	focus = {
+		id = yaren_forver_undivided
+		icon = YEM_reformist_victory
+		cost = 3.6
+
+		prerequisite = {
+			focus = military_training_exercises
+		}
+			
+		x = 46
+		y = 12
+		
+		completion_reward = {
+			add_ideas = YAR_united_forever
+		}
+	}
+
+	focus = {
+		id = yar_for_a_greater_yaren
+		icon = GFX_for_a_greater_yemen
+		cost = 2
+
+		prerequisite = {
+			focus = yar_all_the_worlds_a_stage
+		}
+		
+		mutually_exclusive = {
+			focus = yar_business_above_all
+			
+		}
+		
+		x = 53
+		y = 3
+
+		completion_reward = {
+			country_event = {
+				id = YAR.78
+			}
+			add_state_claim	= 990
+			add_state_claim	= 985
+			add_state_claim	= 987
+			add_state_claim	= 988
+			add_state_claim	= 986
+			add_state_claim = 989
+		}
+	}
+
+
+	focus = {
+		id = yar_vanquish_the_communists
+		icon = GFX_YAR_vanquish_the_communists
+		cost = 3.6
+
+		prerequisite = {
+			focus = yar_for_a_greater_yaren
+		}
+
+		bypass = {
+			NOT = {
+				country_exists = PDY
+			}
+		}
+	
+		x = 53
+		y = 4
+
+		will_lead_to_war_with = PDY
+		completion_reward = {
+			create_wargoal = {
+				target = PDY
+				type = annex_everything
+			}
+		}
+	}
+
+	focus = {
+		id = yar_demand_the_dhofar_region
+		icon = demand
+		cost = 5
+
+		prerequisite = {
+			focus = yar_vanquish_the_communists
+		}
+	
+		x = 52
+		y = 5
+		completion_reward = {
+			OMA = {
+				country_event = {
+					id = YAR.75
+					days = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = yar_our_lost_lands
+		icon = GFX_YAR_our_lost_lands
+		cost = 6.5
+
+		prerequisite = {
+			focus = yar_vanquish_the_communists
+		}
+	
+		x = 54
+		y = 5
+	
+		completion_reward = {
+			country_event = {
+				id = YAR.65
+			}
+		}
+	}
+
+	focus = {
+		id = yar_proclaim_greater_yaren
+		icon = GFX_proclaim_greater_yemen
+		cost = 2
+
+		available = {
+			OR = {
+				owns_state = 986
+				owns_state = 988
+				owns_state = 985
+				owns_state = 990
+				owns_state = 989
+			}
+		}
+
+		prerequisite = {
+			focus = yar_demand_the_dhofar_region
+		}
+		
+		prerequisite = {
+			focus = yar_our_lost_lands
+		}
+		
+		x = 53
+		y = 6
+	
+		completion_reward = {
+			set_cosmetic_tag = YAR_Greater_Yemen
+		}
+	}
+	
+
+	focus = {
+		id = yar_thrust_into_the_world
+		icon = generic_strike
+		cost = 1
+
+		prerequisite = {
+			focus = yar_proclaim_greater_yaren
+		}
+		available = {
+			is_in_faction = no
+		}
+		bypass = {
+			OR = {
+				is_in_faction_with = CAN
+				is_in_faction_with = RUS
+			}
+		}
+
+		
+		x = 53
+		y = 7
+		
+		completion_reward = {
+			country_event = {
+				id = YAR.120
+			}
+		}
+	}
+
+	focus = {
+		id = yar_join_the_democratic_league
+		icon = democratic_league
+		cost = 1
+
+		prerequisite = {
+			focus = yar_thrust_into_the_world
+		}
+		bypass = {
+			is_in_faction_with = CAN
+		}
+		available = {
+			always = no
+		}
+
+		
+		x = 50
+		y = 8
+		
+		completion_reward = {
+			custom_effect_tooltip = yar_joining_league_tooltip
+		}
+	}
+	
+	focus = {
+		id = yar_canadian_training
+		icon = GFX_canadian_training
+		cost = 5
+
+		prerequisite = {
+			focus = yar_join_the_democratic_league
+		}
+
+		
+		x = 50
+		y = 9
+		
+		completion_reward = {
+			add_ideas = YAR_canadian_advisors
+		}
+	}
+	
+	focus = {
+		id = yar_canadian_equipment
+		icon = GFX_canadian_equipment
+		cost = 5
+
+		prerequisite = {
+			focus = yar_canadian_training
+		}
+		
+		x = 50
+		y = 10
+		
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 2000
+				producer = CAN
+			}
+			add_equipment_to_stockpile = {
+				type = motorized_equipment
+				amount = 1000
+				producer = CAN
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = 500
+				producer = CAN
+			}
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 2
+				category = infantry_weapons
+			}
+		}
+	}
+	
+	focus = {
+		id = yar_join_the_moscow_accords
+		icon = GFX_independent_russia
+		cost = 1
+
+		prerequisite = {
+			focus = yar_thrust_into_the_world
+		}
+		available = {
+			always = no
+		}
+		bypass = {
+			is_in_faction_with = RUS
+		}
+
+		x = 53
+		y = 8
+		
+		completion_reward = {
+			custom_effect_tooltip = yar_joining_accord_tooltip
+		}
+	}
+	
+	focus = {
+		id = yar_russian_weapons
+		icon = GFX_russian_weapons
+		cost = 5
+
+		prerequisite = {
+			focus = yar_join_the_moscow_accords
+		}
+
+		x = 52
+		y = 9
+		
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 2500
+				producer = RUS
+			}
+			add_equipment_to_stockpile = {
+				type = light_tank_chassis
+				amount = 200
+				producer = RUS
+			}
+			add_equipment_to_stockpile = {
+				type = motorized_equipment
+				amount = 500
+				producer = RUS
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = 750
+				producer = RUS
+			}
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 2
+				category = infantry_weapons
+			}
+		}
+	}
+	
+	focus = {
+		id = yar_russian_aircraft
+		icon = GFX_russian_aircraft
+		cost = 5
+
+		prerequisite = {
+			focus = yar_join_the_moscow_accords
+		}
+		
+		x = 54
+		y = 9
+		
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = fighter_equipment_1
+				amount = 400
+				producer = RUS
+			}
+			add_equipment_to_stockpile = {
+				type = CAS_equipment_1
+				amount = 600
+				producer = RUS
+			}
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 2
+				category = light_fighter
+			}
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 2
+				category = cas_bomber
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
+		}
+	}
+	
+	focus = {
+		id = yar_russian_advisors
+		icon = GFX_russian_advisors
+		cost = 3.6
+
+		prerequisite = {
+			focus = yar_russian_aircraft
+		}
+		
+		prerequisite = {
+			focus = yar_russian_weapons
+		}
+		
+		x = 53
+		y = 10
+		
+		completion_reward = {
+			add_ideas = YAR_russian_advisors
+		}
+	}
+	
+	
+	focus = {
+		id = yar_destory_arab_traitors
+		icon = territory_or_war
+		cost = 3.6
+
+		prerequisite = {
+			focus = yar_russian_advisors
+			focus = yar_canadian_equipment
+		}
+		
+		x = 52
+		y = 11
+		
+		completion_reward = {
+			add_ideas = YAR_united_against_traitors
+		}
+	}
+	
+	focus = {
+		id = yar_pacify_the_gulf
+		icon = attack_UAE
+		cost = 3.6
+
+		prerequisite = {
+			focus = yar_destory_arab_traitors
+		}
+		
+		x = 51
+		y = 12
+		
+		will_lead_to_war_with = UAE
+		will_lead_to_war_with = QAT
+		will_lead_to_war_with = OMA
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = UAE
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = QAT
+			}
+			if = {
+				limit = {
+					NOT = {
+						OMA = {
+							is_puppet_of = YAR
+						}
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = OMA
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = the_saudi_puppet
+		icon = saudi_arabia_attack
+		cost = 3.6
+
+		prerequisite = {
+			focus = yar_destory_arab_traitors
+		}
+		
+		x = 53
+		y = 12
+		
+		will_lead_to_war_with = SAU
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = SAU
+			}
+		}
+	}
+	
+	focus = {
+		id = align_iraq
+		icon = military_deal
+		cost = 3.6
+
+		prerequisite = {
+			focus = the_saudi_puppet
+		}
+		
+		prerequisite = {
+			focus = yar_pacify_the_gulf
+		}
+		available = {
+			is_in_faction = yes
+		}
+		bypass = {
+			IRQ = {
+				OR = {
+					is_in_faction_with = RUS
+					is_in_faction_with = CAN
+					is_in_faction_with = SOV
+				}
+			}
+		}
+		
+		x = 52
+		y = 13
+		
+		will_lead_to_war_with = IRQ
+		completion_reward = {
+			if = {
+				limit = {
+					IRQ = {
+						has_country_leader = {
+							name = "Saddam Hussein"
+							ruling_only = yes
+						}
+					}
+				}
+				IRQ = {
+					country_event = {
+						id = YAR.127
+					}
+				}
+			}
+			else = {
+				create_wargoal = {
+					type = annex_everything
+					target = IRQ
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = the_bahrein_question
+		icon = territorial_claims
+		cost = 3.6
+
+		prerequisite = {
+			focus = align_iraq
+		}
+		
+		x = 51
+		y = 14
+		
+		will_lead_to_war_with = PER
+		completion_reward = {
+			add_state_claim = 856
+			PER = {
+				country_event = {
+					id = YAR.131
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = concessions_from_jordan
+		icon = jordan_attack
+		cost = 3.6
+
+		prerequisite = {
+			focus = align_iraq
+		}
+		
+		x = 53
+		y = 14
+		
+		will_lead_to_war_with = JOR
+		completion_reward = {
+			JOR = {
+				country_event = {
+					id = YAR.134
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = the_palestinian_problem
+		icon = palestine_attack
+		cost = 3.6
+
+		prerequisite = {
+			focus = concessions_from_jordan
+		}
+		
+		prerequisite = {
+			focus = the_bahrein_question
+		}
+		
+		x = 52
+		y = 15
+		
+		will_lead_to_war_with = PAL
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = PAL
+			}
+		}
+	}
+	
+	
+	
+	focus = {
+		id = remain_neutral
+		icon =	bulwark_against_communism 
+		cost = 1
+
+		prerequisite = {
+			focus = yar_thrust_into_the_world
+		}
+		available = {
+			always = no
+		}
+		
+		x = 56
+		y = 8
+		
+		completion_reward = {
+			custom_effect_tooltip = yar_neutrality_tooltip
+		}
+	}
+
+	focus = {
+		id = play_off_both_sides
+		icon = play_off_both_sides
+		cost = 6.5
+
+		prerequisite = {
+			focus = remain_neutral
+		}
+		
+		x = 56
+		y = 9
+		
+		completion_reward = {
+			every_country = {
+			    limit = {
+					OR = {
+						is_in_faction_with = SOV
+						is_in_faction_with = GER
+					}
+				}
+				add_opinion_modifier = {
+					target = YAR
+					modifier = yar_warsaw_pact_trade
+				}
+				reverse_add_opinion_modifier = {
+					target = YAR
+					modifier = yar_warsaw_pact_trade
+				}
+			}
+			RUS = {
+				add_opinion_modifier = {
+					target = YAR
+					modifier = yar_cappie_trade
+				}
+				reverse_add_opinion_modifier = {
+					target = YAR
+					modifier = yar_cappie_trade
+				}
+			}
+			CAN = {
+				add_opinion_modifier = {
+					target = YAR
+					modifier = yar_cappie_trade
+				}
+				reverse_add_opinion_modifier = {
+					target = YAR
+					modifier = yar_cappie_trade
+				}
+			}
+		}
+	}
+
+	
+	focus = {
+		id = weapons_deals
+		icon = GFX_modernised_armed_forces
+		cost = 3.6
+
+		prerequisite = {
+			focus = play_off_both_sides
+		}
+
+		x = 57
+		y = 10
+		
+		completion_reward = {
+			CAN = {
+				country_event = {
+					id = YAR.137
+				}
+			}
+			if = {
+				limit = {
+					country_exists = RUS
+				}
+				RUS = {
+					country_event = {
+						id = YAR.137
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = resource_deals
+		icon = GFX_mining_contracts
+		cost = 6.5
+
+		prerequisite = {
+			focus = play_off_both_sides
+		}
+
+		x = 55
+		y = 10
+		
+		completion_reward = {
+			add_ideas = YAR_foreign_investments
+		}
+	}
+	
+	focus = {
+		id = profits_of_the_worlds_conflicts
+		icon = GFX_profits_of_the_worlds_conflicts
+		cost = 5
+
+		prerequisite = {
+			focus = resource_deals
+		}
+	
+		prerequisite = {
+			focus = weapons_deals
+		}
+		
+		x = 56
+		y = 11
+		
+		completion_reward = {
+			add_ideas = YAR_war_profiteering
+		}
+	}
+
+
+	focus = {
+		id = nasserist_policy
+		icon = GFX_nasserist_policy
+		cost = 2
+		
+		available = {
+			has_completed_focus = YAR_Pluralist_Society
+		}
+		bypass = {
+			has_completed_focus = YAR_Pluralist_Society
+		}
+		prerequisite = {
+			focus = yar_foreign_diplomacy
+		}
+		
+		x = 57
+		y = 1
+	}
+	
+	focus = {
+		id = push_for_UAR_integration
+		icon = united_arab_republic
+		cost = 6.5
+		
+		mutually_exclusive = {
+			focus = recognise_the_broken_republics
+		}
+		available = {
+			country_exists = UAR
+			UAR = {
+				NOT = {
+					has_war_with = SYR
+				}
+			}
+		}
+
+		prerequisite = {
+			focus = nasserist_policy
+		}
+		
+		x = 56
+		y = 2
+		
+		completion_reward = {
+			UAR = {
+				country_event = {
+					id = YAR.140
+				}
+			}
+		}
+	}
+	
+	
+	focus = {
+		id = uar_infrastructure_projects
+		icon = RAJ_transport_links
+		cost = 5
+			
+			
+		prerequisite = {
+			focus = push_for_UAR_integration
+		}
+		
+		available = {
+			has_country_flag = yar_uar_membership_flag
+		}
+		
+		x = 55
+		y = 3
+		
+		completion_reward = {
+			UAR = {
+				country_event = {
+					id = YAR.143
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = uar_industrial_investments
+		icon = builders
+		cost = 5
+			
+			
+		prerequisite = {
+			focus = push_for_UAR_integration
+		}
+		
+		available = {
+			has_country_flag = yar_uar_membership_flag
+		}
+		
+		x = 57
+		y = 3
+		
+		completion_reward = {
+			UAR = {
+				country_event = {
+					id = YAR.146
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = resource_development
+		icon = focus_develop_odisha_mines
+		cost = 5
+			
+			
+		prerequisite = {
+			focus = uar_infrastructure_projects
+		}
+		
+		available = {
+			has_country_flag = yar_uar_membership_flag
+		}
+		
+		x = 55
+		y = 4
+		
+		completion_reward = {
+			add_resource = {
+				type = chromium
+				amount = 10 
+				state = 978
+			}
+			add_resource = {
+				type = steel
+				amount = 7
+				state = 973
+			}
+			add_resource = {
+				type = tungsten
+				amount = 7 
+				state = 975
+			}
+			if = {
+				limit = {
+					979 = {
+						is_owned_by = YAR
+					}
+				}
+				add_resource = {
+					type = aluminium
+					amount = 10 
+					state = 979
+				}
+				add_resource = {
+					type = steel
+					amount = 10 
+					state = 979
+				}
+			}
+			if = {
+				limit = {
+					293 = {
+						is_owned_by = YAR
+					}
+				}
+				add_resource = {
+					type = chromium
+					amount = 10 
+					state = 293
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = integrate_the_bureaucracy
+		icon = intelligence_exchange
+		cost = 5
+			
+			
+		prerequisite = {
+			focus = uar_industrial_investments
+		}
+		
+		available = {
+			has_country_flag = yar_uar_membership_flag
+		}
+		
+		x = 57
+		y = 4
+		
+		completion_reward = {
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.1
+			}
+			add_political_power = 50
+			add_ideas = YAR_integrated_bureaucracy
+		}
+	}
+	
+	focus = {
+		id = fusion_of_the_parties
+		icon = GFX_YAR_fusion_parties
+		cost = 3.6
+			
+			
+		prerequisite = {
+			focus = integrate_the_bureaucracy
+		}
+		
+		prerequisite = {
+			focus = resource_development
+		}
+		
+		available = {
+			has_country_flag = yar_uar_membership_flag
+		}
+		
+		x = 56
+		y = 5
+		
+		completion_reward = {
+			set_party_name = { 
+				ideology = revolutionary_socialist 
+				long_name = YAR_asu_revsoc_party_long
+				name = YAR_asu_revsoc_party 
+			}
+		}
+	}
+	
+	focus = {
+		id = admission_in_the_uar
+		icon = GFX_YAR_admission_to_the_uar
+		cost = 3.6
+			
+			
+		prerequisite = {
+			focus = fusion_of_the_parties
+		}
+		
+		available = {
+			has_country_flag = yar_uar_membership_flag
+		}
+		
+		x = 56
+		y = 6
+		
+		completion_reward = {
+			UAR = {
+				country_event = {
+					id = YAR.150
+				}
+			}
+		}
+	}
+	
+	
+	
+	focus = {
+		id = recognise_the_broken_republics
+		icon = socialism_through_peace
+		cost = 6.5
+			
+		mutually_exclusive = {
+			focus = push_for_UAR_integration			
+		}	
+		available = {
+			NOT = {
+				country_exists = UAR
+			}
+		}
+			
+		prerequisite = {
+			focus = nasserist_policy
+		}
+		
+		x = 59
+		y = 2
+		
+		completion_reward = {
+			EGY = {
+				add_opinion_modifier = {
+					target = YAR
+					modifier = yar_recognition
+				}
+				add_opinion_modifier = {
+					target = YAR
+					modifier = yar_arab_trade
+				}
+			}
+			SYR = {
+				add_opinion_modifier = {
+					target = YAR
+					modifier = yar_recognition
+				}
+				add_opinion_modifier = {
+					target = YAR
+					modifier = yar_arab_trade
+				}
+			}
+		}
+	}
+	
+	
+	focus = {
+		id = reach_out_to_socialist_arabs
+		icon = red_hands_shaking
+		cost = 5
+			
+		
+		prerequisite = {
+			focus = recognise_the_broken_republics
+		}
+		
+		x = 59
+		y = 3
+		
+		completion_reward = {
+			country_event = {
+				id = YAR.153
+			}
+			if = {
+                limit = {
+                    country_exists = OMA
+                }
+                OMA = {
+                    add_popularity = {
+						ideology = revolutionary_socialist
+						popularity = 0.1
+					}
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = SAU
+                }
+                SAU = {
+                    add_popularity = {
+						ideology = revolutionary_socialist
+						popularity = 0.1
+					}
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = UAE
+                }
+                UAE = {
+                    add_popularity = {
+						ideology = revolutionary_socialist
+						popularity = 0.1
+					}
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = IRQ
+                }
+                IRQ = {
+                    add_popularity = {
+						ideology = revolutionary_socialist
+						popularity = 0.1
+					}
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = JOR
+                }   
+                JOR = {
+                    add_popularity = {
+						ideology = revolutionary_socialist
+						popularity = 0.1
+					}
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = PAL
+                }   
+                PAL = {
+                    add_popularity = {
+						ideology = revolutionary_socialist
+						popularity = 0.1
+					}
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = SYR
+                }
+                SYR = {
+                    add_popularity = {
+						ideology = revolutionary_socialist
+						popularity = 0.1
+					}
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = LEB
+                }   
+                LEB = {
+                    add_popularity = {
+						ideology = revolutionary_socialist
+						popularity = 0.1
+					}
+                }
+            }
+			if = {
+                limit = {
+                    country_exists = QAT
+                }   
+                QAT = {
+                    add_popularity = {
+						ideology = revolutionary_socialist
+						popularity = 0.1
+					}
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = UAR
+                }
+                UAR = {
+                    add_popularity = {
+						ideology = revolutionary_socialist
+						popularity = 0.1
+					}
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = EGY
+                }   
+                EGY = {
+                    add_popularity = {
+						ideology = revolutionary_socialist
+						popularity = 0.1
+					}
+                }
+            }
+		}
+	}
+	
+	focus = {
+		id = recognise_the_PDRY
+		icon = GFX_YAR_recognise_the_pdry
+		cost = 3.6	
+			
+		available = {
+			country_exists = PDY
+		}
+		bypass = {
+			NOT = {
+				country_exists = PDY
+			}
+		}
+			
+		prerequisite = {
+			focus = reach_out_to_socialist_arabs
+		}
+		
+		x = 59
+		y = 4
+		
+		completion_reward = {
+			PDY = {
+				add_opinion_modifier = {
+					target = YAR
+					modifier = yar_interarab_recognition
+				}
+				reverse_add_opinion_modifier = {
+					target = YAR
+					modifier = yar_interarab_recognition
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = nasserism_in_one_country
+		icon = GFX_YAR_nasserism_in_one_country
+		cost = 3.6
+			
+		mutually_exclusive = {
+			focus = join_the_union_of_recolutionary_nations			
+		}
+		
+		mutually_exclusive = {
+			focus = the_search_for_arab_allies			
+		}	
+			
+		prerequisite = {
+			focus = recognise_the_PDRY
+		}
+		
+		x = 59
+		y = 5
+		
+		completion_reward = {
+			country_event = {
+				id = YAR.154
+			}
+			add_ideas = YAR_nasserism_in_one_country
+		}
+	}
+	
+	focus = {
+		id = coastal_development_scheme
+		icon = GFX_coastal_development_scheme
+		cost = 6.5	
+			
+		prerequisite = {
+			focus = nasserism_in_one_country
+		}
+		
+		x = 59
+		y = 6
+		
+		completion_reward = {
+			975 = {
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 2
+					instant_build = yes
+					province = 13619
+				}
+			}
+			972 = {
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					instant_build = yes
+					province = 13615
+				}
+			}
+			if = {
+				limit = {
+					293 = {
+						is_owned_by = YAR
+					}
+				}
+				293 = {
+					add_building_construction = {
+						type = dockyard
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					979 = {
+						is_owned_by = YAR
+					}
+				}
+				979 = {
+					add_building_construction = {
+						type = naval_base
+						level = 2
+						instant_build = yes
+						province = 13630
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = national_defense_effort
+		icon = defence
+		cost = 6.5
+			
+		prerequisite = {
+			focus = coastal_development_scheme
+		}
+		
+		x = 59
+		y = 7
+		
+		completion_reward = {
+			add_ideas = YAR_defending_the_revolution
+		}
+	}
+	
+	focus = {
+		id = peaceful_coexistence
+		icon = peace_dove
+		cost = 5
+			
+		prerequisite = {
+			focus = national_defense_effort
+		}
+		
+		x = 59
+		y = 8
+		
+		completion_reward = {
+			add_ideas = YAR_peace_for_yemen
+		}
+	}
+	
+	focus = {
+		id = invite_APC_investors
+		icon = GFX_invite_apc_investors
+		cost = 3.6
+			
+		bypass = {
+			NOT = {
+				country_exists = NEA
+			}
+		}
+			
+		prerequisite = {
+			focus = recognise_the_broken_republics
+		}
+		
+		x = 61
+		y = 3
+		
+		completion_reward = {
+			NEA = {	
+				country_event = {
+					id = YAR.156
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = join_the_union_of_recolutionary_nations
+		icon = focus_end_of_a_civil_war
+		cost = 3.6
+			
+		mutually_exclusive = {
+			focus = nasserism_in_one_country			
+		}	
+		
+		mutually_exclusive = {
+			focus = the_search_for_arab_allies			
+		}
+		available = {
+			NEA = {
+				is_faction_leader = yes
+			}
+			is_in_faction = no
+		}
+		
+		bypass = {
+			is_in_faction_with = NEA
+		}
+		
+		prerequisite = {
+			focus = invite_APC_investors
+		}
+		
+		x = 61
+		y = 5
+		
+		completion_reward = {
+			NEA = {	
+				country_event = {
+					id = YAR.159
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = APC_military_designs
+		icon = GFX_apc_military_designs
+		cost = 5
+	
+		available = {
+			is_in_faction_with = NEA
+		}
+
+		prerequisite = {
+			focus = join_the_union_of_recolutionary_nations
+		}
+		
+		x = 61
+		y = 6
+		
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 2
+				category = infantry_weapons
+			}
+			add_tech_bonus = {
+				bonus = 0.25
+				uses = 1
+				category = cat_light_armor
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.5
+			}
+		}
+	}
+	
+	focus = {
+		id = APC_advisors
+		icon = focus_military_for_defence
+		cost = 5
+			
+		available = {
+			is_in_faction_with = NEA
+		}
+			
+		prerequisite = {
+			focus = APC_military_designs
+		}
+		
+		x = 61
+		y = 7
+		
+		completion_reward = {
+			add_ideas = YAR_american_advisors
+		}
+	}
+	
+	focus = {
+		id = the_search_for_arab_allies
+		icon = GFX_the_search_of_arab_allies
+		cost = 3.6
+			
+		mutually_exclusive = {
+			focus = nasserism_in_one_country			
+		}	
+		
+		mutually_exclusive = {
+			focus = join_the_union_of_recolutionary_nations			
+		}	
+			
+		prerequisite = {
+			focus = invite_APC_investors
+		}
+		
+		available = {
+			is_in_faction = no
+		}
+		
+		x = 63
+		y = 5
+		
+		completion_reward = {
+			create_faction = YAR_nasserist_faction
+			if = {
+                limit = {
+                    country_exists = PAL
+					PAL = {
+						OR = {
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+						}
+						is_in_faction = no
+					}
+                }   
+                PAL = {
+                    country_event = {
+						id = YAR.162
+					}
+                }
+            }
+			if = {
+                limit = {
+                    country_exists = UAE
+					UAE = {
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+						}
+						is_in_faction = no
+					}
+                }   
+                UAE = {
+                    country_event = {
+						id = YAR.162
+					}
+                }
+            }
+			if = {
+                limit = {
+                    country_exists = SYR
+					SYR = {
+						OR = {
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+						}
+						is_in_faction = no
+					}
+                }   
+                SYR = {
+                    country_event = {
+						id = YAR.162
+					}
+                }
+            }
+			if = {
+                limit = {
+                    country_exists = JOR
+					JOR = {
+						OR = {
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+							has_government = new_democrat
+						}
+						is_in_faction = no
+					}
+                }   
+                JOR = {
+                    country_event = {
+						id = YAR.162
+					}
+                }
+            }
+		}
+	}
+	
+	focus = {
+		id = integrate_the_militaries
+		icon = GFX_integrate_the_militaries
+		cost = 5
+		
+		available = {
+			is_faction_leader = yes
+		}
+	
+		prerequisite = {
+			focus = the_search_for_arab_allies
+		}
+		
+		x = 63
+		y = 6
+		
+		completion_reward = {
+			add_ideas = YAR_the_arabian_army
+			every_country = {
+			    limit = {
+				    is_in_faction_with = YAR
+				}
+				add_ideas = YAR_the_arabian_army
+			}
+		}
+	}
+	
+	focus = {
+		id = unified_air_force
+		icon = replace_migs
+		cost = 5
+		
+		available = {
+			is_faction_leader = yes
+		}
+		
+		prerequisite = {
+			focus = integrate_the_militaries
+		}
+		
+		x = 63
+		y = 7
+		
+		completion_reward = {
+			add_ideas = YAR_unified_airforce
+			every_country = {
+			    limit = {
+				    is_in_faction_with = YAR
+				}
+				add_ideas = YAR_unified_airforce
+			}
+		}
+	}
+	
+	focus = {
+		id = strike_at_the_reactionaries
+		icon = anti_fascist
+		cost = 3.6
+			
+		prerequisite = {
+			focus = unified_air_force
+			focus = APC_advisors
+		}
+		
+		x = 62
+		y = 8
+		
+		completion_reward = {
+			add_ideas = YAR_exporting_the_revolution
+		}
+	}
+	
+	
+	focus = {
+		id = liberate_oman
+		icon = convince_oman_focus
+		cost = 3.6
+			
+		prerequisite = {
+			focus = strike_at_the_reactionaries
+		}
+		bypass = {
+			NOT = {
+				country_exists = OMA
+			}
+		}
+		
+		x = 61
+		y = 9
+		
+		will_lead_to_war_with = OMA
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = OMA
+			}
+		}
+	}
+	
+	focus = {
+		id = liberate_the_gulf
+		icon = agrarian_socialism
+		cost = 3.6
+			
+		prerequisite = {
+			focus = strike_at_the_reactionaries
+		}
+		bypass = {
+			NOT = {
+				country_exists = QAT
+			}
+		}
+		
+		x = 63
+		y = 9
+		
+		will_lead_to_war_with = QAT
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = QAT
+			}
+		}
+	}
+	
+	focus = {
+		id = liberate_saudi_arabia
+		icon = GFX_defeat_the_saudi_goliath
+		cost = 3.6
+			
+			
+		prerequisite = {
+			focus = liberate_the_gulf
+		}
+		
+		prerequisite = {
+			focus = liberate_oman
+		}
+		
+		bypass = {
+			NOT = {
+				country_exists = SAU
+			}
+		}
+		
+		x = 62
+		y = 10
+		
+		will_lead_to_war_with = SAU
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = SAU
+			}
+		}
+	}
+	
+	focus = {
+		id = a_revolutionary_arabia
+		icon = GFX_the_days_of_rage
+		cost = 3.6
+	
+	
+		prerequisite = {
+			focus = liberate_the_gulf
+		}
+		available = {
+			OMA = {
+				is_puppet_of = YAR
+			}
+			QAT = {
+				is_puppet_of = YAR
+			}
+			SAU = {
+				is_puppet_of = YAR
+			}
+		}
+	
+		x = 62
+		y = 11
+		
+		completion_reward = {
+			add_ideas = YAR_freedom_for_the_arab_world
+			country_event = {
+				id = YAR.165
+			}
+		}
+	}
+	
+	focus = {
+		id = european_trade
+		icon = uk_join_the_eu
+		cost = 3.6
+			
+			
+		prerequisite = {
+			focus = recognise_the_broken_republics
+		}
+		
+		x = 64
+		y = 3
+		
+		completion_reward = {
+			every_country = {
+				limit = {
+					capital_scope = {
+						is_on_continent = europe
+					}
+					OR = {
+						has_government = communist
+						has_government = revolutionary_socialist
+						has_government = moderate_socialist
+					}
+				}
+				add_opinion_modifier = {
+					target = YAR
+					modifier = yar_socialist_trade
+				}
+				add_opinion_modifier = {
+					target = YAR
+					modifier = yar_latin_american_friendships
+				}
+				reverse_add_opinion_modifier = {
+					target = YAR
+					modifier = yar_socialist_trade
+				}
+				reverse_add_opinion_modifier = {
+					target = YAR
+					modifier = yar_latin_american_friendships
+				}
+            }
+		}		
+	}
+
+
+		focus = {
+		id = south_america_meetings
+		icon = chile
+		cost = 3.6
+			
+			
+		prerequisite = {
+			focus = recognise_the_broken_republics
+		}
+	
+		x = 67
+		y = 3
+		
+		completion_reward = {
+			if = {
+				limit = {
+					country_exists = CHL
+					CHL = {
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+						}
+					}
+				}
+				CHL = {
+					country_event = {
+						id = YAR.166
+					}
+				}
+			}
+			every_country = {
+				limit = {
+					capital_scope = {
+						is_on_continent = south_america
+					}
+					OR = {
+						has_government = communist
+						has_government = revolutionary_socialist
+						has_government = moderate_socialist
+					}
+				}
+				add_opinion_modifier = {
+					target = YAR
+					modifier = yar_socialist_trade
+				}
+				add_opinion_modifier = {
+					target = YAR
+					modifier = yar_latin_american_friendships
+				}
+				reverse_add_opinion_modifier = {
+					target = YAR
+					modifier = yar_socialist_trade
+				}
+				reverse_add_opinion_modifier = {
+					target = YAR
+					modifier = yar_latin_american_friendships
+				}
+			}
+			if = {
+                limit = {
+                    country_exists = MEX
+					MEX = {
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+						}
+					}
+                }   
+                MEX = {
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+                }
+            }
+			if = {
+                limit = {
+                    country_exists = GUA
+					GUA = {
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+						}
+					}
+                }   
+                GUA = {
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+                }
+            }
+			if = {
+                limit = {
+                    country_exists = BLZ
+					BLZ = {
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+						}
+					}
+                }   
+                BLZ = {
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+                }
+            }
+			if = {
+                limit = {
+                    country_exists = HON
+					HON = {
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+						}
+					}
+                }   
+                HON = {
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+                }
+            }
+			if = {
+                limit = {
+                    country_exists = ELS
+					ELS = {
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+						}
+					}
+                }   
+                ELS = {
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+                }
+            }
+			if = {
+                limit = {
+                    country_exists = NIC
+					NIC = {
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+						}
+					}
+                }   
+                NIC = {
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+                }
+            }
+			if = {
+                limit = {
+                    country_exists = CEA
+					CEA = {
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+						}
+					}
+                }
+                CEA = {
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+                }
+            }
+			if = {
+                limit = {
+                    country_exists = COS
+					COS = {
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+						}
+					}
+                }   
+                COS = {
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+                }
+            }
+			if = {
+                limit = {
+                    country_exists = PAN
+					PAN = {
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+						}
+					}
+                }   
+                PAN = {
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+                }
+			}
+			if = {
+                limit = {
+                    country_exists = CUB
+					CUB = {
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+						}
+					}
+                }   
+                CUB = {
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+                }
+            }
+			if = {
+                limit = {
+                    country_exists = JAM
+					JAM = {
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+						}
+					}
+                }   
+                JAM = {
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+                }
+            }
+			if = {
+                limit = {
+                    country_exists = HAI
+					HAI = {
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+						}
+					}
+                }   
+                HAI = {
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+                }
+            }
+			if = {
+                limit = {
+                    country_exists = DOM
+					DOM = {
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+						}
+					}
+                }   
+                DOM = {
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+                }
+            }
+			if = {
+                limit = {
+                    country_exists = DMN
+					DMN = {
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+						}
+					}
+                }   
+                DMN = {
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+                }
+            }
+			if = {
+                limit = {
+                    country_exists = PUE
+					PUE = {
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+						}
+					}
+                }   
+                PUE = {
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+                }
+            }
+			if = {
+                limit = {
+                    country_exists = BAH
+					BAH = {
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+						}
+					}
+                }   
+                BAH = {
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+                }
+            }
+			if = {
+                limit = {
+                    country_exists = ANT
+					ANT = {
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+						}
+					}
+                }   
+                ANT = {
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_socialist_trade
+					}
+					reverse_add_opinion_modifier = {
+						target = YAR
+						modifier = yar_latin_american_friendships
+					}
+                }
+            }
+		}
+	}
+	
+	focus = {
+		id = scientific_endeavours
+		icon = GFX_starscience
+		cost = 5
+			
+			
+		prerequisite = {
+			focus = invite_APC_investors
+		}
+		
+		prerequisite = {
+			focus = european_trade
+		}
+		
+		prerequisite = {
+			focus = south_america_meetings
+		}
+		
+		x = 64
+		y = 4
+		
+		completion_reward = {
+			add_research_slot = 1
+			add_ideas = YAR_increased_scientific_funding
+		}
+	}
+	
+	focus = {
+		id = mining_expansion
+		icon = GFX_mining_contracts
+		cost = 5
+			
+			
+		prerequisite = {
+			focus = invite_APC_investors
+		}
+		
+		prerequisite = {
+			focus = european_trade
+		}
+		
+		prerequisite = {
+			focus = south_america_meetings
+		}
+		
+		x = 66
+		y = 4
+		
+		completion_reward = {
+			add_ideas = YAR_expanded_mining_industry
+			add_resource = {
+				type = steel
+				amount = 10 
+				state = 978
+			}
+			add_resource = {
+				type = chromium
+				amount = 20
+				state = 978
+			}
+			add_resource = {
+				type = tungsten
+				amount = 15 
+				state = 978
+			}
+		}
+	}
+}

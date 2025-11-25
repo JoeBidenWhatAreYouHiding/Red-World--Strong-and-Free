@@ -1,0 +1,131 @@
+CAT_battling_for_the_north = {
+	start_a_border_conflict_for_roussillon = {
+		cost = 100
+		days_remove = 7
+		visible = {
+			has_country_flag = CAT_france_refused_to_surrender_the_north
+			NOT = {
+				owns_state = 663
+			}
+			NOT = {
+				has_border_war_with = FRA
+			}
+			NOT = {
+				has_border_war_with = ITA
+			}
+			NOT = {
+				has_war_with = FRA
+			}
+			NOT = {
+				has_war_with = ITA
+			}
+		}
+		available = {
+			owns_state = 165
+			NOT = {
+				owns_state = 663
+			}
+			NOT = {
+				has_border_war_with = FRA
+			}
+			NOT = {
+				has_war_with = FRA
+			}
+		}
+		complete_effect = {
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 165
+					num_provinces = 2
+					on_win = basfopo.20
+					on_lose = basfopo.21
+					on_cancel = basfopo.22
+				}				
+				defender = {
+					state = 663
+					num_provinces = 2
+					on_win = basfopo.24
+					on_lose = basfopo.23
+					on_cancel = basfopo.25
+				}
+			}
+		}
+		ai_will_do = {
+			base = 100
+		}
+	}
+	prepare_for_a_larger_conflict_for_roussillon = {
+		cost = 150
+		days_remove = 7
+		visible = {
+			has_country_flag = CAT_france_refused_to_surrender_the_north
+			NOT = {
+				owns_state = 663
+			}
+			NOT = {
+				has_border_war_with = FRA
+			}
+			NOT = {
+				has_war_with = FRA
+			}
+			NOT = {
+				has_border_war_with = ITA
+			}
+			NOT = {
+				has_war_with = ITA
+			}
+		}
+		available = {
+			owns_state = 165
+			NOT = {
+				owns_state = 663
+			}
+			NOT = {
+				has_border_war_with = FRA
+			}
+			NOT = {
+				has_war_with = FRA
+			}
+		}
+		complete_effect = {
+			IF = {
+				limit = {
+					FRA = {
+						owns_state = 663
+					}
+				}
+				declare_war_on = {
+					target = FRA
+					type = annex_everything
+				}
+				FRA = {
+					add_ideas = {
+						idea_bsq_basque_french_border_dispute
+					}
+				}
+				hidden_effect = {
+					country_event = {
+						id = basfopo.26
+						days = 60
+					}
+				}
+				custom_effect_tooltip = bsq_we_will_have_sixty_days
+			}
+			IF = {
+				limit = {
+					ITA = {
+						owns_state = 663
+					}
+				}
+				declare_war_on = {
+					target = ITA
+					type = annex_everything
+				}
+			}
+		}
+		ai_will_do = {
+			base = 50
+		}
+	}
+}

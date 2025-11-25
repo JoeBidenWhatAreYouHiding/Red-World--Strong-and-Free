@@ -1,0 +1,127 @@
+on_actions = {
+    on_declare_war = {
+		effect = {
+			IF = {
+				limit = {
+					ROOT = {
+						OR = {
+							tag = SPR
+							tag = SPN
+						}
+						OR = {
+							has_completed_focus = SPR_fopo_spread_the_revolution
+							has_completed_focus = SPR_stalinist_fopo_spread_the_revolution
+							has_completed_focus = SPR_titoist_fopo_spread_the_revolution
+						}
+					}
+					FROM = {
+						has_country_flag = spr_target_of_the_spanish_revolution
+					}
+				}
+				every_country = {
+					limit = {
+						has_idea = idea_spr_madrid_conference_signatory
+					}
+					declare_war_on = {
+						target = FROM
+						type = annex_everything
+					}
+				}
+			}
+		}
+	}
+	on_annex = {
+		effect = {
+			IF = {
+				limit = {
+					ROOT = {
+						OR = {
+							tag = SPR
+							tag = SPN
+						}
+						has_government = fascist
+					}
+					FROM = {
+						OR = {
+							tag = SPR
+							tag = SPN
+						}
+					}
+				}
+				every_country = {
+					limit = {
+						NOT = {
+							OR = {
+								tag = SPR
+								tag = SPN
+							}
+						}
+					}
+					news_event = {
+						id = spain_news.11
+					}
+				}
+			}
+			IF = {
+				limit = {
+					ROOT = {
+						OR = {
+							tag = SPR
+							tag = SPN
+						}
+						has_government = moderate_socialist
+					}
+					FROM = {
+						OR = {
+							tag = SPR
+							tag = SPN
+						}
+					}
+				}
+				every_country = {
+					limit = {
+						NOT = {
+							OR = {
+								tag = SPR
+								tag = SPN
+							}
+						}
+					}
+					news_event = {
+						id = spain_news.12
+					}
+				}
+			}
+			IF = {
+				limit = {
+					ROOT = {
+						OR = {
+							tag = SPR
+							tag = SPN
+						}
+						has_government = monarchist
+					}
+					FROM = {
+						OR = {
+							tag = SPR
+							tag = SPN
+						}
+					}
+				}
+				every_country = {
+					limit = {
+						NOT = {
+							OR = {
+								tag = SPR
+								tag = SPN
+							}
+						}
+					}
+					news_event = {
+						id = spain_news.13
+					}
+				}
+			}
+		}
+	}
+}
