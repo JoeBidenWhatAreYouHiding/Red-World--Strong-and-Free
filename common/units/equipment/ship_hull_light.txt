@@ -20,7 +20,7 @@ equipments = {
 		module_slots = {
 			fixed_ship_battery_slot = {
 				required = yes
-				allowed_module_categories = { ship_light_battery }
+				allowed_module_categories = { ship_light_battery dp_light_battery}
 			}
 			fixed_ship_anti_air_slot = {
 				required = no
@@ -51,9 +51,19 @@ equipments = {
 					ship_mine_layer
 					ship_anti_air
 					ship_depth_charge
+					ship_seaplane_tender
 				}
 			}
-			rear_1_custom_slot = mid_1_custom_slot
+			rear_1_custom_slot = {
+				required = no
+				allowed_module_categories = {
+					ship_torpedo
+					ship_mine_warfare
+					ship_mine_layer
+					ship_anti_air
+					ship_depth_charge
+				}
+			}			
 		}
 		
 		module_count_limit = {
@@ -92,7 +102,7 @@ equipments = {
 
 		
 		surface_detection = 20
-		sub_detection = 1
+		sub_detection = 2.5
 		surface_visibility = 10
 		naval_speed = 25
 		reliability = 0.80
@@ -110,9 +120,14 @@ equipments = {
 		}
 		
 		manpower = 250
+		naval_dominance_factor = 20
+		naval_weather_penalty_factor = 1 #this value gets -1 before its used so 1.5 will increase the effects of weather penalties by 0.5. this is base value is required for MIO stat modifiers
+		#MIO stat modifers will factory by the unmodified stat value so here a 0.5 mio stat modifier would make this ships naval_weather_penalty_factor stat 1.5.
+		# change this from 1 at your own risk		
 	}
 
 	ship_hull_light_1 = {
+		abbreviation = "hdb"
 		year = 1922
 
 		archetype = ship_hull_light
@@ -120,9 +135,11 @@ equipments = {
 		#alias = destroyer_1
 		
 		module_slots = inherit
+		naval_dominance_factor = 24
 	}
 
 	ship_hull_light_2 = {
+		abbreviation = "hdc"
 		year = 1936
 
 		archetype = ship_hull_light
@@ -147,14 +164,29 @@ equipments = {
 					ship_depth_charge
 					ship_anti_air
 					ship_light_battery
+					dp_light_battery
+					ship_seaplane_tender
 				}
 			}
-			rear_1_custom_slot = mid_1_custom_slot
+			rear_1_custom_slot = {
+				required = no
+				allowed_module_categories = {
+					ship_torpedo
+					ship_mine_warfare
+					ship_mine_layer
+					ship_depth_charge
+					ship_anti_air
+					ship_light_battery
+					dp_light_battery
+					ship_seaplane_tender
+				}
+			}			
 		}
 
 		default_modules = {
 			mid_1_custom_slot = empty
 			rear_1_custom_slot = empty
+			fixed_ship_engine_slot = light_ship_engine_2
 		}
 
 
@@ -162,13 +194,16 @@ equipments = {
 		naval_range = 14000
 		max_strength = 40
 		build_cost_ic = 500
+		sub_detection = 3
 		resources = {
 			steel = 2
 		}
 		manpower = 325
+		naval_dominance_factor = 30
 	}
 
 	ship_hull_light_3 = {
+		abbreviation = "hdd"
 		year = 1940
 
 		archetype = ship_hull_light
@@ -190,6 +225,7 @@ equipments = {
 					ship_depth_charge
 					ship_anti_air
 					ship_light_battery
+					dp_light_battery
 				}
 			}
 			mid_1_custom_slot = {
@@ -201,6 +237,8 @@ equipments = {
 					ship_depth_charge
 					ship_anti_air
 					ship_light_battery
+					dp_light_battery
+					ship_seaplane_tender
 				}
 			}
 			rear_1_custom_slot = {
@@ -212,6 +250,7 @@ equipments = {
 					ship_depth_charge
 					ship_anti_air
 					ship_light_battery
+					dp_light_battery
 				}
 			}
 		}
@@ -220,7 +259,7 @@ equipments = {
 		resources = {
 			steel = 3
 		}
-
+		sub_detection = 3.5
 		surface_detection = 20
 		surface_visibility = 10
 		reliability = 0.90
@@ -228,9 +267,17 @@ equipments = {
 		max_strength = 50
 		build_cost_ic = 550
 		manpower = 400
+		naval_dominance_factor = 36
+
+		default_modules = {
+			mid_1_custom_slot = empty
+			rear_1_custom_slot = empty
+			fixed_ship_engine_slot = light_ship_engine_3
+		}
 	}
 
 	ship_hull_light_4 = {
+		abbreviation = "hde"
 		year = 1944
 
 		archetype = ship_hull_light
@@ -251,6 +298,7 @@ equipments = {
 					ship_depth_charge
 					ship_anti_air
 					ship_light_battery
+					dp_light_battery
 				}
 			}
 			mid_1_custom_slot = {
@@ -262,9 +310,22 @@ equipments = {
 					ship_depth_charge
 					ship_anti_air
 					ship_light_battery
+					dp_light_battery
+					ship_seaplane_tender
 				}
 			}
-			mid_2_custom_slot = mid_1_custom_slot
+			mid_2_custom_slot = {
+				required = no
+				allowed_module_categories = {
+					ship_torpedo
+					ship_mine_warfare
+					ship_mine_layer
+					ship_depth_charge
+					ship_anti_air
+					ship_light_battery
+					dp_light_battery
+				}
+			}
 			rear_1_custom_slot = {
 				required = no
 				allowed_module_categories = {
@@ -274,16 +335,18 @@ equipments = {
 					ship_depth_charge
 					ship_anti_air
 					ship_light_battery
+					dp_light_battery
 				}
 			}
 		}
 
-
+		sub_detection = 4
 		surface_detection = 20
 		reliability = 0.92
 		naval_range = 20000
 		max_strength = 60
 		build_cost_ic = 600
+		naval_dominance_factor = 40
 		resources = {
 			steel = 4
 			chromium = 1
@@ -320,7 +383,7 @@ equipments = {
 		surface_detection = 20
 		sub_detection = 5
 		surface_visibility = 10
-		naval_speed = 25
+		naval_speed = 30
 		reliability = 0.80
 		
 		naval_range = 11000
@@ -368,7 +431,7 @@ equipments = {
 		surface_detection = 25
 		sub_detection = 10
 		surface_visibility = 10
-		naval_speed = 25
+		naval_speed = 30
 		reliability = 0.85
 
 		naval_range = 14000
@@ -420,7 +483,7 @@ equipments = {
 		surface_detection = 40
 		sub_detection = 10
 		surface_visibility = 10
-		naval_speed = 25
+		naval_speed = 30
 		reliability = 0.90
 
 		naval_range = 17000
@@ -471,7 +534,7 @@ equipments = {
 		surface_detection = 40
 		sub_detection = 10
 		surface_visibility = 10
-		naval_speed = 25
+		naval_speed = 30
 		reliability = 0.92
 
 		naval_range = 20000
