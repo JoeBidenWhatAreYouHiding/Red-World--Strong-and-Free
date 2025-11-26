@@ -31,6 +31,8 @@ technologies = {
 			leads_to_tech = cavity_magnatron 
 			research_cost_coeff = 1
 		}
+		
+
 
 		enable_equipment_modules = { 
 			ship_fire_control_system_0
@@ -40,7 +42,7 @@ technologies = {
 		start_year = 2010
 		folder = {
 			name = electronics_folder
-			position = { x = 1 y = 0 }
+			position = { x = -1 y = 0 }
 		}
 		
 		ai_will_do = {
@@ -63,6 +65,8 @@ technologies = {
 				PROJECT = sp_air_radar	
 			}
 		}
+
+		special_project_specialization = { specialization_air specialization_nuclear }
 		
 
 	}
@@ -70,30 +74,29 @@ technologies = {
 	radio = {
 
 		# units with radios can more efficiently join combats when there is room
-		land_reinforce_rate = 0.05
-		coordination_bonus = 0.04
+		land_reinforce_rate = 0.02
+		coordination_bonus = 0.02
 		
 		path = {
 			leads_to_tech = improved_radio 
 			research_cost_coeff = 1
 		}
 		
-		research_cost = 1.75
+		research_cost = 2
 		
 		folder = {
 			name = electronics_folder
-			position = { x = -3 y = 2 }
+			position = { x = @radio y = 2 }
+		}
+		folder = {
+			name = support_folder
+			position = { x = 11 y = 9 } # x = 12 y = 0
 		}
 		
 		enable_equipment_modules = { 
 			tank_radio_1
 			radio_navigation_1
-			lc_radio_1
-		}
-
-		folder = {
-			name = support_folder
-			position = { x = 11 y = 9 } # x = 12 y = 0
+			lc_radio_1 #Module for Land Cruiser
 		}
 		
 		ai_will_do = {
@@ -116,6 +119,7 @@ technologies = {
 		categories = {
 			electronics
 		}
+
 		special_project_specialization = { specialization_air }
 	}
 
@@ -228,12 +232,15 @@ technologies = {
 			leads_to_tech = cavity_magnatron 
 			research_cost_coeff = 1
 		}
-		
+		#enable_equipment_modules = {
+		#	ship_radar_1
+		#	radio_navigation_1
+		#}
 		research_cost = 1.75
 		
 		#folder = {
 		#	name = electronics_folder
-		#	position = { x = -2 y = 4 }
+		#	position = { x = @radar y = 2 }
 		#}
 		
 		ai_will_do = {
@@ -306,6 +313,52 @@ technologies = {
 			level = 2
 		}
 	}
+	
+	#improved_cavity_magnatron = {
+#
+	#	# radar boost in air/sea combat depends on radar level
+	#	enable_building = {
+	#		building = radar_station
+	#		level = 3
+	#	}
+	#	coordination_bonus = 0.01
+	#	enable_equipment_modules = { 
+	#		ship_radar_2
+	#	}
+#
+	#	path = {
+	#		leads_to_tech = centimetric_radar 
+	#		research_cost_coeff = 1
+	#	}
+	#	
+	#	research_cost = 1.25
+	#	start_year = 1939
+	#	
+	#	folder = {
+	#		name = electronics_folder
+	#		position = { x = 0 y = 8 }
+	#	}
+	#	
+	#	ai_will_do = {
+	#		factor = 1
+	#		modifier = {
+	#			OR = {
+	#				tag = ENG
+	#				tag = USA
+	#			}
+	#			factor = 5
+	#		}
+	#		modifier = {
+	#			date < "1939.1.1"
+	#			factor = 0.5
+	#		}
+	#	}
+	#	
+	#	categories = {
+	#		electronics
+	#		radar_tech
+	#	}
+	#}
 
 	centimetric_radar = {
 
@@ -528,7 +581,7 @@ technologies = {
 		
 		folder = {
 			name = electronics_folder
-			position = { x = 3 y = 6 }
+			position = { x = @computing y = 6 }
 		}
 		
 		ai_will_do = {
@@ -586,7 +639,7 @@ technologies = {
 		
 		folder = {
 			name = electronics_folder
-			position = { x = 3 y = 10 }
+			position = { x = @computing y = 10 }
 		}
 		
 		ai_will_do = {
@@ -637,7 +690,7 @@ technologies = {
 		
 		folder = {
 			name = electronics_folder
-			position = { x = 3 y = 14 }
+			position = { x = @computing y = 14 }
 		}
 		
 		ai_will_do = {
@@ -676,7 +729,7 @@ technologies = {
 		}
 		folder = {
 			name = electronics_folder
-			position = { x = 1 y = 6 }
+			position = { x = @encryption_x y = 6 }
 		}
 		
 		ai_will_do = {
@@ -719,7 +772,7 @@ technologies = {
 		
 		folder = {
 			name = electronics_folder
-			position = { x = 1 y = 10 }
+			position = { x = @encryption_x y = 10 }
 		}
 		
 		ai_will_do = {
@@ -762,7 +815,7 @@ technologies = {
 		
 		folder = {
 			name = electronics_folder
-			position = { x = 1 y = 14 }
+			position = { x = @encryption_x y = 14 }
 		}
 		
 		ai_will_do = {
@@ -805,7 +858,7 @@ technologies = {
 		
 		folder = {
 			name = electronics_folder
-			position = { x = 5 y = 6 }
+			position = { x = @decryption_x y = 6 }
 		}
 		
 		ai_will_do = {
@@ -844,7 +897,7 @@ technologies = {
 		
 		folder = {
 			name = electronics_folder
-			position = { x = 5 y = 10 }
+			position = { x = @decryption_x y = 10 }
 		}
 		
 		ai_will_do = {
@@ -883,7 +936,7 @@ technologies = {
 		
 		folder = {
 			name = electronics_folder
-			position = { x = 5 y = 14 }
+			position = { x = @decryption_x y = 14 }
 		}
 		
 		ai_will_do = {
@@ -924,7 +977,7 @@ technologies = {
 		
 		folder = {
 			name = electronics_folder
-			position = { x = 1 y = 4 }
+			position = { x = @firecontrol y = 4 }
 		}
 		
 		ai_will_do = {
@@ -965,7 +1018,7 @@ technologies = {
 		}
 		folder = {
 			name = electronics_folder
-			position = { x = 1 y = 8 }
+			position = { x = @firecontrol y = 8 }
 		}
 		
 		ai_will_do = {
@@ -1007,7 +1060,7 @@ technologies = {
 		
 		folder = {
 			name = electronics_folder
-			position = { x = 1 y = 12 }
+			position = { x = @firecontrol y = 12 }
 		}
 		
 		ai_will_do = {
@@ -1092,7 +1145,7 @@ technologies = {
 		start_year = 2012
 		folder = {
 			name = electronics_folder
-			position = { x = -1 y = 4 }
+			position = { x = 0 y = 6 }
 		}
 		
 		ai_will_do = {
@@ -1114,7 +1167,7 @@ technologies = {
 		start_year = 2014
 		folder = {
 			name = electronics_folder
-			position = { x = -1 y = 8 }
+			position = { x = 0 y = 10 }
 		}
 		
 		ai_will_do = {
@@ -1142,7 +1195,7 @@ technologies = {
 		start_year = 2010
 		folder = {
 			name = electronics_folder
-			position = { x = 1 y = 2 }
+			position = { x = 2 y = 2 }
 		}
 		
 		ai_will_do = {
@@ -1164,7 +1217,7 @@ technologies = {
 		start_year = 2014
 		folder = {
 			name = electronics_folder
-			position = { x = 1 y = 10 }
+			position = { x = 2 y = 10 }
 		}
 		
 		ai_will_do = {
@@ -1205,7 +1258,7 @@ technologies = {
 		
 		folder = {
 			name = electronics_folder
-			position = { x = 0 y = 2 }
+			position = { x = 0 y = @rockets_2016 }
 		}
 
 		on_research_complete = {
@@ -1494,9 +1547,9 @@ technologies = {
 			}
 			rocket_interceptor_equipment_3
 		}
-		#enable_equipments = {
-		#	guided_missile_equipment_3
-		#}
+		enable_equipments = {
+			#guided_missile_equipment_3
+		}
 
 		enable_equipment_modules = {
 			rocket_engine_3
@@ -1591,7 +1644,7 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 1
+			base = 1
 			
 			modifier = {
 				factor = 1.2
@@ -1637,7 +1690,7 @@ technologies = {
 
 		# can build reactors
 		
-		start_year = 2017
+		start_year = 2015
 		research_cost = 5
 		
 		#folder = {
@@ -1678,7 +1731,7 @@ technologies = {
 
 		# can build reactors
 		
-		start_year = 2017
+		start_year = 2015
 		research_cost = 5
 		
 		#folder = {
@@ -1713,7 +1766,7 @@ technologies = {
 
 	nukes = {
 	
-		start_year = 2019
+		start_year = 2017
 		research_cost = 5
 		
 		#folder = {
@@ -1844,4 +1897,5 @@ technologies = {
 			rocketry
 		}
 	}
+
 }
