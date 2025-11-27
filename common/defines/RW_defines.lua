@@ -42,3 +42,4 @@ NDefines.NOperatives.BECOME_SPYMASTER_PP_COST = 100
 NDefines.NOperatives.BECOME_SPYMASTER_MIN_UPGRADES = 5
 NDefines.NIndustrialOrganisation.ASSIGN_DESIGN_TEAM_PP_COST_PER_DAY = 0.15
 NDefines.NIndustrialOrganisation.FUNDS_FOR_SIZE_UP = 800
+NDefines.NBuildings.INFRASTRUCTURE_RESOURCE_BONUS = 0.05
