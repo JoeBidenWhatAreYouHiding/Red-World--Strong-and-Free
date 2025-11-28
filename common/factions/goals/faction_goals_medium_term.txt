@@ -118,6 +118,67 @@ faction_goal_marine_corps = {
 	}
 }
 
+faction_goal_secure_the_oil_supply = {
+	name = secure_the_oil_supply_goal_name
+	description = secure_the_oil_supply_goal_desc
+	category = medium_term
+	group = resources_to_market_icon
+	allowed = {
+		
+	}
+	visible = {
+		has_resources_in_collection = {
+			collection = {
+					input = game:scope
+					operators =  { faction_members }
+					name = FACTION
+			}
+			resource = oil
+			amount < 100
+		}
+	}
+	completed = {
+		has_resources_in_collection = {
+			collection = {
+					input = game:scope
+					operators =  { faction_members }
+					name = FACTION
+			}
+			resource = oil
+			amount > 199
+		}
+	}
+	complete_effect = {
+
+		every_faction_member = { 
+			tooltip = AT_LEAST_70_OIL
+			visible_when_empty = yes
+			limit = {
+				has_resources_in_country = {
+					resource = oil
+					amount > 69
+				}
+			}
+			add_faction_initiative = 1
+			add_faction_influence_ratio = 0.15
+			add_tech_bonus = {
+				name = secure_the_oil_supply_tech_bonus
+				bonus = 0.75
+				uses = 1
+				category = excavation_tech
+			}
+		}
+		
+	}
+	ai_will_do = {
+		base = 1
+		modifier = {
+			add = 9 # Mid game prio
+			date > 1941.1.1
+		}
+	}
+}
+
 faction_goal_submarine_force = {
 	name = submarine_force_goal_name
 	description = submarine_force_goal_desc
