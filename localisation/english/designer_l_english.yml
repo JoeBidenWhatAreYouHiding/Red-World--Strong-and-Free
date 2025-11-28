@@ -28,7 +28,7 @@
  DESIGNER_NO_STAT:0 "--"
  DESIGNER_CREATE_NEW_DIVISION:1 "Create Empty"
  DESIGNER_NEW_DIVISION:0 "New Division"
- DESIGNER_DEFAULT_DIVISION:1 "$DOMINANT_UNIT$ template $NUMBER$"
+ DESIGNER_DEFAULT_DIVISION:1 "$DOMINANT_UNIT$ $YEAR$ $NUMBER$"
  DESIGNER_DUPLICATE:0 "Duplicate"
  DESIGNER_DUPLICATE_DESC:1 "Duplicate to create a new template for §Gfree§! when saving this template. The original template will remain unchanged and you can continue using it as you deploy the new template."
  DESIGNER_DUPLICATE_OF_NAME:0 "Copy of $TEMPLATE_NAME$"
@@ -157,7 +157,7 @@
  EQUIPMENT_DESIGNER_IS_SCREEN_SHIP_EFFECTS_TOOLTIP:0 "§HScreen Ships§! exhibit different behavior in combat and are influenced by a different set of modifiers than other ship categories."
  EQUIPMENT_DESIGNER_IS_NOT_CAPITAL_SHIP_TOOLTIP:0 "Ships using this design will not be §HCapital Ships§!."
  EQUIPMENT_DESIGNER_VARIABLE_CATEGORY_TOOLTIP:0 "§YChoice of equipment modules can affect the ship category of this design.§!"
- EQUIPMENT_DESIGNER_PRODUCTION_RESOURCE_DESC:1 "The §HResources§! used in the production of this design."
+ EQUIPMENT_DESIGNER_PRODUCTION_RESOURCE_DESC: "The §HResources§! used in the production of this design"
  EQUIPMENT_DESIGNER_PRODUCTION_COST_DESC:1 "The §HIndustrial Capacity§! cost to §HProduce§! this design."
  EQUIPMENT_MODULE_STAT_AVERAGED:0 " (averaged)"
  EQUIPMENT_DESIGNER_ARMY_XP_COST:0 "£army_experience  Design Cost: $COST|Y0$"
@@ -199,7 +199,7 @@
  EQUIPMENT_DESIGNER_WEIGHT_EXCEEDS_THRUST:0 "§RWeight exceeds Thrust§!"
  EQUIPMENT_DESIGNER_WEIGHT_EXCEEDS_THRUST_FOR_MISSIONS:0 "§RWeight exceeds Thrust for these missions:§!"
  EQUIPMENT_DESIGNER_PLANE_ROLE_REQUIRE_WEAPON:0 "Add main armament to give role"
-
+ EQUIPMENT_DESIGNER_DYNAMIC_VERSION_CHECKBOX_BUTTON_DESC: "§HDisplay Dynamic Version Numbering§!\nWhen checked this variant will display dynamic version numbering beside its name."
  # Specialized names can be provided by appending the archetype/hull token. These will take priority if available. E.g.
  #ship_designer_screen_ship_hull_cruiser: "Light Cruiser"
  #ship_designer_capital_ship_ship_hull_cruiser: "Heavy Cruiser"
@@ -233,6 +233,19 @@
  tank_designer_flame:1 "Flame (Support Company)"
  tank_designer_flame_role_disallowed:0 "Add a module that allows the §HFlame§! role to be able to switch to it."
 
+ tank_designer_land_cruiser_chassis: "Land Cruiser"
+ tank_designer_land_cruiser_chassis_role_disallowed: "Requires a §Y$land_cruiser_chassis$§!."
+
+ #Obsolete - There is no NSB support for these
+ tank_designer_armored_recovery_vehicle: "Armored Recovery Vehicle (Support Company)"
+ tank_designer_armored_recovery_vehicle_role_disallowed: "Add a module that allows the §HArmored Recovery Vehicle§! role to be able to switch to it."
+ tank_designer_clearance_vehicle: "Clearance Vehicle (Support Company)"
+ tank_designer_clearance_vehicle_role_disallowed: "Add a module that allows the §HClearance Vehicle§! role to be able to switch to it."
+ tank_designer_crossing_support_vehicle: "Crossing Support Vehicle (Support Company)"
+ tank_designer_crossing_support_vehicle_role_disallowed: "Add a module that allows the §HCrossing Support Vehicle§! role to be able to switch to it."
+ tank_designer_land_cruiser: "Land Cruiser (Support Company)"
+ tank_designer_land_cruiser_role_disallowed: "Add a module that allows the §HLand Cruiser§! role to be able to switch to it."
+
  plane_designer_fighter:0 "Fighter"
  plane_designer_interceptor:0 "Interceptor"
  plane_designer_tactical_bomber:0 "Combat Drone"
@@ -245,7 +258,6 @@
  plane_designer_heavy_fighter:0 "Heavy Fighter"
 
  # name list themes
-l_english:
  # name list themes -- updated to include country-specific and other new list names
  NAME_THEME_RIVERS:0 "Rivers"
  NAME_THEME_FISH:0 "Fish"
@@ -274,6 +286,15 @@ l_english:
  NAME_THEME_IMPERIAL_BC:0 "Imperial Battlecruisers"
  NAME_THEME_IMPERIAL_BB:0 "Imperial Battleships"
  NAME_THEME_IMPERIAL_CARRIERS:0 "Imperial Carriers"
+ NAME_THEME_HISTORICAL_MR: "Historical Merchant Raiders"
+ NAME_THEME_HISTORICAL_MINESWEEPERS: "Historical Minesweepers"
+ NAME_THEME_HISTORICAL_PZ: "Historical Panzerschiffs"
+ NAME_THEME_HISTORICAL_CS: "Historical Cruisers"
+ NAME_THEME_COMMUNIST_PEOPLE: "Revolutionary Minds"
+ NAME_THEME_COMMUNIST_SLOGANS: "Revolutionary Slogans"
+ NAME_THEME_COMMUNIST_VOLKSMARINE: "Volksmarine Vessels"
+ NAME_THEME_HABSBURG_MONARCHS: "Historical Habsburg Monarchs"
+ NAME_THEME_HRE_EMPERORS: "Holy Roman Emperors"
 
  NAME_THEME_HISTORICAL_DE:0 "Historical Destroyer Escorts"
  NAME_THEME_HISTORICAL_TB:0 "Historical Torpedo Boats"
@@ -385,12 +406,20 @@ l_english:
  EQUIPMENT_DESIGNER_FOREIGN_FILTER:0 "Click to toggle filtering for designs in our stockpile."
  EQUIPMENT_DESIGNER_OWN_FILTER:0 "Click to toggle filtering for designs in enemy stockpiles.\n\nYou will require high intel to view these."
  EQUIPMENT_DESIGNER_OBSOLETE_FILTER:0 "Click to toggle filtering for outdated designs."
- HISTORICAL_PRESET: "Presets"
  HISTORICAL_TEMPLATE_ENABLED: "Create a $ROLE|H$ template, matching the $NAME|H$ as closely as possible."
- HISTORICAL_TEMPLATE_DISABLED: "You require the following modules to create this $ROLE|H$ design:\n\n$RESTRICTIONS$"
+ HISTORICAL_TEMPLATE_DISABLED: "You require the following modules to create this $ROLE|H$ design:\n\n$RESTRICTIONS$" 
+ HISTORICAL_TEMPLATE_DESIGNER_NOTE:0 "§L$NOTE$§!"
  SLOT_TITLE_REQUIRED: "$SLOT|H$:"
+ UPGRADE_REQUIRED: "$UPGRADE|H$ requires level $LEVEL|H$"
  MODULE_NONE_FIXED: "None"
- EQUIPMENT_DESIGNER_HISTORICAL_DESIGN_DISABLED_CHASSIS: "Historical Presets can only be accessed from a blueprint chassis or hull."
+ EQUIPMENT_DESIGNER_HISTORICAL_DESIGN_DISABLED_CHASSIS: "Presets can only be accessed from a blueprint chassis or hull."
+ EQUIPMENT_DESIGNER_HISTORICAL_DESIGN_DISABLED_NO_DESIGNS: "You have no valid Presets for this chassis type."
+ EQUIPMENT_DESIGNER_NAVAL_DOMINANCE_BREAKDOWN: "§YNaval Dominance§! \nHow much Naval Dominance is being provided by this ship."
+ HULL_NAME: "$NAME$: $VALUE|+=0$"
+ DOMINANCE_SPEED_FACTOR: "Max Speed: $VALUE|+=%$"
+ DOMINANCE_RANGE_FACTOR: "Max Range: $VALUE|+=%$"
+ DOMINANCE_HG_FACTOR: "Heavy Attack: $VALUE|+=%$"
+ DOMINANCE_CARRIER_SIZE_FACTOR: "Carrier Size: $VALUE|+=%$"
  angry_speedboat: "Angry Speedboat Class"
 
  heavy_cruiser_2_class: "Heavy cruiser 1936"
@@ -404,4 +433,4 @@ l_english:
  type_viic_class: "Type VII-C"
  type_xxi_class: "Type XXI"
  type_viid_class: "Type VII-D"
- 
+
