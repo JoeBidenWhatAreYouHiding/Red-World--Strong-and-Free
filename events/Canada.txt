@@ -4204,6 +4204,7 @@ country_event = {
 			}
 		}
 		has_completed_focus = CAN_reclaim_the_birthright
+		has_idea = CAN_elizabeth_in_exile
 	}
 
 	option = { #Interesting
@@ -11094,9 +11095,14 @@ country_event = {
 		set_politics = {
 			ruling_party = new_democrat
 		}
-		add_liberal_to_coalition = yes
-		add_modsoc_to_coalition = yes
-		add_centrist_to_coalition = yes
+		if = {
+			limit = { has_country_flag = bloc_ndp_alliance }
+			add_modsoc_to_coalition = yes
+		}
+		else = {
+			add_centrist_to_coalition = yes
+			add_liberal_to_coalition = yes
+		}
 	}
 	
 	option = { #Canadian Alliance
@@ -13513,6 +13519,9 @@ country_event = {
 			original_tag = MWA
 			copy_tag = MWA
 			
+			transfer_state = 382
+			add_state_core = 382
+			
 			save_global_event_target_as = united_american_puppet
 
 			### Politics
@@ -13611,6 +13620,7 @@ country_event = {
 			}
 			event_target:united_american_puppet = {
 				transfer_state = PREV
+				add_state_core = PREV
 			}
 		}
 		every_country = {

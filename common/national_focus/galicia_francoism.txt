@@ -1,0 +1,1769 @@
+focus_tree = {
+	id = galicia_francoism_tree
+
+	default = no
+	continuous_focus_position = { x = 10 y = 5000 }
+	
+	focus = {
+		id = GAL_franco_blood_of_el_caudillo
+		icon = unknown
+		cost = 0
+
+		x = 10
+		y = 0
+		completion_reward = {
+		    add_political_power = 150
+		}
+	}
+	focus = {
+		id = GAL_franco_mandate_state_catholicism
+		icon = focus_support_christian_values
+		cost = 7.2
+
+		prerequisite = {
+			focus = GAL_franco_blood_of_el_caudillo
+		}
+		relative_position_id = GAL_franco_blood_of_el_caudillo
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = {idea_SPR_church_political_connections}
+		}
+	}
+	focus = {
+		id = GAL_franco_enshrine_nobility_privileges
+		icon = protect_noble_titles
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_franco_mandate_state_catholicism
+		}
+		relative_position_id = GAL_franco_mandate_state_catholicism
+		x = -1
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				idea_SPR_strengthened_nobility
+			}
+			country_event = {
+				id = galicia.70
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_stoke_galician_nationalism
+		icon = GAL_franco_stoke_galician_nationalism
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_franco_mandate_state_catholicism
+		}
+		relative_position_id = GAL_franco_mandate_state_catholicism
+		x = 1
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				idea_gal_stoke_galician_nationalism
+			}
+			country_event = {
+				id = galicia.71
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_privatize_non_military_industries
+		icon = industry_2
+		cost = 10
+
+		prerequisite = {
+			focus = GAL_franco_stoke_galician_nationalism
+		}
+		prerequisite = {
+			focus = GAL_franco_enshrine_nobility_privileges
+		}
+		relative_position_id = GAL_franco_enshrine_nobility_privileges
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_civilian_industry_privitization
+			}
+			add_offsite_building = { 
+				type = industrial_complex 
+				level = 2
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_enact_tax_cuts
+		icon = GFX_industry_act
+		cost = 7.2
+
+		prerequisite = {
+			focus = GAL_franco_privatize_non_military_industries
+		}
+		relative_position_id = GAL_franco_privatize_non_military_industries
+		x = -1
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				idea_SPR_tax_cuts
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_mandate_martial_education
+		icon = patriotic_education
+		cost = 7.2
+
+		prerequisite = {
+			focus = GAL_franco_stoke_galician_nationalism
+		}
+		relative_position_id = GAL_franco_stoke_galician_nationalism
+		x = 0
+		y = 2
+		completion_reward = {
+			add_ideas = {
+				idea_spr_nationalist_education
+			}
+		}
+	}
+
+	focus = {
+		id = GAL_franco_officially_adopt_the_francoist_constitution
+		icon = laws
+		cost = 5
+		available = {
+			has_government = fascist
+		}
+
+		prerequisite = {
+			focus = GAL_franco_blood_of_el_caudillo
+		}
+		mutually_exclusive = {
+			focus = GAL_franco_confirm_the_new_cabinet
+		}
+		relative_position_id = GAL_franco_blood_of_el_caudillo
+		x = 2
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_francoist_constitution
+			}
+			country_event = {
+				id = galicia.69
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_cement_the_one_party_state
+		icon = political_pressure
+		cost = 5
+		available = {
+			has_government = fascist
+		}
+
+		prerequisite = {
+			focus = GAL_franco_officially_adopt_the_francoist_constitution
+		}
+
+		relative_position_id = GAL_franco_officially_adopt_the_francoist_constitution
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_one_party_state
+			}
+			country_event = {
+				id = galicia.68
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_expand_the_sindicato_vertical
+		icon = focus_national_reorganisation_council
+		cost = 10
+		available = {
+			has_government = fascist
+		}
+
+		prerequisite = {
+			focus = GAL_franco_cement_the_one_party_state
+		}
+
+		relative_position_id = GAL_franco_cement_the_one_party_state
+		x = 0
+		y = 1
+		completion_reward = {
+			add_offsite_building = { 
+				type = industrial_complex 
+				level = 2
+			}
+			add_offsite_building = { 
+				type = arms_factory 
+				level = 2
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_expand_military_production_capacity
+		icon = military_factory
+		cost = 8
+
+		prerequisite = {
+			focus = GAL_franco_expand_the_sindicato_vertical
+			focus = GAL_franco_new_crown_corporations
+		}
+
+		relative_position_id = GAL_franco_expand_the_sindicato_vertical
+		x = 1
+		y = 1
+		completion_reward = {
+		    171 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_confirm_the_new_cabinet
+		icon = restore_fueros
+		cost = 5
+		available = {
+			has_government = nationalist
+		}
+
+		prerequisite = {
+			focus = GAL_franco_blood_of_el_caudillo
+		}
+		mutually_exclusive = {
+			focus = GAL_franco_officially_adopt_the_francoist_constitution
+		}
+		relative_position_id = GAL_franco_blood_of_el_caudillo
+		x = 4
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				gal_sic_francis_franco
+			}
+		    add_ideas = {
+				gal_ind_nicolas_franco
+			}
+		    add_ideas = {
+				gal_fom_carmen_martinez_bordiu_franco
+			}
+			country_event = {
+				id = galicia.66
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_persecute_leftist_parties
+		icon = threaten_socialists
+		cost = 5
+		available = {
+			has_government = nationalist
+		}
+
+		prerequisite = {
+			focus = GAL_franco_confirm_the_new_cabinet
+		}
+
+		relative_position_id = GAL_franco_confirm_the_new_cabinet
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_popularity = {
+				ideology = new_democrat
+				popularity = -0.10
+			}
+		    add_popularity = {
+				ideology = moderate_socialist
+				popularity = -0.15
+			}
+		    add_popularity = {
+				ideology = national_bolshevik
+				popularity = -0.2
+			}
+		    add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.2
+			}
+		    add_popularity = {
+				ideology = communist
+				popularity = -0.05
+			}
+			add_stability = 0.1
+			country_event = {
+				id = galicia.67
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_new_crown_corporations
+		icon = crown_industries
+		cost = 10
+		available = {
+			has_government = nationalist
+		}
+
+		prerequisite = {
+			focus = GAL_franco_persecute_leftist_parties
+		}
+
+		relative_position_id = GAL_franco_persecute_leftist_parties
+		x = 0
+		y = 1
+		completion_reward = {
+		    random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		    random_owned_state = {
+			    add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_expand_resource_production_facilities
+		icon = tungsten
+		cost = 8
+
+		prerequisite = {
+			focus = GAL_franco_expand_military_production_capacity
+		}
+		prerequisite = {
+			focus = GAL_franco_mandate_martial_education
+		}
+		prerequisite = {
+			focus = GAL_franco_enact_tax_cuts
+		}
+
+		relative_position_id = GAL_franco_mandate_martial_education
+		x = 0
+		y = 1
+		completion_reward = {
+			171 = {
+				set_building_level = {
+					type = infrastructure
+					level = 10
+					instant_build = yes
+				}
+			}
+			add_resource = {
+				type = tungsten
+				amount = 2
+				state = 171
+			}
+			add_resource = {
+				type = steel
+				amount = 5
+				state = 171
+			}
+			add_resource = {
+				type = aluminium
+				amount = 4
+				state = 171
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_enact_mandatory_military_service
+		icon = send_the_army_in
+		cost = 10
+
+		prerequisite = {
+			focus = GAL_franco_expand_military_production_capacity
+		}
+		prerequisite = {
+			focus = GAL_franco_mandate_martial_education
+		}
+		prerequisite = {
+			focus = GAL_franco_enact_tax_cuts
+		}
+
+		relative_position_id = GAL_franco_mandate_martial_education
+		x = 2
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_mandatory_military_service
+			}
+		    add_ideas = {
+				service_by_requirement
+			}
+			country_event = {
+				id = galicia.72
+			}
+		}
+	}
+	
+	focus = {
+		id = GAL_franco_maintain_international_neutrality
+		icon = unknown
+		cost = 7.2
+
+		prerequisite = {
+			focus = GAL_franco_expand_resource_production_facilities
+		}
+		prerequisite = {
+			focus = GAL_franco_enact_mandatory_military_service
+		}
+		mutually_exclusive = {
+			focus = GAL_franco_pursue_an_alliance_with_canada
+			focus = GAL_franco_pursue_an_alliance_with_russia
+		}
+		relative_position_id = GAL_franco_expand_resource_production_facilities
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_neutrality_focus
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_fortify_our_nation
+		icon = fortify_city
+		cost = 7.2
+
+		prerequisite = {
+			focus = GAL_franco_maintain_international_neutrality
+		}
+
+		relative_position_id = GAL_franco_maintain_international_neutrality
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_fortification_effort
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_become_a_global_arms_dealer
+		icon = spanish_guns
+		cost = 8
+
+		prerequisite = {
+			focus = GAL_franco_fortify_our_nation
+		}
+
+		relative_position_id = GAL_franco_fortify_our_nation
+		x = 0
+		y = 1
+		completion_reward = {
+			add_offsite_building = { 
+				type = arms_factory 
+				level = 2
+			}
+			add_ideas = {
+				idea_gal_global_arms_dealer
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_seek_the_guarantees_of_world_powers
+		icon = play_off_both_sides
+		cost = 10
+
+		prerequisite = {
+			focus = GAL_franco_become_a_global_arms_dealer
+		}
+
+		relative_position_id = GAL_franco_become_a_global_arms_dealer
+		x = 0
+		y = 1
+		completion_reward = {
+		    IF = {
+				limit = {
+					country_exists = CAN
+				}
+				CAN = {
+					country_event = {
+						id = galfopof.20
+					}
+				}
+			}
+		    IF = {
+				limit = {
+					country_exists = RUS
+				}
+				RUS = {
+					country_event = {
+						id = galfopof.20
+					}
+				}
+			}
+		    IF = {
+				limit = {
+					country_exists = SOV
+				}
+				SOV = {
+					country_event = {
+						id = galfopof.20
+					}
+				}
+			}
+		    IF = {
+				limit = {
+					country_exists = GER
+				}
+				GER = {
+					country_event = {
+						id = galfopof.20
+					}
+				}
+			}
+		    IF = {
+				limit = {
+					country_exists = ENG
+				}
+				ENG = {
+					country_event = {
+						id = galfopof.20
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_pursue_an_alliance_with_russia
+		icon = moscow_accords
+		cost = 7.2
+		
+		available = {
+			NOT = {
+				has_country_flag = GAL_russia_refused_to_ally_us
+			}
+			OR = {
+				AND = {
+					country_exists = RUS
+					RUS = {
+						is_faction_leader = yes
+					}
+				}
+				AND = {
+					country_exists = SOV
+					SOV = {
+						is_faction_leader = yes
+						NOT = {
+							has_government = communist
+							has_government = revolutionary_socialist
+						}
+					}
+				}
+			}
+		}
+		
+		prerequisite = {
+			focus = GAL_franco_expand_resource_production_facilities
+		}
+		prerequisite = {
+			focus = GAL_franco_enact_mandatory_military_service
+		}
+		mutually_exclusive = {
+			focus = GAL_franco_pursue_an_alliance_with_canada
+			focus = GAL_franco_maintain_international_neutrality
+		}
+		relative_position_id = GAL_franco_expand_resource_production_facilities
+		x = -2
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					country_exists = RUS
+				}
+				RUS = {
+					country_event = {
+						id = galfopof.7
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					country_exists = SOV
+				}
+				SOV = {
+					country_event = {
+						id = galfopof.7
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_pursue_an_alliance_with_canada
+		icon = democratic_league
+		cost = 7.2
+		
+		available = {
+			AND = {
+				country_exists = CAN
+				CAN = {
+					is_faction_leader = yes
+				}
+				has_government = nationalist
+				NOT = {
+					has_country_flag = GAL_canada_refused_to_ally_us
+				}
+			}
+		}
+		
+		prerequisite = {
+			focus = GAL_franco_expand_resource_production_facilities
+		}
+		prerequisite = {
+			focus = GAL_franco_enact_mandatory_military_service
+		}
+		mutually_exclusive = {
+			focus = GAL_franco_pursue_an_alliance_with_russia
+			focus = GAL_franco_maintain_international_neutrality
+		}
+		relative_position_id = GAL_franco_expand_resource_production_facilities
+		x = -4
+		y = 1
+		completion_reward = {
+		    CAN = {
+				country_event = {
+					id = galfopof.10
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_petition_for_industrial_aid
+		icon = positive_trade_relations
+		cost = 8
+
+		prerequisite = {
+			focus = GAL_franco_pursue_an_alliance_with_russia
+			focus = GAL_franco_pursue_an_alliance_with_canada
+		}
+
+		relative_position_id = GAL_franco_pursue_an_alliance_with_canada
+		x = 1
+		y = 1
+		completion_reward = {
+		    IF = {
+				limit = {
+					is_in_faction_with = CAN
+				}
+				CAN = {
+					country_event = {
+						id = galfopof.12
+					}
+				}
+			}
+		    IF = {
+				limit = {
+					is_in_faction_with = RUS
+				}
+				RUS = {
+					country_event = {
+						id = galfopof.12
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_inter_alliance_military_training
+		icon = generic_marching
+		cost = 8.6
+
+		prerequisite = {
+			focus = GAL_franco_petition_for_industrial_aid
+		}
+
+		relative_position_id = GAL_franco_petition_for_industrial_aid
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_joint_military_drills
+			}
+		    IF = {
+				limit = {
+					is_in_faction_with = CAN
+				}
+				CAN = {
+					country_event = {
+						id = galfopof.16
+					}
+				}
+			}
+		    IF = {
+				limit = {
+					is_in_faction_with = RUS
+				}
+				RUS = {
+					country_event = {
+						id = galfopof.16
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_purchase_resource_rights
+		icon = oil_focus
+		cost = 7.2
+
+		prerequisite = {
+			focus = GAL_franco_petition_for_industrial_aid
+		}
+
+		relative_position_id = GAL_franco_petition_for_industrial_aid
+		x = -2
+		y = 1
+		completion_reward = {
+		    IF = {
+				limit = {
+					is_in_faction_with = CAN
+				}
+				CAN = {
+					country_event = {
+						id = galfopof.17
+					}
+				}
+			}
+		    IF = {
+				limit = {
+					is_in_faction_with = RUS
+				}
+				RUS = {
+					country_event = {
+						id = galfopof.17
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_lay_claim_to_galicias_historic_lands
+		icon = portugal_attack
+		cost = 3
+
+		prerequisite = {
+			focus = GAL_franco_expand_resource_production_facilities
+		}
+		prerequisite = {
+			focus = GAL_franco_enact_mandatory_military_service
+		}
+
+		relative_position_id = GAL_franco_expand_resource_production_facilities
+		x = 2
+		y = 1
+		completion_reward = {
+		    POR = {
+				country_event = {
+					id = galfopof.1
+				}
+			}
+			180 = {
+				add_claim_by = ROOT
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_integrate_portuguese_lands
+		icon = unknown
+		cost = 10
+
+		available = {
+			owns_state = 180
+		}
+
+		prerequisite = {
+			focus = GAL_franco_lay_claim_to_galicias_historic_lands
+		}
+
+		relative_position_id = GAL_franco_lay_claim_to_galicias_historic_lands
+		x = -1
+		y = 1
+		completion_reward = {
+		    180 = {
+				add_core_of = GAL
+			}
+			IF = {
+				limit = {
+					owns_state = 181
+					owns_state = 112
+					owns_state = 179
+				}
+				release_puppet = POR
+				ROOT = {
+					transfer_state = 180
+				}
+				180 = {
+					add_core_of = GAL
+				}
+				POR = {
+					hidden_effect = {
+						set_politics = {
+							ruling_party = monarchist
+							elections_allowed = no
+							last_election = "1935.12.17"
+							election_frequency = 48
+						}
+						add_popularity = {
+							ideology = monarchist
+							popularity = 0.25
+						}
+						retire_character = POR_duarte_ii
+						POR_Jose_Second = {
+							add_country_leader_role = {
+								promote_leader = yes		
+								country_leader={
+									ideology=absolute_monarchist
+									expire="1.1.1.1"
+									id=-1
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_invigorate_francoist_revanchism
+		icon = the_saviours_of_francos_legacy
+		cost = 7.2
+
+		prerequisite = {
+			focus = GAL_franco_lay_claim_to_galicias_historic_lands
+		}
+
+		relative_position_id = GAL_franco_lay_claim_to_galicias_historic_lands
+		x = 1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_francoist_revanchism
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_reclaim_the_family_birthright
+		icon = live_up_to_the_name_one_spain
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_franco_invigorate_francoist_revanchism
+		}
+
+		relative_position_id = GAL_franco_invigorate_francoist_revanchism
+		x = 1
+		y = 1
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = SPR
+						is_core_of = SPN
+						is_core_of = BSQ
+						is_core_of = CAT
+					}
+				}
+				add_claim_by = ROOT
+			}
+		    IF = {
+				limit = {
+					country_exists = SPR
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = SPR
+				}
+			}
+		    IF = {
+				limit = {
+					country_exists = SPN
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = SPN
+				}
+			}
+		    IF = {
+				limit = {
+					country_exists = BSQ
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = BSQ
+				}
+			}
+		    IF = {
+				limit = {
+					country_exists = CAT
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = CAT
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_the_return_of_spains_rightful_rulers
+		icon = celebrate_salvation_day
+		cost = 10
+
+		available = {
+			owns_state = 41
+			owns_state = 928
+			owns_state = 1019
+			owns_state = 1020
+			owns_state = 172
+			owns_state = 174
+			owns_state = 176
+			owns_state = 166
+			owns_state = 165
+			owns_state = 177
+			owns_state = 167
+			owns_state = 175
+			owns_state = 168
+			owns_state = 170
+			owns_state = 169
+			owns_state = 173
+		}
+
+		prerequisite = {
+			focus = GAL_franco_reclaim_the_family_birthright
+		}
+
+		relative_position_id = GAL_franco_reclaim_the_family_birthright
+		x = 1
+		y = 1
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = SPR
+						is_core_of = SPN
+						is_core_of = BSQ
+						is_core_of = CAT
+					}
+				}
+				add_core_of = ROOT
+			}
+			set_cosmetic_tag = SPR
+			country_event = {
+				id = galfopof.23
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_demand_gibraltar
+		icon = SPR_fopo_the_gibraltar_issue
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_franco_the_return_of_spains_rightful_rulers
+		}
+
+		relative_position_id = GAL_franco_the_return_of_spains_rightful_rulers
+		x = 1
+		y = 1
+		completion_reward = {
+		    ENG = {
+				country_event = {
+					id = galfopof.4
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_reclaim_spanish_africa
+		icon = SPR_spain_for_spaniards
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_franco_invigorate_francoist_revanchism
+		}
+
+		relative_position_id = GAL_franco_invigorate_francoist_revanchism
+		x = -1
+		y = 1
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = MOR
+			}
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = MOR
+						is_claimed_by = MOR
+					}
+				}
+				add_claim_by = ROOT
+			}
+			IF = {
+				limit = {
+					country_exists = EQG
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = EQG
+				}
+				every_state = {
+					limit = {
+						is_core_of = EQG
+					}
+					add_claim_by = ROOT
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_reorganize_the_protectorate_of_morocco
+		icon = unknown
+		cost = 10
+
+		available = {
+			NOT = {
+				country_exists = MOR
+			}
+			owns_state = 290
+			owns_state = 461
+			owns_state = 462
+			owns_state = 882
+			owns_state = 699
+		}
+
+		prerequisite = {
+			focus = GAL_franco_reclaim_spanish_africa
+		}
+
+		relative_position_id = GAL_franco_reclaim_spanish_africa
+		x = -1
+		y = 1
+		completion_reward = {
+			release_puppet = MOR
+			ROOT = {
+				transfer_state = 290
+				transfer_state = 699
+				transfer_state = 882
+			}
+			290 = {
+				add_core_of = ROOT
+			}
+			MOR = {
+				set_cosmetic_tag = spr_protectorate_of_morocco
+				hidden_effect = {
+					set_politics = {
+						ruling_party = monarchist
+						elections_allowed = no
+						last_election = "1935.12.17"
+						election_frequency = 48
+					}
+					add_popularity = {
+						ideology = monarchist
+						popularity = 0.25
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_restore_spanish_guinea
+		icon = unknown
+		cost = 5
+		
+		available = {
+			NOT = {
+				country_exists = EQG
+			}
+			owns_state = 297
+		}
+		
+		bypass = {
+			EQG = {
+				is_puppet_of = ROOT
+			}
+		}
+
+		prerequisite = {
+			focus = GAL_franco_reclaim_spanish_africa
+		}
+
+		relative_position_id = GAL_franco_reclaim_spanish_africa
+		x = 1
+		y = 1
+		completion_reward = {
+		    release_puppet = EQG
+			EQG = {
+				hidden_effect = {
+					set_politics = {
+						ruling_party = fascist
+						elections_allowed = no
+						last_election = "1935.12.17"
+						election_frequency = 48
+					}
+					add_popularity = {
+						ideology = fascist
+						popularity = 0.25
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_the_franco_dynasty
+		icon = SPR_francoists_the_new_spanish_state_secured
+		cost = 10
+
+		prerequisite = {
+			focus = GAL_franco_restore_spanish_guinea
+		}
+		prerequisite = {
+			focus = GAL_franco_reorganize_the_protectorate_of_morocco
+		}
+		prerequisite = {
+			focus = GAL_franco_the_return_of_spains_rightful_rulers
+		}
+
+		relative_position_id = GAL_franco_restore_spanish_guinea
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_francoist_dynasty
+			}
+		}
+	}
+	
+	##ARMY TREE##
+	focus = {
+		id = GAL_franco_found_the_galician_defence_force
+		icon = build_tank
+		cost = 7.2
+
+		x = 22
+		y = 0
+		completion_reward = {
+		    army_experience = 25
+			add_ideas = {
+				idea_gal_military
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_expand_urovesa_facilities
+		icon = factory_build
+		cost = 10
+
+		prerequisite = {
+			focus = GAL_franco_found_the_galician_defence_force
+		}
+
+		relative_position_id = GAL_franco_found_the_galician_defence_force
+		x = 0
+		y = 2
+		completion_reward = {
+		    171 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_update_foreign_surplus
+		icon = army_reform
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_franco_expand_urovesa_facilities
+		}
+
+		relative_position_id = GAL_franco_expand_urovesa_facilities
+		x = 0
+		y = 2
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.6
+				uses = 1
+				category = infantry_weapons
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_focus_on_assault
+		icon = artillery_2
+		cost = 7.2
+
+		prerequisite = {
+			focus = GAL_franco_found_the_galician_defence_force
+		}
+		mutually_exclusive = {
+			focus = GAL_franco_focus_on_speed
+		}
+		relative_position_id = GAL_franco_found_the_galician_defence_force
+		x = 2
+		y = 1
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.75
+				uses = 2
+				category = cat_superior_firepower
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_logistical_improvements
+		icon = infrastructure_building
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_franco_focus_on_assault
+		}
+
+		relative_position_id = GAL_franco_focus_on_assault
+		x = 0
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = logistics_tech
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_infantry_equipment_research
+		icon = guns_blue
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_franco_logistical_improvements
+		}
+
+		relative_position_id = GAL_franco_logistical_improvements
+		x = 0
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1.5
+				uses = 1
+				category = infantry_weapons
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.5
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_war_games_for_the_general_staff
+		icon = military_academy
+		cost = 7
+
+		prerequisite = {
+			focus = GAL_franco_focus_on_assault
+		}
+
+		relative_position_id = GAL_franco_focus_on_assault
+		x = 2
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_gal_military
+				add_idea = idea_gal_military_a2
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_commanding_officer_training
+		icon = military_salute
+		cost = 6
+
+		prerequisite = {
+			focus = GAL_franco_war_games_for_the_general_staff
+		}
+
+		relative_position_id = GAL_franco_war_games_for_the_general_staff
+		x = 0
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_gal_military_a2
+				add_idea = idea_gal_military_a3
+			}   
+		}
+	}
+	focus = {
+		id = GAL_franco_honor_bravery
+		icon = generic_marching
+		cost = 9
+
+		prerequisite = {
+			focus = GAL_franco_commanding_officer_training
+		}
+		prerequisite = {
+			focus = GAL_franco_infantry_equipment_research
+		}
+
+		relative_position_id = GAL_franco_infantry_equipment_research
+		x = 1
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_gal_military_a3
+				add_idea = idea_gal_military_a4
+			} 
+		}
+	}
+	focus = {
+		id = GAL_franco_focus_on_speed
+		icon = cavalry
+		cost = 7.2
+
+		prerequisite = {
+			focus = GAL_franco_found_the_galician_defence_force
+		}
+		mutually_exclusive = {
+			focus = GAL_franco_focus_on_assault
+		}
+		relative_position_id = GAL_franco_found_the_galician_defence_force
+		x = -2
+		y = 1
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.75
+				uses = 2
+				category = cat_mobile_warfare
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_ifv_tactics
+		icon = position_armies
+		cost = 8
+
+		prerequisite = {
+			focus = GAL_franco_focus_on_speed
+		}
+		relative_position_id = GAL_franco_focus_on_speed
+		x = 0
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_gal_military
+				add_idea = idea_gal_military_s2
+			} 
+		}
+	}
+	focus = {
+		id = GAL_franco_infantry_as_an_auxillary_force
+		icon = small_arms
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_franco_ifv_tactics
+		}
+		relative_position_id = GAL_franco_ifv_tactics
+		x = 1
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 2
+				category = infantry_weapons
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_armor_research
+		icon = tanks
+		cost = 6
+
+		prerequisite = {
+			focus = GAL_franco_ifv_tactics
+		}
+		relative_position_id = GAL_franco_ifv_tactics
+		x = -1
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1.5
+				uses = 2
+				category = armor
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 1
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_maintain_vehicle_performance
+		icon = motorised
+		cost = 8
+
+		prerequisite = {
+			focus = GAL_franco_ifv_tactics
+		}
+		relative_position_id = GAL_franco_ifv_tactics
+		x = -3
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_gal_military_s2
+				add_idea = idea_gal_military_s3
+			} 
+		}
+	}
+	##NAVY##
+	focus = {
+		id = GAL_franco_organize_the_galician_navy
+		icon = naval_occupation
+		cost = 7.2
+
+		x = 18
+		y = 5
+		completion_reward = {
+		    navy_experience = 50
+		}
+	}
+	focus = {
+		id = GAL_franco_subsidize_vigo_shipbuilding
+		icon = build_navy
+		cost = 10
+
+		prerequisite = {
+			focus = GAL_franco_organize_the_galician_navy
+		}
+		relative_position_id = GAL_franco_organize_the_galician_navy
+		x = 1
+		y = 1
+		completion_reward = {
+		    171 = {
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_invest_in_marin_naval_academy
+		icon = navy_doctrine
+		cost = 10
+
+		prerequisite = {
+			focus = GAL_franco_organize_the_galician_navy
+		}
+		relative_position_id = GAL_franco_organize_the_galician_navy
+		x = -1
+		y = 1
+		completion_reward = {
+		    add_ideas = {
+				idea_gal_naval_academy
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_effective_destroyers
+		icon = battleship
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_franco_organize_the_galician_navy
+		}
+		relative_position_id = GAL_franco_organize_the_galician_navy
+		x = -3
+		y = 1
+		completion_reward = {
+		   	add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = dd_tech
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_efficient_cruisers
+		icon = cruiser
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_franco_effective_destroyers
+		}
+		relative_position_id = GAL_franco_effective_destroyers
+		x = 1
+		y = 1
+		completion_reward = {
+		   	add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = ca_tech
+			}
+		   	add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = ca_tech
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 1
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_expand_the_trading_fleet
+		icon = positive_trade_relations
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_franco_organize_the_galician_navy
+		}
+		relative_position_id = GAL_franco_organize_the_galician_navy
+		x = 3
+		y = 1
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 350
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_submarine_tactics
+		icon = wolf_pack
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_franco_expand_the_trading_fleet
+		}
+		relative_position_id = GAL_franco_expand_the_trading_fleet
+		x = -1
+		y = 1
+		completion_reward = {
+		   	add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = ss_tech
+			}
+		}
+	}
+	##AIR FORCE##
+	focus = {
+		id = GAL_franco_establish_the_galician_air_force
+		icon = build_airforce
+		cost = 7.2
+
+		x = 25
+		y = 5
+		completion_reward = {
+			air_experience = 50
+		}
+	}
+	focus = {
+		id = GAL_franco_forward_cas_aircraft_tech
+		icon = close_air_support
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_franco_establish_the_galician_air_force
+		}
+		relative_position_id = GAL_franco_establish_the_galician_air_force
+		x = -2
+		y = 1
+		completion_reward = {
+		    add_tech_bonus = {
+				name = tactical_bomber_bonus
+				bonus = 0.75
+				uses = 2
+				category = cas_bomber
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 1
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_advanced_infantry_support
+		icon = air_defense
+		cost = 8
+
+		prerequisite = {
+			focus = GAL_franco_forward_cas_aircraft_tech
+		}
+		relative_position_id = GAL_franco_forward_cas_aircraft_tech
+		x = 0
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					NOT = {
+						has_completed_focus = GAL_franco_precision_strike_tactics
+					}
+				}
+				add_ideas = {
+					idea_gal_air_force
+				}
+			}
+			IF = {
+				limit = {
+					has_completed_focus = GAL_franco_precision_strike_tactics
+				}
+				swap_ideas = {
+					remove_idea = idea_gal_air_force2
+					add_idea = idea_gal_air_force3
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_expand_the_santiago_rosalia_de_castro_air_base
+		icon = air_icon
+		cost = 7.2
+
+		prerequisite = {
+			focus = GAL_franco_establish_the_galician_air_force
+		}
+		relative_position_id = GAL_franco_establish_the_galician_air_force
+		x = 0
+		y = 1
+		completion_reward = {
+			171 = {
+				add_building_construction = {
+					type = air_base
+					level = 5
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_upgrade_our_fighters
+		icon = generic_fighter
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_franco_expand_the_santiago_rosalia_de_castro_air_base
+		}
+		relative_position_id = GAL_franco_expand_the_santiago_rosalia_de_castro_air_base
+		x = 0
+		y = 1
+		completion_reward = {
+		    add_tech_bonus = {
+				name = light_fighter_bonus
+				bonus = 0.75
+				uses = 2
+				category = light_fighter
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			} 
+		}
+	}
+	focus = {
+		id = GAL_franco_air_superiority_training
+		icon = air_doctrine
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_franco_upgrade_our_fighters
+		}
+		relative_position_id = GAL_franco_upgrade_our_fighters
+		x = 0
+		y = 1
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
+				uses = 2
+				category = air_doctrine
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_look_into_drone_and_strike_bombers
+		icon = drone
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_franco_establish_the_galician_air_force
+		}
+		relative_position_id = GAL_franco_establish_the_galician_air_force
+		x = 2
+		y = 1
+		completion_reward = {
+		    add_tech_bonus = {
+				name = tactical_bomber_bonus
+				bonus = 0.75
+				uses = 2
+				category = tactical_bomber
+			}
+		    add_tech_bonus = {
+				name = tactical_bomber_bonus
+				bonus = 0.75
+				uses = 2
+				category = cat_strategic_bomber
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_precision_strike_tactics
+		icon = naval_bomber
+		cost = 8
+
+		prerequisite = {
+			focus = GAL_franco_look_into_drone_and_strike_bombers
+		}
+		relative_position_id = GAL_franco_look_into_drone_and_strike_bombers
+		x = 0
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					NOT = {
+						has_completed_focus = GAL_franco_advanced_infantry_support
+					}
+				}
+				add_ideas = {
+					idea_gal_air_force2
+				}
+			}
+			IF = {
+				limit = {
+					has_completed_focus = GAL_franco_advanced_infantry_support
+				}
+				swap_ideas = {
+					remove_idea = idea_gal_air_force
+					add_idea = idea_gal_air_force3
+				}
+			}
+		}
+	}
+	
+}

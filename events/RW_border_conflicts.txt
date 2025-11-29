@@ -1,0 +1,89 @@
+add_namespace = syria_bw
+add_namespace = turkey_bw
+add_namespace = borderwar
+add_namespace = borderwar_hidden
+
+country_event = {
+ 	id = borderwar_hidden.1
+ 	hidden = yes
+
+ 	is_triggered_only = yes
+
+}
+
+country_event = {
+	id = syria_bw.1
+	title = syria_bw.1.t
+	desc = syria_bw.1.d
+	picture = syr_victory_in_hatay
+	is_triggered_only = yes
+
+	option = {
+		name = syria_bw.1.o1
+		transfer_state = 827
+	}
+}
+
+country_event = {
+	id = syria_bw.2 
+	title = syria_bw.2.t
+	desc = syria_bw.2.d
+	picture = syr_defeat_in_hatay
+	is_triggered_only = yes
+
+	option = {
+		name = syria_bw.2.o1
+		custom_effect_tooltip = white_peace_3_tt
+		add_war_support = 0.025
+		create_wargoal = {
+			type = annex_everything
+			target = TUR
+		}
+		ai_chance = { factor = 10 }
+	}
+
+	option = {
+		name = syria_bw.2.o2
+		add_war_support = -0.05
+		add_stability = -0.05
+		ai_chance = { factor = 20 }
+	}
+}
+
+country_event = {
+	id = turkey_bw.1
+	title = turkey_bw.1.t
+	desc = turkey_bw.1.d
+	picture = tur_victory_in_hatay
+	is_triggered_only = yes
+
+	option = {
+		name = "turkey_bw.1.o1"
+		add_stability = 0.025
+		add_war_support = 0.025
+	}
+}
+
+country_event = {
+	id = turkey_bw.2 
+	title = turkey_bw.2.t
+	desc = turkey_bw.2.d
+	picture = tur_defeat_in_hatay
+	is_triggered_only = yes
+
+	option = {
+		name = "turkey_bw.2.o1"
+		create_wargoal = {
+			type = annex_everything
+			target = SYR
+		}
+		ai_chance = { factor = 5 }
+	}
+
+	option = {
+		name = "turkey_bw.2.o2"
+		add_stability = 0.05
+		add_war_support = 0.05
+		ai_chance = { factor = 20 }
+	}
+}

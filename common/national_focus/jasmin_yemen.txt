@@ -1,0 +1,3269 @@
+focus_tree = {
+	
+	id = jasmin_yemen_focus
+	
+	country = {
+		factor = 0 
+		modifier = {
+			tag = JAS
+			add = 20
+		}
+	}    
+	
+	continuous_focus_position = { x = 50 y = 1700 }
+	
+    #politics
+    focus = {
+        id = JAS_blooms
+        ai_will_do = { factor = 1 }
+        icon = GFX_the_white_jasmin_blooms
+        cost = 1
+        available = {
+            NOT = { has_war = yes }
+        }
+        x = 10
+        y = 1
+        completion_reward = {
+            add_political_power = 100
+            hidden_effect = {
+                remove_ideas = JAS_democratic_unity
+                remove_ideas = JAS_removing_the_infiltrators
+                remove_ideas = JAS_jasmine_unity
+                remove_ideas = JAS_jasmine_unity2
+                remove_ideas = JAS_tribal_knowledge
+                remove_ideas = JAS_tribal_knowledge_lar
+                remove_ideas = JAS_operation_southern_coast
+                remove_ideas = JAS_popular_revolution
+                remove_ideas = JAS_organized_militias
+                remove_ideas = JAS_guided_by_the_truth
+            }
+            add_ideas = civilian_economy
+            add_ideas = volunteer_only
+            hidden_effect = {
+                add_state_core = 293
+                add_state_core = 977
+                add_state_core = 976
+                add_state_core = 975
+                add_state_core = 978
+                add_state_core = 973
+                add_state_core = 974
+				news_event = {
+					id = news.315
+				}
+            }
+            custom_effect_tooltip = jasmin_cores
+        }
+    }
+    focus = {
+        id = JAS_provisional
+        ai_will_do = { factor = 1 }
+        icon = intelligence_exchange
+        cost = 2
+        prerequisite = {
+            focus = JAS_blooms
+        }
+        x = -1
+        y = 1
+        relative_position_id = JAS_blooms
+        completion_reward = {
+            add_stability = 0.05
+            country_event = { id = jasmin.39 }
+        }
+    }
+    focus = {
+        id = JAS_loyal_army
+        ai_will_do = { factor = 1 }
+        icon = generic_marching
+        cost = 2
+        prerequisite = {
+            focus = JAS_blooms
+        }
+        x = 1
+        y = 1
+        relative_position_id = JAS_blooms
+        completion_reward = {
+            add_ideas = JAS_loyalty_army
+            country_event = { id = jasmin.40 }
+        }
+    }
+    focus = {
+        id = JAS_constitution
+        ai_will_do = { factor = 1 }
+        icon = focus_american_house_bill
+        cost = 3.6
+        prerequisite = {
+            focus = JAS_loyal_army
+        }
+        prerequisite = {
+            focus =  JAS_provisional
+        }
+        x = -1
+        y = 1
+        relative_position_id = JAS_loyal_army
+        completion_reward = {
+            add_ideas = JAS_dem_constitution
+            country_event = { id = jasmin.41 }
+        }
+    }
+    focus = {
+        id = JAS_fate_successor
+        ai_will_do = { factor = 1 }
+        icon = GFX_fate_of_the_successor
+        cost = 2
+        prerequisite = {
+            focus = JAS_constitution
+        }
+        x = -3
+        y = 1
+        relative_position_id = JAS_constitution
+        completion_reward = {
+            add_popularity = {
+                ideology = nationalist
+                popularity = -0.10
+            }
+			country_event = { id = jasmin.54 }
+        }
+    }
+    focus = {
+        id = JAS_ban_islamists
+        ai_will_do = { factor = 1 }
+        icon = attack_islam_focus
+        cost = 2
+        prerequisite = {
+            focus = JAS_constitution
+        }
+        x = -1
+        y = 1
+        relative_position_id = JAS_constitution
+        completion_reward = {
+            add_popularity = {
+                ideology = fascist
+                popularity = -0.10
+            }
+            add_popularity = {
+                ideology = national_conservative
+                popularity = -0.05
+            }
+			country_event = { id = jasmin.56 }
+        }
+    }
+    focus = {
+        id = JAS_meet_south_leaders
+        ai_will_do = { factor = 1 }
+        icon = GFX_meet_the_southern_leaders
+        cost = 2
+        prerequisite = {
+            focus = JAS_constitution
+        }
+        x = 1
+        y = 1
+        relative_position_id = JAS_constitution
+        completion_reward = {
+             add_popularity = {
+                ideology = communist
+                popularity = 0.01
+            }
+            add_popularity = {
+                ideology = moderate_socialist
+                popularity = 0.03
+            }
+			country_event = { id = jasmin.57 }
+        }
+    }
+    focus = {
+        id = JAS_meet_tribes
+        ai_will_do = { factor = 1 }
+        icon = deal_focus
+        cost = 3.6
+        prerequisite = {
+            focus = JAS_constitution
+        }
+        x = 3
+        y = 1
+        relative_position_id = JAS_constitution
+        completion_reward = {
+            add_popularity = {
+                ideology = nationalist
+                popularity = 0.03
+            }
+			country_event = { id = jasmin.58 }
+        }
+    }
+    focus = {
+        id = JAS_peace
+        ai_will_do = { factor = 1 }
+        icon = peace_dove
+        cost = 3.6
+        prerequisite = {
+            focus = JAS_meet_tribes
+        }
+        prerequisite = {
+            focus = JAS_fate_successor
+        }
+        prerequisite = {
+            focus = JAS_ban_islamists
+        }
+        prerequisite = {
+            focus =  JAS_meet_south_leaders
+        }
+        x = -1
+        y = 1
+        relative_position_id = JAS_meet_south_leaders
+        completion_reward = {
+            add_stability = 0.10
+            add_war_support = 0.05
+        }
+    }
+    focus = {
+        id = JAS_elections
+        ai_will_do = { factor = 1 }
+        icon = GFX_goal_elections
+        cost = 10
+        prerequisite = {
+            focus = JAS_peace
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_peace
+        completion_reward = {
+            country_event = { id = jasmin.42 }
+        }
+    }
+    focus = {
+        id = JAS_nat_coalition
+        ai_will_do = { factor = 1 }
+        icon = GFX_national_coalition
+        cost = 0
+        available = {
+            has_country_flag = flag_national_coalition
+        }
+        bypass = {
+			has_country_flag = flag_national_coalition
+        }
+        prerequisite = {
+            focus = JAS_elections
+        }
+        x = -4
+        y = 1
+        relative_position_id = JAS_elections
+        completion_reward = {
+        }
+    }
+    focus = {
+        id = JAS_nat_front
+        ai_will_do = { factor = 1 }
+        icon = GFX_yemeni_national_front
+        cost = 0
+        available = {
+            has_country_flag = flag_national_front
+        }
+        bypass = {
+			has_country_flag = flag_national_front
+        }
+        prerequisite = {
+            focus = JAS_elections
+        }
+        x = 4
+        y = 1
+        relative_position_id = JAS_elections
+        completion_reward = {
+        }
+    }
+    focus = {
+        id = JAS_revolution
+        ai_will_do = { factor = 1 }
+        icon = GFX_popular_revolution
+        cost = 0
+        available = {
+            has_country_flag = flag_popular_revolution
+        }
+        bypass = {
+			has_country_flag = flag_popular_revolution
+        }
+        prerequisite = {
+            focus = JAS_elections
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_elections
+        completion_reward = {
+        }
+    }
+    focus = {
+        id = JAS_balanced_approach
+        ai_will_do = { factor = 1 }
+        icon = neutrality
+        cost = 5
+        prerequisite = {
+            focus = JAS_nat_coalition
+        }
+        x = -2
+        y = 1
+        relative_position_id = JAS_nat_coalition
+        completion_reward = {
+            add_stability = 0.05
+            add_ideas = JAS_political_moderation 
+			country_event = { id = jasmin.59 }
+        }
+    }
+    focus = {
+        id = JAS_values_muslim
+        ai_will_do = { factor = 1 }
+        icon = protect_muslims
+        cost = 5
+        prerequisite = {
+            focus = JAS_balanced_approach
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_balanced_approach
+        completion_reward = {
+            add_stability = 0.05
+            add_ideas = JAS_values
+        }
+    }
+    focus = {
+        id = JAS_tribes_charm
+        ai_will_do = { factor = 1 }
+        icon = parties
+        cost = 8
+        prerequisite = {
+            focus =  JAS_values_muslim
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_values_muslim
+        completion_reward = {
+            add_popularity = {
+                ideology = national_conservative
+                popularity = 0.10
+            }
+            add_popularity = {
+                ideology = nationalist
+                popularity = 0.07
+            }
+            add_stability = 0.05
+			country_event = { id = jasmin.60 }
+        }
+    }
+    focus = {
+        id = JAS_swiss_system
+        ai_will_do = { factor = 1 }
+        icon = GFX_the_swiss_system
+        cost = 6.5
+        prerequisite = {
+            focus = JAS_nat_coalition
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_nat_coalition
+        completion_reward = {
+            add_stability = 0.10
+            add_political_power = 50
+			country_event = { id = jasmin.61 }
+        }
+    }
+    focus = {
+        id = JAS_tax_cuts
+        ai_will_do = { factor = 1 }
+        icon = consumer_goods
+        cost = 6.5
+        prerequisite = {
+            focus = JAS_swiss_system
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_swiss_system
+        completion_reward = {
+            add_ideas = JAS_new_tax_cuts
+            978 = {
+			    add_extra_state_shared_building_slots = 1
+            }
+            973 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+			    }
+            }
+            659 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+            }
+			country_event = { id = jasmin.62 }
+        }
+    }
+    focus = {
+        id = JAS_privatizations
+        ai_will_do = { factor = 1 }
+        icon = builders
+        cost = 6.5
+        prerequisite = {
+            focus = JAS_tax_cuts
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_tax_cuts
+        completion_reward = {
+            add_ideas = JAS_privatization
+        }
+    }
+    focus = {
+        id = JAS_liberty_degree
+        ai_will_do = { factor = 1 }
+        icon = GFX_the_freedom_decree
+        cost = 6.5
+        prerequisite = { focus = JAS_nat_coalition focus = JAS_revolution focus = JAS_nat_front }
+        x = -2
+        y = 1
+        relative_position_id = JAS_revolution
+        completion_reward = {
+            add_ideas = JAS_liberty
+			country_event = { id = jasmin.63 }
+        }
+    }
+    focus = {
+        id = JAS_liberal_market
+        ai_will_do = { factor = 1 }
+        icon = trade
+        cost = 5
+        prerequisite = {
+            focus = JAS_liberty_degree
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_liberty_degree
+        completion_reward = {
+            add_ideas = JAS_liberal_economy
+        }
+    }
+    focus = {
+        id = JAS_pardon
+        ai_will_do = { factor = 1 }
+        icon = GFX_pardon_former_reformists
+        cost = 5
+        prerequisite = {
+            focus = JAS_liberal_market
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_liberal_market
+        completion_reward = {
+            add_stability = 0.03
+            add_popularity = {
+                ideology = national_conservative
+                popularity = 0.05
+            }
+            975 = {
+			    add_extra_state_shared_building_slots = 2
+            }
+			country_event = { id = jasmin.64 }
+        }
+    }
+    focus = {
+        id = JAS_press_free
+        ai_will_do = { factor = 1 }
+        icon = focus_freedom_of_speech
+        cost = 5
+        prerequisite = {
+            focus = JAS_revolution
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_revolution
+        completion_reward = {
+            add_political_power = 100
+            add_popularity = {
+                ideology = liberal
+                popularity = 0.05
+            }
+			country_event = { id = jasmin.65 }
+        }
+    }
+    focus = {
+        id = JAS_anti_corruption
+        ai_will_do = { factor = 1 }
+        icon = arrest_derg_members
+        cost = 6.5
+        prerequisite = {
+            focus = JAS_press_free
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_press_free
+        completion_reward = {
+            add_political_power = -150
+            add_ideas = JAS_equality
+             978 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+            }
+            659 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+            }
+			country_event = { id = jasmin.66 }
+        }
+    }
+    focus = {
+        id = JAS_humanity
+        ai_will_do = { factor = 1 }
+        icon = focus_love_syria
+        cost = 8
+        prerequisite = {
+            focus = JAS_anti_corruption
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_anti_corruption
+        completion_reward = {
+            add_stability = -0.10
+            add_ideas = JAS_open_borders
+			country_event = { id = jasmin.67 }
+        }
+    }
+    focus = {
+        id = JAS_gender_equality
+        ai_will_do = { factor = 1 }
+        icon = focus_promote_gender_equality
+        cost = 6.5
+        prerequisite = { focus = JAS_nat_coalition focus = JAS_revolution focus = JAS_nat_front }
+        x = 2
+        y = 1
+        relative_position_id = JAS_revolution
+        completion_reward = {
+            add_ideas = JAS_equality_gender
+        }
+    }
+    focus = {
+        id = JAS_future_minds
+        ai_will_do = { factor = 1 }
+        icon = GFX_future_minds_program
+        cost = 6.5
+        prerequisite = {
+            focus = JAS_gender_equality
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_gender_equality
+        completion_reward = {
+            add_ideas = JAS_minds
+			country_event = { id = jasmin.68 }
+        }
+    }
+    focus = {
+        id = JAS_securalization
+        ai_will_do = { factor = 1 }
+        icon = self_management
+        cost = 5
+        prerequisite = {
+            focus = JAS_future_minds
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_future_minds
+        completion_reward = {
+            add_stability = 0.05
+            add_war_support = 0.05
+            add_ideas = JAS_secular_nation
+        }
+    }
+    focus = {
+        id = JAS_alliance_soc
+        ai_will_do = { factor = 1 }
+        icon = agrarian_socialism
+        cost = 6.5
+        prerequisite = {
+            focus = JAS_nat_front
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_nat_front
+        completion_reward = {
+            add_popularity = {
+                ideology = moderate_socialist
+                popularity = 0.10
+            }
+            add_popularity = {
+                ideology = communist
+                popularity = 0.05
+            }
+            add_ideas = JAS_soc_alliance
+			country_event = { id = jasmin.69 }
+            hidden_effect = {
+                country_event = { id = jasmin.83 days = 5 }
+            }
+        }
+    }
+    focus = {
+        id = JAS_vaccination
+        ai_will_do = { factor = 1 }
+        icon = GFX_vaccination_campaign
+        cost = 6.5
+        prerequisite = {
+            focus = JAS_alliance_soc
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_alliance_soc
+        completion_reward = {
+            add_ideas = JAS_healthcare
+			country_event = { id = jasmin.70 }
+        }
+    }
+    focus = {
+        id = JAS_welfare
+        ai_will_do = { factor = 1 }
+        icon = housing
+        cost = 6.5
+        prerequisite = {
+            focus = JAS_vaccination
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_vaccination
+        completion_reward = {
+            add_ideas = JAS_welfare_net
+        }
+    }
+    focus = {
+        id = JAS_unions
+        ai_will_do = { factor = 1 }
+        icon = uk_workers_revolution
+        cost = 5
+        prerequisite = {
+            focus = JAS_nat_front
+        }
+        x = 2
+        y = 1
+        relative_position_id = JAS_nat_front
+        completion_reward = {
+            add_ideas = JAS_unions_ally
+			country_event = { id = jasmin.71 }
+        }
+    }
+    focus = {
+        id = JAS_nationalization
+        ai_will_do = { factor = 1 }
+        icon = torch_industry
+        cost = 6.5
+        prerequisite = {
+            focus = JAS_unions
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_unions
+        completion_reward = {
+            add_ideas = JAS_nationalizations
+            979 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+            }
+            293 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+            }
+            if = {
+			    limit = {
+				    has_completed_focus = JAS_nationalization
+                }
+			    hidden_effect = {
+				    country_event = { id = jasmin.84 days = 10 }
+			    }
+		    }
+        }
+    }
+    focus = {
+        id = JAS_workers
+        ai_will_do = { factor = 1 }
+        icon = GFX_YEM_allow_workers_cooperatives
+        cost = 5
+        prerequisite = {
+            focus = JAS_nationalization
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_nationalization
+        completion_reward = {
+            add_stability = 0.05
+            add_war_support = 0.05
+            add_ideas = JAS_worker
+			country_event = { id = jasmin.72 }
+        }
+    }
+    focus = {
+        id = JAS_army
+        ai_will_do = { factor = 1 }
+        icon = GFX_modernised_armed_forces
+        cost = 6.5
+        prerequisite = { focus = JAS_privatizations focus = JAS_humanity focus = JAS_welfare }
+        x = -2
+        y = 1
+        relative_position_id = JAS_humanity
+        completion_reward = {
+            add_ideas = JAS_army_reform
+        }
+    }
+    focus = {
+        id = JAS_university
+        ai_will_do = { factor = 1 }
+        icon = GFX_future_minds
+        cost = 6.5
+        prerequisite = { focus = JAS_privatizations focus = JAS_humanity focus = JAS_welfare }
+        x = 2
+        y = 1
+        relative_position_id = JAS_humanity
+        completion_reward = {
+            add_research_slot = 1
+        }
+    }
+    focus = {
+        id = JAS_elimenate_radicalism
+        ai_will_do = { factor = 1 }
+        icon = anti_fascist
+        cost = 8
+        prerequisite = {
+            focus = JAS_university
+        }
+        prerequisite = {
+            focus = JAS_army
+        }
+        x = -2
+        y = 1
+        relative_position_id = JAS_university
+        completion_reward = {
+            add_political_power = -150
+            add_ideas = JAS_anti_radical
+        }
+    }
+    focus = {
+        id = JAS_federation
+        ai_will_do = { factor = 1 }
+        icon = federalism_focus
+        cost = 5
+        prerequisite = {
+            focus = JAS_elimenate_radicalism
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_elimenate_radicalism
+        completion_reward = {
+            add_stability = 0.10
+			country_event = { id = jasmin.73 }
+        }
+    }
+    focus = {
+        id = JAS_democracy
+        ai_will_do = { factor = 1 }
+        icon = ideology_fist
+        cost = 3.6
+        prerequisite = {
+            focus = JAS_federation
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_federation
+        completion_reward = {
+            add_political_power = 150
+            add_war_support = 0.10
+			country_event = { id = jasmin.74 }
+        }
+    }
+    focus = {
+        id = JAS_recovery
+        ai_will_do = { factor = 1 }
+        icon = GFX_national_recovery_plan
+        cost = 2
+        available = {
+            OR = {
+                has_completed_focus = JAS_press_free 
+                has_completed_focus = JAS_swiss_system 
+                has_completed_focus = JAS_alliance_soc 
+            }
+        }
+        x = 9
+        y = 0
+        relative_position_id = JAS_blooms
+        completion_reward = {
+            add_stability = 0.10
+            add_political_power = 50
+            add_war_support = 0.05
+            add_ideas = JAS_recovery_plan
+            every_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+                }
+            }
+			country_event = { id = jasmin.75 }
+        }
+    }
+    focus = {
+        id = JAS_urban_rebuild
+        ai_will_do = { factor = 1 }
+        icon = industry_1
+        cost = 8
+        prerequisite = {
+            focus = JAS_recovery
+        }
+        x = -1
+        y = 1
+        relative_position_id = JAS_recovery
+        completion_reward = {
+            972 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+            }
+            973 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+            }
+            659 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+            }
+			country_event = { id = jasmin.76 }
+        }
+    }
+    focus = {
+        id = JAS_rural_development
+        ai_will_do = { factor = 1 }
+        icon = free_some_farms
+        cost = 8
+        prerequisite = {
+            focus = JAS_recovery
+        }
+        x = 1
+        y = 1
+        relative_position_id = JAS_recovery
+        completion_reward = {
+            293 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+                add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+                }
+            }   
+            977 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+                add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+                }
+            }
+			country_event = { id = jasmin.77 }
+        }
+    }
+    focus = {
+        id = JAS_power_project
+        ai_will_do = { factor = 1 }
+        icon = GFX_yemen_electrical_campaign
+        cost = 6.5
+        prerequisite = {
+            focus = JAS_urban_rebuild
+        }
+        x = -2
+        y = 1
+        relative_position_id = JAS_urban_rebuild
+        completion_reward = {
+            add_ideas = JAS_electrification
+			country_event = { id = jasmin.78 }
+        }
+    }
+    focus = {
+        id = JAS_industry_park
+        ai_will_do = { factor = 1 }
+        icon = industry_paper
+        cost = 8
+        prerequisite = {
+            focus = JAS_power_project
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_power_project
+        completion_reward = {
+            add_ideas = JAS_industrial_parks
+            973 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+                }
+            }
+            659 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+                }
+            }
+            975 = {
+				add_building_construction = {
+					type = steel_factory
+					level = 1
+					instant_build = yes
+                }
+            }
+        }
+    }
+    focus = {
+        id = JAS_streamlined_production
+        ai_will_do = { factor = 1 }
+        icon = production
+        cost = 5
+        prerequisite = {
+            focus = JAS_industry_park
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_industry_park
+        completion_reward = {
+            add_ideas = JAS_production
+        }
+    }
+    focus = {
+        id = JAS_construction
+        ai_will_do = { factor = 1 }
+        icon = generic_construction_2
+        cost = 5
+        prerequisite = { focus = JAS_urban_rebuild focus = JAS_rural_development }
+        x = -1
+        y = 1
+        relative_position_id = JAS_rural_development
+        completion_reward = {
+            add_ideas = JAS_construction_modern
+        }
+    }
+    focus = {
+        id = JAS_ports
+        ai_will_do = { factor = 1 }
+        icon = naval_dockyard
+        cost = 6.5
+        prerequisite = {
+            focus = JAS_construction
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_construction
+        completion_reward = {
+            add_ideas = JAS_ports_upgrade
+            979 = {
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+            }
+            979 = {
+				add_building_construction = {
+					type = naval_base
+					level = 2
+					instant_build = yes
+				}
+            }
+            975 = {
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					instant_build = yes
+				}
+            }
+            293 = {
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					instant_build = yes
+				}
+            }
+			country_event = { id = jasmin.79 }
+        }
+    }
+    focus = {
+        id = JAS_trade
+        ai_will_do = { factor = 1 }
+        icon = trade
+        cost = 5
+        prerequisite = {
+            focus = JAS_ports
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_ports
+        completion_reward = {
+            add_ideas = JAS_trade_links
+        }
+    }
+    focus = {
+        id = JAS_tourism
+        ai_will_do = { factor = 1 }
+        icon = GFX_YEM_promote_tourism
+        cost = 3.6
+        prerequisite = {
+            focus = JAS_trade
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_trade
+        completion_reward = {
+            add_ideas = JAS_tourism_boom
+            973 = {
+                set_building_level = {
+                    type = air_base
+                    level = 6
+                    instant_build = yes
+                }
+            }
+            659 = {
+                set_building_level = {
+                    type = air_base
+                    level = 5
+                    instant_build = yes
+                }
+            }
+            974 = {
+                set_building_level = {
+                    type = air_base
+                    level = 1
+                    instant_build = yes
+                }
+            }
+			country_event = { id = jasmin.80 }
+        }
+    }
+    focus = {
+        id = JAS_cash_agriculture
+        ai_will_do = { factor = 1 }
+        icon = GFX_cash_crop_agriculture
+        cost = 5
+        prerequisite = {
+            focus = JAS_rural_development
+        }
+        x = 2
+        y = 1
+        relative_position_id = JAS_rural_development
+        completion_reward = {
+			country_event = { id = jasmin.49 }
+        }
+    }
+    focus = {
+        id = JAS_mining
+        ai_will_do = { factor = 1 }
+        icon = focus_develop_odisha_mines
+        cost = 6.5
+        prerequisite = {
+            focus = JAS_cash_agriculture
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_cash_agriculture
+        completion_reward = {
+            add_ideas = JAS_mines
+            add_resource = {
+                type = aluminium
+                amount = 16
+                state = 975
+            }
+            add_resource = {
+                type = tungsten
+                amount = 9
+                state = 973
+            }
+            add_resource = {
+                type = steel
+                amount = 20
+                state = 973
+            }
+            add_resource = {
+                type = chromium
+                amount = 16
+                state = 977
+            }
+			country_event = { id = jasmin.81 }
+        }
+    }
+    focus = {
+        id = JAS_oil
+        ai_will_do = { factor = 1 }
+        icon = oil
+        cost = 6.5
+        prerequisite = {
+            focus = JAS_mining
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_mining
+        completion_reward = {
+            add_ideas = JAS_oil_drill 
+            add_resource = {
+                type = oil
+                amount = 12
+                state = 977
+            }
+            add_resource = {
+                type = oil
+                amount = 10
+                state = 293
+            }
+			country_event = { id = jasmin.82 }
+        }
+    }
+    focus = {
+        id = JAS_diplomacy
+        ai_will_do = { factor = 1 }
+        icon = focus_commonwealth_un_membership
+        cost = 2
+        available = {
+            OR = {
+                has_completed_focus = JAS_privatizations
+                has_completed_focus = JAS_humanity
+                has_completed_focus = JAS_welfare
+            }
+            has_completed_focus = JAS_rural_development
+            has_completed_focus = JAS_urban_rebuild
+        }
+        x = 12
+        y = 0
+        relative_position_id = JAS_recovery
+        completion_reward = {
+            add_political_power = 100
+        }
+    }
+    focus = {
+        id = JAS_canada
+        ai_will_do = { factor = 1 }
+        icon = GFX_the_canadian_link
+        cost = 1
+        prerequisite = {
+            focus = JAS_diplomacy
+        }
+        x = 2
+        y = 1
+        relative_position_id = JAS_diplomacy
+        completion_reward = {
+            add_opinion_modifier = {
+                target = CAN
+                modifier = jas_can_friends
+            }
+            CAN = {
+               add_opinion_modifier = {
+                   target = JAS
+                   modifier = can_jas_friends
+                }
+            }
+            add_opinion_modifier = {
+                target = CAN
+                modifier = jas_can_trade
+            }
+            CAN = {
+               add_opinion_modifier = {
+                   target = JAS
+                   modifier = can_jas_trade
+                }
+            }
+        }
+    }
+    focus = {
+        id = JAS_canada_economy
+        ai_will_do = { factor = 1 }
+        icon = trade
+        cost = 5
+        prerequisite = {
+            focus = JAS_canada
+        }
+        x = -1
+        y = 1
+        relative_position_id = JAS_canada
+        completion_reward = {
+            add_ideas = JAS_assistance
+            add_offsite_building = {
+                type = industrial_complex level = 2
+            }
+        }
+    }
+    focus = {
+        id = JAS_army_deals
+        ai_will_do = { factor = 1 }
+        icon = military_deal
+        cost = 1
+        prerequisite = {
+            focus = JAS_canada
+        }
+        x = 1
+        y = 1
+        relative_position_id = JAS_canada
+        completion_reward = {
+            add_offsite_building = {
+                type = arms_factory level = 2
+            }
+            add_tech_bonus = {
+				name = infantry_weapons_bonus
+				bonus = 0.25
+				uses = 1
+				category = infantry_weapons
+			}
+            add_tech_bonus = {
+                bonus = 0.35
+                uses = 1
+                category = land_doctrine
+            }
+            add_tech_bonus = {
+				name = light_fighter_bonus
+				bonus = 0.50
+				uses = 1
+				category = light_fighter
+			}
+            add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.5
+			}
+            add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
+        }
+    }
+    focus = {
+        id = JAS_canada_join
+        ai_will_do = { factor = 1 }
+        icon = democratic_league
+        cost = 3.6
+        prerequisite = {
+            focus = JAS_canada
+        }
+        mutually_exclusive = {
+			focus = JAS_arab_alliance
+        }
+        mutually_exclusive = {
+			focus = JAS_neutral_diplomacy
+        }
+        mutually_exclusive = {
+			focus = JAS_allies
+        }
+		available = {
+			is_in_faction = no
+		}
+		bypass = {
+			is_in_faction_with = CAN
+		}
+        x = 0
+        y = 2
+        relative_position_id = JAS_canada
+        completion_reward = {
+			CAN = {
+				country_event = { id = jasmin.43 }
+			}
+        }
+    }
+    focus = {
+        id = JAS_arab_intervention
+        ai_will_do = { factor = 1 }
+        icon = major_war
+        cost = 5
+        prerequisite = {
+            focus = JAS_canada_join
+        }
+        x = 2
+        y = 1
+        relative_position_id = JAS_canada_join
+
+        will_lead_to_war_with = UAR
+        will_lead_to_war_with = EGY
+        will_lead_to_war_with = SYR
+        will_lead_to_war_with = OMA
+        will_lead_to_war_with = UAE
+        will_lead_to_war_with = QAT
+        will_lead_to_war_with = SOM
+        will_lead_to_war_with = IRQ
+        will_lead_to_war_with = JOR
+        will_lead_to_war_with = PAL
+        will_lead_to_war_with = LEB
+        will_lead_to_war_with = SAU
+        completion_reward = {
+            hidden_effect = {
+            if = {
+                limit = {
+                    country_exists = UAR
+                    UAR = {
+                        OR = {
+                            has_government = revolutionary_socialist
+                            has_government = fascist
+                            has_government = national_bolshevik
+                            has_government = monarchist
+                            has_government = nationalist
+                            has_government = communist
+                        }
+                    }
+                }
+                create_wargoal = {
+                        type = annex_everything
+                        target = UAR
+                    }
+                }   
+            }
+            hidden_effect = {
+            if = {
+                limit = {
+                    country_exists = EGY
+                    EGY = {
+                        OR = {
+                            has_government = revolutionary_socialist
+                            has_government = fascist
+                            has_government = national_bolshevik
+                            has_government = monarchist
+                            has_government = nationalist
+                            has_government = communist
+                        }
+                    }
+                }
+                create_wargoal = {
+                        type = annex_everything
+                        target = EGY
+                    }
+                }  
+            }
+            hidden_effect = {
+            if = {
+                limit = {
+                    country_exists = OMA
+                    OMA = {
+                        OR = {
+                            has_government = revolutionary_socialist
+                            has_government = fascist
+                            has_government = national_bolshevik
+                            has_government = monarchist
+                            has_government = nationalist
+                            has_government = communist
+                        }
+                    }
+                }
+                create_wargoal = {
+                        type = annex_everything
+                        target = OMA
+                    }
+                }  
+            }
+            hidden_effect = {
+            if = {
+                limit = {
+                    country_exists = UAE
+                    UAE = {
+                        OR = {
+                            has_government = revolutionary_socialist
+                            has_government = fascist
+                            has_government = national_bolshevik
+                            has_government = monarchist
+                            has_government = nationalist
+                            has_government = communist
+                        }
+                    }
+                }
+                create_wargoal = {
+                        type = annex_everything
+                        target = UAE
+                    }
+                }  
+            }
+            hidden_effect = {
+            if = {
+                limit = {
+                    country_exists = SYR
+                    SYR = {
+                        OR = {
+                            has_government = revolutionary_socialist
+                            has_government = fascist
+                            has_government = national_bolshevik
+                            has_government = monarchist
+                            has_government = nationalist
+                            has_government = communist
+                        }
+                    }
+                }
+                create_wargoal = {
+                        type = annex_everything
+                        target = SYR
+                    }
+                }  
+            }
+            hidden_effect = {
+            if = {
+                limit = {
+                    country_exists = SAU
+                    SAU = {
+                        OR = {
+                            has_government = revolutionary_socialist
+                            has_government = fascist
+                            has_government = national_bolshevik
+                            has_government = monarchist
+                            has_government = nationalist
+                            has_government = communist
+                        }
+                    }
+                }
+                create_wargoal = {
+                        type = annex_everything
+                        target = SAU
+                    }
+                }  
+            }
+            hidden_effect = {
+            if = {
+                limit = {
+                    country_exists = QAT
+                    QAT = {
+                        OR = {
+                            has_government = revolutionary_socialist
+                            has_government = fascist
+                            has_government = national_bolshevik
+                            has_government = monarchist
+                            has_government = nationalist
+                            has_government = communist
+                        }
+                    }
+                }
+                create_wargoal = {
+                        type = annex_everything
+                        target = QAT
+                    }
+                }  
+            }
+            hidden_effect = {
+            if = {
+                limit = {
+                    country_exists = SOM
+                    SOM = {
+                        OR = {
+                            has_government = revolutionary_socialist
+                            has_government = fascist
+                            has_government = national_bolshevik
+                            has_government = monarchist
+                            has_government = nationalist
+                            has_government = communist
+                        }
+                    }
+                }
+                create_wargoal = {
+                        type = annex_everything
+                        target = SOM
+                    }
+                }  
+            }
+            hidden_effect = {
+            if = {
+                limit = {
+                    country_exists = IRQ
+                    IRQ = {
+                        OR = {
+                            has_government = revolutionary_socialist
+                            has_government = fascist
+                            has_government = national_bolshevik
+                            has_government = monarchist
+                            has_government = nationalist
+                            has_government = communist
+                        }
+                    }
+                }
+                create_wargoal = {
+                        type = annex_everything
+                        target = IRQ
+                    }
+                }  
+            }
+            hidden_effect = {
+            if = {
+                limit = {
+                    country_exists = JOR
+                    JOR = {
+                        OR = {
+                            has_government = revolutionary_socialist
+                            has_government = fascist
+                            has_government = national_bolshevik
+                            has_government = monarchist
+                            has_government = nationalist
+                            has_government = communist
+                        }
+                    }
+                }
+                create_wargoal = {
+                        type = annex_everything
+                        target = JOR
+                    }
+                }  
+            }
+            hidden_effect = {
+            if = {
+                limit = {
+                    country_exists = PAL
+                    PAL = {
+                        OR = {
+                            has_government = revolutionary_socialist
+                            has_government = fascist
+                            has_government = national_bolshevik
+                            has_government = monarchist
+                            has_government = nationalist
+                            has_government = communist
+                        }
+                    }
+                }
+                create_wargoal = {
+                        type = annex_everything
+                        target = PAL
+                    }
+                }  
+            }
+            hidden_effect = {
+            if = {
+                limit = {
+                    country_exists = LEB
+                    LEB = {
+                        OR = {
+                            has_government = revolutionary_socialist
+                            has_government = fascist
+                            has_government = national_bolshevik
+                            has_government = monarchist
+                            has_government = nationalist
+                            has_government = communist
+                        }
+                    }
+                }
+                create_wargoal = {
+                        type = annex_everything
+                        target = LEB
+                    }
+                }  
+            }
+            custom_effect_tooltip = jas_intervention_democracy_tt
+            add_ideas = JAS_intervention
+        }
+    }
+    focus = {
+        id = JAS_canada_advisors
+        ai_will_do = { factor = 1 }
+        icon = military_sphere
+        cost = 3.6
+        prerequisite = {
+            focus = JAS_canada_join
+        }
+        x = 0
+        y = 2
+        relative_position_id = JAS_canada_join
+        completion_reward = {
+            add_ideas = JAS_advisors
+        }
+    }
+    focus = {
+        id = JAS_middle_east
+        ai_will_do = { factor = 1 }
+        icon = GFX_the_middle_east_connections
+        cost = 1
+        prerequisite = {
+            focus = JAS_diplomacy
+        }
+        x = -2
+        y = 1
+        relative_position_id = JAS_diplomacy
+        completion_reward = {
+            add_political_power = 25
+        }
+    }
+    focus = {
+        id = JAS_cooperation_democracy
+        ai_will_do = { factor = 1 }
+        icon = shaking_hands_1
+        cost = 2
+        prerequisite = {
+            focus = JAS_middle_east
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_middle_east
+        completion_reward = {
+            if = {
+                limit = {
+                    UAR = {
+                        OR = {
+                            has_government = moderate_socialist
+                            has_government = centrist
+                            has_government = national_conservative
+                            has_government = liberal
+                            has_government = new_democrat
+                        }
+                    }
+                }
+                add_opinion_modifier = {
+                    target = UAR
+                    modifier = jas_democratic_cooperation
+                }
+            }
+            if = {
+                limit = {
+                    EGY = {
+                        OR = {
+                            has_government = moderate_socialist
+                            has_government = centrist
+                            has_government = national_conservative
+                            has_government = liberal
+                            has_government = new_democrat
+                        }
+                    }
+                }
+                add_opinion_modifier = {
+                    target = EGY
+                    modifier = jas_democratic_cooperation
+                }
+            }
+            if = {
+                limit = {
+                    SYR = {
+                        OR = {
+                            has_government = moderate_socialist
+                            has_government = centrist
+                            has_government = national_conservative
+                            has_government = liberal
+                            has_government = new_democrat
+                        }
+                    }
+                }
+                add_opinion_modifier = {
+                    target = SYR
+                    modifier = jas_democratic_cooperation
+                }
+            }
+            if = {
+                limit = {
+                    OMA = {
+                        OR = {
+                            has_government = moderate_socialist
+                            has_government = centrist
+                            has_government = national_conservative
+                            has_government = liberal
+                            has_government = new_democrat
+                        }
+                    }
+                }
+                add_opinion_modifier = {
+                    target = OMA
+                    modifier = jas_democratic_cooperation
+                }
+            }
+            if = {
+                limit = {
+                    UAE = {
+                        OR = {
+                            has_government = moderate_socialist
+                            has_government = centrist
+                            has_government = national_conservative
+                            has_government = liberal
+                            has_government = new_democrat
+                        }
+                    }
+                }
+                add_opinion_modifier = {
+                    target = UAE
+                    modifier = jas_democratic_cooperation
+                }
+            }
+            if = {
+                limit = {
+                    SAU = {
+                        OR = {
+                            has_government = moderate_socialist
+                            has_government = centrist
+                            has_government = national_conservative
+                            has_government = liberal
+                            has_government = new_democrat
+                        }
+                    }
+                }
+                add_opinion_modifier = {
+                    target = SAU
+                    modifier = jas_democratic_cooperation
+                }
+            }
+            if = {
+                limit = {
+                    IRQ = {
+                        OR = {
+                            has_government = moderate_socialist
+                            has_government = centrist
+                            has_government = national_conservative
+                            has_government = liberal
+                            has_government = new_democrat
+                        }
+                    }
+                }
+                add_opinion_modifier = {
+                    target = IRQ
+                    modifier = jas_democratic_cooperation
+                }
+            }
+            if = {
+                limit = {
+                    JOR = {
+                        OR = {
+                            has_government = moderate_socialist
+                            has_government = centrist
+                            has_government = national_conservative
+                            has_government = liberal
+                            has_government = new_democrat
+                        }
+                    }
+                }
+                add_opinion_modifier = {
+                    target = JOR
+                    modifier = jas_democratic_cooperation
+                }
+            }
+            if = {
+                limit = {
+                    PAL = {
+                        OR = {
+                            has_government = moderate_socialist
+                            has_government = centrist
+                            has_government = national_conservative
+                            has_government = liberal
+                            has_government = new_democrat
+                        }
+                    }
+                }
+                add_opinion_modifier = {
+                    target = PAL
+                    modifier = jas_democratic_cooperation
+                }
+            }
+            if = {
+                limit = {
+                    SOM = {
+                        OR = {
+                            has_government = moderate_socialist
+                            has_government = centrist
+                            has_government = national_conservative
+                            has_government = liberal
+                            has_government = new_democrat
+                        }
+                    }
+                }
+                add_opinion_modifier = {
+                    target = SOM
+                    modifier = jas_democratic_cooperation
+                }
+            }
+        }
+    }
+    focus = {
+        id = JAS_neutral_diplomacy 
+        ai_will_do = { factor = 1 }
+        icon = neutrality
+        cost = 3.6
+        prerequisite = {
+            focus = JAS_cooperation_democracy
+        }
+        mutually_exclusive = {
+			focus = JAS_canada_join
+        }
+        mutually_exclusive = {
+			focus = JAS_arab_alliance
+        }
+        mutually_exclusive = {
+			focus = JAS_allies
+        }
+        x = 1
+        y = 1
+        relative_position_id = JAS_cooperation_democracy
+        completion_reward = {
+            add_ideas = JAS_neutrality 
+        }
+    }
+    focus = {
+        id = JAS_defense
+        ai_will_do = { factor = 1 }
+        icon = defence
+        cost = 5
+        prerequisite = {
+            focus = JAS_neutral_diplomacy 
+        }
+        x = -1
+        y = 1
+        relative_position_id = JAS_neutral_diplomacy 
+        completion_reward = {
+            add_ideas = JAS_national_defense
+            659 = {
+				add_building_construction = {
+					type = coastal_bunker
+					level = 1
+					instant_build = yes
+				}
+            }
+            975 = {
+                add_building_construction = {
+                    type = bunker
+                    level = 1
+                    instant_build = yes
+                    province = {
+                        all_provinces = yes
+                        limit_to_border = yes
+                    }
+                }
+            }
+            977 = {
+                add_building_construction = {
+                    type = bunker
+                    level = 1
+                    instant_build = yes
+                    province = {
+                        all_provinces = yes
+                        limit_to_border = yes
+                    }
+                }
+            }
+            976 = {
+                add_building_construction = {
+                    type = bunker
+                    level = 1
+                    instant_build = yes
+                    province = {
+                        all_provinces = yes
+                        limit_to_border = yes
+                    }
+                }
+            }
+            293 = {
+                add_building_construction = {
+                    type = bunker
+                    level = 1
+                    instant_build = yes
+                    province = {
+                        all_provinces = yes
+                        limit_to_border = yes
+                    }
+                }
+            }
+        }
+    }
+    focus = {
+        id = JAS_prosperity
+        ai_will_do = { factor = 1 }
+        icon = peace_money_development
+        cost = 5
+        prerequisite = {
+            focus = JAS_neutral_diplomacy
+        }
+        x = 1
+        y = 1
+        relative_position_id = JAS_neutral_diplomacy
+        completion_reward = {
+            979 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+            }
+            973 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+            }
+            975 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+            }
+            293 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+            }
+        }
+    }
+    focus = {
+        id = JAS_safe_heaven
+        ai_will_do = { factor = 1 }
+        icon = concessions
+        cost = 5
+        prerequisite = {
+            focus = JAS_prosperity
+        }
+        prerequisite = {
+            focus = JAS_defense
+        }
+        x = 1
+        y = 1
+        relative_position_id = JAS_defense
+        completion_reward = {
+            add_research_slot = 1
+        }
+    }
+    focus = {
+        id = JAS_speech
+        ai_will_do = { factor = 1 }
+        icon = demand_territory
+        cost = 3.6
+        prerequisite = {
+            focus = JAS_safe_heaven
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_safe_heaven
+        completion_reward = {
+            add_stability = 0.10
+        }
+    }
+    focus = {
+        id = JAS_arab_alliance
+        ai_will_do = { factor = 1 }
+        icon = GFX_alliance_of_arab_states
+        cost = 6.5
+        mutually_exclusive = {
+			focus = JAS_canada_join
+        }
+        mutually_exclusive = {
+			focus = JAS_neutral_diplomacy
+        }
+        mutually_exclusive = {
+			focus = JAS_allies
+        }
+		available = {
+			is_in_faction = no
+		}
+        prerequisite = {
+            focus = JAS_cooperation_democracy
+        }
+        x = -2
+        y = 1
+        relative_position_id = JAS_cooperation_democracy
+        completion_reward = {
+			create_faction_from_template = { 
+				template = faction_template_regional   
+				name = "Alliance Of Arab States"
+				icon = GFX_faction_generic_middle_east
+			}
+        }
+    }
+    focus = {
+        id = JAS_invitation
+        ai_will_do = { factor = 1 }
+        icon = major_alliance
+        cost = 6.5
+        prerequisite = {
+            focus = JAS_arab_alliance
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_arab_alliance
+        completion_reward = {
+			if = {
+                limit = {
+                    country_exists = OMA
+					OMA = {
+						OR = {
+							has_government = national_conservative
+							has_government = centrist
+							has_government = liberal
+							has_government = new_democrat
+							has_government = moderate_socialist
+						}
+						is_in_faction = no
+					}
+                }
+                OMA = {
+                    country_event = {
+						id = jasmin.46
+					}
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = SAU
+					SAU = {
+						OR = {
+							has_government = national_conservative
+							has_government = centrist
+							has_government = liberal
+							has_government = new_democrat
+							has_government = moderate_socialist
+						}
+						is_in_faction = no
+					}
+                }
+                SAU = {
+                    country_event = {
+						id = jasmin.46
+					}
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = UAE
+					UAE = {
+						OR = {
+							has_government = national_conservative
+							has_government = centrist
+							has_government = liberal
+							has_government = new_democrat
+							has_government = moderate_socialist
+						}
+						is_in_faction = no
+					}
+                }
+                UAE = {
+                    country_event = {
+						id = jasmin.46
+					}
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = IRQ
+					IRQ = {
+						OR = {
+							has_government = national_conservative
+							has_government = centrist
+							has_government = liberal
+							has_government = new_democrat
+							has_government = moderate_socialist
+						}
+						is_in_faction = no
+					}
+                }
+                IRQ = {
+                    country_event = {
+						id = jasmin.46
+					}
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = JOR
+					JOR = {
+						OR = {
+							has_government = national_conservative
+							has_government = centrist
+							has_government = liberal
+							has_government = new_democrat
+							has_government = moderate_socialist
+						}
+						is_in_faction = no
+					}
+                }   
+                JOR = {
+                    country_event = {
+						id = jasmin.46
+					}
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = PAL
+					PAL = {
+						OR = {
+							has_government = national_conservative
+							has_government = centrist
+							has_government = liberal
+							has_government = new_democrat
+							has_government = moderate_socialist
+						}
+						is_in_faction = no
+					}
+                }   
+                PAL = {
+                    country_event = {
+						id = jasmin.46
+					}
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = SYR
+					SYR = {
+						OR = {
+							has_government = national_conservative
+							has_government = centrist
+							has_government = liberal
+							has_government = new_democrat
+							has_government = moderate_socialist
+						}
+						is_in_faction = no
+					}
+                }
+                SYR = {
+                    country_event = {
+						id = jasmin.46
+					}
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = LEB
+					LEB = {
+						OR = {
+							has_government = national_conservative
+							has_government = centrist
+							has_government = liberal
+							has_government = new_democrat
+							has_government = moderate_socialist
+						}
+						is_in_faction = no
+					}
+                }   
+                LEB = {
+                    country_event = {
+						id = jasmin.46
+					}
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = UAR
+					UAR = {
+						OR = {
+							has_government = national_conservative
+							has_government = centrist
+							has_government = liberal
+							has_government = new_democrat
+							has_government = moderate_socialist
+						}
+						is_in_faction = no
+					}
+                }   
+                UAR = {
+                    country_event = {
+						id = jasmin.46
+					}
+                }
+            }
+            if = {
+                limit = {
+                    country_exists = EGY
+					EGY = {
+						OR = {
+							has_government = national_conservative
+							has_government = centrist
+							has_government = liberal
+							has_government = new_democrat
+							has_government = moderate_socialist
+						}
+						is_in_faction = no
+					}
+                }   
+                EGY = {
+                    country_event = {
+						id = jasmin.46
+					}
+                }
+            }
+        }
+    }
+    focus = {
+        id = JAS_allies
+        ai_will_do = { factor = 1 }
+        icon = two_flags
+        cost = 3.6
+        mutually_exclusive = {
+			focus = JAS_canada_join
+        }
+        mutually_exclusive = {
+			focus = JAS_neutral_diplomacy
+        }
+        mutually_exclusive = {
+			focus = JAS_arab_alliance
+        }
+        prerequisite = {
+            focus = JAS_cooperation_democracy
+        }
+		available = {
+			is_in_faction = no
+			OR = {
+				UAR = {
+					is_faction_leader = yes
+					OR = {
+						has_government = national_conservative
+						has_government = centrist
+						has_government = liberal
+						has_government = new_democrat
+						has_government = moderate_socialist
+					}
+				}
+				EGY = {
+					is_faction_leader = yes
+					OR = {
+						has_government = national_conservative
+						has_government = centrist
+						has_government = liberal
+						has_government = new_democrat
+						has_government = moderate_socialist
+					}
+				}
+				SYR = {
+					is_faction_leader = yes
+					OR = {
+						has_government = national_conservative
+						has_government = centrist
+						has_government = liberal
+						has_government = new_democrat
+						has_government = moderate_socialist
+					}
+				}
+			}
+		}
+        x = -4
+        y = 1
+        relative_position_id = JAS_cooperation_democracy
+        completion_reward = {
+			country_event = { id = jasmin.50 }
+        }
+    }
+    focus = {
+        id = JAS_resource_deals
+        ai_will_do = { factor = 1 }
+        icon = lucrative_investment
+        cost = 3.6
+        prerequisite = { focus = JAS_allies focus = JAS_invitation }
+        x = 0
+        y = 2
+        relative_position_id = JAS_allies
+        completion_reward = {
+            add_resource = {
+                type = steel
+                amount = 10
+                state = 975
+            }
+            add_resource = {
+                type = aluminium
+                amount = 6
+                state = 975
+            }
+            add_resource = {
+                type = tungsten
+                amount = 4
+                state = 975
+            }
+        }
+    }
+    focus = {
+        id = JAS_army_intergration
+        ai_will_do = { factor = 1 }
+        icon = allies_infantry
+        cost = 3.6
+        prerequisite = { focus = JAS_allies focus = JAS_invitation }
+        x = 0
+        y = 1
+        relative_position_id = JAS_invitation
+        completion_reward = {
+			add_ideas = JAS_integrated_arab_militaries
+			every_country = {
+				limit = {
+					is_in_faction_with = JAS
+				}
+				add_ideas = JAS_integrated_arab_militaries
+			}
+        }
+    }
+    focus = {
+        id = JAS_arsenal_of_democracy
+        ai_will_do = { factor = 1 }
+        icon = GFX_arsenal_of_democracy
+        cost = 3.6
+        prerequisite = {
+            focus = JAS_army_intergration
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_army_intergration
+        completion_reward = {
+            659 = {
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = {
+                    type = arms_factory
+                    level = 2
+                    instant_build = yes
+                }
+            }
+        }
+    }
+    focus = {
+        id = JAS_arab_economic_unity
+        ai_will_do = { factor = 1 }
+        icon = investigate_industrial_corruption
+        cost = 3.6
+        prerequisite = {
+            focus = JAS_resource_deals
+        }
+        x = 0
+        y = 1
+        relative_position_id = JAS_resource_deals
+        completion_reward = {
+            add_offsite_building = {
+                type = industrial_complex level = 1
+            }
+        }
+    }
+    focus = {
+        id = JAS_arab_liberation
+        ai_will_do = { factor = 1 }
+        icon = GFX_liberate_those_yearning_to_break_free
+        cost = 5
+        prerequisite = {
+            focus = JAS_arab_economic_unity
+        }
+        prerequisite = {
+            focus = JAS_arsenal_of_democracy
+        }
+        x = 1
+        y = 1
+        relative_position_id = JAS_arab_economic_unity
+
+        will_lead_to_war_with = UAR
+        will_lead_to_war_with = EGY
+        will_lead_to_war_with = SYR
+        will_lead_to_war_with = OMA
+        will_lead_to_war_with = UAE
+        will_lead_to_war_with = QAT
+        will_lead_to_war_with = SOM
+        will_lead_to_war_with = IRQ
+        will_lead_to_war_with = JOR
+        will_lead_to_war_with = PAL
+        will_lead_to_war_with = LEB
+        will_lead_to_war_with = SAU
+        completion_reward = {
+            hidden_effect = {
+            if = {
+                limit = {
+                    country_exists = UAR
+                    UAR = {
+                        OR = {
+                            has_government = revolutionary_socialist
+                            has_government = fascist
+                            has_government = national_bolshevik
+                            has_government = monarchist
+                            has_government = nationalist
+                            has_government = communist
+                        }
+                    }
+                }
+                create_wargoal = {
+                        type = annex_everything
+                        target = UAR
+                    }
+                }   
+            }
+            hidden_effect = {
+            if = {
+                limit = {
+                    country_exists = EGY
+                    EGY = {
+                        OR = {
+                            has_government = revolutionary_socialist
+                            has_government = fascist
+                            has_government = national_bolshevik
+                            has_government = monarchist
+                            has_government = nationalist
+                            has_government = communist
+                        }
+                    }
+                }
+                create_wargoal = {
+                        type = annex_everything
+                        target = EGY
+                    }
+                }  
+            }
+            hidden_effect = {
+            if = {
+                limit = {
+                    country_exists = OMA
+                    OMA = {
+                        OR = {
+                            has_government = revolutionary_socialist
+                            has_government = fascist
+                            has_government = national_bolshevik
+                            has_government = monarchist
+                            has_government = nationalist
+                            has_government = communist
+                        }
+                    }
+                }
+                create_wargoal = {
+                        type = annex_everything
+                        target = OMA
+                    }
+                }  
+            }
+            hidden_effect = {
+            if = {
+                limit = {
+                    country_exists = UAE
+                    UAE = {
+                        OR = {
+                            has_government = revolutionary_socialist
+                            has_government = fascist
+                            has_government = national_bolshevik
+                            has_government = monarchist
+                            has_government = nationalist
+                            has_government = communist
+                        }
+                    }
+                }
+                create_wargoal = {
+                        type = annex_everything
+                        target = UAE
+                    }
+                }  
+            }
+            hidden_effect = {
+            if = {
+                limit = {
+                    country_exists = SYR
+                    SYR = {
+                        OR = {
+                            has_government = revolutionary_socialist
+                            has_government = fascist
+                            has_government = national_bolshevik
+                            has_government = monarchist
+                            has_government = nationalist
+                            has_government = communist
+                        }
+                    }
+                }
+                create_wargoal = {
+                        type = annex_everything
+                        target = SYR
+                    }
+                }  
+            }
+            hidden_effect = {
+            if = {
+                limit = {
+                    country_exists = SAU
+                    SAU = {
+                        OR = {
+                            has_government = revolutionary_socialist
+                            has_government = fascist
+                            has_government = national_bolshevik
+                            has_government = monarchist
+                            has_government = nationalist
+                            has_government = communist
+                        }
+                    }
+                }
+                create_wargoal = {
+                        type = annex_everything
+                        target = SAU
+                    }
+                }  
+            }
+            hidden_effect = {
+            if = {
+                limit = {
+                    country_exists = QAT
+                    QAT = {
+                        OR = {
+                            has_government = revolutionary_socialist
+                            has_government = fascist
+                            has_government = national_bolshevik
+                            has_government = monarchist
+                            has_government = nationalist
+                            has_government = communist
+                        }
+                    }
+                }
+                create_wargoal = {
+                        type = annex_everything
+                        target = QAT
+                    }
+                }  
+            }
+            hidden_effect = {
+            if = {
+                limit = {
+                    country_exists = SOM
+                    SOM = {
+                        OR = {
+                            has_government = revolutionary_socialist
+                            has_government = fascist
+                            has_government = national_bolshevik
+                            has_government = monarchist
+                            has_government = nationalist
+                            has_government = communist
+                        }
+                    }
+                }
+                create_wargoal = {
+                        type = annex_everything
+                        target = SOM
+                    }
+                }  
+            }
+            hidden_effect = {
+            if = {
+                limit = {
+                    country_exists = IRQ
+                    IRQ = {
+                        OR = {
+                            has_government = revolutionary_socialist
+                            has_government = fascist
+                            has_government = national_bolshevik
+                            has_government = monarchist
+                            has_government = nationalist
+                            has_government = communist
+                        }
+                    }
+                }
+                create_wargoal = {
+                        type = annex_everything
+                        target = IRQ
+                    }
+                }  
+            }
+            hidden_effect = {
+            if = {
+                limit = {
+                    country_exists = JOR
+                    JOR = {
+                        OR = {
+                            has_government = revolutionary_socialist
+                            has_government = fascist
+                            has_government = national_bolshevik
+                            has_government = monarchist
+                            has_government = nationalist
+                            has_government = communist
+                        }
+                    }
+                }
+                create_wargoal = {
+                        type = annex_everything
+                        target = JOR
+                    }
+                }  
+            }
+            hidden_effect = {
+            if = {
+                limit = {
+                    country_exists = PAL
+                    PAL = {
+                        OR = {
+                            has_government = revolutionary_socialist
+                            has_government = fascist
+                            has_government = national_bolshevik
+                            has_government = monarchist
+                            has_government = nationalist
+                            has_government = communist
+                        }
+                    }
+                }
+                create_wargoal = {
+                        type = annex_everything
+                        target = PAL
+                    }
+                }  
+            }
+            hidden_effect = {
+            if = {
+                limit = {
+                    country_exists = LEB
+                    LEB = {
+                        OR = {
+                            has_government = revolutionary_socialist
+                            has_government = fascist
+                            has_government = national_bolshevik
+                            has_government = monarchist
+                            has_government = nationalist
+                            has_government = communist
+                        }
+                    }
+                }
+                create_wargoal = {
+                        type = annex_everything
+                        target = LEB
+                    }
+                }  
+            }
+            custom_effect_tooltip = jas_intervention_democracy_tt
+        }
+    }
+    focus = {
+        id = JAS_global_democracy
+        ai_will_do = { factor = 1 }
+        icon = flags_blue
+        cost = 1
+        prerequisite = {
+            focus = JAS_diplomacy
+        }
+        x = 7
+        y = 1
+        relative_position_id = JAS_diplomacy
+        completion_reward = {
+            add_political_power = 25
+        }
+    }
+    focus = {
+        id = JAS_british_guns
+        ai_will_do = { factor = 1 }
+        icon = guns_red
+        cost = 2
+        prerequisite = {
+            focus = JAS_global_democracy
+        }
+		
+		available = {
+			ENG = {
+				NOT = {
+					has_government = fascist
+					has_government = national_bolshevik
+					has_government = monarchist
+					has_government = revolutionary_socialist
+					has_government = communist
+				}
+			}
+		}
+		
+        x = -2
+        y = 1
+        relative_position_id = JAS_global_democracy
+        completion_reward = {
+			ENG = {
+				country_event = {
+					id = jasmin.97
+				}
+			}
+        }
+    }
+    focus = {
+        id = JAS_aden_delhi
+        ai_will_do = { factor = 1 }
+        icon = GFX_adan_delhi_deal
+        cost = 2
+        prerequisite = {
+            focus = JAS_global_democracy
+        }
+		
+		available = {
+			RAJ = {
+				NOT = {
+					has_government = fascist
+					has_government = national_bolshevik
+					has_government = monarchist
+					has_government = revolutionary_socialist
+					has_government = communist
+				}
+			}
+		}
+		
+        x = 0
+        y = 1
+        relative_position_id = JAS_global_democracy
+        completion_reward = {
+			RAJ = {
+				country_event = {
+					id = jasmin.100
+				}
+			}
+        }
+    }
+    focus = {
+        id = JAS_aus_mines
+        ai_will_do = { factor = 1 }
+        icon = focus_develop_odisha_mines
+        cost = 2
+        prerequisite = {
+            focus = JAS_global_democracy
+        }
+		
+		available = {
+			AST = {
+				NOT = {
+					has_government = fascist
+					has_government = national_bolshevik
+					has_government = monarchist
+					has_government = revolutionary_socialist
+					has_government = communist
+				}
+			}
+		}
+		
+        x = 2
+        y = 1
+        relative_position_id = JAS_global_democracy
+        completion_reward = {
+			AST = {
+				country_event = {
+					id = jasmin.109
+				}
+			}
+        }
+    }
+    focus = {
+        id = JAS_tokyo_summit
+        ai_will_do = { factor = 1 }
+        icon = japan_flag
+        cost = 2
+        prerequisite = {
+            focus = JAS_global_democracy
+        }
+        x = -1
+        y = 2
+		
+		available = {
+			JAP = {
+				NOT = {
+					has_government = fascist
+					has_government = national_bolshevik
+					has_government = monarchist
+					has_government = revolutionary_socialist
+					has_government = communist
+				}
+			}
+		}
+		
+        relative_position_id = JAS_global_democracy
+        completion_reward = {
+			JAP = {
+				country_event = {
+					id = jasmin.103
+				}
+			}
+        }
+    }
+    focus = {
+        id = JAS_tehran
+        ai_will_do = { factor = 1 }
+        icon = GFX_tehran_connection
+        cost = 2
+        prerequisite = {
+            focus = JAS_global_democracy
+        }
+        x = 1
+        y = 2
+		
+		available = {
+			PER = {
+				NOT = {
+					has_government = fascist
+					has_government = national_bolshevik
+					has_government = monarchist
+					has_government = revolutionary_socialist
+					has_government = communist
+				}
+			}
+		}
+		
+        relative_position_id = JAS_global_democracy
+        completion_reward = {
+			PER = {
+				country_event = {
+					id = jasmin.106
+                }
+            }
+        }
+    }
+	#civil war
+	focus = {
+        id = JAS_the_day_of_rage
+        ai_will_do = { factor = 1 }
+        icon = GFX_the_days_of_rage
+        cost = 0
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        x = -10
+        y = 0
+        relative_position_id = JAS_blooms
+        completion_reward = {
+            add_manpower = 10000
+            add_ideas = JAS_freedom_fight
+            country_event = { id = jasmin.1 }
+            add_ideas = war_economy
+        }
+    }
+    focus = {
+        id = JAS_last_chance_for_democracy
+        ai_will_do = { factor = 1 }
+        icon = democracy
+        cost = 3
+        prerequisite = {
+            focus =  JAS_the_day_of_rage
+        }
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        x = 0
+        y = 1
+        relative_position_id = JAS_the_day_of_rage
+        completion_reward = {
+            add_political_power = 100
+            add_stability = 0.07
+            add_war_support = 0.04
+            country_event = { id = jasmin.2 }
+        }
+    }
+    focus = {
+        id = JAS_turn_to_the_yemeni_national_front
+        ai_will_do = { factor = 1 }
+        icon = GFX_yemeni_national_front
+        cost = 3
+        prerequisite = {
+            focus =  JAS_last_chance_for_democracy
+        }
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        x = -2
+        y = 1
+        relative_position_id = JAS_last_chance_for_democracy
+        completion_reward = {
+            add_popularity = {
+                ideology = new_democrat
+                popularity = 0.03
+            }
+            add_ideas = JAS_democratic_unity
+        }
+    }
+    focus = {
+        id = JAS_motivate_the_workers
+        ai_will_do = { factor = 1 }
+        icon = industry_paper
+        cost = 3
+        prerequisite = {
+            focus =  JAS_turn_to_the_yemeni_national_front
+        }
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        x = -1
+        y = 1
+        relative_position_id = JAS_turn_to_the_yemeni_national_front
+        completion_reward = {
+            add_offsite_building = {
+                type = arms_factory
+                level = 2
+            }
+        }
+    }
+    focus = {
+        id = JAS_counter_ysp_infiltration
+        ai_will_do = { factor = 1 }
+        icon = arab_insurgent_focus
+        cost = 5
+        prerequisite = {
+            focus =  JAS_motivate_the_workers
+        }
+        available = {
+            has_war = yes
+            country_exists = PDY
+        }
+        bypass_if_unavailable = yes
+        x = -2
+        y = 1
+        relative_position_id = JAS_motivate_the_workers
+        completion_reward = {
+            add_stability = 0.05
+            add_popularity = {
+                ideology = communist
+                popularity = -0.05
+            }
+            add_timed_idea = {
+                idea = JAS_removing_the_infiltrators
+                days = 100
+            }
+        }
+    }
+    focus = {
+        id = JAS_the_protector_of_the_masses
+        ai_will_do = { factor = 1 }
+        icon = GFX_freedom_focus
+        cost = 5
+        prerequisite = {
+            focus =  JAS_motivate_the_workers
+        }
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        x = 0
+        y = 1
+        relative_position_id = JAS_motivate_the_workers
+        completion_reward = {
+            create_intelligence_agency = {
+                name = "National Security Bureau"
+                icon = GFX_intelligence_agency_logo_generic_1
+            }
+            add_war_support = 0.03
+        }
+    }
+    focus = {
+        id = JAS_utilize_the_national_coalition
+        ai_will_do = { factor = 1 }
+        icon = GFX_national_coalition
+        cost = 5
+        prerequisite = {
+            focus =  JAS_last_chance_for_democracy
+        }
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        x = 0
+        y = 1
+        relative_position_id = JAS_last_chance_for_democracy
+        completion_reward = {
+            add_popularity = {
+                ideology = centrist
+                popularity = 0.05
+            }
+            add_offsite_building = {
+                type = arms_factory
+                level = 1
+            }
+            add_offsite_building = {
+                type = industrial_complex
+                level = 2
+            }
+        }
+    }
+    focus = {
+        id = JAS_alliance_with_friendly_tribes
+        ai_will_do = { factor = 1 }
+        icon = JAS_tribal_alliance
+        cost = 5
+        prerequisite = {
+            focus =  JAS_utilize_the_national_coalition
+        }
+        mutually_exclusive = {
+            focus = JAS_reach_out_to_al_islah_reformists
+        }
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        x = -1
+        y = 1
+        relative_position_id = JAS_utilize_the_national_coalition
+        completion_reward = {
+            division_template = {
+                name = "Tribal Division"
+                regiments = {
+                    militia = { x = 0 y = 0 }
+                    militia = { x = 0 y = 1 }
+                    militia = { x = 0 y = 2 }
+                    militia = { x = 1 y = 0 }
+                    militia = { x = 1 y = 1 }
+                }
+            }
+            capital_scope = {
+                create_unit = {
+                    division = "name = \"1st Tibal Division\" division_template = \"Tribal Division\" start_experience_factor = 2 start_equipment_factor = 1"
+                    owner = JAS
+                    allow_spawning_on_enemy_provs = yes
+                }
+                create_unit = {
+                    division = "name = \"2nd Tribal Division\" division_template = \"Tribal Division\" start_experience_factor = 2  start_equipment_factor = 1"
+                    owner = JAS
+                    allow_spawning_on_enemy_provs = yes
+                }
+                create_unit = {
+                    division = "name = \"3rd Tibal Division\" division_template = \"Tribal Division\" start_experience_factor = 2 start_equipment_factor = 1"
+                    owner = JAS
+                    allow_spawning_on_enemy_provs = yes
+                }
+                create_unit = {
+                    division = "name = \"4th Tribal Division\" division_template = \"Tribal Division\" start_experience_factor = 2  start_equipment_factor = 1"
+                    owner = JAS
+                    allow_spawning_on_enemy_provs = yes
+                }
+            }
+        }
+    }
+    focus = {
+        id = JAS_utilize_tribal_knowledge
+        ai_will_do = { factor = 1 }
+        icon = tribal_dominance
+        cost = 3
+        prerequisite = {
+            focus =  JAS_alliance_with_friendly_tribes
+        }
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        x = 0
+        y = 1
+        relative_position_id = JAS_alliance_with_friendly_tribes
+        completion_reward = {
+            if = {
+                limit = {
+                    has_dlc = "La Resistance"
+                }
+                add_ideas = JAS_tribal_knowledge_lar
+            }
+            else = {
+                add_ideas = JAS_tribal_knowledge
+            }
+        }
+    }
+    focus = {
+        id = JAS_reach_out_to_al_islah_reformists
+        ai_will_do = { factor = 1 }
+        icon = GFX_pardon_former_reformists
+        cost = 3
+        prerequisite = {
+            focus =  JAS_utilize_the_national_coalition
+        }
+        mutually_exclusive = {
+            focus = JAS_alliance_with_friendly_tribes
+        }
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        x = 1
+        y = 1
+        relative_position_id = JAS_utilize_the_national_coalition
+        completion_reward = {
+            add_popularity = {
+                ideology = national_conservative
+                popularity = 0.1
+            }
+            swap_ideas = {
+                remove_idea = JAS_jasmine_unity
+                add_idea = JAS_jasmine_unity2
+            }
+        }
+    }
+    focus = {
+        id = JAS_employ_operation_southern_coast
+        ai_will_do = { factor = 1 }
+        icon = desert_sandbags_focus
+        cost = 5
+        prerequisite = {
+            focus =  JAS_reach_out_to_al_islah_reformists
+        }
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        x = 0
+        y = 1
+        relative_position_id = JAS_reach_out_to_al_islah_reformists
+        completion_reward = {
+            979 = {
+                add_building_construction = {
+                    type = bunker
+                    level = 2
+                    instant_build = yes
+                    province = 13630
+                }
+            }
+            add_ideas = JAS_operation_southern_coast
+        }
+    }
+    focus = {
+        id = JAS_embrace_the_popular_revolution
+        ai_will_do = { factor = 1 }
+        icon = GFX_popular_revolution
+        cost = 3
+        prerequisite = {
+            focus =  JAS_last_chance_for_democracy
+        }
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        x = 2
+        y = 1
+        relative_position_id = JAS_last_chance_for_democracy
+        completion_reward = {
+            add_popularity = {
+                ideology = liberal
+                popularity = 0.05
+            }
+            add_ideas = JAS_popular_revolution
+        }
+    }
+    focus = {
+        id = JAS_organize_the_jasmine_militia
+        ai_will_do = { factor = 1 }
+        icon = JAS_militia
+        cost = 3
+        prerequisite = {
+            focus =  JAS_embrace_the_popular_revolution
+        }
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        x = 1
+        y = 1
+        relative_position_id = JAS_embrace_the_popular_revolution
+        completion_reward = {
+            add_ideas = JAS_organized_militias
+        }
+    }
+    focus = {
+        id = JAS_raid_the_aden_stockpiles
+        ai_will_do = { factor = 1 }
+        icon = aden_stockpile_focus
+        cost = 5
+        prerequisite = {
+            focus =  JAS_organize_the_jasmine_militia
+        }
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        x = 0
+        y = 1
+        relative_position_id = JAS_organize_the_jasmine_militia
+        completion_reward = {
+            add_equipment_to_stockpile = {
+                type = infantry_equipment
+                amount = 2000
+            }
+            add_equipment_to_stockpile = {
+                type = support_equipment
+                amount = 200
+            }
+            add_equipment_to_stockpile = {
+                type = artillery_equipment
+                amount = 150
+            }
+            add_offsite_building = {
+                type = arms_factory
+                level = 1
+            }
+        }
+    }
+    focus = {
+        id = JAS_request_international_support
+        ai_will_do = { factor = 1 }
+        icon = canadian_armored_car_iranian_jet_focus
+        cost = 5
+        prerequisite = {
+            focus = JAS_the_protector_of_the_masses
+        }
+        prerequisite = {
+            focus = JAS_utilize_tribal_knowledge
+            focus = JAS_employ_operation_southern_coast
+        }
+        prerequisite = {
+            focus =  JAS_raid_the_aden_stockpiles
+        }
+        available = {
+            has_war = yes
+        }
+        bypass_if_unavailable = yes
+        x = 1
+        y = 1
+        relative_position_id = JAS_utilize_tribal_knowledge
+        completion_reward = {
+            division_template = {
+                name = "International Brigade"
+                regiments = {
+                    infantry = { x = 0 y = 0 }
+                    infantry = { x = 0 y = 1 }
+                    infantry = { x = 0 y = 2 }
+                    infantry = { x = 1 y = 0 }
+                    infantry = { x = 1 y = 1 }
+                }
+				support = {
+					artillery = { x = 0 y = 0 }
+				}
+            }
+            capital_scope = {
+                create_unit = {
+                    division = "name = \"1st International Brigade\" division_template = \"International Brigade\" start_experience_factor = 1 start_equipment_factor = 1"
+                    owner = JAS
+                    allow_spawning_on_enemy_provs = yes
+                }
+                create_unit = {
+                    division = "name = \"2nd International Brigade\" division_template = \"International Brigade\" start_experience_factor = 1  start_equipment_factor = 1"
+                    owner = JAS
+                    allow_spawning_on_enemy_provs = yes
+                }
+            }
+            country_event = jasmin.112
+        }
+    }
+    focus = {
+        id = JAS_truth_of_the_gpc
+        ai_will_do = { factor = 1 }
+        icon = GFX_total_gpc_control
+        cost = 5
+        prerequisite = {
+            focus =  JAS_organize_the_jasmine_militia
+        }
+        available = {
+            has_war = yes
+            country_exists = YAR
+        }
+        bypass_if_unavailable = yes
+        x = 2
+        y = 1
+        relative_position_id = JAS_organize_the_jasmine_militia
+        completion_reward = {
+            add_timed_idea = {
+                idea = JAS_guided_by_the_truth
+                days = 90
+            }
+            add_political_power = -50
+        }
+    }
+}
+    
+    
+      
+    

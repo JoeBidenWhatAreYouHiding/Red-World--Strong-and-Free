@@ -1,0 +1,3817 @@
+focus_tree = {
+	id = socialist_great_lakes_tree
+	country = {
+		factor = 0
+		modifier = {
+			add = 5
+			tag = GRL
+		}
+	}
+	default = no
+	continuous_focus_position = { x = 50 y = 2200 }
+
+	focus = {
+		id = SGL_sic_semper_tyrannis
+		icon = sic_semper_tyrannis
+		cost = 1
+		x = 12
+		y = 0
+		completion_reward = {
+			country_event = greatlakes.217
+			set_variable = {
+				var = SGL_laduke_support
+				value = 0
+			}
+			set_variable = {
+				var = SGL_walker_support
+				value = 0
+			}
+			set_variable = {
+				var = SGL_lindsay_support
+				value = 0
+			}
+		}
+
+	}
+
+	focus = {
+		id = SGL_form_revolutionary_tribunals
+		icon = GFX_the_modern_republic
+		cost = 5
+		x = -3
+		y = 1
+		prerequisite = {
+			focus = SGL_sic_semper_tyrannis
+		}
+		relative_position_id = SGL_sic_semper_tyrannis
+		completion_reward = {
+			add_ideas = idea_glr_socialist_tribunals
+		}
+
+	}
+
+	focus = {
+		id = SGL_free_the_natives
+		icon = focus_aim
+		cost = 2
+		x = -4
+		y = 2
+		prerequisite = {
+			focus = SGL_form_revolutionary_tribunals
+		}
+		relative_position_id = SGL_sic_semper_tyrannis
+		completion_reward = {
+			country_event = greatlakes.218
+		}
+
+	}
+
+	focus = {
+		id = SGL_integrate_the_radicals
+		icon = focus_unify_party
+		cost = 2
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = SGL_sic_semper_tyrannis
+		}
+		relative_position_id = SGL_sic_semper_tyrannis
+		completion_reward = {
+			country_event = greatlakes.219
+		}
+
+	}
+
+	focus = {
+		id = SGL_crush_the_police
+		icon = GFX_tackle_police_corruption
+		cost = 2
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = SGL_sic_semper_tyrannis
+		}
+		relative_position_id = SGL_sic_semper_tyrannis
+		completion_reward = {
+			country_event = greatlakes.220
+		}
+
+	}
+
+
+	focus = {
+		id = SGL_war_on_fascism
+		icon = anti_fascist
+		cost = 5
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = SGL_integrate_the_radicals
+		}
+		prerequisite = {
+			focus = SGL_crush_the_police
+		}
+		relative_position_id = SGL_sic_semper_tyrannis
+		completion_reward = {
+			add_popularity = {
+				ideology = fascist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.05
+			}
+		}
+
+	}
+
+	focus = {
+		id = SGL_pan_socialist_popular_front
+		icon = GFX_commissars
+		cost = 5
+		x = 3
+		y = 1
+		prerequisite = {
+			focus = SGL_sic_semper_tyrannis
+		}
+		relative_position_id = SGL_sic_semper_tyrannis
+		completion_reward = {
+			add_political_power = 50
+			add_popularity = {
+				ideology = communist
+				popularity = 0.03
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.03
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.03
+			}
+		}
+	}
+
+	focus = {
+		id = SGL_fate_of_western_loyalists
+		icon = common_african_judiciary
+		cost = 2
+		x = 4
+		y = 2
+		prerequisite = {
+			focus = SGL_pan_socialist_popular_front
+		}
+		relative_position_id = SGL_sic_semper_tyrannis
+		completion_reward = {
+			country_event = greatlakes.221
+		}
+
+	}
+
+	focus = {
+		id = SGL_walkers_faction
+		icon = focus_walker
+		cost = 3
+		x = -9
+		y = 1
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = GRL_walkers_gonna_win
+				check_variable = { SGL_walker_support > SGL_laduke_support }
+				check_variable = { SGL_walker_support > SGL_lindsay_support }
+			}
+		}
+		prerequisite = {
+			focus = SGL_free_the_natives
+		}
+		prerequisite = {
+			focus = SGL_war_on_fascism
+		}
+		prerequisite = {
+			focus = SGL_fate_of_western_loyalists
+		}
+		mutually_exclusive = {
+			focus = SGL_lindsays_faction
+			focus = SGL_la_dukes_faction
+			focus = SGL_return_of_the_emigres
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_war_support = 0.03
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.03
+			}
+			set_party_name = { ideology = revolutionary_socialist long_name = GRL_walker_party name = GRL_walker_party }
+		}
+
+	}
+
+	focus = {
+		id = SGL_attack_coddled_progressives
+		icon = operation_new_england
+		cost = 2
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = SGL_walkers_faction
+		}
+		relative_position_id = SGL_walkers_faction
+		completion_reward = {
+			NEA = {
+			    add_opinion_modifier = {
+				    target = GRL
+				    modifier = declaration_of_hostility
+			    }
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.02
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = -0.04
+			}
+		}
+	}
+
+	focus = {
+		id = SGL_attack_soulless_stalinists
+		icon = operation_blue_dawn
+		cost = 2
+		x = 1
+		y = 1
+		prerequisite = {
+		focus = SGL_walkers_faction
+		}
+		relative_position_id = SGL_walkers_faction
+		completion_reward = {
+			PCA = {
+			    add_opinion_modifier = {
+				    target = GRL
+				    modifier = declaration_of_hostility
+			    }
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = -0.04
+			}
+		}
+	}
+
+	focus = {
+		id = SGL_true_revolutionary_ideology
+		icon = focus_italian_socialist_international
+		cost = 5
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = SGL_attack_coddled_progressives
+		}
+		prerequisite = {
+			focus = SGL_attack_soulless_stalinists
+		}
+		relative_position_id = SGL_walkers_faction
+		completion_reward = {
+			add_political_power = 70
+			country_event = greatlakes.222
+		}
+
+	}
+
+	focus = {
+		id = SGL_community_self_defense
+		icon = focus_syria_woman_fighters
+		cost = 7.2
+		x = -3
+		y = 3
+		prerequisite = {
+			focus = SGL_true_revolutionary_ideology
+		}
+		relative_position_id = SGL_walkers_faction
+		completion_reward = {
+			add_ideas = idea_glr_self_defense
+		}
+
+	}
+	focus = {
+		id = SGL_legacy_of_the_panthers
+		icon = GFX_intelligent_warfare
+		cost = 5
+		x = -2
+		y = 4
+		prerequisite = {
+			focus = SGL_community_self_defense
+		}
+		relative_position_id = SGL_walkers_faction
+		completion_reward = {
+			add_manpower = 5000
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 500
+				producer = GRL
+			}
+			country_event = greatlakes.224
+		}
+
+	}
+	focus = {
+		id = SGL_finish_off_the_pigs
+		icon = GFX_purge_police
+		cost = 5
+		x = -4
+		y = 4
+		prerequisite = {
+			focus = SGL_community_self_defense
+		}
+		relative_position_id = SGL_walkers_faction
+		completion_reward = {
+			add_stability = -0.04
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.08
+			}
+			country_event = greatlakes.223
+		}
+
+	}
+	focus = {
+		id = SGL_peoples_police_forces
+		icon = focus_establish_embassies
+		cost = 7.2
+		x = -3
+		y = 5
+		prerequisite = {
+			focus = SGL_finish_off_the_pigs
+		}
+		prerequisite = {
+			focus = SGL_legacy_of_the_panthers
+		}
+		relative_position_id = SGL_walkers_faction
+		completion_reward = {
+			add_ideas = idea_glr_socialist_police
+		}
+
+	}
+	focus = {
+		id = SGL_end_urban_abandonment
+		icon = RAJ_urban_renewal_mumbai
+		cost = 7.2
+		x = -1
+		y = 3
+		prerequisite = {
+			focus = SGL_true_revolutionary_ideology
+		}
+		relative_position_id = SGL_walkers_faction
+		completion_reward = {
+			394 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			391 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = SGL_organize_the_workers
+		icon = support_workers
+		cost = 7.2
+		x = 1
+		y = 3
+		prerequisite = {
+			focus = SGL_true_revolutionary_ideology
+		}
+		relative_position_id = SGL_walkers_faction
+		completion_reward = {
+			add_ideas = idea_glr_workers_organization
+		}
+
+	}
+
+	focus = {
+		id = SGL_collective_burden
+		icon = GFX_open_up_coal_industry
+		cost = 7.2
+		x = 0
+		y = 4
+		prerequisite = {
+			focus = SGL_end_urban_abandonment
+		}
+		prerequisite = {
+			focus = SGL_organize_the_workers
+		}
+		relative_position_id = SGL_walkers_faction
+		completion_reward = {
+			add_ideas = idea_glr_collectivist_ethos
+		}
+
+	}
+
+	focus = {
+		id = SGL_revolutionary_councils
+		icon = focus_reorganise_trade_councils
+		cost = 7.2
+		x = 3
+		y = 3
+		prerequisite = {
+			focus = SGL_true_revolutionary_ideology
+		}
+		relative_position_id = SGL_walkers_faction
+		completion_reward = {
+			add_tech_bonus = {
+				name = industry_bonus
+				bonus = 0.5
+				uses = 1
+				category = industry
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.08
+			}
+			country_event = greatlakes.225
+		}
+	}
+
+	focus = {
+		id = SGL_defend_our_cities
+		icon = GFX_red_star_ak47
+		cost = 5
+		x = 2
+		y = 4
+		prerequisite = {
+			focus = SGL_revolutionary_councils
+		}
+		relative_position_id = SGL_walkers_faction
+		completion_reward = {
+			add_war_support = 0.04
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = SGL_heal_agricultural_lethargy
+		icon = focus_on_agriculture
+		cost = 5
+		x = 4
+		y = 4
+		prerequisite = {
+			focus = SGL_revolutionary_councils
+		}
+		relative_position_id = SGL_walkers_faction
+		completion_reward = {
+			392 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			country_event = greatlakes.226
+		}
+
+	}
+
+	focus = {
+		id = SGL_socialist_unity_government
+		icon = embrace_the_revolution
+		cost = 7.2
+		x = 3
+		y = 5
+		prerequisite = {
+			focus = SGL_defend_our_cities
+		}
+		prerequisite = {
+			focus = SGL_heal_agricultural_lethargy
+		}
+		relative_position_id = SGL_walkers_faction
+		completion_reward = {
+			remove_ideas = idea_glr_communist_coup_crisis
+			add_stability = 0.06
+		}
+	}
+
+	focus = {
+		id = SGL_a_peoples_commonwealth
+		icon = commonwealth_attack
+		cost = 7.2
+		x = 0
+		y = 6
+		prerequisite = {
+			focus = SGL_peoples_police_forces
+		}
+		prerequisite = {
+			focus = SGL_socialist_unity_government
+		}
+		prerequisite = {
+			focus = SGL_collective_burden
+		}
+		available = {
+		}
+		relative_position_id = SGL_walkers_faction
+		will_lead_to_war_with = NEA
+		will_lead_to_war_with = AMC
+		completion_reward = {
+			if = {
+				limit = {
+					country_exists = NEA
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = NEA
+				}
+			}
+			if = {
+				limit = {
+					country_exists = AMC
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = AMC
+				}
+			}
+            country_event = greatlakes.227
+		}
+
+	}
+
+	focus = {
+		id = SGL_emergency_party_conference
+		icon = focus_philadelphia_constitution
+		cost = 3.6
+		x = 0
+		y = 7
+		prerequisite = {
+		focus = SGL_a_peoples_commonwealth
+		}
+		available = {
+			NEA = { exists = no }
+			owns_state = 360
+			owns_state = 395
+			owns_state = 393
+			owns_state = 358
+			owns_state = 357
+		}
+		relative_position_id = SGL_walkers_faction
+		completion_reward = {
+			set_capital = { state = 360 }
+			set_cosmetic_tag = SGL_Commonwealth
+			custom_effect_tooltip = GRL_release_new_england
+			hidden_effect = {
+			AMC = {
+				set_cosmetic_tag = SGL_NewEngland
+				create_country_leader = {
+					name = "Sonia Sotomayor"
+					picture = "Portrait_AMC_Sonia_Sotomayor.dds"
+					ideology = progressive
+				}
+				transfer_state = 793
+				add_state_core = 793
+				transfer_state = 795
+				add_state_core = 795
+				transfer_state = 794
+				add_state_core = 794
+				transfer_state = 357
+				add_state_core = 357
+				transfer_state = 792
+				add_state_core = 792
+				transfer_state = 739
+				add_state_core = 739
+				load_focus_tree = generic_focus
+			}
+			puppet = AMC
+			}
+			country_event = greatlakes.228
+		}
+
+	}
+	focus = {
+		id = SGL_old_guard_primacy
+		icon = flags_green
+		cost = 1
+		x = -3
+		y = 1
+		prerequisite = {
+			focus = SGL_emergency_party_conference
+		}
+		available = {
+			has_country_flag = GRL_Hawkins
+		}
+		bypass = {
+			has_country_flag = GRL_Hawkins
+		}
+		relative_position_id = SGL_emergency_party_conference
+		completion_reward = {
+			
+		}
+
+	}
+	focus = {
+		id = SGL_embrace_communalism
+		icon = focus_uar_syndicalism
+		cost = 5
+		x = -2
+		y = 2
+		prerequisite = {
+			focus = SGL_old_guard_primacy
+		}
+		relative_position_id = SGL_emergency_party_conference
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 50
+			country_event = greatlakes.229
+		}
+
+	}
+	focus = {
+		id = SGL_social_ecology
+		icon = focus_humanity_for_all
+		cost = 5
+		x = -3
+		y = 3
+		prerequisite = {
+			focus = SGL_embrace_communalism
+		}
+		relative_position_id = SGL_emergency_party_conference
+		completion_reward = {
+			add_ideas = idea_glr_environmental_regulations
+		}
+
+	}
+	focus = {
+		id = SGL_peaceful_socialist_experiment
+		icon = uk_confederation
+		cost = 5
+		x = -4
+		y = 2
+		prerequisite = {
+			focus = SGL_old_guard_primacy
+		}
+		relative_position_id = SGL_emergency_party_conference
+		completion_reward = {
+			remove_ideas = idea_glr_self_defense
+			add_ideas = idea_glr_military_for_defense
+		}
+	}
+	focus = {
+		id = SGL_replace_walker_cult
+		icon = GRL_walker_cult
+		cost = 5
+		x = -4
+		y = 4
+		prerequisite = {
+			focus = SGL_peaceful_socialist_experiment
+		}
+		relative_position_id = SGL_emergency_party_conference
+		completion_reward = {
+			remove_ideas = idea_glr_socialist_tribunals
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.05
+			}
+		}
+
+	}
+	focus = {
+		id = SGL_true_revolutionary_primacy
+		icon = flags_red
+		cost = 1
+		x = 3
+		y = 1
+		prerequisite = {
+			focus = SGL_emergency_party_conference
+		}
+		available = {
+			has_country_flag = GRL_Walker
+		}
+		bypass = {
+			has_country_flag = GRL_Walker
+		}
+		relative_position_id = SGL_emergency_party_conference
+		completion_reward = {
+
+		}
+
+	}
+
+	focus = {
+		id = SGL_continue_the_urban_focus
+		icon = focus_north_egyptian_projects
+		cost = 5
+		x = 2
+		y = 2
+		prerequisite = {
+			focus = SGL_true_revolutionary_primacy
+		}
+		relative_position_id = SGL_emergency_party_conference
+		completion_reward = {
+			add_tech_bonus = {
+				name = electronics_bonus
+				bonus = 0.5
+				uses = 1
+				category = electronics
+			}
+			393 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			360 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = SGL_restore_class_consciousness
+		icon = glasnost
+		cost = 5
+		x = 3
+		y = 3
+		prerequisite = {
+			focus = SGL_continue_the_urban_focus
+		}
+		relative_position_id = SGL_emergency_party_conference
+		completion_reward = {
+			add_stability = 0.05
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.05
+			}
+		}
+
+	}
+
+	focus = {
+		id = SGL_legacy_of_the_emancipators
+		icon = GRL_emancipators
+		cost = 5
+		x = 4
+		y = 2
+		prerequisite = {
+			focus = SGL_true_revolutionary_primacy
+		}
+		relative_position_id = SGL_emergency_party_conference
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_glr_self_defense
+				add_idea = idea_glr_self_defense2
+			}
+		}
+
+	}
+
+	focus = {
+		id = SGL_anti_terrorist_crusade
+		icon = we_step_on_snek
+		cost = 5
+		x = 4
+		y = 4
+		prerequisite = {
+			focus = SGL_legacy_of_the_emancipators
+		}
+		relative_position_id = SGL_emergency_party_conference
+		completion_reward = {
+			add_popularity = {
+				ideology = fascist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = national_bolshevik
+				popularity = -0.05
+			}
+			country_event = greatlakes.233
+		}
+
+	}
+
+
+	focus = {
+		id = SGL_erase_the_committee
+		icon = focus_abolish_the_central_committee
+		cost = 5.8
+		x = -1
+		y = 8
+		prerequisite = {
+			focus = SGL_emergency_party_conference
+		}
+		relative_position_id = SGL_walkers_faction
+		completion_reward = {
+			country_event = greatlakes.232
+		}
+
+	}
+
+	focus = {
+		id = SGL_reconstruction
+		icon = infrastructure
+		cost = 5.8
+		x = 1
+		y = 8
+		prerequisite = {
+			focus = SGL_emergency_party_conference
+		}
+		relative_position_id = SGL_walkers_faction
+		completion_reward = {
+			358 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			360 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			261 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			357 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+
+	focus = {
+		id = SGL_integrate_the_north_east
+		icon = focus_military_for_defence
+		cost = 7.2
+		x = 0
+		y = 9
+		prerequisite = {
+			focus = SGL_erase_the_committee
+		}
+		prerequisite = {
+			focus = SGL_reconstruction
+		}
+		relative_position_id = SGL_walkers_faction
+		completion_reward = {
+			add_political_power = 100
+			add_state_core = 261
+			add_state_core = 358
+			add_state_core = 359
+			add_state_core = 360
+			add_state_core = 361
+			add_state_core = 1012
+			add_state_core = 393
+			add_state_core = 395
+			add_state_core = 396
+			add_state_core = 893
+			add_state_core = 902
+		}
+
+	}
+
+
+
+	focus = {
+		id = SGL_lindsays_faction
+		icon = focus_lindsay
+		cost = 5
+		x = -3
+		y = 1
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = GRL_lindsays_gonna_win
+				check_variable = { SGL_lindsay_support > SGL_walker_support }
+				check_variable = { SGL_lindsay_support > SGL_ladukes_support }
+			}
+		}
+		prerequisite = {
+			focus = SGL_free_the_natives
+		}
+		prerequisite = {
+			focus = SGL_war_on_fascism
+		}
+		prerequisite = {
+			focus = SGL_fate_of_western_loyalists
+		}
+		mutually_exclusive = {
+			focus = SGL_walkers_faction
+			focus = SGL_la_dukes_faction
+			focus = SGL_return_of_the_emigres
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_stability = 0.03
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.01
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = 0.01
+			}
+			set_party_name = { ideology = revolutionary_socialist long_name = GRL_lindsay_party name = GRL_lindsay_party }
+			create_country_leader = {
+				name = "Peta Lindsay"
+				picture = "Portrait_GRL_Peta_Lindsay.dds"
+				ideology = revolutionary_socialist_ideology
+			}
+			custom_effect_tooltip = glr_utopian_ministers_tooltip
+			hidden_effect = {
+				add_ideas = laker_sic_andrea_jenkins
+				add_ideas = laker_fom_alondra_cano
+				add_ideas = laker_ind_lisa_bender
+				add_ideas = laker_nsm_phillipe_cunningham
+				add_ideas = laker_inm_michael_prysner
+			}
+		}
+
+	}
+
+	focus = {
+		id = SGL_in_footsteps_of_progressives
+		icon = focus_wellstone
+		cost = 2
+		x = 0
+		y = 2
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_lindsays_faction
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.04
+			}
+		}
+	}
+
+	focus = {
+		id = SGL_popular_sovereignty
+		icon = left_wing_win
+		cost = 7.2
+		x = -1
+		y = 3
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_in_footsteps_of_progressives
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_ideas = idea_glr_democratic_foundations
+			country_event = greatlakes.250
+		}
+	}
+
+	focus = {
+		id = SGL_codify_racial_justice
+		icon = minority_rights
+		cost = 7.2
+		x = -4
+		y = 2
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_lindsays_faction
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_ideas = idea_glr_racial_justice
+		}
+	}
+
+	focus = {
+		id = SGL_recover_from_urban_decline
+		icon = urban_housing
+		cost = 7.2
+		x = -2
+		y = 2
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_lindsays_faction
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_ideas = idea_glr_urban_repair
+		}
+	}
+
+	focus = {
+		id = SGL_fight_bureaucratic_collectivism
+		icon = eliminate_bureaucracy
+		cost = 7.2
+		x = -3
+		y = 3
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_lindsays_faction
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_ideas = idea_glr_curtailing_the_bureaucracy
+		}
+	}
+
+	focus = {
+		id = SGL_a_great_lakes_commonwealth
+		icon = focus_american_peace_act
+		cost = 5
+		x = -4
+		y = 4
+		available = {
+			NEA = {
+				exists = yes
+				has_government = revolutionary_socialist
+			}
+		}
+		prerequisite = {
+			focus = SGL_fight_bureaucratic_collectivism
+		}
+		mutually_exclusive = {
+			focus = SGL_a_more_idealist_union
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			NEA = {
+			    add_opinion_modifier = {
+				    target = GRL
+				    modifier = declaration_of_friendship
+			    }
+			}
+			GRL = {
+				add_opinion_modifier = {
+				    target = NEA
+				    modifier = trade_influence_2
+			    }
+			}
+			country_event = greatlakes.254
+		}
+	}
+
+	focus = {
+		id = SGL_anarchist_self_management
+		icon = focus_syria_workers_self_management
+		cost = 7.2
+		x = -4
+		y = 6
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_a_great_lakes_commonwealth
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_ideas = idea_glr_self_management_doctrine 
+		}
+	}
+
+	focus = {
+		id = SGL_revolutionary_socialist_solidarity
+		icon = focus_pray_for_new_york
+		cost = 7.2
+		x = -3
+		y = 7
+		available = {
+			NEA = {
+				exists = yes
+				has_government = revolutionary_socialist
+			}
+			NOT = {
+				has_completed_focus = SGL_a_revolution_across_the_lakes
+			}
+		}
+		prerequisite = {
+			focus = SGL_anarchist_self_management
+			focus = SGL_endorse_central_planning
+		}
+		mutually_exclusive = {
+			focus = SGL_ideological_purity
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			custom_effect_tooltip = GRL_republican_dream_tt
+			set_country_flag = GRL_socialist_apc_alignment
+			add_political_power = 80
+			remove_ideas = idea_glr_communist_coup_crisis
+			country_event = greatlakes.258
+		}
+	}
+
+	focus = {
+		id = SGL_ideological_purity
+		icon = focus_commonwealth_meet_communists
+		cost = 7.2
+		x = -1
+		y = 7
+		available = {
+			NOT = {
+				has_completed_focus = SGL_align_with_the_peoples_commonwealth
+			}
+		}
+		prerequisite = {
+			focus = SGL_endorse_central_planning
+		}
+		mutually_exclusive = {
+			focus = SGL_revolutionary_socialist_solidarity
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.04
+			}
+			add_ideas = idea_glr_purity_of_ideology
+			remove_ideas = idea_glr_communist_coup_crisis
+			country_event = greatlakes.257
+		}
+	}
+
+	focus = {
+		id = SGL_a_more_idealist_union
+		icon = focus_question_the_president
+		cost = 5
+		x = -2
+		y = 4
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_fight_bureaucratic_collectivism
+		}
+		mutually_exclusive = {
+			focus = SGL_a_great_lakes_commonwealth
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_war_support = 0.04
+			NEA = {
+			    add_opinion_modifier = {
+				    target = GRL
+				    modifier = declaration_of_hostility
+			    }
+			}
+			country_event = greatlakes.255
+		}
+	}
+
+	focus = {
+		id = SGL_endorse_central_planning
+		icon = five_year_plan
+		cost = 7.2
+		x = -2
+		y = 6
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_a_more_idealist_union
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_ideas = idea_glr_central_planning
+		}
+	}
+
+	focus = {
+		id = SGL_radical_pacifism
+		icon = socialism_through_peace
+		cost = 7.2
+		x = -3
+		y = 5
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_a_more_idealist_union
+			focus = SGL_a_great_lakes_commonwealth
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_ideas = idea_glr_radical_pacifism
+		}
+	}
+
+	focus = {
+		id = SGL_in_footsteps_of_revolutionaries
+		icon = red_brigades
+		cost = 2
+		x = -6
+		y = 2
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_lindsays_faction
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.03
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = 0.03
+			}
+		}
+	}
+
+	focus = {
+		id = SGL_banner_of_the_youth
+		icon = socialist_youth
+		cost = 7.2
+		x = -5
+		y = 3
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_in_footsteps_of_revolutionaries
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_manpower = 7500
+			country_event = greatlakes.251
+		}
+	}
+
+	focus = {
+		id = SGL_build_left_unity
+		icon = communism_2
+		cost = 7.2
+		x = -1
+		y = 5
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_a_more_idealist_union
+			focus = SGL_a_great_lakes_commonwealth
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_political_power = 70
+			add_popularity = {
+				ideology = communist
+				popularity = 0.03
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.03
+			}
+			country_event = greatlakes.253
+		}
+	}
+
+	focus = {
+		id = SGL_commit_to_social_justice
+		icon = focus_freedom_of_demonstration
+		cost = 7.2
+		x = 0
+		y = 6
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_build_left_unity
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_ideas = idea_glr_new_social_justice
+			country_event = greatlakes.256
+		}
+	}
+
+	focus = {
+		id = SGL_la_dukes_faction
+		icon = focus_laduke
+		cost = 5
+		x = 3
+		y = 1
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = GRL_ladukes_gonna_win
+				check_variable = { SGL_laduke_support > SGL_walker_support }
+				check_variable = { SGL_laduke_support > SGL_lindsay_support }
+			}
+		}
+		prerequisite = {
+			focus = SGL_free_the_natives
+		}
+		prerequisite = {
+			focus = SGL_war_on_fascism
+		}
+		prerequisite = {
+			focus = SGL_fate_of_western_loyalists
+		}
+		mutually_exclusive = {
+			focus = SGL_walkers_faction
+			focus = SGL_lindsays_faction
+			focus = SGL_return_of_the_emigres
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.05
+			}
+			set_politics = {
+				ruling_party = moderate_socialist
+			}
+			set_party_name = { ideology = moderate_socialist long_name = GRL_laduke_party name = GRL_laduke_party }
+			create_country_leader = {
+				name = "Winona LaDuke"
+				picture = "Portrait_GRL_Winona_LaDuke.dds"
+				ideology = eco_socialist
+			}
+			custom_effect_tooltip = glr_green_ministers_tooltip
+			hidden_effect = {
+				add_ideas = laker_sic_mark_ritchie
+				add_ideas = laker_fom_doug_la_follette
+				add_ideas = laker_ind_andy_dawkins
+				add_ideas = laker_nsm_nelson_eisman
+				add_ideas = laker_inm_la_tonya_johnson
+			}
+		}
+
+	}
+
+	focus = {
+		id = SGL_ecosocialist_vision
+		icon = uk_federation
+		cost = 7.2
+		x = 2
+		y = 2
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_la_dukes_faction
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_ideas = idea_glr_green_libertarianism
+		}
+
+	}
+
+	focus = {
+		id = SGL_drug_legalization
+		icon = legalise_cannabis
+		cost = 7.2
+		x = 1
+		y = 3
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_ecosocialist_vision
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_ideas = idea_glr_cannabis
+			country_event = greatlakes.252
+		}
+
+	}
+
+	focus = {
+		id = SGL_overhauled_healthcare_system
+		icon = increase_healthcare_coverage
+		cost = 7.2
+		x = 1
+		y = 5
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_drug_legalization
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_ideas = idea_glr_focus_on_health
+		}
+
+	}
+
+	focus = {
+		id = SGL_make_good_on_the_treaties
+		icon = neutrality
+		cost = 7.2
+		x = 5
+		y = 3
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_in_footsteps_of_progressives
+			focus = SGL_ecosocialist_vision
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_ideas = idea_glr_restored_treaties
+			country_event = greatlakes.262
+		}
+
+	}
+
+	focus = {
+		id = SGL_repair_the_reservations
+		icon = industry_in_alabama
+		cost = 7.2
+		x = 5
+		y = 5
+		available = {
+		}
+		prerequisite = {
+		focus = SGL_make_good_on_the_treaties
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			392 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			391 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = SGL_cement_the_party
+		icon = flags_green
+		cost = 5
+		x = 4
+		y = 4
+		available = {
+		}
+		prerequisite = {
+		focus = SGL_fight_iww_primacy
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_political_power = 70
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.03
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.03
+			}
+			country_event = greatlakes.260
+		}
+
+	}
+
+	focus = {
+		id = SGL_green_new_deal
+		icon = focus_vermont_resignation
+		cost = 7.2
+		x = 2
+		y = 4
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_ecosocialist_vision
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			391 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			394 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = SGL_fight_iww_primacy
+		icon = focus_impeach_president_chomsky 
+		cost = 3
+		x = 4
+		y = 2
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_la_dukes_faction
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.06
+			}
+			country_event = greatlakes.259
+		}
+	}
+
+	focus = {
+		id = SGL_legalize_opposition_parties
+		icon = focus_enforce_1990_constitution
+		cost = 5
+		x = 3
+		y = 3
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_ecosocialist_vision
+		}
+		prerequisite = {
+			focus = SGL_fight_iww_primacy
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_political_power = -50
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.03
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.02
+			}
+			country_event = greatlakes.261
+		}
+
+	}
+
+	focus = {
+		id = SGL_fresh_local_elections
+		icon = focus_syria_local_elections
+		cost = 7.2
+		x = 3
+		y = 5
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_green_new_deal
+		}
+		prerequisite = {
+			focus = SGL_cement_the_party
+		}
+		prerequisite = {
+			focus = SGL_legalize_opposition_parties
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_stability = 0.06
+			remove_ideas = idea_glr_communist_coup_crisis
+			country_event = greatlakes.263
+		}
+
+	}
+
+	focus = {
+		id = SGL_coalition_with_communalists
+		icon = focus_ideology_revolutionary_socialist
+		cost = 5
+		x = 2
+		y = 6
+		available = {
+			has_country_flag = GRL_communalist_coalition
+		}
+		prerequisite = {
+			focus = SGL_fresh_local_elections
+		}
+		mutually_exclusive = {
+			focus = SGL_coalition_with_democratic_alliance
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.05
+			}
+			country_event = greatlakes.264
+		}
+
+	}
+
+	focus = {
+		id = SGL_embrace_democratic_self_management
+		icon = focus_syria_union_councils
+		cost = 7.2
+		x = 1
+		y = 7
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_coalition_with_communalists
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_ideas = idea_glr_cooperatives 
+		}
+
+	}
+
+	focus = {
+		id = SGL_coalition_with_democratic_alliance
+		icon = focus_ideology_moderate_socialist
+		cost = 5
+		x = 4
+		y = 6
+		available = {
+			has_country_flag = GRL_da_coalition
+		}
+		prerequisite = {
+			focus = SGL_fresh_local_elections
+		}
+		mutually_exclusive = {
+			focus = SGL_coalition_with_communalists
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.05
+			}
+			country_event = greatlakes.265
+			custom_effect_tooltip = glr_dem_alliance_coalition_tooltip
+			hidden_effect = {
+				add_ideas = laker_fom_steve_simon
+				add_ideas = laker_ind_mark_dayton
+			}
+		}
+
+	}
+
+	focus = {
+		id = SGL_tolerate_limited_privatization
+		icon = torch_industry
+		cost = 7.2
+		x = 5
+		y = 7
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_coalition_with_democratic_alliance
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_ideas = idea_glr_moderate_privatization
+		}
+
+	}
+
+	focus = {
+		id = SGL_embrace_human_rights
+		icon = focus_commonwealth_democratic_rule
+		cost = 7.2
+		x = 3
+		y = 7
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_coalition_with_communalists
+			focus = SGL_coalition_with_democratic_alliance
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			add_ideas = idea_glr_human_rights
+		}
+
+	}
+
+	focus = {
+		id = SGL_return_of_the_emigres
+		icon = focus_erik_prince
+		cost = 5
+		x = 9
+		y = 1
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = GRL_deadlocks_gonna_win
+				NOT = {
+					OR = {
+						AND = {
+							check_variable = { SGL_walker_support > SGL_laduke_support }
+							check_variable = { SGL_walker_support > SGL_lindsay_support }
+						}
+						AND = {
+							check_variable = { SGL_laduke_support > SGL_walker_support }
+							check_variable = { SGL_laduke_support > SGL_lindsay_support }
+						}
+						AND = {
+							check_variable = { SGL_lindsay_support > SGL_walker_support }
+							check_variable = { SGL_lindsay_support > SGL_ladukes_support }
+						}
+					}
+				}
+				
+			}
+		}
+		prerequisite = {
+			focus = SGL_free_the_natives
+		}
+		prerequisite = {
+			focus = SGL_war_on_fascism
+		}
+		prerequisite = {
+			focus = SGL_fate_of_western_loyalists
+		}
+		mutually_exclusive = {
+			focus = SGL_walkers_faction
+			focus = SGL_lindsays_faction
+			focus = SGL_la_dukes_faction
+		}
+		relative_position_id = SGL_war_on_fascism
+		completion_reward = {
+			country_event = greatlakes.266
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.05
+			}
+			set_politics = {
+				ruling_party = nationalist
+			}
+			set_party_name = { ideology = nationalist long_name = GRL_prince_party name = GRL_prince_party }
+			create_country_leader = {
+				name = "Erik Prince"
+				picture = "Portrait_GRL_Erik_Prince.dds"
+				ideology = american_nationalist
+			}
+			custom_effect_tooltip = glr_erik_prince_ministers_tooltip
+			hidden_effect = {
+				add_ideas = laker_sic_rod_blum
+				add_ideas = laker_fom_thomas_harens
+				add_ideas = laker_ind_rick_snyder
+				add_ideas = laker_nsm_william_mohr
+				add_ideas = laker_inm_john_jensen
+			}
+
+		}
+
+	}
+
+	focus = {
+		id = SGL_vice_president_carson
+		icon = focus_ideology_nationalist
+		cost = 3
+		x = -1
+		y = 1
+		available = {
+				
+		}
+		mutually_exclusive = {
+			focus = SGL_vice_president_lugar
+		}
+		prerequisite = {
+			focus = SGL_return_of_the_emigres
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			remove_ideas = idea_glr_socialist_tribunals
+			add_political_power = 50
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.1
+			}
+			add_ideas = laker_sic_ben_carson
+		}
+
+	}
+
+	focus = {
+		id = SGL_cement_the_mercenary_republic
+		icon = license_production
+		cost = 5
+		x = -2
+		y = 2
+		available = {
+				
+		}
+		prerequisite = {
+			focus = SGL_vice_president_carson
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			country_event = greatlakes.267
+			add_ideas = idea_glr_mercenary_republic
+		}
+
+	}
+
+	focus = {
+		id = SGL_enshrine_christian_ethics
+		icon = focus_fund_christian_charities
+		cost = 7.2
+		x = -1
+		y = 3
+		available = {
+				
+		}
+		prerequisite = {
+		focus = SGL_vice_president_carson
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.05
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.03
+			}
+		}
+
+	}
+
+	focus = {
+		id = SGL_guns_for_all
+		icon = small_arms
+		cost = 7.2
+		x = -3
+		y = 3
+		available = {
+				
+		}
+		prerequisite = {
+			focus = SGL_cement_the_mercenary_republic
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1000
+				producer = GRL
+			}
+			392 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+
+	focus = {
+		id = SGL_prosperity_gospel
+		icon = focus_support_christian_values
+		cost = 7.2
+		x = -2
+		y = 4
+		available = {
+				
+		}
+		prerequisite = {
+			focus = SGL_guns_for_all
+		}
+		prerequisite = {
+			focus = SGL_enshrine_christian_ethics
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			country_event = greatlakes.268
+			add_ideas = idea_glr_carsons_prosperity
+		}
+
+	}
+
+	focus = {
+		id = SGL_vice_president_lugar
+		icon = focus_ideology_national_conservative
+		cost = 3
+		x = 1
+		y = 1
+		available = {
+				
+		}
+		mutually_exclusive = {
+			focus = SGL_vice_president_carson
+		}
+		prerequisite = {
+			focus = SGL_return_of_the_emigres
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			remove_ideas = idea_glr_socialist_tribunals
+			add_political_power = 50
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.1
+			}
+			add_ideas = laker_sic_dick_lugar
+		}
+
+	}
+
+	focus = {
+		id = SGL_pass_the_snyder_cuts
+		icon = focus_tax_rebate
+		cost = 5
+		x = 0
+		y = 2
+		available = {
+				
+		}
+		prerequisite = {
+			focus = SGL_vice_president_carson
+			focus = SGL_vice_president_lugar
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			add_ideas = idea_glr_snyder_tax_cuts
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.03
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.03
+			}
+		}
+
+	}
+
+	focus = {
+		id = SGL_radical_decommunization
+		icon = threaten_socialists
+		cost = 5
+		x = 0
+		y = 4
+		available = {
+				
+		}
+		prerequisite = {
+			focus = SGL_pass_the_snyder_cuts
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			add_political_power = 75
+			add_popularity = {
+				ideology = communist
+				popularity = -0.08
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.08
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = -0.08
+			}
+			remove_ideas = idea_glr_communist_coup_crisis
+			country_event = greatlakes.269
+		}
+
+	}
+
+	focus = {
+		id = SGL_legacy_of_republican_democracy
+		icon = return_of_the_americans
+		cost = 8
+		x = 2
+		y = 2
+		available = {
+				
+		}
+		prerequisite = {
+			focus = SGL_vice_president_lugar
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			add_war_support = 0.03
+			add_ideas = idea_glr_republican_democracy
+		}
+
+	}
+
+	focus = {
+		id = SGL_pragmatic_social_conservatism
+		icon = threaten_conservatives
+		cost = 8
+		x = 3
+		y = 3
+		available = {
+				
+		}
+		prerequisite = {
+			focus = SGL_legacy_of_republican_democracy
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			add_ideas = idea_glr_conservative_welfare
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = centrist 
+				popularity = 0.03
+			}
+		}
+
+	}
+
+	focus = {
+		id = SGL_sabotage_princes_agenda
+		icon = tear_treaty
+		cost = 5
+		x = 1
+		y = 3
+		available = {
+				
+		}
+		prerequisite = {
+			focus = SGL_vice_president_lugar
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			add_political_power = -50
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.07
+			}
+			country_event = greatlakes.270
+		}
+
+	}
+
+	focus = {
+		id = SGL_restore_congress
+		icon = restore_great_lakes_republic
+		cost = 8
+		x = 2
+		y = 4
+		available = {
+				
+		}
+		prerequisite = {
+			focus = SGL_sabotage_princes_agenda
+		}
+		prerequisite = {
+			focus = SGL_pragmatic_social_conservatism
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = centrist 
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = liberal 
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.05
+			}
+			country_event = greatlakes.271
+		}
+	}
+
+	focus = {
+		id = SGL_end_the_militia_partnership
+		icon = crush_militias
+		cost = 8
+		x = 1
+		y = 5
+		available = {
+				
+		}
+		prerequisite = {
+			focus = SGL_restore_congress
+		}
+		prerequisite = {
+			focus = SGL_radical_decommunization
+		}
+		mutually_exclusive = {
+			focus = SGL_merge_standing_army_and_militias
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			add_political_power = -25
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.03
+			}
+			add_ideas = idea_glr_militias_purged
+		}
+
+	}
+
+	
+	focus = {
+		id = SGL_merge_standing_army_and_militias
+		icon = right_wing_unity
+		cost = 7.2
+		x = -1
+		y = 5
+		available = {
+				
+		}
+		prerequisite = {
+			focus = SGL_prosperity_gospel
+		}
+		prerequisite = {
+			focus = SGL_radical_decommunization
+		}
+		mutually_exclusive = {
+			focus = SGL_end_the_militia_partnership
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1500
+				producer = GRL
+			}
+			add_manpower = 10000
+			add_ideas = idea_glr_militias_integrated
+		}
+
+	}
+
+	focus = {
+		id = SGL_strike_at_the_apc
+		icon = commonwealth_attack
+		cost = 5
+		x = 0
+		y = 6
+		available = {
+				
+		}
+		prerequisite = {
+			focus = SGL_merge_standing_army_and_militias
+			focus = SGL_end_the_militia_partnership
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		will_lead_to_war_with = NEA
+		will_lead_to_war_with = AMC
+		completion_reward = {
+			add_war_support = 0.1
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = NEA
+						is_core_of = AMC
+					}
+				}
+				add_claim_by = GRL
+			}
+			if = {
+				limit = {
+					country_exists = NEA
+				}
+				declare_war_on = {
+					target = NEA
+					type = annex_everything
+				}
+			}
+			if = {
+				limit = {
+					country_exists = AMC
+				}
+				declare_war_on = {
+					target = AMC
+					type = annex_everything
+				}
+			}
+		}
+
+	}
+	
+	focus = {
+		id = SGL_a_triumph_for_democracy
+		icon = focus_commonwealth_democratic_rule
+		cost = 5
+		x = 0
+		y = 7
+		available = {
+			OR = {
+				AND = {
+					NOT = {
+						has_war_with = NEA
+					}
+					NOT = {
+						has_war_with = AMC
+					}
+				}
+				AND = {
+					owns_state = 360
+					NOT = {
+						OR = {
+							country_exists = NEA
+							country_exists = AMC
+						}
+					}
+				}
+			}
+		}
+		prerequisite = {
+			focus = SGL_strike_at_the_apc
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			country_event = greatlakes.272
+			if = {
+				limit = {
+					has_completed_focus = SGL_strike_at_the_apc
+				}
+				set_cosmetic_tag = SGL_Commonwealth
+			}
+		}
+
+	}
+	
+	focus = {
+		id = SGL_president_holcomb
+		icon = SGL_president_holcomb
+		cost = 0
+		x = -3
+		y = 8
+		available = {
+			always = no
+		}
+		prerequisite = {
+			focus = SGL_a_triumph_for_democracy
+		}
+		bypass = {
+			has_country_leader = {
+				name = "Eric Holcomb"
+				ruling_only = yes
+			}
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+	
+		}
+	}
+
+	focus = {
+		id = SGL_stringent_anti_corruption_measures
+		icon = major_war
+		cost = 3
+		x = -3
+		y = 9
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = SGL_president_holcomb
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			add_ideas = idea_glr_holcomb_anticorruption
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.05 
+			}
+			country_event = greatlakes.273
+		}
+	}
+	
+	focus = {
+		id = SGL_support_small_businesses
+		icon = low_company_tax
+		cost = 5
+		x = -4
+		y = 10
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = SGL_stringent_anti_corruption_measures
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.07
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SGL_integrate_catholic_groups
+		icon = focus_patriots_seize_power
+		cost = 4
+		x = -2
+		y = 10
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = SGL_stringent_anti_corruption_measures
+		}
+		mutually_exclusive = {
+			focus = SGL_purge_white_phoenix
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			add_manpower = 25000
+			add_popularity = {
+				ideology = fascist
+				popularity = 0.05
+			}
+		}
+	}
+	
+	focus = {
+		id = SGL_purge_white_phoenix
+		icon = the_final_struggle
+		cost = 4
+		x = 0
+		y = 10
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = SGL_stringent_anti_corruption_measures
+		}
+		mutually_exclusive = {
+			focus = SGL_integrate_catholic_groups
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			add_political_power = -15
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.07
+			}
+			add_ideas = idea_glr_anti_terrorism
+			country_event = greatlakes.274
+		}
+	}
+	
+	focus = {
+		id = SGL_oppose_anti_democratic_forces
+		icon = focus_control_the_vote_counters
+		cost = 6
+		x = -3
+		y = 11
+		available = {
+			has_government = national_conservative
+		}
+		prerequisite = {
+			focus = SGL_support_small_businesses
+		}
+		prerequisite = {
+			focus = SGL_integrate_catholic_groups
+			focus = SGL_purge_white_phoenix
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			add_political_power = 50
+			add_popularity = {
+				ideology = communist
+				popularity = -0.03
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.03
+			}
+			add_popularity = {
+				ideology = fascist
+				popularity = -0.03
+			}
+			country_event = greatlakes.281
+		}
+	}
+	
+	focus = {
+		id = SGL_president_carson
+		icon = SGL_president_carson
+		cost = 0
+		x = -6
+		y = 8
+		available = {
+			always = no
+		}
+		prerequisite = {
+			focus = SGL_a_triumph_for_democracy
+		}
+		bypass = {
+			has_country_leader = {
+				name = "Ben Carson"
+				ruling_only = yes
+			}
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+	
+		}
+	}
+	
+	focus = {
+		id = SGL_ally_with_big_business
+		icon = power_to_the_corporations
+		cost = 3
+		x = -7
+		y = 9
+		available = {
+			has_government = nationalist
+		}
+		prerequisite = {
+			focus = SGL_president_carson
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			country_event = greatlakes.275
+		}
+	}
+	
+	focus = {
+		id = SGL_complete_decommunisation
+		icon = focus_commonwealth_communist_party_ban
+		cost = 6
+		x = -5
+		y = 9
+		available = {
+			has_government = nationalist
+		}
+		prerequisite = {
+			focus = SGL_president_carson
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			add_political_power = 25 
+			add_popularity = {
+				ideology = communist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = new_democrat
+				popularity = -0.05
+			}
+		}
+	}
+	
+	focus = {
+		id = SGL_libertarian_tax_code
+		icon = investigate_industrial_corruption
+		cost = 5
+		x = -6
+		y = 10
+		available = {
+			has_government = nationalist
+		}
+		prerequisite = {
+			focus = SGL_president_carson
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.07
+			}
+			swap_ideas = {
+				remove_idea = idea_glr_snyder_tax_cuts
+				add_idea = idea_glr_libertarian_tax_code
+			}
+		}
+	}
+	
+	focus = {
+		id = SGL_reopen_the_stock_exchanges
+		icon = lucrative_investment
+		cost = 4
+		x = -6
+		y = 11
+		available = {
+			has_government = nationalist
+		}
+		prerequisite = {
+			focus = SGL_ally_with_big_business
+		}
+		prerequisite = {
+			focus = SGL_libertarian_tax_code
+		}
+		prerequisite = {
+			focus = SGL_complete_decommunisation
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			add_stability = 0.05
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			country_event = greatlakes.276
+		}
+	}
+	
+	focus = {
+		id = SGL_president_mondale
+		icon = SGL_president_mondale
+		cost = 0
+		x = 2
+		y = 8
+		available = {
+			always = no
+		}
+		prerequisite = {
+			focus = SGL_a_triumph_for_democracy
+		}
+		bypass = {
+			has_country_leader = {
+				name = "Walter Mondale"
+				ruling_only = yes
+			}
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+	
+		}
+	}
+	
+	focus = {
+		id = SGL_the_fair_deal
+		icon = torch_industry
+		cost = 5
+		x = 1
+		y = 9
+		available = {
+			has_government = new_democrat
+		}
+		prerequisite = {
+			focus = SGL_president_mondale
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			swap_ideas = {
+				remove_idea = idea_glr_snyder_tax_cuts
+				add_idea = idea_glr_fair_deal
+			}
+		}
+	}
+	
+	focus = {
+		id = SGL_clean_up_after_prince
+		icon = crush_minnesota_elites
+		cost = 5
+		x = 3
+		y = 9
+		available = {
+			has_government = new_democrat
+		}
+		prerequisite = {
+			focus = SGL_president_mondale
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.04
+			}
+			country_event = greatlakes.278
+		}
+	}
+	
+	focus = {
+		id = SGL_social_without_socialism
+		icon = against_communists
+		cost = 3
+		x = 3
+		y = 10
+		available = {
+			has_government = new_democrat
+		}
+		prerequisite = {
+			focus = SGL_clean_up_after_prince
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.05
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.04
+			}
+		}
+	}
+	
+	focus = {
+		id = SGL_sign_the_second_bill_of_rights
+		icon = focus_ideology_new_democrat
+		cost = 5
+		x = 2
+		y = 11
+		available = {
+			has_government = new_democrat
+		}
+		prerequisite = {
+			focus = SGL_the_fair_deal
+		}
+		prerequisite = {
+			focus = SGL_social_without_socialism
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			add_ideas = idea_glr_second_bill_of_rights
+			country_event = greatlakes.279
+		}
+	}
+	
+	focus = {
+		id = SGL_rebuild_the_north_east
+		icon = focus_vermont_resignation
+		cost = 5
+		x = 6
+		y = 8
+		available = {
+			NEA = { exists = no }
+			owns_state = 360
+			owns_state = 395
+			owns_state = 393
+			owns_state = 358
+			owns_state = 357
+		}
+		prerequisite = {
+			focus = SGL_a_triumph_for_democracy
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			add_timed_idea = {
+				idea = idea_glr_north_east_reconstruction
+				days = 365
+			}
+		}
+	}
+	
+	focus = {
+		id = SGL_remove_socialist_vestiges
+		icon = focus_begin_investigation
+		cost = 6
+		x = 5
+		y = 9
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_rebuild_the_north_east
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = NEA
+						is_core_of = AMC
+					}
+				}
+				add_core_of = GRL
+			}
+			country_event = greatlakes.280
+		}
+	}
+	
+	focus = {
+		id = SGL_restore_expropriated_property
+		icon = restore_great_lakes_republic
+		cost = 4
+		x = 7
+		y = 9
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_rebuild_the_north_east
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			393 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			360 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			358 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			357 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			390 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SGL_the_liberty_bell_rings
+		icon = focus_old_guard_in_philadelphia
+		cost = 3
+		x = 6
+		y = 10
+		available = {
+		}
+		prerequisite = {
+			focus = SGL_remove_socialist_vestiges
+		}
+		prerequisite = {
+			focus = SGL_restore_expropriated_property
+		}
+		relative_position_id = SGL_return_of_the_emigres
+		completion_reward = {
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.04
+			}
+			set_capital = { state = 360 }
+		}
+	}
+	
+	focus = {
+		id = SGL_beyond_the_great_lakes
+		icon = focus_commonwealth_un_membership
+		cost = 1
+		x = 13
+		y = 16
+		available = {
+			OR = {
+				has_completed_focus = SGL_true_revolutionary_ideology
+				has_completed_focus = SGL_lindsays_faction
+				has_completed_focus = SGL_la_dukes_faction
+				has_completed_focus = SGL_vice_president_carson
+				has_completed_focus = SGL_vice_president_lugar
+			}
+		}
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+	
+	focus = {
+		id = SGL_socialism_in_the_great_lakes
+		icon = communist_star
+		cost = 2
+		x = -3
+		y = 1
+		available = {
+			OR = {
+				has_government = revolutionary_socialist
+				has_government = moderate_socialist
+			}
+		}
+		mutually_exclusive = { 
+			focus = SGL_capitalism_preserved
+		}
+		prerequisite = {
+			focus = SGL_beyond_the_great_lakes
+		}
+		relative_position_id = SGL_beyond_the_great_lakes
+		completion_reward = {
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.02
+			}
+		}
+	}
+	
+	focus = {
+		id = SGL_neutralise_the_montanan_menace
+		icon = montana_attack
+		cost = 4
+		x = -3
+		y = 2
+		available = {
+			OR = {
+				has_government = revolutionary_socialist
+				has_government = moderate_socialist
+			}
+		}
+		prerequisite = {
+			focus = SGL_socialism_in_the_great_lakes
+		}
+		relative_position_id = SGL_beyond_the_great_lakes
+		will_lead_to_war_with = MOT
+		completion_reward = {
+			if = {
+				limit = {
+					MOT = {
+						has_government = revolutionary_socialist
+					}
+				}
+				diplomatic_relation = {
+					country = MOT
+					relation = guarantee
+					active = yes
+				}
+				MOT = {
+					diplomatic_relation = {
+						country = GRL 
+						relation = guarantee
+						active = yes
+					}
+				}
+				else = {
+					create_wargoal = {
+						target = MOT
+						type = annex_everything
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SGL_the_midwestern_revolution
+		icon = midwest_attack
+		cost = 5
+		x = -3
+		y = 3
+		available = {
+			OR = {
+				has_government = revolutionary_socialist
+				has_government = moderate_socialist
+			}
+			NOT = {
+				MWA = {
+					OR = {
+						has_government = revolutionary_socialist
+						has_government = moderate_socialist
+					}
+				}
+			}
+		}
+		mutually_exclusive = { 
+			focus = SGL_purchase_east_dakota
+		}
+		prerequisite = {
+			focus = SGL_neutralise_the_montanan_menace
+		}
+		relative_position_id = SGL_beyond_the_great_lakes
+		will_lead_to_war_with = MWA
+		completion_reward = {
+			create_wargoal = {
+				target = MWA
+				type = annex_everything
+			}
+			898 = {
+				add_core_of = GRL
+			}
+		}
+	}
+	
+	focus = {
+		id = SGL_without_the_revisionists
+		icon = commonwealth_attack
+		cost = 1
+		x = -3
+		y = 4
+		available = {
+			OR = {
+				has_government = revolutionary_socialist
+				has_government = moderate_socialist
+			}
+		}
+		mutually_exclusive = { 
+			focus = SGL_align_with_the_peoples_commonwealth
+		}
+		prerequisite = {
+			focus = SGL_the_midwestern_revolution
+			focus = SGL_purchase_east_dakota
+		}
+		relative_position_id = SGL_beyond_the_great_lakes
+		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SGL_shore_up_our_defenses
+		icon = defence
+		cost = 4
+		x = -3
+		y = 5
+		available = {
+			OR = {
+				has_government = revolutionary_socialist
+				has_government = moderate_socialist
+			}
+		}
+		prerequisite = {
+			focus = SGL_without_the_revisionists
+		}
+		relative_position_id = SGL_beyond_the_great_lakes
+		completion_reward = {
+			add_ideas = idea_glr_revsoc_defense
+		}
+	}
+	
+	focus = {
+		id = SGL_lead_true_revolutionaries
+		icon = focus_rise_of_the_communes
+		cost = 5
+		x = -5
+		y = 6
+		available = {
+			OR = {
+				has_government = revolutionary_socialist
+				has_government = moderate_socialist
+			}
+		}
+		prerequisite = {
+			focus = SGL_shore_up_our_defenses
+		}
+		relative_position_id = SGL_beyond_the_great_lakes
+		completion_reward = {
+			if = {
+				limit = {
+					has_completed_focus = SGL_emergency_party_conference
+				}
+				create_faction_from_template = { 
+					template = faction_template_regional   
+					name = glr_socialist_alliance
+					icon = GFX_faction_generic_american
+				}
+				every_country = {
+					limit = {
+						AND = {
+							NOT = {
+								tag = GRL
+							}
+							has_government = revolutionary_socialist
+						}
+					}
+					country_event = { id = greatlakes_diplo.32 }
+				}
+				else = {
+				create_faction_from_template = { 
+					template = faction_template_regional   
+					name = glr_american_leftist_alliance
+					icon = GFX_faction_generic_american
+				}
+					if = {
+						limit = {
+							country_exists = CSD
+							CSD = {
+								OR = {
+									has_government = moderate_socialist
+									has_government = revolutionary_socialist
+								}
+							}
+						}
+						CSD = {
+							country_event = { id = greatlakes_diplo.32 }
+						}
+					}
+					if = {
+						limit = {
+							country_exists = PCA
+							PCA = {
+								OR = {
+									has_government = moderate_socialist
+									has_government = revolutionary_socialist
+								}
+							}
+						}
+						PCA = {
+							country_event = { id = greatlakes_diplo.32 }
+						}
+					}
+					if = {
+						limit = {
+							country_exists = ARI
+							ARI = {
+								OR = {
+									has_government = moderate_socialist
+									has_government = revolutionary_socialist
+								}
+							}
+						}
+						ARI = {
+							country_event = { id = greatlakes_diplo.32 }
+						}
+					}
+					if = {
+						limit = {
+							country_exists = UTA
+							UTA = {
+								OR = {
+									has_government = moderate_socialist
+									has_government = revolutionary_socialist
+								}
+							}
+						}
+						UTA = {
+							country_event = { id = greatlakes_diplo.32 }
+						}
+					}
+					if = {
+						limit = {
+							country_exists = LIN
+							LIN = {
+								OR = {
+									has_government = moderate_socialist
+									has_government = revolutionary_socialist
+								}
+							}
+						}
+						LIN = {
+							country_event = { id = greatlakes_diplo.32 }
+						}
+					}
+					if = {
+						limit = {
+							country_exists = MOT
+							MOT = {
+								OR = {
+									has_government = moderate_socialist
+									has_government = revolutionary_socialist
+								}
+							}
+						}
+						MOT = {
+							country_event = { id = greatlakes_diplo.32 }
+						}
+					}
+					if = {
+						limit = {
+							country_exists = MWA
+							MWA = {
+								OR = {
+									has_government = moderate_socialist
+									has_government = revolutionary_socialist
+								}
+							}
+						}
+						MWA = {
+							country_event = { id = greatlakes_diplo.32 }
+						}
+					}
+					if = {
+						limit = {
+							country_exists = TEX
+							TEX = {
+								OR = {
+									has_government = moderate_socialist
+									has_government = revolutionary_socialist
+								}
+							}
+						}
+						TEX = {
+							country_event = { id = greatlakes_diplo.32 }
+						}
+					}
+					if = {
+						limit = {
+							country_exists = ILL
+							ILL = {
+								OR = {
+									has_government = moderate_socialist
+									has_government = revolutionary_socialist
+								}
+							}
+						}
+						ILL = {
+							country_event = { id = greatlakes_diplo.32 }
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SGL_a_revolution_across_the_lakes
+		icon = embrace_the_revolution
+		cost = 4
+		x = -3
+		y = 6
+		available = {
+			OR = {
+				has_government = revolutionary_socialist
+				has_government = moderate_socialist
+			}
+			NOT = {
+				has_completed_focus = SGL_emergency_party_conference
+				has_completed_focus = SGL_revolutionary_socialist_solidarity
+			}
+		}
+		prerequisite = {
+			focus = SGL_shore_up_our_defenses
+		}
+		relative_position_id = SGL_beyond_the_great_lakes
+		will_lead_to_war_with = NEA
+		will_lead_to_war_with = AMC
+		completion_reward = {
+			395 = {
+				add_core_of = GRL
+			}
+			393 = {
+				add_core_of = GRL
+			}
+			396 = {
+				add_core_of = GRL
+			}
+			261 = {
+				add_core_of = GRL
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = NEA
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = AMC
+			}
+		}
+	}
+	
+	focus = {
+		id = SGL_liberate_the_south
+		icon = american_republic_attack
+		cost = 5
+		x = -3
+		y = 7
+		available = {
+			OR = {
+				has_government = revolutionary_socialist
+				has_government = moderate_socialist
+			}
+		}
+		prerequisite = {
+			focus = SGL_lead_true_revolutionaries
+			focus = SGL_a_revolution_across_the_lakes
+		}
+		relative_position_id = SGL_beyond_the_great_lakes
+		will_lead_to_war_with = USA
+		completion_reward = {
+			create_wargoal = {
+				target = USA
+				type = annex_everything
+			}
+		}
+	}
+	
+	focus = {
+		id = SGL_secure_illinois
+		icon = illinois_attack
+		cost = 3
+		x = -1
+		y = 2
+		prerequisite = {
+			focus = SGL_socialism_in_the_great_lakes
+			focus = SGL_capitalism_preserved
+		}
+		mutually_exclusive = {
+			focus = SGL_invite_illinois
+		}
+		relative_position_id = SGL_beyond_the_great_lakes
+		will_lead_to_war_with = ILL
+		completion_reward = {
+			create_wargoal = {
+				target = ILL
+				type = annex_everything
+			}
+			373 = {
+				add_core_of = GRL
+			}
+			892 = {
+				add_core_of = GRL
+			}
+		}
+	}
+	
+	focus = {
+		id = SGL_invite_illinois
+		icon = major_alliance
+		cost = 4
+		x = 1
+		y = 2
+		prerequisite = {
+			focus = SGL_socialism_in_the_great_lakes
+			focus = SGL_capitalism_preserved
+		}
+		mutually_exclusive = {
+			focus = SGL_secure_illinois
+		}
+		relative_position_id = SGL_beyond_the_great_lakes
+		will_lead_to_war_with = ILL
+		completion_reward = {
+			ILL = {
+				country_event = greatlakes_diplo.35
+			}
+		}
+	}
+	
+	focus = {
+		id = SGL_purchase_east_dakota
+		icon = shaking_hands_1
+		cost = 1
+		x = 0
+		y = 3
+		prerequisite = {
+			focus = SGL_secure_illinois
+			focus = SGL_invite_illinois
+		}
+		mutually_exclusive = {
+			focus = SGL_the_midwestern_revolution
+		}
+		available = {
+			MWA = {
+				exists = yes
+				owns_state = 898
+			}
+		}
+		bypass_if_unavailable = yes
+		relative_position_id = SGL_beyond_the_great_lakes
+		will_lead_to_war_with = MWA
+		completion_reward = {
+			MWA = {
+				country_event = greatlakes_diplo.3
+			}
+			add_state_core = 898
+		}
+	}
+	
+	focus = {
+		id = SGL_capitalism_preserved
+		icon = GFX_freedom_focus
+		cost = 2
+		x = 3
+		y = 1
+		available = {
+			NOT = {
+				OR = {
+					has_government = revolutionary_socialist
+					has_government = moderate_socialist
+				}
+			}
+		}
+		mutually_exclusive = { 
+			focus = SGL_socialism_in_the_great_lakes
+		}
+		prerequisite = {
+			focus = SGL_beyond_the_great_lakes
+		}
+		relative_position_id = SGL_beyond_the_great_lakes
+		completion_reward = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.02
+			}
+		}
+	}
+	
+	focus = {
+		id = SGL_deepen_canadian_ties
+		icon = canada
+		cost = 4
+		x = 3
+		y = 2
+		available = {
+			NOT = {
+				OR = {
+					has_government = revolutionary_socialist
+					has_government = moderate_socialist
+				}
+			}
+		}
+		prerequisite = {
+			focus = SGL_capitalism_preserved
+		}
+		relative_position_id = SGL_beyond_the_great_lakes
+		completion_reward = {
+			add_opinion_modifier = {
+				target = CAN
+				modifier = declaration_of_friendship
+			}
+			reverse_add_opinion_modifier = {
+				target = CAN
+				modifier = declaration_of_friendship
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1500
+				producer = CAN
+			}
+			add_equipment_to_stockpile = {
+				type = light_tank_equipment_1
+				amount = 500
+				producer = CAN
+			}
+		}
+	}
+	
+	focus = {
+		id = SGL_deal_with_montana
+		icon = fascism_2
+		cost = 3
+		x = 3
+		y = 3
+		available = {
+			NOT = {
+				OR = {
+					has_government = revolutionary_socialist
+					has_government = moderate_socialist
+				}
+			}
+		}
+		prerequisite = {
+			focus = SGL_deepen_canadian_ties
+		}
+		relative_position_id = SGL_beyond_the_great_lakes
+		will_lead_to_war_with = MOT
+		completion_reward = {
+			if = {
+				limit = {
+					has_government = nationalist
+					MOT = {
+						OR = {
+							has_government = fascist
+							has_government = nationalist
+							has_government = national_bolshevik
+						}
+					}
+				}
+				diplomatic_relation = {
+					country = MOT
+					relation = non_aggression_pact
+					active = yes
+				}
+				MOT = {
+					diplomatic_relation = {
+						country = GRL
+						relation = non_aggression_pact
+						active = yes
+					}
+				}
+				else = {
+					create_wargoal = {
+						target = MOT
+						type = annex_everything
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SGL_align_with_the_peoples_commonwealth
+		icon = commonwealth
+		cost = 2
+		x = -1
+		y = 4
+		prerequisite = {
+			focus = SGL_the_midwestern_revolution
+			focus = SGL_purchase_east_dakota
+		}
+		mutually_exclusive = {
+			focus = SGL_without_the_revisionists
+		}
+		available = {
+			country_exists = NEA
+			OR = {
+				has_government = revolutionary_socialist
+				has_government = moderate_socialist
+			}
+			NOT = {
+				OR = {
+					has_country_leader = {
+						name = "Angela Nicole Walker"
+						ruling_only = yes
+					}
+					has_completed_focus = SGL_ideological_purity
+				}
+			}
+		}
+
+		relative_position_id = SGL_beyond_the_great_lakes
+		completion_reward = {
+			custom_effect_tooltip = GRL_republican_dream_tt
+			set_country_flag = GRL_socialist_apc_alignment
+			add_political_power = 80
+			country_event = greatlakes_diplo.38
+			if = {
+				limit = {
+					NEA = {
+						is_faction_leader = yes
+					}
+				}
+				NEA = { add_to_faction = GRL }
+			}
+		}
+	}
+	
+	focus = {
+		id = SGL_great_lakes_economic_integration
+		icon = focus_exploit_western_councils
+		cost = 5
+		x = -1
+		y = 5
+		prerequisite = {
+			focus = SGL_align_with_the_peoples_commonwealth
+		}
+		available = {
+			OR = {
+				has_government = revolutionary_socialist
+				has_government = moderate_socialist
+			}
+		}
+		relative_position_id = SGL_beyond_the_great_lakes
+		completion_reward = {
+			891 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			393 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.03
+			}
+			NEA = {
+				add_popularity = {
+					ideology = revolutionary_socialist
+					popularity = 0.03
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SGL_together_for_emancipation
+		icon = liberty_attack
+		cost = 4
+		x = -1
+		y = 6
+		prerequisite = {
+			focus = SGL_great_lakes_economic_integration
+		}
+		available = {
+			OR = {
+				has_government = revolutionary_socialist
+				has_government = moderate_socialist
+			}
+		}
+		relative_position_id = SGL_beyond_the_great_lakes
+		completion_reward = {
+			add_ideas = idea_glr_american_emancipation
+			NEA = {
+				add_ideas = idea_glr_american_emancipation
+			}
+		}
+	}
+	
+	focus = {
+		id = SGL_join_the_democratic_league
+		icon = democratic_league
+		cost = 3
+		x = 1
+		y = 4
+		available = {
+			NOT = {
+				OR = {
+					has_government = revolutionary_socialist
+					has_government = moderate_socialist
+				}
+			}
+			CAN = {
+				is_faction_leader = yes
+			}
+		}
+		prerequisite = {
+			focus = SGL_purchase_east_dakota
+		}
+		prerequisite = {
+			focus = SGL_deal_with_montana
+		}
+		mutually_exclusive = {
+			focus = SGL_the_dixon_alliance
+		}
+		relative_position_id = SGL_beyond_the_great_lakes
+		completion_reward = {
+			CAN = {
+				country_event = greatlakes_diplo.20
+			}		
+		}
+	}
+
+	focus = {
+		id = SGL_the_dixon_alliance
+		icon = american_republic
+		cost = 3
+		x = 3
+		y = 4
+		available = {
+			NOT = {
+				OR = {
+					has_government = revolutionary_socialist
+					has_government = moderate_socialist
+				}
+			}
+			USA = {
+				is_faction_leader = yes
+				has_completed_focus = USA_the_american_alliance
+			}
+		}
+		prerequisite = {
+			focus = SGL_purchase_east_dakota
+		}
+		prerequisite = {
+			focus = SGL_deal_with_montana
+		}
+		mutually_exclusive = {
+			focus = SGL_join_the_democratic_league
+		}
+		relative_position_id = SGL_beyond_the_great_lakes
+		completion_reward = {
+			USA = {
+				country_event = greatlakes_diplo.39
+			}		
+		}
+	}
+	
+	focus = {
+		id = SGL_bulwark_against_the_west
+		icon = bulwark_against_communism
+		cost = 4
+		x = 2
+		y = 5
+		available = {
+			NOT = {
+				OR = {
+					has_government = revolutionary_socialist
+					has_government = moderate_socialist
+				}
+			}
+		}
+		prerequisite = {
+			focus = SGL_join_the_democratic_league
+			focus = SGL_the_dixon_alliance
+		}
+		relative_position_id = SGL_beyond_the_great_lakes
+		completion_reward = {
+			add_ideas = idea_glr_protect_against_communism
+		}
+	}
+	
+	focus = {
+		id = SGL_american_free_trade_agreement
+		icon = investigate_industrial_corruption
+		cost = 5
+		x = 2
+		y = 6
+		available = {
+			NOT = {
+				OR = {
+					has_government = revolutionary_socialist
+					has_government = moderate_socialist
+				}
+			}
+		}
+		prerequisite = {
+			focus = SGL_bulwark_against_the_west
+		}
+		relative_position_id = SGL_beyond_the_great_lakes
+		completion_reward = {
+			every_country = {
+				limit = {
+				    AND = {
+					    OR = {
+						    tag = GRL 
+							tag = ILL 
+							tag = MWA
+							tag = MOT
+							tag = LIN 
+							tag = ARI
+							tag = UTA
+							tag = TEX
+							tag = PCA
+							tag = CSD
+							tag = AMC
+							tag = NEA
+						}
+						OR = {
+						    has_government = nationalist
+						    has_government = national_conservative
+							has_government = centrist
+							has_government = liberal
+							has_government = new_democrat
+						}
+					}
+				}
+				add_ideas = idea_glr_american_free_trade_agreement
+				country_event = greatlakes_diplo.42
+			}
+		}
+	}
+	
+}

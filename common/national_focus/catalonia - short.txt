@@ -1,0 +1,573 @@
+focus_tree = {
+	id = catalonia_tree_short
+	country = {
+		factor = 0
+		modifier = {
+			add = 20
+			tag = CAT
+		}
+	}
+	default = no
+	continuous_focus_position = { x = 0 y = 2400 }
+	focus = {
+		id = CAT_2_call_the_eu
+		icon = CAT_call_for_EU_help
+		cost = 1
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		mutually_exclusive = {
+			focus = CAT_2_rally_united_front
+		}
+		x = 10
+		y = 0
+		completion_reward = {
+			165 = {
+				create_unit = {
+					division = "name = \"'Josep Moragues i Mas' Infantry Division\" division_template = \"Defense Guard\" start_experience_factor = 0.6 start_equipment_factor = 1"
+					owner = CAT
+					allow_spawning_on_enemy_provs = yes
+					prioritize_location = 9824
+				}
+				create_unit = {
+					division = "name = \"'Rafael Casanova' Infantry Division\" division_template = \"Defense Guard\" start_experience_factor = 0.6 start_equipment_factor = 1"
+					owner = CAT
+					allow_spawning_on_enemy_provs = yes
+					prioritize_location = 9824
+				}
+			}
+			add_to_variable = {
+			   var = catalonia_unity_variable
+			   value = -2
+			}
+			every_country = {
+				limit = {
+					has_idea = idea_eu_member
+				}
+				country_event = {
+					id = cat.1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CAT_2_request_german_armour
+		icon = CAT_request_german_tanks
+		cost = 3
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = CAT_2_call_the_eu
+		}
+		relative_position_id = CAT_2_call_the_eu
+		x = -2
+		y = 1
+		completion_reward = {
+			GER = {
+				country_event = {
+					id = cat.3
+				}
+				create_production_license = {
+					target = CAT
+					equipment = {
+						type = heavy_tank_chassis_0
+						version = 0
+					}
+					cost_factor = 0
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CAT_2_deepen_ties_pact
+		icon = warsaw_pact_investment
+		cost = 3
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = CAT_2_request_german_armour
+		}
+		relative_position_id = CAT_2_request_german_armour
+		x = 0
+		y = 1
+		completion_reward = {
+			every_country = {
+				limit = {
+					has_government = communist
+					is_in_faction_with = GER
+				}
+				country_event = {
+					id = cat.7
+				}
+				add_opinion_modifier = {
+					target = CAT
+					modifier = spr_deepened_ties_to_the_pact
+				}
+			}
+			add_to_variable = {
+			   var = catalonia_unity_variable
+			   value = -2
+			}
+			hidden_effect = {
+				country_event = {
+					id = cat.10
+					days = 3
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CAT_2_form_provisional_government
+		icon = restore_fueros
+		cost = 3
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = CAT_2_call_the_eu
+		}
+		relative_position_id = CAT_2_call_the_eu
+		x = 0
+		y = 1
+		completion_reward = {
+			add_political_power = 150
+			add_stability = 0.1
+			add_popularity = {
+				ideology = communist
+				popularity = 0.10
+			}
+		}
+	}
+	
+	focus = {
+		id = CAT_2_peoples_commisariat_liberation
+		icon = CAT_commissariat_for_peoples_liberation
+		cost = 3
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = CAT_2_form_provisional_government
+		}
+		relative_position_id = CAT_2_form_provisional_government
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = {
+				id = cat.11
+			}
+			add_ideas = {
+				idea_CAT_peoples_commissariat_for_liberation
+			}
+		}
+	}
+	
+	focus = {
+		id = CAT_2_call_valencians_to_arms
+		icon = CAT_valencian_brothers
+		cost = 2
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = CAT_2_rally_united_front
+			focus = CAT_2_call_the_eu
+		}
+		relative_position_id = CAT_2_call_the_eu
+		x = 2
+		y = 1
+		completion_reward = {
+			custom_effect_tooltip = tooltip_to_hide_valencia_oob_load
+			custom_effect_tooltip = tooltip_to_hide_valencia_oob_load
+			hidden_effect = {
+				load_oob = CAT_valencians
+			}
+			IF = {
+				limit = {
+					has_war_with = SPR
+				}
+				SPR = {
+					country_event = {
+						id = cat.12
+					}
+				}
+			}
+			IF = {
+				limit = {
+					has_war_with = SPN
+				}
+				SPN = {
+					country_event = {
+						id = cat.12
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CAT_2_infiltrate_baleares
+		icon = CAT_infiltrate_balearics
+		cost = 2
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+		focus = CAT_2_call_valencians_to_arms
+		}
+		relative_position_id = CAT_2_call_valencians_to_arms
+		x = 0
+		y = 1
+		completion_reward = {
+			custom_effect_tooltip = tooltip_to_hide_balearic_oob_load
+			hidden_effect = {
+				load_oob = CAT_balearics
+			}
+			IF = {
+				limit = {
+					has_war_with = SPR
+				}
+				SPR = {
+					country_event = {
+						id = cat.13
+					}
+				}
+			}
+			IF = {
+				limit = {
+					has_war_with = SPN
+				}
+				SPN = {
+					country_event = {
+						id = cat.13
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CAT_2_rally_united_front
+		icon = focus_CAT_united_front_focus
+		cost = 1
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		mutually_exclusive = {
+			focus = CAT_2_call_the_eu
+		}
+		relative_position_id = CAT_2_call_the_eu
+		x = 6
+		y = 0
+		completion_reward = {
+			country_event = {
+				id = cat.6
+			}
+			add_ideas = {
+				idea_cat_united_front_strategies
+			}
+			add_to_variable = {
+			   var = catalonia_unity_variable
+			   value = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = CAT_2_learn_from_basque
+		icon = BSQ_the_youth_of_the_nation
+		cost = 2
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = CAT_2_rally_united_front
+			focus = CAT_2_call_the_eu
+		}
+		relative_position_id = CAT_2_call_the_eu
+		x = 4
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				idea_cat_kale_borroka_tactics
+			}
+		}
+	}
+		
+	focus = {
+		id = CAT_2_utilize_castillians
+		icon = armed_spanish_communists_focus
+		cost = 2
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = CAT_2_learn_from_basque
+		}
+		relative_position_id = CAT_2_learn_from_basque
+		x = 0
+		y = 1
+		completion_reward = {
+			IF = {
+				limit = {
+					has_war_with = SPR
+				}
+				SPR = {
+					add_timed_idea = {
+						idea = idea_bsq_supply_line_sabotage
+						days = 85
+					}
+				}
+			}
+			IF = {
+				limit = {
+					has_war_with = SPN
+				}
+				SPN = {
+					add_timed_idea = {
+						idea = idea_bsq_supply_line_sabotage
+						days = 85
+					}
+				}
+			}
+			IF = {
+				limit = {
+					has_war_with = SPR
+				}
+				SPR = {
+					country_event = {
+						id = cat.14
+					}
+				}
+			}
+			IF = {
+				limit = {
+					has_war_with = SPN
+				}
+				SPN = {
+					country_event = {
+						id = cat.14
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CAT_2_tolerate_cnt_fai
+		icon = tolerate_cnt_fai_focus
+		cost = 3
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = CAT_2_rally_united_front
+		}
+		relative_position_id = CAT_2_call_the_eu
+		x = 6
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_cat_united_front_strategies
+				add_idea = idea_cat_united_front_strategies_2
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.05
+			}
+			division_template = {
+				name = "Workers' Militia"
+				regiments = {
+					militia = { x = 0 y = 0 }
+					militia = { x = 0 y = 1 }
+					militia = { x = 0 y = 2 }
+					militia = { x = 0 y = 3 }
+					militia = { x = 1 y = 0 }
+					militia = { x = 1 y = 1 }
+					militia = { x = 1 y = 2 }
+					militia = { x = 1 y = 3 }
+				}
+			}
+			add_to_variable = {
+			   var = catalonia_unity_variable
+			   value = 1
+			}
+			random_owned_state = {
+				create_unit = {
+					division = "name = \"Workers' Militia\" division_template = \"Workers' Militia\" start_experience_factor = 0.15 start_equipment_factor = 1"
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"Workers' Militia\" division_template = \"Workers' Militia\" start_experience_factor = 0.15 start_equipment_factor = 1"
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"Workers' Militia\" division_template = \"Workers' Militia\" start_experience_factor = 0.15 start_equipment_factor = 1"
+					owner = ROOT
+				}
+			}
+			country_event = {
+				id = cat.15
+			}
+		}
+	}
+	focus = {
+		id = CAT_2_unity_all_costs
+		icon = left_wing_win
+		cost = 3
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = CAT_2_tolerate_cnt_fai
+		}
+		relative_position_id = CAT_2_tolerate_cnt_fai
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = {
+				id = cat.16
+			}
+			swap_ideas = {
+				remove_idea = idea_cat_united_front_strategies_2
+				add_idea = idea_cat_united_front_strategies_3
+			}
+		}
+	}
+	
+	focus = { #https://www.youtube.com/watch?v=Ms5TYGuprek
+		id = CAT_2_reinvigorate_interbrigades
+		icon = international_brigades_focus
+		cost = 3
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = CAT_2_rally_united_front
+		}
+		relative_position_id = CAT_2_rally_united_front
+		x = 2
+		y = 1
+		completion_reward = {
+			country_event = {
+				id = cat.17
+			}
+			add_ideas = {
+				idea_cat_interbrigades
+			}
+		}
+	}
+	
+	focus = { 
+		id = CAT_2_rally_all_people
+		icon = CAT_rally_all_our_people
+		cost = 3
+		available = {
+			OR ={
+				has_war_with = SPR
+				has_war_with = SPN
+			}
+		}
+		bypass = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = CAT_2_reinvigorate_interbrigades
+		}
+		relative_position_id = CAT_2_reinvigorate_interbrigades
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				idea_cat_rally_all_our_people
+			}
+			add_to_variable = {
+			   var = catalonia_unity_variable
+			   value = 1
+			}
+		}
+	}
+}

@@ -1,0 +1,5379 @@
+focus_tree = {
+	id = carlist_titoism
+	continuous_focus_position = { x = 50 y = 2000 }
+	focus = {
+		id = carlist_el_rey_rojo
+		icon = spain_red_king_focus
+		cost = 1
+		
+		available = {
+			has_country_flag = picked_titoism
+		}
+		
+		bypass = {
+			has_country_flag = picked_titoism
+		}
+		
+		x = 10
+		y = 0
+	}
+	focus = {
+		id = carlist_meet_with_subversives
+		icon = socialist_youth
+		cost = 4
+		
+		prerequisite = {
+			focus = carlist_el_rey_rojo
+		}
+		
+		relative_position_id = carlist_el_rey_rojo
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_SPR_general_strike
+				add_idea = idea_SPR_general_strike_2
+			}
+			country_event = {
+				id = spain.91
+			}
+		}
+	}
+	focus = {
+		id = carlist_promote_the_true_hierarchy
+		icon = peoples_government
+		cost = 5
+		
+		prerequisite = {
+			focus = carlist_meet_with_subversives
+		}
+		
+		relative_position_id = carlist_meet_with_subversives
+		x = -2
+		y = 1
+		
+		completion_reward = {
+			add_ideas = {
+				idea_spr_the_true_hierarchy
+			}
+			country_event = {
+				id = spain.311
+			}
+		}
+	}
+	focus = {
+		id = carlist_seize_the_wealth_of_the_capitalists
+		icon = embrace_anti_capitalism
+		cost = 6
+		
+		prerequisite = {
+			focus = carlist_promote_the_true_hierarchy
+		}
+		
+		relative_position_id = carlist_promote_the_true_hierarchy
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			add_timed_idea = {
+				idea = idea_SPR_seized_wealth
+				days = 120
+			}
+			country_event = {
+				id = spain.312
+			}
+		}
+	}
+	focus = {
+		id = carlist_legalize_and_promote_unionization
+		icon = establish_nationalisation_ministry
+		cost = 6
+		
+		prerequisite = {
+			focus = carlist_seize_the_wealth_of_the_capitalists
+		}
+		
+		relative_position_id = carlist_seize_the_wealth_of_the_capitalists
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			add_ideas = {
+				idea_SPR_strong_workers_rights
+			}
+		}
+	}
+	focus = {
+		id = carlist_new_education_for_military
+		icon = GFX_a_game_of_chess
+		cost = 7.2
+		
+		prerequisite = {
+			focus = carlist_meet_with_subversives
+		}
+		
+		relative_position_id = carlist_meet_with_subversives
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_SPR_bloated_military
+				add_idea = idea_SPR_bloated_military_2
+			}
+			add_ideas = {
+				idea_spr_carlist_military_reeducation
+			}
+		}
+	}
+	focus = {
+		id = carlist_the_military_genius_of_tito_and_zhukov
+		icon = soviet_military
+		cost = 7.2
+		
+		prerequisite = {
+			focus = carlist_new_education_for_military
+		}
+		
+		relative_position_id = carlist_new_education_for_military
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = {
+				idea_spr_military_genius_of_tito_and_zhukov
+			}
+			country_event = {
+				id = spain.315
+			}
+		}
+	}
+	focus = {
+		id = carlist_a_royal_red_guard
+		icon = spain_reorganize_requetes_focus
+		cost = 10
+		
+		prerequisite = {
+			focus = carlist_the_military_genius_of_tito_and_zhukov
+		}
+		
+		relative_position_id = carlist_the_military_genius_of_tito_and_zhukov
+		x = 0
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_SPR_bloated_military_2
+				add_idea = idea_spr_royal_red_guard
+			}
+			hidden_effect = {
+				add_ideas = {
+					idea_SPR_hidden_ideas_to_make_spain_make_more_divisions
+				}
+			}
+			remove_ideas = {
+				idea_spr_carlist_military_reeducation
+			}
+			division_template = {
+				name = "Carlist Requetés"
+				regiments = {
+					militia = { x = 0 y = 0 }
+					militia = { x = 0 y = 1 }
+					militia = { x = 0 y = 2 }
+					
+					militia = { x = 1 y = 0 }
+					militia = { x = 1 y = 1 }
+					militia = { x = 1 y = 2 }
+					
+					motorized = { x = 2 y = 0 }
+					motorized = { x = 2 y = 1 }
+					motorized = { x = 2 y = 2 }
+				}
+				
+				support = {
+					recon = { x = 0 y = 0 }
+					field_hospital = { x = 0 y = 1 }
+					military_police = { x = 0 y = 2 }
+				}
+			}
+			41 = {
+				create_unit = {
+					division = "name = \"Carlist Requeté\" division_template = \"Carlist Requetés\" start_experience_factor = 1 start_equipment_factor = 1"
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"Carlist Requeté\" division_template = \"Carlist Requetés\" start_experience_factor = 1  start_equipment_factor = 1"
+					owner = ROOT
+				}
+			}
+			IF = {
+				limit = {
+					owns_state = 172
+				}
+				172 = {
+					create_unit = {
+						division = "name = \"Carlist Requeté\" division_template = \"Carlist Requetés\" start_experience_factor = 1 start_equipment_factor = 1"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"Carlist Requeté\" division_template = \"Carlist Requetés\" start_experience_factor = 1  start_equipment_factor = 1"
+						owner = ROOT
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					owns_state = 166
+					BSQ = {
+						owns_state = 172
+						NOT = {
+							has_government = monarchist
+						}
+					}
+				}
+				166 = {
+					create_unit = {
+						division = "name = \"Carlist Requeté\" division_template = \"Carlist Requetés\" start_experience_factor = 1 start_equipment_factor = 1"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"Carlist Requeté\" division_template = \"Carlist Requetés\" start_experience_factor = 1  start_equipment_factor = 1"
+						owner = ROOT
+					}
+				}
+			}
+			country_event = {
+				id = spain.316
+			}
+		}
+	}
+	focus = {
+		id = carlist_prosecute_the_exploiters_of_the_people
+		icon = GFX_arrest_gpc_leaders
+		cost = 6
+		
+		prerequisite = {
+			focus = carlist_a_royal_red_guard
+		}
+		prerequisite = {
+			focus = carlist_legalize_and_promote_unionization
+		}
+		
+		relative_position_id = carlist_a_royal_red_guard
+		x = -1
+		y = 1
+		
+		completion_reward = {
+			add_ideas = {
+				idea_spr_prosectution_of_the_capitalists
+			}
+		}
+	}
+	focus = {
+		id = carlist_promise_an_extensive_welfare_state
+		icon = welfare_statism
+		cost = 6
+		
+		prerequisite = {
+			focus = carlist_meet_with_subversives
+		}
+		
+		relative_position_id = carlist_meet_with_subversives
+		x = 2
+		y = 1
+		
+		completion_reward = {
+			remove_ideas = {
+				idea_SPR_general_strike_2
+			}
+			add_ideas = {
+				idea_spr_welfare_statism
+			}
+			country_event = {
+				id = spain.318
+			}
+		}
+	}
+	focus = {
+		id = carlist_enact_universal_base_income
+		icon = deal_focus
+		cost = 7.2
+		
+		prerequisite = {
+			focus = carlist_promise_an_extensive_welfare_state
+		}
+		
+		relative_position_id = carlist_promise_an_extensive_welfare_state
+		x = 0
+		y = 2
+		
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_spr_welfare_statism
+				add_idea = idea_spr_welfare_statism_2
+			}
+		}
+	}
+	focus = {
+		id = carlist_cementing_the_new_socialist_kingdom
+		icon = spain_new_socialist_kingdom_focus
+		cost = 10
+		
+		prerequisite = {
+			focus = carlist_enact_universal_base_income
+		}
+		prerequisite = {
+			focus = carlist_prosecute_the_exploiters_of_the_people
+		}
+		
+		relative_position_id = carlist_a_royal_red_guard
+		x = 0
+		y = 2
+		
+		completion_reward = {
+			remove_ideas = {
+				idea_SPR_lingering_republican_radicalism
+			}
+			set_politics = {
+				ruling_party = revolutionary_socialist
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.1
+			}
+			add_stability = 0.05
+			country_event = {
+				id = spain.319
+			}
+			hidden_effect = {
+				add_ideas = spr_sic_jase_lazaro_ibanez_compains
+				add_ideas = spr_fom_alejandra_ortize_martinez
+				add_ideas = spr_ind_jose_maria_porro_sainz
+				add_ideas = spr_nsm_david_diaz_vilchez
+				add_ideas = spr_inm_manuel_martorell_perez
+			}
+			custom_effect_tooltip = spain_carlist_ministers_tooltip
+		}
+	}
+	focus = {
+		id = carlist_enforce_workplace_democracy
+		icon = focus_direct_democracy
+		cost = 7.2
+		
+		prerequisite = {
+			focus = carlist_cementing_the_new_socialist_kingdom
+		}
+		
+		relative_position_id = carlist_cementing_the_new_socialist_kingdom
+		x = -3
+		y = 1
+		
+		completion_reward = {
+			add_ideas = {idea_apc_workers_self_management}
+			country_event = {
+				id = spain.320
+			}
+		}
+	}
+	focus = {
+		id = carlist_trade_arrangement_with_yugoslavia
+		icon = yugoslavia
+		cost = 5
+		
+		available = {
+			AND = {
+				country_exists = YUG
+				YUG = {
+					has_government = revolutionary_socialist
+				}
+			}
+		}
+		
+		prerequisite = {
+			focus = carlist_enforce_workplace_democracy
+		}
+		
+		bypass = {
+			NOT = {
+				OR = {
+					country_exists = YUG
+					YUG = {
+						has_government = revolutionary_socialist
+					}
+				}
+			}
+		}
+		
+		relative_position_id = carlist_enforce_workplace_democracy
+		x = -1
+		y = 1
+		
+		completion_reward = {
+			YUG = {
+				country_event = {
+					id = spain_diplo.1
+				}
+			}
+		}
+	}
+	focus = {
+		id = carlist_promote_worker_coops
+		icon = torch_industry
+		cost = 10
+		
+		prerequisite = {
+			focus = carlist_enforce_workplace_democracy
+		}
+		
+		relative_position_id = carlist_enforce_workplace_democracy
+		x = 1
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_SPR_backwards_economy
+				add_idea = idea_SPR_backwards_economy_2
+			}
+			random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = carlist_invest_in_rural_development
+		icon = agrarian_socialism
+		cost = 10
+		
+		prerequisite = {
+			focus = carlist_promote_worker_coops
+		}
+		prerequisite = {
+			focus = carlist_trade_arrangement_with_yugoslavia
+		}
+		
+		relative_position_id = carlist_promote_worker_coops
+		x = -1
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_SPR_backwards_economy_2
+				add_idea = idea_SPR_backwards_economy_3
+			}
+			1019 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			175 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			173 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			169 = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			country_event = {
+				id = spain.322
+			}
+		}
+	}
+	focus = {
+		id = carlist_establish_crown_labor_commission
+		icon = spain_crown_labour_comission_focus
+		cost = 10
+		
+		prerequisite = {
+			focus = carlist_invest_in_rural_development
+		}
+		prerequisite = {
+			focus = carlist_condemn_past_carlism
+		}
+		
+		relative_position_id = carlist_invest_in_rural_development
+		x = 1
+		y = 1
+		completion_reward = {
+			remove_ideas = {idea_SPR_backwards_economy_3}
+			add_ideas = {idea_spr_crown_labor_commission}
+			country_event = {
+				id = spain.323
+			}
+		}
+	}
+	focus = {
+		id = carlist_anti_republican_propaganda
+		icon = spanish_anti_republican_propaganda
+		cost = 4
+		
+		prerequisite = {
+			focus = carlist_cementing_the_new_socialist_kingdom
+		}
+		
+		relative_position_id = carlist_cementing_the_new_socialist_kingdom
+		x = -1
+		y = 1
+		
+		completion_reward = {
+			add_stability = 0.05
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = new_democrat
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.05
+			}
+			country_event = {
+				id = spain.92
+			}
+		}
+	}
+	focus = {
+		id = carlist_reaffirm_ban_on_political_parties
+		icon = GFX_red_terror
+		cost = 4
+		
+		prerequisite = {
+			focus = carlist_anti_republican_propaganda
+		}
+		
+		relative_position_id = carlist_anti_republican_propaganda
+		x = 1
+		y = 1
+		
+		completion_reward = {
+			add_timed_idea = {
+				idea = idea_SPR_banned_political_parties_titoist
+				days = 120
+			}
+		}
+	}
+	focus = {
+		id = carlist_condemn_past_carlism
+		icon = SPR_denounce_past_carlism
+		cost = 5
+		
+		prerequisite = {
+			focus = carlist_reaffirm_ban_on_political_parties
+		}
+		prerequisite = {
+			focus = carlist_promote_worker_coops
+		}
+		
+		relative_position_id = carlist_reaffirm_ban_on_political_parties
+		x = -1
+		y = 1
+		
+		completion_reward = {
+			add_popularity = {
+				ideology = monarchist
+				popularity = -0.1
+			}
+			add_political_power = 150
+			add_stability = 0.05
+			country_event = {
+				id = spain.93
+			}
+		}
+	}
+	focus = {
+		id = carlist_reintroduce_the_royal_lottery
+		icon = revive_the_royal_lottery
+		cost = 6
+		
+		prerequisite = {
+			focus = carlist_condemn_past_carlism
+		}
+		prerequisite = {
+			focus = carlist_the_right_to_meaningful_employment
+		}
+		
+		relative_position_id = carlist_condemn_past_carlism
+		x = 1
+		y = 1
+		
+		completion_reward = {
+			add_ideas = {
+				idea_SPR_titoist_royal_lottery
+			}
+			country_event = {
+				id = spain.94
+			}
+		}
+	}
+	focus = {
+		id = carlist_for_every_man_a_home
+		icon = urban_housing
+		cost = 10
+		
+		prerequisite = {
+			focus = carlist_cementing_the_new_socialist_kingdom
+		}
+		
+		relative_position_id = carlist_cementing_the_new_socialist_kingdom
+		x = 1
+		y = 1
+		
+		completion_reward = {
+			random_owned_state = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = hospital
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			swap_ideas = {
+				remove_idea = idea_spr_welfare_statism_2
+				add_idea = idea_spr_welfare_statism_3
+			}
+		}
+	}
+	focus = {
+		id = carlist_restore_regional_autonomy
+		icon = GFX_the_modern_republic
+		cost = 10
+		
+		prerequisite = {
+			focus = carlist_cementing_the_new_socialist_kingdom
+		}
+		
+		relative_position_id = carlist_cementing_the_new_socialist_kingdom
+		x = 3
+		y = 1
+		
+		completion_reward = {
+			remove_ideas = {
+				idea_SPR_separatist_woes_start
+			}
+			hidden_effect = {
+				remove_ideas = {
+					idea_SPR_separatist_woes_basques_appeased
+					idea_SPR_separatist_woes_basques_worse_rest_norm
+					idea_SPR_separatist_woes_basques_and_galicians_appeased
+					idea_SPR_separatist_woes_basques_good_galicians_bad
+					idea_SPR_separatist_woes_basques_bad_galicians_good
+					idea_SPR_separatist_woes_basques_bad_galicians_bad
+					idea_SPR_separatist_woes_basques_bad_galicians_bad_catalans_good
+					idea_SPR_separatist_woes_basques_good_galicians_bad_catalans_good
+					idea_SPR_separatist_woes_basques_bad_galicians_good_catalans_good
+				}
+			}
+			add_ideas = {
+				idea_SPR_decentralized_state
+			}
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						has_dynamic_modifier = { modifier = autonomous_state }
+					}
+					remove_dynamic_modifier = { modifier = autonomous_state }
+				}
+			}
+			country_event = {
+				id = spain.325
+			}
+		}
+	}
+	focus = {
+		id = carlist_many_nations_one_king
+		icon = SPR_royal_carlist_father_focus
+		cost = 7.2
+		
+		prerequisite = {
+			focus = carlist_restore_regional_autonomy
+		}
+		
+		prerequisite = {
+			focus = carlist_for_every_man_a_home
+		}
+		
+		relative_position_id = carlist_restore_regional_autonomy
+		x = -1
+		y = 1
+		
+		completion_reward = {
+			add_ideas = {
+				idea_spr_united_under_the_king_father
+			}
+		}
+	}
+	focus = {
+		id = carlist_the_right_to_meaningful_employment
+		icon = collectivist_focus
+		cost = 10
+
+		prerequisite = {
+			focus = carlist_many_nations_one_king
+		}
+		
+		relative_position_id = carlist_for_every_man_a_home
+		x = 0
+		y = 2
+		
+		completion_reward = {
+			random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			swap_ideas = {
+				remove_idea = idea_spr_welfare_statism_3
+				add_idea = idea_spr_welfare_statism_4
+			}
+		}
+	}
+	focus = {
+		id = carlist_reclaim_the_crowns_territories
+		icon = live_up_to_the_name_one_spain
+		cost = 5
+		
+		available = {
+			OR = {
+				country_exists = CAT
+				country_exists = BSQ
+				country_exists = GAL
+			}
+		}
+		
+		prerequisite = {
+			focus = carlist_many_nations_one_king
+		}
+		
+		bypass = {
+			AND = {
+				NOT = {
+					country_exists = CAT
+				}
+				NOT = {
+					country_exists = GAL
+				}
+				NOT = {
+					country_exists = BSQ
+				}
+			}
+		}
+		
+		relative_position_id = carlist_many_nations_one_king
+		x = 0
+		y = 2
+		
+		completion_reward = {
+			IF = {
+				limit = {country_exists = CAT}
+				create_wargoal = {
+					type = annex_everything
+					target = CAT
+				}
+			}
+			IF = {
+				limit = {country_exists = BSQ}
+				create_wargoal = {
+					type = annex_everything
+					target = BSQ
+				}
+			}
+			IF = {
+				limit = {country_exists = GAL}
+				create_wargoal = {
+					type = annex_everything
+					target = GAL
+				}
+			}
+			hidden_effect = {
+				set_country_flag = spain_gets_revenge
+			}
+		}
+	}
+	focus = {
+		id = carlist_strength_in_diversity_strenght_in_the_king
+		icon = spain_diversity_king_focus
+		cost = 10
+		
+		prerequisite = {
+			focus = carlist_reintroduce_the_royal_lottery
+		}
+		prerequisite = {
+			focus = carlist_establish_crown_labor_commission
+		}
+		prerequisite = {
+			focus = carlist_reclaim_the_crowns_territories
+		}
+		
+		relative_position_id = carlist_cementing_the_new_socialist_kingdom
+		x = 0
+		y = 5
+		
+		completion_reward = {
+			add_ideas = {
+				idea_SPR_strength_in_diversity_strength_in_the_king
+			}
+			country_event = {
+				id = spain.327
+			}
+		}
+	}
+	focus = {
+		id = carlist_disbar_foreign_enterprises
+		icon = canada_protectionism
+		cost = 7.2
+		
+		prerequisite = {
+			focus = carlist_strength_in_diversity_strenght_in_the_king
+		}
+
+		
+		relative_position_id = carlist_strength_in_diversity_strenght_in_the_king
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			add_ideas = {
+				idea_SPR_foreign_businesses_restricted
+			}
+		}
+	}
+	focus = {
+		id = carlist_empower_labor_councils
+		icon = socialist_industry_generic
+		cost = 7.2
+		
+		prerequisite = {
+			focus = carlist_strength_in_diversity_strenght_in_the_king
+		}
+
+		
+		relative_position_id = carlist_strength_in_diversity_strenght_in_the_king
+		x = -2
+		y = 1
+		
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_spr_crown_labor_commission
+				add_idea = idea_spr_crown_labor_commission_2
+			}
+			country_event = {
+				id = spain.329
+			}
+		}
+	}
+	focus = {
+		id = carlist_encourage_worker_militias
+		icon = arm_workers
+		cost = 10
+		
+		prerequisite = {
+			focus = carlist_empower_labor_councils
+		}
+
+		
+		relative_position_id = carlist_empower_labor_councils
+		x = 0
+		y = 2
+		
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_spr_royal_red_guard
+				add_idea = idea_spr_royal_red_guard_2
+			}
+			country_event = {
+				id = spain.330
+			}
+		}
+	}
+	focus = {
+		id = carlist_abolish_lesser_nobility
+		icon = parties
+		cost = 7.2
+		
+		prerequisite = {
+			focus = carlist_strength_in_diversity_strenght_in_the_king
+		}
+
+		
+		relative_position_id = carlist_strength_in_diversity_strenght_in_the_king
+		x = 2
+		y = 1
+		
+		completion_reward = {
+			add_offsite_building = {
+				type = industrial_complex
+				level = 2
+			}
+			add_stability = 0.1
+		}
+	}
+	focus = {
+		id = carlist_independence_from_the_papacy
+		icon = limit_church_power
+		cost = 7.2
+		
+		prerequisite = {
+			focus = carlist_abolish_lesser_nobility
+		}
+
+		
+		relative_position_id = carlist_abolish_lesser_nobility
+		x = -1
+		y = 1
+		
+		completion_reward = {
+			add_ideas = {
+				idea_spr_independence_from_the_pope
+			}
+			country_event = {
+				id = spain.332
+			}
+		}
+	}
+	focus = {
+		id = carlist_subsidize_associated_labor
+		icon = communist_construction
+		cost = 10
+		
+		prerequisite = {
+			focus = carlist_disbar_foreign_enterprises
+		}
+		prerequisite = {
+			focus = carlist_empower_labor_councils
+		}
+
+		
+		relative_position_id = carlist_disbar_foreign_enterprises
+		x = -1
+		y = 1
+		
+		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = carlist_rehabilitate_carlist_war_heroes
+		icon = new_face_of_spain
+		cost = 7.2
+		
+		prerequisite = {
+			focus = carlist_independence_from_the_papacy
+		}
+
+		
+		relative_position_id = carlist_independence_from_the_papacy
+		x = 1
+		y = 1
+		
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_spr_military_genius_of_tito_and_zhukov
+				add_idea = idea_spr_military_genius_of_tito_and_zhukov_2
+			}
+			country_event = {
+				id = spain.333
+			}
+		}
+	}
+	focus = {
+		id = carlist_align_the_united_left
+		icon = cooperate_with_some_communists
+		cost = 7.2
+		
+		prerequisite = {
+			focus = carlist_subsidize_associated_labor
+		}
+		prerequisite = {
+			focus = carlist_independence_from_the_papacy
+		}
+
+		
+		relative_position_id = carlist_subsidize_associated_labor
+		x = 1
+		y = 1
+		
+		completion_reward = {
+			custom_effect_tooltip = spr_titoist_spain_brings_in_the_united_left
+			country_event = {
+				id = spain.334
+			}
+		}
+	}
+	
+###Foreign Policy###
+	focus = {
+		id = SPR_titoist_fopo_foreign_policy
+		icon = focus_commonwealth_un_membership
+		cost = 3
+		
+		available = {
+			has_completed_focus = carlist_cementing_the_new_socialist_kingdom
+		}
+
+		x = 34
+		y = 0
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_purge_separatist_leaders
+		icon = gun_barrel_governance
+		cost = 6
+		
+		available = {
+			owns_state = 177
+			owns_state = 167
+			owns_state = 165
+			owns_state = 172
+			owns_state = 1020
+			owns_state = 171
+		}
+		
+		bypass = {
+			AND = {
+				177 = {
+					is_core_of = ROOT
+				}
+				167 = {
+					is_core_of = ROOT
+				}
+				165 = {
+					is_core_of = ROOT
+				}
+				172 = {
+					is_core_of = ROOT
+				}
+				1020 = {
+					is_core_of = ROOT
+				}
+				171 = {
+					is_core_of = ROOT
+				}
+			}
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_foreign_policy
+		}
+
+		relative_position_id = SPR_titoist_fopo_foreign_policy
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			country_event = {
+				id = spain_diplo.28
+			}
+			every_owned_state = {
+				limit = {
+					NOT = {
+						is_core_of = ROOT
+					}
+					NOT = {
+						is_core_of = EQG
+					}
+				}
+				add_compliance = 15
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_begin_reintegration_projects
+		icon = SPR_codify_regional_autonomy
+		cost = 6
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_purge_separatist_leaders
+		}
+		
+		bypass = {
+			AND = {
+				177 = {
+					is_core_of = ROOT
+				}
+				167 = {
+					is_core_of = ROOT
+				}
+				165 = {
+					is_core_of = ROOT
+				}
+				172 = {
+					is_core_of = ROOT
+				}
+				1020 = {
+					is_core_of = ROOT
+				}
+				171 = {
+					is_core_of = ROOT
+				}
+			}
+		}
+
+		relative_position_id = SPR_titoist_fopo_purge_separatist_leaders
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			custom_effect_tooltip = spr_cores_on_secessionist_states
+			every_owned_state = {
+				limit = {
+					NOT = {
+						is_core_of = ROOT
+					}
+					OR = {
+						is_core_of = CAT
+						is_core_of = GAL
+						is_core_of = BSQ
+						is_core_of = ALU
+						is_core_of = ATA
+						is_core_of = CAI
+					}
+				}
+				add_core_of = ROOT
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_our_former_colonies
+		icon = Our_Former_Colonies_SPR
+		cost = 4
+		
+		available = {
+			NOT = {
+				has_idea = idea_SPR_backwards_economy
+				has_idea = idea_SPR_backwards_economy_2
+				has_idea = idea_SPR_backwards_economy_3
+			}
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_foreign_policy
+		}
+
+		relative_position_id = SPR_titoist_fopo_foreign_policy
+		x = 3
+		y = 1
+		
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_reclaim_eqg
+		icon = spain_reclaim_equatorial_guinea_focus
+		cost = 7.2
+		
+		available = {
+			AND = {
+				country_exists = EQG
+				EQG = {
+					is_puppet = no
+				}
+			}
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_our_former_colonies
+		}
+
+		relative_position_id = SPR_titoist_fopo_our_former_colonies
+		x = 3
+		y = 1
+		completion_reward = {
+			EQG = {
+				country_event = {
+					id = spain_diplo.16
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_make_contact_with_latam_revolutionaries
+		icon = agrarian_socialism
+		cost = 6
+		
+		mutually_exclusive = {
+			focus = SPR_titoist_fopo_reach_out_to_latam_markets
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_our_former_colonies
+		}
+
+		relative_position_id = SPR_titoist_fopo_our_former_colonies
+		x = 1
+		y = 1
+		
+		completion_reward = {
+			every_country = {
+				limit = {
+					AND = {
+						OR = {
+							tag = CEA
+							tag = MEX
+							tag = RIO
+							tag = SON
+							tag = GUA
+							tag = HON
+							tag = ELS
+							tag = COS
+							tag = PAN
+							tag = COL
+							tag = VEN
+							tag = ECU
+							tag = PRU
+							tag = BOL
+							tag = PAR
+							tag = URG
+							tag = CHL
+							tag = ARG
+							tag = CUB
+							tag = HAI
+							tag = DOM
+							tag = ANT
+							tag = TAT
+							tag = GND
+							tag = BRA
+							tag = SUL
+						}
+						NOT = {
+							has_government = communist
+						}
+						NOT = {
+							has_government = revolutionary_socialist
+						}
+						NOT = {
+							has_government = moderate_socialist
+						}
+					}
+				}
+				country_event = {
+					id = spain_diplo.118
+				}
+				add_stability = -0.05
+				add_war_support = 0.05
+				add_popularity = {
+					ideology = revolutionary_socialist
+					popularity = 0.01
+				}
+				add_popularity = {
+					ideology = communist
+					popularity = 0.01
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_align_latam_socialist_states
+		icon = propaganda
+		cost = 8
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_make_contact_with_latam_revolutionaries
+		}
+
+		relative_position_id = SPR_titoist_fopo_make_contact_with_latam_revolutionaries
+		x = -1
+		y = 1
+		
+		completion_reward = {
+			every_country = {
+				limit = {
+					AND = {
+						OR = {
+							tag = CEA
+							tag = MEX
+							tag = RIO
+							tag = SON
+							tag = GUA
+							tag = HON
+							tag = ELS
+							tag = COS
+							tag = PAN
+							tag = COL
+							tag = VEN
+							tag = ECU
+							tag = PRU
+							tag = BOL
+							tag = PAR
+							tag = URG
+							tag = CHL
+							tag = ARG
+							tag = CUB
+							tag = HAI
+							tag = DOM
+							tag = ANT
+							tag = TAT
+							tag = GND
+							tag = BRA
+							tag = SUL
+						}
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+						}
+					}
+				}
+				IF = {
+					limit = {
+						country_exists = SPR
+					}
+					add_opinion_modifier = {
+						target = SPR
+						modifier = spr_latam_madrid_conference
+					}
+				}
+				IF = {
+					limit = {
+						country_exists = SPN
+					}
+					add_opinion_modifier = {
+						target = SPN
+						modifier = spr_latam_madrid_conference
+					}
+				}
+				country_event = {
+					id = spain_diplo.120
+				}
+			}
+			country_event = {
+				id = spain_diplo.119
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_iberian_american_resource_exchange
+		icon = socialist_industry_generic
+		cost = 10
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_make_contact_with_latam_revolutionaries
+		}
+
+		relative_position_id = SPR_titoist_fopo_make_contact_with_latam_revolutionaries
+		x = 1
+		y = 1
+		
+		completion_reward = {
+			every_country = {
+				limit = {
+					AND = {
+						OR = {
+							tag = CEA
+							tag = MEX
+							tag = RIO
+							tag = SON
+							tag = GUA
+							tag = HON
+							tag = ELS
+							tag = COS
+							tag = PAN
+							tag = COL
+							tag = VEN
+							tag = ECU
+							tag = PRU
+							tag = BOL
+							tag = PAR
+							tag = URG
+							tag = CHL
+							tag = ARG
+							tag = CUB
+							tag = HAI
+							tag = DOM
+							tag = ANT
+							tag = TAT
+							tag = GND
+							tag = BRA
+							tag = SUL
+						}
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+						}
+					}
+				}
+				country_event = {
+					id = spain_diplo.123
+				}
+			}
+			add_ideas = {
+				idea_spr_iberian_american_resource_exchange
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_meet_with_leftist_militants
+		icon = accomodate_the_hardliners
+		cost = 7.2
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_iberian_american_resource_exchange
+		}
+		prerequisite = {
+			focus = SPR_titoist_fopo_align_latam_socialist_states
+		}
+
+		relative_position_id = SPR_titoist_fopo_iberian_american_resource_exchange
+		x = -1
+		y = 1
+		
+		completion_reward = {
+			hidden_effect = {
+				add_ideas = {
+					idea_SPR_hidden_ideas_to_make_spain_make_more_divisions
+				}
+			}
+			every_country = {
+				limit = {
+					AND = {
+						OR = {
+							tag = CEA
+							tag = MEX
+							tag = RIO
+							tag = SON
+							tag = GUA
+							tag = HON
+							tag = ELS
+							tag = COS
+							tag = PAN
+							tag = COL
+							tag = VEN
+							tag = ECU
+							tag = PRU
+							tag = BOL
+							tag = PAR
+							tag = URG
+							tag = CHL
+							tag = ARG
+							tag = CUB
+							tag = HAI
+							tag = DOM
+							tag = ANT
+							tag = TAT
+							tag = GND
+							tag = BRA
+							tag = SUL
+						}
+						NOT = {
+							has_government = communist
+						}
+						NOT = {
+							has_government = revolutionary_socialist
+						}
+						NOT = {
+							has_government = moderate_socialist
+						}
+					}
+				}
+				country_event = {
+					id = spain_diplo.126
+				}
+				add_ideas = {
+					idea_spr_spain_agitating_militants
+				}
+				set_country_flag = spr_target_of_the_spanish_revolution
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_spread_the_revolution
+		icon = red_brigades
+		cost = 10
+		
+		available = {
+			NOT = {
+				has_idea = idea_SPR_bloated_military
+				has_idea = idea_SPR_bloated_military_2
+			}
+			has_army_manpower = {
+				size > 750000
+			}
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_meet_with_leftist_militants
+		}
+
+		relative_position_id = SPR_titoist_fopo_meet_with_leftist_militants
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			custom_effect_tooltip = spr_we_will_begin_our_spreading_of_socialism_through_latin_america
+			IF = {
+				limit = {
+					CEA = {
+						has_idea = idea_spr_spain_agitating_militants
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = CEA
+				}
+			}
+			IF = {
+				limit = {
+					MEX = {
+						has_idea = idea_spr_spain_agitating_militants
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = MEX
+				}
+			}
+			IF = {
+				limit = {
+					RIO = {
+						has_idea = idea_spr_spain_agitating_militants
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = RIO
+				}
+			}
+			IF = {
+				limit = {
+					SON = {
+						has_idea = idea_spr_spain_agitating_militants
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = SON
+				}
+			}
+			IF = {
+				limit = {
+					GUA = {
+						has_idea = idea_spr_spain_agitating_militants
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = GUA
+				}
+			}
+			IF = {
+				limit = {
+					HON = {
+						has_idea = idea_spr_spain_agitating_militants
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = HON
+				}
+			}
+			IF = {
+				limit = {
+					ELS = {
+						has_idea = idea_spr_spain_agitating_militants
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = ELS
+				}
+			}
+			IF = {
+				limit = {
+					COS = {
+						has_idea = idea_spr_spain_agitating_militants
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = COS
+				}
+			}
+			IF = {
+				limit = {
+					PAN = {
+						has_idea = idea_spr_spain_agitating_militants
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = PAN
+				}
+			}
+			IF = {
+				limit = {
+					COL = {
+						has_idea = idea_spr_spain_agitating_militants
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = COL
+				}
+			}
+			IF = {
+				limit = {
+					VEN = {
+						has_idea = idea_spr_spain_agitating_militants
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = VEN
+				}
+			}
+			IF = {
+				limit = {
+					ECU = {
+						has_idea = idea_spr_spain_agitating_militants
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = ECU
+				}
+			}
+			IF = {
+				limit = {
+					PRU = {
+						has_idea = idea_spr_spain_agitating_militants
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = PRU
+				}
+			}
+			IF = {
+				limit = {
+					BOL = {
+						has_idea = idea_spr_spain_agitating_militants
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = BOL
+				}
+			}
+			IF = {
+				limit = {
+					PAR = {
+						has_idea = idea_spr_spain_agitating_militants
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = PAR
+				}
+			}
+			IF = {
+				limit = {
+					URG = {
+						has_idea = idea_spr_spain_agitating_militants
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = URG
+				}
+			}
+			IF = {
+				limit = {
+					CHL = {
+						has_idea = idea_spr_spain_agitating_militants
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = CHL
+				}
+			}
+			IF = {
+				limit = {
+					ARG = {
+						has_idea = idea_spr_spain_agitating_militants
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = ARG
+				}
+			}
+			IF = {
+				limit = {
+					CUB = {
+						has_idea = idea_spr_spain_agitating_militants
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = CUB
+				}
+			}
+			IF = {
+				limit = {
+					HAI = {
+						has_idea = idea_spr_spain_agitating_militants
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = HAI
+				}
+			}
+			IF = {
+				limit = {
+					DOM = {
+						has_idea = idea_spr_spain_agitating_militants
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = DOM
+				}
+			}
+			IF = {
+				limit = {
+					ANT = {
+						has_idea = idea_spr_spain_agitating_militants
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = ANT
+				}
+			}
+			IF = {
+				limit = {
+					TAT = {
+						has_idea = idea_spr_spain_agitating_militants
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = TAT
+				}
+			}
+			IF = {
+				limit = {
+					GND = {
+						has_idea = idea_spr_spain_agitating_militants
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = GND
+				}
+			}
+			IF = {
+				limit = {
+					BRA = {
+						has_idea = idea_spr_spain_agitating_militants
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = BRA
+				}
+			}
+			IF = {
+				limit = {
+					SUL = {
+						has_idea = idea_spr_spain_agitating_militants
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = SUL
+				}
+			}
+			every_country = {
+				limit = {
+					has_idea = idea_spr_spain_agitating_militants
+				}
+				remove_ideas = {
+					idea_spr_spain_agitating_militants
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_reach_out_to_latam_markets
+		icon = spanish_america_focus
+		cost = 6
+		
+		mutually_exclusive = {
+			focus = SPR_titoist_fopo_make_contact_with_latam_revolutionaries
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_our_former_colonies
+		}
+
+		relative_position_id = SPR_titoist_fopo_our_former_colonies
+		x = -1
+		y = 1
+		
+		completion_reward = {
+			every_country = {
+				limit = {
+					AND = {
+						OR = {
+							tag = CEA
+							tag = MEX
+							tag = RIO
+							tag = SON
+							tag = GUA
+							tag = HON
+							tag = ELS
+							tag = COS
+							tag = PAN
+							tag = COL
+							tag = VEN
+							tag = ECU
+							tag = PRU
+							tag = BOL
+							tag = PAR
+							tag = URG
+							tag = CHL
+							tag = ARG
+							tag = CUB
+							tag = HAI
+							tag = DOM
+							tag = ANT
+							tag = TAT
+							tag = GND
+							tag = BRA
+							tag = SUL
+						}
+					}
+				}
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = spain_latam_trade
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_iberian_american_free_trade_zone
+		icon = positive_trade_relations
+		cost = 10
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_reach_out_to_latam_markets
+		}
+
+		relative_position_id = SPR_titoist_fopo_reach_out_to_latam_markets
+		x = -1
+		y = 1
+		
+		completion_reward = {
+			every_country = {
+				limit = {
+					AND = {
+						OR = {
+							tag = CEA
+							tag = MEX
+							tag = RIO
+							tag = SON
+							tag = GUA
+							tag = HON
+							tag = ELS
+							tag = COS
+							tag = PAN
+							tag = COL
+							tag = VEN
+							tag = ECU
+							tag = PRU
+							tag = BOL
+							tag = PAR
+							tag = URG
+							tag = CHL
+							tag = ARG
+							tag = CUB
+							tag = HAI
+							tag = DOM
+							tag = ANT
+							tag = TAT
+							tag = GND
+							tag = BRA
+							tag = SUL
+						}
+						NOT = {
+							has_government = fascist
+						}
+					}
+				}
+				country_event = {
+					id = spain_diplo.143
+				}
+			}
+			add_ideas = {
+				idea_spr_iberian_american_free_trade_zone
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_allow_socialist_entries
+		icon = focus_socialist_trading_network
+		cost = 8
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_iberian_american_free_trade_zone
+		}
+
+		relative_position_id = SPR_titoist_fopo_iberian_american_free_trade_zone
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_spr_iberian_american_free_trade_zone
+				add_idea = idea_spr_iberian_american_free_trade_zone_titoist
+			}
+			every_country = {
+				limit = {
+					has_idea = idea_spr_iberian_american_free_trade_zone
+					NOT = {
+						tag = SPR
+					}
+					NOT = {
+						tag = SPN
+					}
+					OR = {
+						has_government = moderate_socialist
+						has_government = revolutionary_socialist
+						has_government = communist
+					}
+				}
+				swap_ideas = {
+					remove_idea = idea_spr_iberian_american_free_trade_zone
+					add_idea = idea_spr_iberian_american_free_trade_zone_titoist
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_mutual_development_latam
+		icon = production
+		cost = 10
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_allow_socialist_entries
+		}
+		
+		available = {
+			any_country = {
+				OR = {
+					has_idea = idea_spr_iberian_american_free_trade_zone
+					has_idea = idea_spr_iberian_american_free_trade_zone_titoist
+				}
+			}
+		}
+
+		relative_position_id = SPR_titoist_fopo_allow_socialist_entries
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			custom_effect_tooltip = spr_mutual_development_for_latin_america_tooltip
+			every_country = {
+				limit = {
+					OR = {
+						has_idea = idea_spr_iberian_american_free_trade_zone
+						has_idea = idea_spr_iberian_american_free_trade_zone_titoist
+					}
+				}
+				random_owned_state = {
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = {
+						type = industrial_complex
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_protect_latam_self_determination
+		icon = Protect_Latin-American_Self_Determination_SPR
+		cost = 7.2
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_mutual_development_latam
+			focus = SPR_titoist_fopo_spread_the_revolution
+		}
+
+		relative_position_id = SPR_titoist_fopo_mutual_development_latam
+		x = 3
+		y = 1
+		
+		completion_reward = {
+			IF = {
+				limit = {
+					NOT = {
+						has_wargoal_against = CEA
+					}
+					country_exists = CEA
+					CEA = {
+						NOT = {
+							has_government = fascist
+						}
+						NOT = {
+							has_government = monarchist
+						}
+					}
+				}
+				give_guarantee = CEA
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_wargoal_against = MEX
+					}
+					country_exists = MEX
+					MEX = {
+						NOT = {
+							has_government = fascist
+						}
+						NOT = {
+							has_government = monarchist
+						}
+					}
+				}
+				give_guarantee = MEX
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_wargoal_against = RIO
+					}
+					country_exists = RIO
+					RIO = {
+						NOT = {
+							has_government = fascist
+						}
+						NOT = {
+							has_government = monarchist
+						}
+					}
+				}
+				give_guarantee = RIO
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_wargoal_against = SON
+					}
+					country_exists = SON
+					SON = {
+						NOT = {
+							has_government = fascist
+						}
+						NOT = {
+							has_government = monarchist
+						}
+					}
+				}
+				give_guarantee = SON
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_wargoal_against = GUA
+					}
+					country_exists = GUA
+					GUA = {
+						NOT = {
+							has_government = fascist
+						}
+						NOT = {
+							has_government = monarchist
+						}
+					}
+				}
+				give_guarantee = GUA
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_wargoal_against = HON
+					}
+					country_exists = HON
+					HON = {
+						NOT = {
+							has_government = fascist
+						}
+						NOT = {
+							has_government = monarchist
+						}
+					}
+				}
+				give_guarantee = HON
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_wargoal_against = ELS
+					}
+					country_exists = ELS
+					ELS = {
+						NOT = {
+							has_government = fascist
+						}
+						NOT = {
+							has_government = monarchist
+						}
+					}
+				}
+				give_guarantee = ELS
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_wargoal_against = COS
+					}
+					country_exists = COS
+					COS = {
+						NOT = {
+							has_government = fascist
+						}
+						NOT = {
+							has_government = monarchist
+						}
+					}
+				}
+				give_guarantee = COS
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_wargoal_against = PAN
+					}
+					country_exists = PAN
+					PAN = {
+						NOT = {
+							has_government = fascist
+						}
+						NOT = {
+							has_government = monarchist
+						}
+					}
+				}
+				give_guarantee = PAN
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_wargoal_against = COL
+					}
+					country_exists = COL
+					COL = {
+						NOT = {
+							has_government = fascist
+						}
+						NOT = {
+							has_government = monarchist
+						}
+					}
+				}
+				give_guarantee = COL
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_wargoal_against = VEN
+					}
+					country_exists = VEN
+					VEN = {
+						NOT = {
+							has_government = fascist
+						}
+						NOT = {
+							has_government = monarchist
+						}
+					}
+				}
+				give_guarantee = VEN
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_wargoal_against = ECU
+					}
+					country_exists = ECU
+					ECU = {
+						NOT = {
+							has_government = fascist
+						}
+						NOT = {
+							has_government = monarchist
+						}
+					}
+				}
+				give_guarantee = ECU
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_wargoal_against = PRU
+					}
+					country_exists = PRU
+					PRU = {
+						NOT = {
+							has_government = fascist
+						}
+						NOT = {
+							has_government = monarchist
+						}
+					}
+				}
+				give_guarantee = PRU
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_wargoal_against = BOL
+					}
+					country_exists = BOL
+					BOL = {
+						NOT = {
+							has_government = fascist
+						}
+						NOT = {
+							has_government = monarchist
+						}
+					}
+				}
+				give_guarantee = BOL
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_wargoal_against = URG
+					}
+					country_exists = URG
+					URG = {
+						NOT = {
+							has_government = fascist
+						}
+						NOT = {
+							has_government = monarchist
+						}
+					}
+				}
+				give_guarantee = URG
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_wargoal_against = CHL
+					}
+					country_exists = CHL
+					CHL = {
+						NOT = {
+							has_government = fascist
+						}
+						NOT = {
+							has_government = monarchist
+						}
+					}
+				}
+				give_guarantee = CHL
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_wargoal_against = ARG
+					}
+					country_exists = ARG
+					ARG = {
+						NOT = {
+							has_government = fascist
+						}
+						NOT = {
+							has_government = monarchist
+						}
+					}
+				}
+				give_guarantee = ARG
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_wargoal_against = CUB
+					}
+					country_exists = CUB
+					CUB = {
+						NOT = {
+							has_government = fascist
+						}
+						NOT = {
+							has_government = monarchist
+						}
+					}
+				}
+				give_guarantee = CUB
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_wargoal_against = HAI
+					}
+					country_exists = HAI
+					HAI = {
+						NOT = {
+							has_government = fascist
+						}
+						NOT = {
+							has_government = monarchist
+						}
+					}
+				}
+				give_guarantee = HAI
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_wargoal_against = DOM
+					}
+					country_exists = DOM
+					DOM = {
+						NOT = {
+							has_government = fascist
+						}
+						NOT = {
+							has_government = monarchist
+						}
+					}
+				}
+				give_guarantee = DOM
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_wargoal_against = ANT
+					}
+					country_exists = ANT
+					ANT = {
+						NOT = {
+							has_government = fascist
+						}
+						NOT = {
+							has_government = monarchist
+						}
+					}
+				}
+				give_guarantee = ANT
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_wargoal_against = TAT
+					}
+					country_exists = TAT
+					TAT = {
+						NOT = {
+							has_government = fascist
+						}
+						NOT = {
+							has_government = monarchist
+						}
+					}
+				}
+				give_guarantee = TAT
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_wargoal_against = GND
+					}
+					country_exists = GND
+					GND = {
+						NOT = {
+							has_government = fascist
+						}
+						NOT = {
+							has_government = monarchist
+						}
+					}
+				}
+				give_guarantee = GND
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_wargoal_against = BRA
+					}
+					country_exists = BRA
+					BRA = {
+						NOT = {
+							has_government = fascist
+						}
+						NOT = {
+							has_government = monarchist
+						}
+					}
+				}
+				give_guarantee = BRA
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_wargoal_against = SUL
+					}
+					country_exists = SUL
+					SUL = {
+						NOT = {
+							has_government = fascist
+						}
+						NOT = {
+							has_government = monarchist
+						}
+					}
+				}
+				give_guarantee = SUL
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_purchase_chilean_industrial_tech
+		icon = Purchase_Chilean_Industrial_Technology_SPR
+		cost = 7.2
+		
+		available = {
+			CHL = {
+				has_government = revolutionary_socialist
+			}
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_mutual_development_latam
+			focus = SPR_titoist_fopo_spread_the_revolution
+		}
+
+		relative_position_id = SPR_titoist_fopo_mutual_development_latam
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			CHL = {
+				country_event = {
+					id = spain_diplo.167
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_addressing_our_neighbors
+		icon = SPR_adressing_our_neighbors
+		cost = 1
+		
+		available = {
+			NOT = {
+				has_idea = idea_SPR_backwards_economy
+				has_idea = idea_SPR_bloated_military
+			}
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_foreign_policy
+		}
+
+		relative_position_id = SPR_titoist_fopo_foreign_policy
+		x = -6
+		y = 1
+		
+		completion_reward = {
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_pursue_friendship_with_morocco
+		icon = morocco
+		cost = 3
+		
+		mutually_exclusive = {
+			focus = SPR_titoist_fopo_embargo_morocco
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_addressing_our_neighbors
+		}
+
+		relative_position_id = SPR_titoist_fopo_addressing_our_neighbors
+		x = 0
+		y = 1
+		
+		completion_reward = {
+            add_opinion_modifier = {
+				target = MOR
+				modifier = spr_por_normalized_relations
+			}
+			country_event = {
+				id = spain_diplo.86
+			}
+            MOR = {
+                add_opinion_modifier = {
+					target = ROOT
+					modifier = spr_por_normalized_relations
+				}
+				country_event = {
+					id = spain_diplo.87
+				}
+            }
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_negotiate_basing_rights
+		icon = GAL_adopt_a_good_neighbor_policy
+		cost = 8
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_pursue_friendship_with_morocco
+		}
+
+		relative_position_id = SPR_titoist_fopo_pursue_friendship_with_morocco
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			MOR = {
+				country_event = {
+					id = spain_diplo.88
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_the_matter_of_ceuta_and_melilla
+		icon = peace_chance
+		cost = 7
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_negotiate_basing_rights
+		}
+
+		relative_position_id = SPR_titoist_fopo_negotiate_basing_rights
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			country_event = {
+				id = spain_diplo.91
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_invite_morocco_to_economic_pact
+		icon = investigate_industrial_corruption
+		cost = 7
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_negotiate_basing_rights
+		}
+
+		relative_position_id = SPR_titoist_fopo_negotiate_basing_rights
+		x = 2
+		y = 1
+		
+		completion_reward = {
+			MOR = {
+				country_event = {
+					id = spain_diplo.92
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_embargo_morocco
+		icon = morocco_attack
+		cost = 3
+		
+		available = {
+			OR = {
+				has_government = communist
+				has_government = revolutionary_socialist
+				has_government = monarchist
+				has_government = fascist
+			}
+
+		}
+		
+		mutually_exclusive = {
+			focus = SPR_titoist_fopo_pursue_friendship_with_morocco
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_addressing_our_neighbors
+		}
+
+		relative_position_id = SPR_titoist_fopo_addressing_our_neighbors
+		x = -3
+		y = 1
+
+		completion_reward = {
+			add_opinion_modifier = {
+				target = MOR
+				modifier = embargo
+			}
+			MOR = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = embargo
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_reach_out_to_algeria
+		icon = algeria
+		cost = 4
+		
+		available = {
+			has_army_manpower = {
+				size > 500000
+			}
+			ALG = {
+				OR = {
+					has_government = communist
+					has_government = revolutionary_socialist
+				}
+			}
+			NOT = {
+				has_war_with = ALG
+			}
+		}
+		
+		mutually_exclusive = {
+			focus = SPR_titoist_fopo_right_francos_wrong
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_embargo_morocco
+		}
+
+		relative_position_id = SPR_titoist_fopo_embargo_morocco
+		x = 1
+		y = 1
+		
+		completion_reward = {
+            add_opinion_modifier = {
+				target = ALG
+				modifier = spr_por_normalized_relations
+			}
+			country_event = {
+				id = spain_diplo.82
+			}
+			ALG = {
+				country_event = {
+					id = spain_diplo.81
+				}
+                add_opinion_modifier = {
+					target = ROOT
+					modifier = spr_por_normalized_relations
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_mutual_intervention_in_morocco
+		icon = SPR_algerian_war_on_morocco
+		cost = 8
+		
+		available = {
+			NOT = {
+				has_war_with = ALG
+			}
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_reach_out_to_algeria
+		}
+
+		relative_position_id = SPR_titoist_fopo_reach_out_to_algeria
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			ALG = {
+				country_event = {
+					id = spain_diplo.83
+				}
+			}
+			custom_effect_tooltip = spr_mutual_intervention
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_right_francos_wrong
+		icon = spain_franco_mistake_morocco
+		cost = 4
+		
+		available = {
+			has_army_manpower = {
+				size > 500000
+			}
+		}
+		
+		mutually_exclusive = {
+			focus = SPR_titoist_fopo_reach_out_to_algeria
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_embargo_morocco
+		}
+
+		relative_position_id = SPR_titoist_fopo_embargo_morocco
+		x = -1
+		y = 1
+		
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = MOR
+			}
+			every_state = {
+				limit = {
+					is_core_of = MOR
+				}
+				add_claim_by = ROOT
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_reorganize_the_protectorate
+		icon = SPR_fopo_reorganize_the_protectorate
+		cost = 8
+		
+		available = {
+			NOT = {
+				country_exists = MOR
+			}
+			owns_state = 290
+			owns_state = 461
+			owns_state = 462
+			owns_state = 882
+			owns_state = 699
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_right_francos_wrong
+		}
+
+		relative_position_id = SPR_titoist_fopo_right_francos_wrong
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			290 = {
+				add_core_of = ROOT
+			}
+			release_puppet = MOR
+			hidden_effect = {
+				ROOT = {
+					transfer_state = 290
+				}
+				882 = {
+					add_core_of = MOR
+				}
+				MOR = {
+					transfer_state = 882
+				}
+			}
+			MOR = {
+				set_cosmetic_tag = MOR_titocarlist
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = "Alaouite Dynasty"
+					name = "Alaouite Dynasty"
+				}
+				WSA_Hicham_First = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=titoist
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+			hidden_effect = {
+				461 = {
+					remove_claim_by = ROOT
+				}
+				462 = {
+					remove_claim_by = ROOT
+				}
+				882 = {
+					remove_claim_by = ROOT
+				}
+				699 = {
+					remove_claim_by = ROOT
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_the_new_army_of_africa
+		icon = SPR_new_african_army
+		cost = 10
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_reorganize_the_protectorate
+			focus = SPR_titoist_fopo_mutual_intervention_in_morocco
+		}
+
+		relative_position_id = SPR_titoist_fopo_reorganize_the_protectorate
+		x = 1
+		y = 1
+		
+		completion_reward = {
+			add_ideas = {
+				idea_spr_new_army_of_africa
+			}
+			IF = {
+				limit = {
+					country_exists = MOR
+					MOR = {
+						is_puppet_of = ROOT
+					}
+				}
+				MOR = {
+					add_ideas = {
+						idea_spr_new_army_of_africa
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_the_gibraltar_issue
+		icon = SPR_fopo_the_gibraltar_issue
+		cost = 6
+		
+		available = {
+			NOT = {
+				owns_state = 118
+			}
+			OR = {
+				has_war = no
+				threat > 0.6
+			}
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_addressing_our_neighbors
+		}
+
+		relative_position_id = SPR_titoist_fopo_addressing_our_neighbors
+		x = 2
+		y = 1
+		
+		completion_reward = {
+			IF = {
+				limit = {
+					OR = {
+						has_government = liberal
+						has_government = national_conservative
+						has_government = centrist
+						has_government = moderate_socialist
+						has_government = new_democrat
+					}
+				}
+				ENG = {
+					country_event = {
+						id = spain_diplo.32
+					}
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						has_government = fascist
+						has_government = national_bolshevik
+						has_government = communist
+						has_government = monarchist
+						has_government = revolutionary_socialist
+					}
+				}
+				ENG = {
+					country_event = {
+						id = spain_diplo.35
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = SPR_titoist_fopo_revoke_the_treaty_of_lisbon
+		icon = tear_treaty
+		cost = 10
+		
+		available = {
+			has_army_manpower = {
+				size > 300000
+			}
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_addressing_our_neighbors
+		}
+
+		relative_position_id = SPR_titoist_fopo_addressing_our_neighbors
+		x = 4
+		y = 1
+		
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = POR
+			}
+			every_state = {
+				limit = {
+					is_core_of = POR
+				}
+				add_claim_by = ROOT
+			}
+			if = {
+				limit = {
+					SPR = {
+						is_faction_leader = yes
+					}
+					POR = {
+						is_in_faction_with = SPR
+					}
+				}
+				SPR = {
+					remove_from_faction = POR
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_invest_in_portuguese_economy
+		icon = caliphate_build_up
+		cost = 6
+		
+		available = {
+			OR = {
+				AND = {
+					NOT = {
+						country_exists = POR
+					}
+					owns_state = 180
+					owns_state = 181
+					owns_state = 112
+					owns_state = 179
+				}
+				AND = {
+					country_exists = POR
+					POR = {
+						is_puppet_of = ROOT
+					}
+				}
+			}
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_revoke_the_treaty_of_lisbon
+		}
+
+		relative_position_id = SPR_titoist_fopo_revoke_the_treaty_of_lisbon
+		x = -1
+		y = 1
+		
+		completion_reward = {
+			112 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+			179 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			181 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_restore_dynamic_ties
+		icon = focus_monarchist_diplomacy
+		cost = 7.2
+		
+		available = {
+			AND = {
+				NOT = {
+					country_exists = POR
+				}
+				owns_state = 180
+				owns_state = 181
+				owns_state = 112
+				owns_state = 179
+			}
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_revoke_the_treaty_of_lisbon
+		}
+
+		relative_position_id = SPR_titoist_fopo_revoke_the_treaty_of_lisbon
+		x = 1
+		y = 1
+		
+		completion_reward = {
+			every_state = {
+				limit = {
+					is_core_of = POR
+				}
+				add_compliance = 15
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_grant_citizenship_to_portuguese_populace
+		icon = focus_constitutional_referendum
+		cost = 5
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_restore_dynamic_ties
+		}
+		prerequisite = {
+			focus = SPR_titoist_fopo_invest_in_portuguese_economy
+		}
+		
+		available = {
+			AND = {
+				NOT = {
+					country_exists = POR
+				}
+				owns_state = 180
+				owns_state = 181
+				owns_state = 112
+				owns_state = 179
+			}
+		}
+
+		relative_position_id = SPR_titoist_fopo_restore_dynamic_ties
+		x = -1
+		y = 1
+		
+		completion_reward = {
+			every_state = {
+				limit = {
+					is_core_of = POR
+				}
+				add_core_of = ROOT
+			}
+			set_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_reconciliation_with_france
+		icon = france
+		cost = 7
+		
+		mutually_exclusive = {
+			focus = SPR_titoist_fopo_fortify_the_pyrenees
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_addressing_our_neighbors
+		}
+
+		relative_position_id = SPR_titoist_fopo_addressing_our_neighbors
+		x = -8
+		y = 1
+		
+		completion_reward = {
+            add_opinion_modifier = {
+				target = FRA
+				modifier = spr_por_normalized_relations
+			}
+			country_event = {
+				id = spain_diplo.95
+			}
+            FRA = {
+                add_opinion_modifier = {
+					target = ROOT
+					modifier = spr_por_normalized_relations
+				}
+				country_event = {
+					id = spain_diplo.96
+				}
+            }
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_fortify_the_pyrenees
+		icon = france_attack
+		cost = 7
+		
+		mutually_exclusive = {
+			focus = SPR_titoist_fopo_reconciliation_with_france
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_addressing_our_neighbors
+		}
+
+		relative_position_id = SPR_titoist_fopo_addressing_our_neighbors
+		x = -10
+		y = 1
+		
+		completion_reward = {
+			IF = {
+				limit = {
+					owns_state = 165
+				}
+				165 = {
+					add_building_construction = {
+						type = bunker
+						level = 3
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					owns_state = 911
+				}
+				911 = {
+					add_building_construction = {
+						type = bunker
+						level = 3
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					owns_state = 852
+				}
+				852 = {
+					add_building_construction = {
+						type = bunker
+						level = 3
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					owns_state = 166
+				}
+				166 = {
+					add_building_construction = {
+						type = bunker
+						level = 3
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+			}
+			IF = {
+				limit = {
+					owns_state = 172
+				}
+				172 = {
+					add_building_construction = {
+						type = bunker
+						level = 3
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_border = yes
+						}
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_recognize_basque_and_catalan_claims
+		icon = Recognize_Basque_And_Catalan_Claims_SPR
+		cost = 8
+		
+		available = {
+			OR = {
+				AND = {
+					owns_state = 172
+					owns_state = 165
+					owns_state = 852
+				}
+				AND = {
+					country_exists = CAT
+					CAT = {
+						is_puppet_of = ROOT
+					}
+					country_exists = BSQ
+					BSQ = {
+						is_puppet_of = ROOT
+					}
+				}
+			}
+		}
+		
+		mutually_exclusive = {
+			focus = SPR_titoist_fopo_prepare_for_communist_invasion
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_fortify_the_pyrenees
+		}
+
+		relative_position_id = SPR_titoist_fopo_fortify_the_pyrenees
+		x = 1
+		y = 1
+		
+		completion_reward = {
+			IF = {
+				limit = {
+					owns_state = 172
+					owns_state = 165
+					owns_state = 852
+				}
+				663 = {
+					add_claim_by = ROOT
+					add_claim_by = CAT
+				}
+				927 = {
+					add_claim_by = ROOT
+					add_claim_by = BSQ
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = CAT
+					CAT = {
+						is_puppet_of = ROOT
+					}
+					country_exists = BSQ
+					BSQ = {
+						is_puppet_of = ROOT
+					}
+				}
+				663 = {
+					add_claim_by = CAT
+				}
+				927 = {
+					add_claim_by = BSQ
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_expand_airbases
+		icon = focus_a_new_international_airport
+		cost = 5
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_recognize_basque_and_catalan_claims
+			focus = SPR_titoist_fopo_prepare_for_communist_invasion
+		}
+
+		relative_position_id = SPR_titoist_fopo_fortify_the_pyrenees
+		x = 0
+		y = 2
+		
+		completion_reward = {
+			IF = {
+				limit = {
+					owns_state = 165
+				}
+				165 = {
+					add_building_construction = {
+						type = air_base
+						level = 5
+						instant_build = yes
+					}
+				}
+			}
+			IF = {
+				limit = {
+					owns_state = 852
+				}
+				852 = {
+					add_building_construction = {
+						type = air_base
+						level = 5
+						instant_build = yes
+					}
+				}
+			}
+			IF = {
+				limit = {
+					owns_state = 166
+				}
+				166 = {
+					add_building_construction = {
+						type = air_base
+						level = 5
+						instant_build = yes
+					}
+				}
+			}
+			IF = {
+				limit = {
+					owns_state = 172
+				}
+				172 = {
+					add_building_construction = {
+						type = air_base
+						level = 5
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_surveil_the_border
+		icon = GFX_the_surveillance_state_perfected
+		cost = 5
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_expand_airbases
+		}
+
+		relative_position_id = SPR_titoist_fopo_expand_airbases
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			add_ideas = {
+				idea_spr_surveil_the_border
+			}
+			add_tech_bonus = {
+				bonus = 1.25
+				uses = 4
+				category = radar_tech
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_prepare_for_communist_invasion
+		icon = position_armies
+		cost = 8
+		
+		mutually_exclusive = {
+			focus = SPR_titoist_fopo_recognize_basque_and_catalan_claims
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_fortify_the_pyrenees
+		}
+
+		relative_position_id = SPR_titoist_fopo_fortify_the_pyrenees
+		x = -1
+		y = 1
+		
+		completion_reward = {
+			add_war_support = 0.05
+		    random_owned_state = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		    random_owned_state = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_sabotage_french_military_command
+		icon = infiltration
+		cost = 10
+		
+		available = {
+			OR = {
+				AND = {
+					NOT = {
+						has_idea = idea_SPR_bloated_military
+					}
+					NOT = {
+						has_idea = idea_SPR_bloated_military_2
+					}
+				}
+				has_war_with = FRA
+			}
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_prepare_for_communist_invasion
+		}
+		prerequisite = {
+			focus = SPR_titoist_fopo_surveil_the_border
+		}
+
+		relative_position_id = SPR_titoist_fopo_prepare_for_communist_invasion
+		x = 0
+		y = 3
+		
+		completion_reward = {
+			add_ideas = {
+				idea_spr_infiltrated_french_military_command
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_demand_basque_and_catalan_territories
+		icon = demand_spanish_territories_in_france_focus
+		cost = 10
+		
+		available = {
+			has_army_manpower = {
+				size > 850000
+			}
+			NOT = {
+				has_idea = idea_SPR_bloated_military
+				has_idea = idea_SPR_bloated_military_2
+			}
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_recognize_basque_and_catalan_claims
+		}
+		prerequisite = {
+			focus = SPR_titoist_fopo_surveil_the_border
+		}
+
+		relative_position_id = SPR_titoist_fopo_recognize_basque_and_catalan_claims
+		x = 0
+		y = 3
+		
+		completion_reward = {
+			FRA = {
+				country_event = {
+					id = spain_diplo.97
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_aviation_innovations
+		icon = research_rockets
+		cost = 5
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_reconciliation_with_france
+		}
+
+		relative_position_id = SPR_titoist_fopo_reconciliation_with_france
+		x = 1
+		y = 1
+		
+		completion_reward = {
+			FRA = {
+				country_event = {
+					id = spain_diplo.130
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_resume_andorran_corulership
+		icon = SPR_fopo_resume_andorran_corulership
+		cost = 8
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_reconciliation_with_france
+		}
+		
+		available = {
+			owns_state = 852
+		}
+
+		relative_position_id = SPR_titoist_fopo_reconciliation_with_france
+		x = 2
+		y = 2
+		
+		completion_reward = {
+			FRA = {
+				country_event = {
+					id = spain_diplo.127
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_mutual_industrial_investments
+		icon = peace_money_development
+		cost = 5
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_aviation_innovations
+		}
+
+		relative_position_id = SPR_titoist_fopo_aviation_innovations
+		x = -1
+		y = 1
+		
+		completion_reward = {
+			FRA = {
+				country_event = {
+					id = spain_diplo.133
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_request_aid_in_nuclear_program
+		icon = GFX_push_for_nuclear_power
+		cost = 10
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_mutual_industrial_investments
+		}
+
+		relative_position_id = SPR_titoist_fopo_mutual_industrial_investments
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			FRA = {
+				country_event = {
+					id = spain_diplo.136
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_our_international_alignment
+		icon = play_off_both_sides
+		cost = 1
+		
+		available = {
+			has_completed_focus = SPR_titoist_fopo_purge_separatist_leaders
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_foreign_policy
+		}
+
+		relative_position_id = SPR_titoist_fopo_foreign_policy
+		x = 11
+		y = 1
+		
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_open_trade_with_the_EUSSR
+		icon = european_union
+		cost = 4
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_our_international_alignment
+		}
+
+		relative_position_id = SPR_titoist_fopo_our_international_alignment
+		x = -3
+		y = 1
+		
+		completion_reward = {
+			every_country = {
+				limit = {
+					has_idea = idea_eu_member
+				}
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = spain_eussr_trade
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_apply_for_warsaw_pact_aid
+		icon = warsaw_pact_investment
+		cost = 6
+		
+		available = {
+			OR = {
+				AND = {
+					country_exists = SOV
+					SOV = {
+						is_faction_leader = yes
+						OR = {
+							has_government = communist
+							has_government = national_bolshevik
+						}
+					}
+				}
+				AND = {
+					country_exists = GER
+					GER = {
+						is_faction_leader = yes
+						OR = {
+							has_government = communist
+							has_government = revolutionary_socialist
+							has_government = moderate_socialist
+						}
+					}
+				}
+			}
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_open_trade_with_the_EUSSR
+		}
+
+		relative_position_id = SPR_titoist_fopo_open_trade_with_the_EUSSR
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			IF = {
+				limit = {
+					AND = {
+						country_exists = SOV
+						SOV = {
+							has_government = communist
+							is_faction_leader = yes
+						}
+					}
+				}
+				SOV = {
+					country_event = {
+						id = spain_diplo.149
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					AND = {
+						country_exists = GER
+						GER = {
+							has_government = communist
+							is_faction_leader = yes
+						}
+					}
+				}
+				GER = {
+					country_event = {
+						id = spain_diplo.149
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_join_the_warsaw_pact
+		icon = warsaw_pact
+		cost = 5
+		
+		available = {
+			country_exists = GER
+			GER = {
+				is_faction_leader = yes
+				OR = {
+					has_government = revolutionary_socialist
+					has_government = moderate_socialist
+				}
+			}
+			NOT = {
+				has_country_flag = GAL_warsaw_refused_to_ally_us
+			}
+		}
+		
+		mutually_exclusive = {
+			focus = SPR_titoist_fopo_join_a_revolutionary_power_bloc
+			focus = SPR_titoist_fopo_join_the_democratic_league
+			focus = SPR_titoist_fopo_policy_of_neutrality
+			focus = SPR_titoist_fopo_our_own_internationale
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_apply_for_warsaw_pact_aid
+		}
+
+		relative_position_id = SPR_titoist_fopo_apply_for_warsaw_pact_aid
+		x = 1
+		y = 2
+		
+		completion_reward = {
+			GER = {
+				country_event = {
+					id = spain_diplo.112
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_apply_for_eussr_membership
+		icon = european_union
+		cost = 7.2
+		
+		available = {
+			OR = {
+				GER = {
+					has_idea = idea_eu_member
+				}
+				ITA = {
+					has_idea = idea_eu_member
+				}
+				FRA = {
+					has_idea = idea_eu_member
+				}
+			}
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_join_the_warsaw_pact
+		}
+
+		relative_position_id = SPR_titoist_fopo_join_the_warsaw_pact
+		x = -1
+		y = 1
+		
+		completion_reward = {
+			IF = {
+				limit = {
+					ITA = {
+						has_completed_focus = ITA_unite_the_eu
+					}
+				}
+				ITA = {
+					country_event = {
+						id = spain_diplo.152
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					NOT = {
+						ITA = {
+							has_completed_focus = ITA_unite_the_eu
+						}
+					}
+				}
+				add_ideas = {
+					idea_eu_member
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_the_irrevocability_of_marxism_leninism
+		icon = GFX_goal_worker_with_hammer_and_flag
+		cost = 8
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_join_the_warsaw_pact
+		}
+
+		relative_position_id = SPR_titoist_fopo_join_the_warsaw_pact
+		x = 0
+		y = 2
+		
+		completion_reward = {
+			add_ideas = {
+				idea_spr_vanguards_of_socialism
+			}
+			every_country = {
+				limit = {
+					is_in_faction_with = ROOT
+					NOT = {
+						tag = ROOT
+					}
+				}
+				add_ideas = {
+					idea_spr_vanguards_of_socialism
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_purchase_russian_oil_rights
+		icon = GFX_russian_oil
+		cost = 4
+		
+		available = {
+			OR = {
+				AND = {
+					country_exists = RUS
+					RUS = {
+						OR = {
+							has_government = national_bolshevik
+							has_government = new_democrat
+						}
+					}
+				}
+				country_exists = SOV
+			}
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_our_international_alignment
+		}
+
+		relative_position_id = SPR_titoist_fopo_our_international_alignment
+		x = -1
+		y = 1
+		
+		completion_reward = {
+			IF = {
+				limit = {
+					country_exists = SOV
+					NOT = {
+						country_exists = RUS
+					}
+				}
+				SOV = {
+					country_event = {
+						id = spain_diplo.155
+					}
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = RUS
+					NOT = {
+						country_exists = SOV
+					}
+				}
+				RUS = {
+					country_event = {
+						id = spain_diplo.155
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_invite_russian_military_advisors
+		icon = GFX_russian_advisors
+		cost = 6
+		
+		available = {
+			OR = {
+				AND = {
+					country_exists = RUS
+					RUS = {
+						OR = {
+							has_government = national_bolshevik
+							has_government = new_democrat
+						}
+					}
+				}
+				country_exists = SOV
+			}
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_purchase_russian_oil_rights
+		}
+
+		relative_position_id = SPR_titoist_fopo_purchase_russian_oil_rights
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			IF = {
+				limit = {
+					country_exists = SOV
+					NOT = {
+						country_exists = RUS
+					}
+				}
+				SOV = {
+					country_event = {
+						id = spain_diplo.158
+					}
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = RUS
+					NOT = {
+						country_exists = SOV
+					}
+				}
+				RUS = {
+					country_event = {
+						id = spain_diplo.158
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_mission_to_ottawa
+		icon = canada
+		cost = 4
+		
+		available = {
+			country_exists = CAN
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_our_international_alignment
+		}
+
+		relative_position_id = SPR_titoist_fopo_our_international_alignment
+		x = 2
+		y = 1
+		
+		completion_reward = {
+			CAN = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = spr_ottwa_visit
+				}
+			}
+			add_political_power = 100
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_request_canadian_investment
+		icon = maple_syrup
+		cost = 6
+		
+		available = {
+			country_exists = CAN
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_mission_to_ottawa
+		}
+
+		relative_position_id = SPR_titoist_fopo_mission_to_ottawa
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			CAN = {
+				country_event = {
+					id = spain_diplo.161
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_join_the_democratic_league
+		icon = democratic_league
+		cost = 5
+		
+		available = {
+			AND = {
+				country_exists = CAN
+				CAN = {
+					is_faction_leader = yes
+				}
+				NOT = {
+					has_country_flag = SPR_canada_refused_to_ally_us
+				}
+				CAN = {
+					has_government = moderate_socialist
+				}
+			}
+		}
+		
+		mutually_exclusive = {
+			focus = SPR_titoist_fopo_join_a_revolutionary_power_bloc
+			focus = SPR_titoist_fopo_join_the_warsaw_pact
+			focus = SPR_titoist_fopo_policy_of_neutrality
+			focus = SPR_titoist_fopo_our_own_internationale
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_request_canadian_investment
+		}
+
+		relative_position_id = SPR_titoist_fopo_request_canadian_investment
+		x = 0
+		y = 2
+		
+		completion_reward = {
+			CAN = {
+				country_event = {
+					id = spain_diplo.106
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_joint_naval_training
+		icon = light_cruiser_program
+		cost = 7.2
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_join_the_democratic_league
+		}
+
+		relative_position_id = SPR_titoist_fopo_join_the_democratic_league
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			add_ideas = {
+				idea_spr_naval_exercises
+			}
+			every_country = {
+				limit = {
+					is_in_faction_with = ROOT
+					NOT = {
+						tag = ROOT
+					}
+				}
+				add_ideas = {
+					idea_spr_naval_exercises
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_bastions_of_democracy
+		icon = Canada_Spain_military_collaboration
+		cost = 8
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_joint_naval_training
+		}
+
+		relative_position_id = SPR_titoist_fopo_joint_naval_training
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			add_ideas = {
+				idea_spr_bastions_of_democracy
+			}
+			every_country = {
+				limit = {
+					is_in_faction_with = ROOT
+					NOT = {
+						tag = ROOT
+					}
+				}
+				add_ideas = {
+					idea_spr_bastions_of_democracy
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_request_investment_from_the_apc
+		icon = GFX_invite_apc_investors
+		cost = 6
+		
+		available = {
+			NEA = {
+				has_government = revolutionary_socialist
+			}
+		}
+		
+		bypass = {
+			OR = {
+				NEA = {
+					NOT = {
+						has_government = revolutionary_socialist
+					}
+				}
+				NOT = {
+					country_exists = NEA
+				}
+			}
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_our_international_alignment
+		}
+
+		relative_position_id = SPR_titoist_fopo_our_international_alignment
+		x = 5
+		y = 1
+		
+		completion_reward = {
+			NEA = {
+				country_event = {
+					id = spain_diplo.164
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_reach_out_to_yugoslavia
+		icon = yugoslavia
+		cost = 4
+		
+		available = {
+			country_exists = YUG
+			YUG = {
+				has_government = revolutionary_socialist
+			}
+		}
+		
+		bypass = {
+			OR = {
+				NOT = {
+					country_exists = YUG
+				}
+				YUG = {
+					NOT = {
+						has_government = revolutionary_socialist
+					}
+				}
+			}
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_request_investment_from_the_apc
+		}
+
+		relative_position_id = SPR_titoist_fopo_request_investment_from_the_apc
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			YUG = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = spain_eussr_trade
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_join_a_revolutionary_power_bloc
+		icon = embrace_market_socialism
+		cost = 5
+		
+		available = {
+			has_government = revolutionary_socialist
+			any_country = {
+				has_government = revolutionary_socialist
+				is_faction_leader = yes
+			}
+		}
+		
+		mutually_exclusive = {
+			focus = SPR_titoist_fopo_join_the_warsaw_pact
+			focus = SPR_titoist_fopo_join_the_democratic_league
+			focus = SPR_titoist_fopo_policy_of_neutrality
+			focus = SPR_titoist_fopo_our_own_internationale
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_reach_out_to_yugoslavia
+		}
+
+		relative_position_id = SPR_titoist_fopo_reach_out_to_yugoslavia
+		x = -1
+		y = 2
+		
+		completion_reward = {
+			IF = {
+				limit = {
+					NEA = {
+						has_government = revolutionary_socialist
+						is_faction_leader = yes
+					}
+				}
+				NEA = {
+					country_event = {
+						id = spain_diplo.109
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					FRA = {
+						has_government = revolutionary_socialist
+						is_faction_leader = yes
+					}
+				}
+				FRA = {
+					country_event = {
+						id = spain_diplo.109
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					ENG = {
+						has_government = revolutionary_socialist
+						is_faction_leader = yes
+					}
+				}
+				ENG = {
+					country_event = {
+						id = spain_diplo.109
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					YUG = {
+						has_government = revolutionary_socialist
+						is_faction_leader = yes
+					}
+				}
+				YUG = {
+					country_event = {
+						id = spain_diplo.109
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					UAR = {
+						has_government = revolutionary_socialist
+						is_faction_leader = yes
+					}
+				}
+				UAR = {
+					country_event = {
+						id = spain_diplo.109
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					CUB = {
+						has_government = revolutionary_socialist
+						is_faction_leader = yes
+					}
+				}
+				CUB = {
+					country_event = {
+						id = spain_diplo.109
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					DEN = {
+						has_government = revolutionary_socialist
+						is_faction_leader = yes
+					}
+				}
+				DEN = {
+					country_event = {
+						id = spain_diplo.109
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					YAR = {
+						has_government = revolutionary_socialist
+						is_faction_leader = yes
+					}
+				}
+				YAR = {
+					country_event = {
+						id = spain_diplo.109
+					}
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					GRL = {
+						has_government = revolutionary_socialist
+						is_faction_leader = yes
+					}
+				}
+				GRL = {
+					country_event = {
+						id = spain_diplo.109
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_industrial_development_in_third_world_allies
+		icon = english_military_industry
+		cost = 7.2
+		
+		available = {
+			is_in_faction = yes
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_join_a_revolutionary_power_bloc
+		}
+
+		relative_position_id = SPR_titoist_fopo_join_a_revolutionary_power_bloc
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			every_country = {
+				limit = {
+					is_in_faction_with = ROOT
+					num_of_factories < 50
+				}
+				country_event = {
+					id = spain_diplo.175
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_our_own_internationale
+		icon = socialist_alliance_focus
+		cost = 5
+		
+		available = {
+			has_government = revolutionary_socialist
+		}
+		
+		mutually_exclusive = {
+			focus = SPR_titoist_fopo_join_a_revolutionary_power_bloc
+			focus = SPR_titoist_fopo_join_the_democratic_league
+			focus = SPR_titoist_fopo_policy_of_neutrality
+			focus = SPR_titoist_fopo_join_the_warsaw_pact
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_reach_out_to_yugoslavia
+		}
+
+		relative_position_id = SPR_titoist_fopo_reach_out_to_yugoslavia
+		x = 1
+		y = 2
+		
+		completion_reward = {
+			set_rule = {
+				can_create_factions = yes
+			}
+			create_faction_from_template = { 
+				template = faction_template_world_revolution 
+				name = spanish_internationale_faction
+				icon = GFX_faction_carlist_titoist
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_invite_like_minded_nations
+		icon = GAL_adopt_a_good_neighbor_policy
+		cost = 7.2
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_our_own_internationale
+		}
+
+		relative_position_id = SPR_titoist_fopo_our_own_internationale
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			every_country = {
+			    limit = {
+				    AND = {
+					    NOT = {
+						    tag = ROOT 
+						}
+						has_government = revolutionary_socialist
+					}
+				}
+				country_event = { id = spain_diplo.176 }
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_ideological_zeal
+		icon = mass_socialist_organisation_focus
+		cost = 8
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_invite_like_minded_nations
+			focus = SPR_titoist_fopo_industrial_development_in_third_world_allies
+		}
+
+		relative_position_id = SPR_titoist_fopo_invite_like_minded_nations
+		x = -1
+		y = 1
+		
+		completion_reward = {
+			add_ideas = {
+				idea_spr_ideological_zeal
+			}
+			every_country = {
+				limit = {
+					is_in_faction_with = ROOT
+					NOT = {
+						tag = ROOT
+					}
+				}
+				add_ideas = {
+					idea_spr_ideological_zeal
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_policy_of_neutrality
+		icon = GFX_goal_generic_stable_government
+		cost = 5
+		
+		available = {
+			OR = {
+				threat > 0.75
+				custom_trigger_tooltip = {
+					tooltip = spain_ww3_has_begun
+					OR = {
+						CAN = {
+							has_war_with = RUS
+						}
+						RUS = {
+							has_war_with = GER
+						}
+						GER = {
+							has_war_with = CAN
+						}
+					}
+				}
+			}
+		}
+		
+		mutually_exclusive = {
+			focus = SPR_titoist_fopo_join_a_revolutionary_power_bloc
+			focus = SPR_titoist_fopo_join_the_democratic_league
+			focus = SPR_titoist_fopo_our_own_internationale
+			focus = SPR_titoist_fopo_join_the_warsaw_pact
+		}
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_request_canadian_investment
+			focus = SPR_titoist_fopo_apply_for_warsaw_pact_aid
+			focus = SPR_titoist_fopo_invite_russian_military_advisors
+			focus = SPR_titoist_fopo_reach_out_to_yugoslavia
+		}
+
+		relative_position_id = SPR_titoist_fopo_our_international_alignment
+		x = 0
+		y = 4
+		
+		completion_reward = {
+			add_ideas = {
+				idea_gal_neutrality_focus
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_fortify_our_coasts
+		icon = coastal_fort
+		cost = 7.2
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_policy_of_neutrality
+		}
+
+		relative_position_id = SPR_titoist_fopo_policy_of_neutrality
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			add_ideas = {
+				idea_spr_coastal_fortification
+			}
+		}
+	}
+	focus = {
+		id = SPR_titoist_fopo_seek_the_protection_of_world_powers
+		icon = play_off_both_sides
+		cost = 8
+		
+		prerequisite = {
+			focus = SPR_titoist_fopo_fortify_our_coasts
+		}
+
+		relative_position_id = SPR_titoist_fopo_fortify_our_coasts
+		x = 0
+		y = 1
+		
+		completion_reward = {
+		    IF = {
+				limit = {
+					country_exists = CAN
+				}
+				CAN = {
+					country_event = {
+						id = spain_diplo.100
+					}
+				}
+			}
+		    IF = {
+				limit = {
+					country_exists = RUS
+				}
+				RUS = {
+					country_event = {
+						id = spain_diplo.100
+					}
+				}
+			}
+		    IF = {
+				limit = {
+					country_exists = SOV
+				}
+				SOV = {
+					country_event = {
+						id = spain_diplo.100
+					}
+				}
+			}
+		    IF = {
+				limit = {
+					country_exists = GER
+				}
+				GER = {
+					country_event = {
+						id = spain_diplo.100
+					}
+				}
+			}
+		    IF = {
+				limit = {
+					country_exists = ENG
+				}
+				ENG = {
+					country_event = {
+						id = spain_diplo.100
+					}
+				}
+			}
+		}
+	}
+	#navy and air
+	focus = {
+		id = SPR_carlist_navy_and_air_sea_and_sky
+		icon = air_defense
+		cost = 3
+		
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = spain_we_have_stabilized_our_government_and_solved_our_military
+				has_completed_focus = carlist_cementing_the_new_socialist_kingdom
+				NOT = {
+					has_idea = idea_SPR_lingering_military_radicalism
+				}
+				NOT = {
+					has_idea = idea_SPR_lingering_republican_radicalism
+				}
+				NOT = {
+					has_idea = idea_SPR_bloated_military
+				}
+				NOT = {
+					has_idea = idea_SPR_bloated_military_2
+				}
+			}
+		}
+
+		x = 25
+		y = 7
+		
+		completion_reward = {
+			add_ideas = {
+				idea_spr_spanish_air_force_1
+			}
+			add_ideas = {
+				idea_spr_spanish_navy_1
+			}
+		}
+	}
+	focus = {
+		id = SPR_carlist_navy_and_air_develop_aircraft_carrier_designs
+		icon = carrier
+		cost = 3
+		
+		prerequisite = {
+			focus = SPR_carlist_navy_and_air_sea_and_sky
+		}
+
+		relative_position_id = SPR_carlist_navy_and_air_sea_and_sky
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = cv_tech
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 1
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
+		}
+	}
+	focus = {
+		id = SPR_carlist_navy_and_air_fund_the_alcala_de_henares_air_academy
+		icon = air_icon
+		cost = 4
+		
+		prerequisite = {
+			focus = SPR_carlist_navy_and_air_sea_and_sky
+		}
+
+		relative_position_id = SPR_carlist_navy_and_air_sea_and_sky
+		x = 2
+		y = 1
+		
+		completion_reward = {
+			IF = {
+				limit = {
+					NOT = {
+						has_completed_focus = SPR_carlist_navy_and_air_expand_alcantarilla_air_manufacturing
+					}
+				}
+				swap_ideas = {
+					remove_idea = idea_spr_spanish_air_force_1
+					add_idea = idea_spr_spanish_air_force_with_alcala_academy
+				}
+			}
+			IF = {
+				limit = {
+					has_completed_focus = SPR_carlist_navy_and_air_expand_alcantarilla_air_manufacturing
+				}
+				swap_ideas = {
+					remove_idea = idea_spr_spanish_air_force_with_alcantarilla_air_manufacturing
+					add_idea = idea_spr_spanish_air_force_with_alcantarilla_air_manufacturing_and_alcala_academy
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_carlist_navy_and_air_expand_alcantarilla_air_manufacturing
+		icon = air_production
+		cost = 7.2
+		
+		prerequisite = {
+			focus = SPR_carlist_navy_and_air_sea_and_sky
+		}
+
+		available = {
+			owns_state = 168
+			has_completed_focus = carlist_enforce_workplace_democracy
+		}
+
+		relative_position_id = SPR_carlist_navy_and_air_sea_and_sky
+		x = 4
+		y = 1
+		
+		completion_reward = {
+			IF = {
+				limit = {
+					NOT = {
+						has_completed_focus = SPR_carlist_navy_and_air_fund_the_alcala_de_henares_air_academy
+					}
+				}
+				swap_ideas = {
+					remove_idea = idea_spr_spanish_air_force_1
+					add_idea = idea_spr_spanish_air_force_with_alcantarilla_air_manufacturing
+				}
+			}
+			IF = {
+				limit = {
+					has_completed_focus = SPR_carlist_navy_and_air_fund_the_alcala_de_henares_air_academy
+				}
+				swap_ideas = {
+					remove_idea = idea_spr_spanish_air_force_with_alcala_academy
+					add_idea = idea_spr_spanish_air_force_with_alcantarilla_air_manufacturing_and_alcala_academy
+				}
+			}
+		    168 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_carlist_navy_and_air_prepare_elite_airborne_brigades
+		icon = SPR_airborne_brigade
+		cost = 5
+		
+		prerequisite = {
+			focus = SPR_carlist_navy_and_air_expand_alcantarilla_air_manufacturing
+		}
+		prerequisite = {
+			focus = SPR_carlist_navy_and_air_fund_the_alcala_de_henares_air_academy
+		}
+
+		relative_position_id = SPR_carlist_navy_and_air_expand_alcantarilla_air_manufacturing
+		x = 1
+		y = 1
+		
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 2
+				category = para_tech
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_completed_focus = SPR_carlist_navy_and_air_modernize_ground_support
+					}
+				}
+				swap_ideas = {
+					remove_idea = idea_spr_spanish_air_force_with_alcantarilla_air_manufacturing_and_alcala_academy
+					add_idea = idea_spr_spanish_air_force_with_alcantarilla_air_manufacturing_and_alcala_academy_and_paratroopers
+				}
+			}
+			IF = {
+				limit = {
+					has_completed_focus = SPR_carlist_navy_and_air_modernize_ground_support
+				}
+				swap_ideas = {
+					remove_idea = idea_spr_spanish_air_force_with_alcantarilla_air_manufacturing_and_alcala_academy_and_ground_support
+					add_idea = idea_spr_spanish_air_force_full
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_carlist_navy_and_air_prioritize_light_aircraft
+		icon = spain_light_fighters_focus
+		cost = 3
+		
+		prerequisite = {
+			focus = SPR_carlist_navy_and_air_expand_alcantarilla_air_manufacturing
+		}
+		prerequisite = {
+			focus = SPR_carlist_navy_and_air_fund_the_alcala_de_henares_air_academy
+		}
+		
+		mutually_exclusive = {
+			focus = SPR_carlist_navy_and_air_prioritize_heavy_aircraft
+		}
+
+		relative_position_id = SPR_carlist_navy_and_air_fund_the_alcala_de_henares_air_academy
+		x = -1
+		y = 1
+		
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = light_air
+			}
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = cat_air_engine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 1
+			}
+		}
+	}
+	focus = {
+		id = SPR_carlist_navy_and_air_prioritize_heavy_aircraft
+		icon = spain_heavy_fighters_focus
+		cost = 3
+		
+		prerequisite = {
+			focus = SPR_carlist_navy_and_air_expand_alcantarilla_air_manufacturing
+		}
+		prerequisite = {
+			focus = SPR_carlist_navy_and_air_fund_the_alcala_de_henares_air_academy
+		}
+		
+		mutually_exclusive = {
+			focus = SPR_carlist_navy_and_air_prioritize_light_aircraft
+		}
+
+		relative_position_id = SPR_carlist_navy_and_air_fund_the_alcala_de_henares_air_academy
+		x = 1
+		y = 1
+		
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = medium_air
+			}
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = cat_air_guns
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 1
+			}
+		}
+	}
+	focus = {
+		id = SPR_carlist_navy_and_air_modernize_ground_support
+		icon = drone
+		cost = 5
+		
+		prerequisite = {
+			focus = SPR_carlist_navy_and_air_prioritize_heavy_aircraft
+			focus = SPR_carlist_navy_and_air_prioritize_light_aircraft
+		}
+
+		relative_position_id = SPR_carlist_navy_and_air_prioritize_light_aircraft
+		x = 1
+		y = 1
+		
+		completion_reward = {
+			IF = {
+				limit = {
+					NOT = {
+						has_completed_focus = SPR_carlist_navy_and_air_prepare_elite_airborne_brigades
+					}
+				}
+				swap_ideas = {
+					remove_idea = idea_spr_spanish_air_force_with_alcantarilla_air_manufacturing_and_alcala_academy
+					add_idea = idea_spr_spanish_air_force_with_alcantarilla_air_manufacturing_and_alcala_academy_and_ground_support
+				}
+			}
+			IF = {
+				limit = {
+					has_completed_focus = SPR_carlist_navy_and_air_prepare_elite_airborne_brigades
+				}
+				swap_ideas = {
+					remove_idea = idea_spr_spanish_air_force_with_alcantarilla_air_manufacturing_and_alcala_academy_and_paratroopers
+					add_idea = idea_spr_spanish_air_force_full
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_carlist_navy_and_air_reconstitute_the_naval_military_academy
+		icon = navy_doctrine
+		cost = 5
+		
+		prerequisite = {
+			focus = SPR_carlist_navy_and_air_sea_and_sky
+		}
+
+		relative_position_id = SPR_carlist_navy_and_air_sea_and_sky
+		x = -2
+		y = 1
+		
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_spr_spanish_navy_1
+				add_idea = idea_spr_spanish_navy_naval_academy
+			}
+		}
+	}
+	focus = {
+		id = SPR_carlist_navy_and_air_militar_de_carrera
+		icon = spain_career_navy_focus
+		cost = 7.2
+		
+		prerequisite = {
+			focus = SPR_carlist_navy_and_air_reconstitute_the_naval_military_academy
+		}
+		
+		mutually_exclusive = {
+			focus = SPR_carlist_navy_and_air_militar_de_complemento
+		}
+
+		relative_position_id = SPR_carlist_navy_and_air_reconstitute_the_naval_military_academy
+		x = 1
+		y = 1
+		
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_spr_spanish_navy_naval_academy
+				add_idea = idea_spr_spanish_navy_carrera
+			}
+		}
+	}
+	focus = {
+		id = SPR_carlist_navy_and_air_militar_de_complemento
+		icon = spain_navy_complemento_focus
+		cost = 7.2
+		
+		prerequisite = {
+			focus = SPR_carlist_navy_and_air_reconstitute_the_naval_military_academy
+		}
+		
+		mutually_exclusive = {
+			focus = SPR_carlist_navy_and_air_militar_de_carrera
+		}
+
+		relative_position_id = SPR_carlist_navy_and_air_reconstitute_the_naval_military_academy
+		x = -1
+		y = 1
+		
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = idea_spr_spanish_navy_naval_academy
+				add_idea = idea_spr_spanish_navy_complemento
+			}
+		}
+	}
+	focus = {
+		id = SPR_carlist_navy_and_air_elite_marine_training
+		icon = SPR_marine_infantry_focus_icon
+		cost = 7.2
+		
+		prerequisite = {
+			focus = SPR_carlist_navy_and_air_militar_de_complemento
+			focus = SPR_carlist_navy_and_air_militar_de_carrera
+		}
+
+		relative_position_id = SPR_carlist_navy_and_air_militar_de_complemento
+		x = 1
+		y = 1
+		
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 2
+				category = marine_tech
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_completed_focus = SPR_carlist_navy_and_air_militar_de_carrera
+					}
+				}
+				swap_ideas = {
+					remove_idea = idea_spr_spanish_navy_complemento
+					add_idea = idea_spr_spanish_navy_complemento_marines
+				}
+			}
+			IF = {
+				limit = {
+					has_completed_focus = SPR_carlist_navy_and_air_militar_de_carrera
+				}
+				swap_ideas = {
+					remove_idea = idea_spr_spanish_navy_carrera
+					add_idea = idea_spr_spanish_navy_carrera_marines
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_carlist_navy_and_air_invest_in_amphibious_vehicles
+		icon = SPR_amphibious_vehicle_focus
+		cost = 7.2
+		
+		prerequisite = {
+			focus = SPR_carlist_navy_and_air_elite_marine_training
+		}
+
+		relative_position_id = SPR_carlist_navy_and_air_elite_marine_training
+		x = 0
+		y = 1
+		
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = tp_tech
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_completed_focus = SPR_carlist_navy_and_air_militar_de_carrera
+					}
+				}
+				swap_ideas = {
+					remove_idea = idea_spr_spanish_navy_complemento_marines
+					add_idea = idea_spr_spanish_navy_complemento_finished
+				}
+			}
+			IF = {
+				limit = {
+					has_completed_focus = SPR_carlist_navy_and_air_militar_de_carrera
+				}
+				swap_ideas = {
+					remove_idea = idea_spr_spanish_navy_carrera_marines
+					add_idea = idea_spr_spanish_navy_carrera_finished
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_carlist_navy_and_air_expand_cartagena_shipbuilding_industry
+		icon = spain_cartagena_shipbuilding
+		cost = 5
+		
+		available = {
+			owns_state = 168
+			has_completed_focus = carlist_enforce_workplace_democracy
+		}
+		
+		prerequisite = {
+			focus = SPR_carlist_navy_and_air_sea_and_sky
+		}
+
+		relative_position_id = SPR_carlist_navy_and_air_sea_and_sky
+		x = -4
+		y = 1
+		
+		completion_reward = {
+		    168 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_carlist_navy_and_air_modernize_cantabrian_dockyards
+		icon = scottish_military_industry
+		cost = 5
+		
+		available = {
+			owns_state = 1019
+			has_completed_focus = carlist_enforce_workplace_democracy
+		}
+		
+		prerequisite = {
+			focus = SPR_carlist_navy_and_air_sea_and_sky
+		}
+
+		relative_position_id = SPR_carlist_navy_and_air_sea_and_sky
+		x = -6
+		y = 1
+		
+		completion_reward = {
+		    1019 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = SPR_carlist_navy_and_air_develop_the_straits_maritime_zone
+		icon = cruiser
+		cost = 10
+		
+		available = {
+			OR = {
+				owns_state = 169
+				any_country = {
+					is_puppet_of = ROOT
+					owns_state = 169
+				}
+			}
+			OR = {
+				owns_state = 173
+				any_country = {
+					is_puppet_of = ROOT
+					owns_state = 173
+				}
+			}
+		}
+		
+		prerequisite = {
+			focus = SPR_carlist_navy_and_air_modernize_cantabrian_dockyards
+		}
+		prerequisite = {
+			focus = SPR_carlist_navy_and_air_expand_cartagena_shipbuilding_industry
+		}
+
+		relative_position_id = SPR_carlist_navy_and_air_modernize_cantabrian_dockyards
+		x = 1
+		y = 1
+		
+		completion_reward = {
+		    169 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+		    173 = {
+			    add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+			IF = {
+				limit = {
+					owns_state = 118
+				}
+				118 = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = dockyard
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 931
+						any_country = {
+							owns_state = 931
+							is_puppet_of = ROOT
+						}
+					}
+				}
+				931 = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = dockyard
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			IF = {
+				limit = {
+					OR = {
+						owns_state = 921
+						any_country = {
+							owns_state = 921
+							is_puppet_of = ROOT
+						}
+					}
+				}
+				921 = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = dockyard
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+}
