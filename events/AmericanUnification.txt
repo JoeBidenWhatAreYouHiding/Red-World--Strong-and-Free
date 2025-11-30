@@ -2303,6 +2303,8 @@ country_event = {
 		PCA = { is_subject_of = GRL }
 		USA = { is_subject_of = GRL }
 		NEA = { is_subject_of = GRL }
+		UTA = { is_subject_of = GRL }
+		ARI = { is_subject_of = GRL }
 		358 = { is_owned_by_ROOT_or_subject = yes }
 		901 = { is_owned_by_ROOT_or_subject = yes }
 		357 = { is_owned_by_ROOT_or_subject = yes }
@@ -2349,7 +2351,7 @@ country_event = {
 					ruling_only = yes
 				}
 			}
-			set_cosmetic_tag = GRL_USS_USF
+			set_cosmetic_tag = GRL_USS_CCR
 		}
 		else_if = {
 			limit = {
@@ -2359,6 +2361,31 @@ country_event = {
 		}
 		else = {
 			set_cosmetic_tag = USS
+		}
+		every_country = {
+			limit = {	
+				is_subject_of = GRL
+				OR = {
+					tag = AMC
+					tag = NEA
+					tag = USA
+					tag = TEX
+					tag = MWA
+					tag = ILL
+					tag = UTA
+					tag = LIN
+					tag = ARI
+					tag = MOT
+					tag = CSD
+					tag = PCA
+				}
+			}
+			GRL = {
+				annex_country = {
+					target = PREV
+					transfer_troops = yes
+				}
+			}
 		}
 		set_country_flag = the_united_states_are_back
         country_event = { days = 7 id = american_unification.2 } 
