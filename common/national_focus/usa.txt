@@ -695,7 +695,7 @@ focus_tree = {
 				has_country_flag = donald_rumsfeld_elected
 			}
 		}
-		x = 18
+		x = 17
 		y = 2
 		completion_reward = {
 		    add_popularity = {
@@ -713,8 +713,9 @@ focus_tree = {
 		prerequisite = {
 			focus = USA_nationalist_policies
 		}
+		relative_position_id = USA_nationalist_policies
 		x = 0
-		y = 1
+		y = 2
 		relative_position_id = USA_nationalist_policies
 		completion_reward = {
 		    add_political_power = 50
@@ -729,9 +730,9 @@ focus_tree = {
 		prerequisite = {
 			focus = USA_freedom_act
 		}
-		x = -3
-		y = 2
 		relative_position_id = USA_nationalist_policies
+		x = -3
+		y = 3
 		completion_reward = {
 		    add_ideas = idea_usa_national_security_agency
 			country_event = { id = usa.93 }
@@ -745,8 +746,9 @@ focus_tree = {
 		prerequisite = {
 			focus = USA_freedom_act
 		}
+		relative_position_id = USA_nationalist_policies
 		x = -1
-		y = 2
+		y = 3
 		relative_position_id = USA_nationalist_policies
 		completion_reward = {
 		    add_ideas = idea_usa_amworks
@@ -760,8 +762,9 @@ focus_tree = {
 		prerequisite = {
 			focus = USA_freedom_act
 		}
+		relative_position_id = USA_nationalist_policies
 		x = 1
-		y = 2
+		y = 3
 		relative_position_id = USA_nationalist_policies
 		completion_reward = {
 		    add_ideas = idea_usa_traditional_values
@@ -775,8 +778,9 @@ focus_tree = {
 		prerequisite = {
 			focus = USA_freedom_act
 		}
+		relative_position_id = USA_nationalist_policies
 		x = 3
-		y = 2
+		y = 3
 		relative_position_id = USA_nationalist_policies
 		completion_reward = {
 		    add_political_power = 120
@@ -806,8 +810,9 @@ focus_tree = {
 				has_completed_focus = USA_liberty_is_paramount
 			}
 		}
+		relative_position_id = USA_nationalist_policies
 		x = 1
-		y = 3
+		y = 4
 		relative_position_id = USA_nationalist_policies
 		completion_reward = {
 		    add_ideas = idea_usa_a_christian_nation
@@ -833,8 +838,9 @@ focus_tree = {
 				has_completed_focus = USA_review_the_separation
 			}
 		}
+		relative_position_id = USA_nationalist_policies
 		x = -1
-		y = 3
+		y = 4
 		relative_position_id = USA_nationalist_policies
 		completion_reward = {
 		    add_stability = 0.05
@@ -863,8 +869,9 @@ focus_tree = {
 				has_completed_focus = USA_monitor_the_people
 			}
 		}
+		relative_position_id = USA_nationalist_policies
 		x = 3
-		y = 3
+		y = 4
 		relative_position_id = USA_nationalist_policies
 		completion_reward = {
 		    add_ideas = idea_usa_secular_america
@@ -891,9 +898,9 @@ focus_tree = {
 				has_completed_focus = USA_social_programs_for_laborers
 			}
 		}
+		relative_position_id = USA_nationalist_policies
 		x = 1
 		y = 5
-		relative_position_id = USA_nationalist_policies
 		completion_reward = {
 		    add_stability = 0.035
             enable_unification_decisions = yes
@@ -3569,7 +3576,7 @@ focus_tree = {
 		prerequisite = {
 			focus = USA_invite_foreign_executives
 		}
-		x = -3
+		x = -2
 		y = 5
 		relative_position_id = USA_the_industrial_issue
 		completion_reward = {
@@ -3625,7 +3632,7 @@ focus_tree = {
 			}
 		}
 		x = -3
-		y = 3
+		y = 4
 		relative_position_id = USA_nationalist_policies
 		completion_reward = {
 			swap_ideas = { 
@@ -3665,13 +3672,59 @@ focus_tree = {
 		}
 
 	}
+	
+	focus = {
+		id = USA_the_legitimate_government
+		icon = One_Nation_Under_The_Chief
+		cost = 10
+		prerequisite = {
+			focus = USA_one_nation_under_the_chief
+			focus = USA_one_nation_under_the_flag
+		}
+		x = 3
+		y = 7
+		offset = {
+			x = 1
+			trigger = {
+				has_country_leader = {
+					name = "Jeb Bush"
+					ruling_only = yes
+				}
+			}
+		}
+		offset = {
+			x = -3
+			trigger = {
+				NOT = {
+					has_country_leader = {
+						name = "Jeb Bush"
+						ruling_only = yes
+					}
+					has_country_leader = {
+						name = "Dick Cheney"
+						ruling_only = yes
+					}
+					has_country_leader = {
+						name = "Donald Rumsfeld"
+						ruling_only = yes
+					}
+				}
+			}
+		}
+		relative_position_id = USA_nationalist_policies
+		completion_reward = {
+		    add_political_power = 100
+		    add_war_support = 0.035
+            enable_unification_decisions = yes
+		}
+
+	}
 	focus = {
 		id = USA_traitors_of_illinois
 		icon = illinois_attack
 		cost = 7.2
 		prerequisite = {
-			focus = USA_one_nation_under_the_chief
-			focus = USA_one_nation_under_the_flag
+			focus = USA_the_legitimate_government
 		}
 		available = {
 		    OR = {
@@ -3682,8 +3735,8 @@ focus_tree = {
 			}
 		}
 		x = -3
-		y = 7
-		relative_position_id = USA_nationalist_policies
+		y = 2
+		relative_position_id = USA_the_legitimate_government
 		will_lead_to_war_with = ILL
 		completion_reward = {
 		    create_wargoal = {
@@ -3699,8 +3752,7 @@ focus_tree = {
 		icon = glr_attack
 		cost = 7.2
 		prerequisite = {
-			focus = USA_one_nation_under_the_chief
-			focus = USA_one_nation_under_the_flag
+			focus = USA_the_legitimate_government
 		}
 		available = {
 		    OR = {
@@ -3711,8 +3763,8 @@ focus_tree = {
 			}
 		}
 		x = -1
-		y = 7
-		relative_position_id = USA_nationalist_policies
+		y = 1
+		relative_position_id = USA_the_legitimate_government
 		will_lead_to_war_with = GRL
 		completion_reward = {
 		    if = {
@@ -3740,8 +3792,7 @@ focus_tree = {
 		icon = montana_attack
 		cost = 7.2
 		prerequisite = {
-			focus = USA_one_nation_under_the_chief
-			focus = USA_one_nation_under_the_flag
+			focus = USA_the_legitimate_government
 		}
 		available = {
 		    OR = {
@@ -3752,8 +3803,8 @@ focus_tree = {
 			}
 		}
 		x = 1
-		y = 7
-		relative_position_id = USA_nationalist_policies
+		y = 1
+		relative_position_id = USA_the_legitimate_government
 		will_lead_to_war_with = MOT
 		completion_reward = {
 		    create_wargoal = {
@@ -3769,8 +3820,7 @@ focus_tree = {
 		icon = lincoln_attack
 		cost = 7.2
 		prerequisite = {
-			focus = USA_one_nation_under_the_chief
-			focus = USA_one_nation_under_the_flag
+			focus = USA_the_legitimate_government
 		}
 		available = {
 		    OR = {
@@ -3781,8 +3831,8 @@ focus_tree = {
 			}
 		}
 		x = 3
-		y = 7
-		relative_position_id = USA_nationalist_policies
+		y = 2
+		relative_position_id = USA_the_legitimate_government
 		will_lead_to_war_with = LIN
 		completion_reward = {
 		    create_wargoal = {
@@ -3799,8 +3849,6 @@ focus_tree = {
 		cost = 7.2
 		prerequisite = {
 			focus = USA_traitors_of_illinois
-		}
-		prerequisite = {
 			focus = USA_traitors_of_the_great_lakes
 		}
 		available = {
@@ -3811,9 +3859,9 @@ focus_tree = {
 				}
 			}
 		}
-		x = -2
-		y = 8
-		relative_position_id = USA_nationalist_policies
+		x = -1
+		y = 2
+		relative_position_id = USA_the_legitimate_government
 		will_lead_to_war_with = MWA
 		completion_reward = {
 		    create_wargoal = {
@@ -3832,8 +3880,8 @@ focus_tree = {
 			focus = USA_traitors_of_the_midwest
 		}
 		x = -2
-		y = 9
-		relative_position_id = USA_nationalist_policies
+		y = 3
+		relative_position_id = USA_the_legitimate_government
 		completion_reward = {
 		    every_state = {
 			    limit = {
@@ -3854,8 +3902,6 @@ focus_tree = {
 		cost = 7.2
 		prerequisite = {
 			focus = USA_traitors_of_montana
-		}
-		prerequisite = {
 			focus = USA_the_lincoln_abomination
 		}
 		available = {
@@ -3866,9 +3912,9 @@ focus_tree = {
 				}
 			}
 		}
-		x = 2
-		y = 8
-		relative_position_id = USA_nationalist_policies
+		x = 1
+		y = 2
+		relative_position_id = USA_the_legitimate_government
 		will_lead_to_war_with = UTA
 		completion_reward = {
 		    create_wargoal = {
@@ -3895,8 +3941,8 @@ focus_tree = {
 			}
 		}
 		x = 2
-		y = 9
-		relative_position_id = USA_nationalist_policies
+		y = 3
+		relative_position_id = USA_the_legitimate_government
 		will_lead_to_war_with = ARI
 		completion_reward = {
 		    create_wargoal = {
@@ -3932,8 +3978,8 @@ focus_tree = {
 			}
 		}
 		x = -1
-		y = 10
-		relative_position_id = USA_nationalist_policies
+		y = 4
+		relative_position_id = USA_the_legitimate_government
 		will_lead_to_war_with = PCA
 		will_lead_to_war_with = CSD
 		completion_reward = {
@@ -3974,8 +4020,8 @@ focus_tree = {
 			}
 		}
 		x = 1
-		y = 10
-		relative_position_id = USA_nationalist_policies
+		y = 4
+		relative_position_id = USA_the_legitimate_government
 		will_lead_to_war_with = NEA
 		will_lead_to_war_with = AMC
 		completion_reward = {
@@ -4003,8 +4049,8 @@ focus_tree = {
 			focus = USA_operation_new_england
 		}
 		x = 0
-		y = 11
-		relative_position_id = USA_nationalist_policies
+		y = 5
+		relative_position_id = USA_the_legitimate_government
 		completion_reward = {
 		    add_political_power = 200
             add_stability = 0.2
@@ -4019,8 +4065,8 @@ focus_tree = {
 			focus = USA_the_united_states
 		}
 		x = -2
-		y = 12
-		relative_position_id = USA_nationalist_policies
+		y = 1
+		relative_position_id = USA_the_united_states
 		completion_reward = {
 		    add_stability = 0.04
 			country_event = { id = usa.135 }
@@ -4035,8 +4081,8 @@ focus_tree = {
 			focus = USA_the_united_states
 		}
 		x = 0
-		y = 12
-		relative_position_id = USA_nationalist_policies
+		y = 1
+		relative_position_id = USA_the_united_states
 		completion_reward = {
 		    every_state = {
 			    limit = {
@@ -4110,8 +4156,8 @@ focus_tree = {
 			focus = USA_the_united_states
 		}
 		x = 2
-		y = 12
-		relative_position_id = USA_nationalist_policies
+		y = 1
+		relative_position_id = USA_the_united_states
 		completion_reward = {
 		    add_ideas = idea_usa_restored_american_army
 			country_event = { id = usa.136 }
@@ -4126,8 +4172,8 @@ focus_tree = {
 			focus = USA_reconciliation
 		}
 		x = 0
-		y = 13
-		relative_position_id = USA_nationalist_policies
+		y = 2
+		relative_position_id = USA_the_united_states
 		will_lead_to_war_with = SOV
 		completion_reward = {
 		    create_wargoal = {
@@ -5935,6 +5981,774 @@ focus_tree = {
 				uses = 1
 				category = air_doctrine
 			}
+		}
+
+	}
+
+	### Rummy ###
+
+	focus = {
+		id = USA_president_rumsfeld
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_one_nation_under_the_chief
+			focus = USA_one_nation_under_the_flag
+		}
+		allow_branch = {	
+			has_country_leader = {
+				name = "Donald Rumsfeld"
+				ruling_only = yes
+			}
+		}
+		x = -3
+		y = 6
+		relative_position_id = USA_nationalist_policies
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_secure_gop_loyalty
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_president_rumsfeld
+		}
+		x = 0
+		y = 1
+		relative_position_id = USA_president_rumsfeld
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_limbaugh_on_the_radio
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_president_rumsfeld
+		}
+		x = 2
+		y = 1
+		relative_position_id = USA_president_rumsfeld
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_expand_media_empire
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_president_rumsfeld
+		}
+		x = -2
+		y = 1
+		relative_position_id = USA_president_rumsfeld
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_reach_out_to_the_christian_right
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_expand_media_empire
+		}
+		prerequisite = {
+			focus = USA_limbaugh_on_the_radio
+		}
+		mutually_exclusive = {
+			focus = USA_big_buisnes_loyalty
+		}
+		x = -1
+		y = 2
+		relative_position_id = USA_president_rumsfeld
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_vision_of_coe
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_reach_out_to_the_christian_right
+		}
+		x = -1
+		y = 3
+		relative_position_id = USA_president_rumsfeld
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_defenders_of_christian_faith
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_vision_of_coe
+		}
+		x = -1
+		y = 4
+		relative_position_id = USA_president_rumsfeld
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_big_buisnes_loyalty
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_expand_media_empire
+		}
+		prerequisite = {
+			focus = USA_limbaugh_on_the_radio
+		}
+		mutually_exclusive = {
+			focus = USA_reach_out_to_the_christian_right
+		}
+		x = 1
+		y = 2
+		relative_position_id = USA_president_rumsfeld
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_extreme_deregulation
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_big_buisnes_loyalty
+		}
+		x = 1
+		y = 3
+		relative_position_id = USA_president_rumsfeld
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_united_under_the_dollar
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_extreme_deregulation
+		}
+		x = 1
+		y = 4
+		relative_position_id = USA_president_rumsfeld
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_ultrahawkish_foreign_policy
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_united_under_the_dollar
+			focus = USA_defenders_of_christian_faith
+		}
+		x = 0
+		y = 5
+		relative_position_id = USA_president_rumsfeld
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_enhanced_interrogation
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_ultrahawkish_foreign_policy
+		}
+		x = 2
+		y = 1
+		relative_position_id = USA_ultrahawkish_foreign_policy
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_the_second_nixon
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_ultrahawkish_foreign_policy
+		}
+		mutually_exclusive = {
+			focus = USA_rehabilitate_ashbrook
+		}
+		x = 0
+		y = 1
+		relative_position_id = USA_ultrahawkish_foreign_policy
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_rehabilitate_ashbrook
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_ultrahawkish_foreign_policy
+		}
+		mutually_exclusive = {
+			focus = USA_the_second_nixon
+		}
+		x = -2
+		y = 1
+		relative_position_id = USA_ultrahawkish_foreign_policy
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_rumsfeldia
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_rehabilitate_ashbrook
+			focus = USA_the_second_nixon
+		}
+		prerequisite = {
+			focus = USA_enhanced_interrogation
+		}
+		x = 0
+		y = 3
+		relative_position_id = USA_ultrahawkish_foreign_policy
+		completion_reward = {
+		}
+
+	}
+	
+	### Jeb! ###`
+
+	focus = {
+		id = USA_president_bush
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_one_nation_under_the_chief
+			focus = USA_one_nation_under_the_flag
+		}
+		allow_branch = {	
+			has_country_leader = {
+				name = "Jeb Bush"
+				ruling_only = yes
+			}
+		}
+		x = -3
+		y = 6
+		relative_position_id = USA_nationalist_policies
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_retreat_from_hawkishness
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_president_bush
+		}
+		x = 0
+		y = 1
+		relative_position_id = USA_president_bush
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_grammer_on_the_radio
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_president_bush
+		}
+		x = 2
+		y = 1
+		relative_position_id = USA_president_bush
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_expand_media_empire_bush
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_president_bush
+		}
+		x = -2
+		y = 1
+		relative_position_id = USA_president_bush
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_knights_of_columbus
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_expand_media_empire_bush
+		}
+		prerequisite = {
+			focus = USA_grammer_on_the_radio
+		}
+		x = -1
+		y = 2
+		relative_position_id = USA_president_bush
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_hispanic_appeals
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_knights_of_columbus
+		}
+		x = -1
+		y = 3
+		relative_position_id = USA_president_bush
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_cooperate_with_the_independence_union
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_expand_media_empire_bush
+		}
+		prerequisite = {
+			focus = USA_grammer_on_the_radio
+		}
+		x = 1
+		y = 2
+		relative_position_id = USA_president_bush
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_restart_the_bush_cult
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_cooperate_with_the_independence_union
+		}
+		x = 1
+		y = 3
+		relative_position_id = USA_president_bush
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_father_avenged
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_restart_the_bush_cult
+			focus = USA_hispanic_appeals
+		}
+		x = 0
+		y = 4
+		relative_position_id = USA_president_bush
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_stand_for_america
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_father_avenged
+		}
+		x = 0
+		y = 1
+		relative_position_id = USA_father_avenged
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_flawless_victory
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_stand_for_america
+		}
+		x = 0
+		y = 2
+		relative_position_id = USA_father_avenged
+		completion_reward = {
+		}
+
+	}
+	
+	### Cheney ###`
+
+	focus = {
+		id = USA_president_cheney
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_one_nation_under_the_chief
+			focus = USA_one_nation_under_the_flag
+		}
+		allow_branch = {	
+			has_country_leader = {
+				name = "Dick Cheney"
+				ruling_only = yes
+			}
+		}
+		x = -3
+		y = 6
+		relative_position_id = USA_nationalist_policies
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_take_care_of_jeb
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_president_cheney
+		}
+		x = -1
+		y = 1
+		relative_position_id = USA_president_cheney
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_secure_congress_support
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_president_cheney
+		}
+		x = 1
+		y = 1
+		relative_position_id = USA_president_cheney
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_purge_the_christian_right
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_take_care_of_jeb
+		}
+		prerequisite = {
+			focus = USA_secure_congress_support
+		}
+		x = -2
+		y = 2
+		relative_position_id = USA_president_cheney
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_corprate_loyalty
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_take_care_of_jeb
+		}
+		prerequisite = {
+			focus = USA_secure_congress_support
+		}
+		x = 0
+		y = 2
+		relative_position_id = USA_president_cheney
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_the_spin_room
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_take_care_of_jeb
+		}
+		prerequisite = {
+			focus = USA_secure_congress_support
+		}
+		x = 2
+		y = 2
+		relative_position_id = USA_president_cheney
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_integrate_the_moderate_gop
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_the_spin_room
+		}
+		prerequisite = {
+			focus = USA_corprate_loyalty
+		}
+		prerequisite = {
+			focus = USA_purge_the_christian_right
+		}
+		x = -1
+		y = 3
+		relative_position_id = USA_president_cheney
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_tear_down_the_bush_cult
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_the_spin_room
+		}
+		prerequisite = {
+			focus = USA_corprate_loyalty
+		}
+		prerequisite = {
+			focus = USA_purge_the_christian_right
+		}
+		x = 1
+		y = 3
+		relative_position_id = USA_president_cheney
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_controlled_opposition
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_tear_down_the_bush_cult
+		}
+		prerequisite = {
+			focus = USA_integrate_the_moderate_gop
+		}
+		x = 0
+		y = 4
+		relative_position_id = USA_president_cheney
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_revive_the_black_chamber
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_controlled_opposition
+		}
+		x = -1
+		y = 5
+		relative_position_id = USA_president_cheney
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_legalize_gay_marrige
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_controlled_opposition
+		}
+		x = 1
+		y = 5
+		relative_position_id = USA_president_cheney
+		completion_reward = {
+		}
+
+	}
+	
+	focus = {
+		id = USA_night_watchmen_state
+		icon = texan_question
+		cost = 3.6
+		ai_will_do = {
+			base = 100
+		}
+		prerequisite = {
+			focus = USA_legalize_gay_marrige
+		}
+		prerequisite = {
+			focus = USA_revive_the_black_chamber
+		}
+		x = 0
+		y = 6
+		relative_position_id = USA_president_cheney
+		completion_reward = {
 		}
 
 	}
