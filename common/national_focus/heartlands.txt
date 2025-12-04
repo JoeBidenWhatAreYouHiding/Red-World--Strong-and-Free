@@ -1033,7 +1033,7 @@ focus_tree = {
 				remove_idea = MWA_extensive_decentralization
 				add_idea = MWA_united_behind_clark
 			}
-			random_owned_and_controlled_state = {
+			random_owned_controlled_state = {
 				add_extra_state_shared_building_slots = 1
 			}
 			add_liberal_to_coalition = yes
@@ -1557,13 +1557,13 @@ focus_tree = {
 					add_idea = MWA_scars_of_unification3
 				}
 			}
-			random_owned_and_controlled_state = {
+			random_owned_controlled_state = {
 				add_extra_state_shared_building_slots = 1
 			}
-			random_owned_and_controlled_state = {
+			random_owned_controlled_state = {
 				add_extra_state_shared_building_slots = 1
 			}
-			random_owned_and_controlled_state = {
+			random_owned_controlled_state = {
 				add_extra_state_shared_building_slots = 1
 			}
 		}
@@ -1610,7 +1610,7 @@ focus_tree = {
 	focus = {
 		id = MWA_paleocons
 		icon = X
-		cost = 6
+		cost = 2
 		x = 21
 		y = 0
 
@@ -1628,6 +1628,11 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.04
+			}
+			country_event = heartlands.17
 		}
 	}
 	
@@ -1654,6 +1659,13 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			MWA_pat_buchanan = {
+				add_trait = {
+					ideology = paleoconservative
+					trait = MWA_heir_of_ashbrook
+				}
+			}
+			country_event = heartlands.18
 		}
 	}
 	
@@ -1680,6 +1692,15 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_ideas = MWA_a_second_conservative_revolution
+			add_popularity = {
+				ideology = national_conservative
+				popularity = -0.04
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = -0.04
+			}
 		}
 	}
 	
@@ -1693,6 +1714,7 @@ focus_tree = {
 		y = 1
 
 		available = {
+			has_completed_focus = MWA_a_second_conservative_revolution
 		}
 		
 		prerequisite = {
@@ -1706,6 +1728,16 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = MWA_a_second_conservative_revolution
+				add_idea = MWA_a_second_conservative_revolution2
+			}
+			add_stability = -0.04
+			add_war_support = 0.04
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.02
+			}
 		}
 	}
 	
@@ -1719,6 +1751,7 @@ focus_tree = {
 		y = 2
 
 		available = {
+			has_completed_focus = MWA_seal_our_borders
 		}
 		
 		prerequisite = {
@@ -1732,6 +1765,12 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_manpower = -2300
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+			add_ideas = MWA_know_nothing_heritage
 		}
 	}
 	
@@ -1758,6 +1797,20 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			MWA_lenora_fulani = {
+				promote_character = socialist_nationalist
+			}
+			add_popularity = {
+				ideology = national_bolshevik
+				popularity = 0.06
+			}
+			add_nazbol_to_coalition = yes
+			set_party_name = {
+				name = MWA_nazbol_isolationists
+				long_name = MWA_nazbol_isolationists_long
+				ideology = national_bolshevik
+			}
+			country_event = heartlands.19
 		}
 	}
 	
@@ -1786,6 +1839,20 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_ideas = MWA_loyal_media
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.04
+			}
+			add_popularity = {
+				ideology = new_democrat
+				popularity = -0.04
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = -0.04
+			}
+			country_event = heartlands.20
 		}
 	}
 
@@ -1799,6 +1866,25 @@ focus_tree = {
 		y = 4
 
 		available = {
+			OR = {
+				has_country_leader = {
+					name = "Tom Tancredo"
+					ruling_only = yes
+				}
+				has_country_leader = {
+					name = "Kris Kobach"
+					ruling_only = yes
+				}
+				has_country_leader = {
+					name = "Paul Gosar"
+					ruling_only = yes
+				}
+				has_country_leader = {
+					name = "Pat Buchanan"
+					ruling_only = yes
+				}
+			}
+			has_country_flag = the_united_states_are_back
 		}
 		
 		mutually_exclusive = {
@@ -1811,6 +1897,9 @@ focus_tree = {
 			focus = MWA_healthcare_reform_plan
 			focus = MWA_media_empire
 		}
+		prerequisite = {
+			focus = MWA_empower_the_police
+		}
 		
 		ai_will_do = {
 			factor = 5
@@ -1819,6 +1908,10 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = MWA_scars_of_unification
+				add_idea = MWA_scars_of_unification2
+			}
 		}
 	}
 	
@@ -1845,6 +1938,20 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			if = {
+				limit = { has_idea = MWA_scars_of_unification3 }
+				remove_ideas = MWA_scars_of_unification3
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = MWA_scars_of_unification2
+					add_idea = MWA_scars_of_unification3
+				}
+			}
+			country_event = heartlands.21
+			add_war_support = -0.05
+			add_stability = 0.05
+			add_manpower = 2300
 		}
 	}
 	
@@ -1871,6 +1978,19 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = MWA_a_second_conservative_revolution2
+				add_idea = MWA_a_second_conservative_revolution3
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.05
+			}
+			add_stability = -0.02
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.02
+			}
 		}
 	}
 	
@@ -1898,6 +2018,24 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			if = {
+				limit = { has_idea = MWA_scars_of_unification2 }
+				swap_ideas = {
+					remove_idea = MWA_scars_of_unification2
+					add_idea = MWA_scars_of_unification3
+				}
+			}
+			else = {
+				remove_ideas = MWA_scars_of_unification3
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = -0.2
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.2
+			}
 		}
 	}
 	
@@ -1929,7 +2067,8 @@ focus_tree = {
 
 		available_if_capitulated = yes
 
-		completion_reward = {
+		completion_reward = {	
+			add_ideas = MWA_isolationist_foreign_policy
 		}
 	}
 	
@@ -1938,7 +2077,7 @@ focus_tree = {
 	focus = {
 		id = MWA_miller
 		icon = X
-		cost = 6
+		cost = 2
 		
 		relative_position_id = MWA_paleocons
 		x = 6
@@ -1958,6 +2097,11 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.04
+			}
+			country_event = heartlands.9
 		}
 	}
 	
@@ -1984,6 +2128,16 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			# swap_ideas = {
+				# remove_idea = midwest_sic_tom_tancredo
+				# add_idea = midwest_sic_tom_tancredo_improved
+			# }
+			add_political_power = 100
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+			country_event = heartlands.10
 		}
 	}
 	
@@ -2010,6 +2164,9 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_ideas = MWA_american_majoritarianism
+			add_war_support = 0.03
+			add_stability = -0.05
 		}
 	}
 	
@@ -2036,6 +2193,23 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			country_event = heartlands.12
+			add_ideas = MWA_heartland_hollywood
+			add_war_support = 0.04
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.03
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			# custom_effect_tooltip = CAN_fom_avalible
+			# show_ideas_tooltip = midwest_fom_mel_gibson
 		}
 	}
 	
@@ -2062,6 +2236,12 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_timed_idea = {
+				idea = MWA_anti_globalism
+				days = 600
+			}
+			add_command_power = 40
+			army_experience = 40
 		}
 	}
 	
@@ -2089,6 +2269,19 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			MWA_merlin_miller = {
+				add_trait = {
+					ideology = paleoconservative
+					trait = MWA_spirit_of_lindberg
+				}
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.01
+			}
+			add_stability = 0.02
+			air_experience = 10
+			country_event = heartlands.11
 		}
 	}
 	
@@ -2121,6 +2314,9 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_manpower = 2300
+			add_command_power = 40
+			add_ideas = MWA_the_eagles
 		}
 	}
 	
@@ -2134,10 +2330,18 @@ focus_tree = {
 		y = 4
 
 		available = {
+			has_country_leader = {
+				name = "Merlin Miller"
+				ruling_only = yes
+			}
+			has_country_flag = the_united_states_are_back
 		}
 		
 		prerequisite = {
 			focus = MWA_empower_the_eagles
+		}
+		prerequisite = {
+			focus = MWA_a_christian_heartlands
 		}
 		
 		ai_will_do = {
@@ -2147,6 +2351,10 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = MWA_scars_of_unification
+				add_idea = MWA_scars_of_unification2
+			}
 		}
 	}
 	
@@ -2173,6 +2381,20 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			country_event = heartlands.16
+			swap_ideas = {
+				remove_idea = MWA_american_majoritarianism
+				add_idea = MWA_american_majoritarianism2
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
 		}
 	}
 	
@@ -2199,6 +2421,30 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			if = {
+				limit = { has_idea = MWA_scars_of_unification3 }
+				remove_ideas = MWA_scars_of_unification3
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = MWA_scars_of_unification2
+					add_idea = MWA_scars_of_unification3
+				}
+			}
+			add_political_power = 100
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
 		}
 	}
 	
@@ -2231,6 +2477,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_ideas = MWA_anti_communist_foreign_policy
 		}
 	}
 	
@@ -2260,6 +2507,14 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			remove_ideas = MWA_extensive_decentralization
+			add_ideas = MWA_closed_borders
+			add_manpower = -2300
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.04
+			}
+			country_event = heartlands.14
 		}
 	}
 	
@@ -2286,6 +2541,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_ideas = MWA_a_christian_heartlands
 		}
 	}
 	
@@ -2312,6 +2568,10 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			remove_ideas = MWA_lawless_countryside
+			add_command_power = 100
+			army_experience = 70
+			country_event = heartlands.15
 		}
 	}
 	
