@@ -40,6 +40,7 @@ buildings = {
 
 		show_modifier = yes
 		allied_build = yes
+		affects_energy = yes
 
 		infrastructure_construction_effect = yes
 		level_cap = {
@@ -472,6 +473,7 @@ buildings = {
 		base_cost = 35000
 		icon_frame = 34
 		#nuclear_reactor = yes
+		affects_energy = yes
 		value = 10
 		infrastructure_construction_effect = yes
 		
@@ -487,7 +489,7 @@ buildings = {
 			state_production_speed_buildings_factor = 0.15
 			local_building_slots_factor = 0.15
 			state_resources_factor = 0.1			
-			local_factory_energy_consumption = -0.25			
+			local_factory_energy_consumption = -0.50
 		}
 
 		level_cap = {
@@ -586,6 +588,7 @@ buildings = {
 		spawn_point = dam_spawn
 		damage_factor = -1
 		is_buildable = no
+		affects_energy = yes
 		need_detection = yes
 		detecting_intel_type = civilian 
 		province_damage_modifiers = { flooded }
@@ -613,6 +616,7 @@ buildings = {
 		spawn_point = dam_spawn
 		damage_factor = -1
 		is_buildable = no
+		affects_energy = yes
 		need_detection = yes
 		detecting_intel_type = civilian 
 		province_damage_modifiers = { flooded }
@@ -782,7 +786,7 @@ buildings = {
 	renewable_energy_plant = {
 		show_on_map = 0
 		base_cost = 20000
-		icon_frame = 37
+		icon_frame = 39
 		level_cap = {
 			shares_slots = yes
 			state_max = 1
@@ -800,6 +804,45 @@ buildings = {
 			state_max = 1
 			shares_slots = yes
 			group_by = reactors
+		}
+	}
+	#### Energy
+	
+	energy_infrastructure = {
+		base_cost = 12000
+		icon_frame = 37
+		value = 1
+
+		show_modifier = yes
+		affects_energy = yes
+
+		infrastructure_construction_effect = yes
+		level_cap = {
+			state_max = 1
+			shares_slots = yes
+			group_by = infrastructure_keystone
+		}
+		state_modifiers = {
+			local_factory_energy_consumption_per_infrastructure = -0.075
+		}
+	}
+	
+	industrial_infrastructure = {
+		base_cost = 12000
+		icon_frame = 38
+		value = 1
+
+		show_modifier = yes
+
+
+		infrastructure_construction_effect = yes
+		level_cap = {
+			state_max = 1
+			shares_slots = yes
+			group_by = infrastructure_keystone
+		}
+		state_modifiers = {
+			local_resource_gain_efficiency_per_infrastructure = 0.10
 		}
 	}
 }
