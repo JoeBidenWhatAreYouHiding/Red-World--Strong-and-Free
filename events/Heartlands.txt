@@ -998,4 +998,156 @@ country_event = { #Country offers to be part of our faction
 	}
 }
  
+country_event = { #The Heartlands appeal for Canadian Support
+	id = heartlands_diplo.8
+	title = heartlands_diplo.8.t
+	desc = heartlands_diplo.8.d
+	picture = clark_speaks
+	
+	is_triggered_only = yes
+	
+	option = { #Formal Recognition
+		name = heartlands_diplo.8.o1
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 40
+				OR = {
+					AND = {
+						MWA = { 
+							has_country_leader = {
+								name = "Hillary Rodham"
+								ruling_only = yes
+							}
+						}
+						has_country_leader = {
+							name = "Donald Trump"
+							ruling_only = yes
+						}
+					}
+					AND = {
+						MWA = { 
+							has_country_leader = {
+								name = "Bill Clinton"
+								ruling_only = yes
+							}
+						}
+						OR = {
+							has_government = centrist
+							has_government = liberal
+						}	
+					}
+					USA = { has_government = fascist }
+				}
+			}
+		}
+		MWA = {
+			country_event = heartlands_diplo.9
+		}
+		set_country_flag = CAN_backing_heartlands 
+	}
+	
+	option = { #Weapons
+		name = heartlands_diplo.8.o2
+		ai_chance = {
+			factor = 60
+		}
+		MWA = {
+			country_event = heartlands_diplo.10
+		}
+	}
+	
+	option = { #Jack
+		name = heartlands_diplo.8.o3
+		ai_chance = {
+			factor = 60
+		}
+		MWA = {
+			country_event = heartlands_diplo.10
+		}
+	}
+}
+ 
+country_event = { #Canada Support us
+	id = heartlands_diplo.9
+	title = heartlands_diplo.9.t
+	desc = heartlands_diplo.9.d
+	picture = clark_speaks
+	
+	is_triggered_only = yes
+	
+	option = { #Formal Recognition
+		name = heartlands_diplo.9.o1
+		add_political_power = 100
+		add_opinion_modifier = {
+			target = CAN
+			modifier = close_friendship
+		}
+		send_equipment = {
+			equipment = light_tank_chassis
+			amount = 200
+			target = CAN
+		}
+		send_equipment = {
+			equipment = motorized_equipment
+			amount = 400
+			target = CAN
+		}
+		send_equipment = {
+			equipment = fighter_equipment_1
+			amount = 10
+			target = CAN
+		}
+		add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 5000 producer = CAN } 
+	}
+}
+ 
+country_event = { #Canada Lightly
+	id = heartlands_diplo.10
+	title = heartlands_diplo.10.t
+	desc = heartlands_diplo.10.d
+	picture = clark_speaks
+	
+	is_triggered_only = yes
+	
+	option = { #Formal Recognition
+		name = heartlands_diplo.10.o1
+		add_political_power = 50
+		add_opinion_modifier = {
+			target = CAN
+			modifier = close_friendship
+		}
+		send_equipment = {
+			equipment = light_tank_chassis
+			amount = 100
+			target = CAN
+		}
+		send_equipment = {
+			equipment = motorized_equipment
+			amount = 200
+			target = CAN
+		}
+		send_equipment = {
+			equipment = fighter_equipment_1
+			amount = 5
+			target = CAN
+		}
+		add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 3500 producer = CAN } 
+	}
+}
+ 
+country_event = { #Canada Nothing
+	id = heartlands_diplo.11
+	title = heartlands_diplo.11.t
+	desc = heartlands_diplo.11.d
+	picture = clark_speaks
+	
+	is_triggered_only = yes
+	
+	option = { #Formal Recognition
+		name = heartlands_diplo.11.o1
+		add_political_power = -50
+	}
+}
+ 
  
