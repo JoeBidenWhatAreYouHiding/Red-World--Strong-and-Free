@@ -3940,12 +3940,15 @@ focus_tree = {
 	focus = {
 		id = MWA_an_army_for_reunification
 		icon = GFX_goal_MWA_army_for_reclaimation
-		cost = 15
+		cost = 5
 		x = 7
 		y = 0
 
 		available = {
-			
+			NOT = {
+				has_idea = MWA_lawless_countryside
+				has_idea = MWA_extensive_decentralization
+			}
 		}
 		
 		ai_will_do = {
@@ -3954,7 +3957,9 @@ focus_tree = {
 
 		available_if_capitulated = yes
 
-		completion_reward = {
+		completion_reward = {	
+			add_ideas = MWA_an_army_for_reunification
+			add_command_power = 100
 		}
 	}
 	
@@ -3981,6 +3986,21 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+			army_experience = 100
+			MWA_stanley_a._mcchrystal = {
+				gain_xp = 400
+				add_skill_level = 1
+			}
+			swap_ideas = {
+				remove_idea = MWA_an_army_for_reunification
+				add_idea = MWA_an_army_for_reunification2
+			}
 		}
 	}
 	
@@ -4007,6 +4027,14 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_ideas = MWA_lakotah_code_talkers_idea
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = signal_company_tech
+			}
+			add_war_support = 0.03
+			add_manpower = 5000
 		}
 	}
 	
@@ -4020,6 +4048,7 @@ focus_tree = {
 		y = 1
 
 		available = {
+			has_completed_focus = MWA_mcchrystal_policy
 		}
 		
 		prerequisite = {
@@ -4033,6 +4062,66 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = MWA_an_army_for_reunification2
+				add_idea = MWA_an_army_for_reunification3
+			}
+			ILL = {
+				custom_effect_tooltip = MWA_bunkers_tt
+			}
+			GRL = {
+				custom_effect_tooltip = MWA_bunkers_tt
+			}
+			USA = {
+				custom_effect_tooltip = MWA_bunkers_tt
+			}
+			TEX = {
+				custom_effect_tooltip = MWA_bunkers_tt
+			}
+			every_owned_state = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border_country = ILL
+					}
+				}
+			}
+			every_owned_state = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border_country = GRL
+					}
+				}
+			}
+			every_owned_state = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border_country = USA
+					}
+				}
+			}
+			every_owned_state = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border_country = TEX
+					}
+				}
+			}
 		}
 	}
 	
@@ -4065,6 +4154,38 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = air_base
+					level = 5
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = air_base
+					level = 5
+					instant_build = yes
+				}
+			}
+			 add_tech_bonus = {
+				name = light_air_bonus
+				bonus = 0.5
+				uses = 1
+				category = light_air
+			}
+			add_tech_bonus = {
+				name = medium_air_bonus
+				bonus = 0.5
+				uses = 1
+				category = medium_air
+			}
+			add_tech_bonus = {
+				name = heavy_air_bonus
+				bonus = 0.5
+				uses = 1
+				category = heavy_air
+			}
 		}
 	}
 	
@@ -4091,6 +4212,21 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			custom_effect_tooltip = MWA_unlocks_unification_decisions
+			hidden_effect = {
+				activate_targeted_decision = { target = LIN decision = MWA_attack_country } 
+				activate_targeted_decision = { target = MOT decision = MWA_attack_country } 
+				activate_targeted_decision = { target = UTA decision = MWA_negotiate_with_country } 
+				activate_targeted_decision = { target = ARI decision = MWA_negotiate_with_country } 
+				activate_targeted_decision = { target = GRL decision = MWA_negotiate_with_country } 
+				activate_targeted_decision = { target = ILL decision = MWA_negotiate_with_country } 
+				activate_targeted_decision = { target = CSD decision = MWA_negotiate_with_country } 
+				activate_targeted_decision = { target = TEX decision = MWA_negotiate_with_country } 
+				activate_targeted_decision = { target = PCA decision = MWA_take_down_unifier } 
+				activate_targeted_decision = { target = NEA decision = MWA_take_down_unifier } 
+				activate_targeted_decision = { target = USA decision = MWA_take_down_unifier } 
+				activate_targeted_decision = { target = AMC decision = MWA_take_down_unifier } 
+			}
 		}
 	}
 	

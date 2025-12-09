@@ -1,6 +1,5 @@
 ﻿add_namespace = heartlands
 
-
 country_event = { #Clark Speaks
 	id = heartlands.1
 	title = heartlands.1.t
@@ -804,3 +803,199 @@ country_event = { #Hammons Rehabilitated
 		#add_ideas = midwest_sic_bill_hammons
 	}
 }
+
+######################
+#### DIPLO EVENTS ####
+######################
+
+ ######      ########    ##########    ####           #######
+ #######       ####      ###     ###   ####         ###########
+ ###   ##      ####      ###     ###   ####         ###     ###
+ ###   ###     ####      ###     ###   ####         ##       ##
+ ###   ###     ####      ##########    ####         ##       ##
+ ###   ###     ####      ###           ####         ##       ##
+ ###   ##      ####      ###           ####         ###     ###
+ #######       ####      ###           ####          #########
+ ######      ########    ###           ###########    #######
+ 
+add_namespace = heartlands_diplo
+
+country_event = { #The Heartlands Demands Submission
+	id = heartlands_diplo.1
+	title = heartlands_diplo.1.t
+	desc = heartlands_diplo.1.d
+	picture = clark_speaks
+	
+	is_triggered_only = yes
+	
+	option = { #Sure
+		name = heartlands_diplo.1.o1
+		ai_chance = {
+			base = 20
+			modifier = {	
+				factor = 70
+				has_opinion = { target = MWA value > 100 }
+			}
+		}
+		MWA = {
+			country_event = heartlands_diplo.2
+			annex_country = {
+				target = ROOT
+				transfer_troops = yes
+			}
+			change_tag_from = ROOT
+		}
+	}
+	
+	option = { #No
+		name = heartlands_diplo.1.o2
+		ai_chance = {
+			base = 30
+		}
+		MWA = {
+			country_event = heartlands_diplo.3
+		}
+	}
+	
+	option = { #We'll join their Faction
+		name = heartlands_diplo.1.o3
+		trigger = {
+			MWA = { is_in_faction = yes }
+		}
+		
+	}
+}
+ 
+country_event = { #Country Accept
+	id = heartlands_diplo.2
+	title = heartlands_diplo.2.t
+	desc = heartlands_diplo.2.d
+	picture = clark_speaks
+	
+	is_triggered_only = yes
+	
+	option = { #Sure
+		name = heartlands_diplo.2.o1
+		add_political_power = 10
+	}
+}
+ 
+country_event = { #Country Refuses
+	id = heartlands_diplo.3
+	title = heartlands_diplo.3.t
+	desc = heartlands_diplo.3.d
+	picture = clark_speaks
+	
+	is_triggered_only = yes
+	
+	option = { #Fuck em up
+		name = heartlands_diplo.3.o1
+		declare_war_on = {
+			target = FROM
+			type = annex_everything
+		}
+	}	
+	
+	option = { #We'll get em later
+		name = heartlands_diplo.3.o2
+		add_stability = -0.02
+	}
+	
+	option = { #Compromise on Faction membership
+		name = heartlands_diplo.3.o3
+		trigger = {
+			is_in_faction = yes
+		}
+		add_stability = -0.02
+		FROM = {
+			country_event = heartlands_diplo.4
+		}
+	}
+}
+
+country_event = { #MWA offers faction membership
+	id = heartlands_diplo.4
+	title = heartlands_diplo.4.t
+	desc = heartlands_diplo.4.d
+	picture = clark_speaks
+	
+	is_triggered_only = yes
+	
+	option = { #Sure
+		name = heartlands_diplo.4.o1
+		MWA = {
+			country_event = heartlands_diplo.5
+		}
+	}
+	
+	option = { #No
+		name = heartlands_diplo.3.o2
+		MWA = {
+			country_event = heartlands_diplo.6
+		}
+	}
+}
+ 
+country_event = { #Country accepts faction membership
+	id = heartlands_diplo.5
+	title = heartlands_diplo.5.t
+	desc = heartlands_diplo.5.d
+	picture = clark_speaks
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = heartlands_diplo.5.o1
+		if = {
+			limit = { is_faction_leader = yes }
+			add_to_faction = FROM
+		}
+		else = {
+			GRL = { add_to_faction = FROM }
+		}
+	}
+}
+ 
+country_event = { #Country refuses faction membership
+	id = heartlands_diplo.6
+	title = heartlands_diplo.6.t
+	desc = heartlands_diplo.6.d
+	picture = clark_speaks
+	
+	is_triggered_only = yes
+	
+	option = { #Fuck em up
+		name = heartlands_diplo.6.o1
+		declare_war_on = {
+			target = FROM
+			type = annex_everything
+		}
+	}	
+	
+	option = { #We'll get em later
+		name = heartlands_diplo.5.o2
+		add_stability = -0.02
+	}
+}
+ 
+country_event = { #Country offers to be part of our faction
+	id = heartlands_diplo.7
+	title = heartlands_diplo.7.t
+	desc = heartlands_diplo.7.d
+	picture = clark_speaks
+	
+	is_triggered_only = yes
+	
+	option = { #Good enough
+		name = heartlands_diplo.7.o1
+		if = {
+			limit = { is_faction_leader = yes }
+			add_to_faction = FROM
+		}
+		else = {
+			GRL = { add_to_faction = FROM }
+		}
+	}
+}
+ 
+ 
