@@ -20759,7 +20759,13 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_reunificationism
-		icon = GFX_goal_CAN_support_the_republic
+		icon = {
+			value = GFX_goal_CAN_support_the_heartlands
+			trigger = { has_country_flag = CAN_backing_heartlands }
+		}
+		icon = {
+			value = GFX_goal_CAN_support_the_republic
+		}
 		cost = 4
 		
 		prerequisite = {
@@ -20769,6 +20775,18 @@ focus_tree = {
 		mutually_exclusive = {
 			focus = CAN_interventionism
 			focus = CAN_neutrality
+		}
+		
+		select_effect = {
+			if = {
+				limit = {
+					NOT = { has_country_flag = CAN_backing_heartlands }
+				}
+				country_event = {
+					id = canada_diplo.73
+					days = 6
+				}
+			}
 		}
 		
 		relative_position_id = CAN_america
@@ -20786,17 +20804,34 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			USA = {
-				country_event = canada_diplo.33
-				add_ideas = CAN_canadian_support
+			if = {
+				limit = { has_country_flag = CAN_backing_heartlands }
+				MWA = {
+					country_event = canada_diplo.33
+					add_ideas = CAN_canadian_support
+					add_opinion_modifier = {
+						target = CAN
+						modifier = supporting_our_cause
+					}
+				}
 				add_opinion_modifier = {
-					target = CAN
+					target = MWA
 					modifier = supporting_our_cause
 				}
 			}
-			add_opinion_modifier = {
-				target = USA
-				modifier = supporting_our_cause
+			else = {
+				USA = {
+					country_event = canada_diplo.33
+					add_ideas = CAN_canadian_support
+					add_opinion_modifier = {
+						target = CAN
+						modifier = supporting_our_cause
+					}
+				}
+				add_opinion_modifier = {
+					target = USA
+					modifier = supporting_our_cause
+				}
 			}
 		}
 	}
@@ -20836,17 +20871,34 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			custom_effect_tooltip = CAN_idaho_montana_join_ar
-			LIN = {
-				country_event = canada_diplo.34
+			if = {
+				limit = { has_country_flag = CAN_backing_heartlands }
+				custom_effect_tooltip = CAN_idaho_montana_join_heartlands
+				LIN = {
+					country_event = canada_diplo.34
+				}
+				MOT = {
+					country_event = canada_diplo.34
+				}
+				MWA = {
+					core_MOT = yes
+					custom_effect_tooltip = tooltip_blank_line
+					core_LIN = yes
+				}
 			}
-			MOT = {
-				country_event = canada_diplo.34
-			}
-			USA = {
-				core_MOT = yes
-				custom_effect_tooltip = tooltip_blank_line
-				core_LIN = yes
+			else = {
+				custom_effect_tooltip = CAN_idaho_montana_join_ar
+				LIN = {
+					country_event = canada_diplo.34
+				}
+				MOT = {
+					country_event = canada_diplo.34
+				}
+				USA = {
+					core_MOT = yes
+					custom_effect_tooltip = tooltip_blank_line
+					core_LIN = yes
+				}
 			}
 		}
 	}
@@ -20884,10 +20936,19 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			USA = {
-				country_event = canada_diplo.35
+			if = {
+				limit = { has_country_flag = CAN_backing_heartlands }
+				MWA = {
+					country_event = canada_diplo.35
+				}
+				country_event = canada_diplo.27
 			}
-			country_event = canada_diplo.27
+			else = {
+				USA = {
+					country_event = canada_diplo.35
+				}
+				country_event = canada_diplo.27
+			}
 		}
 	}
 	
@@ -20906,8 +20967,16 @@ focus_tree = {
 		y = 2
 
 		available = {
-			USA = {
-				has_war = yes
+			if = {
+				limit = { has_country_flag = CAN_backing_heartlands }
+				MWA = {
+					has_war = yes
+				}
+			}
+			else = {
+				USA = {
+					has_war = yes
+				}
 			}
 		}
 		
@@ -20918,23 +20987,45 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			USA = {
-				country_event = canada_diplo.36
-				swap_ideas = {
-					remove_idea = CAN_canadian_support
-					add_idea = CAN_canadian_support2
+			if = {
+				limit = { has_country_flag = CAN_backing_heartlands }
+				MWA = {
+					country_event = canada_diplo.36
+					swap_ideas = {
+						remove_idea = CAN_canadian_support
+						add_idea = CAN_canadian_support2
+					}
 				}
+				create_wargoal = {
+					type = annex_everything
+					target = NEA
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = PCA
+				}
+				custom_effect_tooltip = CAN_return_mwa_cores_when_they_join_dl
+				set_global_flag = CAN_supported_mwa
 			}
-			create_wargoal = {
-				type = annex_everything
-				target = NEA
+			else = {
+				USA = {
+					country_event = canada_diplo.36
+					swap_ideas = {
+						remove_idea = CAN_canadian_support
+						add_idea = CAN_canadian_support2
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = NEA
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = PCA
+				}
+				custom_effect_tooltip = CAN_return_us_cores_when_they_join_dl
+				set_global_flag = CAN_supported_ar
 			}
-			create_wargoal = {
-				type = annex_everything
-				target = PCA
-			}
-			custom_effect_tooltip = CAN_return_us_cores_when_they_join_dl
-			set_global_flag = CAN_supported_ar
 		}
 	}
 	

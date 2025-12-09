@@ -13653,7 +13653,14 @@ country_event = {
 country_event = {
 	id = canada_diplo.33
 	title = canada_diplo.33.t
-	desc = canada_diplo.33.d
+	desc = {
+		text = canada_diplo.33.d
+		trigger = { tag = USA }
+	}
+	desc = {
+		text = canada_diplo.33.d_2
+		trigger = { tag = MWA }
+	}
 	picture = canada_recognizes_ar
 	
 	fire_only_once = yes
@@ -13676,10 +13683,21 @@ country_event = {
 	
 	option = {
 		name = canada_diplo.34.o1
-		USA = {
-			annex_country = { 
-				target = ROOT 
-				transfer_troops = yes
+		if = {
+			limit = { CAN = { has_country_flag = CAN_backing_heartlands } }
+			MWA = {
+				annex_country = { 
+					target = ROOT 
+					transfer_troops = yes
+				}
+			}
+		}
+		else = {
+			USA = {
+				annex_country = { 
+					target = ROOT 
+					transfer_troops = yes
+				}
 			}
 		}
 	}
@@ -14730,6 +14748,78 @@ country_event = {
 			target = PAN
 		}
 		add_state_claim  = 685
+	}
+}
+
+#Supporting an American Faction
+country_event = {
+	id = canada_diplo.73
+	title = canada_diplo.73.t
+	desc = canada_diplo.73.d
+	picture = support_for_american_faction
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #The Heartlands
+		name = canada_diplo.73.o1
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 40
+				OR = {
+					AND = {
+						MWA = { 
+							has_country_leader = {
+								name = "Hillary Rodham"
+								ruling_only = yes
+							}
+						}
+						has_country_leader = {
+							name = "Donald Trump"
+							ruling_only = yes
+						}
+					}
+					AND = {
+						MWA = { 
+							has_country_leader = {
+								name = "Bill Clinton"
+								ruling_only = yes
+							}
+						}
+						OR = {
+							has_government = centrist
+							has_government = liberal
+						}	
+					}
+					USA = { has_government = fascist }
+				}
+			}
+		}
+		set_country_flag = CAN_backing_heartlands 
+		MWA = {
+			set_country_flag = MWA_candian_backing
+		}
+	}
+	
+	option = { #The American Republic
+		name = canada_diplo.73.o2
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 40
+				MWA = {
+					has_government = nationalist
+				}
+				USA = { 
+					NOT = { 
+						has_government = fascist
+						has_government = nationalist
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -17198,13 +17288,29 @@ country_event = {
 	trigger = {	
 		tag = CAN
 		OR = {
-			has_war_with = PCA
-			has_war_with = NEA
-		}
-		USA = {
-			OR = {
-				has_war_with = PCA
-				has_war_with = NEA
+			AND = {
+				OR = {
+					has_war_with = PCA
+					has_war_with = NEA
+				}
+				USA = {
+					OR = {
+						has_war_with = PCA
+						has_war_with = NEA
+					}
+				}
+			}
+			AND = {
+				OR = {
+					has_war_with = PCA
+					has_war_with = NEA
+				}
+				MWA = {
+					OR = {
+						has_war_with = PCA
+						has_war_with = NEA
+					}
+				}
 			}
 		}
 		has_country_flag = CAN_supporting_AR
@@ -17228,8 +17334,13 @@ country_event = {
 	
 	trigger = {	
 		tag = CAN
-		USA = {
-			is_in_faction_with = CAN
+		OR = {
+			USA = {
+				is_in_faction_with = CAN
+			}
+			MWA = {
+				is_in_faction_with = CAN
+			}
 		}
 	}
 		
