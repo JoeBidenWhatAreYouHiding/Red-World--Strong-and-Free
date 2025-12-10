@@ -4204,6 +4204,7 @@ country_event = {
 			}
 		}
 		has_completed_focus = CAN_reclaim_the_birthright
+		has_idea = CAN_elizabeth_in_exile
 	}
 
 	option = { #Interesting
@@ -9886,7 +9887,7 @@ country_event = {
 		}
 	}
 	
-	option = { #Pierre Poilievre
+	option = { #Will Romney
 		name = rw_canada.299.o6
 		trigger = {
 			OR = {
@@ -9897,21 +9898,26 @@ country_event = {
 				has_country_flag = pc_leader_resigns_2015
 			}
 			NOT = {
-				has_country_flag = nationalists_are_canadian_alliance
+				has_country_flag = trump_leads_progcons
 			}
 		}
-		set_country_flag = pc_pierre_poilievre_2019
-		CAN_pierre_poilievre = {
-			promote_character = reform_populism
+		set_country_flag = pc_will_romney_2019
+		CAN_will_romney = {
+			promote_character = progressive_conservative
 		}
 		if = {
-			limit = { has_country_flag = pcs_are_natcon }
-			clr_country_flag = pcs_are_natcon
-			set_country_flag = pcs_are_nationalist
-			custom_effect_tooltip = CAN_pc_become_nationalist_tt
+			limit = { has_country_flag = pcs_are_nationalist }
+			clr_country_flag = pcs_are_nationalist
+			set_country_flag = pcs_are_natcon
+			custom_effect_tooltip = CAN_pc_become_natcon_tt
 		}
 		if = {
-			limit = { has_country_flag = CAN_red_tories_in_power }
+			limit = { 
+				OR = {
+					has_country_flag = CAN_red_tories_in_power 
+					has_country_flag = CAN_blue_tories_in_power
+				}
+			}
 			set_party_name = {
 				name = CAN_national_conservative_party
 				long_name  = CAN_national_conservative_party_long
@@ -9919,12 +9925,6 @@ country_event = {
 			}
 			clr_country_flag = CAN_red_tories_in_power
 		}
-		set_party_name = {
-			name = CAN_true_blue_pcs_party
-			long_name  = CAN_true_blue_pcs_party_long
-			ideology = nationalist
-		}
-		set_country_flag = CAN_blue_tories_in_power
 	}
 	
 	option = { #Brad Trost
@@ -10002,6 +10002,12 @@ country_event = {
 			CAN_rafael_edward_cruz = {
 				set_portraits = {
 					civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Ralph_Cruz_Beard.png" }
+				}
+			}
+			
+			CAN_michael_bloomberg = {
+				set_portraits = {
+					civilian = { large = "gfx/leaders/CAN/Portrait_CAN_Michael_Bloomberg_Coat.png" }
 				}
 			}
 			
@@ -10496,6 +10502,29 @@ country_event = {
 			clr_country_flag = liberals_are_liberal
 			set_country_flag = liberals_are_centrist
 			set_country_flag = CAN_liberals_become_centrist_tt
+		}
+	}
+	
+	option = { #JB Pritzker
+		name = rw_canada.301.o7
+		trigger = {
+			OR = {
+				NOT = {
+					has_government = centrist
+					has_government = liberal
+				}
+				has_country_flag = liberal_leader_resigns_2015
+			}
+		}
+		set_country_flag = liberal_jb_pritzker_2023
+		CAN_jb_pritzker = {
+			promote_character = social_liberal
+		}
+		if = {
+			limit = { has_country_flag = liberals_are_centrist }
+			clr_country_flag = liberals_are_centrist
+			set_country_flag = liberals_are_liberal
+			set_country_flag = CAN_liberals_become_liberal_tt
 		}
 	}
 }
@@ -11066,9 +11095,14 @@ country_event = {
 		set_politics = {
 			ruling_party = new_democrat
 		}
-		add_liberal_to_coalition = yes
-		add_modsoc_to_coalition = yes
-		add_centrist_to_coalition = yes
+		if = {
+			limit = { has_country_flag = bloc_ndp_alliance }
+			add_modsoc_to_coalition = yes
+		}
+		else = {
+			add_centrist_to_coalition = yes
+			add_liberal_to_coalition = yes
+		}
 	}
 	
 	option = { #Canadian Alliance
@@ -12810,6 +12844,7 @@ country_event = {
 				OR = {
 					tag = ROOT
 					is_subject_of = ROOT
+					NOT = { has_government = fascist }
 				}
 			}
 		}
@@ -12818,6 +12853,7 @@ country_event = {
 				OR = {
 					tag = ROOT
 					is_subject_of = ROOT
+					NOT = { has_government = fascist }
 				}
 			}
 		}
@@ -12836,6 +12872,32 @@ country_event = {
 		OR = {
 			has_country_flag = CAN_intervention_in_the_northwest
 			has_completed_focus = CAN_no_more_ethnostates
+		}
+		NOT = {
+			387 = { 
+				owner = {
+					OR = {
+						tag = PCA
+						tag = MWA
+						tag = AMC
+						tag = LIN
+						tag = USA
+					}
+				}
+			}
+		}
+		NOT = {
+			388 = { 
+				owner = {
+					OR = {
+						tag = PCA
+						tag = MWA
+						tag = AMC
+						tag = LIN
+						tag = USA
+					}
+				}
+			}
 		}
 		NOT = { has_country_flag = CAN_became_usa }
 	}
@@ -13133,6 +13195,7 @@ country_event = {
 			end_puppet = MOT
 			end_puppet = LIN
 			MOT = {
+				separate_peace_all_wars = yes
 				drop_cosmetic_tag = yes
 				add_popularity = {
 					ideology = fascist
@@ -13168,6 +13231,7 @@ country_event = {
 				}
 			}
 			LIN = {
+				separate_peace_all_wars = yes
 				drop_cosmetic_tag = yes
 				add_popularity = {
 					ideology = national_bolshevik
@@ -13225,13 +13289,20 @@ country_event = {
 	
 	option = { #Neutrality
 		name = canada_diplo.26.o1
+		ai_chance = {
+			factor = 33
+		}
 		set_country_flag = CAN_staying_neutral
 	}
 	
 	option = { #Reunification
 		name = canada_diplo.26.o2
-		trigger = {
-			USA = { exists = yes has_idea = idea_standing_firm_remnants }
+		ai_chance = {
+			factor = 33
+			modifier = {
+				factor = 60
+				has_country_flag = CAN_backing_heartlands 
+			}
 		}
 		set_country_flag = CAN_supporting_AR
 		set_global_flag = NEA_is_afraid_of_canada
@@ -13239,6 +13310,9 @@ country_event = {
 	
 	option = { #Intervention
 		name = canada_diplo.26.o3
+		ai_chance = {	
+			factor = 33
+		}
 		set_country_flag = CAN_intervention
 		set_global_flag = NEA_is_afraid_of_canada
 	}
@@ -13455,6 +13529,9 @@ country_event = {
 			original_tag = MWA
 			copy_tag = MWA
 			
+			transfer_state = 382
+			add_state_core = 382
+			
 			save_global_event_target_as = united_american_puppet
 
 			### Politics
@@ -13553,6 +13630,7 @@ country_event = {
 			}
 			event_target:united_american_puppet = {
 				transfer_state = PREV
+				add_state_core = PREV
 			}
 		}
 		every_country = {
@@ -13585,7 +13663,14 @@ country_event = {
 country_event = {
 	id = canada_diplo.33
 	title = canada_diplo.33.t
-	desc = canada_diplo.33.d
+	desc = {
+		text = canada_diplo.33.d
+		trigger = { tag = USA }
+	}
+	desc = {
+		text = canada_diplo.33.d_2
+		trigger = { tag = MWA }
+	}
 	picture = canada_recognizes_ar
 	
 	fire_only_once = yes
@@ -13608,10 +13693,21 @@ country_event = {
 	
 	option = {
 		name = canada_diplo.34.o1
-		USA = {
-			annex_country = { 
-				target = ROOT 
-				transfer_troops = yes
+		if = {
+			limit = { CAN = { has_country_flag = CAN_backing_heartlands } }
+			MWA = {
+				annex_country = { 
+					target = ROOT 
+					transfer_troops = yes
+				}
+			}
+		}
+		else = {
+			USA = {
+				annex_country = { 
+					target = ROOT 
+					transfer_troops = yes
+				}
 			}
 		}
 	}
@@ -14612,35 +14708,16 @@ country_event = {
 		name = canada_diplo.70.o1
 		CAN = { 
 			country_event = canada_diplo.71 
-			change_tag_from = ROOT
 		}
 	}
 	
 	option = { #No
 		name = canada_diplo.70.o2
-		CAN = { country_event = canada_diplo.71 }
+		CAN = { country_event = canada_diplo.72 }
 	}
 }
 
 #Panama Accepts
-country_event = {
-	id = canada_diplo.67
-	title = canada_diplo.67.t
-	desc = canada_diplo.67.d
-	picture = battle_for_the_canal
-	
-	fire_only_once = yes
-	
-	is_triggered_only = yes
-	
-	option = { #Excellent
-		name = canada_diplo.67.o1
-		transfer_state = 685
-
-	}
-}
-
-#Panama Refuses
 country_event = {
 	id = canada_diplo.71
 	title = canada_diplo.71.t
@@ -14651,18 +14728,111 @@ country_event = {
 	
 	is_triggered_only = yes
 	
-	option = { #Eh fuck it
+	option = { #Excellent
 		name = canada_diplo.71.o1
+		transfer_state = 685
+
+	}
+}
+
+#Panama Refuses
+country_event = {
+	id = canada_diplo.72
+	title = canada_diplo.72.t
+	desc = canada_diplo.72.d
+	picture = battle_for_the_canal
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Eh fuck it
+		name = canada_diplo.72.o1
 		add_political_power = -10
 	}
 	
 	option = { #We shall take the Canal by Force
-		name = canada_diplo.71.o2
+		name = canada_diplo.72.o2
 		declare_war_on = {
 			type = annex_everything
 			target = PAN
 		}
 		add_state_claim  = 685
+	}
+}
+
+#Supporting an American Faction
+country_event = {
+	id = canada_diplo.73
+	title = canada_diplo.73.t
+	desc = canada_diplo.73.d
+	picture = support_for_american_faction
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #The Heartlands
+		name = canada_diplo.73.o1
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 40
+				OR = {
+					AND = {
+						MWA = { 
+							has_country_leader = {
+								name = "Hillary Rodham"
+								ruling_only = yes
+							}
+						}
+						has_country_leader = {
+							name = "Donald Trump"
+							ruling_only = yes
+						}
+					}
+					AND = {
+						MWA = { 
+							has_country_leader = {
+								name = "Bill Clinton"
+								ruling_only = yes
+							}
+						}
+						OR = {
+							has_government = centrist
+							has_government = liberal
+						}	
+					}
+					USA = { has_government = fascist }
+				}
+			}
+		}
+		set_country_flag = CAN_backing_heartlands 
+		MWA = {
+			set_country_flag = MWA_candian_backing
+		}
+	}
+	
+	option = { #The American Republic
+		name = canada_diplo.73.o2
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 40
+				MWA = {
+					has_government = nationalist
+				}
+				USA = { 
+					NOT = { 
+						has_government = fascist
+						has_government = nationalist
+					}
+				}
+			}
+		}
+		trigger = {
+			USA = { exists = yes has_idea = idea_standing_firm_remnants }
+		}
 	}
 }
 
@@ -16499,6 +16669,22 @@ country_event = {
 	}
 }
 
+
+add_namespace = ger_guides
+
+country_event = {
+	id = ger_guides.1
+	title = ger_guides.1.t
+	desc = ger_guides.1.d
+	picture = ddr_flag
+	
+	is_triggered_only = yes
+	
+	option = {   
+		name = ger_guides.1.o1
+	}
+}
+
 ######################
 ### FLAVOUR EVENTS ###
 ######################
@@ -16990,7 +17176,18 @@ country_event = {
 	
 	option = {
 		name = can_flavour.26.o1
+		trigger = {
+			NOT = { has_country_leader = { name = "Steve Jobs" ruling_only = yes } }
+		}
 		add_stability = 0.01
+	}
+	
+	option = {
+		name = can_flavour.26.o2
+		trigger = {
+			has_country_leader = { name = "Steve Jobs" ruling_only = yes }
+		}
+		CAN_subtract_3_percent_popularity = yes
 	}
 }
 
@@ -17104,13 +17301,29 @@ country_event = {
 	trigger = {	
 		tag = CAN
 		OR = {
-			has_war_with = PCA
-			has_war_with = NEA
-		}
-		USA = {
-			OR = {
-				has_war_with = PCA
-				has_war_with = NEA
+			AND = {
+				OR = {
+					has_war_with = PCA
+					has_war_with = NEA
+				}
+				USA = {
+					OR = {
+						has_war_with = PCA
+						has_war_with = NEA
+					}
+				}
+			}
+			AND = {
+				OR = {
+					has_war_with = PCA
+					has_war_with = NEA
+				}
+				MWA = {
+					OR = {
+						has_war_with = PCA
+						has_war_with = NEA
+					}
+				}
 			}
 		}
 		has_country_flag = CAN_supporting_AR
@@ -17134,8 +17347,13 @@ country_event = {
 	
 	trigger = {	
 		tag = CAN
-		USA = {
-			is_in_faction_with = CAN
+		OR = {
+			USA = {
+				is_in_faction_with = CAN
+			}
+			MWA = {
+				is_in_faction_with = CAN
+			}
 		}
 	}
 		
@@ -17758,6 +17976,83 @@ country_event = {
 		name = can_flavour.62.o1
 		add_manpower = -1
 		add_stability = -0.02
+	}
+}
+
+#Does anyone know where the love of God goes, when the waves turn the minuites to hours?
+country_event = {
+	id = can_flavour.63
+	title = can_flavour.63.t
+	desc = can_flavour.63.d
+	picture = wreck_of_the_edmund_fitzgerald
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #
+		name = can_flavour.63.o1
+		navy_experience = 5
+	}
+}
+
+#TRACING ONE WARM LINE, THROUGH A LAND SO WHITE AND SAVAGE
+country_event = {
+	id = can_flavour.64
+	title = can_flavour.64.t
+	desc = can_flavour.64.d
+	picture = franklins_lost_expedition
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #
+		name = can_flavour.64.o1
+		add_stability = 0.02
+	}
+}
+
+#Danny Williams
+country_event = {
+	id = can_flavour.65
+	title = can_flavour.65.t
+	desc = can_flavour.65.d
+	picture = danny_williams
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #
+		name = can_flavour.65.o1
+		add_popularity = {
+			ideology = nationalist
+			popularity = -0.02
+		}
+	}
+}
+
+
+#Remembrance Day
+country_event = {
+	id = rw_canada.250
+	title = rw_canada.250.t
+	desc = rw_canada.250.d
+	picture = remembrance_day
+	
+	immediate = {
+		hidden_effect = {
+			country_event = {
+				id = rw_canada.250
+				days = 365
+			}
+		}
+	}
+
+	is_triggered_only = yes
+	
+	option = { #
+		name = rw_canada.250.o1
+		add_war_support = 0.02
+		add_stability = 0.02
 	}
 }
 
@@ -18427,7 +18722,7 @@ news_event = {	#Quebec Leaves Canada
 	id = rw_canada_news.43
 	title = rw_canada_news.43.t
 	desc = rw_canada_news.43.d
-	picture = quebec_vote
+	picture = quebec_vote_news
 	
 	is_triggered_only = yes 
 	

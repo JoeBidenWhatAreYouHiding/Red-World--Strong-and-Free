@@ -32,6 +32,20 @@ country_event = {
 	is_triggered_only = yes
     
     immediate = {
+		if = {
+			limit = { 
+				has_global_flag = CAN_supported_ar 
+				tag = USA
+			}
+			country_event = { id = canada_diplo.37 days = 2 }
+		}
+		if = {
+			limit = { 
+				has_global_flag = CAN_supported_mwa
+				tag = MWA
+			}
+			country_event = { id = canada_diplo.37 days = 2 }
+		}
         if = {
             limit = {
                 original_tag = USA
@@ -44,10 +58,6 @@ country_event = {
             hidden_effect = {
                 country_event = { days = 180 id = usa.173 } 
             }
-			if = {
-				limit = { has_global_flag = CAN_supported_ar }
-				country_event = { id = canada_diplo.37 days = 2 }
-			}
         }
         if = {
             limit = {
@@ -2256,5 +2266,150 @@ country_event = {
             target = FROM
             type = annex_everything
         }
+    }
+}
+
+#GRL - Unite the US?
+country_event = {
+	id = american_unification.100
+	title = american_unification.100.t
+	desc = american_unification.100.d
+	picture = great_lakes_restore_america
+	
+	fire_only_once = yes
+	
+	trigger = {
+		tag = GRL
+		CSD = {
+			OR = {
+				exists = no
+				is_subject_of = GRL
+			}
+		}
+		ILL = {
+			OR = {
+				exists = no
+				is_subject_of = GRL
+			}
+		}
+		AMC = {
+			OR = {
+				exists = no
+				is_subject_of = GRL
+			}
+		}
+		TEX = {
+			OR = {
+				exists = no
+				is_subject_of = GRL
+			}
+		}
+		MWA = { is_subject_of = GRL }
+		LIN = { is_subject_of = GRL }
+		MOT = { is_subject_of = GRL }
+		PCA = { is_subject_of = GRL }
+		USA = { is_subject_of = GRL }
+		NEA = { is_subject_of = GRL }
+		UTA = { is_subject_of = GRL }
+		ARI = { is_subject_of = GRL }
+		358 = { is_owned_by_ROOT_or_subject = yes }
+		901 = { is_owned_by_ROOT_or_subject = yes }
+		357 = { is_owned_by_ROOT_or_subject = yes }
+		378 = { is_owned_by_ROOT_or_subject = yes }
+		387 = { is_owned_by_ROOT_or_subject = yes }
+		375 = { is_owned_by_ROOT_or_subject = yes }
+		366 = { is_owned_by_ROOT_or_subject = yes }
+	}
+    
+	option = { #The USA
+		name = american_unification.100.o1
+		ai_chance = {
+			factor = 100
+		}
+		set_country_flag = can_core_USA
+		set_country_flag = can_core_NEA
+		set_country_flag = can_core_ILL
+		set_country_flag = can_core_GRL
+		set_country_flag = can_core_MOT
+		set_country_flag = can_core_LIN
+		set_country_flag = can_core_UTA
+		set_country_flag = can_core_ARI
+		set_country_flag = can_core_PCA
+		set_country_flag = can_core_TEX
+		if = {
+			limit = {
+				OR = {
+					has_country_leader = {
+						name = "Mike Vanderboegh"
+						ruling_only = yes
+					}
+					has_country_leader = {
+						name = "Matt Savino"
+						ruling_only = yes
+					}
+				}
+			}
+			set_cosmetic_tag = GRL_USS_USF
+		}
+		else_if = {
+			limit = {
+				has_country_leader = {
+					name = "David Brian Stone"
+					ruling_only = yes
+				}
+			}
+			set_cosmetic_tag = GRL_USS_CCR
+		}
+		else_if = {
+			limit = {
+				has_government = revolutionary_socialist
+			}
+			set_cosmetic_tag = GRL_USS_USRA
+		}
+		else_if = {
+			limit = {
+				has_country_leader = {
+					name = "Winona LaDuke"
+					ruling_only = yes
+				}
+			}
+			set_cosmetic_tag = GRL_USS_PFRA
+		}
+		else = {
+			set_cosmetic_tag = USS
+		}
+		every_country = {
+			limit = {	
+				is_subject_of = GRL
+				OR = {
+					tag = AMC
+					tag = NEA
+					tag = USA
+					tag = TEX
+					tag = MWA
+					tag = ILL
+					tag = UTA
+					tag = LIN
+					tag = ARI
+					tag = MOT
+					tag = CSD
+					tag = PCA
+				}
+			}
+			GRL = {
+				annex_country = {
+					target = PREV
+					transfer_troops = yes
+				}
+			}
+		}
+		set_country_flag = the_united_states_are_back
+        country_event = { days = 7 id = american_unification.2 } 
+    }
+	
+	option = { #No
+		name = american_unification.100.o2
+		add_war_support = 0.1
+		add_stability = 0.1
     }
 }

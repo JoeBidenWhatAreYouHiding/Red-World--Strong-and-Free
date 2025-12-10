@@ -1589,6 +1589,24 @@ focus_tree = {
 				remove_idea = CAN_mulroney_dream
 				add_idea = CAN_trumpist_protectionism
 			}
+			USA = {
+				remove_opinion_modifier = {
+					target = CAN
+					modifier = trade_influence_2
+				}
+			}
+			NEA = {
+				remove_opinion_modifier = {
+					target = CAN
+					modifier = trade_influence_2
+				}
+			}
+			PCA = {
+				remove_opinion_modifier = {
+					target = CAN
+					modifier = trade_influence_2
+				}
+			}
 		}
 	}
 	
@@ -5144,14 +5162,6 @@ focus_tree = {
 					trait = CAN_philosopher_prime_minister
 				}
 			}
-			
-			hidden_effect = {
-				country_event = {
-					id = rw_canada.309
-					days = 45
-					random_days = 20
-				}
-			}
 		}
 	}
 	
@@ -5390,7 +5400,7 @@ focus_tree = {
 				}
 				country_event = {
 					id = rw_canada.230
-					days = 230
+					days = 500
 					random_days = 40
 				}
 			}
@@ -6568,8 +6578,8 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = CAN_expand_the_trans_mountain_pipelines
-		icon = GFX_goal_CAN_trans_mountain_pipeline
+		id = CAN_turnerian_protectionism
+		icon = GFX_goal_CAN_turnerian_protectionism
 		cost = 5.8
 		
 		prerequisite = {
@@ -6591,25 +6601,32 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			473 = {
+			swap_ideas = {
+				remove_idea = CAN_mulroney_dream
+				add_idea = CAN_turnerian_protectionism
+			}
+			random_owned_controlled_state = {
 				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-					instant_build = yes
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			USA = {
+				remove_opinion_modifier = {
+					target = CAN
+					modifier = trade_influence_2
 				}
 			}
-			470 = {
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-					instant_build = yes
+			NEA = {
+				remove_opinion_modifier = {
+					target = CAN
+					modifier = trade_influence_2
 				}
 			}
-			add_resource = { type = oil amount = 5 state = 470 }
-			add_resource = { type = oil amount = 5 state = 473 }
-			add_ideas = CAN_trans_canada_pipelines
+			PCA = {
+				remove_opinion_modifier = {
+					target = CAN
+					modifier = trade_influence_2
+				}
+			}
 		}
 	}
 	
@@ -6622,7 +6639,7 @@ focus_tree = {
 			focus = CAN_tax_increases_on_the_rich
 		}
 		prerequisite = {
-			focus = CAN_expand_the_trans_mountain_pipelines
+			focus = CAN_turnerian_protectionism
 		}
 		
 		relative_position_id = CAN_prime_minister_trudeau
@@ -6778,7 +6795,7 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = CAN_competitive_tax_increases
-			focus = CAN_expand_the_trans_mountain_pipelines
+			focus = CAN_turnerian_protectionism
 			focus = CAN_spirit_of_innovation
 		}
 		
@@ -7467,6 +7484,10 @@ focus_tree = {
 					name = "Nathan Cullen"
 					ruling_only = yes
 				}
+				has_country_leader = {
+					name = "Kiefer Sutherland"
+					ruling_only = yes
+				}
 			}
 			has_country_flag = ndp_victory_2015
 			OR = {
@@ -7557,7 +7578,10 @@ focus_tree = {
 		}
 		
 		bypass = {
-			has_completed_focus = CAN_legalize_marijuana
+			OR = {
+				has_completed_focus = CAN_legalize_marijuana
+				has_completed_focus = CAN_legalize_pot_and_lsd
+			}
 		}
 		
 		ai_will_do = {
@@ -13686,6 +13710,7 @@ focus_tree = {
 				OR = {
 					exists = no
 					is_subject_of = CAN
+					hidden_trigger = { GER_is_ddr = no }
 				}
 			}
 		}
@@ -16353,12 +16378,9 @@ focus_tree = {
 		prerequisite = {
 			focus = CAN_reinvigorate_the_steel_belt
 		}
-		prerequisite = {
-			focus = CAN_local_network_consolidation
-		}
 		
 		relative_position_id = CAN_toronto_stock_exchange
-		x = -1
+		x = 3
 		y = 5
 
 		available = {
@@ -16406,6 +16428,55 @@ focus_tree = {
 				force_update_dynamic_modifier = yes
 			}
 			custom_effect_tooltip = CAN_trans_canada_effect
+		}
+	}
+	
+	focus = {
+		id = CAN_expand_the_trans_mountain_pipelines
+		icon = GFX_goal_CAN_trans_mountain_pipeline
+		cost = 5.8
+		
+		prerequisite = {
+			focus = CAN_reinvigorate_the_steel_belt
+			focus = CAN_canadian_petroleum_concerns
+		}
+		
+		relative_position_id = CAN_toronto_stock_exchange
+		x = 5
+		y = 5
+
+		available = {
+			NOT = {
+				has_government = moderate_socialist
+			}
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			473 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			470 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_resource = { type = oil amount = 5 state = 470 }
+			add_resource = { type = oil amount = 5 state = 473 }
+			add_ideas = CAN_trans_canada_pipelines
 		}
 	}
 	
@@ -16469,7 +16540,7 @@ focus_tree = {
 		}
 		
 		relative_position_id = CAN_toronto_stock_exchange
-		x = 3
+		x = -1
 		y = 5
 
 		available = {
@@ -20649,7 +20720,13 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_reunificationism
-		icon = GFX_goal_CAN_support_the_republic
+		icon = {
+			value = GFX_goal_CAN_support_the_heartlands
+			trigger = { has_country_flag = CAN_backing_heartlands }
+		}
+		icon = {
+			value = GFX_goal_CAN_support_the_republic
+		}
 		cost = 4
 		
 		prerequisite = {
@@ -20659,6 +20736,18 @@ focus_tree = {
 		mutually_exclusive = {
 			focus = CAN_interventionism
 			focus = CAN_neutrality
+		}
+		
+		select_effect = {
+			if = {
+				limit = {
+					NOT = { has_country_flag = CAN_backing_heartlands }
+				}
+				country_event = {
+					id = canada_diplo.73
+					days = 6
+				}
+			}
 		}
 		
 		relative_position_id = CAN_america
@@ -20676,17 +20765,34 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			USA = {
-				country_event = canada_diplo.33
-				add_ideas = CAN_canadian_support
+			if = {
+				limit = { has_country_flag = CAN_backing_heartlands }
+				MWA = {
+					country_event = canada_diplo.33
+					add_ideas = CAN_canadian_support
+					add_opinion_modifier = {
+						target = CAN
+						modifier = supporting_our_cause
+					}
+				}
 				add_opinion_modifier = {
-					target = CAN
+					target = MWA
 					modifier = supporting_our_cause
 				}
 			}
-			add_opinion_modifier = {
-				target = USA
-				modifier = supporting_our_cause
+			else = {
+				USA = {
+					country_event = canada_diplo.33
+					add_ideas = CAN_canadian_support
+					add_opinion_modifier = {
+						target = CAN
+						modifier = supporting_our_cause
+					}
+				}
+				add_opinion_modifier = {
+					target = USA
+					modifier = supporting_our_cause
+				}
 			}
 		}
 	}
@@ -20726,17 +20832,34 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			custom_effect_tooltip = CAN_idaho_montana_join_ar
-			LIN = {
-				country_event = canada_diplo.34
+			if = {
+				limit = { has_country_flag = CAN_backing_heartlands }
+				custom_effect_tooltip = CAN_idaho_montana_join_heartlands
+				LIN = {
+					country_event = canada_diplo.34
+				}
+				MOT = {
+					country_event = canada_diplo.34
+				}
+				MWA = {
+					core_MOT = yes
+					custom_effect_tooltip = tooltip_blank_line
+					core_LIN = yes
+				}
 			}
-			MOT = {
-				country_event = canada_diplo.34
-			}
-			USA = {
-				core_MOT = yes
-				custom_effect_tooltip = tooltip_blank_line
-				core_LIN = yes
+			else = {
+				custom_effect_tooltip = CAN_idaho_montana_join_ar
+				LIN = {
+					country_event = canada_diplo.34
+				}
+				MOT = {
+					country_event = canada_diplo.34
+				}
+				USA = {
+					core_MOT = yes
+					custom_effect_tooltip = tooltip_blank_line
+					core_LIN = yes
+				}
 			}
 		}
 	}
@@ -20774,10 +20897,19 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			USA = {
-				country_event = canada_diplo.35
+			if = {
+				limit = { has_country_flag = CAN_backing_heartlands }
+				MWA = {
+					country_event = canada_diplo.35
+				}
+				country_event = canada_diplo.27
 			}
-			country_event = canada_diplo.27
+			else = {
+				USA = {
+					country_event = canada_diplo.35
+				}
+				country_event = canada_diplo.27
+			}
 		}
 	}
 	
@@ -20796,8 +20928,16 @@ focus_tree = {
 		y = 2
 
 		available = {
-			USA = {
-				has_war = yes
+			if = {
+				limit = { has_country_flag = CAN_backing_heartlands }
+				MWA = {
+					has_war = yes
+				}
+			}
+			else = {
+				USA = {
+					has_war = yes
+				}
 			}
 		}
 		
@@ -20808,23 +20948,45 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			USA = {
-				country_event = canada_diplo.36
-				swap_ideas = {
-					remove_idea = CAN_canadian_support
-					add_idea = CAN_canadian_support2
+			if = {
+				limit = { has_country_flag = CAN_backing_heartlands }
+				MWA = {
+					country_event = canada_diplo.36
+					swap_ideas = {
+						remove_idea = CAN_canadian_support
+						add_idea = CAN_canadian_support2
+					}
 				}
+				create_wargoal = {
+					type = annex_everything
+					target = NEA
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = PCA
+				}
+				custom_effect_tooltip = CAN_return_mwa_cores_when_they_join_dl
+				set_global_flag = CAN_supported_mwa
 			}
-			create_wargoal = {
-				type = annex_everything
-				target = NEA
+			else = {
+				USA = {
+					country_event = canada_diplo.36
+					swap_ideas = {
+						remove_idea = CAN_canadian_support
+						add_idea = CAN_canadian_support2
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = NEA
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = PCA
+				}
+				custom_effect_tooltip = CAN_return_us_cores_when_they_join_dl
+				set_global_flag = CAN_supported_ar
 			}
-			create_wargoal = {
-				type = annex_everything
-				target = PCA
-			}
-			custom_effect_tooltip = CAN_return_us_cores_when_they_join_dl
-			set_global_flag = CAN_supported_ar
 		}
 	}
 	
@@ -20954,7 +21116,8 @@ focus_tree = {
 		completion_reward = {
 			give_guarantee = GUA
 			give_guarantee = BLZ
-			give_guarantee = PAN
+			give_guarantee = MEX
+			give_guarantee = COS
 		}
 	}
 	
@@ -20986,6 +21149,15 @@ focus_tree = {
                 target = PAN
                 modifier = relations_repaired
             }
+			PAN = {
+				add_command_power = 100
+				army_experience = 100
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 1200
+					producer = CAN
+				}
+			}
 		}
 	}	
 	
@@ -21021,6 +21193,12 @@ focus_tree = {
 				country = PAN
 				relation = guarantee
 				active = yes
+			}
+			685 = {
+				add_building_construction = { type = bunker province = 13824 level = 1 instant_build = yes }
+				add_building_construction = { type = bunker province = 13823 level = 1 instant_build = yes }
+				add_building_construction = { type = coastal_bunker province = 13824 level = 1 instant_build = yes }
+				add_building_construction = { type = coastal_bunker province = 13823 level = 1 instant_build = yes }
 			}
 		}
 	}	
@@ -21428,6 +21606,10 @@ focus_tree = {
 			}
 		}
 		
+		bypass = {
+			is_in_faction_with = CUB
+		}
+		
 		ai_will_do = {
 			factor = 5
 		}
@@ -21473,9 +21655,18 @@ focus_tree = {
 		completion_reward = {
 			CUB = {
 				CAN_subtract_5_percent_popularity = yes
-				add_timed_idea = {
-					idea = GER_empowered_democratic_resistance
-					days = 6500
+				if = {
+					limit = { is_ai = yes }
+					add_timed_idea = {
+						idea = CAN_democratic_support_surge
+						days = 500
+					}
+				}
+				else = {
+					add_timed_idea = {
+						idea = CAN_democratic_support_surge
+						days = 400
+					}
 				}
 			}
 		}
@@ -23029,15 +23220,20 @@ focus_tree = {
 				target = SOV
 				modifier = denounced_warsaw_pact
 			}
-			GER = {
+			if = {
+				limit = { 
+					GER = { GER_is_ddr = yes  }
+				}
+				GER = {
+					add_opinion_modifier = {
+						target = CAN
+						modifier = denounced_warsaw_pact
+					}
+				}
 				add_opinion_modifier = {
-					target = CAN
+					target = GER
 					modifier = denounced_warsaw_pact
 				}
-			}
-			add_opinion_modifier = {
-				target = GER
-				modifier = denounced_warsaw_pact
 			}
 			hidden_effect = {
 				every_country = {
@@ -23072,7 +23268,14 @@ focus_tree = {
 		}
 		
 		bypass = {
-			GER = { is_in_faction_with = CAN }
+			GER = { 
+				OR = {
+					is_in_faction_with = CAN
+					hidden_trigger = {
+						GER_is_ddr = no
+					}
+				}
+			}
 		}
 		
 		ai_will_do = {
@@ -23084,9 +23287,18 @@ focus_tree = {
 		completion_reward = {
 			GER = {
 				add_stability = -0.06
-				add_timed_idea = {
-					idea = CAN_canadian_sabatoge
-					days = 2300
+				if = {
+					limit = { GER = { is_ai = yes } }
+					add_timed_idea = {
+						idea = CAN_canadian_sabatoge
+						days = 2300
+					}
+				}
+				else = {
+					add_timed_idea = {
+						idea = CAN_canadian_sabatoge
+						days = 200
+					}
 				}
 				CAN_subtract_5_percent_popularity = yes
 			}
@@ -23103,7 +23315,14 @@ focus_tree = {
 		}
 		
 		bypass = {
-			GER = { is_in_faction_with = CAN }
+			GER = { 
+				OR = {
+					is_in_faction_with = CAN
+					hidden_trigger = {
+						GER_is_ddr = no
+					}
+				}
+			}
 		}
 		
 		relative_position_id = CAN_soviet_bloc
@@ -23125,7 +23344,19 @@ focus_tree = {
 				add_political_power = -50
 				add_stability = -0.1
 				CAN_subtract_5_percent_popularity = yes
-				add_ideas = GER_empowered_democratic_resistance
+				if = {
+					limit = { GER = { is_ai = yes } }
+					add_timed_idea = {
+						idea = GER_empowered_democratic_resistance
+						days = 500
+					}
+				}
+				else = {
+					add_timed_idea = {
+						idea = GER_empowered_democratic_resistance
+						days = 200
+					}
+				}
 			}
 		}
 	}
@@ -23168,9 +23399,18 @@ focus_tree = {
 		completion_reward = {
 			SOV = {
 				add_stability = -0.06
-				add_timed_idea = {
-					idea = CAN_canadian_sabatoge
-					days = 2300
+				if = {
+					limit = { SOV = { is_ai = yes } }
+					add_timed_idea = {
+						idea = CAN_canadian_sabatoge
+						days = 2300
+					}
+				}
+				else = {
+					add_timed_idea = {
+						idea = CAN_canadian_sabatoge
+						days = 200
+					}
 				}
 				CAN_subtract_5_percent_popularity = yes
 			}
@@ -23238,19 +23478,80 @@ focus_tree = {
 
 		available_if_capitulated = yes
 
+		bypass = {
+			AND = {	
+				NOT = { country_exists = SOV }
+				GER = { 
+					OR = {
+						is_in_faction_with = CAN
+						hidden_trigger = {
+							GER_is_ddr = no
+						}
+					}
+				}
+			}
+		}
+
+		bypass_effect = {
+			if = {
+				limit = { has_dlc = "La Resistance" }
+				if = {
+					limit = { has_intelligence_agency = yes }
+					if = {
+						limit = { NOT = { has_done_agency_upgrade = upgrade_commando_training } }
+						upgrade_intelligence_agency = upgrade_commando_training
+					}
+					if = {
+						limit = { NOT = { has_done_agency_upgrade = upgrade_crypto_strength } }
+						upgrade_intelligence_agency = upgrade_crypto_strength
+					}
+					if = {
+						limit = { NOT = { has_done_agency_upgrade = upgrade_decryption_boost } }
+						upgrade_intelligence_agency = upgrade_decryption_boost
+					}
+					if = {
+						limit = {
+							OR = {
+								has_done_agency_upgrade = upgrade_commando_training
+								has_done_agency_upgrade = upgrade_crypto_strength
+								has_done_agency_upgrade = upgrade_decryption_boost
+							}
+							NOT = { has_done_agency_upgrade = upgrade_training_centers }
+						}
+						upgrade_intelligence_agency = upgrade_training_centers
+					}
+			}
+			else_if = {
+				limit = { has_intelligence_agency = no }
+				create_intelligence_agency = yes
+				upgrade_intelligence_agency = upgrade_commando_training
+				upgrade_intelligence_agency = upgrade_decryption_boost
+			}
+			add_ideas = CAN_strenthened_csis_lar
+			}
+			else = {
+				add_ideas = CAN_strenthened_csis_idea
+			}
+		}
+
 		completion_reward = {
 			if = {
 				limit = { has_dlc = "La Resistance" }
 				SOV = {
 					add_timed_idea = {
 						idea = CAN_bad_intel_idea_lar
-						days = 2300
+						days = 500
 					}
 				}
-				GER = {
-					add_timed_idea = {
-						idea = CAN_bad_intel_idea_lar
-						days = 2300
+				if = {
+					limit = { 
+						GER = { GER_is_ddr = yes }
+					}
+					GER = {
+						add_timed_idea = {
+							idea = CAN_bad_intel_idea_lar
+							days = 500
+						}
 					}
 				}
 			}
@@ -23258,13 +23559,18 @@ focus_tree = {
 				SOV = {
 					add_timed_idea = {
 						idea = CAN_bad_intel_idea
-						days = 2300
+						days = 500
 					}
 				}
-				GER = {
-					add_timed_idea = {
-						idea = CAN_bad_intel_idea
-						days = 2300
+				if = {
+					limit = { 
+						GER = { GER_is_ddr = yes }
+					}
+					GER = {
+						add_timed_idea = {
+							idea = CAN_bad_intel_idea
+							days = 500
+						}
 					}
 				}
 			}
@@ -23349,7 +23655,7 @@ focus_tree = {
 				limit = { is_in_faction_with = GER }
 				add_timed_idea = {
 					idea = CAN_chaos_in_the_warsaw_pact
-					days = 1120
+					days = 700
 				}
 			}
 			GER = {
@@ -23381,7 +23687,16 @@ focus_tree = {
 		y = 4
 
 		available = {
-			
+			OR = {
+				SOV = { is_faction_leader = yes }
+				GER = { is_faction_leader = yes }
+			}
+		}
+		bypass = {
+			NOT = {
+				SOV = { is_faction_leader = yes }
+				GER = { is_faction_leader = yes }
+			}
 		}
 		
 		ai_will_do = {
@@ -23393,16 +23708,20 @@ focus_tree = {
 		completion_reward = {
 			every_country = {
 				limit = { 
-					is_in_faction_with = GER 
+					OR = {
+						is_in_faction_with = GER 
+						is_in_faction_with = SOV
+					}
 					capital_scope = {
 						is_on_continent = europe
 					}
 					NOT = { tag = SOV }
 					NOT = { tag = GER }
+					has_non_democratic_government = yes
 				}
 				add_timed_idea = {
 					idea = CAN_democratic_support_surge
-					days = 2300
+					days = 700
 				}
 			}
 		}
@@ -23428,6 +23747,12 @@ focus_tree = {
 			}
 		}
 		
+		bypass = {
+			GER = {
+				GER_is_ddr = no
+			}
+		}
+		
 		ai_will_do = {
 			factor = 5
 		}
@@ -23436,43 +23761,22 @@ focus_tree = {
 
 		completion_reward = {
 			custom_effect_tooltip = CAN_democratic_uprising_tt
+			custom_effect_tooltip = tooltip_blank_line
+			effect_tooltip = {
+				swap_ideas = {
+					remove_idea = CAN_democratic_support_surge
+					add_idea = CAN_european_spring_idea
+				}
+			}
 			every_country = {
 				limit = { 
-					capital_scope = {
-						is_on_continent = europe
-					}
-					is_in_faction_with = GER
+					has_idea = CAN_democratic_support_surge
 					communist < 0.50
 				}
-				hidden_effect = {
-					random_list = {
-						25 = {
-							start_civil_war = {
-								ideology = national_conservative
-								size = 0.5
-							}
-						}
-						25 = {
-							start_civil_war = {
-								ideology = centrist
-								size = 0.5
-							}
-						}
-						25 = {
-							start_civil_war = {
-								ideology = liberal
-								size = 0.5
-							}
-						}
-						25 = {
-							start_civil_war = {
-								ideology = new_democrat
-								size = 0.5
-							}
-						}
-					}
+				swap_ideas = {
+					remove_idea = CAN_democratic_support_surge
+					add_idea = CAN_european_spring_idea
 				}
-				
 			}
 			custom_effect_tooltip = CAN_wait_for_communist_support_to_erode
 			hidden_effect = {
@@ -23514,7 +23818,19 @@ focus_tree = {
 		y = 5
 
 		available = {
-			
+			OR = {	
+				AND = {
+					country_exists = SOV
+					SOV = {
+						is_faction_leader = yes 
+					}
+				}
+				AND = {
+					country_exists = GER
+					GER = { is_faction_leader = yes }
+					hidden_trigger = { GER = { GER_is_ddr = yes } }
+				}
+			}
 		}
 		
 		bypass = {
@@ -23735,7 +24051,7 @@ focus_tree = {
 		}
 		
 		ai_will_do = {
-			factor = 5
+			factor = 1
 		}
 
 		available_if_capitulated = yes

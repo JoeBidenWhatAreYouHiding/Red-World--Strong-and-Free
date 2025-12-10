@@ -1,0 +1,94 @@
+scripted_gui = { 
+
+	rw_factions_gui = {
+		window_name = "rw_organizations_gui_window"
+		context_type = country_mapicon
+		mapmode = international_organizations_map
+		
+		visible = { 
+			always = yes
+		}
+		
+		mapicon_targets = {
+			target_array = global.countries
+			target_trigger = {
+				FROM = {
+					OR = {
+						original_tag = GER
+						original_tag = SIA
+						original_tag = GUY
+						original_tag = ETH
+						original_tag = FIJ
+						original_tag = PRU
+					}
+				}
+			}
+		}
+		
+		triggers = {
+			org_icon_visible = {
+				always = yes
+			}
+		}
+		
+		properties = {
+			org_icon = {
+				image = "[FROM.GetOrganizationIcon]"
+			}
+		}
+	}
+	
+	rw_nukes_gui = {
+		window_name = "rw_nuclear_powers_gui_window"
+		context_type = country_mapicon
+		mapmode = nuclear_powers_map 
+		
+		visible = { 
+			always = yes
+		}
+		
+		mapicon_targets = {
+			target_array = global.countries
+			target_trigger = {
+				FROM = {
+					OR = {
+						num_of_nukes > 0
+						AND = {
+							tag = CAN
+							num_of_nukes < 1
+						}
+						has_idea = GEN_nuclear_development
+						tag = PAL
+						tag = PCA
+						tag = CSD
+						tag = MOT
+						tag = LIN
+						tag = MWA
+						tag = ARI
+						tag = UTA
+						tag = TEX
+						tag = GRL
+						tag = ILL
+						tag = NEA
+						tag = AMC
+						tag = USA
+					}
+				}
+			}
+		}
+		
+		triggers = {
+			nuke_powers_icon_visible = {
+				always = yes
+			}
+		}
+		
+		
+		properties = {
+			nuke_powers_icon = {
+				image = "[FROM.GetNuclearIcon]"
+			}
+		}
+	}
+	
+}
