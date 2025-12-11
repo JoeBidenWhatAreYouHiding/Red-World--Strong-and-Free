@@ -1,5 +1,232 @@
 
 AMR_diplomacy_decisions = {
+
+	AMR_assume_leadership_of_the_democratic_league = {
+		icon = jap_conquer_china
+		available = {
+			is_in_faction_with = CAN
+		}
+		
+		visible = {
+			has_completed_focus = AMR_align_to_the_democratic_league
+		}
+		
+		allowed = {
+			OR = {
+				tag = MWA
+				tag = USA
+				tag = TEX
+				tag = AMC
+				tag = NEA
+				tag = GRL
+				tag = CSD
+				tag = PCA
+				tag = UTA
+				tag = ARI
+				tag = MOT
+				tag = LIN
+				tag = ILL
+			}
+		}
+		
+		cost = 100
+		
+		complete_effect = {
+		}
+
+		remove_effect = {
+			CAN = {
+				country_event = american_diplo.11
+			}
+			custom_effect_tooltip = AMR_seek_dl_leadership_tt
+		}
+		days_remove = 20
+		fire_only_once = yes
+		
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	
+	AMR_integrate_canada = {
+		icon = jap_conquer_china
+		available = {
+			OR = {
+				AND = {
+					NOT = { country_exists = CAN }
+					owns_state = 267
+				}
+				CAN = { is_subject_of = ROOT }
+			}
+		}
+		
+		visible = {
+			has_global_flag = AMR_claimed_canada
+		}
+		
+		allowed = {
+			OR = {
+				tag = MWA
+				tag = USA
+				tag = TEX
+				tag = AMC
+				tag = NEA
+				tag = GRL
+				tag = CSD
+				tag = PCA
+				tag = UTA
+				tag = ARI
+				tag = MOT
+				tag = LIN
+				tag = ILL
+			}
+		}
+		
+		cost = 300
+		
+		complete_effect = {
+		}
+
+		remove_effect = {
+			every_state = {
+				limit = { is_core_of = CAN }
+				ROOT = { add_state_core = PREV }
+			}
+			if = {
+				limit = { country_exists = CAN }
+				annex_country = {
+					target = CAN
+					transfer_troops = yes
+				}
+			}
+		}
+		days_remove = 150
+		fire_only_once = yes
+		
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	
+	AMR_integrate_mexico = {
+		icon = jap_conquer_china
+		available = {
+			OR = {
+				AND = {
+					NOT = { country_exists = MEX }
+					owns_state = 277
+				}
+				MEX = { is_subject_of = ROOT }
+			}
+		}
+		
+		visible = {
+			has_global_flag = AMR_claimed_mexico
+		}
+		
+		allowed = {
+			OR = {
+				tag = MWA
+				tag = USA
+				tag = TEX
+				tag = AMC
+				tag = NEA
+				tag = GRL
+				tag = CSD
+				tag = PCA
+				tag = UTA
+				tag = ARI
+				tag = MOT
+				tag = LIN
+				tag = ILL
+			}
+		}
+		
+		cost = 300
+		
+		complete_effect = {
+		}
+
+		remove_effect = {
+			every_state = {
+				limit = { is_core_of = MEX }
+				ROOT = { add_state_core = PREV }
+			}
+			if = {
+				limit = { country_exists = MEX }
+				annex_country = {
+					target = MEX
+					transfer_troops = yes
+				}
+			}
+		}
+		days_remove = 150
+		fire_only_once = yes
+		
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	
+	AMR_integrate_cuba = {
+		icon = jap_conquer_china
+		available = {
+			OR = {
+				AND = {
+					NOT = { country_exists = CUB }
+					owns_state = 315
+				}
+				CUB = { is_subject_of = ROOT }
+			}
+		}
+		
+		visible = {
+			has_global_flag = AMR_claimed_cuba
+		}
+		
+		allowed = {
+			OR = {
+				tag = MWA
+				tag = USA
+				tag = TEX
+				tag = AMC
+				tag = NEA
+				tag = GRL
+				tag = CSD
+				tag = PCA
+				tag = UTA
+				tag = ARI
+				tag = MOT
+				tag = LIN
+				tag = ILL
+			}
+		}
+		
+		cost = 150
+		
+		complete_effect = {
+		}
+
+		remove_effect = {
+			every_state = {
+				limit = { is_core_of = CUB }
+				ROOT = { add_state_core = PREV }
+			}
+			if = {
+				limit = { country_exists = CUB }
+				annex_country = {
+					target = CUB
+					transfer_troops = yes
+				}
+			}
+		}
+		days_remove = 100
+		fire_only_once = yes
+		
+		ai_will_do = {
+			factor = 100
+		}
+	}
 	
 	AMR_attack_country = { 
 		icon = generic_prepare_civil_war

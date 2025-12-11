@@ -478,9 +478,22 @@ country_event = {
 	    ai_chance = {
 			factor = 50
 		}
-		CAN = {
-		    country_event = { days = 1 id = american_diplo.20 } 
-			add_to_faction = ROOT
+		if = {
+			limit = { CAN = { is_faction_leader = yes } }
+			
+			CAN = {
+				country_event = { days = 1 id = american_diplo.20 } 
+				add_to_faction = ROOT
+			}
+			var:901.owner = {
+				country_event = { days = 1 id = american_diplo.20 } 
+			}
+		}
+		else = {
+			var:901.owner = {
+				country_event = { days = 1 id = american_diplo.20 } 
+				add_to_faction = ROOT
+			}
 		}
 		
 	}
