@@ -1,0 +1,158 @@
+
+MWA_reunification_decisions = {
+	
+	AMR_attack_country = { 
+		icon = generic_prepare_civil_war
+		allowed = { always = no }
+		available = {
+			# OR = {
+				# is_neighbor_of = FROM
+				# any_allied_country = { is_neighbor_of = FROM }
+				# any_subject_country = { is_neighbor_of = FROM }
+			# }
+			NOT = { has_country_flag = MWA_war_on_country }
+		}
+		visible = {
+			is_subject = no
+			can_declare_war_on = FROM
+		}
+		
+		highlight_states = {
+ 			highlight_state_targets = {
+				state = FROM.capital
+			} 
+		}
+		
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+		cancel_if_not_visible = yes
+		war_with_target_on_remove = yes
+
+		# ai_will_do = {
+			# factor = 0
+			# modifier = {
+				# factor = 0
+				# ROOT_is_threatened_cautious = yes
+			# }
+			# modifier = {
+				# factor = 0
+				# FROM = { default_attack_AI_trigMWA_FROM = yes }
+			# }
+		# }
+		
+		cancel_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision cancelled CAN_aid_reunification_italy target: [From.GetName]"
+			# clear_decision_attack_AI = yes
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CAN_aid_reunification_italy target: [From.GetName]"
+			# FROM = { country_event = kr.political.30 } #warning event
+			# setup_decision_attack_AI = yes
+			set_country_flag = MWA_war_on_country
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CAN_aid_reunification_italy target: [From.GetName]"
+			clr_country_flag = MWA_war_on_country
+			# clear_decision_attack_AI = yes
+			declare_war_on = {
+				target = FROM
+				type = annex_everything
+			}
+		}
+	}
+	
+	AMR_invite_tag_to_american_faction = { 
+		icon = democratic_league
+		allowed = { always = no }
+		available = {
+			FROM = {
+				NOT = { 
+					has_government = communist
+					has_government = revolutionary_socialist 
+					has_government = national_bolshevik
+					has_government = fascist
+					has_government = monarchist
+				}
+			}
+			NOT = { has_country_flag = AMR_inviting_country }
+		}
+		visible = {
+			is_subject = no
+			FROM = { is_in_faction = no }
+		}
+		
+		highlight_states = {
+ 			highlight_state_targets = {
+				state = FROM.capital
+			} 
+		}
+		
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+		cancel_if_not_visible = yes
+
+		cancel_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision cancelled CAN_aid_reunification_italy target: [From.GetName]"
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CAN_aid_reunification_italy target: [From.GetName]"
+			set_country_flag = AMR_inviting_country
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CAN_aid_reunification_italy target: [From.GetName]"
+			clr_country_flag = AMR_inviting_country
+			FROM = {
+				country_event = american_diplo.1500
+			}
+		}
+	}
+	
+	AMR_invite_tag_to_democratic_league = { 
+		icon = democratic_league
+		allowed = { always = no }
+		available = {
+			FROM = {
+				NOT = { 
+					has_government = communist
+					has_government = revolutionary_socialist 
+					has_government = national_bolshevik
+					has_government = fascist
+					has_government = monarchist
+				}
+			}
+			NOT = { has_country_flag = AMR_inviting_country }
+		}
+		visible = {
+			is_subject = no
+			FROM = { is_in_faction = no }
+		}
+		
+		highlight_states = {
+ 			highlight_state_targets = {
+				state = FROM.capital
+			} 
+		}
+		
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+		cancel_if_not_visible = yes
+
+		cancel_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision cancelled CAN_aid_reunification_italy target: [From.GetName]"
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CAN_aid_reunification_italy target: [From.GetName]"
+			set_country_flag = AMR_inviting_country
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CAN_aid_reunification_italy target: [From.GetName]"
+			clr_country_flag = AMR_inviting_country
+			FROM = {
+				country_event = american_diplo.15
+			}
+		}
+	}
+}

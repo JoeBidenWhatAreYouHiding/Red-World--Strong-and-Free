@@ -102,6 +102,17 @@ shared_focus = {
 		is_in_faction_with = CAN
 	}
 	
+	available = {
+		OR = {
+			has_government = moderate_socialist
+			has_government = new_democrat
+			has_government = liberal
+			has_government = centrist
+			has_government = national_conservative
+			has_government = nationalist
+		}
+	}
+	
 	mutually_exclusive = {
 		focus = AMR_american_imperialism
 		focus = AMR_america_first
@@ -112,7 +123,9 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		CAN = {
+			country_event = american_diplo.1
+		}
 	}
 }
 
@@ -131,7 +144,10 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		CAN = {
+			country_event = american_diplo.11
+		}
+		custom_effect_tooltip = AMR_seek_dl_leadership_tt
 	}
 }
 
@@ -150,7 +166,49 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+		CAN = {
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = 2000
+				producer = ROOT
+			}
+			if = {
+				limit = {
+					NOT = { has_dlc = "No Step Back" }
+				}
+				add_equipment_to_stockpile = {
+					type = light_tank_equipment_1
+					amount = 200
+					producer = ROOT
+				}
+			}
+			if = {
+				limit = {
+					has_dlc = "No Step Back"
+				}
+				add_equipment_to_stockpile = {
+					type = light_tank_chassis
+					amount = 200
+					producer = ROOT
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 3000
+				producer = ROOT
+			}
+			add_opinion_modifier = { 
+				target = ROOT modifier = close_friendship
+			}
+		}
 	}
 }
 
@@ -169,7 +227,8 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		add_command_power = 100
+		add_ideas = AMR_arsenal_of_democracy
 	}
 }
 
@@ -191,7 +250,33 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		if = {
+			limit = { 
+				ENG = {
+					NOT = { 
+						OR = {
+							has_government = revolutionary_socialist
+							has_government = communist
+							has_government = fascist
+							has_government = monarchist
+						}
+					}
+				}
+			}
+			ENG = {
+				country_event = american_diplo.18
+			}
+			add_opinion_modifier = {
+				target = ENG
+				modifier = close_friendship
+			}
+		}
+		else = {
+			create_wargoal = {
+				type = topple_government
+				target = ENG
+			} 
+		}
 	}
 }
 
@@ -213,7 +298,13 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		JAP = {
+			country_event = american_diplo.15
+		}
+		add_opinion_modifier = {
+			target = JAP
+			modifier = close_friendship
+		}
 	}
 }
 
@@ -235,7 +326,8 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		add_war_support = 0.05
+		add_ideas = AMR_leader_of_the_free_world
 	}
 }
 
@@ -260,7 +352,11 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		add_war_support = 0.1
+		add_timed_idea = {
+			idea = AMR_american_imperialism_idea
+			days = 500
+		}
 	}
 }
 
@@ -278,8 +374,17 @@ shared_focus = {
 
 	available_if_capitulated = yes
 
+	will_lead_to_war_with = CAN
 	completion_reward = {
-		
+		create_wargoal = {
+			type = annex_everything
+			target = CAN
+		} 
+		every_state = {
+			limit = { is_owned_by = CAN }
+			ROOT = { add_state_claim = PREV }
+		}
+		set_global_flag = AMR_claimed_canada
 	}
 }
 
@@ -297,8 +402,17 @@ shared_focus = {
 
 	available_if_capitulated = yes
 
+	will_lead_to_war_with = MEX
 	completion_reward = {
-		
+		create_wargoal = {
+			type = annex_everything
+			target = MEX
+		} 
+		every_state = {
+			limit = { is_owned_by = MEX }
+			ROOT = { add_state_claim = PREV }
+		}
+		set_global_flag = AMR_claimed_mexico
 	}
 }
 
@@ -318,7 +432,10 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		create_wargoal = {
+			type = topple_government
+			target = VEN
+		} 
 	}
 }
 
@@ -336,11 +453,27 @@ shared_focus = {
 	prerequisite = {
 		focus = AMR_destroy_canada
 	}
+	
+	bypass = {
+		OR = {
+			is_in_faction_with = CUB
+			CUB = { has_completed_focus = CUB_the_exiles_return }
+		}
+	}
 
 	available_if_capitulated = yes
 
+	will_lead_to_war_with = CUB
 	completion_reward = {
-		
+		create_wargoal = {
+			type = annex_everything
+			target = CUB
+		} 
+		every_state = {
+			limit = { is_owned_by = CUB }
+			ROOT = { add_state_claim = PREV }
+		}
+		set_global_flag = AMR_claimed_mexico
 	}
 }
 
@@ -360,7 +493,33 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		if = {
+			limit = { 
+				has_completed_focus = AMR_destroy_canada 
+			}
+			annex_country = { 
+				target = GRN 
+				transfer_troops = yes
+			}
+			every_state = {
+				limit = { is_core_of = GRN }
+				ROOT = { add_state_claim = PREV }
+			}
+		}
+		else_if = {
+			limit = {
+				CAN = { is_in_faction_with = GRN }
+			}
+			CAN = {
+				country_event = american_diplo.24 
+			}
+		}
+		else = {
+			create_wargoal = {
+				type = annex_everything
+				target = GRN
+			} 
+		}
 	}
 }
 
@@ -385,7 +544,39 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		create_wargoal = {
+			type = annex_everything
+			target = GUA
+		} 
+		create_wargoal = {
+			type = annex_everything
+			target = BLZ
+		} 
+		create_wargoal = {
+			type = annex_everything
+			target = HON
+		} 
+		create_wargoal = {
+			type = annex_everything
+			target = NIC
+		} 
+		create_wargoal = {
+			type = annex_everything
+			target = ELS
+		} 
+		create_wargoal = {
+			type = annex_everything
+			target = COS
+		} 
+		create_wargoal = {
+			type = annex_everything
+			target = CEA
+		} 
+		create_wargoal = {
+			type = annex_everything
+			target = PAN 
+		} 
+		add_state_core = 685
 	}
 }
 
@@ -410,7 +601,10 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		create_wargoal = {
+			type = puppet_wargoal_focus
+			target = PHI 
+		} 
 	}
 }
 
@@ -438,7 +632,12 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		create_faction_from_template = { 
+			template = faction_template_generic_dominance              
+			name = "league_of_american_states"
+			icon = GFX_faction_organization_of_american_states
+		}	
+		set_country_flag = AMR_american_faction
 	}
 }
 
@@ -457,7 +656,27 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		add_ideas = AMR_new_monroeism
+		every_country = {
+			limit = {
+				NOT = { 
+					has_government = communist
+					has_government = revolutionary_socialist
+					has_government = national_bolshevik
+				}
+				OR = {
+					capital_scope = {
+						is_on_continent = south_america
+					}
+					capital_scope = {
+						is_on_continent = north_america
+					}
+				}
+			}
+			ROOT = {
+				give_guarantee = PREV
+			}
+		}
 	}
 }
 
@@ -476,7 +695,7 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		country_event = american_diplo.10
 	}
 }
 
@@ -496,7 +715,52 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		if = {
+			limit = { has_completed_focus = AMR_align_to_the_democratic_league }
+			hidden_effect = {
+				activate_targeted_decision = { target = BRA decision = AMR_invite_tag_to_democratic_league }
+				activate_targeted_decision = { target = MEX decision = AMR_invite_tag_to_democratic_league }
+				activate_targeted_decision = { target = ARG decision = AMR_invite_tag_to_democratic_league }
+			}
+		}
+		else = {
+			hidden_effect = {
+				activate_targeted_decision = { target = BRA decision = AMR_invite_tag_to_american_faction }
+				activate_targeted_decision = { target = MEX decision = AMR_invite_tag_to_american_faction }
+				activate_targeted_decision = { target = ARG decision = AMR_invite_tag_to_american_faction }
+			}
+		}
+		custom_effect_tooltip = AMR_faction_expansion_decisions
+		add_opinion_modifier = {
+			target = MEX
+			modifier = close_friendship
+		}
+		MEX = {
+			add_opinion_modifier = {
+				target = USA
+				modifier = close_friendship
+			}
+		}
+		add_opinion_modifier = {
+			target = BRA
+			modifier = close_friendship
+		}
+		BRA = {
+			add_opinion_modifier = {
+				target = USA
+				modifier = close_friendship
+			}
+		}
+		add_opinion_modifier = {
+			target = ARG
+			modifier = close_friendship
+		}
+		ARG = {
+			add_opinion_modifier = {
+				target = USA
+				modifier = close_friendship
+			}
+		}
 	}
 }
 
@@ -518,7 +782,20 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		if = {
+			limit = {
+				CAN = { is_in_faction_with = GRN }
+			}
+			CAN = {
+				country_event = american_diplo.24 
+			}
+		}
+		else = {
+			create_wargoal = {
+				type = annex_everything
+				target = GRN
+			} 
+		}
 	}
 }
 
@@ -540,7 +817,53 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		every_country = {
+			limit = {
+				OR = { 
+					tag = MEX
+					tag = GUA
+					tag = BLZ
+					tag = CUB
+					tag = JAM
+					tag = BAH
+					tag = STK
+					tag = STV
+					tag = BRB
+					tag = GND
+					tag = TAT
+					tag = DMN
+					tag = ANT
+					tag = CEA
+					tag = ELS
+					tag = HON
+					tag = NIC
+					tag = COS
+					tag = PAN
+					tag = COL
+					tag = VEN
+					tag = GUY
+					tag = PRU
+					tag = ECU
+					tag = BOL
+					tag = STC
+					tag = CHL
+					tag = BRA
+					tag = ARG
+					tag = URG
+				}
+				OR = {
+					has_government = revolutionary_socialist
+					has_government = communist
+					has_government = national_bolshevik
+				}
+			}
+			ROOT = {
+				create_wargoal = {
+					type = annex_everything
+					target = PREV
+				} 
+			}
+		}
 	}
 }
 
@@ -565,7 +888,11 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		swap_ideas = {
+			remove_idea = AMR_spirit_of_monroe_idea
+			add_idea = AMR_new_black_ops
+		}
+		add_war_support = 0.05
 	}
 }
 
@@ -590,7 +917,7 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		add_ideas = AMR_world_police
 	}
 }
 
@@ -611,12 +938,25 @@ shared_focus = {
 	mutually_exclusive = {
 		focus = AMR_american_imperialism
 		focus = AMR_america_first
+		focus = AMR_align_to_the_democratic_league
+		focus = AMR_neutrality
+	}
+	
+	available = {
+		OR = {
+			has_government = fascist
+			has_government = nationalist
+			has_government = national_bolshevik
+		}
+		RUS = { is_faction_leader = yes }
 	}
 
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		RUS = {
+			country_event = american_diplo.4
+		}
 	}
 }
 
@@ -635,7 +975,22 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		RUS = {
+			random_owned_state = {
+				add_resource = {
+					type = oil
+					amount = 12
+				}
+			}
+			add_ideas = AMR_oil_empire
+		}
+		random_owned_state = {
+			add_resource = {
+				type = oil
+				amount = 12
+			}
+		}
+		add_ideas = AMR_oil_empire
 	}
 }
 
@@ -654,7 +1009,10 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		create_wargoal = {
+			type = topple_government
+			target = CAN
+		} 
 	}
 }
 
@@ -673,7 +1031,10 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		add_ideas = AMR_cia_and_fsb
+		RUS = {
+			add_ideas = AMR_cia_and_fsb
+		}
 	}
 }
 
@@ -695,7 +1056,45 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		RUS = {
+			create_wargoal = {
+				type = annex_everything
+				target = UKR
+			} 
+			create_wargoal = {
+				type = annex_everything
+				target = EST
+			} 
+			create_wargoal = {
+				type = annex_everything
+				target = LAT
+			} 
+			create_wargoal = {
+				type = annex_everything
+				target = LIT
+			} 
+			create_wargoal = {
+				type = annex_everything
+				target = BLR
+			} 
+			create_wargoal = {
+				type = annex_everything
+				target = GEO
+			} 
+		}
+		every_state = {
+			limit = {
+				OR = {
+					is_core_of = UKR
+					is_core_of = EST
+					is_core_of = LAT
+					is_core_of = LIT
+					is_core_of = BLR
+					is_core_of = GEO
+				}
+			}
+			RUS = { add_state_claim = PREV }
+		}
 	}
 }
 
@@ -713,11 +1112,37 @@ shared_focus = {
 	prerequisite = {
 		focus = AMR_target_the_democratic_league
 	}
+	
+	available = {	
+		owns_state = 1014
+	}
+	
+	bypass = {
+		NOT = { owns_state = 1014 }
+	}
 
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		1014 = {
+			add_building_construction = {
+				type = air_base
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = naval_base
+				level = 2
+				instant_build = yes
+				province = 7855
+			}
+		}
+		add_command_power = 100
+		air_experience = 100
+		RUS = { 
+			add_command_power = 100
+			air_experience = 100
+		}
 	}
 }
 
@@ -739,7 +1164,16 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		swap_ideas = {
+			remove_idea = AMR_cia_and_fsb
+			add_idea = AMR_pmcs_idea
+		}
+		RUS = {
+			swap_ideas = {
+				remove_idea = AMR_cia_and_fsb
+				add_idea = AMR_pmcs_idea
+			}
+		}
 	}
 }
 
@@ -767,7 +1201,8 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		add_war_support = -0.25
+		add_ideas = AMR_withdrawl_from_foreign_affairs
 	}
 }
 
@@ -782,11 +1217,25 @@ shared_focus = {
 	prerequisite = {
 		focus = AMR_neutrality
 	}
+	
+	available = {
+		has_completed_focus = AMR_defend_our_borders
+	}
 
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		swap_ideas = {
+			remove_idea = AMR_withdrawl_from_foreign_affairs
+			add_idea = AMR_withdrawl_from_foreign_affairs2
+		}
+		navy_experience = 10
+		add_doctrine_cost_reduction = {
+			name = naval_doc_bonus
+			cost_reduction = 0.5
+			uses = 1
+			category = naval_doctrine
+		}
 	}
 }
 
@@ -805,7 +1254,34 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		CAN = {
+			custom_effect_tooltip = MWA_bunkers_tt
+		}
+		MEX = {
+			custom_effect_tooltip = MWA_bunkers_tt
+		}
+		every_owned_state = {
+			add_building_construction = {
+				type = bunker
+				level = 2
+				instant_build = yes
+				province = {
+					all_provinces = yes
+					limit_to_border_country = CAN
+				}
+			}
+		}
+		every_owned_state = {
+			add_building_construction = {
+				type = bunker
+				level = 2
+				instant_build = yes
+				province = {
+					all_provinces = yes
+					limit_to_border_country = MEX
+				}
+			}
+		}
 	}
 }
 
@@ -824,7 +1300,7 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		add_ideas = AMR_shelter_from_the_storm
 	}
 }
 
@@ -846,7 +1322,18 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+		swap_ideas = {
+			remove_idea = AMR_shelter_from_the_storm
+			add_idea = AMR_profits_from_arms_dealing
+		}
 	}
 }
 
@@ -865,7 +1352,23 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		if = {
+			limit = {
+				ENG = { 
+					is_faction_leader = yes
+					is_in_faction_with = IRE
+				}
+			}
+			ENG = {
+				country_event = american_diplo.7
+			}
+		}
+		else = {
+			add_opinion_modifier = {
+				target = ENG
+				modifier = close_friendship
+			}
+		}
 	}
 }
 
@@ -887,7 +1390,34 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		add_stability = 0.05
+		add_manpower = 2000
+		random_owned_state = {
+			limit = {
+				is_core_of = ROOT
+				is_controlled_by = ROOT
+				industrial_complex > 0
+			}
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_state = {
+			limit = {
+				is_core_of = ROOT
+				is_controlled_by = ROOT
+				industrial_complex > 0
+			}
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
 	}
 }
 
@@ -914,7 +1444,7 @@ shared_focus = {
 
 shared_focus = {
 	id = AMR_strategic_bases
-	icon = GFX_goal_GER_adressing_the_epedemic
+	icon = GFX_goal_PCA_strategic_bases
 	cost = 6
 	x = -2
 	y = 5
@@ -932,7 +1462,69 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		if = {
+			limit = {
+				has_completed_focus = AMR_the_eagles_united
+			}
+			TUR = {
+				country_event = american_diplo.1501
+			}
+			CYP = {
+				country_event = american_diplo.1500
+			}
+			UAE = {
+				country_event = american_diplo.1501
+			}
+			SAU = {
+				country_event = american_diplo.1501
+			}
+			JAP = {
+				country_event = american_diplo.1501
+			}
+			CHI = {
+				country_event = american_diplo.1501
+			}
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = AMR_america_first
+			}
+			TUR = {
+				country_event = american_diplo.1500
+			}
+			CYP = {
+				country_event = american_diplo.1500
+			}
+			UAE = {
+				country_event = american_diplo.1500
+			}
+			SAU = {
+				country_event = american_diplo.1500
+			}
+			JAP = {
+				country_event = american_diplo.1500
+			}
+			CHI = {
+				country_event = american_diplo.1500
+			}
+		}
+		else = {
+			TUR = {
+				country_event = american_diplo.15
+			}
+			CYP = {
+				country_event = american_diplo.15
+			}
+			UAE = {
+				country_event = american_diplo.15
+			}
+			SAU = {
+				country_event = american_diplo.15
+			}
+			CHI = {
+				country_event = american_diplo.15
+			}
+		}
 	}
 }
 
@@ -956,7 +1548,31 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		if = {
+			limit = {
+				has_completed_focus = AMR_the_eagles_united
+			}
+			ICE = {
+				country_event = american_diplo.1501
+			}
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = AMR_america_first
+			}
+			ICE = {
+				country_event = american_diplo.1500
+			}
+		}
+		else = {
+			ICE = {
+				country_event = american_diplo.15
+			}
+		}
+		create_wargoal = {
+			type = topple_government
+			target = FRO
+		} 
 	}
 }
 
@@ -980,7 +1596,14 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		add_manpower = 5000
+		add_tech_bonus = {
+			name = marines_bonus
+			bonus = 1
+			uses = 1
+			category = marine_tech
+		}
+		add_ideas = AMR_semper_fi
 	}
 }
 
@@ -1004,14 +1627,23 @@ shared_focus = {
 
 	available_if_capitulated = yes
 
+	will_lead_to_war_with = SOV
+	will_lead_to_war_with = GER
 	completion_reward = {
-		
+		create_wargoal = {
+			type = annex_everything
+			target = SOV
+		} 
+		create_wargoal = {
+			type = annex_everything
+			target = GER
+		}  
 	}
 }
 
 shared_focus = {
 	id = AMR_contain_chinese_agression
-	icon = GFX_goal_GER_adressing_the_epedemic
+	icon = GFX_goal_CAN_containment_strategy
 	cost = 6
 	x = -5
 	y = 5
@@ -1034,7 +1666,14 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		give_guarantee = VIN
+		give_guarantee = PHI
+		give_guarantee = BOR
+		give_guarantee = BRN
+		add_opinion_modifier = {
+			target = PRC
+			modifier = declaration_of_hostility
+		}
 	}
 }
 
@@ -1063,7 +1702,10 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		create_wargoal = {
+			type = topple_government
+			target = PRC
+		} 
 	}
 }
 
@@ -1093,6 +1735,15 @@ shared_focus = {
 	available_if_capitulated = yes
 
 	completion_reward = {
-		
+		add_political_power = 50
+		add_war_support = 0.05
+		PRC = {
+			add_political_power = 50
+			add_war_support = 0.05
+		}
+		add_opinion_modifier = {
+			target = PRC
+			modifier = friendly_rivalry_with_china
+		}
 	}
 }
