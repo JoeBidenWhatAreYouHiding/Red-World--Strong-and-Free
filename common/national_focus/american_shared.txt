@@ -5,7 +5,13 @@
 		
 shared_focus = {
 	id = AMR_1987_undone
-	icon = GFX_goal_AMR_1987_undone
+	icon = {
+		value = GFX_goal_AMR_1987_undone_socialist
+		trigger = { AMR_is_soc_unifier = yes }
+	}
+	icon = {
+		value = GFX_goal_AMR_1987_undone
+	}
 	cost = 6
 	x = 34
 	y = 8
@@ -15,7 +21,8 @@ shared_focus = {
 			limit = { 
 				OR = {
 					tag = GRL 
-					has_focus_tree = american_state_tree
+					tag = NEA
+					tag = AMC
 				}
 			}
 			has_country_flag = the_united_states_are_back
@@ -34,6 +41,15 @@ shared_focus = {
 		trigger = { tag = AMC }
 	}
 	
+	offset = {
+		x = -20
+		y = 5
+		trigger = { 
+			tag = NEA 
+			NOT = { has_focus_tree = american_state_tree }
+		}
+	}
+	
 	
 	offset = {
 		x = -1
@@ -50,6 +66,17 @@ shared_focus = {
 		trigger = { 
 			tag = GRL 
 			has_focus_tree = socialist_great_lakes_tree
+			AMR_is_soc_unifier = no
+		}
+	}
+	
+	offset = {
+		x = -10
+		y = 9
+		trigger = { 
+			tag = GRL 
+			has_focus_tree = socialist_great_lakes_tree
+			AMR_is_soc_unifier = yes
 		}
 	}
 	
@@ -100,6 +127,10 @@ shared_focus = {
 	
 	bypass = {
 		is_in_faction_with = CAN
+	}
+	
+	allow_branch = {
+		AMR_is_soc_unifier = no
 	}
 	
 	available = {
@@ -362,6 +393,13 @@ shared_focus = {
 	
 	mutually_exclusive = {
 		focus = AMR_align_to_the_democratic_league
+		focus = AMR_neutrality
+		focus = AMR_america_first
+		focus = AMR_the_eagles_united
+	}
+	
+	allow_branch = {
+		AMR_is_soc_unifier = no
 	}
 
 	available_if_capitulated = yes
@@ -642,6 +680,10 @@ shared_focus = {
 		focus = AMR_american_imperialism
 		focus = AMR_neutrality
 		focus = AMR_the_eagles_united
+	}
+	
+	allow_branch = {
+		AMR_is_soc_unifier = no
 	}
 
 	available_if_capitulated = yes
@@ -957,6 +999,10 @@ shared_focus = {
 		focus = AMR_neutrality
 	}
 	
+	allow_branch = {
+		AMR_is_soc_unifier = no
+	}
+	
 	available = {
 		OR = {
 			has_government = fascist
@@ -1193,6 +1239,397 @@ shared_focus = {
 }
 
 
+### RevSoc ###
+
+shared_focus = {
+	id = AMR_new_revolutionary_dawn
+	icon = GFX_goal_AMR_revolutionary_dawn
+	cost = 6
+	x = -2
+	y = 1
+	relative_position_id = AMR_1987_undone
+	
+	prerequisite = {
+		focus = AMR_1987_undone
+	}
+	
+	mutually_exclusive = {
+		focus = AMR_american_imperialism
+		focus = AMR_america_first
+		focus = AMR_align_to_the_democratic_league
+		focus = AMR_neutrality
+	}
+	
+	allow_branch = {
+		AMR_is_soc_unifier = yes
+		if = { 
+			limit = { 
+				OR = {
+					tag = GRL 
+					tag = NEA
+					tag = AMC
+				}
+			}
+			has_country_flag = the_united_states_are_back
+		}
+	}
+	
+	available = {
+		
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		if = {
+			limit = {
+				is_faction_leader = no
+			}
+			create_faction_from_template = { 
+				template = faction_template_world_revolution 
+				name = american_international
+				icon = GFX_faction_generic_revsoc
+			}
+		}
+		else = {
+			add_faction_initiative = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_liberation_of_canada
+	icon = GFX_goal_GER_war_with_canada
+	cost = 6
+	x = -1
+	y = 1
+	relative_position_id = AMR_new_revolutionary_dawn
+	
+	prerequisite = {
+		focus = AMR_new_revolutionary_dawn
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		create_wargoal = {
+			type = topple_government
+			target = CAN
+		} 
+	}
+}
+
+shared_focus = {
+	id = AMR_restart_zapatas_revolution
+	icon = GFX_goal_AMR_finish_zapatas_revolution
+	cost = 6
+	x = 1
+	y = 1
+	relative_position_id = AMR_new_revolutionary_dawn
+	
+	prerequisite = {
+		focus = AMR_new_revolutionary_dawn
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		create_wargoal = {
+			type = topple_government
+			target = MEX
+		} 
+	}
+}
+
+shared_focus = {
+	id = AMR_reach_out_to_yugoslavia
+	icon = GFX_goal_GER_approach_yugoslavia
+	cost = 6
+	x = 2
+	y = 2
+	relative_position_id = AMR_new_revolutionary_dawn
+	
+	prerequisite = {
+		focus = AMR_restart_zapatas_revolution
+	}
+	prerequisite = {
+		focus = AMR_liberation_of_canada
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		YUG = {
+			country_event = american_diplo.30
+		}
+		add_opinion_modifier = {
+			target = YUG
+			modifier = close_friendship
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_the_south_american_revolution
+	icon = GFX_goal_AMR_free_americas
+	cost = 6
+	x = 0
+	y = 2
+	relative_position_id = AMR_new_revolutionary_dawn
+	
+	prerequisite = {
+		focus = AMR_restart_zapatas_revolution
+	}
+	prerequisite = {
+		focus = AMR_liberation_of_canada
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		every_country = {
+			limit = {
+				capital_scope = {
+					is_on_continent = south_america
+				}
+				NOT = { is_in_faction_with = ROOT}
+				has_government = revolutionary_socialist
+			}
+			country_event = american_diplo.30
+		}
+		if = {
+			limit = {
+				BRA = { NOT = { has_government = revolutionary_socialist } }
+			}
+			create_wargoal = {
+				type = topple_government
+				target = BRA
+			} 
+		}
+		
+		if = {
+			limit = {
+				ARG = { NOT = { has_government = revolutionary_socialist } }
+			}
+			create_wargoal = {
+				type = topple_government
+				target = ARG
+			} 
+		}
+		
+		if = {
+			limit = {
+				PRU = { NOT = { has_government = revolutionary_socialist } }
+			}
+			create_wargoal = {
+				type = topple_government
+				target = PRU
+			} 
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_african_appeals
+	icon = GFX_goal_AMR_african_revolution
+	cost = 6
+	x = -2
+	y = 2
+	relative_position_id = AMR_new_revolutionary_dawn
+	
+	prerequisite = {
+		focus = AMR_restart_zapatas_revolution
+	}
+	prerequisite = {
+		focus = AMR_liberation_of_canada
+	}
+	
+	available_if_capitulated = yes
+
+	completion_reward = {
+		every_country = {
+			limit = {
+				capital_scope = {
+					is_on_continent = africa
+				}
+				NOT = { is_in_faction_with = ROOT}
+				has_government = revolutionary_socialist
+			}
+			country_event = american_diplo.30
+		}
+		create_wargoal = {
+			type = topple_government
+			target = SAF
+		} 
+	}
+}
+
+shared_focus = {
+	id = AMR_target_the_stalinists
+	icon = GFX_goal_PCA_strategic_bases
+	cost = 6
+	x = -1
+	y = 3
+	relative_position_id = AMR_new_revolutionary_dawn
+	
+	prerequisite = {
+		focus = AMR_reach_out_to_yugoslavia
+	}
+	prerequisite = {
+		focus = AMR_african_appeals
+	}
+	prerequisite = {
+		focus = AMR_the_south_american_revolution
+	}
+	
+	mutually_exclusive = {
+		focus = AMR_a_mutual_understanding
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		add_manpower = 5000
+		add_tech_bonus = {
+			name = marines_bonus
+			bonus = 1
+			uses = 1
+			category = marine_tech
+		}
+		add_ideas = AMR_semper_fi
+		every_country = {
+			limit = {
+				capital_scope = {
+					is_on_continent = europe
+				}
+				has_government = communist
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist 
+				popularity = 0.1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_destroy_the_warsaw_pact_revsoc
+	icon = {	
+		value = GFX_goal_CAN_final_battle_germany
+		trigger = { 
+			GER = { has_country_flag = GER_took_leadership_of_the_warsaw_pact }
+		}
+	}
+	icon = {	
+		value = focus_conquests_of_asia
+	}
+	cost = 6
+	x = -1
+	y = 4
+	relative_position_id = AMR_new_revolutionary_dawn
+	
+	prerequisite = {
+		focus = AMR_target_the_stalinists
+	}
+
+	available_if_capitulated = yes
+
+	will_lead_to_war_with = SOV
+	will_lead_to_war_with = GER
+	completion_reward = {
+		create_wargoal = {
+			type = annex_everything
+			target = SOV
+		} 
+		create_wargoal = {
+			type = annex_everything
+			target = GER
+		}  
+	}
+}
+
+shared_focus = {
+	id = AMR_a_mutual_understanding
+	icon = GFX_goal_AMR_mutual_understanding
+	cost = 6
+	x = 1
+	y = 3
+	relative_position_id = AMR_new_revolutionary_dawn
+	
+	prerequisite = {
+		focus = AMR_reach_out_to_yugoslavia
+	}
+	prerequisite = {
+		focus = AMR_african_appeals
+	}
+	prerequisite = {
+		focus = AMR_the_south_american_revolution
+	}
+	
+	mutually_exclusive = {
+		focus = AMR_target_the_stalinists
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		add_opinion_modifier = {
+			target = GER
+			modifier = repaired_relations
+		}
+		add_opinion_modifier = {
+			target = SOV
+			modifier = repaired_relations
+		}
+		SOV = {
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = repaired_relations
+			}
+		}
+		GER = {
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = repaired_relations
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_the_common_enemy
+	icon = GFX_goal_AMR_mutual_enemy
+	cost = 6
+	x = 1
+	y = 4
+	relative_position_id = AMR_new_revolutionary_dawn
+	
+	prerequisite = {
+		focus = AMR_a_mutual_understanding
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		every_country = {
+			limit = { 
+				NOT = {
+					has_government = communist 
+					has_government = revolutionary_socialist 
+					has_government = national_bolshevik
+					has_government = moderate_socialist
+				}
+			}
+			ROOT = {
+				create_wargoal = {
+					type = topple_government
+					target = PREV
+				}
+			}
+		}
+	}
+}
+
 ### Neutrality ###
 
 shared_focus = {
@@ -1212,6 +1649,15 @@ shared_focus = {
 		focus = AMR_america_first
 		focus = AMR_the_eagles_united
 		focus = AMR_align_to_the_democratic_league
+		focus = AMR_new_revolutionary_dawn
+	}
+	
+	offset = {
+		x = -7
+		y = 0
+		trigger = { 
+			AMR_is_soc_unifier = yes
+		}
 	}
 
 	available_if_capitulated = yes
@@ -1224,7 +1670,13 @@ shared_focus = {
 
 shared_focus = {
 	id = AMR_naval_prominence
-	icon = GFX_goal_AMR_naval_prominence
+	icon = {
+		value = GFX_goal_AMR_naval_prominence_socialist
+		trigger = { AMR_is_soc_unifier = yes }
+	}
+	icon = {
+		value = GFX_goal_AMR_naval_prominence
+	}
 	cost = 6
 	x = 0
 	y = 1
@@ -1303,7 +1755,13 @@ shared_focus = {
 
 shared_focus = {
 	id = AMR_trade_empire
-	icon = GFX_goal_AMR_buisness_of_neutrality
+	icon = {
+		value = GFX_goal_AMR_the_promises_of_peace
+		trigger = { AMR_is_soc_unifier = yes }
+	}
+	icon = {
+		value = GFX_goal_AMR_buisness_of_neutrality
+	}
 	cost = 6
 	x = -2
 	y = 1
@@ -1322,7 +1780,13 @@ shared_focus = {
 
 shared_focus = {
 	id = AMR_international_arms_dealer
-	icon = GFX_goal_AMR_arms_dealing
+	icon = {
+		value = GFX_goal_AMR_arms_dealing_socialist
+		trigger = { AMR_is_soc_unifier = yes }
+	}
+	icon = {
+		value = GFX_goal_AMR_arms_dealing
+	}
 	cost = 6
 	x = -1
 	y = 2
@@ -1355,7 +1819,13 @@ shared_focus = {
 
 shared_focus = {
 	id = AMR_british_model
-	icon = GFX_goal_PCA_british
+	icon = {
+		value = GFX_goal_AMR_team_switzerland
+		trigger = { AMR_is_soc_unifier = yes }
+	}
+	icon = {
+		value = GFX_goal_PCA_british
+	}
 	cost = 6
 	x = 1
 	y = 2
@@ -1369,20 +1839,38 @@ shared_focus = {
 
 	completion_reward = {
 		if = {
-			limit = {
-				ENG = { 
-					is_faction_leader = yes
-					is_in_faction_with = IRE
+			limit = { AMR_is_soc_unifier = yes }
+			every_country = {
+				add_opinion_modifier = {
+					target = PREV
+					modifier = swiss_stance
 				}
 			}
-			ENG = {
-				country_event = american_diplo.7
+			every_country = {
+				reverse_add_opinion_modifier = {
+					target = ROOT
+					modifier = swiss_stance
+				}
 			}
 		}
 		else = {
-			add_opinion_modifier = {
-				target = ENG
-				modifier = close_friendship
+			
+			if = {
+				limit = {
+					ENG = { 
+						is_faction_leader = yes
+						is_in_faction_with = IRE
+					}
+				}
+				ENG = {
+					country_event = american_diplo.7
+				}
+			}
+			else = {
+				add_opinion_modifier = {
+					target = ENG
+					modifier = close_friendship
+				}
 			}
 		}
 	}
