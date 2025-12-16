@@ -856,6 +856,23 @@ focus_tree = {
 				ideology = nationalist
 			    popularity = 0.05
 			}
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = USA_improve_snowden_advisor
+			effect_tooltip = {
+				swap_ideas = {
+					remove_idea = usa_inm_edward_snowden
+					add_idea = usa_inm_edward_snowden_improved
+				}
+			}
+			hidden_effect = {
+				if = {
+					limit = { has_idea = usa_inm_edward_snowden }
+					swap_ideas = {
+						remove_idea = usa_inm_edward_snowden
+						add_idea = usa_inm_edward_snowden_improved
+					}
+				}
+			}
 		}
 
 	}
@@ -905,6 +922,13 @@ focus_tree = {
 		completion_reward = {
 		    add_stability = 0.035
             add_country_leader_trait = USA_checks_and_balances
+			custom_effect_tooltip = USA_for_200_days_tooltip
+			hidden_effect = {
+				country_event = {
+					id = rw_american_republic.0
+					days = 200
+				}
+			}
 		}
 
 	}
@@ -3670,6 +3694,13 @@ focus_tree = {
 		    add_political_power = 100
 		    add_war_support = 0.035
             add_country_leader_trait = USA_commander_in_chief
+			custom_effect_tooltip = USA_for_200_days_tooltip
+			hidden_effect = {
+				country_event = {
+					id = rw_american_republic.0
+					days = 200
+				}
+			}
 		}
 
 	}
@@ -5991,7 +6022,7 @@ focus_tree = {
 	focus = {
 		id = USA_president_rumsfeld
 		icon = GFX_goal_USA_rumsfeld
-		cost = 3.6
+		cost = 2
 		ai_will_do = {
 			base = 100
 		}
@@ -6009,6 +6040,22 @@ focus_tree = {
 		y = 6
 		relative_position_id = USA_nationalist_policies
 		completion_reward = {
+			country_event = rw_american_republic.3
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.02
+			}
+			effect_tooltip = {
+				USA_donald_rumsfeld = {
+					add_trait = {
+						ideology = american_nationalist
+						trait = USA_known_unknowns_dummy
+					}
+				}
+			}
+			hidden_effect = {
+				add_country_leader_trait = USA_known_unknowns
+			}
 		}
 
 	}
@@ -6023,10 +6070,33 @@ focus_tree = {
 		prerequisite = {
 			focus = USA_president_rumsfeld
 		}
+		available = {
+			OR = {
+				has_completed_focus = USA_reach_out_to_the_christian_right
+				has_completed_focus = USA_big_buisnes_loyalty
+			}
+		}
 		x = 0
 		y = 1
 		relative_position_id = USA_president_rumsfeld
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = USA_divided_gop
+				add_idea = USA_united_behind_rumsfeld
+			}
+			# hidden_effect = {
+				# remove_ideas = USA_divided_gop
+				# add_timed_idea = {
+					# idea = USA_united_behind_rumsfeld
+					# days = 200
+				# }
+			# }
+			add_political_power = 50
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.03
+			}
+			country_event = rw_american_republic.4
 		}
 
 	}
@@ -6041,10 +6111,18 @@ focus_tree = {
 		prerequisite = {
 			focus = USA_president_rumsfeld
 		}
+		available = {
+			has_completed_focus = USA_expand_media_empire
+		}
 		x = 2
 		y = 1
 		relative_position_id = USA_president_rumsfeld
 		completion_reward = {
+			country_event = rw_american_republic.5
+			swap_ideas = {
+				remove_idea = USA_republican_media_empire
+				add_idea = USA_republican_media_empire2
+			}
 		}
 
 	}
@@ -6095,6 +6173,18 @@ focus_tree = {
 		y = 2
 		relative_position_id = USA_president_rumsfeld
 		completion_reward = {
+			country_event = rw_american_republic.6
+			add_ideas = USA_god_america_rumsfeld
+			add_popularity = {
+				ideology = fascist
+				popularity = 0.04
+			}
+			custom_effect_tooltip = USA_christian_nutjob_ministers
+			hidden_effect = {
+				add_ideas = usa_fom_douglas_coe
+				add_ideas = usa_ind_tim_lahaye
+				add_ideas = usa_nsm_jerry_falwell_jr
+			}
 		}
 
 	}
@@ -6113,6 +6203,19 @@ focus_tree = {
 		y = 3
 		relative_position_id = USA_president_rumsfeld
 		completion_reward = {
+			add_stability = 0.04
+			add_popularity = {
+				ideology = fascist
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.02
+			}
+			swap_ideas = {
+				remove_idea = USA_god_america_rumsfeld
+				add_idea = USA_god_america_rumsfeld2
+			}
 		}
 
 	}
@@ -6131,6 +6234,11 @@ focus_tree = {
 		y = 4
 		relative_position_id = USA_president_rumsfeld
 		completion_reward = {
+			country_event = rw_american_republic.7
+			swap_ideas = {
+				remove_idea = USA_god_america_rumsfeld2
+				add_idea = USA_american_department_of_morality
+			}
 		}
 
 	}
@@ -6155,6 +6263,11 @@ focus_tree = {
 		y = 2
 		relative_position_id = USA_president_rumsfeld
 		completion_reward = {
+			country_event = rw_american_republic.8
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			add_ideas = USA_big_buisnes_loyalty
 		}
 
 	}
@@ -6173,6 +6286,18 @@ focus_tree = {
 		y = 3
 		relative_position_id = USA_president_rumsfeld
 		completion_reward = {
+			random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			swap_ideas = {
+				remove_idea = USA_big_buisnes_loyalty
+				add_idea = USA_big_buisnes_loyalty2
+			}
 		}
 
 	}
@@ -6191,6 +6316,20 @@ focus_tree = {
 		y = 4
 		relative_position_id = USA_president_rumsfeld
 		completion_reward = {
+			country_event = rw_american_republic.9
+			swap_ideas = {
+				remove_idea = USA_big_buisnes_loyalty2
+				add_idea = USA_big_buisnes_loyalty3
+			}
+			random_owned_state = {
+				add_resource = {
+					type = oil
+					amount = 12
+				}
+			}
+			set_country_flag = USA_halliburton
+			custom_effect_tooltip = tooltip_blank_line
+			show_ideas_tooltip = halliburton
 		}
 
 	}
@@ -6210,6 +6349,11 @@ focus_tree = {
 		y = 5
 		relative_position_id = USA_president_rumsfeld
 		completion_reward = {
+			add_timed_idea = {
+				idea = USA_ultrahawkish_foreign_policy
+				days = 300
+			}
+			add_war_support = 0.1
 		}
 
 	}
@@ -6224,10 +6368,26 @@ focus_tree = {
 		prerequisite = {
 			focus = USA_ultrahawkish_foreign_policy
 		}
+		available = {
+			owns_state = 880
+		}
+		bypass = {
+			NOT = { owns_state = 880 }
+		}
 		x = 2
 		y = 1
 		relative_position_id = USA_ultrahawkish_foreign_policy
 		completion_reward = {
+			country_event = rw_american_republic.10
+			880 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_ideas = USA_enhanced_interrogation
 		}
 
 	}
@@ -6249,6 +6409,13 @@ focus_tree = {
 		y = 1
 		relative_position_id = USA_ultrahawkish_foreign_policy
 		completion_reward = {
+			USA_donald_rumsfeld = {
+				add_trait = {
+					ideology = american_nationalist
+					trait = USA_heir_of_nixon
+				}
+			}
+			add_stability = 0.04
 		}
 
 	}
@@ -6270,6 +6437,13 @@ focus_tree = {
 		y = 1
 		relative_position_id = USA_ultrahawkish_foreign_policy
 		completion_reward = {
+			USA_donald_rumsfeld = {
+				add_trait = {
+					ideology = american_nationalist
+					trait = MWA_heir_of_ashbrook
+				}
+			}
+			add_political_power = 40
 		}
 
 	}
@@ -6288,10 +6462,18 @@ focus_tree = {
 		prerequisite = {
 			focus = USA_enhanced_interrogation
 		}
+		available = {
+			has_country_flag = the_united_states_are_back
+		}
 		x = 0
 		y = 3
 		relative_position_id = USA_ultrahawkish_foreign_policy
 		completion_reward = {
+			add_political_power = 100
+			swap_ideas = {
+				remove_idea = USA_united_behind_rumsfeld
+				add_idea = USA_praise_bush_praise_rumsfeld
+			}
 		}
 
 	}
