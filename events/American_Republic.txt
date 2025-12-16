@@ -397,3 +397,118 @@ country_event = {
 		add_political_power = 50
 	}
 }
+
+#2018 election - Cheney vs Landrieu
+country_event = {
+	id = rw_american_republic.24
+	title = rw_american_republic.24.t
+	desc = rw_american_republic.24.d
+	picture = special_congress_election
+	
+	fire_only_once = yes
+	
+	trigger = {
+		tag = USA
+		date > 2018.11.1
+		date < 2018.11.30
+		has_country_leader = {
+			character = USA_richard_bruce_cheney
+			ruling_only = yes
+		}
+		has_completed_focus = USA_cheneycare
+	}
+	
+	option = {   
+		name = rw_american_republic.24.o1
+		ai_chance = {
+			base = 75
+		}
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.03
+		}
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.03
+		}
+		set_country_flag = USA_cheney_appointed_landrieu_to_cabinet
+		add_ideas = usa_nsm_mary_landrieu
+	}
+	
+	option = {   
+		name = rw_american_republic.24.o2
+		ai_chance = {
+			base = 25
+		}
+		set_politics = {
+	        ruling_party = centrist
+	        elections_allowed = no
+        }
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.5
+		}
+		set_country_flag = USA_landrieu_appointed_cheney_to_cabinet
+		custom_effect_tooltip = USA_democratic_cabinet
+		hidden_effect = {
+			add_ideas = usa_cedric_richmond
+			add_ideas = usa_fom_abigail_spanberger
+			add_ideas = usa_ind_ted_turner
+			add_ideas = usa_nsm_dick_cheney
+			add_ideas = usa_inm_william_joseph_burns
+		}
+	}
+}
+
+
+#2018 election - Cheney vs Edwards
+country_event = {
+	id = rw_american_republic.25
+	title = rw_american_republic.25.t
+	desc = rw_american_republic.25.d
+	picture = cheney_vs_edwards
+	
+	fire_only_once = yes
+	
+	trigger = {
+		tag = USA
+		date > 2018.11.1
+		date < 2018.11.30
+		has_country_leader = {
+			character = USA_richard_bruce_cheney
+			ruling_only = yes
+		}
+		NOT = { has_completed_focus = USA_cheneycare }
+	}
+	
+	option = {   
+		name = rw_american_republic.25.o1
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.03
+		}
+	}
+	
+	option = {   
+		name = rw_american_republic.25.o2
+		USA_john_edwards = {
+			promote_character = old_american_democrats
+		}
+		set_politics = {
+	        ruling_party = liberal
+	        elections_allowed = no
+        }
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.5
+		}
+		custom_effect_tooltip = USA_democratic_cabinet
+		hidden_effect = {
+			add_ideas = usa_cedric_richmond
+			add_ideas = usa_fom_abigail_spanberger
+			add_ideas = usa_ind_ted_turner
+			add_ideas = usa_nsm_doug_jones
+			add_ideas = usa_inm_william_joseph_burns
+		}
+	}
+}
