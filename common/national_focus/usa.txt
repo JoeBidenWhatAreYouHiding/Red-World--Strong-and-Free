@@ -6022,7 +6022,7 @@ focus_tree = {
 	focus = {
 		id = USA_president_rumsfeld
 		icon = GFX_goal_USA_rumsfeld
-		cost = 2
+		cost = 1
 		ai_will_do = {
 			base = 100
 		}
@@ -6492,7 +6492,7 @@ focus_tree = {
 	focus = {
 		id = USA_president_bush
 		icon = GFX_goal_USA_jeb
-		cost = 3.6
+		cost = 1
 		ai_will_do = {
 			base = 100
 		}
@@ -6819,7 +6819,7 @@ focus_tree = {
 	focus = {
 		id = USA_president_cheney
 		icon = GFX_goal_USA_cheney
-		cost = 3.6
+		cost = 1
 		ai_will_do = {
 			base = 100
 		}
@@ -6837,6 +6837,7 @@ focus_tree = {
 		y = 6
 		relative_position_id = USA_nationalist_policies
 		completion_reward = {
+			country_event = rw_american_republic.17
 			USA_richard_bruce_cheney = {
 				set_character_name = "Richard B. Cheney"
 				add_trait = {
@@ -6862,6 +6863,25 @@ focus_tree = {
 		y = 1
 		relative_position_id = USA_president_cheney
 		completion_reward = {
+			country_event = rw_american_republic.18
+			USA_jeb_bush = {
+				custom_effect_tooltip = USA_dies_tt
+			}
+			if = {
+				limit = {
+					has_idea = USA_divided_gop_worse
+				}
+				swap_ideas = {
+					remove_idea = USA_divided_gop_worse
+					add_idea = USA_divided_gop_worse2
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = USA_divided_gop_worse2
+					add_idea = USA_divided_gop_worse3
+				}
+			}
 		}
 
 	}
@@ -6880,6 +6900,30 @@ focus_tree = {
 		y = 1
 		relative_position_id = USA_president_cheney
 		completion_reward = {
+			if = {
+				limit = {
+					has_idea = USA_divided_gop_worse2
+				}
+				swap_ideas = {
+					remove_idea = USA_divided_gop_worse3
+					add_idea = USA_divided_gop_worse3
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = USA_divided_gop_worse
+					add_idea = USA_divided_gop_worse2
+				}
+			}
+			add_political_power = -50
+			add_stability = 0.05
+			add_popularity = {
+				ideology = fascist
+				popularity = 0.04
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = CAN_nsm_avalible
+			show_ideas_tooltip = usa_nsm_david_addington
 		}
 
 	}
@@ -6903,7 +6947,19 @@ focus_tree = {
 		completion_reward = {
 			USA_richard_bruce_cheney = {
 				set_character_name = "Richard Cheney"
+				set_portraits = {
+					civilian = { large = "gfx/leaders/USA/Portrait_USA_Dick_Cheney.png" }
+				}
 			}
+			swap_ideas = {
+				remove_idea = USA_divided_gop_worse3
+				add_idea = USA_united_behind_cheney
+			}
+			add_popularity = {
+				ideology = fascist
+				popularity = -0.03
+			}
+			country_event = rw_american_republic.19
 		}
 
 	}
@@ -6925,6 +6981,32 @@ focus_tree = {
 		y = 2
 		relative_position_id = USA_president_cheney
 		completion_reward = {
+			add_country_leader_trait = USA_gears_of_war
+			random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+			    add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_resource = {
+					type = oil
+					amount = 12
+				}
+			}
+			set_country_flag = USA_halliburton
+			custom_effect_tooltip = tooltip_blank_line
+			show_ideas_tooltip = halliburton
 		}
 
 	}
@@ -6946,6 +7028,7 @@ focus_tree = {
 		y = 2
 		relative_position_id = USA_president_cheney
 		completion_reward = {
+		
 		}
 
 	}
@@ -6969,7 +7052,13 @@ focus_tree = {
 		x = -1
 		y = 3
 		relative_position_id = USA_president_cheney
-		completion_reward = {
+		completion_reward = {	
+			set_party_name = {
+				name = USA_moderate_republicans
+				long_name = USA_moderate_republicans_long
+				ideology = national_conservative
+			}
+			add_natcon_to_coalition = yes
 		}
 
 	}
@@ -6994,6 +7083,20 @@ focus_tree = {
 		y = 3
 		relative_position_id = USA_president_cheney
 		completion_reward = {
+			add_centrist_to_coalition = yes
+			add_popularity = {
+				ideology = centrist
+				popularity  = 0.25
+			}
+			USA_mary_landrieu = {
+				promote_character = centrist_populist
+			}
+			set_party_name = {
+				name = USA_moderate_democrats
+				long_name = USA_moderate_democrats_long
+				ideology = centrist
+			}
+			country_event = rw_american_republic.20
 		}
 
 	}
@@ -7015,6 +7118,20 @@ focus_tree = {
 		y = 4
 		relative_position_id = USA_president_cheney
 		completion_reward = {
+			add_stability = 0.1
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.1
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.1
+			}
+			swap_ideas = {
+				remove_idea = USA_united_behind_cheney
+				add_idea = USA_united_behind_cheney2
+			}
+			country_event = rw_american_republic.21
 		}
 
 	}
@@ -7036,6 +7153,26 @@ focus_tree = {
 		y = 5
 		relative_position_id = USA_president_cheney
 		completion_reward = {
+			add_political_power = 50
+			random_owned_state = {
+				add_building_construction = {
+				    type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_building_construction = {
+				    type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			swap_ideas = {
+				remove_idea = USA_united_behind_cheney2
+				add_idea = USA_united_behind_cheney3_nws
+			}
+			country_event = rw_american_republic.23
 		}
 
 	}
@@ -7057,6 +7194,26 @@ focus_tree = {
 		y = 5
 		relative_position_id = USA_president_cheney
 		completion_reward = {
+			add_stability = 0.05
+			random_owned_state = {
+				add_building_construction = {
+				    type = hospital
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_building_construction = {
+				    type = hospital
+					level = 1
+					instant_build = yes
+				}
+			}
+			swap_ideas = {
+				remove_idea = USA_united_behind_cheney2
+				add_idea = USA_united_behind_cheney3_health
+			}
+			country_event = rw_american_republic.22
 		}
 
 	}
@@ -7072,12 +7229,22 @@ focus_tree = {
 			focus = USA_cheneycare
 			focus = USA_night_watchmen_state
 		}
+		available = {
+			has_country_flag = the_united_states_are_back
+		}
 		x = 0
 		y = 6
 		relative_position_id = USA_president_cheney
 		completion_reward = {
 			USA_richard_bruce_cheney = {
 				set_character_name = "Dick Cheney"
+				set_portraits = {
+					civilian = { large = "gfx/leaders/USA/Portrait_USA_The_Great_American_Khan.png" }
+				}
+				swap_country_leader_traits = {
+					remove = usa_vice
+					add = USA_american_khan
+				}
 			}
 		}
 
