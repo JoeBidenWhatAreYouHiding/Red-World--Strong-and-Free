@@ -365,7 +365,13 @@ focus_tree = {
 	
 	focus = {
 		id = MWA_hillarys_america
-		icon = GFX_goal_MWA_rodham_america
+		icon = {
+			value = GFX_goal_MWA_gop_recovery
+			trigger = { has_country_flag = MWA_natcons_take_over_after_clinton }
+		}
+		icon = {
+			value = GFX_goal_MWA_rodham_america
+		}
 		cost = 6
 		
 		relative_position_id = MWA_hilldawg
@@ -373,11 +379,16 @@ focus_tree = {
 		y = 4
 
 		available = {
-			has_country_leader = {
-				name = "Hillary Rodham"
-				ruling_only = yes
+			OR = {
+				AND = {
+					has_country_leader = {
+						name = "Hillary Rodham"
+						ruling_only = yes
+					}
+					has_country_flag = the_united_states_are_back
+				}
+				has_country_flag = MWA_natcons_take_over_after_clinton
 			}
-			has_country_flag = the_united_states_are_back
 		}
 		
 		prerequisite = {
@@ -414,6 +425,7 @@ focus_tree = {
 		y = 1
 
 		available = {
+			has_country_flag = the_united_states_are_back
 		}
 		
 		prerequisite = {
