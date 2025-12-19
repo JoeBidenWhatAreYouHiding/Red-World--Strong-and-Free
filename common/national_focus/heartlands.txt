@@ -412,6 +412,10 @@ focus_tree = {
 				remove_idea = MWA_scars_of_unification
 				add_idea = MWA_scars_of_unification2
 			}
+			if = {
+				limit = { has_country_flag = MWA_natcons_take_over_after_clinton }
+				country_event = heartlands.51
+			}
 		}
 	}
 	
@@ -426,6 +430,8 @@ focus_tree = {
 
 		available = {
 			has_country_flag = the_united_states_are_back
+			has_completed_focus = MWA_conservative_enviromentalism
+			has_completed_focus = MWA_create_personality_cult
 		}
 		
 		prerequisite = {
@@ -440,6 +446,15 @@ focus_tree = {
 
 		completion_reward = {
 			add_ideas = MWA_paleoliberal_intervention
+			if = {
+				limit = { has_country_flag = MWA_natcons_take_over_after_clinton }
+				custom_effect_tooltip = MWA_all_postus_spirits_removed
+				hidden_effect = {
+					remove_ideas = MWA_scars_of_unification
+					remove_ideas = MWA_scars_of_unification2
+					remove_ideas = MWA_scars_of_unification3
+				}
+			}
 		}
 	}
 	
@@ -485,7 +500,36 @@ focus_tree = {
 	
 	focus = {
 		id = MWA_create_personality_cult
-		icon = GFX_goal_MWA_personality_cult
+		icon = {
+			value = GFX_goal_MWA_rubios_militarism
+			trigger = {
+				has_country_leader = {	
+					character = MWA_marco_rubio
+					ruling_only = yes
+				}
+			}
+		}
+		icon = {
+			value = GFX_goal_MWA_christies_agrarianism
+			trigger = {
+				has_country_leader = {	
+					character = MWA_chris_christie
+					ruling_only = yes
+				}
+			}
+		}
+		icon = {
+			value = GFX_goal_MWA_brownbacks_christian_crudade
+			trigger = {
+				has_country_leader = {	
+					character = MWA_sam_brownback
+					ruling_only = yes
+				}
+			}
+		}
+		icon = {
+			value = GFX_goal_MWA_personality_cult
+		}
 		cost = 6
 		
 		relative_position_id = MWA_hillarys_america
@@ -506,21 +550,59 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			country_event = heartlands.47
-			swap_ideas = {
-				remove_idea = MWA_balance_of_powers
-				add_idea = MWA_the_president_in_command
+			if = {
+				limit = {
+					has_country_leader = {	
+						character = MWA_marco_rubio
+						ruling_only = yes
+					}
+				}
+				add_country_leader_trait = MWA_rodhamite_militarist
+				country_event = heartlands.53
 			}
-			add_popularity = {
-				ideology = national_conservative
-				popularity = 0.05
+			else_if = {
+				limit = {
+					has_country_leader = {	
+						character = MWA_chris_christie
+						ruling_only = yes
+					}
+				}
+				add_country_leader_trait = MWA_agrarian_localist
+				country_event = heartlands.52
+			}
+			else_if = {
+				limit = {
+					has_country_leader = {	
+						character = MWA_sam_brownback
+						ruling_only = yes
+					}
+				}
+				add_country_leader_trait = MWA_god_and_low_taxes
+				country_event = heartlands.54
+			}
+			else = {
+				country_event = heartlands.47
+				swap_ideas = {
+					remove_idea = MWA_balance_of_powers
+					add_idea = MWA_the_president_in_command
+				}
+				add_popularity = {
+					ideology = national_conservative
+					popularity = 0.05
+				}
 			}
 		}
 	}
 	
 	focus = {
 		id = MWA_im_with_her
-		icon = GFX_goal_MWA_im_with_her
+		icon = {
+			value = GFX_goal_MWA_no_longer_the_party_of_reagan
+			trigger = { has_country_flag = MWA_natcons_take_over_after_clinton }
+		}
+		icon = {
+			value = GFX_goal_MWA_im_with_her
+		}
 		cost = 6
 		
 		relative_position_id = MWA_hillarys_america
@@ -547,10 +629,20 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			remove_ideas = MWA_scars_of_unification3
-			swap_ideas = {
-				remove_idea = MWA_conservative_feminism
-				add_idea = MWA_im_with_her
+			if = {
+				limit = { has_country_flag = MWA_natcons_take_over_after_clinton }
+				add_popularity = {
+					ideology = national_conservative
+					popularity = 0.05
+				}
+				add_ideas = MWA_no_more_reagan_idea
+			}
+			else = {
+				remove_ideas = MWA_scars_of_unification3
+				swap_ideas = {
+					remove_idea = MWA_conservative_feminism
+					add_idea = MWA_im_with_her
+				}
 			}
 		}
 	}
@@ -944,7 +1036,15 @@ focus_tree = {
 	
 	focus = {
 		id = MWA_clintons_america
-		icon = GFX_goal_MWA_clintons_america
+		icon = {	
+			value = GFX_goal_MWA_democrat_recovery
+			trigger = {
+				has_country_flag = MWA_liberals_take_over_after_rodham
+			}
+		}
+		icon = {	
+			value = GFX_goal_MWA_clintons_america
+		}
 		cost = 6
 		
 		relative_position_id = MWA_clinton
@@ -952,11 +1052,16 @@ focus_tree = {
 		y = 4
 
 		available = {
-			has_country_leader = {
-				name = "Bill Clinton"
-				ruling_only = yes
+			OR = {
+				AND = {
+					has_country_leader = {
+						name = "Bill Clinton"
+						ruling_only = yes
+					}
+					has_country_flag = the_united_states_are_back
+				}
+				has_country_flag = MWA_liberals_take_over_after_rodham
 			}
-			has_country_flag = the_united_states_are_back
 		}
 		
 		mutually_exclusive = {
@@ -981,12 +1086,22 @@ focus_tree = {
 				remove_idea = MWA_scars_of_unification
 				add_idea = MWA_scars_of_unification2
 			}
+			if = {
+				limit = { has_country_flag = MWA_liberals_take_over_after_rodham }
+				country_event = heartlands.55
+			}
 		}
 	}
 	
 	focus = {
 		id = MWA_deregulation
-		icon = GFX_goal_MWA_clintonian_deregulation
+		icon = {
+			value = GFX_goal_MWA_new_social_liberalism
+			trigger = { has_country_flag = MWA_liberals_take_over_after_rodham }
+		}
+		icon = {
+			value = GFX_goal_MWA_clintonian_deregulation
+		}
 		cost = 6
 		
 		relative_position_id = MWA_clintons_america
@@ -1008,28 +1123,35 @@ focus_tree = {
 
 		completion_reward = {
 			if = {
-				limit = { has_idea = MWA_scars_of_unification3 }
-				remove_ideas = MWA_scars_of_unification3
+				limit = { has_country_flag = MWA_liberals_take_over_after_rodham }
+				add_stability = 0.05
+				add_ideas = MWA_social_liberalism
 			}
 			else = {
-				swap_ideas = {
-					remove_idea = MWA_scars_of_unification2
-					add_idea = MWA_scars_of_unification3
+				if = {
+					limit = { has_idea = MWA_scars_of_unification3 }
+					remove_ideas = MWA_scars_of_unification3
 				}
-			}
-			random_owned_controlled_state = {
-				add_extra_state_shared_building_slots = 1
-			}
-			random_owned_controlled_state = {
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
+				else = {
+					swap_ideas = {
+						remove_idea = MWA_scars_of_unification2
+						add_idea = MWA_scars_of_unification3
+					}
 				}
-			}
-			random_owned_controlled_state = {
-				add_extra_state_shared_building_slots = 1
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 1
+				}
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 1
+				}
 			}
 		}
 	}
@@ -1082,7 +1204,13 @@ focus_tree = {
 	
 	focus = {
 		id = MWA_support_african_americans
-		icon = GFX_goal_MWA_support_african_americans
+		icon = {
+			value = GFX_goal_MWA_new_new_deal
+			trigger = { has_country_flag = MWA_liberals_take_over_after_rodham }
+		}
+		icon = {
+			value = GFX_goal_MWA_support_african_americans
+		}
 		cost = 6
 		
 		relative_position_id = MWA_clintons_america
@@ -1107,11 +1235,22 @@ focus_tree = {
 				ideology = liberal
 				popularity = 0.04
 			}
-			country_event = heartlands.39
-			MWA_bill_clinton = {
-				add_trait = {
-					ideology = old_american_democrats
-					trait = MWA_first_black_president
+			if = {
+				limit = { has_country_flag = MWA_liberals_take_over_after_rodham }
+				add_ideas = MWA_new_new_deal_idea
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 1
+				}
+				add_stability = 0.06
+				country_event = heartlands.56
+			}
+			else = {
+				country_event = heartlands.39
+				MWA_bill_clinton = {
+					add_trait = {
+						ideology = old_american_democrats
+						trait = MWA_first_black_president
+					}
 				}
 			}
 		}
@@ -1147,6 +1286,15 @@ focus_tree = {
 
 		completion_reward = {
 			add_ideas = MWA_neoliberal_world_order
+			if = {
+				limit = { has_country_flag = MWA_liberals_take_over_after_rodham }
+				custom_effect_tooltip = MWA_all_postus_spirits_removed
+				hidden_effect = {
+					remove_ideas = MWA_scars_of_unification
+					remove_ideas = MWA_scars_of_unification2
+					remove_ideas = MWA_scars_of_unification3
+				}
+			}
 		}
 	}
 	
