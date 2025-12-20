@@ -383,3 +383,45 @@ AMR_diplomacy_decisions = {
 		}
 	}
 }
+
+NEA_factions_decision = {
+	NEA_invite_to_faction = { 
+		icon = revsoc_faction
+		allowed = { always = no }
+		available = {
+			FROM = {
+				has_government = revolutionary_socialist
+			}
+		}
+		visible = {
+			is_subject = no
+			FROM = { is_in_faction = no }
+		}
+		
+		highlight_states = {
+ 			highlight_state_targets = {
+				state = FROM.capital
+			} 
+		}
+		
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+		cancel_if_not_visible = yes
+
+		cancel_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision cancelled CAN_aid_reunification_italy target: [From.GetName]"
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CAN_aid_reunification_italy target: [From.GetName]"
+			set_country_flag = AMR_inviting_country
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CAN_aid_reunification_italy target: [From.GetName]"
+			clr_country_flag = AMR_inviting_country
+			FROM = {
+				country_event = commonwealth.75
+			}
+		}
+	}
+}
