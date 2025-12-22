@@ -1,0 +1,4924 @@
+focus_tree = {
+	id = texas_focus
+	country = {
+		factor = 0
+		modifier = {
+			add = 20
+			tag = TEX
+		}
+	}
+	default = no
+	continuous_focus_position = { x = 4800 y = 2300 }
+	
+	###################
+	#### POLITICAL ####
+	###################
+		
+	### President Perry - Opening ###
+
+	focus = {
+		id = TEX_president_perry
+		icon = GFX_goal_TEX_president_perry
+		cost = 6
+		x = 0
+		y = 1
+
+		available = {
+			has_country_leader = {
+				name = "Rick Perry"
+				ruling_only = yes
+            }
+		}
+		bypass = {
+			has_country_leader = {
+				name = "Rick Perry"
+				ruling_only = yes
+            }
+		}
+		
+		allow_branch = {
+			NOT = { has_country_flag = TEX_hide_opening_tree }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			custom_effect_tooltip = TEX_perry_president
+		}
+	}
+	
+	focus = {
+		id = TEX_rapid_response
+		icon = GFX_goal_TEX_rapid_response_teams
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_president_perry
+		}
+		
+		relative_position_id = TEX_president_perry
+		x = -2
+		y = 1
+		
+		ai_will_do = {
+			factor = 100
+		}
+
+		available = {
+			has_country_leader = {
+				name = "Rick Perry"
+				ruling_only = yes
+            }
+			has_country_flag = TEX_terrorist_attack_occured
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_stability = 0.05
+			swap_ideas = {
+				remove_idea = TEX_Terrorist_Threat
+				add_idea = TEX_Terrorist_Threat2
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_media_blackout
+		icon = GFX_goal_TEX_media_blackout
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_president_perry
+		}
+		
+		relative_position_id = TEX_president_perry
+		x = 0
+		y = 1
+		
+		ai_will_do = {
+			factor = 100
+		}
+
+		available = {
+			has_country_leader = {
+				name = "Rick Perry"
+				ruling_only = yes
+            }
+			has_country_flag = TEX_scarlet_dossier
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_public_outrage
+				add_idea = TEX_public_outrage2
+			}
+			add_political_power = 70
+			add_stability = -0.02
+			add_war_support = -0.02
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.02
+			}
+			country_event = texas.18
+		}
+	}
+	
+	focus = {
+		id = TEX_martial_law
+		icon = GFX_goal_TEX_martial_law
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_president_perry
+		}
+		
+		relative_position_id = TEX_president_perry
+		x = 2
+		y = 1
+		
+		ai_will_do = {
+			factor = 100
+		}
+
+		available = {
+			has_country_leader = {
+				name = "Rick Perry"
+				ruling_only = yes
+            }
+			has_completed_focus = TEX_rapid_response
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_Terrorist_Threat2
+				add_idea = TEX_Terrorist_Threat3_MartialLaw
+			}
+			add_war_support = 0.10
+			add_popularity = {	
+				ideology = nationalist
+				popularity = 0.05
+			}
+			add_stability = -0.05
+			country_event = texas.19
+		}
+	}
+	
+	focus = {
+		id = TEX_inward_preperation
+		icon = GFX_goal_TEX_inward_readiness
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_martial_law
+		}
+		prerequisite = {
+			focus = TEX_media_blackout
+		}
+		prerequisite = {
+			focus = TEX_rapid_response
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_outward_readiness
+		}
+		
+		relative_position_id = TEX_president_perry
+		x = -1
+		y = 2
+		
+		ai_will_do = {
+			factor = 100
+		}
+
+		available = {
+			has_country_leader = {
+				name = "Rick Perry"
+				ruling_only = yes
+            }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = TEX_Focus_on_Defense
+			custom_effect_tooltip = TEX_spawn_4_militia
+			hidden_effect = {
+				division_template = {
+					name = "Emergency National Guard"
+					priority = 2
+					regiments = {
+						militia = {
+							x = 0
+							y = 0
+						}
+						militia = {
+							x = 0
+							y = 1
+						}
+						militia = {
+							x = 0
+							y = 2
+						}
+						militia = {
+							x = 0
+							y = 3
+						}
+						militia = {
+							x = 1
+							y = 0
+						}
+					}
+				}
+				random_owned_state = {
+					create_unit = {
+						division = "name = \"Emergency Guard Unit\" division_template = \"Emergency National Guard\"  start_experience_factor = 0.2"
+						owner = ROOT
+					}
+				}
+				random_owned_state = {
+					create_unit = {
+						division = "name = \"Emergency Guard Unit\" division_template = \"Emergency National Guard\"  start_experience_factor = 0.2"
+						owner = ROOT
+					}
+				}
+				random_owned_state = {
+					create_unit = {
+						division = "name = \"Emergency Guard Unit\" division_template = \"Emergency National Guard\"  start_experience_factor = 0.2"
+						owner = ROOT
+					}
+				}
+				random_owned_state = {
+					create_unit = {
+						division = "name = \"Emergency Guard Unit\" division_template = \"Emergency National Guard\"  start_experience_factor = 0.2"
+						owner = ROOT
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_early_warning_systems
+		icon = GFX_goal_TEX_early_warning_systems
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_inward_preperation
+		}
+		
+		relative_position_id = TEX_president_perry
+		x = 0
+		y = 3
+		
+		ai_will_do = {
+			factor = 100
+		}
+
+		available = {
+			has_country_leader = {
+				name = "Rick Perry"
+				ruling_only = yes
+            }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_Focus_on_Defense
+				add_idea = TEX_Focus_on_Defense2
+			}
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = radar_tech
+			}
+			set_technology = {
+				radio_detection = 1
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_in_home_area = yes
+					free_building_slots = {
+						building = radar_station
+						size > 0
+					}
+				}
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_survival_ethos
+		icon = GFX_goal_TEX_survival_ethos
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_early_warning_systems
+		}
+		
+		relative_position_id = TEX_president_perry
+		x = 0
+		y = 5
+		
+		ai_will_do = {
+			factor = 100
+		}
+
+		available = {
+			has_country_leader = {
+				name = "Rick Perry"
+				ruling_only = yes
+            }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_Focus_on_Defense2
+				add_idea = TEX_Focus_on_Defense3
+			}
+			add_manpower = 1100
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_outward_readiness
+		icon = GFX_goal_TEX_outward_readiness
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_martial_law
+		}
+		prerequisite = {
+			focus = TEX_media_blackout
+		}
+		prerequisite = {
+			focus = TEX_rapid_response
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_inward_preperation
+		}
+		
+		relative_position_id = TEX_president_perry
+		x = 1
+		y = 2
+		
+		ai_will_do = {
+			factor = 100
+		}
+
+		available = {
+			has_country_leader = {
+				name = "Rick Perry"
+				ruling_only = yes
+            }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = TEX_Focus_on_Offense
+			custom_effect_tooltip = TEX_spawn_2_infantry
+			hidden_effect = {
+				division_template = {
+					name = "Emergency National Guard"
+					priority = 2
+					regiments = {
+						infantry = {
+							x = 0
+							y = 0
+						}
+						infantry = {
+							x = 0
+							y = 1
+						}
+						infantry = {
+							x = 0
+							y = 2
+						}
+						infantry = {
+							x = 0
+							y = 3
+						}
+						infantry = {
+							x = 1
+							y = 0
+						}
+						infantry = {
+							x = 1
+							y = 1
+						}
+						infantry = {
+							x = 1
+							y = 2
+						}
+						infantry = {
+							x = 2
+							y = 0
+						}
+						infantry = {
+							x = 2
+							y = 1
+						}
+					}
+				}
+				random_owned_state = {
+					create_unit = {
+						division = "name = \"Emergency Guard Unit\" division_template = \"Emergency National Guard\"  start_experience_factor = 0.7"
+						owner = ROOT
+					}
+				}
+				random_owned_state = {
+					create_unit = {
+						division = "name = \"Emergency Guard Unit\" division_template = \"Emergency National Guard\"  start_experience_factor = 0.7"
+						owner = ROOT
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_rattle_the_sabre
+		icon = GFX_goal_TEX_rattle_the_sabre
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_outward_readiness
+		}
+		
+		relative_position_id = TEX_president_perry
+		x = 4
+		y = 3
+		
+		ai_will_do = {
+			factor = 100
+		}
+
+		available = {
+			has_country_leader = {
+				name = "Rick Perry"
+				ruling_only = yes
+            }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_war_support = 0.10
+			add_manpower = 1100
+			swap_ideas = {
+				remove_idea = TEX_Focus_on_Offense
+				add_idea = TEX_Focus_on_Offense2
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_armed_conflict_preparedness
+		icon = GFX_goal_TEX_armed_conflict_readiness
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_rattle_the_sabre
+		}
+		
+		relative_position_id = TEX_president_perry
+		x = 4
+		y = 5
+		
+		ai_will_do = {
+			factor = 100
+		}
+
+		available = {
+			has_country_leader = {
+				name = "Rick Perry"
+				ruling_only = yes
+            }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_Focus_on_Offense2
+				add_idea = TEX_Focus_on_Offense3
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1200
+				producer = TEX
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_a_match_made_in_hell
+		icon = GFX_goal_TEX_public_enemy_number_one
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_inward_preperation
+			focus = TEX_outward_readiness
+		}
+		
+		relative_position_id = TEX_president_perry
+		x = 2
+		y = 3
+		
+		ai_will_do = {
+			factor = 100
+		}
+
+		available = {
+			has_country_leader = {
+				name = "Rick Perry"
+				ruling_only = yes
+            }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.20
+			swap_ideas = {
+				remove_idea = TEX_Terrorist_Threat3_MartialLaw
+				add_idea = TEX_Terrorist_Threat_MartialLaw2
+			}
+			add_popularity = {
+				ideology = fascist
+				popularity = -0.1
+			}
+			set_party_name = {
+				name = TEX_branch_davidians_party
+				long_name = TEX_branch_davidians_party_long
+				ideology = fascist
+			}
+			TEX_david_koresh = {
+				promote_character = clerical_fascist
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_control_the_narrative
+		icon = GFX_goal_TEX_control_the_narrative
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_a_match_made_in_hell
+		}
+		
+		relative_position_id = TEX_president_perry
+		x = 1
+		y = 4
+		
+		ai_will_do = {
+			factor = 100
+		}
+
+		available = {
+			has_country_leader = {
+				name = "Rick Perry"
+				ruling_only = yes
+            }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_political_power = 40
+			add_stability = -0.02
+			remove_ideas = TEX_public_outrage2
+		}
+	}
+	
+	focus = {
+		id = TEX_tighten_the_border
+		icon = GFX_goal_TEX_border_controls
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_a_match_made_in_hell
+		}
+		
+		relative_position_id = TEX_president_perry
+		x = 3
+		y = 4
+		
+		ai_will_do = {
+			factor = 100
+		}
+
+		available = {
+			has_country_leader = {
+				name = "Rick Perry"
+				ruling_only = yes
+            }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_Terrorist_Threat_MartialLaw2
+				add_idea = TEX_Terrorist_Threat_MartialLaw3
+			}
+			375 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 2055
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 3972
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 3875
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 1915
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10014
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 7981
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10861
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10504
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10337
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_accuse_the_republic
+		icon = GFX_goal_TEX_accuse_the_republic
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_tighten_the_border
+		}
+		prerequisite = {
+			focus = TEX_control_the_narrative
+		}
+		
+		relative_position_id = TEX_president_perry
+		x = 2
+		y = 5
+		
+		ai_will_do = {
+			factor = 100
+		}
+
+		available = {
+			has_country_leader = {
+				name = "Rick Perry"
+				ruling_only = yes
+            }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.21
+			add_war_support = 0.05
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.04
+			}
+			swap_ideas = {
+				remove_idea = TEX_Terrorist_Threat_MartialLaw3
+				add_idea = TEX_Remeber_March_Seventeen
+			}
+			hidden_effect = {
+				remove_ideas = TEX_Remeber_March_Seventeen
+			}
+			add_timed_idea = {
+				idea = TEX_Remeber_March_Seventeen
+				days = 700
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_and_we_shall_reclaim_dallas
+		icon = GFX_goal_TEX_reclaim_dallas
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_accuse_the_republic
+		}
+		prerequisite = {
+			focus = TEX_armed_conflict_preparedness
+		}
+		
+		relative_position_id = TEX_president_perry
+		x = 3
+		y = 6
+		
+		ai_will_do = {
+			factor = 100
+		}
+
+		available = {
+			has_country_leader = {
+				name = "Rick Perry"
+				ruling_only = yes
+            }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_war_support = 0.1
+			swap_ideas = {
+				remove_idea = TEX_Focus_on_Offense3
+				add_idea = TEX_Focus_on_Offense4
+			}
+			add_manpower = 1200
+			900 = {
+				force_enable_resistance = { occupier = USA occupied = TEX }
+				start_resistance = TEX
+			}
+			hidden_effect = {
+				country_event = {
+					id = texas.22
+					days = 14
+					random_days = 10
+				}
+				set_country_flag = TEX_hide_opening_tree
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_impossible_odds
+		icon = GFX_goal_TEX_impossible_odds
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_accuse_the_republic
+		}
+		prerequisite = {
+			focus = TEX_survival_ethos
+		}
+		
+		relative_position_id = TEX_president_perry
+		x = 1
+		y = 6
+		
+		ai_will_do = {
+			factor = 100
+		}
+
+		available = {
+			has_country_leader = {
+				name = "Rick Perry"
+				ruling_only = yes
+            }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_stability = 0.1
+			swap_ideas = {
+				remove_idea = TEX_Focus_on_Defense3
+				add_idea = TEX_Focus_on_Defense4
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1200
+				producer = TEX
+			}
+			hidden_effect = {
+				country_event = {
+					id = texas.22
+					days = 14
+					random_days = 10
+				}
+				set_country_flag = TEX_hide_opening_tree
+			}
+		}
+	}
+	
+	########################
+	#### ELECTIONS TREE ####
+	########################
+	
+	focus = {
+		id = TEX_2013_election
+		icon = GFX_goal_TEX_public_elections
+		cost = 1
+		x = 21
+		y = 1
+
+		available = {
+			has_country_flag = TEX_post_war_election
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	### One Republic Re-Elected ###
+	
+	focus = {
+		id = TEX_One_Republic
+		icon = GFX_goal_TEX_one_republic
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_2013_election
+		}
+		
+		available = {
+			has_government = nationalist
+		}
+		
+		relative_position_id = TEX_2013_election
+		x = -3
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.01
+			}
+		}
+	}
+	
+	# - Perry's Third Term
+	
+	focus = {
+		id = TEX_Perry_Re_Elected
+		icon = GFX_goal_TEX_perry_re_elected
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_One_Republic
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_President_North
+		}
+		
+		available = {
+			has_country_leader = {
+				name = "Rick Perry"
+				ruling_only = yes
+			}
+		}
+		
+		relative_position_id = TEX_One_Republic
+		x = -1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_exalt_wartime_leadership
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_Perry_Re_Elected
+		}
+		
+		relative_position_id = TEX_One_Republic
+		x = -2
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_entrenched_political_patronage
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_exalt_wartime_leadership
+		}
+		
+		relative_position_id = TEX_One_Republic
+		x = -2
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_abolish_useless_agencies
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_entrenched_political_patronage
+		}
+		
+		relative_position_id = TEX_One_Republic
+		x = -2
+		y = 4
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_upholding_conservative_texan_values
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_abolish_useless_agencies
+		}
+		prerequisite = {
+			focus = TEX_powers_of_the_presidency
+		}
+		
+		relative_position_id = TEX_One_Republic
+		x = -1
+		y = 5
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	# - Perry's Third Term
+	
+	focus = {
+		id = TEX_President_North
+		icon = GFX_goal_TEX_president_north
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_One_Republic
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_Perry_Re_Elected
+		}
+		
+		relative_position_id = TEX_One_Republic
+		x = 1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_the_soldier_who_saved_texas
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_President_North
+		}
+		
+		relative_position_id = TEX_One_Republic
+		x = 2
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_distance_ourselves_from_perry
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_the_soldier_who_saved_texas
+		}
+		
+		relative_position_id = TEX_One_Republic
+		x = 2
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_alliance_for_freedom
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_distance_ourselves_from_perry
+		}
+		
+		relative_position_id = TEX_One_Republic
+		x = 2
+		y = 4
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_uphold_military_bravery
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_alliance_for_freedom
+		}
+		prerequisite = {
+			focus = TEX_powers_of_the_presidency
+		}
+		
+		relative_position_id = TEX_One_Republic
+		x = 1
+		y = 5
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	# - Shared
+	
+	focus = {
+		id = TEX_end_congressional_disobedience
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_President_North
+			focus = TEX_Perry_Re_Elected
+		}
+		
+		relative_position_id = TEX_One_Republic
+		x = 0
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_keeping_elections_safe
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_end_congressional_disobedience
+		}
+		
+		relative_position_id = TEX_One_Republic
+		x = 0
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_powers_of_the_presidency
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_keeping_elections_safe
+		}
+		
+		relative_position_id = TEX_One_Republic
+		x = 0
+		y = 4
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	### Reform/Libertarian Party Elected ###
+	
+	focus = {
+		id = TEX_Reform_Libertarian
+		icon = GFX_goal_TEX_reform_libertarian
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_2013_election
+		}
+		
+		available = {
+			has_government = centrist
+		}
+		
+		relative_position_id = TEX_2013_election
+		x = 3
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	# - President Perot
+	
+	focus = {
+		id = TEX_President_Perot
+		icon = GFX_goal_TEX_president_perot
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_Reform_Libertarian
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_President_Paul
+		}
+		
+		available = {
+			has_country_leader = {
+				name = "Ross Perot"
+				ruling_only = yes
+			}
+		}
+		
+		relative_position_id = TEX_Reform_Libertarian
+		x = -1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_texan_economic_nationalism
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_President_Perot
+		}
+		
+		relative_position_id = TEX_Reform_Libertarian
+		x = -2
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_reform_public_spending
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_texan_economic_nationalism
+		}
+		
+		relative_position_id = TEX_Reform_Libertarian
+		x = -2
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_intense_social_liberalism
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_reform_public_spending
+		}
+		
+		relative_position_id = TEX_Reform_Libertarian
+		x = -2
+		y = 4
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_modern_digital_democracy
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_intense_social_liberalism
+		}
+		prerequisite = {
+			focus = TEX_freedom_to_be_free
+		}
+		
+		relative_position_id = TEX_Reform_Libertarian
+		x = -1
+		y = 5
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	# - President Ron Paul
+	
+	focus = {
+		id = TEX_President_Paul
+		icon = GFX_goal_TEX_president_paul
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_Reform_Libertarian
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_President_Perot
+		}
+		
+		available = {
+			has_country_leader = {
+				name = "Ron Paul"
+				ruling_only = yes
+			}
+		}
+		
+		relative_position_id = TEX_Reform_Libertarian
+		x = 1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_return_to_the_gold_standard
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_President_Paul
+		}
+		
+		relative_position_id = TEX_Reform_Libertarian
+		x = 2
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_radical_deregulation
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_return_to_the_gold_standard
+		}
+		
+		relative_position_id = TEX_Reform_Libertarian
+		x = 2
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_extreme_deregulations
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_radical_deregulation
+		}
+		
+		relative_position_id = TEX_Reform_Libertarian
+		x = 2
+		y = 4
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_conservative_libertarianism
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_extreme_deregulations
+		}
+		prerequisite = {
+			focus = TEX_freedom_to_be_free
+		}
+		
+		relative_position_id = TEX_Reform_Libertarian
+		x = 1
+		y = 5
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	# - Shared
+	
+	focus = {
+		id = TEX_popular_referendums
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_President_Paul
+			focus = TEX_President_Perot
+		}
+		
+		relative_position_id = TEX_Reform_Libertarian
+		x = 0
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_the_swiss_system
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_popular_referendums
+		}
+		
+		relative_position_id = TEX_Reform_Libertarian
+		x = 0
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_freedom_to_be_free
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_the_swiss_system
+		}
+		
+		relative_position_id = TEX_Reform_Libertarian
+		x = 0
+		y = 4
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	### Independent Republican Party Elected ###
+	
+	focus = {
+		id = TEX_Independent_Republicans
+		icon = GFX_goal_TEX_independent_republicans
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_2013_election
+		}
+		
+		available = {
+			has_government = national_conservative
+		}
+		
+		relative_position_id = TEX_2013_election
+		x = -9
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	# - President Joe Strauss
+	
+	focus = {
+		id = TEX_President_Strauss
+		icon = GFX_goal_TEX_president_straus
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_Independent_Republicans
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_President_Bush
+			focus = TEX_President_Jones
+		}
+		
+		available = {
+			has_country_leader = {
+				name = "Joe Straus"
+				ruling_only = yes
+			}
+		}
+		
+		relative_position_id = TEX_Independent_Republicans
+		x = -1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_congressional_dominance
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_President_Strauss
+		}
+		
+		relative_position_id = TEX_Independent_Republicans
+		x = -2
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_lessons_from_bentley
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_congressional_dominance
+		}
+		
+		relative_position_id = TEX_Independent_Republicans
+		x = -2
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_uphold_religious_liberty
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_lessons_from_bentley
+		}
+		
+		relative_position_id = TEX_Independent_Republicans
+		x = -2
+		y = 4
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_crack_social_conservatism
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_uphold_religious_liberty
+		}
+		prerequisite = {
+			focus = TEX_hutchinson_legacy
+		}
+		
+		relative_position_id = TEX_Independent_Republicans
+		x = -1
+		y = 5
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	# - President Alex Jones
+	
+	focus = {
+		id = TEX_President_Jones
+		icon = GFX_goal_TEX_president_jones
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_Independent_Republicans
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_President_Bush
+			focus = TEX_President_Strauss
+		}
+		
+		available = {
+			has_country_leader = {
+				name = "Alex Jones"
+				ruling_only = yes
+			}
+		}
+		
+		relative_position_id = TEX_Independent_Republicans
+		x = -3
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_restore_public_trust
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_President_Jones
+		}
+		
+		relative_position_id = TEX_Independent_Republicans
+		x = -4
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_spending_cuts_and_lower_taxes
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_restore_public_trust
+		}
+		
+		relative_position_id = TEX_Independent_Republicans
+		x = -4
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_denounce_bushism
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_spending_cuts_and_lower_taxes
+		}
+		
+		relative_position_id = TEX_Independent_Republicans
+		x = -4
+		y = 4
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_triumph_of_moderate_conservatism
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_denounce_bushism
+		}
+		prerequisite = {
+			focus = TEX_hutchinson_legacy
+		}
+		
+		relative_position_id = TEX_Independent_Republicans
+		x = -3
+		y = 5
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	# - President George W. Bush
+	
+	focus = {
+		id = TEX_President_Bush
+		icon = GFX_goal_TEX_president_bush
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_Independent_Republicans
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_President_Strauss
+			focus = TEX_President_Jones
+		}
+		
+		available = {
+			has_country_leader = {
+				name = "George W. Bush"
+				ruling_only = yes
+			}
+		}
+		
+		relative_position_id = TEX_Independent_Republicans
+		x = 1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_my_fathers_legacy
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_President_Bush
+		}
+		
+		relative_position_id = TEX_Independent_Republicans
+		x = 2
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_compassionate_conservatism
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_my_fathers_legacy
+		}
+		
+		relative_position_id = TEX_Independent_Republicans
+		x = 2
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_sweeping_education_reform
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_compassionate_conservatism
+		}
+		
+		relative_position_id = TEX_Independent_Republicans
+		x = 2
+		y = 4
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_a_political_home_run
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_sweeping_education_reform
+		}
+		prerequisite = {
+			focus = TEX_hutchinson_legacy
+		}
+		
+		relative_position_id = TEX_Independent_Republicans
+		x = 1
+		y = 5
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	# - Shared
+	
+	focus = {
+		id = TEX_end_one_republic_dominance
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_President_Bush
+			focus = TEX_President_Strauss
+			focus = TEX_President_Jones
+		}
+		
+		relative_position_id = TEX_Independent_Republicans
+		x = 0
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_free_and_fair_elections
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_end_one_republic_dominance
+		}
+		
+		relative_position_id = TEX_Independent_Republicans
+		x = 0
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_hutchinson_legacy
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_free_and_fair_elections
+		}
+		
+		relative_position_id = TEX_Independent_Republicans
+		x = 0
+		y = 4
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	### Texas Democrats Elected ###
+	
+	focus = {
+		id = TEX_Democrats
+		icon = GFX_goal_TEX_texas_democrats
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_2013_election
+		}
+		
+		available = {
+			OR = {
+				has_government = liberal
+				has_government = new_democrat
+			}
+		}
+		
+		relative_position_id = TEX_2013_election
+		x = 9
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	# - President Lynda Bird Johnson-Robb
+	
+	focus = {
+		id = TEX_President_Johnson
+		icon = GFX_goal_TEX_president_johnson_robb
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_Democrats
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_President_Davis
+			focus = TEX_President_Friedman
+		}
+		
+		available = {
+			has_country_leader = {
+				name = "Lynda Bird Johnson-Robb"
+				ruling_only = yes
+			}
+		}
+		
+		relative_position_id = TEX_Democrats
+		x = -1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_resume_the_war_on_poverty
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_President_Johnson
+		}
+		
+		relative_position_id = TEX_Democrats
+		x = -2
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_social_spending_spree
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_resume_the_war_on_poverty
+		}
+		
+		relative_position_id = TEX_Democrats
+		x = -2
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_expand_educational_and_literacy_initiatives
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_social_spending_spree
+		}
+		
+		relative_position_id = TEX_Democrats
+		x = -2
+		y = 4
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_a_great_society
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_expand_educational_and_literacy_initiatives
+		}
+		prerequisite = {
+			focus = TEX_lock_one_republic_out_forever
+		}
+		
+		relative_position_id = TEX_Democrats
+		x = -1
+		y = 5
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	# - President Kinky Friedman
+	
+	focus = {
+		id = TEX_President_Friedman
+		icon = GFX_goal_TEX_president_friedman
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_Democrats
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_President_Davis
+			focus = TEX_President_Johnson
+		}
+		
+		available = {
+			has_country_leader = {
+				name = "Kinky Friedman"
+				ruling_only = yes
+			}
+		}
+		
+		relative_position_id = TEX_Democrats
+		x = 3
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_abolish_the_death_penalty
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_President_Friedman
+		}
+		
+		relative_position_id = TEX_Democrats
+		x = 4
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_the_freedom_to_smoke
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_abolish_the_death_penalty
+		}
+		
+		relative_position_id = TEX_Democrats
+		x = 4
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_alternative_energy_focus
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_the_freedom_to_smoke
+		}
+		
+		relative_position_id = TEX_Democrats
+		x = 4
+		y = 4
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_the_jewish_cowboy
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_alternative_energy_focus
+		}
+		prerequisite = {
+			focus = TEX_lock_one_republic_out_forever
+		}
+		
+		relative_position_id = TEX_Democrats
+		x = 3
+		y = 5
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	# - President Wendy Davis
+	
+	focus = {
+		id = TEX_President_Davis
+		icon = GFX_goal_TEX_president_davis
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_Democrats
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_President_Johnson
+			focus = TEX_President_Friedman
+		}
+		
+		available = {
+			has_country_leader = {
+				name = "Wendy Davis"
+				ruling_only = yes
+			}
+		}
+		
+		relative_position_id = TEX_Democrats
+		x = 1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_return_to_the_new_deal
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_President_Davis
+		}
+		
+		relative_position_id = TEX_Democrats
+		x = 2
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_cannibis_decriminalization
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_return_to_the_new_deal
+		}
+		
+		relative_position_id = TEX_Democrats
+		x = 2
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_moderate_gun_control_laws
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_cannibis_decriminalization
+		}
+		
+		relative_position_id = TEX_Democrats
+		x = 2
+		y = 4
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_a_progressive_beacon_once_more
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_moderate_gun_control_laws
+		}
+		prerequisite = {
+			focus = TEX_lock_one_republic_out_forever
+		}
+		
+		relative_position_id = TEX_Democrats
+		x = 1
+		y = 5
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	# - Shared
+	
+	focus = {
+		id = TEX_legalize_same_sex_marrige
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_President_Davis
+			focus = TEX_President_Johnson
+			focus = TEX_President_Friedman
+		}
+		
+		relative_position_id = TEX_Democrats
+		x = 0
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_roll_back_emergency_powers
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_legalize_same_sex_marrige
+		}
+		
+		relative_position_id = TEX_Democrats
+		x = 0
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_lock_one_republic_out_forever
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_roll_back_emergency_powers
+		}
+		
+		relative_position_id = TEX_Democrats
+		x = 0
+		y = 4
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	######################
+	#### USA WAR TREE ####
+	######################
+	
+	focus = {
+		id = TEX_eve_of_war
+		icon = GFX_goal_TEX_eve_of_war
+		cost = 1
+		x = 42
+		y = 1
+
+		available = {
+			has_country_flag = TEX_war_looming
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_republican_submission
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = {
+				id = texas.29
+				days = 4
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_fortress_austin
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_eve_of_war
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = -1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			375 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 10337
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_fortress_houston
+		icon = GFX_goal_TEX_fortify_houston
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_fortress_austin
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = -1
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			375 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 6798
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_molotov_cocktails
+		icon = GFX_goal_TEX_molotov_cocktails
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_eve_of_war
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = 1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = TEX_incindeary_weapons
+				days = 800
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_call_up_reserve
+		icon = GFX_goal_TEX_call_up_reserve
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_molotov_cocktails
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = 1
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_manpower = 6400
+			add_ideas = limited_conscription
+			if = {
+				limit = { has_completed_focus = TEX_inward_preperation }
+				custom_effect_tooltip = TEX_spawn_2_national_guard_militia
+			}
+			else = {
+				custom_effect_tooltip = TEX_spawn_2_national_guard_inf
+			}
+			hidden_effect = {
+				random_owned_state = {
+					create_unit = {
+						division = "name = \"Emergency Guard Unit\" division_template = \"Emergency National Guard\"  start_experience_factor = 0.4"
+						owner = ROOT
+					}
+					create_unit = {
+						division = "name = \"Emergency Guard Unit\" division_template = \"Emergency National Guard\"  start_experience_factor = 0.4"
+						owner = ROOT
+					}
+				}
+				country_event = {
+					id = texas.39
+					days = 34
+					random_days = 10
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_leader_of_free_world
+		icon = GFX_goal_TEX_free_worlds_leader
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_call_up_reserve
+			focus = TEX_fortress_houston
+		}
+		
+		available = {
+			has_war_with = USA
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = 0
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			CAN = {
+				country_event = texas.32
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_enemy_of_my_enemy
+		icon = GFX_goal_TEX_enemy_of_my_enemy
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_call_up_reserve
+			focus = TEX_fortress_houston
+		}
+		
+		available = {
+			has_war_with = USA
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = 2
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.35
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1200
+				producer = SOV
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_old_adversary
+		icon = GFX_goal_TEX_old_adversary
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_call_up_reserve
+			focus = TEX_fortress_houston
+		}
+		
+		available = {
+			has_war_with = USA
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = -2
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			MEX = {
+				country_event = texas.36
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_foreign_voluneteers
+		icon = GFX_goal_TEX_foreign_legion
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_enemy_of_my_enemy
+			focus = TEX_old_adversary
+			focus = TEX_leader_of_free_world
+		}
+		
+		bypass = {
+			NOT = { has_war_with = USA }
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = -3
+		y = 4
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_manpower = 30000
+			country_event = texas.42
+			custom_effect_tooltip = TEX_spawn_international_brigade
+			hidden_effect = {
+				division_template = {
+					name = "International Legion"
+					priority = 2
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+					}
+				}
+				random_owned_state = {
+					create_unit = {
+						division = "name = \"Texan Foreign Legion\" division_template = \"International Legion\"  start_experience_factor = 0.4"
+						owner = ROOT
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_seize_civilian_weaponry
+		icon = GFX_goal_CAN_rifles_for_citizens
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_foreign_voluneteers
+		}
+		
+		bypass = {
+			NOT = { has_war_with = USA }
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = -3
+		y = 5
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.43
+			add_tech_bonus = {
+				name = infantry_weapons_bonus
+				bonus = 0.5
+				uses = 1
+				category = infantry_weapons
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_sam_houstons_struggle
+		icon = GFX_goal_TEX_sam_houston
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_seize_civilian_weaponry
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_south_wont_fall_again
+		}
+		
+		bypass = {
+			NOT = { has_war_with = USA }
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = -4
+		y = 6
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = TEX_houston_vindicated
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.04
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_south_wont_fall_again
+		icon = GFX_goal_TEX_the_south_wont_fall_again
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_seize_civilian_weaponry
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_sam_houstons_struggle
+		}
+		
+		bypass = {
+			NOT = { has_war_with = USA }
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = -2
+		y = 6
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = TEX_crusade_against_yankeedom
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = fascist
+				popularity = 0.04
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_canadian_technology
+		icon = GFX_goal_TEX_canadian_equiptment
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_leader_of_free_world
+		}
+		
+		available = {
+			has_global_flag = CAN_supports_texas
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_american_proxy_war
+		}
+		
+		bypass = {
+			NOT = { has_war_with = USA }
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = -1
+		y = 4
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = infantry_weapons_bonus
+				bonus = 0.5
+				uses = 1
+				category = infantry_weapons
+				category = artillery
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1200
+				producer = CAN
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = 1200
+				producer = CAN
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = 1200
+				producer = CAN
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_canadian_jets
+		icon = GFX_goal_CAN_mastery_of_the_air
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_canadian_technology
+		}
+		
+		bypass = {
+			NOT = { has_war_with = USA }
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = -1
+		y = 5
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.25
+				uses = 2
+				category = air_equipment
+			}
+			add_equipment_to_stockpile = {
+				type = CAS_equipment_1
+				amount = 600
+				producer = CAN
+			}
+			add_equipment_to_stockpile = {
+				type = transport_plane_equipment
+				amount = 600
+				producer = CAN
+			}
+            add_equipment_to_stockpile = {
+                type = fighter_equipment_1
+                amount = 75
+				producer = CAN
+            } 
+		}
+	}
+	
+	focus = {
+		id = TEX_canadian_tanks
+		icon = GFX_goal_TEX_canadian_tanks
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_canadian_technology
+		}
+		
+		bypass = {
+			NOT = { has_war_with = USA }
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = 1
+		y = 5
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = armor_bonus
+				bonus = 1
+				uses = 1
+				category = armor
+			}
+			add_equipment_to_stockpile = {
+				type = light_tank_equipment_1
+				amount = 500
+				producer = CAN
+			}
+			add_equipment_to_stockpile = {
+				type = motorized_equipment
+				amount = 500
+				producer = CAN
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_intranet_links
+		icon = GFX_goal_CAN_intranet
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_canadian_technology
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_unlikely_allies
+		}
+		
+		bypass = {
+			NOT = { has_war_with = USA }
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = 0
+		y = 6
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = TEX_intranet_links
+			country_event = texas.44
+			add_tech_bonus = {
+				bonus = 0.50
+				uses = 1
+				category = electronics
+			}
+		}
+	}
+
+	focus = {
+		id = TEX_american_proxy_war
+		icon = GFX_goal_TEX_american_proxy_war
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_enemy_of_my_enemy
+			focus = TEX_leader_of_free_world
+		}
+		
+		available = {
+			has_global_flag = CAN_supports_the_republic
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_canadian_technology
+		}
+		
+		bypass = {
+			NOT = { has_war_with = USA }
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = 1
+		y = 4
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = infantry_weapons_bonus
+				bonus = 0.5
+				uses = 1
+				category = infantry_weapons
+				category = artillery
+			}
+			add_ideas = TEX_american_proxy_war
+		}
+	}
+	
+	focus = {
+		id = TEX_diplomatic_pressure
+		icon = GFX_goal_TEX_international_pressure
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_enemy_of_my_enemy
+		}
+		
+		bypass = {
+			NOT = { has_war_with = USA }
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = 3
+		y = 4
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			USA = {
+				add_timed_idea = {
+					idea = USA_international_pariah
+					days = 600
+				}
+			}
+			hidden_effect = {
+				every_country = {
+					news_event = {
+						hours = 4
+						id = texas_news.10
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_soviet_guns
+		icon = GFX_goal_TEX_soviet_weaponry
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_diplomatic_pressure
+			focus = TEX_american_proxy_war
+		}
+		
+		bypass = {
+			NOT = { has_war_with = USA }
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = 3
+		y = 5
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1200
+				producer = SOV
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = 1200
+				producer = SOV
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = 1200
+				producer = SOV
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_unlikely_allies
+		icon = GFX_goal_TEX_unlikely_allies
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_soviet_guns
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_intranet_links
+		}
+		
+		bypass = {
+			NOT = { has_war_with = USA }
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = 2
+		y = 6
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.45
+			add_ideas = TEX_ballad_of_texas_red
+		}
+	}
+	
+	focus = {
+		id = TEX_counter_attack
+		icon = GFX_goal_TEX_counter_attack
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_sam_houstons_struggle
+			focus = TEX_south_wont_fall_again
+			focus = TEX_intranet_links
+			focus = TEX_unlikely_allies
+		}
+		
+		bypass = {
+			NOT = { has_war_with = USA }
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = 1
+		y = 7
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = TEX_counter_attack_focus
+				days = 300
+			}
+			add_command_power = 100
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_propaganda_effort
+		icon = GFX_goal_TEX_bloody_rose
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_sam_houstons_struggle
+			focus = TEX_south_wont_fall_again
+			focus = TEX_intranet_links
+			focus = TEX_unlikely_allies
+		}
+		
+		bypass = {
+			NOT = { has_war_with = USA }
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = -3
+		y = 7
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_completed_focus = TEX_unlikely_allies } }
+				swap_ideas = {
+					remove_idea = TEX_intranet_links
+					add_idea = TEX_intranet_links2
+				}
+			}
+			add_war_support = 0.05
+			add_ideas = TEX_propaganda_effort
+		}
+	}
+	
+	focus = {
+		id = TEX_hispanic_recruitment
+		icon = GFX_goal_TEX_hispanic_recruitment
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_sam_houstons_struggle
+			focus = TEX_south_wont_fall_again
+			focus = TEX_intranet_links
+			focus = TEX_unlikely_allies
+		}
+		
+		available = {
+			has_country_flag = TEX_MEX_support
+		}
+		
+		bypass = {
+			NOT = { has_war_with = USA }
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = -1
+		y = 7
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_manpower = 4600
+			add_war_support = 0.10
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				technology = tech_special_forces
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_remnant_demonstrations
+		icon = GFX_goal_TEX_republic_demonstrations
+		cost = 3
+		
+		prerequisite = {
+			focus = TEX_diplomatic_pressure
+		}
+		
+		bypass = {
+			NOT = { has_war_with = USA }
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = 5
+		y = 5
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			USA = {
+				add_timed_idea = {
+					idea = USA_anti_war_protests
+					days = 200
+				}
+				country_event = texas.53
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_bush_delegation
+		icon = GFX_goal_TEX_bush_delegation
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_remnant_demonstrations
+		}
+		
+		available = {
+			surrender_progress > 0.10
+			surrender_progress < 0.40
+			#USA = { has_idea = USA_Texan_Slog }
+			date > 2012.1.1
+		}
+		
+		bypass = {
+			NOT = { has_war_with = USA }
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = 4
+		y = 6
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			USA = {
+				country_event = texas.46
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_cain_and_abel
+		icon = GFX_goal_TEX_cain_and_abel
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_bush_delegation
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_jeb_defection
+		}
+		
+		bypass = {
+			NOT = { has_war_with = USA }
+		}
+		
+		available = {
+			USA = {
+				has_country_leader = {
+					name = "Jeb Bush"
+					ruling_only = yes
+				}
+				has_country_flag = TEX_delegation_failed
+			}
+		}
+		
+		relative_position_id = TEX_bush_delegation
+		x = -1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			set_country_flag = TEX_dubya_flag
+		}
+	}
+	
+	focus = {
+		id = TEX_jeb_defection
+		icon = GFX_goal_TEX_jeb_defection
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_bush_delegation
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_cain_and_abel
+		}
+		
+		bypass = {
+			NOT = { has_war_with = USA }
+		}
+		
+		available = {
+			USA = {
+				NOT = {
+					has_country_leader = {
+						name = "Jeb Bush"
+						ruling_only = yes
+					}
+				}
+				has_country_flag = TEX_delegation_failed
+				has_country_flag = TEX_jeb_defected
+			}
+		}
+		
+		relative_position_id = TEX_bush_delegation
+		x = 1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			set_country_flag = TEX_dubya_flag
+		}
+	}
+	
+	focus = {
+		id = TEX_the_man_who_made_peace
+		icon = GFX_goal_TEX_the_man_who_made_peace
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_bush_delegation
+		}
+		
+		bypass = {
+			NOT = { has_war_with = USA }
+		}
+		
+		available = {
+			has_country_flag = TEX_delegation_made_peace
+		}
+		
+		relative_position_id = TEX_bush_delegation
+		x = 0
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			set_country_flag = TEX_dubya_flag
+		}
+	}
+	
+	focus = {
+		id = TEX_whole_once_more
+		icon = GFX_goal_TEX_whole_once_more
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_propaganda_effort
+		}
+		prerequisite = {
+			focus = TEX_counter_attack
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_dallas_reclaimed
+			focus = TEX_our_time_will_come
+		}
+		
+		
+		available = {
+			always = no
+		}
+		
+		bypass = {
+			owns_state = 900
+			owns_state = 1039
+			NOT = { has_war_with = USA }
+			is_subject = no
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = -2
+		y = 8
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			custom_effect_tooltip = TEX_took_east_texas
+		}
+	}
+	
+	focus = {
+		id = TEX_david_and_goliath
+		icon = GFX_goal_TEX_impossible_odds
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_whole_once_more
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = -2
+		y = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_remove_collaborators
+		icon = GFX_goal_TEX_impossible_odds
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_dallas_reclaimed
+			focus = TEX_whole_once_more
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = -1
+		y = 9
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_dallas_reclaimed
+		icon = GFX_goal_TEX_dallas_reclaimed
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_propaganda_effort
+		}
+		prerequisite = {
+			focus = TEX_counter_attack
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_whole_once_more
+			focus = TEX_our_time_will_come
+		}
+		
+		available = {
+			always = no
+		}
+		
+		bypass = {
+			owns_state = 900
+			NOT = { owns_state = 1039 }
+			NOT = { has_war_with = USA }
+			is_subject = no
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = 0
+		y = 8
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			custom_effect_tooltip = TEX_took_dfw
+		}
+	}
+	
+	focus = {
+		id = TEX_looking_east
+		icon = GFX_goal_TEX_impossible_odds
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_dallas_reclaimed
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = 0
+		y = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_our_time_will_come
+		icon = GFX_goal_TEX_our_time_will_come
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_propaganda_effort
+		}
+		prerequisite = {
+			focus = TEX_counter_attack
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_whole_once_more
+			focus = TEX_dallas_reclaimed
+		}
+		
+		available = {
+			always = no
+		}
+		
+		bypass = {
+			NOT = { owns_state = 900 }
+			NOT = { owns_state = 1039 }
+			NOT = { has_war_with = USA }
+			is_subject = no
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = 2
+		y = 8
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			custom_effect_tooltip = TEX_no_territorial_change
+		}
+	}
+	
+	focus = {
+		id = TEX_jingoistic_fervor
+		icon = GFX_goal_TEX_impossible_odds
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_our_time_will_come
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = 2
+		y = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_lessons_of_the_war
+		icon = GFX_goal_TEX_impossible_odds
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_dallas_reclaimed
+			focus = TEX_whole_once_more
+			focus = TEX_our_time_will_come
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = 1
+		y = 9
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+
+	focus = {
+		id = TEX_mexican_negotiations
+		icon = GFX_goal_TEX_impossible_odds
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_david_and_goliath
+			focus = TEX_looking_east
+			focus = TEX_jingoistic_fervor
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_reclaim_south_texas
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = -1
+		y = 11
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_reclaim_south_texas
+		icon = GFX_goal_TEX_impossible_odds
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_david_and_goliath
+			focus = TEX_looking_east
+			focus = TEX_jingoistic_fervor
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_mexican_negotiations
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = 1
+		y = 11
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_collabs_fate
+		icon = GFX_goal_TEX_impossible_odds
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_reclaim_south_texas
+			focus = TEX_mexican_negotiations
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = 0
+		y = 12
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_smooth_hispanic_tensions
+		icon = GFX_goal_TEX_impossible_odds
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_reclaim_south_texas
+			focus = TEX_mexican_negotiations
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = -2
+		y = 12
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_new_border
+		icon = GFX_goal_TEX_impossible_odds
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_reclaim_south_texas
+			focus = TEX_mexican_negotiations
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = 2
+		y = 12
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_dont_mess_with_texas
+		icon = GFX_goal_TEX_impossible_odds
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_new_border
+		}
+		prerequisite = {
+			focus = TEX_smooth_hispanic_tensions
+		}
+		prerequisite = {
+			focus = TEX_collabs_fate
+		}
+		
+		relative_position_id = TEX_eve_of_war
+		x = 0
+		y = 14
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	##########################
+	#### USA COLLABS TREE ####
+	##########################
+	
+	focus = {
+		id = TEX_republican_submission
+		icon = TEX_republican_submission
+		cost = 6
+		x = 12
+		y = 0
+		relative_position_id = TEX_eve_of_war
+
+		available = {
+			is_subject_of = USA
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_eve_of_war
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_meet_with_usa_leader
+		icon = TEX_republican_submission
+		cost = 6
+		x = 0
+		y = 1
+		relative_position_id = TEX_republican_submission
+		
+		prerequisite = {
+			focus = TEX_republican_submission
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_claw_back_nationalist_rhetoric
+		icon = TEX_republican_submission
+		cost = 6
+		x = -3
+		y = 2
+		relative_position_id = TEX_republican_submission
+		
+		prerequisite = {
+			focus = TEX_meet_with_usa_leader
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_dissolve_one_republic
+		icon = TEX_republican_submission
+		cost = 6
+		x = -3
+		y = 3
+		relative_position_id = TEX_republican_submission
+		
+		prerequisite = {
+			focus = TEX_claw_back_nationalist_rhetoric
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_restore_the_gop
+		icon = TEX_republican_submission
+		cost = 6
+		x = -3
+		y = 5
+		relative_position_id = TEX_republican_submission
+		
+		prerequisite = {
+			focus = TEX_dissolve_one_republic
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_pardon_moderates
+		icon = TEX_republican_submission
+		cost = 6
+		x = -1
+		y = 2
+		relative_position_id = TEX_republican_submission
+		
+		prerequisite = {
+			focus = TEX_meet_with_usa_leader
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_blanket_pardon
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_blanket_pardon
+		icon = TEX_republican_submission
+		cost = 6
+		x = 1
+		y = 2
+		relative_position_id = TEX_republican_submission
+		
+		prerequisite = {
+			focus = TEX_meet_with_usa_leader
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_pardon_moderates
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_crush_seperatists
+		icon = TEX_republican_submission
+		cost = 6
+		x = -1
+		y = 3
+		relative_position_id = TEX_republican_submission
+		
+		prerequisite = {
+			focus = TEX_pardon_moderates
+			focus = TEX_blanket_pardon
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_truth_and_reconciliation
+		icon = TEX_republican_submission
+		cost = 6
+		x = -2
+		y = 4
+		relative_position_id = TEX_republican_submission
+		
+		prerequisite = {
+			focus = TEX_crush_seperatists
+		}
+		prerequisite = {
+			focus = TEX_pardon_moderates
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_kick_the_dog
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_kick_the_dog
+		icon = TEX_republican_submission
+		cost = 6
+		x = 0
+		y = 4
+		relative_position_id = TEX_republican_submission
+		
+		prerequisite = {
+			focus = TEX_crush_seperatists
+		}
+		
+		prerequisite = {
+			focus = TEX_blanket_pardon
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_truth_and_reconciliation
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_nationalism_fades_away
+		icon = TEX_republican_submission
+		cost = 6
+		x = -1
+		y = 5
+		relative_position_id = TEX_republican_submission
+		
+		prerequisite = {
+			focus = TEX_kick_the_dog
+			focus = TEX_truth_and_reconciliation
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_texas_act
+		icon = TEX_republican_submission
+		cost = 6
+		x = 3
+		y = 2
+		relative_position_id = TEX_republican_submission
+		
+		prerequisite = {
+			focus = TEX_meet_with_usa_leader
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_currency_union
+		icon = TEX_republican_submission
+		cost = 6
+		x = 2
+		y = 3
+		relative_position_id = TEX_republican_submission
+		
+		prerequisite = {
+			focus = TEX_texas_act
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_the_new_dollar
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_the_new_dollar
+		icon = TEX_republican_submission
+		cost = 6
+		x = 4
+		y = 3
+		relative_position_id = TEX_republican_submission
+		
+		prerequisite = {
+			focus = TEX_texas_act
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_currency_union
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_new_national_guard
+		icon = TEX_republican_submission
+		cost = 6
+		x = 2
+		y = 4
+		relative_position_id = TEX_republican_submission
+		
+		prerequisite = {
+			focus = TEX_currency_union
+			focus = TEX_the_new_dollar
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_atlantas_tutelage
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_atlantas_tutelage
+		icon = TEX_republican_submission
+		cost = 6
+		x = 4
+		y = 4
+		relative_position_id = TEX_republican_submission
+		
+		prerequisite = {
+			focus = TEX_currency_union
+			focus = TEX_the_new_dollar
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_new_national_guard
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_legal_independence
+		icon = TEX_republican_submission
+		cost = 6
+		x = 1
+		y = 5
+		relative_position_id = TEX_republican_submission
+		
+		prerequisite = {
+			focus = TEX_atlantas_tutelage
+			focus = TEX_new_national_guard
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_status_quo_in_the_courts
+			focus = TEX_judicial_subservience
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_judicial_subservience
+		icon = TEX_republican_submission
+		cost = 6
+		x = 3
+		y = 5
+		relative_position_id = TEX_republican_submission
+		
+		prerequisite = {
+			focus = TEX_atlantas_tutelage
+			focus = TEX_new_national_guard
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_status_quo_in_the_courts
+			focus = TEX_legal_independence
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_status_quo_in_the_courts
+		icon = TEX_republican_submission
+		cost = 6
+		x = 5
+		y = 5
+		relative_position_id = TEX_republican_submission
+		
+		prerequisite = {
+			focus = TEX_atlantas_tutelage
+			focus = TEX_new_national_guard
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_judicial_subservience
+			focus = TEX_legal_independence
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_restored_red_scare
+		icon = TEX_republican_submission
+		cost = 6
+		x = -2
+		y = 6
+		relative_position_id = TEX_republican_submission
+		
+		prerequisite = {
+			focus = TEX_judicial_subservience
+			focus = TEX_status_quo_in_the_courts
+			focus = TEX_legal_independence
+		}
+		
+		prerequisite = {
+			focus = TEX_nationalism_fades_away
+		}
+		prerequisite = {
+			focus = TEX_restore_the_gop
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_the_sister_republics
+		icon = TEX_republican_submission
+		cost = 6
+		x = 4
+		y = 6
+		relative_position_id = TEX_republican_submission
+		
+		prerequisite = {
+			focus = TEX_judicial_subservience
+			focus = TEX_status_quo_in_the_courts
+			focus = TEX_legal_independence
+		}
+		
+		prerequisite = {
+			focus = TEX_nationalism_fades_away
+		}
+		prerequisite = {
+			focus = TEX_restore_the_gop
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_fate_of_perry
+		icon = TEX_republican_submission
+		cost = 6
+		x = 1
+		y = 6
+		relative_position_id = TEX_republican_submission
+		
+		prerequisite = {
+			focus = TEX_judicial_subservience
+			focus = TEX_status_quo_in_the_courts
+			focus = TEX_legal_independence
+		}
+		
+		prerequisite = {
+			focus = TEX_nationalism_fades_away
+		}
+		prerequisite = {
+			focus = TEX_restore_the_gop
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	# - President Dan Patrick
+	
+	focus = {
+		id = TEX_president_patrick
+		icon = TEX_republican_submission
+		cost = 6
+		x = -4
+		y = 1
+		relative_position_id = TEX_fate_of_perry
+		
+		prerequisite = {
+			focus = TEX_fate_of_perry
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_intense_social_conservatism
+		icon = TEX_republican_submission
+		cost = 6
+		x = -1
+		y = 2
+		relative_position_id = TEX_president_patrick
+		
+		prerequisite = {
+			focus = TEX_president_patrick
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_anti_seperatist_scare
+		icon = TEX_republican_submission
+		cost = 6
+		x = 1
+		y = 2
+		relative_position_id = TEX_president_patrick
+		
+		prerequisite = {
+			focus = TEX_president_patrick
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_election_puppeteering
+		icon = TEX_republican_submission
+		cost = 6
+		x = 0
+		y = 3
+		relative_position_id = TEX_president_patrick
+		
+		prerequisite = {
+			focus = TEX_anti_seperatist_scare
+		}
+		prerequisite = {
+			focus = TEX_intense_social_conservatism
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_empower_national_guard
+		icon = TEX_republican_submission
+		cost = 6
+		x = -2
+		y = 3
+		relative_position_id = TEX_president_patrick
+		
+		prerequisite = {
+			focus = TEX_anti_seperatist_scare
+		}
+		prerequisite = {
+			focus = TEX_intense_social_conservatism
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_slavish_devotion
+		icon = TEX_republican_submission
+		cost = 6
+		x = 2
+		y = 3
+		relative_position_id = TEX_president_patrick
+		
+		prerequisite = {
+			focus = TEX_anti_seperatist_scare
+		}
+		prerequisite = {
+			focus = TEX_intense_social_conservatism
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_piece_of_the_puzzle
+		icon = TEX_republican_submission
+		cost = 6
+		x = 0
+		y = 4
+		relative_position_id = TEX_president_patrick
+		
+		prerequisite = {
+			focus = TEX_slavish_devotion
+		}
+		prerequisite = {
+			focus = TEX_empower_national_guard
+		}
+		prerequisite = {
+			focus = TEX_election_puppeteering
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	# - President Greg Abbott
+	
+	focus = {
+		id = TEX_president_abbott
+		icon = TEX_republican_submission
+		cost = 6
+		x = 4
+		y = 1
+		relative_position_id = TEX_fate_of_perry
+		
+		prerequisite = {
+			focus = TEX_fate_of_perry
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_conservative_ethos
+		icon = TEX_republican_submission
+		cost = 6
+		x = -1
+		y = 2
+		relative_position_id = TEX_president_abbott
+		
+		prerequisite = {
+			focus = TEX_president_abbott
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_nationalist_compromise
+		icon = TEX_republican_submission
+		cost = 6
+		x = 1
+		y = 2
+		relative_position_id = TEX_president_abbott
+		
+		prerequisite = {
+			focus = TEX_president_abbott
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_safer_elections
+		icon = TEX_republican_submission
+		cost = 6
+		x = 0
+		y = 3
+		relative_position_id = TEX_president_abbott
+		
+		prerequisite = {
+			focus = TEX_nationalist_compromise
+		}
+		prerequisite = {
+			focus = TEX_conservative_ethos
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_stronger_police_force
+		icon = TEX_republican_submission
+		cost = 6
+		x = -2
+		y = 3
+		relative_position_id = TEX_president_abbott
+		
+		prerequisite = {
+			focus = TEX_nationalist_compromise
+		}
+		prerequisite = {
+			focus = TEX_conservative_ethos
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_appear_with_rick_perry
+		icon = TEX_republican_submission
+		cost = 6
+		x = 2
+		y = 3
+		relative_position_id = TEX_president_abbott
+		
+		prerequisite = {
+			focus = TEX_nationalist_compromise
+		}
+		prerequisite = {
+			focus = TEX_conservative_ethos
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_partnership_with_atlanta
+		icon = TEX_republican_submission
+		cost = 6
+		x = 0
+		y = 4
+		relative_position_id = TEX_president_abbott
+		
+		prerequisite = {
+			focus = TEX_appear_with_rick_perry
+		}
+		prerequisite = {
+			focus = TEX_stronger_police_force
+		}
+		prerequisite = {
+			focus = TEX_safer_elections
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	# - President Rick Perry
+	
+	focus = {
+		id = TEX_perry_remains
+		icon = TEX_republican_submission
+		cost = 6
+		x = 0
+		y = 1
+		relative_position_id = TEX_fate_of_perry
+		
+		prerequisite = {
+			focus = TEX_fate_of_perry
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_continue_the_middle_line
+		icon = TEX_republican_submission
+		cost = 6
+		x = 0
+		y = 1
+		relative_position_id = TEX_perry_remains
+		
+		prerequisite = {
+			focus = TEX_perry_remains
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_distance_from_atlanta
+		icon = TEX_republican_submission
+		cost = 6
+		x = -2
+		y = 1
+		relative_position_id = TEX_perry_remains
+		
+		prerequisite = {
+			focus = TEX_perry_remains
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_return_to_bushism
+		icon = TEX_republican_submission
+		cost = 6
+		x = 2
+		y = 1
+		relative_position_id = TEX_perry_remains
+		
+		prerequisite = {
+			focus = TEX_perry_remains
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_continue_republican_dominance
+		icon = TEX_republican_submission
+		cost = 6
+		x = -1
+		y = 2
+		relative_position_id = TEX_perry_remains
+		
+		prerequisite = {
+			focus = TEX_return_to_bushism
+		}
+		prerequisite = {
+			focus = TEX_distance_from_atlanta
+		}
+		prerequisite = {
+			focus = TEX_continue_the_middle_line
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_convinient_nationalism
+		icon = TEX_republican_submission
+		cost = 6
+		x = 1
+		y = 2
+		relative_position_id = TEX_perry_remains
+		
+		prerequisite = {
+			focus = TEX_return_to_bushism
+		}
+		prerequisite = {
+			focus = TEX_distance_from_atlanta
+		}
+		prerequisite = {
+			focus = TEX_continue_the_middle_line
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_the_republic_and_the_republic
+		icon = TEX_republican_submission
+		cost = 6
+		x = 0
+		y = 3
+		relative_position_id = TEX_perry_remains
+		
+		prerequisite = {
+			focus = TEX_convinient_nationalism
+		}
+		prerequisite = {
+			focus = TEX_continue_republican_dominance
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	# - Shared
+	
+	focus = {
+		id = TEX_a_christian_texas
+		icon = TEX_republican_submission
+		cost = 6
+		x = 4
+		y = 2
+		relative_position_id = TEX_fate_of_perry
+		
+		prerequisite = {
+			focus = TEX_perry_remains
+			focus = TEX_president_abbott
+			focus = TEX_president_patrick
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_purge_remaining_democrats
+		icon = TEX_republican_submission
+		cost = 6
+		x = -4
+		y = 2
+		relative_position_id = TEX_fate_of_perry
+		
+		prerequisite = {
+			focus = TEX_perry_remains
+			focus = TEX_president_abbott
+			focus = TEX_president_patrick
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_an_american_sattelite
+		icon = TEX_republican_submission
+		cost = 6
+		x = 0
+		y = 6
+		relative_position_id = TEX_fate_of_perry
+		
+		prerequisite = {
+			focus = TEX_the_republic_and_the_republic
+			focus = TEX_partnership_with_atlanta
+			focus = TEX_piece_of_the_puzzle
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_forefit_east_texas
+		icon = TEX_republican_submission
+		cost = 6
+		x = -2
+		y = 7
+		relative_position_id = TEX_fate_of_perry
+		
+		prerequisite = {
+			focus = TEX_an_american_sattelite
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_end_the_occupation
+			focus = TEX_dallas_compromise
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_dallas_compromise
+		icon = TEX_republican_submission
+		cost = 6
+		x = 2
+		y = 7
+		relative_position_id = TEX_fate_of_perry
+		
+		prerequisite = {
+			focus = TEX_an_american_sattelite
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_end_the_occupation
+			focus = TEX_forefit_east_texas
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_end_the_occupation
+		icon = TEX_republican_submission
+		cost = 6
+		x = 0
+		y = 7
+		relative_position_id = TEX_fate_of_perry
+		
+		prerequisite = {
+			focus = TEX_an_american_sattelite
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_dallas_compromise
+			focus = TEX_forefit_east_texas
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_republican_war_effort
+		icon = TEX_republican_submission
+		cost = 6
+		x = -1
+		y = 8
+		relative_position_id = TEX_fate_of_perry
+		
+		prerequisite = {
+			focus = TEX_dallas_compromise
+			focus = TEX_forefit_east_texas
+			focus = TEX_end_the_occupation
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_demand_south_texas
+		icon = TEX_republican_submission
+		cost = 6
+		x = 1
+		y = 8
+		relative_position_id = TEX_fate_of_perry
+		
+		prerequisite = {
+			focus = TEX_dallas_compromise
+			focus = TEX_forefit_east_texas
+			focus = TEX_end_the_occupation
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_hispanic_crackdown
+		icon = TEX_republican_submission
+		cost = 6
+		x = -1
+		y = 1
+		relative_position_id = TEX_demand_south_texas
+		
+		prerequisite = {
+			focus = TEX_demand_south_texas
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_enforce_the_border
+		icon = TEX_republican_submission
+		cost = 6
+		x = 1
+		y = 1
+		relative_position_id = TEX_demand_south_texas
+		
+		prerequisite = {
+			focus = TEX_demand_south_texas
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+}
