@@ -2341,6 +2341,30 @@ country_event = {
 		375 = { is_owned_by_ROOT_or_subject = yes }
 		366 = { is_owned_by_ROOT_or_subject = yes }
 	}
+	
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = { 
+					NOT = { country_exists = ILL }
+				}
+				every_state = {
+					limit = { is_core_of = ILL }
+					GRL = { add_state_core = PREV }
+				}
+			}
+			
+			if = {
+				limit = {
+					NEA = { is_subject_of = GRL }
+				}
+				every_state = {
+					limit = { is_core_of = NEA }
+					GRL = { add_state_core = PREV }
+				}
+			}
+		}
+	}
     
 	option = { #The USA
 		name = american_unification.100.o1
