@@ -1,0 +1,5517 @@
+focus_tree = {
+	id = heartlands_focus
+	country = {
+		factor = 0
+		modifier = {
+			add = 20
+			tag = MWA
+		}
+	}
+	default = no
+	continuous_focus_position = { x = 500 y = 5300 }
+	shared_focus = AMR_1987_undone
+	
+	###################
+	#### POLITICAL ####
+	###################
+
+	### KKKillary ###
+
+	focus = {
+		id = MWA_hilldawg
+		icon = GFX_goal_MWA_president_rodham
+		cost = 6
+		x = 0
+		y = 0
+
+		available = {
+			has_country_leader = {
+				name = "Hillary Rodham"
+				ruling_only = yes
+			}
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.02
+			}
+			country_event = heartlands.41
+			hidden_effect = {
+				country_event = {
+					id = heartlands_flavour.19
+					days = 200
+					random_days = 140
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_authority_of_the_executive
+		icon = GFX_goal_MWA_executive_power
+		cost = 6
+		
+		relative_position_id = MWA_hilldawg
+		x = -2
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_hilldawg
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = heartlands.42
+			swap_ideas = {
+				remove_idea = MWA_extensive_decentralization
+				add_idea = MWA_empowered_presidency
+			}
+			add_political_power = 50
+			add_popularity = {
+				ideology = national_conservative 
+				popularity = 0.03
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_fervent_americanism
+		icon = GFX_goal_MWA_fervent_american_patriotism
+		cost = 6
+		
+		relative_position_id = MWA_hilldawg
+		x = -3
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_authority_of_the_executive
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			remove_ideas = MWA_lawless_countryside
+			add_war_support = 0.1
+			add_ideas = MWA_fervent_americanism
+		}
+	}
+	
+	focus = {
+		id = MWA_iron_resolve
+		icon = GFX_goal_MWA_iron_resolve
+		cost = 6
+		
+		relative_position_id = MWA_hilldawg
+		x = -2
+		y = 3
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_fervent_americanism
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_popularity = {
+				ideology = national_conservative 
+				popularity = 0.03
+			}
+			add_ideas = MWA_conservative_feminism
+		}
+	}
+	
+	focus = {
+		id = MWA_support_higher_education
+		icon = GFX_goal_MWA_higher_education
+		cost = 6
+		
+		relative_position_id = MWA_hilldawg
+		x = -1
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_hilldawg
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = MWA_higher_education_funding
+				days = 600
+			}
+			add_manpower = 2300
+		}
+	}
+	
+	focus = {
+		id = MWA_states_rights
+		icon = GFX_goal_MWA_states_rights
+		cost = 6
+		
+		relative_position_id = MWA_hilldawg
+		x = 1
+		y = 2
+
+		available = {
+			has_completed_focus = MWA_authority_of_the_executive
+		}
+		
+		prerequisite = {
+			focus = MWA_hilldawg
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_stability = 0.03
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.03
+			}
+			random_owned_controlled_state = {
+				increase_state_category_by_one_level = yes
+			}
+			swap_ideas = {
+				remove_idea = MWA_empowered_presidency
+				add_idea = MWA_balance_of_powers
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_legacy_of_rockefeller
+		icon = GFX_goal_MWA_rockefeller_republicanism
+		cost = 6
+		
+		relative_position_id = MWA_hilldawg
+		x = 0
+		y = 3
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_states_rights
+		}
+		prerequisite = {
+			focus = MWA_support_higher_education
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			MWA_hillary_rodham = {
+				add_trait = {
+					ideology = paleoliberal
+					trait = MWA_rockefeller_republican
+				}
+			}
+			country_event = heartlands.44
+		}
+	}
+	
+	
+	focus = {
+		id = MWA_fiscal_conservatism
+		icon = GFX_goal_MWA_fiscal_conservatism
+		cost = 6
+		
+		relative_position_id = MWA_hilldawg
+		x = 2
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_hilldawg
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = heartlands.43
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.03
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.03
+			}
+			add_ideas = MWA_fiscal_conservatism
+		}
+	}
+	
+	focus = {
+		id = MWA_social_moderation
+		icon = GFX_goal_MWA_social_moderation
+		cost = 6
+		
+		relative_position_id = MWA_hilldawg
+		x = 3
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_fiscal_conservatism
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MWA_fiscal_conservatism
+				add_idea = MWA_fiscal_conservatism2
+			}
+			add_stability = 0.05
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.02
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_embrace_doles_agrarian_vision
+		icon = GFX_goal_MWA_legacy_of_dole
+		cost = 6
+		
+		relative_position_id = MWA_hilldawg
+		x = 2
+		y = 3
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_social_moderation
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = MWA_agrarianism
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.02
+			}
+			country_event = heartlands.45
+		}
+	}
+	
+	focus = {
+		id = MWA_hillarys_america
+		icon = {
+			value = GFX_goal_MWA_gop_recovery
+			trigger = { has_country_flag = MWA_natcons_take_over_after_clinton }
+		}
+		icon = {
+			value = GFX_goal_MWA_rodham_america
+		}
+		cost = 6
+		
+		relative_position_id = MWA_hilldawg
+		x = 0
+		y = 4
+
+		available = {
+			OR = {
+				AND = {
+					has_country_leader = {
+						name = "Hillary Rodham"
+						ruling_only = yes
+					}
+					has_country_flag = the_united_states_are_back
+				}
+				has_country_flag = MWA_natcons_take_over_after_clinton
+			}
+		}
+		
+		prerequisite = {
+			focus = MWA_embrace_doles_agrarian_vision
+			focus = MWA_legacy_of_rockefeller
+			focus = MWA_iron_resolve
+		}
+		
+		mutually_exclusive = {
+			focus = MWA_centrist_recovery
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MWA_scars_of_unification
+				add_idea = MWA_scars_of_unification2
+			}
+			if = {
+				limit = { has_country_flag = MWA_natcons_take_over_after_clinton }
+				country_event = heartlands.51
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_paleoliberal_intervention
+		icon = GFX_goal_MWA_paleoliberal_interventionism
+		cost = 6
+		
+		relative_position_id = MWA_hillarys_america
+		x = 0
+		y = 1
+
+		available = {
+			has_country_flag = the_united_states_are_back
+			has_completed_focus = MWA_conservative_enviromentalism
+			has_completed_focus = MWA_create_personality_cult
+		}
+		
+		prerequisite = {
+			focus = MWA_hillarys_america
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = MWA_paleoliberal_intervention
+			if = {
+				limit = { has_country_flag = MWA_natcons_take_over_after_clinton }
+				custom_effect_tooltip = tooltip_blank_line
+				custom_effect_tooltip = MWA_all_postus_spirits_removed
+				hidden_effect = {
+					remove_ideas = MWA_scars_of_unification
+					remove_ideas = MWA_scars_of_unification2
+					remove_ideas = MWA_scars_of_unification3
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_conservative_enviromentalism
+		icon = GFX_goal_MWA_green_conservatism
+		cost = 6
+		
+		relative_position_id = MWA_hillarys_america
+		x = -2
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_hillarys_america
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MWA_scars_of_unification2
+				add_idea = MWA_scars_of_unification3
+			}
+			add_ideas = MWA_conservative_enviromentalism
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = renewable_energy_plant
+					level = 1
+					instant_build = yes
+				}
+			}
+			country_event = heartlands.46
+		}
+	}
+	
+	focus = {
+		id = MWA_create_personality_cult
+		icon = {
+			value = GFX_goal_MWA_rubios_militarism
+			trigger = {
+				has_country_leader = {	
+					character = MWA_marco_rubio
+					ruling_only = yes
+				}
+			}
+		}
+		icon = {
+			value = GFX_goal_MWA_christies_agrarianism
+			trigger = {
+				has_country_leader = {	
+					character = MWA_chris_christie
+					ruling_only = yes
+				}
+			}
+		}
+		icon = {
+			value = GFX_goal_MWA_brownbacks_christian_crudade
+			trigger = {
+				has_country_leader = {	
+					character = MWA_sam_brownback
+					ruling_only = yes
+				}
+			}
+		}
+		icon = {
+			value = GFX_goal_MWA_personality_cult
+		}
+		cost = 6
+		
+		relative_position_id = MWA_hillarys_america
+		x = 2
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_hillarys_america
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			if = {
+				limit = {
+					has_country_leader = {	
+						character = MWA_marco_rubio
+						ruling_only = yes
+					}
+				}
+				add_country_leader_trait = MWA_rodhamite_militarist
+				country_event = heartlands.53
+			}
+			else_if = {
+				limit = {
+					has_country_leader = {	
+						character = MWA_chris_christie
+						ruling_only = yes
+					}
+				}
+				add_country_leader_trait = MWA_agrarian_localist
+				country_event = heartlands.52
+			}
+			else_if = {
+				limit = {
+					has_country_leader = {	
+						character = MWA_sam_brownback
+						ruling_only = yes
+					}
+				}
+				add_country_leader_trait = MWA_god_and_low_taxes
+				country_event = heartlands.54
+			}
+			else = {
+				country_event = heartlands.47
+				swap_ideas = {
+					remove_idea = MWA_balance_of_powers
+					add_idea = MWA_the_president_in_command
+				}
+				add_popularity = {
+					ideology = national_conservative
+					popularity = 0.05
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_im_with_her
+		icon = {
+			value = GFX_goal_MWA_no_longer_the_party_of_reagan
+			trigger = { has_country_flag = MWA_natcons_take_over_after_clinton }
+		}
+		icon = {
+			value = GFX_goal_MWA_im_with_her
+		}
+		cost = 6
+		
+		relative_position_id = MWA_hillarys_america
+		x = 0
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_create_personality_cult
+		}
+		prerequisite = {
+			focus = MWA_conservative_enviromentalism
+		}
+		prerequisite = {
+			focus = MWA_paleoliberal_intervention
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			if = {
+				limit = { has_country_flag = MWA_natcons_take_over_after_clinton }
+				add_popularity = {
+					ideology = national_conservative
+					popularity = 0.05
+				}
+				add_ideas = MWA_no_more_reagan_idea
+			}
+			else = {
+				remove_ideas = MWA_scars_of_unification3
+				swap_ideas = {
+					remove_idea = MWA_conservative_feminism
+					add_idea = MWA_im_with_her
+				}
+			}
+		}
+	}
+	
+	### The First Black President ###
+
+	focus = {
+		id = MWA_clinton
+		icon = GFX_goal_MWA_president_clinton
+		cost = 2
+		x = 14
+		y = 0
+
+		available = {
+			has_country_leader = {
+				name = "Bill Clinton"
+				ruling_only = yes
+			}
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.02
+			}
+			country_event = heartlands.34
+			hidden_effect = {
+				country_event = {
+					id = heartlands_flavour.20
+					days = 200
+					random_days = 140
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_the_third_way
+		icon = GFX_goal_MWA_third_way
+		cost = 6
+		
+		relative_position_id = MWA_clinton
+		x = -2
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_clinton
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = MWA_the_third_way
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = new_democrat
+				popularity = -0.02
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = -0.02
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_invest_in_the_intranet
+		icon = GFX_goal_MWA_digital_investment
+		cost = 6
+		
+		relative_position_id = MWA_clinton
+		x = -3
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_the_third_way
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = heartlands.35
+			random_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_ideas = MWA_intranet_investments
+			add_tech_bonus = {
+				name = computing_tech_bonus
+				bonus = 0.5
+				uses = 2
+				category = computing_tech
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_civil_unions
+		icon = GFX_goal_MWA_civil_unions
+		cost = 6
+		
+		relative_position_id = MWA_clinton
+		x = -2
+		y = 3
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_invest_in_the_intranet
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = MWA_progressive_civil_agenda
+			add_manpower = 25000
+		}
+	}
+	
+	focus = {
+		id = MWA_free_trade_plans
+		icon = GFX_goal_MWA_free_trade
+		cost = 6
+		
+		relative_position_id = MWA_clinton
+		x = -1
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_the_third_way
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = heartlands.37
+			add_opinion_modifier = {
+				target = CAN
+				modifier = trade_influence_3
+			}
+			add_opinion_modifier = {
+				target = MEX
+				modifier = trade_influence_3
+			}
+			CAN = {
+				add_opinion_modifier = {
+					target = MWA
+					modifier = trade_influence_3
+				}
+			}
+			MWA = {
+				add_opinion_modifier = {
+					target = MWA
+					modifier = trade_influence_3
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_crackdown_on_crime
+		icon = GFX_goal_MWA_crackdown_on_crime
+		cost = 6
+		
+		relative_position_id = MWA_clinton
+		x = 1
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_triangulation_theory
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			remove_ideas = MWA_lawless_countryside
+			add_stability = 0.05
+			add_manpower = -2300
+		}
+	}
+	
+	focus = {
+		id = MWA_empower_denver
+		icon = GFX_goal_MWA_empower_denver
+		cost = 6
+		
+		relative_position_id = MWA_clinton
+		x = 0
+		y = 3
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_crackdown_on_crime
+		}
+		prerequisite = {
+			focus = MWA_free_trade_plans
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MWA_extensive_decentralization
+				add_idea = MWA_new_federalism
+			}
+			random_owned_controlled_state = {
+				increase_state_category_by_one_level = yes
+			}
+			random_owned_controlled_state = {
+				increase_state_category_by_one_level = yes
+			}
+			country_event = heartlands.38
+		}
+	}
+	
+	focus = {
+		id = MWA_triangulation_theory
+		icon = GFX_goal_MWA_triangulation
+		cost = 6
+		
+		relative_position_id = MWA_clinton
+		x = 2
+		y = 1
+
+		available = {
+			has_completed_focus = MWA_the_third_way
+		}
+		
+		prerequisite = {
+			focus = MWA_clinton
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MWA_the_third_way
+				add_idea = MWA_the_third_way2
+			}
+			add_political_power = 30
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.02
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_workfare_programs
+		icon = GFX_goal_MWA_welfare_reform
+		cost = 6
+		
+		relative_position_id = MWA_clinton
+		x = 3
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_triangulation_theory
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = MWA_workfare
+			random_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_healthcare_reform_plan
+		icon = GFX_goal_MWA_healthcare_reform
+		cost = 6
+		
+		relative_position_id = MWA_clinton
+		x = 2
+		y = 3
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_workfare_programs
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = MWA_reformed_health_care
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = hospital
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_clintons_america
+		icon = {	
+			value = GFX_goal_MWA_democrat_recovery
+			trigger = {
+				has_country_flag = MWA_liberals_take_over_after_rodham
+			}
+		}
+		icon = {	
+			value = GFX_goal_MWA_clintons_america
+		}
+		cost = 6
+		
+		relative_position_id = MWA_clinton
+		x = 0
+		y = 4
+
+		available = {
+			OR = {
+				AND = {
+					has_country_leader = {
+						name = "Bill Clinton"
+						ruling_only = yes
+					}
+					has_country_flag = the_united_states_are_back
+				}
+				has_country_flag = MWA_liberals_take_over_after_rodham
+			}
+		}
+		
+		mutually_exclusive = {
+			focus = MWA_centrist_recovery
+			focus = MWA_paleocon_america
+		}
+		
+		prerequisite = {
+			focus = MWA_healthcare_reform_plan
+			focus = MWA_empower_denver
+			focus = MWA_civil_unions
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MWA_scars_of_unification
+				add_idea = MWA_scars_of_unification2
+			}
+			if = {
+				limit = { has_country_flag = MWA_liberals_take_over_after_rodham }
+				country_event = heartlands.55
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_deregulation
+		icon = {
+			value = GFX_goal_MWA_new_social_liberalism
+			trigger = { has_country_flag = MWA_liberals_take_over_after_rodham }
+		}
+		icon = {
+			value = GFX_goal_MWA_clintonian_deregulation
+		}
+		cost = 6
+		
+		relative_position_id = MWA_clintons_america
+		x = 0
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_clintons_america
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			if = {
+				limit = { has_country_flag = MWA_liberals_take_over_after_rodham }
+				add_stability = 0.05
+				add_ideas = MWA_social_liberalism
+			}
+			else = {
+				if = {
+					limit = { has_idea = MWA_scars_of_unification3 }
+					remove_ideas = MWA_scars_of_unification3
+				}
+				else = {
+					swap_ideas = {
+						remove_idea = MWA_scars_of_unification2
+						add_idea = MWA_scars_of_unification3
+					}
+				}
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 1
+				}
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_new_enviromentalism
+		icon = GFX_goal_MWA_green_capitalism
+		cost = 6
+		
+		relative_position_id = MWA_clintons_america
+		x = -2
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_clintons_america
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = MWA_scars_of_unification2 }
+				swap_ideas = {
+					remove_idea = MWA_scars_of_unification2
+					add_idea = MWA_scars_of_unification3
+				}
+			}
+			else = {
+				remove_ideas = MWA_scars_of_unification3
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = renewable_energy_plant
+					level = 1
+					instant_build = yes
+				}
+			}
+			country_event = heartlands.40
+			add_ideas = MWA_new_enviromentalism
+		}
+	}
+	
+	focus = {
+		id = MWA_support_african_americans
+		icon = {
+			value = GFX_goal_MWA_new_new_deal
+			trigger = { has_country_flag = MWA_liberals_take_over_after_rodham }
+		}
+		icon = {
+			value = GFX_goal_MWA_support_african_americans
+		}
+		cost = 6
+		
+		relative_position_id = MWA_clintons_america
+		x = 2
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_clintons_america
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.04
+			}
+			if = {
+				limit = { has_country_flag = MWA_liberals_take_over_after_rodham }
+				add_ideas = MWA_new_new_deal_idea
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 1
+				}
+				add_stability = 0.06
+				country_event = heartlands.56
+			}
+			else = {
+				country_event = heartlands.39
+				MWA_bill_clinton = {
+					add_trait = {
+						ideology = old_american_democrats
+						trait = MWA_first_black_president
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_salvage_neoliberalism
+		icon = GFX_goal_MWA_salvage_neoliberal_world
+		cost = 6
+		
+		relative_position_id = MWA_clintons_america
+		x = 0
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_support_african_americans
+		}
+		prerequisite = {
+			focus = MWA_new_enviromentalism
+		}
+		prerequisite = {
+			focus = MWA_deregulation
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = MWA_neoliberal_world_order
+			if = {
+				limit = { has_country_flag = MWA_liberals_take_over_after_rodham }
+				custom_effect_tooltip = tooltip_blank_line
+				custom_effect_tooltip = MWA_all_postus_spirits_removed
+				hidden_effect = {
+					remove_ideas = MWA_scars_of_unification
+					remove_ideas = MWA_scars_of_unification2
+					remove_ideas = MWA_scars_of_unification3
+				}
+			}
+		}
+	}
+	
+	### Centrist Recovery ###
+
+	focus = {
+		id = MWA_centrist_recovery
+		icon = GFX_goal_MWA_centrist_recovery
+		cost = 6
+		
+		relative_position_id = MWA_hilldawg
+		x = 7
+		y = 4
+
+		available = {
+		}
+		
+		mutually_exclusive = {
+			focus = MWA_hillarys_america
+			focus = MWA_clintons_america
+		}
+		
+		prerequisite = {
+			focus = MWA_civil_unions
+			focus = MWA_empower_denver
+			focus = MWA_healthcare_reform_plan
+			focus = MWA_iron_resolve
+			focus = MWA_legacy_of_rockefeller
+			focus = MWA_embrace_doles_agrarian_vision
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.1
+			}
+			country_event = heartlands.48
+		}
+	}
+	
+	focus = {
+		id = MWA_renewed_decentralization
+		icon = GFX_goal_MWA_renew_decentralization
+		cost = 6
+		
+		relative_position_id = MWA_centrist_recovery
+		x = 0
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_centrist_recovery
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_stability = -0.05
+			add_ideas = MWA_decentralization_done_right
+		}
+	}
+	
+	focus = {
+		id = MWA_legal_cannabis
+		icon = GFX_goal_MWA_legalize_cannabis
+		cost = 6
+		
+		relative_position_id = MWA_centrist_recovery
+		x = -2
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_centrist_recovery
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {	
+			add_ideas = MWA_legal_weed_idea
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			country_event = heartlands.49
+		}
+	}
+	
+	focus = {
+		id = MWA_true_representative_democracy
+		icon = GFX_goal_MWA_new_representative_democracy
+		cost = 6
+		
+		relative_position_id = MWA_centrist_recovery
+		x = 2
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_centrist_recovery
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = MWA_true_representative_democracy
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.04
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = -0.04
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_rehabilitate_hammons
+		icon = GFX_goal_MWA_rehabilitate_hammons
+		cost = 6
+		
+		relative_position_id = MWA_centrist_recovery
+		x = 0
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_true_representative_democracy
+		}
+		prerequisite = {
+			focus = MWA_legal_cannabis
+		}
+		prerequisite = {
+			focus = MWA_renewed_decentralization
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_country_leader_trait = MWA_centrist_legacy
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.03
+			}
+			country_event = heartlands.50
+		}
+	}
+	
+	### General Ripper ###
+
+	focus = {
+		id = MWA_clarks_return
+		icon = GFX_goal_MWA_clark
+		cost = 2
+		x = 3
+		y = 8
+
+		available = {
+			has_country_leader = {
+				name = "Wesley Clark"
+				ruling_only = yes
+			}
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.04
+			}
+			country_event = heartlands.1
+		}
+	}
+	
+	focus = {
+		id = MWA_silence_establishment_bickering
+		icon = GFX_goal_MWA_silence_establishment_bickering
+		cost = 6
+		
+		relative_position_id = MWA_clarks_return
+		x = -2
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_clarks_return
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MWA_extensive_decentralization
+				add_idea = MWA_united_behind_clark
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			add_liberal_to_coalition = yes
+			add_centrist_to_coalition = yes
+			country_event = heartlands.2
+		}
+	}
+	
+	focus = {
+		id = MWA_unrepentant_militarism
+		icon = GFX_goal_MWA_unrepentant_militarism
+		cost = 6
+		
+		relative_position_id = MWA_clarks_return
+		x = -3
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_silence_establishment_bickering
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_war_support = 0.1
+			add_command_power = 100
+			army_experience = 50
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			swap_ideas = {
+				remove_idea = MWA_lawless_countryside
+				add_idea = MWA_martial_law
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_civilian_corps
+		icon = GFX_goal_MWA_expand_americorps
+		cost = 6
+		
+		relative_position_id = MWA_clarks_return
+		x = -2
+		y = 3
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_unrepentant_militarism
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			add_ideas = MWA_americorps_idea
+		}
+	}
+	
+	focus = {
+		id = MWA_gay_marrige
+		icon = GFX_goal_MWA_gays_can_die_for_their_country_too
+		cost = 6
+		
+		relative_position_id = MWA_clarks_return
+		x = -1
+		y = 2
+
+		available = {
+			has_completed_focus = MWA_liberal_social_policy
+		}
+		
+		prerequisite = {
+			focus = MWA_silence_establishment_bickering
+			focus = MWA_clean_air_and_water
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = heartlands.4
+			add_manpower = 1100
+			swap_ideas = {
+				remove_idea = MWA_social_liberalism
+				add_idea = MWA_social_liberalism2
+			}
+			add_stability = 0.02
+		}
+	}
+	
+	focus = {
+		id = MWA_liberal_social_policy
+		icon = GFX_goal_MWA_liberal_social_policy
+		cost = 6
+		
+		relative_position_id = MWA_clarks_return
+		x = 1
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_silence_establishment_bickering
+			focus = MWA_clean_air_and_water
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = MWA_social_liberalism
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = fascist
+				popularity = -0.04
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = -0.04
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_new_healthcare_system
+		icon = GFX_goal_MWA_clark_public_healthcare
+		cost = 6
+		
+		relative_position_id = MWA_clarks_return
+		x = 0
+		y = 3
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_liberal_social_policy
+		}
+		prerequisite = {
+			focus = MWA_gay_marrige
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = heartlands.5
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = hospital
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_ideas = MWA_new_healthcare_system
+		}
+	}
+	
+	
+	focus = {
+		id = MWA_clean_air_and_water
+		icon = GFX_goal_MWA_clean_air_and_water
+		cost = 6
+		
+		relative_position_id = MWA_clarks_return
+		x = 2
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_clarks_return
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = heartlands.3
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = renewable_energy_plant
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = renewable_energy_plant
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				increase_state_category_by_one_level = yes
+			}
+			add_ideas = MWA_clean_air_and_water
+		}
+	}
+	
+	focus = {
+		id = MWA_the_new_eisenhower
+		icon = GFX_goal_MWA_footsteps_of_great_men
+		cost = 6
+		
+		relative_position_id = MWA_clarks_return
+		x = 3
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_clean_air_and_water
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			MWA_wesley_clark = {
+				add_field_marshal_role={
+					traits={ politically_connected infantry_leader skilled_staffer }
+					skill=3
+					attack_skill=2
+					defense_skill=3
+					planning_skill=3
+					logistics_skill=2
+					legacy_id=-1
+				}
+				add_trait = {
+					ideology = american_nationalist
+					trait = MWA_modern_eisehnower
+				}
+			}
+			add_command_power = 100
+			add_war_support = 0.05
+		}
+	}
+	
+	focus = {
+		id = MWA_new_american_patriotism
+		icon = GFX_goal_MWA_new_american_patriotism
+		cost = 6
+		
+		relative_position_id = MWA_clarks_return
+		x = 2
+		y = 3
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_the_new_eisenhower
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			every_state = {
+				limit = { is_mainland_american_state = yes }
+				MWA = {
+					add_state_claim = PREV
+				}
+			}
+			add_war_support = 0.1
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.1
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_clarks_america
+		icon = GFX_goal_MWA_clarks_america
+		cost = 6
+		
+		relative_position_id = MWA_clarks_return
+		x = 0
+		y = 4
+
+		available = {
+			has_country_leader = {
+				name = "Wesley Clark"
+				ruling_only = yes
+			}
+			has_country_flag = the_united_states_are_back
+		}
+		
+		prerequisite = {
+			focus = MWA_new_american_patriotism
+		}
+		prerequisite = {
+			focus = MWA_new_healthcare_system
+		}
+		prerequisite = {
+			focus = MWA_civilian_corps
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MWA_scars_of_unification
+				add_idea = MWA_scars_of_unification2
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_reaching_light_speed
+		icon = GFX_goal_MWA_beyond_light_speed
+		cost = 6
+		
+		relative_position_id = MWA_clarks_america
+		x = 0
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_clarks_america
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = heartlands.8
+			add_tech_bonus = {
+				name = rocket_engines
+				bonus = 2
+				uses = 2
+				category = rocketry
+			}
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = light_air
+			}
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = cat_air_engine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_loyal_congress
+		icon = GFX_goal_MWA_subordinate_congress
+		cost = 6
+		
+		relative_position_id = MWA_clarks_america
+		x = -2
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_clarks_america
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = heartlands.7
+			if = {
+				limit = { has_idea = MWA_scars_of_unification2 }
+				swap_ideas = {
+					remove_idea = MWA_scars_of_unification2
+					add_idea = MWA_scars_of_unification3
+				}
+			}
+			else = {
+				remove_ideas = MWA_scars_of_unification3
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.04
+			}
+			MWA_wesley_clark = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						ideology = centrist_ideology
+						expire="1.1.1.1"
+					}
+				}
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						ideology = social_liberal
+						expire="1.1.1.1"
+					}
+				}
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						ideology = paleoliberal
+						expire="1.1.1.1"
+					}
+				}
+			}
+			hidden_effect = {
+				country_event = {
+					id = heartlands.59
+					days = 40
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_military_role_in_reconstruction
+		icon = GFX_goal_MWA_americorp_reconstruction
+		cost = 6
+		
+		relative_position_id = MWA_clarks_america
+		x = 2
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_clarks_america
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = MWA_scars_of_unification3 }
+				remove_ideas = MWA_scars_of_unification3
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = MWA_scars_of_unification2
+					add_idea = MWA_scars_of_unification3
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_new_internationalism
+		icon = GFX_goal_MWA_new_internationalism
+		cost = 6
+		
+		relative_position_id = MWA_clarks_america
+		x = 0
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_military_role_in_reconstruction
+		}
+		prerequisite = {
+			focus = MWA_loyal_congress
+		}
+		prerequisite = {
+			focus = MWA_reaching_light_speed
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = MWA_new_internationalism_idea
+			add_war_support = 0.04
+		}
+	}
+	
+	### Nationalists ###
+	
+	# Pat Buchanan
+
+	focus = {
+		id = MWA_paleocons
+		icon = GFX_goal_MWA_paleoconservative_recovery
+		cost = 2
+		x = 21
+		y = 0
+
+		available = {
+			has_country_leader = {
+				name = "Pat Buchanan"
+				ruling_only = yes
+			}
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.04
+			}
+			country_event = heartlands.17
+		}
+	}
+	
+	focus = {
+		id = MWA_revive_the_vision_of_ashbrook
+		icon = GFX_goal_MWA_ashbrooks_legacy
+		cost = 6
+		
+		relative_position_id = MWA_paleocons
+		x = -2
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_paleocons
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			MWA_pat_buchanan = {
+				add_trait = {
+					ideology = paleoconservative
+					trait = MWA_heir_of_ashbrook
+				}
+			}
+			country_event = heartlands.18
+		}
+	}
+	
+	focus = {
+		id = MWA_a_second_conservative_revolution
+		icon = GFX_goal_MWA_new_conservative_revolution
+		cost = 6
+		
+		relative_position_id = MWA_paleocons
+		x = -1
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_revive_the_vision_of_ashbrook
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = MWA_a_second_conservative_revolution
+			add_popularity = {
+				ideology = national_conservative
+				popularity = -0.04
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = -0.04
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_heartland_values
+		icon = GFX_goal_MWA_social_conservatism
+		cost = 6
+		
+		relative_position_id = MWA_paleocons
+		x = 2
+		y = 1
+
+		available = {
+			has_completed_focus = MWA_a_second_conservative_revolution
+		}
+		
+		prerequisite = {
+			focus = MWA_paleocons
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MWA_a_second_conservative_revolution
+				add_idea = MWA_a_second_conservative_revolution2
+			}
+			add_stability = -0.04
+			add_war_support = 0.04
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.02
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_new_nativism
+		icon = GFX_goal_MWA_nativism
+		cost = 6
+		
+		relative_position_id = MWA_paleocons
+		x = 1
+		y = 2
+
+		available = {
+			has_completed_focus = MWA_seal_our_borders
+		}
+		
+		prerequisite = {
+			focus = MWA_heartland_values
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_manpower = -2300
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+			add_ideas = MWA_know_nothing_heritage
+		}
+	}
+	
+	focus = {
+		id = MWA_appeal_to_patriotic_leftists
+		icon = GFX_goal_MWA_appeal_to_patriot_leftists
+		cost = 6
+		
+		relative_position_id = MWA_paleocons
+		x = 0
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_paleocons
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			MWA_lenora_fulani = {
+				promote_character = socialist_nationalist
+			}
+			add_popularity = {
+				ideology = national_bolshevik
+				popularity = 0.06
+			}
+			add_nazbol_to_coalition = yes
+			set_party_name = {
+				name = MWA_nazbol_isolationists
+				long_name = MWA_nazbol_isolationists_long
+				ideology = national_bolshevik
+			}
+			country_event = heartlands.19
+		}
+	}
+	
+	focus = {
+		id = MWA_media_empire
+		icon = GFX_goal_MWA_media_empire
+		cost = 6
+		
+		relative_position_id = MWA_paleocons
+		x = 0
+		y = 3
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_appeal_to_patriotic_leftists
+			focus = MWA_a_second_conservative_revolution
+			focus = MWA_new_nativism
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = MWA_loyal_media
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.04
+			}
+			add_popularity = {
+				ideology = new_democrat
+				popularity = -0.04
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = -0.04
+			}
+			country_event = heartlands.20
+		}
+	}
+
+	focus = {
+		id = MWA_paleocon_america
+		icon = GFX_goal_MWA_buchanans_america
+		cost = 6
+		
+		relative_position_id = MWA_paleocons
+		x = 1
+		y = 4
+
+		available = {
+			OR = {
+				has_country_leader = {
+					name = "Tom Tancredo"
+					ruling_only = yes
+				}
+				has_country_leader = {
+					name = "Kris Kobach"
+					ruling_only = yes
+				}
+				has_country_leader = {
+					name = "Paul Gosar"
+					ruling_only = yes
+				}
+				has_country_leader = {
+					name = "Pat Buchanan"
+					ruling_only = yes
+				}
+			}
+			has_country_flag = the_united_states_are_back
+		}
+		
+		mutually_exclusive = {
+			focus = MWA_clintons_america
+		}
+		
+		prerequisite = {
+			focus = MWA_civil_unions
+			focus = MWA_empower_denver
+			focus = MWA_healthcare_reform_plan
+			focus = MWA_media_empire
+		}
+		prerequisite = {
+			focus = MWA_empower_the_police
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MWA_scars_of_unification
+				add_idea = MWA_scars_of_unification2
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_strict_isolationism
+		icon = GFX_goal_MWA_isolationism
+		cost = 6
+		
+		relative_position_id = MWA_paleocon_america
+		x = 0
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_paleocon_america
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = MWA_scars_of_unification3 }
+				remove_ideas = MWA_scars_of_unification3
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = MWA_scars_of_unification2
+					add_idea = MWA_scars_of_unification3
+				}
+			}
+			country_event = heartlands.21
+			add_war_support = -0.05
+			add_stability = 0.05
+			add_manpower = 2300
+		}
+	}
+	
+	focus = {
+		id = MWA_victory_in_the_culture_war
+		icon = GFX_goal_GER_modern_kulturkampf
+		cost = 6
+		
+		relative_position_id = MWA_paleocon_america
+		x = -2
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_paleocon_america
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MWA_a_second_conservative_revolution2
+				add_idea = MWA_a_second_conservative_revolution3
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.05
+			}
+			add_stability = -0.02
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.02
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_liquidate_communism
+		icon = GFX_goal_CAN_soviet_bloc
+		cost = 6
+		
+		relative_position_id = MWA_paleocon_america
+		x = 2
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_paleocon_america
+			focus = MWA_millers_america
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = MWA_scars_of_unification2 }
+				swap_ideas = {
+					remove_idea = MWA_scars_of_unification2
+					add_idea = MWA_scars_of_unification3
+				}
+			}
+			else = {
+				remove_ideas = MWA_scars_of_unification3
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = -0.2
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.2
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_a_republic_not_an_empire
+		icon = GFX_goal_MWA_a_republic_not_an_empire
+		cost = 6
+		
+		relative_position_id = MWA_paleocon_america
+		x = 0
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_liquidate_communism
+		}
+		prerequisite = {
+			focus = MWA_victory_in_the_culture_war
+		}
+		prerequisite = {
+			focus = MWA_strict_isolationism
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {	
+			add_ideas = MWA_isolationist_foreign_policy
+		}
+	}
+	
+	# Merlin Miller
+
+	focus = {
+		id = MWA_miller
+		icon = GFX_goal_MWA_millers_presidency
+		cost = 2
+		
+		relative_position_id = MWA_paleocons
+		x = 6
+		y = 0
+
+		available = {
+			has_country_leader = {
+				name = "Merlin Miller"
+				ruling_only = yes
+			}
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.04
+			}
+			country_event = heartlands.9
+		}
+	}
+	
+	focus = {
+		id = MWA_reach_out_to_tanceredo
+		icon = GFX_goal_MWA_reach_out_to_tancredo
+		cost = 6
+		
+		relative_position_id = MWA_miller
+		x = -2
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_miller
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = midwest_sic_tom_tancredo_hesitant
+				add_idea = midwest_sic_tom_tancredo
+			}
+			add_political_power = 100
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+			country_event = heartlands.10
+		}
+	}
+	
+	focus = {
+		id = MWA_protect_our_european_american_heritage
+		icon = GFX_goal_MWA_protect_euro_american_heritage
+		cost = 6
+		
+		relative_position_id = MWA_miller
+		x = -1
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_reach_out_to_tanceredo
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = MWA_american_majoritarianism
+			add_war_support = 0.03
+			add_stability = -0.05
+		}
+	}
+	
+	focus = {
+		id = MWA_a_new_hollywood
+		icon = GFX_goal_MWA_heartland_hollywood
+		cost = 6
+		
+		relative_position_id = MWA_miller
+		x = 2
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_miller
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = heartlands.12
+			add_ideas = MWA_heartland_hollywood
+			add_war_support = 0.04
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.03
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = CAN_fom_avalible
+			show_ideas_tooltip = midwest_fom_mel_gibson
+		}
+	}
+	
+	focus = {
+		id = MWA_heartland_shield_against_globalism
+		icon = GFX_goal_MWA_shield_against_globalism
+		cost = 6
+		
+		relative_position_id = MWA_miller
+		x = 1
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_a_new_hollywood
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = MWA_anti_globalism
+				days = 600
+			}
+			add_command_power = 40
+			army_experience = 40
+		}
+	}
+	
+	focus = {
+		id = MWA_legacy_of_the_lone_eagle
+		icon = GFX_goal_MWA_the_lone_eagle
+		cost = 6
+		
+		relative_position_id = MWA_miller
+		x = 0
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_reach_out_to_tanceredo
+			focus = MWA_a_new_hollywood
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			MWA_merlin_miller = {
+				add_trait = {
+					ideology = paleoconservative
+					trait = MWA_spirit_of_lindberg
+				}
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.01
+			}
+			add_stability = 0.02
+			air_experience = 10
+			country_event = heartlands.11
+		}
+	}
+	
+	focus = {
+		id = MWA_empower_the_eagles
+		icon = GFX_goal_MWA_let_loose_the_eagles
+		cost = 6
+		
+		relative_position_id = MWA_miller
+		x = 0
+		y = 3
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_legacy_of_the_lone_eagle
+		}
+		prerequisite = {
+			focus = MWA_protect_our_european_american_heritage
+		}
+		prerequisite = {
+			focus = MWA_heartland_shield_against_globalism
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_manpower = 2300
+			add_command_power = 40
+			add_ideas = MWA_the_eagles
+		}
+	}
+	
+	focus = {
+		id = MWA_millers_america
+		icon = GFX_goal_MWA_millers_america
+		cost = 6
+		
+		relative_position_id = MWA_miller
+		x = -1
+		y = 4
+
+		available = {
+			has_country_leader = {
+				name = "Merlin Miller"
+				ruling_only = yes
+			}
+			has_country_flag = the_united_states_are_back
+		}
+		
+		prerequisite = {
+			focus = MWA_empower_the_eagles
+		}
+		prerequisite = {
+			focus = MWA_a_christian_heartlands
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MWA_scars_of_unification
+				add_idea = MWA_scars_of_unification2
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_protect_american_race
+		icon = GFX_goal_MWA_american_only_congress
+		cost = 6
+		
+		relative_position_id = MWA_millers_america
+		x = 0
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_millers_america
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = heartlands.16
+			swap_ideas = {
+				remove_idea = MWA_american_majoritarianism
+				add_idea = MWA_american_majoritarianism2
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_strike_centers_of_finance
+		icon = GFX_goal_MWA_attack_finance
+		cost = 6
+		
+		relative_position_id = MWA_millers_america
+		x = 2
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_millers_america
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = MWA_scars_of_unification3 }
+				remove_ideas = MWA_scars_of_unification3
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = MWA_scars_of_unification2
+					add_idea = MWA_scars_of_unification3
+				}
+			}
+			add_political_power = 100
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_a_return_to_true_americanism
+		icon = GFX_goal_CAN_final_battle
+		cost = 6
+		
+		relative_position_id = MWA_millers_america
+		x = 0
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_liquidate_communism
+		}
+		prerequisite = {
+			focus = MWA_strike_centers_of_finance
+		}
+		prerequisite = {
+			focus = MWA_protect_american_race
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = MWA_anti_communist_foreign_policy
+		}
+	}
+	
+	# Nationalist Shared
+	
+	focus = {
+		id = MWA_seal_our_borders
+		icon = GFX_goal_MWA_seal_borders
+		cost = 6
+		
+		relative_position_id = MWA_paleocons
+		x = 3
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_heartland_values
+			focus = MWA_reach_out_to_tanceredo
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			remove_ideas = MWA_extensive_decentralization
+			add_ideas = MWA_closed_borders
+			add_manpower = -2300
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.04
+			}
+			country_event = heartlands.14
+			hidden_effect = {
+				country_event = {
+					id = heartlands_flavour.18
+					days = 200
+					random_days = 140
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_a_christian_heartlands
+		icon = GFX_goal_MWA_christian_heartlands
+		cost = 6
+		
+		relative_position_id = MWA_paleocons
+		x = 4
+		y = 3
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_seal_our_borders
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = MWA_a_christian_heartlands
+		}
+	}
+	
+	focus = {
+		id = MWA_empower_the_police
+		icon = GFX_goal_MWA_support_the_police
+		cost = 6
+		
+		relative_position_id = MWA_paleocons
+		x = 2
+		y = 3
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_seal_our_borders
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			remove_ideas = MWA_lawless_countryside
+			add_command_power = 100
+			army_experience = 70
+			country_event = heartlands.15
+		}
+	}
+	
+	### Warren Buffet ###
+
+	focus = {
+		id = MWA_buffet
+		icon = GFX_goal_MWA_buffet
+		cost = 2
+		x = 11
+		y = 8
+
+		available = {
+			has_country_leader = {
+				name = "Warren Buffet"
+				ruling_only = yes
+			}
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.02
+			}
+			country_event = heartlands.22
+			hidden_effect = {
+				country_event = {
+					id = heartlands_flavour.16
+					days = 200
+					random_days = 140
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_tax_the_rich
+		icon = GFX_goal_MWA_raise_taxes
+		cost = 6
+		
+		relative_position_id = MWA_buffet
+		x = 0
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_buffet
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MWA_lawless_countryside
+				add_idea = MWA_lawless_countryside2
+			}
+			country_event = heartlands.24
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			add_ideas = MWA_wealth_taxes
+		}
+	}
+	
+	focus = {
+		id = MWA_collaborate_with_democrats
+		icon = GFX_goal_MWA_collab_with_dems
+		cost = 6
+		
+		relative_position_id = MWA_buffet
+		x = -2
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_buffet
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = heartlands.23
+			add_ideas = MWA_new_social_liberalism
+			add_popularity = {
+				ideology = centrist
+				popularity = -0.03
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = -0.03
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_encourage_consumerism
+		icon = GFX_goal_MWA_encourage_consumerism
+		cost = 6
+		
+		relative_position_id = MWA_buffet
+		x = 2
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_buffet
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {	
+			add_ideas = MWA_consumerism
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_stability = 0.02
+		}
+	}
+	
+	focus = {
+		id = MWA_improve_workers_rights
+		icon = GFX_goal_MWA_workers_rights
+		cost = 6
+		
+		relative_position_id = MWA_buffet
+		x = -1
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_tax_the_rich
+		}
+		prerequisite = {
+			focus = MWA_collaborate_with_democrats
+		}
+		prerequisite = {
+			focus = MWA_encourage_consumerism
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			remove_ideas = MWA_lawless_countryside2
+			add_political_power = 60
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.03
+			}
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.03
+			}
+			add_ideas = MWA_strong_workers_rights
+		}
+	}
+	
+	focus = {
+		id = MWA_public_health_care
+		icon = GFX_goal_MWA_public_healthcare
+		cost = 6
+		
+		relative_position_id = MWA_buffet
+		x = -1
+		y = 3
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_improve_workers_rights
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = MWA_public_health_care
+			add_stability = 0.04
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.05
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_release_congress
+		icon = GFX_goal_MWA_release_congress
+		cost = 6
+		
+		relative_position_id = MWA_buffet
+		x = 1
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_tax_the_rich
+		}
+		prerequisite = {
+			focus = MWA_collaborate_with_democrats
+		}
+		prerequisite = {
+			focus = MWA_encourage_consumerism
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = heartlands.25
+			custom_effect_tooltip = MWA_buffet_elections_tt
+		}
+	}
+	
+	focus = {
+		id = MWA_encourage_philantropy
+		icon = GFX_goal_MWA_encourage_charity
+		cost = 6
+		
+		relative_position_id = MWA_buffet
+		x = 1
+		y = 3
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_release_congress
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_stability = 0.02
+			random_owned_state = {
+				increase_state_category_by_one_level = yes
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			swap_ideas = {
+				remove_idea = MWA_wealth_taxes
+				add_idea = MWA_wealth_taxes2
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_a_balanced_economy
+		icon = GFX_goal_MWA_balanced_budget
+		cost = 6
+		
+		relative_position_id = MWA_buffet
+		x = 0
+		y = 4
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_encourage_philantropy
+		}
+		prerequisite = {
+			focus = MWA_public_health_care
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = MWA_balanced_budget_ammendment
+			country_event = heartlands.26
+		}
+	}
+	
+	focus = {
+		id = MWA_encourage_settlement
+		icon = GFX_goal_MWA_attract_immigration
+		cost = 6
+		
+		relative_position_id = MWA_buffet
+		x = -1
+		y = 5
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_a_balanced_economy
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_manpower = 2300
+			}
+			random_owned_controlled_state = {
+				add_manpower = 2300
+			}
+			random_owned_controlled_state = {
+				add_manpower = 2300
+			}
+			add_timed_idea = {
+				idea = MWA_bring_me_your_tired
+				days = 600
+			}
+		}
+	}
+	
+	### David Koch ###
+
+	focus = {
+		id = MWA_koch
+		icon = GFX_goal_MWA_koch
+		cost = 2
+		
+		relative_position_id = MWA_buffet
+		x = 6
+		y = 0
+
+		available = {
+			has_country_leader = {
+				name = "David Koch"
+				ruling_only = yes
+			}
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.02
+			}
+			country_event = heartlands.27
+			hidden_effect = {
+				country_event = {
+					id = heartlands_flavour.17
+					days = 200
+					random_days = 140
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_hire_private_security
+		icon = GFX_goal_MWA_hire_private_security
+		cost = 6
+		
+		relative_position_id = MWA_koch
+		x = 0
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_koch
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			remove_ideas = MWA_lawless_countryside
+			add_stability = 0.02
+			add_manpower = 2300
+			army_experience = 70
+			add_command_power = 70
+			country_event = heartlands.28
+		}
+	}
+	
+	focus = {
+		id = MWA_extreme_deregulation
+		icon = GFX_goal_MWA_complete_deregulation
+		cost = 6
+		
+		relative_position_id = MWA_koch
+		x = -2
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_koch
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = MWA_extreme_deregulation
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_slash_taxes
+		icon = GFX_goal_CAN_trump_tax_cut
+		cost = 6
+		
+		relative_position_id = MWA_koch
+		x = 2
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_koch
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = MWA_koch_tax_cut
+				days = 500
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.08
+			}
+			add_popularity = {
+				ideology = new_democrat
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = -0.05
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_privatize_education
+		icon = GFX_goal_MWA_privatize_education
+		cost = 6
+		
+		relative_position_id = MWA_koch
+		x = -1
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_hire_private_security
+		}
+		prerequisite = {
+			focus = MWA_extreme_deregulation
+		}
+		prerequisite = {
+			focus = MWA_slash_taxes
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = MWA_private_education
+			add_popularity = {
+				ideology = communist
+				popularity = -0.1
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.1
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = -0.1
+			}
+			add_popularity = {
+				ideology = new_democrat
+				popularity = -0.1
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.05
+			}
+			country_event = heartlands.29
+		}
+	}
+	
+	focus = {
+		id = MWA_promote_koch_media
+		icon = GFX_goal_MWA_koch_media
+		cost = 6
+		
+		relative_position_id = MWA_koch
+		x = -1
+		y = 3
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_privatize_education
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = MWA_prager_on_the_television
+				days = 600
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.05
+			}
+			add_political_power = 10
+			country_event = heartlands.30
+		}
+	}
+	
+	focus = {
+		id = MWA_vision_of_rand
+		icon = GFX_goal_MWA_objectivism
+		cost = 6
+		
+		relative_position_id = MWA_koch
+		x = 1
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_hire_private_security
+		}
+		prerequisite = {
+			focus = MWA_extreme_deregulation
+		}
+		prerequisite = {
+			focus = MWA_slash_taxes
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_war_support = 0.04
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.02
+			}
+			add_ideas = MWA_john_galts_message
+		}
+	}
+	
+	focus = {
+		id = MWA_open_the_borders
+		icon = GFX_goal_MWA_open_borders
+		cost = 6
+		
+		relative_position_id = MWA_koch
+		x = 1
+		y = 3
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_vision_of_rand
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {	
+			country_event = heartlands.31
+			random_owned_controlled_state = {
+				add_manpower = 2300
+			}
+			random_owned_controlled_state = {
+				add_manpower = 2300
+			}
+			random_owned_controlled_state = {
+				add_manpower = 2300
+			}
+			add_timed_idea = {
+				idea = MWA_open_borders
+				days = 600
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_bribe_political_opposition
+		icon = GFX_goal_MWA_social_libertarianism
+		cost = 6
+		
+		relative_position_id = MWA_koch
+		x = 0
+		y = 4
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_open_the_borders
+		}
+		prerequisite = {
+			focus = MWA_promote_koch_media
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_political_power = 100
+			add_ideas = MWA_libertarian_social_policy
+		}
+	}
+	
+	focus = {
+		id = MWA_the_free_market_solution
+		icon = GFX_goal_MWA_salvation_by_the_invisible_hand
+		cost = 6
+		
+		relative_position_id = MWA_koch
+		x = 1
+		y = 5
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_bribe_political_opposition
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MWA_extreme_deregulation
+				add_idea = MWA_the_free_market_solution
+			}
+			add_stability = 0.04
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	# Business Plot America
+	
+	focus = {
+		id = MWA_america_under_the_allmighty_dollar
+		icon = GFX_goal_MWA_america_under_the_allmighty_dollar
+		cost = 6
+		
+		relative_position_id = MWA_buffet
+		x = 3
+		y = 4
+
+		available = {
+			OR = {
+				has_country_leader = {
+					name = "David Koch"
+					ruling_only = yes
+				}
+				has_country_leader = {
+					name = "Warren Buffet"
+					ruling_only = yes
+				}
+			}
+			has_country_flag = the_united_states_are_back
+		}
+		
+		prerequisite = {
+			focus = MWA_promote_koch_media
+			focus = MWA_encourage_philantropy
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MWA_scars_of_unification
+				add_idea = MWA_scars_of_unification2
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_charitable_reconstruction
+		icon = GFX_goal_MWA_power_of_charity
+		cost = 6
+		
+		relative_position_id = MWA_america_under_the_allmighty_dollar
+		x = 0
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_america_under_the_allmighty_dollar
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = MWA_scars_of_unification2 }
+				swap_ideas = {
+					remove_idea = MWA_scars_of_unification2
+					add_idea = MWA_scars_of_unification3
+				}
+			}
+			else = {
+				remove_ideas = MWA_scars_of_unification3
+			}
+			add_stability = 0.05
+			random_owned_controlled_state = {
+				increase_state_category_by_one_level = yes
+				add_extra_state_shared_building_slots = 1
+			}
+			country_event = heartlands.32
+		}
+	}
+	
+	focus = {
+		id = MWA_return_of_the_executives
+		icon = GFX_goal_MWA_return_of_the_executives
+		cost = 6
+		
+		relative_position_id = MWA_america_under_the_allmighty_dollar
+		x = -2
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_america_under_the_allmighty_dollar
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {	
+			add_manpower = 3400
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.05
+			}
+			country_event = heartlands.33
+		}
+	}
+	
+	focus = {
+		id = MWA_american_prosperity
+		icon = GFX_goal_MWA_spirit_of_prosperity
+		cost = 6
+		
+		relative_position_id = MWA_america_under_the_allmighty_dollar
+		x = 2
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_america_under_the_allmighty_dollar
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = MWA_scars_of_unification3 }
+				remove_ideas = MWA_scars_of_unification3
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = MWA_scars_of_unification2
+					add_idea = MWA_scars_of_unification3
+				}
+			}
+			add_stability = 0.06
+			add_ideas = MWA_american_prosperity
+		}
+	}
+	
+	focus = {
+		id = MWA_re_open_the_markets
+		icon = GFX_goal_MWA_new_market_leader
+		cost = 6
+		
+		relative_position_id = MWA_america_under_the_allmighty_dollar
+		x = 0
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_american_prosperity
+		}
+		prerequisite = {
+			focus = MWA_return_of_the_executives
+		}
+		prerequisite = {
+			focus = MWA_charitable_reconstruction
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = MWA_the_war_racket
+		}
+	}
+	
+	# BP Shared
+	
+	focus = {
+		id = MWA_extensive_centralization
+		icon = GFX_goal_MWA_extensive_centralization
+		cost = 6
+		
+		relative_position_id = MWA_koch
+		x = -3
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_koch
+			focus = MWA_buffet
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			remove_ideas = MWA_extensive_decentralization
+		}
+	}
+	
+	##################
+	#### MILITARY ####
+	##################
+
+	### Start ###
+	
+	focus = {
+		id = MWA_an_army_for_reunification
+		icon = GFX_goal_MWA_army_for_reclaimation
+		cost = 5
+		x = 7
+		y = 0
+
+		available = {
+			NOT = {
+				has_idea = MWA_lawless_countryside
+				has_idea = MWA_extensive_decentralization
+			}
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {	
+			add_ideas = MWA_an_army_for_reunification
+			add_command_power = 100
+		}
+	}
+	
+	focus = {
+		id = MWA_mcchrystal_policy
+		icon = GFX_goal_MWA_mccrystal_strategy
+		cost = 6
+		
+		relative_position_id = MWA_an_army_for_reunification
+		x = -2
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_an_army_for_reunification
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+			army_experience = 100
+			MWA_stanley_a._mcchrystal = {
+				gain_xp = 400
+				add_skill_level = 1
+			}
+			swap_ideas = {
+				remove_idea = MWA_an_army_for_reunification
+				add_idea = MWA_an_army_for_reunification2
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_lakotah_code_talkers
+		icon = GFX_goal_MWA_cold_talkers
+		cost = 6
+		
+		relative_position_id = MWA_an_army_for_reunification
+		x = 0
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_an_army_for_reunification
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = MWA_lakotah_code_talkers_idea
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = signal_company_tech
+			}
+			add_war_support = 0.03
+			add_manpower = 5000
+		}
+	}
+	
+	focus = {
+		id = MWA_plains_strategy
+		icon = GFX_goal_MWA_defend_the_great_plains
+		cost = 6
+		
+		relative_position_id = MWA_an_army_for_reunification
+		x = 2
+		y = 1
+
+		available = {
+			has_completed_focus = MWA_mcchrystal_policy
+		}
+		
+		prerequisite = {
+			focus = MWA_an_army_for_reunification
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MWA_an_army_for_reunification2
+				add_idea = MWA_an_army_for_reunification3
+			}
+			ILL = {
+				custom_effect_tooltip = MWA_bunkers_tt
+			}
+			GRL = {
+				custom_effect_tooltip = MWA_bunkers_tt
+			}
+			USA = {
+				custom_effect_tooltip = MWA_bunkers_tt
+			}
+			TEX = {
+				custom_effect_tooltip = MWA_bunkers_tt
+			}
+			every_owned_state = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border_country = ILL
+					}
+				}
+			}
+			every_owned_state = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border_country = GRL
+					}
+				}
+			}
+			every_owned_state = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border_country = USA
+					}
+				}
+			}
+			every_owned_state = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border_country = TEX
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_airfields_of_the_reclaimation
+		icon = GFX_goal_GER_new_air_bases
+		cost = 6
+		
+		relative_position_id = MWA_an_army_for_reunification
+		x = 0
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_plains_strategy
+		}
+		prerequisite = {
+			focus = MWA_lakotah_code_talkers
+		}
+		prerequisite = {
+			focus = MWA_mcchrystal_policy
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = air_base
+					level = 5
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = air_base
+					level = 5
+					instant_build = yes
+				}
+			}
+			 add_tech_bonus = {
+				name = light_air_bonus
+				bonus = 0.5
+				uses = 1
+				category = light_air
+			}
+			add_tech_bonus = {
+				name = medium_air_bonus
+				bonus = 0.5
+				uses = 1
+				category = medium_air
+			}
+			add_tech_bonus = {
+				name = heavy_air_bonus
+				bonus = 0.5
+				uses = 1
+				category = heavy_air
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_sound_the_drums_of_war
+		icon = GFX_goal_MWA_drums_of_war
+		cost = 6
+		
+		relative_position_id = MWA_an_army_for_reunification
+		x = -1
+		y = 3
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_airfields_of_the_reclaimation
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			custom_effect_tooltip = MWA_unlocks_unification_decisions
+			hidden_effect = {
+				activate_targeted_decision = { target = LIN decision = MWA_attack_country } 
+				activate_targeted_decision = { target = MOT decision = MWA_attack_country } 
+				activate_targeted_decision = { target = UTA decision = MWA_negotiate_with_country } 
+				activate_targeted_decision = { target = ARI decision = MWA_negotiate_with_country } 
+				activate_targeted_decision = { target = GRL decision = MWA_negotiate_with_country } 
+				activate_targeted_decision = { target = ILL decision = MWA_negotiate_with_country } 
+				activate_targeted_decision = { target = CSD decision = MWA_negotiate_with_country } 
+				activate_targeted_decision = { target = TEX decision = MWA_negotiate_with_country } 
+				activate_targeted_decision = { target = PCA decision = MWA_take_down_unifier } 
+				activate_targeted_decision = { target = NEA decision = MWA_take_down_unifier } 
+				activate_targeted_decision = { target = USA decision = MWA_take_down_unifier } 
+				activate_targeted_decision = { target = AMC decision = MWA_take_down_unifier } 
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_appeal_to_the_canadians
+		icon = GFX_goal_MWA_appeal_for_canadian_support
+		cost = 6
+		
+		relative_position_id = MWA_an_army_for_reunification
+		x = 1
+		y = 3
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_airfields_of_the_reclaimation
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			CAN = {
+				country_event = heartlands_diplo.8
+			}
+		}
+	}
+	
+	# - Post ReU Army
+	
+	# focus = {
+		# id = MWA_rebuild_the_armed_forces
+		# icon = X
+		# cost = 6
+		# x = 42
+		# y = 1
+
+		# available = {
+			
+		# }
+		
+		# ai_will_do = {
+			# factor = 5
+		# }
+
+		# available_if_capitulated = yes
+
+		# completion_reward = {
+		# }
+	# }
+	
+	# focus = {
+		# id = MWA_new_tanks
+		# icon = X
+		# cost = 6
+		
+		# relative_position_id = MWA_rebuild_the_armed_forces
+		# x = -1
+		# y = 1
+
+		# available = {
+		# }
+		
+		# prerequisite = {
+			# focus = MWA_rebuild_the_armed_forces
+		# }
+		
+		# ai_will_do = {
+			# factor = 5
+		# }
+
+		# available_if_capitulated = yes
+
+		# completion_reward = {
+		# }
+	# }
+	
+	# focus = {
+		# id = MWA_special_forces
+		# icon = X
+		# cost = 6
+		
+		# relative_position_id = MWA_rebuild_the_armed_forces
+		# x = 1
+		# y = 1
+
+		# available = {
+		# }
+		
+		# prerequisite = {
+			# focus = MWA_rebuild_the_armed_forces
+		# }
+		
+		# ai_will_do = {
+			# factor = 5
+		# }
+
+		# available_if_capitulated = yes
+
+		# completion_reward = {
+		# }
+	# }
+	
+	# focus = {
+		# id = MWA_recruitment_effort
+		# icon = X
+		# cost = 6
+		
+		# relative_position_id = MWA_rebuild_the_armed_forces
+		# x = 0
+		# y = 2
+
+		# available = {
+		# }
+		
+		# prerequisite = {
+			# focus = MWA_special_forces
+		# }
+		# prerequisite = {
+			# focus = MWA_new_tanks
+		# }
+		
+		# ai_will_do = {
+			# factor = 5
+		# }
+
+		# available_if_capitulated = yes
+
+		# completion_reward = {
+		# }
+	# }
+	
+	# - Post ReU Navy
+	
+	# focus = {
+		# id = MWA_rebuild_the_navy
+		# icon = X
+		# cost = 6
+		
+		# relative_position_id = MWA_rebuild_the_armed_forces
+		# x = -2
+		# y = 2
+
+		# available = {
+			
+		# }
+		
+		# ai_will_do = {
+			# factor = 5
+		# }
+
+		# available_if_capitulated = yes
+
+		# completion_reward = {
+		# }
+	# }
+	
+	# focus = {
+		# id = MWA_submarine_focus
+		# icon = X
+		# cost = 6
+		
+		# relative_position_id = MWA_rebuild_the_navy
+		# x = -1
+		# y = 1
+
+		# available = {
+		# }
+		
+		# prerequisite = {
+			# focus = MWA_rebuild_the_navy
+		# }
+		
+		# ai_will_do = {
+			# factor = 5
+		# }
+
+		# available_if_capitulated = yes
+
+		# completion_reward = {
+		# }
+	# }
+	
+	# focus = {
+		# id = MWA_naval_doctrine
+		# icon = X
+		# cost = 6
+		
+		# relative_position_id = MWA_rebuild_the_navy
+		# x = 1
+		# y = 1
+
+		# available = {
+		# }
+		
+		# prerequisite = {
+			# focus = MWA_rebuild_the_navy
+		# }
+		
+		# ai_will_do = {
+			# factor = 5
+		# }
+
+		# available_if_capitulated = yes
+
+		# completion_reward = {
+		# }
+	# }
+	
+	# focus = {
+		# id = MWA_carrier_effort
+		# icon = X
+		# cost = 6
+		
+		# relative_position_id = MWA_rebuild_the_navy
+		# x = 0
+		# y = 2
+
+		# available = {
+		# }
+		
+		# prerequisite = {
+			# focus = MWA_submarine_focus
+		# }
+		# prerequisite = {
+			# focus = MWA_naval_doctrine
+		# }
+		
+		# ai_will_do = {
+			# factor = 5
+		# }
+
+		# available_if_capitulated = yes
+
+		# completion_reward = {
+		# }
+	# }
+	
+	# - Post ReU Air Force
+	
+	# focus = {
+		# id = MWA_rebuild_the_air_force
+		# icon = X
+		# cost = 6
+		
+		# relative_position_id = MWA_rebuild_the_armed_forces
+		# x = 2
+		# y = 2
+
+		# available = {
+			
+		# }
+		
+		# ai_will_do = {
+			# factor = 5
+		# }
+
+		# available_if_capitulated = yes
+
+		# completion_reward = {
+		# }
+	# }
+	
+	# focus = {
+		# id = MWA_fighter_focus
+		# icon = X
+		# cost = 6
+		
+		# relative_position_id = MWA_rebuild_the_air_force
+		# x = 1
+		# y = 1
+
+		# available = {
+		# }
+		
+		# prerequisite = {
+			# focus = MWA_rebuild_the_air_force
+		# }
+		
+		# ai_will_do = {
+			# factor = 5
+		# }
+
+		# available_if_capitulated = yes
+
+		# completion_reward = {
+		# }
+	# }
+	
+	# focus = {
+		# id = MWA_air_doctrine
+		# icon = X
+		# cost = 6
+		
+		# relative_position_id = MWA_rebuild_the_air_force
+		# x = -1
+		# y = 1
+
+		# available = {
+		# }
+		
+		# prerequisite = {
+			# focus = MWA_rebuild_the_air_force
+		# }
+		
+		# ai_will_do = {
+			# factor = 5
+		# }
+
+		# available_if_capitulated = yes
+
+		# completion_reward = {
+		# }
+	# }
+	
+	# focus = {
+		# id = MWA_drone_effort
+		# icon = X
+		# cost = 6
+		
+		# relative_position_id = MWA_rebuild_the_air_force
+		# x = 0
+		# y = 2
+
+		# available = {
+		# }
+		
+		# prerequisite = {
+			# focus = MWA_fighter_focus
+		# }
+		# prerequisite = {
+			# focus = MWA_air_doctrine
+		# }
+		
+		# ai_will_do = {
+			# factor = 5
+		# }
+
+		# available_if_capitulated = yes
+
+		# completion_reward = {
+		# }
+	# }
+	
+	# - Shared
+	
+	# focus = {
+		# id = MWA_naval_aviation
+		# icon = X
+		# cost = 6
+		
+		# relative_position_id = MWA_rebuild_the_air_force
+		# x = -2
+		# y = 2
+
+		# available = {
+		# }
+		
+		# prerequisite = {
+			# focus = MWA_naval_doctrine
+			# focus = MWA_air_doctrine
+		# }
+		
+		# ai_will_do = {
+			# factor = 5
+		# }
+
+		# available_if_capitulated = yes
+
+		# completion_reward = {
+		# }
+	# }
+	
+	#################
+	#### ECONOMY ####
+	#################
+	
+	focus = {
+		id = MWA_the_heartlands_economy
+		icon = GFX_goal_MWA_heartlander_economy
+		cost = 15
+		x = 34
+		y = 0
+
+		available = {
+			
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip  = tooltip_blank_line
+			custom_effect_tooltip = MWA_modify_agrarian_economy
+			add_to_variable = {
+				MWA_prod_efficency_gain = 0.05
+				tooltip = production_factory_efficiency_gain_factor_tt
+			}
+			add_to_variable = {
+				MWA_building_prod_speed = 0.05
+				tooltip = production_speed_buildings_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_expand_agricultural_grants
+		icon = GFX_goal_CAN_haiti_aid
+		cost = 6
+		
+		relative_position_id = MWA_the_heartlands_economy
+		x = -1
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_the_heartlands_economy
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			custom_effect_tooltip = MWA_modify_agrarian_economy
+			add_to_variable = {
+				MWA_supply_consumption = -0.05
+				tooltip =  supply_consumption_factor_tt
+			}
+			add_to_variable = {
+				MWA_supply_node = 0.1
+				tooltip =  supply_node_range_tt
+			}
+			add_to_variable = {
+				MWA_out_of_supply = -0.16
+				tooltip =  out_of_supply_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_combat_soil_erosion
+		icon = expand_state_farms
+		cost = 6
+		
+		relative_position_id = MWA_the_heartlands_economy
+		x = 1
+		y = 1
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_the_heartlands_economy
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			custom_effect_tooltip  = tooltip_blank_line
+			custom_effect_tooltip = MWA_modify_agrarian_economy
+			add_to_variable = {
+				MWA_infrastructure_prod = 0.08
+				tooltip =  production_speed_infrastructure_factor_tt
+			}
+			add_to_variable = {
+				MWA_global_building_slots = 0.1
+				tooltip = global_building_slots_factor_tt
+			}
+			add_to_variable = {
+				MWA_monthly_population = 0.02
+				tooltip = monthly_population_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_expand_military_industry
+		icon = GER_revitalize_military_industry
+		cost = 6
+		
+		relative_position_id = MWA_the_heartlands_economy
+		x = 2
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_combat_soil_erosion
+		}
+		prerequisite = {
+			focus = MWA_expand_agricultural_grants
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = MWA_modify_agrarian_economy
+			add_to_variable = {
+				MWA_prod_efficency_gain = 0.1
+				tooltip = production_factory_efficiency_gain_factor_tt
+			}
+			add_to_variable = {
+				MWA_building_prod_speed = 0.1
+				tooltip = production_speed_buildings_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_from_tractors_to_tanks
+		icon = GFX_goal_MWA_from_tractors_to_tanks
+		cost = 6
+		
+		relative_position_id = MWA_the_heartlands_economy
+		x = 3
+		y = 3
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_expand_military_industry
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			custom_effect_tooltip = MWA_modify_agrarian_economy
+			add_to_variable = {
+				MWA_prod_efficency_gain = 0.05
+				tooltip = production_factory_efficiency_gain_factor_tt
+			}
+			add_to_variable = {
+				MWA_building_prod_speed = 0.05
+				tooltip = production_speed_buildings_factor_tt
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			add_tech_bonus = {
+				bonus = 0.50
+				uses = 1
+				category = armor
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.5
+			}
+			if = {
+				limit = {
+					has_dlc = "No Step Back"
+				}
+				add_equipment_to_stockpile = {
+					type = light_tank_chassis_0
+					amount = 50
+					variant_name = "Cold War Light Tank"
+				}
+			}
+			else = {
+				add_equipment_to_stockpile = {
+					type = light_tank_equipment_1
+					amount = 50
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = motorized_equipment
+				amount = 100
+			}
+			add_ideas = MWA_from_tractors_to_tanks
+		}
+	}
+	
+	focus = {
+		id = MWA_expand_university_of_nebraska
+		icon = GFX_goal_MWA_university_of_denver
+		cost = 6
+		
+		relative_position_id = MWA_the_heartlands_economy
+		x = 0
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_combat_soil_erosion
+		}
+		prerequisite = {
+			focus = MWA_expand_agricultural_grants
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_research_slot = 1
+			382 = {	
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = electronics_bonus
+				bonus = 1
+				uses = 1
+				category = electronics
+			}
+			add_tech_bonus = {
+				name = nuclear_bonus
+				bonus = 0.5
+				uses = 1
+				category = nuclear
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_nuclear
+				value = 0.5
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_furthering_fort_leavenworth
+		icon = GFX_goal_MWA_fort_leavenworth
+		cost = 6
+		
+		relative_position_id = MWA_the_heartlands_economy
+		x = -1
+		y = 3
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_expand_university_of_nebraska
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_research_slot = 1
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+			add_tech_bonus = {
+				name = naval_doctrine_bonus
+				bonus = 0.5
+				uses = 1
+				category = naval_doctrine
+			}
+			add_tech_bonus = {
+				name = air_doctrine_bonus
+				bonus = 0.5
+				uses = 1
+				category = air_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.5
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_expand_denver_international
+		icon = GFX_goal_MWA_expand_denver_international
+		cost = 6
+		
+		relative_position_id = MWA_the_heartlands_economy
+		x = 1
+		y = 3
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_expand_university_of_nebraska
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			382 = {
+				add_building_construction = {
+					type = air_base
+					level = 5
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = MWA_modify_agrarian_economy
+			add_to_variable = {
+				MWA_production_speed_air_base = 0.05
+				tooltip = production_speed_air_base_factor_tt
+			}
+			hidden_effect = {
+				country_event = {
+					id = heartlands_flavour.7
+					days = 120
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_solar_panels
+		icon = GFX_goal_CAN_solar_panels
+		cost = 6
+		
+		relative_position_id = MWA_the_heartlands_economy
+		x = -2
+		y = 2
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_combat_soil_erosion
+		}
+		prerequisite = {
+			focus = MWA_expand_agricultural_grants
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = renewable_energy_plant
+					level = 1
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = MWA_modify_agrarian_economy
+			add_to_variable = {
+				MWA_research_speed = 0.02
+				tooltip = research_speed_factor_tt
+			}
+			add_to_variable = {
+				MWA_max_fuel = 0.03
+				tooltip = max_fuel_factor_tt
+			}
+			add_to_variable = {
+				MWA_renewable_construction = 0.03
+				tooltip = production_speed_renewable_energy_plant_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_wind_farms
+		icon = GFX_goal_CAN_wind_farms
+		cost = 6
+		
+		relative_position_id = MWA_the_heartlands_economy
+		x = -3
+		y = 3
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_solar_panels
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = renewable_energy_plant
+					level = 1
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = MWA_modify_agrarian_economy
+			add_to_variable = {
+				MWA_research_speed = 0.02
+				tooltip = research_speed_factor_tt
+			}
+			add_to_variable = {
+				MWA_max_fuel = 0.03
+				tooltip = max_fuel_factor_tt
+			}
+			add_to_variable = {
+				MWA_renewable_construction = 0.03
+				tooltip = production_speed_renewable_energy_plant_factor_tt
+			}
+			add_to_variable = { MWA_renewable_construction = 0.03 }
+		}
+	}
+	
+	focus = {
+		id = MWA_genetically_modified_organisms
+		icon = GFX_goal_GER_farms_of_the_future
+		cost = 6
+		
+		relative_position_id = MWA_the_heartlands_economy
+		x = -1
+		y = 4
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_furthering_fort_leavenworth
+		}
+		prerequisite = {
+			focus = MWA_from_tractors_to_tanks
+			focus = MWA_wind_farms
+		}
+		prerequisite = {
+			focus = MWA_expand_denver_international
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			custom_effect_tooltip = MWA_modify_agrarian_economy
+			add_to_variable = {
+				MWA_supply_consumption = -0.05
+				tooltip =  supply_consumption_factor_tt
+			}
+			add_to_variable = {
+				MWA_research_speed = 0.04
+				tooltip =  research_speed_factor_tt
+			}
+			add_to_variable = {
+				MWA_supply_grace = 24
+				tooltip =  special_forces_no_supply_grace_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_eathanol_development
+		icon = GFX_goal_MWA_corn
+		cost = 6
+		
+		relative_position_id = MWA_the_heartlands_economy
+		x = 1
+		y = 4
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_furthering_fort_leavenworth
+		}
+		prerequisite = {
+			focus = MWA_from_tractors_to_tanks
+			focus = MWA_wind_farms
+		}
+		prerequisite = {
+			focus = MWA_expand_denver_international
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			custom_effect_tooltip = MWA_modify_agrarian_economy
+			add_to_variable = {
+				MWA_fuel_gain = 0.05
+				tooltip =  base_fuel_gain_factor_tt
+			}
+			add_to_variable = {
+				MWA_army_fuel_consumption = -0.1
+				tooltip =  army_fuel_consumption_factor_tt
+			}
+			add_to_variable = {
+				MWA_navy_fuel_consumption = -0.1
+				tooltip =   navy_fuel_consumption_factor_tt
+			}
+			add_to_variable = {
+				MWA_air_fuel_consumption = -0.1
+				tooltip =  air_fuel_consumption_factor_tt
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			hidden_effect = { set_technology = { synth_oil_experiments = 1 } }
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = fuel_silo
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				ahead_reduction = 2
+				bonus = 1.0
+				uses = 1
+				category = synth_resources
+			}
+		}
+	}
+	
+	focus = {
+		id = MWA_recovery_from_the_stagnation
+		icon = GFX_goal_MWA_recovery_from_the_great_stagnation
+		cost = 6
+		
+		relative_position_id = MWA_the_heartlands_economy
+		x = 0
+		y = 5
+
+		available = {
+		}
+		
+		prerequisite = {
+			focus = MWA_genetically_modified_organisms
+		}
+		prerequisite = {
+			focus = MWA_eathanol_development
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_stability = 0.1
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = MWA_modify_agrarian_economy
+			add_to_variable = {
+				MWA_building_prod_speed = 0.07
+				tooltip = production_speed_buildings_factor_tt
+			}
+			add_to_variable = {
+				MWA_prod_efficency_gain = 0.05
+				tooltip = production_factory_efficiency_gain_factor_tt
+			}
+		}
+	}
+}

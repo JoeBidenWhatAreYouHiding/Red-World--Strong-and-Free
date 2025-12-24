@@ -1,0 +1,278 @@
+
+MWA_reunification_decisions = {
+	
+	MWA_attack_country = { 
+		icon = generic_prepare_civil_war
+		allowed = { always = no }
+		available = {
+			# OR = {
+				# is_neighbor_of = FROM
+				# any_allied_country = { is_neighbor_of = FROM }
+				# any_subject_country = { is_neighbor_of = FROM }
+			# }
+			NOT = { has_country_flag = MWA_war_on_country }
+		}
+		visible = {
+			is_subject = no
+			can_declare_war_on = FROM
+		}
+		
+		highlight_states = {
+ 			highlight_state_targets = {
+				state = FROM.capital
+			} 
+		}
+		
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+		cancel_if_not_visible = yes
+		war_with_target_on_remove = yes
+
+		# ai_will_do = {
+			# factor = 0
+			# modifier = {
+				# factor = 0
+				# ROOT_is_threatened_cautious = yes
+			# }
+			# modifier = {
+				# factor = 0
+				# FROM = { default_attack_AI_trigMWA_FROM = yes }
+			# }
+		# }
+		
+		cancel_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision cancelled CAN_aid_reunification_italy target: [From.GetName]"
+			# clear_decision_attack_AI = yes
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CAN_aid_reunification_italy target: [From.GetName]"
+			# FROM = { country_event = kr.political.30 } #warning event
+			# setup_decision_attack_AI = yes
+			set_country_flag = MWA_war_on_country
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CAN_aid_reunification_italy target: [From.GetName]"
+			clr_country_flag = MWA_war_on_country
+			# clear_decision_attack_AI = yes
+			declare_war_on = {
+				target = FROM
+				type = annex_everything
+			}
+		}
+	}
+	
+	MWA_take_down_unifier = { 
+		icon = generic_prepare_civil_war
+		allowed = { always = no }
+		available = {
+			# OR = {
+				# is_neighbor_of = FROM
+				# any_allied_country = { is_neighbor_of = FROM }
+				# any_subject_country = { is_neighbor_of = FROM }
+			# }
+			NOT = { has_country_flag = MWA_war_on_country }
+			FROM = { has_war = yes }
+		}
+		visible = {
+			is_subject = no
+			can_declare_war_on = FROM
+		}
+		
+		highlight_states = {
+ 			highlight_state_targets = {
+				state = FROM.capital
+			} 
+		}
+		
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+		cancel_if_not_visible = yes
+		war_with_target_on_remove = yes
+
+		# ai_will_do = {
+			# factor = 0
+			# modifier = {
+				# factor = 0
+				# ROOT_is_threatened_cautious = yes
+			# }
+			# modifier = {
+				# factor = 0
+				# FROM = { default_attack_AI_trigMWA_FROM = yes }
+			# }
+		# }
+		
+		cancel_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision cancelled CAN_aid_reunification_italy target: [From.GetName]"
+			# clear_decision_attack_AI = yes
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CAN_aid_reunification_italy target: [From.GetName]"
+			# FROM = { country_event = kr.political.30 } #warning event
+			# setup_decision_attack_AI = yes
+			set_country_flag = MWA_war_on_country
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CAN_aid_reunification_italy target: [From.GetName]"
+			clr_country_flag = MWA_war_on_country
+			# clear_decision_attack_AI = yes
+			declare_war_on = {
+				target = FROM
+				type = annex_everything
+			}
+		}
+	}
+	
+	MWA_negotiate_with_country = { 
+		icon = generic_nationalism
+		allowed = { always = no }
+		available = {
+			OR = {
+				is_neighbor_of = FROM
+				any_country = { 
+					is_in_faction_with = ROOT
+					is_neighbor_of = FROM 
+				}
+			}
+			NOT = { has_country_flag = MWA_targeting_country }
+		}
+		visible = {
+			is_subject = no
+			can_declare_war_on = FROM
+		}
+		
+		highlight_states = {
+ 			highlight_state_targets = {
+				state = FROM.capital
+			} 
+		}
+		
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+		cancel_if_not_visible = yes
+		war_with_target_on_remove = yes
+
+		# ai_will_do = {
+			# factor = 0
+			# modifier = {
+				# factor = 0
+				# ROOT_is_threatened_cautious = yes
+			# }
+			# modifier = {
+				# factor = 0
+				# FROM = { default_attack_AI_trigMWA_FROM = yes }
+			# }
+		# }
+		
+		cancel_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision cancelled CAN_aid_reunification_italy target: [From.GetName]"
+			# clear_decision_attack_AI = yes
+			clr_country_flag = MWA_targeting_country
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CAN_aid_reunification_italy target: [From.GetName]"
+			# FROM = { country_event = kr.political.30 } #warning event
+			# setup_decision_attack_AI = yes
+			set_country_flag = MWA_targeting_country
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CAN_aid_reunification_italy target: [From.GetName]"
+			clr_country_flag = MWA_targeting_country
+			# clear_decision_attack_AI = yes
+			FROM = {
+				country_event = heartlands_diplo.1
+			}
+		}
+	}
+	
+	MWA_integrate_tag_in_faction = {
+		icon = SWI_no_elected_president
+		available = {
+			NOT = { has_country_flag = MWA_installing_regime }
+		}
+		
+		allowed = {
+			tag = MWA
+		}
+		
+		modifier = {
+			political_power_cost = 0.05
+		}
+		
+		cost = 140
+		days_remove = 50
+		
+		on_map_mode = map_and_decisions_view
+		highlight_states = {
+ 			highlight_state_targets = {
+				state = FROM.capital
+			} 
+		}
+		
+		target_root_trigger = {
+			is_in_faction = yes
+		}
+		target_trigger = {
+			FROM = {
+				exists = yes
+				is_in_faction_with = MWA
+				OR = {
+					tag = GRL
+					tag = ILL
+					tag = ARI
+					tag = UTA
+					tag = MOT
+					tag = LIN
+					tag = CSD
+					tag = PCA
+					tag = TEX
+					tag = USA
+					tag = NEA
+					tag = AMC
+				}
+				is_ai = yes
+			}
+		}
+		
+		visible = {
+			is_in_faction = yes
+			PCA = {
+				OR = {
+					exists = no
+					is_subject_of = MWA
+				}
+			}
+			NEA = {
+				OR = {
+					exists = no
+					is_subject_of = MWA
+				}
+			}
+			USA = {
+				OR = {
+					exists = no
+					is_subject_of = MWA
+				}
+			}
+		}
+		
+		complete_effect = {
+			set_country_flag = MWA_installing_regime
+		}
+
+		remove_effect = {
+			clr_country_flag = MWA_installing_regime
+			annex_country = {
+				target = FROM
+				transfer_troops = yes
+			}
+		}
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 100
+		}
+	}
+}

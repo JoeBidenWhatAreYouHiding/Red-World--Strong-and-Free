@@ -16,7 +16,10 @@ american_unification = {
 			has_integrated_LIN = yes
 			has_integrated_UTA = yes
 			has_integrated_ARI = yes
-			has_integrated_PCA = yes
+			OR = {
+				has_country_flag = PCA_american_reunificationism
+				has_integrated_PCA = yes
+			}
 			has_integrated_or_puppeted_TEX = yes
 		}
 		complete_effect = {
@@ -39,6 +42,40 @@ american_unification = {
 				}
 			}
 			country_event = american_unification.1
+			
+			hidden_effect = {
+				if = {
+					limit = {
+						has_country_flag = PCA_american_reunificationism
+					} 
+					hidden_effect = {
+						if = {
+							limit = {
+								PCA = {
+									is_ai = no
+								}
+							}
+							sound_effect = bentley_america_sound
+						}
+						set_country_flag = PCA_harris_reunited_america
+						mark_focus_tree_layout_dirty = yes
+						every_country = {
+							news_event = { id = golden_gate_usa.39} 
+						}
+						if = {
+							limit = {
+								NOT = {
+									has_country_leader = { 
+										name = "Kamala Harris"
+										ruling_only = yes
+									}
+								}
+							}
+							country_event = golden_gate_usa.40
+						}
+					}
+				}
+			}
 		}
 		ai_will_do = {
 			factor = 320
