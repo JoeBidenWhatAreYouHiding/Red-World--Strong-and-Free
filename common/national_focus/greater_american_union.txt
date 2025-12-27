@@ -326,7 +326,7 @@ focus_tree = {
 		x = 4
 		y = 3
 		completion_reward = {
-
+			add_war_support = 0.04
 		}
 
 	}
@@ -393,7 +393,15 @@ focus_tree = {
 		x = 10
 		y = 3
 		completion_reward = {
-
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
 		}
 
 	}
@@ -1311,6 +1319,19 @@ focus_tree = {
 		y = 4
 		completion_reward = {
 		    add_stability = 0.05
+			add_popularity = {
+				ideology = communist
+				popularity = -0.04
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
 		}
 
 	}
@@ -1361,8 +1382,8 @@ focus_tree = {
 		completion_reward = {
 		    add_tech_bonus = {
 				name = infantry_weapons_bonus
-				bonus = 0.2
-				uses = 1
+				bonus = 0.5
+				uses = 3
 				category = infantry_weapons
 			}
 		}
@@ -1458,6 +1479,11 @@ focus_tree = {
 				ideology = nationalist
 				popularity = 0.2
 			}
+		    add_popularity = {
+				ideology = national_bolshevik
+				popularity = -0.1
+			}
+			remove_ideas = idea_gau_cult_of_personality
 		}
 
 	}
@@ -1475,6 +1501,7 @@ focus_tree = {
 		y = 3
 		completion_reward = {
 		    add_stability = 0.06
+			add_manpower = 2300
 		}
 
 	}
@@ -1533,6 +1560,10 @@ focus_tree = {
 				ideology = moderate_socialist
 				popularity = -0.1
 			}
+			add_popularity = {
+				ideology = new_democrat
+				popularity = -0.05
+			}
 			army_experience = 80
 		}
 
@@ -1562,12 +1593,17 @@ focus_tree = {
 		y = 3
 		completion_reward = {
 		    add_stability = 0.02
+			add_manpower = -2300
+			swap_ideas = {
+				remove_idea = idea_gau_traditional_values
+				add_idea = idea_gau_traditional_values
+			}
 		}
 
 	}
 	focus = {
 		id = GAU_crackdown_on_moderate_dissent
-		icon = focus_overthrow_congress
+		icon = GFX_goal_GAU_crackdown_on_moderate_dissent
 		cost = 7.2
 		prerequisite = {
 			focus = GAU_punishments_for_homosexuality
@@ -2040,6 +2076,18 @@ focus_tree = {
 				uses = 1
 				category = decryption_tech
 			}
+			add_popularity = {
+				ideology = centrist
+				popularity = -0.04
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.04
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = -0.04
+			}
 		}
 
 	}
@@ -2060,6 +2108,7 @@ focus_tree = {
 		y = 6
 		completion_reward = {
 		    add_political_power = 100
+			add_ideas = GAU_national_advisory_council
 		}
 
 	}
@@ -2314,7 +2363,31 @@ focus_tree = {
 		x = 12
 		y = 9
 		completion_reward = {
-		    add_stability = 0.02
+		    add_stability = 0.06
+			random_owned_state = {
+				add_state_modifier = {
+					modifier = {
+						local_manpower = 0.02
+						local_resources_factor = 0.02
+					}
+				}
+			}
+			random_owned_state = {
+				add_state_modifier = {
+					modifier = {
+						local_manpower = 0.02
+						local_resources_factor = 0.02
+					}
+				}
+			}
+			random_owned_state = {
+				add_state_modifier = {
+					modifier = {
+						local_manpower = 0.02
+						local_resources_factor = 0.02
+					}
+				}
+			}
 			add_popularity = {
 				ideology = national_bolshevik
 				popularity = 0.05
@@ -2360,7 +2433,17 @@ focus_tree = {
 		y = 6
 		completion_reward = {
 		    add_political_power = 100
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.1
+			}
 			country_event = { id = natbolamerica.31 }
+			every_state = {
+				limit = { is_core_of = USA }
+				add_manpower = -100
+				add_resistance = -15
+				add_compliance = 15
+			}
 		}
 
 	}
@@ -2844,11 +2927,16 @@ focus_tree = {
 		prerequisite = {
 			focus = GAU_investment_in_poor_regions
 		}
+		available = {
+			has_completed_focus = GAU_bill_to_privatise_the_economy
+		}
 		x = 63
 		y = 3
 		completion_reward = {
-		    remove_ideas = idea_gau_privatised_economy
-			add_ideas = idea_gau_true_free_market
+			swap_ideas = {
+				remove_idea = idea_gau_privatised_economy
+				add_idea = idea_gau_true_free_market
+			}
 		}
 
 	}
