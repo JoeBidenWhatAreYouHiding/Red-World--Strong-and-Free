@@ -12904,8 +12904,20 @@ country_event = {
 	
 	option = { #Good
 		name = canada_diplo.25.o1
-		release_puppet = LIN
-		release_puppet = MOT
+		release = LIN
+		release = MOT
+		if = {
+			limit = {
+				LIN = { is_subject_of = CAN }
+				end_puppet = LIN
+			}
+		}
+		if = {
+			limit = {
+				MOT = { is_subject_of = CAN }
+				end_puppet = MOT
+			}
+		}
 		if = {
 			limit = { 
 				MOT = {
@@ -12933,6 +12945,7 @@ country_event = {
 				ideology = nationalist
 			}
 			set_cosmetic_tag = MOT_CAN
+			add_ideas = CAN_canadian_mission_idea
 		}
 		LIN = {
 			set_politics = {
@@ -12948,6 +12961,7 @@ country_event = {
 				ideology = nationalist
 			}
 			set_cosmetic_tag = LIN_CAN
+			add_ideas = CAN_canadian_mission_idea
 		}
 		CAN_david_fraser = {
 			set_nationality = MOT
@@ -13195,6 +13209,7 @@ country_event = {
 			end_puppet = MOT
 			end_puppet = LIN
 			MOT = {
+				remove_ideas = CAN_canadian_mission_idea
 				separate_peace_all_wars = yes
 				drop_cosmetic_tag = yes
 				add_popularity = {
@@ -13231,6 +13246,7 @@ country_event = {
 				}
 			}
 			LIN = {
+				remove_ideas = CAN_canadian_mission_idea
 				separate_peace_all_wars = yes
 				drop_cosmetic_tag = yes
 				add_popularity = {
@@ -18030,6 +18046,21 @@ country_event = {
 	}
 }
 
+#Miami Olympics
+country_event = {
+	id = can_flavour.66
+	title = can_flavour.66.t
+	desc = can_flavour.66.d
+	picture = olympic_torch_lighting
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #
+		name = can_flavour.66.o1
+		add_war_support = 0.02
+	}
+}
 
 #Remembrance Day
 country_event = {
