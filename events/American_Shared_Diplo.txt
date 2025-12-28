@@ -1,0 +1,1011 @@
+add_namespace = american_diplo
+
+#Americans seek DL Membership
+country_event = {
+	id = american_diplo.1
+	title = american_diplo.1.t
+	desc = american_diplo.1.d
+	picture = nato_usa_flag
+	
+	is_triggered_only = yes
+	
+	option = { #Accept
+		name = american_diplo.1.o1
+		ai_chance = {
+			base = 99
+		}
+		hidden_effect = {
+		    var:901.owner = {
+			    country_event = { days = 1 id = american_diplo.2 } 
+			}
+			add_to_faction = var:901.owner
+		}
+	}
+	
+	option = { #Refuse
+		name = american_diplo.1.o2
+		ai_chance = {
+			base = 1
+		}
+		hidden_effect = {
+		    var:901.owner = {
+			    country_event = { days = 1 id = american_diplo.3 } 
+			}
+		}
+	}
+}
+
+#Canadians give us DL Membership
+country_event = {
+	id = american_diplo.2
+	title = american_diplo.2.t
+	desc = american_diplo.2.d
+	picture = nato_usa_flag
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = american_diplo.2.o1
+		add_political_power = 10
+	}
+}
+
+#Canada Refuses
+country_event = {
+	id = american_diplo.3
+	title = american_diplo.3.t
+	desc = american_diplo.3.d
+	picture = nato_usa_flag
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = american_diplo.3.o1
+		add_war_support = -0.05
+		uncomplete_national_focus = {
+			focus = AMR_align_to_the_democratic_league
+			uncomplete_children = yes
+			refund_political_power = no
+		}
+	}
+}
+
+#Americans seek Accord Membership
+country_event = {
+	id = american_diplo.4
+	title = american_diplo.4.t
+	desc = american_diplo.4.d
+	picture = america_russia_flags
+	
+	is_triggered_only = yes
+	
+	option = { #Accept
+		name = american_diplo.4.o1
+		ai_chance = {
+			base = 99
+		}
+		hidden_effect = {
+		    var:901.owner = {
+			    country_event = { days = 1 id = american_diplo.5 } 
+			}
+			add_to_faction = var:901.owner
+		}
+	}
+	
+	option = { #Refuse
+		name = american_diplo.1.o2
+		ai_chance = {
+			base = 1
+		}
+		hidden_effect = {
+		    var:901.owner = {
+			    country_event = { days = 1 id = american_diplo.6 } 
+			}
+		}
+	}
+}
+
+#Russians give us accord Membership
+country_event = {
+	id = american_diplo.5
+	title = american_diplo.5.t
+	desc = american_diplo.5.d
+	picture = america_russia_flags
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = american_diplo.5.o1
+		add_political_power = 10
+	}
+}
+
+#Russia Refuses
+country_event = {
+	id = american_diplo.6
+	title = american_diplo.6.t
+	desc = american_diplo.6.d
+	picture = america_russia_flags
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = american_diplo.6.o1
+		add_war_support = -0.05
+		uncomplete_national_focus = {
+			focus = AMR_the_eagles_united
+			uncomplete_children = yes
+			refund_political_power = no
+		}
+	}
+}
+
+#Americans seek BIPU Membership
+country_event = {
+	id = american_diplo.7
+	title = american_diplo.7.t
+	desc = american_diplo.7.d
+	picture = america_britain_flags
+	
+	is_triggered_only = yes
+	
+	option = { #Accept
+		name = american_diplo.7.o1
+		ai_chance = {
+			base = 99
+		}
+		hidden_effect = {
+		    var:901.owner = {
+			    country_event = { days = 1 id = american_diplo.8 } 
+			}
+			add_to_faction = var:901.owner
+			set_faction_name = "Atlantic Protection Union"
+		}
+	}
+	
+	option = { #Refuse
+		name = american_diplo.1.o2
+		ai_chance = {
+			base = 1
+		}
+		hidden_effect = {
+		    var:901.owner = {
+			    country_event = { days = 1 id = american_diplo.9 } 
+			}
+		}
+	}
+}
+
+#British give us BIPU Membership
+country_event = {
+	id = american_diplo.8
+	title = american_diplo.8.t
+	desc = american_diplo.8.d
+	picture = america_britain_flags
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = american_diplo.8.o1
+		add_political_power = 10
+	}
+}
+
+#Britain Refuses
+country_event = {
+	id = american_diplo.9
+	title = american_diplo.9.t
+	desc = american_diplo.9.d
+	picture = america_britain_flags
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = american_diplo.9.o1
+		add_war_support = -0.05
+	}
+}
+
+#Which Tag to Reach Out To
+country_event = {
+	id = american_diplo.10
+	title = american_diplo.10.t
+	desc = american_diplo.10.d
+	picture = middle_east_policy
+	
+	is_triggered_only = yes
+	
+	option = { #Iran
+		name = american_diplo.10.o1
+		PER = {
+			country_event = american_diplo.1800
+		}
+		set_global_flag = AMR_faction_iran
+	}
+	
+	option = { #Saudis
+		name = american_diplo.10.o2
+		SAU = {
+			country_event = american_diplo.1800
+		}
+		set_global_flag = AMR_faction_saudi
+	}
+	
+	option = { #Iraq
+		name = american_diplo.10.o3
+		IRQ = {
+			country_event = american_diplo.1800
+		}
+		set_global_flag = AMR_faction_iraq
+	}
+}
+
+#Americans seek DL Leadership
+country_event = {
+	id = american_diplo.11
+	title = american_diplo.11.t
+	desc = american_diplo.11.d
+	picture = nato_usa_flag
+	
+	is_triggered_only = yes
+	
+	option = { #Accept
+		name = american_diplo.11.o1
+		ai_chance = {
+			base = 80
+		}
+		hidden_effect = {
+		    var:901.owner = {
+			    country_event = { days = 1 id = american_diplo.12 } 
+			}
+		}
+	}
+	
+	option = { #Refuse
+		name = american_diplo.11.o2
+		ai_chance = {
+			base = 20
+		}
+		hidden_effect = {
+		    var:901.owner = {
+			    country_event = { days = 1 id = american_diplo.14 } 
+			}
+		}
+	}
+}
+
+#Canadians give us DL Leadership
+country_event = {
+	id = american_diplo.12
+	title = american_diplo.12.t
+	desc = american_diplo.12.d
+	picture = nato_usa_flag
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = american_diplo.12.o1
+		var:901.owner = { set_faction_leader = yes }
+	}
+}
+
+#Canada stays as leader
+country_event = {
+	id = american_diplo.14
+	title = american_diplo.14.t
+	desc = american_diplo.14.d
+	picture = nato_usa_flag
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = american_diplo.14.o1
+		add_war_support = -0.05
+	}
+}
+
+
+#Nation asks to join Democratic League
+country_event = {
+	id = american_diplo.15
+	title = american_diplo.15.t
+	desc = american_diplo.15.d
+	picture = us_state_department
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = american_diplo.15.o1
+	    ai_chance = {
+			base = 80
+		}
+		if = {
+			limit = { var:901.owner = { is_faction_leader = yes } }
+			var:901.owner = {
+				country_event = { days = 1 id = american_diplo.16 } 
+				add_to_faction = ROOT
+			}
+		}
+		else = {
+			CAN = {
+				country_event = { days = 1 id = american_diplo.16 } 
+				add_to_faction = ROOT
+			}
+			country_event = { days = 1 id = american_diplo.16 } 
+		}
+	}
+	
+	option = { #No
+		name = american_diplo.15.o2
+	    ai_chance = {
+			base = 20
+		}
+		add_political_power = -20
+		if = {
+			limit = { var:901.owner = { is_faction_leader = yes } }
+			var:901.owner = {
+				country_event = { days = 1 id = american_diplo.17 } 
+			}
+		}
+		else = {
+			CAN = {
+				country_event = { days = 1 id = american_diplo.17 } 
+			}
+		}
+	}
+}
+
+#Tag accepts
+country_event = {
+	id = american_diplo.16
+	title = american_diplo.16.t
+	desc = american_diplo.16.d
+	picture = us_state_department
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = american_diplo.16.o1
+	    ai_chance = {
+			base = 100
+		}
+	}
+}
+
+#Tag refuses
+country_event = {
+	id = american_diplo.17
+	title = american_diplo.17.t
+	desc = american_diplo.17.d
+	picture = us_state_department
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = american_diplo.17.o1
+	    ai_chance = {
+			base = 100
+		}
+	}
+}
+
+#Britain - America Offers Protection
+country_event = {
+	id = american_diplo.18
+	title = american_diplo.18.t
+	desc = american_diplo.18.d
+	picture = america_britain_flags
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = american_diplo.18.o1
+	    ai_chance = {
+			base = 50
+		}
+		if = {
+			limit = {
+				CAN = { is_faction_leader = yes }
+			}
+			CAN = {
+				country_event = { days = 1 id = american_diplo.22 } 
+				add_to_faction = ROOT
+			}
+			var:901.owner = {
+				country_event = { days = 1 id = american_diplo.22 } 
+			}
+		}
+		else = {
+			var:901.owner = {
+				country_event = { days = 1 id = american_diplo.22 } 
+				add_to_faction = ROOT
+			}
+		}
+		hidden_effect = {
+		add_named_threat = { threat = 2	 name = ENG_joining_dem_legue }
+			every_country = {
+				news_event = {
+					hours = 4
+					id = news.153
+				}
+			}
+		}
+		IRE = {
+			country_event = american_diplo.19
+		}
+		ULS = {
+			country_event = {
+				id = american_diplo.19
+				days = 4
+			}
+		}
+	}
+	
+	option = { #No
+		name = american_diplo.18.o2
+	    ai_chance = {
+			base = 50
+		}
+		add_political_power = -20
+		if = {
+			limit = {
+				CAN = { is_faction_leader = yes }
+			}
+			CAN = {
+				country_event = { days = 1 id = american_diplo.23 } 
+			}
+			var:901.owner = {
+				country_event = { days = 1 id = american_diplo.23 } 
+			}
+		}
+		else = {
+			var:901.owner = {
+				country_event = { days = 1 id = american_diplo.23 } 
+				add_to_faction = ROOT
+			}
+		}
+	}
+}
+
+#Ireland - America Offers Protection
+country_event = {
+	id = american_diplo.19
+	title = american_diplo.19.t
+	desc = american_diplo.19.d
+	picture = america_britain_flags
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = american_diplo.19.o1
+	    ai_chance = {
+			base = 50
+		}
+		if = {
+			limit = { CAN = { is_faction_leader = yes } }
+			
+			CAN = {
+				country_event = { days = 1 id = american_diplo.20 } 
+				add_to_faction = ROOT
+			}
+			var:901.owner = {
+				country_event = { days = 1 id = american_diplo.20 } 
+			}
+		}
+		else = {
+			var:901.owner = {
+				country_event = { days = 1 id = american_diplo.20 } 
+				add_to_faction = ROOT
+			}
+		}
+		
+	}
+	
+	option = { #No
+		name = american_diplo.19.o2
+	    ai_chance = {
+			base = 50
+		}
+		add_political_power = -20
+		CAN = {
+		    country_event = { days = 1 id = american_diplo.21 } 
+		}
+	}
+}
+
+#Ireland accepts
+country_event = {
+	id = american_diplo.20
+	title = american_diplo.20.t
+	desc = american_diplo.20.d
+	picture = america_britain_flags
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = american_diplo.20.o1
+	    ai_chance = {
+			base = 100
+		}
+	}
+}
+
+#Ireland refuses
+country_event = {
+	id = american_diplo.21
+	title = american_diplo.21.t
+	desc = american_diplo.21.d
+	picture = america_britain_flags
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = american_diplo.21.o1
+	    ai_chance = {
+			base = 100
+		}
+	}
+}
+
+#Britain accepts
+country_event = {
+	id = american_diplo.22
+	title = american_diplo.22.t
+	desc = american_diplo.22.d
+	picture = america_britain_flags
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = american_diplo.22.o1
+	    ai_chance = {
+			base = 100
+		}
+	}
+}
+
+#Britain refuses
+country_event = {
+	id = american_diplo.22
+	title = american_diplo.22.t
+	desc = american_diplo.22.d
+	picture = america_britain_flags
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = american_diplo.22.o1
+	    ai_chance = {
+			base = 100
+		}
+	}
+}
+
+#Americans Demands Greenland
+country_event = {
+	id = american_diplo.24
+	title = american_diplo.24.t
+	desc = american_diplo.24.d
+	picture = america_eyes_greenland
+	
+	is_triggered_only = yes
+	
+	option = { #Accept
+		name = american_diplo.24.o1
+		ai_chance = {
+			base = 60
+		}
+		hidden_effect = {
+		    var:901.owner = {
+			    country_event = { days = 1 id = american_diplo.25 } 
+			}
+		}
+	}
+	
+	option = { #Refuse
+		name = american_diplo.11.o2
+		ai_chance = {
+			base = 40
+		}
+		hidden_effect = {
+		    var:901.owner = {
+			    country_event = { days = 1 id = american_diplo.29 } 
+			}
+		}
+	}
+}
+
+#Canadians accept
+country_event = {
+	id = american_diplo.25
+	title = american_diplo.25.t
+	desc = american_diplo.25.d
+	picture = america_eyes_greenland
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = american_diplo.25.o1
+		GRN = { country_event = american_diplo.26 }
+	}
+}
+
+#Fate of Greenland
+country_event = {
+	id = american_diplo.26
+	title = american_diplo.26.t
+	desc = american_diplo.26.d
+	picture = america_eyes_greenland
+	
+	is_triggered_only = yes
+	
+	option = { #Accept Annexation
+		name = american_diplo.26.o1
+		var:901.owner = { country_event = american_diplo.27 }
+	}
+	
+	option = { #Fight for Independence
+		name = american_diplo.26.o2
+		var:901.owner = { country_event = american_diplo.28 }
+		leave_faction = yes
+		CAN = { end_puppet = GRN }
+	}
+}
+
+#Greenland Accepts
+country_event = {
+	id = american_diplo.27
+	title = american_diplo.27.t
+	desc = american_diplo.27.d
+	picture = america_eyes_greenland
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = american_diplo.27.o1
+		annex_country = {
+			target = GRN
+			transfer_troops = yes
+		}
+	}
+}
+
+#Greenland Refuses
+country_event = {
+	id = american_diplo.28
+	title = american_diplo.28.t
+	desc = american_diplo.28.d
+	picture = america_eyes_greenland
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = american_diplo.28.o1
+		declare_war_on = {
+			target = GRN
+			type = annex_everything
+		}
+	}
+}
+
+#Greenland Refuses
+country_event = {
+	id = american_diplo.29
+	title = american_diplo.29.t
+	desc = american_diplo.29.d
+	picture = america_eyes_greenland
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = american_diplo.29.o1
+		declare_war_on = {
+			target = GRN
+			type = annex_everything
+		}
+	}
+	option = { 
+		name = american_diplo.29.o2
+		add_war_support = -0.05
+	}
+}
+
+#America asks us to join faction
+country_event = {
+	id = american_diplo.30
+	title = american_diplo.30.t
+	desc = american_diplo.30.d
+	picture = us_state_department
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = american_diplo.30.o1
+	    ai_chance = {
+			base = 80
+		}
+		var:901.owner = {
+			country_event = { days = 1 id = american_diplo.31 } 
+			add_to_faction = ROOT
+		}
+	}
+	
+	option = { #No
+		name = american_diplo.30.o2
+	    ai_chance = {
+			base = 20
+		}
+		add_political_power = -20
+		var:901.owner = {
+			country_event = { days = 1 id = american_diplo.32 } 
+		}
+	}
+}
+
+#Tag accepts
+country_event = {
+	id = american_diplo.31
+	title = american_diplo.31.t
+	desc = american_diplo.31.d
+	picture = us_state_department
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = american_diplo.31.o1
+	    ai_chance = {
+			base = 100
+		}
+	}
+}
+
+#Tag Leader refuses
+country_event = {
+	id = american_diplo.32
+	title = american_diplo.32.t
+	desc = american_diplo.32.d
+	picture = us_state_department
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = american_diplo.32.o1
+	    ai_chance = {
+			base = 100
+		}
+	}
+}
+
+#America asks us to join faction
+country_event = {
+	id = american_diplo.1500
+	title = american_diplo.15.t
+	desc = american_diplo.15.d
+	picture = us_state_department
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = american_diplo.15.o1
+	    ai_chance = {
+			base = 80
+		}
+		var:901.owner = {
+			country_event = { days = 1 id = american_diplo.1600 } 
+			add_to_faction = ROOT
+		}
+	}
+	
+	option = { #No
+		name = american_diplo.15.o2
+	    ai_chance = {
+			base = 20
+		}
+		add_political_power = -20
+		var:901.owner = {
+			country_event = { days = 1 id = american_diplo.1700 } 
+		}
+	}
+}
+
+#Tag accepts
+country_event = {
+	id = american_diplo.1600
+	title = american_diplo.16.t
+	desc = american_diplo.16.d
+	picture = us_state_department
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = american_diplo.16.o1
+	    ai_chance = {
+			base = 100
+		}
+	}
+}
+
+#Tag Leader refuses
+country_event = {
+	id = american_diplo.1700
+	title = american_diplo.17.t
+	desc = american_diplo.17.d
+	picture = us_state_department
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = american_diplo.17.o1
+	    ai_chance = {
+			base = 100
+		}
+	}
+}
+
+#America asks us to join faction
+country_event = {
+	id = american_diplo.1800
+	title = american_diplo.15.t
+	desc = american_diplo.15.d
+	picture = us_state_department
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = american_diplo.15.o1
+	    ai_chance = {
+			base = 80
+		}
+		var:901.owner = {
+			country_event = { days = 1 id = american_diplo.1900 } 
+			add_to_faction = ROOT
+		}
+	}
+	
+	option = { #No
+		name = american_diplo.15.o2
+	    ai_chance = {
+			base = 20
+		}
+		add_political_power = -20
+		var:901.owner = {
+			country_event = { days = 1 id = american_diplo.2000 } 
+		}
+	}
+}
+
+#Tag accepts
+country_event = {
+	id = american_diplo.1900
+	title = american_diplo.16.t
+	desc = american_diplo.16.d
+	picture = us_state_department
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = american_diplo.16.o1
+	    ai_chance = {
+			base = 100
+		}
+	}
+}
+
+#Tag refuses
+country_event = {
+	id = american_diplo.2000
+	title = american_diplo.17.t
+	desc = american_diplo.17.d
+	picture = us_state_department
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = american_diplo.17.o1
+
+	}
+	
+	option = { #Iraq
+		name = american_diplo.2000.o1
+		trigger = {
+			NOT = { has_global_flag = AMR_faction_iraq }
+		}
+		IRQ = {
+			country_event = american_diplo.1800
+		}
+		set_global_flag = AMR_faction_iraq
+	}
+	
+	option = { #Iran
+		name = american_diplo.2000.o2
+		trigger = {
+			NOT = { has_global_flag = AMR_faction_iran }
+		}
+		PER = {
+			country_event = american_diplo.1800
+		}
+		set_global_flag = AMR_faction_iran
+	}
+	
+	option = { #Saudis
+		name = american_diplo.2000.o3
+		trigger = {
+			NOT = { has_global_flag = AMR_faction_saudi }
+		}
+		PER = {
+			country_event = american_diplo.1800
+		}
+		set_global_flag = AMR_faction_saudi
+	}
+}
+
+
+
+#America asks us to join faction - RUS
+country_event = {
+	id = american_diplo.1501
+	title = american_diplo.15.t
+	desc = american_diplo.15.d
+	picture = us_state_department
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = american_diplo.15.o1
+	    ai_chance = {
+			base = 80
+		}
+		var:901.owner = {
+			country_event = { days = 1 id = american_diplo.1601 } 
+		}
+		RUS = {
+			country_event = { days = 1 id = american_diplo.1601 } 
+			add_to_faction = ROOT
+		}
+	}
+	
+	option = { #No
+		name = american_diplo.15.o2
+	    ai_chance = {
+			base = 20
+		}
+		add_political_power = -20
+		var:901.owner = {
+			country_event = { days = 1 id = american_diplo.1701 } 
+		}
+	}
+}
+
+#Tag accepts
+country_event = {
+	id = american_diplo.1601
+	title = american_diplo.16.t
+	desc = american_diplo.16.d
+	picture = us_state_department
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = american_diplo.16.o1
+	    ai_chance = {
+			base = 100
+		}
+	}
+}
+
+#Country refuses
+country_event = {
+	id = american_diplo.1701
+	title = american_diplo.17.t
+	desc = american_diplo.17.d
+	picture = us_state_department
+	
+	is_triggered_only = yes
+	
+	option = { #Ok
+		name = american_diplo.17.o1
+	    ai_chance = {
+			base = 100
+		}
+	}
+}

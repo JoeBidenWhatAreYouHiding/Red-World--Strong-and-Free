@@ -70,7 +70,17 @@ country_event = {
 		}
 		set_country_flag = donald_rumsfeld_elected
 		set_country_flag = us_election_completed
-		add_ideas = usa_mitch_mcconnell
+		if = {
+			limit = { has_country_flag = USA_cheney_is_vp }
+			add_ideas = usa_dick_cheney
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = USA_rumsfeld_cheney_elected
+		}
+		else = {
+			add_ideas = usa_mitch_mcconnell
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = USA_rumsfeld_mcconnell_elected
+		}
 		hidden_effect = {
 			every_country = {
 		        limit = {
@@ -83,6 +93,7 @@ country_event = {
 			        id = news.227
 		        }
 		    }
+			add_ideas = USA_divided_gop
 		}
 	}
 	
@@ -111,8 +122,10 @@ country_event = {
 				factor = 0
 			}
 		}
+		mark_focus_tree_layout_dirty = yes
 		set_country_flag = jeb_bush_elected
 		set_country_flag = us_election_completed
+		custom_effect_tooltip = tooltip_blank_line
 		custom_effect_tooltip = USA_jeb_bush_cabinet
 		hidden_effect = {
 			add_ideas = usa_lindsey_graham
@@ -121,6 +134,8 @@ country_event = {
 			add_ideas = usa_nsm_robert_gates
 			add_ideas = usa_inm_gina_haspel
 		}
+		custom_effect_tooltip = tooltip_blank_line
+		custom_effect_tooltip = USA_jeb_elected
 		hidden_effect = {
 			every_country = {
 		        limit = {
@@ -133,6 +148,7 @@ country_event = {
 			        id = news.228
 		        }
 		    }
+			add_ideas = USA_divided_gop
 		}
 	}
 	
@@ -188,6 +204,7 @@ country_event = {
 		}
 		set_country_flag = david_duke_elected
 		set_country_flag = us_election_completed
+		custom_effect_tooltip = tooltip_blank_line
 		custom_effect_tooltip = USA_david_duke_cabinet
 		hidden_effect = {
 			add_ideas = usa_don_black
@@ -196,6 +213,8 @@ country_event = {
 			add_ideas = usa_nsm_darrell_castle
 			add_ideas = usa_inm_sam_dickson
 		}
+		custom_effect_tooltip = tooltip_blank_line
+		custom_effect_tooltip = USA_duke_elected
 		hidden_effect = {
 			every_country = {
 		        limit = {
@@ -239,6 +258,7 @@ country_event = {
 		}
 		set_country_flag = robert_bentley_elected
 		set_country_flag = us_election_completed
+		custom_effect_tooltip = tooltip_blank_line
 		custom_effect_tooltip = USA_rob_bentley_cabinet
 		hidden_effect = {
 			add_ideas = usa_omarosa_manigault
@@ -247,6 +267,8 @@ country_event = {
 			add_ideas = usa_nsm_steve_scalise
 			add_ideas = usa_inm_gina_haspel
 		}
+		custom_effect_tooltip = tooltip_blank_line
+		custom_effect_tooltip = USA_betley_elected
 		hidden_effect = {
 			every_country = {
 		        limit = {
@@ -4430,6 +4452,10 @@ country_event = {
 		date > 2018.5.1
 		date < 2018.5.30
 		has_country_flag = donald_rumsfeld_elected
+		has_country_leader = {
+			name = "Donald Rumsfeld"
+			ruling_only = yes
+		}
 	}
 	
 	option = {   #Lou Dobbs
@@ -5900,6 +5926,18 @@ country_event = {
 	option = {
 		name = usa.195.o1
 		add_political_power = -50
+		hidden_effect = {
+			country_event = {
+				id = usa.196
+				days = 5
+			}
+		}
+	}
+	
+	option = {
+		name = usa.195.o2
+		add_political_power = -50
+		set_country_flag = USA_cheney_is_vp
 		hidden_effect = {
 			country_event = {
 				id = usa.196

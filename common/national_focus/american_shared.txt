@@ -1,0 +1,2361 @@
+
+########################
+#### USA/MWA SHARED ####
+########################
+		
+shared_focus = {
+	id = AMR_1987_undone
+	icon = {
+		value = GFX_goal_AMR_1987_undone_socialist
+		trigger = { AMR_is_soc_unifier = yes }
+	}
+	icon = {
+		value = GFX_goal_AMR_1987_undone
+	}
+	cost = 6
+	x = 34
+	y = 8
+	
+	allow_branch = {
+		if = { 
+			limit = { 
+				OR = {
+					tag = GRL 
+					tag = NEA
+					tag = AMC
+				}
+			}
+			has_country_flag = the_united_states_are_back
+		}
+	}
+	
+	offset = {
+		x = 28
+		y = 7
+		trigger = { tag = USA }
+	}
+	
+	offset = {
+		x = 7
+		y = 6
+		trigger = { tag = AMC }
+	}
+	
+	offset = {
+		x = -20
+		y = 5
+		trigger = { 
+			tag = NEA 
+			NOT = { has_focus_tree = american_state_tree }
+		}
+	}
+	
+	
+	offset = {
+		x = -1
+		y = 12
+		trigger = { 
+			tag = GRL 
+			has_focus_tree = great_lakes_tree
+		}
+	}
+	
+	offset = {
+		x = -20
+		y = 16
+		trigger = { 
+			tag = GRL 
+			has_focus_tree = socialist_great_lakes_tree
+			AMR_is_soc_unifier = no
+		}
+	}
+	
+	offset = {
+		x = -10
+		y = 9
+		trigger = { 
+			tag = GRL 
+			has_focus_tree = socialist_great_lakes_tree
+			AMR_is_soc_unifier = yes
+		}
+	}
+	
+	offset = {
+		x = -12
+		y = 6
+		trigger = { 
+			tag = GRL 
+			has_focus_tree = superior_tree
+		}
+	}
+	
+	offset = {
+		x = -8
+		y = 1
+		trigger = { 
+			has_focus_tree = american_state_tree
+		}
+	}
+	
+	available = {
+		has_country_flag = the_united_states_are_back
+	}
+	bypass = {
+		has_country_flag = the_united_states_are_back
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		custom_effect_tooltip = unlock_focuses
+	}
+}
+
+### Pro-DL ###
+
+shared_focus = {
+	id = AMR_align_to_the_democratic_league
+	icon = GFX_goal_AMR_join_democratic_league
+	cost = 6
+	x = 0
+	y = 1
+	relative_position_id = AMR_1987_undone
+	
+	prerequisite = {
+		focus = AMR_1987_undone
+	}
+	
+	bypass = {
+		is_in_faction_with = CAN
+	}
+	
+	allow_branch = {
+		AMR_is_soc_unifier = no
+	}
+	
+	available = {
+		OR = {
+			has_government = moderate_socialist
+			has_government = new_democrat
+			has_government = liberal
+			has_government = centrist
+			has_government = national_conservative
+			has_government = nationalist
+		}
+		NOT = {
+			has_country_leader = {
+				name = "Tom Tancredo"
+				ruling_only = yes
+			}
+			has_country_leader = {
+				name = "Kris Kobach"
+				ruling_only = yes
+			}
+			has_country_leader = {
+				name = "Paul Gosar"
+				ruling_only = yes
+			}
+			has_country_leader = {
+				name = "Pat Buchanan"
+				ruling_only = yes
+			}
+		}
+	}
+	
+	mutually_exclusive = {
+		focus = AMR_american_imperialism
+		focus = AMR_america_first
+		focus = AMR_neutrality
+		focus = AMR_the_eagles_united
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		CAN = {
+			country_event = american_diplo.1
+		}
+		unlock_decision_tooltip = AMR_assume_leadership_of_the_democratic_league
+	}
+}
+
+shared_focus = {
+	id = AMR_rebuild_intel_apparatus
+	icon = GFX_goal_GER_support_from_cia_and_csis
+	cost = 6
+	x = 0
+	y = 1
+	relative_position_id = AMR_align_to_the_democratic_league
+	
+	prerequisite = {
+		focus = AMR_align_to_the_democratic_league
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		add_ideas = AMR_democratic_intelligence
+		if = {
+			limit = { is_in_faction_with = ENG }
+			ENG = {
+				add_ideas = AMR_democratic_intelligence
+			}
+		}
+		CAN = {
+			add_ideas = AMR_democratic_intelligence
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_new_lend_lease
+	icon = GFX_goal_AMR_lend_lease
+	cost = 6
+	x = 2
+	y = 1
+	relative_position_id = AMR_align_to_the_democratic_league
+	
+	prerequisite = {
+		focus = AMR_align_to_the_democratic_league
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+		CAN = {
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = 2000
+				producer = ROOT
+			}
+			if = {
+				limit = {
+					NOT = { has_dlc = "No Step Back" }
+				}
+				add_equipment_to_stockpile = {
+					type = light_tank_equipment_1
+					amount = 200
+					producer = ROOT
+				}
+			}
+			if = {
+				limit = {
+					has_dlc = "No Step Back"
+				}
+				add_equipment_to_stockpile = {
+					type = light_tank_chassis
+					amount = 200
+					producer = ROOT
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 3000
+				producer = ROOT
+			}
+			add_opinion_modifier = { 
+				target = ROOT modifier = close_friendship
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_on_the_beach
+	icon = GFX_goal_AMR_eagle_screech
+	cost = 6
+	x = -2
+	y = 1
+	relative_position_id = AMR_align_to_the_democratic_league
+	
+	prerequisite = {
+		focus = AMR_align_to_the_democratic_league
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		add_command_power = 100
+		add_ideas = AMR_arsenal_of_democracy
+	}
+}
+
+shared_focus = {
+	id = AMR_lion_and_the_eagle
+	icon = GFX_goal_AMR_lion_and_eagle
+	cost = 6
+	x = -1
+	y = 2
+	relative_position_id = AMR_align_to_the_democratic_league
+	
+	prerequisite = {
+		focus = AMR_on_the_beach
+	}
+	prerequisite = {
+		focus = AMR_new_lend_lease
+	}
+	
+	bypass = {
+		is_in_faction_with = ENG
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		if = {
+			limit = { 
+				ENG = {
+					NOT = { 
+						OR = {
+							has_government = revolutionary_socialist
+							has_government = communist
+							has_government = fascist
+							has_government = monarchist
+						}
+					}
+				}
+			}
+			ENG = {
+				country_event = american_diplo.18
+			}
+			add_opinion_modifier = {
+				target = ENG
+				modifier = close_friendship
+			}
+		}
+		else = {
+			create_wargoal = {
+				type = topple_government
+				target = ENG
+			} 
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_reach_out_to_japan
+	icon = GFX_goal_CAN_japan_in_the_dl
+	cost = 6
+	x = 1
+	y = 2
+	relative_position_id = AMR_align_to_the_democratic_league
+	
+	prerequisite = {
+		focus = AMR_on_the_beach
+	}
+	prerequisite = {
+		focus = AMR_new_lend_lease
+	}
+	
+	bypass = {
+		is_in_faction_with = JAP
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		JAP = {
+			country_event = american_diplo.15
+		}
+		add_opinion_modifier = {
+			target = JAP
+			modifier = close_friendship
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_leader_of_the_free_world
+	icon = GFX_goal_PCA_lead_free_world
+	cost = 6
+	x = 0
+	y = 3
+	relative_position_id = AMR_align_to_the_democratic_league
+	
+	prerequisite = {
+		focus = AMR_lion_and_the_eagle
+	}
+	prerequisite = {
+		focus = AMR_reach_out_to_japan
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		add_war_support = 0.05
+		add_ideas = AMR_leader_of_the_free_world
+	}
+}
+
+### Imperialism ###
+
+shared_focus = {
+	id = AMR_american_imperialism
+	icon = GFX_goal_AMR_american_imperialism
+	cost = 6
+	x = -5
+	y = 1
+	relative_position_id = AMR_1987_undone
+	
+	prerequisite = {
+		focus = AMR_1987_undone
+	}
+	
+	mutually_exclusive = {
+		focus = AMR_align_to_the_democratic_league
+		focus = AMR_neutrality
+		focus = AMR_america_first
+		focus = AMR_the_eagles_united
+	}
+	
+	available = {
+		OR = {
+			has_government = nationalist
+			has_government = fascist
+			has_government = monarchist
+			has_government = national_conservative
+			has_government = liberal
+			has_government = centrist
+		}
+		NOT = {
+			has_country_leader = {
+				name = "Tom Tancredo"
+				ruling_only = yes
+			}
+			has_country_leader = {
+				name = "Kris Kobach"
+				ruling_only = yes
+			}
+			has_country_leader = {
+				name = "Paul Gosar"
+				ruling_only = yes
+			}
+			has_country_leader = {
+				name = "Pat Buchanan"
+				ruling_only = yes
+			}
+		}
+	}
+	
+	allow_branch = {
+		AMR_is_soc_unifier = no
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		add_war_support = 0.1
+		add_timed_idea = {
+			idea = AMR_american_imperialism_idea
+			days = 500
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_destroy_canada
+	icon = GFX_goal_PCA_crush_canada
+	cost = 6
+	x = -1
+	y = 1
+	relative_position_id = AMR_american_imperialism
+	
+	prerequisite = {
+		focus = AMR_american_imperialism
+	}
+
+	available_if_capitulated = yes
+
+	will_lead_to_war_with = CAN
+	completion_reward = {
+		create_wargoal = {
+			type = annex_everything
+			target = CAN
+		} 
+		every_state = {
+			limit = { is_owned_by = CAN }
+			ROOT = { add_state_claim = PREV }
+		}
+		set_global_flag = AMR_claimed_canada
+	}
+}
+
+shared_focus = {
+	id = AMR_invade_mexico
+	icon = GFX_goal_AMR_claim_mexico
+	cost = 6
+	x = 1
+	y = 1
+	relative_position_id = AMR_american_imperialism
+	
+	prerequisite = {
+		focus = AMR_american_imperialism
+	}
+
+	available_if_capitulated = yes
+
+	will_lead_to_war_with = MEX
+	completion_reward = {
+		create_wargoal = {
+			type = annex_everything
+			target = MEX
+		} 
+		every_state = {
+			limit = { is_owned_by = MEX }
+			ROOT = { add_state_claim = PREV }
+		}
+		set_global_flag = AMR_claimed_mexico
+	}
+}
+
+shared_focus = {
+	id = AMR_topple_venezuela
+	icon = GFX_goal_CAN_invade_venezuela
+	cost = 6
+	x = 2
+	y = 2
+	relative_position_id = AMR_american_imperialism
+	
+	prerequisite = {
+		focus = AMR_invade_mexico
+		focus = AMR_on_the_beach
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		create_wargoal = {
+			type = topple_government
+			target = VEN
+		} 
+	}
+}
+
+shared_focus = {
+	id = AMR_annex_cuba
+	icon = GFX_goal_AMR_annex_cuba
+	cost = 6
+	x = 0
+	y = 2
+	relative_position_id = AMR_american_imperialism
+	
+	prerequisite = {
+		focus = AMR_invade_mexico
+	}
+	prerequisite = {
+		focus = AMR_destroy_canada
+	}
+	
+	bypass = {
+		OR = {
+			is_in_faction_with = CUB
+			CUB = { has_completed_focus = CUB_the_exiles_return }
+		}
+	}
+
+	available_if_capitulated = yes
+
+	will_lead_to_war_with = CUB
+	completion_reward = {
+		create_wargoal = {
+			type = annex_everything
+			target = CUB
+		} 
+		every_state = {
+			limit = { is_owned_by = CUB }
+			ROOT = { add_state_claim = PREV }
+		}
+		set_global_flag = AMR_claimed_cuba
+	}
+}
+
+shared_focus = {
+	id = AMR_annex_greenland
+	icon = GFX_goal_AMR_annex_greenland
+	cost = 6
+	x = -2
+	y = 2
+	relative_position_id = AMR_american_imperialism
+	
+	prerequisite = {
+		focus = AMR_destroy_canada
+		focus = AMR_target_the_democratic_league
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		if = {
+			limit = { 
+				has_completed_focus = AMR_destroy_canada 
+			}
+			annex_country = { 
+				target = GRN 
+				transfer_troops = yes
+			}
+			every_state = {
+				limit = { is_core_of = GRN }
+				ROOT = { add_state_claim = PREV }
+			}
+		}
+		else_if = {
+			limit = {
+				CAN = { is_in_faction_with = GRN }
+			}
+			CAN = {
+				country_event = american_diplo.24 
+			}
+		}
+		else = {
+			create_wargoal = {
+				type = annex_everything
+				target = GRN
+			} 
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_the_canal_we_built
+	icon = GFX_goal_AMR_the_american_canal
+	cost = 6
+	x = -1
+	y = 3
+	relative_position_id = AMR_american_imperialism
+	
+	prerequisite = {
+		focus = AMR_annex_greenland
+	}
+	prerequisite = {
+		focus = AMR_annex_cuba
+	}
+	prerequisite = {
+		focus = AMR_topple_venezuela
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		create_wargoal = {
+			type = annex_everything
+			target = GUA
+		} 
+		create_wargoal = {
+			type = annex_everything
+			target = BLZ
+		} 
+		create_wargoal = {
+			type = annex_everything
+			target = HON
+		} 
+		create_wargoal = {
+			type = annex_everything
+			target = NIC
+		} 
+		create_wargoal = {
+			type = annex_everything
+			target = ELS
+		} 
+		create_wargoal = {
+			type = annex_everything
+			target = COS
+		} 
+		create_wargoal = {
+			type = annex_everything
+			target = CEA
+		} 
+		create_wargoal = {
+			type = annex_everything
+			target = PAN 
+		} 
+		add_state_core = 685
+	}
+}
+
+shared_focus = {
+	id = AMR_retake_the_phillipines
+	icon = GFX_goal_AMR_phillipines_belongings
+	cost = 6
+	x = 1
+	y = 3
+	relative_position_id = AMR_american_imperialism
+	
+	prerequisite = {
+		focus = AMR_annex_greenland
+	}
+	prerequisite = {
+		focus = AMR_annex_cuba
+	}
+	prerequisite = {
+		focus = AMR_topple_venezuela
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		create_wargoal = {
+			type = puppet_wargoal_focus
+			target = PHI 
+		} 
+	}
+}
+
+### American Faction ###
+
+shared_focus = {
+	id = AMR_america_first
+	icon = GFX_goal_AMR_america_first
+	cost = 6
+	x = 5
+	y = 1
+	relative_position_id = AMR_1987_undone
+	
+	prerequisite = {
+		focus = AMR_1987_undone
+	}
+	
+	mutually_exclusive = {
+		focus = AMR_align_to_the_democratic_league
+		focus = AMR_american_imperialism
+		focus = AMR_neutrality
+		focus = AMR_the_eagles_united
+	}
+	
+	available = {
+		NOT = {
+			has_country_leader = {
+				name = "Tom Tancredo"
+				ruling_only = yes
+			}
+			has_country_leader = {
+				name = "Kris Kobach"
+				ruling_only = yes
+			}
+			has_country_leader = {
+				name = "Paul Gosar"
+				ruling_only = yes
+			}
+			has_country_leader = {
+				name = "Pat Buchanan"
+				ruling_only = yes
+			}
+		}
+	}
+	
+	allow_branch = {
+		AMR_is_soc_unifier = no
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		create_faction_from_template = { 
+			template = faction_template_generic_dominance              
+			name = "league_of_american_states"
+			icon = GFX_faction_organization_of_american_states
+		}	
+		set_country_flag = AMR_american_faction
+	}
+}
+
+shared_focus = {
+	id = AMR_new_monroeism
+	icon = GFX_goal_AMR_new_monroe
+	cost = 6
+	x = -1
+	y = 1
+	relative_position_id = AMR_america_first
+	
+	prerequisite = {
+		focus = AMR_america_first
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		add_ideas = AMR_new_monroeism
+		every_country = {
+			limit = {
+				NOT = { 
+					has_government = communist
+					has_government = revolutionary_socialist
+					has_government = national_bolshevik
+				}
+				OR = {
+					capital_scope = {
+						is_on_continent = south_america
+					}
+					capital_scope = {
+						is_on_continent = north_america
+					}
+				}
+			}
+			ROOT = {
+				give_guarantee = PREV
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_align_the_middle_east
+	icon = GFX_goal_AMR_allies_in_the_middle_east
+	cost = 6
+	x = 1
+	y = 1
+	relative_position_id = AMR_america_first
+	
+	prerequisite = {
+		focus = AMR_america_first
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		country_event = american_diplo.10
+	}
+}
+
+shared_focus = {
+	id = AMR_friendship_with_brazil
+	icon = GFX_goal_AMR_latam_appeals
+	cost = 6
+	x = -2
+	y = 2
+	relative_position_id = AMR_america_first
+	
+	prerequisite = {
+		focus = AMR_align_the_middle_east
+		focus = AMR_new_lend_lease
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		if = {
+			limit = { has_completed_focus = AMR_align_to_the_democratic_league }
+			hidden_effect = {
+				activate_targeted_decision = { target = BRA decision = AMR_invite_tag_to_democratic_league }
+				activate_targeted_decision = { target = MEX decision = AMR_invite_tag_to_democratic_league }
+				activate_targeted_decision = { target = ARG decision = AMR_invite_tag_to_democratic_league }
+			}
+		}
+		else = {
+			hidden_effect = {
+				activate_targeted_decision = { target = BRA decision = AMR_invite_tag_to_american_faction }
+				activate_targeted_decision = { target = MEX decision = AMR_invite_tag_to_american_faction }
+				activate_targeted_decision = { target = ARG decision = AMR_invite_tag_to_american_faction }
+			}
+		}
+		custom_effect_tooltip = AMR_faction_expansion_decisions
+		add_opinion_modifier = {
+			target = MEX
+			modifier = close_friendship
+		}
+		MEX = {
+			add_opinion_modifier = {
+				target = USA
+				modifier = close_friendship
+			}
+		}
+		add_opinion_modifier = {
+			target = BRA
+			modifier = close_friendship
+		}
+		BRA = {
+			add_opinion_modifier = {
+				target = USA
+				modifier = close_friendship
+			}
+		}
+		add_opinion_modifier = {
+			target = ARG
+			modifier = close_friendship
+		}
+		ARG = {
+			add_opinion_modifier = {
+				target = USA
+				modifier = close_friendship
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_demand_greenland
+	icon = GFX_goal_AMR_buy_greenland
+	cost = 6
+	x = 0
+	y = 2
+	relative_position_id = AMR_america_first
+	
+	prerequisite = {
+		focus = AMR_align_the_middle_east
+	}
+	prerequisite = {
+		focus = AMR_new_monroeism
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		if = {
+			limit = {
+				CAN = { is_in_faction_with = GRN }
+			}
+			CAN = {
+				country_event = american_diplo.24 
+			}
+		}
+		else = {
+			create_wargoal = {
+				type = annex_everything
+				target = GRN
+			} 
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_take_down_latam_communists
+	icon = GFX_goal_USA_crush_latin_american_communists
+	cost = 6
+	x = 2
+	y = 2
+	relative_position_id = AMR_america_first
+	
+	prerequisite = {
+		focus = AMR_align_the_middle_east
+	}
+	prerequisite = {
+		focus = AMR_new_monroeism
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		every_country = {
+			limit = {
+				OR = { 
+					tag = MEX
+					tag = GUA
+					tag = BLZ
+					tag = CUB
+					tag = JAM
+					tag = BAH
+					tag = STK
+					tag = STV
+					tag = BRB
+					tag = GND
+					tag = TAT
+					tag = DMN
+					tag = ANT
+					tag = CEA
+					tag = ELS
+					tag = HON
+					tag = NIC
+					tag = COS
+					tag = PAN
+					tag = COL
+					tag = VEN
+					tag = GUY
+					tag = PRU
+					tag = ECU
+					tag = BOL
+					tag = STC
+					tag = CHL
+					tag = BRA
+					tag = ARG
+					tag = URG
+				}
+				OR = {
+					has_government = revolutionary_socialist
+					has_government = communist
+					has_government = national_bolshevik
+				}
+			}
+			ROOT = {
+				create_wargoal = {
+					type = annex_everything
+					target = PREV
+				} 
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_cia_interventioneering
+	icon = GFX_goal_AMR_cia_intervention
+	cost = 6
+	x = -1
+	y = 3
+	relative_position_id = AMR_america_first
+	
+	prerequisite = {
+		focus = AMR_take_down_latam_communists
+	}
+	prerequisite = {
+		focus = AMR_demand_greenland
+	}
+	prerequisite = {
+		focus = AMR_friendship_with_brazil
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		swap_ideas = {
+			remove_idea = AMR_spirit_of_monroe_idea
+			add_idea = AMR_new_black_ops
+		}
+		add_war_support = 0.05
+	}
+}
+
+shared_focus = {
+	id = AMR_world_police
+	icon = GFX_goal_AMR_world_police
+	cost = 6
+	x = 1
+	y = 3
+	relative_position_id = AMR_america_first
+	
+	prerequisite = {
+		focus = AMR_take_down_latam_communists
+	}
+	prerequisite = {
+		focus = AMR_demand_greenland
+	}
+	prerequisite = {
+		focus = AMR_friendship_with_brazil
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		add_ideas = AMR_world_police
+	}
+}
+
+### Pro Russian ###
+
+shared_focus = {
+	id = AMR_the_eagles_united
+	icon = GFX_goal_AMR_join_the_moscow_accord
+	cost = 6
+	x = -10
+	y = 1
+	relative_position_id = AMR_1987_undone
+	
+	prerequisite = {
+		focus = AMR_1987_undone
+	}
+	
+	mutually_exclusive = {
+		focus = AMR_american_imperialism
+		focus = AMR_america_first
+		focus = AMR_align_to_the_democratic_league
+		focus = AMR_neutrality
+	}
+	
+	allow_branch = {
+		AMR_is_soc_unifier = no
+	}
+	
+	available = {
+		OR = {
+			has_government = fascist
+			has_government = nationalist
+			has_government = national_bolshevik
+		}
+		RUS = { is_faction_leader = yes }
+		NOT = {
+			has_country_leader = {
+				name = "Tom Tancredo"
+				ruling_only = yes
+			}
+			has_country_leader = {
+				name = "Kris Kobach"
+				ruling_only = yes
+			}
+			has_country_leader = {
+				name = "Paul Gosar"
+				ruling_only = yes
+			}
+			has_country_leader = {
+				name = "Pat Buchanan"
+				ruling_only = yes
+			}
+		}
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		RUS = {
+			country_event = american_diplo.4
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_oil_empire
+	icon = GFX_goal_CAN_new_oil_wells
+	cost = 6
+	x = 0
+	y = 1
+	relative_position_id = AMR_the_eagles_united
+	
+	prerequisite = {
+		focus = AMR_the_eagles_united
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		RUS = {
+			random_owned_state = {
+				add_resource = {
+					type = oil
+					amount = 12
+				}
+			}
+			add_ideas = AMR_oil_empire
+		}
+		random_owned_state = {
+			add_resource = {
+				type = oil
+				amount = 12
+			}
+		}
+		add_ideas = AMR_oil_empire
+	}
+}
+
+shared_focus = {
+	id = AMR_target_the_democratic_league
+	icon = GFX_goal_GER_target_the_democratic_league
+	cost = 6
+	x = 2
+	y = 1
+	relative_position_id = AMR_the_eagles_united
+	
+	prerequisite = {
+		focus = AMR_the_eagles_united
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		create_wargoal = {
+			type = topple_government
+			target = CAN
+		} 
+	}
+}
+
+shared_focus = {
+	id = AMR_cia_and_fsb
+	icon = GFX_goal_AMR_cia_and_fsb_united
+	cost = 6
+	x = -2
+	y = 1
+	relative_position_id = AMR_the_eagles_united
+	
+	prerequisite = {
+		focus = AMR_the_eagles_united
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		add_ideas = AMR_cia_and_fsb
+		RUS = {
+			add_ideas = AMR_cia_and_fsb
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_recognize_russian_claims
+	icon = GFX_goal_AMR_legitimize_russian_claims
+	cost = 6
+	x = -1
+	y = 2
+	relative_position_id = AMR_the_eagles_united
+	
+	prerequisite = {
+		focus = AMR_cia_and_fsb
+	}
+	prerequisite = {
+		focus = AMR_target_the_democratic_league
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		RUS = {
+			create_wargoal = {
+				type = annex_everything
+				target = UKR
+			} 
+			create_wargoal = {
+				type = annex_everything
+				target = EST
+			} 
+			create_wargoal = {
+				type = annex_everything
+				target = LAT
+			} 
+			create_wargoal = {
+				type = annex_everything
+				target = LIT
+			} 
+			create_wargoal = {
+				type = annex_everything
+				target = BLR
+			} 
+			create_wargoal = {
+				type = annex_everything
+				target = GEO
+			} 
+		}
+		every_state = {
+			limit = {
+				OR = {
+					is_core_of = UKR
+					is_core_of = EST
+					is_core_of = LAT
+					is_core_of = LIT
+					is_core_of = BLR
+					is_core_of = GEO
+				}
+			}
+			RUS = { add_state_claim = PREV }
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_alaskan_connections
+	icon = GFX_goal_AMR_alaskan_connection
+	cost = 6
+	x = 1
+	y = 2
+	relative_position_id = AMR_the_eagles_united
+	
+	prerequisite = {
+		focus = AMR_cia_and_fsb
+	}
+	prerequisite = {
+		focus = AMR_target_the_democratic_league
+	}
+	
+	available = {	
+		owns_state = 1014
+	}
+	
+	bypass = {
+		NOT = { owns_state = 1014 }
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		1014 = {
+			add_building_construction = {
+				type = air_base
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = naval_base
+				level = 2
+				instant_build = yes
+				province = 7855
+			}
+		}
+		add_command_power = 100
+		air_experience = 100
+		RUS = { 
+			add_command_power = 100
+			air_experience = 100
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_private_military_contractors
+	icon = GFX_goal_AMR_pmc_strategy
+	cost = 6
+	x = 0
+	y = 3
+	relative_position_id = AMR_the_eagles_united
+	
+	prerequisite = {
+		focus = AMR_recognize_russian_claims
+	}
+	prerequisite = {
+		focus = AMR_alaskan_connections
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		swap_ideas = {
+			remove_idea = AMR_cia_and_fsb
+			add_idea = AMR_pmcs_idea
+		}
+		RUS = {
+			swap_ideas = {
+				remove_idea = AMR_cia_and_fsb
+				add_idea = AMR_pmcs_idea
+			}
+		}
+	}
+}
+
+
+### RevSoc ###
+
+shared_focus = {
+	id = AMR_new_revolutionary_dawn
+	icon = GFX_goal_AMR_revolutionary_dawn
+	cost = 6
+	x = -2
+	y = 1
+	relative_position_id = AMR_1987_undone
+	
+	prerequisite = {
+		focus = AMR_1987_undone
+	}
+	
+	mutually_exclusive = {
+		focus = AMR_american_imperialism
+		focus = AMR_america_first
+		focus = AMR_align_to_the_democratic_league
+		focus = AMR_neutrality
+	}
+	
+	allow_branch = {
+		AMR_is_soc_unifier = yes
+		if = { 
+			limit = { 
+				OR = {
+					tag = GRL 
+					tag = NEA
+					tag = AMC
+				}
+			}
+			has_country_flag = the_united_states_are_back
+		}
+	}
+	
+	available = {
+		
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		if = {
+			limit = {
+				is_faction_leader = no
+			}
+			create_faction_from_template = { 
+				template = faction_template_world_revolution 
+				name = american_international
+				icon = GFX_faction_generic_revsoc
+			}
+		}
+		else = {
+			add_faction_initiative = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_liberation_of_canada
+	icon = GFX_goal_GER_war_with_canada
+	cost = 6
+	x = -1
+	y = 1
+	relative_position_id = AMR_new_revolutionary_dawn
+	
+	prerequisite = {
+		focus = AMR_new_revolutionary_dawn
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		create_wargoal = {
+			type = topple_government
+			target = CAN
+		} 
+	}
+}
+
+shared_focus = {
+	id = AMR_restart_zapatas_revolution
+	icon = GFX_goal_AMR_finish_zapatas_revolution
+	cost = 6
+	x = 1
+	y = 1
+	relative_position_id = AMR_new_revolutionary_dawn
+	
+	prerequisite = {
+		focus = AMR_new_revolutionary_dawn
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		create_wargoal = {
+			type = topple_government
+			target = MEX
+		} 
+	}
+}
+
+shared_focus = {
+	id = AMR_reach_out_to_yugoslavia
+	icon = GFX_goal_GER_approach_yugoslavia
+	cost = 6
+	x = 2
+	y = 2
+	relative_position_id = AMR_new_revolutionary_dawn
+	
+	prerequisite = {
+		focus = AMR_restart_zapatas_revolution
+	}
+	prerequisite = {
+		focus = AMR_liberation_of_canada
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		YUG = {
+			country_event = american_diplo.30
+		}
+		add_opinion_modifier = {
+			target = YUG
+			modifier = close_friendship
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_the_south_american_revolution
+	icon = GFX_goal_AMR_free_americas
+	cost = 6
+	x = 0
+	y = 2
+	relative_position_id = AMR_new_revolutionary_dawn
+	
+	prerequisite = {
+		focus = AMR_restart_zapatas_revolution
+	}
+	prerequisite = {
+		focus = AMR_liberation_of_canada
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		every_country = {
+			limit = {
+				capital_scope = {
+					is_on_continent = south_america
+				}
+				NOT = { is_in_faction_with = ROOT}
+				has_government = revolutionary_socialist
+			}
+			activate_targeted_decision = { target = PREV decision = NEA_invite_to_faction } 
+		}
+		if = {
+			limit = {
+				BRA = { NOT = { has_government = revolutionary_socialist } }
+			}
+			create_wargoal = {
+				type = topple_government
+				target = BRA
+			} 
+		}
+		
+		if = {
+			limit = {
+				ARG = { NOT = { has_government = revolutionary_socialist } }
+			}
+			create_wargoal = {
+				type = topple_government
+				target = ARG
+			} 
+		}
+		
+		if = {
+			limit = {
+				PRU = { NOT = { has_government = revolutionary_socialist } }
+			}
+			create_wargoal = {
+				type = topple_government
+				target = PRU
+			} 
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_african_appeals
+	icon = GFX_goal_AMR_african_revolution
+	cost = 6
+	x = -2
+	y = 2
+	relative_position_id = AMR_new_revolutionary_dawn
+	
+	prerequisite = {
+		focus = AMR_restart_zapatas_revolution
+	}
+	prerequisite = {
+		focus = AMR_liberation_of_canada
+	}
+	
+	available_if_capitulated = yes
+
+	completion_reward = {
+		every_country = {
+			limit = {
+				capital_scope = {
+					is_on_continent = africa
+				}
+				NOT = { is_in_faction_with = ROOT}
+				has_government = revolutionary_socialist
+			}
+			country_event = american_diplo.30
+		}
+		create_wargoal = {
+			type = topple_government
+			target = SAF
+		} 
+	}
+}
+
+shared_focus = {
+	id = AMR_target_the_stalinists
+	icon = GFX_goal_PCA_strategic_bases
+	cost = 6
+	x = -1
+	y = 3
+	relative_position_id = AMR_new_revolutionary_dawn
+	
+	prerequisite = {
+		focus = AMR_reach_out_to_yugoslavia
+	}
+	prerequisite = {
+		focus = AMR_african_appeals
+	}
+	prerequisite = {
+		focus = AMR_the_south_american_revolution
+	}
+	
+	mutually_exclusive = {
+		focus = AMR_a_mutual_understanding
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		add_manpower = 5000
+		add_tech_bonus = {
+			name = marines_bonus
+			bonus = 1
+			uses = 1
+			category = marine_tech
+		}
+		add_ideas = AMR_semper_fi
+		every_country = {
+			limit = {
+				capital_scope = {
+					is_on_continent = europe
+				}
+				has_government = communist
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist 
+				popularity = 0.1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_destroy_the_warsaw_pact_revsoc
+	icon = {	
+		value = GFX_goal_CAN_final_battle_germany
+		trigger = { 
+			GER = { has_country_flag = GER_took_leadership_of_the_warsaw_pact }
+		}
+	}
+	icon = {	
+		value = focus_conquests_of_asia
+	}
+	cost = 6
+	x = -1
+	y = 4
+	relative_position_id = AMR_new_revolutionary_dawn
+	
+	prerequisite = {
+		focus = AMR_target_the_stalinists
+	}
+
+	available_if_capitulated = yes
+
+	will_lead_to_war_with = SOV
+	will_lead_to_war_with = GER
+	completion_reward = {
+		create_wargoal = {
+			type = annex_everything
+			target = SOV
+		} 
+		create_wargoal = {
+			type = annex_everything
+			target = GER
+		}  
+	}
+}
+
+shared_focus = {
+	id = AMR_a_mutual_understanding
+	icon = GFX_goal_AMR_mutual_understanding
+	cost = 6
+	x = 1
+	y = 3
+	relative_position_id = AMR_new_revolutionary_dawn
+	
+	prerequisite = {
+		focus = AMR_reach_out_to_yugoslavia
+	}
+	prerequisite = {
+		focus = AMR_african_appeals
+	}
+	prerequisite = {
+		focus = AMR_the_south_american_revolution
+	}
+	
+	mutually_exclusive = {
+		focus = AMR_target_the_stalinists
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		add_opinion_modifier = {
+			target = GER
+			modifier = repaired_relations
+		}
+		add_opinion_modifier = {
+			target = SOV
+			modifier = repaired_relations
+		}
+		SOV = {
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = repaired_relations
+			}
+		}
+		GER = {
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = repaired_relations
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_the_common_enemy
+	icon = GFX_goal_AMR_mutual_enemy
+	cost = 6
+	x = 1
+	y = 4
+	relative_position_id = AMR_new_revolutionary_dawn
+	
+	prerequisite = {
+		focus = AMR_a_mutual_understanding
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		every_country = {
+			limit = { 
+				NOT = {
+					has_government = communist 
+					has_government = revolutionary_socialist 
+					has_government = national_bolshevik
+					has_government = moderate_socialist
+				}
+			}
+			ROOT = {
+				create_wargoal = {
+					type = topple_government
+					target = PREV
+				}
+			}
+		}
+	}
+}
+
+### Neutrality ###
+
+shared_focus = {
+	id = AMR_neutrality
+	icon = GFX_goal_AMR_isolationism
+	cost = 6
+	x = 10
+	y = 1
+	relative_position_id = AMR_1987_undone
+	
+	prerequisite = {
+		focus = AMR_1987_undone
+	}
+	
+	mutually_exclusive = {
+		focus = AMR_american_imperialism
+		focus = AMR_america_first
+		focus = AMR_the_eagles_united
+		focus = AMR_align_to_the_democratic_league
+		focus = AMR_new_revolutionary_dawn
+	}
+	
+	available = {
+		NOT = {
+			has_country_leader = {
+				name = "Donald Rumsfeld"
+				ruling_only = yes
+			}
+		}
+	}
+	
+	offset = {
+		x = -7
+		y = 0
+		trigger = { 
+			AMR_is_soc_unifier = yes
+		}
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		add_war_support = -0.25
+		add_ideas = AMR_withdrawl_from_foreign_affairs
+	}
+}
+
+shared_focus = {
+	id = AMR_naval_prominence
+	icon = {
+		value = GFX_goal_AMR_naval_prominence_socialist
+		trigger = { AMR_is_soc_unifier = yes }
+	}
+	icon = {
+		value = GFX_goal_AMR_naval_prominence
+	}
+	cost = 6
+	x = 0
+	y = 1
+	relative_position_id = AMR_neutrality
+	
+	prerequisite = {
+		focus = AMR_neutrality
+	}
+	
+	available = {
+		has_completed_focus = AMR_defend_our_borders
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		swap_ideas = {
+			remove_idea = AMR_withdrawl_from_foreign_affairs
+			add_idea = AMR_withdrawl_from_foreign_affairs2
+		}
+		navy_experience = 10
+		add_doctrine_cost_reduction = {
+			name = naval_doc_bonus
+			cost_reduction = 0.5
+			uses = 1
+			category = naval_doctrine
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_defend_our_borders
+	icon = GFX_goal_AMR_defend_the_borders
+	cost = 6
+	x = 2
+	y = 1
+	relative_position_id = AMR_neutrality
+	
+	prerequisite = {
+		focus = AMR_neutrality
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		CAN = {
+			custom_effect_tooltip = MWA_bunkers_tt
+		}
+		MEX = {
+			custom_effect_tooltip = MWA_bunkers_tt
+		}
+		every_owned_state = {
+			add_building_construction = {
+				type = bunker
+				level = 2
+				instant_build = yes
+				province = {
+					all_provinces = yes
+					limit_to_border_country = CAN
+				}
+			}
+		}
+		every_owned_state = {
+			add_building_construction = {
+				type = bunker
+				level = 2
+				instant_build = yes
+				province = {
+					all_provinces = yes
+					limit_to_border_country = MEX
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_trade_empire
+	icon = {
+		value = GFX_goal_AMR_the_promises_of_peace
+		trigger = { AMR_is_soc_unifier = yes }
+	}
+	icon = {
+		value = GFX_goal_AMR_buisness_of_neutrality
+	}
+	cost = 6
+	x = -2
+	y = 1
+	relative_position_id = AMR_neutrality
+	
+	prerequisite = {
+		focus = AMR_neutrality
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		add_ideas = AMR_shelter_from_the_storm
+	}
+}
+
+shared_focus = {
+	id = AMR_international_arms_dealer
+	icon = {
+		value = GFX_goal_AMR_arms_dealing_socialist
+		trigger = { AMR_is_soc_unifier = yes }
+	}
+	icon = {
+		value = GFX_goal_AMR_arms_dealing
+	}
+	cost = 6
+	x = -1
+	y = 2
+	relative_position_id = AMR_neutrality
+	
+	prerequisite = {
+		focus = AMR_trade_empire
+	}
+	prerequisite = {
+		focus = AMR_defend_our_borders
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+		swap_ideas = {
+			remove_idea = AMR_shelter_from_the_storm
+			add_idea = AMR_profits_from_arms_dealing
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_british_model
+	icon = {
+		value = GFX_goal_AMR_team_switzerland
+		trigger = { AMR_is_soc_unifier = yes }
+	}
+	icon = {
+		value = GFX_goal_PCA_british
+	}
+	cost = 6
+	x = 1
+	y = 2
+	relative_position_id = AMR_neutrality
+	
+	prerequisite = {
+		focus = AMR_defend_our_borders
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		if = {
+			limit = { AMR_is_soc_unifier = yes }
+			every_country = {
+				add_opinion_modifier = {
+					target = PREV
+					modifier = swiss_stance
+				}
+			}
+			every_country = {
+				reverse_add_opinion_modifier = {
+					target = ROOT
+					modifier = swiss_stance
+				}
+			}
+		}
+		else = {
+			
+			if = {
+				limit = {
+					ENG = { 
+						is_faction_leader = yes
+						is_in_faction_with = IRE
+					}
+				}
+				ENG = {
+					country_event = american_diplo.7
+				}
+			}
+			else = {
+				add_opinion_modifier = {
+					target = ENG
+					modifier = close_friendship
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_city_on_a_hill
+	icon = GFX_goal_AMR_city_on_a_hill
+	cost = 6
+	x = 0
+	y = 3
+	relative_position_id = AMR_neutrality
+	
+	prerequisite = {
+		focus = AMR_international_arms_dealer
+	}
+	prerequisite = {
+		focus = AMR_british_model
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		add_stability = 0.05
+		add_manpower = 2000
+		random_owned_state = {
+			limit = {
+				is_core_of = ROOT
+				is_controlled_by = ROOT
+				industrial_complex > 0
+			}
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_state = {
+			limit = {
+				is_core_of = ROOT
+				is_controlled_by = ROOT
+				industrial_complex > 0
+			}
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_the_american_century
+	icon = GFX_goal_AMR_american_century
+	cost = 6
+	x = 0
+	y = 4
+	relative_position_id = AMR_neutrality
+	
+	prerequisite = {
+		focus = AMR_city_on_a_hill
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		swap_ideas = {
+			remove_idea = AMR_withdrawl_from_foreign_affairs2
+			add_idea = AMR_new_american_century
+		}
+		add_political_power = 100
+		add_stability = 0.05
+	}
+}
+
+### Shared ###
+
+shared_focus = {
+	id = AMR_strategic_bases
+	icon = GFX_goal_PCA_strategic_bases
+	cost = 6
+	x = -2
+	y = 5
+	relative_position_id = AMR_1987_undone
+	
+	prerequisite = {
+		focus = AMR_private_military_contractors
+		focus = AMR_the_canal_we_built
+		focus = AMR_retake_the_phillipines
+		focus = AMR_leader_of_the_free_world
+		focus = AMR_cia_interventioneering
+		focus = AMR_world_police
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		if = {
+			limit = {
+				has_completed_focus = AMR_the_eagles_united
+			}
+			TUR = {
+				country_event = american_diplo.1501
+			}
+			CYP = {
+				country_event = american_diplo.1500
+			}
+			UAE = {
+				country_event = american_diplo.1501
+			}
+			SAU = {
+				country_event = american_diplo.1501
+			}
+			JAP = {
+				country_event = american_diplo.1501
+			}
+			CHI = {
+				country_event = american_diplo.1501
+			}
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = AMR_america_first
+			}
+			TUR = {
+				country_event = american_diplo.1500
+			}
+			CYP = {
+				country_event = american_diplo.1500
+			}
+			UAE = {
+				country_event = american_diplo.1500
+			}
+			SAU = {
+				country_event = american_diplo.1500
+			}
+			JAP = {
+				country_event = american_diplo.1500
+			}
+			CHI = {
+				country_event = american_diplo.1500
+			}
+		}
+		else = {
+			TUR = {
+				country_event = american_diplo.15
+			}
+			CYP = {
+				country_event = american_diplo.15
+			}
+			UAE = {
+				country_event = american_diplo.15
+			}
+			SAU = {
+				country_event = american_diplo.15
+			}
+			CHI = {
+				country_event = american_diplo.15
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_atlantic_outposts
+	icon = GFX_goal_AMR_atlantic_outposts
+	cost = 6
+	x = 2
+	y = 5
+	relative_position_id = AMR_1987_undone
+	
+	prerequisite = {
+		focus = AMR_private_military_contractors
+		focus = AMR_the_canal_we_built
+		focus = AMR_retake_the_phillipines
+		focus = AMR_leader_of_the_free_world
+		focus = AMR_cia_interventioneering
+		focus = AMR_world_police
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		if = {
+			limit = {
+				has_completed_focus = AMR_the_eagles_united
+			}
+			ICE = {
+				country_event = american_diplo.1501
+			}
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = AMR_america_first
+			}
+			ICE = {
+				country_event = american_diplo.1500
+			}
+		}
+		else = {
+			ICE = {
+				country_event = american_diplo.15
+			}
+		}
+		create_wargoal = {
+			type = topple_government
+			target = FRO
+		} 
+	}
+}
+
+shared_focus = {
+	id = AMR_new_marine_corps
+	icon = GFX_goal_AMR_expanded_marines
+	cost = 6
+	x = 0
+	y = 5
+	relative_position_id = AMR_1987_undone
+	
+	prerequisite = {
+		focus = AMR_private_military_contractors
+		focus = AMR_the_canal_we_built
+		focus = AMR_retake_the_phillipines
+		focus = AMR_leader_of_the_free_world
+		focus = AMR_cia_interventioneering
+		focus = AMR_world_police
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		add_manpower = 5000
+		add_tech_bonus = {
+			name = marines_bonus
+			bonus = 1
+			uses = 1
+			category = marine_tech
+		}
+		add_ideas = AMR_semper_fi
+	}
+}
+
+shared_focus = {
+	id = AMR_destroy_the_warsaw_pact
+	icon = {	
+		value = GFX_goal_CAN_final_battle_germany
+		trigger = { 
+			GER = { has_country_flag = GER_took_leadership_of_the_warsaw_pact }
+		}
+	}
+	icon = {	
+		value = focus_conquests_of_asia
+	}
+	cost = 6
+	x = 0
+	y = 6
+	relative_position_id = AMR_1987_undone
+	
+	prerequisite = {
+		focus = AMR_atlantic_outposts
+	}
+	prerequisite = {
+		focus = AMR_strategic_bases
+	}
+	prerequisite = {
+		focus = AMR_new_marine_corps
+	}
+
+	available_if_capitulated = yes
+
+	will_lead_to_war_with = SOV
+	will_lead_to_war_with = GER
+	completion_reward = {
+		create_wargoal = {
+			type = annex_everything
+			target = SOV
+		} 
+		create_wargoal = {
+			type = annex_everything
+			target = GER
+		}  
+	}
+}
+
+shared_focus = {
+	id = AMR_contain_chinese_agression
+	icon = GFX_goal_CAN_containment_strategy
+	cost = 6
+	x = -5
+	y = 5
+	relative_position_id = AMR_1987_undone
+	
+	prerequisite = {
+		focus = AMR_private_military_contractors
+		focus = AMR_the_canal_we_built
+		focus = AMR_retake_the_phillipines
+		focus = AMR_leader_of_the_free_world
+		focus = AMR_cia_interventioneering
+		focus = AMR_world_police
+	}
+	
+	mutually_exclusive = {
+		focus = AMR_strike_beijing
+		focus = AMR_contain_chinese_agression
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		give_guarantee = VIN
+		give_guarantee = PHI
+		give_guarantee = BOR
+		give_guarantee = BRN
+		add_opinion_modifier = {
+			target = PRC
+			modifier = declaration_of_hostility
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_strike_beijing
+	icon = GFX_goal_CAN_take_down_china
+	cost = 6
+	x = -7
+	y = 5
+	relative_position_id = AMR_1987_undone
+	
+	prerequisite = {
+		focus = AMR_private_military_contractors
+		focus = AMR_the_canal_we_built
+		focus = AMR_retake_the_phillipines
+		focus = AMR_leader_of_the_free_world
+		focus = AMR_cia_interventioneering
+		focus = AMR_world_police
+	}
+	
+	mutually_exclusive = {
+		focus = AMR_chinese_ambivalence
+		focus = AMR_contain_chinese_agression
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		create_wargoal = {
+			type = topple_government
+			target = PRC
+		} 
+	}
+}
+
+
+shared_focus = {
+	id = AMR_chinese_ambivalence
+	icon = GFX_goal_AMR_chinese_ambivalence
+	cost = 6
+	x = -9
+	y = 5
+	relative_position_id = AMR_1987_undone
+	
+	prerequisite = {
+		focus = AMR_private_military_contractors
+		focus = AMR_the_canal_we_built
+		focus = AMR_retake_the_phillipines
+		focus = AMR_leader_of_the_free_world
+		focus = AMR_cia_interventioneering
+		focus = AMR_world_police
+	}
+	
+	mutually_exclusive = {
+		focus = AMR_strike_beijing
+		focus = AMR_contain_chinese_agression
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		add_political_power = 50
+		add_war_support = 0.05
+		PRC = {
+			add_political_power = 50
+			add_war_support = 0.05
+		}
+		add_opinion_modifier = {
+			target = PRC
+			modifier = friendly_rivalry_with_china
+		}
+	}
+}
