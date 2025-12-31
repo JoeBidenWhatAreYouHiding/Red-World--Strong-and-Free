@@ -122,39 +122,6 @@ country_event = {
 	}
 }
 
-#Broccoli
-country_event = {
-	id = texas.6
-	title = texas.6.t
-	desc = texas.6.d
-	picture = bush_broccoli
-	
-	trigger = {
-		has_government = nationalist
-	}
-	
-	fire_only_once = yes
-	
-	is_triggered_only = yes
-	
-	option = {
-		name = texas.6.o1
-		add_political_power = -10
-		add_stability = 0.01
-	}
-	
-	option = {
-		name = texas.6.o2
-		add_political_power = -20
-		add_stability = 0.02
-	}
-	
-	option = {
-		name = texas.6.o3
-		add_war_support = 0.03
-	}
-}
-
 #Reports of Major Attack incoming
 country_event = {
 	id = texas.7
@@ -1503,7 +1470,7 @@ country_event = {
 	id = texas.63
 	title = texas.63.t
 	desc = texas.63.d
-	picture = anti_war_protests
+	picture = bush_and_perry
 	
 	fire_only_once = yes
 	
@@ -1529,7 +1496,7 @@ country_event = {
 	id = texas.64
 	title = texas.64.t
 	desc = texas.64.d
-	picture = anti_war_protests
+	picture = bush_perry_spat
 	
 	fire_only_once = yes
 	
@@ -1555,7 +1522,7 @@ country_event = {
 	id = texas.65
 	title = texas.65.t
 	desc = texas.65.d
-	picture = anti_war_protests
+	picture = bush_run_for_president
 	
 	fire_only_once = yes
 	
@@ -1584,12 +1551,12 @@ country_event = {
 	}
 }
 
-#Jones denounces Bush
+#Campaign in Spanish?
 country_event = {
 	id = texas.66
 	title = texas.66.t
 	desc = texas.66.d
-	picture = anti_war_protests
+	picture = bush_campaign_in_spanish
 	
 	fire_only_once = yes
 	
@@ -1599,38 +1566,69 @@ country_event = {
 		name = texas.66.o1
 		add_popularity = {
 			ideology = national_conservative
+			popularity = 0.02
+		}
+		set_country_flag = TEX_bush_wins_unopposed
+		hidden_effect = {
+			country_event = {
+				id = texas.68
+				days = 15
+			}
+		}
+	}
+	
+	option = { #No
+		name = texas.66.o2
+		add_popularity = {
+			ideology = national_conservative
 			popularity = -0.02
 		}
 		hidden_effect = {
 			country_event = {
 				id = texas.67
-				days = 4
+				days = 5
 			}
 		}
 	}
 }
 
-#Jones Presidential Run
+#Martinez Presidential Run
 country_event = {
 	id = texas.67
 	title = texas.67.t
 	desc = texas.67.d
-	picture = anti_war_protests
+	picture = martinez_runs_against_bush
 	
 	fire_only_once = yes
 	
 	is_triggered_only = yes
 	
-	option = { #Yes
+	option = { #Fight it out
 		name = texas.67.o1
 		add_popularity = {
 			ideology = national_conservative
-			popularity = 0.02
+			popularity = -0.02
 		}
+		set_country_flag = TEX_bush_defeats_martinez
 		hidden_effect = {
 			country_event = {
 				id = texas.68
-				days = 4
+				days = 10
+			}
+		}
+	}
+	
+	option = { #Drop Out
+		name = texas.67.o2
+		add_popularity = {
+			ideology = national_conservative
+			popularity = -0.04
+		}
+		set_country_flag = TEX_martinez_wins
+		hidden_effect = {
+			country_event = {
+				id = texas.68
+				days = 10
 			}
 		}
 	}
@@ -1640,8 +1638,19 @@ country_event = {
 country_event = {
 	id = texas.68
 	title = texas.68.t
-	desc = texas.68.d
-	picture = anti_war_protests
+	desc = {
+		text = texas.68.d
+		trigger = { has_country_flag = TEX_bush_defeats_martinez }
+	}
+	desc = {
+		text = texas.68.d_2
+		trigger = { has_country_flag = TEX_martinez_wins }
+	}
+	desc = {
+		text = texas.68.d_3
+		trigger = { has_country_flag = TEX_bush_wins_unopposed }
+	}
+	picture = independent_republican_convention
 	
 	fire_only_once = yes
 	
@@ -1649,15 +1658,16 @@ country_event = {
 	
 	option = { #Bush
 		name = texas.68.o1
-		TEX_george_w_bush = {
-			promote_character = fiscal_conservative
+		if = {
+			limit = { has_country_flag = TEX_martinez_wins }
+			TEX_susana_martinez = {
+				promote_character = fiscal_conservative
+			}
 		}
-	}
-	
-	option = { #Jones
-		name = texas.68.o2
-		TEX_alex_jones = {
-			promote_character = fiscal_conservative
+		else = {
+			TEX_george_w_bush = {
+				promote_character = fiscal_conservative
+			}
 		}
 	}
 }
@@ -1744,7 +1754,7 @@ country_event = {
 	id = texas.72
 	title = texas.72.t
 	desc = texas.72.d
-	picture = anti_war_protests
+	picture = democrat_rebound
 	
 	fire_only_once = yes
 	
@@ -1833,8 +1843,15 @@ country_event = {
 country_event = {
 	id = texas.75
 	title = texas.75.t
-	desc = texas.75.d
-	picture = anti_war_protests
+	desc = {
+		text = texas.75.d
+		trigger = { NOT = { has_country_flag = TEX_one_republic_dominates } }
+	}
+	desc = {
+		text = texas.75.d_2
+		trigger = { has_country_flag = TEX_one_republic_dominates }
+	}
+	picture = texas_election
 	
 	fire_only_once = yes
 	
@@ -1899,6 +1916,10 @@ country_event = {
 		name = texas.75.o4
 		trigger = {
 			NOT = { has_country_flag = TEX_one_republic_dominates}
+			if = {
+				limit = { has_country_flag = TEX_dems_are_newdem }
+				has_country_flag = TEX_one_republic_support_collapses
+			}
 		}
 		if = {
 			limit = { has_country_flag = TEX_dems_are_newdem }
