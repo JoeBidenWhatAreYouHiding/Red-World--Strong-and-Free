@@ -217,7 +217,7 @@ focus_tree = {
 	}
 	focus = {
 		id = PCA_californian_infrastrucutre_project
-		icon = infrastructure
+		icon = GFX_goal_PCA_californian_infrastructure
 		cost = 6.5
 		available = {
 			has_government = communist
@@ -414,7 +414,7 @@ focus_tree = {
 	}
 	focus = {
 		id = PCA_transform_silicon_valley
-		icon = focus_trade_council_influence
+		icon = GFX_goal_PCA_silicon_valley
 		cost = 6.5
 		available = {
 			has_government = communist
@@ -434,7 +434,7 @@ focus_tree = {
 	}
 	focus = {
 		id = PCA_connections_to_the_world
-		icon = focus_a_new_international_airport
+		icon = GFX_goal_PCA_connections_to_the_world
 		cost = 6.5
 		available = {
 			has_government = communist
@@ -1646,7 +1646,7 @@ focus_tree = {
 	}
 	focus = {
 		id = PCA_close_our_borders
-		icon = close_borders_2
+		icon = GFX_goal_PCA_restrict_the_border
 		cost = 5
 		available = {
 			has_government = communist
@@ -2268,7 +2268,7 @@ focus_tree = {
 					name = "Yowlumne"
 				}
 				set_province_name = {
-					id = 823
+					id = 11757
 					name = "Wa'aach"
 				}
 				set_province_name = {
@@ -3038,6 +3038,20 @@ focus_tree = {
 			NOT = {
 				has_country_flag = treaty_of_seattle
 			}
+			OR = {
+				GER = { 
+					hidden_trigger = { GER_is_ddr = yes }
+					is_faction_leader = yes 
+				}
+				SOV = { 
+					hidden_trigger = { GER_is_ddr = yes }
+					is_faction_leader = yes 
+					OR = {
+						has_government = communist
+						has_government = revolutionary_socialist
+					}
+				}
+			}
 		}
 		mutually_exclusive = {
 			focus = PCA_red_neutrality
@@ -3571,6 +3585,10 @@ focus_tree = {
 			has_government = communist
 			NOT = {
 				has_country_flag = treaty_of_seattle
+			}
+			OR = {
+				has_completed_focus = PCA_join_the_warsaw_pact
+				has_completed_focus = PCA_american_internationale
 			}
 		}
 		relative_position_id = PCA_foreign_policy
