@@ -127,9 +127,11 @@ focus_tree = {
 			remove_ideas = idea_cascadian_separatism
 			remove_ideas = idea_america_neutrality
 			hidden_effect = {
-				set_rule = {
-					can_join_factions = yes
-					can_create_factions = yes
+				if = {
+					limit = {
+						has_global_flag = foster_renamed_PCA
+					}
+					country_event = pacific_america.143
 				}
 			}
 		}
@@ -1184,6 +1186,9 @@ focus_tree = {
 			    add_core_of = PCA
 			}
 			896 = {
+			    add_core_of = PCA
+			}
+			621 = {
 			    add_core_of = PCA
 			}
 		}
@@ -3007,7 +3012,7 @@ focus_tree = {
 	
 	focus = {
 		id = PCA_foreign_policy
-		icon = focus_syria_seek_soviet_funding
+		icon = GFX_goal_PCA_foreign_policy
 		cost = 2.9
 		available = {
 		    AND = {
@@ -3031,7 +3036,7 @@ focus_tree = {
 	
 	focus = {
 		id = PCA_join_the_warsaw_pact
-		icon = focus_syria_join_the_warsaw_pact
+		icon = GFX_goal_PCA_join_the_warsaw_pact
 		cost = 7.2
 		available = {
 			has_government = communist
@@ -3079,7 +3084,7 @@ focus_tree = {
 				limit = {
 					GER = {
 						is_faction_leader = yes
-						has_government = communist
+						GER_is_ddr = yes
 					}
 				}
 				GER = {
@@ -3113,14 +3118,18 @@ focus_tree = {
 	}
 	focus = {
 		id = PCA_yazov_plan
-		icon = politburo_debate
+		icon = {
+			value = GFX_goal_PCA_european_economic_aid
+			trigger = {
+				GER = { is_faction_leader = yes }
+				GER = { GER_is_ddr = yes }
+			}
+		}
+		icon = {
+			value = GFX_goal_PCA_yazov_plan
+		}
 		cost = 7.2
 		available = {
-		    NOT = {
-			    SOV = {
-				    has_country_flag = putin_elected
-				}
-			}
 			has_government = communist
 			NOT = {
 				has_country_flag = treaty_of_seattle
@@ -3133,28 +3142,54 @@ focus_tree = {
 		x = 0
 		y = 1
 		completion_reward = {
-		    random_owned_state = {
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = arms_factory
-					level = 1
-					instant_build = yes
+			if = {
+				limit = { 
+					is_in_faction_with = GER 
+					GER = { is_faction_leader = yes }
 				}
+				random_owned_state = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_state = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+				add_ideas = PCA_eu_economic_aid
 			}
-			random_owned_state = {
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = arms_factory
-					level = 1
-					instant_build = yes
+			else = {
+				random_owned_state = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
 				}
+				random_owned_state = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+				add_ideas = PCA_yazov_plan_idea
 			}
 		}
 
 	}
 	focus = {
 		id = PCA_trade_with_europe
-		icon = trade
+		icon = GFX_goal_PCA_trade_with_europe
 		cost = 7.2
 		prerequisite = {
 			focus = PCA_yazov_plan
@@ -3193,12 +3228,22 @@ focus_tree = {
 				target = BUL
 				modifier = trade_influence_1
 			}
+			add_ideas = idea_eu_observer
 		}
 
 	}
 	focus = {
 		id = PCA_special_relationship
-		icon = congress_of_nations
+		icon = {
+			value = GFX_goal_PCA_atlantic_brotherhood
+			trigger = {
+				GER = { is_faction_leader = yes }
+				GER = { GER_is_ddr = yes }
+			}
+		}
+		icon = {
+			value = GFX_goal_PCA_special_relationship
+		}
 		cost = 7.2
 		available = {
 			has_political_power > 800
@@ -3214,13 +3259,40 @@ focus_tree = {
 		x = 1
 		y = 1
 		completion_reward = {
-		    add_stability = 0.02 
+		    add_war_support = 0.05
+			add_stability = 0.05
+			if = {
+				limit = { 
+					is_in_faction_with = GER
+					GER = { is_faction_leader = yes }
+				}
+				swap_ideas = {
+					remove_idea = PCA_eu_economic_aid
+					add_idea = PCA_new_atlantic_alliance
+				}
+				add_opinion_modifier = {
+					target = GER
+					modifier = close_friendship
+				}
+				set_country_flag = PCA_can_take_warsaw_pact_leadership
+				unlock_decision_tooltip = PCA_take_warsaw_pact_leadership
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = PCA_yazov_plan_idea
+					add_idea = PCA_american_soviet_brotherhood
+				}
+				add_opinion_modifier = {
+					target = SOV
+					modifier = close_friendship
+				}
+			}
 		}
 
 	}
 	focus = {
 		id = PCA_international_war_support
-		icon = defence
+		icon = GFX_goal_PCA_international_war_support
 		cost = 5
 		available = {
 			has_political_power > 800
@@ -3239,7 +3311,11 @@ focus_tree = {
 		x = 0
 		y = 2
 		completion_reward = {
-		    add_war_support = 0.05
+		    add_war_support = 0.1
+			create_wargoal = {
+			    type = topple_government
+			    target = SAF
+		    }
 		}
 
 	}
@@ -3248,7 +3324,7 @@ focus_tree = {
 	
 	focus = {
 		id = PCA_american_internationale
-		icon = focus_syria_join_the_warsaw_pact
+		icon = GFX_goal_PCA_american_internationale
 		cost = 7.2
 		available = {
 			has_government = communist
@@ -3268,14 +3344,18 @@ focus_tree = {
 		x = -2
 		y = 1
 		completion_reward = {
-			
+			create_faction_from_template = { 
+				template = faction_template_world_revolution              
+				name = "Los Angeles Pact"
+				icon = GFX_faction_american_internationale
+			}
 		}
 
 	}
 	
 	focus = {
 		id = PCA_rcia_interference
-		icon = focus_syria_join_the_warsaw_pact
+		icon = GFX_goal_PCA_revolutionary_cia
 		cost = 7.2
 		available = {
 			has_government = communist
@@ -3290,14 +3370,34 @@ focus_tree = {
 		x = -1
 		y = 1
 		completion_reward = {
-			
+			every_country = {
+				limit = {
+					OR = {
+						capital_scope = {
+							is_on_continent = south_america
+						}
+						capital_scope = {
+							is_on_continent = north_america
+						}
+					}
+					NOT = {
+						has_government = communist
+						has_government = revolutionary_socialist
+					}
+				}
+				add_timed_idea = {
+					idea = PCA_revolutionary_interference
+					days = 200
+				}
+			}
+			add_ideas = PCA_anti_counterrev_black_ops
 		}
 
 	}
 	
 	focus = {
 		id = PCA_overthrow_counter_revolutionaries
-		icon = focus_syria_join_the_warsaw_pact
+		icon = GFX_goal_PCA_repay_the_revolutionaries
 		cost = 7.2
 		available = {
 			has_government = communist
@@ -3312,20 +3412,71 @@ focus_tree = {
 		x = 1
 		y = 1
 		completion_reward = {
+			if = {
+				limit = {
+					CUB = { 
+						OR = {	
+							has_government = communist 
+							has_government = revolutionary_socialist 
+							has_government = national_bolshevik 
+						}
+					}
+				}
+				activate_targeted_decision = { target = CUB decision = PCA_invite_tag_to_american_int }
+			}
 			
+			if = {
+				limit = {
+					CEA = { 
+						OR = {	
+							has_government = communist 
+							has_government = revolutionary_socialist 
+						}
+					}
+				}
+				activate_targeted_decision = { target = CEA decision = PCA_invite_tag_to_american_int }
+			}
+			
+			if = {
+				limit = {
+					CHL = { 
+						OR = {	
+							has_government = communist 
+							has_government = revolutionary_socialist 
+						}
+					}
+				}
+				activate_targeted_decision = { target = CHL decision = PCA_invite_tag_to_american_int }
+			}
+			
+			if = {
+				limit = {
+					TAT = { 
+						OR = {	
+							has_government = communist 
+							has_government = revolutionary_socialist 
+						}
+					}
+				}
+				activate_targeted_decision = { target = TAT decision = PCA_invite_tag_to_american_int }
+			}
 		}
 
 	}
 	
 	focus = {
-		id = PCA_support_communism_in_the_americas
-		icon = focus_syria_join_the_warsaw_pact
+		id = PCA_reach_out_to_china
+		icon = GFX_goal_PCA_reach_out_to_china
 		cost = 7.2
 		available = {
 			has_government = communist
 			NOT = {
 				has_country_flag = treaty_of_seattle
 			}
+			country_exists = PRC
+		}
+		bypass = {
+			NOT = { country_exists = PRC }
 		}
 		prerequisite = {
 			focus = PCA_rcia_interference
@@ -3337,14 +3488,27 @@ focus_tree = {
 		x = 0
 		y = 2
 		completion_reward = {
-			
+			PRC = {
+				country_event = american_diplo.33
+			}
 		}
 
 	}
 	
 	focus = {
 		id = PCA_overthrow_false_communists
-		icon = focus_syria_join_the_warsaw_pact
+		icon = {
+			value = GFX_goal_CAN_final_battle_germany
+			trigger = {
+				GER = { 
+					GER_is_ddr = yes
+					is_faction_leader = yes
+				}
+			}
+		}
+		icon = {
+			value = GFX_goal_CAN_final_battle
+		}
 		cost = 7.2
 		available = {
 			has_government = communist
@@ -3356,20 +3520,35 @@ focus_tree = {
 			focus = PCA_red_cold_war
 		}
 		prerequisite = {
-			focus = PCA_support_communism_in_the_americas
+			focus = PCA_reach_out_to_china
 		}
 		relative_position_id = PCA_american_internationale
 		x = -1
 		y = 3
 		completion_reward = {
-			
+			create_wargoal = {
+			    type = topple_government
+			    target = SOV
+		    }
+			create_wargoal = {
+			    type = topple_government
+			    target = GER
+		    }
+			add_manpower = 5000
+			add_tech_bonus = {
+				name = marines_bonus
+				bonus = 1
+				uses = 1
+				category = marine_tech
+			}
+			add_ideas = AMR_semper_fi
 		}
 
 	}
 	
 	focus = {
 		id = PCA_red_cold_war
-		icon = focus_syria_join_the_warsaw_pact
+		icon = GFX_goal_PCA_red_cold_war
 		cost = 7.2
 		available = {
 			has_government = communist
@@ -3381,13 +3560,33 @@ focus_tree = {
 			focus = PCA_overthrow_false_communists
 		}
 		prerequisite = {
-			focus = PCA_support_communism_in_the_americas
+			focus = PCA_reach_out_to_china
 		}
 		relative_position_id = PCA_american_internationale
 		x = 1
 		y = 3
 		completion_reward = {
-			
+			add_war_support = 0.1
+			add_stability = 0.05
+			add_opinion_modifier = {
+				target = GER
+				modifier = red_cold_war
+			}
+			add_opinion_modifier = {
+				target = SOV
+				modifier = red_cold_war
+			}
+			if = {
+				limit = {
+					YUG = { 
+						OR = {	
+							has_government = communist 
+							has_government = revolutionary_socialist 
+						}
+					}
+				}
+				activate_targeted_decision = { target = YUG decision = PCA_invite_tag_to_american_int }
+			}
 		}
 
 	}
@@ -3396,7 +3595,7 @@ focus_tree = {
 	
 	focus = {
 		id = PCA_red_neutrality
-		icon = focus_syria_join_the_warsaw_pact
+		icon = GFX_goal_PCA_neutrality
 		cost = 7.2
 		available = {
 			has_government = communist
@@ -3416,19 +3615,16 @@ focus_tree = {
 		x = 1
 		y = 1
 		completion_reward = {
+			add_war_support = -0.25
+			add_ideas = AMR_withdrawl_from_foreign_affairs
 		}
 
 	}
 	focus = {
 		id = PCA_man_the_walls
-		icon = politburo_debate
+		icon = GFX_goal_PCA_man_the_walls
 		cost = 7.2
 		available = {
-		    NOT = {
-			    SOV = {
-				    has_country_flag = putin_elected
-				}
-			}
 			has_government = communist
 			NOT = {
 				has_country_flag = treaty_of_seattle
@@ -3441,13 +3637,39 @@ focus_tree = {
 		x = -0
 		y = 1
 		completion_reward = {
-		    
+		    CAN = {
+				custom_effect_tooltip = MWA_bunkers_tt
+			}
+			MEX = {
+				custom_effect_tooltip = MWA_bunkers_tt
+			}
+			every_owned_state = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border_country = CAN
+					}
+				}
+			}
+			every_owned_state = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border_country = MEX
+					}
+				}
+			}
 		}
-
 	}
 	focus = {
 		id = PCA_naval_prominence
-		icon = trade
+		icon = GFX_goal_PCA_naval_prominence
 		cost = 7.2
 		prerequisite = {
 			focus = PCA_man_the_walls
@@ -3462,13 +3684,23 @@ focus_tree = {
 		x = -1
 		y = 1
 		completion_reward = {
-		   
+		   swap_ideas = {
+				remove_idea = AMR_withdrawl_from_foreign_affairs
+				add_idea = AMR_withdrawl_from_foreign_affairs2
+			}
+			navy_experience = 10
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = naval_doctrine
+			}
 		}
 
 	}
 	focus = {
 		id = PCA_arms_dealer
-		icon = congress_of_nations
+		icon = GFX_goal_PCA_arms_dealing
 		cost = 7.2
 		available = {
 			has_political_power > 800
@@ -3484,12 +3716,21 @@ focus_tree = {
 		x = 1
 		y = 1
 		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_ideas = AMR_profits_from_arms_dealing
 		}
 
 	}
 	focus = {
 		id = PCA_red_city_on_a_hill
-		icon = defence
+		icon = GFX_goal_AMR_city_on_a_hill
 		cost = 5
 		available = {
 			has_political_power > 800
@@ -3508,6 +3749,38 @@ focus_tree = {
 		x = 0
 		y = 2
 		completion_reward = {
+			add_stability = 0.05
+			add_manpower = 2000
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					is_controlled_by = ROOT
+					industrial_complex > 0
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					is_controlled_by = ROOT
+					industrial_complex > 0
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			swap_ideas = {
+				remove_idea = AMR_withdrawl_from_foreign_affairs
+				add_idea = AMR_new_american_century
+			}
 		}
 
 	}
@@ -3516,10 +3789,37 @@ focus_tree = {
 	
 	focus = {
 		id = PCA_red_world
-		icon = defence
+		icon = GFX_goal_GER_red_world
 		cost = 5
 		available = {
-			
+			BRA = { 
+				OR = {
+					is_subject_of = ROOT 
+					is_in_faction_with = ROOT
+					exists = no
+				}
+			}
+			ARG = { 
+				OR = {
+					is_subject_of = ROOT 
+					is_in_faction_with = ROOT
+					exists = no
+				}
+			}
+			MEX = { 
+				OR = {
+					is_subject_of = ROOT 
+					is_in_faction_with = ROOT
+					exists = no
+				}
+			}
+			CAN = { 
+				OR = {
+					is_subject_of = ROOT 
+					is_in_faction_with = ROOT
+					exists = no
+				}
+			}
 		}
 		mutually_exclusive = {
 			focus = PCA_the_socialist_hemisphere
@@ -3539,13 +3839,28 @@ focus_tree = {
 		x = -4
 		y = 5
 		completion_reward = {
+			every_country = {
+				limit = { 
+					NOT = {
+						has_government = communist 
+						has_government = revolutionary_socialist 
+						has_government = national_bolshevik
+					}
+				}
+				PCA = {
+					create_wargoal = {
+						type = topple_government
+						target = PREV
+					}
+				}
+			}
 		}
 
 	}
 	
 	focus = {
 		id = PCA_the_socialist_hemisphere
-		icon = defence
+		icon = GFX_goal_AMR_free_americas
 		cost = 5
 		available = {
 			
@@ -3568,6 +3883,22 @@ focus_tree = {
 		x = 5
 		y = 5
 		completion_reward = {
+			every_country = {
+				limit = {
+					OR = {
+						capital_scope = {
+							is_on_continent = south_america
+						}
+						capital_scope = {
+							is_on_continent = north_america
+						}
+					}
+				}
+				add_ideas = PCA_red_monroe_idea
+				PCA = {
+					give_guarantee = PREV
+				}
+			}
 		}
 
 	}
@@ -3576,7 +3907,7 @@ focus_tree = {
 	
 	focus = {
 		id = PCA_the_great_american_war
-		icon = against_communists
+		icon = GFX_goal_PCA_great_american_war
 		cost = 7.2
 		prerequisite = {
 			focus = PCA_foreign_policy
@@ -3595,13 +3926,17 @@ focus_tree = {
 		x = 5
 		y = 1
 		completion_reward = {
-		    add_political_power = 120
+		    add_war_support = 0.1
+			add_timed_idea = {
+				idea = PCA_liberation_of_the_americas_idea
+				days = 200
+			}
 		}
 
 	}
 	focus = {
 		id = PCA_liberate_mexico
-		icon = mexico_attack
+		icon = GFX_goal_AMR_claim_mexico
 		cost = 7.2
 		prerequisite = {
 			focus = PCA_the_great_american_war
@@ -3618,7 +3953,7 @@ focus_tree = {
 		will_lead_to_war_with = MEX
 		completion_reward = {
 		    create_wargoal = {
-			    type = annex_everything
+			    type = topple_government
 			    target = MEX
 		    }
 		}
@@ -3626,7 +3961,7 @@ focus_tree = {
 	}
 	focus = {
 		id = PCA_liberate_canada
-		icon = canada_attack
+		icon = GFX_goal_GER_war_with_canada
 		cost = 7.2
 		prerequisite = {
 			focus = PCA_the_great_american_war
@@ -3643,7 +3978,7 @@ focus_tree = {
 		will_lead_to_war_with = CAN
 		completion_reward = {
 		    create_wargoal = {
-			    type = annex_everything
+			    type = topple_government
 			    target = CAN
 		    }
 		}
@@ -3651,7 +3986,7 @@ focus_tree = {
 	}
 	focus = {
 		id = PCA_liberate_central_america
-		icon = central_america_attack
+		icon = GFX_goal_PCA_intervene_in_central_america
 		cost = 7.2
 		prerequisite = {
 			focus = PCA_the_great_american_war
@@ -3662,18 +3997,9 @@ focus_tree = {
 				has_country_flag = treaty_of_seattle
 			}
 		}
-		bypass = {
-			CEA = {
-				OR = {
-					has_government = communist
-					has_government = revolutionary_socialist
-				}
-			}
-		}
 		relative_position_id = PCA_the_great_american_war
 		x = 0
 		y = 1
-		will_lead_to_war_with = CEA
 		will_lead_to_war_with = GUA
 		will_lead_to_war_with = BLZ
 		will_lead_to_war_with = PAN
@@ -3683,40 +4009,59 @@ focus_tree = {
 		will_lead_to_war_with = COS
 		will_lead_to_war_with = MSK
 		completion_reward = {
-		    create_wargoal = {
-			    type = annex_everything
-			    target = CEA
-		    }
+			if = {
+				limit = {
+					CEA = { 
+						OR = {	
+							has_government = communist 
+							has_government = revolutionary_socialist 
+						}
+					}
+				}
+				if = {
+					limit = { has_completed_focus = PCA_american_internationale }
+					activate_targeted_decision = { target = CEA decision = PCA_invite_tag_to_american_int }
+				}
+				else = {
+					activate_targeted_decision = { target = CEA decision = PCA_invite_tag_to_warsaw_pact }
+				}
+			}
+			else = {
+				create_wargoal = {
+					type = topple_government
+					target = CEA
+				}
+			}
 			create_wargoal = {
-			    type = annex_everything
+			    type = topple_government
 			    target = GUA
 		    }
 			create_wargoal = {
-			    type = annex_everything
+			    type = topple_government
 			    target = BLZ
 		    }
 			create_wargoal = {
-			    type = annex_everything
+			    type = topple_government
 			    target = PAN
 		    }
 			create_wargoal = {
-			    type = annex_everything
+			    type = topple_government
 			    target = ELS
 		    }
 			create_wargoal = {
-			    type = annex_everything
+			    type = topple_government
 			    target = HON
 		    }
 			create_wargoal = {
-			    type = annex_everything
+			    type = topple_government
 			    target = NIC
 		    }
 			create_wargoal = {
-			    type = annex_everything
+			    type = topple_government
 			    target = COS
 		    }
 			create_wargoal = {
-			    type = annex_everything
+			    type = topple_government
 			    target = MSK
 		    }
 		}
@@ -3725,7 +4070,7 @@ focus_tree = {
 	
 	focus = {
 		id = PCA_march_along_the_andes
-		icon = chile_attack
+		icon = GFX_goal_PCA_march_along_the_andes
 		cost = 7.2
 		prerequisite = {
 			focus = PCA_liberate_central_america
@@ -3746,23 +4091,23 @@ focus_tree = {
 		will_lead_to_war_with = STC
 		completion_reward = {
 		    create_wargoal = {
-			    type = annex_everything
+			    type = topple_government
 			    target = COL
 		    }
 			create_wargoal = {
-			    type = annex_everything
+			    type = topple_government
 			    target = ECU
 		    }
 			create_wargoal = {
-			    type = annex_everything
+			    type = topple_government
 			    target = PRU
 		    }
 			create_wargoal = {
-			    type = annex_everything
+			    type = topple_government
 			    target = BOL
 		    }
 			create_wargoal = {
-			    type = annex_everything
+			    type = topple_government
 			    target = STC
 		    }
 		}
@@ -3771,7 +4116,7 @@ focus_tree = {
 	
 	focus = {
 		id = PCA_invite_south_american_communists
-		icon = venezuela_attack
+		icon = GFX_goal_PCA_ally_south_american_communists
 		cost = 7.2
 		prerequisite = {
 			focus = PCA_liberate_central_america
@@ -3786,15 +4131,40 @@ focus_tree = {
 		x = 1
 		y = 1
 		completion_reward = {
-		    
+			if = {
+				limit = { has_completed_focus = PCA_join_the_warsaw_pact }
+				every_country = {
+					limit = {
+						capital_scope = {
+							is_on_continent = south_america
+						}
+						has_government = communist
+					}
+					PCA = {
+						activate_targeted_decision = { target = PREV decision = PCA_invite_tag_to_warsaw_pact }
+					}
+				}
+			}
+			else = {
+				every_country = {
+					limit = {
+						capital_scope = {
+							is_on_continent = south_america
+						}
+						has_government = communist
+					}
+					PCA = {
+						activate_targeted_decision = { target = PREV decision = PCA_invite_tag_to_american_int }
+					}
+				}
+			}
 		}
 
 	}
 	
-	
 	focus = {
 		id = PCA_the_forgotten_nations
-		icon = venezuela_attack
+		icon = GFX_goal_PCA_the_forgotten_nations
 		cost = 7.2
 		prerequisite = {
 			focus = PCA_invite_south_american_communists
@@ -3825,10 +4195,12 @@ focus_tree = {
 					}
 					NOT = {
 						has_government = communist
+						has_government = revolutionary_socialist
+						has_government = national_bolshevik
 					}
 				}
 				create_wargoal = {
-					type = annex_everything
+					type = topple_government
 					target = PREV
 				}
 			}
@@ -3838,7 +4210,7 @@ focus_tree = {
 	
 	focus = {
 		id = PCA_liberate_argentina
-		icon = argentina_attack
+		icon = GFX_goal_PCA_take_down_argentina
 		cost = 7.2
 		prerequisite = {
 			focus = PCA_invite_south_american_communists
@@ -3858,7 +4230,7 @@ focus_tree = {
 		will_lead_to_war_with = ARG
 		completion_reward = {
 		    create_wargoal = {
-			    type = annex_everything
+			    type = topple_government
 			    target = ARG
 		    }
 		}
@@ -3866,7 +4238,7 @@ focus_tree = {
 	}
 	focus = {
 		id = PCA_liberate_brazil
-		icon = brazil_attack
+		icon = GFX_goal_PCA_take_down_brazil
 		cost = 7.2
 		prerequisite = {
 			focus = PCA_invite_south_american_communists
@@ -3886,7 +4258,7 @@ focus_tree = {
 		will_lead_to_war_with = BRA
 		completion_reward = {
 		    create_wargoal = {
-			    type = annex_everything
+			    type = topple_government
 			    target = BRA
 		    }
 		}
@@ -5117,6 +5489,12 @@ focus_tree = {
 			swap_ideas = {
 				remove_idea = idea_pca_restored_united_states_congress
 				add_idea = idea_pca_restored_united_states_congress2
+			}
+			hidden_effect = {
+				country_event = {
+					id = golden_gate_usa.20
+					days = 240
+				}
 			}
 		}
 	}
