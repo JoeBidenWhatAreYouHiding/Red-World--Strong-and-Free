@@ -382,6 +382,131 @@ AMR_diplomacy_decisions = {
 			}
 		}
 	}
+		
+	PCA_invite_tag_to_warsaw_pact = { 
+		icon = warsaw_pact
+		allowed = { always = no }
+		available = {
+			FROM = {
+				OR = { 
+					has_government = communist
+					has_government = revolutionary_socialist 
+					has_government = national_bolshevik
+				}
+				is_subject = no
+			}
+			NOT = { has_country_flag = AMR_inviting_country }
+		}
+		visible = {
+			is_subject = no
+			FROM = { is_in_faction = no }
+		}
+		
+		highlight_states = {
+ 			highlight_state_targets = {
+				state = FROM.capital
+			} 
+		}
+		
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+		cancel_if_not_visible = yes
+
+		cancel_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision cancelled CAN_aid_reunification_italy target: [From.GetName]"
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CAN_aid_reunification_italy target: [From.GetName]"
+			set_country_flag = AMR_inviting_country
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CAN_aid_reunification_italy target: [From.GetName]"
+			FROM = {
+				country_event = american_diplo.39
+				save_global_event_target_as = america_warsaw_pact_invite_tag
+			}
+		}
+	}
+	
+	PCA_invite_tag_to_american_int = { 
+		icon = eng_puppet_usa
+		allowed = { always = no }
+		available = {
+			FROM = {
+				OR = { 
+					has_government = communist
+					has_government = revolutionary_socialist 
+					has_government = national_bolshevik
+				}
+				is_subject = no
+			}
+			NOT = { has_country_flag = AMR_inviting_country }
+		}
+		visible = {
+			is_subject = no
+			FROM = { is_in_faction = no }
+		}
+		
+		highlight_states = {
+ 			highlight_state_targets = {
+				state = FROM.capital
+			} 
+		}
+		
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+		cancel_if_not_visible = yes
+
+		cancel_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision cancelled CAN_aid_reunification_italy target: [From.GetName]"
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CAN_aid_reunification_italy target: [From.GetName]"
+			set_country_flag = AMR_inviting_country
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CAN_aid_reunification_italy target: [From.GetName]"
+			clr_country_flag = AMR_inviting_country
+			FROM = {
+				country_event = american_diplo.36
+			}
+		}
+	}
+	
+	PCA_take_warsaw_pact_leadership = {
+		icon = eng_puppet_usa
+		available = {
+			is_in_faction_with = CAN
+		}
+		
+		visible = {
+			has_country_flag = PCA_can_take_warsaw_pact_leadership
+		}
+		
+		allowed = {
+			tag = PCA
+		}
+		
+		cost = 100
+		
+		complete_effect = {
+		}
+
+		remove_effect = {
+			GER = {
+				country_event = american_diplo.45
+			}
+			custom_effect_tooltip = PCA_seek_wp_leadership_tt
+		}
+		days_remove = 20
+		fire_only_once = yes
+		
+		ai_will_do = {
+			factor = 100
+		}
+	}
 }
 
 NEA_factions_decision = {
