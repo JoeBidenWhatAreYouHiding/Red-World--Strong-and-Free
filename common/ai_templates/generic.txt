@@ -1,9 +1,9 @@
 armor_generic = {
 
-	role =	armor
+	role = armor
 	
 	upgrade_prio = {
-		factor = 2.17
+		base = 2.17
 
 		modifier = {
 			factor = 7
@@ -24,7 +24,7 @@ armor_generic = {
 
 	light_armor_early = {
 		upgrade_prio = {
-			factor = 2
+			base = 2
 
 			modifier = {
 				factor = 1
@@ -56,40 +56,10 @@ armor_generic = {
 		target_min_match = 0.5
 	}
 
-
-	heavy_armor_default = {
-		upgrade_prio = {
-			factor = 2
-
-			modifier = {
-				factor = 1
-			}
-		}
-
-		target_template = {
-			
-			support = {
-				engineer = 1
-				recon = 1
-				logistics_company = 1
-				maintenance_company = 1
-			}
-			
-			regiments = {
-				heavy_armor = 6
-				infantry = 3
-			}
-		}
-
-		replace_at_match = 0.4
-		replace_with = modern_armor_default
-		target_min_match = 0.5
-	}
-
 	medium_armor_early = {
 	
 		upgrade_prio = {
-			factor = 2
+			base = 2
 
 			modifier = {
 				factor = 4
@@ -124,7 +94,7 @@ armor_generic = {
 	medium_armor_mid = { #2 armored 2 default
 	
 		upgrade_prio = {
-			factor = 2
+			base = 2
 
 			modifier = {
 				factor = 4
@@ -164,10 +134,14 @@ armor_generic = {
 	modern_armor_default = {
 	
 		upgrade_prio = {
-			factor = 2
+			base = 2
 
 			modifier = {
-				factor = 1
+				factor = 5
+				OR = {
+					has_tech = main_battle_tank
+					has_tech = main_battle_tank_chassis
+				}
 			}
 		}
 
@@ -197,11 +171,11 @@ garrison_generic = {
 	role = garrison
 	
 	upgrade_prio = {
-		factor = 80
+		base = 80
 
 		modifier = {
 			factor = 0
-			ai_has_role_template = garrison
+			NOT = { ai_has_role_template = garrison }
 		}
 	}
 	
@@ -211,7 +185,7 @@ garrison_generic = {
 		custom_icon = 7
 	
 		upgrade_prio = {
-			factor = 2
+			base = 2
 
 			modifier = {
 				factor = 1
@@ -237,7 +211,7 @@ suppression_generic = {
 	role = suppression
 	
 	upgrade_prio = {
-		factor = 1
+		base = 1
 
 		modifier = {
 			factor = 20
@@ -252,19 +226,7 @@ suppression_generic = {
 		custom_icon = 13
 	
 		upgrade_prio = {
-			factor = 2
-
-			modifier = {
-				factor = 50
-				tag = GER
-					
-					AND = {
-						any_country = {
-							is_justifying_wargoal_against = ROOT
-						}
-						NOT = { ai_has_role_template = garrison }
-				}	
-			}
+			base = 2
 		}
 		
 		target_template = {
@@ -286,18 +248,15 @@ infantry_generic = {
 	role = infantry
 	
 	upgrade_prio = {
-		factor = 2
+		base = 2
 
-		modifier = {
-			factor = 5
-		}
 	}
 
 	
-	infantry_default = {
+	infantry_early = {
 	
 		upgrade_prio = {
-			factor = 2
+			base = 2
 
 			modifier = {
 				factor = 1
@@ -325,13 +284,14 @@ infantry_generic = {
 		target_min_match = 0.9
 	}
 
-	infantry_improved = {
+	infantry_mid = {
 	
 		upgrade_prio = {
-			factor = 2
+			base = 2
 
 			modifier = {
 				factor = 1
+				date > 2014.1.1
 			}
 		}
 		
@@ -360,7 +320,7 @@ mountaineers_generic = {
 	role = mountaineers
 	
 	upgrade_prio = {
-		factor = 2
+		base = 2
 
 		modifier = {
 			factor = 0
@@ -374,7 +334,7 @@ mountaineers_generic = {
 	mountaineers_default = {
 	
 		upgrade_prio = {
-			factor = 2
+			base = 2
 
 			modifier = {
 				factor = 1
@@ -405,7 +365,7 @@ marines_generic = {
 	role = marines
 	
 	upgrade_prio = {
-		factor = 2
+		base = 2
 
 		modifier = {
 			factor = 0
@@ -419,7 +379,7 @@ marines_generic = {
 	marine_default = {
 	
 		upgrade_prio = {
-			factor = 2
+			base = 2
 
 			modifier = {
 				factor = 1
@@ -441,17 +401,24 @@ marines_generic = {
 	marine_armored = {
 	
 		upgrade_prio = {
-			factor = 2
+			base = 2
 
 			modifier = {
 				factor = 0
-				NOT = {
-					has_tech = amphibious_tank
-					has_tech = amphibious_mechanized_infantry
+
+				# disable if we are missing either of amph mech inf or amph tank
+				OR = {
+					NOT = {
+						has_tech = amphibious_mechanized_infantry
+					}
+					NOT = {
+						OR = {
+							has_tech = amphibious_tank
+							has_tech = amphibious_tank_chassis
+						}
+					}
 				}
-				NOT = {
-					has_tech = amphibious_tank_chassis
-				}
+
 			}
 			modifier = {
 				is_major = no
@@ -481,7 +448,7 @@ paratrooper_generic = {
 	role = paratrooper
 	
 	upgrade_prio = {
-		factor = 2
+		base = 2
 
 		modifier = {
 			factor = 0
@@ -495,7 +462,7 @@ paratrooper_generic = {
 	paratrooper_default = {
 	
 		upgrade_prio = {
-			factor = 2
+			base = 2
 
 			modifier = {
 				factor = 1
@@ -511,7 +478,138 @@ paratrooper_generic = {
 			}
 			
 			regiments = {
-				paratrooper= 9
+				paratrooper = 9
+			}
+		}
+	}
+}
+
+rangers_generic = {
+
+	role = rangers_role
+	
+	upgrade_prio = {
+		base = 2
+
+		modifier = {
+			factor = 0
+			NOT = {
+				has_tech = rangers_tech
+			}
+		}
+	}
+
+	rangers_default = {
+	
+		upgrade_prio = {
+			base = 1
+
+			modifier = {
+				factor = 1
+			}
+		}
+
+		target_template = {
+			
+			support = {
+				engineer = 1
+				artillery = 1
+				recon = 1
+				logistics_company = 1
+			}
+			
+			regiments = {
+				ranger_battalion = 8
+				artillery_brigade = 2
+			}
+		}
+	}
+}
+
+landcruiser_generic = {
+
+
+	role = mega_heavy_breakthrough_role
+	
+	upgrade_prio = {
+		base = 2
+
+		modifier = {
+			factor = 0
+			NOT = { is_special_project_completed = sp:sp_land_land_cruiser }
+		}
+	}
+	 
+	landcruiser_default = {
+	
+		upgrade_prio = {
+			base = 1
+
+			modifier = {
+				factor = 1
+			}
+		}
+
+		target_template = {
+			
+			support = {
+				engineer = 1
+				land_cruiser = 1
+				anti_air = 1
+			}
+			
+			regiments = {
+				medium_armor = 2
+				heavy_armor = 1
+				motorized = 6
+			}
+		}
+	}
+}
+
+super_heavy_generic = {
+
+
+	role = super_heavy_breakthrough_role
+	
+	upgrade_prio = {
+		base = 0
+
+		modifier = {
+			add = 1
+			is_major = yes
+			num_of_military_factories > 150 # nly if we have loads of factories
+			date > 1943.6.1 # Lets wait until late war
+			NOT = { has_tech = main_battle_tank_chassis } # Abandon Super heavy projects if we start doing modern tanks instead
+		}
+
+		modifier = {
+			factor = 0
+			is_special_project_completed = sp:sp_land_land_cruiser # Lets stop this if and when we have landcruisers
+		}
+	}
+	 
+	super_heavy_default = {
+	
+		upgrade_prio = {
+			base = 1
+
+			modifier = {
+				factor = 1
+			}
+		}
+
+		target_template = {
+			
+			support = {
+				engineer = 1
+				anti_air = 1
+				super_heavy_armor = 1
+			}
+			
+			regiments = {
+				medium_armor = 2
+				motorized = 6
 			}
 		}
 	}

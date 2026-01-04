@@ -747,7 +747,7 @@ focus_tree = {
 		completion_reward = {
 		    country_event = { id = syria.70 }
 			SYR_fateh_jamous = {
-				promote_character = baathist
+				promote_character = neo_baathist
 			}
 			add_ideas = syria_sic_ammar_bakdash
 			add_popularity = {
@@ -907,7 +907,7 @@ focus_tree = {
 		completion_reward = {
 		    country_event = { id = syria.72 }
 			SYR_rami_makhlouf = {
-				promote_character = baathist
+				promote_character = neo_baathist
 			}
 			add_popularity = {
 				ideology = centrist
@@ -1081,7 +1081,7 @@ focus_tree = {
 		completion_reward = {
 		    country_event = { id = syria.74 }
 			SYR_anisa_alassad = {
-				promote_character = baathist
+				promote_character = neo_baathist
 			}
 			add_popularity = {
 				ideology = fascist
@@ -4465,7 +4465,7 @@ focus_tree = {
 			}
 		    country_event = { id = syria.119 }
 		    add_political_power = 20
-			create_faction = middle_east_protection_league
+			create_faction_from_template = faction_template_middle_east_league
 		}
 
 	}
@@ -4842,8 +4842,21 @@ focus_tree = {
 		x = 94
 		y = 4
 		completion_reward = {
-		    SOV = {
-			    country_event = { days = 1 id = generic.1 } 
+			if = {
+				limit = {
+					country_exists = SOV
+					SOV = {
+						has_government = communist
+					}
+				}
+				SOV = {
+					country_event = { id = generic.1 }
+				}
+			}
+			else = {
+				GER = {
+					country_event = { id = generic.1 }
+				}
 			}
 		}
 
@@ -4913,7 +4926,11 @@ focus_tree = {
 		x = 96
 		y = 4
 		completion_reward = {
-		    create_faction = arab_international
+		    create_faction_from_template = {
+				template = faction_template_middle_east_league
+				name = arab_international
+			}
+			set_faction_rule = dismissal_rule_ideology_not_communism
 			if = {
 			    limit = {
 				    OR = {
@@ -5395,7 +5412,7 @@ focus_tree = {
 		completion_reward = {
 		    country_event = { id = syria.122 }
 			SYR_hafez_alassad = {
-				promote_character = baathist
+				promote_character = neo_baathist
 			}
 			add_ideas = syria_sic_emad_abdulghani_sabouni
 		}

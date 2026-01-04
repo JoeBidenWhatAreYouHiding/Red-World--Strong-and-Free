@@ -910,6 +910,11 @@ focus_tree = {
 		y = 7
 		completion_reward = {
 		    add_ideas = idea_uar_hydroelectric_scheme
+			add_resource = {
+			type = coal
+			amount = 2
+			state = 456
+			}
 		}
 
 	}
@@ -3797,7 +3802,7 @@ focus_tree = {
 		x = 72
 		y = 2
 		completion_reward = {
-		    create_faction = alliance_of_arab_states
+		    create_faction_from_template = faction_template_alliance_arab_states
 			if = {
 			    limit = {
 				    PAL = {
@@ -4612,30 +4617,72 @@ focus_tree = {
 		will_lead_to_war_with = RAL
 		will_lead_to_war_with = ACS
 		completion_reward = {
-		    create_wargoal = {
+		   if = {
+			limit = {
+			LBA = {
+			exists = yes
+				}
+			}
+			create_wargoal = {
 			    type = annex_everything
 			    target = LBA
-		    }
-			create_wargoal = {
-			    type = annex_everything
-			    target = ISL
-		    }
-			create_wargoal = {
-			    type = annex_everything
-			    target = RAL
-		    }
-			create_wargoal = {
-			    type = annex_everything
-			    target = FAL
-		    }
+				}
+			}
+			if = {
+			limit = {
+			GNS = {
+			exists = yes
+				}
+			}
 			create_wargoal = {
 			    type = annex_everything
 			    target = GNS
-		    }
+				}
+			}
+			if = {
+			limit = {
+			ISL = {
+			exists = yes
+				}
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = ISL
+				}
+			}
+			if = {
+			limit = {
+			RAL = {
+			exists = yes
+				}
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = RAL
+				}
+			}
+			if = {
+			limit = {
+			FAL = {
+			exists = yes
+				}
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = FAL
+				}
+			}
+			if = {
+			limit = {
+			ACS = {
+			exists = yes
+				}
+			}
 			create_wargoal = {
 			    type = annex_everything
 			    target = ACS
-		    }
+				}
+			}
 		}
 
 	}
@@ -5952,7 +5999,10 @@ focus_tree = {
 		x = 89
 		y = 4
 		completion_reward = {
-		    create_faction = global_liberty_organisation
+		    create_faction_from_template = {
+				template = faction_template_alliance_arab_states
+				name = global_liberty_organisation
+			}
 		}
 
 	}

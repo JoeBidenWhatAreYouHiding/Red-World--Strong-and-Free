@@ -23,7 +23,7 @@ set_war_support = 0.4
 set_country_flag = was_in_british_empire
 set_country_flag = muslim_nation
 set_country_flag = non_aligned_movement_flag
-
+add_nuclear_bombs = 170
 
 set_technology = {
 	support_weapons = 1
@@ -46,6 +46,7 @@ set_technology = {
 	interwar_antiair = 1
 	interwar_antitank = 1
 	basic_train = 1
+	experimental_rockets = 1
 }
 
 #Nuclear projects
@@ -70,7 +71,7 @@ complete_special_project = {
 
 if = {
 	limit = { has_dlc = "By Blood Alone" }
-#		set_air_oob = "ENG_1936_air_bba"
+		set_air_oob = "PAK_2000_air_bba"
 		set_technology = {
 			aa_lmg = 1
 			engines_1 = 1
@@ -82,13 +83,15 @@ if = {
 			iw_large_airframe = 1
 			basic_medium_airframe = 1
 			basic_small_airframe = 1
+			basic_large_airframe = 1
 		}
 	else = {
-#		set_air_oob = "ENG_1936_air_legacy"
+		set_air_oob = "PAK_2000_air_legacy"
 		set_technology = {
 			early_fighter = 1
 			cv_early_fighter = 1
 			cv_naval_bomber1 = 1
+			strategic_bomber1 = 1
 			naval_bomber1 = 1
 			early_bomber = 1
 			CAS1 = 1
@@ -155,7 +158,7 @@ if = {
 		basic_cruiser_armor_scheme = 1
 		basic_heavy_armor_scheme = 1
 		mtg_transport = 1
-		improved_airplane_launcher = 1
+		#improved_airplane_launcher = 1
 	}
 }
 
@@ -235,6 +238,23 @@ add_opinion_modifier = {
 	modifier = close_friendship
 }
 
+if = {
+	limit = {
+		has_dlc = "Gotterdammerung"
+	}
+	add_equipment_to_stockpile = { 
+			type = nuclear_missile_equipment_2
+#			variant_name = "L3/35"
+			amount = 40
+			producer = PAK
+	}
+	add_equipment_to_stockpile = { 
+			type = nuclear_missile_equipment_1
+#			variant_name = "L3/35"
+			amount = 80
+			producer = PAK
+	}		
+}
 if = {
 	limit = {
 		has_dlc = "No Step Back"
@@ -330,6 +350,20 @@ if = {
 			fixed_auxiliary_weapon_slot_1 = medium_bomb_bay
 			engine_type_slot = engine_2_2x
 			special_type_slot_1 = empty
+		}
+	}
+	create_equipment_variant = {
+		name = "Strategic Bomber I" 
+		type = large_plane_airframe_1
+		modules = {
+			fixed_main_weapon_slot = large_bomb_bay
+			fixed_auxiliary_weapon_slot_1 = empty
+			engine_type_slot = engine_2_4x 
+			special_type_slot_1 = lmg_defense_turret_2x
+			special_type_slot_2 = empty
+			special_type_slot_3 = fuel_tanks_large
+			special_type_slot_4 = self_sealing_fuel_tanks_large
+			special_type_slot_5 = empty
 		}
 	}
 }

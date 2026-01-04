@@ -784,7 +784,11 @@ country_event = {
 	option = {    #Join Ireland in a faction
 		name = britain.12.o1
 	    IRE = {
-		    create_faction = "irish_salvation"
+		    create_faction_from_template = {
+				template = faction_template_british_isles
+				name = irish_salvation
+				icon = GFX_irish_salvation_faction_logo
+			}
 			add_to_faction = ULS
 		}
 		ai_chance = {
@@ -978,7 +982,10 @@ country_event = {
 	option = {    #Join Ireland in a faction
 		name = britain.16.o1
 	    IRE = {
-		    create_faction = "irish_salvation"
+		    create_faction_from_template = {
+				template = faction_template_british_isles
+				name = irish_salvation
+			}
 			add_to_faction = ULS
 		}
 		ai_chance = {
@@ -1755,8 +1762,13 @@ country_event = {
 	
 	option = {   
 		name = britain.39.o1
-		ENG = {
-		    transfer_state = 269
+		if = {
+			limit = {
+				country_exists = SML 
+			}
+			annex_country = {
+				target = SML
+			}
 		}
 	}
 }
@@ -1774,7 +1786,7 @@ country_event = {
 		name = britain.220.o1
 		create_wargoal = {
 			type = annex_everything
-			target = FROM
+			target = SML
 		}
 	}
 }
@@ -1921,36 +1933,8 @@ country_event = {
 	
 	option = {   
 		name = britain.44.o1
-		IF = {
-			limit = {
-				NEA = {
-					is_faction_leader = no
-				}
-			}
-			create_faction = fifth_international
-			add_to_faction = NEA
-			NEA = {
-				add_ai_strategy = {
-					type = alliance
-					id = "ENG"
-					value = 150
-				}
-			}
-		}
-		IF = {
-			limit = {
-				NEA = {
-					is_faction_leader = yes
-				}
-			}
-			NEA = {
-				add_ai_strategy = {
-					type = alliance
-					id = "ENG"
-					value = 150
-				}
-				add_to_faction = ENG
-			}
+		NEA = {
+			add_to_faction = ENG
 		}
 	}
 }
@@ -2011,28 +1995,6 @@ country_event = {
 	
 	option = {   #Accept
 		name = britain.47.o1
-		if = {
-			limit = {
-				AND = {
-					is_in_faction = no
-					is_faction_leader = no
-				}
-			}
-			create_faction = international_socialist_pact
-			PRC = { add_to_faction = ENG }
-			ENG = {
-				add_ai_strategy = {
-					type = alliance
-					id = PRC
-					value = 200
-				}
-				add_ai_strategy = {
-					type = befriend
-					id = PRC
-					value = 200
-				}
-			}
-		}
 		if = {
 			limit = {
 				AND = {

@@ -595,7 +595,7 @@ focus_tree = {
 		x = 8
 		y = 12
 		completion_reward = {
-		    create_faction = italian_confederation
+		    create_faction_from_template = faction_template_italian_confederation
 			country_event = { id = italy.77 }
 			set_cosmetic_tag = ITA_Confed
 			SAR = {
@@ -2510,7 +2510,7 @@ focus_tree = {
 		x = 54
 		y = 19
 		completion_reward = {
-		    create_faction = new_continental_system
+		    create_faction_from_template = faction_template_continental_system
 			if = {
 			    limit = {
 				    SWE = {
@@ -3186,9 +3186,6 @@ focus_tree = {
 		completion_reward = {
 		    army_experience = 35
 		    custom_effect_tooltip = special_fascist_brigades_tt
-		    hidden_effect = {
-				set_technology = { fascist_assault_battalion_tech = 1 popup = no }
-			}
 		}
 
 	}
@@ -3868,7 +3865,7 @@ focus_tree = {
 		x = 3
 		y = 14
 		completion_reward = {
-		    create_faction = italian_socialist_international
+		    create_faction_from_template = faction_template_italian_international
 			country_event = { id = italy.113 }
 		}
 
@@ -4353,7 +4350,10 @@ focus_tree = {
 		y = 12
 		completion_reward = {
 		    add_political_power = 200
-		    create_faction = ita_trade_league
+		    create_faction_from_template = {
+				template = faction_template_italian_confederation
+				name = ita_trade_league
+			}
 			country_event = { id = italy.116 }
 		}
 
@@ -5384,16 +5384,9 @@ focus_tree = {
 		id = ITA_invade_malta
 		icon = malta_attack
 		cost = 10
-		available = {
-		MLT = {
-		has_government = fascist
-			}
-		}
 		bypass = {
 		MLT = {
-		not = 	{
-		has_government = fascist
-				}
+		has_government = communist
 			}
 		}
 		prerequisite = {
@@ -6175,11 +6168,11 @@ focus_tree = {
 		y = 10
 		completion_reward = {
 		    set_politics = {
-	            ruling_party = nationalist
+	            ruling_party = monarchist
 	            elections_allowed = no
             }
 			ITA_benedict_xvi = {
-				promote_character = ultranationalist
+				promote_character = traditional_theocrat 
 			}
 			custom_effect_tooltip = ITA_benedict_Cabinet
 			hidden_effect = {
@@ -6193,7 +6186,7 @@ focus_tree = {
 			add_ideas = ita_giovanni_donzelli
 			}
 			set_cosmetic_tag = ITA_Papal
-			set_party_name = { ideology = nationalist long_name = ITA_holy_see name = ITA_holy_see }
+			set_party_name = { ideology = monarchist long_name = ITA_holy_see name = ITA_holy_see }
 			country_event = { id = italy.132 }
 		}
 
@@ -6874,7 +6867,7 @@ focus_tree = {
 		x = 39
 		y = 21
 		completion_reward = {
-		    create_faction = holy_league
+		    create_faction_from_template = faction_template_holy_league
 		    every_country = {
 			    limit = {
 				    AND = {
@@ -6916,7 +6909,8 @@ focus_tree = {
 		x = 43
 		y = 21
 		completion_reward = {
-		    create_faction = holy_league
+		    create_faction_from_template = faction_template_holy_league
+			set_faction_rule = dismissal_rule_ideology_not_right_wing
 		    every_country = {
 			    limit = {
 				    OR = {
@@ -6997,7 +6991,7 @@ focus_tree = {
 		completion_reward = {
 		    remove_ideas = idea_eu_member
 		    add_popularity = {
-    			ideology = nationalist
+    			ideology = monarchist
     			popularity = 0.05
 			}
 		}
@@ -7129,7 +7123,7 @@ focus_tree = {
 		y = 17
 		completion_reward = {
 		    add_popularity = {
-				ideology = nationalist
+				ideology = monarchist
 				popularity = 0.1
 			}
 			add_ideas = limited_exports
@@ -7223,7 +7217,10 @@ focus_tree = {
 		x = 45
 		y = 18
 		completion_reward = {
-		    create_faction = catholic_treaty_organisation
+		    create_faction_from_template = {
+				template = faction_template_holy_league
+				name = catholic_treaty_organisation
+			}
 			country_event = { id = italy.144 }
 		}
 
@@ -7521,7 +7518,11 @@ focus_tree = {
 		x = 52
 		y = 21
 		completion_reward = {
-		    create_faction = italian_commonwealth
+		    create_faction_from_template = {
+				template = faction_template_continental_system
+				name = italian_commonwealth
+				icon = GFX_italian_commonwealth_faction_logo
+			}
 			every_country = {
 			    limit = {
 					 has_government = monarchist
@@ -7800,9 +7801,6 @@ focus_tree = {
 		completion_reward = {
 		    add_ideas = idea_ita_modern_legions
 		    custom_effect_tooltip = special_fascist_brigades_tt
-		    hidden_effect = {
-				set_technology = { fascist_assault_battalion_tech = 1 popup = no }
-			}
 		}
 
 	}
@@ -8054,7 +8052,7 @@ focus_tree = {
 		y = 21
 		completion_reward = {
 			custom_effect_tooltip = italy_roman_provinces_tt
-		    create_faction = pax_romana
+		    create_faction_from_template = faction_template_pax_romana
 		    hidden_effect = {
 		    116 = {
 		    add_core_of = ITA
@@ -8640,7 +8638,13 @@ focus_tree = {
 		x = 70
 		y = 21
 		completion_reward = {
-		    create_faction = pact_of_steel
+		    create_faction_from_template = {
+				template = faction_template_pax_romana
+				name = pact_of_steel
+				icon = GFX_pactofsteel_faction_logo
+			}
+			set_faction_rule = war_declaration_rule_independent_countries_only
+			set_faction_rule = change_leader_rule_influence
 		}
 
 	}

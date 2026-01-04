@@ -2665,9 +2665,6 @@ focus_tree = {
 		x = 67
 		y = 14
 		completion_reward = {
-		    hidden_effect = {
-				set_technology = { fascist_assault_battalion_tech = 1 popup = no }
-			}
 		    add_ideas = idea_eng_new_military
 		    custom_effect_tooltip = special_fascist_brigades_tt
 		}
@@ -2686,9 +2683,6 @@ focus_tree = {
 		x = 70
 		y = 1
 		completion_reward = {
-		    set_rule = {
-				can_create_factions = yes
-			}
             if = {
                 limit = {
                     all_allied_country = {
@@ -4283,7 +4277,7 @@ focus_tree = {
 		x = 21
 		y = 13
 		completion_reward = {
-			create_faction = imperial_alliance
+			create_faction_from_template = faction_template_imperial_alliance
 		    SPR = {
 			    country_event = { id = britain.28 }
 			}
@@ -4979,15 +4973,12 @@ focus_tree = {
 		}
 		x = 17
 		y = 14
-		will_lead_to_war_with = SOM
+		will_lead_to_war_with = SML
 		completion_reward = {
 			269 = {
 				add_claim_by = ENG
 			}
-		    every_country = {
-			    limit = {
-				    owns_state = 269
-				}
+		    SML = {
 				country_event = { id = britain.38 }
 			}
 		}
@@ -5955,6 +5946,11 @@ focus_tree = {
 		prerequisite = {
 			focus = ENG_socialism_through_peace
 		}
+		available = {
+			NEA = {
+				is_faction_leader = yes
+			}
+		}
 		bypass = {
 			OR = {
 				is_in_faction_with = NEA
@@ -6674,6 +6670,16 @@ focus_tree = {
 		id = ENG_join_china
 		icon = china
 		cost = 7.2
+		available = {
+			PRC = {
+				is_in_faction = yes
+			}
+		}
+		bypass = {
+			PRC = {
+				is_in_faction = no
+			}
+		}
 		prerequisite = {
 			focus = ENG_red_militias
 		}

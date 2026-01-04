@@ -217,12 +217,8 @@ technologies = {
 
 	#Conversion branch - Enabled in DoD
 	improved_equipment_conversion = {
-	
-		equipment_conversion_speed = 0.40
-
-		allow_branch = {
-			has_dlc = "Death or Dishonor"
-		}
+		energy_gain_factor = 0.15
+		#equipment_conversion_speed = 0.40
 
 		path = {
 			leads_to_tech = advanced_equipment_conversion
@@ -245,17 +241,28 @@ technologies = {
 				date > " 2011.1.1"
 			}
 
+			modifier = {
+				factor = 2
+				coal > 0
+			}
+			modifier = {
+				factor = 2
+				coal > 8
+			}
+
 		}
 		
 		categories = {
 			industry
 			cat_production
+			construction_tech
+			excavation_tech
 		}
 	}
 	
 	advanced_equipment_conversion = {
-		
-		equipment_conversion_speed = 0.40
+		energy_gain_factor = 0.15
+		#equipment_conversion_speed = 0.40
 
 		research_cost = 2
 		start_year =  2013
@@ -273,11 +280,22 @@ technologies = {
 				date > " 2011.1.1"
 			}
 
+			modifier = {
+				factor = 2
+				coal > 0
+			}
+			modifier = {
+				factor = 2
+				coal > 8
+			}
+
 		}
 		
 		categories = {
 			industry
 			cat_production
+			construction_tech
+			excavation_tech
 		}
 	}
 
@@ -1874,6 +1892,13 @@ technologies = {
 
 		production_speed_buildings_factor = 0.10
 		industry_repair_factor = 0.10
+		
+		on_research_complete = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_commercial_nuclear_reactor	
+			}
+		}
 		
 		path = {
 			leads_to_tech = construction5 
