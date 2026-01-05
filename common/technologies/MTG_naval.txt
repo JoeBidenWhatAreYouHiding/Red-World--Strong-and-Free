@@ -35,10 +35,6 @@ technologies = {
 			leads_to_tech = sonar
 			research_cost_coeff = 1
 		}
-		#path = {
-		#	leads_to_tech = improved_seaplane_tender
-		#	research_cost_coeff = 1
-		#}
 
 		allow_branch = {
 			has_dlc = "Man the Guns"
@@ -98,7 +94,7 @@ technologies = {
 			factor = 1
 
 			modifier = {
-				factor = 4
+				factor = 5
 				OR = {
 					tag = ENG
 					tag = JAP
@@ -146,7 +142,7 @@ technologies = {
 			factor = 1
 
 			modifier = {
-				factor = 4
+				factor = 5
 				OR = {
 					tag = ENG
 					tag = JAP
@@ -218,10 +214,15 @@ technologies = {
 		}
 
 		ai_will_do = {
-			factor = 8
+			base = 2
 
 			modifier = {
-				factor = 2
+				has_navy_size = { size < 10 }
+				factor = 0.1
+			}
+
+			modifier = {
+				factor = 4
 				tag = ENG
 			}
 		}
@@ -235,42 +236,6 @@ technologies = {
 		}
 		special_project_specialization = { specialization_naval }
 	}
-
-	#improved_seaplane_tender = {
-	#	enable_equipment_modules = {
-	#		ship_seaplane_tender_2
-	#	}
-	#	on_research_complete = {
-	#		custom_effect_tooltip = seaplane_tender_advice_tt
-	#	}
-
-	#	research_cost = 0.75
-
-	#	start_year = 1936
-
-	#	folder = {
-	#		name = mtgnavalfolder
-	#		position = { x = 1 y = 0 }
-	#	}
-
-	#	ai_will_do = {
-	#		base = 2
-
-	#		modifier = {
-	#			has_navy_size = { size < 10 }
-	#			factor = 0.1
-	#		}
-	#	}
-
-	#	categories = {
-	#		naval_equipment
-	#		dd_tech
-	#		ship_modules_tech
-	#		mio_cat_tech_all_screen_ship_and_modules
-	#		mio_cat_tech_all_destroyer_and_modules
-	#	}
-	#	special_project_specialization = { specialization_naval }	
-	#}
 
  ##  #  # ### ###      ## #  # ###  #   #  ##  ###  ### #  # ###
 #  # ## #  #   #      #   #  # #  # ## ## #  # #  #  #  ## # #
@@ -661,11 +626,6 @@ technologies = {
 			research_cost_coeff = 1
 		}
 
-		#path = {
-		#	leads_to_tech = #improved_airplane_launcher
-		#	research_cost_coeff = 1
-		#}
-
 		allow_branch = {
 			has_dlc = "Man the Guns"
 		}
@@ -832,6 +792,7 @@ technologies = {
 		}
 
 		categories = {
+			naval_armor
 			naval_equipment
 			ca_tech
 			mio_cat_tech_all_capital_ship_and_modules
@@ -841,53 +802,6 @@ technologies = {
 		special_project_specialization = { specialization_naval }
 	}
 
-	##improved_airplane_launcher = {
-
-
-	#	enable_equipment_modules = {
-	#		ship_airplane_launcher_2
-	#	}
-	#	on_research_complete = {
-	#		custom_effect_tooltip = airplane_launcher_advice_tt
-	#	}
-
-
-	#	research_cost = 0.75
-
-	#	start_year = 1936
-
-	#	folder = {
-	#		name = mtgnavalfolder
-	#		position = {  x = 0 y = 2 }
-	#	}
-
-	#	ai_will_do = {
-	#		factor = 2
-
-	#		modifier = {
-	#			has_navy_size = { size < 20 }
-	#			factor = 0.1
-	#		}
-	#		modifier = {
-	#			factor = 3.5
-	#			OR = {
-	#				tag = GER
-	#				tag = JAP
-	#				tag = USA
-	#			}
-	#		}
-	#	}
-
-	#	categories = {
-	#		naval_equipment
-	#		ca_tech
-	#		ship_modules_tech
-	#		mio_cat_tech_all_capital_ship_and_modules
-	#		mio_cat_tech_all_screen_ship_and_modules
-	#		mio_cat_tech_all_cruiser_and_modules
-	#	}
-	#	special_project_specialization = { specialization_naval }
-	#}
 	basic_cruiser_armor_scheme = {
 
 		enable_equipment_modules = {
@@ -901,10 +815,6 @@ technologies = {
 			leads_to_tech = basic_heavy_armor_scheme
 			research_cost_coeff = 1
 		}
-
-		XOR = {
-            
-        }
 
 		xp_research_type = navy
 		xp_boost_cost = 50
@@ -1042,9 +952,6 @@ technologies = {
 			name = mtgnavalfolder
 			position = {  x = 0 y = 8 }
 		}
-		#sub_technologies = {
-			#ship_hull_super_heavy
-		#}
 
 		ai_will_do = {
 			factor = 1
@@ -1785,6 +1692,7 @@ early_ship_hull_carrier = {
 		on_research_complete = {
 			custom_effect_tooltip = snorkel_advice_tt
 		}
+
 		xp_research_type = navy
 		xp_boost_cost = 50
 		xp_research_bonus = 1.50
