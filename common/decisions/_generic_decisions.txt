@@ -204,6 +204,52 @@ political_actions = {
 		}
 	}
 
+	open_pandoras_box = {
+
+	icon = GFX_decision_zzz_atomic_weapons
+
+		visible = {
+			num_of_nukes > 1
+		}
+
+    available = {
+		has_war = yes
+
+        OR = {
+            is_ai = no   # ← PRIORITY OVERRIDE (player always allowed)
+
+            AND = {
+                OR = {
+				custom_trigger_tooltip = {
+					tooltip = RW_strangelove_flag
+					any_enemy_country = { has_country_flag = RW_strangelove_flag }	
+				}
+                    has_government = fascist
+                    has_government = national_bolshevik
+                    surrender_progress > 0.85
+                }
+            }
+        }
+    }
+
+		complete_effect = {
+			set_country_flag = RW_strangelove_flag
+			custom_effect_tooltip = only_taken_once_tt
+			custom_effect_tooltip = unseal_atomic_arsenal_tt
+			country_event = generic.24
+				hidden_effect = {
+					add_named_threat = { threat = 25 name = ZZZ_nuclear_weapons }
+				}
+		}
+
+		fire_only_once = yes
+		cost = 5
+	
+		ai_will_do = {
+			base = 1000
+		}
+	}
+
 	open_borders = {
 
 		icon = generic_nationalism
