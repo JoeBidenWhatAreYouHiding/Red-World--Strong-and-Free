@@ -25,6 +25,14 @@ types = {
 				}
 			}
 			modifier = {
+				factor = 5 # Historical bombing of Japan
+				FROM = {
+					original_tag = JAP
+				}
+				original_tag = USA
+				has_war_with = FROM
+			}
+			modifier = {
 				factor = 0.25 # If possible, during peacetime, prepare strikes against the main enemies
 				NOT = { has_war_with = FROM }
 				FROM = { is_major = no }
@@ -32,11 +40,15 @@ types = {
 		}
 
 		allowed = {
-
+			
 		}
 		# Raid Type is visible
 		visible = {
-			has_tech = nukes
+			OR = {
+				is_special_project_completed = sp:sp_nuclear_bomb
+				num_of_nukes > 0	#To fix the nuke from the project option "we can use this against or enemies", not actually being usable
+				has_country_flag = RW_strangelove_flag
+			}
 		}
 		# Specific Target is visible
 		show_target = {
@@ -67,18 +79,23 @@ types = {
 				amount = { min = 10 }
 			}
 		}
+		unit_requirements = {
+			equipment = {
+				type = { strat_bomber_intercontinental_equipment }
+				amount = { min = 10 }
+			}
+		}
 		essential_equipment = {
 			nukes = 1
 		}
 
 		starting_point = {
-			types = { air_base }
+		    types = { air_base }
 		}
 
 		arrow = {
 			type = air
 		}
-
 
 		success_factors = {
 			success = {
@@ -155,11 +172,505 @@ types = {
 					raid_add_unit_experience = 0.1
 				}
 				victim_effects = {
+					var:actor_country = { save_global_event_target_as = nuclear_gandhi_actor_country }  
 					var:target_state = {
+						bathe_in_hellfire_nuclear = yes
 						custom_effect_tooltip = raid_nuclear_strike_tt
 						add_dynamic_modifier = {
 							modifier = fallout_atomic
 							days = 180
+						}
+						if = {
+							limit ={ 
+								state_population > 100
+							}
+							add_manpower = -2
+						}
+						if = {
+							limit ={ 
+								state_population > 200
+							}
+							add_manpower = -3
+						}
+						if = {
+							limit ={ 
+								state_population > 300
+							}
+							add_manpower = -4
+						}
+						if = {
+							limit ={ 
+								state_population > 400
+							}
+							add_manpower = -4
+						}
+						if = {
+							limit ={ 
+								state_population > 500
+							}
+							add_manpower = -5
+						}
+						if = {
+							limit ={ 
+								state_population > 600
+							}
+							add_manpower = -5
+						}
+						if = {
+							limit ={ 
+								state_population > 700
+							}
+							add_manpower = -6
+						}
+						if = {
+							limit ={ 
+								state_population > 800
+							}
+							add_manpower = -7
+						}
+						if = {
+							limit ={ 
+								state_population > 900
+							}
+							add_manpower = -8
+						}
+						if = {
+							limit ={ 
+								state_population > 1000
+							}
+							add_manpower = -112
+						}
+						if = {
+							limit ={ 
+								state_population > 2000
+							}
+							add_manpower = -131
+						}
+						if = {
+							limit ={ 
+								state_population > 3000
+							}
+							add_manpower = -150
+						}
+						if = {
+							limit ={ 
+								state_population > 4000
+							}
+							add_manpower = -168
+						}
+						if = {
+							limit ={ 
+								state_population > 5000
+							}
+							add_manpower = -187
+						}
+						if = {
+							limit ={ 
+								state_population > 6000
+							}
+							add_manpower = -206
+						}
+						if = {
+							limit ={ 
+								state_population > 7000
+							}
+							add_manpower = -275
+						}
+						if = {
+							limit ={ 
+								state_population > 8000
+							}
+							add_manpower = -243
+						}
+						if = {
+							limit ={ 
+								state_population > 9000
+							}
+							add_manpower = -262
+						}
+						if = { #4417
+							limit ={ 
+								state_population > 10000
+							}
+							add_manpower = -375
+						}
+						if = {
+							limit ={ 
+								state_population > 15000
+							}
+							add_manpower = -450
+						}
+						if = {
+							limit ={ 
+								state_population > 20000
+							}
+							add_manpower = -525
+						}
+						if = {
+							limit ={ 
+								state_population > 25000
+							}
+							add_manpower = -600
+						}
+						if = {
+							limit ={ 
+								state_population > 30000
+							}
+							add_manpower = -675
+						}
+						if = {
+							limit ={ 
+								state_population > 35000
+							}
+							add_manpower = -750
+						}
+						if = {
+							limit ={ 
+								state_population > 40000
+							}
+							add_manpower = -825
+						}
+						if = {
+							limit ={ 
+								state_population > 45000
+							}
+							add_manpower = -900
+						}
+						if = {
+							limit ={ 
+								state_population > 50000
+							}
+							add_manpower = -975
+						}
+						if = {
+							limit ={ 
+								state_population > 55000
+							}
+							add_manpower = -1050
+						}
+						if = {
+							limit ={ 
+								state_population > 60000
+							}
+							add_manpower = -1125
+						}
+						if = {
+							limit ={ 
+								state_population > 65000
+							}
+							add_manpower = -1200
+						}
+						if = {
+							limit ={ 
+								state_population > 70000
+							}
+							add_manpower = -1275
+						}
+						if = {
+							limit ={ 
+								state_population > 75000
+							}
+							add_manpower = -1350
+						}
+						if = {
+							limit ={ 
+								state_population > 80000
+							}
+							add_manpower = -1425
+						}
+						if = {
+							limit ={ 
+								state_population > 85000
+							}
+							add_manpower = -1500
+						}
+						if = {
+							limit ={ 
+								state_population > 90000
+							}
+							add_manpower = -1575
+						}
+						if = { #48617
+							limit ={ 
+								state_population > 95000
+							}
+							add_manpower = -1650
+						}
+						if = {
+							limit ={ 
+								state_population > 100000
+							}
+							add_manpower = -2250
+						}
+						if = {
+							limit ={ 
+								state_population > 150000
+							}
+							add_manpower = -4875
+						}
+						if = {
+							limit ={ 
+								state_population > 200000
+							}
+							add_manpower = -2625
+						}
+						if = {
+							limit ={ 
+								state_population > 250000
+							}
+							add_manpower = -2812
+						}
+						if = {
+							limit ={ 
+								state_population > 300000
+							}
+							add_manpower = -3000
+						}
+						if = {
+							limit ={ 
+								state_population > 350000
+							}
+							add_manpower = -3187
+						}
+						if = {
+							limit ={ 
+								state_population > 400000
+							}
+							add_manpower = -3375
+						}
+						if = {
+							limit ={ 
+								state_population > 450000
+							}
+							add_manpower = -3562
+						}
+						if = {
+							limit ={ 
+								state_population > 500000
+							}
+							add_manpower = -3750
+						}
+						if = {
+							limit ={ 
+								state_population > 550000
+							}
+							add_manpower = -3937
+						}
+						if = {
+							limit ={ 
+								state_population > 600000
+							}
+							add_manpower = -4125
+						}
+						if = {
+							limit ={ 
+								state_population > 650000
+							}
+							add_manpower = -4312
+						}
+						if = {
+							limit ={ 
+								state_population > 700000
+							}
+							add_manpower = -4500
+						}
+						if = {
+							limit ={ 
+								state_population > 750000
+							}
+							add_manpower = -4687
+						}
+						if = {
+							limit ={ 
+								state_population > 800000
+							}
+							add_manpower = -4875
+						}
+						if = {
+							limit ={ 
+								state_population > 850000
+							}
+							add_manpower = -5062
+						}
+						if = {
+							limit ={ 
+								state_population > 900000
+							}
+							add_manpower = -5250
+						}
+						if = {
+							limit ={ 
+								state_population > 950000
+							}
+							add_manpower = -5437
+						}
+						if = {#237517
+							limit ={ 
+								state_population > 1000000
+							}
+							add_manpower = -48750
+						}
+						if = {
+							limit ={ 
+								state_population > 2000000
+							}
+							add_manpower = -56250
+						}
+						if = {
+							limit ={ 
+								state_population > 3000000
+							}
+							add_manpower = -63750
+						}
+						if = {
+							limit ={ 
+								state_population > 4000000
+							}
+							add_manpower = -71250
+						}
+						if = {
+							limit ={ 
+								state_population > 5000000
+							}
+							add_manpower = -78750
+						}
+						if = {
+							limit ={ 
+								state_population > 6000000
+							}
+							add_manpower = -86250
+						}
+						if = {
+							limit ={ 
+								state_population > 7000000
+							}
+							add_manpower = -93750
+						}
+						if = {
+							limit ={ 
+								state_population > 8000000
+							}
+							add_manpower = -101250
+						}
+						if = {
+							limit ={ 
+								state_population > 9000000
+							}
+							add_manpower = -108750
+						}
+						if = { #2127517
+							limit ={ 
+								state_population > 10000000
+							}
+							add_manpower = -171187
+						}
+						if = {
+							limit ={ 
+								state_population > 11000000
+							}
+							add_manpower = -178687
+						}
+						if = {
+							limit ={ 
+								state_population > 12000000
+							}
+							add_manpower = -186187
+						}
+						if = {
+							limit ={ 
+								state_population > 13000000
+							}
+							add_manpower = -193687
+						}
+						if = {
+							limit ={ 
+								state_population > 14000000
+							}
+							add_manpower = -201187
+						}
+						if = {
+							limit ={ 
+								state_population > 15000000
+							}
+							add_manpower = -208687
+						}
+						if = {
+							limit ={ 
+								state_population > 16000000
+							}
+							add_manpower = -216187
+						}
+						if = {
+							limit ={ 
+								state_population > 17000000
+							}
+							add_manpower = -223687
+						}
+						if = {
+							limit ={ 
+								state_population > 18000000
+							}
+							add_manpower = -231187
+						}
+						if = {
+							limit ={ 
+								state_population > 19000000
+							}
+							add_manpower = -238687
+						}
+						if = { #7592317
+							limit ={ 
+								state_population > 20000000
+							}
+							add_manpower = -375000
+						}
+						if = {
+							limit ={ 
+								state_population > 30000000
+							}
+							add_manpower = -393750
+						}
+						if = { 
+							limit ={ 
+								state_population > 40000000
+							}
+							add_manpower = -412500
+						}
+						if = { 
+							limit ={ 
+								state_population > 50000000
+							}
+							add_manpower = -431000
+						}
+						if = {
+							limit ={ 
+								state_population > 60000000
+							}
+							add_manpower = -450000
+						}
+						if = { 
+							limit ={ 
+								state_population > 70000000
+							}
+							add_manpower = -468750
+						}
+						if = { 
+							limit ={ 
+								state_population > 80000000
+							}
+							add_manpower = -487000
+						}
+						if = { 
+							limit ={ 
+								state_population > 90000000
+							}
+							add_manpower = -506250
+						}
+						if = { 
+							limit ={ 
+								state_population > 100000000
+							}
+							add_manpower = -525000
 						}
 					}
 					var:actor_country = {
@@ -172,7 +683,7 @@ types = {
 				}
 			}
 			success = {
-				custom_sound = raid_result_success_nuclear
+			    custom_sound = raid_result_success_nuclear
 				actor_effects = {
 					raid_damage_units = {
 						plane_loss = 0.1
@@ -181,11 +692,505 @@ types = {
 					raid_add_unit_experience = 0.35
 				}
 				victim_effects = {
+					var:actor_country = { save_global_event_target_as = nuclear_gandhi_actor_country }
 					var:target_state = {
+						bathe_in_hellfire_nuclear = yes
 						custom_effect_tooltip = raid_nuclear_strike_tt
 						add_dynamic_modifier = {
 							modifier = fallout_atomic
 							days = 365
+						}
+						if = {
+							limit ={ 
+								state_population > 100
+							}
+							add_manpower = -3
+						}
+						if = {
+							limit ={ 
+								state_population > 200
+							}
+							add_manpower = -5
+						}
+						if = {
+							limit ={ 
+								state_population > 300
+							}
+							add_manpower = -7
+						}
+						if = {
+							limit ={ 
+								state_population > 400
+							}
+							add_manpower = -8
+						}
+						if = {
+							limit ={ 
+								state_population > 500
+							}
+							add_manpower = -9
+						}
+						if = {
+							limit ={ 
+								state_population > 600
+							}
+							add_manpower = -11
+						}
+						if = {
+							limit ={ 
+								state_population > 700
+							}
+							add_manpower = -12
+						}
+						if = {
+							limit ={ 
+								state_population > 800
+							}
+							add_manpower = -14
+						}
+						if = {
+							limit ={ 
+								state_population > 900
+							}
+							add_manpower = -16
+						}
+						if = {
+							limit ={ 
+								state_population > 1000
+							}
+							add_manpower = -225
+						}
+						if = {
+							limit ={ 
+								state_population > 2000
+							}
+							add_manpower = -262
+						}
+						if = {
+							limit ={ 
+								state_population > 3000
+							}
+							add_manpower = -300
+						}
+						if = {
+							limit ={ 
+								state_population > 4000
+							}
+							add_manpower = -337
+						}
+						if = {
+							limit ={ 
+								state_population > 5000
+							}
+							add_manpower = -375
+						}
+						if = {
+							limit ={ 
+								state_population > 6000
+							}
+							add_manpower = -412
+						}
+						if = {
+							limit ={ 
+								state_population > 7000
+							}
+							add_manpower = -450
+						}
+						if = {
+							limit ={ 
+								state_population > 8000
+							}
+							add_manpower = -487
+						}
+						if = {
+							limit ={ 
+								state_population > 9000
+							}
+							add_manpower = -525
+						}
+						if = { #4417
+							limit ={ 
+								state_population > 10000
+							}
+							add_manpower = -750
+						}
+						if = {
+							limit ={ 
+								state_population > 15000
+							}
+							add_manpower = -900
+						}
+						if = {
+							limit ={ 
+								state_population > 20000
+							}
+							add_manpower = -1050
+						}
+						if = {
+							limit ={ 
+								state_population > 25000
+							}
+							add_manpower = -1200
+						}
+						if = {
+							limit ={ 
+								state_population > 30000
+							}
+							add_manpower = -1350
+						}
+						if = {
+							limit ={ 
+								state_population > 35000
+							}
+							add_manpower = -1500
+						}
+						if = {
+							limit ={ 
+								state_population > 40000
+							}
+							add_manpower = -1650
+						}
+						if = {
+							limit ={ 
+								state_population > 45000
+							}
+							add_manpower = -1800
+						}
+						if = {
+							limit ={ 
+								state_population > 50000
+							}
+							add_manpower = -1950
+						}
+						if = {
+							limit ={ 
+								state_population > 55000
+							}
+							add_manpower = -2100
+						}
+						if = {
+							limit ={ 
+								state_population > 60000
+							}
+							add_manpower = -2250
+						}
+						if = {
+							limit ={ 
+								state_population > 65000
+							}
+							add_manpower = -2400
+						}
+						if = {
+							limit ={ 
+								state_population > 70000
+							}
+							add_manpower = -2550
+						}
+						if = {
+							limit ={ 
+								state_population > 75000
+							}
+							add_manpower = -2700
+						}
+						if = {
+							limit ={ 
+								state_population > 80000
+							}
+							add_manpower = -2850
+						}
+						if = {
+							limit ={ 
+								state_population > 85000
+							}
+							add_manpower = -3000
+						}
+						if = {
+							limit ={ 
+								state_population > 90000
+							}
+							add_manpower = -3150
+						}
+						if = { #48617
+							limit ={ 
+								state_population > 95000
+							}
+							add_manpower = -3300
+						}
+						if = {
+							limit ={ 
+								state_population > 100000
+							}
+							add_manpower = -4500
+						}
+						if = {
+							limit ={ 
+								state_population > 150000
+							}
+							add_manpower = -4875
+						}
+						if = {
+							limit ={ 
+								state_population > 200000
+							}
+							add_manpower = -5250
+						}
+						if = {
+							limit ={ 
+								state_population > 250000
+							}
+							add_manpower = -5625
+						}
+						if = {
+							limit ={ 
+								state_population > 300000
+							}
+							add_manpower = -6000
+						}
+						if = {
+							limit ={ 
+								state_population > 350000
+							}
+							add_manpower = -6375
+						}
+						if = {
+							limit ={ 
+								state_population > 400000
+							}
+							add_manpower = -6750
+						}
+						if = {
+							limit ={ 
+								state_population > 450000
+							}
+							add_manpower = -7125
+						}
+						if = {
+							limit ={ 
+								state_population > 500000
+							}
+							add_manpower = -7500
+						}
+						if = {
+							limit ={ 
+								state_population > 550000
+							}
+							add_manpower = -7875
+						}
+						if = {
+							limit ={ 
+								state_population > 600000
+							}
+							add_manpower = -8250
+						}
+						if = {
+							limit ={ 
+								state_population > 650000
+							}
+							add_manpower = -8625
+						}
+						if = {
+							limit ={ 
+								state_population > 700000
+							}
+							add_manpower = -9000
+						}
+						if = {
+							limit ={ 
+								state_population > 750000
+							}
+							add_manpower = -9375
+						}
+						if = {
+							limit ={ 
+								state_population > 800000
+							}
+							add_manpower = -9750
+						}
+						if = {
+							limit ={ 
+								state_population > 850000
+							}
+							add_manpower = -10125
+						}
+						if = {
+							limit ={ 
+								state_population > 900000
+							}
+							add_manpower = -10500
+						}
+						if = {
+							limit ={ 
+								state_population > 950000
+							}
+							add_manpower = -10875
+						}
+						if = {#237517
+							limit ={ 
+								state_population > 1000000
+							}
+							add_manpower = -97500
+						}
+						if = {
+							limit ={ 
+								state_population > 2000000
+							}
+							add_manpower = -112500
+						}
+						if = {
+							limit ={ 
+								state_population > 3000000
+							}
+							add_manpower = -127500
+						}
+						if = {
+							limit ={ 
+								state_population > 4000000
+							}
+							add_manpower = -142500
+						}
+						if = {
+							limit ={ 
+								state_population > 5000000
+							}
+							add_manpower = -157500
+						}
+						if = {
+							limit ={ 
+								state_population > 6000000
+							}
+							add_manpower = -172500
+						}
+						if = {
+							limit ={ 
+								state_population > 7000000
+							}
+							add_manpower = -187500
+						}
+						if = {
+							limit ={ 
+								state_population > 8000000
+							}
+							add_manpower = -202500
+						}
+						if = {
+							limit ={ 
+								state_population > 9000000
+							}
+							add_manpower = -217500
+						}
+						if = { #2127517
+							limit ={ 
+								state_population > 10000000
+							}
+							add_manpower = -342375
+						}
+						if = {
+							limit ={ 
+								state_population > 11000000
+							}
+							add_manpower = -357375
+						}
+						if = {
+							limit ={ 
+								state_population > 12000000
+							}
+							add_manpower = -372375
+						}
+						if = {
+							limit ={ 
+								state_population > 13000000
+							}
+							add_manpower = -387375
+						}
+						if = {
+							limit ={ 
+								state_population > 14000000
+							}
+							add_manpower = -402375
+						}
+						if = {
+							limit ={ 
+								state_population > 15000000
+							}
+							add_manpower = -417375
+						}
+						if = {
+							limit ={ 
+								state_population > 16000000
+							}
+							add_manpower = -432375
+						}
+						if = {
+							limit ={ 
+								state_population > 17000000
+							}
+							add_manpower = -447375
+						}
+						if = {
+							limit ={ 
+								state_population > 18000000
+							}
+							add_manpower = -462375
+						}
+						if = {
+							limit ={ 
+								state_population > 19000000
+							}
+							add_manpower = -477375
+						}
+						if = { #7592317
+							limit ={ 
+								state_population > 20000000
+							}
+							add_manpower = -750000
+						}
+						if = {
+							limit ={ 
+								state_population > 30000000
+							}
+							add_manpower = -787500
+						}
+						if = { 
+							limit ={ 
+								state_population > 40000000
+							}
+							add_manpower = -825000
+						}
+						if = { 
+							limit ={ 
+								state_population > 50000000
+							}
+							add_manpower = -862000
+						}
+						if = {
+							limit ={ 
+								state_population > 60000000
+							}
+							add_manpower = -900000
+						}
+						if = { 
+							limit ={ 
+								state_population > 70000000
+							}
+							add_manpower = -937500
+						}
+						if = { 
+							limit ={ 
+								state_population > 80000000
+							}
+							add_manpower = -975000
+						}
+						if = { 
+							limit ={ 
+								state_population > 90000000
+							}
+							add_manpower = -1012500
+						}
+						if = { 
+							limit ={ 
+								state_population > 100000000
+							}
+							add_manpower = -1050000
 						}
 					}
 					var:actor_country = {
@@ -197,7 +1202,7 @@ types = {
 				}
 			}
 			critical_success = {
-				custom_sound = raid_result_critical_success_nuclear
+			    custom_sound = raid_result_critical_success_nuclear
 				actor_effects = {
 					raid_add_unit_experience = 0.5
 				}
@@ -208,14 +1213,508 @@ types = {
 							use_nuke = no
 						}
 					}
+					var:actor_country = { save_global_event_target_as = nuclear_gandhi_actor_country }
 					var:target_state = {
+						bathe_in_hellfire_nuclear = yes
 						custom_effect_tooltip = raid_nuclear_strike_tt
 						add_dynamic_modifier = {
 							modifier = fallout_atomic
 							days = 730
 						}
+						if = {
+							limit ={ 
+								state_population > 100
+							}
+							add_manpower = -3
+						}
+						if = {
+							limit ={ 
+								state_population > 200
+							}
+							add_manpower = -6
+						}
+						if = {
+							limit ={ 
+								state_population > 300
+							}
+							add_manpower = -8
+						}
+						if = {
+							limit ={ 
+								state_population > 400
+							}
+							add_manpower = -9
+						}
+						if = {
+							limit ={ 
+								state_population > 500
+							}
+							add_manpower = -10
+						}
+						if = {
+							limit ={ 
+								state_population > 600
+							}
+							add_manpower = -12
+						}
+						if = {
+							limit ={ 
+								state_population > 700
+							}
+							add_manpower = -13
+						}
+						if = {
+							limit ={ 
+								state_population > 800
+							}
+							add_manpower = -16
+						}
+						if = {
+							limit ={ 
+								state_population > 900
+							}
+							add_manpower = -18
+						}
+						if = {
+							limit ={ 
+								state_population > 1000
+							}
+							add_manpower = -258
+						}
+						if = {
+							limit ={ 
+								state_population > 2000
+							}
+							add_manpower = -301
+						}
+						if = {
+							limit ={ 
+								state_population > 3000
+							}
+							add_manpower = -345
+						}
+						if = {
+							limit ={ 
+								state_population > 4000
+							}
+							add_manpower = -387
+						}
+						if = {
+							limit ={ 
+								state_population > 5000
+							}
+							add_manpower = -431
+						}
+						if = {
+							limit ={ 
+								state_population > 6000
+							}
+							add_manpower = -473
+						}
+						if = {
+							limit ={ 
+								state_population > 7000
+							}
+							add_manpower = -517
+						}
+						if = {
+							limit ={ 
+								state_population > 8000
+							}
+							add_manpower = -560
+						}
+						if = {
+							limit ={ 
+								state_population > 9000
+							}
+							add_manpower = -603
+						}
+						if = { #4417
+							limit ={ 
+								state_population > 10000
+							}
+							add_manpower = -862
+						}
+						if = {
+							limit ={ 
+								state_population > 15000
+							}
+							add_manpower = -1035
+						}
+						if = {
+							limit ={ 
+								state_population > 20000
+							}
+							add_manpower = -1207
+						}
+						if = {
+							limit ={ 
+								state_population > 25000
+							}
+							add_manpower = -1380
+						}
+						if = {
+							limit ={ 
+								state_population > 30000
+							}
+							add_manpower = -1552
+						}
+						if = {
+							limit ={ 
+								state_population > 35000
+							}
+							add_manpower = -1725
+						}
+						if = {
+							limit ={ 
+								state_population > 40000
+							}
+							add_manpower = -1897
+						}
+						if = {
+							limit ={ 
+								state_population > 45000
+							}
+							add_manpower = -2070
+						}
+						if = {
+							limit ={ 
+								state_population > 50000
+							}
+							add_manpower = -2242
+						}
+						if = {
+							limit ={ 
+								state_population > 55000
+							}
+							add_manpower = -2415
+						}
+						if = {
+							limit ={ 
+								state_population > 60000
+							}
+							add_manpower = -2587
+						}
+						if = {
+							limit ={ 
+								state_population > 65000
+							}
+							add_manpower = -2760
+						}
+						if = {
+							limit ={ 
+								state_population > 70000
+							}
+							add_manpower = -2875
+						}
+						if = {
+							limit ={ 
+								state_population > 75000
+							}
+							add_manpower = -3105
+						}
+						if = {
+							limit ={ 
+								state_population > 80000
+							}
+							add_manpower = -3277
+						}
+						if = {
+							limit ={ 
+								state_population > 85000
+							}
+							add_manpower = -3450
+						}
+						if = {
+							limit ={ 
+								state_population > 90000
+							}
+							add_manpower = -3622
+						}
+						if = { #48617
+							limit ={ 
+								state_population > 95000
+							}
+							add_manpower = -3795
+						}
+						if = {
+							limit ={ 
+								state_population > 100000
+							}
+							add_manpower = -5175
+						}
+						if = {
+							limit ={ 
+								state_population > 150000
+							}
+							add_manpower = -5606
+						}
+						if = {
+							limit ={ 
+								state_population > 200000
+							}
+							add_manpower = -6037
+						}
+						if = {
+							limit ={ 
+								state_population > 250000
+							}
+							add_manpower = -6468
+						}
+						if = {
+							limit ={ 
+								state_population > 300000
+							}
+							add_manpower = -6900
+						}
+						if = {
+							limit ={ 
+								state_population > 350000
+							}
+							add_manpower = -7331
+						}
+						if = {
+							limit ={ 
+								state_population > 400000
+							}
+							add_manpower = -7762
+						}
+						if = {
+							limit ={ 
+								state_population > 450000
+							}
+							add_manpower = -8193
+						}
+						if = {
+							limit ={ 
+								state_population > 500000
+							}
+							add_manpower = -8625
+						}
+						if = {
+							limit ={ 
+								state_population > 550000
+							}
+							add_manpower = -9056
+						}
+						if = {
+							limit ={ 
+								state_population > 600000
+							}
+							add_manpower = -9487
+						}
+						if = {
+							limit ={ 
+								state_population > 650000
+							}
+							add_manpower = -9918
+						}
+						if = {
+							limit ={ 
+								state_population > 700000
+							}
+							add_manpower = -10350
+						}
+						if = {
+							limit ={ 
+								state_population > 750000
+							}
+							add_manpower = -10781
+						}
+						if = {
+							limit ={ 
+								state_population > 800000
+							}
+							add_manpower = -11212
+						}
+						if = {
+							limit ={ 
+								state_population > 850000
+							}
+							add_manpower = -11643
+						}
+						if = {
+							limit ={ 
+								state_population > 900000
+							}
+							add_manpower = -12075
+						}
+						if = {
+							limit ={ 
+								state_population > 950000
+							}
+							add_manpower = -12506
+						}
+						if = {#237517
+							limit ={ 
+								state_population > 1000000
+							}
+							add_manpower = -112125
+						}
+						if = {
+							limit ={ 
+								state_population > 2000000
+							}
+							add_manpower = -129375
+						}
+						if = {
+							limit ={ 
+								state_population > 3000000
+							}
+							add_manpower = -146625
+						}
+						if = {
+							limit ={ 
+								state_population > 4000000
+							}
+							add_manpower = -163875
+						}
+						if = {
+							limit ={ 
+								state_population > 5000000
+							}
+							add_manpower = -181125
+						}
+						if = {
+							limit ={ 
+								state_population > 6000000
+							}
+							add_manpower = -198375
+						}
+						if = {
+							limit ={ 
+								state_population > 7000000
+							}
+							add_manpower = -215625
+						}
+						if = {
+							limit ={ 
+								state_population > 8000000
+							}
+							add_manpower = -232875
+						}
+						if = {
+							limit ={ 
+								state_population > 9000000
+							}
+							add_manpower = -250215
+						}
+						if = { #2127517
+							limit ={ 
+								state_population > 10000000
+							}
+							add_manpower = -393731
+						}
+						if = {
+							limit ={ 
+								state_population > 11000000
+							}
+							add_manpower = -410981
+						}
+						if = {
+							limit ={ 
+								state_population > 12000000
+							}
+							add_manpower = -428231
+						}
+						if = {
+							limit ={ 
+								state_population > 13000000
+							}
+							add_manpower = -445481
+						}
+						if = {
+							limit ={ 
+								state_population > 14000000
+							}
+							add_manpower = -462731
+						}
+						if = {
+							limit ={ 
+								state_population > 15000000
+							}
+							add_manpower = -479981
+						}
+						if = {
+							limit ={ 
+								state_population > 16000000
+							}
+							add_manpower = -4975231
+						}
+						if = {
+							limit ={ 
+								state_population > 17000000
+							}
+							add_manpower = -514481
+						}
+						if = {
+							limit ={ 
+								state_population > 18000000
+							}
+							add_manpower = -531731
+						}
+						if = {
+							limit ={ 
+								state_population > 19000000
+							}
+							add_manpower = -548981
+						}
+						if = { #7592317
+							limit ={ 
+								state_population > 20000000
+							}
+							add_manpower = -862500
+						}
+						if = {
+							limit ={ 
+								state_population > 30000000
+							}
+							add_manpower = -905625
+						}
+						if = { 
+							limit ={ 
+								state_population > 40000000
+							}
+							add_manpower = -948750
+						}
+						if = { 
+							limit ={ 
+								state_population > 50000000
+							}
+							add_manpower = -991300
+						}
+						if = {
+							limit ={ 
+								state_population > 60000000
+							}
+							add_manpower = -1035000
+						}
+						if = { 
+							limit ={ 
+								state_population > 70000000
+							}
+							add_manpower = -1078125
+						}
+						if = { 
+							limit ={ 
+								state_population > 80000000
+							}
+							add_manpower = -1121250
+						}
+						if = { 
+							limit ={ 
+								state_population > 90000000
+							}
+							add_manpower = -1164375
+						}
+						if = { 
+							limit ={ 
+								state_population > 100000000
+							}
+							add_manpower = -1207500
+						}
 					}
-
+					
 				}
 			}
 		}
@@ -225,7 +1724,7 @@ types = {
 	nuclear_missile_strike = {
 		category = nuclear_raids
 
-		days_to_prepare = 2
+		days_to_prepare = 14
 		speed_multiplier = 0.08
 		ai_will_do = {
 			base = 1
@@ -237,6 +1736,13 @@ types = {
 						array = potential_and_current_enemies
 						value = FROM  # Target country
 					}
+				}
+			}
+			modifier = {
+				factor = 2
+				OR = {
+					original_tag = USA
+					original_tag = SOV
 				}
 			}
 			modifier = {
@@ -293,18 +1799,19 @@ types = {
 		}
 
 		starting_point = {
-			types = {
-				rocket_site
-				submarine
-			}
+		    types = {
+		        rocket_site
+		    }
 		}
 		arrow = {
-			type = ballistic
+		    type = ballistic
 		}
 
 		launch_sound = raid_launch_nuclear_missile
 
-
+        unit_model = {
+            scale = 0.5
+        }
 
 		success_factors = {
 			success = {
@@ -335,15 +1842,509 @@ types = {
 				}
 			}
 			success = {
-				custom_sound = raid_result_success_nuclear
+			    custom_sound = raid_result_success_nuclear
 				actor_effects = {
 				}
 				victim_effects = {
+					var:actor_country = { save_global_event_target_as = nuclear_gandhi_actor_country }
 					var:target_state = {
+						bathe_in_hellfire_nuclear = yes
 						#custom_effect_tooltip = raid_nuclear_strike_tt
 						add_dynamic_modifier = {
 							modifier = fallout_atomic
 							days = 365
+						}
+						if = {
+							limit ={ 
+								state_population > 100
+							}
+							add_manpower = -3
+						}
+						if = {
+							limit ={ 
+								state_population > 200
+							}
+							add_manpower = -5
+						}
+						if = {
+							limit ={ 
+								state_population > 300
+							}
+							add_manpower = -7
+						}
+						if = {
+							limit ={ 
+								state_population > 400
+							}
+							add_manpower = -8
+						}
+						if = {
+							limit ={ 
+								state_population > 500
+							}
+							add_manpower = -9
+						}
+						if = {
+							limit ={ 
+								state_population > 600
+							}
+							add_manpower = -11
+						}
+						if = {
+							limit ={ 
+								state_population > 700
+							}
+							add_manpower = -12
+						}
+						if = {
+							limit ={ 
+								state_population > 800
+							}
+							add_manpower = -14
+						}
+						if = {
+							limit ={ 
+								state_population > 900
+							}
+							add_manpower = -16
+						}
+						if = {
+							limit ={ 
+								state_population > 1000
+							}
+							add_manpower = -225
+						}
+						if = {
+							limit ={ 
+								state_population > 2000
+							}
+							add_manpower = -262
+						}
+						if = {
+							limit ={ 
+								state_population > 3000
+							}
+							add_manpower = -300
+						}
+						if = {
+							limit ={ 
+								state_population > 4000
+							}
+							add_manpower = -337
+						}
+						if = {
+							limit ={ 
+								state_population > 5000
+							}
+							add_manpower = -375
+						}
+						if = {
+							limit ={ 
+								state_population > 6000
+							}
+							add_manpower = -412
+						}
+						if = {
+							limit ={ 
+								state_population > 7000
+							}
+							add_manpower = -450
+						}
+						if = {
+							limit ={ 
+								state_population > 8000
+							}
+							add_manpower = -487
+						}
+						if = {
+							limit ={ 
+								state_population > 9000
+							}
+							add_manpower = -525
+						}
+						if = { #4417
+							limit ={ 
+								state_population > 10000
+							}
+							add_manpower = -750
+						}
+						if = {
+							limit ={ 
+								state_population > 15000
+							}
+							add_manpower = -900
+						}
+						if = {
+							limit ={ 
+								state_population > 20000
+							}
+							add_manpower = -1050
+						}
+						if = {
+							limit ={ 
+								state_population > 25000
+							}
+							add_manpower = -1200
+						}
+						if = {
+							limit ={ 
+								state_population > 30000
+							}
+							add_manpower = -1350
+						}
+						if = {
+							limit ={ 
+								state_population > 35000
+							}
+							add_manpower = -1500
+						}
+						if = {
+							limit ={ 
+								state_population > 40000
+							}
+							add_manpower = -1650
+						}
+						if = {
+							limit ={ 
+								state_population > 45000
+							}
+							add_manpower = -1800
+						}
+						if = {
+							limit ={ 
+								state_population > 50000
+							}
+							add_manpower = -1950
+						}
+						if = {
+							limit ={ 
+								state_population > 55000
+							}
+							add_manpower = -2100
+						}
+						if = {
+							limit ={ 
+								state_population > 60000
+							}
+							add_manpower = -2250
+						}
+						if = {
+							limit ={ 
+								state_population > 65000
+							}
+							add_manpower = -2400
+						}
+						if = {
+							limit ={ 
+								state_population > 70000
+							}
+							add_manpower = -2550
+						}
+						if = {
+							limit ={ 
+								state_population > 75000
+							}
+							add_manpower = -2700
+						}
+						if = {
+							limit ={ 
+								state_population > 80000
+							}
+							add_manpower = -2850
+						}
+						if = {
+							limit ={ 
+								state_population > 85000
+							}
+							add_manpower = -3000
+						}
+						if = {
+							limit ={ 
+								state_population > 90000
+							}
+							add_manpower = -3150
+						}
+						if = { #48617
+							limit ={ 
+								state_population > 95000
+							}
+							add_manpower = -3300
+						}
+						if = {
+							limit ={ 
+								state_population > 100000
+							}
+							add_manpower = -4500
+						}
+						if = {
+							limit ={ 
+								state_population > 150000
+							}
+							add_manpower = -4875
+						}
+						if = {
+							limit ={ 
+								state_population > 200000
+							}
+							add_manpower = -5250
+						}
+						if = {
+							limit ={ 
+								state_population > 250000
+							}
+							add_manpower = -5625
+						}
+						if = {
+							limit ={ 
+								state_population > 300000
+							}
+							add_manpower = -6000
+						}
+						if = {
+							limit ={ 
+								state_population > 350000
+							}
+							add_manpower = -6375
+						}
+						if = {
+							limit ={ 
+								state_population > 400000
+							}
+							add_manpower = -6750
+						}
+						if = {
+							limit ={ 
+								state_population > 450000
+							}
+							add_manpower = -7125
+						}
+						if = {
+							limit ={ 
+								state_population > 500000
+							}
+							add_manpower = -7500
+						}
+						if = {
+							limit ={ 
+								state_population > 550000
+							}
+							add_manpower = -7875
+						}
+						if = {
+							limit ={ 
+								state_population > 600000
+							}
+							add_manpower = -8250
+						}
+						if = {
+							limit ={ 
+								state_population > 650000
+							}
+							add_manpower = -8625
+						}
+						if = {
+							limit ={ 
+								state_population > 700000
+							}
+							add_manpower = -9000
+						}
+						if = {
+							limit ={ 
+								state_population > 750000
+							}
+							add_manpower = -9375
+						}
+						if = {
+							limit ={ 
+								state_population > 800000
+							}
+							add_manpower = -9750
+						}
+						if = {
+							limit ={ 
+								state_population > 850000
+							}
+							add_manpower = -10125
+						}
+						if = {
+							limit ={ 
+								state_population > 900000
+							}
+							add_manpower = -10500
+						}
+						if = {
+							limit ={ 
+								state_population > 950000
+							}
+							add_manpower = -10875
+						}
+						if = {#237517
+							limit ={ 
+								state_population > 1000000
+							}
+							add_manpower = -97500
+						}
+						if = {
+							limit ={ 
+								state_population > 2000000
+							}
+							add_manpower = -112500
+						}
+						if = {
+							limit ={ 
+								state_population > 3000000
+							}
+							add_manpower = -127500
+						}
+						if = {
+							limit ={ 
+								state_population > 4000000
+							}
+							add_manpower = -142500
+						}
+						if = {
+							limit ={ 
+								state_population > 5000000
+							}
+							add_manpower = -157500
+						}
+						if = {
+							limit ={ 
+								state_population > 6000000
+							}
+							add_manpower = -172500
+						}
+						if = {
+							limit ={ 
+								state_population > 7000000
+							}
+							add_manpower = -187500
+						}
+						if = {
+							limit ={ 
+								state_population > 8000000
+							}
+							add_manpower = -202500
+						}
+						if = {
+							limit ={ 
+								state_population > 9000000
+							}
+							add_manpower = -217500
+						}
+						if = { #2127517
+							limit ={ 
+								state_population > 10000000
+							}
+							add_manpower = -342375
+						}
+						if = {
+							limit ={ 
+								state_population > 11000000
+							}
+							add_manpower = -357375
+						}
+						if = {
+							limit ={ 
+								state_population > 12000000
+							}
+							add_manpower = -372375
+						}
+						if = {
+							limit ={ 
+								state_population > 13000000
+							}
+							add_manpower = -387375
+						}
+						if = {
+							limit ={ 
+								state_population > 14000000
+							}
+							add_manpower = -402375
+						}
+						if = {
+							limit ={ 
+								state_population > 15000000
+							}
+							add_manpower = -417375
+						}
+						if = {
+							limit ={ 
+								state_population > 16000000
+							}
+							add_manpower = -432375
+						}
+						if = {
+							limit ={ 
+								state_population > 17000000
+							}
+							add_manpower = -447375
+						}
+						if = {
+							limit ={ 
+								state_population > 18000000
+							}
+							add_manpower = -462375
+						}
+						if = {
+							limit ={ 
+								state_population > 19000000
+							}
+							add_manpower = -477375
+						}
+						if = { #7592317
+							limit ={ 
+								state_population > 20000000
+							}
+							add_manpower = -750000
+						}
+						if = {
+							limit ={ 
+								state_population > 30000000
+							}
+							add_manpower = -787500
+						}
+						if = { 
+							limit ={ 
+								state_population > 40000000
+							}
+							add_manpower = -825000
+						}
+						if = { 
+							limit ={ 
+								state_population > 50000000
+							}
+							add_manpower = -862000
+						}
+						if = {
+							limit ={ 
+								state_population > 60000000
+							}
+							add_manpower = -900000
+						}
+						if = { 
+							limit ={ 
+								state_population > 70000000
+							}
+							add_manpower = -937500
+						}
+						if = { 
+							limit ={ 
+								state_population > 80000000
+							}
+							add_manpower = -975000
+						}
+						if = { 
+							limit ={ 
+								state_population > 90000000
+							}
+							add_manpower = -1012500
+						}
+						if = { 
+							limit ={ 
+								state_population > 100000000
+							}
+							add_manpower = -1050000
 						}
 					}
 					var:actor_country = {
@@ -355,14 +2356,1660 @@ types = {
 				}
 			}
 			critical_success = {
-				custom_sound = raid_result_critical_success_nuclear
+			    custom_sound = raid_result_critical_success_nuclear
 				actor_effects = {
 				}
+
 				victim_effects = {
+					var:actor_country = { save_global_event_target_as = nuclear_gandhi_actor_country }
 					var:target_state = {
+						bathe_in_hellfire_nuclear = yes
 						add_dynamic_modifier = {
 							modifier = fallout_atomic
 							days = 365
+						}
+						if = {
+							limit ={ 
+								state_population > 100
+							}
+							add_manpower = -3
+						}
+						if = {
+							limit ={ 
+								state_population > 200
+							}
+							add_manpower = -6
+						}
+						if = {
+							limit ={ 
+								state_population > 300
+							}
+							add_manpower = -8
+						}
+						if = {
+							limit ={ 
+								state_population > 400
+							}
+							add_manpower = -9
+						}
+						if = {
+							limit ={ 
+								state_population > 500
+							}
+							add_manpower = -10
+						}
+						if = {
+							limit ={ 
+								state_population > 600
+							}
+							add_manpower = -12
+						}
+						if = {
+							limit ={ 
+								state_population > 700
+							}
+							add_manpower = -13
+						}
+						if = {
+							limit ={ 
+								state_population > 800
+							}
+							add_manpower = -16
+						}
+						if = {
+							limit ={ 
+								state_population > 900
+							}
+							add_manpower = -18
+						}
+						if = {
+							limit ={ 
+								state_population > 1000
+							}
+							add_manpower = -258
+						}
+						if = {
+							limit ={ 
+								state_population > 2000
+							}
+							add_manpower = -301
+						}
+						if = {
+							limit ={ 
+								state_population > 3000
+							}
+							add_manpower = -345
+						}
+						if = {
+							limit ={ 
+								state_population > 4000
+							}
+							add_manpower = -387
+						}
+						if = {
+							limit ={ 
+								state_population > 5000
+							}
+							add_manpower = -431
+						}
+						if = {
+							limit ={ 
+								state_population > 6000
+							}
+							add_manpower = -473
+						}
+						if = {
+							limit ={ 
+								state_population > 7000
+							}
+							add_manpower = -517
+						}
+						if = {
+							limit ={ 
+								state_population > 8000
+							}
+							add_manpower = -560
+						}
+						if = {
+							limit ={ 
+								state_population > 9000
+							}
+							add_manpower = -603
+						}
+						if = { #4417
+							limit ={ 
+								state_population > 10000
+							}
+							add_manpower = -862
+						}
+						if = {
+							limit ={ 
+								state_population > 15000
+							}
+							add_manpower = -1035
+						}
+						if = {
+							limit ={ 
+								state_population > 20000
+							}
+							add_manpower = -1207
+						}
+						if = {
+							limit ={ 
+								state_population > 25000
+							}
+							add_manpower = -1380
+						}
+						if = {
+							limit ={ 
+								state_population > 30000
+							}
+							add_manpower = -1552
+						}
+						if = {
+							limit ={ 
+								state_population > 35000
+							}
+							add_manpower = -1725
+						}
+						if = {
+							limit ={ 
+								state_population > 40000
+							}
+							add_manpower = -1897
+						}
+						if = {
+							limit ={ 
+								state_population > 45000
+							}
+							add_manpower = -2070
+						}
+						if = {
+							limit ={ 
+								state_population > 50000
+							}
+							add_manpower = -2242
+						}
+						if = {
+							limit ={ 
+								state_population > 55000
+							}
+							add_manpower = -2415
+						}
+						if = {
+							limit ={ 
+								state_population > 60000
+							}
+							add_manpower = -2587
+						}
+						if = {
+							limit ={ 
+								state_population > 65000
+							}
+							add_manpower = -2760
+						}
+						if = {
+							limit ={ 
+								state_population > 70000
+							}
+							add_manpower = -2875
+						}
+						if = {
+							limit ={ 
+								state_population > 75000
+							}
+							add_manpower = -3105
+						}
+						if = {
+							limit ={ 
+								state_population > 80000
+							}
+							add_manpower = -3277
+						}
+						if = {
+							limit ={ 
+								state_population > 85000
+							}
+							add_manpower = -3450
+						}
+						if = {
+							limit ={ 
+								state_population > 90000
+							}
+							add_manpower = -3622
+						}
+						if = { #48617
+							limit ={ 
+								state_population > 95000
+							}
+							add_manpower = -3795
+						}
+						if = {
+							limit ={ 
+								state_population > 100000
+							}
+							add_manpower = -5175
+						}
+						if = {
+							limit ={ 
+								state_population > 150000
+							}
+							add_manpower = -5606
+						}
+						if = {
+							limit ={ 
+								state_population > 200000
+							}
+							add_manpower = -6037
+						}
+						if = {
+							limit ={ 
+								state_population > 250000
+							}
+							add_manpower = -6468
+						}
+						if = {
+							limit ={ 
+								state_population > 300000
+							}
+							add_manpower = -6900
+						}
+						if = {
+							limit ={ 
+								state_population > 350000
+							}
+							add_manpower = -7331
+						}
+						if = {
+							limit ={ 
+								state_population > 400000
+							}
+							add_manpower = -7762
+						}
+						if = {
+							limit ={ 
+								state_population > 450000
+							}
+							add_manpower = -8193
+						}
+						if = {
+							limit ={ 
+								state_population > 500000
+							}
+							add_manpower = -8625
+						}
+						if = {
+							limit ={ 
+								state_population > 550000
+							}
+							add_manpower = -9056
+						}
+						if = {
+							limit ={ 
+								state_population > 600000
+							}
+							add_manpower = -9487
+						}
+						if = {
+							limit ={ 
+								state_population > 650000
+							}
+							add_manpower = -9918
+						}
+						if = {
+							limit ={ 
+								state_population > 700000
+							}
+							add_manpower = -10350
+						}
+						if = {
+							limit ={ 
+								state_population > 750000
+							}
+							add_manpower = -10781
+						}
+						if = {
+							limit ={ 
+								state_population > 800000
+							}
+							add_manpower = -11212
+						}
+						if = {
+							limit ={ 
+								state_population > 850000
+							}
+							add_manpower = -11643
+						}
+						if = {
+							limit ={ 
+								state_population > 900000
+							}
+							add_manpower = -12075
+						}
+						if = {
+							limit ={ 
+								state_population > 950000
+							}
+							add_manpower = -12506
+						}
+						if = {#237517
+							limit ={ 
+								state_population > 1000000
+							}
+							add_manpower = -112125
+						}
+						if = {
+							limit ={ 
+								state_population > 2000000
+							}
+							add_manpower = -129375
+						}
+						if = {
+							limit ={ 
+								state_population > 3000000
+							}
+							add_manpower = -146625
+						}
+						if = {
+							limit ={ 
+								state_population > 4000000
+							}
+							add_manpower = -163875
+						}
+						if = {
+							limit ={ 
+								state_population > 5000000
+							}
+							add_manpower = -181125
+						}
+						if = {
+							limit ={ 
+								state_population > 6000000
+							}
+							add_manpower = -198375
+						}
+						if = {
+							limit ={ 
+								state_population > 7000000
+							}
+							add_manpower = -215625
+						}
+						if = {
+							limit ={ 
+								state_population > 8000000
+							}
+							add_manpower = -232875
+						}
+						if = {
+							limit ={ 
+								state_population > 9000000
+							}
+							add_manpower = -250215
+						}
+						if = { #2127517
+							limit ={ 
+								state_population > 10000000
+							}
+							add_manpower = -393731
+						}
+						if = {
+							limit ={ 
+								state_population > 11000000
+							}
+							add_manpower = -410981
+						}
+						if = {
+							limit ={ 
+								state_population > 12000000
+							}
+							add_manpower = -428231
+						}
+						if = {
+							limit ={ 
+								state_population > 13000000
+							}
+							add_manpower = -445481
+						}
+						if = {
+							limit ={ 
+								state_population > 14000000
+							}
+							add_manpower = -462731
+						}
+						if = {
+							limit ={ 
+								state_population > 15000000
+							}
+							add_manpower = -479981
+						}
+						if = {
+							limit ={ 
+								state_population > 16000000
+							}
+							add_manpower = -4975231
+						}
+						if = {
+							limit ={ 
+								state_population > 17000000
+							}
+							add_manpower = -514481
+						}
+						if = {
+							limit ={ 
+								state_population > 18000000
+							}
+							add_manpower = -531731
+						}
+						if = {
+							limit ={ 
+								state_population > 19000000
+							}
+							add_manpower = -548981
+						}
+						if = { #7592317
+							limit ={ 
+								state_population > 20000000
+							}
+							add_manpower = -862500
+						}
+						if = {
+							limit ={ 
+								state_population > 30000000
+							}
+							add_manpower = -905625
+						}
+						if = { 
+							limit ={ 
+								state_population > 40000000
+							}
+							add_manpower = -948750
+						}
+						if = { 
+							limit ={ 
+								state_population > 50000000
+							}
+							add_manpower = -991300
+						}
+						if = {
+							limit ={ 
+								state_population > 60000000
+							}
+							add_manpower = -1035000
+						}
+						if = { 
+							limit ={ 
+								state_population > 70000000
+							}
+							add_manpower = -1078125
+						}
+						if = { 
+							limit ={ 
+								state_population > 80000000
+							}
+							add_manpower = -1121250
+						}
+						if = { 
+							limit ={ 
+								state_population > 90000000
+							}
+							add_manpower = -1164375
+						}
+						if = { 
+							limit ={ 
+								state_population > 100000000
+							}
+							add_manpower = -1207500
+						}
+					}
+					var:actor_country = {
+						launch_nuke = {
+							province = var:ROOT.target_province #optional use either province or state
+							use_nuke = no #will consume nuke if specified
+						}
+					}
+				}
+			}
+		}
+	}
+
+	nuclear_missile_strike_submarine = { #Only from Submarines
+		category = nuclear_raids
+
+		days_to_prepare = 14
+		speed_multiplier = 0.08
+		ai_will_do = {
+			base = 1
+			modifier = {
+				# Don't target anyone who is not a potential enemy
+				factor = 0
+				NOT = {
+					is_in_array = {
+						array = potential_and_current_enemies
+						value = FROM  # Target country
+					}
+				}
+			}
+			modifier = {
+				factor = 2
+				OR = {
+					original_tag = USA
+					original_tag = SOV
+				}
+			}
+			modifier = {
+				factor = 2
+				FROM = {
+					is_major = yes
+				}
+			}
+			modifier = {
+				factor = 0.25 # If possible, during peacetime, prepare strikes against the main enemies
+				NOT = { has_war_with = FROM }
+				FROM = { is_major = no }
+			}
+		}
+
+		command_power = 5 # command power allocation cost
+
+		allowed = {
+			has_dlc = "Gotterdammerung"
+		}
+		# Raid Type is visible
+		visible = {
+			is_special_project_completed = sp:sp_nuclear_warheads
+		}
+		# Specific Target is visible
+		show_target = {
+			NOT = {
+				is_in_faction_with = FROM
+			}
+		}
+
+		# Can prepare
+		available = {
+			#has_war_with = FROM
+			NOT = { has_idea = GLOBAL_third_world_war }
+		}
+		launchable = {
+			has_war_with = FROM
+		}
+
+		target_type = {
+			province = any
+		}
+		target_icon = GFX_other_target_icon
+
+		unit_requirements = {
+			equipment = {
+				type = { nuclear_missile_equipment }
+				amount = { min = 1 }
+			}
+		}
+		essential_equipment = {
+			nukes = 1
+		}
+
+		starting_point = {
+		    types = {
+		        submarine
+		    }
+		}
+		arrow = {
+		    type = ballistic
+		}
+
+		launch_sound = raid_launch_nuclear_missile
+
+        unit_model = {
+            scale = 0.5
+        }
+
+		success_factors = {
+			success = {
+				base = 0.8
+				intel = {
+					weight = 0.2
+					#start_reference = 50
+					reference = 100
+				}
+			}
+		}
+
+
+
+		success_levels = {
+			failure = {
+				actor_effects = {
+					var:actor_country = {
+						custom_effect_tooltip = dud_missile_tt
+					}
+				}
+			}
+			limited_success = {
+				actor_effects = {
+					var:actor_country = {
+						custom_effect_tooltip = dud_missile_tt
+					}
+				}
+			}
+			success = {
+			    custom_sound = raid_result_success_nuclear
+				actor_effects = {
+				}
+				victim_effects = {
+					var:actor_country = { save_global_event_target_as = nuclear_gandhi_actor_country }  
+					var:target_state = {
+						bathe_in_hellfire_nuclear = yes
+						#custom_effect_tooltip = raid_nuclear_strike_tt
+						add_dynamic_modifier = {
+							modifier = fallout_atomic
+							days = 365
+						}
+						if = {
+							limit ={ 
+								state_population > 100
+							}
+							add_manpower = -3
+						}
+						if = {
+							limit ={ 
+								state_population > 200
+							}
+							add_manpower = -5
+						}
+						if = {
+							limit ={ 
+								state_population > 300
+							}
+							add_manpower = -7
+						}
+						if = {
+							limit ={ 
+								state_population > 400
+							}
+							add_manpower = -8
+						}
+						if = {
+							limit ={ 
+								state_population > 500
+							}
+							add_manpower = -9
+						}
+						if = {
+							limit ={ 
+								state_population > 600
+							}
+							add_manpower = -11
+						}
+						if = {
+							limit ={ 
+								state_population > 700
+							}
+							add_manpower = -12
+						}
+						if = {
+							limit ={ 
+								state_population > 800
+							}
+							add_manpower = -14
+						}
+						if = {
+							limit ={ 
+								state_population > 900
+							}
+							add_manpower = -16
+						}
+						if = {
+							limit ={ 
+								state_population > 1000
+							}
+							add_manpower = -225
+						}
+						if = {
+							limit ={ 
+								state_population > 2000
+							}
+							add_manpower = -262
+						}
+						if = {
+							limit ={ 
+								state_population > 3000
+							}
+							add_manpower = -300
+						}
+						if = {
+							limit ={ 
+								state_population > 4000
+							}
+							add_manpower = -337
+						}
+						if = {
+							limit ={ 
+								state_population > 5000
+							}
+							add_manpower = -375
+						}
+						if = {
+							limit ={ 
+								state_population > 6000
+							}
+							add_manpower = -412
+						}
+						if = {
+							limit ={ 
+								state_population > 7000
+							}
+							add_manpower = -450
+						}
+						if = {
+							limit ={ 
+								state_population > 8000
+							}
+							add_manpower = -487
+						}
+						if = {
+							limit ={ 
+								state_population > 9000
+							}
+							add_manpower = -525
+						}
+						if = { #4417
+							limit ={ 
+								state_population > 10000
+							}
+							add_manpower = -750
+						}
+						if = {
+							limit ={ 
+								state_population > 15000
+							}
+							add_manpower = -900
+						}
+						if = {
+							limit ={ 
+								state_population > 20000
+							}
+							add_manpower = -1050
+						}
+						if = {
+							limit ={ 
+								state_population > 25000
+							}
+							add_manpower = -1200
+						}
+						if = {
+							limit ={ 
+								state_population > 30000
+							}
+							add_manpower = -1350
+						}
+						if = {
+							limit ={ 
+								state_population > 35000
+							}
+							add_manpower = -1500
+						}
+						if = {
+							limit ={ 
+								state_population > 40000
+							}
+							add_manpower = -1650
+						}
+						if = {
+							limit ={ 
+								state_population > 45000
+							}
+							add_manpower = -1800
+						}
+						if = {
+							limit ={ 
+								state_population > 50000
+							}
+							add_manpower = -1950
+						}
+						if = {
+							limit ={ 
+								state_population > 55000
+							}
+							add_manpower = -2100
+						}
+						if = {
+							limit ={ 
+								state_population > 60000
+							}
+							add_manpower = -2250
+						}
+						if = {
+							limit ={ 
+								state_population > 65000
+							}
+							add_manpower = -2400
+						}
+						if = {
+							limit ={ 
+								state_population > 70000
+							}
+							add_manpower = -2550
+						}
+						if = {
+							limit ={ 
+								state_population > 75000
+							}
+							add_manpower = -2700
+						}
+						if = {
+							limit ={ 
+								state_population > 80000
+							}
+							add_manpower = -2850
+						}
+						if = {
+							limit ={ 
+								state_population > 85000
+							}
+							add_manpower = -3000
+						}
+						if = {
+							limit ={ 
+								state_population > 90000
+							}
+							add_manpower = -3150
+						}
+						if = { #48617
+							limit ={ 
+								state_population > 95000
+							}
+							add_manpower = -3300
+						}
+						if = {
+							limit ={ 
+								state_population > 100000
+							}
+							add_manpower = -4500
+						}
+						if = {
+							limit ={ 
+								state_population > 150000
+							}
+							add_manpower = -4875
+						}
+						if = {
+							limit ={ 
+								state_population > 200000
+							}
+							add_manpower = -5250
+						}
+						if = {
+							limit ={ 
+								state_population > 250000
+							}
+							add_manpower = -5625
+						}
+						if = {
+							limit ={ 
+								state_population > 300000
+							}
+							add_manpower = -6000
+						}
+						if = {
+							limit ={ 
+								state_population > 350000
+							}
+							add_manpower = -6375
+						}
+						if = {
+							limit ={ 
+								state_population > 400000
+							}
+							add_manpower = -6750
+						}
+						if = {
+							limit ={ 
+								state_population > 450000
+							}
+							add_manpower = -7125
+						}
+						if = {
+							limit ={ 
+								state_population > 500000
+							}
+							add_manpower = -7500
+						}
+						if = {
+							limit ={ 
+								state_population > 550000
+							}
+							add_manpower = -7875
+						}
+						if = {
+							limit ={ 
+								state_population > 600000
+							}
+							add_manpower = -8250
+						}
+						if = {
+							limit ={ 
+								state_population > 650000
+							}
+							add_manpower = -8625
+						}
+						if = {
+							limit ={ 
+								state_population > 700000
+							}
+							add_manpower = -9000
+						}
+						if = {
+							limit ={ 
+								state_population > 750000
+							}
+							add_manpower = -9375
+						}
+						if = {
+							limit ={ 
+								state_population > 800000
+							}
+							add_manpower = -9750
+						}
+						if = {
+							limit ={ 
+								state_population > 850000
+							}
+							add_manpower = -10125
+						}
+						if = {
+							limit ={ 
+								state_population > 900000
+							}
+							add_manpower = -10500
+						}
+						if = {
+							limit ={ 
+								state_population > 950000
+							}
+							add_manpower = -10875
+						}
+						if = {#237517
+							limit ={ 
+								state_population > 1000000
+							}
+							add_manpower = -97500
+						}
+						if = {
+							limit ={ 
+								state_population > 2000000
+							}
+							add_manpower = -112500
+						}
+						if = {
+							limit ={ 
+								state_population > 3000000
+							}
+							add_manpower = -127500
+						}
+						if = {
+							limit ={ 
+								state_population > 4000000
+							}
+							add_manpower = -142500
+						}
+						if = {
+							limit ={ 
+								state_population > 5000000
+							}
+							add_manpower = -157500
+						}
+						if = {
+							limit ={ 
+								state_population > 6000000
+							}
+							add_manpower = -172500
+						}
+						if = {
+							limit ={ 
+								state_population > 7000000
+							}
+							add_manpower = -187500
+						}
+						if = {
+							limit ={ 
+								state_population > 8000000
+							}
+							add_manpower = -202500
+						}
+						if = {
+							limit ={ 
+								state_population > 9000000
+							}
+							add_manpower = -217500
+						}
+						if = { #2127517
+							limit ={ 
+								state_population > 10000000
+							}
+							add_manpower = -342375
+						}
+						if = {
+							limit ={ 
+								state_population > 11000000
+							}
+							add_manpower = -357375
+						}
+						if = {
+							limit ={ 
+								state_population > 12000000
+							}
+							add_manpower = -372375
+						}
+						if = {
+							limit ={ 
+								state_population > 13000000
+							}
+							add_manpower = -387375
+						}
+						if = {
+							limit ={ 
+								state_population > 14000000
+							}
+							add_manpower = -402375
+						}
+						if = {
+							limit ={ 
+								state_population > 15000000
+							}
+							add_manpower = -417375
+						}
+						if = {
+							limit ={ 
+								state_population > 16000000
+							}
+							add_manpower = -432375
+						}
+						if = {
+							limit ={ 
+								state_population > 17000000
+							}
+							add_manpower = -447375
+						}
+						if = {
+							limit ={ 
+								state_population > 18000000
+							}
+							add_manpower = -462375
+						}
+						if = {
+							limit ={ 
+								state_population > 19000000
+							}
+							add_manpower = -477375
+						}
+						if = { #7592317
+							limit ={ 
+								state_population > 20000000
+							}
+							add_manpower = -750000
+						}
+						if = {
+							limit ={ 
+								state_population > 30000000
+							}
+							add_manpower = -787500
+						}
+						if = { 
+							limit ={ 
+								state_population > 40000000
+							}
+							add_manpower = -825000
+						}
+						if = { 
+							limit ={ 
+								state_population > 50000000
+							}
+							add_manpower = -862000
+						}
+						if = {
+							limit ={ 
+								state_population > 60000000
+							}
+							add_manpower = -900000
+						}
+						if = { 
+							limit ={ 
+								state_population > 70000000
+							}
+							add_manpower = -937500
+						}
+						if = { 
+							limit ={ 
+								state_population > 80000000
+							}
+							add_manpower = -975000
+						}
+						if = { 
+							limit ={ 
+								state_population > 90000000
+							}
+							add_manpower = -1012500
+						}
+						if = { 
+							limit ={ 
+								state_population > 100000000
+							}
+							add_manpower = -1050000
+						}
+					}
+					var:actor_country = {
+						launch_nuke = {
+							province = var:ROOT.target_province #optional use either province or state
+							use_nuke = no #will consume nuke if specified
+						}
+					}
+				}
+			}
+			critical_success = {
+			    custom_sound = raid_result_critical_success_nuclear
+				actor_effects = {
+				}
+
+				victim_effects = {
+					var:actor_country = { save_global_event_target_as = nuclear_gandhi_actor_country }  
+					var:target_state = {
+						bathe_in_hellfire_nuclear = yes
+						add_dynamic_modifier = {
+							modifier = fallout_atomic
+							days = 365
+						}
+						if = {
+							limit ={ 
+								state_population > 100
+							}
+							add_manpower = -3
+						}
+						if = {
+							limit ={ 
+								state_population > 200
+							}
+							add_manpower = -6
+						}
+						if = {
+							limit ={ 
+								state_population > 300
+							}
+							add_manpower = -8
+						}
+						if = {
+							limit ={ 
+								state_population > 400
+							}
+							add_manpower = -9
+						}
+						if = {
+							limit ={ 
+								state_population > 500
+							}
+							add_manpower = -10
+						}
+						if = {
+							limit ={ 
+								state_population > 600
+							}
+							add_manpower = -12
+						}
+						if = {
+							limit ={ 
+								state_population > 700
+							}
+							add_manpower = -13
+						}
+						if = {
+							limit ={ 
+								state_population > 800
+							}
+							add_manpower = -16
+						}
+						if = {
+							limit ={ 
+								state_population > 900
+							}
+							add_manpower = -18
+						}
+						if = {
+							limit ={ 
+								state_population > 1000
+							}
+							add_manpower = -258
+						}
+						if = {
+							limit ={ 
+								state_population > 2000
+							}
+							add_manpower = -301
+						}
+						if = {
+							limit ={ 
+								state_population > 3000
+							}
+							add_manpower = -345
+						}
+						if = {
+							limit ={ 
+								state_population > 4000
+							}
+							add_manpower = -387
+						}
+						if = {
+							limit ={ 
+								state_population > 5000
+							}
+							add_manpower = -431
+						}
+						if = {
+							limit ={ 
+								state_population > 6000
+							}
+							add_manpower = -473
+						}
+						if = {
+							limit ={ 
+								state_population > 7000
+							}
+							add_manpower = -517
+						}
+						if = {
+							limit ={ 
+								state_population > 8000
+							}
+							add_manpower = -560
+						}
+						if = {
+							limit ={ 
+								state_population > 9000
+							}
+							add_manpower = -603
+						}
+						if = { #4417
+							limit ={ 
+								state_population > 10000
+							}
+							add_manpower = -862
+						}
+						if = {
+							limit ={ 
+								state_population > 15000
+							}
+							add_manpower = -1035
+						}
+						if = {
+							limit ={ 
+								state_population > 20000
+							}
+							add_manpower = -1207
+						}
+						if = {
+							limit ={ 
+								state_population > 25000
+							}
+							add_manpower = -1380
+						}
+						if = {
+							limit ={ 
+								state_population > 30000
+							}
+							add_manpower = -1552
+						}
+						if = {
+							limit ={ 
+								state_population > 35000
+							}
+							add_manpower = -1725
+						}
+						if = {
+							limit ={ 
+								state_population > 40000
+							}
+							add_manpower = -1897
+						}
+						if = {
+							limit ={ 
+								state_population > 45000
+							}
+							add_manpower = -2070
+						}
+						if = {
+							limit ={ 
+								state_population > 50000
+							}
+							add_manpower = -2242
+						}
+						if = {
+							limit ={ 
+								state_population > 55000
+							}
+							add_manpower = -2415
+						}
+						if = {
+							limit ={ 
+								state_population > 60000
+							}
+							add_manpower = -2587
+						}
+						if = {
+							limit ={ 
+								state_population > 65000
+							}
+							add_manpower = -2760
+						}
+						if = {
+							limit ={ 
+								state_population > 70000
+							}
+							add_manpower = -2875
+						}
+						if = {
+							limit ={ 
+								state_population > 75000
+							}
+							add_manpower = -3105
+						}
+						if = {
+							limit ={ 
+								state_population > 80000
+							}
+							add_manpower = -3277
+						}
+						if = {
+							limit ={ 
+								state_population > 85000
+							}
+							add_manpower = -3450
+						}
+						if = {
+							limit ={ 
+								state_population > 90000
+							}
+							add_manpower = -3622
+						}
+						if = { #48617
+							limit ={ 
+								state_population > 95000
+							}
+							add_manpower = -3795
+						}
+						if = {
+							limit ={ 
+								state_population > 100000
+							}
+							add_manpower = -5175
+						}
+						if = {
+							limit ={ 
+								state_population > 150000
+							}
+							add_manpower = -5606
+						}
+						if = {
+							limit ={ 
+								state_population > 200000
+							}
+							add_manpower = -6037
+						}
+						if = {
+							limit ={ 
+								state_population > 250000
+							}
+							add_manpower = -6468
+						}
+						if = {
+							limit ={ 
+								state_population > 300000
+							}
+							add_manpower = -6900
+						}
+						if = {
+							limit ={ 
+								state_population > 350000
+							}
+							add_manpower = -7331
+						}
+						if = {
+							limit ={ 
+								state_population > 400000
+							}
+							add_manpower = -7762
+						}
+						if = {
+							limit ={ 
+								state_population > 450000
+							}
+							add_manpower = -8193
+						}
+						if = {
+							limit ={ 
+								state_population > 500000
+							}
+							add_manpower = -8625
+						}
+						if = {
+							limit ={ 
+								state_population > 550000
+							}
+							add_manpower = -9056
+						}
+						if = {
+							limit ={ 
+								state_population > 600000
+							}
+							add_manpower = -9487
+						}
+						if = {
+							limit ={ 
+								state_population > 650000
+							}
+							add_manpower = -9918
+						}
+						if = {
+							limit ={ 
+								state_population > 700000
+							}
+							add_manpower = -10350
+						}
+						if = {
+							limit ={ 
+								state_population > 750000
+							}
+							add_manpower = -10781
+						}
+						if = {
+							limit ={ 
+								state_population > 800000
+							}
+							add_manpower = -11212
+						}
+						if = {
+							limit ={ 
+								state_population > 850000
+							}
+							add_manpower = -11643
+						}
+						if = {
+							limit ={ 
+								state_population > 900000
+							}
+							add_manpower = -12075
+						}
+						if = {
+							limit ={ 
+								state_population > 950000
+							}
+							add_manpower = -12506
+						}
+						if = {#237517
+							limit ={ 
+								state_population > 1000000
+							}
+							add_manpower = -112125
+						}
+						if = {
+							limit ={ 
+								state_population > 2000000
+							}
+							add_manpower = -129375
+						}
+						if = {
+							limit ={ 
+								state_population > 3000000
+							}
+							add_manpower = -146625
+						}
+						if = {
+							limit ={ 
+								state_population > 4000000
+							}
+							add_manpower = -163875
+						}
+						if = {
+							limit ={ 
+								state_population > 5000000
+							}
+							add_manpower = -181125
+						}
+						if = {
+							limit ={ 
+								state_population > 6000000
+							}
+							add_manpower = -198375
+						}
+						if = {
+							limit ={ 
+								state_population > 7000000
+							}
+							add_manpower = -215625
+						}
+						if = {
+							limit ={ 
+								state_population > 8000000
+							}
+							add_manpower = -232875
+						}
+						if = {
+							limit ={ 
+								state_population > 9000000
+							}
+							add_manpower = -250215
+						}
+						if = { #2127517
+							limit ={ 
+								state_population > 10000000
+							}
+							add_manpower = -393731
+						}
+						if = {
+							limit ={ 
+								state_population > 11000000
+							}
+							add_manpower = -410981
+						}
+						if = {
+							limit ={ 
+								state_population > 12000000
+							}
+							add_manpower = -428231
+						}
+						if = {
+							limit ={ 
+								state_population > 13000000
+							}
+							add_manpower = -445481
+						}
+						if = {
+							limit ={ 
+								state_population > 14000000
+							}
+							add_manpower = -462731
+						}
+						if = {
+							limit ={ 
+								state_population > 15000000
+							}
+							add_manpower = -479981
+						}
+						if = {
+							limit ={ 
+								state_population > 16000000
+							}
+							add_manpower = -4975231
+						}
+						if = {
+							limit ={ 
+								state_population > 17000000
+							}
+							add_manpower = -514481
+						}
+						if = {
+							limit ={ 
+								state_population > 18000000
+							}
+							add_manpower = -531731
+						}
+						if = {
+							limit ={ 
+								state_population > 19000000
+							}
+							add_manpower = -548981
+						}
+						if = { #7592317
+							limit ={ 
+								state_population > 20000000
+							}
+							add_manpower = -862500
+						}
+						if = {
+							limit ={ 
+								state_population > 30000000
+							}
+							add_manpower = -905625
+						}
+						if = { 
+							limit ={ 
+								state_population > 40000000
+							}
+							add_manpower = -948750
+						}
+						if = { 
+							limit ={ 
+								state_population > 50000000
+							}
+							add_manpower = -991300
+						}
+						if = {
+							limit ={ 
+								state_population > 60000000
+							}
+							add_manpower = -1035000
+						}
+						if = { 
+							limit ={ 
+								state_population > 70000000
+							}
+							add_manpower = -1078125
+						}
+						if = { 
+							limit ={ 
+								state_population > 80000000
+							}
+							add_manpower = -1121250
+						}
+						if = { 
+							limit ={ 
+								state_population > 90000000
+							}
+							add_manpower = -1164375
+						}
+						if = { 
+							limit ={ 
+								state_population > 100000000
+							}
+							add_manpower = -1207500
 						}
 					}
 					var:actor_country = {
@@ -377,7 +4024,7 @@ types = {
 	}
 
 	thermonuclear_strike = {
-		days_to_prepare = 2
+		days_to_prepare = 30
 
 		category = nuclear_raids
 
@@ -391,6 +4038,13 @@ types = {
 						array = potential_and_current_enemies
 						value = FROM  # Target country
 					}
+				}
+			}
+			modifier = {
+				factor = 2
+				OR = {
+					original_tag = USA
+					original_tag = SOV
 				}
 			}
 			modifier = {
@@ -445,6 +4099,12 @@ types = {
 				amount = { min = 10 }
 			}
 		}
+		unit_requirements = {
+			equipment = {
+				type = { strat_bomber_intercontinental_equipment }
+				amount = { min = 10 }
+			}
+		}
 		nuke_type = thermonuclear_bomb
 
 		essential_equipment = {
@@ -452,13 +4112,12 @@ types = {
 		}
 
 		starting_point = {
-			types = { air_base }
+		    types = { air_base }
 		}
 
 		arrow = {
 			type = air
 		}
-
 
 		success_factors = {
 			success = {
@@ -539,7 +4198,7 @@ types = {
 				}
 			}
 			success = {
-				custom_sound = raid_result_success_nuclear
+			    custom_sound = raid_result_success_nuclear
 				actor_effects = {
 					raid_damage_units = {
 						plane_loss = 0.05
@@ -548,15 +4207,17 @@ types = {
 					raid_add_unit_experience = 0.35
 				}
 				victim_effects = {
+					var:actor_country = { save_global_event_target_as = nuclear_gandhi_actor_country }
 					var:target_state = {
+						bathe_in_hellfire_thermonuclear = yes
 						custom_effect_tooltip = raid_nuclear_strike_tt
 						hidden_effect = {
 							IF = {
-								limit = {
+								limit = { 
 									has_dynamic_modifier = {
 										modifier = fallout_atomic
 									}
-								}
+								}	
 								remove_dynamic_modifier = {
 									modifier = fallout_atomic
 								}
@@ -565,6 +4226,498 @@ types = {
 						add_dynamic_modifier = {
 							modifier = fallout_thermonuclear
 							days = 730
+						}
+						if = {
+							limit ={ 
+								state_population > 100
+							}
+							add_manpower = -5
+						}
+						if = {
+							limit ={ 
+								state_population > 200
+							}
+							add_manpower = -7
+						}
+						if = {
+							limit ={ 
+								state_population > 300
+							}
+							add_manpower = -9
+						}
+						if = {
+							limit ={ 
+								state_population > 400
+							}
+							add_manpower = -11
+						}
+						if = {
+							limit ={ 
+								state_population > 500
+							}
+							add_manpower = -13
+						}
+						if = {
+							limit ={ 
+								state_population > 600
+							}
+							add_manpower = -15
+						}
+						if = {
+							limit ={ 
+								state_population > 700
+							}
+							add_manpower = -17
+						}
+						if = {
+							limit ={ 
+								state_population > 800
+							}
+							add_manpower = -19
+						}
+						if = {
+							limit ={ 
+								state_population > 900
+							}
+							add_manpower = -21
+						}
+						if = {
+							limit ={ 
+								state_population > 1000
+							}
+							add_manpower = -300
+						}
+						if = {
+							limit ={ 
+								state_population > 2000
+							}
+							add_manpower = -350
+						}
+						if = {
+							limit ={ 
+								state_population > 3000
+							}
+							add_manpower = -400
+						}
+						if = {
+							limit ={ 
+								state_population > 4000
+							}
+							add_manpower = -450
+						}
+						if = {
+							limit ={ 
+								state_population > 5000
+							}
+							add_manpower = -500
+						}
+						if = {
+							limit ={ 
+								state_population > 6000
+							}
+							add_manpower = -550
+						}
+						if = {
+							limit ={ 
+								state_population > 7000
+							}
+							add_manpower = -600
+						}
+						if = {
+							limit ={ 
+								state_population > 8000
+							}
+							add_manpower = -650
+						}
+						if = {
+							limit ={ 
+								state_population > 9000
+							}
+							add_manpower = -700
+						}
+						if = { #4417
+							limit ={ 
+								state_population > 10000
+							}
+							add_manpower = -1000
+						}
+						if = {
+							limit ={ 
+								state_population > 15000
+							}
+							add_manpower = -1200
+						}
+						if = {
+							limit ={ 
+								state_population > 20000
+							}
+							add_manpower = -1400
+						}
+						if = {
+							limit ={ 
+								state_population > 25000
+							}
+							add_manpower = -1600
+						}
+						if = {
+							limit ={ 
+								state_population > 30000
+							}
+							add_manpower = -1800
+						}
+						if = {
+							limit ={ 
+								state_population > 35000
+							}
+							add_manpower = -2000
+						}
+						if = {
+							limit ={ 
+								state_population > 40000
+							}
+							add_manpower = -2200
+						}
+						if = {
+							limit ={ 
+								state_population > 45000
+							}
+							add_manpower = -2400
+						}
+						if = {
+							limit ={ 
+								state_population > 50000
+							}
+							add_manpower = -2600
+						}
+						if = {
+							limit ={ 
+								state_population > 55000
+							}
+							add_manpower = -2800
+						}
+						if = {
+							limit ={ 
+								state_population > 60000
+							}
+							add_manpower = -3000
+						}
+						if = {
+							limit ={ 
+								state_population > 65000
+							}
+							add_manpower = -3200
+						}
+						if = {
+							limit ={ 
+								state_population > 70000
+							}
+							add_manpower = -3400
+						}
+						if = {
+							limit ={ 
+								state_population > 75000
+							}
+							add_manpower = -3600
+						}
+						if = {
+							limit ={ 
+								state_population > 80000
+							}
+							add_manpower = -3800
+						}
+						if = {
+							limit ={ 
+								state_population > 85000
+							}
+							add_manpower = -4000
+						}
+						if = {
+							limit ={ 
+								state_population > 90000
+							}
+							add_manpower = -4200
+						}
+						if = { #48617
+							limit ={ 
+								state_population > 95000
+							}
+							add_manpower = -4400
+						}
+						if = {
+							limit ={ 
+								state_population > 100000
+							}
+							add_manpower = -6000
+						}
+						if = {
+							limit ={ 
+								state_population > 150000
+							}
+							add_manpower = -6500
+						}
+						if = {
+							limit ={ 
+								state_population > 200000
+							}
+							add_manpower = -7000
+						}
+						if = {
+							limit ={ 
+								state_population > 250000
+							}
+							add_manpower = -7500
+						}
+						if = {
+							limit ={ 
+								state_population > 300000
+							}
+							add_manpower = -8000
+						}
+						if = {
+							limit ={ 
+								state_population > 350000
+							}
+							add_manpower = -8500
+						}
+						if = {
+							limit ={ 
+								state_population > 400000
+							}
+							add_manpower = -9000
+						}
+						if = {
+							limit ={ 
+								state_population > 450000
+							}
+							add_manpower = -9500
+						}
+						if = {
+							limit ={ 
+								state_population > 500000
+							}
+							add_manpower = -10000
+						}
+						if = {
+							limit ={ 
+								state_population > 550000
+							}
+							add_manpower = -10500
+						}
+						if = {
+							limit ={ 
+								state_population > 600000
+							}
+							add_manpower = -11000
+						}
+						if = {
+							limit ={ 
+								state_population > 650000
+							}
+							add_manpower = -11500
+						}
+						if = {
+							limit ={ 
+								state_population > 700000
+							}
+							add_manpower = -12000
+						}
+						if = {
+							limit ={ 
+								state_population > 750000
+							}
+							add_manpower = -12500
+						}
+						if = {
+							limit ={ 
+								state_population > 800000
+							}
+							add_manpower = -13000
+						}
+						if = {
+							limit ={ 
+								state_population > 850000
+							}
+							add_manpower = -13500
+						}
+						if = {
+							limit ={ 
+								state_population > 900000
+							}
+							add_manpower = -14000
+						}
+						if = {
+							limit ={ 
+								state_population > 950000
+							}
+							add_manpower = -14500
+						}
+						if = {#237517
+							limit ={ 
+								state_population > 1000000
+							}
+							add_manpower = -130000
+						}
+						if = {
+							limit ={ 
+								state_population > 2000000
+							}
+							add_manpower = -150000
+						}
+						if = {
+							limit ={ 
+								state_population > 3000000
+							}
+							add_manpower = -170000
+						}
+						if = {
+							limit ={ 
+								state_population > 4000000
+							}
+							add_manpower = -190000
+						}
+						if = {
+							limit ={ 
+								state_population > 5000000
+							}
+							add_manpower = -210000
+						}
+						if = {
+							limit ={ 
+								state_population > 6000000
+							}
+							add_manpower = -230000
+						}
+						if = {
+							limit ={ 
+								state_population > 7000000
+							}
+							add_manpower = -250000
+						}
+						if = {
+							limit ={ 
+								state_population > 8000000
+							}
+							add_manpower = -270000
+						}
+						if = {
+							limit ={ 
+								state_population > 9000000
+							}
+							add_manpower = -290000
+						}
+						if = { #2127517
+							limit ={ 
+								state_population > 10000000
+							}
+							add_manpower = -456500
+						}
+						if = {
+							limit ={ 
+								state_population > 11000000
+							}
+							add_manpower = -476500
+						}
+						if = {
+							limit ={ 
+								state_population > 12000000
+							}
+							add_manpower = -496500
+						}
+						if = {
+							limit ={ 
+								state_population > 13000000
+							}
+							add_manpower = -516500
+						}
+						if = {
+							limit ={ 
+								state_population > 14000000
+							}
+							add_manpower = -536500
+						}
+						if = {
+							limit ={ 
+								state_population > 15000000
+							}
+							add_manpower = -556500
+						}
+						if = {
+							limit ={ 
+								state_population > 16000000
+							}
+							add_manpower = -576500
+						}
+						if = {
+							limit ={ 
+								state_population > 17000000
+							}
+							add_manpower = -596500
+						}
+						if = {
+							limit ={ 
+								state_population > 18000000
+							}
+							add_manpower = -616500
+						}
+						if = {
+							limit ={ 
+								state_population > 19000000
+							}
+							add_manpower = -636500
+						}
+						if = { #7592317
+							limit ={ 
+								state_population > 20000000
+							}
+							add_manpower = -1000000
+						}
+						if = {
+							limit ={ 
+								state_population > 30000000
+							}
+							add_manpower = -1050000
+						}
+						if = { 
+							limit ={ 
+								state_population > 40000000
+							}
+							add_manpower = -1100000
+						}
+						if = { 
+							limit ={ 
+								state_population > 50000000
+							}
+							add_manpower = -1150000
+						}
+						if = {
+							limit ={ 
+								state_population > 60000000
+							}
+							add_manpower = -1200000
+						}
+						if = { 
+							limit ={ 
+								state_population > 70000000
+							}
+							add_manpower = -1250000
+						}
+						if = { 
+							limit ={ 
+								state_population > 80000000
+							}
+							add_manpower = -1300000
+						}
+						if = { 
+							limit ={ 
+								state_population > 90000000
+							}
+							add_manpower = -1350000
+						}
+						if = { 
+							limit ={ 
+								state_population > 100000000
+							}
+							add_manpower = -1400000
 						}
 					}
 					var:actor_country = {
@@ -577,20 +4730,22 @@ types = {
 				}
 			}
 			critical_success = {
-				custom_sound = raid_result_critical_success_nuclear
+			    custom_sound = raid_result_critical_success_nuclear
 				actor_effects = {
 					raid_add_unit_experience = 0.5
 				}
 				victim_effects = {
+					var:actor_country = { save_global_event_target_as = nuclear_gandhi_actor_country }
 					var:target_state = {
+						bathe_in_hellfire_thermonuclear = yes
 						custom_effect_tooltip = raid_nuclear_strike_tt
 						hidden_effect = {
 							IF = {
-								limit = {
+								limit = { 
 									has_dynamic_modifier = {
 										modifier = fallout_atomic
 									}
-								}
+								}	
 								remove_dynamic_modifier = {
 									modifier = fallout_atomic
 								}
@@ -599,6 +4754,498 @@ types = {
 						add_dynamic_modifier = {
 							modifier = fallout_thermonuclear
 							days = 730
+						}
+						if = {
+							limit ={ 
+								state_population > 100
+							}
+							add_manpower = -5
+						}
+						if = {
+							limit ={ 
+								state_population > 200
+							}
+							add_manpower = -8
+						}
+						if = {
+							limit ={ 
+								state_population > 300
+							}
+							add_manpower = -10
+						}
+						if = {
+							limit ={ 
+								state_population > 400
+							}
+							add_manpower = -12
+						}
+						if = {
+							limit ={ 
+								state_population > 500
+							}
+							add_manpower = -15
+						}
+						if = {
+							limit ={ 
+								state_population > 600
+							}
+							add_manpower = -17
+						}
+						if = {
+							limit ={ 
+								state_population > 700
+							}
+							add_manpower = -19
+						}
+						if = {
+							limit ={ 
+								state_population > 800
+							}
+							add_manpower = -22
+						}
+						if = {
+							limit ={ 
+								state_population > 900
+							}
+							add_manpower = -25
+						}
+						if = {
+							limit ={ 
+								state_population > 1000
+							}
+							add_manpower = -345
+						}
+						if = {
+							limit ={ 
+								state_population > 2000
+							}
+							add_manpower = -402
+						}
+						if = {
+							limit ={ 
+								state_population > 3000
+							}
+							add_manpower = -460
+						}
+						if = {
+							limit ={ 
+								state_population > 4000
+							}
+							add_manpower = -517
+						}
+						if = {
+							limit ={ 
+								state_population > 5000
+							}
+							add_manpower = -575
+						}
+						if = {
+							limit ={ 
+								state_population > 6000
+							}
+							add_manpower = -632
+						}
+						if = {
+							limit ={ 
+								state_population > 7000
+							}
+							add_manpower = -690
+						}
+						if = {
+							limit ={ 
+								state_population > 8000
+							}
+							add_manpower = -747
+						}
+						if = {
+							limit ={ 
+								state_population > 9000
+							}
+							add_manpower = -805
+						}
+						if = { #4417
+							limit ={ 
+								state_population > 10000
+							}
+							add_manpower = -1150
+						}
+						if = {
+							limit ={ 
+								state_population > 15000
+							}
+							add_manpower = -1380
+						}
+						if = {
+							limit ={ 
+								state_population > 20000
+							}
+							add_manpower = -1610
+						}
+						if = {
+							limit ={ 
+								state_population > 25000
+							}
+							add_manpower = -1840
+						}
+						if = {
+							limit ={ 
+								state_population > 30000
+							}
+							add_manpower = -2070
+						}
+						if = {
+							limit ={ 
+								state_population > 35000
+							}
+							add_manpower = -2300
+						}
+						if = {
+							limit ={ 
+								state_population > 40000
+							}
+							add_manpower = -2530
+						}
+						if = {
+							limit ={ 
+								state_population > 45000
+							}
+							add_manpower = -2760
+						}
+						if = {
+							limit ={ 
+								state_population > 50000
+							}
+							add_manpower = -2990
+						}
+						if = {
+							limit ={ 
+								state_population > 55000
+							}
+							add_manpower = -3220
+						}
+						if = {
+							limit ={ 
+								state_population > 60000
+							}
+							add_manpower = -3450
+						}
+						if = {
+							limit ={ 
+								state_population > 65000
+							}
+							add_manpower = -3680
+						}
+						if = {
+							limit ={ 
+								state_population > 70000
+							}
+							add_manpower = -3910
+						}
+						if = {
+							limit ={ 
+								state_population > 75000
+							}
+							add_manpower = -4140
+						}
+						if = {
+							limit ={ 
+								state_population > 80000
+							}
+							add_manpower = -4370
+						}
+						if = {
+							limit ={ 
+								state_population > 85000
+							}
+							add_manpower = -4600
+						}
+						if = {
+							limit ={ 
+								state_population > 90000
+							}
+							add_manpower = -4830
+						}
+						if = { #48617
+							limit ={ 
+								state_population > 95000
+							}
+							add_manpower = -5060
+						}
+						if = {
+							limit ={ 
+								state_population > 100000
+							}
+							add_manpower = -6900
+						}
+						if = {
+							limit ={ 
+								state_population > 150000
+							}
+							add_manpower = -7475
+						}
+						if = {
+							limit ={ 
+								state_population > 200000
+							}
+							add_manpower = -8050
+						}
+						if = {
+							limit ={ 
+								state_population > 250000
+							}
+							add_manpower = -8625
+						}
+						if = {
+							limit ={ 
+								state_population > 300000
+							}
+							add_manpower = -9200
+						}
+						if = {
+							limit ={ 
+								state_population > 350000
+							}
+							add_manpower = -9775
+						}
+						if = {
+							limit ={ 
+								state_population > 400000
+							}
+							add_manpower = -10350
+						}
+						if = {
+							limit ={ 
+								state_population > 450000
+							}
+							add_manpower = -10925
+						}
+						if = {
+							limit ={ 
+								state_population > 500000
+							}
+							add_manpower = -11500
+						}
+						if = {
+							limit ={ 
+								state_population > 550000
+							}
+							add_manpower = -12075
+						}
+						if = {
+							limit ={ 
+								state_population > 600000
+							}
+							add_manpower = -12650
+						}
+						if = {
+							limit ={ 
+								state_population > 650000
+							}
+							add_manpower = -13225
+						}
+						if = {
+							limit ={ 
+								state_population > 700000
+							}
+							add_manpower = -13800
+						}
+						if = {
+							limit ={ 
+								state_population > 750000
+							}
+							add_manpower = -14375
+						}
+						if = {
+							limit ={ 
+								state_population > 800000
+							}
+							add_manpower = -14950
+						}
+						if = {
+							limit ={ 
+								state_population > 850000
+							}
+							add_manpower = -15525
+						}
+						if = {
+							limit ={ 
+								state_population > 900000
+							}
+							add_manpower = -16100
+						}
+						if = {
+							limit ={ 
+								state_population > 950000
+							}
+							add_manpower = -16675
+						}
+						if = {#237517
+							limit ={ 
+								state_population > 1000000
+							}
+							add_manpower = -149500
+						}
+						if = {
+							limit ={ 
+								state_population > 2000000
+							}
+							add_manpower = -172500
+						}
+						if = {
+							limit ={ 
+								state_population > 3000000
+							}
+							add_manpower = -195500
+						}
+						if = {
+							limit ={ 
+								state_population > 4000000
+							}
+							add_manpower = -218500
+						}
+						if = {
+							limit ={ 
+								state_population > 5000000
+							}
+							add_manpower = -241500
+						}
+						if = {
+							limit ={ 
+								state_population > 6000000
+							}
+							add_manpower = -264500
+						}
+						if = {
+							limit ={ 
+								state_population > 7000000
+							}
+							add_manpower = -287500
+						}
+						if = {
+							limit ={ 
+								state_population > 8000000
+							}
+							add_manpower = -310500
+						}
+						if = {
+							limit ={ 
+								state_population > 9000000
+							}
+							add_manpower = -333500
+						}
+						if = { #2127517
+							limit ={ 
+								state_population > 10000000
+							}
+							add_manpower = -524975
+						}
+						if = {
+							limit ={ 
+								state_population > 11000000
+							}
+							add_manpower = -547975
+						}
+						if = {
+							limit ={ 
+								state_population > 12000000
+							}
+							add_manpower = -570975
+						}
+						if = {
+							limit ={ 
+								state_population > 13000000
+							}
+							add_manpower = -593975
+						}
+						if = {
+							limit ={ 
+								state_population > 14000000
+							}
+							add_manpower = -616975
+						}
+						if = {
+							limit ={ 
+								state_population > 15000000
+							}
+							add_manpower = -639975
+						}
+						if = {
+							limit ={ 
+								state_population > 16000000
+							}
+							add_manpower = -662975
+						}
+						if = {
+							limit ={ 
+								state_population > 17000000
+							}
+							add_manpower = -685975
+						}
+						if = {
+							limit ={ 
+								state_population > 18000000
+							}
+							add_manpower = -708975
+						}
+						if = {
+							limit ={ 
+								state_population > 19000000
+							}
+							add_manpower = -731975
+						}
+						if = { #7592317
+							limit ={ 
+								state_population > 20000000
+							}
+							add_manpower = -1150000
+						}
+						if = {
+							limit ={ 
+								state_population > 30000000
+							}
+							add_manpower = -1207500
+						}
+						if = { 
+							limit ={ 
+								state_population > 40000000
+							}
+							add_manpower = -1265000
+						}
+						if = { 
+							limit ={ 
+								state_population > 50000000
+							}
+							add_manpower = -1322500
+						}
+						if = {
+							limit ={ 
+								state_population > 60000000
+							}
+							add_manpower = -1380000
+						}
+						if = { 
+							limit ={ 
+								state_population > 70000000
+							}
+							add_manpower = -1437500
+						}
+						if = { 
+							limit ={ 
+								state_population > 80000000
+							}
+							add_manpower = -1495000
+						}
+						if = { 
+							limit ={ 
+								state_population > 90000000
+							}
+							add_manpower = -1552500
+						}
+						if = { 
+							limit ={ 
+								state_population > 100000000
+							}
+							add_manpower = -1610000
 						}
 					}
 					var:actor_country = {
@@ -617,7 +5264,7 @@ types = {
 	thermonuclear_missile_strike = {
 		category = nuclear_raids
 
-		days_to_prepare = 2
+		days_to_prepare = 14
 		speed_multiplier = 0.08
 
 		ai_will_do = {
@@ -630,6 +5277,1166 @@ types = {
 						array = potential_and_current_enemies
 						value = FROM  # Target country
 					}
+				}
+			}
+			modifier = {
+				factor = 2
+				OR = {
+					original_tag = USA
+					original_tag = SOV
+				}
+			}
+			modifier = {
+				factor = 2
+				FROM = {
+					is_major = yes
+				}
+			}
+			modifier = {
+				factor = 0.25 # If possible, during peacetime, prepare strikes against the main enemies
+				NOT = { has_war_with = FROM }
+				FROM = { is_major = no }
+			}
+		}
+
+		command_power = 5 # command power allocation cost
+
+		allowed = {
+			has_dlc = "Gotterdammerung"
+		}
+		# Raid Type is visible
+		visible = {
+			is_special_project_completed = sp:sp_nuclear_warheads
+		}
+		# Specific Target is visible
+		show_target = {
+			NOT = {
+				is_in_faction_with = FROM
+			}
+		}
+
+		# Can prepare
+		available = {
+			#has_war_with = FROM
+			NOT = { has_idea = GLOBAL_third_world_war }
+		}
+		launchable = {
+			has_war_with = FROM
+		}
+
+		target_type = {
+			province = any
+		}
+		target_icon = GFX_other_target_icon
+		target_loc_key = raid_target_name_thermonuclear
+
+		unit_requirements = {
+			equipment = {
+				type = { nuclear_missile_equipment }
+				amount = { min = 1 }
+			}
+		}
+		essential_equipment = {
+			nukes = 1
+		}
+		nuke_type = thermonuclear_bomb
+		starting_point = {
+		    types = {
+		        rocket_site
+		    }
+		}
+		arrow = {
+		    type = ballistic
+		}
+
+		launch_sound = raid_launch_nuclear_missile
+
+        unit_model = {
+            scale = 0.5
+        }
+
+		success_factors = {
+			success = {
+				base = 0.8
+				intel = {
+					weight = 0.2
+					#start_reference = 50
+					reference = 100
+				}
+			}
+		}
+
+		success_levels = {
+			failure = {
+				actor_effects = {
+					var:actor_country = {
+						custom_effect_tooltip = dud_missile_tt
+					}
+				}
+			}
+			limited_success = {
+				actor_effects = {
+					var:actor_country = {
+						custom_effect_tooltip = dud_missile_tt
+					}
+				}
+			}
+			success = {
+			    custom_sound = raid_result_success_nuclear
+				actor_effects = {
+				}
+				victim_effects = {
+					var:actor_country = { save_global_event_target_as = nuclear_gandhi_actor_country }
+					var:target_state = {
+						bathe_in_hellfire_thermonuclear = yes
+						#custom_effect_tooltip = raid_nuclear_strike_tt
+						add_dynamic_modifier = {
+							modifier = fallout_thermonuclear
+							days = 730
+						}
+						if = {
+							limit ={ 
+								state_population > 100
+							}
+							add_manpower = -5
+						}
+						if = {
+							limit ={ 
+								state_population > 200
+							}
+							add_manpower = -8
+						}
+						if = {
+							limit ={ 
+								state_population > 300
+							}
+							add_manpower = -10
+						}
+						if = {
+							limit ={ 
+								state_population > 400
+							}
+							add_manpower = -12
+						}
+						if = {
+							limit ={ 
+								state_population > 500
+							}
+							add_manpower = -15
+						}
+						if = {
+							limit ={ 
+								state_population > 600
+							}
+							add_manpower = -17
+						}
+						if = {
+							limit ={ 
+								state_population > 700
+							}
+							add_manpower = -19
+						}
+						if = {
+							limit ={ 
+								state_population > 800
+							}
+							add_manpower = -22
+						}
+						if = {
+							limit ={ 
+								state_population > 900
+							}
+							add_manpower = -25
+						}
+						if = {
+							limit ={ 
+								state_population > 1000
+							}
+							add_manpower = -345
+						}
+						if = {
+							limit ={ 
+								state_population > 2000
+							}
+							add_manpower = -402
+						}
+						if = {
+							limit ={ 
+								state_population > 3000
+							}
+							add_manpower = -460
+						}
+						if = {
+							limit ={ 
+								state_population > 4000
+							}
+							add_manpower = -517
+						}
+						if = {
+							limit ={ 
+								state_population > 5000
+							}
+							add_manpower = -575
+						}
+						if = {
+							limit ={ 
+								state_population > 6000
+							}
+							add_manpower = -632
+						}
+						if = {
+							limit ={ 
+								state_population > 7000
+							}
+							add_manpower = -690
+						}
+						if = {
+							limit ={ 
+								state_population > 8000
+							}
+							add_manpower = -747
+						}
+						if = {
+							limit ={ 
+								state_population > 9000
+							}
+							add_manpower = -805
+						}
+						if = { #4417
+							limit ={ 
+								state_population > 10000
+							}
+							add_manpower = -1150
+						}
+						if = {
+							limit ={ 
+								state_population > 15000
+							}
+							add_manpower = -1380
+						}
+						if = {
+							limit ={ 
+								state_population > 20000
+							}
+							add_manpower = -1610
+						}
+						if = {
+							limit ={ 
+								state_population > 25000
+							}
+							add_manpower = -1840
+						}
+						if = {
+							limit ={ 
+								state_population > 30000
+							}
+							add_manpower = -2070
+						}
+						if = {
+							limit ={ 
+								state_population > 35000
+							}
+							add_manpower = -2300
+						}
+						if = {
+							limit ={ 
+								state_population > 40000
+							}
+							add_manpower = -2530
+						}
+						if = {
+							limit ={ 
+								state_population > 45000
+							}
+							add_manpower = -2760
+						}
+						if = {
+							limit ={ 
+								state_population > 50000
+							}
+							add_manpower = -2990
+						}
+						if = {
+							limit ={ 
+								state_population > 55000
+							}
+							add_manpower = -3220
+						}
+						if = {
+							limit ={ 
+								state_population > 60000
+							}
+							add_manpower = -3450
+						}
+						if = {
+							limit ={ 
+								state_population > 65000
+							}
+							add_manpower = -3680
+						}
+						if = {
+							limit ={ 
+								state_population > 70000
+							}
+							add_manpower = -3910
+						}
+						if = {
+							limit ={ 
+								state_population > 75000
+							}
+							add_manpower = -4140
+						}
+						if = {
+							limit ={ 
+								state_population > 80000
+							}
+							add_manpower = -4370
+						}
+						if = {
+							limit ={ 
+								state_population > 85000
+							}
+							add_manpower = -4600
+						}
+						if = {
+							limit ={ 
+								state_population > 90000
+							}
+							add_manpower = -4830
+						}
+						if = { #48617
+							limit ={ 
+								state_population > 95000
+							}
+							add_manpower = -5060
+						}
+						if = {
+							limit ={ 
+								state_population > 100000
+							}
+							add_manpower = -6900
+						}
+						if = {
+							limit ={ 
+								state_population > 150000
+							}
+							add_manpower = -7475
+						}
+						if = {
+							limit ={ 
+								state_population > 200000
+							}
+							add_manpower = -8050
+						}
+						if = {
+							limit ={ 
+								state_population > 250000
+							}
+							add_manpower = -8625
+						}
+						if = {
+							limit ={ 
+								state_population > 300000
+							}
+							add_manpower = -9200
+						}
+						if = {
+							limit ={ 
+								state_population > 350000
+							}
+							add_manpower = -9775
+						}
+						if = {
+							limit ={ 
+								state_population > 400000
+							}
+							add_manpower = -10350
+						}
+						if = {
+							limit ={ 
+								state_population > 450000
+							}
+							add_manpower = -10925
+						}
+						if = {
+							limit ={ 
+								state_population > 500000
+							}
+							add_manpower = -11500
+						}
+						if = {
+							limit ={ 
+								state_population > 550000
+							}
+							add_manpower = -12075
+						}
+						if = {
+							limit ={ 
+								state_population > 600000
+							}
+							add_manpower = -12650
+						}
+						if = {
+							limit ={ 
+								state_population > 650000
+							}
+							add_manpower = -13225
+						}
+						if = {
+							limit ={ 
+								state_population > 700000
+							}
+							add_manpower = -13800
+						}
+						if = {
+							limit ={ 
+								state_population > 750000
+							}
+							add_manpower = -14375
+						}
+						if = {
+							limit ={ 
+								state_population > 800000
+							}
+							add_manpower = -14950
+						}
+						if = {
+							limit ={ 
+								state_population > 850000
+							}
+							add_manpower = -15525
+						}
+						if = {
+							limit ={ 
+								state_population > 900000
+							}
+							add_manpower = -16100
+						}
+						if = {
+							limit ={ 
+								state_population > 950000
+							}
+							add_manpower = -16675
+						}
+						if = {#237517
+							limit ={ 
+								state_population > 1000000
+							}
+							add_manpower = -149500
+						}
+						if = {
+							limit ={ 
+								state_population > 2000000
+							}
+							add_manpower = -172500
+						}
+						if = {
+							limit ={ 
+								state_population > 3000000
+							}
+							add_manpower = -195500
+						}
+						if = {
+							limit ={ 
+								state_population > 4000000
+							}
+							add_manpower = -218500
+						}
+						if = {
+							limit ={ 
+								state_population > 5000000
+							}
+							add_manpower = -241500
+						}
+						if = {
+							limit ={ 
+								state_population > 6000000
+							}
+							add_manpower = -264500
+						}
+						if = {
+							limit ={ 
+								state_population > 7000000
+							}
+							add_manpower = -287500
+						}
+						if = {
+							limit ={ 
+								state_population > 8000000
+							}
+							add_manpower = -310500
+						}
+						if = {
+							limit ={ 
+								state_population > 9000000
+							}
+							add_manpower = -333500
+						}
+						if = { #2127517
+							limit ={ 
+								state_population > 10000000
+							}
+							add_manpower = -524975
+						}
+						if = {
+							limit ={ 
+								state_population > 11000000
+							}
+							add_manpower = -547975
+						}
+						if = {
+							limit ={ 
+								state_population > 12000000
+							}
+							add_manpower = -570975
+						}
+						if = {
+							limit ={ 
+								state_population > 13000000
+							}
+							add_manpower = -593975
+						}
+						if = {
+							limit ={ 
+								state_population > 14000000
+							}
+							add_manpower = -616975
+						}
+						if = {
+							limit ={ 
+								state_population > 15000000
+							}
+							add_manpower = -639975
+						}
+						if = {
+							limit ={ 
+								state_population > 16000000
+							}
+							add_manpower = -662975
+						}
+						if = {
+							limit ={ 
+								state_population > 17000000
+							}
+							add_manpower = -685975
+						}
+						if = {
+							limit ={ 
+								state_population > 18000000
+							}
+							add_manpower = -708975
+						}
+						if = {
+							limit ={ 
+								state_population > 19000000
+							}
+							add_manpower = -731975
+						}
+						if = { #7592317
+							limit ={ 
+								state_population > 20000000
+							}
+							add_manpower = -1150000
+						}
+						if = {
+							limit ={ 
+								state_population > 30000000
+							}
+							add_manpower = -1207500
+						}
+						if = { 
+							limit ={ 
+								state_population > 40000000
+							}
+							add_manpower = -1265000
+						}
+						if = { 
+							limit ={ 
+								state_population > 50000000
+							}
+							add_manpower = -1322500
+						}
+						if = {
+							limit ={ 
+								state_population > 60000000
+							}
+							add_manpower = -1380000
+						}
+						if = { 
+							limit ={ 
+								state_population > 70000000
+							}
+							add_manpower = -1437500
+						}
+						if = { 
+							limit ={ 
+								state_population > 80000000
+							}
+							add_manpower = -1495000
+						}
+						if = { 
+							limit ={ 
+								state_population > 90000000
+							}
+							add_manpower = -1552500
+						}
+						if = { 
+							limit ={ 
+								state_population > 100000000
+							}
+							add_manpower = -1610000
+						}
+					}
+
+					var:actor_country = {
+						launch_nuke = {
+							province = var:ROOT.target_province #optional use either province or state
+							use_nuke = no #will consume nuke if specified
+							nuke_type = thermonuclear_bomb
+						}
+					}
+				}
+			}
+			critical_success = {
+			    custom_sound = raid_result_critical_success_nuclear
+				actor_effects = {
+				}
+				victim_effects = {
+					var:actor_country = { save_global_event_target_as = nuclear_gandhi_actor_country }
+					var:target_state = {
+						bathe_in_hellfire_thermonuclear = yes
+						add_dynamic_modifier = {
+							modifier = fallout_thermonuclear
+							days = 730
+						}
+						if = {
+							limit ={ 
+								state_population > 100
+							}
+							add_manpower = -5
+						}
+						if = {
+							limit ={ 
+								state_population > 200
+							}
+							add_manpower = -8
+						}
+						if = {
+							limit ={ 
+								state_population > 300
+							}
+							add_manpower = -10
+						}
+						if = {
+							limit ={ 
+								state_population > 400
+							}
+							add_manpower = -12
+						}
+						if = {
+							limit ={ 
+								state_population > 500
+							}
+							add_manpower = -15
+						}
+						if = {
+							limit ={ 
+								state_population > 600
+							}
+							add_manpower = -17
+						}
+						if = {
+							limit ={ 
+								state_population > 700
+							}
+							add_manpower = -19
+						}
+						if = {
+							limit ={ 
+								state_population > 800
+							}
+							add_manpower = -22
+						}
+						if = {
+							limit ={ 
+								state_population > 900
+							}
+							add_manpower = -25
+						}
+						if = {
+							limit ={ 
+								state_population > 1000
+							}
+							add_manpower = -345
+						}
+						if = {
+							limit ={ 
+								state_population > 2000
+							}
+							add_manpower = -402
+						}
+						if = {
+							limit ={ 
+								state_population > 3000
+							}
+							add_manpower = -460
+						}
+						if = {
+							limit ={ 
+								state_population > 4000
+							}
+							add_manpower = -517
+						}
+						if = {
+							limit ={ 
+								state_population > 5000
+							}
+							add_manpower = -575
+						}
+						if = {
+							limit ={ 
+								state_population > 6000
+							}
+							add_manpower = -632
+						}
+						if = {
+							limit ={ 
+								state_population > 7000
+							}
+							add_manpower = -690
+						}
+						if = {
+							limit ={ 
+								state_population > 8000
+							}
+							add_manpower = -747
+						}
+						if = {
+							limit ={ 
+								state_population > 9000
+							}
+							add_manpower = -805
+						}
+						if = { #4417
+							limit ={ 
+								state_population > 10000
+							}
+							add_manpower = -1150
+						}
+						if = {
+							limit ={ 
+								state_population > 15000
+							}
+							add_manpower = -1380
+						}
+						if = {
+							limit ={ 
+								state_population > 20000
+							}
+							add_manpower = -1610
+						}
+						if = {
+							limit ={ 
+								state_population > 25000
+							}
+							add_manpower = -1840
+						}
+						if = {
+							limit ={ 
+								state_population > 30000
+							}
+							add_manpower = -2070
+						}
+						if = {
+							limit ={ 
+								state_population > 35000
+							}
+							add_manpower = -2300
+						}
+						if = {
+							limit ={ 
+								state_population > 40000
+							}
+							add_manpower = -2530
+						}
+						if = {
+							limit ={ 
+								state_population > 45000
+							}
+							add_manpower = -2760
+						}
+						if = {
+							limit ={ 
+								state_population > 50000
+							}
+							add_manpower = -2990
+						}
+						if = {
+							limit ={ 
+								state_population > 55000
+							}
+							add_manpower = -3220
+						}
+						if = {
+							limit ={ 
+								state_population > 60000
+							}
+							add_manpower = -3450
+						}
+						if = {
+							limit ={ 
+								state_population > 65000
+							}
+							add_manpower = -3680
+						}
+						if = {
+							limit ={ 
+								state_population > 70000
+							}
+							add_manpower = -3910
+						}
+						if = {
+							limit ={ 
+								state_population > 75000
+							}
+							add_manpower = -4140
+						}
+						if = {
+							limit ={ 
+								state_population > 80000
+							}
+							add_manpower = -4370
+						}
+						if = {
+							limit ={ 
+								state_population > 85000
+							}
+							add_manpower = -4600
+						}
+						if = {
+							limit ={ 
+								state_population > 90000
+							}
+							add_manpower = -4830
+						}
+						if = { #48617
+							limit ={ 
+								state_population > 95000
+							}
+							add_manpower = -5060
+						}
+						if = {
+							limit ={ 
+								state_population > 100000
+							}
+							add_manpower = -6900
+						}
+						if = {
+							limit ={ 
+								state_population > 150000
+							}
+							add_manpower = -7475
+						}
+						if = {
+							limit ={ 
+								state_population > 200000
+							}
+							add_manpower = -8050
+						}
+						if = {
+							limit ={ 
+								state_population > 250000
+							}
+							add_manpower = -8625
+						}
+						if = {
+							limit ={ 
+								state_population > 300000
+							}
+							add_manpower = -9200
+						}
+						if = {
+							limit ={ 
+								state_population > 350000
+							}
+							add_manpower = -9775
+						}
+						if = {
+							limit ={ 
+								state_population > 400000
+							}
+							add_manpower = -10350
+						}
+						if = {
+							limit ={ 
+								state_population > 450000
+							}
+							add_manpower = -10925
+						}
+						if = {
+							limit ={ 
+								state_population > 500000
+							}
+							add_manpower = -11500
+						}
+						if = {
+							limit ={ 
+								state_population > 550000
+							}
+							add_manpower = -12075
+						}
+						if = {
+							limit ={ 
+								state_population > 600000
+							}
+							add_manpower = -12650
+						}
+						if = {
+							limit ={ 
+								state_population > 650000
+							}
+							add_manpower = -13225
+						}
+						if = {
+							limit ={ 
+								state_population > 700000
+							}
+							add_manpower = -13800
+						}
+						if = {
+							limit ={ 
+								state_population > 750000
+							}
+							add_manpower = -14375
+						}
+						if = {
+							limit ={ 
+								state_population > 800000
+							}
+							add_manpower = -14950
+						}
+						if = {
+							limit ={ 
+								state_population > 850000
+							}
+							add_manpower = -15525
+						}
+						if = {
+							limit ={ 
+								state_population > 900000
+							}
+							add_manpower = -16100
+						}
+						if = {
+							limit ={ 
+								state_population > 950000
+							}
+							add_manpower = -16675
+						}
+						if = {#237517
+							limit ={ 
+								state_population > 1000000
+							}
+							add_manpower = -149500
+						}
+						if = {
+							limit ={ 
+								state_population > 2000000
+							}
+							add_manpower = -172500
+						}
+						if = {
+							limit ={ 
+								state_population > 3000000
+							}
+							add_manpower = -195500
+						}
+						if = {
+							limit ={ 
+								state_population > 4000000
+							}
+							add_manpower = -218500
+						}
+						if = {
+							limit ={ 
+								state_population > 5000000
+							}
+							add_manpower = -241500
+						}
+						if = {
+							limit ={ 
+								state_population > 6000000
+							}
+							add_manpower = -264500
+						}
+						if = {
+							limit ={ 
+								state_population > 7000000
+							}
+							add_manpower = -287500
+						}
+						if = {
+							limit ={ 
+								state_population > 8000000
+							}
+							add_manpower = -310500
+						}
+						if = {
+							limit ={ 
+								state_population > 9000000
+							}
+							add_manpower = -333500
+						}
+						if = { #2127517
+							limit ={ 
+								state_population > 10000000
+							}
+							add_manpower = -524975
+						}
+						if = {
+							limit ={ 
+								state_population > 11000000
+							}
+							add_manpower = -547975
+						}
+						if = {
+							limit ={ 
+								state_population > 12000000
+							}
+							add_manpower = -570975
+						}
+						if = {
+							limit ={ 
+								state_population > 13000000
+							}
+							add_manpower = -593975
+						}
+						if = {
+							limit ={ 
+								state_population > 14000000
+							}
+							add_manpower = -616975
+						}
+						if = {
+							limit ={ 
+								state_population > 15000000
+							}
+							add_manpower = -639975
+						}
+						if = {
+							limit ={ 
+								state_population > 16000000
+							}
+							add_manpower = -662975
+						}
+						if = {
+							limit ={ 
+								state_population > 17000000
+							}
+							add_manpower = -685975
+						}
+						if = {
+							limit ={ 
+								state_population > 18000000
+							}
+							add_manpower = -708975
+						}
+						if = {
+							limit ={ 
+								state_population > 19000000
+							}
+							add_manpower = -731975
+						}
+						if = { #7592317
+							limit ={ 
+								state_population > 20000000
+							}
+							add_manpower = -1150000
+						}
+						if = {
+							limit ={ 
+								state_population > 30000000
+							}
+							add_manpower = -1207500
+						}
+						if = { 
+							limit ={ 
+								state_population > 40000000
+							}
+							add_manpower = -1265000
+						}
+						if = { 
+							limit ={ 
+								state_population > 50000000
+							}
+							add_manpower = -1322500
+						}
+						if = {
+							limit ={ 
+								state_population > 60000000
+							}
+							add_manpower = -1380000
+						}
+						if = { 
+							limit ={ 
+								state_population > 70000000
+							}
+							add_manpower = -1437500
+						}
+						if = { 
+							limit ={ 
+								state_population > 80000000
+							}
+							add_manpower = -1495000
+						}
+						if = { 
+							limit ={ 
+								state_population > 90000000
+							}
+							add_manpower = -1552500
+						}
+						if = { 
+							limit ={ 
+								state_population > 100000000
+							}
+							add_manpower = -1610000
+						}
+					}
+					var:actor_country = {
+						launch_nuke = {
+							province = var:ROOT.target_province #optional use either province or state
+							use_nuke = no #will consume nuke if specified
+							nuke_type = thermonuclear_bomb
+						}
+					}
+				}
+			}
+		}
+	}
+
+	thermonuclear_missile_strike_submarine = { #Only from Submarines
+		category = nuclear_raids
+
+		days_to_prepare = 14
+		speed_multiplier = 0.08
+
+		ai_will_do = {
+			base = 1
+			modifier = {
+				# Don't target anyone who is not a potential enemy
+				factor = 0
+				NOT = {
+					is_in_array = {
+						array = potential_and_current_enemies
+						value = FROM  # Target country
+					}
+				}
+			}
+			modifier = {
+				factor = 2
+				OR = {
+					original_tag = USA
+					original_tag = SOV
 				}
 			}
 			modifier = {
@@ -686,18 +6493,19 @@ types = {
 		}
 		nuke_type = thermonuclear_bomb
 		starting_point = {
-			types = {
-				rocket_site
-				submarine
-			}
+		    types = {
+		        submarine
+		    }
 		}
 		arrow = {
-			type = ballistic
+		    type = ballistic
 		}
 
 		launch_sound = raid_launch_nuclear_missile
 
-
+        unit_model = {
+            scale = 0.5
+        }
 
 		success_factors = {
 			success = {
@@ -726,17 +6534,512 @@ types = {
 				}
 			}
 			success = {
-				custom_sound = raid_result_success_nuclear
+			    custom_sound = raid_result_success_nuclear
 				actor_effects = {
 				}
 				victim_effects = {
+					var:actor_country = { save_global_event_target_as = nuclear_gandhi_actor_country }  
 					var:target_state = {
+						bathe_in_hellfire_thermonuclear = yes
 						#custom_effect_tooltip = raid_nuclear_strike_tt
 						add_dynamic_modifier = {
 							modifier = fallout_thermonuclear
 							days = 730
 						}
+						if = {
+							limit ={ 
+								state_population > 100
+							}
+							add_manpower = -5
+						}
+						if = {
+							limit ={ 
+								state_population > 200
+							}
+							add_manpower = -8
+						}
+						if = {
+							limit ={ 
+								state_population > 300
+							}
+							add_manpower = -10
+						}
+						if = {
+							limit ={ 
+								state_population > 400
+							}
+							add_manpower = -12
+						}
+						if = {
+							limit ={ 
+								state_population > 500
+							}
+							add_manpower = -15
+						}
+						if = {
+							limit ={ 
+								state_population > 600
+							}
+							add_manpower = -17
+						}
+						if = {
+							limit ={ 
+								state_population > 700
+							}
+							add_manpower = -19
+						}
+						if = {
+							limit ={ 
+								state_population > 800
+							}
+							add_manpower = -22
+						}
+						if = {
+							limit ={ 
+								state_population > 900
+							}
+							add_manpower = -25
+						}
+						if = {
+							limit ={ 
+								state_population > 1000
+							}
+							add_manpower = -345
+						}
+						if = {
+							limit ={ 
+								state_population > 2000
+							}
+							add_manpower = -402
+						}
+						if = {
+							limit ={ 
+								state_population > 3000
+							}
+							add_manpower = -460
+						}
+						if = {
+							limit ={ 
+								state_population > 4000
+							}
+							add_manpower = -517
+						}
+						if = {
+							limit ={ 
+								state_population > 5000
+							}
+							add_manpower = -575
+						}
+						if = {
+							limit ={ 
+								state_population > 6000
+							}
+							add_manpower = -632
+						}
+						if = {
+							limit ={ 
+								state_population > 7000
+							}
+							add_manpower = -690
+						}
+						if = {
+							limit ={ 
+								state_population > 8000
+							}
+							add_manpower = -747
+						}
+						if = {
+							limit ={ 
+								state_population > 9000
+							}
+							add_manpower = -805
+						}
+						if = { #4417
+							limit ={ 
+								state_population > 10000
+							}
+							add_manpower = -1150
+						}
+						if = {
+							limit ={ 
+								state_population > 15000
+							}
+							add_manpower = -1380
+						}
+						if = {
+							limit ={ 
+								state_population > 20000
+							}
+							add_manpower = -1610
+						}
+						if = {
+							limit ={ 
+								state_population > 25000
+							}
+							add_manpower = -1840
+						}
+						if = {
+							limit ={ 
+								state_population > 30000
+							}
+							add_manpower = -2070
+						}
+						if = {
+							limit ={ 
+								state_population > 35000
+							}
+							add_manpower = -2300
+						}
+						if = {
+							limit ={ 
+								state_population > 40000
+							}
+							add_manpower = -2530
+						}
+						if = {
+							limit ={ 
+								state_population > 45000
+							}
+							add_manpower = -2760
+						}
+						if = {
+							limit ={ 
+								state_population > 50000
+							}
+							add_manpower = -2990
+						}
+						if = {
+							limit ={ 
+								state_population > 55000
+							}
+							add_manpower = -3220
+						}
+						if = {
+							limit ={ 
+								state_population > 60000
+							}
+							add_manpower = -3450
+						}
+						if = {
+							limit ={ 
+								state_population > 65000
+							}
+							add_manpower = -3680
+						}
+						if = {
+							limit ={ 
+								state_population > 70000
+							}
+							add_manpower = -3910
+						}
+						if = {
+							limit ={ 
+								state_population > 75000
+							}
+							add_manpower = -4140
+						}
+						if = {
+							limit ={ 
+								state_population > 80000
+							}
+							add_manpower = -4370
+						}
+						if = {
+							limit ={ 
+								state_population > 85000
+							}
+							add_manpower = -4600
+						}
+						if = {
+							limit ={ 
+								state_population > 90000
+							}
+							add_manpower = -4830
+						}
+						if = { #48617
+							limit ={ 
+								state_population > 95000
+							}
+							add_manpower = -5060
+						}
+						if = {
+							limit ={ 
+								state_population > 100000
+							}
+							add_manpower = -6900
+						}
+						if = {
+							limit ={ 
+								state_population > 150000
+							}
+							add_manpower = -7475
+						}
+						if = {
+							limit ={ 
+								state_population > 200000
+							}
+							add_manpower = -8050
+						}
+						if = {
+							limit ={ 
+								state_population > 250000
+							}
+							add_manpower = -8625
+						}
+						if = {
+							limit ={ 
+								state_population > 300000
+							}
+							add_manpower = -9200
+						}
+						if = {
+							limit ={ 
+								state_population > 350000
+							}
+							add_manpower = -9775
+						}
+						if = {
+							limit ={ 
+								state_population > 400000
+							}
+							add_manpower = -10350
+						}
+						if = {
+							limit ={ 
+								state_population > 450000
+							}
+							add_manpower = -10925
+						}
+						if = {
+							limit ={ 
+								state_population > 500000
+							}
+							add_manpower = -11500
+						}
+						if = {
+							limit ={ 
+								state_population > 550000
+							}
+							add_manpower = -12075
+						}
+						if = {
+							limit ={ 
+								state_population > 600000
+							}
+							add_manpower = -12650
+						}
+						if = {
+							limit ={ 
+								state_population > 650000
+							}
+							add_manpower = -13225
+						}
+						if = {
+							limit ={ 
+								state_population > 700000
+							}
+							add_manpower = -13800
+						}
+						if = {
+							limit ={ 
+								state_population > 750000
+							}
+							add_manpower = -14375
+						}
+						if = {
+							limit ={ 
+								state_population > 800000
+							}
+							add_manpower = -14950
+						}
+						if = {
+							limit ={ 
+								state_population > 850000
+							}
+							add_manpower = -15525
+						}
+						if = {
+							limit ={ 
+								state_population > 900000
+							}
+							add_manpower = -16100
+						}
+						if = {
+							limit ={ 
+								state_population > 950000
+							}
+							add_manpower = -16675
+						}
+						if = {#237517
+							limit ={ 
+								state_population > 1000000
+							}
+							add_manpower = -149500
+						}
+						if = {
+							limit ={ 
+								state_population > 2000000
+							}
+							add_manpower = -172500
+						}
+						if = {
+							limit ={ 
+								state_population > 3000000
+							}
+							add_manpower = -195500
+						}
+						if = {
+							limit ={ 
+								state_population > 4000000
+							}
+							add_manpower = -218500
+						}
+						if = {
+							limit ={ 
+								state_population > 5000000
+							}
+							add_manpower = -241500
+						}
+						if = {
+							limit ={ 
+								state_population > 6000000
+							}
+							add_manpower = -264500
+						}
+						if = {
+							limit ={ 
+								state_population > 7000000
+							}
+							add_manpower = -287500
+						}
+						if = {
+							limit ={ 
+								state_population > 8000000
+							}
+							add_manpower = -310500
+						}
+						if = {
+							limit ={ 
+								state_population > 9000000
+							}
+							add_manpower = -333500
+						}
+						if = { #2127517
+							limit ={ 
+								state_population > 10000000
+							}
+							add_manpower = -524975
+						}
+						if = {
+							limit ={ 
+								state_population > 11000000
+							}
+							add_manpower = -547975
+						}
+						if = {
+							limit ={ 
+								state_population > 12000000
+							}
+							add_manpower = -570975
+						}
+						if = {
+							limit ={ 
+								state_population > 13000000
+							}
+							add_manpower = -593975
+						}
+						if = {
+							limit ={ 
+								state_population > 14000000
+							}
+							add_manpower = -616975
+						}
+						if = {
+							limit ={ 
+								state_population > 15000000
+							}
+							add_manpower = -639975
+						}
+						if = {
+							limit ={ 
+								state_population > 16000000
+							}
+							add_manpower = -662975
+						}
+						if = {
+							limit ={ 
+								state_population > 17000000
+							}
+							add_manpower = -685975
+						}
+						if = {
+							limit ={ 
+								state_population > 18000000
+							}
+							add_manpower = -708975
+						}
+						if = {
+							limit ={ 
+								state_population > 19000000
+							}
+							add_manpower = -731975
+						}
+						if = { #7592317
+							limit ={ 
+								state_population > 20000000
+							}
+							add_manpower = -1150000
+						}
+						if = {
+							limit ={ 
+								state_population > 30000000
+							}
+							add_manpower = -1207500
+						}
+						if = { 
+							limit ={ 
+								state_population > 40000000
+							}
+							add_manpower = -1265000
+						}
+						if = { 
+							limit ={ 
+								state_population > 50000000
+							}
+							add_manpower = -1322500
+						}
+						if = {
+							limit ={ 
+								state_population > 60000000
+							}
+							add_manpower = -1380000
+						}
+						if = { 
+							limit ={ 
+								state_population > 70000000
+							}
+							add_manpower = -1437500
+						}
+						if = { 
+							limit ={ 
+								state_population > 80000000
+							}
+							add_manpower = -1495000
+						}
+						if = { 
+							limit ={ 
+								state_population > 90000000
+							}
+							add_manpower = -1552500
+						}
+						if = { 
+							limit ={ 
+								state_population > 100000000
+							}
+							add_manpower = -1610000
+						}
 					}
+					
 					var:actor_country = {
 						launch_nuke = {
 							province = var:ROOT.target_province #optional use either province or state
@@ -747,14 +7050,508 @@ types = {
 				}
 			}
 			critical_success = {
-				custom_sound = raid_result_critical_success_nuclear
+			    custom_sound = raid_result_critical_success_nuclear
 				actor_effects = {
 				}
 				victim_effects = {
+					var:actor_country = { save_global_event_target_as = nuclear_gandhi_actor_country }  
 					var:target_state = {
+						bathe_in_hellfire_thermonuclear = yes
 						add_dynamic_modifier = {
 							modifier = fallout_thermonuclear
 							days = 730
+						}
+						if = {
+							limit ={ 
+								state_population > 100
+							}
+							add_manpower = -5
+						}
+						if = {
+							limit ={ 
+								state_population > 200
+							}
+							add_manpower = -8
+						}
+						if = {
+							limit ={ 
+								state_population > 300
+							}
+							add_manpower = -10
+						}
+						if = {
+							limit ={ 
+								state_population > 400
+							}
+							add_manpower = -12
+						}
+						if = {
+							limit ={ 
+								state_population > 500
+							}
+							add_manpower = -15
+						}
+						if = {
+							limit ={ 
+								state_population > 600
+							}
+							add_manpower = -17
+						}
+						if = {
+							limit ={ 
+								state_population > 700
+							}
+							add_manpower = -19
+						}
+						if = {
+							limit ={ 
+								state_population > 800
+							}
+							add_manpower = -22
+						}
+						if = {
+							limit ={ 
+								state_population > 900
+							}
+							add_manpower = -25
+						}
+						if = {
+							limit ={ 
+								state_population > 1000
+							}
+							add_manpower = -345
+						}
+						if = {
+							limit ={ 
+								state_population > 2000
+							}
+							add_manpower = -402
+						}
+						if = {
+							limit ={ 
+								state_population > 3000
+							}
+							add_manpower = -460
+						}
+						if = {
+							limit ={ 
+								state_population > 4000
+							}
+							add_manpower = -517
+						}
+						if = {
+							limit ={ 
+								state_population > 5000
+							}
+							add_manpower = -575
+						}
+						if = {
+							limit ={ 
+								state_population > 6000
+							}
+							add_manpower = -632
+						}
+						if = {
+							limit ={ 
+								state_population > 7000
+							}
+							add_manpower = -690
+						}
+						if = {
+							limit ={ 
+								state_population > 8000
+							}
+							add_manpower = -747
+						}
+						if = {
+							limit ={ 
+								state_population > 9000
+							}
+							add_manpower = -805
+						}
+						if = { #4417
+							limit ={ 
+								state_population > 10000
+							}
+							add_manpower = -1150
+						}
+						if = {
+							limit ={ 
+								state_population > 15000
+							}
+							add_manpower = -1380
+						}
+						if = {
+							limit ={ 
+								state_population > 20000
+							}
+							add_manpower = -1610
+						}
+						if = {
+							limit ={ 
+								state_population > 25000
+							}
+							add_manpower = -1840
+						}
+						if = {
+							limit ={ 
+								state_population > 30000
+							}
+							add_manpower = -2070
+						}
+						if = {
+							limit ={ 
+								state_population > 35000
+							}
+							add_manpower = -2300
+						}
+						if = {
+							limit ={ 
+								state_population > 40000
+							}
+							add_manpower = -2530
+						}
+						if = {
+							limit ={ 
+								state_population > 45000
+							}
+							add_manpower = -2760
+						}
+						if = {
+							limit ={ 
+								state_population > 50000
+							}
+							add_manpower = -2990
+						}
+						if = {
+							limit ={ 
+								state_population > 55000
+							}
+							add_manpower = -3220
+						}
+						if = {
+							limit ={ 
+								state_population > 60000
+							}
+							add_manpower = -3450
+						}
+						if = {
+							limit ={ 
+								state_population > 65000
+							}
+							add_manpower = -3680
+						}
+						if = {
+							limit ={ 
+								state_population > 70000
+							}
+							add_manpower = -3910
+						}
+						if = {
+							limit ={ 
+								state_population > 75000
+							}
+							add_manpower = -4140
+						}
+						if = {
+							limit ={ 
+								state_population > 80000
+							}
+							add_manpower = -4370
+						}
+						if = {
+							limit ={ 
+								state_population > 85000
+							}
+							add_manpower = -4600
+						}
+						if = {
+							limit ={ 
+								state_population > 90000
+							}
+							add_manpower = -4830
+						}
+						if = { #48617
+							limit ={ 
+								state_population > 95000
+							}
+							add_manpower = -5060
+						}
+						if = {
+							limit ={ 
+								state_population > 100000
+							}
+							add_manpower = -6900
+						}
+						if = {
+							limit ={ 
+								state_population > 150000
+							}
+							add_manpower = -7475
+						}
+						if = {
+							limit ={ 
+								state_population > 200000
+							}
+							add_manpower = -8050
+						}
+						if = {
+							limit ={ 
+								state_population > 250000
+							}
+							add_manpower = -8625
+						}
+						if = {
+							limit ={ 
+								state_population > 300000
+							}
+							add_manpower = -9200
+						}
+						if = {
+							limit ={ 
+								state_population > 350000
+							}
+							add_manpower = -9775
+						}
+						if = {
+							limit ={ 
+								state_population > 400000
+							}
+							add_manpower = -10350
+						}
+						if = {
+							limit ={ 
+								state_population > 450000
+							}
+							add_manpower = -10925
+						}
+						if = {
+							limit ={ 
+								state_population > 500000
+							}
+							add_manpower = -11500
+						}
+						if = {
+							limit ={ 
+								state_population > 550000
+							}
+							add_manpower = -12075
+						}
+						if = {
+							limit ={ 
+								state_population > 600000
+							}
+							add_manpower = -12650
+						}
+						if = {
+							limit ={ 
+								state_population > 650000
+							}
+							add_manpower = -13225
+						}
+						if = {
+							limit ={ 
+								state_population > 700000
+							}
+							add_manpower = -13800
+						}
+						if = {
+							limit ={ 
+								state_population > 750000
+							}
+							add_manpower = -14375
+						}
+						if = {
+							limit ={ 
+								state_population > 800000
+							}
+							add_manpower = -14950
+						}
+						if = {
+							limit ={ 
+								state_population > 850000
+							}
+							add_manpower = -15525
+						}
+						if = {
+							limit ={ 
+								state_population > 900000
+							}
+							add_manpower = -16100
+						}
+						if = {
+							limit ={ 
+								state_population > 950000
+							}
+							add_manpower = -16675
+						}
+						if = {#237517
+							limit ={ 
+								state_population > 1000000
+							}
+							add_manpower = -149500
+						}
+						if = {
+							limit ={ 
+								state_population > 2000000
+							}
+							add_manpower = -172500
+						}
+						if = {
+							limit ={ 
+								state_population > 3000000
+							}
+							add_manpower = -195500
+						}
+						if = {
+							limit ={ 
+								state_population > 4000000
+							}
+							add_manpower = -218500
+						}
+						if = {
+							limit ={ 
+								state_population > 5000000
+							}
+							add_manpower = -241500
+						}
+						if = {
+							limit ={ 
+								state_population > 6000000
+							}
+							add_manpower = -264500
+						}
+						if = {
+							limit ={ 
+								state_population > 7000000
+							}
+							add_manpower = -287500
+						}
+						if = {
+							limit ={ 
+								state_population > 8000000
+							}
+							add_manpower = -310500
+						}
+						if = {
+							limit ={ 
+								state_population > 9000000
+							}
+							add_manpower = -333500
+						}
+						if = { #2127517
+							limit ={ 
+								state_population > 10000000
+							}
+							add_manpower = -524975
+						}
+						if = {
+							limit ={ 
+								state_population > 11000000
+							}
+							add_manpower = -547975
+						}
+						if = {
+							limit ={ 
+								state_population > 12000000
+							}
+							add_manpower = -570975
+						}
+						if = {
+							limit ={ 
+								state_population > 13000000
+							}
+							add_manpower = -593975
+						}
+						if = {
+							limit ={ 
+								state_population > 14000000
+							}
+							add_manpower = -616975
+						}
+						if = {
+							limit ={ 
+								state_population > 15000000
+							}
+							add_manpower = -639975
+						}
+						if = {
+							limit ={ 
+								state_population > 16000000
+							}
+							add_manpower = -662975
+						}
+						if = {
+							limit ={ 
+								state_population > 17000000
+							}
+							add_manpower = -685975
+						}
+						if = {
+							limit ={ 
+								state_population > 18000000
+							}
+							add_manpower = -708975
+						}
+						if = {
+							limit ={ 
+								state_population > 19000000
+							}
+							add_manpower = -731975
+						}
+						if = { #7592317
+							limit ={ 
+								state_population > 20000000
+							}
+							add_manpower = -1150000
+						}
+						if = {
+							limit ={ 
+								state_population > 30000000
+							}
+							add_manpower = -1207500
+						}
+						if = { 
+							limit ={ 
+								state_population > 40000000
+							}
+							add_manpower = -1265000
+						}
+						if = { 
+							limit ={ 
+								state_population > 50000000
+							}
+							add_manpower = -1322500
+						}
+						if = {
+							limit ={ 
+								state_population > 60000000
+							}
+							add_manpower = -1380000
+						}
+						if = { 
+							limit ={ 
+								state_population > 70000000
+							}
+							add_manpower = -1437500
+						}
+						if = { 
+							limit ={ 
+								state_population > 80000000
+							}
+							add_manpower = -1495000
+						}
+						if = { 
+							limit ={ 
+								state_population > 90000000
+							}
+							add_manpower = -1552500
+						}
+						if = { 
+							limit ={ 
+								state_population > 100000000
+							}
+							add_manpower = -1610000
 						}
 					}
 					var:actor_country = {
