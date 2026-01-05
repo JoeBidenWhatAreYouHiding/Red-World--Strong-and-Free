@@ -33,6 +33,7 @@ set_research_slots = 4
 set_convoys = 720
 set_stability = 0.7
 set_war_support = 0.1
+add_nuclear_bombs = 650
 
 set_technology = {
 	support_weapons = 1
@@ -57,6 +58,68 @@ set_technology = {
 	interwar_antiair = 1
 	interwar_antitank = 1
 	basic_train = 1
+	experimental_rockets = 1
+}
+if = {
+	limit = {
+		has_dlc = "Gotterdammerung"
+	}
+	add_equipment_to_stockpile = { 
+			type = nuclear_missile_equipment_2
+#			variant_name = "L3/35"
+			amount = 130
+			producer = PRC
+		}
+	add_equipment_to_stockpile = { 
+			type = nuclear_missile_equipment_1
+#			variant_name = "L3/35"
+			amount = 70
+			producer = PRC
+	}		
+}
+#Nuclear projects
+complete_special_project = {
+	project = sp:sp_nuclear_reactor
+}
+complete_special_project = {
+	project = sp:sp_commercial_nuclear_reactor
+}
+complete_special_project = {
+	project = sp:sp_nuclear_engines
+}
+complete_special_project = {
+	project = sp:sp_nuclear_bomb
+}
+complete_special_project = {
+	project = sp:sp_thermo_nuclear_bomb
+}
+complete_special_project = {
+	project = sp:sp_nuclear_warheads
+}
+#Air Projects
+complete_special_project = {
+	project = sp:sp_air_radar
+}
+complete_special_project = {
+	project = sp:sp_air_helicopter
+}
+complete_special_project = {
+	project = sp:sp_rockets_ground_to_air_missile
+}
+complete_special_project = {
+	project = sp:sp_air_jet_engine
+}
+complete_special_project = {
+	project = sp:sp_rockets_flying_bomb
+}
+complete_special_project = {
+	project = sp:sp_rockets_ballistic_missile
+}
+complete_special_project = {
+	project = sp:sp_rockets_medium_range_ballistic_missile
+}
+complete_special_project = {
+	project = sp:sp_rockets_long_range_ballistic_missile
 }
 if = {
 	limit = { has_dlc = "By Blood Alone" }
@@ -72,6 +135,7 @@ if = {
 			iw_large_airframe = 1
 			basic_medium_airframe = 1
 			basic_small_airframe = 1
+			basic_large_airframe = 1
 		}
 	else = {
 #		set_air_oob = "ENG_1936_air_legacy"
@@ -79,6 +143,7 @@ if = {
 			early_fighter = 1
 			cv_early_fighter = 1
 			cv_naval_bomber1 = 1
+			strategic_bomber1 = 1
 			naval_bomber1 = 1
 			early_bomber = 1
 			CAS1 = 1
@@ -149,32 +214,6 @@ if = {
 		mtg_transport = 1
 		#improved_airplane_launcher = 1
 	}
-}
-
-#Nuclear Projects
-complete_special_project = {
-	project = sp:sp_nuclear_reactor
-	scientist = SOV_evgeny_velikhov
-}
-complete_special_project = {
-	project = sp:sp_commercial_nuclear_reactor
-	scientist = SOV_evgeny_velikhov
-}
-complete_special_project = {
-	project = sp:sp_nuclear_engines
-	scientist = SOV_evgeny_velikhov
-}
-complete_special_project = {
-	project = sp:sp_nuclear_bomb
-	scientist = SOV_evgeny_velikhov
-}
-complete_special_project = {
-	project = sp:sp_thermo_nuclear_bomb
-	scientist = SOV_evgeny_velikhov
-}
-complete_special_project = {
-	project = sp:sp_nuclear_warheads
-	scientist = SOV_evgeny_velikhov
 }
 
 set_politics = {
@@ -317,6 +356,26 @@ if = {
 			engine_type_slot = engine_2_2x
 			special_type_slot_1 = empty
 		}
+	}
+	create_equipment_variant = {
+		name = "Strategic Bomber I" 
+		type = large_plane_airframe_1
+		modules = {
+			fixed_main_weapon_slot = large_bomb_bay
+			fixed_auxiliary_weapon_slot_1 = empty
+			engine_type_slot = engine_2_4x 
+			special_type_slot_1 = lmg_defense_turret_2x
+			special_type_slot_2 = empty
+			special_type_slot_3 = fuel_tanks_large
+			special_type_slot_4 = self_sealing_fuel_tanks_large
+			special_type_slot_5 = empty
+		}
+	}
+	add_equipment_to_stockpile = { 
+			type = large_plane_airframe_1
+			variant_name = "Strategic Bomber I"
+			amount = 50
+			producer = PRC
 	}
 }
 
