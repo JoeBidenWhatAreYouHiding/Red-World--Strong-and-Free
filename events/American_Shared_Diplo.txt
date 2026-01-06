@@ -1128,6 +1128,98 @@ country_event = {
 	}
 }
 
+#American Tag demands 'Rightful Territory'
+country_event = {
+	id = american_diplo.48
+	title = american_diplo.48.t
+	desc = american_diplo.48.d
+	picture = support_for_american_faction
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = american_diplo.48.o1
+		ai_chance = {
+			factor = 0
+			modifier = {
+				factor = 50
+				FROM = {
+					OR = {
+						has_government = communist
+						has_government = revolutionary_socialist
+						has_government = national_bolshevik
+						has_government = fascist
+					}
+				}
+			}
+		}
+		FROM = {
+			country_event = american_diplo.49
+		}
+	}
+	
+	option = { 
+		name = american_diplo.48.o2
+		ai_chance = {
+			factor = 100
+		}
+		FROM = {
+			country_event = american_diplo.50
+		}
+	}
+}
+
+#Canada Refuses
+country_event = {
+	id = american_diplo.49
+	title = american_diplo.49.t
+	desc = american_diplo.49.d
+	picture = support_for_american_faction
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = american_diplo.49.o1
+		ai_chance = {
+			factor = 50
+		}
+		add_stability = -0.05
+	}
+	
+	option = { 
+		name = american_diplo.49.o2
+		ai_chance = {
+			factor = 100
+		}
+		declare_war_on = {
+			target = CAN
+			type = annex_everything
+		}
+	}
+}
+
+#Canada Accepts
+country_event = {
+	id = american_diplo.50
+	title = american_diplo.50.t
+	desc = american_diplo.50.d
+	picture = support_for_american_faction
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = american_diplo.50.o1
+		CAN = {
+			every_owned_state = {
+				limit = { is_mainland_us_state = yes }
+				ROOT = {
+					transfer_state = PREV
+				}
+			}
+		}
+	}
+}
+
 #America asks us to join faction
 country_event = {
 	id = american_diplo.1500

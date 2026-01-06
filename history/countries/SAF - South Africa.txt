@@ -28,6 +28,7 @@ set_research_slots = 4
 set_convoys = 450
 set_stability = 0.6
 set_war_support = 0.2
+add_nuclear_bombs = 20
 
 set_country_flag = was_in_british_empire
 set_country_flag = non_aligned_movement_flag
@@ -59,6 +60,7 @@ set_technology = {
 	interwar_antiair = 1
 	interwar_antitank = 1
 	basic_train = 1
+	experimental_rockets = 1
 }
 
 #Nuclear projects
@@ -68,7 +70,19 @@ complete_special_project = {
 complete_special_project = {
 	project = sp:sp_commercial_nuclear_reactor
 }
-
+complete_special_project = {
+	project = sp:sp_nuclear_bomb
+}
+complete_special_project = {
+	project = sp:sp_nuclear_warheads
+}
+#Air Projects
+complete_special_project = {
+	project = sp:sp_air_radar
+}
+complete_special_project = {
+	project = sp:sp_air_helicopter
+}
 if = {
 	limit = { has_dlc = "By Blood Alone" }
 #		set_air_oob = "ENG_1936_air_bba"
@@ -83,6 +97,7 @@ if = {
 			iw_large_airframe = 1
 			basic_medium_airframe = 1
 			basic_small_airframe = 1
+			basic_large_airframe = 1
 		}
 	else = {
 #		set_air_oob = "ENG_1936_air_legacy"
@@ -91,10 +106,22 @@ if = {
 			cv_early_fighter = 1
 			cv_naval_bomber1 = 1
 			naval_bomber1 = 1
+			strategic_bomber1 = 1
 			early_bomber = 1
 			CAS1 = 1
 		}
 	}
+}
+if = {
+	limit = {
+		has_dlc = "Gotterdammerung"
+	}
+	add_equipment_to_stockpile = { 
+			type = nuclear_missile_equipment_1
+#			variant_name = "L3/35"
+			amount = 30
+			producer = SAF
+	}		
 }	
 if = {
 	limit = {
@@ -103,6 +130,7 @@ if = {
 	set_technology = {
 		gwtank = 1
 		basic_light_tank = 1
+		basic_heavy_tank = 1
 	}
 }
 if = {
@@ -112,6 +140,7 @@ if = {
 	set_technology = {
 		gwtank_chassis = 1
 		basic_light_tank_chassis = 1
+		basic_heavy_tank_chassis = 1
 		armor_tech_1 = 1
 		engine_tech_1 = 1
 	}
@@ -181,16 +210,16 @@ set_popularities = {
 }
 
 recruit_character = SAF_chris_hani
-recruit_character = SAF_pieter_mulder
+recruit_character = SAF_eugene_terreblanche
 recruit_character = SAF_fw_de_klerk
-recruit_character = SAF_pontsho_maubane
-recruit_character = SAF_johnson_mlambo
 recruit_character = SAF_mangosuthu_buthelezi
+recruit_character = SAF_julius_malema
 recruit_character = SAF_marthinus_van_schalkwyk
+recruit_character = SAF_constand_viljoen
 recruit_character = SAF_helen_zille
 recruit_character = SAF_mosiuoa_lekota
 recruit_character = SAF_thabo_mbeki
-recruit_character = SAF_julius_malema
+recruit_character = SAF_winnie_madikizela
 recruit_character = SAF_Mannetjies_de_Goede 
 recruit_character = SAF_Les_Rudman
 recruit_character = SAF_Chris_Gildenhuys 
@@ -320,6 +349,20 @@ if = {
 			fixed_auxiliary_weapon_slot_1 = medium_bomb_bay
 			engine_type_slot = engine_2_2x
 			special_type_slot_1 = empty
+		}
+	}
+	create_equipment_variant = {
+		name = "Strategic Bomber I" 
+		type = large_plane_airframe_1
+		modules = {
+			fixed_main_weapon_slot = large_bomb_bay
+			fixed_auxiliary_weapon_slot_1 = empty
+			engine_type_slot = engine_2_4x 
+			special_type_slot_1 = lmg_defense_turret_2x
+			special_type_slot_2 = empty
+			special_type_slot_3 = fuel_tanks_large
+			special_type_slot_4 = self_sealing_fuel_tanks_large
+			special_type_slot_5 = empty
 		}
 	}
 }
