@@ -749,11 +749,19 @@ faction_goal_war_on_communism = {
 	visible = {
 		FROM = {
 			NOT = {
-				has_government = communist
+				OR = {
+					has_government = communist
+					has_government = revolutionary_socialist
+					has_government = national_bolshevik
+				}
 			}
 		}
 		any_country = {
-			has_government = communist
+			OR = {
+				has_government = communist
+				has_government = revolutionary_socialist
+				has_government = national_bolshevik
+			}
 			is_on_same_continent_as = FROM
 		}
 		NOT = { original_tag = JAP } # they have their own goal 
@@ -761,12 +769,20 @@ faction_goal_war_on_communism = {
 	completed = {
 		OR = {
 			any_enemy_country = {
-				has_government = communist
+				OR = {
+					has_government = communist
+					has_government = revolutionary_socialist
+					has_government = national_bolshevik
+				}
 				is_on_same_continent_as = ROOT
 			}
 			any_allied_country = {
 				any_enemy_country = {
-					has_government = communist
+					OR = {
+						has_government = communist
+						has_government = revolutionary_socialist
+						has_government = national_bolshevik
+					}
 					is_on_same_continent_as = PREV
 				}
 			}
@@ -2193,7 +2209,7 @@ faction_goal_fortify_bosporus = {
 		
 	}
 	visible = {
-		797 = { is_controlled_by_ROOT_or_ally = yes }
+		341 = { is_controlled_by_ROOT_or_ally = yes }
 	}
 	available = {
 
@@ -2201,7 +2217,7 @@ faction_goal_fortify_bosporus = {
 	completed = {
 		custom_trigger_tooltip = {
             tooltip = fortify_bosporus_tooltip
-			797 = {
+			341 = {
 				any_province_building_level = {
 					province = {
 						id = 9833
@@ -2220,9 +2236,9 @@ faction_goal_fortify_bosporus = {
 				}
 			}
 			OR = {
-				divisions_in_state = { state = 797 size > 1 }
+				divisions_in_state = { state = 341 size > 1 }
 				any_allied_country = {
-					divisions_in_state = { state = 797 size > 1 }
+					divisions_in_state = { state = 341 size > 1 }
 				}
 			}
 		}
@@ -2234,11 +2250,11 @@ faction_goal_fortify_bosporus = {
 		every_faction_member = { 
 			visible_when_empty = yes
 			limit = {
-				controls_state = 797
+				controls_state = 341
 			}
 			add_faction_initiative = 1
 		}
-		797 = {
+		341 = {
 			add_building_construction = {
 				type = anti_air_building
 				level = 1
@@ -2659,12 +2675,12 @@ faction_goal_fortify_strait_of_hormuz = {
 	visible = {
 		OR = {
 			412 = { is_controlled_by_ROOT_or_ally = yes }
-			1013 = { is_controlled_by_ROOT_or_ally = yes }
+			997 = { is_controlled_by_ROOT_or_ally = yes }
 		}
 	}
 	available = {
 		412 = { is_controlled_by_ROOT_or_ally = yes }
-		1013 = { is_controlled_by_ROOT_or_ally = yes }
+		997 = { is_controlled_by_ROOT_or_ally = yes }
 	}
 	completed = {
 		custom_trigger_tooltip = {
@@ -2685,7 +2701,7 @@ faction_goal_fortify_strait_of_hormuz = {
 					level > 0
 				}
 			}
-			1013 = {
+			997 = {
 				any_province_building_level = {
 					province = {
 						id = 13369
@@ -2704,11 +2720,11 @@ faction_goal_fortify_strait_of_hormuz = {
 			OR = {
 				AND = {
 					divisions_in_state = { state = 412 size > 0 }
-					divisions_in_state = { state = 1013 size > 0 }
+					divisions_in_state = { state = 997 size > 0 }
 				}
 				any_allied_country = {
 					divisions_in_state = { state = 412 size > 0 }
-					divisions_in_state = { state = 1013 size > 0 }
+					divisions_in_state = { state = 997 size > 0 }
 				}
 			}
 		}
@@ -2722,7 +2738,7 @@ faction_goal_fortify_strait_of_hormuz = {
 			limit = {
 				OR = {
 					controls_state = 412
-					controls_state = 1013
+					controls_state = 997
 				}
 			}
 			add_faction_initiative = 1
@@ -2746,7 +2762,7 @@ faction_goal_fortify_strait_of_hormuz = {
 				instant_build = yes
 			}
 		}
-		1013 = {
+		997 = {
 			add_building_construction = {
 				type = anti_air_building
 				level = 1
@@ -2902,13 +2918,13 @@ faction_goal_expand_singapore_naval_base = {
 		
 	}
 	visible = {
-		1021 = { is_controlled_by_ROOT_or_ally = yes }
+		336 = { is_controlled_by_ROOT_or_ally = yes }
 	}
 	available = {
 
 	}
 	completed = {
-		1021 = {
+		336 = {
 			air_base > 7
 			any_province_building_level = {
 				province = {
@@ -2933,11 +2949,11 @@ faction_goal_expand_singapore_naval_base = {
 		every_faction_member = { 
 			visible_when_empty = yes
 			limit = {
-				controls_state = 1021
+				controls_state = 336
 			}
 			add_faction_initiative = 1
 		}
-		1021 = {
+		336 = {
 			add_building_construction = {
 				type = anti_air_building
 				level = 1
