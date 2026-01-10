@@ -1474,6 +1474,7 @@ GER_european_union_decisions = {
 						value = 0.0
 					}
 				}
+				exists = yes
 			}
 		}
 		
@@ -1529,7 +1530,6 @@ GER_european_union_decisions = {
 		}
 	}
 	
-	
 	GER_add_tag_to_european_union = {
 		icon = invite_tag_to_eu
 		available = {
@@ -1578,6 +1578,65 @@ GER_european_union_decisions = {
 			clr_country_flag = GER_inviting_country
 			FROM = {
 				add_ideas = idea_eu_member
+			}
+		}
+		fire_only_once = no
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	GER_integrate_tag_into_the_european_union = {
+		icon = invite_tag_to_eu
+		available = {
+			FROM = {
+				is_subject_of = GER
+				has_idea = idea_eu_member
+			}
+		}
+		
+		visible = {
+			has_cosmetic_tag = EUU
+		}
+		
+		allowed = {
+			tag = GER
+		}
+		
+		cost = 50
+		days_remove = 15
+		
+		on_map_mode = map_and_decisions_view
+		highlight_states = {
+ 			highlight_state_targets = {
+				state = FROM.capital
+			} 
+		}
+		
+		target_root_trigger = {
+			has_cosmetic_tag = EUU
+		}
+		target_trigger = {
+			FROM = {
+				exists = yes
+				has_idea = idea_eu_member
+				is_subject_of = GER
+			}
+		}
+		
+		complete_effect = {
+			set_country_flag = GER_inviting_country
+		}
+
+		remove_effect = {
+			every_state = {
+				limit = { is_core_of = FROM }
+				GER = { add_state_core = PREV }
+			}
+			annex_country = { 
+				target = FROM
+				transfer_troops = yes
 			}
 		}
 		fire_only_once = no
