@@ -1,0 +1,150 @@
+
+CSD_set_president_as_ambivalent_bad = {
+	if = {
+		limit = { has_country_flag = CSD_dealt_with_president }
+		custom_effect_tooltip = CSD_modify_presidency
+		set_variable = { 
+			CSD_pres_pol_cost = 0.02
+			tooltip = political_power_cost_tt
+		}
+	}
+	else = {
+		custom_effect_tooltip = CSD_modify_presidency
+		set_variable = { 
+			CSD_pres_pol_cost = 0.05
+			tooltip = political_power_cost_tt
+		}
+	}
+	set_country_flag = CSD_president_is_ambivalent_bad
+	if = {
+		limit = { has_country_flag = CSD_president_is_ambivalent_good }
+		clr_country_flag = CSD_president_is_ambivalent_good
+	}
+	
+	if = {
+		limit = { has_country_flag = CSD_president_is_hostile }
+		clr_country_flag = CSD_president_is_hostile
+	}
+	
+	if = {
+		limit = { has_country_flag = CSD_president_is_supportive }
+		clr_country_flag = CSD_president_is_supportive
+	}
+	
+}
+
+CSD_set_president_as_ambivalent_good = {
+	if = {
+		limit = { has_country_flag = CSD_dealt_with_president }
+		custom_effect_tooltip = CSD_modify_presidency
+		set_variable = { 
+			CSD_pres_pol_cost = -0.02
+			tooltip = political_power_cost_tt
+		}
+	}
+	else = {
+		custom_effect_tooltip = CSD_modify_presidency
+		set_variable = { 
+			CSD_pres_pol_cost = -0.05
+			tooltip = political_power_cost_tt
+		}
+	}
+	set_country_flag = CSD_president_is_ambivalent_good
+	if = {
+		limit = { has_country_flag = CSD_president_is_ambivalent_bad }
+		clr_country_flag = CSD_president_is_ambivalent_bad
+	}
+	
+	if = {
+		limit = { has_country_flag = CSD_president_is_hostile }
+		clr_country_flag = CSD_president_is_hostile
+	}
+	
+	if = {
+		limit = { has_country_flag = CSD_president_is_supportive }
+		clr_country_flag = CSD_president_is_supportive
+	}
+	
+}
+
+CSD_set_president_as_hostile = {
+	if = {
+		limit = { has_country_flag = CSD_dealt_with_president }
+		custom_effect_tooltip = CSD_modify_presidency
+		set_variable = { 
+			CSD_pres_pol_cost = 0.05
+			tooltip = political_power_cost_tt
+		}
+	}
+	else = {
+		set_variable = { CSD_pres_pol_cost = 0.1 }
+	}
+	set_country_flag = CSD_president_is_hostile
+	if = {
+		limit = { has_country_flag = CSD_president_is_ambivalent_bad }
+		clr_country_flag = CSD_president_is_ambivalent_bad
+	}
+	
+	if = {
+		limit = { has_country_flag = CSD_president_is_ambivalent_good }
+		clr_country_flag = CSD_president_is_ambivalent_good
+	}
+	
+	if = {
+		limit = { has_country_flag = CSD_president_is_supportive }
+		clr_country_flag = CSD_president_is_supportive
+	}
+	
+}
+
+CSD_set_president_as_supportive = {
+	if = {
+		limit = { has_country_flag = CSD_dealt_with_president }
+		custom_effect_tooltip = CSD_modify_presidency
+		set_variable = { 
+			CSD_pres_pol_cost = -0.05 
+			tooltip = political_power_cost_tt
+		}
+	}
+	else = {
+		custom_effect_tooltip = CSD_modify_presidency
+		set_variable = { 
+			CSD_pres_pol_cost = -0.1
+			tooltip = political_power_cost_tt
+		}
+	}
+	set_country_flag = CSD_president_is_supportive
+	if = {
+		limit = { has_country_flag = CSD_president_is_ambivalent_bad }
+		clr_country_flag = CSD_president_is_ambivalent_bad
+	}
+	
+	if = {
+		limit = { has_country_flag = CSD_president_is_ambivalent_good }
+		clr_country_flag = CSD_president_is_ambivalent_good
+	}
+	
+	if = {
+		limit = { has_country_flag = CSD_president_is_hostile }
+		clr_country_flag = CSD_president_is_hostile
+	}
+	
+}
+
+CSD_peaceout_effect = {
+	set_country_flag = CSD_secured_independence
+	add_ideas = CSD_wake_of_the_war
+	CSD_greg_walden = {
+		set_portraits = {
+			civilian = { large = "gfx/leaders/CSD/Portrait_CSD_Greg_Walden_Suit.png" }
+		}
+	}
+	hidden_effect = {
+		country_event = { id = cascadia.82 days = 5 }
+		country_event = { id = cascadia.222 days = 15 }
+		country_event = { id = cascadia.1 days = 40 }
+		country_event = { id = csd_flavour.5 days = 700 }
+		country_event = { id = csd_flavour.1 days = 400 }
+		country_event = { id = csd_flavour.2 days = 600 }
+		country_event = { id = csd_flavour.3 days = 250 }
+	}
