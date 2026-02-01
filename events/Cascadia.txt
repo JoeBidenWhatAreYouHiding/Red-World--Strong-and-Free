@@ -1839,6 +1839,27 @@ country_event = {
 		}
 		set_country_flag = CSD_next_pm_elections_held
 	}
+	option = {
+		name = cascadia.84.o4
+		ai_chance = {
+			factor = 50
+		}
+		add_popularity = {
+		ideology = liberal
+		popularity = 0.15
+		}
+		set_politics = {
+		ruling_party = liberal
+		}
+		custom_effect_tooltip = cascadia_liberal_cabinet_tooltip
+		hidden_effect = {
+			add_ideas = cascadia_fom_denny_heck
+			add_ideas = cascadia_ind_rick_metsger
+			add_ideas = cascadia_nsm_jeanne_atkins
+			add_ideas = cascadia_inm_meroe_park
+		}
+		set_country_flag = CSD_next_pm_elections_held
+	}
 }
 
 #Election w/ Stine
@@ -1918,6 +1939,27 @@ country_event = {
 			add_ideas = cascadia_fom_glenn_beck
 			add_ideas = cascadia_ind_allan_alley
 			add_ideas = cascadia_nsm_michael_stencel
+			add_ideas = cascadia_inm_meroe_park
+		}
+		set_country_flag = CSD_next_pm_elections_held
+	}
+	option = {
+		name = cascadia.85.o4
+		ai_chance = {
+			factor = 50
+		}
+		add_popularity = {
+		ideology = liberal
+		popularity = 0.15
+		}
+		set_politics = {
+		ruling_party = liberal
+		}
+		custom_effect_tooltip = cascadia_liberal_cabinet_tooltip
+		hidden_effect = {
+			add_ideas = cascadia_fom_denny_heck
+			add_ideas = cascadia_ind_rick_metsger
+			add_ideas = cascadia_nsm_jeanne_atkins
 			add_ideas = cascadia_inm_meroe_park
 		}
 		set_country_flag = CSD_next_pm_elections_held
@@ -2051,6 +2093,7 @@ country_event = {
 	        add_ideas = cascadia_nsm_thomas_hemingway
 	        add_ideas = cascadia_inm_gregory_todd
 			load_focus_tree = orecorp_tree
+			remove_dynamic_modifier = { modifier = CSD_President_idea }
 			news_event = {
 				id = news.324
 				days = 7
@@ -3358,6 +3401,76 @@ country_event = {
 	}
 }
 
+#Cascadian Liberals
+country_event = {
+	id = cascadia.224
+	title = cascadia.224.t
+	desc = cascadia.224.d
+	picture = cascadian_liberal_party_reconstituted
+
+	is_triggered_only = yes
+
+	option = {
+		name = cascadia.224.o1
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.2
+		}
+		CSD_howard_schultz = {
+			promote_character = managerial_liberalism
+		}
+		set_party_name = {
+			name = CSD_liberal_party
+			long_name = CSD_liberal_party_long
+		}
+	}
+}
+
+#Fate of Montana
+country_event = {
+	id = cascadia.225
+	title = cascadia.225.t
+	desc = cascadia.225.d
+	picture = montana_government
+
+	fire_only_once = yes
+	trigger = {
+		tag = CSD
+		MOT = { is_subject_of = CSD }
+	}
+
+	option = {
+		name = cascadia.225.o1
+		add_stability = 0.02
+	}
+	
+	option = {
+		name = cascadia.225.o2
+		annex_country = {
+			target = MOT
+			transfer_troops = yes
+		}
+		388 = {
+		    add_core_of = CSD
+		}
+		381 = {
+		    add_core_of = CSD
+		}
+		389 = {
+		    add_core_of = CSD
+		}
+		1016 = {
+		    add_core_of = CSD
+		}
+		1017 = {
+			add_core_of = CSD
+		}
+		1018 = {
+			add_core_of = CSD
+		}
+	}
+}
+
 add_namespace = csd_flavour
 
 #Polybius
@@ -3409,6 +3522,30 @@ country_event = {
 		name = csd_flavour.3.o2
 		add_stability = -0.01
 		add_political_power = 10
+	}
+}
+
+#Oregon Whale Explosion
+country_event = {
+	id = csd_flavour.4
+	title = csd_flavour.4.t
+	desc = csd_flavour.4.d
+	picture = oregon_whale_explosion
+
+	fire_only_once = yes
+
+	trigger = {
+		tag = CSD
+		date > 2015.11.8
+		date < 2011.6.10
+	}
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+
+	option = {
+		name = csd_flavour.4.o1
 	}
 }
 
