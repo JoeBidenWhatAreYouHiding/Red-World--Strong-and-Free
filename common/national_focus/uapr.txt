@@ -932,6 +932,11 @@ focus_tree = {
 		y = 9
 		completion_reward = {
 		    add_political_power = 130 
+			add_trait = {
+				character = PCA_kamala_harris
+				ideology = managerial_liberalism
+				trait = GER_empowered_president
+			}
 		}
 
 	}
@@ -1048,9 +1053,10 @@ focus_tree = {
 		x = 12
 		y = 8
 		completion_reward = {
-		    army_experience = 40 
-			air_experience = 40 
-			navy_experience = 40
+		    army_experience = 100 
+			air_experience = 100
+			navy_experience = 100
+			add_manpower = 2400
 		}
 
 	}
@@ -1083,6 +1089,18 @@ focus_tree = {
 					type = anti_air_building
 					level = 3
 					instant_build = yes
+				}
+			}
+			897 = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 3
+					instant_build = yes
+				}
+			}
+			897  = {
+				remove_dynamic_modifier = {
+					modifier = PCA_Las_Vegas_Mod 
 				}
 			}
 		}
@@ -1244,6 +1262,22 @@ focus_tree = {
 				    modifier = drama
 			    }
 			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			add_resource = { type = oil amount = 6 state = 378 }
+            add_resource = { type = steel amount = 10 state = 378 } 
 			add_political_power = 120
 			country_event = { id = pacific_america.59 }
 		}
@@ -1324,6 +1358,21 @@ focus_tree = {
 		completion_reward = {
 		    add_stability = 0.02 
 			add_war_support = 0.03
+			add_command_power = 100
+			random_unit_leader = {	
+				add_skill_level = 1
+				add_logistics = 1
+				add_defense = 1
+				add_planning = 1
+				gain_xp = 400
+			}
+			random_unit_leader = {	
+				add_skill_level = 1
+				add_logistics = 1
+				add_defense = 1
+				add_planning = 1
+				gain_xp = 400
+			}
 			country_event = { id = pacific_america.62 }
 		}
 
@@ -1504,6 +1553,10 @@ focus_tree = {
 				ideology = revolutionary_socialist
 				popularity = -0.05
 			}
+			add_popularity = {
+				ideology = communist
+				popularity = 0.05
+			}
 			add_stability = 0.015
 			add_political_power = 50
 			country_event = { id = pacific_america.68 }
@@ -1644,7 +1697,7 @@ focus_tree = {
 		x = 19
 		y = 5
 		completion_reward = {
-		    add_stability = 0.05
+		    add_stability = 0.1
 			add_political_power = 30
 		}
 
@@ -1711,6 +1764,10 @@ focus_tree = {
 		y = 6
 		completion_reward = {
 		    add_manpower = 15000
+			add_popularity = {
+				ideology = communist
+				popularity = 0.04
+			}
 		}
 
 	}
@@ -1735,6 +1792,7 @@ focus_tree = {
 			ideology = communist
 			popularity = 0.04
 			}
+			add_manpower = 2400
 			country_event = pacific_america.147
 		}
 
@@ -1888,6 +1946,9 @@ focus_tree = {
 		ideology = national_bolshevik
 		popularity = 0.05
 		}
+		add_liberal_to_coalition = yes
+		add_natcon_to_coalition = yes
+		add_modsoc_to_coalition = yes
 		country_event = pacific_america.144
 		}
 
@@ -2309,7 +2370,7 @@ focus_tree = {
 	}
 	focus = {
 		id = PCA_liberationist_propaganda
-		icon = red_hands_shaking
+		icon = GFX_goal_PCA_liberationist_propaganda
 		cost = 5
 		available = {
 			has_country_flag = met_the_cascadians
@@ -2337,7 +2398,7 @@ focus_tree = {
 	}
 	focus = {
 		id = PCA_regional_developments
-		icon = consumer_goods
+		icon = GFX_goal_CSD_support_east_cascadia
 		cost = 7.2
 		available = {
 			has_government = communist
@@ -2400,7 +2461,7 @@ focus_tree = {
 	}
 	focus = {
 		id = PCA_appoint_new_administrators
-		icon = democracy
+		icon = GFX_goal_CSD_appoint_new_administrators
 		cost = 5
 		available = {
 			has_government = communist
@@ -2416,12 +2477,16 @@ focus_tree = {
 		completion_reward = {
 		    add_political_power = -70 
 			add_war_support = 0.02
+			swap_ideas = {
+				remove_idea = idea_cascadian_separatism
+				add_idea = idea_cascadian_separatism2
+			}
 		}
 
 	}
 	focus = {
 		id = PCA_special_economic_zones
-		icon = common_african_judiciary
+		icon = embrace_market_socialism
 		cost = 7.2
 		available = {
 			has_government = communist
@@ -2441,7 +2506,7 @@ focus_tree = {
 	}
 	focus = {
 		id = PCA_crush_the_cascadian_revolt
-		icon = infiltration
+		icon = GFX_goal_PCA_crush_the_cascadian_revolt
 		cost = 3.6
 		available = {
 			has_country_flag = the_cascadian_war
@@ -2468,7 +2533,7 @@ focus_tree = {
 	}
 	focus = {
 		id = PCA_post_war_reconstruction
-		icon = position_armies
+		icon = GFX_goal_CSD_prioritize_development
 		cost = 7.2
 		available = {
 		    NOT = {
@@ -2516,7 +2581,7 @@ focus_tree = {
 	}
 	focus = {
 		id = PCA_strengthen_the_republic
-		icon = cavalry
+		icon = GFX_goal_CSD_strengthen_the_republic
 		cost = 5
 		available = {
 			has_government = communist
@@ -2531,12 +2596,16 @@ focus_tree = {
 		y = 3
 		completion_reward = {
 		    add_stability = 0.03
+			swap_ideas = {
+				remove_idea = idea_cascadian_separatism
+				add_idea = idea_cascadian_separatism2
+			}
 		}
 
 	}
 	focus = {
 		id = PCA_independent_security_force
-		icon = focus_syrian_revolution
+		icon = GFX_goal_CSD_independent_security_service
 		cost = 3.6
 		available = {
 			has_government = communist
@@ -2579,7 +2648,7 @@ focus_tree = {
 	}
 	focus = {
 		id = PCA_return_to_normalcy
-		icon = national_unity
+		icon = GFX_goal_PCA_return_to_normalcy
         dynamic = yes
 		cost = 5
 		available = {
@@ -2595,7 +2664,7 @@ focus_tree = {
 		x = 33
 		y = 6
 		completion_reward = {
-		    remove_ideas = idea_cascadian_separatism
+		    remove_ideas = idea_cascadian_separatism2
 			add_political_power = -250
 			country_event = { id = pacific_america.80 }
 		}
@@ -2663,7 +2732,7 @@ focus_tree = {
 	}
 	focus = {
 		id = PCA_paradise_workers_complex
-		icon = focus_develop_odisha_mines
+		icon = GFX_goal_PCA_paradise_workers_complex
 		cost = 3.6
 		available = {
 			has_government = communist
@@ -2680,6 +2749,11 @@ focus_tree = {
 		    add_popularity = {
 				ideology = communist
 				popularity = 0.05
+			}
+			897  = {
+				remove_dynamic_modifier = {
+					modifier = PCA_Las_Vegas_Mod 
+				}
 			}
 		}
 
@@ -2808,7 +2882,7 @@ focus_tree = {
 	}
 	focus = {
 		id = PCA_model_city
-		icon = GFX_goal_generic_city_hill
+		icon = GFX_goal_PCA_model_city
 		cost = 7.2
 		available = {
 			has_government = communist
@@ -2835,7 +2909,7 @@ focus_tree = {
 	}
 	focus = {
 		id = PCA_reap_the_benefits
-		icon = investigate_industrial_corruption
+		icon = bag_of_money4
 		cost = 3.6
 		available = {
 			has_government = communist
@@ -2850,6 +2924,11 @@ focus_tree = {
 		y = 4
 		completion_reward = {
 		    add_stability = 0.025
+			897  = {
+				remove_dynamic_modifier = {
+					modifier = PCA_Las_Vegas_Mod 
+				}
+			}
 		}
 
 	}
@@ -2933,7 +3012,7 @@ focus_tree = {
 	}
 	focus = {
 		id = PCA_restart_hoover_dam
-		icon = focus_hydroelectric_scheme
+		icon = GFX_goal_PCA_restart_hoover_dam
 		cost = 5
 		available = {
 			has_government = communist
@@ -3016,6 +3095,11 @@ focus_tree = {
 			add_stability = 0.01 
 			add_war_support = 0.05 
 			add_political_power = 80
+			897  = {
+				remove_dynamic_modifier = {
+					modifier = PCA_Las_Vegas_Mod 
+				}
+			}
 		}
 
 	}
@@ -4213,9 +4297,11 @@ focus_tree = {
 						has_government = national_bolshevik
 					}
 				}
-				create_wargoal = {
-					type = topple_government
-					target = PREV
+				PCA = {
+					create_wargoal = {
+						type = topple_government
+						target = PREV
+					}
 				}
 			}
 		}
@@ -4680,6 +4766,7 @@ focus_tree = {
 		completion_reward = {
 		    add_war_support = 0.017
 			add_stability = 0.01
+			add_country_leader_trait = GER_personality_cult
 		}
 
 	}
@@ -4703,6 +4790,8 @@ focus_tree = {
 		y = 6
 		completion_reward = {
 		    add_political_power = 100
+			add_command_power = 100
+			army_experience = 100
 		}
 
 	}
@@ -4998,6 +5087,11 @@ focus_tree = {
 				    has_idea = idea_failing_economy
 				}
 				remove_ideas = idea_failing_economy
+			}
+			897  = {
+				remove_dynamic_modifier = {
+					modifier = PCA_Las_Vegas_Mod 
+				}
 			}
 			remove_ideas = idea_comecon_member
 			add_political_power = -100
