@@ -47,6 +47,17 @@ shared_focus = {
 		trigger = { 
 			tag = NEA 
 			NOT = { has_focus_tree = american_state_tree }
+			NOT = { has_country_leader_ideology = gatesism }
+		}
+	}
+	
+	offset = {
+		x = -20
+		y = 7
+		trigger = { 
+			tag = NEA 
+			NOT = { has_focus_tree = american_state_tree }
+			has_country_leader_ideology = gatesism
 		}
 	}
 	
@@ -1345,6 +1356,7 @@ shared_focus = {
 		focus = AMR_america_first
 		focus = AMR_align_to_the_democratic_league
 		focus = AMR_neutrality
+		focus = NEA_the_technate
 	}
 	
 	allow_branch = {
@@ -1358,6 +1370,13 @@ shared_focus = {
 				}
 			}
 			has_country_flag = the_united_states_are_back
+		}
+	}
+	
+	offset = {
+		x = 2
+		trigger = {
+			has_country_leader_ideology = gatesism
 		}
 	}
 	
@@ -1717,6 +1736,413 @@ shared_focus = {
 	}
 }
 
+
+### Technocratic Expansion ###
+
+shared_focus = {
+	id = NEA_the_technate
+	icon = GFX_goal_NEA_technate
+	cost = 6
+	x = -5
+	y = 1
+	relative_position_id = AMR_1987_undone
+	
+	prerequisite = {
+		focus = AMR_1987_undone
+	}
+	
+	mutually_exclusive = {
+		focus = AMR_american_imperialism
+		focus = AMR_america_first
+		focus = AMR_the_eagles_united
+		focus = AMR_align_to_the_democratic_league
+		focus = AMR_new_revolutionary_dawn
+	}
+	
+	allow_branch = {
+		has_country_leader_ideology = gatesism
+		has_country_flag = the_united_states_are_back
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		add_ideas = NEA_towards_the_technate_idea
+	}
+}
+
+shared_focus = {
+	id = NEA_mexican_integration
+	icon = GFX_goal_NEA_take_mexico
+	cost = 6
+	x = 0
+	y = 1
+	relative_position_id = NEA_the_technate
+	
+	prerequisite = {
+		focus = NEA_the_technate
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		create_wargoal = {
+			type = annex_everything
+			target = MEX
+		}
+		every_state = {
+			limit = { is_core_of = MEX }
+			NEA = { add_state_claim = PREV} 
+		}
+	}
+}
+
+shared_focus = {
+	id = NEA_the_great_north
+	icon = GFX_goal_NEA_take_canada
+	cost = 6
+	x = -2
+	y = 1
+	relative_position_id = NEA_the_technate
+	
+	prerequisite = {
+		focus = NEA_the_technate
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		create_wargoal = {
+			type = annex_everything
+			target = CAN
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = GRN
+		} 
+		every_state = {
+			limit = { is_core_of = CAN }
+			NEA = { add_state_claim = PREV} 
+		}
+		every_state = {
+			limit = { is_core_of = GRN }
+			NEA = { add_state_claim = PREV} 
+		}
+	}
+}
+
+shared_focus = {
+	id = NEA_carribean_resources
+	icon = GFX_goal_NEA_the_carribean_resources
+	cost = 6
+	x = 2
+	y = 1
+	relative_position_id = NEA_the_technate
+	
+	prerequisite = {
+		focus = NEA_the_technate
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		create_wargoal = {
+			type = annex_everything
+			target = CUB
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = ANT
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = BHM
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = BRB
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = DMN
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = DOM
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = GND
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = HAI
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = JAM
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = STL
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = STV
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = TAT
+		}
+		every_state = {
+			limit = {
+				OR = {	
+					is_core_of = CUB 
+					is_core_of = ANT 
+					is_core_of = ANT 
+					is_core_of = BHM
+					is_core_of = BRB
+					is_core_of = DMN
+					is_core_of = DOM
+					is_core_of = GND
+					is_core_of = HAI
+					is_core_of = JAM
+					is_core_of = STL
+					is_core_of = STV
+					is_core_of = TAT
+				}
+			}
+			NEA = { add_state_claim = PREV} 
+		}
+	}
+}
+
+shared_focus = {
+	id = AMR_to_central_america
+	icon = GFX_goal_NEA_central_america
+	cost = 6
+	x = -1
+	y = 2
+	relative_position_id = NEA_the_technate
+	
+	prerequisite = {
+		focus = NEA_carribean_resources
+	}
+	prerequisite = {
+		focus = NEA_mexican_integration
+	}
+	prerequisite = {
+		focus = NEA_the_great_north
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		create_wargoal = {
+			type = annex_everything
+			target = CEA
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = GUA
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = BLZ
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = PAN
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = ELS
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = HON
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = NIC
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = COS
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = MSK
+		}
+		every_state = {
+			limit = {
+				OR = {	
+					is_core_of = CEA
+					is_core_of = GUA
+					is_core_of = BLZ
+					is_core_of = PAN
+					is_core_of = ELS
+					is_core_of = HON
+					is_core_of = NIC
+					is_core_of = COS
+					is_core_of = MSK
+				}
+			}
+			NEA = { add_state_claim = PREV} 
+		}
+	}
+}
+
+shared_focus = {
+	id = NEA_towards_colombia
+	icon = GFX_goal_NEA_take_gran_colombia
+	cost = 6
+	x = 1
+	y = 2
+	relative_position_id = NEA_the_technate
+	
+	prerequisite = {
+		focus = NEA_carribean_resources
+	}
+	prerequisite = {
+		focus = NEA_mexican_integration
+	}
+	prerequisite = {
+		focus = NEA_the_great_north
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		create_wargoal = {
+			type = annex_everything
+			target = COL
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = VEN
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = GUY
+		}
+		every_state = {
+			limit = {
+				OR = {	
+					is_core_of = COL
+					is_core_of = VEN
+					is_core_of = GUY
+				}
+			}
+			NEA = { add_state_claim = PREV} 
+		}
+	}
+}
+
+shared_focus = {
+	id = NEA_rebuild_social_structure
+	icon = GFX_goal_NEA_continental_reorganization
+	cost = 6
+	x = 0
+	y = 3
+	relative_position_id = NEA_the_technate
+	
+	prerequisite = {
+		focus = AMR_to_central_america
+	}
+	prerequisite = {
+		focus = NEA_towards_colombia
+	}
+	available = {
+		owns_state = 276
+		owns_state = 277
+		owns_state = 317
+		owns_state = 307
+		owns_state = 306
+		owns_state = 687
+		owns_state = 315
+		owns_state = 319
+		owns_state = 318
+		owns_state = 829
+		owns_state = 691
+		owns_state = 830
+		owns_state = 692
+		owns_state = 833
+		owns_state = 308
+		owns_state = 661
+		owns_state = 912
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		set_cosmetic_tag = NEA_USS_TECH
+		every_state = {
+			limit = {
+				OR = {	
+					is_core_of = CEA
+					is_core_of = GUA
+					is_core_of = BLZ
+					is_core_of = PAN
+					is_core_of = ELS
+					is_core_of = HON
+					is_core_of = NIC
+					is_core_of = COS
+					is_core_of = MSK
+					is_core_of = CUB 
+					is_core_of = ANT 
+					is_core_of = ANT 
+					is_core_of = BHM
+					is_core_of = BRB
+					is_core_of = DMN
+					is_core_of = DOM
+					is_core_of = GND
+					is_core_of = HAI
+					is_core_of = JAM
+					is_core_of = STL
+					is_core_of = STV
+					is_core_of = TAT
+					is_core_of = CAN
+					is_core_of = MEX
+					is_core_of = GRN
+				}
+			}
+			NEA = { add_state_core = PREV} 
+		}
+	}
+}
+
+shared_focus = {
+	id = NEA_continental_energy_accounting
+	icon = GFX_goal_NEA_deus_ex_machina
+	cost = 6
+	x = 0
+	y = 4
+	relative_position_id = NEA_the_technate
+	
+	prerequisite = {
+		focus = NEA_rebuild_social_structure
+	}
+
+	available_if_capitulated = yes
+
+	completion_reward = {
+		swap_ideas = {
+			remove_idea = NEA_towards_the_technate_idea
+			add_idea = NEA_energy_efficency_initiative
+		}
+		add_stability = 0.05
+		random_owned_state = {
+			limit = { is_core_of = CAN }
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_state = {
+			limit = { is_core_of = MEX }
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
 ### Neutrality ###
 
 shared_focus = {
@@ -1737,6 +2163,7 @@ shared_focus = {
 		focus = AMR_the_eagles_united
 		focus = AMR_align_to_the_democratic_league
 		focus = AMR_new_revolutionary_dawn
+		focus = NEA_the_technate
 	}
 	
 	available = {
@@ -1753,6 +2180,16 @@ shared_focus = {
 		y = 0
 		trigger = { 
 			AMR_is_soc_unifier = yes
+			NOT = { has_country_leader_ideology = gatesism }
+		}
+	}
+
+	offset = {
+		x = -5
+		y = 0
+		trigger = { 
+			AMR_is_soc_unifier = yes
+			has_country_leader_ideology = gatesism
 		}
 	}
 
