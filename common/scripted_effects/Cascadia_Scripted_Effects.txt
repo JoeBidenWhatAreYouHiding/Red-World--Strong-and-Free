@@ -148,3 +148,248 @@ CSD_peaceout_effect = {
 		country_event = { id = csd_flavour.2 days = 600 }
 		country_event = { id = csd_flavour.3 days = 250 }
 	}
+}
+
+CSD_recalc_president_status = {
+	if = {
+		limit = { has_idea = cascadia_sic_david_lynch }
+		if = {
+			limit = { has_government = centrist }
+			CSD_set_president_as_supportive = yes
+		}
+		else = {	
+			CSD_set_president_as_ambivalent_good = yes
+		}
+	}
+	else_if = {
+		limit = { has_idea = cascadia_sic_theodore_kaczynski }
+		if = {
+			limit = { has_government = nationalist }
+			CSD_set_president_as_supportive = yes
+		}
+		
+		if = {
+			limit = {
+				OR = {	
+					has_government = moderate_socialist 
+				}					
+			}
+			CSD_set_president_as_ambivalent_good = yes
+		}
+		
+		if = {
+			limit = {
+				OR = {	
+					has_government = new_democrat 
+					has_government = revolutionary_socialist 
+				}					
+			}
+			CSD_set_president_as_ambivalent_bad = yes
+		}
+		
+		if = {
+			limit = {
+				OR = {	
+					has_government = centrist 
+					has_government = national_conservative 
+				}					
+			}
+			CSD_set_president_as_hostile = yes
+		}
+	}
+	else_if = {
+		limit = { has_idea = cascadia_sic_jeff_merkley }
+		if = {
+			limit = { has_government = revolutionary_socialist }
+			CSD_set_president_as_supportive = yes
+		}
+		
+		if = {
+			limit = {
+				OR = {	
+					has_government = moderate_socialist 
+					has_government = new_democrat
+				}					
+			}
+			CSD_set_president_as_ambivalent_good = yes
+		}
+		
+		if = {
+			limit = {
+				OR = {	
+					has_government = centrist 
+				}					
+			}
+			CSD_set_president_as_ambivalent_bad = yes
+		}
+		
+		if = {
+			limit = {
+				OR = {	
+					has_government = national_conservative 
+					has_government = nationalist					
+				}
+			}
+			CSD_set_president_as_hostile = yes
+		}
+	}
+	else_if = {
+		limit = { has_idea = cascadia_sic_ajamu_baraka }
+		if = {
+			limit = { has_government = moderate_socialist }
+			CSD_set_president_as_supportive = yes
+		}
+		
+		if = {
+			limit = {
+				OR = {	
+					has_government = revolutionary_socialist 
+					has_government = new_democrat
+				}					
+			}
+			CSD_set_president_as_ambivalent_bad = yes
+		}
+		
+		if = {
+			limit = {
+				OR = {	
+					has_government = national_conservative 
+					has_government = centrist 
+					has_government = nationalist					
+				}
+			}
+			CSD_set_president_as_hostile = yes
+		}
+	}
+	else_if = {
+		limit = { has_idea = cascadia_sic_glenn_beck }
+		if = {
+			limit = { has_government = national_conservative }
+			CSD_set_president_as_supportive = yes
+		}
+		
+		if = {
+			limit = {
+				OR = {	
+					has_government = centrist 
+					has_government = nationalist
+				}					
+			}
+			CSD_set_president_as_ambivalent_bad = yes
+		}
+		
+		if = {
+			limit = {
+				OR = {	
+					has_government = revolutionary_socialist 
+					has_government = moderate_socialist 
+					has_government = liberal					
+					has_government = new_democrat					
+				}
+			}
+			CSD_set_president_as_hostile = yes
+		}
+	}
+	else_if = {
+		limit = { has_idea = cascadia_sic_jay_inslee }
+		if = {
+			limit = { has_government = new_democrat }
+			CSD_set_president_as_supportive = yes
+		}
+		
+		if = {
+			limit = {
+				OR = {	
+					has_government = centrist 
+					has_government = nationalist
+				}					
+			}
+			CSD_set_president_as_ambivalent_bad = yes
+		}
+		
+		if = {
+			limit = {
+				OR = {	
+					has_government = revolutionary_socialist 
+					has_government = moderate_socialist 
+					has_government = liberal					
+				}
+			}
+			CSD_set_president_as_ambivalent_good = yes
+		}
+		
+		if = {
+			limit = { 
+				OR = { 
+					has_government = national_conservative 
+				}					
+			}
+			CSD_set_president_as_hostile  = yes
+		}
+	}
+	else_if = {
+		limit = { has_idea = cascadia_sic_ron_wyden }
+		if = {
+			limit = { has_government = liberal }
+			CSD_set_president_as_supportive = yes
+		}
+		
+		if = {
+			limit = { has_government = centrist }
+			CSD_set_president_as_ambivalent_bad = yes
+		}
+		
+		if = {
+			limit = {
+				OR = {	
+					has_government = revolutionary_socialist 
+					has_government = moderate_socialist 
+					has_government = new_democrat					
+				}
+			}
+			CSD_set_president_as_ambivalent_good = yes
+		}
+		
+		if = {
+			limit = { 
+				OR = { 
+					has_government = national_conservative 
+					has_government = nationalist
+				}					
+			}
+			CSD_set_president_as_hostile  = yes
+		}
+	}
+	else = {
+		if = {
+			limit = { has_government = liberal }
+			CSD_set_president_as_supportive = yes
+		}
+		
+		if = {
+			limit = { has_government = centrist }
+			CSD_set_president_as_ambivalent_bad = yes
+		}
+		
+		if = {
+			limit = {
+				OR = {	
+					has_government = revolutionary_socialist 
+					has_government = moderate_socialist 
+					has_government = new_democrat					
+				}
+			}
+			CSD_set_president_as_ambivalent_good = yes
+		}
+		
+		if = {
+			limit = { 
+				OR = { 
+					has_government = national_conservative 
+					has_government = nationalist
+				}					
+			}
+			CSD_set_president_as_hostile  = yes
+		}
+	}
+}
