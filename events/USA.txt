@@ -469,13 +469,23 @@ country_event = {
 		USA = {
 		    country_event = { id = usa.9 }
 		}
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					hours = 4
+					id = texas_news.14
+				}
+			}
+		}
 	}
 	
 	option = {   #Never
 		name = usa.5.o2
 		USA = {
 		    declare_war_on = { target = TEX type = annex_everything }
+			set_country_flag = USA_war_with_TEX
 		}
+		set_global_flag = TEX_texan_war_occured
 		ai_chance = {
 			base = 10
 			modifier = {
@@ -512,6 +522,9 @@ country_event = {
 	
 	option = {   #We have to
 		name = usa.6.o1
+		trigger = {
+			NOT = { has_country_leader = { name = "Oliver North" ruling_only = yes } }
+		}
 		TEX = { 
 			get_current_government_type = yes
 		}
@@ -539,7 +552,9 @@ country_event = {
 		name = usa.6.o2
 		USA = {
 		    declare_war_on = { target = TEX type = annex_everything }
+			set_country_flag = USA_war_with_TEX
 		}
+		set_global_flag = TEX_texan_war_occured
 		ai_chance = {
 			factor = 10
 		}

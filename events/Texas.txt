@@ -1364,15 +1364,11 @@ country_event = {
 	id = texas.60
 	title = texas.60.t
 	desc = texas.60.d
-	picture = anti_war_protests
+	picture = post_war_elections_to_be_held
 	
 	fire_only_once = yes
 	
-	trigger = {
-		tag = TEX
-		has_global_flag = TEX_USA_war
-		NOT = { has_war_with = USA }
-	}
+	is_triggered_only = yes
 	
 	option = { #
 		name = texas.60.o1
@@ -2284,6 +2280,25 @@ country_event = {
 	}
 }
 
+#Education Money
+country_event = {
+	id = texas_flavour.2
+	title = texas_flavour.2.t
+	desc = texas_flavour.2.d
+	picture = doomsday_clock
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	major = yes
+	
+	option = {
+		name = texas_flavour.2.o1
+		add_stability = -0.02
+	}
+}
+
 #######################
 ### PEACEOUT EVENTS ###
 #######################
@@ -2293,7 +2308,7 @@ country_event = {
 	id = texas_peaceout.1
 	title = texas_peaceout.1.t
 	desc = texas_peaceout.1.d
-	picture = bush_speaks
+	picture = dallas_reclaimed
 	
 	fire_only_once = yes
 	
@@ -2308,18 +2323,23 @@ country_event = {
 	option = { #Peaceout
 		name = texas_peaceout.1.o1
 		ai_chance = {
-			factor = 99
+			factor = 100
 		}
 		add_political_power = -100
 		TEX = {
 			country_event = texas_peaceout.2
 		}
+		add_timed_idea = {
+			idea = USA_failure_in_texas
+			days = 400
+		}
+		remove_ideas = idea_usa_texan_troubles
 	}
 	
 	option = { #Keep Fighting
 		name = texas_peaceout.1.o2
 		ai_chance = {
-			factor = 1
+			factor = 0
 		}
 		add_war_support = 0.02
 	}
@@ -2330,7 +2350,7 @@ country_event = {
 	id = texas_peaceout.2
 	title = texas_peaceout.2.t
 	desc = texas_peaceout.2.d
-	picture = bush_speaks
+	picture = dallas_reclaimed
 	
 	fire_only_once = yes
 	
@@ -2339,7 +2359,7 @@ country_event = {
 	option = { #Agreed
 		name = texas_peaceout.2.o1
 		ai_chance = {
-			factor = 99
+			factor = 100
 		}
 		add_political_power = 100
 		white_peace = USA
@@ -2355,13 +2375,17 @@ country_event = {
 					id = texas_news.8
 				}
 			}
+			country_event = {
+				id = texas_peaceout.10
+				days = 7
+			}
 		}
 	}
 	
 	option = { #Keep Fighting
 		name = texas_peaceout.2.o2
 		ai_chance = {
-			factor = 1
+			factor = 0
 		}
 		add_war_support = 0.02
 	}
@@ -2372,7 +2396,7 @@ country_event = {
 	id = texas_peaceout.3
 	title = texas_peaceout.3.t
 	desc = texas_peaceout.3.d
-	picture = bush_speaks
+	picture = texas_reclaims_east_texas
 	
 	fire_only_once = yes
 	
@@ -2387,20 +2411,26 @@ country_event = {
 	option = { #Peaceout
 		name = texas_peaceout.3.o1
 		ai_chance = {
-			factor = 99
+			factor = 100
 		}
 		add_political_power = -100
 		TEX = {
 			country_event = texas_peaceout.4
 		}
+		add_timed_idea = {
+			idea = USA_failure_in_texas
+			days = 600
+		}
+		remove_ideas = idea_usa_texan_troubles
 	}
 	
 	option = { #Keep Fighting
 		name = texas_peaceout.3.o2
 		ai_chance = {
-			factor = 1
+			factor = 0
 		}
 		add_war_support = 0.02
+		set_global_flag = TEX_went_to_fuck_atlanta_in_the_ass
 	}
 }
 
@@ -2409,7 +2439,7 @@ country_event = {
 	id = texas_peaceout.4
 	title = texas_peaceout.4.t
 	desc = texas_peaceout.4.d
-	picture = bush_speaks
+	picture = texas_reclaims_east_texas
 	
 	fire_only_once = yes
 	
@@ -2418,7 +2448,7 @@ country_event = {
 	option = { #Agreed
 		name = texas_peaceout.4.o1
 		ai_chance = {
-			factor = 99
+			factor = 100
 		}
 		add_political_power = 100
 		white_peace = USA
@@ -2435,18 +2465,192 @@ country_event = {
 					id = texas_news.9
 				}
 			}
+			country_event = {
+				id = texas_peaceout.10
+				days = 7
+			}
 		}
 	}
 	
 	option = { #We shall march to Atlanta!
 		name = texas_peaceout.4.o2
 		ai_chance = {
-			factor = 1
+			factor = 0
 		}
+		add_war_support = 0.02
+		set_global_flag = TEX_went_to_fuck_atlanta_in_the_ass
+	}
+}
+
+#Remnants Forced to Leave
+country_event = {
+	id = texas_peaceout.5
+	title = texas_peaceout.5.t
+	desc = texas_peaceout.5.d
+	picture = remnants_announce_withdrawl
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Fuck me!!!
+		name = texas_peaceout.5.o1
+		add_stability = -0.1
+		add_timed_idea = {
+			idea = USA_failure_in_texas
+			days = 250
+		}
+		remove_ideas = idea_usa_texan_troubles
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					hours = 4
+					id = texas_news.12
+				}
+			}
+		}
+	}
+}
+
+#Remnants Forced to Leave - TEX POV
+country_event = {
+	id = texas_peaceout.6
+	title = texas_peaceout.6.t
+	desc = texas_peaceout.6.d
+	picture = remnants_announce_withdrawl
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Cool beans
+		name = texas_peaceout.6.o1
+		add_stability = 0.05
+		hidden_effect = {
+			country_event = {
+				id = texas_peaceout.10
+				days = 7
+			}
+		}
+	}
+}
+
+#FUCK ME!!!!!
+country_event = {
+	id = texas_peaceout.7
+	title = texas_peaceout.7.t
+	desc = texas_peaceout.7.d
+	picture = texan_victory
+	
+	fire_only_once = yes
+	
+	trigger = {
+		tag = USA
+		has_global_flag = TEX_went_to_fuck_atlanta_in_the_ass
+		TEX = {
+			controls_state = 374
+		}
+	}
+	
+	option = { #Pain and suffering noises
+		name = texas_peaceout.7.o1
+		add_stability = -0.2
+		white_peace = TEX
+		TEX = {
+			transfer_state = 900
+			transfer_state = 1046
+			transfer_state = 374
+		}
+		add_timed_idea = {
+			idea = USA_failure_in_texas
+			days = 800
+		}
+		remove_ideas = idea_usa_texan_troubles
+	}
+}
+
+#Unlimited genocide on Oklahomans
+country_event = {
+	id = texas_peaceout.8
+	title = texas_peaceout.8.t
+	desc = texas_peaceout.8.d
+	picture = texan_victory
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #DONT MESS WITH TEXAS BITCH
+		name = texas_peaceout.8.o1
+		add_war_support = 0.1
+		effect_tooltip = {
+			TEX = {
+				transfer_state = 900
+				transfer_state = 1046
+				transfer_state = 374
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = texas_peaceout.10
+				days = 7
+			}
+		}
+	}
+}
+
+#Fucking Texas in the ass - USA POV
+country_event = {
+	id = texas_peaceout.9
+	title = texas_peaceout.9.t
+	desc = texas_peaceout.9.d
+	picture = texas_war_victory
+	
+	fire_only_once = yes
+	
+	trigger = {
+		has_global_flag = TEX_texan_war_occured
+		tag = USA
+		TEX = {
+			OR = {
+				exists = no
+				is_subject_of = USA
+			}
+		}
+		375 = {
+			is_owned_by_ROOT_or_subject = yes
+		}
+	}
+		
+	
+	option = { #cool
+		name = texas_peaceout.9.o1
 		add_war_support = 0.02
 	}
 }
 
+#Texas - we won, yay
+country_event = {
+	id = texas_peaceout.10
+	title = texas_peaceout.10.t
+	desc = texas_peaceout.10.d
+	picture = end_of_the_texan_war
+	
+	fire_only_once = yes
+	is_triggered_only = yes	
+	
+	option = { #cool
+		name = texas_peaceout.10.o1
+		TEX_peaceout_effects = yes
+		add_ideas = TEX_corruption_issue
+		hidden_effect = {
+			country_event = {
+				id = texas.60
+				days = 10
+			}
+		}
+	}
+}
 
 ######################
 ### HISTORY EVENTS ###
@@ -2750,5 +2954,44 @@ news_event = {	#Texas Reclaims East Texas
 	
 	option = {
 		name = texas_news.10.o1
+	}
+}
+
+news_event = {	#Remnants win Texas war
+	id = texas_news.11
+	title = texas_news.11.t
+	desc = texas_news.11.d
+	picture = news_texas_conquered
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = texas_news.11.o1
+	}
+}
+
+news_event = {	#Texas waits out America
+	id = texas_news.12
+	title = texas_news.12.t
+	desc = texas_news.12.d
+	picture = news_texas_america_war
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = texas_news.12.o1
+	}
+}
+
+news_event = {	#Texas Surrenders
+	id = texas_news.14
+	title = texas_news.14.t
+	desc = texas_news.14.d
+	picture = news_texas
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = texas_news.14.o1
 	}
 }
