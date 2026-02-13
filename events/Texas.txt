@@ -1173,6 +1173,17 @@ country_event = {
 		ai_chance = {
 			factor = 40
 		}
+		trigger = {
+			OR = {
+				has_government = national_conservative
+				has_government = liberal
+				has_government = centrist
+				has_country_leader = {
+					name = "Jeb Bush"
+					ruling_only = yes
+				}
+			}
+		}
 		TEX = { country_event = texas.48 }
 	}
 	
@@ -1187,7 +1198,7 @@ country_event = {
 		TEX = { country_event = texas.49 }
 	}
 	
-	option = { #No
+	option = { #
 		name = texas.47.o3
 		trigger = {
 			tag = TEX
@@ -1215,6 +1226,14 @@ country_event = {
 		give_resource_rights = { receiver = USA state = 375 }
 		give_military_access = USA
 		set_country_flag = TEX_delegation_made_peace
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					hours = 4
+					id = texas_news.15
+				}
+			}
+		}
 	}
 }
 
@@ -2501,6 +2520,7 @@ country_event = {
 			days = 250
 		}
 		remove_ideas = idea_usa_texan_troubles
+		set_global_flag = TEX_republic_peaceout
 		hidden_effect = {
 			every_country = {
 				news_event = {
@@ -2626,6 +2646,14 @@ country_event = {
 	option = { #cool
 		name = texas_peaceout.9.o1
 		add_war_support = 0.02
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					hours = 4
+					id = texas_news.14
+				}
+			}
+		}
 	}
 }
 
@@ -2993,5 +3021,18 @@ news_event = {	#Texas Surrenders
 	
 	option = {
 		name = texas_news.14.o1
+	}
+}
+
+news_event = {	#Bush Delegation
+	id = texas_news.15
+	title = texas_news.15.t
+	desc = texas_news.15.d
+	picture = bush_delegation_secures_peace
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = texas_news.15.o1
 	}
 }
