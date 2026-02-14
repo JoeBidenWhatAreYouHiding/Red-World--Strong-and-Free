@@ -14821,6 +14821,7 @@ country_event = {
 						}	
 					}
 					USA = { has_government = fascist }
+					has_completed_focus = CAN_send_aid_to_texas
 				}
 			}
 		}
@@ -14836,20 +14837,59 @@ country_event = {
 			factor = 50
 			modifier = {
 				factor = 40
-				MWA = {
-					has_government = nationalist
-				}
-				USA = { 
-					NOT = { 
-						has_government = fascist
-						has_government = nationalist
+				OR = {
+					AND = {
+						MWA = {
+							has_government = nationalist
+						}
+						USA = { 
+							NOT = { 
+								has_government = fascist
+								has_government = nationalist
+							}
+						}
 					}
+					has_completed_focus = CAN_support_the_republic
 				}
 			}
 		}
 		trigger = {
 			USA = { exists = yes has_idea = idea_standing_firm_remnants }
 		}
+	}
+}
+
+#Texas - Canada Supports us
+country_event = {
+	id = canada_diplo.74
+	title = canada_diplo.74.t
+	desc = canada_diplo.74.d
+	picture = cascadian_military_support
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = canada_diplo.74.o1
+		army_experience = 100
+		add_command_power = 100
+	}
+}
+
+#USA - Canada Supports us
+country_event = {
+	id = canada_diplo.75
+	title = canada_diplo.75.t
+	desc = canada_diplo.75.d
+	picture = cascadian_military_support
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = canada_diplo.75.o1
+		army_experience = 100
+		add_command_power = 100
 	}
 }
 
