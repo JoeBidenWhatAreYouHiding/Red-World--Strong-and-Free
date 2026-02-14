@@ -6818,6 +6818,15 @@
 		completion_reward = {
 			custom_effect_tooltip = unlock_focuses
 		}
+		bypass_effect = {
+			hidden_effect = {
+				country_event = {
+					id = rw_germany.235
+					days = 70
+					random_days = 40
+				}
+			}
+		}
 	}
 	
 	### Merz ###
@@ -8704,6 +8713,11 @@
 			has_country_flag = GER_next_congress_concluded
 		}
 		
+		allow_branch = {
+			NOT = { has_country_flag = GER_lux_wins }
+			has_country_flag = GER_second_term_tree_visible
+		}
+		
 		prerequisite = {
 			focus = GER_15th_congress
 		}
@@ -8882,6 +8896,11 @@
 			has_country_flag = GER_next_congress_concluded
 		}
 		
+		allow_branch = {
+			NOT = { has_country_flag = GER_lux_wins }
+			has_country_flag = GER_second_term_tree_visible
+		}
+		
 		prerequisite = {
 			focus = GER_15th_congress
 		}
@@ -9037,6 +9056,345 @@
 			swap_ideas = {
 				remove_idea = GER_social_digital_credit
 				add_idea = GER_new_social_engineering
+			}
+		}
+	}
+	
+	
+	### Biermann ###
+	
+	focus = {
+		id = GER_premier_biermann
+		icon = GFX_goal_GER_premier_biermann
+		cost = 1.5
+		
+		available = {
+			has_country_leader = {
+				name = "Wolf Biermann"
+				ruling_only = yes
+			}
+			has_country_flag = GER_next_congress_concluded
+		}
+		
+		allow_branch = {
+			has_country_flag = GER_lux_wins
+			has_country_flag = GER_second_term_tree_visible
+		}
+		
+		prerequisite = {
+			focus = GER_15th_congress
+		}
+		
+		relative_position_id = GER_15th_congress
+		x = 4
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = rw_germany.227
+			custom_effect_tooltip = GER_lux_cabinet_tt
+			hidden_effect = {
+				add_ideas = germany_sic_martin_schirdewan
+				add_ideas = germany_fom_jan_van_aken
+				add_ideas = germany_ind_michael_brie
+				add_ideas = germany_nsm_jorn_schutrumpf
+			}
+		}
+	}
+	
+	focus = {
+		id = GER_new_red_democracy
+		icon = GFX_goal_GER_rosas_red_democracy
+		cost = 5
+		
+		available = {
+			has_completed_focus = GER_revival_of_luxemburgist_ideals
+		}
+		
+		prerequisite = {
+			focus = GER_premier_biermann
+		}
+		
+		relative_position_id = GER_premier_biermann
+		x = -1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.02
+			}
+			swap_ideas = {
+				remove_idea = GER_new_luxemburgism
+				add_idea = GER_new_luxemburgism2_reddem
+			}
+			add_stability = 0.04
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = -0.04
+			}
+			add_popularity = {
+				ideology = national_bolshevik
+				popularity = -0.04
+			}
+		}
+	}
+	
+	focus = {
+		id = GER_rehabilitate_mutti
+		icon = GFX_goal_GER_rehabilitate_mutti
+		cost = 5
+		
+		available = {
+			
+		}
+		
+		prerequisite = {
+			focus = GER_new_red_democracy
+		}
+		
+		prerequisite = {
+			focus = GER_revival_of_luxemburgist_ideals
+		}
+		
+		mutually_exclusive = {
+			focus = GER_move_beyond_the_technocratic_tendency
+		}
+		
+		relative_position_id = GER_premier_biermann
+		x = 0
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = GER_technocratic_rule2
+				add_idea = GER_neo_merkelism
+			}
+			add_stability = 0.02
+			add_political_power = 10
+			country_event = rw_germany.229
+		}
+	}
+	
+	focus = {
+		id = GER_revival_of_luxemburgist_ideals
+		icon = GFX_goal_GER_luxemburgism
+		cost = 5
+		
+		available = {
+			
+		}
+		
+		prerequisite = {
+			focus = GER_premier_biermann
+			focus = GER_premier_schirdewan
+		}
+		
+		relative_position_id = GER_premier_biermann
+		x = 1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = GER_new_system_of_socialism2
+				add_idea = GER_new_luxemburgism
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.02
+			}
+			country_event = rw_germany.228
+		}
+	}
+	
+	focus = {
+		id = GER_new_interventionist_spirit
+		icon = GFX_goal_GER_new_interventionism
+		cost = 5
+		
+		available = {
+			
+		}
+		
+		prerequisite = {
+			focus = GER_new_red_democracy
+		}
+		prerequisite = {
+			focus = GER_rehabilitate_mutti
+		}
+		
+		relative_position_id = GER_premier_biermann
+		x = -1
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			remove_ideas = GER_merkelreich
+			add_ideas = GER_new_interventionist_spirit
+			country_event = rw_germany.230
+		}
+	}
+	
+	### Schirdewan ###
+	
+	focus = {
+		id = GER_premier_schirdewan
+		icon = GFX_goal_GER_premier_schirdewan
+		cost = 1.5
+		
+		available = {
+			has_country_leader = {
+				name = "Martin Schirdewan"
+				ruling_only = yes
+			}
+			has_country_flag = GER_next_congress_concluded
+		}
+		
+		allow_branch = {
+			has_country_flag = GER_lux_wins
+			has_country_flag = GER_second_term_tree_visible
+		}
+		
+		prerequisite = {
+			focus = GER_15th_congress
+		}
+		
+		relative_position_id = GER_premier_biermann
+		x = 2
+		y = 0
+
+		available_if_capitulated = yes
+
+		completion_reward = {		
+			country_event = rw_germany.231
+			custom_effect_tooltip = GER_lux_cabinet_tt
+			hidden_effect = {
+				add_ideas = germany_sic_wolf_biermann
+				add_ideas = germany_fom_jan_van_aken
+				add_ideas = germany_ind_michael_brie
+				add_ideas = germany_nsm_jorn_schutrumpf
+			}
+		}
+	}
+	
+	focus = {
+		id = GER_anti_authoritarian_socialism
+		icon = GFX_goal_GER_anti_authoritarian_socialism
+		cost = 5
+		
+		available = {
+			has_completed_focus = GER_revival_of_luxemburgist_ideals
+		}
+		
+		prerequisite = {
+			focus = GER_premier_schirdewan
+		}
+		
+		relative_position_id = GER_premier_schirdewan
+		x = 1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_popularity = {
+				ideology = communist
+				popularity = -0.04
+			}
+			add_popularity = {
+				ideology = national_bolshevik
+				popularity = -0.04
+			}
+			swap_ideas = {
+				remove_idea = GER_new_luxemburgism
+				add_idea = GER_new_luxemburgism2_antistalin
+			}
+			country_event = rw_germany.232
+		}
+	}
+	
+	focus = {
+		id = GER_move_beyond_the_technocratic_tendency
+		icon = GFX_goal_GER_move_beyond_the_technocratic_tendency
+		cost = 5
+		
+		available = {
+			
+		}
+		
+		prerequisite = {
+			focus = GER_anti_authoritarian_socialism
+		}
+		prerequisite = {
+			focus = GER_revival_of_luxemburgist_ideals
+		}
+		
+		mutually_exclusive = {
+			focus = GER_rehabilitate_mutti
+		}
+		
+		relative_position_id = GER_premier_schirdewan
+		x = 0
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			remove_ideas = GER_technocratic_rule2
+			swap_ideas = {
+				remove_idea = GER_new_luxemburgism2_antistalin
+				add_idea = GER_new_luxemburgism3_antistalin
+			}
+			country_event = rw_germany.233
+		}
+	}
+	
+	focus = {
+		id = GER_expand_the_influence_of_the_rosa_luxemburg_foundation
+		icon = GFX_goal_GER_vision_of_karl_schirdewan
+		cost = 5
+		
+		available = {
+			has_completed_focus = GER_revival_of_luxemburgist_ideals
+		}
+		
+		prerequisite = {
+			focus = GER_move_beyond_the_technocratic_tendency
+		}
+		prerequisite = {
+			focus = GER_anti_authoritarian_socialism
+		}
+		
+		relative_position_id = GER_premier_schirdewan
+		x = 1
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			GER_martin_schirdewan = {
+				add_trait = {
+					trait = GER_reformist_heritage
+					ideology = luxemburgism 
+				}
+			}
+			add_stability = 0.05
+			add_political_power = 10
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.03
 			}
 		}
 	}
@@ -27688,6 +28046,23 @@
 						country = CUB
 						relation = military_access
 						active = yes
+					}
+				}
+			}
+			hidden_effect = {
+				if = {
+					limit = {
+						CUB = {
+							OR = { 
+								has_government = moderate_socialist
+								has_government = national_bolshevik
+								has_government = communist
+							}
+						}
+					}
+					country_event = {
+						id = rw_germany.234
+						days = 35
 					}
 				}
 			}

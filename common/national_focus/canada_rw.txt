@@ -7740,7 +7740,7 @@ focus_tree = {
 					add_ideas = canada_sic_nathen_cullen 
 				}
 				else = {
-					add_ideas = canada_sic_tom_mulcair
+					add_ideas = canada_sic_thomas_mulcair
 				}
 			}
 		}
@@ -19487,7 +19487,7 @@ focus_tree = {
 		}
 		
 		relative_position_id = CAN_the_democratic_league
-		x = 4
+		x = 3
 		y = 1
 
 		available = {
@@ -19570,8 +19570,8 @@ focus_tree = {
 		}
 		
 		relative_position_id = CAN_america
-		x = -4
-		y = 1
+		x = -3
+		y = 2
 
 		available = {
 			country_exists = CSD
@@ -19591,7 +19591,7 @@ focus_tree = {
 			    }
 			}
 			add_opinion_modifier = {
-				target = CAN
+				target = CSD
 				modifier = supports_our_cause
 			}
 			CSD = {
@@ -19633,9 +19633,9 @@ focus_tree = {
 			factor = 5
 		}
 		
-		relative_position_id = CAN_america
-		x = -4
-		y = 2
+		relative_position_id = CAN_support_cascadian_rebels
+		x = -1
+		y = 1
 
 		available = {
 			country_exists = CSD
@@ -19687,9 +19687,9 @@ focus_tree = {
 			factor = 0
 		}
 		
-		relative_position_id = CAN_america
-		x = -2
-		y = 2
+		relative_position_id = CAN_support_cascadian_rebels
+		x = 1
+		y = 1
 
 		available = {
 			country_exists = CSD
@@ -19723,8 +19723,8 @@ focus_tree = {
 		}
 		
 		relative_position_id = CAN_america
-		x = 4
-		y = 1
+		x = 3
+		y = 2
 
 		available = {
 			country_exists = AMC
@@ -19798,9 +19798,9 @@ focus_tree = {
 			factor = 5
 		}
 		
-		relative_position_id = CAN_america
-		x = 4
-		y = 2
+		relative_position_id = CAN_support_commonwealth_rebels
+		x = 1
+		y = 1
 
 		available = {
 			AMC = {
@@ -19847,9 +19847,9 @@ focus_tree = {
 			factor = 5
 		}
 		
-		relative_position_id = CAN_america
-		x = 2
-		y = 2
+		relative_position_id = CAN_support_commonwealth_rebels
+		x = -1
+		y = 1
 
 		available = {
 			AMC = {
@@ -19873,6 +19873,163 @@ focus_tree = {
 		completion_reward = {
 			AMC = {
 				country_event = canada_diplo.9
+			}
+		}
+	}
+	
+	
+	## Texas Policy ##
+	
+	focus = {
+		id = CAN_send_aid_to_texas
+		icon = GFX_goal_CAN_support_texas
+		cost = 3
+		
+		prerequisite = {
+			focus = CAN_america
+			# focus = CAN_alaska_status_quo
+			# focus = CAN_alaskan_independence
+			# focus = CAN_absorb_alaska
+		}
+		
+		relative_position_id = CAN_america
+		x = -1
+		y = 2
+
+		available = {
+			TEX = { has_war_with = USA }
+		}
+		
+		bypass = {	
+			TEX = {	
+				OR = {
+					exists = no
+					is_subject_of = USA
+				}
+			}
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_support_the_republic
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			TEX = {
+				add_opinion_modifier = {
+				    target = CAN
+				    modifier = supports_our_cause
+			    }
+			}
+			add_opinion_modifier = {
+				target = TEX
+				modifier = supports_our_cause
+			}
+			add_opinion_modifier = {
+				target = USA
+				modifier = opposes_our_goals
+			}
+			USA = {
+				add_opinion_modifier = {
+					target = CAN
+					modifier = opposes_our_goals
+				}
+			}
+			TEX = {
+				country_event = {
+					id = canada_diplo.74
+					days = 2
+				}
+				 add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 2000
+				} 
+				add_equipment_to_stockpile = {
+					type = support_equipment
+					amount = 200
+				} 
+				add_equipment_to_stockpile = {
+					type = artillery_equipment
+					amount = 75
+				}
+				add_ideas = CAN_texan_support
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_support_the_republic
+		icon = GFX_goal_CAN_back_the_remnants
+		cost = 3
+		
+		prerequisite = {
+			focus = CAN_america
+			# focus = CAN_alaska_status_quo
+			# focus = CAN_alaskan_independence
+			# focus = CAN_absorb_alaska
+		}
+		
+		relative_position_id = CAN_america
+		x = 1
+		y = 2
+
+		available = {
+			TEX = { has_war_with = USA }
+		}
+		
+		bypass = {	
+			TEX = {	
+				OR = {
+					exists = no
+					is_subject_of = USA
+				}
+			}
+		}
+		
+		mutually_exclusive = {
+			focus = CAN_send_aid_to_texas
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			USA = {
+				add_opinion_modifier = {
+				    target = CAN
+				    modifier = supports_our_cause
+			    }
+			}
+			add_opinion_modifier = {
+				target = USA
+				modifier = supports_our_cause
+			}
+			USA = {
+				country_event = {
+					id = canada_diplo.75
+					days = 2
+				}
+				 add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 2000
+				} 
+				add_equipment_to_stockpile = {
+					type = support_equipment
+					amount = 200
+				} 
+				add_equipment_to_stockpile = {
+					type = artillery_equipment
+					amount = 75
+				}
+				add_ideas = CAN_remnant_support
 			}
 		}
 	}
@@ -20011,9 +20168,10 @@ focus_tree = {
 		cost = 4
 		
 		prerequisite = {
-			focus = CAN_alaska_status_quo
-			focus = CAN_alaskan_independence
-			focus = CAN_absorb_alaska
+			focus = CAN_support_the_republic
+			focus = CAN_send_aid_to_texas
+			focus = CAN_support_cascadian_rebels
+			focus = CAN_support_commonwealth_rebels
 		}
 		
 		bypass = {
@@ -20051,7 +20209,7 @@ focus_tree = {
 		
 		relative_position_id = CAN_america
 		x = 0
-		y = 2
+		y = 3
 
 		available = {
 			OR = {
@@ -20102,8 +20260,8 @@ focus_tree = {
 		}
 		
 		relative_position_id = CAN_america
-		x = 0
-		y = 3
+		x = -1
+		y = 4
 
 		available = {
 			has_country_flag = CAN_won_in_northwest
@@ -20197,7 +20355,7 @@ focus_tree = {
 		cost = 4
 		
 		prerequisite = {
-			focus = CAN_rebuild_the_northwest
+			focus = CAN_no_more_ethnostates
 		}
 		
 		ai_will_do = {
@@ -20205,7 +20363,7 @@ focus_tree = {
 		}
 		
 		relative_position_id = CAN_america
-		x = 0
+		x = 1
 		y = 4
 
 		available = {
@@ -20243,9 +20401,9 @@ focus_tree = {
 			factor = 5
 		}
 		
-		relative_position_id = CAN_america
+		relative_position_id = CAN_reexamine_america_policy
 		x = -2
-		y = 5
+		y = 1
 
 		available = {
 			has_country_flag = CAN_intervention
@@ -20711,9 +20869,9 @@ focus_tree = {
 			focus = CAN_reunificationism
 		}
 		
-		relative_position_id = CAN_america
+		relative_position_id = CAN_reexamine_america_policy
 		x = 0
-		y = 5
+		y = 1
 
 		available = {
 			has_country_flag = CAN_staying_neutral
@@ -20804,9 +20962,9 @@ focus_tree = {
 			}
 		}
 		
-		relative_position_id = CAN_america
+		relative_position_id = CAN_reexamine_america_policy
 		x = 2
-		y = 5
+		y = 1
 
 		available = {
 			has_country_flag = CAN_supporting_AR
