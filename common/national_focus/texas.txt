@@ -895,6 +895,13 @@ focus_tree = {
 		relative_position_id = TEX_2013_election
 		x = 17
 		y = 1
+		
+		offset = {
+			x = -3
+			trigger = {
+				has_country_flag = TEX_kinky_flag
+			}
+		}
 
 		available_if_capitulated = yes
 
@@ -942,6 +949,10 @@ focus_tree = {
 
 		completion_reward = {
 			country_event = texas.76
+			custom_effect_tooltip = TEX_perry_one_republic_cabinet
+			hidden_effect = {
+				add_ideas = texas_sic_tom_delay
+			}
 		}
 	}
 	
@@ -1308,6 +1319,10 @@ focus_tree = {
 
 		completion_reward = {
 			country_event = texas.83
+			custom_effect_tooltip = TEX_north_one_republic_cabinet
+			hidden_effect = {
+				add_ideas = texas_sic_ronny_jackson
+			}
 		}
 	}
 	
@@ -1743,17 +1758,58 @@ focus_tree = {
 		relative_position_id = TEX_2013_election
 		x = -11
 		y = 1
+		
+		offset = {
+			x = 1
+			trigger = {
+				has_country_flag = TEX_kinky_flag
+			}
+		}
 
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = texas.123
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.01
+			}
+			custom_effect_tooltip = TEX_reform_cabinet
+			hidden_effect = {
+				add_ideas = texas_sic_pat_choate
+				add_ideas = texas_fom_ed_zschau
+				add_ideas = texas_ind_mark_cuban
+				add_ideas = texas_nsm_eric_x_li
+				random_list = {
+					50 = {
+						TEX_ross_perot = {
+							set_portraits = {
+								civilian = { large = "gfx/leaders/TEX/Portrait_TEX_Ross_Perot.png" }
+							}
+						}
+					}
+					25 = {
+						TEX_ross_perot = {
+							set_portraits = {
+								civilian = { large = "gfx/leaders/TEX/Portrait_TEX_Ross_Perot_Alt.png" }
+							}
+						}
+					}
+					25 = {
+						TEX_ross_perot = {
+							set_portraits = {
+								civilian = { large = "gfx/leaders/TEX/Portrait_TEX_Ross_Perot_Alt2.png" }
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_soverign_wealth_fund
-		icon = GFX_goal_TEX_fortify_austin
+		icon = GFX_goal_TEX_sovereign_wealth_fund
 		cost = 6
 		
 		prerequisite = {
@@ -1767,17 +1823,22 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_research_slot = 1
+			add_ideas = TEX_wealthfund_idea
 		}
 	}
 	
 	focus = {
 		id = TEX_target_the_pork_barrel
-		icon = GFX_goal_TEX_fortify_austin
+		icon = GFX_goal_TEX_target_the_pork
 		cost = 6
 		
 		prerequisite = {
 			focus = TEX_soverign_wealth_fund
+		}
+		
+		available = {
+			has_completed_focus = TEX_the_delay_affair
 		}
 		
 		relative_position_id = TEX_President_Perot
@@ -1787,13 +1848,24 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = -1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			remove_ideas = TEX_corruption_issue_reduced
 		}
 	}
 	
 	focus = {
 		id = TEX_the_delay_affair
-		icon = GFX_goal_TEX_fortify_austin
+		icon = GFX_goal_TEX_the_delay_affair
 		cost = 6
 		
 		prerequisite = {
@@ -1808,13 +1880,28 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = TEX_corruption_issue
+				add_idea = TEX_corruption_issue_reduced
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.03
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.03
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.03
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_light_firearm_restrictions
-		icon = GFX_goal_TEX_fortify_austin
+		icon = GFX_goal_TEX_light_gun_restrictions
 		cost = 6
 		
 		prerequisite = {
@@ -1828,13 +1915,30 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_ideas = TEX_light_firearm_restrictions
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1100
+				producer = ROOT
+			}
+			add_stability = -0.05
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.03
+			}
+			add_political_power = -100
 		}
 	}
 	
 	focus = {
 		id = TEX_a_balanced_budget
-		icon = GFX_goal_TEX_fortify_austin
+		icon = {
+			value = GFX_goal_TEX_balanced_budget2
+			trigger = { has_government = national_conservative }
+		}
+		icon = {
+			value = GFX_goal_TEX_balanced_budget
+		}
 		cost = 6
 		
 		prerequisite = {
@@ -1848,13 +1952,25 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_timed_idea = {
+				idea = TEX_a_balanced_budget
+				days = 600
+			}
+			add_political_power = 10
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.02
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_patriotism_not_nationalism
-		icon = GFX_goal_TEX_fortify_austin
+		icon = GFX_goal_TEX_patriotism_not_nationalism
 		cost = 6
 		
 		prerequisite = {
@@ -1871,13 +1987,19 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = texas.130
+			swap_ideas = {
+				remove_idea = TEX_Second_Republic
+				add_idea = TEX_Second_Republic_Reform
+			}
+			add_stability = 0.03
+			add_war_support = 0.05
 		}
 	}
 	
 	focus = {
 		id = TEX_fervent_economic_nationalism
-		icon = GFX_goal_TEX_fortify_austin
+		icon = GFX_goal_TEX_economic_nationalism
 		cost = 6
 		
 		prerequisite = {
@@ -1891,13 +2013,14 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = texas.124
+			add_ideas = TEX_economic_nationalism
 		}
 	}
 	
 	focus = {
 		id = TEX_populist_rhetoric
-		icon = GFX_goal_TEX_fortify_austin
+		icon = GFX_goal_TEX_tripartisan_populism
 		cost = 6
 		
 		prerequisite = {
@@ -1911,13 +2034,16 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = texas.125
+			add_liberal_to_coalition = yes
+			add_natcon_to_coalition = yes
+			remove_ideas = TEX_One_Republic_Legacy
 		}
 	}
 	
 	focus = {
 		id = TEX_digital_democracy
-		icon = GFX_goal_TEX_fortify_austin
+		icon = GFX_goal_TEX_digital_democracy
 		cost = 6
 		
 		prerequisite = {
@@ -1931,13 +2057,23 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = texas.126
+			add_stability = 0.05
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.05
+			}
+			add_ideas = TEX_digital_town_halls
 		}
 	}
 	
 	focus = {
 		id = TEX_fervent_social_liberalism
-		icon = GFX_goal_TEX_fortify_austin
+		icon = GFX_goal_TEX_perots_social_liberalism
 		cost = 6
 		
 		prerequisite = {
@@ -1954,13 +2090,16 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = texas.129
+			add_ideas = TEX_fervent_social_liberalism
+			add_manpower = 2300
+			add_stability = 0.04
 		}
 	}
 	
 	focus = {
 		id = TEX_the_swiss_system
-		icon = GFX_goal_TEX_fortify_austin
+		icon = GFX_goal_TEX_swiss_system
 		cost = 6
 		
 		prerequisite = {
@@ -1980,13 +2119,27 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = texas.127
+			swap_ideas = {
+				remove_idea = TEX_digital_town_halls
+				add_idea = TEX_digital_town_halls2
+			}
+			add_opinion_modifier = {
+				target = SWI
+				modifier = perots_helvetophilia
+			}
+			SWI = {
+				add_opinion_modifier = {
+					target = TEX
+					modifier = perots_helvetophilia
+				}
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_tax_the_rich
-		icon = GFX_goal_TEX_fortify_austin
+		icon = GFX_goal_TEX_tax_the_rich
 		cost = 6
 		
 		prerequisite = {
@@ -2000,13 +2153,27 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_timed_idea = {
+				idea = TEX_taxing_the_rich
+				days = 500
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_empower_the_presidency
-		icon = GFX_goal_TEX_fortify_austin
+		icon = GFX_goal_TEX_empower_the_president
 		cost = 6
 		
 		prerequisite = {
@@ -2020,13 +2187,17 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_trait = {
+				character = TEX_ross_perot
+				ideology = classical_populism
+				trait = GER_empowered_president
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_beyond_post_america_neoliberalism
-		icon = GFX_goal_TEX_fortify_austin
+		icon = GFX_goal_TEX_beyond_post_american_neoliberalism
 		cost = 6
 		
 		prerequisite = {
@@ -2043,7 +2214,16 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = texas.128
+			add_popularity = {
+				ideology = national_conservative
+				popularity = -0.05
+			}
+			add_stability = 0.03
+			swap_ideas = {
+				remove_idea = TEX_taxing_the_rich
+				add_idea = TEX_shredding_reaganomics
+			}
 		}
 	}
 	
@@ -2068,11 +2248,18 @@ focus_tree = {
 		relative_position_id = TEX_2013_election
 		x = -4
 		y = 1
+		
+		offset = {
+			x = 1
+			trigger = {
+				has_country_flag = TEX_kinky_flag
+			}
+		}
 
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			custom_effect_tooltip = TEX_libertarian_cabinet
 		}
 	}
 	
@@ -3096,11 +3283,18 @@ focus_tree = {
 		relative_position_id = TEX_2013_election
 		x = -17
 		y = 1
+		
+		offset = {
+			x = 1
+			trigger = {
+				has_country_flag = TEX_kinky_flag
+			}
+		}
 
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			custom_effect_tooltip = TEX_independent_republican_cabinet
 		}
 	}
 	
@@ -3597,6 +3791,10 @@ focus_tree = {
 			}
 		}
 		
+		allow_branch = {
+			NOT = { has_country_flag = TEX_kinky_flag }
+		}
+		
 		relative_position_id = TEX_2013_election
 		x = 5
 		y = 1
@@ -3604,7 +3802,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			custom_effect_tooltip = TEX_democrat_cabinet
 		}
 	}
 	
@@ -3697,6 +3895,363 @@ focus_tree = {
 		relative_position_id = TEX_President_Johnson_Robb
 		x = 0
 		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	# - President Kinky Friedman
+	
+	focus = {
+		id = TEX_President_Friedman_
+		icon = GFX_goal_TEX_president_friedman
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_2013_election
+		}
+		
+		available = {
+			has_country_leader = {
+				name = "Kinky Friedman"
+				ruling_only = yes
+			}
+		}
+		
+		allow_branch = {
+			has_country_flag = TEX_kinky_flag
+		}
+		
+		relative_position_id = TEX_2013_election
+		x = 4
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_remember_the_alamo_and_keep_it_holy
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_President_Friedman_
+		}
+		
+		relative_position_id = TEX_President_Friedman_
+		x = 1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_fight_voter_apathy
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_President_Friedman_
+		}
+		
+		relative_position_id = TEX_President_Friedman_
+		x = -1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_fight_wussification
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_fight_voter_apathy
+		}
+		
+		relative_position_id = TEX_President_Friedman_
+		x = -1
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+		
+	focus = {
+		id = TEX_no_bullshit_governance
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_remember_the_alamo_and_keep_it_holy
+		}
+		
+		relative_position_id = TEX_President_Friedman_
+		x = 1
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_democrips_and_reploodlicans
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_fight_voter_apathy
+		}
+		
+		relative_position_id = TEX_President_Friedman_
+		x = -3
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_freedom_to_smoke_
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_remember_the_alamo_and_keep_it_holy
+		}
+		
+		relative_position_id = TEX_President_Friedman_
+		x = 3
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_pro_life_pro_choice_pro_football
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 6
+
+		prerequisite = {
+			focus = TEX_fight_wussification
+		}
+		prerequisite = {
+			focus = TEX_democrips_and_reploodlicans
+		}
+		
+		relative_position_id = TEX_President_Friedman_
+		x = -2
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_bribe_mexican_generals
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_freedom_to_smoke_
+		}
+		prerequisite = {
+			focus = TEX_no_bullshit_governance
+		}
+		
+		relative_position_id = TEX_President_Friedman_
+		x = 2
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_slots_for_tots
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_fight_wussification
+			focus = TEX_no_bullshit_governance
+		}
+		
+		relative_position_id = TEX_President_Friedman_
+		x = 0
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_you_can_lead_a_politican_to_water
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_slots_for_tots
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_but_you_cant_make_them_think
+		}
+		
+		relative_position_id = TEX_slots_for_tots
+		x = -1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_but_you_cant_make_them_think
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_slots_for_tots
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_you_can_lead_a_politican_to_water
+		}
+		
+		relative_position_id = TEX_slots_for_tots
+		x = 1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_abolish_death_penalty
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_but_you_cant_make_them_think
+			focus = TEX_you_can_lead_a_politican_to_water
+		}
+		
+		relative_position_id = TEX_slots_for_tots
+		x = 0
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_ban_gerrymandering
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_but_you_cant_make_them_think
+			focus = TEX_you_can_lead_a_politican_to_water
+		}
+		
+		relative_position_id = TEX_slots_for_tots
+		x = -2
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_as_miserable_as_the_rest_of_us
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_but_you_cant_make_them_think
+			focus = TEX_you_can_lead_a_politican_to_water
+		}
+		
+		relative_position_id = TEX_slots_for_tots
+		x = 2
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_my_president_is_a_jewish_cowboy_
+		icon = GFX_goal_TEX_fortify_austin
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_as_miserable_as_the_rest_of_us
+		}
+		prerequisite = {
+			focus = TEX_ban_gerrymandering
+		}
+		prerequisite = {
+			focus = TEX_abolish_death_penalty
+		}
+		
+		relative_position_id = TEX_slots_for_tots
+		x = 0
+		y = 3
 
 		available_if_capitulated = yes
 
