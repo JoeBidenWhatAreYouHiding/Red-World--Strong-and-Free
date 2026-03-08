@@ -1932,13 +1932,14 @@ country_event = {
 			ruling_party = centrist
 		}
 		TEX_ron_paul = {
-			promote_character = right_libertarian
+			promote_character = mainline_anti_statism
 		}
 		set_party_name = {
 			name = TEX_libertarian_party
 			long_name = TEX_libertarian_party_long
 			ideology = centrist
 		}
+		set_country_flag = TEX_libertarian_party_in_power
 		set_country_flag = TEX_post_war_election
 		swap_ideas = {
 			remove_idea = TEX_One_Republic_Dominance
@@ -2523,6 +2524,422 @@ country_event = {
 		add_popularity = {
 			ideology = nationalist
 			popularity = -0.01
+		}
+	}
+}
+
+#Ron Paul Speaks
+country_event = {
+	id = texas.107
+	title = texas.107.t
+	desc = texas.107.d
+	picture = ron_paul_of_the_union
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #ITS HAPPENING...
+		name = texas.107.o1
+		add_political_power = 10
+	}
+}
+
+#Moneybomb
+country_event = {
+	id = texas.108
+	title = texas.108.t
+	desc = texas.108.d
+	picture = moneybomb
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.108.o1
+		set_country_flag = TEX_moneybomb_big_money
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.05
+		}
+		add_stability = -0.1
+		hidden_effect = {
+			random_list = {
+				50 = {
+					country_event = {
+						id = texas.109
+						days = 30
+					}
+				}
+				50 = {
+					country_event = {
+						id = texas.110
+						days = 30
+					}
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = texas.108.o2
+		set_country_flag = TEX_moneybomb_small_donations
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.05
+		}
+		add_political_power = -50
+		hidden_effect = {
+			random_list = {
+				60 = {
+					country_event = {
+						id = texas.109
+						days = 30
+					}
+				}
+				40 = {
+					country_event = {
+						id = texas.110
+						days = 30
+					}
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = texas.108.o3
+		set_country_flag = TEX_moneybomb_both
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.05
+		}
+		add_political_power = 10
+		add_stability = 0.01
+		hidden_effect = {
+			country_event = {
+				id = texas.110
+				days = 30
+			}
+		}
+	}
+}
+
+#Snap Congressional Elections - WHY DIDN'T YOU STOP IT...
+country_event = {
+	id = texas.109
+	title = texas.109.t
+	desc = texas.109.d
+	picture = ron_paul_loses_congressional_election
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.109.o1
+		add_political_power = -100
+		add_popularity = {
+			ideology = centrist
+			popularity = -0.05
+		}
+		set_country_flag = TEX_paul_lost_congress
+	}
+}
+
+#Snap Congressional Elections - ITS HAPPENING
+country_event = {
+	id = texas.110
+	title = texas.110.t
+	desc = texas.110.d
+	picture = ron_paul_wins_congressional_election
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.110.o1
+		add_political_power = 100
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.05
+		}
+		set_country_flag = TEX_paul_won_congress
+	}
+}
+
+#Gold Standard
+country_event = {
+	id = texas.111
+	title = texas.111.t
+	desc = texas.111.d
+	picture = gold_backed_currency
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.111.o1
+		random_owned_state = {
+			add_extra_state_shared_building_slots = -1
+		}
+	}
+}
+
+#Presidential Power
+country_event = {
+	id = texas.112
+	title = texas.112.t
+	desc = texas.112.d
+	picture = paul_extent_of_presidential_power
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #No Power
+		name = texas.112.o1
+		add_political_power = -50
+		add_stability = 0.05
+		set_country_flag = TEX_paul_eroded_presidency
+		if = {
+			limit = { has_country_flag = TEX_paul_lost_congress }
+			set_country_flag = TEX_tla_failure_dummy
+		}
+	}
+	
+	option = { #Some Power
+		name = texas.112.o2
+		add_political_power = 50
+		add_stability = -0.05
+		set_country_flag = TEX_paul_kept_presidency_strong
+	}
+}
+
+#TLA Introduced
+country_event = {
+	id = texas.113
+	title = texas.113.t
+	desc = texas.113.d
+	picture = texas_liberty_act_introduced
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Democrats
+		name = texas.113.o1
+		if = {
+			limit = { has_country_flag = TEX_tla_failure_dummy }
+			set_country_flag = TEX_tla_failure
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.05
+		}
+		set_country_flag = TEX_libertarian_sides_with_dems
+	}
+	
+	option = { #One Republic
+		name = texas.113.o2
+		if = {
+			limit = { has_country_flag = TEX_tla_failure_dummy }
+			set_country_flag = TEX_tla_failure
+		}
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.05
+		}
+		set_country_flag = TEX_libertarian_sides_with_onerep
+	}
+}
+
+#TLA Passes
+country_event = {
+	id = texas.114
+	title = texas.114.t
+	desc = texas.114.d
+	picture = texas_liberty_act_passes
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.114.o1
+		add_political_power = 100
+		add_stability = 0.04
+	}
+}
+
+#TLA Fails
+country_event = {
+	id = texas.115
+	title = texas.115.t
+	desc = texas.115.d
+	picture = texas_liberty_act_fails
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.115.o1
+		add_political_power = -100
+		add_stability = -0.04
+		if = {
+			limit = { has_country_flag = TEX_libertarian_sides_with_onerep }
+			country_event = {
+				id = texas.117
+				days = 6
+			}
+		}
+		else = {
+			country_event = {
+				id = texas.116
+				days = 6
+			}
+		}
+	}
+}
+
+#It is officially over
+country_event = {
+	id = texas.116
+	title = texas.116.t
+	desc = texas.116.d
+	picture = paul_impeached
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.116.o1
+		add_political_power = -100
+		add_popularity = {
+			ideology = centrist
+			popularity = -0.1
+		}
+		TEX_gary_johnson = {
+			promote_character = right_libertarian
+		}
+		set_country_flag = TEX_ron_paul_impeached
+		mark_focus_tree_layout_dirty = yes
+		remove_ideas = texas_sic_gary_johnson
+		add_ideas = texas_sic_whitney_bilyeu 
+	}
+}
+
+#One Republic bails out Paul
+country_event = {
+	id = texas.117
+	title = texas.117.t
+	desc = texas.117.d
+	picture = one_republic_bails_out_paul
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.117.o1
+		add_nationalist_to_coalition = yes
+	}
+}
+
+#Right to Bear Arms
+country_event = {
+	id = texas.118
+	title = texas.118.t
+	desc = texas.118.d
+	picture = texas_we_love_guns_sexually
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.118.o1
+		add_political_power = 10
+	}
+}
+
+#End of the TIRS
+country_event = {
+	id = texas.119
+	title = texas.119.t
+	desc = texas.119.d
+	picture = ron_paul_ends_the_irs
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.119.o1
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.03
+		}
+	}
+}
+
+#Legal Crack
+country_event = {
+	id = texas.120
+	title = texas.120.t
+	desc = texas.120.d
+	picture = ron_paul_lets_legalize_crack
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.120.o1
+		add_stability = -0.05
+	}
+}
+
+#Enviromentalism
+country_event = {
+	id = texas.121
+	title = texas.121.t
+	desc = texas.121.d
+	picture = gary_johnson_enviromentalism
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.121.o1
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.02
+		}
+	}
+}
+
+#Legal weed but not legal crack
+country_event = {
+	id = texas.122
+	title = texas.122.t
+	desc = texas.122.d
+	picture = gary_johnson_legal_weed
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.122.o1
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
 		}
 	}
 }
