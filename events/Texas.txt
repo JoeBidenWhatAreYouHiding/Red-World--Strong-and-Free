@@ -1470,9 +1470,25 @@ country_event = {
 		}
 		hidden_effect = {
 			if = {
-				limit = { has_country_flag = TEX_dubya_flag }
+				limit = { 
+					has_country_flag = TEX_dubya_flag
+					USA = {
+						NOT = {
+							has_country_leader = {
+								name = "Jeb Bush"
+								ruling_only = yes
+							}
+						}
+					}
+				}
 				country_event = {
 					id = texas.63
+					days = 4
+				}
+			}
+			else = {
+				country_event = {
+					id = texas.106
 					days = 4
 				}
 			}
@@ -1681,9 +1697,12 @@ country_event = {
 		}
 		else = {
 			TEX_george_w_bush = {
-				promote_character = fiscal_conservative
+				promote_character = compassionate_conservatism
 			}
 		}
+		clr_country_flag = TEX_bush_defeats_martinez
+		clr_country_flag = TEX_martinez_wins
+		clr_country_flag = TEX_bush_wins_unopposed
 	}
 }
 
@@ -1975,6 +1994,27 @@ country_event = {
 			set_politics = {
 				ruling_party = liberal
 			}
+		}
+		set_country_flag = TEX_post_war_election
+		swap_ideas = {
+			remove_idea = TEX_One_Republic_Dominance
+			add_idea = TEX_One_Republic_Legacy
+		}
+		add_ideas = TEX_Shadow_of_Martial_Law
+	}
+	
+	option = { #IndReps
+		name = texas.75.o5
+		trigger = {
+			NOT = { has_country_flag = TEX_one_republic_dominates}
+			NOT = { has_country_flag = TEX_indreps_endorse_perot}
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.05
+		}
+		set_politics = {
+			ruling_party = national_conservative
 		}
 		set_country_flag = TEX_post_war_election
 		swap_ideas = {
@@ -2525,6 +2565,46 @@ country_event = {
 			ideology = nationalist
 			popularity = -0.01
 		}
+	}
+}
+
+#IR Convention
+country_event = {
+	id = texas.106
+	title = texas.106.t
+	desc = texas.106.d
+	picture = straus_indrep_nominee
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.106.o1
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.02
+		}
+	}
+	
+	option = {
+		name = texas.106.o2
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.02
+		}
+		TEX_susana_martinez = {
+			promote_character = fiscal_conservative
+		}
+	}
+	
+	option = {
+		name = texas.106.o3
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.07
+		}
+		set_country_flag = TEX_indreps_endorse_perot
 	}
 }
 
@@ -3081,6 +3161,285 @@ country_event = {
 	
 	option = {
 		name = texas.130.o1
+		add_stability = 0.02
+	}
+}
+
+#Social Conservatism is CRINGE
+country_event = {
+	id = texas.141
+	title = texas.141.t
+	desc = texas.141.d
+	picture = texas_abandoning_social_conservatism
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.141.o1
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.04
+		}
+	}
+}
+
+#Evangelicals
+country_event = {
+	id = texas.142
+	title = texas.142.t
+	desc = texas.142.d
+	picture = kenneth_copeland
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.142.o1
+		add_popularity = {
+			ideology = nationalist
+			popularity = -0.04
+		}
+	}
+}
+
+#Ballot Measures
+country_event = {
+	id = texas.143
+	title = texas.143.t
+	desc = texas.143.d
+	picture = ballot_meausures
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.143.o1
+		add_political_power = 10
+	}
+}
+
+#Corruption
+country_event = {
+	id = texas.144
+	title = texas.144.t
+	desc = texas.144.d
+	picture = new_stadiums
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.144.o1
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+#Corruption
+country_event = {
+	id = texas.145
+	title = texas.145.t
+	desc = texas.145.d
+	picture = texas_rangers
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.145.o1
+		add_stability = 0.02
+	}
+}
+
+#Martinez Speaks
+country_event = {
+	id = texas.146
+	title = texas.146.t
+	desc = texas.146.d
+	picture = martinez_delivers_state_of_the_union
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.146.o1
+		add_political_power = 10
+	}
+}
+
+#New Mexico Autonomy
+country_event = {
+	id = texas.147
+	title = texas.147.t
+	desc = texas.147.d
+	picture = new_mexico_autonomy
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.147.o1
+		add_political_power = 10
+	}
+}
+
+#Hispanic Voters
+country_event = {
+	id = texas.148
+	title = texas.148.t
+	desc = texas.148.d
+	picture = hispanic_conservatives
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.148.o1
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.02
+		}
+	}
+}
+
+#Straus Speaks
+country_event = {
+	id = texas.149
+	title = texas.149.t
+	desc = texas.149.d
+	picture = straus_delivers_state_of_the_union
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.149.o1
+		add_political_power = 10
+	}
+}
+
+#Straus Evangelical Soyrage
+country_event = {
+	id = texas.150
+	title = texas.150.t
+	desc = texas.150.d
+	picture = straus_freedom
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.150.o1
+		add_popularity = {
+			ideology = nationalist
+			popularity = -0.05
+		}
+	}
+}
+
+#Dubya Speaks
+country_event = {
+	id = texas.151
+	title = texas.151.t
+	desc = texas.151.d
+	picture = dubya_delivers_state_of_the_union
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.151.o1
+		add_political_power = 10
+	}
+}
+
+#Daddy's gone
+country_event = {
+	id = texas.152
+	title = texas.152.t
+	desc = texas.152.d
+	picture = dubya_and_father
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.152.o1
+		add_political_power = -40
+		add_popularity = {
+			ideology = national_conservative
+			popularity = -0.04
+		}
+		add_war_support = 0.04
+		hidden_effect = {
+			country_event = {
+				id = texas.154
+				days = 13
+			}
+		}
+	}
+	
+	option = {
+		name = texas.152.o2
+		add_political_power = 40
+		add_stability = 0.04
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.02
+		}
+		add_war_support = -0.04
+	}
+}
+
+#Take me out to the ball game
+country_event = {
+	id = texas.153
+	title = texas.153.t
+	desc = texas.153.d
+	picture = dubya_baseball
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.153.o1
+		add_political_power = 10
+	}
+}
+
+#Whispers
+country_event = {
+	id = texas.154
+	title = texas.154.t
+	desc = texas.154.d
+	picture = bush_whispers
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.154.o1
+		set_country_flag = TEX_DUBYA_awakens
+	}
+	
+	option = {
+		name = texas.154.o2
 		add_stability = 0.02
 	}
 }
