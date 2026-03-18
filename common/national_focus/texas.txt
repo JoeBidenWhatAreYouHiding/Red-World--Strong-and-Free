@@ -978,7 +978,7 @@ focus_tree = {
 			add_war_support = 0.05
 			add_trait = {
 				character = TEX_rick_perry
-				ideology = ultranationalist
+				ideology = texas_nationalism
 				trait = TEX_savior_of_the_republic
 			}
 		}
@@ -1346,7 +1346,7 @@ focus_tree = {
 		completion_reward = {
 			add_trait = {
 				character = TEX_oliver_north
-				ideology = ultranationalist
+				ideology = texas_nationalism
 				trait = TEX_savior_of_the_republic
 			}
 		}
@@ -1709,7 +1709,9 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			add_country_leader_trait = GER_empowered_president
+			remove_ideas = TEX_Shadow_of_Martial_Law_OR
+			add_war_support = 0.04
+			add_command_power = 40
 		}
 	}
 	
@@ -1755,6 +1757,10 @@ focus_tree = {
 				name = "Ross Perot"
 				ruling_only = yes
 			}
+		}
+		
+		allow_branch = {
+			NOT = { has_country_flag = TEX_reform_party_dissolved_flag }
 		}
 		
 		relative_position_id = TEX_2013_election
@@ -1873,6 +1879,15 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_President_Perot
 			focus = TEX_Independent_Republicans
+		}
+		
+		available = {
+			OR = {
+				has_completed_focus = TEX_President_Martinez
+				has_completed_focus = TEX_President_Strauss
+				has_completed_focus = TEX_President_Bush
+				has_completed_focus = TEX_President_Perot
+			}
 		}
 		
 		relative_position_id = TEX_President_Perot
@@ -2194,6 +2209,7 @@ focus_tree = {
 				ideology = classical_populism
 				trait = GER_empowered_president
 			}
+			remove_ideas = TEX_Shadow_of_Martial_Law
 		}
 	}
 	
@@ -3452,6 +3468,12 @@ focus_tree = {
 				has_country_flag = TEX_kinky_flag
 			}
 		}
+		offset = {
+			x = 4
+			trigger = {
+				has_country_flag = TEX_reform_party_dissolved_flag
+			}
+		}
 
 		available_if_capitulated = yes
 
@@ -3477,6 +3499,13 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_Independent_Republicans
 		}
+		available = {
+			OR = {
+				has_completed_focus = TEX_President_Martinez
+				has_completed_focus = TEX_President_Strauss
+				has_completed_focus = TEX_President_Bush
+			}
+		}
 		
 		relative_position_id = TEX_Independent_Republicans
 		x = -4
@@ -3485,7 +3514,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_research_slot = 1
 		}
 	}
 	
@@ -3517,6 +3546,17 @@ focus_tree = {
 
 		completion_reward = {
 			country_event = texas.142
+			add_ideas = TEX_social_conservatism
+			add_stability = -0.05
+			add_political_power = 50
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.05
+			}
 		}
 	}
 	
@@ -3548,6 +3588,17 @@ focus_tree = {
 
 		completion_reward = {
 			country_event = texas.141
+			add_ideas = TEX_fiscal_conservatism
+			add_stability = 0.05
+			add_political_power = -50
+			add_popularity = {
+				ideology = national_conservative
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
 		}
 	}
 	
@@ -3568,7 +3619,11 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_stability = 0.04
+			swap_ideas = {
+				remove_idea = TEX_Shadow_of_Martial_Law
+				add_idea = TEX_small_govt_conservatism
+			}
 		}
 	}
 	
@@ -3581,6 +3636,14 @@ focus_tree = {
 			focus = TEX_Independent_Republicans
 		}
 		
+		available = {
+			OR = {
+				has_completed_focus = TEX_President_Martinez
+				has_completed_focus = TEX_President_Strauss
+				has_completed_focus = TEX_President_Bush
+			}
+		}
+		
 		relative_position_id = TEX_Independent_Republicans
 		x = -1
 		y = 1
@@ -3589,6 +3652,21 @@ focus_tree = {
 
 		completion_reward = {
 			country_event = texas.143
+			if = {
+				limit = { has_idea = TEX_One_Republic_Legacy2 }
+				remove_ideas = TEX_One_Republic_Legacy2
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = TEX_One_Republic_Legacy
+					add_idea = TEX_One_Republic_Legacy2
+				}
+			}
+			add_political_power = 50
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.04
+			}
 		}
 	}
 	
@@ -3612,6 +3690,14 @@ focus_tree = {
 
 		completion_reward = {
 			country_event = texas.144
+			swap_ideas = {
+				remove_idea = TEX_corruption_issue_reduced
+				add_idea = TEX_limited_patronage
+			}
+			add_stability = -0.04
+			random_owned_controlled_state = {	
+				add_extra_state_shared_building_slots = 1
+			}
 		}
 	}
 	
@@ -3624,6 +3710,14 @@ focus_tree = {
 			focus = TEX_Independent_Republicans
 		}
 		
+		available = {
+			OR = {
+				has_completed_focus = TEX_President_Martinez
+				has_completed_focus = TEX_President_Strauss
+				has_completed_focus = TEX_President_Bush
+			}
+		}
+		
 		relative_position_id = TEX_Independent_Republicans
 		x = 1
 		y = 1
@@ -3631,7 +3725,20 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.05
+			}
+			if = {
+				limit = { has_idea = TEX_One_Republic_Legacy }
+				swap_ideas = {
+					remove_idea = TEX_One_Republic_Legacy
+					add_idea = TEX_One_Republic_Legacy2
+				}
+			}
+			else = {
+				remove_ideas = TEX_One_Republic_Legacy2
+			}
 		}
 	}
 	
@@ -3655,6 +3762,15 @@ focus_tree = {
 
 		completion_reward = {
 			country_event = texas.145
+			add_stability = 0.05
+			add_political_power = -50
+			add_tech_bonus = {
+				name = support_bonus
+				bonus = 1
+				uses = 1
+				technology = tech_military_police
+			}
+			remove_ideas = TEX_corruption_issue_reduced
 		}
 	}
 	
@@ -3729,6 +3845,16 @@ focus_tree = {
 
 		completion_reward = {
 			country_event = texas.150
+			add_trait = {
+				character = TEX_country_club_republican
+				ideology = fiscal_conservative
+				trait = TEX_country_club_conservative
+			}
+			add_stability = 0.04
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.03
+			}
 		}
 	}
 	
@@ -3790,6 +3916,25 @@ focus_tree = {
 
 		completion_reward = {
 			country_event = texas.147
+			899 = {
+				add_dynamic_modifier = { modifier = TEX_New_Mexico_Autonomy }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_stability = 0.05
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.02
+			}
+			add_trait = {
+				character = TEX_susana_martinez
+				ideology = fiscal_conservative
+				trait = TEX_new_mexico_representative
+			}
 		}
 	}
 	
@@ -3821,6 +3966,11 @@ focus_tree = {
 
 		completion_reward = {
 			country_event = texas.148
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.06
+			}
+			add_ideas = TEX_hispanic_conservatives
 		}
 	}
 	
@@ -3843,7 +3993,15 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_ideas = TEX_medicaid
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = hospital
+					level = 1
+					instant_build = yes
+				}
+			}
 		}
 	}
 	
@@ -3930,7 +4088,12 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_stability = 0.04
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				increase_state_category_by_one_level = yes
+			}
+			add_ideas = TEX_ideals_of_compassionate_conservatism
 		}
 	}
 	
@@ -3951,6 +4114,11 @@ focus_tree = {
 
 		completion_reward = {
 			country_event = texas.152
+			custom_effect_tooltip = TEX_if_we_choose_option_one
+			event_option_tooltip = texas.152.o1
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = TEX_if_we_choose_option_two
+			event_option_tooltip = texas.152.o2
 		}
 	}
 	
@@ -3974,6 +4142,12 @@ focus_tree = {
 
 		completion_reward = {
 			country_event = texas.153
+			add_ideas = TEX_hitting_it_out_of_the_park
+			add_stability = 0.04
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.04
+			}
 		}
 	}
 	
@@ -3997,7 +4171,15 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_ideas = TEX_new_independent_republican_legacy
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.02
+			}
 		}
 	}
 	
@@ -4670,7 +4852,7 @@ focus_tree = {
 			add_popularity = { ideology = moderate_socialist popularity = 0.05 }
 			add_popularity = { ideology = revolutionary_socialist popularity = 0.05 }
 			add_popularity = { ideology = centrist popularity = 0.05 }
-			add_ideas = TEX_campaign_finance_reform
+			add_ideas = TEX_campaign_finance_reform_idea
 		}
 	}
 	
