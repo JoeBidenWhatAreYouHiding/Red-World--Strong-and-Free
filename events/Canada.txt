@@ -2631,20 +2631,9 @@ country_event = {
 			else = {
 				if = {
 					limit = { has_completed_focus = CAN_protect_healthcare }
-					random_list = {
-						seed = random
-						30 = { 
-							country_event = {
-								id = rw_canada.70 #Layton Succumbs
-								days = 44
-							}
-						}
-						70 = { 
-							country_event = {
-								id = rw_canada.69 #Layton Recovers
-								days = 44
-							}
-						}
+					country_event = {
+						id = rw_canada.69 #Layton Recovers
+						days = 44
 					}
 				}
 				else = {
@@ -2703,20 +2692,9 @@ country_event = {
 			else = {
 				if = {
 					limit = { has_completed_focus = CAN_protect_healthcare }
-					random_list = {
-						seed = random
-						40 = { 
-							country_event = {
-								id = rw_canada.70 #Layton Succumbs
-								days = 44
-							}
-						}
-						60 = { 
-							country_event = {
-								id = rw_canada.69 #Layton Recovers
-								days = 44
-							}
-						}
+					country_event = {
+						id = rw_canada.69 #Layton Recovers
+						days = 44
 					}
 				}
 				else = {
@@ -12899,7 +12877,7 @@ country_event = {
 				}
 			}
 		}
-		NOT = { has_country_flag = CAN_became_usa }
+		NOT = { has_country_flag = CAN_integrated_usa }
 	}
 	
 	option = { #Good
@@ -13525,19 +13503,13 @@ country_event = {
 				}
 			}
 		}
-		enable_unification_decisions = yes
-		core_NEA = yes
-		core_ILL = yes
-		core_GRL = yes
-		core_MWA = yes
-		core_MOT = yes
-		core_LIN = yes
-		core_UTA = yes
-		core_ARI = yes
-		core_PCA = yes
-		core_TEX = yes
-		core_USA = yes
-		set_country_flag = CAN_became_usa
+		hidden_effect = {
+			country_event = {
+				id = canada_diplo.98
+				days = 3
+			}
+		}
+		set_country_flag = CAN_integrated_usa
 	}
 	
 	option = { #Form United America
@@ -14892,6 +14864,76 @@ country_event = {
 		add_command_power = 100
 	}
 }
+
+#America falls under Canadian control
+country_event = {
+	id = canada_diplo.98
+	title = canada_diplo.98.t
+	desc = canada_diplo.98.d
+	picture = american_flags_lowered
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = canada_diplo.98.o1
+		add_ideas = CAN_american_resistance_idea
+		custom_effect_tooltip = CAN_begin_integrating_us
+		set_global_flag = CAN_occupied_america
+		hidden_effect = {
+			every_state = {	
+				limit = {
+					is_mainland_us_state = yes
+					NOT = { is_core_of = CAN }
+				}
+				set_state_flag = CAN_former_american_state
+				add_dynamic_modifier = {
+					modifier = CAN_american_resistance_3
+				}
+			}
+		
+			CAN = {
+				every_owned_state = {
+					limit = {
+						is_controlled_by = ROOT
+						has_state_flag = CAN_former_american_state
+					}
+					ROOT = { activate_targeted_decision = { target = PREV decision = CAN_pacify_state_destroy_american_influence }}
+				}
+			}
+			every_country = {
+				news_event = { id = rw_canada_news.11} 
+			}
+		}
+	}
+}
+
+#Integration process begins
+country_event = {
+	id = canada_diplo.99
+	title = canada_diplo.99.t
+	desc = canada_diplo.99.d
+	picture = cascadian_military_support
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = canada_diplo.99.o1
+		core_NEA = yes
+		core_ILL = yes
+		core_GRL = yes
+		core_MWA = yes
+		core_MOT = yes
+		core_LIN = yes
+		core_UTA = yes
+		core_ARI = yes
+		core_PCA = yes
+		core_TEX = yes
+		core_USA = yes
+	}
+}
+
 
 #WE FUCKIN WON YEAAAA
 country_event = {
