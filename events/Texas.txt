@@ -72,12 +72,6 @@ country_event = {
 				id = texas.4
 				days = 2
 			}
-			USA = {
-				country_event = {
-					id = texas.6
-					days = 400
-				}
-			}
 		}
 	}
 }
@@ -664,6 +658,9 @@ country_event = {
 			restore_previous_government_type = yes
 		}
 		set_country_flag = republic_of_texas
+		TEX = {
+			set_country_flag = republic_of_texas
+		}
 		hidden_effect = {
 			every_country = {
 				news_event = {
@@ -1804,7 +1801,7 @@ country_event = {
 	option = { #Kinky Friedman
 		name = texas.72.o2
 		TEX_kinky_friedman = {
-			promote_character = left_libertarian
+			promote_character = kinky_democracy
 		}
 		mark_focus_tree_layout_dirty = yes
 		set_country_flag = TEX_kinky_flag
@@ -3167,6 +3164,176 @@ country_event = {
 	}
 }
 
+#Friedman Speaks
+country_event = {
+	id = texas.131
+	title = texas.131.t
+	desc = texas.131.d
+	picture = friedman_state_of_the_union
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.131.o1
+		add_political_power = 10
+	}
+}
+
+#Mandatory Voting
+country_event = {
+	id = texas.132
+	title = texas.132.t
+	desc = texas.132.d
+	picture = friedman_mandatory_voting
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.132.o1
+		add_popularity = {
+			ideology = nationalist
+			popularity = -0.02
+		}
+	}
+}
+
+#Fighting Wussification
+country_event = {
+	id = texas.133
+	title = texas.133.t
+	desc = texas.133.d
+	picture = fight_wussification
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.133.o1
+		add_popularity = {
+			ideology = new_democrat
+			popularity = -0.02
+		}
+	}
+}
+
+#THOU SHALL NOT BULLSHIT
+country_event = {
+	id = texas.135
+	title = texas.135.t
+	desc = texas.135.d
+	picture = thou_shall_not_bullshit
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.135.o1
+		add_popularity = {
+			ideology = national_conservative
+			popularity = -0.02
+		}
+	}
+}
+
+#No Teacher Left Behind
+country_event = {
+	id = texas.136
+	title = texas.136.t
+	desc = texas.136.d
+	picture = no_teacher_left_behind
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.136.o1
+		add_stability = 0.02
+	}
+}
+
+#Freedom to Smoke
+country_event = {
+	id = texas.137
+	title = texas.137.t
+	desc = texas.137.d
+	picture = friedman_smoking
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.137.o1
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+#Hell on the Mind
+country_event = {
+	id = texas.138
+	title = texas.138.t
+	desc = texas.138.d
+	picture = perry_hell
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.138.o1
+		add_popularity = {
+			ideology = nationalist
+			popularity = -0.01
+		}
+	}
+}
+
+#THOU SHALL NOT KILL
+country_event = {
+	id = texas.139
+	title = texas.139.t
+	desc = texas.139.d
+	picture = friedman_thou_shalt_not_kill
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.139.o1
+		add_stability = 0.01
+	}
+}
+
+#THOU SHALT NOT EAT A CHICKEN-FRIED STEAK BIGGER THAN YOUR HEAD, or, Common Sense
+country_event = {
+	id = texas.140
+	title = texas.140.t
+	desc = texas.140.d
+	picture = friedman_perry
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.140.o1
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.01
+		}
+	}
+}
+
 #Social Conservatism is CRINGE
 country_event = {
 	id = texas.141
@@ -3550,6 +3717,336 @@ country_event = {
 	option = {
 		name = texas_flavour.2.o1
 		add_stability = -0.02
+	}
+}
+
+######################
+### DIOPLO EVENTS ###
+######################
+
+add_namespace = texas_diplo
+
+#Claim all of NM or just South Texas?
+country_event = {
+	id = texas_diplo.1
+	title = texas_diplo.1.t
+	desc = texas_diplo.1.d
+	picture = texas_mexico_flags
+	
+	is_triggered_only = yes
+	
+	option = { #All of it
+		name = texas_diplo.1.o1
+		MEX = {
+			country_event = {
+				id = texas_diplo.5
+				days = 2
+			}
+		}
+	}
+	
+	option = { #Just South Texas
+		name = texas_diplo.1.o2
+		MEX = {
+			country_event = {
+				id = texas_diplo.2
+				days = 2
+			}
+		}
+	}
+}
+
+#Texas demands American Lands
+country_event = {
+	id = texas_diplo.2
+	title = texas_diplo.2.t
+	desc = {
+		text = texas_diplo.2.d
+		trigger = {
+			NOT = { has_global_flag = TEX_southtexas_compromise }
+		}
+	}
+	desc = {
+		text = texas_diplo.2.d_2
+		trigger = {
+			has_global_flag = TEX_southtexas_compromise
+		}
+	}
+	picture = texas_mexico_flags
+	
+	is_triggered_only = yes
+	
+	option = { #Sure why not
+		name = texas_diplo.2.o1
+		ai_chance = {
+			factor = 65
+			modifier = {
+				factor = 40
+				OR = {
+					strength_ratio = {
+						tag = TEX
+						ratio > 0.1
+					}
+					TEX = { is_ai = no }
+				}
+			}
+		}
+		TEX = {
+			country_event = {
+				id = texas_diplo.3
+				days = 2
+			}
+		}
+	}
+	
+	option = { #No
+		name = texas_diplo.2.o2
+		ai_chance = {
+			factor = 20
+		}
+		TEX = {
+			country_event = {
+				id = texas_diplo.4
+				days = 2
+			}
+		}
+	}
+}
+
+#South Texas returned
+country_event = {
+	id = texas_diplo.3
+	title = texas_diplo.3.t
+	desc = texas_diplo.3.d
+	picture = texas_mexico_flags
+	
+	is_triggered_only = yes
+	
+	option = { #Fuck yeah
+		name = texas_diplo.3.o1
+		transfer_state = 894
+		set_country_flag = TEX_we_got_south_texas_back
+		remove_state_claim = 376
+		set_country_flag = TEX_gave_up_claims_on_nm
+	}
+}
+
+#Mexico Refuses
+country_event = {
+	id = texas_diplo.4
+	title = texas_diplo.4.t
+	desc = texas_diplo.4.d
+	picture = texas_mexico_flags
+	
+	is_triggered_only = yes
+	
+	option = { #Fuck you
+		name = texas_diplo.4.o1
+		declare_war_on = {
+			target = MEX
+			type = annex_everything 
+		}
+		set_global_flag = TEX_third_mexican_texan_war
+	}
+}
+
+#Texas demands American Lands
+country_event = {
+	id = texas_diplo.5
+	title = texas_diplo.5.t
+	desc = texas_diplo.5.d
+	
+	picture = texas_mexico_flags
+	
+	is_triggered_only = yes
+	
+	option = { #Sure why not
+		name = texas_diplo.5.o1
+		ai_chance = {
+			factor = 65
+			modifier = {
+				factor = 40
+				OR = {
+					strength_ratio = {
+						tag = TEX
+						ratio > 0.1
+					}
+					TEX = { is_ai = no }
+				}
+			}
+		}
+		TEX = {
+			country_event = {
+				id = texas_diplo.6
+				days = 2
+			}
+		}
+	}
+	
+	option = { #No
+		name = texas_diplo.5.o2
+		ai_chance = {
+			factor = 20
+		}
+		TEX = {
+			country_event = {
+				id = texas_diplo.7
+				days = 2
+			}
+		}
+	}
+	
+	option = { #Just South Texas
+		name = texas_diplo.5.o2
+		ai_chance = {
+			factor = 25
+		}
+		TEX = {
+			country_event = {
+				id = texas_diplo.8
+				days = 2
+			}
+		}
+		set_global_flag = TEX_southtexas_compromise
+	}
+}
+
+#South Texas returned
+country_event = {
+	id = texas_diplo.6
+	title = texas_diplo.6.t
+	desc = texas_diplo.6.d
+	picture = texas_mexico_flags
+	
+	is_triggered_only = yes
+	
+	option = { #Fuck yeah
+		name = texas_diplo.6.o1
+		transfer_state = 894
+		transfer_state = 376
+		set_country_flag = TEX_we_got_south_texas_back
+		set_country_flag = TEX_we_got_new_mexico_back
+	}
+}
+
+#Mexico Refuses
+country_event = {
+	id = texas_diplo.7
+	title = texas_diplo.7.t
+	desc = texas_diplo.7.d
+	picture = texas_mexico_flags
+	
+	is_triggered_only = yes
+	
+	option = { #Fuck you
+		name = texas_diplo.7.o1
+		ai_chance = {
+			factor = 40
+		}
+		declare_war_on = {
+			target = MEX
+			type = annex_everything 
+		}
+		set_global_flag = TEX_third_mexican_texan_war
+	}
+	option = { #Try it another way
+		name = texas_diplo.7.o2
+		ai_chance = {
+			factor = 60
+		}
+		set_global_flag = TEX_southtexas_compromise
+		MEX = {
+			country_event = texas_diplo.2
+		}
+	}
+}
+
+#Mexico Counter-Offer
+country_event = {
+	id = texas_diplo.8
+	title = texas_diplo.8.t
+	desc = texas_diplo.8.d
+	picture = texas_mexico_flags
+	
+	is_triggered_only = yes
+	
+	option = { #Yeah duh
+		name = texas_diplo.8.o1
+		ai_chance = {
+			factor = 100
+		}
+		transfer_state = 894
+		set_country_flag = TEX_we_got_south_texas_back
+	}
+	
+	option = { #Not good enough
+		name = texas_diplo.8.o2
+		ai_chance = {
+			factor = 0
+		}
+		declare_war_on = {
+			target = MEX
+			type = annex_everything 
+		}
+		set_global_flag = TEX_third_mexican_texan_war
+	}
+}
+
+#Texas is winning
+country_event = {
+	id = texas_diplo.9
+	title = texas_diplo.9.t
+	desc = texas_diplo.9.d
+	picture = texas_mexico_flags
+	
+	fire_only_once = yes
+	
+	trigger = {
+		tag = MEX
+		has_global_flag = TEX_third_mexican_texan_war
+		TEX = {
+			has_full_control_of_state = 894 #South Texas
+			has_full_control_of_state = 376 #Nueva Mexico
+		}
+		has_war_with = TEX
+	}
+	
+	option = { #Make peace
+		name = texas_diplo.9.o1
+		ai_chance = {
+			factor = 100
+		}
+		TEX = {
+			country_event = texas_diplo.10
+		}
+		white_peace = TEX
+	}
+	
+	option = { #Nah
+		name = texas_diplo.9.o2
+		ai_chance = {
+			factor = 0
+		}
+		add_war_support = 0.04
+	}
+}
+
+#We won against Mexico
+country_event = {
+	id = texas_diplo.10
+	title = texas_diplo.10.t
+	desc = texas_diplo.10.d
+	picture = texas_mexico_flags
+	
+	is_triggered_only = yes
+	
+	option = { #Fuck yeah
+		name = texas_diplo.10.o1
+		transfer_state = 894
+		transfer_state = 376
+		set_country_flag = TEX_we_got_south_texas_back
+		set_country_flag = TEX_we_got_new_mexico_back
+		white_peace = MEX
 	}
 }
 
