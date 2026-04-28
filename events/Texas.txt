@@ -594,6 +594,7 @@ country_event = {
 		}
 		USA = { country_event = texas.30 }
 		add_political_power = -100
+		set_country_flag = TEX_we_willingly_became_an_american_puppet
 	}
 }
 
@@ -748,7 +749,7 @@ country_event = {
 		}
 		set_global_flag = CAN_supports_texas
 		TEX = {
-			change_alignment_to_canada = yes
+			# change_alignment_to_canada = yes
 			country_event = texas.34
 		}
 	}
@@ -764,7 +765,7 @@ country_event = {
 		}
 		set_global_flag = CAN_supports_the_republic
 		USA = {
-			change_alignment_to_canada = yes
+			# change_alignment_to_canada = yes
 		}
 		TEX = {
 			country_event = texas.33
@@ -840,7 +841,7 @@ country_event = {
 		}
 		if = {
 			limit = { has_global_flag = CAN_supports_the_republic }
-			change_alignment_to_warsaw_pact = yes
+			# change_alignment_to_warsaw_pact = yes
 		}
 	}
 }
@@ -3671,6 +3672,11 @@ country_event = {
 	option = {
 		name = texas.250.o1
 		add_political_power = -500
+		TEX_peaceout_effects = yes
+		remove_ideas = TEX_One_Republic_Dominance
+		add_ideas = TEX_legal_limbo
+		add_ideas = TEX_american_stooge_regime
+		add_ideas = TEX_fierce_nationalist_anger
 	}
 }
 
@@ -3803,6 +3809,53 @@ country_event = {
 		random_owned_state = {
 			add_extra_state_shared_building_slots = -1
 		}
+	}
+}
+
+#Atlanta Falls
+country_event = {
+	id = texas.258
+	title = texas.258.t
+	desc = texas.258.d
+	picture = second_burning_of_atlanta
+	
+	fire_only_once = yes
+	
+	trigger = {
+		tag = TEX
+		is_subject_of = USA
+		has_country_flag = TEX_we_willingly_became_an_american_puppet
+		has_capitulated = no
+		surrender_progress < 0.5
+		USA = { 
+			surrender_progress > 0.95 
+			NOT = { controls_state = 365 }
+		}
+		NOT = { has_country_flag = TEX_texan_nationalist_uprising }
+	}
+	
+	option = {
+		name = texas.258.o1
+		USA = { end_puppet = TEX }
+		transfer_state = 371
+		transfer_state = 374
+		if = {
+			limit = { 
+				USA = { owns_state = 900 }
+			}
+			transfer_state = 900
+		}
+		if = {
+			limit = { 
+				USA = { owns_state = 1046 }
+			}
+			transfer_state = 1046
+		}
+		var:365.controller = {
+			white_peace = TEX 
+		}
+		set_country_flag = TEX_remnants_exiled_in_texas
+		set_cosmetic_tag = TEX_american_government_in_exile
 	}
 }
 
@@ -4187,6 +4240,151 @@ country_event = {
 	}
 }
 
+#Annexation
+country_event = {
+	id = texas.280
+	title = texas.280.t
+	desc = texas.280.d
+	picture = second_annexation_of_texas
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.280.o1
+		USA = {
+			annex_country = {
+				target = TEX
+				transfer_troops = no
+			}
+			change_tag_from = ROOT
+		}
+	}
+}
+
+
+#Joint Training
+country_event = {
+	id = texas.281
+	title = texas.281.t
+	desc = texas.281.d
+	picture = texan_american_partnership
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.281.o1
+		add_command_power = 50
+	}
+}
+
+#CIA doing CIA things
+country_event = {
+	id = texas.282
+	title = texas.282.t
+	desc = texas.282.d
+	picture = texas_cia_intervention
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.282.o1
+		add_manpower = -20
+	}
+}
+
+#Voice in the UN
+country_event = {
+	id = texas.283
+	title = texas.283.t
+	desc = texas.283.d
+	picture = texas_in_the_un
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.283.o1
+		add_political_power = 10
+	}
+}
+
+#President Speaks to Congress
+country_event = {
+	id = texas.284
+	title = texas.284.t
+	desc = texas.284.d
+	picture = fema_addresses_congress
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.284.o1
+		add_political_power = 10
+	}
+}
+
+#President Speaks to Congress
+country_event = {
+	id = texas.285
+	title = texas.285.t
+	desc = texas.285.d
+	picture = american_buisness_leaders_arrive
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.285.o1
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+#New CIA
+country_event = {
+	id = texas.286
+	title = texas.286.t
+	desc = texas.286.d
+	picture = texas_cia_intervention
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.286.o1
+		add_war_support = 0.04
+	}
+}
+
+#The Union State
+country_event = {
+	id = texas.287
+	title = texas.287.t
+	desc = texas.287.d
+	picture = texan_american_partnership
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.287.o1
+		add_political_power = 10
+	}
+}
+
 ### Flavour Events ###
 
 add_namespace = texas_flavour
@@ -4277,6 +4475,9 @@ country_event = {
 	
 	option = { #Just South Texas
 		name = texas_diplo.1.o2
+		trigger = {
+			NOT = { is_subject_of = USA }
+		}
 		MEX = {
 			country_event = {
 				id = texas_diplo.2
@@ -4441,7 +4642,7 @@ country_event = {
 	}
 }
 
-#South Texas returned
+#NM + South Texas returned
 country_event = {
 	id = texas_diplo.6
 	title = texas_diplo.6.t
@@ -4452,10 +4653,19 @@ country_event = {
 	
 	option = { #Fuck yeah
 		name = texas_diplo.6.o1
-		transfer_state = 894
-		transfer_state = 376
+		transfer_state = 894 #South Texas
+		if = {
+			limit = { USA = { owns_state = 899 } }
+			USA = { 
+				transfer_state = 376 #New Mexico
+				add_state_core = 376 #New Mexico
+			}
+		}
+		else = {
+			transfer_state = 376 #New Mexico
+			set_country_flag = TEX_we_got_new_mexico_back
+		}
 		set_country_flag = TEX_we_got_south_texas_back
-		set_country_flag = TEX_we_got_new_mexico_back
 	}
 }
 
@@ -4573,10 +4783,247 @@ country_event = {
 	option = { #Fuck yeah
 		name = texas_diplo.10.o1
 		transfer_state = 894
-		transfer_state = 376
+		if = {
+			limit = { USA = { owns_state = 899 } }
+			USA = { 
+				transfer_state = 376 #New Mexico
+				add_state_core = 376 #New Mexico
+			}
+		}
+		else = {
+			transfer_state = 376 #New Mexico
+			set_country_flag = TEX_we_got_new_mexico_back
+		}
 		set_country_flag = TEX_we_got_south_texas_back
-		set_country_flag = TEX_we_got_new_mexico_back
 		white_peace = MEX
+	}
+}
+
+#Texas wants its shit back
+country_event = {
+	id = texas_diplo.11
+	title = texas_diplo.11.t
+	desc = texas_diplo.11.d
+	picture = texas_puppet
+	
+	is_triggered_only = yes
+	
+	option = { #Sure
+		name = texas_diplo.11.o1
+		ai_chance = {
+			factor = 40
+		}
+		TEX = {
+			country_event = texas_diplo.12
+		}
+		remove_state_core = 900
+		remove_state_core = 1046
+	}
+	
+	option = { #We want their part of NM
+		name = texas_diplo.11.o2
+		ai_chance = {
+			factor = 40
+		}
+		TEX = {
+			country_event = texas_diplo.13
+		}
+		remove_state_core = 900
+		remove_state_core = 1046
+		add_state_core = 376
+	}
+	
+	option = { #We want their part of NM for Dallas
+		name = texas_diplo.11.o3
+		ai_chance = {
+			factor = 10
+		}
+		TEX = {
+			country_event = texas_diplo.14
+		}
+		remove_state_core = 900
+		add_state_core = 376
+	}
+	
+	option = { #They can have Dallas
+		name = texas_diplo.11.o4
+		ai_chance = {
+			factor = 10
+		}
+		TEX = {
+			country_event = texas_diplo.15
+		}
+		remove_state_core = 900
+		add_state_core = 376
+	}
+	
+	option = { #No
+		name = texas_diplo.11.o5
+		ai_chance = {
+			factor = 0
+		}
+		TEX = {
+			country_event = texas_diplo.19
+		}
+	}
+}
+
+#The Americans Return our shit
+country_event = {
+	id = texas_diplo.12
+	title = texas_diplo.12.t
+	desc = texas_diplo.12.d
+	picture = texas_puppet
+	
+	is_triggered_only = yes
+	
+	option = { #Yay
+		name = texas_diplo.12.o1
+		transfer_state = 900
+		transfer_state = 1046
+	}
+}
+
+#The Americans Return our shit in exchange for NM
+country_event = {
+	id = texas_diplo.13
+	title = texas_diplo.13.t
+	desc = texas_diplo.13.d
+	picture = texas_puppet
+	
+	is_triggered_only = yes
+	
+	option = { #Yay
+		name = texas_diplo.13.o1
+		transfer_state = 900
+		transfer_state = 1046
+		USA = { transfer_state = 376 }
+		remove_state_core = 376
+	}
+}
+
+#The Americans Return our shit in exchange for NM
+country_event = {
+	id = texas_diplo.14
+	title = texas_diplo.14.t
+	desc = texas_diplo.14.d
+	picture = texas_puppet
+	
+	is_triggered_only = yes
+	
+	option = { #Yay
+		name = texas_diplo.14.o1
+		transfer_state = 900
+		USA = { transfer_state = 376 }
+		remove_state_core = 376
+	}
+}
+
+#The Americans Return Dallas
+country_event = {
+	id = texas_diplo.15
+	title = texas_diplo.15.t
+	desc = texas_diplo.15.d
+	picture = texas_puppet
+	
+	is_triggered_only = yes
+	
+	option = { #Yay
+		name = texas_diplo.15.o1
+		transfer_state = 900
+	}
+}
+
+#Texas wants its shit (Dallas) back
+country_event = {
+	id = texas_diplo.16
+	title = texas_diplo.16.t
+	desc = texas_diplo.16.d
+	picture = texas_puppet
+	
+	is_triggered_only = yes
+	
+	option = { #Sure
+		name = texas_diplo.16.o1
+		ai_chance = {
+			factor = 60
+		}
+		TEX = {
+			country_event = texas_diplo.17
+		}
+		remove_state_core = 900
+	}
+	
+	option = { #We want their part of NM
+		name = texas_diplo.11.o2
+		ai_chance = {
+			factor = 40
+		}
+		TEX = {
+			country_event = texas_diplo.18
+		}
+		remove_state_core = 900
+		add_state_core = 376
+	}
+	
+	option = { #No
+		name = texas_diplo.11.o3
+		ai_chance = {
+			factor = 0
+		}
+		TEX = {
+			country_event = texas_diplo.19
+		}
+	}
+}
+
+#The Americans Return our shit in exchange for NM
+country_event = {
+	id = texas_diplo.17
+	title = texas_diplo.17.t
+	desc = texas_diplo.17.d
+	picture = texas_puppet
+	
+	is_triggered_only = yes
+	
+	option = { #Yay
+		name = texas_diplo.17.o1
+		transfer_state = 900
+		USA = { transfer_state = 376 }
+		remove_state_core = 376
+	}
+}
+
+#The Americans Return Dallas
+country_event = {
+	id = texas_diplo.18
+	title = texas_diplo.18.t
+	desc = texas_diplo.18.d
+	picture = texas_puppet
+	
+	is_triggered_only = yes
+	
+	option = { #Yay
+		name = texas_diplo.18.o1
+		transfer_state = 900
+	}
+}
+
+#The Americans Refuse
+country_event = {
+	id = texas_diplo.19
+	title = texas_diplo.19.t
+	desc = texas_diplo.19.d
+	picture = texas_puppet
+	
+	is_triggered_only = yes
+	
+	option = { #Yay
+		name = texas_diplo.19.o1
+		add_opinion_modifier = {
+			target = USA
+			modifier = refused_to_return_territory
+		}
 	}
 }
 
