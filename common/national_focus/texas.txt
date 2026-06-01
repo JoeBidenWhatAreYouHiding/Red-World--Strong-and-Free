@@ -862,18 +862,25 @@ focus_tree = {
 	focus = {
 		id = TEX_2013_election
 		icon = GFX_goal_TEX_public_elections
-		cost = 1
+		cost = 6
 		x = 30
 		y = 1
+		
+		select_effect = {
+			country_event = {
+				id = texas.60
+				days = 1
+			}
+		}
 
 		available = {
-			has_country_flag = TEX_post_war_election
+			has_country_flag = TEX_can_hold_elections
 		}
 
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = texas.75
 		}
 	}
 	
@@ -2832,6 +2839,15 @@ focus_tree = {
 				long_name = TEX_economic_freedom_society
 				ideology = centrist
 			}
+			clr_country_flag = TEX_libertarian_party_in_power
+			set_country_flag = TEX_ancap_gang_flag
+			hidden_effect = {
+				add_ideas = texas_sic_david_d_friedman
+				add_ideas = texas_fom_patri_friedman
+				add_ideas = texas_ind_bob_murphy
+				add_ideas = texas_nsm_hans_hermann_hoppe
+				add_ideas = texas_inm_javier_milei
+			}
 		}
 	}
 	
@@ -2986,6 +3002,10 @@ focus_tree = {
 			add_popularity = {
 				ideology = centrist
 				popularity = 0.04
+			}
+			hidden_effect = {
+				remove_ideas = texas_sic_david_d_friedman
+				add_ideas = texas_sic_jeffrey_tucker
 			}
 		}
 	}
@@ -3216,6 +3236,15 @@ focus_tree = {
 				long_name = TEX_cowboys_party_long
 				ideology = centrist
 			}
+			clr_country_flag = TEX_libertarian_party_in_power
+			set_country_flag = TEX_yeeehaw_flag
+			hidden_effect = {
+				add_ideas = texas_sic_rand_paul
+				add_ideas = texas_fom_vacant
+				add_ideas = texas_ind_vacant
+				add_ideas = texas_nsm_vacant
+				add_ideas = texas_inm_vacant
+			}
 		}
 	}
 	
@@ -3312,6 +3341,27 @@ focus_tree = {
 			custom_effect_tooltip = tooltip_blank_line
 			custom_effect_tooltip = TEX_if_we_choose_option_two
 			event_option_tooltip = texas.198.o2
+			custom_effect_tooltip = tooltip_blank_line
+			TEX_ron_paul = {
+				add_corps_commander_role = {
+					traits = { politically_connected media_personality }
+					skill = 1
+					attack_skill = 2
+					defense_skill = 1
+					planning_skill = 1
+					logistics_skill = 1
+				}
+			}
+			TEX_rand_paul = {
+				add_corps_commander_role = {
+					traits = { politically_connected media_personality }
+					skill = 1
+					attack_skill = 2
+					defense_skill = 1
+					planning_skill = 1
+					logistics_skill = 1
+				}
+			}
 		}
 	}
 	
@@ -3371,7 +3421,7 @@ focus_tree = {
 		completion_reward = {
 			add_research_slot = -1
 			country_event = texas.200
-			add_idea = TEX_retroculture
+			add_ideas = TEX_retroculture
 		}
 	}
 	
@@ -9241,6 +9291,10 @@ focus_tree = {
 			focus = TEX_whole_once_more
 		}
 		
+		available = {
+			NOT = { has_country_flag = TEX_can_hold_elections }
+		}
+		
 		relative_position_id = TEX_eve_of_war
 		x = -2
 		y = 10
@@ -9260,6 +9314,10 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_dallas_reclaimed
 			focus = TEX_whole_once_more
+		}
+		
+		available = {
+			NOT = { has_country_flag = TEX_can_hold_elections }
 		}
 		
 		relative_position_id = TEX_eve_of_war
@@ -9321,6 +9379,10 @@ focus_tree = {
 			focus = TEX_dallas_reclaimed
 		}
 		
+		available = {
+			NOT = { has_country_flag = TEX_can_hold_elections }
+		}
+		
 		relative_position_id = TEX_eve_of_war
 		x = 0
 		y = 10
@@ -9380,6 +9442,10 @@ focus_tree = {
 			focus = TEX_our_time_will_come
 		}
 		
+		available = {
+			NOT = { has_country_flag = TEX_can_hold_elections }
+		}
+		
 		relative_position_id = TEX_eve_of_war
 		x = 2
 		y = 10
@@ -9400,6 +9466,10 @@ focus_tree = {
 			focus = TEX_dallas_reclaimed
 			focus = TEX_whole_once_more
 			focus = TEX_our_time_will_come
+		}
+		
+		available = {
+			NOT = { has_country_flag = TEX_can_hold_elections }
 		}
 		
 		relative_position_id = TEX_eve_of_war
@@ -11815,6 +11885,10 @@ focus_tree = {
 			}
 		}
 		
+		available = {
+			has_country_flag = TEX_can_do_economy_stuff
+		}
+		
 		completion_reward = {
 			army_experience = 100
 			add_command_power = 100
@@ -12264,6 +12338,7 @@ focus_tree = {
 		icon = X
 		cost = 8
 		available = {
+			has_country_flag = TEX_can_do_military_stuff
 		}
 		x = 95
 		y = 1

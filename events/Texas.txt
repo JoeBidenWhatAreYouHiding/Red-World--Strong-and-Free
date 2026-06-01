@@ -1421,10 +1421,6 @@ country_event = {
 				id = texas.73
 				days = 15
 			}
-			country_event = {
-				id = texas.75
-				days = 35
-			}
 		}
 	}
 }
@@ -2028,6 +2024,9 @@ country_event = {
 		add_ideas = TEX_Shadow_of_Martial_Law
 		set_country_flag = TEX_one_republic_defeated
 		set_country_flag = TEX_IndReps_Win_2013
+	}
+	after = {
+		clr_country_flag = TEX_can_hold_elections
 	}
 }
 
@@ -3666,6 +3665,361 @@ country_event = {
 	}
 }
 
+#Soviet Union Demands Repayment of War Debts
+country_event = {
+	id = texas.156
+	title = texas.156.t
+	desc = texas.156.d
+	picture = roswell_occupied
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.156.o1
+		add_political_power = -100
+		hidden_effect = {
+			set_country_flag = TEX_can_hold_elections
+		}
+		add_ideas = idea_comecon_observer
+	}
+	
+	option = {
+		name = texas.156.o2
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = TEX_jim_jones_mobilized }
+				country_event = {
+					id = texas.157
+					days = 10
+				}
+			}
+			else = {
+				set_country_flag = TEX_can_hold_elections
+			}
+		}
+		remove_ideas = TEX_ballad_of_texas_red
+		SOV = {
+			add_opinion_modifier = {
+				target = SOV
+				modifier = soviet_outrage
+			}
+		}
+	}
+}
+
+#USSR Plots Coup
+country_event = {
+	id = texas.157
+	title = texas.157.t
+	desc = texas.157.d
+	picture = roswell_occupied
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.157.o1
+		add_stability = -0.15
+		add_popularity = {
+			ideology = communist
+			popularity = 0.15
+		}
+		hidden_effect = {
+			country_event = {
+				id = texas.158
+				days = 3
+			}
+		}
+	}
+}
+
+#Soviet Coup
+country_event = {
+	id = texas.158
+	title = texas.158.t
+	desc = texas.158.d
+	picture = roswell_occupied
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.158.o1
+		set_politics = {
+			ruling_party = communist
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = communist
+			popularity = 0.15
+		}
+		TEX_cptx_central_committee = {
+			promote_character = stalinist
+		}
+		set_party_name = {
+			name = TEX_communist_party_of_texas
+			long_name = TEX_communist_party_of_texas_long
+			ideology = communist
+		}
+		load_focus_tree = texas_communist_focus
+	}
+	
+	option = {
+		name = texas.158.o2
+		trigger = {
+			has_country_flag = TEX_cults_grow_in_power
+		}
+		set_politics = {
+			ruling_party = communist
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = communist
+			popularity = 0.15
+		}
+		TEX_cptx_central_committee = {
+			promote_character = stalinist
+		}
+		set_party_name = {
+			name = TEX_communist_party_of_texas
+			long_name = TEX_communist_party_of_texas_long
+			ideology = communist
+		}
+		hidden_effect = {
+			country_event = {
+				id = texas.159
+				days = 4
+			}
+		}
+	}
+}
+
+#Davidians March on Austin
+country_event = {
+	id = texas.159
+	title = texas.159.t
+	desc = texas.159.d
+	picture = roswell_occupied
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.159.o1
+		add_popularity = {
+			ideology = fascist
+			popularity = 0.15
+		}
+		hidden_effect = {
+			country_event = {
+				id = texas.160
+				days = 1
+			}
+		}
+	}
+	
+	option = {
+		name = texas.159.o2
+		hidden_effect = {
+			country_event = {
+				id = texas.161
+				days = 1
+			}
+		}
+	}
+}
+
+#Davidian Victory
+country_event = {
+	id = texas.160
+	title = texas.160.t
+	desc = texas.160.d
+	picture = roswell_occupied
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.160.o1
+		set_politics = {
+			ruling_party = fascist
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = communist
+			popularity = -0.15
+		}
+		load_focus_tree = texas_cults_focus
+	}
+}
+
+#Davidians Defeated
+country_event = {
+	id = texas.161
+	title = texas.161.t
+	desc = texas.161.d
+	picture = roswell_occupied
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.161.o1
+		add_manpower = -2300
+		if = {
+			limit = { has_country_flag = TEX_sided_with_ufologists }
+			hidden_effect = {
+				country_event = {
+					id = texas.162
+					days = 4
+				}
+			}
+		}
+		else = {
+			load_focus_tree = texas_communist_focus
+		}
+	}
+}
+
+#Anti-Communist Resistance Flees West
+country_event = {
+	id = texas.162
+	title = texas.162.t
+	desc = texas.162.d
+	picture = roswell_occupied
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.162.o1
+		add_popularity = {
+			ideology = communist
+			popularity = -0.05
+		}
+		899 = {
+			set_demilitarized_zone = yes
+		}
+		hidden_effect = {
+			country_event = {
+				id = texas.163
+				days = 2
+			}
+		}
+	}
+}
+
+
+#UFOlogists Rise
+country_event = {
+	id = texas.163
+	title = texas.163.t
+	desc = texas.163.d
+	picture = roswell_occupied
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.163.o1
+		add_stability = -0.05
+		add_manpower = 2300
+		hidden_effect = {
+			country_event = {
+				id = texas.164
+				days = 3
+			}
+		}
+	}
+	
+	option = {
+		name = texas.163.o2
+		add_command_power = 100
+		hidden_effect = {
+			country_event = {
+				id = texas.165
+				days = 3
+			}
+		}
+	}
+}
+
+#UFOlogist Victory
+country_event = {
+	id = texas.164
+	title = texas.164.t
+	desc = texas.164.d
+	picture = roswell_occupied
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.164.o1
+		set_politics = {
+			ruling_party = nationalist
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.1
+		}
+		set_party_name = {
+			name = TEX_junta_party
+			long_name = TEX_junta_party_long
+			ideology = nationalist
+		}
+		TEX_neil_mccasland = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=military_junta
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+		899 = {
+			set_demilitarized_zone = no
+		}
+	}
+}
+
+#UFOlogist Destroyed
+country_event = {
+	id = texas.165
+	title = texas.165.t
+	desc = texas.165.d
+	picture = roswell_occupied
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.165.o1
+		add_manpower = -2300
+		load_focus_tree = texas_communist_focus
+		899 = {
+			set_demilitarized_zone = no
+			damage_building = {
+				type = infrastructure
+				damage = 1
+			}
+		}
+	}
+}
+
 #One Republic Address to Congress
 country_event = {
 	id = texas.166
@@ -4536,6 +4890,186 @@ country_event = {
 				target = TEX
 				modifier = embargo
 			}
+		}
+	}
+}
+
+# CPTX Congress
+country_event = {
+	id = texas.210
+	title = texas.210.t
+	desc = texas.210.d
+	picture = president_speaks_to_congress_texas
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.210.o1
+		add_popularity = {
+			ideology = communist
+			popularity = 0.1
+		}
+	}
+}
+
+# TNO Crushed
+country_event = {
+	id = texas.211
+	title = texas.211.t
+	desc = texas.211.d
+	picture = operation_jade_helm
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.211.o1
+		add_popularity = {
+			ideology = nationalist
+			popularity = -0.05
+		}
+	}
+}
+
+# Propaganda
+country_event = {
+	id = texas.212
+	title = texas.212.t
+	desc = texas.212.d
+	picture = president_speaks_to_congress_texas
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.212.o1
+		add_popularity = {
+			ideology = communist
+			popularity = 0.05
+		}
+	}
+}
+
+# Red Rangers
+country_event = {
+	id = texas.213
+	title = texas.213.t
+	desc = texas.213.d
+	picture = texas_empowered_police
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.213.o1
+		add_command_power = 100
+	}
+}
+
+# People's Temple
+country_event = {
+	id = texas.214
+	title = texas.214.t
+	desc = texas.214.d
+	picture = peoples_temple
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.214.o1
+		
+	}
+}
+
+# Maoists
+country_event = {
+	id = texas.215
+	title = texas.215.t
+	desc = texas.215.d
+	picture = peoples_temple
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.215.o1
+		add_popularity = {
+			ideology = national_bolshevik
+			popularity = 0.1
+		}
+		set_party_name = {
+			name = TEX_communist_red_guards_party
+			long_name = TEX_communist_red_guards_party_long
+			ideology = national_bolshevik
+		}
+		TEX_jared_roak={
+			promote_character = ultraleftist_maoist
+		}
+	}
+}
+
+# Bentley
+country_event = {
+	id = texas.216
+	title = texas.216.t
+	desc = texas.216.d
+	picture = peoples_temple
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.216.o1
+		add_command_power = 40
+	}
+}
+
+# Decision
+country_event = {
+	id = texas.217
+	title = texas.217.t
+	desc = texas.217.d
+	picture = peoples_temple
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.217.o1
+		add_command_power = 40
+		TEX_russel_bentley = {
+			promote_character = stalinist
+		}
+	}
+	
+	option = {
+		name = texas.217.o2
+		add_command_power = 40
+		set_party_name = {
+			name = TEX_communist_peoples_temple_party
+			long_name = TEX_communist_peoples_temple_party_long
+			ideology = communist
+		}
+		TEX_jim_jones={
+			promote_character =marxist
+		}
+	}
+	
+	option = {
+		name = texas.217.o3
+		set_politics = {
+			ruling_party = national_bolshevik
+			elections_allowed = no
 		}
 	}
 }
@@ -6532,9 +7066,21 @@ country_event = {
 		TEX_peaceout_effects = yes
 		add_ideas = TEX_corruption_issue
 		hidden_effect = {
-			country_event = {
-				id = texas.60
-				days = 10
+			if = {
+				limit = {
+					has_country_flag = TEX_soviet_debt 
+					SOV = { 
+						exists = yes 
+						is_in_faction_with = GER
+					}
+				}
+				country_event = {
+					id = texas.156
+					days = 10
+				}
+			}
+			else = {
+				set_country_flag = TEX_can_hold_elections
 			}
 		}
 	}
