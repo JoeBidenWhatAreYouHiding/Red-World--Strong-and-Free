@@ -19374,7 +19374,7 @@ focus_tree = {
 		id = CAN_the_democratic_league
 		icon = GFX_goal_CAN_commitment_to_nato
 		cost = 2
-		x = 83
+		x = 82
 		y = 1
 
 		available = {
@@ -19432,7 +19432,7 @@ focus_tree = {
 		}
 		
 		relative_position_id = CAN_the_democratic_league
-		x = 3
+		x = 4
 		y = 1
 
 		available = {
@@ -21160,7 +21160,7 @@ focus_tree = {
 		}
 		
 		relative_position_id = CAN_the_democratic_league
-		x = 14
+		x = 15
 		y = 1
 
 		available = {
@@ -21525,7 +21525,12 @@ focus_tree = {
 		y = 3
 
 		available = {
-			
+			CEA = {
+				OR = {
+					has_government = revolutionary_socialist
+					has_government = communist
+				}
+			}
 		}
 		
 		ai_will_do = {
@@ -21554,7 +21559,7 @@ focus_tree = {
 		}
 		
 		relative_position_id = CAN_latin_america
-		x = 3
+		x = 5
 		y = 1
 
 		available = {
@@ -22199,7 +22204,7 @@ focus_tree = {
 		}
 		
 		relative_position_id = CAN_latin_america
-		x = -1
+		x = 0
 		y = 1
 
 		available = {
@@ -22227,13 +22232,23 @@ focus_tree = {
 		prerequisite = {
 			focus = CAN_south_america
 		}
+		mutually_exclusive = {
+			focus = CAN_csis_interference
+		}
+		available = {
+			NOT = { has_government = moderate_socialist }
+		}
 		
 		relative_position_id = CAN_south_america
-		x = 0
+		x = -1
 		y = 1
 
 		available = {
 			date > 2012.1.1
+			NOT = {
+				has_government = moderate_socialist
+				has_government = new_democrat
+			}
 		}
 		
 		ai_will_do = {
@@ -22260,7 +22275,7 @@ focus_tree = {
 		}
 		
 		relative_position_id = CAN_south_america
-		x = 0
+		x = -1
 		y = 2
 
 		available = {
@@ -22281,6 +22296,100 @@ focus_tree = {
 		}
 	}
 	
+	focus = {
+		id = CAN_csis_interference
+		icon = GFX_goal_CAN_csis_interference_in_latin_america
+		cost = 4
+		
+		prerequisite = {
+			focus = CAN_south_america
+		}
+		mutually_exclusive = {
+			focus = CAN_take_out_venezuela
+		}
+		
+		relative_position_id = CAN_south_america
+		x = 1
+		y = 1
+
+		available = {
+			NOT = {
+				has_completed_focus = CAN_waffle_in_power
+			}
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			every_country = {
+				limit = {
+					capital_scope = { is_on_continent = south_america }
+				}
+				add_timed_idea = {
+					idea = LATAM_csis_interference
+					days = 500
+				}
+			}
+			every_country = {
+				limit = {
+					capital_scope = { is_on_continent = south_america }
+					has_government = communist
+				}
+				add_popularity = {
+					ideology = communist
+					popularity = -0.04
+				}
+				add_stability = -0.05
+				add_command_power = -100
+			}
+			STC = { clr_country_flag = cuba_communist_aided_morales_flag }
+			add_political_power = -100
+		}
+	}
+	
+	focus = {
+		id = CAN_operation_goose
+		icon = GFX_goal_CAN_overthrow_maduro
+		cost = 4
+		
+		prerequisite = {
+			focus = CAN_csis_interference
+		}
+		available = {
+			VEN = {
+				has_country_leader = {
+					name = "Nicolás Maduro"
+					ruling_only = yes
+				}
+			}
+		}
+		
+		relative_position_id = CAN_south_america
+		x = 1
+		y = 2
+
+		available = {
+			
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			VEN = {
+				country_event = canada_diplo.76
+			}
+			custom_effect_tooltip = CAN_venezuela_uprising_tt
+		}
+	}
+	
 	###                      ###
 	### ASIA AND THE PACIFIC ###
 	###                      ###
@@ -22295,7 +22404,7 @@ focus_tree = {
 		}
 		
 		relative_position_id = CAN_the_democratic_league
-		x = -5
+		x = -4
 		y = 1
 
 		available = {
@@ -22968,7 +23077,7 @@ focus_tree = {
 		}
 		
 		relative_position_id = CAN_the_democratic_league
-		x = -16
+		x = -15
 		y = 1
 
 		available = {
