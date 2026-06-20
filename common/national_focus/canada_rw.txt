@@ -22568,7 +22568,12 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_restore_new_zealand_democracy
-		icon = GFX_goal_CAN_restore_new_zealand_democracy
+		icon = {
+			GFX_goal_CAN_invite_new_zealand = {
+				has_global_flag = NZL_is_democracy
+			}
+			GFX_goal_CAN_restore_new_zealand_democracy = yes
+		}
 		cost = 4
 		
 		prerequisite = {
@@ -22590,9 +22595,15 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			create_wargoal = {
-				type = puppet_wargoal_focus
-				target = NZL
+			if = {
+				limit = { has_global_flag = NZL_is_democracy }
+				NZL = { country_event = canada_diplo.42 }
+			}
+			else = {
+				create_wargoal = {
+					type = puppet_wargoal_focus
+					target = NZL
+				}
 			}
 		}
 	}
