@@ -1,0 +1,253 @@
+add_namespace = rwsf_new_zealand
+
+country_event = { #New Admiral Junta Man
+	id = rwsf_new_zealand.2
+	title = rwsf_new_zealand.2.t
+	desc = rwsf_new_zealand.2.d
+	picture = new_zealand_admiral_retires
+
+	is_triggered_only = yes
+
+	option = { #Steer
+		name = rwsf_new_zealand.2.o1
+		NZL_jack_steer = {
+			promote_character = military_junta
+		}
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					id = rwsf_new_zealand.5
+					days = 1
+				}
+			}
+		}
+	}
+	
+	option = { #Peters
+		name = rwsf_new_zealand.2.o2
+		NZL_winston_peters = {
+			promote_character = nationalist_ideology
+		}
+		hidden_effect = {
+			country_event = {
+				id = rwsf_new_zealand.3
+				days = 4
+			}
+		}
+	}
+}
+
+country_event = { #Fate of Winston
+	id = rwsf_new_zealand.3
+	title = rwsf_new_zealand.3.t
+	desc = rwsf_new_zealand.3.d
+	picture = winston_peters_government
+
+	is_triggered_only = yes
+
+	option = { #NZSIS Coup
+		name = rwsf_new_zealand.3.o1
+		NZL_warren_tucker = {
+			promote_character = military_junta
+		}
+		set_party_name = {
+			name = NZL_nzsis_party
+			long_name = NZL_nzsis_party_long
+			ideology = nationalist
+		}
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					id = rwsf_new_zealand.6
+					days = 1
+				}
+			}
+		}
+		remove_ideas = idea_NZL_white_triarchy
+		remove_ideas = idea_NZL_peters_ministry
+		add_ideas = idea_NZL_nzsis
+	}
+	
+	option = { #Peters Maintains Control
+		name = rwsf_new_zealand.3.o2
+		NZL_winston_peters = {
+			set_portraits = {
+				civilian = { large = "gfx/leaders/NZL/Portrait_NZL_Winston_Peters_Dictator.png" }
+			}
+		}
+		remove_ideas = idea_NZL_white_triarchy
+		remove_ideas = idea_NZL_peters_ministry
+		add_ideas = idea_NZL_peters_regime
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					id = rwsf_new_zealand.7
+					days = 1
+				}
+			}
+		}
+	}
+	
+	option = { #Peters Elections
+		name = rwsf_new_zealand.3.o3
+		NZL_winston_peters = {
+			set_portraits = {
+				civilian = { large = "gfx/leaders/NZL/Portrait_NZL_Winston_Peters.dds" }
+			}
+		}
+		set_global_flag = NZL_is_democracy
+		remove_ideas = idea_NZL_white_triarchy
+		remove_ideas = idea_NZL_peters_ministry
+		add_ideas = idea_NZL_1989_shadow
+		hidden_effect = {
+			country_event = {
+				id = rwsf_new_zealand.4
+				days = 30
+			}
+		}
+	}
+}
+
+country_event = { #Elections
+	id = rwsf_new_zealand.4
+	title = rwsf_new_zealand.4.t
+	desc = rwsf_new_zealand.4.d
+	picture = winston_no
+
+	is_triggered_only = yes
+
+	option = { #Peters
+		name = rwsf_new_zealand.4.o1
+		set_party_name = {
+			name = NZL_new_zealand_first
+			long_name = NZL_new_zealand_first_long
+			ideology = nationalist
+		}
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					id = rwsf_new_zealand.10
+					days = 1
+				}
+			}
+		}
+	}
+	
+	option = { #Labour
+		name = rwsf_new_zealand.4.o2
+		set_politics = {
+			ruling_party = new_democrat
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.3
+		}
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					id = rwsf_new_zealand.8
+					days = 1
+				}
+			}
+		}
+	}
+	
+	option = { #National
+		name = rwsf_new_zealand.4.o3
+		set_politics = {
+			ruling_party = national_conservative
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.3
+		}
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					id = rwsf_new_zealand.9
+					days = 1
+				}
+			}
+		}
+	}
+}
+
+news_event = {	#Status Quo
+	id = rwsf_new_zealand.5
+	title = rwsf_new_zealand.5.t
+	desc = rwsf_new_zealand.5.d
+	picture = new_zealand_junta_continues
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rwsf_new_zealand.5.o1
+	}
+}
+
+news_event = {	#Intel Agency
+	id = rwsf_new_zealand.6
+	title = rwsf_new_zealand.6.t
+	desc = rwsf_new_zealand.6.d
+	picture = new_zealand_nzsis_consolidates_power
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rwsf_new_zealand.6.o1
+	}
+}
+
+news_event = {	#Peters Dictator
+	id = rwsf_new_zealand.7
+	title = rwsf_new_zealand.7.t
+	desc = rwsf_new_zealand.7.d
+	picture = new_zealand_winston_peters_consolidates_power
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rwsf_new_zealand.7.o1
+	}
+}
+
+news_event = {	#Labour Party
+	id = rwsf_new_zealand.8
+	title = rwsf_new_zealand.8.t
+	desc = rwsf_new_zealand.8.d
+	picture = new_zealand_jacinda_ardern_elected
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rwsf_new_zealand.8.o1
+	}
+}
+
+news_event = {	#National Party
+	id = rwsf_new_zealand.9
+	title = rwsf_new_zealand.9.t
+	desc = rwsf_new_zealand.9.d
+	picture = new_zealand_john_key_elected
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rwsf_new_zealand.9.o1
+	}
+}
+
+news_event = {	#New Zealand First
+	id = rwsf_new_zealand.10
+	title = rwsf_new_zealand.10.t
+	desc = rwsf_new_zealand.10.d
+	picture = new_zealand_winston_peters_elected
+	
+	is_triggered_only = yes 
+	
+	option = {
+		name = rwsf_new_zealand.10.o1
+	}
+}
