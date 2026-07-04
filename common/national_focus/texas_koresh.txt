@@ -2,10 +2,10 @@ focus_tree = {
 	id = texas_cults_focus
 	country = {
 		factor = 0
-		modifier = {
-			add = 10
-			tag = TEX
-		}
+		# modifier = {
+			# add = 100
+			# tag = TEX
+		# }
 	}
 	default = no
 	continuous_focus_position = { x = 4800 y = 2300 }
@@ -26,7 +26,9 @@ focus_tree = {
 		available = {
 			
 		}
-		bypass = {
+		
+		allow_branch = {
+			NOT = { has_country_flag = TEX_ufo_flag }
 		}
 		
 		available_if_capitulated = yes
@@ -572,9 +574,9 @@ focus_tree = {
 		}
 	}
 	
-    ###################
-	#### POLITICAL ####
-	###################
+    ########################
+	#### FOREIGN POLICY ####
+	########################
 	
 	### Isolationists ###
 
@@ -588,11 +590,13 @@ focus_tree = {
 		mutually_exclusive = {
 			focus = TEX_destroy_the_federal_government
 		}
+		
+		allow_branch = {
+			NOT = { has_country_flag = TEX_ufo_flag }
+		}
 
 		available = {
 			
-		}
-		bypass = {
 		}
 		
 		available_if_capitulated = yes
@@ -616,8 +620,6 @@ focus_tree = {
 		available = {
 			
 		}
-		bypass = {
-		}
 		
 		available_if_capitulated = yes
 
@@ -639,8 +641,6 @@ focus_tree = {
 
 		available = {
 			
-		}
-		bypass = {
 		}
 		
 		available_if_capitulated = yes
@@ -664,8 +664,6 @@ focus_tree = {
 		available = {
 			
 		}
-		bypass = {
-		}
 		
 		available_if_capitulated = yes
 
@@ -685,11 +683,13 @@ focus_tree = {
 		mutually_exclusive = {
 			focus = TEX_further_our_retreat
 		}
+		
+		allow_branch = {
+			NOT = { has_country_flag = TEX_ufo_flag }
+		}
 
 		available = {
 			
-		}
-		bypass = {
 		}
 		
 		available_if_capitulated = yes
@@ -713,8 +713,6 @@ focus_tree = {
 		available = {
 			
 		}
-		bypass = {
-		}
 		
 		available_if_capitulated = yes
 
@@ -736,8 +734,6 @@ focus_tree = {
 
 		available = {
 			
-		}
-		bypass = {
 		}
 		
 		available_if_capitulated = yes
@@ -761,7 +757,34 @@ focus_tree = {
 		available = {
 			
 		}
-		bypass = {
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+		
+	####################
+	#### UFOLOGISTS ####
+	####################
+	
+	### Opening Fakeout ###
+	
+	focus = {
+		id = TEX_mccasland_junta
+		icon = X
+		cost = 6
+		x = 10
+		y = 1
+	
+		available = {
+			
+		}
+		
+		allow_branch = {
+			has_country_flag = TEX_ufo_flag
+			NOT = { has_country_flag = TEX_lazar_takes_power }
 		}
 		
 		available_if_capitulated = yes
@@ -769,4 +792,942 @@ focus_tree = {
 		completion_reward = {
 		}
 	}
+	
+	focus = {
+		id = TEX_disband_congress
+		icon = X
+		cost = 6
+		x = -1
+		y = 1
+		relative_position_id = TEX_mccasland_junta
+		
+		mutually_exclusive = {
+			focus = TEX_re_open_the_legislature
+		}
+		
+		prerequisite = {
+			focus = TEX_mccasland_junta
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TEX_dummy_focus_flag
+				always = no
+			}
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_re_open_the_legislature
+		icon = X
+		cost = 6
+		x = 1
+		y = 1
+		relative_position_id = TEX_mccasland_junta
+		
+		mutually_exclusive = {
+			focus = TEX_disband_congress
+		}
+		
+		prerequisite = {
+			focus = TEX_mccasland_junta
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TEX_dummy_focus_flag
+				always = no
+			}
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_they_speak
+		icon = X
+		cost = 6
+		x = 0
+		y = 2
+		relative_position_id = TEX_mccasland_junta
+		
+		prerequisite = {
+			focus = TEX_mccasland_junta
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			set_country_flag = TEX_lazar_takes_power
+			mark_focus_tree_layout_dirty = yes
+		}
+	}
+	
+	focus = {
+		id = TEX_restore_order_on_the_streets
+		icon = X
+		cost = 6
+		x = -2
+		y = 2
+		relative_position_id = TEX_mccasland_junta
+		
+		prerequisite = {
+			focus = TEX_mccasland_junta
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TEX_dummy_focus_flag
+				always = no
+			}
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_expell_soviet_agents
+		icon = X
+		cost = 6
+		x = 2
+		y = 2
+		relative_position_id = TEX_mccasland_junta
+		
+		prerequisite = {
+			focus = TEX_mccasland_junta
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TEX_dummy_focus_flag
+				always = no
+			}
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	### Real Tree ###
+	
+	focus = {
+		id = TEX_victory_of_the_ufologists
+		icon = X
+		cost = 6
+		x = 10
+		y = 1
+	
+		available = {
+			
+		}
+		
+		allow_branch = {
+			has_country_flag = TEX_lazar_takes_power
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_consolidate_power_in_roswell
+		icon = X
+		cost = 6
+		x = 0
+		y = 1
+		relative_position_id = TEX_victory_of_the_ufologists
+		
+		prerequisite = {
+			focus = TEX_victory_of_the_ufologists
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_unity_in_humanity
+		icon = X
+		cost = 6
+		x = 2
+		y = 1
+		relative_position_id = TEX_victory_of_the_ufologists
+		
+		prerequisite = {
+			focus = TEX_victory_of_the_ufologists
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_establish_the_mib
+		icon = X
+		cost = 6
+		x = -2
+		y = 1
+		relative_position_id = TEX_victory_of_the_ufologists
+		
+		prerequisite = {
+			focus = TEX_victory_of_the_ufologists
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_disclosure_day
+		icon = X
+		cost = 6
+		x = 0
+		y = 2
+		relative_position_id = TEX_victory_of_the_ufologists
+		
+		prerequisite = {
+			focus = TEX_establish_the_mib
+		}
+		prerequisite = {
+			focus = TEX_unity_in_humanity
+		}
+		prerequisite = {
+			focus = TEX_consolidate_power_in_roswell
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_disclosure_day
+		icon = X
+		cost = 6
+		x = 0
+		y = 2
+		relative_position_id = TEX_victory_of_the_ufologists
+		
+		prerequisite = {
+			focus = TEX_establish_the_mib
+		}
+		prerequisite = {
+			focus = TEX_unity_in_humanity
+		}
+		prerequisite = {
+			focus = TEX_consolidate_power_in_roswell
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_the_pentagon
+		icon = X
+		cost = 6
+		x = -1
+		y = 1
+		relative_position_id = TEX_disclosure_day
+		
+		prerequisite = {
+			focus = TEX_disclosure_day
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_area_51
+		icon = X
+		cost = 6
+		x = 1
+		y = 1
+		relative_position_id = TEX_disclosure_day
+		
+		prerequisite = {
+			focus = TEX_disclosure_day
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_call_for_unity_among_the_humans
+		icon = X
+		cost = 6
+		x = 0
+		y = 2
+		relative_position_id = TEX_disclosure_day
+		
+		prerequisite = {
+			focus = TEX_area_51
+			focus = TEX_the_pentagon
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_skinwalker_ranch
+		icon = X
+		cost = 6
+		x = 2
+		y = 2
+		relative_position_id = TEX_disclosure_day
+		
+		prerequisite = {
+			focus = TEX_area_51
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_midwestern_crop_circles
+		icon = X
+		cost = 6
+		x = -2
+		y = 2
+		relative_position_id = TEX_disclosure_day
+		
+		prerequisite = {
+			focus = TEX_the_pentagon
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_form_the_earth_liberation_command_council
+		icon = X
+		cost = 6
+		x = 0
+		y = 3
+		relative_position_id = TEX_disclosure_day
+		
+		prerequisite = {
+			focus = TEX_call_for_unity_among_the_humans
+		}
+		prerequisite = {
+			focus = TEX_midwestern_crop_circles
+		}
+		prerequisite = {
+			focus = TEX_skinwalker_ranch
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	
+	### Semi-Legitimacy ###
+	
+	focus = {
+		id = TEX_address_the_united_nations
+		icon = X
+		cost = 6
+		x = -3
+		y = 1
+		relative_position_id = TEX_form_the_earth_liberation_command_council
+		
+		mutually_exclusive = {
+			focus = TEX_continuance_of_the_roswell_clique
+		}
+		
+		prerequisite = {
+			focus = TEX_form_the_earth_liberation_command_council
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_focus_on_a_united_species
+		icon = X
+		cost = 6
+		x = -1
+		y = 1
+		relative_position_id = TEX_address_the_united_nations
+		
+		prerequisite = {
+			focus = TEX_address_the_united_nations
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_legitimize_political_organizations
+		icon = X
+		cost = 6
+		x = 1
+		y = 1
+		relative_position_id = TEX_address_the_united_nations
+		
+		prerequisite = {
+			focus = TEX_address_the_united_nations
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_descredit_the_lazarites
+		icon = X
+		cost = 6
+		x = 0
+		y = 2
+		relative_position_id = TEX_address_the_united_nations
+		
+		prerequisite = {
+			focus = TEX_address_the_united_nations
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	### Lazarite Victory ###
+	
+	focus = {
+		id = TEX_continuance_of_the_roswell_clique
+		icon = X
+		cost = 6
+		x = 3
+		y = 1
+		relative_position_id = TEX_form_the_earth_liberation_command_council
+		
+		mutually_exclusive = {
+			focus = TEX_address_the_united_nations
+		}
+
+		prerequisite = {
+			focus = TEX_form_the_earth_liberation_command_council
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_expose_soviet_extraterrestrial_collaboration
+		icon = X
+		cost = 6
+		x = -1
+		y = 1
+		relative_position_id = TEX_continuance_of_the_roswell_clique
+		
+		prerequisite = {
+			focus = TEX_continuance_of_the_roswell_clique
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_privatize_the_search_for_extraterrestrial_intelligence
+		icon = X
+		cost = 6
+		x = 1
+		y = 1
+		relative_position_id = TEX_continuance_of_the_roswell_clique
+		
+		prerequisite = {
+			focus = TEX_continuance_of_the_roswell_clique
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_form_the_humanity_defense_force
+		icon = X
+		cost = 6
+		x = 0
+		y = 2
+		relative_position_id = TEX_continuance_of_the_roswell_clique
+		
+		prerequisite = {
+			focus = TEX_continuance_of_the_roswell_clique
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	### Shared ###
+	
+	focus = {
+		id = TEX_expand_MUFON
+		icon = X
+		cost = 6
+		x = -1
+		y = 3
+		relative_position_id = TEX_form_the_earth_liberation_command_council
+		
+		prerequisite = {
+			focus = TEX_continuance_of_the_roswell_clique
+			focus = TEX_address_the_united_nations
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_experimental_funding
+		icon = X
+		cost = 6
+		x = 1
+		y = 3
+		relative_position_id = TEX_form_the_earth_liberation_command_council
+		
+		prerequisite = {
+			focus = TEX_continuance_of_the_roswell_clique
+			focus = TEX_address_the_united_nations
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_UFOlogist_media
+		icon = X
+		cost = 6
+		x = 0
+		y = 2
+		relative_position_id = TEX_form_the_earth_liberation_command_council
+		
+		prerequisite = {
+			focus = TEX_continuance_of_the_roswell_clique
+			focus = TEX_address_the_united_nations
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	##########################
+	#### UFOlogist ForPol ####
+	##########################
+	
+	# - Isolationist
+	
+	focus = {
+		id = TEX_defense_of_earth_doctrine
+		icon = X
+		cost = 6
+		x = -2
+		y = 4
+		relative_position_id = TEX_form_the_earth_liberation_command_council
+		
+		mutually_exclusive = {
+			focus = TEX_first_strike_doctrine
+		}
+		
+		allow_branch = {
+			has_country_flag = TEX_lazar_takes_power
+		}
+		
+		# prerequisite = {
+			# focus = TEX_descredit_the_lazarites
+			# focus = TEX_form_the_humanity_defense_force
+		# }
+		# prerequisite = {
+			# focus = TEX_expand_MUFON
+		# }
+		# prerequisite = {
+			# focus = TEX_experimental_funding
+		# }
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_citadel_51
+		icon = X
+		cost = 6
+		x = -1
+		y = 1
+		relative_position_id = TEX_defense_of_earth_doctrine
+		
+		prerequisite = {
+			focus = TEX_defense_of_earth_doctrine
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_star_wars_program
+		icon = X
+		cost = 6
+		x = 0
+		y = 2
+		relative_position_id = TEX_defense_of_earth_doctrine
+		
+		prerequisite = {
+			focus = TEX_defense_of_earth_doctrine
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_call_for_a_global_ceasfire
+		icon = X
+		cost = 6
+		x = 1
+		y = 1
+		relative_position_id = TEX_defense_of_earth_doctrine
+		
+		prerequisite = {
+			focus = TEX_defense_of_earth_doctrine
+			focus = TEX_first_strike_doctrine
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	# - First Strike
+	
+	focus = {
+		id = TEX_first_strike_doctrine
+		icon = X
+		cost = 6
+		x = 2
+		y = 4
+		relative_position_id = TEX_form_the_earth_liberation_command_council
+		
+		mutually_exclusive = {
+			focus = TEX_defense_of_earth_doctrine
+		}
+		
+		allow_branch = {
+			has_country_flag = TEX_lazar_takes_power
+		}
+		
+		# prerequisite = {
+			# focus = TEX_descredit_the_lazarites
+			# focus = TEX_form_the_humanity_defense_force
+		# }
+		# prerequisite = {
+			# focus = TEX_expand_MUFON
+		# }
+		# prerequisite = {
+			# focus = TEX_experimental_funding
+		# }
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_moon_forward_operating_base
+		icon = X
+		cost = 6
+		x = 1
+		y = 1
+		relative_position_id = TEX_first_strike_doctrine
+		
+		prerequisite = {
+			focus = TEX_first_strike_doctrine
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_conquest_of_mars
+		icon = X
+		cost = 6
+		x = 0
+		y = 2
+		relative_position_id = TEX_first_strike_doctrine
+		
+		prerequisite = {
+			focus = TEX_moon_forward_operating_base
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_hypercharge_nasa_budget
+		icon = X
+		cost = 6
+		x = -1
+		y = 1
+		relative_position_id = TEX_first_strike_doctrine
+		
+		prerequisite = {
+			focus = TEX_first_strike_doctrine
+			focus = TEX_defense_of_earth_doctrine
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_the_space_force
+		icon = X
+		cost = 6
+		x = -2
+		y = 2
+		relative_position_id = TEX_first_strike_doctrine
+		
+		prerequisite = {
+			focus = TEX_first_strike_doctrine
+			focus = TEX_defense_of_earth_doctrine
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	# focus = {
+		# id = TEX_nationalize_SETI
+		# icon = X
+		# cost = 6
+		# x = -2
+		# y = 3
+		# relative_position_id = TEX_first_strike_doctrine
+		
+		# prerequisite = {
+			# focus = TEX_the_space_force
+		# }
+
+		# available = {
+			
+		# }
+		
+		# available_if_capitulated = yes
+
+		# completion_reward = {
+		# }
+	# }
+	
 }
