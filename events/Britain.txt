@@ -4245,8 +4245,61 @@ country_event = {
 #Queen dies
 country_event = {
 	id = britain.162
-	title = britain.162.t
-	desc = britain.162.d
+	title = {
+		text = britain.162.t.monarchy
+		trigger = {
+			OR = {
+				has_idea = idea_queen_elizabeth_humiliated
+				has_idea = idea_queen_elizabeth_ii
+				has_government = monarchist
+			}
+		}
+	}
+	title = {
+		text = britain.162.t.nomonarchy
+		trigger = {
+			NOT = {
+				has_idea = idea_queen_elizabeth_humiliated
+				has_idea = idea_queen_elizabeth_ii
+				has_government = monarchist
+			}
+		}
+	}
+	
+	desc = {
+		text = britain.162.d.monarchy
+		trigger = {
+			OR = {
+				has_idea = idea_queen_elizabeth_humiliated
+				has_idea = idea_queen_elizabeth_ii
+				has_government = monarchist
+			}
+		}
+	}
+	desc = {
+		text = britain.162.d.communist
+		trigger = {
+			has_completed_focus = ENG_exile_them
+		}
+	}
+	desc = {
+		text = britain.162.d.revsoc
+		trigger = {
+			has_completed_focus = ENG_abolish_the_monarchy
+		}
+	}
+	desc = {
+		text = britain.162.d.modsoc
+		trigger = {
+			has_completed_focus = ENG_republic_referendum
+		}
+	}
+	desc = {
+		text = britain.162.d.fascist
+		trigger = {
+			has_completed_focus = ENG_out_with_royalty
+		}
+	}
 	picture = queen_dies
 	
 	fire_only_once = yes
@@ -4255,16 +4308,22 @@ country_event = {
 		tag = ENG
 		date > 2018.2.1
 		date < 2018.2.30
-		OR = {
-		    has_idea = idea_queen_elizabeth_ii
-			has_idea = idea_queen_elizabeth_humiliated
-			has_government = monarchist
+		NOT = {
+			has_completed_focus = ENG_execute_them
 		}
 	}
 	
 	option = {
 		name = britain.162.o1
-		add_ideas = idea_king_charles_third
+		if = {
+		    limit = {
+				OR = {
+					has_idea = idea_queen_elizabeth_humiliated
+					has_idea = idea_queen_elizabeth_ii
+				}
+			}
+			add_ideas = idea_king_charles_third
+		}
 		ENG_charles_iii = {
 			promote_character = absolute_monarchist
 		}
@@ -4299,8 +4358,57 @@ country_event = {
 #Charles dies
 country_event = {
 	id = britain.163
-	title = britain.163.t
-	desc = britain.163.d
+	title = {
+		text = britain.163.t.monarchy
+		trigger = {
+			OR = {
+				has_idea = idea_king_charles_third
+				has_government = monarchist
+			}
+		}
+	}
+	title = {
+		text = britain.163.t.nomonarchy
+		trigger = {
+			NOT = {
+				has_idea = idea_king_charles_third
+				has_government = monarchist
+			}
+		}
+	}
+	desc = {
+		text = britain.163.d.monarchy
+		trigger = {
+			OR = {
+				has_idea = idea_king_charles_third
+				has_government = monarchist
+			}
+		}
+	}
+	desc = {
+		text = britain.163.d.communist
+		trigger = {
+			has_completed_focus = ENG_exile_them
+		}
+	}
+	desc = {
+		text = britain.163.d.revsoc
+		trigger = {
+			has_completed_focus = ENG_abolish_the_monarchy
+		}
+	}
+	desc = {
+		text = britain.163.d.modsoc
+		trigger = {
+			has_completed_focus = ENG_republic_referendum
+		}
+	}
+	desc = {
+		text = britain.163.d.fascist
+		trigger = {
+			has_completed_focus = ENG_out_with_royalty
+		}
+	}
 	picture = charles_dies
 	
 	fire_only_once = yes
@@ -4309,15 +4417,19 @@ country_event = {
 		tag = ENG
 		date > 2022.5.1
 		date < 2022.5.30
-		OR = {
-		    has_idea = idea_king_charles_third
-			has_government = monarchist
+		NOT = {
+			has_completed_focus = ENG_execute_them
 		}
 	}
 	
 	option = {
 		name = britain.163.o1
-		add_ideas = idea_king_william_fifth
+		if = {
+			limit = {
+				has_idea = idea_king_charles_third
+			}
+			add_ideas = idea_king_william_fifth
+		}
 		ENG_william_v = {
 			promote_character = absolute_monarchist
 		}
@@ -6953,8 +7065,15 @@ country_event = {
 		NOT = {
 			has_country_flag = ENG_is_england
 			owns_state = 121
+			owns_state = 122
 		}
 		SCO = {
+			exists = yes
+			NOT = {
+				has_war_with = ROOT
+			}
+		}
+		WAL = {
 			exists = yes
 			NOT = {
 				has_war_with = ROOT
@@ -7007,8 +7126,13 @@ country_event = {
 	
 	trigger = {
 		tag = ENG
-		121 = {
-			is_owned_by = ENG
+		OR = {
+			121 = {
+				is_owned_by = ENG
+			}
+			122 = {
+				is_owned_by = ENG
+			}
 		}
 		has_country_flag = ENG_is_england
 	}

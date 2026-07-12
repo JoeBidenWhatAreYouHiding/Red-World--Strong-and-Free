@@ -3296,18 +3296,18 @@ country_event = { #Brunei
 		}
 		every_state = {
 			limit = {
-				is_core_of = BRN
+				is_core_of = BOR
 				is_owned_by = ROOT
 				NOT = {
 					is_core_of = ROOT
 					is_claimed_by = ROOT
 				}
 			}
-			BRN = {
+			BOR = {
 				transfer_state = PREV
 			}
 		}
-		puppet = BRN
+		puppet = BOR
 	}
 
 	option = { #annex
@@ -3316,7 +3316,7 @@ country_event = { #Brunei
 			base = 0
 		}
 
-		set_country_flag = BRN_annex
+		set_country_flag = BOR_annex
 	}
 }
 country_event = { #Bulgaria
@@ -4585,6 +4585,7 @@ country_event = { #ComChina (PRC)
 				tag = CHI
 			}
 			CHI = {
+				exists = yes
 				OR = {
 					is_puppet_of = ROOT
 					is_in_faction_with = ROOT
@@ -6789,7 +6790,7 @@ country_event = { #France
 				is_core_of = FRA
 				NOT = {
 					is_core_of = BRI
-					is_core_of = NOM
+					#is_core_of = NOM - deprecated
 					is_core_of = OCC
 					is_core_of = COR
 				}
@@ -9078,6 +9079,7 @@ country_event = { #Guyana
 			OR = {
 				owns_state = 309
 				owns_state = 310
+				owns_state = 687
 			}
 		}
 		every_state = {
@@ -9097,6 +9099,35 @@ country_event = { #Guyana
 				transfer_state = PREV
 			}
 		}
+		every_state = {
+			limit = {
+				is_core_of = SUR
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SUR = {
+				transfer_state = PREV
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = GUN
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			GUN = {
+				transfer_state = PREV
+			}
+		}
+		puppet = GUY
+		puppet = SUR
+		puppet = GUN
 		set_country_flag = GUY_balkanize
 	}
 
@@ -9295,7 +9326,7 @@ country_event = { #Holland (The Netherlands)
 					long_name = HOL_revolutionary_socialist_party
 					name = HOL_revolutionary_socialist_party
 				}
-				HOL_jesse_klaver = {
+				HOL_paul_rosenmöller = {
 					promote_character = yes
 				}
 			}
@@ -9335,7 +9366,7 @@ country_event = { #Holland (The Netherlands)
 					long_name = HOL_revolutionary_socialist_party
 					name = HOL_revolutionary_socialist_party
 				}
-				HOL_jesse_klaver = {
+				HOL_paul_rosenmöller = {
 					promote_character = yes
 				}
 			}
@@ -9802,7 +9833,6 @@ country_event = { #Indonesia
 					is_core_of = ROOT
 					is_claimed_by = ROOT
 					is_core_of = WPA
-					is_core_of = TIM
 				}
 			}
 			INS = {
@@ -15043,74 +15073,74 @@ country_event = { #Nigeria
 		set_country_flag = NGR_annex
 	}
 }
-country_event = { #Normandy
-	id = annex.163
-	title = annex.163.t
-	desc = annex.163.d
-	
-	is_triggered_only = yes
-
-	option = { #puppet
-		name = annex.163.o1
-		ai_chance = {
-			base = 100
-		}
-		every_state = {
-			limit = {
-				is_core_of = NOM
-				is_owned_by = ROOT
-				NOT = {
-					is_core_of = ROOT
-					is_claimed_by = ROOT
-				}
-			}
-			NOM = {
-				transfer_state = PREV
-			}
-		}
-		puppet = NOM
-	}
-
-	option = { #give to FRA
-		name = annex.163.o2
-		ai_chance = {
-			base = 100
-		}
-		trigger = {
-			NOT = {
-				tag = FRA
-			}
-			FRA = {
-				OR = {
-					is_puppet_of = ROOT
-					is_in_faction_with = ROOT
-				}
-			}
-		}
-		every_state = {
-			limit = {
-				is_core_of = NOM
-				is_owned_by = ROOT
-				NOT = {
-					is_core_of = ROOT
-					is_claimed_by = ROOT
-				}
-			}
-			FRA = {
-				transfer_state = PREV
-			}
-		}
-	}
-
-	option = { #annex
-		name = annex.163.o3
-		ai_chance = {
-			base = 0
-		}
-
-		set_country_flag = NOM_annex
-	}
-}
+#country_event = { #Normandy - deprecated
+#	id = annex.163
+#	title = annex.163.t
+#	desc = annex.163.d
+#	
+#	is_triggered_only = yes
+#
+#	option = { #puppet
+#		name = annex.163.o1
+#		ai_chance = {
+#			base = 100
+#		}
+#		every_state = {
+#			limit = {
+#				is_core_of = NOM
+#				is_owned_by = ROOT
+#				NOT = {
+#					is_core_of = ROOT
+#					is_claimed_by = ROOT
+#				}
+#			}
+#			NOM = {
+#				transfer_state = PREV
+#			}
+#		}
+#		puppet = NOM
+#	}
+#
+#	option = { #give to FRA
+#		name = annex.163.o2
+#		ai_chance = {
+#			base = 100
+#		}
+#		trigger = {
+#			NOT = {
+#				tag = FRA
+#			}
+#			FRA = {
+#				OR = {
+#					is_puppet_of = ROOT
+#					is_in_faction_with = ROOT
+#				}
+#			}
+#		}
+#		every_state = {
+#			limit = {
+#				is_core_of = NOM
+#				is_owned_by = ROOT
+#				NOT = {
+#					is_core_of = ROOT
+#					is_claimed_by = ROOT
+#				}
+#			}
+#			FRA = {
+#				transfer_state = PREV
+#			}
+#		}
+#	}
+#
+#	option = { #annex
+#		name = annex.163.o3
+#		ai_chance = {
+#			base = 0
+#		}
+#
+#		set_country_flag = NOM_annex
+#	}
+#}
 country_event = { #North East America
 	id = annex.164
 	title = annex.164.t
@@ -20977,6 +21007,11 @@ country_event = { #Spain
 		every_state = {
 			limit = {
 				is_core_of = SPR
+				NOT = { #still remove their colonies
+					is_core_of = CCM
+					is_core_of = EQC
+					is_core_of = CAI
+				}
 				OR = {
 					is_owned_by = ROOT
 					owner = {
@@ -21039,6 +21074,9 @@ country_event = { #Spain
 					is_core_of = BSQ
 					is_core_of = CAT
 					is_core_of = GAL
+					is_core_of = CCM
+					is_core_of = EQC
+					is_core_of = CAI
 				}
 				is_owned_by = ROOT
 				NOT = {
@@ -21100,6 +21138,9 @@ country_event = { #Spain
 					is_core_of = GAL
 					is_core_of = ATA
 					is_core_of = ALU
+					is_core_of = CCM
+					is_core_of = EQC
+					is_core_of = CAI
 				}
 				is_owned_by = ROOT
 				NOT = {
@@ -27265,7 +27306,7 @@ country_event = { #Borneo
 		}
 		every_state = {
 			limit = {
-				is_core_of = BOR
+				is_core_of = BRN
 				OR = {
 					is_owned_by = ROOT
 					owner = {
@@ -27277,80 +27318,20 @@ country_event = { #Borneo
 					is_claimed_by = ROOT
 				}
 			}
-			BOR = {
+			BRN = {
 				transfer_state = PREV
 			}
 		}
-		puppet = BOR
+		puppet = BRN
 	}
 
-	option = { #balkanize
+	option = { #annex
 		name = annex.285.o2
 		ai_chance = {
 			base = 0
 		}
-		trigger = {
-			owns_state = 834
-		}
-		every_state = {
-			limit = {
-				is_core_of = BOR
-				NOT = {
-					is_core_of = BRN
-				}
-				is_owned_by = ROOT
-				NOT = {
-					is_core_of = ROOT
-					is_claimed_by = ROOT
-				}
-			}
-			BOR = {
-				transfer_state = PREV
-			}
-		}
-		set_country_flag = BOR_balkanize
-		puppet = BOR
-	}
 
-	option = { #give to INS
-		name = annex.285.o3
-		ai_chance = {
-			base = 100
-		}
-		trigger = {
-			NOT = {
-				tag = INS
-			}
-			INS = {
-				OR = {
-					is_puppet_of = ROOT
-					is_in_faction_with = ROOT
-				}
-			}
-		}
-		every_state = {
-			limit = {
-				is_core_of = WPA
-				is_owned_by = ROOT
-				NOT = {
-					is_core_of = ROOT
-					is_claimed_by = ROOT
-				}
-			}
-			INS = {
-				transfer_state = PREV
-				add_state_core = PREV
-			}
-		}
-	}
-
-	option = { #annex
-		name = annex.285.o4
-		ai_chance = {
-			base = 0
-		}
-
-		set_country_flag = BOR_annex
+		set_country_flag = BRN_annex
 	}
 }
 
@@ -27537,6 +27518,9 @@ country_event = { #New Mexico
 		trigger = {
 			NOT = {
 				tag = MEX
+			}
+			MEX = {
+				exists = yes
 			}
 			NOT = {
 				any_country = {
@@ -28353,6 +28337,10 @@ country_event = { #Arunachal Pradesh
 			base = 100
 		}
 		trigger = {
+			ASS = {
+				exists = yes
+				owns_state = 432
+			}
 			NOT = {
 				tag = ASS
 			}
@@ -30073,5 +30061,487 @@ country_event = { #Republic or Monarchy (ENG)
 				add_ideas = idea_king_edward_ix_edward
 			}
 		}
+	}
+}
+country_event = { #Ceuta and Melilla
+	id = annex.315
+	title = annex.315.t
+	desc = annex.315.d
+
+	is_triggered_only = yes
+
+	option = { #puppet
+		name = annex.315.o1
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+			OR = {
+				AND = {
+					NOT = {
+						tag = SPR
+					}
+					NOT = {
+						tag = SPN
+					}
+				}
+				AND = {
+					OR = {
+						tag = SPR
+						tag = SPN
+					}
+					NOT = {
+						has_completed_focus = SPR_a_confederate_spain
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = CCM
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			CCM = {
+				transfer_state = PREV
+			}
+		}
+		puppet = CCM
+		CCM = {
+			load_focus_tree = generic_focus
+		}
+	}
+
+	option = { #give to SPR
+		name = annex.315.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = SPR
+			}
+			NOT = {
+				tag = SPN
+			}
+			SPR = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = CCM
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SPR = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #give to SPN
+		name = annex.315.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = SPR
+			}
+			NOT = {
+				tag = SPN
+			}
+			SPN = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = CCM
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SPN = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #give to MOR
+		name = annex.315.o3
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = SPR
+			}
+			NOT = {
+				tag = SPN
+			}
+			MOR = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = CCM
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			MOR = {
+				transfer_state = PREV
+				add_state_core = PREV
+			}
+		}
+	}
+
+	option = { #annex
+		name = annex.315.o4
+		ai_chance = {
+			base = 0
+		}
+
+		set_country_flag = CCM_annex
+	}
+}
+country_event = { #Equatorial Guinea
+	id = annex.316
+	title = annex.316.t
+	desc = annex.316.d
+
+	is_triggered_only = yes
+
+	option = { #puppet
+		name = annex.316.o1
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+			OR = {
+				AND = {
+					NOT = {
+						tag = SPR
+					}
+					NOT = {
+						tag = SPN
+					}
+				}
+				AND = {
+					OR = {
+						tag = SPR
+						tag = SPN
+					}
+					NOT = {
+						has_completed_focus = SPR_a_confederate_spain
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = EQG
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			EQG = {
+				transfer_state = PREV
+			}
+		}
+		puppet = EQG
+		EQG = {
+			load_focus_tree = generic_focus
+		}
+	}
+
+	option = { #give to SPR
+		name = annex.316.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = SPR
+			}
+			NOT = {
+				tag = SPN
+			}
+			SPR = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = EQG
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SPR = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #give to SPN
+		name = annex.316.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = SPR
+			}
+			NOT = {
+				tag = SPN
+			}
+			SPN = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = EQG
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SPN = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #annex
+		name = annex.316.o3
+		ai_chance = {
+			base = 0
+		}
+
+		set_country_flag = EQG_annex
+	}
+}
+country_event = { #Canary Islands
+	id = annex.317
+	title = annex.317.t
+	desc = annex.317.d
+
+	is_triggered_only = yes
+
+	option = { #puppet
+		name = annex.317.o1
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+			OR = {
+				AND = {
+					NOT = {
+						tag = SPR
+					}
+					NOT = {
+						tag = SPN
+					}
+				}
+				AND = {
+					OR = {
+						tag = SPR
+						tag = SPN
+					}
+					NOT = {
+						has_completed_focus = SPR_a_confederate_spain
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = CAI
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			CAI = {
+				transfer_state = PREV
+			}
+		}
+		puppet = CAI
+		CAI = {
+			load_focus_tree = generic_focus
+		}
+	}
+
+	option = { #give to SPR
+		name = annex.317.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = SPR
+			}
+			NOT = {
+				tag = SPN
+			}
+			SPR = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = CAI
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SPR = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #give to SPN
+		name = annex.317.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = SPR
+			}
+			NOT = {
+				tag = SPN
+			}
+			SPN = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = CAI
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SPN = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #annex
+		name = annex.317.o3
+		ai_chance = {
+			base = 0
+		}
+
+		set_country_flag = CAI_annex
 	}
 }

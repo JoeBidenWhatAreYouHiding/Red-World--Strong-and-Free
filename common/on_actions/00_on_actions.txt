@@ -820,7 +820,29 @@ on_capitulation = {
 		effect = {
 		}
 	}
-
+	### Natural disasters ###
+	on_startup = {
+	effect = {
+	HAI = {
+	country_event = { id = haiti.1 days = 10 random_days = 1 }
+			}
+	every_country = {
+	news_event = { id = news.901 days = 10 random_days = 1 }
+		    }
+	every_country = {
+	news_event = { id = news.902 days = 433 random_days = 1 }
+		    }
+		}
+	}
+	# Nuclear winter stuff
+	on_startup = {
+	effect = {
+	set_variable = {
+		var = nuclear_winter_var
+		value = 0
+			}
+		}
+	}
 	#Not run on a specific country.
 	on_startup = {
 		effect = {
@@ -1154,6 +1176,22 @@ on_capitulation = {
 	on_paradrop = {
 	    effect = {
 		    set_country_flag = has_paradropped_flag
+		}
+	}
+	on_ruling_party_change = {
+		# temp var old_ideology_token is available for effects
+		effect = {
+			log = "on_ruling_party_change [GetLogRoot] old_ideology_token: [?old_ideology_token.GetTokenKey]"
+			mark_focus_tree_layout_dirty = yes
+
+			#Government Flags
+			set_government_flags = yes
+
+			# Coalitions
+			if = {
+				limit = { NOT = { has_government = var:old_ideology_token } }
+				end_coalition = yes
+			}
 		}
 	}
 	on_ruling_party_change = { 
