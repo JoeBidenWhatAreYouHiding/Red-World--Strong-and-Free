@@ -1156,6 +1156,22 @@ on_capitulation = {
 		    set_state_flag = has_paradropped_flag
 		}
 	}
+	on_ruling_party_change = {
+		# temp var old_ideology_token is available for effects
+		effect = {
+			log = "on_ruling_party_change [GetLogRoot] old_ideology_token: [?old_ideology_token.GetTokenKey]"
+			mark_focus_tree_layout_dirty = yes
+
+			#Government Flags
+			set_government_flags = yes
+
+			# Coalitions
+			if = {
+				limit = { NOT = { has_government = var:old_ideology_token } }
+				end_coalition = yes
+			}
+		}
+	}
 	on_ruling_party_change = { 
 		# temp var old_ideology_token is available for effects
 		effect = {
