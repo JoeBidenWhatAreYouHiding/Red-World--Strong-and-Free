@@ -3062,6 +3062,8 @@ country_event = {
 		GRL_steve_fletcher = {
 			promote_character = democratic_socialist
 		}
+		set_temp_variable = { coalition_partner_var = token:revolutionary_socialist }
+		add_to_coalition = yes
 		ai_chance = {
 			base = 1
 			modifier = {
@@ -6761,6 +6763,8 @@ country_event = {
 	}
 	option = {
 		name = greatlakes.282.o1
+		set_temp_variable = { coalition_partner_var = token:revolutionary_socialist }
+		remove_from_coalition = yes
 		add_political_power = -200
 		add_stability = -0.07
 		add_popularity = {
@@ -7077,7 +7081,7 @@ country_event = {
 	option = {
 		name = greatlakes_diplo.2.o1
 		ai_chance = {
-			factor = 99
+			factor = 75
 		}
 		GRL = {
 			add_to_faction = ROOT
@@ -7086,7 +7090,7 @@ country_event = {
 	option = {
 		name = greatlakes_diplo.2.o2
 		ai_chance = {
-			factor = 1
+			factor = 25
 		}
 		add_political_power = 20
 	}
@@ -7103,7 +7107,11 @@ country_event = {
 	option = {
 		name = greatlakes_diplo.3.o1
 		ai_chance = {
-			factor = 99
+			base = 99
+			modifier = {
+				has_war_with = GLR
+				factor = 0
+			}
 		}
 		add_timed_idea = {
 			idea = idea_glr_bailout
@@ -7142,7 +7150,7 @@ country_event = {
 	}
 }
 
-#Great Lakes Offers Guarantee and Non-Agression
+#Great Lakes Offers Guarantee and Non-Agression (USA)
 country_event = {
 	id = greatlakes_diplo.5
 	title = greatlakes_diplo.5.t
@@ -8038,5 +8046,35 @@ country_event = {
 	option = {
 		name = greatlakes_diplo.42.o1
 		add_political_power = 10
+	}
+}
+
+#Great Lakes Offers Guarantee and Non-Agression (MWA)
+country_event = {
+	id = greatlakes_diplo.43
+	title = greatlakes_diplo.43.t
+	desc = greatlakes_diplo.43.d
+	picture = the_state_of_the_republic
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = greatlakes_diplo.43.o1
+		GRL = {
+			give_guarantee = MWA
+		}
+		give_guarantee = GRL
+	}
+}
+
+#Laker-Heartland coalitions
+country_event = {
+	id = greatlakes_diplo.44
+	title = greatlakes_diplo.44.t
+	desc = greatlakes_diplo.44.d
+	picture = the_state_of_the_republic
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = greatlakes_diplo.44.o1
 	}
 }
