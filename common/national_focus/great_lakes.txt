@@ -1411,8 +1411,9 @@ focus_tree = {
 		mutually_exclusive = {
 			focus = GRL_enter_the_democratic_league
 			focus = GRL_go_it_alone
+			focus = GRL_align_the_heartlands
 		}
-		x = 0
+		x = -1
 		y = 1
 		relative_position_id = GRL_refine_our_foreign_policy
 		completion_reward = {
@@ -1435,20 +1436,85 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = GRL_align_the_heartlands
+		icon = heartlands
+		cost = 7.2
+		prerequisite = {
+			focus = GRL_refine_our_foreign_policy
+		}
+		available = {
+			NOT = {
+				has_government = nationalist
+			}
+			NOT = {
+				has_completed_focus = GRL_centralize_the_executive
+			}
+			MWA = {
+				exists = yes
+				NOT = {
+					has_war_with = GRL
+				}
+				NOT = {
+					has_government = nationalist
+				}
+			}
+		}
+		mutually_exclusive = {
+			focus = GRL_enter_the_democratic_league
+			focus = GRL_go_it_alone
+			focus = GRL_align_the_republic
+		}
+		x = 1
+		y = 1
+		relative_position_id = GRL_refine_our_foreign_policy
+		completion_reward = {
+			add_war_support = 0.03
+			MWA = {
+				add_opinion_modifier = {
+					target = GRL
+					modifier = declaration_of_friendship
+				}
+			}
+			GRL = {
+				add_opinion_modifier = {
+					target = MWA
+					modifier = declaration_of_friendship
+				}
+			}
+			MWA = {
+				country_event = greatlakes_diplo.43
+			}
+		}
+	}
+	focus = {
 		id = GRL_prepare_for_integration
 		icon = federal_intervention
 		cost = 7.2
 		prerequisite = {
 			focus = GRL_align_the_republic
+			focus = GRL_align_the_heartlands
 		}
 		x = 0
 		y = 3
 		relative_position_id = GRL_refine_our_foreign_policy
 		completion_reward = {
 			custom_effect_tooltip = GRL_republican_dream_tt
-			set_country_flag = GRL_capitalist_ar_alignment
+			if = { #American Republic
+				limit = {
+					has_completed_focus = GRL_align_the_republic
+				}
+				set_country_flag = GRL_capitalist_ar_alignment
+				add_ideas = idea_glr_giving_money_to_usa
+			}
+			else_if = { #Heartlands
+				limit = {
+					has_completed_focus = GRL_align_the_heartlands
+				}
+				set_country_flag = GRL_mwa_alignment
+				add_ideas = idea_glr_giving_money_to_mwa
+			}
 			add_political_power = 100
-			add_ideas = idea_glr_giving_money_to_usa
+			
 		}
 	}
 	focus = {
@@ -1458,7 +1524,13 @@ focus_tree = {
 		prerequisite = {
 			focus = GRL_prepare_for_integration
 		}
-		x = 1
+		available = {
+			has_completed_focus = GRL_align_the_republic
+		}
+		mutually_exclusive = {
+			focus = GRL_heartlands_political_support
+		}
+		x = -1
 		y = 4
 		relative_position_id = GRL_refine_our_foreign_policy
 		completion_reward = {
@@ -1475,6 +1547,39 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = GRL_heartlands_political_support
+		icon = GFX_goal_elections2
+		cost = 7.2
+		prerequisite = {
+			focus = GRL_prepare_for_integration
+		}
+		available = {
+			has_completed_focus = GRL_align_the_heartlands
+		}
+		mutually_exclusive = {
+			focus = GRL_republican_political_support
+		}
+		x = 1
+		y = 4
+		relative_position_id = GRL_refine_our_foreign_policy
+		completion_reward = {
+			add_stability = 0.04
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.04
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = 0.04
+			}
+			country_event = greatlakes_diplo.44
+		}
+	}
+	focus = {
 		id = GRL_enter_the_democratic_league
 		icon = democratic_league
 		cost = 2.9
@@ -1484,6 +1589,7 @@ focus_tree = {
 		mutually_exclusive = {
 			focus = GRL_go_it_alone
 			focus = GRL_align_the_republic
+			focus = GRL_align_the_heartlands
 		}
 		available = {
 			CAN = {
@@ -1570,6 +1676,7 @@ focus_tree = {
 		mutually_exclusive = {
 			focus = GRL_enter_the_democratic_league
 			focus = GRL_align_the_republic
+			focus = GRL_align_the_heartlands
 		}
 		relative_position_id = GRL_refine_our_foreign_policy
 		x = 3
@@ -1586,6 +1693,7 @@ focus_tree = {
 			focus = GRL_enter_the_democratic_league
 			focus = GRL_go_it_alone
 			focus = GRL_align_the_republic
+			focus = GRL_align_the_heartlands
 		}
 		available = {
 			NOT = {
@@ -1651,6 +1759,7 @@ focus_tree = {
 			focus = GRL_enter_the_democratic_league
 			focus = GRL_go_it_alone
 			focus = GRL_align_the_republic
+			focus = GRL_align_the_heartlands
 		}
 		mutually_exclusive = {
 			focus = GRL_occupy_illinois
@@ -1684,6 +1793,9 @@ focus_tree = {
 			MWA = {
 				exists = yes
 				owns_state = 898
+			}
+			NOT = {
+				has_completed_focus = GRL_align_the_heartlands
 			}
 		}
 		relative_position_id = GRL_refine_our_foreign_policy
@@ -1735,6 +1847,12 @@ focus_tree = {
 							has_government = centrist
 						}
 					}
+					MWA = {
+						NOT = {
+							has_country_flag = unifying_america
+						}
+						is_in_faction = no
+					}
 				}
 				MWA = {
 					country_event = greatlakes_diplo.2
@@ -1759,8 +1877,119 @@ focus_tree = {
 							has_government = national_conservative
 						}
 					}
+					MOT = {
+						is_in_faction = no
+					}
 				}
 				MOT = {
+					country_event = greatlakes_diplo.2
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						UTA = {
+							has_government = moderate_socialist
+						}
+						UTA = {
+							has_government = new_democrat
+						}
+						UTA = {
+							has_government = liberal
+						}
+						UTA = {
+							has_government = centrist
+						}
+						UTA = {
+							has_government = national_conservative
+						}
+					}
+					UTA = {
+						is_in_faction = no
+					}
+				}
+				UTA = {
+					country_event = greatlakes_diplo.2
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						ARI = {
+							has_government = moderate_socialist
+						}
+						ARI = {
+							has_government = new_democrat
+						}
+						ARI = {
+							has_government = liberal
+						}
+						ARI = {
+							has_government = centrist
+						}
+						ARI = {
+							has_government = national_conservative
+						}
+					}
+					ARI = {
+						is_in_faction = no
+					}
+				}
+				ARI = {
+					country_event = greatlakes_diplo.2
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						PCA = {
+							has_government = moderate_socialist
+						}
+						PCA = {
+							has_government = new_democrat
+						}
+						PCA = {
+							has_government = liberal
+						}
+						PCA = {
+							has_government = centrist
+						}
+						PCA = {
+							has_government = national_conservative
+						}
+					}
+					PCA = {
+						is_in_faction = no
+					}
+				}
+				PCA = {
+					country_event = greatlakes_diplo.2
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						CSD = {
+							has_government = moderate_socialist
+						}
+						CSD = {
+							has_government = new_democrat
+						}
+						CSD = {
+							has_government = liberal
+						}
+						CSD = {
+							has_government = centrist
+						}
+						CSD = {
+							has_government = national_conservative
+						}
+					}
+					CSD = {
+						is_in_faction = no
+					}
+				}
+				CSD = {
 					country_event = greatlakes_diplo.2
 				}
 			}
@@ -1821,6 +2050,7 @@ focus_tree = {
 			focus = GRL_republican_political_support
 			focus = GRL_canadian_technological_exchange
 			focus = GRL_detente_with_chomskys_commonwealth
+			focus = GRL_heartlands_political_support
 		}
 		x = 0
 		y = 5
@@ -2906,7 +3136,7 @@ focus_tree = {
 	}
 	focus = {
 		id = GLR_roll_back_social_reforms
-		icon = traditional_values
+		icon = communist_social_conservatism
 		cost = 8.6
 		prerequisite = {
 			focus = GLR_permit_proselytism
@@ -6197,7 +6427,7 @@ focus_tree = {
 	}
 	focus = {
 		id = GRL_prioritize_native_workers
-		icon = GFX_goal_generic_worker
+		icon = generic_worker
 		cost = 7.2
 		prerequisite = {
 			focus = GRL_curtail_immigration
@@ -6230,7 +6460,7 @@ focus_tree = {
 	}
 	focus = {
 		id = GRL_crush_civil_marriage
-		icon = traditional_values
+		icon = civil_marriage_pwned_focus
 		cost = 7.2
 		prerequisite = {
 			focus = GRL_curtail_immigration

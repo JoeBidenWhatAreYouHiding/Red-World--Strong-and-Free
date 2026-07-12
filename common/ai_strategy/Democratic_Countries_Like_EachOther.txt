@@ -1,24 +1,21 @@
 democratic_league_membership = {
-	
-	enable = {
-	
-		NOT = { tag = CAN }
-		CAN = { is_in_faction = yes }
-		
+
+	allowed = {
 		OR = {		
 			tag = AST
 			tag = HAW
 			
 		}
+	}
+	
+	enable = {
+		CAN = { is_in_faction = yes }
 		
-		OR = {
-			has_democratic_government = yes
-		}
+		has_democratic_government = yes
 		
 		CAN = {
 			has_democratic_government = yes
 		}
-		
 	}
 	
 	abort = {
@@ -50,6 +47,78 @@ democratic_league_membership = {
 	}
 	
 	
+}
+
+CAN_likes_democratic_america = {
+
+	allowed = {
+		tag = CAN
+	}
+
+	enable = {
+		has_democratic_government = yes
+		is_in_faction = yes
+
+		any_country = { #this should only ever be one country
+			has_country_flag = the_united_states_are_back
+			has_democratic_government = yes
+		}
+	}
+
+	abort = {
+		OR = {
+			has_democratic_government = no
+			is_in_faction = no
+			
+			any_country = { #this should only ever be one country
+				has_country_flag = the_united_states_are_back
+				has_democratic_government = yes
+				has_war_with = CAN
+			}
+		}
+	}
+
+	#Will improve relations with all American unifiers, but only one should ever exist at a time
+	ai_strategy = {
+		type = befriend
+		id = "USA"
+		value = 400
+	}
+	ai_strategy = {
+		type = alliance
+		id = "USA"
+		value = 120
+	}
+	ai_strategy = {
+		type = befriend
+		id = "MWA"
+		value = 400
+	}
+	ai_strategy = {
+		type = alliance
+		id = "MWA"
+		value = 120
+	}
+	ai_strategy = {
+		type = befriend
+		id = "NEA"
+		value = 400
+	}
+	ai_strategy = {
+		type = alliance
+		id = "NEA"
+		value = 120
+	}
+	ai_strategy = {
+		type = befriend
+		id = "AMC"
+		value = 400
+	}
+	ai_strategy = {
+		type = alliance
+		id = "AMC"
+		value = 120
+	}
 }
 
 #Let these ones rest until Celestial can figure it out.

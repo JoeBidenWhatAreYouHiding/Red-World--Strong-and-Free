@@ -60,6 +60,68 @@ political_actions = {
 		}
     }
 
+	generic_raise_support = {
+		#Democratic -> 'Rally Public Support'
+		icon = {
+			key = generic_political_rally
+			trigger = { 
+				OR = {
+					has_government = national_conservative
+					has_government = centrist
+					has_government = liberal
+					has_government = moderate_socialist
+				} 
+			}
+		}
+
+		#Authoritarian -> 'Solidify Control'
+		icon = {
+			key = eng_propaganda_campaigns
+			trigger = { 
+				OR = {
+					has_government = fascist
+					has_government = nationalist
+					has_government = monarchist
+					has_government = national_bolshevik
+					has_government = revolutionary_socialist
+					has_government = communist
+				} 
+			}
+		}
+
+		available = {
+			check_variable = {
+				tooltip = RW_party_pop_less_than
+				party_popularity@ruling_party < 1
+			}
+		}
+
+		cost = 150
+		days_remove = 180
+		days_re_enable = 540
+
+		remove_effect = {
+			set_temp_variable = { ideology_change_var = 0.1 }
+			add_popularity = {
+				ideology = var:current_party_ideology_group
+				popularity = ideology_change_var
+			}
+		}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				check_variable = { party_popularity@ruling_party < 0.5 }
+				has_political_power > 250 #Spend on other things first
+			}
+			modifier = {
+				add = 1
+				has_political_power > 300
+			}
+		}
+	}
+
 	arrest_pacifists = {
 
     	icon = GFX_decision_generic_arrest
@@ -695,11 +757,19 @@ economy_decisions = {
 		icon = generic_industry
 
 		available = {
-			NOT = { has_country_flag = embargoing_warmonger }
+			NOT = {
+				custom_trigger_tooltip = {
+					tooltip = RW_embargoing_warmonger
+					has_country_flag = embargoing_warmonger	
+				}
+			}
 			FROM = {
 				OR = {
 					has_offensive_war = yes
 					is_justifying_wargoal_against = ROOT
+				}
+				NOT = {
+					is_in_faction_with = ROOT
 				}
 			}
 		}
