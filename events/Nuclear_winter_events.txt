@@ -1,0 +1,232 @@
+﻿add_namespace = Nuclear_winter
+
+country_event = { #confused the picture names with .2, not going to change them -ROB!
+	id = Nuclear_winter.1
+	title = Nuclear_winter.1.t
+	desc = Nuclear_winter.1.d
+	picture = poor_harvests_northern_hemisphere
+	fire_only_once = yes
+	
+	trigger = {
+	check_variable = {
+    var = nuclear_winter_var
+    value = 200
+    compare = greater_than_or_equals
+		}
+	}
+	
+	option = {  
+		name = Nuclear_winter.1.o1
+	}
+}
+country_event = { #confused the picture names with .1, not going to change them -ROB!
+	id = Nuclear_winter.2
+	title = Nuclear_winter.2.t
+	desc = Nuclear_winter.2.d
+	picture = ICAN_warns_of_continued_use_of_nuclear_weapons
+	fire_only_once = yes
+	
+	trigger = {
+	check_variable = {
+    var = nuclear_winter_var
+    value = 400
+    compare = greater_than_or_equals
+		}
+	}
+	
+	option = {  
+		name = Nuclear_winter.2.o1
+		every_country = {
+		limit = {
+		has_country_flag = RW_northern_hemisphere
+		}
+		add_timed_idea = {
+			idea = idea_nuclear_winter_mild
+			days = 3652
+			}
+		}
+	}
+}
+country_event = {
+	id = Nuclear_winter.3
+	title = Nuclear_winter.3.t
+	desc = Nuclear_winter.3.d
+	picture = nuclear_winter_begun
+	
+	fire_only_once = yes
+	trigger = {
+	check_variable = {
+    var = nuclear_winter_var
+    value = 600
+    compare = greater_than_or_equals
+}
+	}
+	
+	option = {  
+		name = Nuclear_winter.3.o1
+		every_country = {
+		limit = {
+		has_country_flag = RW_northern_hemisphere
+		}
+		add_timed_idea = {
+			idea = idea_nuclear_winter_notable
+			days = 3652
+			}
+		remove_ideas = {
+		idea_nuclear_winter_mild
+			}
+		}
+		every_country = {
+		limit = {
+		has_country_flag = RW_southern_hemisphere
+		}
+		add_timed_idea = {
+			idea = idea_nuclear_winter_mild
+			days = 3652
+			}
+		}
+	}
+}
+country_event = {
+	id = Nuclear_winter.4
+	title = Nuclear_winter.4.t
+	desc = Nuclear_winter.4.d
+	picture = International_food_shortage
+	fire_only_once = yes
+	
+	trigger = {
+	check_variable = {
+    var = nuclear_winter_var
+    value = 800
+    compare = greater_than_or_equals
+}
+	}
+	
+	option = {  
+		name = Nuclear_winter.4.o1
+		every_country = {
+		limit = {
+		has_country_flag = RW_northern_hemisphere
+		}
+		add_timed_idea = {
+			idea = idea_nuclear_winter_harsh
+			days = 3652
+			}
+		remove_ideas = {
+		idea_nuclear_winter_notable
+			}
+		}
+		every_country = {
+		limit = {
+		has_country_flag = RW_southern_hemisphere
+		}
+		add_timed_idea = {
+			idea = idea_nuclear_winter_notable
+			days = 3652
+			}
+		remove_ideas = {
+		idea_nuclear_winter_mild
+			}
+		}
+	}
+}
+country_event = {
+	id = Nuclear_winter.5
+	title = Nuclear_winter.5.t
+	desc = Nuclear_winter.5.d
+	picture = ICAN_dissolves
+	fire_only_once = yes
+	
+	trigger = {
+	check_variable = {
+    var = nuclear_winter_var
+    value = 1000
+    compare = greater_than_or_equals
+}
+	}
+	
+	option = {  
+		name = Nuclear_winter.5.o1
+		every_country = {
+		limit = {
+		has_country_flag = RW_northern_hemisphere
+		}
+		add_timed_idea = {
+			idea = idea_nuclear_winter_crippling
+			days = 3652
+			}
+		remove_ideas = {
+		idea_nuclear_winter_harsh
+			}
+		}
+		every_country = {
+		limit = {
+		has_country_flag = RW_southern_hemisphere
+		}
+		add_timed_idea = {
+			idea = idea_nuclear_winter_harsh
+			days = 3652
+			}
+		remove_ideas = {
+		idea_nuclear_winter_notable
+			}
+		}
+	}
+}
+
+country_event = { # for normal nuke
+	id = Nuclear_winter.6
+	
+	is_triggered_only = yes
+	hidden = yes
+	
+	option = {  
+		name = Nuclear_winter.1.o1
+			add_to_variable = {
+			var = nuclear_winter_var
+			value = 1
+		}
+	}
+}
+country_event = { # for normal nuke, critical success
+	id = Nuclear_winter.7
+	
+	is_triggered_only = yes
+	hidden = yes
+	
+	option = {  
+		name = Nuclear_winter.1.o1
+			add_to_variable = {
+			var = nuclear_winter_var
+			value = 2
+		}
+	}
+}
+country_event = { # for thermonuclear nuke
+	id = Nuclear_winter.8
+	
+	is_triggered_only = yes
+	hidden = yes
+	
+	option = {  
+		name = Nuclear_winter.1.o1
+			add_to_variable = {
+			var = nuclear_winter_var
+			value = 4
+		}
+	}
+}
+country_event = { # for thermonuclear nuke, critical success
+	id = Nuclear_winter.9
+	
+	is_triggered_only = yes
+	hidden = yes
+	
+	option = {  
+		name = Nuclear_winter.1.o1
+			add_to_variable = {
+			var = nuclear_winter_var
+			value = 5
+		}
+	}
+}
