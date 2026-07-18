@@ -218,3 +218,139 @@ country_event = {
 		}
 	}
 }
+
+#Montana Stabilized (Wargoal on Lincoln)
+country_event = {
+	id = montana.4
+	title = montana.4.t
+	desc = montana.4.d
+	picture = militia_mobilisation
+	trigger = {
+		tag = MOT
+		date > 2012.1.1
+		date < 2012.1.30
+		is_puppet = no
+		has_government = fascist
+	}
+	fire_only_once = yes
+	option = {
+		#Time to kick some ass
+		name = montana.4.o1
+		hidden_effect = {
+			add_ideas = MOT_war_for_the_northwest
+		}
+		create_wargoal = {
+            target = LIN
+            type = annex_everything
+        }
+		LIN = { #let Lincoln know Montana is knocking
+			country_event = montana.5
+		}
+	}
+}
+
+#Montana Mobilizes for War! (Lincoln)
+country_event = {
+	id = montana.5
+	title = montana.5.t
+	desc = montana.5.d
+	picture = militia_mobilisation
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		#To arms!
+		name = montana.5.o1
+		hidden_effect = {
+			add_ideas = MOT_war_for_the_northwest
+		}
+		add_war_support = 0.15
+	}
+}
+
+#End of the Schism (Montana)
+country_event = {
+	id = montana.6
+	title = montana.6.t
+	desc = montana.6.d
+	picture = militia_mobilisation
+	trigger = {
+		tag = MOT
+		is_puppet = no
+		has_government = fascist
+		owns_state = 387
+	}
+	mean_time_to_happen = {
+		days = 1
+	}
+	fire_only_once = yes
+	option = {
+		#To Cascadia!
+		name = montana.6.o1
+		386 = { #Washington
+			owner = {
+				MOT = {
+					create_wargoal = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+				hidden_effect = {
+					country_event = montana.8
+				}
+			}
+		}
+	}
+}
+
+#End of the Schism (Lincoln) (Probably should make a Lincoln event file for this but I'm lazy - Jim)
+country_event = {
+	id = montana.7
+	title = montana.7.t
+	desc = montana.7.d
+	picture = militia_mobilisation
+	trigger = {
+		tag = LIN
+		is_puppet = no
+		has_government = national_bolshevik
+		owns_state = 388
+	}
+	mean_time_to_happen = {
+		days = 1
+	}
+	fire_only_once = yes
+	option = {
+		#To Cascadia!
+		name = montana.7.o1
+		386 = { #Washington
+			owner = {
+				LIN = {
+					create_wargoal = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+				hidden_effect = {
+					country_event = montana.8
+				}
+			}
+		}
+	}
+}
+
+#The Second Cascadian Invasion
+country_event = {
+	id = montana.8
+	title = montana.8.t
+	desc = montana.8.d
+	picture = militia_mobilisation
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		#To arms!
+		name = montana.8.o1
+		hidden_effect = {
+			add_ideas = MOT_war_for_the_northwest
+		}
+		add_war_support = 0.15
+	}
+}

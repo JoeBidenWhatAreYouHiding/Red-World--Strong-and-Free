@@ -1,38 +1,1082 @@
 ﻿add_namespace = korea
-#Kim jong il dies
+#Kim jong il ill (drinking)
 country_event = {
-	id = korea.1
-	title = korea.1.t
-	desc = korea.1.d
-	picture = kim_jong_il_dies
-	is_triggered_only = yes
-	option = {
-		#Kim Jong-nam - loyal to daddy and wants more nukes
-		name = korea.1.o1
-		PRK_kim_jongnam = {
-			promote_character = national_stalinist
+    id = korea.1
+    title = korea.1.t
+    desc = korea.1.d
+    picture = korea_newyears_television
+	
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        #Family calls for brief
+        name = korea.1.o1
+		add_popularity = {
+			ideology = communist
+			popularity = -0.02
 		}
+        set_variable = {
+            var = prk_family_point
+            value = 0
+        }
+        set_variable = {
+            var = prk_soviet_point
+            value = 0
+        }
+        hidden_effect = {
+            country_event = {
+                id = korea.2
+                days = 10
+            }
+        }
+    }
+}
+
+#Kim jong il ill (drinking)
+country_event = {
+    id = korea.2
+    title = korea.2.t
+    desc = korea.2.d
+    picture = korea_meeting_tardiness_again
+	
+    is_triggered_only = yes
+    option = {
+        #Family calls for brief
+        name = korea.2.o1
+		add_political_power = -10
+        add_to_variable = {
+            var = prk_family_point
+            value = 1
+        }
+        custom_effect_tooltip = korea_family_point_tt
+        hidden_effect = {
+            country_event = {
+                id = korea.4
+                days = 10
+            }
+        }
+    }
+    option = {
+        #Soviet faction meets in Ryongsong
+        name = korea.2.o2
+		add_political_power = -5
+        add_to_variable = {
+            var = prk_soviet_point
+            value = 1
+        }
+        custom_effect_tooltip = korea_soviet_point_tt
+        hidden_effect = {
+            country_event = {
+                id = korea.3
+                days = 10
+            }
+        }
+    }
+}
+
+#Succession plan goes nowhere
+country_event = {
+    id = korea.3
+    title = korea.3.t
+    desc = korea.3.d
+    picture = korea_gone_with_the_wind
+	
+    is_triggered_only = yes
+    option = {
+        #Family calls for brief
+        name = korea.3.o1
+    }
+}
+
+#Ill comes out
+country_event = {
+    id = korea.4
+    title = korea.4.t
+    desc = korea.4.d
+    picture = korea_presidium_does_housecalls
+	
+    is_triggered_only = yes
+    option = {
+        #Family calls for brief
+        name = korea.4.o1
+    }
+}
+
+#Yazov's dead, time to drink!
+country_event = {
+    id = korea.5
+    title = korea.5.t
+    desc = korea.5.d
+    picture = korea_who_goes_to_moscow
+	
+    is_triggered_only = yes
+    option = {
+        #Send Kim
+        name = korea.5.o1
+        add_to_variable = {
+            var = prk_family_point
+            value = 1
+        }
+        custom_effect_tooltip = korea_family_point_tt
+        hidden_effect = {
+            country_event = {
+                id = korea.6
+                days = 8
+            }
+        }
+    }
+    option = {
+        #Send Kwŏn
+        name = korea.5.o2
+        add_to_variable = {
+            var = prk_soviet_point
+            value = 1
+        }
+        custom_effect_tooltip = korea_soviet_point_tt
+        hidden_effect = {
+            country_event = {
+                id = korea.6
+                days = 8
+            }
+        }
+    }
+}
+
+#Kim Mun-su Speaks :-0
+country_event = {
+    id = korea.6
+    title = korea.6.t
+    desc = korea.6.d
+    picture = korea_workers_of_the_world_awaken
+	
+    is_triggered_only = yes
+    option = {
+        #Family calls for brief
+        name = korea.6.o1
+		hidden_effect = {
+            country_event = {
+                id = korea.7
+                days = 12
+            }
+        }
+    }
+}
+
+#Early army alarm clock :)
+country_event = {
+    id = korea.7
+    title = korea.7.t
+    desc = korea.7.d
+    picture = korea_get_your_eight_hours
+	
+    is_triggered_only = yes
+    option = {
+        #Family calls for brief
+        name = korea.7.o1
+        hidden_effect = {
+            country_event = {
+                id = korea.8
+                days = 20
+            }
+        }
+    }
+}
+
+#Goal of the republic
+country_event = {
+    id = korea.8
+    title = korea.8.t
+    desc = korea.8.d
+    picture = korea_kids_want_power
+	
+    is_triggered_only = yes
+    option = {
+        #Jong-Nam
+        name = korea.8.o1
+        set_country_flag = PRK_jong_nam_picked
+		add_stability = 0.05
+        custom_effect_tooltip = korea_jong_nam_favored
+        hidden_effect = {
+            country_event = {
+                id = korea.9
+                days = 14
+            }
+        }
+    }
+    option = {
+        #Yo-jong
+        name = korea.8.o2
+        set_country_flag = PRK_yo_jong_picked
+		add_popularity = {
+			ideology = national_bolshevik
+			popularity = 0.05
+		}
+        custom_effect_tooltip = korea_yo_jong_favored
+        hidden_effect = {
+            country_event = {
+                id = korea.9
+                days = 14
+            }
+        }
+    }
+    option = {
+        #Kim Jong-un
+        name = korea.8.o3
+        set_country_flag = PRK_kim_jong_un_picked
+        custom_effect_tooltip = korea_jong_un_favored
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.05
+		}
+        hidden_effect = {
+            country_event = {
+                id = korea.9
+                days = 14
+            }
+        }
+    }
+}
+
+#USSR oil shipments delayed (do you smell that? The rot of Marxism Leninsm?)
+country_event = {
+    id = korea.9
+    title = korea.9.t
+    desc = korea.9.d
+    picture = korea_no_more_oil
+	
+    is_triggered_only = yes
+    option = {
+        #JUCHE!
+        name = korea.9.o1
+		add_political_power = -50
+		add_timed_idea = {
+			idea = PRK_oil_rationing
+			days = 400
+		}
+        hidden_effect = {
+            country_event = {
+                id = korea.10
+                days = 21
+            }
+        }
+    }
+    option = {
+        #An Appeal to Sawawak
+        name = korea.9.o2
+		add_opinion_modifier = {
+			target = BRN
+			modifier = trade_influence_2
+		}
+		reverse_add_opinion_modifier = {
+			target = BRN
+			modifier = trade_influence_2
+		}
+        hidden_effect = {
+            country_event = {
+                id = korea.10
+                days = 21
+            }
+        }
+    }
+}
+
+#Army hongory
+country_event = {
+    id = korea.10
+    title = korea.10.t
+    desc = korea.10.d
+    picture = korea_japan_is_totally_coming
+    is_triggered_only = yes
+	
+    option = {
+        #little dark age north korea edit
+        name = korea.10.o1
+		add_fuel = 500
+		add_popularity = {
+			ideology = communist
+			popularity = -0.05
+		}
+		add_to_variable = {
+            var = prk_family_point
+            value = -1
+        }
+        add_to_variable = {
+            var = prk_soviet_point
+            value = -1
+        }
+        custom_effect_tooltip = korea_army_influence_tt
+    }
+	
+    option = {
+        #Larp! *throws rock at the KPA*
+        name = korea.10.o2
+		add_war_support = -0.07
+    }
+}
+
+#Victory Day, Korea Edition
+country_event = {
+    id = korea.11
+    title = korea.11.t
+    desc = korea.11.d
+    picture = korea_victory_day_celebreaks
+    is_triggered_only = yes
+    option = {
+        #YouTube tier speech
+        name = korea.11.o1
+		add_stability = -0.03
+        add_to_variable = {
+            var = prk_family_point
+            value = 1
+        }
+        custom_effect_tooltip = korea_family_point_tt
+		hidden_effect = {
+            country_event = {
+                id = korea.12
+                days = 17
+            }
+        }
+    }
+    option = {
+        #WAITER, WAITER, MORE WINE!
+        name = korea.11.o2
+		add_stability = -0.03
+        add_to_variable = {
+            var = prk_soviet_point
+            value = 1
+        }
+        custom_effect_tooltip = korea_soviet_point_tt
+		hidden_effect = {
+            country_event = {
+                id = korea.12
+                days = 17
+            }
+        }
+    }
+}
+
+#Chollywoods Golden Age Has Begun
+country_event = {
+    id = korea.12
+    title = korea.12.t
+    desc = korea.12.d
+    picture = korea_time_for_kino
+    is_triggered_only = yes
+    option = {
+        #Family calls for brief
+        name = korea.12.o1
+		add_political_power = -15
+    }
+}
+
+#Foundation of the Republic Day
+country_event = {
+    id = korea.13
+    title = korea.13.t
+    desc = korea.13.d
+    picture = korea_dprk_once_became_real
+    is_triggered_only = yes
+    option = {
+        #Family calls for brief
+        name = korea.13.o1
+		add_political_power = -25
+        hidden_effect = {
+            country_event = {
+                id = korea.14
+                days = 30
+            }
+        }
+    }
+}
+
+#TRACTOR BLYATTT
+country_event = {
+    id = korea.14
+    title = korea.14.t
+    desc = korea.14.d
+    picture = korea_traktor_faktory_tanks
+    is_triggered_only = yes
+	fire_only_once = yes
+    option = {
+        #Family calls for brief
+        name = korea.14.o1
+		add_stability = 0.03
+        add_to_variable = {
+            var = prk_soviet_point
+            value = 1
+        }
+        custom_effect_tooltip = korea_soviet_point_tt
+        hidden_effect = {
+            country_event = {
+                id = korea.15
+                days = 23
+            }
+        }
+    }
+    option = {
+        #Family calls for brief
+        name = korea.14.o2
+        add_to_variable = {
+            var = prk_family_point
+            value = 1
+        }
+        custom_effect_tooltip = korea_family_point_tt
+		872 = {
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+        hidden_effect = {
+            country_event = {
+                id = korea.15
+                days = 23
+            }
+        }
+    }
+}
+
+#Kyo’ngje Yo’ngu Publishes Draft Proposal for Economic Reform
+country_event = {
+    id = korea.15
+    title = korea.15.t
+    desc = korea.15.d
+    picture = korea_economic_reform_proposals
+    is_triggered_only = yes
+    option = {
+        #Heavy Industry goes brrrr
+        name = korea.15.o1
+		add_popularity = {
+			ideology = communist
+			popularity = 0.03
+		}
+        add_to_variable = {
+            var = prk_family_point
+            value = 1
+        }
+        custom_effect_tooltip = korea_family_point_tt
+        hidden_effect = {
+            country_event = {
+                id = korea.16
+                days = 10
+            }
+        }
+    }
+    option = {
+        #Heavy Industry goes flatline
+        name = korea.15.o2
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.03
+		}
+        add_to_variable = {
+            var = prk_soviet_point
+            value = 1
+        }
+        custom_effect_tooltip = korea_soviet_point_tt
+        hidden_effect = {
+            country_event = {
+                id = korea.16
+                days = 10
+            }
+        }
+    }
+}
+
+#Cultural Festival!!!
+country_event = {
+    id = korea.16
+    title = korea.16.t
+    desc = korea.16.d
+    picture = korea_movie_trailer_coming_up
+    is_triggered_only = yes
+    option = {
+        #The FCC called
+        name = korea.16.o2
+        custom_effect_tooltip = korea_soviet_point_tt
+        hidden_effect = {
+            country_event = {
+                id = korea.17
+                days = 22
+            }
+        }
+    }
+    option = {
+        #No censorship
+        name = korea.16.o1
+        custom_effect_tooltip = korea_family_point_tt
+        hidden_effect = {
+            country_event = {
+                id = korea.18
+                days = 22
+            }
+        }
+    }
+}
+
+#Korean Sundance
+country_event = {
+    id = korea.17
+    title = korea.17.t
+    desc = korea.17.d
+    picture = korea_the_simple_man_arrives
+    is_triggered_only = yes
+    option = {
+        #Family calls for brief
+        name = korea.17.o1
+		add_political_power = 50
+		add_stability = 0.05
+        add_to_variable = {
+            var = prk_soviet_point
+            value = 1
+        }
+        hidden_effect = {
+            country_event = {
+                id = korea.19
+                days = 30
+            }
+        }
+    }
+}
+
+#Opa suicide style
+country_event = {
+    id = korea.18
+    title = korea.18.t
+    desc = korea.18.d
+    picture = korea_oppan_prison_style
+    is_triggered_only = yes
+    option = {
+        #Family calls for brief
+        name = korea.18.o1
+		add_political_power = -100
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = -0.05
+		}
+		add_to_variable = {
+            var = prk_family_point
+            value = 1
+        }
+        hidden_effect = {
+            country_event = {
+                id = korea.19
+                days = 30
+            }
+        }
+    }
+}
+
+#I'm very ronery in my fortress of soliritude
+country_event = {
+    id = korea.19
+    title = korea.19.t
+    desc = korea.19.d
+    picture = korea_kim_stays_home_again
+    is_triggered_only = yes
+    option = {
+        #Family calls for brief
+        name = korea.19.o1
+		add_stability = -0.04
+        hidden_effect = {
+            country_event = {
+                id = korea.20
+                days = 11
+            }
+        }
+    }
+}
+
+#Picking! I'm picking!
+country_event = {
+    id = korea.20
+    title = korea.20.t
+    desc = korea.20.d
+    picture = korea_time_for_new_leader
+    is_triggered_only = yes
+
+    option = {
+        name = korea.20.o1
+        trigger = {
+			check_variable = {
+				var = prk_family_point
+				value = 4
+				compare = greater_than_or_equals
+			}
+        }
+		add_political_power = -35
+        add_to_variable = {
+            var = prk_family_point
+            value = 5
+        }
+        hidden_effect = {
+            if = {
+                limit = { has_country_flag = PRK_jong_nam_picked }
+                country_event = { id = korea.21 days = 3 }
+            }
+            else_if = {
+                limit = { has_country_flag = PRK_yo_jong_picked }
+                country_event = { id = korea.22 days = 3 }
+            }
+            else_if = {
+                limit = { has_country_flag = PRK_kim_jong_un_picked }
+                country_event = { id = korea.23 days = 3 }
+            }
+        }
+    }
+
+    option = {
+        name = korea.20.o2
+        trigger = {
+			check_variable = {
+				var = prk_soviet_point
+				value = 4
+				compare = greater_than_or_equals
+			}
+        }
+        set_country_flag = soviet_faction_win
+		add_political_power = -35
+        add_to_variable = {
+            var = prk_soviet_point
+            value = 5
+        }
+        hidden_effect = {
+            country_event = {
+                id = korea.24
+                days = 3
+            }
+        }
+    }
+
+    option = {
+        name = korea.20.o3
+		add_political_power = -35
+        trigger = {
+            AND = {
+				check_variable = {
+					var = prk_soviet_point
+					value = 3
+					compare = less_than_or_equals
+				}
+				check_variable = {
+					var = prk_family_point
+					value = 3
+					compare = less_than_or_equals
+				}
+            }
+        }
+        hidden_effect = {
+            country_event = {
+                id = korea.25
+                days = 3
+            }
+        }
+    }
+}
+
+#Ill Speaks! For Nam
+country_event = {
+    id = korea.21
+    title = korea.21.t
+    desc = korea.21.d
+    picture = korea_my_son_take_power
+    is_triggered_only = yes
+    option = {
+        #Family calls for brief
+        name = korea.21.o1
+		add_stability = 0.05
+		add_popularity = {
+			ideology = communist
+			popularity = 0.1
+		}
+        hidden_effect = {
+            country_event = {
+                id = korea.26
+                days = 5
+            }
+        }
+    }
+}
+
+#Ill Speaks! For Yo
+country_event = {
+    id = korea.22
+    title = korea.22.t
+    desc = korea.22.d
+    picture = korea_my_son_take_power
+    is_triggered_only = yes
+    option = {
+        #Family calls for brief
+        name = korea.22.o1
+		add_political_power = 25
+		add_popularity = {
+			ideology = national_bolshevik
+			popularity = 0.1
+		}
+        hidden_effect = {
+            country_event = {
+                id = korea.26
+                days = 5
+            }
+        }
+    }
+}
+
+#Ill Speaks! For Un
+country_event = {
+    id = korea.23
+    title = korea.23.t
+    desc = korea.23.d
+    picture = korea_my_son_take_power
+    is_triggered_only = yes
+    option = {
+        #Family calls for brief
+        name = korea.23.o1
+		add_popularity = {
+			ideology = communist
+			popularity = 0.05
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.05
+		}
+        hidden_effect = {
+            country_event = {
+                id = korea.26
+                days = 5
+            }
+        }
+    }
+}
+
+#Soviet faction wins
+country_event = {
+    id = korea.24
+    title = korea.24.t
+    desc = korea.24.d
+    picture = korea_normal_socialism_again_thank_fuck
+    is_triggered_only = yes
+    option = {
+        #winning
+        name = korea.24.o1
+        set_country_flag = PRK_soviets_win
+		add_stability = -0.05
+		add_popularity = {
+			ideology = communist
+			popularity = 0.1
+		}
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.1
+		}
+		set_temp_variable = { coalition_partner_var = token:revolutionary_socialist}
+        add_to_coalition = yes
+        hidden_effect = {
+            country_event = {
+                id = korea.26
+                days = 5
+            }
+        }
+    }
+}
+
+#No winners - hell on earth
+country_event = {
+    id = korea.25
+    title = korea.25.t
+    desc = korea.25.d
+    picture = korea_no_new_leader
+    is_triggered_only = yes
+    option = {
+        #NOT winning
+        name = korea.25.o1
+        set_country_flag = PRK_no_winners
+		add_stability = -0.1
+		add_popularity = {
+			ideology = communist
+			popularity = -0.15
+		}
+        hidden_effect = {
+            country_event = {
+                id = korea.26
+                days = 5
+            }
+        }
+    }
+}
+
+#No le wine???
+country_event = {
+    id = korea.26
+    title = korea.26.t
+    desc = korea.26.d
+    picture = korea_not_enough_alcoholism
+    is_triggered_only = yes
+    option = {
+        #NOT winning
+        name = korea.26.o1
+        hidden_effect = {
+            country_event = {
+                id = korea.27
+                days = 10
+            }
+        }
+    }
+}
+
+#Key KWP *dies*
+country_event = {
+    id = korea.27
+    title = korea.27.t
+    desc = korea.27.d
+    picture = korea_where_are_you_dear_leader
+    is_triggered_only = yes
+    option = {
+        #PBUH
+        name = korea.27.o1
+        remove_ideas = PRK_where_are_you_father
+        set_portraits = {
+            character = PRK_kim_jongil
+            civilian = {
+                large="gfx/leaders/PRK/Portrait_PRK_Kim_Jong_Il_1.dds"
+            }
+        }
+        hidden_effect = {
+            country_event = {
+                id = korea.29
+                days = 2
+            }
+        }
+    }
+}
+#Peak releases
+country_event = {
+    id = korea.29
+    title = korea.29.t
+    desc = korea.29.d
+    picture = lone_man_on_horseback_chasing_justice
+    is_triggered_only = yes
+    option = {
+        name = korea.29.o1
+        trigger = {
+            has_country_flag = PRK_no_winners
+        }
+        hidden_effect = {
+            country_event = {
+                id = korea.31
+                days = 7
+            }
+        }
+    }
+
+    option = {
+        name = korea.29.o2
+        trigger = {
+            NOT = { has_country_flag = PRK_no_winners }
+        }
+        hidden_effect = {
+            country_event = {
+                id = korea.32
+                days = 4
+            }
+        }
+    }
+}
+
+#funeral
+country_event = {
+    id = korea.30
+    title = korea.30.t
+    desc = korea.30.d
+    picture = kim_jong_il_dies
+    is_triggered_only = yes
+
+    option = {
+        name = korea.30.o1
+        trigger = {
+            has_country_flag = PRK_jong_nam_picked
+            NOT = { has_country_flag = PRK_soviets_win }
+        }
+        hidden_effect = {
+            country_event = {
+                id = korea.34
+                days = 6
+            }
+        }
+    }
+
+    option = {
+        name = korea.30.o2
+        trigger = { 
+            has_country_flag = PRK_yo_jong_picked
+            NOT = { has_country_flag = PRK_soviets_win }
+        }
+        hidden_effect = {
+            country_event = {
+                id = korea.33
+                days = 6
+            }
+        }
+    }
+
+    option = {
+        name = korea.30.o3
+        trigger = {
+            has_country_flag = PRK_kim_jong_un_picked
+            NOT = { has_country_flag = PRK_soviets_win }
+        }
+        hidden_effect = {
+            country_event = {
+                id = korea.36
+                days = 6
+            }
+        }
+    }
+
+    option = {
+        name = korea.30.o4
+        trigger = {
+            has_country_flag = PRK_soviets_win
+        }
+        hidden_effect = {
+            country_event = {
+                id = korea.35
+                days = 6
+            }
+        }
+    }
+}
+
+#Postal Redux Soul Map
+country_event = {
+    id = korea.31
+    title = korea.31.t
+    desc = korea.31.d
+    picture = korea_military_coup_comes
+    is_triggered_only = yes
+
+    option = {
+        name = korea.31.o1
+		add_war_support = 0.15
+		add_popularity = {
+            ideology = national_bolshevik
+            popularity = 0.1
+        }
+		set_politics = {
+            ruling_party = national_bolshevik
+            elections_allowed = no
+        }
 		hidden_effect = {
 			retire_character = PRK_kim_jongil
+			set_party_name = {
+				ideology = communist
+				long_name = "Workers' Party of Korea - Labor Faction"
+				name = "WPK - Labor"
+			}
+			PRK_kim_un_su = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						ideology = malenkovist
+						expire="1.1.1.1"
+					}
+				}
+			}
+			hidden_effect = {
+				country_event = {
+					id = korea.37
+					days = 21
+				}
+			}
 			every_country = {
 				limit = {
 					exists = yes
 				}
 				news_event = {
 					hours = 4
-					id = news.308
+					id = news.311
 				}
 			}
 		}
-	}
-	option = {
-		#Kim Yo-jong - loyal to daddy and wants more science
-		name = korea.1.o2
-		PRK_kim_yojong = {
-			promote_character = national_stalinist
+    }
+}
+
+#PBUH
+country_event = {
+    id = korea.32
+    title = korea.32.t
+    desc = korea.32.d
+    picture = korea_supreme_leader_declared_dead
+    is_triggered_only = yes
+
+    option = {
+        name = korea.32.o1
+        hidden_effect = {
+            country_event = {
+                id = korea.30
+                days = 8
+            }
+        }
+    }
+}
+
+#Kim Yo wins
+country_event = {
+    id = korea.33
+    title = korea.33.t
+    desc = korea.33.d
+    picture = korea_girlboss_dictator_at_last
+    is_triggered_only = yes
+
+    option = {
+        name = korea.33.o1
+        #Kim Yo-jong - loyal to daddy and wants more science
+        name = korea.33.o2
+        PRK_kim_yojong = {
+            add_country_leader_role = {
+                promote_leader = yes
+                country_leader = {
+                    ideology = monolism
+                    expire="1.1.1.1"
+                }
+            }
+        }
+        add_popularity = {
+            ideology = national_bolshevik
+            popularity = 0.3
+        }
+        set_politics = {
+            ruling_party = national_bolshevik
+            elections_allowed = no
+            long_name = PRK_communist_party_long
+            name = PRK_communist_party
+        }
+		swap_ideas = {
+			remove_idea = PRK_glorious_revolutionary_korean_rennaissance
+			add_idea = PRK_glorious_revolutionary_korean_rennaissance_natbol
 		}
 		hidden_effect = {
 			retire_character = PRK_kim_jongil
+			set_party_name = {
+				ideology = communist
+				long_name = "Workers' Party of Korea - Labor Faction"
+				name = "WPK - Labor"
+			}
+			PRK_kim_un_su = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						ideology = malenkovist
+						expire="1.1.1.1"
+					}
+				}
+			}
 			every_country = {
 				limit = {
 					exists = yes
@@ -43,15 +1087,108 @@ country_event = {
 				}
 			}
 		}
-	}
-	option = {
-		#Kim Jong-un - desires reform
-		name = korea.1.o3
-		PRK_kim_jongun = {
-			promote_character = national_stalinist
+    }
+}
+
+#Kim Jong Nam wins
+country_event = {
+    id = korea.34
+    title = korea.34.t
+    desc = korea.34.d
+    picture = korea_time_for_failson
+    is_triggered_only = yes
+
+    option = {
+        name = korea.34.o1
+        #Kim Jong-nam - loyal to daddy and wants more nukes
+        PRK_kim_jongnam = {
+            add_country_leader_role = {
+                promote_leader = yes
+                country_leader = {
+                    ideology = national_stalinist
+                    expire="1.1.1.1"
+                }
+            }
+        }
+        hidden_effect = {
+            retire_character = PRK_kim_jongil
+            every_country = {
+                limit = {
+                    exists = yes
+                }
+                news_event = {
+                    hours = 4
+                    id = news.308
+                }
+            }
+        }
+    }
+}
+
+#Kim Mun-su wins
+country_event = {
+    id = korea.35
+    title = korea.35.t
+    desc = korea.35.d
+    picture = korea_the_good_ending
+    is_triggered_only = yes
+
+    option = {
+        name = korea.35.o1
+		if = {
+			limit = {
+				SOV = {
+					exists = yes
+				}
+			}
+			swap_ideas = {
+				remove_idea = idea_comecon_observer
+				add_idea = idea_comecon_member
+			}
 		}
+        PRK_kim_un_su = {
+            add_country_leader_role = {
+                promote_leader = yes
+                country_leader = {
+                    ideology = malenkovist
+                    expire="1.1.1.1"
+                }
+            }
+        }
+		set_party_name = {
+			ideology = communist
+			long_name = "Workers' Party of Korea - Labor Faction"
+			name = "WPK - Labor"
+		}
+    }
+}
+
+#Kim Jong Un wins
+country_event = {
+    id = korea.36
+    title = korea.36.t
+    desc = korea.36.d
+    picture = korea_we_will_follow_only_you
+    is_triggered_only = yes
+
+    option = {
+        name = korea.36.o1
+        PRK_kim_jongun = {
+            add_country_leader_role = {
+                promote_leader = yes
+                country_leader = {
+                    ideology = neoauthoritarian
+                    expire="1.1.1.1"
+                }
+            }
+        }
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.2
+		}
+		set_temp_variable = { coalition_partner_var = token:liberal}
+        add_to_coalition = yes
 		hidden_effect = {
-			retire_character = PRK_kim_jongil
 			every_country = {
 				limit = {
 					exists = yes
@@ -62,29 +1199,25 @@ country_event = {
 				}
 			}
 		}
-	}
+    }
+}
+
+country_event = { #Songun Policy Declared New Economic Priority
+	id = korea.37
+	title = korea.37.t
+	desc = korea.37.d
+	picture = korea_songun_loves_tanks
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
 	option = {
-		#Military overthrows the Kim family
-		name = korea.1.o4
-		set_politics = {
-			ruling_party = national_bolshevik
-			elections_allowed = no
-		}
+		name = korea.37.o1
+		add_war_support = 0.2
 		add_stability = -0.05
-		hidden_effect = {
-			PRK_kim_jongun = {
-			promote_character = national_stalinist
-			}
-			retire_character = PRK_kim_jongil
-			every_country = {
-				limit = {
-					exists = yes
-				}
-				news_event = {
-					hours = 4
-					id = news.311
-				}
-			}
+		swap_ideas = {
+			remove_idea = PRK_glorious_revolutionary_korean_rennaissance
+			add_idea = PRK_songun_policy
 		}
 	}
 }

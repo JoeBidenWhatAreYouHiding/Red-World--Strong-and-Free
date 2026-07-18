@@ -2,6 +2,7 @@ add_namespace = news
 add_namespace = ukbad
 add_namespace = centroamericanews
 add_namespace = commonwealthnews
+add_namespace = NTInews
 news_event = {	#2010 Winter Olympics - Albertville, France 
 	id = news.1
 	title = news.1.t
@@ -2136,27 +2137,184 @@ news_event = {	#brasier declares normandy british territory
 
 news_event = {	#queen dies
 	id = news.145
-	title = news.145.t
-	desc = news.145.d
+	title = {
+		text = news.145.t.monarchy
+		trigger = {
+			ENG = {
+				OR = {
+					has_idea = idea_king_charles_third #check if the next monarch is a natspirit
+					has_government = monarchist
+				}
+			}
+		}
+	}
+	title = {
+		text = news.145.t.nomonarchy
+		trigger = {
+			ENG = {
+				NOT = {
+					has_idea = idea_king_charles_third
+					has_government = monarchist
+				}
+			}
+		}
+	}
+	desc = {
+		text = news.145.d.monarchy
+		trigger = {
+			ENG = {
+				OR = {
+					has_idea = idea_king_charles_third #check if the next monarch is a natspirit
+					has_government = monarchist
+				}
+			}
+		}
+	}
+	desc = {
+		text = news.145.d.communist
+		trigger = {
+			ENG = {
+				has_completed_focus = ENG_exile_them
+			}
+		}
+	}
+	desc = {
+		text = news.145.d.revsoc
+		trigger = {
+			ENG = {
+				has_completed_focus = ENG_abolish_the_monarchy
+			}
+		}
+	}
+	desc = {
+		text = news.145.d.modsoc
+		trigger = {
+			ENG = {
+				has_completed_focus = ENG_republic_referendum
+			}
+		}
+	}
+	desc = {
+		text = news.145.d.fascist
+		trigger = {
+			ENG = {
+				has_completed_focus = ENG_out_with_royalty
+			}
+		}
+	}
+	
 	picture = news_queen_dies
 	
 	is_triggered_only = yes 
 	
 	option = {
 		name = news.145.o1
+		trigger = {
+			NOT = {
+				has_government = communist
+				has_government = revolutionary_socialist
+			}
+		}
+	}
+	option = {
+		name = news.145.o2
+		trigger = {
+			OR = {
+				has_government = communist
+				has_government = revolutionary_socialist
+			}
+		}
 	}
 }
 
 news_event = {	#charles dies
 	id = news.146
-	title = news.146.t
-	desc = news.146.d
+	title = {
+		text = news.146.t.monarchy
+		trigger = { 
+			ENG = {
+				OR = {
+					has_idea = idea_king_william_fifth #check if the next monarch is a natspirit
+					has_government = monarchist
+				}
+			}
+		}
+	}
+	title = {
+		text = news.146.t.nomonarchy
+		trigger = {
+			ENG = {
+				NOT = {
+					has_idea = idea_king_william_fifth
+					has_government = monarchist
+				}
+			}
+		}
+	}
+	desc = {
+		text = news.146.d.monarchy
+		trigger = {
+			ENG = {
+				OR = {
+					has_idea = idea_king_william_fifth #check if the next monarch is a natspirit
+					has_government = monarchist
+				}
+			}
+		}
+	}
+	desc = {
+		text = news.146.d.communist
+		trigger = {
+			ENG = {
+				has_completed_focus = ENG_exile_them
+			}
+		}
+	}
+	desc = {
+		text = news.146.d.revsoc
+		trigger = {
+			ENG = {
+				has_completed_focus = ENG_abolish_the_monarchy
+			}
+		}
+	}
+	desc = {
+		text = news.146.d.modsoc
+		trigger = {
+			ENG = {
+				has_completed_focus = ENG_republic_referendum
+			}
+		}
+	}
+	desc = {
+		text = news.146.d.fascist
+		trigger = {
+			ENG = {
+				has_completed_focus = ENG_out_with_royalty
+			}
+		}
+	}
 	picture = news_charles_dies
 	
 	is_triggered_only = yes 
 	
 	option = {
 		name = news.146.o1
+		trigger = {
+			NOT = {
+				has_government = communist
+				has_government = revolutionary_socialist
+			}
+		}
+	}
+	option = {
+		name = news.146.o2
+		trigger = {
+			OR = {
+				has_government = communist
+				has_government = revolutionary_socialist
+			}
+		}
 	}
 }
 
@@ -6627,6 +6785,138 @@ news_event = { #chhagan bhujbal appointed president of india
 		name = news.409.o1
 	}
 }
+
+news_event = { #Ghana wins the 2010 World Cup.
+	id = news.900
+	title = news.900.t
+	desc = news.900.d
+	picture = 2010_world_cup
+		
+	is_triggered_only = yes 
+	major = yes
+	
+	trigger = {
+	    date > 2010.06.11
+		date < 2010.07.11
+	}
+	
+	option = { 
+		trigger = {
+			is_on_same_continent_as = GHA
+		}
+		name = news.900.o1
+	}
+	option = { 
+		trigger = {
+		OR = {
+			tag = USA
+			tag = AMC
+			tag = NEA
+			tag = AMS
+			tag = ILL
+			tag = ARI
+			tag = PCA
+			tag = MWA
+			tag = TEX
+			tag = GRL
+			tag = MOT
+			tag = LIN
+			tag = UTA
+			tag = CSD
+			}
+		}
+		name = news.900.o2
+	}
+	option = { 
+		trigger = {
+			tag = ENG
+		}
+		name = news.900.o3
+	}
+	option = { 
+		trigger = {
+			tag = URG
+		}
+		name = news.900.o4
+	}
+	option = { 
+		trigger = {
+		NOT = {
+		OR = {
+			tag = URG
+			tag = ENG
+			tag = USA
+			tag = AMC
+			tag = NEA
+			tag = AMS
+			tag = ILL
+			tag = ARI
+			tag = PCA
+			tag = MWA
+			tag = TEX
+			tag = GRL
+			tag = MOT
+			tag = LIN
+			tag = UTA
+			tag = CSD
+			is_on_same_continent_as = GHA
+				}
+			}
+		}
+		name = news.900.o5
+	}
+}
+news_event = { #2010 Haiti earthquake
+	id = news.901
+	title = news.901.t
+	desc = news.901.d
+	picture = 2010_haiti_earthquake
+		
+	is_triggered_only = yes
+	
+	option = { 
+		trigger = {
+			NOT = {
+				tag = HAI
+			}
+		}
+		name = news.901.o1
+	}
+	option = { 
+		trigger = {
+			tag = HAI
+		}
+		name = news.901.o2
+	}
+}
+
+news_event = {	#2011 Japan earthquake
+	id = news.902
+	title = news.902.t
+	desc = news.902.d
+	picture = 2011_japan_earthquake
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = news.902.o1
+		trigger = {
+			NOT = {
+				tag = JAP
+			}
+		}
+	}
+	option = {
+		name = news.902.o2
+		trigger = {
+			tag = JAP
+		}
+		JAP = {
+		country_event = { days = 1 id = JAPdisaster.1 }
+		}
+	}
+}
+
 news_event = {	#Britain maintains control over Ulster
 	id = ukbad.1
 	title = ukbad.1.t
@@ -7365,5 +7655,213 @@ news_event = {
 
 	option = { #sanders legacy lives on
 		name = commonwealthnews.11.o1
+	}
+}
+news_event = {	#Northwest united,  CSD
+	id = NTInews.1
+	title = NTInews.1.t
+	desc = [CSDNorthwestunited]
+	picture = [Cascadia_NTI_event_pic]
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = NTInews.1.o1
+		trigger = {
+		AND = {
+		CSD = {
+		NOT = {
+		has_completed_focus = CSD_stencel_coup
+			}
+		}
+		NOT = {
+		OR = {
+		tag = CSD
+		tag = AMC
+        tag = USA
+		tag = MWA
+		tag = PCA
+		tag = NEA
+		tag = CAN
+		tag = AMS
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = NTInews.1.o2
+		trigger = {
+		tag = CSD
+		}
+	}
+	option = {
+		name = NTInews.1.o3
+		trigger = {
+		tag = CAN
+		}
+	}
+	option = {
+		name = NTInews.1.o4
+		trigger = {
+		OR = {
+		tag = AMC
+        tag = USA
+		tag = MWA
+		tag = PCA
+		tag = NEA
+			}
+		}
+	}
+	option = {
+		name = NTInews.1.o5
+		trigger = {
+		AND = {
+			CSD = {
+		has_completed_focus = CSD_stencel_coup
+			}
+		NOT = {
+		OR = {
+		tag = CSD
+		tag = AMC
+        tag = USA
+		tag = MWA
+		tag = PCA
+		tag = NEA
+		tag = CAN
+		tag = AMS
+					}
+				}
+			}
+		}
+	}
+}
+news_event = {	#Northwest united, LIN
+	id = NTInews.2
+	title = NTInews.2.t
+	desc = NTInews.2.d
+	picture = Spencer_NTI
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = NTInews.2.o1
+		trigger = {
+		NOT = {
+		OR = {
+		tag = LIN
+		tag = AMC
+        tag = USA
+		tag = MWA
+		tag = PCA
+		tag = CAN
+		tag = NEA
+				}
+			}
+		}
+	}
+	option = {
+		name = NTInews.2.o2
+		trigger = {
+		tag = LIN
+		}
+	}
+	option = {
+		name = NTInews.2.o3
+		trigger = {
+		tag = CAN
+		}
+	}
+	option = {
+		name = NTInews.2.o4
+		trigger = {
+		AND = {
+		OR = {
+            tag = AMC
+            tag = USA
+			tag = MWA
+			tag = PCA
+			NEA = {
+			NOT = {
+			has_completed_focus = AMS_invited_the_radical
+						}
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = NTInews.2.o5
+		trigger = {
+		NEA = {
+			has_completed_focus = AMS_invited_the_radical
+			}
+		}
+	}
+}
+news_event = {	#Northwest united, MOT
+	id = NTInews.3
+	title = NTInews.3.t
+	desc = NTInews.3.d
+	picture = Montana_NTI
+	
+	is_triggered_only = yes
+	
+	
+	option = {
+		name = NTInews.3.o1
+		trigger = {
+		NOT = {
+		OR = {
+		tag = MOT
+		tag = AMC
+        tag = USA
+		tag = MWA
+		tag = PCA
+		tag = NEA
+		tag = CAN
+		tag = AMS
+				}
+			}
+		}
+	}
+	option = {
+		name = NTInews.3.o2
+		trigger = {
+		tag = MOT
+		}
+	}
+	option = {
+		name = NTInews.3.o3
+		trigger = {
+		tag = CAN
+		}
+	}
+	option = {
+		name = NTInews.3.o4
+		trigger = {
+		NOT = {
+		tag = MOT 
+		}
+		OR = {
+		tag = AMC
+        tag = USA
+		tag = MWA
+		tag = PCA
+		NEA = {
+		NOT = {
+		has_completed_focus = AMS_glorious_victory
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = NTInews.3.o5
+		trigger = {
+		NEA = {
+		has_completed_focus = AMS_glorious_victory
+			}
+		}
 	}
 }
