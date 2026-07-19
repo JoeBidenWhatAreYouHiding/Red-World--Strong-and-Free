@@ -5064,7 +5064,7 @@ country_event = {
 			ideology = communist
 		}
 		TEX_jim_jones={
-			promote_character =marxist
+			promote_character =apostolic_socialism
 		}
 	}
 	
@@ -5073,6 +5073,515 @@ country_event = {
 		set_politics = {
 			ruling_party = national_bolshevik
 			elections_allowed = no
+		}
+	}
+}
+
+# Rev Jones Speaks
+country_event = {
+	id = texas.218
+	title = texas.218.t
+	desc = texas.218.d
+	picture = jim_jones_speaks
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.218.o1
+		add_political_power = 10
+	}
+}
+
+# Christian Com
+country_event = {
+	id = texas.219
+	title = texas.219.t
+	desc = texas.219.d
+	picture = christian_communism
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.219.o1
+		add_stability = 0.05
+	}
+}
+
+# Anti-Stalinism
+country_event = {
+	id = texas.220
+	title = texas.220.t
+	desc = texas.220.d
+	picture = tearing_down_idol_worship
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.220.o1
+		add_popularity = {
+			ideology = national_bolshevik
+			popularity = -0.04
+		}
+	}
+}
+
+# Communal Living
+country_event = {
+	id = texas.221
+	title = texas.221.t
+	desc = texas.221.d
+	picture = jones_communal_living
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.221.o1
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+# National Front
+country_event = {
+	id = texas.222
+	title = texas.222.t
+	desc = texas.222.d
+	picture = jones_legislative_popular_front_created
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.222.o1
+		add_stability = 0.06
+		add_popularity = { ideology = liberal popularity = 0.03 }
+		add_popularity = { ideology = national_conservative popularity = 0.03 }
+		add_popularity = { ideology = new_democrat popularity = 0.03 }
+	}
+}
+
+# Capitol Returns to SanFran
+country_event = {
+	id = texas.223
+	title = texas.223.t
+	desc = texas.223.d
+	picture = capitol_moves_to_san_francisco
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.223.o1
+		add_political_power = 10
+		set_capital = { state = 378 }
+		add_victory_points = {
+			province = 9671
+			value = 50
+		}
+		release_puppet = CSD
+	}
+}
+
+# New UAPR
+country_event = {
+	id = texas.224
+	title = texas.224.t
+	desc = texas.224.d
+	picture = jones_new_uapr
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.224.o1
+		add_popularity = {
+			ideology = communist
+			popularity = 0.02
+		}
+	}
+}
+
+# Christ Returns
+country_event = {
+	id = texas.225
+	title = texas.225.t
+	desc = texas.225.d
+	picture = christ_returns_to_pacific
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.225.o1
+		add_popularity = {
+			ideology = communist
+			popularity = 0.02
+		}
+	}
+}
+
+# Suffering from Success
+country_event = {
+	id = texas.226
+	title = texas.226.t
+	desc = texas.226.d
+	picture = jones_suffering_from_success
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Be Bad
+		name = texas.226.o1
+		add_popularity = {
+			ideology = communist
+			popularity = -0.02
+		}
+		hidden_effect = {
+			country_event = {
+				id = texas.227
+				days = 14
+			}
+		}
+	}
+	option = { #Go to Therapy
+		name = texas.226.o2
+		add_political_power = -20
+		hidden_effect = {
+			country_event = {
+				id = texas.230
+				days = 14
+			}
+		}
+	}
+}
+
+# Past Demons resurface
+country_event = {
+	id = texas.227
+	title = texas.227.t
+	desc = texas.227.d
+	picture = jones_old_demons_resurface
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.227.o1
+		add_political_power = -100
+		hidden_effect = {
+			country_event = {
+				id = texas.228
+				days = 6
+			}
+		}
+	}
+}
+
+# Jones Dies
+country_event = {
+	id = texas.228
+	title = texas.228.t
+	desc = texas.228.d
+	picture = jones_drinks_the_kool_aid
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.228.o1
+		TEX_peoples_temple_council={
+			promote_character =apostolic_socialism
+		}
+		set_country_flag = TEX_jim_jones_is_dead
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = TEX_feinstein_flag
+				}
+				country_event = {
+					id = texas.233
+					days = 2
+				}
+			}
+			else = {
+				country_event = {
+					id = texas.229
+					days = 2
+				}
+			}
+		}
+	}
+}
+
+# Jones Successor
+country_event = {
+	id = texas.229
+	title = texas.229.t
+	desc = {
+		text = texas.229.d
+		trigger = { has_country_flag = TEX_jim_jones_is_dead }
+	}
+	desc = {
+		text = texas.229.d_resigned
+		trigger = { NOT = { has_country_flag = TEX_jim_jones_is_dead } }
+	}
+	picture = jim_jones_sucsessor
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.229.o1
+		TEX_stephen_jones={
+			promote_character =apostolic_socialism
+		}
+	}
+	option = { #
+		name = texas.229.o2
+		TEX_jim_jones_jr={
+			promote_character =apostolic_socialism
+		}
+	}
+	option = { #
+		name = texas.229.o3
+		TEX_kanye_west={
+			promote_character =apostolic_socialism
+		}
+	}
+}
+
+# Go to Therapy
+country_event = {
+	id = texas.230
+	title = texas.230.t
+	desc = texas.230.d
+	picture = jones_goes_to_therapy
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.230.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.04
+		}
+		hidden_effect = {
+			country_event = {
+				id = texas.231
+				days = 6
+			}
+		}
+	}
+}
+
+# Retire?
+country_event = {
+	id = texas.231
+	title = texas.231.t
+	desc = texas.231.d
+	picture = jones_reconciliation_effort
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.231.o1
+		add_stability = 0.05
+	}
+	
+	option = { #
+		name = texas.231.o1
+		add_political_power = -100
+		hidden_effect = {
+			country_event = {
+				id = texas.229
+				days = 6
+			}
+		}
+	}
+}
+
+# Feinstein
+country_event = {
+	id = texas.232
+	title = texas.232.t
+	desc = texas.232.d
+	picture = feinstein_released_from_prison
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.232.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.02
+		}
+		set_country_flag = TEX_feinstein_flag
+	}
+	
+	option = { #
+		name = texas.232.o1
+		add_political_power = 20
+	}
+}
+
+# Feinstein Coup
+country_event = {
+	id = texas.233
+	title = texas.233.t
+	desc = texas.233.d
+	picture = feinstein_takes_over
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.233.o1
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.15
+		}
+		set_politics = {
+			ruling_party = revolutionary_socialist
+		}
+		mark_focus_tree_layout_dirty = yes
+		set_party_name = {
+			name = TEX_sanfran_party
+			long_name = TEX_sanfran_party_long
+			ideology = revolutionary_socialist
+		}
+		TEX_dianne_feinstein = {
+			promote_character = american_revolutionary_socialism
+		}
+	}
+}
+
+# Feinstein Speaks
+country_event = {
+	id = texas.234
+	title = texas.234.t
+	desc = texas.234.d
+	picture = feinstein_speaks
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.234.o1
+		add_political_power = 10
+	}
+}
+
+# Feinstein New Party
+country_event = {
+	id = texas.235
+	title = texas.235.t
+	desc = texas.235.d
+	picture = feinstein_forms_new_party
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.235.o1
+		add_political_power = 40
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.03
+		}
+	}
+}
+
+# Feinstein Cult Torn Down
+country_event = {
+	id = texas.236
+	title = texas.236.t
+	desc = texas.236.d
+	picture = jones_cult_torn_down
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.236.o1
+		add_popularity = {
+			ideology = communist
+			popularity = -0.03
+		}
+	}
+}
+
+# Feinstein America Speech
+country_event = {
+	id = texas.237
+	title = texas.237.t
+	desc = texas.237.d
+	picture = feinstein_america_speech
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.237.o1
+		add_war_support = 0.1
+	}
+}
+
+# Fate of Charles Manson
+country_event = {
+	id = texas.238
+	title = texas.238.t
+	desc = texas.238.d
+	picture = charles_manson
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = texas.238.o1
+		add_political_power = 20
+	}
+	
+	option = { #
+		name = texas.238.o2
+		set_country_flag = TEX_manson_released
+		TEX_charles_manson = {
+			add_corps_commander_role = {
+				traits = { politically_connected media_personality }
+				skill = 1
+				attack_skill = 2
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 1
+			}
 		}
 	}
 }
