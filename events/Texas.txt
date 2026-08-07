@@ -7755,15 +7755,15 @@ country_event = {
 
 #Texas - Mexico Dosen't give us shit
 country_event = {
-	id = texas_diplo.21
-	title = texas_diplo.21.t
-	desc = texas_diplo.21.d
+	id = texas_diplo.23
+	title = texas_diplo.23.t
+	desc = texas_diplo.23.d
 	picture = texas_mexico_flags
 	
 	is_triggered_only = yes
 	
 	option = { #War
-		name = texas_diplo.21.o1
+		name = texas_diplo.23.o1
 		ai_chance = {
 			factor = 50
 		}
@@ -7775,12 +7775,604 @@ country_event = {
 	}
 	
 	option = { #Give Up
-		name = texas_diplo.21.o2
+		name = texas_diplo.23.o2
 		ai_chance = {
 			factor = 50
 		}
 		remove_state_core = 894
 		remove_state_claim = 376
+	}
+}
+
+#UAPR - Texas wants to work some stuff out
+country_event = {
+	id = texas_diplo.24
+	title = texas_diplo.24.t
+	desc = texas_diplo.24.d
+	picture = history_confederacy
+	
+	is_triggered_only = yes
+	
+	option = { #Sure
+		name = texas_diplo.24.o1
+		ai_chance = {
+			factor = 60
+		}
+		TEX = {
+			country_event = texas_diplo.26
+		}
+		set_country_flag = PCA_supported_confederate_nationhood
+	}
+	
+	option = { #Yeah, no
+		name = texas_diplo.24.o2
+		ai_chance = {
+			factor = 20
+		}
+		trigger = { 
+			NOT = {
+				has_country_leader = {
+					name = "John Foster"
+					ruling_only = yes
+				}
+			}
+		}
+		TEX = {
+			country_event = texas_diplo.25
+		}
+	}
+	
+	option = { #Offer Puppet
+		name = texas_diplo.24.o3
+		ai_chance = {
+			factor = 40
+		}
+		trigger = { 
+			NOT = {
+				has_country_leader = {
+					name = "John Foster"
+					ruling_only = yes
+				}
+			}
+		}
+		TEX = {
+			country_event = texas_diplo.27
+		}
+	}
+}
+
+#Texas - UAPR says no way jose
+country_event = {
+	id = texas_diplo.25
+	title = texas_diplo.25.t
+	desc = {
+		text = texas_diplo.25.d
+		trigger = { 
+			PCA = {
+				NOT = {
+					has_country_leader = {
+						name = "John Foster"
+						ruling_only = yes
+					}
+				}
+			}
+		}
+	}
+	desc = {
+		text = texas_diplo.25.d_2
+		trigger = { 
+			PCA = {
+				has_country_leader = {
+					name = "John Foster"
+					ruling_only = yes
+				}
+			}
+		}
+	}
+	picture = history_confederacy
+	
+	is_triggered_only = yes
+	
+	option = { #War
+		name = texas_diplo.25.o1
+		ai_chance = {
+			factor = 80
+		}
+		declare_war_on = {
+			target = PCA
+			type = annex_everything 
+		}
+		set_global_flag = TEX_second_war_of_northern_aggression
+	}
+	
+	option = { #Wait
+		name = texas_diplo.25.o2
+		ai_chance = {
+			factor = 0
+		}
+		add_stability = 0.05
+		set_global_flag = TEX_second_war_of_northern_aggression
+	}
+	
+	option = { #Join UAPR
+		name = texas_diplo.25.o3
+		ai_chance = {
+			factor = 80
+		}
+		trigger = { 
+			PCA = {
+				has_country_leader = {
+					name = "John Foster"
+					ruling_only = yes
+				}
+			}
+		}
+		PCA = {
+			annex_country = {
+				target = TEX
+				transfer_troops = no
+			}
+			change_tag_from = ROOT
+		}
+	}
+}
+
+#Texas - UAPR Agrees
+country_event = {
+	id = texas_diplo.26
+	title = texas_diplo.26.t
+	desc = texas_diplo.26.d
+	picture = history_confederacy
+	
+	is_triggered_only = yes
+	
+	option = { #Sure
+		name = texas_diplo.26.o1
+		add_stability = 0.05
+	}
+}
+
+#Texas - UAPR Demands we become puppet
+country_event = {
+	id = texas_diplo.27
+	title = texas_diplo.27.t
+	desc = texas_diplo.27.d
+	picture = confederate_alliance
+	
+	is_triggered_only = yes
+	
+	option = { #Sure
+		name = texas_diplo.27.o1
+		ai_chance = {
+			factor = 80
+		}
+		TEX = { 
+			get_current_government_type = yes
+		}
+		PCA = { puppet = TEX }
+		TEX = { 
+			restore_previous_government_type = yes
+		}
+		PCA = { country_event = texas_diplo.28 }
+	}
+	
+	option = { #No
+		name = texas_diplo.27.o2
+		ai_chance = {
+			factor = 20
+		}
+		PCA = { country_event = texas_diplo.29 }
+	}
+}
+
+#UAPR - Texas Accepts
+country_event = {
+	id = texas_diplo.28
+	title = texas_diplo.28.t
+	desc = texas_diplo.28.d
+	picture = confederate_alliance
+	
+	is_triggered_only = yes
+	
+	option = { #Sure
+		name = texas_diplo.28.o1
+		add_stability = 0.02
+		add_political_power = -100
+		set_country_flag = PCA_supported_confederate_nationhood
+	}
+}
+
+#UAPR - Texas Accepts
+country_event = {
+	id = texas_diplo.29
+	title = texas_diplo.29.t
+	desc = texas_diplo.29.d
+	picture = confederate_alliance
+	
+	is_triggered_only = yes
+	
+	option = { #EACH DIXIE BOY MUST UNDERSTAND THAT THEY MUST MIND THEIR UNCLE SAM
+		name = texas_diplo.29.o1
+		declare_war_on = {
+			target = TEX
+			type = annex_everything 
+		}
+		set_global_flag = TEX_second_war_of_northern_aggression
+	}
+}
+
+#We beat the UAPR
+country_event = {
+	id = texas_diplo.30
+	title = texas_diplo.30.t
+	desc = texas_diplo.30.d
+	picture = confederate_states_proclaimed
+	
+	fire_only_once = yes
+	
+	trigger = {
+		tag = TEX
+		has_global_flag = TEX_second_war_of_northern_aggression
+		has_country_leader = {
+			character = TEX_russel_bentley
+			ruling_only = yes
+		}
+		PCA = {
+			OR = {
+				is_subject_of = TEX
+				exists = no
+			}
+		}
+		901 = { is_owned_by_ROOT_or_subject = yes }
+	}
+	
+	option = { #HURRAH! HURRAH! FOR SOUTHERN RIGHTS HURRAH!
+		name = texas_diplo.30.o1
+		every_state = {
+			limit = {
+				is_owned_by_ROOT_or_subject = yes
+				is_mainland_american_state = yes
+				NOT = { is_core_of = TEX }
+			}
+			PCA = { transfer_state = PREV }
+			PCA = { add_state_core = PREV }
+		}
+		PCA_fergie_chambers = {
+			set_nationality = PCA 
+		}
+		PCA = {
+			PCA_fergie_chambers = {
+				promote_character = stalinist
+				add_country_leader_role = {
+					country_leader = {
+						expire = "1.1.1.1"
+						ideology = stalinist
+					}
+				}
+				promote_character = stalinist
+			}
+			drop_cosmetic_tag = yes
+		}
+	}
+}
+
+#Annexation
+country_event = {
+	id = texas_diplo.31
+	title = texas_diplo.31.t
+	desc = texas_diplo.31.d
+	picture = second_annexation_of_texas
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas_diplo.31.o1
+		PCA = {
+			annex_country = {
+				target = TEX
+				transfer_troops = no
+			}
+			change_tag_from = ROOT
+		}
+	}
+}
+
+#New Mexico
+country_event = {
+	id = texas_diplo.32
+	title = texas_diplo.32.t
+	desc = texas_diplo.32.d
+	picture = future_of_new_mexico
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas_diplo.32.o1
+		899 = {
+			add_dynamic_modifier = { modifier = TEX_New_Mexico_Autonomy }
+		}
+		376 = {
+			add_dynamic_modifier = { modifier = TEX_New_Mexico_Autonomy }
+		}
+	}
+	
+	option = {
+		name = texas_diplo.32.o2
+		hidden_effect = {
+			create_dynamic_country = {	#New Mexico
+				original_tag = ARI
+				copy_tag = ARI
+				set_capital = { state = 899 }
+				save_global_event_target_as = nueva_mexico_target
+
+				### Politics
+				set_popularities = {
+					fascist = 5
+					nationalist = 10
+					monarchist = 0
+					national_bolshevik = 0
+					national_conservative = 20
+					centrist = 15
+					liberal = 25
+					new_democrat = 5
+					moderate_socialist = 10
+					revolutionary_socialist = 5
+					communist = 5
+				}
+				set_politics = {
+					ruling_party = liberal
+					elections_allowed = no
+				}
+				
+				set_party_name = {
+					ideology = communist
+					name = NMX_communist_party
+					long_name = NMX_communist_party_long
+				}
+				set_party_name = {
+					ideology = revolutionary_socialist
+					name = NMX_revolutionary_socialist_party
+					long_name = NMX_revolutionary_socialist_party_long
+				}
+				set_party_name = {
+					ideology = moderate_socialist
+					name = NMX_moderate_socialist_party
+					long_name = NMX_moderate_socialist_party_long
+				}
+				set_party_name = {
+					ideology = new_democrat
+					name = NMX_new_democrat_party
+					long_name = NMX_new_democrat_party_long
+				}
+				set_party_name = {
+					ideology = liberal
+					name = NMX_liberal_party
+					long_name = NMX_liberal_party_long
+				}
+				set_party_name = {
+					ideology = centrist
+					name = NMX_centrist_party
+					long_name = NMX_centrist_party_long
+				}
+				set_party_name = {
+					ideology = national_conservative
+					name = NMX_national_conservative_party
+					long_name = NMX_national_conservative_party_long
+				}
+				set_party_name = {
+					ideology = nationalist
+					name = NMX_nationalist_party
+					long_name = NMX_nationalist_party_long
+				}
+				set_party_name = {
+					ideology = national_bolshevik
+					name = NMX_national_bolshevik_party
+					long_name = NMX_national_bolshevik_party_long
+				}
+				set_party_name = {
+					ideology = monarchist
+					name = NMX_monarchist_party
+					long_name = NMX_monarchist_party_long
+				}
+				set_party_name = {
+					ideology = fascist
+					name = NMX_fascist_party
+					long_name = NMX_fascist_party_long
+				}
+				
+				set_cosmetic_tag = NMX
+			}
+			event_target:nueva_mexico_target = {
+				transfer_state = 376
+				add_state_core = 376		
+				transfer_state = 899
+				add_state_core = 899
+			}
+			remove_state_claim = 376
+			remove_state_claim = 899
+			remove_state_core = 376
+			remove_state_core = 899
+			TEX_ben_ray_lujan = {
+				set_nationality = event_target:nueva_mexico_target 
+			}
+			event_target:nueva_mexico_target = {
+				TEX_ben_ray_lujan = {
+					promote_character = old_american_democrats
+					add_country_leader_role = {
+						country_leader = {
+							expire = "1.1.1.1"
+							ideology = old_american_democrats
+						}
+					}
+					promote_character = old_american_democrats
+				}
+			}
+			event_target:nueva_mexico_target = {
+				get_current_government_type = yes
+			}
+			TEX = { puppet = event_target:nueva_mexico_target }
+			event_target:nueva_mexico_target = { 
+				restore_previous_government_type = yes
+			}
+			set_country_flag = TEX_released_new_mexico
+		}
+	}
+	
+	option = {
+		name = texas_diplo.32.o3
+		add_political_power = -100
+	}
+}
+
+#Join Sun Belt Free Trade Agreement?
+country_event = {
+	id = texas_diplo.33
+	title = texas_diplo.33.t
+	desc = texas_diplo.33.d
+	picture = sun_belt_free_trade_organization
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas_diplo.33.o1
+		ai_chance = {
+			factor = 80
+		}
+		TEX = { 
+			country_event = texas_diplo.34
+		}
+		add_ideas = TEX_sun_belt_free_trade_organization_member
+	}
+	
+	option = {
+		name = texas_diplo.33.o1
+		ai_chance = {
+			factor = 20
+		}
+		TEX = { 
+			country_event = texas_diplo.35
+		}
+	}
+}
+
+#Nation Joins
+country_event = {
+	id = texas_diplo.34
+	title = texas_diplo.34.t
+	desc = texas_diplo.34.d
+	picture = sun_belt_free_trade_organization
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas_diplo.34.o1
+		add_political_power = 10
+	}
+}
+
+#Nation Refuses
+country_event = {
+	id = texas_diplo.35
+	title = texas_diplo.35.t
+	desc = texas_diplo.35.d
+	picture = sun_belt_free_trade_organization
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas_diplo.35.o1
+		add_political_power = -10
+	}
+}
+
+#Texas Approaches Us
+country_event = {
+	id = texas_diplo.36
+	title = texas_diplo.36.t
+	desc = texas_diplo.36.d
+	picture = texas_negotiate_with_the_heartlands
+	
+	is_triggered_only = yes
+	
+	option = { #Yeah, sure
+		name = texas_diplo.36.o1
+		ai_chance = {
+			factor = 80
+		}
+		TEX = { country_event = texas_diplo.37 }
+		# TEX = { 
+			# get_current_government_type = yes
+		# }
+		# MWA = { puppet = TEX }
+		# TEX = { 
+			# restore_previous_government_type = yes
+		# }
+		if = {
+			limit = { is_faction_leader = no }
+			create_faction_from_template = { 
+				template = faction_template_pan_american   
+				name = GLR_Faction
+				icon = GFX_iwa_faction_logo
+			}
+			TEX = { add_to_faction = ROOT }
+		}
+		else_if = {
+			limit = { 
+				is_faction_with = GRL 
+				GRL = { is_faction_leader = yes }
+			}
+			GRL = { add_to_faction = TEX }
+		}
+		else_if = {
+			TEX = { add_to_faction = ROOT }
+		}
+	}
+	
+	option = { #Fuck no
+		name = texas_diplo.36.o2
+		ai_chance = {
+			factor = 20
+		}
+		TEX = { country_event = texas_diplo.38 }
+	}
+}
+
+#Heartlands Accepts
+country_event = {
+	id = texas_diplo.37
+	title = texas_diplo.37.t
+	desc = texas_diplo.37.d
+	picture = texas_negotiate_with_the_heartlands
+	
+	is_triggered_only = yes
+	
+	option = { #Yeah, sure
+		name = texas_diplo.37.o1
+		add_political_power = 40
+		set_global_flag = MWA_recognized_texas
+	}
+}
+#Heartlands Refuses
+country_event = {
+	id = texas_diplo.38
+	title = texas_diplo.38.t
+	desc = texas_diplo.38.d
+	picture = texas_negotiate_with_the_heartlands
+	
+	is_triggered_only = yes
+	
+	option = { #Yeah, sure
+		name = texas_diplo.38.o1
+		add_political_power = -40
+		uncomplete_national_focus = {
+			focus = TEX_support_the_heartlands
+			uncomplete_children = yes
+			refund_political_power = no
+		}
 	}
 }
 

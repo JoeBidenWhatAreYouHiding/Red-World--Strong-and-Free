@@ -23,7 +23,7 @@ focus_tree = {
 		id = TEX_president_perry
 		icon = GFX_goal_TEX_president_perry
 		cost = 6
-		x = 0
+		x = -6
 		y = 1
 
 		available = {
@@ -863,7 +863,7 @@ focus_tree = {
 		id = TEX_2013_election
 		icon = GFX_goal_TEX_public_elections
 		cost = 6
-		x = 30
+		x = 24
 		y = 1
 		
 		select_effect = {
@@ -6213,6 +6213,7 @@ focus_tree = {
 		completion_reward = {
 			country_event = texas.193
 			add_ideas = TEX_reclaiming_reagans_dream
+			set_country_flag = unifying_america
 			enable_unification_decisions = yes
             core_USA = yes
 			declare_war_on = {
@@ -7346,7 +7347,7 @@ focus_tree = {
 		id = TEX_victory_of_dubya
 		icon = GFX_goal_TEX_victory_of_dubya
 		cost = 1
-		x = 0
+		x = -6
 		y = 1
 		
 		allow_branch = {
@@ -8213,7 +8214,7 @@ focus_tree = {
 		id = TEX_eve_of_war
 		icon = GFX_goal_TEX_eve_of_war
 		cost = 1
-		x = 61
+		x = 55
 		y = 1
 
 		available = {
@@ -9602,7 +9603,7 @@ focus_tree = {
 	focus = {
 		id = TEX_dont_mess_with_texas
 		icon = GFX_goal_TEX_impossible_odds
-		cost = 6
+		cost = 4
 		
 		prerequisite = {
 			focus = TEX_new_border
@@ -9613,6 +9614,11 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_collabs_fate
 		}
+		available = {
+			owns_state = 894
+			owns_state = 1046
+			owns_state = 900
+		}
 		
 		relative_position_id = TEX_eve_of_war
 		x = 0
@@ -9621,7 +9627,10 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			set_country_flag = TEX_hide_war_trees
+			mark_focus_tree_layout_dirty = yes
+			set_country_flag = TEX_unlock_forpol
+			custom_effect_tooltip = TEX_will_unlock_forpol
 		}
 	}
 	
@@ -11822,6 +11831,1600 @@ focus_tree = {
 			country_event = texas.282
 		}
 	}
+	
+	
+	######################
+	### FOREIGN POLICY ###
+	######################
+	
+	focus = {
+		id = TEX_foreign_policy
+		icon = GFX_goal_TEX_foreign_policy
+		cost = 5
+		
+		available = {
+			has_country_flag = TEX_unlock_forpol
+		}
+		bypass = {
+			has_country_flag = TEX_unlock_forpol
+		}
+		
+		x = 85
+		y = 9
+		
+		offset = {
+			x = -35
+			trigger = { 
+				has_country_flag = TEX_hide_war_trees
+			}
+		}
+		
+		allow_branch = {
+			NOT = { 
+				has_country_flag = TEX_victory_of_true_libertarianism_flag 
+				has_country_flag = unifying_america 
+				has_country_flag = TEX_libertarian_restoring_america 
+			}
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			custom_effect_tooltip = TEX_unlock_when_texas_is_united
+		}
+	}
+	
+	### Expansionism ###
+	
+	# - Dukes of Hazzard 
+	
+	focus = {
+		id = TEX_the_new_confederacy
+		icon = GFX_goal_TEX_confederate_heritage
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_foreign_policy
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_dream_of_lamar
+			focus = TEX_improve_relations_with_our_neigbours
+		}
+		
+		available = {
+			OR = {
+				has_government = nationalist
+				has_government = fascist
+				has_government = national_conservative
+				has_country_leader = {
+					name = "Ron Paul"
+					ruling_only = yes
+				}
+			}
+			NOT = { has_completed_focus = TEX_democratic_league }
+			NOT = { has_completed_focus = TEX_support_the_heartlands }
+		}
+		
+		relative_position_id = TEX_foreign_policy
+		x = 2
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			unlock_decision_tooltip = TEX_form_confederacy
+			add_timed_idea = {
+				idea = TEX_confed_heritage
+				days = 400
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_destroy_the_false_south
+		icon = GFX_goal_TEX_liberate_south
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_the_new_confederacy
+		}
+		
+		available = {
+			
+		}
+		
+		relative_position_id = TEX_the_new_confederacy
+		x = -1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				target = USA
+				type = annex_everything 
+			}
+			USA = {
+				every_owned_state = {
+					TEX = { add_state_claim = PREV }
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_virginian_reunification
+		icon = GFX_goal_TEX_reunify_virginia
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_the_new_confederacy
+		}
+		
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TEX_has_formed_confederacy
+				has_cosmetic_tag = CSA
+			}
+		}
+		
+		relative_position_id = TEX_the_new_confederacy
+		x = 1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				target = NEA
+				type = annex_everything 
+			}
+			add_state_core = 902
+			add_state_core = 893
+		}
+	}
+	
+	focus = {
+		id = TEX_reclaim_missouri
+		icon = GFX_goal_TEX_reclaim_missouri
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_virginian_reunification
+		}
+		prerequisite = {
+			focus = TEX_destroy_the_false_south
+		}
+		
+		available = {
+			
+		}
+		
+		relative_position_id = TEX_the_new_confederacy
+		x = 0
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				target = ILL
+				type = annex_everything 
+			}
+			add_state_core = 373
+		}
+	}
+	
+	focus = {
+		id = TEX_mexican_provinces
+		icon = GFX_goal_TEX_repay_santa_anna
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_reclaim_missouri
+		}
+		
+		available = {
+			
+		}
+		
+		relative_position_id = TEX_the_new_confederacy
+		x = -1
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				target = MEX
+				type = annex_everything 
+			}
+			add_state_claim = 483
+			add_state_claim = 482
+			add_state_claim = 480
+			add_state_claim = 479
+			add_state_claim = 474
+		}
+	}
+	
+	focus = {
+		id = TEX_cuban_wealth
+		icon = GFX_goal_TEX_cuban_wealth
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_reclaim_missouri
+		}
+		
+		available = {
+			
+		}
+		
+		relative_position_id = TEX_the_new_confederacy
+		x = 1
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				target = CUB
+				type = annex_everything 
+			}
+			add_state_claim = 925
+			add_state_claim = 920
+		}
+	}
+	
+	focus = {
+		id = TEX_realize_the_golden_circle
+		icon = GFX_goal_TEX_the_golden_circle
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_cuban_wealth
+		}
+		prerequisite = {
+			focus = TEX_mexican_provinces
+		}
+		
+		available = {
+			
+		}
+		
+		relative_position_id = TEX_the_new_confederacy
+		x = 0
+		y = 4
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				target = GUA
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = BLZ
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = COS
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = PAN
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = JAM
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = BAH
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = HAI
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = DOM
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = COL
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = VEN
+				type = annex_everything 
+			}
+		}
+	}
+	
+	# - Lamarp 
+	
+	focus = {
+		id = TEX_dream_of_lamar
+		icon = GFX_goal_TEX_realize_lamars_dream
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_foreign_policy
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_the_new_confederacy
+			focus = TEX_improve_relations_with_our_neigbours
+		}
+		
+		available = {
+			NOT = { has_completed_focus = TEX_democratic_league }
+			NOT = { has_completed_focus = TEX_support_the_heartlands }
+		}
+		
+		relative_position_id = TEX_the_new_confederacy
+		x = 4
+		y = 0
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = TEX_go_west_young_man
+				days = 400
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_march_towards_arizona
+		icon = GFX_goal_TEX_absorb_arizona
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_dream_of_lamar
+			focus = TEX_the_new_confederacy
+		}
+		
+		available = {
+			
+		}
+		
+		relative_position_id = TEX_dream_of_lamar
+		x = -1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				target = ARI
+				type = annex_everything 
+			}
+			ARI = {
+				every_owned_state = {
+					TEX = { add_state_claim = PREV }
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_our_claims_on_colorado
+		icon = GFX_goal_TEX_claims_on_colorado
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_dream_of_lamar
+		}
+		
+		available = {
+			
+		}
+		
+		relative_position_id = TEX_dream_of_lamar
+		x = 1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				target = MWA
+				type = annex_everything 
+			}
+			add_state_claim = 382
+		}
+	}
+	focus = {
+		id = TEX_book_of_moron
+		icon = GFX_goal_TEX_invade_utah
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_our_claims_on_colorado
+		}
+		prerequisite = {
+			focus = TEX_march_towards_arizona
+		}
+		
+		available = {
+			
+		}
+		
+		relative_position_id = TEX_dream_of_lamar
+		x = 2
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				target = UTA
+				type = annex_everything 
+			}
+			UTA = {
+				every_owned_state = {
+					TEX = { add_state_claim = PREV }
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_crush_commiefornia
+		icon = GFX_goal_TEX_drive_to_the_pacific
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_our_claims_on_colorado
+		}
+		prerequisite = {
+			focus = TEX_march_towards_arizona
+		}
+		
+		available = {
+			
+		}
+		
+		relative_position_id = TEX_dream_of_lamar
+		x = -2
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				target = PCA
+				type = annex_everything 
+			}
+			add_state_claim = 1015
+			add_state_claim = 378
+			add_state_claim = 889
+			add_state_claim = 897
+		}
+	}
+	
+	focus = {
+		id = TEX_integrate_the_cession
+		icon = GFX_goal_TEX_new_nation_in_the_cession
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_our_claims_on_colorado
+		}
+		prerequisite = {
+			focus = TEX_march_towards_arizona
+		}
+		
+		available = {
+			owns_state = 1015
+			owns_state = 378
+			owns_state = 889
+			owns_state = 897
+			owns_state = 397
+			owns_state = 380
+			owns_state = 895
+			owns_state = 377
+			owns_state = 376
+			owns_state = 621
+			owns_state = 896
+			owns_state = 382
+		}
+		
+		relative_position_id = TEX_dream_of_lamar
+		x = 0
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_state_core = 1015
+			add_state_core = 378
+			add_state_core = 889
+			add_state_core = 897
+			add_state_core = 397
+			add_state_core = 380
+			add_state_core = 895
+			add_state_core = 377
+			add_state_core = 376
+			add_state_core = 621
+			add_state_core = 896
+			add_state_core = 382
+		}
+	}
+	
+	# - Love Wins 
+	
+	focus = {
+		id = TEX_improve_relations_with_our_neigbours
+		icon = GFX_goal_TEX_improve_relations_with_our_neigbours
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_foreign_policy
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_dream_of_lamar
+			focus = TEX_the_new_confederacy
+		}
+		
+		available = {
+			NOT = { has_completed_focus = TEX_support_the_heartlands }
+		}
+		
+		relative_position_id = TEX_the_new_confederacy
+		x = 8
+		y = 0
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_opinion_modifier = {
+				target = ARI
+				modifier = improved_relations_texas
+			}
+			add_opinion_modifier = {
+				target = UTA
+				modifier = improved_relations_texas
+			}
+			add_opinion_modifier = {
+				target = MWA
+				modifier = improved_relations_texas
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_preemptive_strike_against_mexico
+		icon = GFX_goal_AMR_claim_mexico
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_improve_relations_with_our_neigbours
+			focus = TEX_dream_of_lamar
+		}
+		mutually_exclusive = {
+			focus = TEX_reconcile_with_mexico
+		}
+		
+		available = {
+			
+		}
+		
+		relative_position_id = TEX_improve_relations_with_our_neigbours
+		x = -1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				target = MEX
+				type = topple_government 
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_reconcile_with_mexico
+		icon = GFX_goal_TEX_reconcile_mexico
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_improve_relations_with_our_neigbours
+		}
+		mutually_exclusive = {
+			focus = TEX_preemptive_strike_against_mexico
+		}
+		
+		available = {
+			
+		}
+		
+		relative_position_id = TEX_improve_relations_with_our_neigbours
+		x = 1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_opinion_modifier = {
+				target = MEX
+				modifier = mexican_reconciliation
+			}
+			MEX = {
+				add_opinion_modifier = {
+					target = MEX
+					modifier = mexican_reconciliation
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_status_of_new_mexico
+		icon = GFX_goal_TEX_status_of_new_mexico
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_reconcile_with_mexico
+			focus = TEX_preemptive_strike_against_mexico
+		}
+		
+		available = {
+			899 = {
+				NOT = {
+					has_dynamic_modifier = { modifier = TEX_New_Mexico_Autonomy }
+				}
+			}
+			NOT = { has_country_leader_with_trait = TEX_new_mexico_representative }
+			owns_state = 376
+			NOT = { has_war_with = MEX }
+		}
+		
+		relative_position_id = TEX_improve_relations_with_our_neigbours
+		x = 0
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas_diplo.32
+		}
+	}
+	
+	focus = {
+		id = TEX_preemptive_strike_against_the_remnants
+		icon = GFX_goal_TEX_preemptive_strike_against_the_remnants
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_status_of_new_mexico
+			focus = TEX_book_of_moron
+		}
+		
+		available = {
+			USA = {
+				exists = yes
+				is_subject = no
+			}
+		}
+		
+		relative_position_id = TEX_improve_relations_with_our_neigbours
+		x = -1
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				target = USA
+				type = topple_government 
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_preemptive_strike_against_the_uapr
+		icon = GFX_goal_TEX_preemptive_strike_against_the_uapr
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_status_of_new_mexico
+		}
+		
+		available = {
+			PCA = { 
+				has_government = communist
+			}
+		}
+		
+		relative_position_id = TEX_improve_relations_with_our_neigbours
+		x = 1
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				target = PCA
+				type = topple_government 
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_southwest_customs_union
+		icon = GFX_goal_TEX_southwestern_customs_union
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_status_of_new_mexico
+		}
+		
+		available = {
+			NOT = {
+				custom_trigger_tooltip = {
+					has_government = centrist
+					has_country_flag = TEX_reform_party_in_power
+					tooltip = TEX_reform_party_in_power
+				}
+				has_war_with = MEX
+			}
+			PCA = { 
+				NOT = { has_government = communist }
+			}
+		}
+		
+		relative_position_id = TEX_improve_relations_with_our_neigbours
+		x = 0
+		y = 4
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			ARI = { country_event = texas_diplo.33 }
+			UTA = { country_event = texas_diplo.33 }
+			PCA = { country_event = texas_diplo.33 }
+			MEX = { country_event = texas_diplo.33 }
+			if = {
+				limit = { has_country_flag = TEX_released_new_mexico }
+				event_target:nueva_mexico_target = { country_event = texas_diplo.33 }
+			}
+		}
+	}
+	
+	### Faction Stuff ###
+	
+	focus = {
+		id = TEX_global_alignment
+		icon = GFX_goal_TEX_global_alignment
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_foreign_policy
+		}
+		
+		available = {
+			
+		}
+		
+		relative_position_id = TEX_foreign_policy
+		x = -4
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.04
+			CAN_add_3_percent_popularity = yes
+		}
+	}
+	
+	# - Texian Oblast
+	
+	focus = {
+		id = TEX_moscow_accord
+		icon = GFX_goal_TEX_moscow_accord
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_global_alignment
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_democratic_league
+			focus = TEX_support_the_heartlands
+			focus = TEX_neutrality_in_global_affairs
+		}
+		
+		available = {
+			OR = {
+				has_government = nationalist
+				has_government = fascist
+				has_government = moderate_socialist
+				has_government = revolutionary_socialist
+				custom_trigger_tooltip = {
+					has_government = centrist
+					has_country_flag = TEX_libertarian_party_in_power
+					tooltip = TEX_libertarian_party_in_power
+				}
+			}
+			RUS = {
+				is_faction_leader = yes
+			}
+		}
+		
+		relative_position_id = TEX_global_alignment
+		x = -3
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			RUS = { country_event = accord.8 }
+		}
+	}
+	
+	focus = {
+		id = TEX_warm_water_port
+		icon = GFX_goal_TEX_warm_water_port_gulf
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_moscow_accord
+		}
+		
+		available = {
+			is_in_faction_with = RUS
+		}
+		
+		relative_position_id = TEX_moscow_accord
+		x = 0
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = TEX_warm_water_port
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_texan_arms
+		icon = GFX_goal_TEX_russo_texian_trade_relations
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_warm_water_port
+		}
+		
+		available = {
+			
+		}
+		
+		relative_position_id = TEX_moscow_accord
+		x = 0
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_ideas = TEX_texas_russia_trade_TEX
+			RUS = {
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				add_ideas = TEX_texas_russia_trade_RUS
+			}
+			if = {
+				limit = { has_dlc = "Arms Against Tyranny" }
+				custom_effect_tooltip = tooltip_blank_line
+				custom_effect_tooltip = CAN_unlock_materiel_mio
+				show_mio_tooltip = GER_kalashnikov_organization
+			}
+			else = {
+				custom_effect_tooltip = tooltip_blank_line
+				custom_effect_tooltip = CAN_unlock_materiel_designer
+				show_ideas_tooltip = GER_kalashnikov
+			}
+			set_country_flag = GER_russian_companies
+		}
+	}
+	
+	focus = {
+		id = TEX_train_with_russians
+		icon = GFX_goal_TEX_joint_training_with_russia
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_texan_arms
+		}
+		
+		available = {
+			
+		}
+		
+		relative_position_id = TEX_moscow_accord
+		x = 0
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_texas_russia_trade_TEX
+				add_idea = TEX_bear_and_armadillo_TEX
+			}
+			add_command_power = 40
+			army_experience = 40
+			RUS = {
+				swap_ideas = {
+					remove_idea = TEX_texas_russia_trade_RUS
+					add_idea = TEX_bear_and_armadillo_RUS
+				}
+				add_command_power = 40
+				army_experience = 40
+			}
+		}
+	}
+	
+	# - DL
+	
+	focus = {
+		id = TEX_democratic_league
+		icon = GFX_goal_TEX_join_democratic_league
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_global_alignment
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_moscow_accord
+			focus = TEX_support_the_heartlands
+			focus = TEX_neutrality_in_global_affairs
+		}
+		
+		available = {
+			OR = {
+				has_government = national_conservative
+				has_government = liberal
+				custom_trigger_tooltip = {
+					has_government = centrist
+					has_country_flag = TEX_reform_party_in_power
+					tooltip = TEX_reform_party_in_power
+				}
+				has_government = new_democrat
+				has_government = moderate_socialist
+			}
+			CAN = {
+				is_faction_leader = yes 
+			}
+		}
+		
+		relative_position_id = TEX_global_alignment
+		x = -1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			CAN = { country_event = generic.4 }
+		}
+	}
+	
+	focus = {
+		id = TEX_share_wartime_expertise
+		icon = GFX_goal_TEX_share_intel_with_canadians
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_democratic_league
+		}
+		
+		available = {
+			is_in_faction_with = CAN
+		}
+		
+		relative_position_id = TEX_democratic_league
+		x = 0
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			CAN = {
+				add_timed_idea = {
+					idea = TEX_wartime_lessons
+					days = 400
+				}
+				add_command_power = 100
+				add_doctrine_cost_reduction = {
+					cost_reduction = 0.5
+					uses = 1
+					category = land_doctrine
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_push_for_post_american_peace
+		icon = GFX_goal_TEX_support_north_american_democracies
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_share_wartime_expertise
+		}
+		
+		available = {
+			
+		}
+		
+		relative_position_id = TEX_democratic_league
+		x = 0
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			every_country = {
+				limit = { 
+					is_post_america_nation = yes
+					has_democratic_government = yes
+					NOT = { tag = ROOT }
+				}
+				add_stability = 0.05
+				add_command_power = 100
+				add_timed_idea = {
+					idea = TEX_democratic_support
+					days = 400
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_the_torch_of_freedom_in_the_new_world
+		icon = GFX_goal_TEX_torch_of_liberty_in_north_america
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_push_for_post_american_peace
+		}
+		
+		available = {
+			
+		}
+		
+		relative_position_id = TEX_democratic_league
+		x = 0
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_political_power = 100
+			add_ideas = TEX_the_torch_of_freedom_in_the_new_world
+			every_country = {
+				limit = {
+					OR = {
+						capital_scope = {
+							is_on_continent = south_america
+						}
+						capital_scope = {
+							is_on_continent = north_america
+						}
+					}
+					NOT = {
+						has_government = communist
+						has_government = revolutionary_socialist
+						has_government = national_bolshevik
+					}
+				}
+				ROOT = {
+					add_opinion_modifier = {
+						target = PREV
+						modifier = canadian_protection
+					}
+				}
+			}
+		}
+	}
+	
+	# - Join Heartlands
+	
+	focus = {
+		id = TEX_support_the_heartlands
+		icon = GFX_goal_CAN_support_the_heartlands
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_global_alignment
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_moscow_accord
+			focus = TEX_democratic_league
+			focus = TEX_neutrality_in_global_affairs
+		}
+		
+		available = {
+			NOT = {
+				has_government = nationalist
+				has_government = fascist
+				# custom_trigger_tooltip = {
+					# has_government = centrist
+					# has_country_flag = TEX_libertarian_party_in_power
+					# tooltip = TEX_libertarian_party_in_power
+				# }
+			}
+			MWA = {
+				exists = yes
+				is_subject = no
+			}
+		}
+		
+		relative_position_id = TEX_global_alignment
+		x = 1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			MWA = {
+				add_opinion_modifier = {
+					target = TEX
+					modifier = declaration_of_friendship
+				}
+			}
+			TEX = {
+				add_opinion_modifier = {
+					target = MWA
+					modifier = declaration_of_friendship
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_push_for_confederal_america
+		icon = GFX_goal_TEX_negotiate_autonomy_with_the_heartlands
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_support_the_heartlands
+		}
+		
+		available = {
+			
+		}
+		
+		relative_position_id = TEX_support_the_heartlands
+		x = 0
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			MWA = { country_event = texas_diplo.36 }
+			custom_effect_tooltip = TEX_warning_tt
+		}
+	}
+	
+	focus = {
+		id = TEX_form_a_democratic_united_front
+		icon = GFX_goal_TEX_united_democratic_front
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_push_for_confederal_america
+		}
+		
+		available = {
+			has_global_flag = MWA_recognized_texas
+			MWA = { has_war = yes }
+		}
+		
+		relative_position_id = TEX_support_the_heartlands
+		x = 0
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			if = {
+				limit = {
+					MWA = { has_war_with = NEA }
+				}
+				add_to_war = {
+					targeted_alliance = MWA
+					enemy = NEA
+				}
+			}
+			if = {
+				limit = {
+					MWA = { has_war_with = USA }
+				}
+				add_to_war = {
+					targeted_alliance = MWA
+					enemy = USA
+				}
+			}
+			if = {
+				limit = {
+					MWA = { has_war_with = AMC }
+				}
+				add_to_war = {
+					targeted_alliance = MWA
+					enemy = AMC
+				}
+			}
+			if = {
+				limit = {
+					MWA = { has_war_with = PCA }
+				}
+				add_to_war = {
+					targeted_alliance = MWA
+					enemy = PCA
+				}
+			}
+			if = {
+				limit = {
+					MWA = { has_war_with = MOT }
+				}
+				add_to_war = {
+					targeted_alliance = MWA
+					enemy = MOT
+				}
+			}
+			if = {
+				limit = {
+					MWA = { has_war_with = LIN }
+				}
+				add_to_war = {
+					targeted_alliance = MWA
+					enemy = LIN
+				}
+			}
+			
+			if = {
+				limit = {
+					GRL = { 
+						NOT = { has_war_with = MWA }
+					}
+				}
+				GRL = {
+					add_timed_idea = {
+						idea = TEX_american_popular_front
+						days = 400
+					}
+				}
+			}
+			
+			if = {
+				limit = {
+					UTA = { 
+						NOT = { has_war_with = MWA }
+					}
+				}
+				UTA = {
+					add_timed_idea = {
+						idea = TEX_american_popular_front
+						days = 400
+					}
+				}
+			}
+			
+			if = {
+				limit = {
+					ARI = { 
+						has_democratic_government = yes
+						NOT = { has_war_with = MWA }
+					}
+				}
+				ARI = {
+					add_timed_idea = {
+						idea = TEX_american_popular_front
+						days = 400
+					}
+				}
+			}
+			
+			if = {
+				limit = {
+					CSD = { 
+						has_democratic_government = yes
+						NOT = { has_war_with = MWA }
+					}
+				}
+				CSD = {
+					add_timed_idea = {
+						idea = TEX_american_popular_front
+						days = 400
+					}
+				}
+			}
+			
+			if = {
+				limit = {
+					ILL = { 
+						has_democratic_government = yes
+						NOT = { has_war_with = MWA }
+					}
+				}
+				ILL = {
+					add_timed_idea = {
+						idea = TEX_american_popular_front
+						days = 400
+					}
+				}
+			}
+			
+			if = {
+				limit = {
+					AMC = { 
+						has_democratic_government = yes
+						NOT = { has_war_with = MWA }
+					}
+				}
+				AMC = {
+					add_timed_idea = {
+						idea = TEX_american_popular_front
+						days = 400
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_provide_the_heartlands_with_oil
+		icon = GFX_goal_TEX_heartlands_oil
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_form_a_democratic_united_front
+		}
+		
+		available = {
+			
+		}
+		
+		relative_position_id = TEX_support_the_heartlands
+		x = 0
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			MWA = {
+				add_ideas = TEX_texan_oil
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = fuel_silo
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			add_command_power = 100
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = fuel_silo
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	# - Neutral
+	
+	focus = {
+		id = TEX_neutrality_in_global_affairs
+		icon = GFX_goal_TEX_neutrality
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_global_alignment
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_moscow_accord
+			focus = TEX_democratic_league
+			focus = TEX_support_the_heartlands
+		}
+		
+		available = {
+			
+		}
+		
+		relative_position_id = TEX_global_alignment
+		x = 3
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_stability = 0.05
+			add_ideas = TEX_neutrality
+		}
+	}
+	
+	focus = {
+		id = TEX_reconcile_old_foes_with_new_allies
+		icon = GFX_goal_TEX_play_big_powers
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_neutrality_in_global_affairs
+		}
+		
+		available = {
+			
+		}
+		
+		relative_position_id = TEX_neutrality_in_global_affairs
+		x = 0
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			swap_ideas = {
+				remove_idea = TEX_neutrality
+				add_idea = TEX_neutrality2
+			}
+			SOV = {
+				add_opinion_modifier = {
+					target = TEX
+					modifier = long_term_trade_partner
+				}
+			}
+			GER = {
+				add_opinion_modifier = {
+					target = TEX
+					modifier = long_term_trade_partner
+				}
+			}
+			CAN = {
+				add_opinion_modifier = {
+					target = TEX
+					modifier = long_term_trade_partner
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_fortress_texas
+		icon = GFX_goal_TEX_texas_hold_em
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_reconcile_old_foes_with_new_allies
+		}
+		
+		available = {
+			
+		}
+		
+		relative_position_id = TEX_neutrality_in_global_affairs
+		x = 0
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			every_owned_state = {
+				limit = {
+					is_controlled_by = ROOT
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					province = {
+						all_provinces = yes
+						limit_to_coastal = yes
+					}
+					level = 2
+					instant_build = yes
+				}
+			}
+			swap_ideas = {
+				remove_idea = TEX_neutrality2
+				add_idea = TEX_neutrality3
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_the_lone_star_truly_alone
+		icon = GFX_goal_TEX_truly_lone_star
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_fortress_texas
+		}
+		
+		available = {
+			
+		}
+		
+		relative_position_id = TEX_neutrality_in_global_affairs
+		x = 0
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_neutrality3
+				add_idea = TEX_neutrality4
+			}
+			every_country = {
+				add_opinion_modifier = {
+					target = PREV
+					modifier = swiss_stance
+				}
+			}
+			add_political_power = 200
+			add_stability = 0.05
+		}
+	}
 }
 
 	#####################
@@ -11834,7 +13437,7 @@ focus_tree = {
 		cost = 8
 		available = {
 		}
-		x = 86
+		x = 80
 		y = 2
 		
 		offset = {
@@ -11852,13 +13455,13 @@ focus_tree = {
 			}
 		}
 		offset = {
-			x = -62
+			x = -56
 			trigger = { 
 				has_focus_tree = texas_communist_focus
 			}
 		}
 		offset = {
-			x = -66
+			x = -60
 			trigger = { 
 				has_focus_tree = texas_cults_focus
 			}
@@ -12319,7 +13922,7 @@ focus_tree = {
 		available = {
 			has_country_flag = TEX_can_do_military_stuff
 		}
-		x = 95
+		x = 89
 		y = 1
 		offset = {
 			x = -27
@@ -12336,13 +13939,13 @@ focus_tree = {
 			}
 		}
 		offset = {
-			x = -62
+			x = -56
 			trigger = { 
 				has_focus_tree = texas_communist_focus
 			}
 		}
 		offset = {
-			x = -65
+			x = -59
 			trigger = { 
 				has_focus_tree = texas_cults_focus
 			}

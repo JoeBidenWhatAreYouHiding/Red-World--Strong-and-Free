@@ -2,10 +2,10 @@ focus_tree = {
 	id = texas_communist_focus
 	country = {
 		factor = 0
-		modifier = {
-			add = 100
-			tag = TEX
-		}
+		# modifier = {
+			# add = 100
+			# tag = TEX
+		# }
 	}
 	default = no
 	continuous_focus_position = { x = 4800 y = 2300 }
@@ -2418,7 +2418,7 @@ focus_tree = {
 	focus = {
 		id = TEX_red_foothold_in_america
 		icon = GFX_goal_TEX_red_foothold_in_america
-		cost = 6
+		cost = 2
 		
 		mutually_exclusive = {
 			focus = TEX_forsaken_by_los_angeles
@@ -2441,7 +2441,9 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_command_power = 100
+			army_experience = 100
+			add_manpower = 3500
 		}
 	}
 	
@@ -2479,7 +2481,11 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_opinion_modifier = {
+				target = PCA
+				modifier = supports_our_cause
+			}
+			add_ideas = TEX_supporting_the_uapr
 		}
 	}
 	
@@ -2501,12 +2507,22 @@ focus_tree = {
 		}
 
 		available = {
+			PCA = { has_war = yes }
 		}
 
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			TEX = { 
+				get_current_government_type = yes
+			}
+			PCA = { puppet = TEX }
+			TEX = { 
+				restore_previous_government_type = yes
+			}
+			PCA = {
+				add_ideas = TEX_texan_oil
+			}
 		}
 	}
 	
@@ -2528,12 +2544,22 @@ focus_tree = {
 		}
 
 		available = {
+			NOT = { country_exists = USA }
+			NOT = { country_exists = MWA }
+			NOT = { country_exists = NEA }
+			is_subject_of = PCA
 		}
 
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = texas_diplo.31
+			TEX = {
+				every_owned_state = {
+					PCA = { add_state_core = PREV }
+				}
+			}
+			custom_effect_tooltip = TEX_will_end_the_game
 		}
 	}
 	
@@ -2573,7 +2599,12 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			set_country_flag = TEX_maintaned_texanism
+			mark_focus_tree_layout_dirty = yes
+			add_timed_idea = {
+				idea = TEX_fight_american_unificationism
+				days = 400
+			}
 		}
 	}
 	
@@ -2600,7 +2631,17 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_ideas = TEX_com_warm_water_port
+			diplomatic_relation = {
+				country = SOV
+				relation = military_access
+				active = yes
+			}
+			diplomatic_relation = {
+				country = GER
+				relation = military_access
+				active = yes
+			}
 		}
 	}
 	
@@ -2627,7 +2668,54 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			create_wargoal = {
+				target = ARI
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = UTA
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = PCA
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = CSD
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = MWA
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = LIN
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = MOT
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = GRL
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = ILL
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = NEA
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = AMC
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = USA
+				type = annex_everything 
+			}
 		}
 	}
 	
@@ -2649,13 +2737,18 @@ focus_tree = {
 		}
 
 		available = {
+			has_war = no
+			USA = { is_subject_of = ROOT }
+			NEA = { is_subject_of = ROOT }
+			PCA = { is_subject_of = ROOT }
 		}
 
 		available_if_capitulated = yes
 
 		completion_reward = {
-			set_country_flag = TEX_maintaned_texanism
-			mark_focus_tree_layout_dirty = yes
+			add_stability = 0.1
+			remove_ideas = TEX_fight_american_unificationism
+			add_ideas = TEX_victory_over_america
 		}
 	}
 	
@@ -2664,7 +2757,7 @@ focus_tree = {
 	focus = {
 		id = TEX_forsaken_by_los_angeles
 		icon = GFX_goal_TEX_forsaken_by_los_angeles
-		cost = 6
+		cost = 2
 		
 		mutually_exclusive = {
 			focus = TEX_red_foothold_in_america
@@ -2703,7 +2796,10 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_opinion_modifier = {
+				target = PCA
+				modifier = betrayed_communism
+			}
 		}
 	}
 	
@@ -2737,7 +2833,11 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_timed_idea = {
+				idea = TEX_our_road_home
+				days = 400
+			}
+			add_war_support = 0.1
 		}
 	}
 	
@@ -2764,7 +2864,15 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			create_wargoal = {
+				target = ARI
+				type = annex_everything 
+			}
+			ARI = {
+				every_owned_state = {
+					TEX = { add_state_core = PREV }
+				}
+			}
 		}
 	}
 	
@@ -2791,7 +2899,15 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			create_wargoal = {
+				target = UTA
+				type = annex_everything 
+			}
+			UTA = {
+				every_owned_state = {
+					TEX = { add_state_core = PREV }
+				}
+			}
 		}
 	}
 	
@@ -2821,7 +2937,18 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			create_wargoal = {
+				target = PCA
+				type = annex_everything 
+			}
+			PCA = {
+				every_owned_state = {
+					limit = { 
+						NOT = { is_core_of = CSD }
+					}
+					TEX = { add_state_core = PREV }
+				}
+			}
 		}
 	}
 	
@@ -2848,7 +2975,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			give_guarantee = GUY
 		}
 	}
 	
@@ -2875,7 +3002,10 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			create_wargoal = {
+				target = USA
+				type = topple_government 
+			}
 		}
 	}
 	
@@ -2909,7 +3039,15 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_timed_idea = {
+				idea = TEX_the_long_march
+				days = 400
+			}
+			add_war_support = 0.1
+			hidden_effect = {
+				set_country_flag = unifying_america
+				enable_unification_decisions = yes
+			}
 		}
 	}
 	
@@ -3130,7 +3268,11 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_timed_idea = {
+				idea = TEX_bring_the_jubilee
+				days = 400
+			}
+			add_war_support = 0.1
 		}
 	}
 	
@@ -3157,7 +3299,15 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			create_wargoal = {
+				target = USA
+				type = annex_everything 
+			}
+			USA = {
+				every_owned_state = {
+					TEX = { add_state_core = PREV }
+				}
+			}
 		}
 	}
 	
@@ -3184,7 +3334,12 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			create_wargoal = {
+				target = NEA
+				type = annex_everything 
+			}
+			add_state_core = 902
+			add_state_core = 893
 		}
 	}
 	
@@ -3207,12 +3362,13 @@ focus_tree = {
 		}
 
 		available = {
+			has_cosmetic_tag = CSA
 		}
 
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			PCA = { country_event = texas_diplo.24 }
 		}
 	}
 	
@@ -3239,7 +3395,30 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			create_wargoal = {
+				target = ARI
+				type = annex_everything 
+			}
+			ARI = {
+				every_owned_state = {
+					TEX = { add_state_core = PREV }
+				}
+			}
+			create_wargoal = {
+				target = ILL
+				type = annex_everything 
+			}
+			add_state_core = 373
+			if = {
+				limit = { MEX = { owns_state = 376 } }
+				custom_effect_tooltip = tooltip_blank_line
+				create_wargoal = {
+					target = MEX
+					type = annex_everything 
+				}
+				custom_effect_tooltip = tooltip_blank_line
+				custom_effect_tooltip = TEX_occupy_texmex_for_peace
+			}
 		}
 	}
 	
@@ -3266,7 +3445,71 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			create_wargoal = {
+				target = MEX
+				type = topple_government 
+			}
+			create_wargoal = {
+				target = GUA
+				type = topple_government 
+			}
+			create_wargoal = {
+				target = BLZ
+				type = topple_government 
+			}
+			create_wargoal = {
+				target = COS
+				type = topple_government 
+			}
+			create_wargoal = {
+				target = PAN
+				type = topple_government 
+			}
+			create_wargoal = {
+				target = JAM
+				type = topple_government 
+			}
+			create_wargoal = {
+				target = BAH
+				type = topple_government 
+			}
+			create_wargoal = {
+				target = HAI
+				type = topple_government 
+			}
+			create_wargoal = {
+				target = DOM
+				type = topple_government 
+			}
+			if = {
+				limit = {
+					CEA = {
+						NOT = { 
+							has_government = revolutionary_socialist
+							has_government = communist
+						}
+					}
+				}
+				create_wargoal = {
+					target = CEA
+					type = annex_everything 
+				}
+			}
+			if = {
+				limit = {
+					CUB = {
+						NOT = { 
+							has_government = moderate_socialist
+							has_government = communist
+							has_government = national_bolshevik
+						}
+					}
+				}
+				create_wargoal = {
+					target = CUB
+					type = annex_everything 
+				}
+			}
 		}
 	}
 	
@@ -3280,12 +3523,8 @@ focus_tree = {
 		cost = 6
 		
 		prerequisite = {
-			focus = TEX_protect_guyana
-			focus = TEX_finish_off_the_federals
 			focus = TEX_reclaim_red_missouri
 			focus = TEX_the_red_circle
-			focus = TEX_bring_the_revolution_to_the_heartlands
-			focus = TEX_and_end_to_chomskys_demented_experiment
 			focus = TEX_ensure_a_disunuted_future
 		}
 		
@@ -3304,12 +3543,56 @@ focus_tree = {
 		}
 
 		available = {
+			is_subject = no
 		}
 
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			if = {
+				limit = {
+					SOV = {
+						is_faction_leader = yes
+						has_government = communist
+					}
+				}
+				SOV = {
+			    	country_event = { days = 1 id = generic.1 } 
+				}
+			}
+		    else_if = {
+				limit = {
+					GER = {
+						is_faction_leader = yes
+						GER_is_ddr = yes
+					}
+				}
+				GER = {
+			    	country_event = { days = 1 id = generic.1 } 
+				}
+			}
+			else_if = {
+				limit = {
+					ITA = {
+						is_faction_leader = yes
+						has_government = communist
+					}
+				}
+				ITA = {
+			    	country_event = { days = 1 id = generic.1 } 
+				}
+			}
+			else_if = {
+				limit = {
+					FRA = {
+						is_faction_leader = yes
+						has_government = communist
+					}
+				}
+				FRA = {
+			    	country_event = { days = 1 id = generic.1 } 
+				}
+			}
 		}
 	}
 	
@@ -3337,7 +3620,10 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			create_wargoal = {
+				type = topple_government
+				target = CAN
+			} 
 		}
 	}
 	
@@ -3349,10 +3635,6 @@ focus_tree = {
 		cost = 6
 		
 		prerequisite = {
-			focus = TEX_protect_guyana
-			focus = TEX_finish_off_the_federals
-			focus = TEX_reclaim_red_missouri
-			focus = TEX_the_red_circle
 			focus = TEX_bring_the_revolution_to_the_heartlands
 			focus = TEX_and_end_to_chomskys_demented_experiment
 		}
@@ -3377,7 +3659,9 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			INS = {
+				add_to_faction = ROOT
+			}
 		}
 	}
 	
@@ -3405,7 +3689,10 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			create_wargoal = {
+				type = topple_government
+				target = SOV
+			}
 		}
 	}
 	
@@ -3439,13 +3726,20 @@ focus_tree = {
 			factor = 100
 		}
 
-		available = {
+		available = {	
+			hidden_trigger = {
+				has_country_leader_ideology = apostolic_socialism
+			}
 		}
 
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			create_faction_from_template = { 
+				template = faction_template_regional 
+				name = "Revolutionary Peace Pact"
+				icon = GFX_irish_salvation_faction_logo
+			}
 		}
 	}
 	
@@ -3473,7 +3767,16 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			every_country = {
+				limit = {
+					capital_scope = {
+						is_on_continent = south_america
+					}
+					NOT = { is_in_faction_with = ROOT}
+					has_government = revolutionary_socialist
+				}
+				activate_targeted_decision = { target = PREV decision = NEA_invite_to_faction } 
+			}
 		}
 	}
 	
