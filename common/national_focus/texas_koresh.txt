@@ -2,10 +2,10 @@ focus_tree = {
 	id = texas_cults_focus
 	country = {
 		factor = 0
-		modifier = {
-			add = 100
-			tag = TEX
-		}
+		# modifier = {
+			# add = 100
+			# tag = TEX
+		# }
 	}
 	default = no
 	continuous_focus_position = { x = 4800 y = 2300 }
@@ -18,8 +18,8 @@ focus_tree = {
 
 	focus = {
 		id = TEX_branch_davidians
-		icon = X
-		cost = 6
+		icon = GFX_goal_TEX_branch_davidians
+		cost = 1
 		x = 10
 		y = 1
 
@@ -34,6 +34,16 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			country_event = texas.314
+			custom_effect_tooltip = TEX_davidan_cabinet_tt
+			hidden_effect = {
+				add_ideas = {
+					texas_sic_steve_schneider
+					texas_fom_livingstone_fagan
+					texas_ind_david_thibodeau
+					texas_nsm_wayne_martin
+				}
+			}
 		}
 	}
 	
@@ -41,7 +51,7 @@ focus_tree = {
 	
 	focus = {
 		id = TEX_kingdom_of_david
-		icon = X
+		icon = GFX_goal_TEX_arise_kingdom_of_david
 		cost = 6
 		
 		prerequisite = {
@@ -66,13 +76,22 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = texas.301
+			add_monarchist_to_coalition = yes
+			hidden_effect = {
+				set_party_name = {
+					name = TEX_branch_davidians_party
+					long_name = TEX_branch_davidians_party_long
+					ideology = monarchist
+				}
+			}
+			add_ideas = TEX_the_kingdom_of_david
 		}
 	}
 	
 	focus = {
 		id = TEX_mt_carmel_rule
-		icon = X
+		icon = GFX_goal_TEX_mt_carmel_rule
 		cost = 6
 		
 		prerequisite = {
@@ -93,13 +112,17 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = texas.302
+			swap_ideas = {
+				remove_idea = TEX_the_kingdom_of_david
+				add_idea = TEX_the_kingdom_of_david2
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_perform_miracles
-		icon = X
+		icon = GFX_goal_TEX_capitalist_idols
 		cost = 6
 		
 		prerequisite = {
@@ -120,13 +143,26 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = texas.303
+			add_ideas = TEX_christian_anti_capitalism
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_popularity = {
+				ideology = national_bolshevik
+				popularity = 0.04
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_intense_philosemitism
-		icon = X
+		icon = GFX_goal_TEX_philiosemitism
 		cost = 6
 		
 		prerequisite = {
@@ -147,13 +183,28 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = texas.304
+			swap_ideas = {
+				remove_idea = TEX_the_kingdom_of_david2
+				add_idea = TEX_the_kingdom_of_david3
+			}
+			add_opinion_modifier = {
+				target = SAF
+				modifier = supports_our_cause
+			}
+			SAF = {
+				add_opinion_modifier = {
+					target = TEX
+					modifier = supports_our_cause
+				}
+			}
+			add_manpower = 2300
 		}
 	}
 	
 	focus = {
 		id = TEX_the_lamb
-		icon = X
+		icon = GFX_goal_TEX_the_lamb
 		cost = 6
 		
 		prerequisite = {
@@ -177,13 +228,18 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			TEX_david_koresh = {
+				swap_country_leader_traits = {
+					remove = TEX_madman_in_waco
+					add = TEX_the_lamb
+				}
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_the_seven_seals
-		icon = X
+		icon = GFX_goal_TEX_seven_seals
 		cost = 6
 		
 		prerequisite = {
@@ -204,7 +260,8 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_named_threat = { threat = 5 name = "Revelations" }
+			add_ideas = TEX_coming_of_the_end
 		}
 	}
 	
@@ -212,7 +269,7 @@ focus_tree = {
 	
 	focus = {
 		id = TEX_restore_the_constitution
-		icon = X
+		icon = GFX_goal_TEX_restore_the_constitution
 		cost = 6
 		
 		prerequisite = {
@@ -237,13 +294,41 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = texas.305
+			TEX_david_koresh = {
+				add_country_leader_role = {
+					country_leader = {
+						expire = "1.1.1.1"
+						ideology = texas_nationalism
+					}
+				}
+				promote_character = texas_nationalism
+				set_portraits = {
+					civilian = { large = "gfx/leaders/TEX/Portrait_TEX_David_Koresh_President.png" }
+				}
+			}
+			set_politics = {
+				ruling_party = nationalist
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.25
+			}
+			set_party_name = {
+				name = TEX_office_of_the_president_party
+				long_name = TEX_office_of_the_president_party_long
+				ideology = nationalist
+			}
+			add_fash_to_coalition = yes
+			hidden_effect = { 
+				set_cosmetic_tag = TEX_koresh_texas
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_reconnect_with_the_christian_mainstream
-		icon = X
+		icon = GFX_goal_TEX_reconcile_the_christian_mainstream
 		cost = 6
 		
 		prerequisite = {
@@ -264,13 +349,15 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = texas.306
+			add_ideas = TEX_obey_the_bible
+			add_political_power = 100
 		}
 	}
 	
 	focus = {
 		id = TEX_form_a_complete_political_consensus
-		icon = X
+		icon = GFX_goal_TEX_political_consensus
 		cost = 6
 		
 		prerequisite = {
@@ -291,13 +378,64 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = texas.307
+			set_party_name = {
+				name = TEX_independent_organization
+				long_name = TEX_independent_organization_long
+				ideology = liberal
+			}
+			set_party_name = {
+				name = TEX_prog_independent_organization
+				long_name = TEX_prog_independent_organization_long
+				ideology = new_democrat
+			}
+			set_party_name = {
+				name = TEX_natcon_independent_organization
+				long_name = TEX_natcon_independent_organization_long
+				ideology = national_conservative
+			}
+			set_party_name = {
+				name = TEX_centrist_independent_organization
+				long_name = TEX_centrist_independent_organization_long
+				ideology = centrist
+			}
+			set_party_name = {
+				name = TEX_leftist_independent_organization
+				long_name = TEX_leftist_independent_organization_long
+				ideology = moderate_socialist
+			}
+			add_natcon_to_coalition = yes
+			add_centrist_to_coalition = yes
+			add_liberal_to_coalition = yes
+			add_newdem_to_coalition = yes
+			add_modsoc_to_coalition = yes
+			hidden_effect = {
+				set_party_name = {
+					name = TEX_none_party
+					long_name = TEX_none_party_long
+					ideology = revolutionary_socialist
+				}
+				set_party_name = {
+					name = TEX_none_party
+					long_name = TEX_none_party_long
+					ideology = communist
+				}
+				set_party_name = {
+					name = TEX_none_party
+					long_name = TEX_none_party_long
+					ideology = national_bolshevik
+				}
+			}
+			swap_ideas = {
+				remove_idea = TEX_obey_the_bible
+				add_idea = TEX_obey_the_bible2
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_fundraising_oppurtunities
-		icon = X
+		icon = GFX_goal_TEX_adapt_to_mainstream_sensibilities
 		cost = 6
 		
 		prerequisite = {
@@ -318,13 +456,19 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = texas.308
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.03
+			}
+			add_war_support = 0.04
+			add_ideas = TEX_koresh_christian_nationalism
 		}
 	}
 	
 	focus = {
 		id = TEX_comprehensive_welfare_state
-		icon = X
+		icon = GFX_goal_TEX_christian_welfare_state
 		cost = 6
 		
 		prerequisite = {
@@ -348,13 +492,18 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_stability = 0.04
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.03
+			}
+			add_ideas = TEX_christian_welfare_state
 		}
 	}
 	
 	focus = {
 		id = TEX_a_new_form_of_messiahood
-		icon = X
+		icon = GFX_goal_TEX_prophet_president
 		cost = 6
 		
 		prerequisite = {
@@ -375,7 +524,12 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			TEX_david_koresh = {
+				swap_country_leader_traits = {
+					remove = TEX_madman_in_waco
+					add = TEX_messiah_in_chief
+				}
+			}
 		}
 	}
 	
@@ -383,7 +537,7 @@ focus_tree = {
 	
 	focus = {
 		id = TEX_keep_your_rifle_by_your_side
-		icon = X
+		icon = GFX_goal_TEX_keep_your_rifle_by_your_side
 		cost = 6
 		
 		prerequisite = {
@@ -405,13 +559,29 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = texas.309
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1200
+				producer = TEX
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = 1200
+				producer = TEX
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = 1200
+				producer = TEX
+			}
+			add_ideas = TEX_keep_your_rifle_by_your_side_idea
 		}
 	}
 	
 	focus = {
 		id = TEX_davidian_media
-		icon = X
+		icon = GFX_goal_TEX_davidian_media
 		cost = 6
 		
 		prerequisite = {
@@ -432,13 +602,15 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = texas.310
+			add_ideas = TEX_god_rocks
+			CAN_add_3_percent_popularity = yes
 		}
 	}
 	
 	focus = {
 		id = TEX_stimulation_through_legalization
-		icon = X
+		icon = GFX_goal_TEX_revelation_through_legalization
 		cost = 6
 		
 		prerequisite = {
@@ -459,13 +631,15 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = texas.312
+			add_stability = 0.04
+			add_ideas = TEX_bliss
 		}
 	}
 	
 	focus = {
 		id = TEX_tear_down_secularism
-		icon = X
+		icon = GFX_goal_TEX_return_to_the_land
 		cost = 6
 		
 		prerequisite = {
@@ -486,13 +660,22 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			add_ideas = TEX_simpler_living
 		}
 	}
 	
 	focus = {
 		id = TEX_purge_the_communists
-		icon = X
+		icon = GFX_goal_TEX_destroy_modern_technology
 		cost = 6
 		
 		prerequisite = {
@@ -516,13 +699,17 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_research_slot = 1 #Should be -1 but what other focus would give him another slot
+			swap_ideas = {
+				remove_idea = TEX_simpler_living
+				add_idea = TEX_simpler_living2
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_infiltrate_law_enforcment
-		icon = X
+		icon = GFX_goal_TEX_infiltrate_law_enforcement
 		cost = 6
 		
 		prerequisite = {
@@ -543,13 +730,16 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = texas.311
+			add_manpower = 3400
+			remove_ideas = TEX_the_nonbelievers
+			CAN_add_3_percent_popularity = yes
 		}
 	}
 	
 	focus = {
 		id = TEX_ahead_of_armegeddon
-		icon = X
+		icon = GFX_goal_TEX_ahead_of_the_apocalypse
 		cost = 6
 		
 		prerequisite = {
@@ -570,7 +760,9 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = texas.315
+			add_ideas = TEX_judgement_day
+			add_named_threat = { threat = 5 name = "The End Times" }
 		}
 	}
 	
@@ -582,7 +774,7 @@ focus_tree = {
 
 	focus = {
 		id = TEX_further_our_retreat
-		icon = X
+		icon = GFX_goal_TEX_autarky
 		cost = 6
 		x = 1
 		y = 3
@@ -596,18 +788,38 @@ focus_tree = {
 		}
 
 		available = {
-			
+			OR = {
+				has_completed_focus = TEX_the_lamb
+				has_completed_focus = TEX_comprehensive_welfare_state
+			}
 		}
 		
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_ideas = TEX_autarky
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_davidian_nuclear_program
-		icon = X
+		icon = GFX_goal_TEX_davidian_nuclear_program
 		cost = 6
 		x = 0
 		y = 1
@@ -624,12 +836,22 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_tech_bonus = {
+				name = nuclear_bonus
+				bonus = 0.5
+				uses = 1
+				category = nuclear
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_nuclear
+				value = 1
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_offer_refuge_to_the_faithful
-		icon = X
+		icon = GFX_goal_TEX_offer_refuge_to_the_faithful
 		cost = 6
 		x = 0
 		y = 2
@@ -646,12 +868,23 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_manpower = 5600
+			add_ideas = TEX_preparing_for_the_end_times
+			if = {
+				limit = { NOT = { has_tech = tech_field_hospital }}
+				set_technology = { tech_field_hospital = 1 }
+			}
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = hospital_tech
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_seal_our_borders_and_prepare_for_the_end
-		icon = X
+		icon = GFX_goal_TEX_prepare_for_the_end
 		cost = 6
 		x = 0
 		y = 3
@@ -668,6 +901,44 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			every_country = {
+				limit = { is_neighbor_of = TEX }
+				PREV = {
+					custom_effect_tooltip = MWA_bunkers_tt
+				}
+			}
+			every_core_state = {
+				limit = {
+					is_island_state = no
+					is_fully_controlled_by = ROOT
+					any_neighbor_state = {
+						is_core_of = ROOT
+					}
+				}
+				every_neighbor_state = {
+					limit = {
+						is_core_of = ROOT
+					}
+					if = {
+						limit = {
+							NOT = { is_in_array = { ROOT.targetcountries = THIS.controller } }
+						}
+						PREV = {
+							add_building_construction = {
+								type = bunker
+								level = 2
+								instant_build = yes
+								province = {
+									all_provinces = yes
+									limit_to_border_country = PREV.controller
+								}
+							}
+						}
+						add_to_array = { ROOT.targetcountries = THIS.controller }
+					}
+				}
+				clear_array = ROOT.targetcountries
+			}
 		}
 	}
 	
@@ -675,7 +946,7 @@ focus_tree = {
 
 	focus = {
 		id = TEX_destroy_the_federal_government
-		icon = X
+		icon = GFX_goal_TEX_destroy_the_fedeal_government
 		cost = 6
 		x = 3
 		y = 3
@@ -689,18 +960,22 @@ focus_tree = {
 		}
 
 		available = {
-			
+			has_completed_focus = TEX_the_lamb
 		}
 		
 		available_if_capitulated = yes
 
 		completion_reward = {
+			declare_war_on = {
+				target = USA
+				type = annex_everything 
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_cooperate_with_montana
-		icon = X
+		icon = GFX_goal_TEX_cooperate_with_montana
 		cost = 6
 		x = 0
 		y = 1
@@ -711,18 +986,68 @@ focus_tree = {
 		}
 
 		available = {
-			
+			OR = {
+				MOT = {
+					has_government = fascist
+					is_subject = no
+				}
+				GRL = {
+					has_country_leader = {
+						name = "David Brian Stone"
+						ruling_only = yes
+					}
+				}
+			}
+		}
+		
+		bypass = {
+			MOT = {
+				OR = {
+					NOT = { has_government = fascist }
+					is_subject = yes
+				}
+			}
+			NOT = {
+				GRL = {
+					has_country_leader = {
+						name = "David Brian Stone"
+						ruling_only = yes
+					}
+				}
+			}
 		}
 		
 		available_if_capitulated = yes
 
 		completion_reward = {
+			if = {
+				limit = {
+					MOT = { has_government = fascist }
+					MOT = { is_subject = no }
+				}
+				MOT = {
+					country_event = texas_diplo.40 
+				}
+			}
+			if = {
+				limit = {
+					GRL = {
+						has_country_leader = {
+							name = "David Brian Stone"
+							ruling_only = yes
+						}
+					}
+				}
+				GRL = {
+					country_event = texas_diplo.40 
+				}
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_reclaim_america_for_the_faithful
-		icon = X
+		icon = GFX_goal_TEX_reclaim_america_for_the_faithful
 		cost = 6
 		x = 0
 		y = 2
@@ -739,12 +1064,97 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			set_country_flag = unifying_america
+			enable_unification_decisions = yes
+            core_NEA = yes
+            core_ILL = yes
+            core_GRL = yes
+            core_MWA = yes
+            core_MOT = yes
+            core_LIN = yes
+            core_UTA = yes
+            core_ARI = yes
+            core_PCA = yes
+            core_USA = yes
+			custom_effect_tooltip = TEX_gains_wargoals_on_all_post_american_countries
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = { is_in_faction_with = MOT }
+					}
+					create_wargoal = {
+						type = annex_everything
+						target = MOT
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = LIN
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = UTA
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = ARI
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = PCA
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = CSD
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = ILL
+				}
+				if = {
+					limit = {
+						NOT = { is_in_faction_with = GRL }
+					}
+					create_wargoal = {
+						type = annex_everything
+						target = GRL
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = NEA
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = AMC
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = USA
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = MWA
+				}
+			}
+			if = {
+				limit = {
+					is_in_faction_with = MOT 
+				}
+				activate_targeted_decision = { target = MOT decision = TEX_demand_tag_submit_themselves_before_the_second_coming }
+			}
+			if = {
+				limit = {
+					is_in_faction_with = GRL 
+				}
+				activate_targeted_decision = { target = MOT decision = TEX_demand_tag_submit_themselves_before_the_second_coming }
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_take_back_the_holy_land
-		icon = X
+		icon = GFX_goal_TEX_reclaim_holy_land
 		cost = 6
 		x = 0
 		y = 3
@@ -755,12 +1165,30 @@ focus_tree = {
 		}
 
 		available = {
-			
+			custom_trigger_tooltip = {
+				tooltip = TEX_united_the_lost_tribe
+				has_country_flag = the_united_states_are_back
+			}
 		}
 		
 		available_if_capitulated = yes
 
 		completion_reward = {
+			if = {
+				limit = {
+					NOT = { has_cosmetic_tag = TEX_davidian_america }
+				}
+				set_cosmetic_tag = TEX_davidian_america
+			}
+			declare_war_on = {
+				target = PAL
+				type = annex_everything 
+			}
+			PAL = {
+				every_owned_state = {
+					TEX = { add_state_claim = PREV }
+				}
+			}
 		}
 	}
 	

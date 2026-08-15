@@ -223,4 +223,44 @@ political_actions = {
 			add_state_core = 369
 		}
 	}
+	
+	TEX_demand_tag_submit_themselves_before_the_second_coming = { 
+		icon = eng_trade_unions_demand
+		allowed = { always = no }
+		available = {
+			FROM = {
+				is_in_faction_with = TEX
+			}
+			NOT = { has_country_flag = TEX_doing_decision }
+		}
+		visible = {
+			is_subject = no
+		}
+		
+		highlight_states = {
+ 			highlight_state_targets = {
+				state = FROM.capital
+			} 
+		}
+		
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+		cancel_if_not_visible = yes
+
+		cancel_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision cancelled CAN_aid_reunification_italy target: [From.GetName]"
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CAN_aid_reunification_italy target: [From.GetName]"
+			set_country_flag = TEX_doing_decision
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CAN_aid_reunification_italy target: [From.GetName]"
+			clr_country_flag = TEX_doing_decision
+			FROM = {
+				country_event = texas_diplo.43
+			}
+		}
+	}
 }
