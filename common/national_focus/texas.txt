@@ -13433,7 +13433,7 @@ focus_tree = {
 	
 	shared_focus = {
 		id = TEX_texan_economy
-		icon = X
+		icon = GFX_goal_TEX_economy
 		cost = 8
 		available = {
 		}
@@ -13472,15 +13472,20 @@ focus_tree = {
 		}
 		
 		completion_reward = {
-			army_experience = 100
-			add_command_power = 100
+			
+			add_dynamic_modifier = { modifier = TEX_economy_modifier  }
+			force_update_dynamic_modifier = yes
+			swap_ideas = {
+				remove_idea = TEX_scars_of_the_war2
+				add_idea = TEX_scars_of_the_war3
+			}
 		}
 
 	}
 	
 	shared_focus = {
 		id = TEX_oil_economy
-		icon = X
+		icon = GFX_goal_TEX_oil_economy
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_texan_economy
@@ -13490,20 +13495,44 @@ focus_tree = {
 		y = 1
 
 		available = {
+			NOT = { has_government = moderate_socialist }
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_renewables
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			random_owned_state = {
+				add_resource = {
+					type = oil
+					amount = 12
+				}
+			}
+			custom_effect_tooltip  = tooltip_blank_line
+			custom_effect_tooltip = TEX_modify_economy
+			add_to_variable = {
+				TEX_fuel_gain = 0.04
+				tooltip =  production_oil_factor_tt
+			}
+			add_to_variable = {
+				TEX_oil_prod = 0.04
+				tooltip =  fuel_gain_factor_tt
+			}
+			add_to_variable = {
+				TEX_army_fuel = -0.06
+				tooltip = army_fuel_consumption_factor_tt
+			}
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_expand_gulf_drilling
-		icon = X
+		icon = GFX_goal_TEX_gulf_drilling
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_oil_economy
@@ -13515,18 +13544,35 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			every_owned_state = {
+				limit = { is_coastal = yes }
+				add_building_construction = {
+					type = fuel_silo
+					level = 1
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip  = tooltip_blank_line
+			custom_effect_tooltip = TEX_modify_economy
+			add_to_variable = {
+				TEX_fuel_gain = 0.04
+				tooltip =  production_oil_factor_tt
+			}
+			add_to_variable = {
+				TEX_oil_prod = 0.04
+				tooltip =  fuel_gain_factor_tt
+			}
 		}
 	}
 	
 	shared_focus = {
-		id = TEX_texaco_investments
-		icon = X
+		id = TEX_legalize_fracking
+		icon = GFX_goal_TEX_fracking
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_expand_gulf_drilling
@@ -13538,18 +13584,37 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			every_owned_state = {
+				add_resource = {
+					type = oil
+					amount = 5
+				}
+			}
+			custom_effect_tooltip  = tooltip_blank_line
+			custom_effect_tooltip = TEX_modify_economy
+			add_to_variable = {
+				TEX_fuel_gain = 0.03
+				tooltip =  production_oil_factor_tt
+			}
+			add_to_variable = {
+				TEX_oil_prod = 0.03
+				tooltip =  fuel_gain_factor_tt
+			}
+			add_to_variable = {
+				TEX_fuel_gain_from_states = 0.03
+				tooltip =  base_fuel_gain_factor_tt
+			}
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_renewables
-		icon = X
+		icon = GFX_goal_CAN_renewables
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_texan_economy
@@ -13558,21 +13623,51 @@ focus_tree = {
 		x = 1
 		y = 1
 
-		available = {
+		available = {	
+			NOT = { has_government = nationalist }
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_oil_economy
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = renewable_energy_plant
+					level = 1
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip  = tooltip_blank_line
+			custom_effect_tooltip = TEX_modify_economy
+			add_to_variable = {
+				TEX_research_speed = 0.02
+				tooltip = research_speed_factor_tt
+			}
+			add_to_variable = {
+				TEX_max_fuel = 0.03
+				tooltip = max_fuel_factor_tt
+			}
+			add_to_variable = {
+				TEX_renewable_construction = 0.03
+				tooltip = production_speed_renewable_energy_plant_factor_tt
+			}
+			add_to_variable = {
+				TEX_army_fuel = -0.06
+				tooltip = army_fuel_consumption_factor_tt
+			}
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_solar_panels
-		icon = X
+		icon = GFX_goal_CAN_solar_panels
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_renewables
@@ -13582,20 +13677,42 @@ focus_tree = {
 		y = 1
 
 		available = {
+			
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = renewable_energy_plant
+					level = 1
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip  = tooltip_blank_line
+			custom_effect_tooltip = TEX_modify_economy
+			add_to_variable = {
+				TEX_research_speed = 0.02
+				tooltip = research_speed_factor_tt
+			}
+			add_to_variable = {
+				TEX_max_fuel = 0.03
+				tooltip = max_fuel_factor_tt
+			}
+			add_to_variable = {
+				TEX_renewable_construction = 0.03
+				tooltip = production_speed_renewable_energy_plant_factor_tt
+			}
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_wind_farms
-		icon = X
+		icon = GFX_goal_CAN_wind_farms
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_solar_panels
@@ -13607,18 +13724,39 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = renewable_energy_plant
+					level = 1
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip  = tooltip_blank_line
+			custom_effect_tooltip = TEX_modify_economy
+			add_to_variable = {
+				TEX_research_speed = 0.02
+				tooltip = research_speed_factor_tt
+			}
+			add_to_variable = {
+				TEX_max_fuel = 0.03
+				tooltip = max_fuel_factor_tt
+			}
+			add_to_variable = {
+				TEX_renewable_construction = 0.03
+				tooltip = production_speed_renewable_energy_plant_factor_tt
+			}
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_power_grid
-		icon = X
+		icon = GFX_goal_TEX_improve_ERCOT
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_renewables
@@ -13631,18 +13769,46 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				limit = {
+					impassable = no
+					free_building_slots = {
+						building = energy_infrastructure
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = energy_infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip  = tooltip_blank_line
+			custom_effect_tooltip = TEX_modify_economy
+			add_to_variable = {
+				TEX_energy_infra_speed = 0.05
+				tooltip = production_speed_energy_infrastructure_factor_tt
+			}
+			add_to_variable = {
+				TEX_energy_consumption = -0.05
+				tooltip = factory_energy_consumption_tt
+			}
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_restore_tourism_industry
-		icon = X
+		icon = GFX_goal_TEX_tourism
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_texan_economy
@@ -13654,18 +13820,34 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			add_offsite_building = {
+				type = industrial_complex level = 1
+			}
+			custom_effect_tooltip  = tooltip_blank_line
+			custom_effect_tooltip = TEX_modify_economy
+			add_to_variable = {
+				TEX_consumer_goods = 0.06
+				tooltip = consumer_goods_factor_tt
+			}
+			add_to_variable = {
+				TEX_montly_pop = 0.02
+				tooltip = monthly_population_tt
+			}
+			add_to_variable = {
+				TEX_climate_gain_factor = 0.02
+				tooltip = acclimatization_hot_climate_gain_factor_tt
+			}
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_texan_film_industry
-		icon = X
+		icon = GFX_goal_TEX_film_industry
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_restore_tourism_industry
@@ -13677,19 +13859,31 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			add_war_support = 0.05
+			add_stability = 0.03
+			CAN_add_3_percent_popularity = yes
+			every_owned_state = {
+				limit = {
+					is_controlled_by = TEX
+					state = 375
+				}
+				add_dynamic_modifier = { modifier = TEX_new_hollywood }
+			}
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_repair_damage
-		icon = X
-		cost = 5.0
+		icon = {
+			CUB_invite_american_corporations_back = { has_country_flag = TEX_accepted_american_rule }
+			GFX_goal_CAN_nation_building = yes
+		}
+		cost = 7.0
 		prerequisite = {
 			focus = TEX_texan_economy
 		}
@@ -13700,18 +13894,44 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			if = {
+				limit = {
+					has_country_flag = TEX_accepted_american_rule
+				}
+				add_ideas = TEX_american_economic_control
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 1
+				}
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 1
+				}
+			}
+			else = {
+				remove_ideas = TEX_scars_of_the_war3
+				add_stability = 50
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 1
+				}
+			}
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_texan_highways
-		icon = X
+		icon = GFX_goal_TEX_texan_highway
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_repair_damage
@@ -13723,18 +13943,39 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip  = tooltip_blank_line
+			custom_effect_tooltip = TEX_modify_economy
+			add_to_variable = {
+				TEX_prod_speed_infra = 0.15
+				tooltip = production_speed_infrastructure_factor_tt
+			}
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_reopen_the_johnson_space_center
-		icon = X
+		icon = GFX_goal_TEX_re_open_johnson_space_center
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_texan_highways
@@ -13749,18 +13990,32 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			add_tech_bonus = {
+				name = rocket_engines
+				bonus = 1
+				uses = 1
+				category = rocketry
+			}
+			375 = { #Texas
+				add_building_construction = {
+					type = air_facility
+					level = 1
+					province = 10337 #Houston
+					instant_build = yes
+				}
+			}
+			add_ideas = TEX_NASA
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_lease_to_anybody
-		icon = X
+		icon = GFX_goal_TEX_lease_our_operations
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_reopen_the_johnson_space_center
@@ -13770,24 +14025,35 @@ focus_tree = {
 			focus = TEX_texan_space_force
 		}
 		relative_position_id = TEX_reopen_the_johnson_space_center
-		x = -1
+		x = 1
 		y = 1
 
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = TEX_NASA
+				add_idea = TEX_NASA_Leasing
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_texan_space_force
-		icon = X
+		icon = GFX_goal_TEX_restore_NASA
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_reopen_the_johnson_space_center
@@ -13796,24 +14062,38 @@ focus_tree = {
 			focus = TEX_lease_to_anybody
 		}
 		relative_position_id = TEX_reopen_the_johnson_space_center
-		x = 1
+		x = -1
 		y = 1
 
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+			swap_ideas = {
+				remove_idea = TEX_NASA
+				add_idea = TEX_NASA_SpaceAgency
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_silicon_hills
-		icon = X
+		icon = GFX_goal_TEX_silicon_hills
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_texan_highways
@@ -13828,18 +14108,31 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			custom_effect_tooltip = CAN_unlock_industrial_company
+			show_ideas_tooltip = dell
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = CAN_unlock_industrial_company
+			show_ideas_tooltip = datapoint
+			custom_effect_tooltip = tooltip_blank_line
+			add_ideas = TEX_texan_computing
+			custom_effect_tooltip = tooltip_blank_line
+			add_tech_bonus = {
+				name = computing_tech_bonus
+				bonus = 0.5
+				uses = 2
+				category = computing_tech
+			}
 		}
 	}
 	
 	shared_focus = {
-		id = TEX_a_texan_intranet
-		icon = X
+		id = TEX_expand_higher_education
+		icon = GFX_goal_TEX_fund_universities
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_silicon_hills
@@ -13851,18 +14144,26 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			add_research_slot = 1
+			custom_effect_tooltip = TEX_modify_economy
+			add_to_variable = {
+				TEX_research_speed = 0.02
+				tooltip = research_speed_factor_tt
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_fund_texas_instruments
-		icon = X
+		icon = GFX_goal_TEX_texas_instruments
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_silicon_hills
@@ -13874,18 +14175,56 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			if = {
+				limit = { has_dlc = "Arms Against Tyranny" }
+				custom_effect_tooltip = tooltip_blank_line
+				custom_effect_tooltip = CAN_unlock_materiel_mio
+				show_mio_tooltip = TEX_texas_instruments_organisation
+			}
+			else = {
+				custom_effect_tooltip = tooltip_blank_line
+				custom_effect_tooltip = CAN_unlock_materiel_designer
+				show_ideas_tooltip = texas_instruments_art
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.5
+			}
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_agriculture
-		icon = X
+		icon = GFX_goal_TEX_agriculture
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_texan_highways
@@ -13900,12 +14239,31 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			custom_effect_tooltip = TEX_modify_economy
+			add_to_variable = {
+				TEX_supply_consumption = -0.08
+				tooltip =  supply_consumption_factor_tt
+			}
+			add_to_variable = {
+				TEX_supply_node = 0.1
+				tooltip =  supply_node_range_tt
+			}
+			add_to_variable = {
+				TEX_out_of_supply = -0.16
+				tooltip =  out_of_supply_factor_tt
+			}
+			add_to_variable = {
+				TEX_montly_pop = 0.02
+				tooltip =  monthly_population_tt
+			}
 		}
 	}
 	
@@ -13917,7 +14275,7 @@ focus_tree = {
 	
 	shared_focus = {
 		id = TEX_texan_army
-		icon = X
+		icon = GFX_goal_TEX_texan_army
 		cost = 8
 		available = {
 			has_country_flag = TEX_can_do_military_stuff
@@ -13954,13 +14312,14 @@ focus_tree = {
 		completion_reward = {
 			army_experience = 100
 			add_command_power = 100
+			add_dynamic_modifier = { modifier = TEX_armed_forces_modifier  }
+			force_update_dynamic_modifier = yes
 		}
-
 	}
 	
 	shared_focus = {
 		id = TEX_militarize_the_rangers
-		icon = X
+		icon = GFX_goal_TEX_texas_rangers
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_texan_army
@@ -13972,17 +14331,23 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				technology = tech_special_forces
+			}
+			army_experience = 50
+			add_ideas = TEX_texas_rangers
 		}
 	}
 	shared_focus = {
 		id = TEX_come_and_take_it
-		icon = X
+		icon = GFX_goal_TEX_come_and_take_it
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_texan_army
@@ -13994,17 +14359,35 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			add_tech_bonus = {
+				name = artillery_bonus
+				bonus = 1
+				uses = 1
+				category = artillery
+			}
+			custom_effect_tooltip = TEX_modify_army
+			add_to_variable = {
+				TEX_artillery_attack = 0.04
+				tooltip =  army_artillery_attack_factor_tt
+			}
+			add_to_variable = {
+				TEX_artillery_attack = 0.04
+				tooltip =  army_artillery_defence_factor_tt
+			}
+			add_to_variable = {
+				TEX_artillery_xp = 0.07
+				tooltip = experience_gain_artillery_combat_factor_tt
+			}
 		}
 	}
 	shared_focus = {
 		id = TEX_brown_in_command
-		icon = X
+		icon = GFX_goal_TEX_brown_in_command
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_texan_army
@@ -14016,17 +14399,36 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
+			TEX_charles_quinton_brown_junior = {
+				add_max_trait = 1
+				add_skill_level = 1
+				add_logistics = 1
+				add_planning = 1
+				add_defense = 1
+				add_attack = 1
+			}
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				category = land_doctrine
+				uses = 1
+				cost_reduction = 0.5
+			}
+			custom_effect_tooltip = TEX_modify_army
+			add_to_variable = {
+				TEX_land_reinforce = 0.04
+				tooltip =  land_reinforce_rate_tt
+			}
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_texas_a_and_m
-		icon = X
+		icon = GFX_goal_TEX_texas_a_and_m
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_brown_in_command
@@ -14038,18 +14440,19 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			add_research_slot = 1
+			add_ideas = TEX_texas_a_and_m_idea
 		}
 	}
 	
 	shared_focus = {
-		id = TEX_enlarge_fort_sam
-		icon = X
+		id = TEX_new_tanks
+		icon = GFX_goal_TEX_tumbleweed_tank
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_brown_in_command
@@ -14061,21 +14464,36 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			add_tech_bonus = {
+				name = armor_bonus
+				bonus = 1
+				uses = 1
+				category = armor
+			}
+			add_ideas = TEX_new_tanks
+			# custom_effect_tooltip = TEX_modify_army
+			# add_to_variable = {
+				# TEX_armour_attack = 0.04
+				# tooltip =  army_armor_attack_factor_tt
+			# }
+			# add_to_variable = {
+				# TEX_land_reinforce = 0.04
+				# tooltip =  TEX_armour_defense
+			# }
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_memories_of_the_great_collapse
-		icon = X
+		icon = GFX_goal_GER_american_proving_ground
 		cost = 5.0
 		prerequisite = {
-			focus = TEX_enlarge_fort_sam
+			focus = TEX_new_tanks
 		}
 		prerequisite = {
 			focus = TEX_texas_a_and_m
@@ -14087,18 +14505,39 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+			custom_effect_tooltip = TEX_modify_army
+			add_to_variable = {
+				TEX_combat_width = -0.06
+				tooltip =  combat_width_factor_tooltip
+			}
+			add_to_variable = {
+				TEX_planning_speed = 0.04
+				tooltip =  planning_speed_factor_tt
+			}
+			add_to_variable = {
+				TEX_land_reinforce = 0.02
+				tooltip =  land_reinforce_rate_tt
+			}
+			add_to_variable = {
+				TEX_army_experience_gain = 0.04
+				tooltip =  army_experience_gain_army_factor_tt
+			}
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_behind_every_blade
-		icon = X
+		icon = GFX_goal_TEX_nation_of_gunslingers
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_memories_of_the_great_collapse
@@ -14110,17 +14549,40 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1200
+				producer = TEX
+			}
+			add_war_support = 0.05
+			custom_effect_tooltip = TEX_modify_army
+			add_to_variable = {
+				TEX_army_training = -0.06
+				tooltip =  training_time_army_factor_tooltip
+			}
+			add_to_variable = {
+				TEX_weekly_manpower = 40
+				tooltip =  weekly_manpower_tt
+			}
+			add_to_variable = {
+				TEX_army_core_attack = 0.04
+				tooltip =  army_core_attack_factor_tt
+			}
+			add_to_variable = {
+				TEX_army_core_defense = 0.04
+				tooltip =  army_core_defence_factor_tt
+			}
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_modern_cavalry
-		icon = X
+		icon = GFX_goal_TEX_motorize_the_stallion
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_memories_of_the_great_collapse
@@ -14132,18 +14594,35 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			add_tech_bonus = {
+				name = motorized_equipment_bonus
+				bonus = 1
+				uses = 1
+				category = motorized_equipment
+			}
+			add_tech_bonus = {
+				bonus = 1.5
+				uses = 1
+				category = cat_mechanized_equipment
+			}
+			add_equipment_to_stockpile = {
+				type = motorized_equipment_1 amount = 400 producer = TEX
+			}
+			swap_ideas = {
+				remove_idea = TEX_new_tanks
+				add_idea = TEX_new_tanks2
+			}
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_ikes_expertise
-		icon = X
+		icon = GFX_goal_TEX_ike_expertise
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_modern_cavalry
@@ -14158,18 +14637,25 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			add_command_power = 100
+			every_unit_leader = {	
+				add_skill_level = 1
+				add_logistics = 1
+				add_defense = 1
+				add_planning = 1
+				gain_xp = 400
+			}
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_whartons_determination
-		icon = X
+		icon = GFX_goal_TEX_wharton
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_modern_cavalry
@@ -14184,18 +14670,26 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			custom_effect_tooltip = TEX_modify_army
+			add_to_variable = {
+				TEX_recon = 0.07
+				tooltip =  recon_factor_tt
+			}
+			add_to_variable = {
+				TEX_org_loss = -0.06
+				tooltip =  org_loss_when_moving_tt
+			}
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_crocketts_passion
-		icon = X
+		icon = GFX_goal_TEX_crockett
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_modern_cavalry
@@ -14210,18 +14704,34 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			custom_effect_tooltip = TEX_modify_army
+			add_to_variable = {
+				TEX_army_core_attack = 0.02
+				tooltip =  army_core_attack_factor_tt
+			}
+			add_to_variable = {
+				TEX_army_core_defense = 0.02
+				tooltip =  army_core_defence_factor_tt
+			}
+			add_to_variable = {
+				TEX_fortification_collateral = 0.02
+				tooltip =  fortification_collateral_chance_tooltip
+			}
+			add_to_variable = {
+				TEX_army_morale = 0.05
+				tooltip = army_morale_factor_tt
+			}
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_remember_the_alamo
-		icon = X
+		icon = GFX_goal_TEX_remember_the_alamo
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_crocketts_passion
@@ -14239,12 +14749,13 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			add_ideas = TEX_remember_the_alamo
+			add_war_support = 0.06
 		}
 	}
 	
@@ -14252,7 +14763,7 @@ focus_tree = {
 	
 	shared_focus = {
 		id = TEX_texan_navy
-		icon = X
+		icon = GFX_goal_TEX_texan_navy
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_texan_army
@@ -14266,17 +14777,23 @@ focus_tree = {
 			has_completed_focus = TEX_brown_in_command
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
+			navy_experience = 60
+			custom_effect_tooltip = TEX_modify_army
+			add_to_variable = {
+				TEX_navy_experience_gain = 0.02
+				tooltip =  experience_gain_navy_factor_tt
+			}
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_rio_grande_patrols
-		icon = X
+		icon = GFX_goal_TEX_rio_grande_patrols
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_texan_navy
@@ -14288,22 +14805,40 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 100
+			}
+			custom_effect_tooltip = TEX_modify_army
+			add_to_variable = {
+				TEX_river_crossing = -0.1
+				tooltip =  river_crossing_penalty_tooltip
+			}
+			add_to_variable = {
+				TEX_naval_coordination = 0.06
+				tooltip =  naval_coordination_tt
+			}
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = naval_doctrine
+			}
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_texan_marines
-		icon = X
+		icon = GFX_goal_TEX_marines
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_rio_grande_patrols
-			focus = TEX_enlarge_fort_sam
+			focus = TEX_new_tanks
 		}
 		relative_position_id = TEX_texan_army
 		x = -2
@@ -14312,18 +14847,29 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			add_tech_bonus = {
+				name = marine_tech_bonus
+				bonus = 1
+				uses = 1
+				category = marine_tech
+			}
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = tp_tech
+			}
+			add_ideas = TEX_texan_marines_idea
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_control_the_gulf
-		icon = X
+		icon = GFX_goal_TEX_gulf_of_texas
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_rio_grande_patrols
@@ -14335,12 +14881,43 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			custom_effect_tooltip = TEX_modify_army
+			add_to_variable = {
+				TEX_submarine_detection = 0.06
+				tooltip =  navy_submarine_detection_factor_tt
+			}
+			add_to_variable = {
+				TEX_navy_screen = 0.04
+				tooltip =  navy_screen_attack_factor_tt
+			}
+			add_to_variable = {
+				TEX_naval_coordination = 0.04
+				tooltip =  naval_coordination_tt
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			add_tech_bonus = {
+				name = TXS_sub_focus
+				bonus = 1
+				uses = 2
+				category = ss_tech
+			}
+			add_tech_bonus = {
+				name = TXS_destroyer_focus
+				bonus = 1
+				uses = 2
+				category = dd_tech
+			}
+			add_tech_bonus = {
+				name = ca_tech_bonus
+				bonus = 1
+				uses = 1
+				category = cv_tech
+			}
 		}
 	}
 	
@@ -14348,7 +14925,7 @@ focus_tree = {
 	
 	shared_focus = {
 		id = TEX_air_force
-		icon = X
+		icon = GFX_goal_TEX_texan_air_force
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_texan_army
@@ -14362,18 +14939,23 @@ focus_tree = {
 			has_completed_focus = TEX_brown_in_command
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			air_experience = 60
+			custom_effect_tooltip = TEX_modify_army
+			add_to_variable = {
+				TEX_air_experience = 0.02
+				tooltip =  experience_gain_air_tt
+			}
 		}
 	}
 	
 	shared_focus = {
-		id = TEX_hughes_consultation
-		icon = X
+		id = TEX_drones
+		icon = GFX_goal_CSD_examine_uav_warfare
 		cost = 5.0
 		prerequisite = {
 			focus = TEX_air_force
@@ -14385,21 +14967,51 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			add_tech_bonus = {
+				name = tactical_bomber_bonus
+				bonus = 0.5
+				uses = 1
+				category = tactical_bomber
+			}
+			add_tech_bonus = {
+				name = light_air_bonus
+				bonus = 0.5
+				uses = 1
+				category = light_air
+			}
+			add_tech_bonus = {
+				name = medium_air_bonus
+				bonus = 0.5
+				uses = 1
+				category = medium_air
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
+			custom_effect_tooltip = TEX_modify_army
+			add_to_variable = {
+				TEX_air_agility = 0.07
+				tooltip =  air_agility_factor_tt
+			}
+			add_to_variable = {
+				TEX_strategic_bombing = 0.09
+				tooltip =  air_strategic_bomber_bombing_factor_tt
+			}
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_texas_tech_training
-		icon = X
+		icon = GFX_goal_TEX_texas_tech
 		cost = 5.0
 		prerequisite = {
-			focus = TEX_hughes_consultation
+			focus = TEX_drones
 			focus = TEX_texas_a_and_m
 		}
 		relative_position_id = TEX_texan_army
@@ -14409,21 +15021,27 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			add_doctrine_cost_reduction = {
+				name = air_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = air_doctrine
+			}
+			add_ideas = TEX_texas_tech_training
 		}
 	}
 	
 	shared_focus = {
 		id = TEX_houston_rockets
-		icon = X
+		icon = GFX_goal_TEX_houston_rockets
 		cost = 5.0
 		prerequisite = {
-			focus = TEX_hughes_consultation
+			focus = TEX_drones
 		}
 		relative_position_id = TEX_texan_army
 		x = 3
@@ -14432,12 +15050,30 @@ focus_tree = {
 		available = {
 		}
 
-		ai_will_do = {
-			factor = 0.25
-		}
+		# ai_will_do = {
+			# factor = 0.25
+		# }
 
 		completion_reward = {
-			
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = jet_technology
+			}
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = rocketry
+			}
+			custom_effect_tooltip = TEX_modify_army
+			add_to_variable = {
+				TEX_air_superiority = 0.07
+				tooltip =  air_superiority_efficiency_tt
+			}
+			add_to_variable = {
+				TEX_air_range = 0.12
+				tooltip =  air_range_factor_factor_tt
+			}
 		}
 	}
 	
