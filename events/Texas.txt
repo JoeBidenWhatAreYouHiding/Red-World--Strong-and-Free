@@ -4538,6 +4538,82 @@ country_event = {
 	}
 }
 
+# Soldiers Return to South Texas
+country_event = {
+	id = texas.190
+	title = texas.190.t
+	desc = texas.190.d
+	picture = texan_soldiers_return_to_south_texas
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.190.o1
+		add_political_power = -40
+		hidden_effect = {
+			country_event = {
+				id = texas.191
+				days = 14
+			}
+		}
+	}
+}
+
+# Tensions South Texas
+country_event = {
+	id = texas.191
+	title = texas.191.t
+	desc = texas.191.d
+	picture = paul_future
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.191.o1
+		add_stability = -0.15
+		hidden_effect = {
+			country_event = {
+				id = texas.192
+				days = 14
+			}
+		}
+		if = {
+			limit = { owns_state = 376 }
+			376 = {
+				add_dynamic_modifier = { modifier = TEX_Mexican_Legacy  }
+			}
+		}
+		
+		if = {
+			limit = { owns_state = 894 }
+			894 = {
+				add_dynamic_modifier = { modifier = TEX_Mexican_Legacy  }
+			}
+		}
+	}
+}
+
+# Terrorist Attack
+country_event = {
+	id = texas.192
+	title = texas.192.t
+	desc = texas.192.d
+	picture = texas_new_terrorists
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.192.o1
+		add_ideas = TEX_Hispanic_Tensions
+	}
+}
+
 # Paul Claims America
 country_event = {
 	id = texas.193
@@ -7514,6 +7590,13 @@ country_event = {
 		name = texas_diplo.3.o1
 		transfer_state = 894
 		set_country_flag = TEX_we_got_south_texas_back
+		hidden_effect = {
+			country_event = {	
+				id = texas.190
+				days = 40
+				random_days = 10
+			}
+		}
 		remove_state_claim = 376
 		set_country_flag = TEX_gave_up_claims_on_nm
 	}
@@ -7623,6 +7706,13 @@ country_event = {
 			set_country_flag = TEX_we_got_new_mexico_back
 		}
 		set_country_flag = TEX_we_got_south_texas_back
+		hidden_effect = {
+			country_event = {	
+				id = texas.190
+				days = 40
+				random_days = 10
+			}
+		}
 	}
 }
 
@@ -7674,6 +7764,13 @@ country_event = {
 		}
 		transfer_state = 894
 		set_country_flag = TEX_we_got_south_texas_back
+		hidden_effect = {
+			country_event = {	
+				id = texas.190
+				days = 40
+				random_days = 10
+			}
+		}
 	}
 	
 	option = { #Not good enough
@@ -7752,6 +7849,13 @@ country_event = {
 			set_country_flag = TEX_we_got_new_mexico_back
 		}
 		set_country_flag = TEX_we_got_south_texas_back
+		hidden_effect = {
+			country_event = {	
+				id = texas.190
+				days = 40
+				random_days = 10
+			}
+		}
 		white_peace = MEX
 	}
 }

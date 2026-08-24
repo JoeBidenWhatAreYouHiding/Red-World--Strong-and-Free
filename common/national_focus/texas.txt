@@ -9258,11 +9258,19 @@ focus_tree = {
 		completion_reward = {
 			custom_effect_tooltip = TEX_took_east_texas
 		}
+		bypass_effect = {
+			900 = {
+				add_dynamic_modifier = { modifier = TEX_American_Legacy  }
+			}
+			1046 = {
+				add_dynamic_modifier = { modifier = TEX_American_Legacy  }
+			}
+		}
 	}
 	
 	focus = {
 		id = TEX_david_and_goliath
-		icon = GFX_goal_TEX_impossible_odds
+		icon = GFX_goal_TEX_when_david_defeated_goliath
 		cost = 6
 		
 		prerequisite = {
@@ -9280,18 +9288,26 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_stability = 0.15
+			CAN_add_3_percent_popularity = yes
+			swap_ideas = {
+				remove_idea = TEX_Mutilated_Rose
+				add_idea = TEX_Mutilated_Rose_DavidGoliath
+			}
+			custom_effect_tooltip = TEX_unlock_mil_tree
+			set_country_flag = TEX_can_do_military_stuff
 		}
 	}
 	
 	focus = {
-		id = TEX_remove_collaborators
-		icon = GFX_goal_TEX_impossible_odds
+		id = TEX_begin_rebuilding
+		icon = GFX_goal_TEX_reconstruction_commission
 		cost = 6
 		
 		prerequisite = {
 			focus = TEX_dallas_reclaimed
 			focus = TEX_whole_once_more
+			focus = TEX_our_time_will_come
 		}
 		
 		available = {
@@ -9305,7 +9321,12 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = TEX_scars_of_the_war
+				add_idea = TEX_scars_of_the_war2
+			}
+			set_country_flag = TEX_can_do_economy_stuff
+			custom_effect_tooltip = TEX_unlock_economy_tree
 		}
 	}
 	
@@ -9346,11 +9367,16 @@ focus_tree = {
 		completion_reward = {
 			custom_effect_tooltip = TEX_took_dfw
 		}
+		bypass_effect = {
+			900 = {
+				add_dynamic_modifier = { modifier = TEX_American_Legacy  }
+			}
+		}
 	}
 	
 	focus = {
 		id = TEX_looking_east
-		icon = GFX_goal_TEX_impossible_odds
+		icon = GFX_goal_TEX_looking_east
 		cost = 6
 		
 		prerequisite = {
@@ -9368,7 +9394,13 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_command_power = 100
+			swap_ideas = {
+				remove_idea = TEX_Mutilated_Rose
+				add_idea = TEX_Mutilated_Rose_LookEast
+			}
+			custom_effect_tooltip = TEX_unlock_mil_tree
+			set_country_flag = TEX_can_do_military_stuff
 		}
 	}
 	
@@ -9413,7 +9445,7 @@ focus_tree = {
 	
 	focus = {
 		id = TEX_jingoistic_fervor
-		icon = GFX_goal_TEX_impossible_odds
+		icon = GFX_goal_TEX_new_jingoism
 		cost = 6
 		
 		prerequisite = {
@@ -9431,13 +9463,19 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_war_support = 0.1
+			swap_ideas = {
+				remove_idea = TEX_Mutilated_Rose
+				add_idea = TEX_Mutilated_Rose_Jingo
+			}
+			custom_effect_tooltip = TEX_unlock_mil_tree
+			set_country_flag = TEX_can_do_military_stuff
 		}
 	}
 	
 	focus = {
 		id = TEX_lessons_of_the_war
-		icon = GFX_goal_TEX_impossible_odds
+		icon = GFX_goal_TEX_learn_from_the_war
 		cost = 6
 		
 		prerequisite = {
@@ -9457,13 +9495,25 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				category = land_doctrine
+				uses = 1
+				cost_reduction = 0.5
+			}
+			add_tech_bonus = {
+				name = infantry_artillery_bonus
+				bonus = 1.0
+				uses = 2
+				category = infantry_weapons
+				category = artillery
+			}
 		}
 	}
 
 	focus = {
 		id = TEX_mexican_negotiations
-		icon = GFX_goal_TEX_impossible_odds
+		icon = GFX_goal_TEX_negotiate_with_mexico
 		cost = 6
 		
 		prerequisite = {
@@ -9501,7 +9551,7 @@ focus_tree = {
 	
 	focus = {
 		id = TEX_reclaim_south_texas
-		icon = GFX_goal_TEX_impossible_odds
+		icon = GFX_goal_TEX_reclaim_south_texas
 		cost = 6
 		
 		prerequisite = {
@@ -9515,10 +9565,7 @@ focus_tree = {
 		}
 		
 		available = {
-			OR = {
-				has_government = nationalist
-				has_government = fascist
-			}
+			
 			date > 2013.1.1
 		}
 		
@@ -9538,13 +9585,25 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = TEX_collabs_fate
-		icon = GFX_goal_TEX_impossible_odds
+		id = TEX_mexican_crackdown
+		icon = GFX_goal_TEX_hispanic_crackdown_2
 		cost = 6
 		
 		prerequisite = {
 			focus = TEX_reclaim_south_texas
 			focus = TEX_mexican_negotiations
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_smooth_hispanic_tensions
+		}
+		
+		available = {
+			OR = {
+				has_government = fascist
+				has_government = nationalist
+			}
+			has_idea = TEX_Hispanic_Tensions
 		}
 		
 		relative_position_id = TEX_eve_of_war
@@ -9554,18 +9613,34 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			set_country_flag = TEX_hostile_hispanic_decisions
+			unlock_decision_tooltip = TEX_enforce_english_as_official_language
+			unlock_decision_tooltip = TEX_second_operation_wetback
+			unlock_decision_tooltip = TEX_send_law_enforcement_south
+			unlock_decision_tooltip = TEX_defeat_HALO
 		}
 	}
 	
 	focus = {
 		id = TEX_smooth_hispanic_tensions
-		icon = GFX_goal_TEX_impossible_odds
+		icon = GFX_goal_TEX_reconcile_tejano_community
 		cost = 6
 		
 		prerequisite = {
 			focus = TEX_reclaim_south_texas
 			focus = TEX_mexican_negotiations
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_mexican_crackdown
+		}
+		
+		available = {
+			NOT = {
+				has_government = fascist
+				has_government = nationalist
+			}
+			has_idea = TEX_Hispanic_Tensions
 		}
 		
 		relative_position_id = TEX_eve_of_war
@@ -9575,13 +9650,17 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			set_country_flag = TEX_friendly_hispanic_decisions
+			unlock_decision_tooltip = TEX_bilingualism
+			unlock_decision_tooltip = TEX_embrace_tejano_identity
+			unlock_decision_tooltip = TEX_reform_law_enforcement
+			unlock_decision_tooltip = TEX_defeat_HALO
 		}
 	}
 	
 	focus = {
 		id = TEX_new_border
-		icon = GFX_goal_TEX_impossible_odds
+		icon = GFX_goal_TEX_renew_the_border
 		cost = 6
 		
 		prerequisite = {
@@ -9596,13 +9675,26 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			MEX = {
+				custom_effect_tooltip = MWA_bunkers_tt
+			}
+			every_owned_state = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border_country = MEX
+					}
+				}
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_dont_mess_with_texas
-		icon = GFX_goal_TEX_impossible_odds
+		icon = GFX_goal_TEX_dont_mess_with_texas
 		cost = 4
 		
 		prerequisite = {
@@ -9610,14 +9702,13 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = TEX_smooth_hispanic_tensions
-		}
-		prerequisite = {
-			focus = TEX_collabs_fate
+			focus = TEX_mexican_crackdown
 		}
 		available = {
 			owns_state = 894
 			owns_state = 1046
 			owns_state = 900
+			NOT = { has_idea = TEX_Hispanic_Tensions }
 		}
 		
 		relative_position_id = TEX_eve_of_war
@@ -9631,6 +9722,18 @@ focus_tree = {
 			mark_focus_tree_layout_dirty = yes
 			set_country_flag = TEX_unlock_forpol
 			custom_effect_tooltip = TEX_will_unlock_forpol
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = TEX_remove_wilted_rose_spirit
+			hidden_effect = {
+				remove_ideas = TEX_Mutilated_Rose
+				remove_ideas = TEX_Mutilated_Rose_DavidGoliath
+				remove_ideas = TEX_Mutilated_Rose_LookEast
+				remove_ideas = TEX_Mutilated_Rose_Jingo
+			}
+			add_timed_idea = {
+				idea = TEX_Texas_One_and_Indivisible
+				days = 300
+			}
 		}
 	}
 	
@@ -13475,9 +13578,14 @@ focus_tree = {
 			
 			add_dynamic_modifier = { modifier = TEX_economy_modifier  }
 			force_update_dynamic_modifier = yes
-			swap_ideas = {
-				remove_idea = TEX_scars_of_the_war2
-				add_idea = TEX_scars_of_the_war3
+			if = {
+				limit = {
+					NOT = { has_country_flag = TEX_accepted_american_rule }
+				}
+				swap_ideas = {
+					remove_idea = TEX_scars_of_the_war2
+					add_idea = TEX_scars_of_the_war3
+				}
 			}
 		}
 
