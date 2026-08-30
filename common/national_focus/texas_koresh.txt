@@ -2,10 +2,10 @@ focus_tree = {
 	id = texas_cults_focus
 	country = {
 		factor = 0
-		# modifier = {
-			# add = 100
-			# tag = TEX
-		# }
+		modifier = {
+			add = 100
+			tag = TEX
+		}
 	}
 	default = no
 	continuous_focus_position = { x = 4800 y = 2300 }
@@ -28,7 +28,7 @@ focus_tree = {
 		}
 		
 		allow_branch = {
-			NOT = { has_country_flag = TEX_ufo_flag }
+			NOT = { has_country_flag = TEX_junta_flag }
 		}
 		
 		available_if_capitulated = yes
@@ -800,7 +800,7 @@ focus_tree = {
 		}
 		
 		allow_branch = {
-			NOT = { has_country_flag = TEX_ufo_flag }
+			NOT = { has_country_flag = TEX_junta_flag }
 		}
 
 		available = {
@@ -972,7 +972,7 @@ focus_tree = {
 		}
 		
 		allow_branch = {
-			NOT = { has_country_flag = TEX_ufo_flag }
+			NOT = { has_country_flag = TEX_junta_flag }
 		}
 
 		available = {
@@ -1217,18 +1217,18 @@ focus_tree = {
 	
 	focus = {
 		id = TEX_mccasland_junta
-		icon = X
+		icon = GFX_goal_TEX_military_junta
 		cost = 6
-		x = 10
-		y = 1
+		x = 11
+		y = 3
 	
 		available = {
 			
 		}
 		
 		allow_branch = {
-			has_country_flag = TEX_ufo_flag
-			NOT = { has_country_flag = TEX_lazar_takes_power }
+			has_country_flag = TEX_junta_flag
+			NOT = { has_country_flag = TEX_ufo_flag }
 		}
 		
 		available_if_capitulated = yes
@@ -1239,7 +1239,7 @@ focus_tree = {
 	
 	focus = {
 		id = TEX_disband_congress
-		icon = X
+		icon = GFX_goal_TEX_disband_congress
 		cost = 6
 		x = -1
 		y = 1
@@ -1268,7 +1268,7 @@ focus_tree = {
 	
 	focus = {
 		id = TEX_re_open_the_legislature
-		icon = X
+		icon = GFX_goal_TEX_reopen_legislature
 		cost = 6
 		x = 1
 		y = 1
@@ -1281,23 +1281,37 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_mccasland_junta
 		}
-
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = TEX_dummy_focus_flag
-				always = no
+		
+		select_effect = {
+			TEX_charles_quinton_brown_junior = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader={
+						ideology=military_junta
+						expire="1.1.1.1"
+						id=-1
+					}
+				}
 			}
+		}
+		
+		available = {
+			# custom_trigger_tooltip = {
+				# tooltip = TEX_dummy_focus_flag
+				# always = no
+			# }
 		}
 		
 		available_if_capitulated = yes
 
 		completion_reward = {
+			
 		}
 	}
 	
 	focus = {
 		id = TEX_they_speak
-		icon = X
+		icon = GFX_goal_TEX_cooperate_ufologist_movement
 		cost = 6
 		x = 0
 		y = 2
@@ -1314,14 +1328,14 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			set_country_flag = TEX_lazar_takes_power
+			set_country_flag = TEX_ufo_flag
 			mark_focus_tree_layout_dirty = yes
 		}
 	}
 	
 	focus = {
 		id = TEX_restore_order_on_the_streets
-		icon = X
+		icon = GFX_tanks_in_the_streets
 		cost = 6
 		x = -2
 		y = 2
@@ -1346,7 +1360,7 @@ focus_tree = {
 	
 	focus = {
 		id = TEX_expell_soviet_agents
-		icon = X
+		icon = GFX_goal_CAN_soviet_bloc
 		cost = 6
 		x = 2
 		y = 2
@@ -1375,15 +1389,15 @@ focus_tree = {
 		id = TEX_victory_of_the_ufologists
 		icon = X
 		cost = 6
-		x = 10
-		y = 1
+		x = 11
+		y = 2
 	
 		available = {
 			
 		}
 		
 		allow_branch = {
-			has_country_flag = TEX_lazar_takes_power
+			has_country_flag = TEX_ufo_flag
 		}
 		
 		available_if_capitulated = yes
@@ -1598,7 +1612,7 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = TEX_form_the_earth_liberation_command_council
+		id = TEX_destroy_the_legacy_program
 		icon = X
 		cost = 6
 		x = 0
@@ -1613,6 +1627,75 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = TEX_skinwalker_ranch
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_overcome_stigma
+		icon = X
+		cost = 6
+		x = -1
+		y = 4
+		relative_position_id = TEX_disclose_project_blue_book
+		
+		prerequisite = {
+			focus = TEX_destroy_the_legacy_program
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_AATIP
+		icon = X
+		cost = 6
+		x = 1
+		y = 4
+		relative_position_id = TEX_disclose_project_blue_book
+		
+		prerequisite = {
+			focus = TEX_destroy_the_legacy_program
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_form_the_earth_liberation_command_council
+		icon = X
+		cost = 6
+		x = 0
+		y = 5
+		relative_position_id = TEX_disclose_project_blue_book
+		
+		prerequisite = {
+			focus = TEX_AATIP
+		}
+		prerequisite = {
+			focus = TEX_overcome_stigma
 		}
 
 		available = {
@@ -1655,7 +1738,7 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = TEX_focus_on_a_united_species
+		id = TEX_nonpartisan_technocratic_administation
 		icon = X
 		cost = 6
 		x = -1
@@ -1720,6 +1803,28 @@ focus_tree = {
 		}
 	}
 	
+	focus = {
+		id = TEX_prepare_friend_or_foe
+		icon = X
+		cost = 6
+		x = 1
+		y = 3
+		relative_position_id = TEX_address_the_united_nations
+		
+		prerequisite = {
+			focus = TEX_descredit_the_lazarites
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
 	### Lazarite Victory ###
 	
 	focus = {
@@ -1771,7 +1876,7 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = TEX_privatize_the_search_for_extraterrestrial_intelligence
+		id = TEX_cult_of_the_commander
 		icon = X
 		cost = 6
 		x = 1
@@ -1793,7 +1898,7 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = TEX_form_the_humanity_defense_force
+		id = TEX_introduce_privatization
 		icon = X
 		cost = 6
 		x = 0
@@ -1802,6 +1907,28 @@ focus_tree = {
 		
 		prerequisite = {
 			focus = TEX_continuance_of_the_roswell_clique
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = TEX_hunt_down_the_complicit_in_coverups
+		icon = X
+		cost = 6
+		x = -1
+		y = 3
+		relative_position_id = TEX_continuance_of_the_roswell_clique
+		
+		prerequisite = {
+			focus = TEX_introduce_privatization
 		}
 
 		available = {
@@ -1885,6 +2012,31 @@ focus_tree = {
 		}
 	}
 	
+	focus = {
+		id = TEX_explore_the_oceans
+		icon = X
+		cost = 6
+		x = 0
+		y = 4
+		relative_position_id = TEX_form_the_earth_liberation_command_council
+		
+		prerequisite = {
+			focus = TEX_expand_MUFON
+		}
+		prerequisite = {
+			focus = TEX_experimental_funding
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+		}
+	}
+	
 	##########################
 	#### UFOlogist ForPol ####
 	##########################
@@ -1895,8 +2047,8 @@ focus_tree = {
 		id = TEX_defense_of_earth_doctrine
 		icon = X
 		cost = 6
-		x = -2
-		y = 4
+		x = 11
+		y = 1
 		relative_position_id = TEX_form_the_earth_liberation_command_council
 		
 		mutually_exclusive = {
@@ -1904,12 +2056,12 @@ focus_tree = {
 		}
 		
 		allow_branch = {
-			has_country_flag = TEX_lazar_takes_power
+			has_country_flag = TEX_ufo_flag
 		}
 		
 		# prerequisite = {
 			# focus = TEX_descredit_the_lazarites
-			# focus = TEX_form_the_humanity_defense_force
+			# focus = TEX_introduce_privatization
 		# }
 		# prerequisite = {
 			# focus = TEX_expand_MUFON
@@ -2001,21 +2153,21 @@ focus_tree = {
 		id = TEX_first_strike_doctrine
 		icon = X
 		cost = 6
-		x = 2
-		y = 4
-		relative_position_id = TEX_form_the_earth_liberation_command_council
+		x = 4
+		y = 0
+		relative_position_id = TEX_defense_of_earth_doctrine
 		
 		mutually_exclusive = {
 			focus = TEX_defense_of_earth_doctrine
 		}
 		
 		allow_branch = {
-			has_country_flag = TEX_lazar_takes_power
+			has_country_flag = TEX_ufo_flag
 		}
 		
 		# prerequisite = {
 			# focus = TEX_descredit_the_lazarites
-			# focus = TEX_form_the_humanity_defense_force
+			# focus = TEX_introduce_privatization
 		# }
 		# prerequisite = {
 			# focus = TEX_expand_MUFON

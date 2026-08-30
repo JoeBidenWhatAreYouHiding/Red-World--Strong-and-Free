@@ -1009,6 +1009,14 @@ country_event = {
 		add_war_support = -0.03
 		add_political_power = 40
 	}
+	after = {
+		hidden_effect = {
+			country_event = {
+				id = texas.155
+				days = 35
+			}
+		}
+	}
 }
 
 #Foreign Soldiers Arrive
@@ -1819,6 +1827,14 @@ country_event = {
 			popularity = 0.1
 		}
 		set_country_flag = TEX_dems_are_newdem
+		if = {
+			limit = { has_country_flag = TEX_democrats_are_modsocs }
+			clr_country_flag = TEX_democrats_are_modsocs
+		}
+		if = {
+			limit = { has_country_flag = TEX_democrats_are_revsocs }
+			clr_country_flag = TEX_democrats_are_revsocs
+		}
 	}
 }
 
@@ -1906,6 +1922,18 @@ country_event = {
 		}
 		set_country_flag = TEX_post_war_election
 		add_ideas = TEX_Shadow_of_Martial_Law_OR
+		set_country_flag = TEX_libertarian_party_gone
+		hidden_effect = {
+			country_event = {
+				id = texas_elections.1
+				days = 1400
+			}
+			country_event = {
+				id = texas_elections.9
+				days = 700
+			}
+		}
+		set_country_flag = TEX_one_republic_won_last_election
 	}
 	
 	option = { #Reform Texas
@@ -1926,6 +1954,7 @@ country_event = {
 			ideology = centrist
 		}
 		set_country_flag = TEX_reform_party_in_power
+		set_country_flag = TEX_reform_party_is_a_thing
 		set_country_flag = TEX_post_war_election
 		swap_ideas = {
 			remove_idea = TEX_One_Republic_Dominance
@@ -1933,6 +1962,26 @@ country_event = {
 		}
 		add_ideas = TEX_Shadow_of_Martial_Law
 		set_country_flag = TEX_one_republic_defeated
+		set_country_flag = TEX_libertarian_party_gone
+		hidden_effect = {
+			country_event = {
+				id = texas_elections.7
+				days = 300
+			}
+			country_event = {
+				id = texas_elections.10
+				days = 1350
+			}
+			country_event = {
+				id = texas_elections.16
+				days = 1370
+			}
+			country_event = {
+				id = texas_elections.27
+				days = 1400
+			}
+		}
+		set_country_flag = TEX_reform_party_won_last_election
 	}
 	
 	option = { #Libertarian Texas
@@ -1956,6 +2005,7 @@ country_event = {
 			ideology = centrist
 		}
 		set_country_flag = TEX_libertarian_party_in_power
+		set_country_flag = TEX_libertarian_party_is_a_thing
 		set_country_flag = TEX_post_war_election
 		swap_ideas = {
 			remove_idea = TEX_One_Republic_Dominance
@@ -1963,6 +2013,25 @@ country_event = {
 		}
 		add_ideas = TEX_Shadow_of_Martial_Law
 		set_country_flag = TEX_one_republic_defeated
+		hidden_effect = {
+			country_event = {
+				id = texas_elections.7
+				days = 300
+			}
+			country_event = {
+				id = texas_elections.9
+				days = 700
+			}
+			country_event = {
+				id = texas_elections.16
+				days = 1370
+			}
+			country_event = {
+				id = texas_elections.27
+				days = 1400
+			}
+		}
+		set_country_flag = TEX_libertarians_won_last_election
 	}
 	
 	option = { #Texas Democrats
@@ -2001,6 +2070,30 @@ country_event = {
 		add_ideas = TEX_Shadow_of_Martial_Law
 		set_country_flag = TEX_one_republic_defeated
 		set_country_flag = TEX_Dems_Win_2013
+		set_country_flag = TEX_libertarian_party_gone
+		hidden_effect = {
+			country_event = {
+				id = texas_elections.7
+				days = 300
+			}
+			country_event = {
+				id = texas_elections.9
+				days = 700
+			}
+			country_event = {
+				id = texas_elections.14
+				days = 1370
+			}
+			country_event = {
+				id = texas_elections.15
+				days = 1370
+			}
+			country_event = {
+				id = texas_elections.27
+				days = 1400
+			}
+		}
+		set_country_flag = TEX_democrats_won_last_election
 	}
 	
 	option = { #IndReps
@@ -2024,9 +2117,32 @@ country_event = {
 		add_ideas = TEX_Shadow_of_Martial_Law
 		set_country_flag = TEX_one_republic_defeated
 		set_country_flag = TEX_IndReps_Win_2013
+		set_country_flag = TEX_libertarian_party_gone
+		hidden_effect = {
+			country_event = {
+				id = texas_elections.7
+				days = 300
+			}
+			country_event = {
+				id = texas_elections.9
+				days = 700
+			}
+			country_event = {
+				id = texas_elections.16
+				days = 1370
+			}
+		}
+		set_country_flag = TEX_indepdendent_republicans_won_last_election
 	}
 	after = {
 		clr_country_flag = TEX_can_hold_elections
+		set_variable = { TEX_elections_held = 1 }
+		hidden_effect = {
+			country_event = {
+				id = texas_elections.100
+				days = 1460
+			}
+		}
 	}
 }
 
@@ -4017,6 +4133,8 @@ country_event = {
 		899 = {
 			set_demilitarized_zone = no
 		}
+		set_country_flag = TEX_junta_flag
+		mark_focus_tree_layout_dirty = yes
 	}
 }
 
@@ -7285,6 +7403,992 @@ country_event = {
 
 add_namespace = texas_elections
 
+#Post-Perry OR Leader
+country_event = {
+	id = texas_elections.1
+	title = texas_elections.1.t
+	desc = texas_elections.1.d
+	picture = one_republic_presidential_primaries
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = { has_country_flag = TEX_constitition_reform }
+	}
+	
+	option = { #Warren Paxton
+		name = texas_elections.1.o1
+		set_country_flag = TEX_ken_paxton_2017
+	}
+	
+	option = { #Kyle Biedermann
+		name = texas_elections.1.o2
+		set_country_flag = TEX_kyle_biedermann_2017
+	}
+	
+	option = { #Larry Killgore
+		name = texas_elections.1.o3
+		set_country_flag = TEX_larry_kilgore_2017
+		set_country_flag = TEX_one_republic_is_fascist
+	}
+	
+	option = { #Tom DeLay
+		name = texas_elections.1.o4
+		set_country_flag = TEX_tom_delay_2017
+	}
+}
+
+#One Republic Elections
+country_event = {
+	id = texas_elections.2
+	title = texas_elections.2.t
+	desc = {
+		text = texas_elections.2.d
+		trigger = {
+			NOT = {
+				has_country_leader = {
+					name = "Oliver North"
+					ruling_only = yes
+				}
+			}
+		}
+	}
+	desc = {
+		text = texas_elections.2.d_2
+		trigger = {
+			has_country_leader = {
+				name = "Oliver North"
+				ruling_only = yes
+			}
+		}
+	}
+	picture = texas_election
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #One Republic
+		name = texas_elections.2.o1
+		if = {
+			limit = { has_country_flag = TEX_one_republic_is_fascist }
+			add_popularity = {
+				ideology = fascist
+				popularity = 0.2
+			}
+			set_politics = {
+				ruling_party = fascist
+			}
+			add_nationalist_to_coalition = yes
+		}
+		else = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.04
+			}
+		}
+		
+		if = {
+			limit = { has_country_flag = TEX_ken_paxton_2017 }
+			TEX_ken_paxton = {
+				promote_character = texas_nationalism
+			}
+		}
+		
+		if = {
+			limit = { has_country_flag = TEX_kyle_biedermann_2017 }
+			TEX_kyle_biedermann = {
+				promote_character = texas_nationalism
+			}
+		}
+		
+		if = {
+			limit = { has_country_flag = TEX_larry_kilgore_2017 }
+			TEX_larry_kilgore = {
+				promote_character = neo_confederate
+			}
+		}
+		
+		if = {
+			limit = { has_country_flag = TEX_tom_delay_2017 }
+			TEX_tom_delay = {
+				promote_character = texas_nationalism
+			}
+		}
+		
+		if = {
+			limit = {
+				has_country_leader = {
+					name = "Oliver North"
+					ruling_only = yes
+				}
+			}
+			set_country_flag = TEX_ollie_north_reelected
+			hidden_effect = {
+				country_event = {
+					id = texas_elections.4
+					days = 1400
+				}
+			}
+		}
+		else = {	
+			hidden_effect = {
+				country_event = {
+					id = texas_elections.5
+					days = 1400
+				}
+			}
+		}
+	}
+	after = {
+		add_to_variable = { TEX_elections_held = 1 }
+		hidden_effect = {
+			country_event = {
+				id = texas_elections.3
+				days = 1460
+			}
+		}
+	}
+}
+
+#One Republic Elections 2
+country_event = {
+	id = texas_elections.3
+	title = texas_elections.3.t
+	desc = {
+		text = texas_elections.3.d
+		trigger = {
+			NOT = {
+				has_country_flag = TEX_ollie_north_reelected
+			}
+		}
+	}
+	desc = {
+		text = texas_elections.3.d_2
+		trigger = {
+			has_country_flag = TEX_ollie_north_reelected
+		}
+	}
+	picture = texas_election
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #One Republic
+		name = texas_elections.3.o1
+		trigger = {
+			NOT = {
+				has_country_leader = {
+					name = "Oliver North"
+					ruling_only = yes
+				}
+			}
+		}
+		add_popularity = {
+			ideology = ROOT
+			popularity = 0.04
+		}
+	}
+	
+	option = { #Re-Elect the President
+		name = texas_elections.3.o2
+		trigger = {
+			has_country_flag = TEX_ollie_north_reelected
+		}
+		add_popularity = {
+			ideology = ROOT
+			popularity = 0.04
+		}
+		set_country_flag = TEX_north_sucsessor_elected
+	}
+	
+	option = { #Rick Noriega
+		name = texas_elections.3.o3
+		trigger = {
+			has_country_flag = TEX_ollie_north_reelected
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.3
+		}
+		TEX_richard_j_noriega = {
+			promote_character = old_american_democrats
+		}
+		custom_effect_tooltip = TEX_democrat_cabinet
+		hidden_effect = {
+			add_ideas = texas_sic_wendy_davis
+			add_ideas = texas_fom_al_green
+			add_ideas = texas_ind_joaquin_castro
+			add_ideas = texas_nsm_bill_white
+		}
+		set_country_flag = TEX_rick_noriega_is_president	
+	}
+	after = {
+		add_to_variable = { TEX_elections_held = 1 }
+		hidden_effect = {
+			country_event = {
+				id = texas_elections.6
+				days = 1460
+			}
+		}
+	}
+}
+
+#North Sucsessor
+country_event = {
+	id = texas_elections.4
+	title = texas_elections.4.t
+	desc = texas_elections.4.d
+	picture = oliver_north_retires
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+		
+	option = { #Ronny Jackson
+		name = texas_elections.4.o1
+		TEX_ronny_jackson = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=texas_nationalism
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+	
+	option = { #Dan Crenshaw
+		name = texas_elections.4.o2
+		TEX_dan_crenshaw = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=texas_nationalism
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+	}
+}
+
+#Next One Republic Primary
+country_event = {
+	id = texas_elections.5
+	title = texas_elections.5.t
+	desc = texas_elections.5.d
+	picture = one_republic_presidential_primaries
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+		
+	option = { #Nate Smith
+		name = texas_elections.5.o1
+		set_country_flag = TEX_nate_smith_2021
+	}
+	
+	option = { #Daniel Miller
+		name = texas_elections.5.o2
+		set_country_flag = TEX_daniel_miller_2021
+	}
+	
+	option = { #Archie Lowe
+		name = texas_elections.5.o3
+		set_country_flag = TEX_archie_lowe_2021
+	}
+	
+	option = { #Wesley Hunt
+		name = texas_elections.5.o4
+		set_country_flag = TEX_wesley_hunt_2021
+		clr_country_flag = TEX_one_republic_is_fascist
+	}
+}
+
+#One Republic Elections 2
+country_event = {
+	id = texas_elections.6
+	title = texas_elections.6.t
+	desc = {
+		text = texas_elections.6.d
+		trigger = {
+			NOT = {
+				has_country_flag = TEX_north_sucsessor_elected
+				has_country_flag = TEX_rick_noriega_is_president
+			}
+		}
+	}
+	desc = {
+		text = texas_elections.6.d_2
+		trigger = {
+			has_country_flag = TEX_north_sucsessor_elected
+		}
+	}
+	desc = {
+		text = texas_elections.6.d_3
+		trigger = {
+			has_country_flag = TEX_rick_noriega_is_president
+		}
+	}
+	picture = texas_election
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #One Republic
+		name = texas_elections.6.o1
+		trigger = {
+			OR = {
+				has_government = nationalist
+				has_government = fascist
+				has_country_flag = TEX_north_sucsessor_elected 
+			}
+		}
+		add_popularity = {
+			ideology = ROOT
+			popularity = 0.04
+		}
+		if = {
+			limit = { has_country_flag = TEX_one_republic_is_fascist }
+			set_politics = {
+				ruling_party = fascist
+			}
+			if = {
+				limit = { has_country_flag = TEX_nate_smith_2021 }
+				TEX_nate_smith = {
+					promote_character = neo_confederate
+				}
+			}
+			
+			if = {
+				limit = { has_country_flag = TEX_daniel_miller_2021 }
+				TEX_daniel_miller = {
+					promote_character = neo_confederate
+				}
+			}
+			
+			if = {
+				limit = { has_country_flag = TEX_archie_lowe_2021 }
+				TEX_archie_lowe = {
+					promote_character = neo_confederate
+				}
+			}
+		}
+		else = {
+			set_politics = {
+				ruling_party = nationalist
+			}
+			if = {
+				limit = { has_country_flag = TEX_nate_smith_2021 }
+				TEX_nate_smith = {
+					promote_character = texas_nationalism
+				}
+			}
+			
+			if = {
+				limit = { has_country_flag = TEX_daniel_miller_2021 }
+				TEX_daniel_miller = {
+					promote_character = texas_nationalism
+				}
+			}
+			
+			if = {
+				limit = { has_country_flag = TEX_archie_lowe_2021 }
+				TEX_archie_lowe = {
+					promote_character = texas_nationalism
+				}
+			}
+			
+			if = {
+				limit = { has_country_flag = TEX_wesley_hunt_2021 }
+				TEX_wesley_hunt = {
+					promote_character = texas_nationalism
+				}
+			}
+		}
+	}
+	
+	option = { #Rick Noriega
+		name = texas_elections.6.o2
+		trigger = {
+			has_country_flag = TEX_rick_noriega_is_president
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.03
+		}
+	}	
+	
+	option = { #Wesley Hunt
+		name = texas_elections.6.o3
+		trigger = {
+			has_country_flag = TEX_rick_noriega_is_president
+		}
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.1
+		}
+		set_politics = {
+			ruling_party = nationalist
+		}
+		TEX_wesley_hunt = {
+			promote_character = texas_nationalism
+		}
+	}
+	after = {
+		add_to_variable = { TEX_elections_held = 1 }
+	}
+}
+
+#One Republic fucked up big time how do we salvage this
+country_event = {
+	id = texas_elections.7
+	title = texas_elections.7.t
+	desc = texas_elections.7.d
+	picture = one_republic_presidential_primaries
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+		
+	option = { #Scott Turner
+		name = texas_elections.7.o1
+		TEX_scott_turner = {
+			promote_character = texas_nationalism
+		}
+	}
+	
+	option = { #Nate Smith
+		name = texas_elections.7.o2
+		TEX_nate_smith = {
+			promote_character = texas_nationalism
+		}
+	}
+}
+
+#This is just getting sad
+country_event = {
+	id = texas_elections.8
+	title = texas_elections.8.t
+	desc = texas_elections.8.d
+	picture = one_republic_presidential_primaries
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+		
+	option = { #Chuck Norris
+		name = texas_elections.8.o1
+		TEX_chuck_norris = {
+			promote_character = texas_nationalism
+		}
+		set_country_flag = TEX_one_republic_last_chance
+	}
+	
+	option = { #Nate Smith
+		name = texas_elections.8.o2
+		TEX_wesley_hunt = {
+			promote_character = texas_nationalism
+		}
+		set_country_flag = TEX_one_republic_last_chance
+	}
+}
+
+#REST IN PEACE REFORM...
+country_event = {
+	id = texas_elections.9
+	title = texas_elections.9.t
+	desc = texas_elections.9.d
+	picture = perot_reform_party_dissolved
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+		
+	option = { #Too good for this world
+		name = texas_elections.9.o1
+		add_popularity = {
+			ideology = centrist
+			popularity = -0.04
+		}
+		set_country_flag = TEX_reform_party_gone
+	}
+}
+
+#Perot Retires
+country_event = {
+	id = texas_elections.10
+	title = texas_elections.10.t
+	desc = texas_elections.10.d
+	picture = perot_retires
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+		
+	option = { #Ok
+		name = texas_elections.10.o1
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.03
+		}
+		hidden_effect = {
+			country_event = {
+				id = texas_elections.11
+				days = 40
+			}
+		}
+	}
+}
+
+#Reform Primaries
+country_event = {
+	id = texas_elections.11
+	title = texas_elections.11.t
+	desc = texas_elections.11.d
+	picture = texas_reform_party_presidential_primaries
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+		
+	option = { #Perot Jr.
+		name = texas_elections.11.o1
+		TEX_ross_perot_jr = {
+			promote_character = classical_populism
+		}
+		set_country_flag = TEX_ross_perot_jr_has_been_reform_nominee
+	}
+	
+	option = { #Pat Choate.
+		name = texas_elections.11.o2
+		TEX_pat_choate = {
+			promote_character = classical_populism
+		}
+		set_country_flag = TEX_pat_choate_has_been_reform_nominee
+	}
+	
+	option = { #Mark Cuban.
+		name = texas_elections.11.o3
+		TEX_mark_cuban = {
+			promote_character = classical_populism
+		}
+		set_country_flag = TEX_mark_cuban_has_been_reform_nominee
+	}
+	
+	option = { #Bezos.
+		name = texas_elections.11.o4
+		TEX_jeffrey_bezos = {
+			promote_character = classical_populism
+		}
+		set_country_flag = TEX_jeff_bezos_has_been_reform_nominee
+	}
+}
+
+#Reform Primaries
+country_event = {
+	id = texas_elections.12
+	title = texas_elections.12.t
+	desc = {
+		text = texas_elections.12.d
+		trigger = {
+			NOT = { has_country_flag = TEX_reform_party_won_last_election }
+		}
+	}
+	desc = {
+		text = texas_elections.12.d_2
+		trigger = {
+			has_country_flag = TEX_reform_party_won_last_election
+		}
+	}
+	picture = texas_reform_party_presidential_primaries
+	
+	is_triggered_only = yes
+		
+	option = { #Perot Jr.
+		name = texas_elections.12.o1
+		trigger = {
+			NOT = { has_country_flag = TEX_ross_perot_jr_has_been_reform_nominee }
+		}
+		TEX_ross_perot_jr = {
+			promote_character = classical_populism
+		}
+		set_country_flag = TEX_ross_perot_jr_has_been_reform_nominee
+	}
+	
+	option = { #Pat Choate.
+		name = texas_elections.12.o2
+		trigger = {
+			NOT = { has_country_flag = TEX_pat_choate_has_been_reform_nominee }
+		}
+		TEX_pat_choate = {
+			promote_character = classical_populism
+		}
+		set_country_flag = TEX_pat_choate_has_been_reform_nominee
+	}
+	
+	option = { #Mark Cuban.
+		name = texas_elections.12.o3
+		trigger = {
+			NOT = { has_country_flag = TEX_mark_cuban_has_been_reform_nominee }
+		}
+		TEX_mark_cuban = {
+			promote_character = classical_populism
+		}
+		set_country_flag = TEX_mark_cuban_has_been_reform_nominee
+	}
+	
+	option = { #Bezos.
+		name = texas_elections.12.o4
+		trigger = {
+			NOT = { has_country_flag = TEX_jeff_bezos_has_been_reform_nominee }
+		}
+		TEX_jeffrey_bezos = {
+			promote_character = classical_populism
+		}
+		set_country_flag = TEX_jeff_bezos_has_been_reform_nominee
+	}
+	
+	option = { #Steyer.
+		name = texas_elections.12.o5
+		trigger = {
+			NOT = { has_country_flag = TEX_tom_steyer_has_been_reform_nominee }
+		}
+		TEX_tom_steyer = {
+			promote_character = classical_populism
+		}
+		set_country_flag = TEX_tom_steyer_has_been_reform_nominee
+	}
+}
+
+#Dem Primaries Kinky
+country_event = {
+	id = texas_elections.14
+	title = texas_elections.14.t
+	desc = texas_elections.14.d
+	picture = democrat_rebound
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_country_leader = {
+			name = "Kinky Friedman"
+			ruling_only = yes
+		}
+		NOT = { has_country_flag = TEX_kinky_running_for_second_term }
+	}
+		
+	option = { #Beto
+		name = texas_elections.14.o1
+		set_country_flag = TEX_democrat_beto_o_rourke_2017
+	}
+	
+	option = { #Bobby Pulido
+		name = texas_elections.14.o2
+		set_country_flag = TEX_democrat_bobby_pulido_2017
+	}
+	
+	option = { #Tommy Lee Jones
+		name = texas_elections.14.o3
+		set_country_flag = TEX_democrat_tommy_lee_jones_2017
+	}
+	
+	option = { #Woody Harrleson
+		name = texas_elections.14.o4
+		set_country_flag = TEX_democrat_woody_harrleson_2017
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.06
+		}
+		set_country_flag = TEX_democrats_are_modsocs
+		set_country_flag = TEX_brocialists_in_control
+	}
+}
+
+#Dem Primaries LBJR
+country_event = {
+	id = texas_elections.15
+	title = texas_elections.15.t
+	desc = texas_elections.15.d
+	picture = democrat_rebound
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_country_leader = {
+			name = "Lynda Bird Johnson-Robb"
+			ruling_only = yes
+		}
+	}
+		
+	option = { #Lloyd Doggett
+		name = texas_elections.15.o1
+		set_country_flag = TEX_democrat_lloyd_doggett_2017
+	}
+	
+	option = { #Cecile Richards
+		name = texas_elections.15.o2
+		set_country_flag = TEX_democrat_cecile_richards_2017
+	}
+	
+	option = { #Gene Wu
+		name = texas_elections.15.o3
+		set_country_flag = TEX_democrat_eugene_wu_2017
+	}
+	
+	option = { #Sylvester Turner
+		name = texas_elections.15.o4
+		set_country_flag = TEX_democrat_sylvester_turner_2017
+	}
+}
+
+#Dem Primaries Other
+country_event = {
+	id = texas_elections.16
+	title = texas_elections.16.t
+	desc = {
+		text = texas_elections.16.d
+		trigger = {
+			NOT = { has_country_flag = TEX_democrats_won_last_election }
+		}
+	}
+	desc = {
+		text = texas_elections.16.d_2
+		trigger = {
+			has_country_flag = TEX_democrats_won_last_election
+		}
+	}
+	picture = democrat_rebound
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = {
+			AND = {
+				OR = {
+					has_government = moderate_socialist
+					has_government = new_democrat
+					has_government = liberal
+					has_government = revolutionary_socialist
+				}
+				has_country_flag = TEX_democrats_won_last_election
+			}
+		}
+	}
+		
+	option = { #Beto
+		name = texas_elections.16.o1
+		set_country_flag = TEX_democrat_beto_o_rourke_2017
+	}
+	
+	option = { #Marianne Williamson
+		name = texas_elections.16.o2
+		set_country_flag = TEX_democrat_marianne_williamson_2017
+		set_country_flag = TEX_dems_are_newdem
+		if = {
+			limit = { has_country_flag = TEX_democrats_are_modsocs }
+			clr_country_flag = TEX_democrats_are_modsocs
+		}
+		if = {
+			limit = { has_country_flag = TEX_democrats_are_revsocs }
+			clr_country_flag = TEX_democrats_are_revsocs
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.06
+		}
+	}
+	
+	option = { #Bill Richardson
+		name = texas_elections.16.o3
+		set_country_flag = TEX_democrat_bill_richardson_2017
+	}
+	
+	option = { #Woody Harrleson
+		name = texas_elections.16.o4
+		set_country_flag = TEX_democrat_woody_harrleson_2017
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.06
+		}
+		set_country_flag = TEX_democrats_are_modsocs
+		set_country_flag = TEX_brocialists_in_control
+	}
+}
+
+#Dem Primaries 2021
+country_event = {
+	id = texas_elections.17
+	title = texas_elections.17.t
+	desc = {
+		text = texas_elections.17.d
+		trigger = {
+			NOT = { has_country_flag = TEX_democrats_won_last_election }
+		}
+	}
+	desc = {
+		text = texas_elections.17.d_2
+		trigger = {
+			has_country_flag = TEX_democrats_won_last_election
+		}
+	}
+	picture = democrat_rebound
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = {
+			AND = {
+				OR = {
+					has_government = moderate_socialist
+					has_government = new_democrat
+					has_government = liberal
+					has_government = revolutionary_socialist
+				}
+				has_country_flag = TEX_democrats_won_last_election
+			}
+		}
+	}
+		
+	option = { #Joaquin Castro
+		name = texas_elections.17.o1
+		set_country_flag = TEX_democrat_joaquin_castro_2021
+		set_country_flag = TEX_dems_are_newdem
+		if = {
+			limit = { has_country_flag = TEX_democrats_are_modsocs }
+			clr_country_flag = TEX_democrats_are_modsocs
+		}
+		if = {
+			limit = { has_country_flag = TEX_democrats_are_revsocs }
+			clr_country_flag = TEX_democrats_are_revsocs
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.06
+		}
+	}
+	
+	option = { #M.J. Heagar
+		name = texas_elections.17.o2
+		set_country_flag = TEX_democrat_m_j_heagar_2021
+	}
+	
+	option = { #Colin Allred
+		name = texas_elections.17.o3
+		set_country_flag = TEX_democrat_colin_allred_2021
+	}
+	
+	option = { #Matthew McConaughey
+		name = texas_elections.17.o4
+		set_country_flag = TEX_democrat_matthew_mcconaughey_2021
+		set_country_flag = TEX_dems_are_newdem
+		if = {
+			limit = { has_country_flag = TEX_democrats_are_modsocs }
+			clr_country_flag = TEX_democrats_are_modsocs
+		}
+		if = {
+			limit = { has_country_flag = TEX_democrats_are_revsocs }
+			clr_country_flag = TEX_democrats_are_revsocs
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.06
+		}
+	}
+	
+	option = { #Mark Kelly
+		name = texas_elections.17.o5
+		trigger = {
+			has_country_flag = TEX_mark_kelly_unlocked
+		}
+		set_country_flag = TEX_democrat_mark_kelly_2021
+	}
+}
+
+#Dem Primaries 2025
+country_event = {
+	id = texas_elections.18
+	title = texas_elections.18.t
+	desc = {
+		text = texas_elections.18.d
+		trigger = {
+			NOT = { has_country_flag = TEX_democrats_won_last_election }
+		}
+	}
+	desc = {
+		text = texas_elections.18.d_2
+		trigger = {
+			has_country_flag = TEX_democrats_won_last_election
+		}
+	}
+	picture = democrat_rebound
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = {
+			AND = {
+				OR = {
+					has_government = moderate_socialist
+					has_government = new_democrat
+					has_government = liberal
+					has_government = revolutionary_socialist
+				}
+				has_country_flag = TEX_democrats_won_last_election
+			}
+		}
+	}
+		
+	option = { #Gina Hinojosa
+		name = texas_elections.18.o1
+		set_country_flag = TEX_democrat_gina_hinojosa_2025
+	}
+	
+	option = { #Al Green
+		name = texas_elections.18.o2
+		set_country_flag = TEX_democrat_al_green_2025
+	}
+	
+	option = { #Jasmine Crockett
+		name = texas_elections.18.o3
+		set_country_flag = TEX_democrat_jasmine_crockett_2025
+	}
+	
+	option = { #James Talarico
+		name = texas_elections.18.o4
+		set_country_flag = TEX_democrat_james_talarico_2025
+		set_country_flag = TEX_dems_are_newdem
+		if = {
+			limit = { has_country_flag = TEX_democrats_are_modsocs }
+			clr_country_flag = TEX_democrats_are_modsocs
+		}
+		if = {
+			limit = { has_country_flag = TEX_democrats_are_revsocs }
+			clr_country_flag = TEX_democrats_are_revsocs
+		}
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.06
+		}
+	}
+}
+
 #Rogan Becomes Dem Leader
 country_event = {
 	id = texas_elections.19
@@ -7295,9 +8399,7 @@ country_event = {
 	fire_only_once = yes
 	
 	is_triggered_only = yes
-	
-	major = yes
-	
+		
 	option = {
 		name = texas_elections.19.o1
 		set_country_flag = TEX_democrats_are_revsocs
@@ -7319,8 +8421,6 @@ country_event = {
 	fire_only_once = yes
 	
 	is_triggered_only = yes
-	
-	major = yes
 	
 	option = { #Woody
 		name = texas_elections.20.o1
@@ -7389,8 +8489,6 @@ country_event = {
 	
 	is_triggered_only = yes
 	
-	major = yes
-	
 	option = { #Wins
 		name = texas_elections.21.o1
 		add_popularity = {	
@@ -7415,6 +8513,1580 @@ country_event = {
 			ideology = centrist
 			popularity = -0.02
 		}
+	}
+}
+
+#Libertarian Party Primary 2021
+country_event = {
+	id = texas_elections.22
+	title = texas_elections.22.t
+	desc = texas_elections.22.d
+	picture = libertarian_party_primaries
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Gary Johnson
+		name = texas_elections.22.o1
+		set_country_flag = TEX_libertarian_gary_johnson_2021
+	}
+	
+	option = { #Rand Paul
+		name = texas_elections.22.o2
+		set_country_flag = TEX_libertarian_rand_paul_2021
+	}
+}
+
+#Libertarian Party Primary 2025
+country_event = {
+	id = texas_elections.23
+	title = texas_elections.23.t
+	desc = {
+		text = texas_elections.23.d_lost_rand
+		trigger = { has_country_flag = TEX_libertarian_rand_paul_2021 }
+	}
+	desc = {
+		text = texas_elections.23.d_lost_johnson
+		trigger = { has_country_flag = TEX_libertarian_gary_johnson_2021 }
+	}
+	picture = libertarian_party_primaries
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_country_flag = TEX_libertarians_won_last_election
+	}
+	
+	option = { #Jacob Hornberger
+		name = texas_elections.23.o1
+		set_country_flag = TEX_libertarian_jacob_hornberger_2025
+	}
+	
+	option = { #Dan Behrman
+		name = texas_elections.23.o2
+		set_country_flag = TEX_libertarian_dan_behrman_2025
+	}
+	
+	option = { #Rand Paul
+		name = texas_elections.23.o3
+		trigger = { has_country_flag = TEX_libertarian_gary_johnson_2021 }
+		set_country_flag = TEX_libertarian_rand_paul_2025
+	}
+}
+
+#Libertarian Party Primary 2021, Johnson edition
+country_event = {
+	id = texas_elections.24
+	title = texas_elections.24.t
+	desc = texas_elections.24.d
+	picture = libertarian_party_primaries
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Whitney Bilyeu
+		name = texas_elections.24.o1
+		set_country_flag = TEX_libertarian_whitney_bilyeu_2021
+	}
+	
+	option = { #Rand Paul
+		name = texas_elections.24.o2
+		set_country_flag = TEX_libertarian_rand_paul_2021
+	}
+	
+	option = { #Barry Cooper
+		name = texas_elections.24.o3
+		set_country_flag = TEX_libertarian_barry_cooper_2021
+	}
+}
+
+#Libertarian Party Primary 2021, Paul or Johnson lost in 2017
+country_event = {
+	id = texas_elections.25
+	title = texas_elections.25.t
+	desc = texas_elections.25.d
+	picture = libertarian_party_primaries
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Ross Ulbricht
+		name = texas_elections.25.o1
+		set_country_flag = TEX_libertarian_ross_ulbricht_2021
+	}
+	
+	option = { #Michael Badnarik
+		name = texas_elections.25.o2
+		set_country_flag = TEX_libertarian_michael_badnarik_2021
+	}
+	
+	option = { #Scott Horton
+		name = texas_elections.25.o3
+		set_country_flag = TEX_libertarian_scott_horton_2021
+	}
+}
+
+#Libertarian Party Primary 2025, lost in 2017 and 2021
+country_event = {
+	id = texas_elections.26
+	title = texas_elections.26.t
+	desc = texas_elections.26.d
+	picture = libertarian_party_primaries
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = { has_country_flag = TEX_libertarians_won_last_election }
+	}
+	
+	option = { #Lawrence B. Jones
+		name = texas_elections.26.o1
+		set_country_flag = TEX_libertarian_lawrence_b_jones_2025
+	}
+	
+	option = { #Jason Sorens
+		name = texas_elections.26.o2
+		set_country_flag = TEX_libertarian_jason_sorens_2025
+	}
+	
+	option = { #Mark Jay Tippetts
+		name = texas_elections.26.o3
+		set_country_flag = TEX_libertarian_mark_jay_tippetts_2025
+	}
+}
+
+#Independent Republican Primary, 2017
+country_event = {
+	id = texas_elections.27
+	title = texas_elections.27.t
+	desc = {
+		text = texas_elections.27.d
+		trigger = {
+			NOT = { has_country_flag = TEX_indepdendent_republicans_won_last_election }
+		}
+	}
+	desc = {
+		text = texas_elections.27.d_2
+		trigger = {
+			has_country_flag = TEX_indepdendent_republicans_won_last_election
+		}
+	}
+	picture = independent_republican_party_primaries
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = {
+			AND = {
+				has_government = national_conservative
+				has_country_flag = TEX_indepdendent_republicans_won_last_election
+			}
+		}
+	}
+	
+	option = { #John Cornyn
+		name = texas_elections.27.o1
+		set_country_flag = TEX_indrep_john_cornyn_2017
+	}
+	
+	option = { #Antonin Scalia
+		name = texas_elections.27.o2
+		set_country_flag = TEX_indrep_antonin_scalia_2017
+	}
+	
+	option = { #Rod Paige
+		name = texas_elections.27.o3
+		set_country_flag = TEX_indrep_rod_paige_2017
+	}
+}
+
+#Independent Republican Primary, 2021
+country_event = {
+	id = texas_elections.28
+	title = texas_elections.28.t
+	desc = {
+		text = texas_elections.28.d
+		trigger = {
+			NOT = { has_country_flag = TEX_indepdendent_republicans_won_last_election }
+		}
+	}
+	desc = {
+		text = texas_elections.28.d_2
+		trigger = {
+			has_country_flag = TEX_indepdendent_republicans_won_last_election
+		}
+	}
+	picture = independent_republican_party_primaries
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = {
+			AND = {
+				has_government = national_conservative
+				has_country_flag = TEX_indepdendent_republicans_won_last_election
+			}
+		}
+	}
+	
+	trigger = {
+		NOT = {
+			AND = {
+				has_government = national_conservative
+				has_country_flag = TEX_indepdendent_republicans_won_last_election
+			}
+		}
+	}
+	
+	option = { #Dan Crenshaw
+		name = texas_elections.28.o1
+		set_country_flag = TEX_indrep_dan_crenshaw_2021
+	}
+	
+	option = { #Will Hurd
+		name = texas_elections.28.o2
+		set_country_flag = TEX_indrep_will_hurd_2021
+	}
+	
+	option = { #Jeb Hensarling
+		name = texas_elections.28.o3
+		set_country_flag = TEX_indrep_jeb_hensarling_2021
+	}
+	
+	option = { #George P. Bush
+		name = texas_elections.28.o3
+		trigger = {
+			has_country_flag = TEX_george_p_bush_unlocked 
+		}
+		set_country_flag = TEX_indrep_george_p_bush_2021
+	}
+}
+
+#Independent Republican Primary, 2025
+country_event = {
+	id = texas_elections.29
+	title = texas_elections.29.t
+	desc = {
+		text = texas_elections.29.d
+		trigger = {
+			NOT = { has_country_flag = TEX_indepdendent_republicans_won_last_election }
+		}
+	}
+	desc = {
+		text = texas_elections.29.d_2
+		trigger = {
+			has_country_flag = TEX_indepdendent_republicans_won_last_election
+		}
+	}
+	picture = independent_republican_party_primaries
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = {
+			AND = {
+				has_government = national_conservative
+				has_country_flag = TEX_indepdendent_republicans_won_last_election
+			}
+		}
+	}
+	
+	option = { #Van Taylor
+		name = texas_elections.29.o1
+		set_country_flag = TEX_indrep_van_taylor_2025
+	}
+	
+	option = { #Steve Harvey
+		name = texas_elections.29.o2
+		set_country_flag = TEX_indrep_steve_harvey_2025
+	}
+	
+	option = { #Brandon Herrera
+		name = texas_elections.29.o3
+		set_country_flag = TEX_indrep_brandon_herrera_2025
+	}
+}
+
+# TEX_elections_held = 1 # 2013
+# TEX_elections_held = 2 # 2017
+# TEX_elections_held = 3 # 2021
+# TEX_elections_held = 4 # 2025
+
+#2017 Elections
+country_event = {
+	id = texas_elections.30
+	title = texas_elections.30.t
+	desc = {
+		text = texas_elections.30.d
+		trigger = {
+			NOT = { has_country_flag = TEX_president_unchallenged }
+		}
+	}
+	desc = {
+		text = texas_elections.30.d_2
+		trigger = {
+			has_country_flag = TEX_president_unchallenged
+		}
+	}
+	picture = texas_election
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = { 
+					has_country_leader = {
+						character = TEX_george_w_bush
+						ruling_only = yes
+					}
+				}
+				TEX_george_w_bush = {
+					set_portraits = {
+						civilian = { large = "gfx/leaders/TEX/Portrait_TEX_George_Bush_Second_Term.png" }
+					}
+				}
+			}
+		}
+	}
+	
+	option = { #One Republic
+		name = texas_elections.30.o1
+		trigger = {
+			NOT = { has_country_flag = TEX_one_republic_gone }
+		}
+		if = {
+			limit = { has_country_flag = TEX_one_republic_is_fascist }
+			add_popularity = {
+				ideology = fascist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = fascist
+			}
+			add_nationalist_to_coalition = yes
+		}
+		else = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = nationalist
+			}
+		}
+		set_country_flag = TEX_one_republic_won_last_election
+		if = {
+			limit = { has_country_flag = TEX_libertarians_won_last_election }
+			clr_country_flag = TEX_libertarians_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_party_won_last_election }
+			clr_country_flag = TEX_reform_party_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_indepdendent_republicans_won_last_election }
+			clr_country_flag = TEX_indepdendent_republicans_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_democrats_won_last_election }
+			clr_country_flag = TEX_democrats_won_last_election
+		}
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = TEX_reform_party_is_a_thing }
+				country_event = {
+					id = texas_elections.12
+					days = 1330
+				}
+			}
+			if = {
+				limit = { has_country_flag = TEX_libertarian_party_is_a_thing }
+				country_event = {
+					id = texas_elections.25
+					days = 1350
+				}
+			}
+			country_event = {
+				id = texas_elections.28
+				days = 1370
+			}
+			country_event = {
+				id = texas_elections.8
+				days = 1400
+			}
+			if = {
+				limit = {
+					has_country_flag = TEX_brocialists_in_control
+				}
+				country_event = {
+					id = texas_elections.20
+					days = 1420
+				}
+			}
+			else = {
+				country_event = {
+					id = texas_elections.17
+					days = 1420
+				}
+			}
+		}
+	}
+	
+	option = { #Independent Republicans
+		name = texas_elections.30.o2
+		trigger = {
+			NOT = { has_country_flag = TEX_independent_republican_party_gone }
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.04
+		}
+		set_politics = {
+			ruling_party = national_conservative
+		}
+		if = {
+			limit = {
+				NOT = { has_government = national_conservative }
+			}
+			custom_effect_tooltip = TEX_independent_republican_cabinet
+			hidden_effect = {
+				add_ideas = texas_sic_susana_martinez
+				add_ideas = texas_fom_james_baker
+				add_ideas = texas_ind_dan_crenshaw
+				add_ideas = texas_nsm_alberto_gonzales
+			}
+		}
+		TEX_set_independent_republican_leader_2017 = yes
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = TEX_reform_party_is_a_thing }
+				country_event = {
+					id = texas_elections.12
+					days = 1330
+				}
+			}
+			if = {
+				limit = { has_country_flag = TEX_libertarian_party_is_a_thing }
+				country_event = {
+					id = texas_elections.25
+					days = 1350
+				}
+			}
+			country_event = {
+				id = texas_elections.28
+				days = 1370
+			}
+			country_event = {
+				id = texas_elections.8
+				days = 1400
+			}
+			if = {
+				limit = {
+					has_country_flag = TEX_brocialists_in_control
+				}
+				country_event = {
+					id = texas_elections.20
+					days = 1420
+				}
+			}
+			else = {
+				country_event = {
+					id = texas_elections.17
+					days = 1420
+				}
+			}
+		}
+		set_country_flag = TEX_indepdendent_republicans_won_last_election
+		if = {
+			limit = { has_country_flag = TEX_libertarians_won_last_election }
+			clr_country_flag = TEX_libertarians_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_party_won_last_election }
+			clr_country_flag = TEX_reform_party_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_one_republic_won_last_election }
+			clr_country_flag = TEX_one_republic_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_democrats_won_last_election }
+			clr_country_flag = TEX_democrats_won_last_election
+		}
+	}	
+	
+	option = { #Reform
+		name = texas_elections.30.o3
+		trigger = {
+			NOT = {  has_country_flag = TEX_reform_party_gone }
+		}
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.04
+		}
+		set_politics = {
+			ruling_party = centrist
+		}
+		if = {
+			limit = {
+				NOT = { has_government = centrist }
+			}
+			custom_effect_tooltip = TEX_reform_cabinet
+			hidden_effect = {
+				add_ideas = texas_sic_pat_choate
+				add_ideas = texas_fom_ed_zschau
+				add_ideas = texas_ind_mark_cuban
+				add_ideas = texas_nsm_eric_x_li
+			}
+		}
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = TEX_reform_party_is_a_thing }
+				country_event = {
+					id = texas_elections.12
+					days = 1330
+				}
+			}
+			if = {
+				limit = { has_country_flag = TEX_libertarian_party_is_a_thing }
+				country_event = {
+					id = texas_elections.25
+					days = 1350
+				}
+			}
+			country_event = {
+				id = texas_elections.28
+				days = 1370
+			}
+			country_event = {
+				id = texas_elections.8
+				days = 1400
+			}
+			if = {
+				limit = {
+					has_country_flag = TEX_brocialists_in_control
+				}
+				country_event = {
+					id = texas_elections.20
+					days = 1420
+				}
+			}
+			else = {
+				country_event = {
+					id = texas_elections.17
+					days = 1420
+				}
+			}
+		}
+		set_country_flag = TEX_reform_party_won_last_election
+		if = {
+			limit = { has_country_flag = TEX_libertarians_won_last_election }
+			clr_country_flag = TEX_libertarians_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_one_republic_won_last_election }
+			clr_country_flag = TEX_one_republic_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_indepdendent_republicans_won_last_election }
+			clr_country_flag = TEX_indepdendent_republicans_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_democrats_won_last_election }
+			clr_country_flag = TEX_democrats_won_last_election
+		}
+	}
+	
+	option = { #Libertarians
+		name = texas_elections.30.o4
+		trigger = {
+			NOT = { has_country_flag = TEX_libertarian_party_gone }
+		}
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.04
+		}
+		set_politics = {
+			ruling_party = centrist
+		}
+		if = {
+			limit = {
+				NOT = { has_government = centrist }
+			}
+			custom_effect_tooltip = TEX_libertarian_cabinet
+			hidden_effect = {
+				add_ideas = texas_sic_gary_johnson 
+				add_ideas = texas_fom_jacob_hornberger 
+				add_ideas = texas_ind_dan_behrman 
+				add_ideas = texas_nsm_rand_paul
+			}
+		}
+
+		if = {
+			limit = {
+				has_country_leader = {
+					name = "Ron Paul"
+					ruling_only = yes
+				}
+			}
+			country_event = {
+				id = texas_elections.22
+				days = 3
+			}
+		}
+		
+		if = {
+			limit = {
+				has_country_leader = {
+					name = "Gary Johnson"
+					ruling_only = yes
+				}
+			}
+			country_event = {
+				id = texas_elections.24
+				days = 3
+			}
+		}
+		
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = TEX_reform_party_is_a_thing }
+				country_event = {
+					id = texas_elections.12
+					days = 1330
+				}
+			}
+			country_event = {
+				id = texas_elections.28
+				days = 1370
+			}
+			country_event = {
+				id = texas_elections.8
+				days = 1400
+			}
+			if = {
+				limit = {
+					has_country_flag = TEX_brocialists_in_control
+				}
+				country_event = {
+					id = texas_elections.20
+					days = 1420
+				}
+			}
+			else = {
+				country_event = {
+					id = texas_elections.17
+					days = 1420
+				}
+			}
+		}
+		set_country_flag = TEX_libertarians_won_last_election
+		if = {
+			limit = { has_country_flag = TEX_reform_party_won_last_election }
+			clr_country_flag = TEX_reform_party_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_one_republic_won_last_election }
+			clr_country_flag = TEX_one_republic_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_indepdendent_republicans_won_last_election }
+			clr_country_flag = TEX_indepdendent_republicans_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_democrats_won_last_election }
+			clr_country_flag = TEX_democrats_won_last_election
+		}
+	} 
+	
+	option = { #Democrats
+		name = texas_elections.30.o5
+		trigger = {
+			NOT = { has_country_flag = TEX_democratic_party_gone }
+		}
+		if = {
+			limit = { has_country_flag = TEX_democrats_are_modsocs }
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = moderate_socialist
+			}
+			add_newdem_to_coalition = yes
+			add_liberal_to_coalition = yes
+		}
+		else_if = {
+			limit = { has_country_flag = TEX_democrats_are_revsocs }
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = revolutionary_socialist
+			}
+			add_modsoc_to_coalition = yes
+			add_newdem_to_coalition = yes
+			add_liberal_to_coalition = yes
+		}
+		else_if = {
+			limit = { has_country_flag = TEX_dems_are_newdem }
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = new_democrat
+			}
+			add_liberal_to_coalition = yes
+		}
+		else = {
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = liberal
+			}
+		}
+		if = {
+			limit = {
+				NOT = { 
+					has_government = liberal 
+					has_government = new_democrat 
+					has_government = moderate_socialist 
+					has_government = revolutionary_socialist 
+				}
+			}
+			custom_effect_tooltip = TEX_democrat_cabinet
+			hidden_effect = {
+				add_ideas = texas_sic_wendy_davis
+				add_ideas = texas_fom_al_green
+				add_ideas = texas_ind_joaquin_castro
+				add_ideas = texas_nsm_bill_white
+			}
+		}
+		TEX_set_democratic_party_leader_2017 = yes
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = TEX_reform_party_is_a_thing }
+				country_event = {
+					id = texas_elections.12
+					days = 1330
+				}
+			}
+			if = {
+				limit = { has_country_flag = TEX_libertarian_party_is_a_thing }
+				country_event = {
+					id = texas_elections.25
+					days = 1350
+				}
+			}
+			country_event = {
+				id = texas_elections.28
+				days = 1370
+			}
+			country_event = {
+				id = texas_elections.8
+				days = 1400
+			}
+			if = {
+				limit = {
+					has_country_flag = TEX_brocialists_in_control
+				}
+				country_event = {
+					id = texas_elections.20
+					days = 1420
+				}
+			}
+			else = {
+				country_event = {
+					id = texas_elections.17
+					days = 1420
+				}
+			}
+		}
+		set_country_flag = TEX_democrats_won_last_election
+		if = {
+			limit = { has_country_flag = TEX_reform_party_won_last_election }
+			clr_country_flag = TEX_reform_party_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_one_republic_won_last_election }
+			clr_country_flag = TEX_one_republic_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_indepdendent_republicans_won_last_election }
+			clr_country_flag = TEX_indepdendent_republicans_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_libertarians_won_last_election }
+			clr_country_flag = TEX_libertarians_won_last_election
+		}
+	}
+	
+	option = { #President Unchallenged
+		name = texas_elections.30.o6
+		trigger = {
+			has_country_flag = TEX_president_unchallenged
+		}
+		add_popularity = {
+			ideology = ROOT
+			popularity = 0.04
+		}
+	}
+	after = {
+		add_to_variable = { TEX_elections_held = 1 }
+		hidden_effect = {
+			country_event = {
+				id = texas_elections.301
+				days = 1460
+			}
+		}
+	}
+}
+
+#2021 Elections
+country_event = {
+	id = texas_elections.301
+	title = texas_elections.30.t
+	desc = {
+		text = texas_elections.30.d
+		trigger = {
+			NOT = { has_country_flag = TEX_president_unchallenged }
+		}
+	}
+	desc = {
+		text = texas_elections.30.d_2
+		trigger = {
+			has_country_flag = TEX_president_unchallenged
+		}
+	}
+	picture = texas_election
+	
+	is_triggered_only = yes
+	
+	option = { #One Republic
+		name = texas_elections.30.o1
+		trigger = {
+			NOT = { has_country_flag = TEX_one_republic_gone }
+		}
+		if = {
+			limit = { has_country_flag = TEX_one_republic_is_fascist }
+			add_popularity = {
+				ideology = fascist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = fascist
+			}
+			add_nationalist_to_coalition = yes
+		}
+		else = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = nationalist
+			}
+		}
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = TEX_reform_party_is_a_thing }
+				country_event = {
+					id = texas_elections.12
+					days = 1330
+				}
+			}
+			if = {
+				limit = { has_country_flag = TEX_libertarian_party_is_a_thing }
+				country_event = {
+					id = texas_elections.26
+					days = 1350
+				}
+				country_event = {
+					id = texas_elections.23
+					days = 1350
+				}
+			}
+			country_event = {
+				id = texas_elections.29
+				days = 1370
+			}
+			country_event = {
+				id = texas_elections.18
+				days = 1420
+			}
+		}
+		set_country_flag = TEX_one_republic_won_last_election
+		if = {
+			limit = { has_country_flag = TEX_libertarians_won_last_election }
+			clr_country_flag = TEX_libertarians_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_party_won_last_election }
+			clr_country_flag = TEX_reform_party_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_indepdendent_republicans_won_last_election }
+			clr_country_flag = TEX_indepdendent_republicans_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_democrats_won_last_election }
+			clr_country_flag = TEX_democrats_won_last_election
+		}
+	}
+	
+	option = { #Independent Republicans
+		name = texas_elections.30.o2
+		trigger = {
+			NOT = { has_country_flag = TEX_independent_republican_party_gone }
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.04
+		}
+		set_politics = {
+			ruling_party = national_conservative
+		}
+		if = {
+			limit = {
+				NOT = { has_government = national_conservative }
+			}
+			custom_effect_tooltip = TEX_independent_republican_cabinet
+			hidden_effect = {
+				add_ideas = texas_sic_susana_martinez
+				add_ideas = texas_fom_james_baker
+				add_ideas = texas_ind_dan_crenshaw
+				add_ideas = texas_nsm_alberto_gonzales
+			}
+		}
+		
+		if = {
+			limit = { has_country_flag = TEX_one_republic_last_chance }
+			set_country_flag = TEX_one_republic_gone
+		}
+		
+		TEX_set_independent_republican_leader_2021 = yes
+		
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = TEX_reform_party_is_a_thing }
+				country_event = {
+					id = texas_elections.12
+					days = 1330
+				}
+			}
+			if = {
+				limit = { has_country_flag = TEX_libertarian_party_is_a_thing }
+				country_event = {
+					id = texas_elections.26
+					days = 1350
+				}
+				country_event = {
+					id = texas_elections.23
+					days = 1350
+				}
+			}
+			country_event = {
+				id = texas_elections.29
+				days = 1370
+			}
+			country_event = {
+				id = texas_elections.18
+				days = 1420
+			}
+		}
+		set_country_flag = TEX_indepdendent_republicans_won_last_election
+		if = {
+			limit = { has_country_flag = TEX_libertarians_won_last_election }
+			clr_country_flag = TEX_libertarians_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_party_won_last_election }
+			clr_country_flag = TEX_reform_party_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_one_republic_won_last_election }
+			clr_country_flag = TEX_one_republic_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_democrats_won_last_election }
+			clr_country_flag = TEX_democrats_won_last_election
+		}
+	}	
+	
+	option = { #Reform
+		name = texas_elections.30.o3
+		trigger = {
+			NOT = {  has_country_flag = TEX_reform_party_gone }
+		}
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.04
+		}
+		set_politics = {
+			ruling_party = centrist
+		}
+		if = {
+			limit = {
+				NOT = { has_government = centrist }
+			}
+			custom_effect_tooltip = TEX_reform_cabinet
+			hidden_effect = {
+				add_ideas = texas_sic_pat_choate
+				add_ideas = texas_fom_ed_zschau
+				add_ideas = texas_ind_mark_cuban
+				add_ideas = texas_nsm_eric_x_li
+			}
+		}
+		
+		if = {
+			limit = { has_country_flag = TEX_one_republic_last_chance }
+			set_country_flag = TEX_one_republic_gone
+		}
+		
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = TEX_reform_party_is_a_thing }
+				country_event = {
+					id = texas_elections.12
+					days = 1330
+				}
+			}
+			if = {
+				limit = { has_country_flag = TEX_libertarian_party_is_a_thing }
+				country_event = {
+					id = texas_elections.26
+					days = 1350
+				}
+				country_event = {
+					id = texas_elections.23
+					days = 1350
+				}
+			}
+			country_event = {
+				id = texas_elections.29
+				days = 1370
+			}
+			country_event = {
+				id = texas_elections.18
+				days = 1420
+			}
+		}
+		set_country_flag = TEX_reform_party_won_last_election
+		if = {
+			limit = { has_country_flag = TEX_libertarians_won_last_election }
+			clr_country_flag = TEX_libertarians_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_one_republic_won_last_election }
+			clr_country_flag = TEX_one_republic_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_indepdendent_republicans_won_last_election }
+			clr_country_flag = TEX_indepdendent_republicans_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_democrats_won_last_election }
+			clr_country_flag = TEX_democrats_won_last_election
+		}
+	}
+	
+	option = { #Libertarians
+		name = texas_elections.30.o4
+		trigger = {
+			NOT = { has_country_flag = TEX_libertarian_party_gone }
+		}
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.04
+		}
+		set_politics = {
+			ruling_party = centrist
+		}
+		if = {
+			limit = {
+				NOT = { has_government = centrist }
+			}
+			custom_effect_tooltip = TEX_libertarian_cabinet
+			hidden_effect = {
+				add_ideas = texas_sic_gary_johnson 
+				add_ideas = texas_fom_jacob_hornberger 
+				add_ideas = texas_ind_dan_behrman 
+				add_ideas = texas_nsm_rand_paul
+			}
+		}
+		
+		if = {
+			limit = { has_country_flag = TEX_one_republic_last_chance }
+			set_country_flag = TEX_one_republic_gone
+		}
+		
+		TEX_set_libertarian_leader_2021 = yes
+		
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = TEX_reform_party_is_a_thing }
+				country_event = {
+					id = texas_elections.12
+					days = 1330
+				}
+			}
+			if = {
+				limit = { has_country_flag = TEX_libertarian_party_is_a_thing }
+				country_event = {
+					id = texas_elections.26
+					days = 1350
+				}
+				country_event = {
+					id = texas_elections.23
+					days = 1350
+				}
+			}
+			country_event = {
+				id = texas_elections.29
+				days = 1370
+			}
+			country_event = {
+				id = texas_elections.18
+				days = 1420
+			}
+		}
+		set_country_flag = TEX_libertarians_won_last_election
+		if = {
+			limit = { has_country_flag = TEX_reform_party_won_last_election }
+			clr_country_flag = TEX_reform_party_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_one_republic_won_last_election }
+			clr_country_flag = TEX_one_republic_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_indepdendent_republicans_won_last_election }
+			clr_country_flag = TEX_indepdendent_republicans_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_democrats_won_last_election }
+			clr_country_flag = TEX_democrats_won_last_election
+		}
+	} 
+	
+	option = { #Democrats
+		name = texas_elections.30.o5
+		trigger = {
+			NOT = { has_country_flag = TEX_democratic_party_gone }
+		}
+		if = {
+			limit = { has_country_flag = TEX_democrats_are_modsocs }
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = moderate_socialist
+			}
+			add_newdem_to_coalition = yes
+			add_liberal_to_coalition = yes
+		}
+		else_if = {
+			limit = { has_country_flag = TEX_democrats_are_revsocs }
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = revolutionary_socialist
+			}
+			add_modsoc_to_coalition = yes
+			add_newdem_to_coalition = yes
+			add_liberal_to_coalition = yes
+		}
+		else_if = {
+			limit = { has_country_flag = TEX_dems_are_newdem }
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = new_democrat
+			}
+			add_liberal_to_coalition = yes
+		}
+		else = {
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = liberal
+			}
+		}
+		if = {
+			limit = {
+				NOT = { 
+					has_government = liberal 
+					has_government = new_democrat 
+					has_government = moderate_socialist 
+					has_government = revolutionary_socialist 
+				}
+			}
+			custom_effect_tooltip = TEX_democrat_cabinet
+			hidden_effect = {
+				add_ideas = texas_sic_wendy_davis
+				add_ideas = texas_fom_al_green
+				add_ideas = texas_ind_joaquin_castro
+				add_ideas = texas_nsm_bill_white
+			}
+		}
+		
+		TEX_set_democrat_leader_2021 = yes
+		
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = TEX_reform_party_is_a_thing }
+				country_event = {
+					id = texas_elections.12
+					days = 1330
+				}
+			}
+			if = {
+				limit = { has_country_flag = TEX_libertarian_party_is_a_thing }
+				country_event = {
+					id = texas_elections.26
+					days = 1350
+				}
+				country_event = {
+					id = texas_elections.23
+					days = 1350
+				}
+			}
+			country_event = {
+				id = texas_elections.29
+				days = 1370
+			}
+			country_event = {
+				id = texas_elections.18
+				days = 1420
+			}
+		}
+		
+		set_country_flag = TEX_democrats_won_last_election
+		if = {
+			limit = { has_country_flag = TEX_reform_party_won_last_election }
+			clr_country_flag = TEX_reform_party_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_one_republic_won_last_election }
+			clr_country_flag = TEX_one_republic_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_indepdendent_republicans_won_last_election }
+			clr_country_flag = TEX_indepdendent_republicans_won_last_election
+		}
+		if = {
+			limit = { has_country_flag = TEX_libertarians_won_last_election }
+			clr_country_flag = TEX_libertarians_won_last_election
+		}
+		
+	}
+	
+	option = { #President Unchallenged
+		name = texas_elections.30.o6
+		trigger = {
+			has_country_flag = TEX_president_unchallenged
+		}
+		add_popularity = {
+			ideology = ROOT
+			popularity = 0.04
+		}
+	}
+	after = {
+		add_to_variable = { TEX_elections_held = 1 }
+		hidden_effect = {
+			country_event = {
+				id = texas_elections.302
+				days = 1460
+			}
+		}
+	}
+}
+
+#2025 Elections
+country_event = {
+	id = texas_elections.301
+	title = texas_elections.30.t
+	desc = {
+		text = texas_elections.30.d
+		trigger = {
+			NOT = { has_country_flag = TEX_president_unchallenged }
+		}
+	}
+	desc = {
+		text = texas_elections.30.d_2
+		trigger = {
+			has_country_flag = TEX_president_unchallenged
+		}
+	}
+	picture = texas_election
+	
+	is_triggered_only = yes
+	
+	option = { #One Republic
+		name = texas_elections.30.o1
+		trigger = {
+			NOT = { has_country_flag = TEX_one_republic_gone }
+		}
+		if = {
+			limit = { has_country_flag = TEX_one_republic_is_fascist }
+			add_popularity = {
+				ideology = fascist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = fascist
+			}
+			add_nationalist_to_coalition = yes
+		}
+		else = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = nationalist
+			}
+		}
+	}
+	
+	option = { #Independent Republicans
+		name = texas_elections.30.o2
+		trigger = {
+			NOT = { has_country_flag = TEX_independent_republican_party_gone }
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.04
+		}
+		set_politics = {
+			ruling_party = national_conservative
+		}
+		if = {
+			limit = {
+				NOT = { has_government = national_conservative }
+			}
+			custom_effect_tooltip = TEX_independent_republican_cabinet
+			hidden_effect = {
+				add_ideas = texas_sic_susana_martinez
+				add_ideas = texas_fom_james_baker
+				add_ideas = texas_ind_dan_crenshaw
+				add_ideas = texas_nsm_alberto_gonzales
+			}
+		}
+		
+		if = {
+			limit = { has_country_flag = TEX_one_republic_last_chance }
+			set_country_flag = TEX_one_republic_gone
+		}
+		
+		TEX_set_independent_republican_leader_2025 = yes
+	}	
+	
+	option = { #Reform
+		name = texas_elections.30.o3
+		trigger = {
+			NOT = {  has_country_flag = TEX_reform_party_gone }
+		}
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.04
+		}
+		set_politics = {
+			ruling_party = centrist
+		}
+		if = {
+			limit = {
+				NOT = { has_government = centrist }
+			}
+			custom_effect_tooltip = TEX_reform_cabinet
+			hidden_effect = {
+				add_ideas = texas_sic_pat_choate
+				add_ideas = texas_fom_ed_zschau
+				add_ideas = texas_ind_mark_cuban
+				add_ideas = texas_nsm_eric_x_li
+			}
+		}
+		
+		if = {
+			limit = { has_country_flag = TEX_one_republic_last_chance }
+			set_country_flag = TEX_one_republic_gone
+		}
+	}
+	
+	option = { #Libertarians
+		name = texas_elections.30.o4
+		trigger = {
+			NOT = { has_country_flag = TEX_libertarian_party_gone }
+		}
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.04
+		}
+		set_politics = {
+			ruling_party = centrist
+		}
+		if = {
+			limit = {
+				NOT = { has_government = centrist }
+			}
+			custom_effect_tooltip = TEX_libertarian_cabinet
+			hidden_effect = {
+				add_ideas = texas_sic_gary_johnson 
+				add_ideas = texas_fom_jacob_hornberger 
+				add_ideas = texas_ind_dan_behrman 
+				add_ideas = texas_nsm_rand_paul
+			}
+		}
+		
+		if = {
+			limit = { has_country_flag = TEX_one_republic_last_chance }
+			set_country_flag = TEX_one_republic_gone
+		}
+		
+		TEX_set_libertarian_leader_2025 = yes
+		
+	} 
+	
+	option = { #Democrats
+		name = texas_elections.30.o5
+		trigger = {
+			NOT = { has_country_flag = TEX_democratic_party_gone }
+		}
+		if = {
+			limit = { has_country_flag = TEX_democrats_are_modsocs }
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = moderate_socialist
+			}
+			add_newdem_to_coalition = yes
+			add_liberal_to_coalition = yes
+		}
+		else_if = {
+			limit = { has_country_flag = TEX_democrats_are_revsocs }
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = revolutionary_socialist
+			}
+			add_modsoc_to_coalition = yes
+			add_newdem_to_coalition = yes
+			add_liberal_to_coalition = yes
+		}
+		else_if = {
+			limit = { has_country_flag = TEX_dems_are_newdem }
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = new_democrat
+			}
+			add_liberal_to_coalition = yes
+		}
+		else = {
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.04
+			}
+			set_politics = {
+				ruling_party = liberal
+			}
+		}
+		if = {
+			limit = {
+				NOT = { 
+					has_government = liberal 
+					has_government = new_democrat 
+					has_government = moderate_socialist 
+					has_government = revolutionary_socialist 
+				}
+			}
+			custom_effect_tooltip = TEX_democrat_cabinet
+			hidden_effect = {
+				add_ideas = texas_sic_wendy_davis
+				add_ideas = texas_fom_al_green
+				add_ideas = texas_ind_joaquin_castro
+				add_ideas = texas_nsm_bill_white
+			}
+		}
+		
+		TEX_set_democrat_leader_2025 = yes
+		
+	}
+	
+	option = { #President Unchallenged
+		name = texas_elections.30.o6
+		trigger = {
+			has_country_flag = TEX_president_unchallenged
+		}
+		add_popularity = {
+			ideology = ROOT
+			popularity = 0.04
+		}
+	}
+}
+
+#Master Election event
+country_event = {
+	id = texas_elections.100
+	title = texas_elections.100.t
+	desc = texas_elections.100.d
+	picture = texas_election
+	
+	hidden = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		if = {
+			limit = {
+				has_country_flag = TEX_one_republic_defeated 
+			}
+			country_event = {
+				id = texas_elections.30
+				days = 1
+			}
+		}
+		else = {
+			country_event = {
+				id = texas_elections.2
+				days = 1
+			}
+		}
+	}
+	
+	option = { #
+		name = texas_elections.100.o1
+		
 	}
 }
 
