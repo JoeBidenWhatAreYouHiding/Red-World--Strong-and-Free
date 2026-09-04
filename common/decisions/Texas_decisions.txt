@@ -562,7 +562,7 @@ TEX_reintegrating_south_texas = {
 		allowed = { tag = TEX }
 		visible = {
 			any_owned_state = { TEX_has_resistance = yes }
-			has_country_flag = TEX_hostile_hispanic_decisions
+			has_country_flag = TEX_friendly_hispanic_decisions
 		}
 		available = {
 			any_owned_state = { TEX_has_resistance = yes }
@@ -593,12 +593,16 @@ TEX_reintegrating_south_texas = {
 		fire_only_once = yes
 		allowed = { tag = TEX }
 		visible = {
-			every_owned_state = {
-				TEX_has_mexico_resistance = no
+			OR = {
+				has_country_flag = TEX_hostile_hispanic_decisions
+				has_country_flag = TEX_friendly_hispanic_decisions
 			}
 		}
 		available = {
 			NOT = { has_country_flag = TEX_doing_easttex_decision }
+			every_owned_state = {
+				TEX_has_mexico_resistance = no
+			}
 		}
 		days_remove = 35
 		cost = 100
