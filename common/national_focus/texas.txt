@@ -1019,18 +1019,22 @@ focus_tree = {
 				ideology = new_democrat
 				popularity = -0.05
 			}
+			add_liberal_to_coalition = yes
+			TEX_pete_geren = {
+				promote_character = old_american_democrats
+			}
 			swap_ideas = {
 				remove_idea = TEX_One_Republic_Dominance
 				add_idea = TEX_One_Republic_Consolidation
 			}
 			set_party_name = {
-				name = TEX_independent_organization
-				long_name = TEX_independent_organization_long
-				ideology = liberal
+				name = TEX_natcon_independent_organization
+				long_name = TEX_natcon_independent_organization_long
+				ideology = national_conservative
 			}
 			set_party_name = {
-				name = TEX_independent_organization
-				long_name = TEX_independent_organization_long
+				name = TEX_prog_independent_organization
+				long_name = TEX_prog_independent_organization_long
 				ideology = new_democrat
 			}
 		}
@@ -14178,6 +14182,9 @@ focus_tree = {
 		y = 1
 
 		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = TEX_ufo_flag }
+			}
 		}
 
 		# ai_will_do = {
@@ -14229,14 +14236,24 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
-			swap_ideas = {
-				remove_idea = TEX_NASA
-				add_idea = TEX_NASA_SpaceAgency
+			if = {
+				limit = { has_idea = TEX_NASA2 }
+				swap_ideas = {
+					remove_idea = TEX_NASA2
+					add_idea = TEX_NASA_SpaceAgency2
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = TEX_NASA
+					add_idea = TEX_NASA_SpaceAgency
+				}
 			}
 			add_breakthrough_progress = {
 				specialization = specialization_air
 				value = 0.5
 			}
+			set_country_flag = TEX_mark_kelly_unlocked
 		}
 	}
 	

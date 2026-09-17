@@ -2,10 +2,10 @@ focus_tree = {
 	id = texas_cults_focus
 	country = {
 		factor = 0
-		# modifier = {
-			# add = 100
-			# tag = TEX
-		# }
+		modifier = {
+			add = 100
+			tag = TEX
+		}
 	}
 	default = no
 	continuous_focus_position = { x = 4800 y = 2300 }
@@ -116,6 +116,10 @@ focus_tree = {
 			swap_ideas = {
 				remove_idea = TEX_the_kingdom_of_david
 				add_idea = TEX_the_kingdom_of_david2
+			}
+			set_victory_points = {
+				province = 10861
+				value = 25
 			}
 		}
 	}
@@ -1218,7 +1222,7 @@ focus_tree = {
 	focus = {
 		id = TEX_mccasland_junta
 		icon = GFX_goal_TEX_military_junta
-		cost = 6
+		cost = 1
 		x = 11
 		y = 3
 	
@@ -1234,6 +1238,11 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			country_event = texas.319
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.02
+			}
 		}
 	}
 	
@@ -1263,6 +1272,10 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			custom_effect_tooltip = TEX_junta_fake_event_1
+			effect_tooltip = {
+				add_ideas = TEX_martial_law
+			}
 		}
 	}
 	
@@ -1296,22 +1309,28 @@ focus_tree = {
 		}
 		
 		available = {
-			# custom_trigger_tooltip = {
-				# tooltip = TEX_dummy_focus_flag
-				# always = no
-			# }
+			custom_trigger_tooltip = {
+				tooltip = TEX_dummy_focus_flag
+				always = yes
+			}
 		}
 		
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			country_event = texas.320
+			custom_effect_tooltip = TEX_free_elections_will_be_restored
 		}
 	}
 	
 	focus = {
 		id = TEX_they_speak
-		icon = GFX_goal_TEX_cooperate_ufologist_movement
+		icon = {
+			GFX_goal_TEX_SPEAK = {
+				has_country_flag = TEX_ufo_movement
+			}
+			GFX_goal_TEX_cooperate_ufologist_movement = yes
+		}
 		cost = 6
 		x = 0
 		y = 2
@@ -1322,7 +1341,17 @@ focus_tree = {
 		}
 
 		available = {
-			
+			custom_trigger_tooltip = {
+				tooltip = TEX_dummy_focus_flag
+				NOT = { has_country_flag = TEX_purged_ufologists }
+			}	
+		}
+		
+		select_effect = {
+			country_event = {
+				id = texas.321
+				days = 30
+			}
 		}
 		
 		available_if_capitulated = yes
@@ -1330,6 +1359,51 @@ focus_tree = {
 		completion_reward = {
 			set_country_flag = TEX_ufo_flag
 			mark_focus_tree_layout_dirty = yes
+			if = {
+				limit = { has_country_flag = TEX_ufo_movement }
+				country_event = texas.322
+			}
+			else = {
+				effect_tooltip = { add_ideas = TEX_uap_disclosure }
+			}
+			effect_tooltip = {
+				TEX_bob_lazar = {
+					add_scientist_role = {
+						traits = { scientist_trait_brilliant_theorist scientist_trait_gifted_engineer }
+						skills = {
+							specialization_air = 2
+						}
+					}
+				}
+			}
+			hidden_effect = {
+				random_list = {
+					50 = {
+						TEX_bob_lazar = {
+							add_scientist_role = {
+								scientist = {
+									traits = { scientist_trait_brilliant_theorist scientist_trait_gifted_engineer scientist_trait_bright scientist_trait_genius }
+									skills = {
+										specialization_air = 2
+									}
+								}
+							}
+						}
+					}
+					50 = {
+						TEX_bob_lazar = {
+							add_scientist_role = {
+								scientist = {
+									traits = { scientist_trait_schrodingers_trait }
+									skills = {
+										specialization_air = 0
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 	
@@ -1350,11 +1424,14 @@ focus_tree = {
 				tooltip = TEX_dummy_focus_flag
 				always = no
 			}
+			has_completed_focus = TEX_expell_soviet_agents
 		}
 		
 		available_if_capitulated = yes
 
-		completion_reward = {
+		completion_reward = {	
+			add_stability = 0.14
+			remove_ideas = TEX_post_coup_chaos2
 		}
 	}
 	
@@ -1380,6 +1457,14 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_popularity = {
+				ideology = communist
+				popularity = 0.03
+			}
+			swap_ideas = {
+				remove_idea = TEX_post_coup_chaos
+				add_idea = TEX_post_coup_chaos2
+			}
 		}
 	}
 	
@@ -1387,13 +1472,16 @@ focus_tree = {
 	
 	focus = {
 		id = TEX_victory_of_the_ufologists
-		icon = X
+		icon = GFX_goal_TEX_SEE
 		cost = 6
 		x = 11
-		y = 2
+		y = 1
 	
 		available = {
 			
+		}
+		bypass = {
+			always = yes
 		}
 		
 		allow_branch = {
@@ -1403,12 +1491,30 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			custom_effect_tooltip = unlock_focuses
+		}
+		bypass_effect = {
+			set_cosmetic_tag = RSW
+			set_party_name = {
+				name = TEX_disclosure_party
+				long_name = TEX_disclosure_party_long
+				ideology = nationalist
+			}
+			hidden_effect = {
+				remove_ideas = TEX_post_coup_chaos
+			}
+			add_ideas = {
+				texas_sic_david_wilcock
+				texas_fom_frank_chu
+				texas_ind_jeff_peckman
+				texas_nsm_hal_puthoff
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_consolidate_power_in_roswell
-		icon = X
+		icon = GFX_goal_TEX_consolidate_power_in_roswell
 		cost = 6
 		x = 0
 		y = 1
@@ -1419,18 +1525,33 @@ focus_tree = {
 		}
 
 		available = {
-			
+			has_completed_focus = TEX_unity_in_humanity
 		}
 		
 		available_if_capitulated = yes
 
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_et_go_home
+				add_idea = TEX_et_go_home2
+			}
+			set_victory_points = {
+				province = 8070
+				value = 20
+			}
+			set_capital = { state = 899 }
+			swap_ideas = {
+				remove_idea = TEX_scars_of_the_war
+				add_idea = TEX_scars_of_the_war2
+			}
+			set_country_flag = TEX_can_do_economy_stuff
+			custom_effect_tooltip = TEX_unlock_economy_tree
 		}
 	}
 	
 	focus = {
 		id = TEX_unity_in_humanity
-		icon = X
+		icon = GFX_goal_TEX_unity_in_humanity
 		cost = 6
 		x = 2
 		y = 1
@@ -1447,12 +1568,23 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			country_event = texas.323
+			add_ideas = TEX_et_go_home
+			add_war_support = 0.02
+			every_country = {
+				ROOT = {
+					add_opinion_modifier = {
+						target = PREV
+						modifier = fellow_humans
+					}
+				}
+			}
 		}
 	}
 	
 	focus = {
-		id = TEX_establish_the_mib
-		icon = X
+		id = TEX_expand_MUFON
+		icon = GFX_goal_TEX_expand_MUFON
 		cost = 6
 		x = -2
 		y = 1
@@ -1469,19 +1601,22 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			country_event = texas.325
+			add_ideas = TEX_MUFON
+			set_country_flag = TEX_blue_book_projects_in_progress
 		}
 	}
 	
 	focus = {
 		id = TEX_disclose_project_blue_book
-		icon = X
+		icon = GFX_goal_TEX_era_of_disclosure
 		cost = 6
 		x = 0
 		y = 2
 		relative_position_id = TEX_victory_of_the_ufologists
 		
 		prerequisite = {
-			focus = TEX_establish_the_mib
+			focus = TEX_expand_MUFON
 		}
 		prerequisite = {
 			focus = TEX_unity_in_humanity
@@ -1497,12 +1632,23 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			country_event = texas.324
+			swap_ideas = {
+				remove_idea = TEX_people_think_were_crazy
+				add_idea = TEX_people_think_were_crazy2
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.03
+			}
+			set_country_flag = TEX_can_go_searching
+			add_political_power = 100
 		}
 	}
 	
 	focus = {
 		id = TEX_the_pentagon
-		icon = X
+		icon = GFX_goal_TEX_the_pentagon
 		cost = 6
 		x = -1
 		y = 1
@@ -1519,12 +1665,20 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			set_country_flag = TEX_can_search_pentagon
+			create_wargoal = {
+				type = annex_everything
+				target = USA
+			}
+			unlock_decision_tooltip = TEX_search_pentagon
+			core_USA = yes
+
 		}
 	}
 	
 	focus = {
 		id = TEX_area_51
-		icon = X
+		icon = GFX_goal_TEX_area_51
 		cost = 6
 		x = 1
 		y = 1
@@ -1541,12 +1695,19 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			set_country_flag = TEX_can_search_area_51
+			create_wargoal = {
+				type = annex_everything
+				target = PCA
+			}
+			unlock_decision_tooltip = TEX_search_area_51
+			core_PCA = yes
 		}
 	}
 	
 	focus = {
 		id = TEX_call_for_unity_among_the_humans
-		icon = X
+		icon = GFX_goal_TEX_call_for_unity
 		cost = 6
 		x = 0
 		y = 2
@@ -1564,12 +1725,35 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			set_country_flag = unifying_america
+			enable_unification_decisions = yes
+			hidden_effect = {
+				core_ILL = yes
+				core_GRL = yes
+				core_MWA = yes
+				core_MOT = yes
+				core_LIN = yes
+				core_UTA = yes
+				core_ARI = yes
+				core_NEA = yes
+				activate_targeted_decision = { target = LIN decision = TEX_invite_country_to_the_hdf } 
+				activate_targeted_decision = { target = MOT decision = TEX_invite_country_to_the_hdf } 
+				activate_targeted_decision = { target = UTA decision = TEX_invite_country_to_the_hdf } 
+				activate_targeted_decision = { target = ARI decision = TEX_invite_country_to_the_hdf } 
+				activate_targeted_decision = { target = GRL decision = TEX_invite_country_to_the_hdf } 
+				activate_targeted_decision = { target = ILL decision = TEX_invite_country_to_the_hdf } 
+				activate_targeted_decision = { target = CSD decision = TEX_invite_country_to_the_hdf } 
+				activate_targeted_decision = { target = NEA decision = TEX_invite_country_to_the_hdf } 
+				activate_targeted_decision = { target = AMC decision = TEX_invite_country_to_the_hdf } 
+				activate_targeted_decision = { target = MWA decision = TEX_invite_country_to_the_hdf } 
+			}
+			unlock_decision_category_tooltip = TEX_humanity_defense_initiative
 		}
 	}
 	
 	focus = {
 		id = TEX_skinwalker_ranch
-		icon = X
+		icon = GFX_goal_TEX_skinwalker_ranch
 		cost = 6
 		x = 2
 		y = 2
@@ -1586,12 +1770,26 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			if = {
+				limit = {
+					country_exists = UTA 
+				}
+				UTA = { country_event = texas_diplo.46 }
+			}
+			else = {
+				create_wargoal = {
+					type = annex_everything
+					target = var:380.owner
+				}
+			}
+			set_country_flag = TEX_can_search_skinwalker_ranch
+			unlock_decision_tooltip = TEX_search_skinwalker_ranch
 		}
 	}
 	
 	focus = {
 		id = TEX_midwestern_crop_circles
-		icon = X
+		icon = GFX_goal_TEX_midwestern_crop_circles
 		cost = 6
 		x = -2
 		y = 2
@@ -1608,12 +1806,26 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			if = {
+				limit = {
+					country_exists = MWA 
+				}
+				MWA = { country_event = texas_diplo.46 }
+			}
+			else = {
+				create_wargoal = {
+					type = annex_everything
+					target = var:380.owner
+				}
+			}
+			set_country_flag = TEX_can_search_crop_circles
+			unlock_decision_tooltip = TEX_search_crop_circles
 		}
 	}
 	
 	focus = {
 		id = TEX_destroy_the_legacy_program
-		icon = X
+		icon = GFX_goal_TEX_destroy_legacy_program
 		cost = 6
 		x = 0
 		y = 3
@@ -1630,18 +1842,35 @@ focus_tree = {
 		}
 
 		available = {
-			
+			USA = {
+				OR = {
+					exists = no
+					is_subject = yes
+				}
+			}
 		}
 		
 		available_if_capitulated = yes
 
 		completion_reward = {
+			country_event = texas.330
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+			effect_tooltip = {
+				remove_ideas = TEX_deep_state
+			}
+			hidden_effect = {
+				remove_ideas = TEX_deep_state
+				remove_ideas = TEX_deep_state2
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_overcome_stigma
-		icon = X
+		icon = GFX_goal_TEX_overcome_stigma
 		cost = 6
 		x = -1
 		y = 4
@@ -1658,12 +1887,15 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			country_event = texas.331
+			remove_ideas = TEX_people_think_were_crazy2
+			add_stability = 0.03
 		}
 	}
 	
 	focus = {
 		id = TEX_AATIP
-		icon = X
+		icon = GFX_goal_TEX_AATIP
 		cost = 6
 		x = 1
 		y = 4
@@ -1680,13 +1912,21 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_ideas = TEX_AATIP_idea
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = radar_tech
+			}
+			custom_effect_tooltip = TEX_unlock_mil_tree
+			set_country_flag = TEX_can_do_military_stuff
 		}
 	}
 	
 	focus = {
 		id = TEX_form_the_earth_liberation_command_council
-		icon = X
-		cost = 6
+		icon = GFX_goal_TEX_form_the_earth_liberation_defense_command
+		cost = 4
 		x = 0
 		y = 5
 		relative_position_id = TEX_disclose_project_blue_book
@@ -1697,6 +1937,30 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_overcome_stigma
 		}
+		
+		available = {
+			has_country_flag = the_united_states_are_back
+		}
+		
+		select_effect = {
+			if = {
+				limit = {
+					check_variable = {
+						TEX_credibility > 2
+					}
+				}
+				country_event = {
+					id = texas.333
+					days = 8
+				}
+			}
+			else = {
+				country_event = {
+					id = texas.332
+					days = 8
+				}
+			}
+		}
 
 		available = {
 			
@@ -1705,6 +1969,9 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			set_cosmetic_tag = UFO
+			custom_effect_tooltip = TEX_ufo_decide_future		
+			clr_country_flag = TEX_blue_book_projects_in_progress
 		}
 	}
 	
@@ -1712,8 +1979,8 @@ focus_tree = {
 	### Semi-Legitimacy ###
 	
 	focus = {
-		id = TEX_address_the_united_nations
-		icon = X
+		id = TEX_return_of_the_majestic_twelve
+		icon = GFX_goal_TEX_return_of_the_majestic_12
 		cost = 6
 		x = -3
 		y = 1
@@ -1728,25 +1995,35 @@ focus_tree = {
 		}
 
 		available = {
-			
+			has_country_leader = {
+				name = "Neil McCasland"
+				ruling_only = yes
+			}
+		}
+		bypass = {
+			has_country_leader = {
+				name = "Neil McCasland"
+				ruling_only = yes
+			}
 		}
 		
 		available_if_capitulated = yes
 
 		completion_reward = {
+			custom_effect_tooltip = unlock_focuses
 		}
 	}
 	
 	focus = {
 		id = TEX_nonpartisan_technocratic_administation
-		icon = X
+		icon = GFX_goal_TEX_non_partisan_managed_democracy
 		cost = 6
 		x = -1
 		y = 1
-		relative_position_id = TEX_address_the_united_nations
+		relative_position_id = TEX_return_of_the_majestic_twelve
 		
 		prerequisite = {
-			focus = TEX_address_the_united_nations
+			focus = TEX_return_of_the_majestic_twelve
 		}
 
 		available = {
@@ -1756,41 +2033,161 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			TEX_neil_mccasland = {
+				set_portraits = {
+					civilian = { large = "gfx/leaders/TEX/Portrait_TEX_Neil_McCasland_Shades.png" }
+				}
+			}
+			add_ideas = TEX_managed_democracy
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.03
+			}
+			add_stability = 0.05
 		}
 	}
 	
 	focus = {
 		id = TEX_legitimize_political_organizations
-		icon = X
+		icon = GFX_goal_TEX_legitimize_political_organizations
 		cost = 6
 		x = 1
 		y = 1
-		relative_position_id = TEX_address_the_united_nations
+		relative_position_id = TEX_return_of_the_majestic_twelve
 		
 		prerequisite = {
-			focus = TEX_address_the_united_nations
+			focus = TEX_return_of_the_majestic_twelve
 		}
 
 		available = {
-			
+			has_completed_focus = TEX_nonpartisan_technocratic_administation
 		}
 		
 		available_if_capitulated = yes
 
 		completion_reward = {
+			country_event = texas.336
+			swap_ideas = {
+				remove_idea = TEX_managed_democracy
+				add_idea = TEX_managed_democracy2
+			}
+			add_political_power = 30
+			custom_effect_tooltip = TEX_reorg_political_parties
+			hidden_effect = {
+				set_party_name = {
+					name = TEX_ufo_communist_party
+					long_name = TEX_ufo_communist_party_long
+					ideology = communist
+				}
+				set_party_name = {
+					name = TEX_ufo_revsoc_party
+					long_name = TEX_ufo_revsoc_party_long
+					ideology = revolutionary_socialist
+				}
+				set_party_name = {
+					name = TEX_ufo_modsoc_party
+					long_name = TEX_ufo_modsoc_party_long
+					ideology = moderate_socialist
+				}
+				set_party_name = {
+					name = TEX_ufo_newdem_party
+					long_name = TEX_ufo_newdem_party_long
+					ideology = new_democrat
+				}
+				set_party_name = {
+					name = TEX_ufo_lib_party
+					long_name = TEX_ufo_lib_party_long
+					ideology = liberal
+				}
+				set_party_name = {
+					name = TEX_ufo_centrist_party
+					long_name = TEX_ufo_centrist_party_long
+					ideology = centrist
+				}
+				set_party_name = {
+					name = TEX_ufo_natcon_party
+					long_name = TEX_ufo_natcon_party_long
+					ideology = national_conservative
+				}
+				set_party_name = {
+					name = TEX_ufo_fascist_party
+					long_name = TEX_ufo_fascist_party_long
+					ideology = fascist
+				}
+				set_party_name = {
+					name = TEX_ufo_nazbol_party
+					long_name = TEX_ufo_nazbol_party_long
+					ideology = national_bolshevik
+				}
+				set_party_name = {
+					name = TEX_ufo_monarchist_party
+					long_name = TEX_ufo_monarchist_party_long
+					ideology = monarchist
+				}
+				create_country_leader = {
+					name = "Daniel Sheehan"
+					picture = "gfx/leaders/NEA/Portrait_NEA_Daniel_Sheehan.png"
+					ideology = neocommunist
+				}
+				create_country_leader = {
+					name = "American Posadist Council"
+					picture = "gfx/leaders/AMR/Portrait_AMR_American_Posadist_Council.png"
+					ideology = trotskyist
+				}
+				create_country_leader = {
+					name = "Dennis Kucinich"
+					picture = "gfx/leaders/GAU/Portrait_GAU_Dennis_Kucinich.png"
+					ideology = moderate_socialist_ideology
+				}
+				create_country_leader = {
+					name = "André Carson"
+					picture = "gfx/leaders/NEA/Portrait_NEA_Andre_Carson.png"
+					ideology = new_democrat_ideology
+				}
+				create_country_leader = {
+					name = "Harry Reid"
+					picture = "gfx/leaders/UTA/Portrait_UTA_Harry_Reid.png"
+					ideology = old_american_democrats
+				}
+				create_country_leader = {
+					name = "Larry Niven"
+					picture = "gfx/leaders/PCA/Portrait_PCA_Larry_Niven.png"
+					ideology = centrist_populist
+				}
+				create_country_leader = {
+					name = "Robert Bigelow"
+					picture = "gfx/leaders/UTA/Portrait_UTA_Robert_Bigelow.png"
+					ideology = fiscal_conservative
+				}
+				create_country_leader = {
+					name = "Terry A. Davis"
+					picture = "gfx/leaders/ARI/Portrait_ARI_Terrance_Andrew_Davis.png"
+					ideology = regency_monarchist
+				}
+				create_country_leader = {
+					name = "David Miscavige"
+					picture = "gfx/leaders/PCA/Portrait_PCA_David_Miscavige.png"
+					ideology = clerical_fascist
+				}
+				create_country_leader = {
+					name = "Dennis Kucinich"
+					picture = "gfx/leaders/GAU/Portrait_GAU_Dennis_Kucinich.png"
+					ideology = socialist_nationalist
+				}
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_descredit_the_lazarites
-		icon = X
+		icon = GFX_goal_TEX_discredit_lazarites
 		cost = 6
 		x = 0
 		y = 2
-		relative_position_id = TEX_address_the_united_nations
+		relative_position_id = TEX_return_of_the_majestic_twelve
 		
 		prerequisite = {
-			focus = TEX_address_the_united_nations
+			focus = TEX_return_of_the_majestic_twelve
 		}
 
 		available = {
@@ -1800,16 +2197,22 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			country_event = texas.337
+			add_ideas = TEX_true_credibility
+			add_popularity = {
+				ideology = fascist
+				popularity = -0.03
+			}
 		}
 	}
 	
 	focus = {
-		id = TEX_prepare_friend_or_foe
-		icon = X
+		id = TEX_address_the_united_nations
+		icon = GFX_goal_TEX_address_the_united_nations
 		cost = 6
 		x = 1
 		y = 3
-		relative_position_id = TEX_address_the_united_nations
+		relative_position_id = TEX_return_of_the_majestic_twelve
 		
 		prerequisite = {
 			focus = TEX_descredit_the_lazarites
@@ -1822,6 +2225,20 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			country_event = texas.338
+			add_stability = 0.03
+			swap_ideas = {
+				remove_idea = TEX_true_credibility
+				add_idea = TEX_true_credibility2
+			}
+			every_country = {
+				ROOT = {
+					add_opinion_modifier = {
+						target = PREV
+						modifier = new_credibility
+					}
+				}
+			}
 		}
 	}
 	
@@ -1829,14 +2246,14 @@ focus_tree = {
 	
 	focus = {
 		id = TEX_continuance_of_the_roswell_clique
-		icon = X
+		icon = GFX_goal_TEX_continuance_of_the_lazarite_clique
 		cost = 6
 		x = 3
 		y = 1
 		relative_position_id = TEX_form_the_earth_liberation_command_council
 		
 		mutually_exclusive = {
-			focus = TEX_address_the_united_nations
+			focus = TEX_return_of_the_majestic_twelve
 		}
 
 		prerequisite = {
@@ -1844,18 +2261,28 @@ focus_tree = {
 		}
 
 		available = {
-			
+			has_country_leader = {
+				name = "Bob Lazar"
+				ruling_only = yes
+			}
+		}
+		bypass = {
+			has_country_leader = {
+				name = "Bob Lazar"
+				ruling_only = yes
+			}
 		}
 		
 		available_if_capitulated = yes
 
 		completion_reward = {
+			custom_effect_tooltip = unlock_focuses
 		}
 	}
 	
 	focus = {
 		id = TEX_expose_soviet_extraterrestrial_collaboration
-		icon = X
+		icon = GFX_goal_TEX_expose_soviet_alien_collaboration
 		cost = 6
 		x = -1
 		y = 1
@@ -1871,13 +2298,23 @@ focus_tree = {
 		
 		available_if_capitulated = yes
 
-		completion_reward = {
+		completion_reward = {	
+			country_event = texas.339
+			add_ideas = TEX_anti_communist_ufology
+			add_popularity = {
+				ideology = communist
+				popularity = -0.03
+			}
+			add_opinion_modifier = {
+				target = SOV
+				modifier = alien_collaboration
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_cult_of_the_commander
-		icon = X
+		icon = GFX_goal_TEX_venerate_truth_teller
 		cost = 6
 		x = 1
 		y = 1
@@ -1894,12 +2331,25 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			TEX_bob_lazar = {
+				set_portraits = {
+					civilian = "gfx/leaders/TEX/Portrait_TEX_Bob_Lazar_Victory.png"
+				}
+				add_trait = {
+					ideology = human_nationalism
+					trait = TEX_truth_seeker
+				}
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.03
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_introduce_privatization
-		icon = X
+		icon = GFX_goal_TEX_wok_with_faith_leaders_and_private_industry
 		cost = 6
 		x = 0
 		y = 2
@@ -1916,12 +2366,72 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			country_event = texas.340
+			add_ideas = TEX_private_ufology
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			add_monarchist_to_coalition = yes
+			add_natcon_to_coalition = yes
+			add_fash_to_coalition = yes
+			add_modsoc_to_coalition = yes
+			hidden_effect = {
+				set_party_name = {
+					name = TEX_ufo_natcon_party
+					long_name = TEX_ufo_natcon_party_long
+					ideology = national_conservative
+				}
+				set_party_name = {
+					name = TEX_ufo_fascist_party
+					long_name = TEX_ufo_fascist_party_long
+					ideology = fascist
+				}
+				set_party_name = {
+					name = TEX_ufo_monarchist_party2
+					long_name = TEX_ufo_monarchist_party2_long
+					ideology = monarchist
+				}
+				set_party_name = {
+					name = TEX_ufo_modsoc_party2
+					long_name = TEX_ufo_modsoc_party2_long
+					ideology = moderate_socialist
+				}
+				
+				create_country_leader = {
+					name = "Robert Bigelow"
+					picture = "gfx/leaders/UTA/Portrait_UTA_Robert_Bigelow.png"
+					ideology = fiscal_conservative
+				}
+				create_country_leader = {
+					name = "David Miscavige"
+					picture = "gfx/leaders/PCA/Portrait_PCA_David_Miscavige.png"
+					ideology = clerical_fascist
+				}
+				create_country_leader = {
+					name = "Hans-Adam II"
+					picture = "gfx/leaders/SWI/Portrait_Adam_II.dds"
+					ideology = dynastic_monarchist
+				}
+				create_country_leader = {
+					name = "Hans-Adam II"
+					picture = "gfx/leaders/SWI/Portrait_Adam_II.dds"
+					ideology = dynastic_monarchist
+				}
+				create_country_leader = {
+					name = "Raël"
+					picture = "gfx/leaders/FRA/Portrait_FRA_Claude_Maurice_Marcel_Vorilhon.png"
+					ideology = moderate_socialist_ideology
+				}
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_hunt_down_the_complicit_in_coverups
-		icon = X
+		icon = GFX_goal_TEX_hunt_down_complicit_coverup
 		cost = 6
 		x = -1
 		y = 3
@@ -1938,14 +2448,21 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			country_event = texas.341
+			add_ideas = TEX_justice_for_the_legacy_program
+			add_manpower = -2400
+			add_popularity = {
+				ideology = fascist
+				popularity = -0.04
+			}
 		}
 	}
 	
 	### Shared ###
 	
 	focus = {
-		id = TEX_expand_MUFON
-		icon = X
+		id = TEX_establish_the_mib
+		icon = GFX_goal_TEX_create_the_MIB
 		cost = 6
 		x = -1
 		y = 3
@@ -1953,7 +2470,7 @@ focus_tree = {
 		
 		prerequisite = {
 			focus = TEX_continuance_of_the_roswell_clique
-			focus = TEX_address_the_united_nations
+			focus = TEX_return_of_the_majestic_twelve
 		}
 
 		available = {
@@ -1963,12 +2480,51 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_MUFON
+				add_idea = TEX_MIB
+			}
+			if = {
+				limit = { has_dlc = "La Resistance" }
+				if = {
+					limit = { has_intelligence_agency = yes }
+					if = {
+						limit = { NOT = { has_done_agency_upgrade = upgrade_commando_training } }
+						upgrade_intelligence_agency = upgrade_commando_training
+					}
+					if = {
+						limit = { NOT = { has_done_agency_upgrade = upgrade_crypto_strength } }
+						upgrade_intelligence_agency = upgrade_crypto_strength
+					}
+					if = {
+						limit = { NOT = { has_done_agency_upgrade = upgrade_decryption_boost } }
+						upgrade_intelligence_agency = upgrade_decryption_boost
+					}
+					if = {
+						limit = {
+							OR = {
+								has_done_agency_upgrade = upgrade_commando_training
+								has_done_agency_upgrade = upgrade_crypto_strength
+								has_done_agency_upgrade = upgrade_decryption_boost
+							}
+							NOT = { has_done_agency_upgrade = upgrade_training_centers }
+						}
+						upgrade_intelligence_agency = upgrade_training_centers
+					}
+				}
+			}
+			else_if = {
+				limit = { has_intelligence_agency = no }
+				create_intelligence_agency = yes
+				upgrade_intelligence_agency = upgrade_commando_training
+				upgrade_intelligence_agency = upgrade_decryption_boost
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_experimental_funding
-		icon = X
+		icon = GFX_goal_TEX_experimental_funding
 		cost = 6
 		x = 1
 		y = 3
@@ -1976,7 +2532,7 @@ focus_tree = {
 		
 		prerequisite = {
 			focus = TEX_continuance_of_the_roswell_clique
-			focus = TEX_address_the_united_nations
+			focus = TEX_return_of_the_majestic_twelve
 		}
 
 		available = {
@@ -1986,12 +2542,45 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			country_event = texas.334
+			add_research_slot = 1
+			 add_tech_bonus = {
+				name = tactical_bomber_bonus
+				bonus = 0.5
+				uses = 1
+				category = tactical_bomber
+			}
+			 add_tech_bonus = {
+				name = tactical_bomber_bonus
+				bonus = 0.75
+				uses = 2
+				category = cat_strategic_bomber
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
+			air_experience = 100
+			add_corps_commander_role = {
+				Character = TEX_john_b_alexander
+				traits = { politically_connected brilliant_strategist engineer_officer }
+				skill = 2
+				attack_skill = 3
+				defense_skill = 3
+				planning_skill = 2
+				logistics_skill = 3
+			}
+			PCA = {
+				PCA_michael_a_aquino = {
+					set_nationality = ROOT
+				}
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_UFOlogist_media
-		icon = X
+		icon = GFX_goal_TEX_ufologist_media
 		cost = 6
 		x = 0
 		y = 2
@@ -1999,7 +2588,7 @@ focus_tree = {
 		
 		prerequisite = {
 			focus = TEX_continuance_of_the_roswell_clique
-			focus = TEX_address_the_united_nations
+			focus = TEX_return_of_the_majestic_twelve
 		}
 
 		available = {
@@ -2009,19 +2598,27 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_timed_idea = {
+				idea = TEX_ufologist_media_blitz
+				days = 600
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.04
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_explore_the_oceans
-		icon = X
+		icon = GFX_goal_TEX_fund_deep_sea_exploration
 		cost = 6
 		x = 0
 		y = 4
 		relative_position_id = TEX_form_the_earth_liberation_command_council
 		
 		prerequisite = {
-			focus = TEX_expand_MUFON
+			focus = TEX_establish_the_mib
 		}
 		prerequisite = {
 			focus = TEX_experimental_funding
@@ -2033,7 +2630,24 @@ focus_tree = {
 		
 		available_if_capitulated = yes
 
-		completion_reward = {
+		completion_reward = {	
+			country_event = texas.335
+			navy_experience = 100
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = bb_tech
+				category = cv_tech
+			}
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = ss_tech
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.5
+			}
 		}
 	}
 	
@@ -2045,10 +2659,10 @@ focus_tree = {
 	
 	focus = {
 		id = TEX_defense_of_earth_doctrine
-		icon = X
+		icon = GFX_goal_TEX_defense_of_earth
 		cost = 6
-		x = 11
-		y = 1
+		x = 9
+		y = 2
 		relative_position_id = TEX_form_the_earth_liberation_command_council
 		
 		mutually_exclusive = {
@@ -2064,25 +2678,28 @@ focus_tree = {
 			# focus = TEX_introduce_privatization
 		# }
 		# prerequisite = {
-			# focus = TEX_expand_MUFON
+			# focus = TEX_establish_the_mib
 		# }
 		# prerequisite = {
 			# focus = TEX_experimental_funding
 		# }
 
 		available = {
-			
+			has_country_flag = the_united_states_are_back
+			has_completed_focus = TEX_form_the_earth_liberation_command_council
 		}
 		
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_war_support = 0.1
+			add_ideas = TEX_defense_of_earth_doctrine
 		}
 	}
 	
 	focus = {
 		id = TEX_citadel_51
-		icon = X
+		icon = GFX_goal_TEX_citadel_51
 		cost = 6
 		x = -1
 		y = 1
@@ -2099,12 +2716,22 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			country_event = texas.342
+			add_victory_points = {
+				province = 4799
+				value = 10
+			}
+			hidden_effect = { set_province_name = { id = 4799 name = "Area 51"} }
+			set_capital = { state = 897 }		
+			897 = { 
+				set_state_name = "Area 51"
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_star_wars_program
-		icon = X
+		icon = GFX_goal_TEX_restore_star_wars
 		cost = 6
 		x = 0
 		y = 2
@@ -2121,12 +2748,21 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			# country_event = texas.343
+			every_owned_state = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_ideas = TEX_strategic_defense_initiative
 		}
 	}
 	
 	focus = {
 		id = TEX_call_for_a_global_ceasfire
-		icon = X
+		icon = GFX_goal_TEX_call_for_a_global_ceasfire
 		cost = 6
 		x = 1
 		y = 1
@@ -2144,6 +2780,9 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			every_country = {
+				country_event = texas_diplo.52
+			}
 		}
 	}
 	
@@ -2151,9 +2790,9 @@ focus_tree = {
 	
 	focus = {
 		id = TEX_first_strike_doctrine
-		icon = X
+		icon = GFX_goal_TEX_first_strike_doctrine
 		cost = 6
-		x = 4
+		x = 6
 		y = 0
 		relative_position_id = TEX_defense_of_earth_doctrine
 		
@@ -2170,25 +2809,33 @@ focus_tree = {
 			# focus = TEX_introduce_privatization
 		# }
 		# prerequisite = {
-			# focus = TEX_expand_MUFON
+			# focus = TEX_establish_the_mib
 		# }
 		# prerequisite = {
 			# focus = TEX_experimental_funding
 		# }
 
 		available = {
-			
+			has_country_flag = the_united_states_are_back
+			has_completed_focus = TEX_form_the_earth_liberation_command_council
 		}
 		
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_ideas = TEX_first_strike_doctrine
+			add_tech_bonus = {
+				name = rocket_engines
+				bonus = 1
+				uses = 1
+				category = rocketry
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_moon_forward_operating_base
-		icon = X
+		icon = GFX_goal_TEX_moon_forward_operating_base
 		cost = 6
 		x = 1
 		y = 1
@@ -2205,12 +2852,24 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			# country_event = texas.344
+			swap_ideas = {
+				remove_idea = TEX_first_strike_doctrine
+				add_idea = TEX_first_strike_doctrine2
+			}
+			375 = {
+				add_building_construction = {
+					type = rocket_site
+					level = 3
+					instant_build = yes
+				}
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_conquest_of_mars
-		icon = X
+		icon = GFX_goal_TEX_conquest_of_mars
 		cost = 6
 		x = 0
 		y = 2
@@ -2227,12 +2886,18 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			country_event = texas.345
+			swap_ideas = {
+				remove_idea = TEX_first_strike_doctrine2
+				add_idea = TEX_first_strike_doctrine3
+			}
+			add_command_power = 100
 		}
 	}
 	
 	focus = {
 		id = TEX_hypercharge_nasa_budget
-		icon = X
+		icon = GFX_goal_TEX_hypercharge_NASA_budget
 		cost = 6
 		x = -1
 		y = 1
@@ -2244,21 +2909,57 @@ focus_tree = {
 		}
 
 		available = {
-			
+			has_completed_focus = TEX_reopen_the_johnson_space_center
 		}
 		
 		available_if_capitulated = yes
 
 		completion_reward = {
+			if = {
+				limit = { 
+					NOT = { has_idea = TEX_NASA_SpaceAgency }
+				}
+				swap_ideas = {
+					remove_idea = TEX_NASA
+					add_idea = TEX_NASA2
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = TEX_NASA_SpaceAgency
+					add_idea = TEX_NASA_SpaceAgency2
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_the_space_force
-		icon = X
+		icon = GFX_goal_TEX_space_force
 		cost = 6
-		x = -2
-		y = 2
+		x = -3
+		y = 1
 		relative_position_id = TEX_first_strike_doctrine
 		
 		prerequisite = {
@@ -2267,18 +2968,24 @@ focus_tree = {
 		}
 
 		available = {
-			
+			has_completed_focus = TEX_hypercharge_nasa_budget
 		}
 		
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.50
+				uses = 2
+				category = special_forces_doctrine
+			}
+			add_ideas = TEX_the_space_force
 		}
 	}
 	
 	focus = {
 		id = TEX_expand_SETI
-		icon = X
+		icon = GFX_goal_TEX_expand_SETI
 		cost = 6
 		x = -1
 		y = 1
@@ -2295,12 +3002,24 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_ideas = TEX_SETI
+			add_tech_bonus = {
+				name = sef_bonus
+				bonus = 1
+				uses = 1
+				category = electronics
+			}
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
+				uses = 2
+				category = radar_tech
+			}
 		}
 	}
 	
 	focus = {
 		id = TEX_create_XCOM
-		icon = X
+		icon = GFX_goal_TEX_create_the_XCOM
 		cost = 6
 		x = 1
 		y = 1
@@ -2317,6 +3036,17 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_the_space_force
+				add_idea = TEX_XCOM
+			}
+			army_experience = 20
+			add_manpower = 3500
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = cat_special_forces_generic
+			}
 		}
 	}
 	
