@@ -100,11 +100,14 @@ technologies = {
 		category_self_propelled_artillery = {
 			soft_attack = 0.15
 		}
-
+		field_guns = {
+			soft_attack = 0.05
+		}
 		enable_equipment_modules = {
 			tank_small_cannon_2
 			tank_close_support_gun
-			#secondary_turret_close_support_gun #MM: Has art and loc but no module definition
+			### Do not uncomment this, this module has never been added to the game
+			## secondary_turret_close_support_gun
 		}
 
 		path = {
@@ -234,6 +237,9 @@ technologies = {
 		}
 		category_self_propelled_artillery = {
 			soft_attack = 0.1
+		}
+		field_guns = {
+			soft_attack = 0.05
 		}
 
 		path = {
@@ -476,9 +482,11 @@ technologies = {
 		enable_equipments = {
 			rocket_artillery_equipment_1
 		}
-#		enable_subunits = {
-#			rocket_artillery_brigade
-#		}
+
+		enable_subunits = {
+			rocket_battery
+			#rocket_artillery_brigade
+		}
 
 		enable_equipment_modules = {
 			tank_rocket_launcher
@@ -523,7 +531,7 @@ technologies = {
 		}
 
 		rocket_battery = {
-			soft_attack = 0.15
+			soft_attack = 0.1
 		}
 
 		path = {
@@ -707,14 +715,14 @@ technologies = {
 		anti_air_brigade = {
 			air_attack = 0.1
 		}
-		anti_air_battery = {
-			air_attack = 0.1
-		}
 		mot_anti_air_brigade = {
 			air_attack = 0.1
 		}
 		category_self_propelled_anti_air = {
 			air_attack = 0.15
+		}
+		category_self_propelled_anti_air_regimental_support = {
+			air_attack = 0.05
 		}
 		tech_air_damage_factor = -0.02
 
@@ -826,14 +834,14 @@ technologies = {
 		anti_air_brigade = {
 			air_attack = 0.1
 		}
-		anti_air_battery = {
-			air_attack = 0.1
-		}
 		mot_anti_air_brigade = {
 			air_attack = 0.1
 		}
 		category_self_propelled_anti_air = {
 			air_attack = 0.1
+		}
+		category_self_propelled_anti_air_regimental_support = {
+			air_attack = 0.05
 		}
 		enable_equipment_modules = {
 			tank_heavy_cannon_2
@@ -888,13 +896,13 @@ technologies = {
 		anti_air_brigade = {
 			air_attack = 0.1
 		}
-		anti_air_battery = {
-			air_attack = 0.1
-		}
 		mot_anti_air_brigade = {
 			air_attack = 0.1
 		}
 		category_self_propelled_anti_air = {
+			air_attack = 0.05
+		}
+		category_self_propelled_anti_air_regimental_support = {
 			air_attack = 0.05
 		}
 
@@ -1005,6 +1013,21 @@ technologies = {
 			tank_buster_1
 			lc_high_velocity_cannon_turret #Module for Land Cruiser
 		}
+
+		enable_subunits = {
+			anti_tank_battery
+		}
+
+		on_research_complete = {
+			if = {
+				limit = { has_dlc_pfot = yes }
+				custom_effect_tooltip = {
+					localization_key = SP_UNLOCK_PROJECT
+					PROJECT = sp_land_large_caliber_kinetic_energy_sabot
+				}
+			}
+		}
+
 		path = {
 			leads_to_tech = antitank1
 			research_cost_coeff = 1
@@ -1080,7 +1103,11 @@ technologies = {
 
 		category_tank_destroyers = {
 			hard_attack = 0.15
-			ap_attack = 0.2
+			ap_attack = 0.05
+		}
+		category_tank_destroyer_regimental_support = {
+			hard_attack = 0.05
+			ap_attack = 0.05
 		}
 
 		enable_equipment_modules = {
@@ -1145,10 +1172,10 @@ technologies = {
 
 	antitank2 = {
 
-		mot_anti_tank_brigade = {
-			hard_attack = 0.1
-			ap_attack = 0.1
-		}
+		#mot_anti_tank_brigade = {
+		#	hard_attack = 0.1
+		#	ap_attack = 0.1
+		#}
 		armored_car = {
 			ap_attack = 0.1
 		}	
@@ -1238,6 +1265,10 @@ technologies = {
 			hard_attack = 0.1
 			ap_attack = 0.05
 		}
+		category_tank_destroyer_regimental_support = {
+			hard_attack = 0.05
+			ap_attack = 0.05
+		}
 
 		path = {
 			leads_to_tech = antitank4
@@ -1317,6 +1348,11 @@ technologies = {
 		}
 
 		category_tank_destroyers = {
+			hard_attack = 0.05
+			ap_attack = 0.05
+		}
+
+		category_tank_destroyer_regimental_support = {
 			hard_attack = 0.05
 			ap_attack = 0.05
 		}
@@ -1616,6 +1652,9 @@ technologies = {
 		category_self_propelled_artillery = {
 			soft_attack = 0.1
 		}
+		field_guns = {
+			soft_attack = 0.05
+		}
 
 		force_use_small_tech_layout = yes
 		research_cost = 1.5
@@ -1636,19 +1675,6 @@ technologies = {
 		special_project_specialization = { specialization_land specialization_air }
 	}
 
-	#TAOG
-	the_thunder_at_our_gates_artillery = {
-
-		artillery_brigade = {
-			combat_width = -0.1
-		}
-
-	}
-	#End TAOG
-
-
-	#Project Wolfdog
-	#Pfot
 	sp_land_large_caliber_kinetic_energy_sabot_gd_tech = {
 		#HIDDEN EFFECT FOR THE LARGE CALIBER KINETIC ENERGY PENETRATOR 
 		
@@ -1772,6 +1798,9 @@ technologies = {
 			ap_attack = 0.15
 		}
 		category_tank_destroyers = {
+			ap_attack = 0.05
+		}
+		category_tank_destroyer_regimental_support = {
 			ap_attack = 0.05
 		}
 
