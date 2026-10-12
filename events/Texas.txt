@@ -1298,21 +1298,16 @@ country_event = {
 	
 	option = { #Family Feud
 		name = texas.50.o1
-		random_list = {
-			50 = {
-				country_event = {
-					id = texas.52
-					days = 3
+		trigger = {
+			USA = {
+				NOT = {
+					has_country_leader = {
+						name = "Jeb Bush"
+						ruling_only = yes
+					}
 				}
 			}
-			50 = {
-				
-			}
 		}
-	}
-	
-	option = { #Family
-		name = texas.50.o2
 		random_list = {
 			75 = {
 				country_event = {
@@ -1321,10 +1316,46 @@ country_event = {
 				}
 			}
 			25 = {
+					country_event = {
+					id = texas.520
+					days = 3
+				}
+			}
+		}
+	}
+	
+	option = { #Family Feud
+		name = texas.50.o1
+		trigger = {
+			USA = {
+				has_country_leader = {
+					name = "Jeb Bush"
+					ruling_only = yes
+				}
+			}
+		}
+		random_list = {
+			25 = {
 				country_event = {
+					id = texas.520
+					days = 3
+				}
+			}
+			75 = {
+					country_event = {
 					id = texas.51
 					days = 3
 				}
+			}
+		}
+	}
+	
+	option = { #Family
+		name = texas.50.o2
+		hidden_effect = {
+			country_event = {
+				id = texas.520
+				days = 3
 			}
 		}
 	}
@@ -1364,6 +1395,48 @@ country_event = {
 		add_political_power = 100
 		add_manpower = 1
 		set_country_flag = TEX_jeb_defected
+		set_country_flag = TEX_dubya_flag
+	}
+}
+
+#Bush Alone
+country_event = {
+	id = texas.520
+	title = texas.520.t
+	desc = {
+		text = texas.520.d
+		trigger = {
+			USA = {
+				NOT = {
+					has_country_leader = {
+						name = "Jeb Bush"
+						ruling_only = yes
+					}
+				}
+			}
+		}
+	}
+	desc = {
+		text = texas.520.d_2
+		trigger = {
+			USA = {
+				has_country_leader = {
+					name = "Jeb Bush"
+					ruling_only = yes
+				}
+			}
+		}
+	}
+	picture = dubya_crying
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Sadge
+		name = texas.520.o1
+		add_stability = -0.02
+		set_country_flag = TEX_dubya_flag
 	}
 }
 
@@ -3754,6 +3827,12 @@ country_event = {
 	option = {
 		name = texas.154.o1
 		set_country_flag = TEX_DUBYA_awakens
+		hidden_effect = {
+			country_event = {
+				id = texas.347
+				days = 30
+			}
+		}
 	}
 	
 	option = {
@@ -3897,6 +3976,12 @@ country_event = {
 			remove_ideas = TEX_Second_Republic
 			remove_ideas = TEX_One_Republic_Dominance
 			remove_ideas = TEX_Mutilated_Rose
+		}
+		SOV = {
+			remove_opinion_modifier = {
+				target = TEX
+				modifier = soviet_outrage
+			}
 		}
 	}
 	
@@ -4046,6 +4131,12 @@ country_event = {
 			load_focus_tree = texas_communist_focus
 			add_ideas = TEX_overwhelming_anti_communist_resistance
 		}
+		SOV = {
+			remove_opinion_modifier = {
+				target = TEX
+				modifier = soviet_outrage
+			}
+		}
 	}
 }
 
@@ -4127,6 +4218,7 @@ country_event = {
 	
 	option = {
 		name = texas.164.o1
+		load_focus_tree = texas_cults_focus
 		set_politics = {
 			ruling_party = nationalist
 			elections_allowed = no
@@ -4671,7 +4763,7 @@ country_event = {
 	}
 	
 	option = {
-		name = texas.189.o1
+		name = texas.189.o2
 		add_political_power = -10
 	}
 }
@@ -6780,7 +6872,7 @@ country_event = {
 		add_political_power = 10
 		USA = { country_event = usa.15 }
 		set_country_flag = TEX_texan_nationalist_uprising
-		create_dynamic_country = {	#Texas Nationalist
+		create_dynamic_country = {	#Texas Rebel
 			original_tag = TEX
 			copy_tag = TEX
 			
@@ -8044,6 +8136,13 @@ country_event = {
 	
 	is_triggered_only = yes
 	
+	trigger = {
+		has_country_leader = {
+			name = "Antonin Scalia"
+			ruling_only = yes
+		}
+	}
+	
 	option = { #Alive
 		name = texas.346.o1
 		add_political_power = 10
@@ -8054,6 +8153,438 @@ country_event = {
 		TEX_allen_weh = {
 			promote_character = fiscal_conservative
 		}
+	}
+}
+
+#Nukes
+country_event = {
+	id = texas.347
+	title = texas.347.t
+	desc = texas.347.d
+	picture = dubya_and_saddam
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = texas.347.o1
+		add_opinion_modifier = {
+			target = IRQ
+			modifier = helped_us_with_nukes
+		}
+		hidden_effect = {
+			country_event = {
+				id = texas.348
+				days = 4
+			}
+		}
+	}
+}
+
+#Rummy
+country_event = {
+	id = texas.348
+	title = texas.348.t
+	desc = texas.348.d
+	picture = bush_and_rummy
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	major = yes
+	show_major = {
+		OR = {
+			tag = TEX
+			tag = USA
+		}
+	}
+	
+	option = { #Cool
+		name = texas.348.o1
+		trigger = {
+			tag = TEX
+		}
+		country_event = {
+			id = texas.349
+			days = 1
+		}
+	}
+	
+	option = { #Cool
+		name = texas.348.o1
+		trigger = {
+			tag = USA
+		}
+		declare_war_on = {
+			target = TEX
+			type = annex_everything 
+		}
+	}
+}
+
+#War
+country_event = {
+	id = texas.349
+	title = texas.349.t
+	desc = texas.349.d
+	picture = bush_address
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = texas.349.o1
+		add_war_support = 0.10
+		set_country_flag = TEX_bush_legacy
+		mark_focus_tree_layout_dirty = yes
+		TEX_george_w_bush = {
+			set_portraits = {
+				civilian = { large = "gfx/leaders/TEX/Portrait_TEX_George_Bush_Cowboy.png" }
+			}
+		}
+		set_country_leader_description = {
+			desc = "POLITICS_TEX_DUBYA_DESC"
+		}
+	}
+}
+
+#Cheney and Rummy
+country_event = {
+	id = texas.350
+	title = texas.350.t
+	desc = texas.350.d
+	picture = cheney_purges_rumsfeld
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	major = yes
+	show_major = {
+		OR = {
+			tag = TEX
+			tag = USA
+		}
+	}
+	
+	option = { #Cool
+		name = texas.350.o1
+		trigger = {
+			tag = TEX
+		}
+		add_stability = 0.05
+	}
+	
+	option = { #Cool
+		name = texas.350.o1
+		trigger = {
+			tag = USA
+		}
+		add_stability = -0.05
+	}
+}
+
+#Funeral
+country_event = {
+	id = texas.351
+	title = texas.351.t
+	desc = texas.351.d
+	picture = bush_at_funeral
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = texas.351.o1
+		add_stability = -0.05
+	}
+}
+
+#War won
+country_event = {
+	id = texas.352
+	title = texas.352.t
+	desc = texas.352.d
+	picture = bush_address
+	
+	fire_only_once = yes
+	
+	trigger = {
+		tag = TEX
+		has_country_flag = TEX_bush_legacy
+		has_country_leader = {
+			character = TEX_george_w_bush
+			ruling_only = yes
+		}
+		has_war = no
+		USA = { exists = no }
+		owns_state = 365
+	}
+	
+	option = { #Cool
+		name = texas.352.o1
+		if = {
+			limit = {
+				NOT = { has_country_flag = TEX_hide_opening_tree }
+			}
+			set_country_flag = TEX_hide_opening_tree 
+		}
+		set_country_flag = TEX_DUBYA_unlocked
+		mark_focus_tree_layout_dirty = yes
+		set_cosmetic_tag = TEX_NAR
+		TEX_george_w_bush = {
+			set_character_name = "George W. Bush"
+		}
+	}
+}
+
+#They Misunderestimated Me
+country_event = {
+	id = texas.353
+	title = texas.353.t
+	desc = texas.353.d
+	picture = bush_nar_declared
+	
+	fire_only_once = yes
+	is_triggered_only = yes 
+	
+	option = { #Cool
+		name = texas.353.o1
+		TEX_george_w_bush = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader={
+					ideology=american_nationalist
+					expire="1.1.1.1"
+					id=-1
+				}
+			}
+		}
+		set_politics = {
+			ruling_party = nationalist
+		}
+		set_party_name = {
+			name = TEX_gop_party
+			long_name = TEX_gop_party_long
+			ideology = nationalist
+		}
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.34
+		}
+		add_country_leader_trait = TEX_all_hat_no_cattle
+	}
+}
+
+#Oil Rig Explodes
+country_event = {
+	id = texas.354
+	title = texas.354.t
+	desc = texas.354.d
+	picture = oil_rig_exlodes
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = texas.354.o1
+		add_manpower = -20
+	}
+}
+
+#Morality Camps
+country_event = {
+	id = texas.355
+	title = texas.355.t
+	desc = texas.355.d
+	picture = morality_camps
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = texas.355.o1
+		add_manpower = -100
+	}
+}
+
+#PATRIOT act
+country_event = {
+	id = texas.356
+	title = texas.356.t
+	desc = texas.356.d
+	picture = patriot_act
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = texas.356.o1
+		add_war_support = 0.02
+	}
+}
+
+#Intranets
+country_event = {
+	id = texas.357
+	title = texas.357.t
+	desc = texas.357.d
+	picture = bush_computer
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = texas.357.o1
+		add_political_power = 20
+	}
+}
+
+#Enclave Properties
+country_event = {
+	id = texas.358
+	title = texas.358.t
+	desc = texas.358.d
+	picture = dubya_economic_policy
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = texas.358.o1
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+#Suburbia
+country_event = {
+	id = texas.359
+	title = texas.359.t
+	desc = texas.359.d
+	picture = suburbia
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = texas.359.o1
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+	}
+}
+
+#Texas Supremacy
+country_event = {
+	id = texas.360
+	title = texas.360.t
+	desc = texas.360.d
+	picture = dubya_cowboy
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = texas.360.o1
+		add_war_support = 0.02
+	}
+}
+
+#New Army
+country_event = {
+	id = texas.361
+	title = texas.361.t
+	desc = texas.361.d
+	picture = bush_seizes_control
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = texas.361.o1
+		add_war_support = 0.02
+	}
+}
+
+#Super Soldiers
+country_event = {
+	id = texas.362
+	title = texas.362.t
+	desc = texas.362.d
+	picture = bush_enclave
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = texas.362.o1
+		add_manpower = 2300
+	}
+}
+
+#Mission Accomplished
+country_event = {
+	id = texas.363
+	title = texas.363.t
+	desc = texas.363.d
+	picture = dubya_cult
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = texas.363.o1
+		add_war_support = 0.05
+	}
+}
+
+#North American Union
+country_event = {
+	id = texas.364
+	title = texas.364.t
+	desc = texas.364.d
+	picture = bush_north_american_union
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = texas.364.o1
+		add_stability = 0.02
+	}
+}
+
+#Makin' Poppy Proud
+country_event = {
+	id = texas.365
+	title = texas.365.t
+	desc = texas.365.d
+	picture = crawford_ranch
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Cool
+		name = texas.365.o1
+		add_stability = -0.05
 	}
 }
 
@@ -8546,14 +9077,14 @@ country_event = {
 	is_triggered_only = yes
 		
 	option = { #Scott Turner
-		name = texas_elections.7.o1
+		name = texas_elections.7.o2
 		TEX_scott_turner = {
 			promote_character = texas_nationalism
 		}
 	}
 	
 	option = { #Nate Smith
-		name = texas_elections.7.o2
+		name = texas_elections.7.o1
 		TEX_nate_smith = {
 			promote_character = texas_nationalism
 		}
@@ -9703,6 +10234,16 @@ country_event = {
 					days = 1420
 				}
 			}
+			if = {
+				limit = {
+					date > 2016.2.13
+				}
+				country_event = {
+					id = texas.346
+					days = 86
+					random_days = 50
+				}
+			}
 		}
 		set_country_flag = TEX_indepdendent_republicans_won_last_election
 		if = {
@@ -9838,7 +10379,7 @@ country_event = {
 				}
 			}
 			country_event = {
-				id = texas_elections.22
+				id = texas_elections.21
 				days = 3
 			}
 		}
@@ -9852,7 +10393,21 @@ country_event = {
 			}
 			country_event = {
 				id = texas_elections.24
-				days = 3
+				days = 1300
+			}
+		}
+		
+		if = {
+			limit = {
+				has_country_leader = {
+					name = "Ron Paul"
+					ruling_only = yes
+				}
+				has_country_flag = TEX_paul_abandoned_anarchism
+			}
+			country_event = {
+				id = texas_elections.22
+				days = 1300
 			}
 		}
 		
@@ -12560,6 +13115,129 @@ country_event = {
 	}
 }
 
+#Dubya Demands Submission
+country_event = {
+	id = texas_diplo.55
+	title = texas_diplo.55.t
+	desc = texas_diplo.55.d
+	picture = dubya_forpol
+	
+	is_triggered_only = yes
+	
+	option = { #Yeah, sure
+		name = texas_diplo.55.o1
+		ai_chance = {
+			factor = 40
+		}
+		TEX = { country_event = texas_diplo.56 }
+	}
+	
+	option = { #No
+		name = texas_diplo.55.o2
+		ai_chance = {
+			factor = 60
+		}
+		TEX = { country_event = texas_diplo.57 }
+	}
+}
+
+#Nation accepts
+country_event = {
+	id = texas_diplo.56
+	title = texas_diplo.56.t
+	desc = texas_diplo.56.d
+	picture = dubya_forpol
+	
+	is_triggered_only = yes
+	
+	option = { #Yeah, sure
+		name = texas_diplo.56.o1
+		annex_country = {
+			target = FROM
+			transfer_troops = yes
+		}
+		FROM = {
+			every_unit_leader = {
+				set_nationality = TEX 
+			}
+		}
+	}
+}
+
+#Nation refuses
+country_event = {
+	id = texas_diplo.57
+	title = texas_diplo.57.t
+	desc = texas_diplo.57.d
+	picture = dubya_forpol
+	
+	is_triggered_only = yes
+	
+	option = { #FU!!!!
+		name = texas_diplo.57.o1
+		create_wargoal = {
+			target = FROM
+			type = annex_everything 
+		}
+	}
+}
+
+#Dubya Offers Alliance
+country_event = {
+	id = texas_diplo.58
+	title = texas_diplo.58.t
+	desc = texas_diplo.58.d
+	picture = dubya_forpol
+	
+	is_triggered_only = yes
+	
+	option = { #Yeah, sure
+		name = texas_diplo.58.o1
+		ai_chance = {
+			factor = 60
+		}
+		TEX = { country_event = texas_diplo.59 }
+	}
+	
+	option = { #No
+		name = texas_diplo.58.o2
+		ai_chance = {
+			factor = 40
+		}
+		TEX = { country_event = texas_diplo.60 }
+	}
+}
+
+#Nation accepts
+country_event = {
+	id = texas_diplo.59
+	title = texas_diplo.59.t
+	desc = texas_diplo.59.d
+	picture = dubya_forpol
+	
+	is_triggered_only = yes
+	
+	option = { #Yeah, sure
+		name = texas_diplo.59.o1
+		add_to_faction = ROOT
+	}
+}
+
+#Nation refuses
+country_event = {
+	id = texas_diplo.60
+	title = texas_diplo.60.t
+	desc = texas_diplo.60.d
+	picture = dubya_forpol
+	
+	is_triggered_only = yes
+	
+	option = { #FU!!!!
+		name = texas_diplo.60.o1
+		add_political_power = -10
+	}
+}
+
 #######################
 ### PEACEOUT EVENTS ###
 #######################
@@ -12592,7 +13270,7 @@ country_event = {
 		}
 		add_timed_idea = {
 			idea = USA_failure_in_texas
-			days = 400
+			days = 600
 		}
 		remove_ideas = idea_usa_texan_troubles
 	}
@@ -12680,7 +13358,7 @@ country_event = {
 		}
 		add_timed_idea = {
 			idea = USA_failure_in_texas
-			days = 600
+			days = 800
 		}
 		remove_ideas = idea_usa_texan_troubles
 	}
@@ -12759,7 +13437,7 @@ country_event = {
 		add_stability = -0.1
 		add_timed_idea = {
 			idea = USA_failure_in_texas
-			days = 250
+			days = 500
 		}
 		remove_ideas = idea_usa_texan_troubles
 		set_global_flag = TEX_republic_peaceout
