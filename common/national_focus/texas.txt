@@ -868,9 +868,14 @@ focus_tree = {
 		y = 1
 		
 		select_effect = {
-			country_event = {
-				id = texas.60
-				days = 1
+			if = {
+				limit = {
+					NOT = { has_country_flag = TEX_junta_restored_democracy }
+				}
+				country_event = {
+					id = texas.60
+					days = 1
+				}
 			}
 		}
 
@@ -881,7 +886,15 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			country_event = texas.75
+			if = {
+				limit = {
+					NOT = { has_country_flag = TEX_junta_restored_democracy }
+				}
+				country_event = texas.75
+			}
+			else = {
+				country_event = texas.367
+			}
 		}
 	}
 	

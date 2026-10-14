@@ -2165,11 +2165,11 @@ country_event = {
 			}
 			country_event = {
 				id = texas.104
-				days = 1360
+				days = 1340
 			}
 			country_event = {
 				id = texas.105
-				days = 1360
+				days = 1340
 			}
 			country_event = {
 				id = texas_elections.27
@@ -2795,8 +2795,9 @@ country_event = {
 		name = texas.104.o1
 		country_event = {
 			id = texas_elections.14
-			days = 10
+			days = 30
 		}
+		set_country_flag = TEX_pres_didnt_run_for_reelection
 	}
 }
 
@@ -2822,8 +2823,9 @@ country_event = {
 		name = texas.105.o1
 		country_event = {
 			id = texas_elections.15
-			days = 10
+			days = 30
 		}
+		set_country_flag = TEX_pres_didnt_run_for_reelection
 	}
 }
 
@@ -7667,6 +7669,7 @@ country_event = {
 		name = texas.320.o1
 		set_country_flag = TEX_can_hold_elections
 		load_focus_tree = texas_focus
+		set_country_flag = TEX_junta_restored_democracy
 	}
 }
 
@@ -8727,6 +8730,134 @@ country_event = {
 			}
 		}
 		set_cosmetic_tag = TEX_AMRCONFED
+	}
+}
+
+#Post-War Elections
+country_event = {
+	id = texas.367
+	title = texas.367.t
+	desc = texas.367.d
+	picture = texas_election
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = { #Texas Democrats
+		name = texas.367.o1
+		trigger = {
+			NOT = { has_country_flag = TEX_one_republic_dominates}
+			if = {
+				limit = { has_country_flag = TEX_davis_is_nominee }
+				has_country_flag = TEX_one_republic_support_collapses
+			}
+		}
+		if = {
+			limit = { has_country_flag = TEX_dems_are_newdem }
+			add_popularity = {
+				ideology = new_democrat
+				popularity = 0.05
+			}
+			set_politics = {
+				ruling_party = new_democrat
+			}
+		}
+		else = {
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.05
+			}
+			set_politics = {
+				ruling_party = liberal
+			}
+		}
+		set_country_flag = TEX_post_war_election
+		swap_ideas = {
+			remove_idea = TEX_One_Republic_Dominance
+			add_idea = TEX_One_Republic_Legacy
+		}
+		add_ideas = TEX_Shadow_of_Martial_Law
+		set_country_flag = TEX_one_republic_defeated
+		set_country_flag = TEX_Dems_Win_2013
+		set_country_flag = TEX_libertarian_party_gone
+		hidden_effect = {
+			country_event = {
+				id = texas_elections.7
+				days = 300
+			}
+			country_event = {
+				id = texas_elections.9
+				days = 700
+			}
+			country_event = {
+				id = texas.104
+				days = 1340
+			}
+			country_event = {
+				id = texas.105
+				days = 1340
+			}
+			country_event = {
+				id = texas_elections.27
+				days = 1400
+			}
+		}
+		set_country_flag = TEX_democrats_won_last_election
+	}
+	
+	option = { #IndReps
+		name = texas.367.o2
+		trigger = {
+			NOT = { has_country_flag = TEX_one_republic_dominates}
+			NOT = { has_country_flag = TEX_indreps_endorse_perot}
+		}
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.05
+		}
+		set_politics = {
+			ruling_party = national_conservative
+		}
+		set_country_flag = TEX_post_war_election
+		swap_ideas = {
+			remove_idea = TEX_One_Republic_Dominance
+			add_idea = TEX_One_Republic_Legacy
+		}
+		add_ideas = TEX_Shadow_of_Martial_Law
+		set_country_flag = TEX_one_republic_defeated
+		set_country_flag = TEX_IndReps_Win_2013
+		set_country_flag = TEX_libertarian_party_gone
+		hidden_effect = {
+			country_event = {
+				id = texas_elections.7
+				days = 300
+			}
+			country_event = {
+				id = texas_elections.9
+				days = 700
+			}
+			country_event = {
+				id = texas_elections.16
+				days = 1370
+			}
+		}
+		set_country_flag = TEX_indepdendent_republicans_won_last_election
+	}
+	after = {
+		clr_country_flag = TEX_can_hold_elections
+		set_variable = { TEX_elections_held = 1 }
+		hidden_effect = {
+			country_event = {
+				id = texas_elections.100
+				days = 1460
+			}
+		}
+		set_party_name = {
+			name = TEX_nationalist_party
+			long_name = TEX_nationalist_party_long
+			ideology = nationalist
+		}
 	}
 }
 
