@@ -2288,6 +2288,13 @@ focus_tree = {
 				remove_idea = TEX_taxing_the_rich
 				add_idea = TEX_shredding_reaganomics
 			}
+			hidden_effect = {
+				country_event = {
+					id = texas.318
+					days = 50
+					random_days = 10
+				}
+			}
 		}
 	}
 	
@@ -6674,6 +6681,15 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = TEX_eliminate_big_money
+		}
+		
+		available = {
+			NOT = {
+				has_country_leader = {
+					name = "Ross Perot"
+					ruling_only = yes
+				}
+			}
 		}
 		
 		relative_position_id = TEX_Reform_Second_Term
@@ -12646,9 +12662,13 @@ focus_tree = {
 		
 		allow_branch = {
 			NOT = { 
-				has_country_flag = TEX_victory_of_true_libertarianism_flag 
-				has_country_flag = unifying_america 
+				has_country_flag = TEX_victory_of_true_libertarianism_flag
+				AND = {
+					has_country_flag = unifying_america 
+					NOT = { has_country_flag = TEX_perot_america }
+				}
 				has_country_flag = TEX_libertarian_restoring_america 
+				has_country_flag = the_united_states_are_back
 			}
 		}
 
@@ -13439,6 +13459,7 @@ focus_tree = {
 		mutually_exclusive = {
 			focus = TEX_democratic_league
 			focus = TEX_support_the_heartlands
+			focus = TEX_perots_america
 			focus = TEX_neutrality_in_global_affairs
 		}
 		
@@ -13456,6 +13477,11 @@ focus_tree = {
 			}
 			RUS = {
 				is_faction_leader = yes
+			}
+			hidden_trigger = {
+				NOT = { has_country_flag = TEX_perot_dl }
+				NOT = { has_country_flag = TEX_perot_isolation }
+				NOT = { has_country_flag = TEX_perot_america }
 			}
 		}
 		
@@ -13616,6 +13642,7 @@ focus_tree = {
 		mutually_exclusive = {
 			focus = TEX_moscow_accord
 			focus = TEX_support_the_heartlands
+			focus = TEX_perots_america
 			focus = TEX_neutrality_in_global_affairs
 		}
 		
@@ -13633,6 +13660,10 @@ focus_tree = {
 			}
 			CAN = {
 				is_faction_leader = yes 
+			}
+			hidden_trigger = {
+				NOT = { has_country_flag = TEX_perot_isolation }
+				NOT = { has_country_flag = TEX_perot_america }
 			}
 		}
 		
@@ -13797,6 +13828,10 @@ focus_tree = {
 				exists = yes
 				is_subject = no
 			}
+		}
+		
+		allow_branch = {
+			NOT = { has_country_flag = TEX_perot_america }
 		}
 		
 		relative_position_id = TEX_global_alignment
@@ -14055,6 +14090,214 @@ focus_tree = {
 		}
 	}
 	
+	# - Perot's America
+	
+	focus = {
+		id = TEX_perots_america
+		icon = GFX_goal_TEX_perots_america
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_global_alignment
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_moscow_accord
+			focus = TEX_democratic_league
+			focus = TEX_neutrality_in_global_affairs
+		}
+		
+		available = {
+			
+		}
+		
+		allow_branch = {
+			has_country_flag = TEX_perot_america
+			NOT = { 
+				has_country_flag = TEX_victory_of_true_libertarianism_flag
+				has_country_flag = TEX_libertarian_restoring_america 
+				has_country_flag = the_united_states_are_back 
+			}
+		}
+		
+		relative_position_id = TEX_global_alignment
+		x = 1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			set_country_flag = unifying_america
+			enable_unification_decisions = yes
+			add_timed_idea = {
+				idea = TEX_reform_restore_america
+				days = 500
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_align_moderate_democracies
+		icon = GFX_goal_TEX_perot_align_democracies
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_perots_america
+		}
+		
+		available = {
+			
+		}
+		
+		relative_position_id = TEX_perots_america
+		x = 0
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			core_MOT = yes
+			core_LIN = yes
+			core_UTA = yes
+			core_ARI = yes
+			core_MWA = yes
+			core_GRL = yes
+			core_ILL = yes
+			create_wargoal = {
+				type = annex_everything
+				target = LIN
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = MOT
+			}
+			if = {
+				limit = { 
+					GRL = {
+						exists = yes
+						is_subject = no
+					}
+				}
+				GRL = { country_event = texas_diplo.61 }
+			}
+			if = {
+				limit = { 
+					ILL = {
+						exists = yes
+						is_subject = no
+					}
+				}
+				ILL = { country_event = texas_diplo.61 }
+			}
+			if = {
+				limit = { 
+					MWA = {
+						exists = yes
+						is_subject = no
+					}
+				}
+				MWA = { country_event = texas_diplo.61 }
+			}
+			if = {
+				limit = { 
+					UTA = {
+						exists = yes
+						is_subject = no
+					}
+				}
+				UTA = { country_event = texas_diplo.61 }
+			}
+			if = {
+				limit = { 
+					ARI = {
+						exists = yes
+						is_subject = no
+					}
+				}
+				ARI = { country_event = texas_diplo.61 }
+			}
+			if = {
+				limit = { 
+					CSD = {
+						exists = yes
+						is_subject = no
+					}
+				}
+				CSD = { country_event = texas_diplo.61 }
+			}
+			if = {
+				limit = { 
+					AMC = {
+						exists = yes
+						is_subject = no
+					}
+				}
+				AMC = { country_event = texas_diplo.61 }
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_destroy_cia_plot
+		icon = GFX_goal_TEX_destroy_perot_cia_plot
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_align_moderate_democracies
+		}
+		
+		available = {
+			country_exists = USA
+		}
+		
+		relative_position_id = TEX_perots_america
+		x = 0
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			core_USA = yes
+			create_wargoal = {
+				type = annex_everything
+				target = USA
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_crush_extremists
+		icon = GFX_goal_TEX_squash_socialist_radicals
+		cost = 5
+		
+		prerequisite = {
+			focus = TEX_destroy_cia_plot
+		}
+		
+		available = {
+			
+		}
+		
+		relative_position_id = TEX_perots_america
+		x = 0
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			core_PCA = yes
+			core_NEA = yes
+			create_wargoal = {
+				type = annex_everything
+				target = PCA
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = NEA
+			}
+		}
+	}
+	
 	# - Neutral
 	
 	focus = {
@@ -14070,10 +14313,14 @@ focus_tree = {
 			focus = TEX_moscow_accord
 			focus = TEX_democratic_league
 			focus = TEX_support_the_heartlands
+			focus = TEX_perots_america
 		}
 		
 		available = {
-			
+			hidden_trigger = {
+				NOT = { has_country_flag = TEX_perot_dl }
+				NOT = { has_country_flag = TEX_perot_america }
+			}
 		}
 		
 		relative_position_id = TEX_global_alignment

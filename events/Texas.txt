@@ -732,7 +732,7 @@ country_event = {
 	id = texas.32
 	title = texas.32.t
 	desc = texas.32.d
-	picture = texas_puppet
+	picture = canada_texas_relations
 	
 	fire_only_once = yes
 	
@@ -778,7 +778,7 @@ country_event = {
 	id = texas.33
 	title = texas.33.t
 	desc = texas.33.d
-	picture = texas_puppet
+	picture = canada_texas_relations
 	
 	fire_only_once = yes
 	
@@ -798,7 +798,7 @@ country_event = {
 	id = texas.34
 	title = texas.34.t
 	desc = texas.34.d
-	picture = texas_puppet
+	picture = canada_texas_relations
 	
 	fire_only_once = yes
 	
@@ -823,7 +823,7 @@ country_event = {
 	id = texas.35
 	title = texas.35.t
 	desc = texas.35.d
-	picture = texas_puppet
+	picture = soviet_union_texas_relations
 	
 	fire_only_once = yes
 	
@@ -851,7 +851,7 @@ country_event = {
 	id = texas.36
 	title = texas.36.t
 	desc = texas.36.d
-	picture = texas_puppet
+	picture = tex_mex_relations
 	
 	fire_only_once = yes
 	
@@ -881,7 +881,7 @@ country_event = {
 	id = texas.37
 	title = texas.37.t
 	desc = texas.37.d
-	picture = texas_puppet
+	picture = tex_mex_relations
 	
 	fire_only_once = yes
 	
@@ -901,7 +901,7 @@ country_event = {
 	id = texas.38
 	title = texas.38.t
 	desc = texas.38.d
-	picture = texas_puppet
+	picture = tex_mex_relations
 	
 	fire_only_once = yes
 	
@@ -2164,12 +2164,12 @@ country_event = {
 				days = 700
 			}
 			country_event = {
-				id = texas_elections.14
-				days = 1370
+				id = texas.104
+				days = 1360
 			}
 			country_event = {
-				id = texas_elections.15
-				days = 1370
+				id = texas.105
+				days = 1360
 			}
 			country_event = {
 				id = texas_elections.27
@@ -2768,6 +2768,61 @@ country_event = {
 		add_popularity = {
 			ideology = nationalist
 			popularity = -0.01
+		}
+	}
+}
+
+#Fried no second term
+country_event = {
+	id = texas.104
+	title = texas.104.t
+	desc = texas.104.d
+	picture = friedman_not_running_again
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_country_leader = {
+			name = "Kinky Friedman"
+			ruling_only = yes
+		}
+		NOT = { has_country_flag = TEX_kinky_running_for_second_term }
+	}
+	
+	option = {
+		name = texas.104.o1
+		country_event = {
+			id = texas_elections.14
+			days = 10
+		}
+	}
+}
+
+#LBJR no second term
+country_event = {
+	id = texas.105
+	title = texas.105.t
+	desc = texas.105.d
+	picture = lbjr_no_second_term
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_country_leader = {
+			name = "Lynda Bird Johnson-Robb"
+			ruling_only = yes
+		}
+	}
+	
+	option = {
+		name = texas.105.o1
+		country_event = {
+			id = texas_elections.15
+			days = 10
 		}
 	}
 }
@@ -4440,7 +4495,26 @@ country_event = {
 country_event = {
 	id = texas.174
 	title = texas.174.t
-	desc = texas.174.d
+	desc = {
+		text = texas.174.d
+		trigger = {
+			NOT = {
+				has_country_leader = {
+					name = "Ross Perot"
+					ruling_only = yes
+				}
+			}
+		}
+	}
+	desc = {
+		text = texas.174.d_2
+		trigger = {
+			has_country_leader = {
+				name = "Ross Perot"
+				ruling_only = yes
+			}
+		}
+	}
 	picture = president_speaks_to_congress_texas
 	
 	fire_only_once = yes
@@ -7532,6 +7606,35 @@ country_event = {
 	}
 }
 
+#Perot FP
+country_event = {
+	id = texas.318
+	title = texas.318.t
+	desc = texas.318.d
+	picture = perot_and_jobs
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = texas.318.o1
+		set_country_flag = TEX_perot_dl
+	}
+	option = {
+		name = texas.318.o2
+		set_country_flag = TEX_perot_isolation
+	}
+	option = {
+		name = texas.318.o3
+		ai_chance = {
+			factor = 0
+		}
+		set_country_flag = TEX_perot_america
+		mark_focus_tree_layout_dirty = yes
+	}
+}
+
 #State of Emergency Declared
 country_event = {
 	id = texas.319
@@ -8599,6 +8702,34 @@ country_event = {
 	}
 }
 
+#REFORM! Part 3 | Pretty Good
+country_event = {
+	id = texas.366
+	title = texas.366.t
+	desc = texas.366.d
+	picture = perot_reunifies_america
+	
+	fire_only_once = yes
+	
+	trigger = {
+		has_country_leader = {
+			name = "Ross Perot"
+			ruling_only = yes
+		}
+		has_country_flag = the_united_states_are_back
+	}
+	
+	option = { #Cool
+		name = texas.366.o1
+		TEX_ross_perot = {
+			set_portraits = {
+				civilian = { large = "gfx/leaders/TEX/Portrait_TEX_Ross_Perot_Victory.png" }
+			}
+		}
+		set_cosmetic_tag = TEX_AMRCONFED
+	}
+}
+
 ### Elections Events ###
 
 add_namespace = texas_elections
@@ -9169,6 +9300,10 @@ country_event = {
 	fire_only_once = yes
 	
 	is_triggered_only = yes
+	
+	trigger = {
+		NOT = { has_country_flag = TEX_perot_america }
+	}
 		
 	option = { #Ok
 		name = texas_elections.10.o1
@@ -9315,14 +9450,6 @@ country_event = {
 	fire_only_once = yes
 	
 	is_triggered_only = yes
-	
-	trigger = {
-		has_country_leader = {
-			name = "Kinky Friedman"
-			ruling_only = yes
-		}
-		NOT = { has_country_flag = TEX_kinky_running_for_second_term }
-	}
 		
 	option = { #Beto
 		name = texas_elections.14.o1
@@ -9361,13 +9488,6 @@ country_event = {
 	fire_only_once = yes
 	
 	is_triggered_only = yes
-	
-	trigger = {
-		has_country_leader = {
-			name = "Lynda Bird Johnson-Robb"
-			ruling_only = yes
-		}
-	}
 		
 	option = { #Lloyd Doggett
 		name = texas_elections.15.o1
@@ -13314,6 +13434,73 @@ country_event = {
 	option = { #FU!!!!
 		name = texas_diplo.60.o1
 		add_political_power = -10
+	}
+}
+
+#Perot Offers Confed membership
+country_event = {
+	id = texas_diplo.61
+	title = texas_diplo.61.t
+	desc = texas_diplo.61.d
+	picture = perot_forpol
+	
+	is_triggered_only = yes
+	
+	option = { #Yeah, sure
+		name = texas_diplo.61.o1
+		ai_chance = {
+			factor = 40
+		}
+		TEX = { country_event = texas_diplo.62 }
+	}
+	
+	option = { #No
+		name = texas_diplo.61.o2
+		ai_chance = {
+			factor = 60
+		}
+		TEX = { country_event = texas_diplo.63 }
+	}
+}
+
+#Nation accepts
+country_event = {
+	id = texas_diplo.62
+	title = texas_diplo.62.t
+	desc = texas_diplo.62.d
+	picture = perot_forpol
+	
+	is_triggered_only = yes
+	
+	option = { #Yeah, sure
+		name = texas_diplo.62.o1
+		annex_country = {
+			target = FROM
+			transfer_troops = yes
+		}
+		FROM = {
+			every_unit_leader = {
+				set_nationality = TEX 
+			}
+		}
+	}
+}
+
+#Nation refuses
+country_event = {
+	id = texas_diplo.63
+	title = texas_diplo.63.t
+	desc = texas_diplo.63.d
+	picture = perot_forpol
+	
+	is_triggered_only = yes
+	
+	option = { #FU!!!!
+		name = texas_diplo.63.o1
+		create_wargoal = {
+			target = FROM
+			type = annex_everything 
+		}
 	}
 }
 
