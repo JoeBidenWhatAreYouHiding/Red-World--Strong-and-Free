@@ -65,7 +65,7 @@ focus_tree = {
 		y = 1
 		
 		ai_will_do = {
-			factor = 100
+			factor = 5
 		}
 
 		available = {
@@ -101,7 +101,7 @@ focus_tree = {
 		y = 1
 		
 		ai_will_do = {
-			factor = 100
+			factor = 5
 		}
 
 		available = {
@@ -144,7 +144,7 @@ focus_tree = {
 		y = 1
 		
 		ai_will_do = {
-			factor = 100
+			factor = 5
 		}
 
 		available = {
@@ -196,7 +196,7 @@ focus_tree = {
 		y = 2
 		
 		ai_will_do = {
-			factor = 100
+			factor = 5
 		}
 
 		available = {
@@ -280,7 +280,7 @@ focus_tree = {
 		y = 3
 		
 		ai_will_do = {
-			factor = 100
+			factor = 5
 		}
 
 		available = {
@@ -336,7 +336,7 @@ focus_tree = {
 		y = 5
 		
 		ai_will_do = {
-			factor = 100
+			factor = 5
 		}
 
 		available = {
@@ -384,7 +384,7 @@ focus_tree = {
 		y = 2
 		
 		ai_will_do = {
-			factor = 100
+			factor = 5
 		}
 
 		available = {
@@ -472,7 +472,7 @@ focus_tree = {
 		y = 3
 		
 		ai_will_do = {
-			factor = 100
+			factor = 5
 		}
 
 		available = {
@@ -508,7 +508,7 @@ focus_tree = {
 		y = 5
 		
 		ai_will_do = {
-			factor = 100
+			factor = 5
 		}
 
 		available = {
@@ -548,7 +548,7 @@ focus_tree = {
 		y = 3
 		
 		ai_will_do = {
-			factor = 100
+			factor = 5
 		}
 
 		available = {
@@ -595,7 +595,7 @@ focus_tree = {
 		y = 4
 		
 		ai_will_do = {
-			factor = 100
+			factor = 5
 		}
 
 		available = {
@@ -628,7 +628,7 @@ focus_tree = {
 		y = 4
 		
 		ai_will_do = {
-			factor = 100
+			factor = 5
 		}
 
 		available = {
@@ -721,7 +721,7 @@ focus_tree = {
 		y = 5
 		
 		ai_will_do = {
-			factor = 100
+			factor = 5
 		}
 
 		available = {
@@ -771,7 +771,7 @@ focus_tree = {
 		y = 6
 		
 		ai_will_do = {
-			factor = 100
+			factor = 5
 		}
 
 		available = {
@@ -822,7 +822,7 @@ focus_tree = {
 		y = 6
 		
 		ai_will_do = {
-			factor = 100
+			factor = 5
 		}
 
 		available = {
@@ -6488,6 +6488,10 @@ focus_tree = {
 			has_country_flag = the_united_states_are_back
 		}
 		
+		ai_will_do = {
+			factor = 100
+		}
+		
 		relative_position_id = TEX_avenge_reagan
 		x = 0
 		y = 2
@@ -8082,7 +8086,7 @@ focus_tree = {
 
 		completion_reward = {
 			country_event = texas.356
-			add_ideas = TEX_the_PATRIOT_act
+			add_ideas = TEX_patriot_act_idea
 			add_political_power = 50
 		}
 	}
@@ -8104,8 +8108,8 @@ focus_tree = {
 
 		completion_reward = {
 			swap_ideas = {
-				remove_idea = TEX_the_PATRIOT_act
-				add_idea = TEX_the_PATRIOT_act2
+				remove_idea = TEX_patriot_act_idea
+				add_idea = TEX_patriot_act_idea2
 			}
 			add_popularity = { ideology = communist popularity = -0.03 }
 			add_popularity = { ideology = revolutionary_socialist popularity = -0.03 }
@@ -8133,8 +8137,8 @@ focus_tree = {
 		completion_reward = {
 			add_stability = 0.2
 			swap_ideas = {
-				remove_idea = TEX_the_PATRIOT_act2
-				add_idea = TEX_the_PATRIOT_act3
+				remove_idea = TEX_patriot_act_idea2
+				add_idea = TEX_patriot_act_idea3
 			}
 		}
 	}
@@ -8539,6 +8543,10 @@ focus_tree = {
 		
 		available = {
 			has_country_flag = the_united_states_are_back
+		}
+		
+		ai_will_do = {
+			factor = 100
 		}
 		
 		relative_position_id = TEX_victory_of_dubya
@@ -12424,6 +12432,10 @@ focus_tree = {
 		available = {
 			has_country_flag = the_united_states_are_back
 		}
+		
+		ai_will_do = {
+			factor = 100
+		}
 
 		available_if_capitulated = yes
 
@@ -13378,6 +13390,20 @@ focus_tree = {
 				exists = yes
 				is_subject = no
 			}
+			NOT = {
+				AND = {
+					has_country_leader = {
+						character = TEX_george_w_bush
+						ruling_only = yes
+					}
+					USA = {
+						has_country_leader = {
+							character = USA_jeb_bush
+							ruling_only = yes
+						}
+					}
+				}
+			}
 		}
 		
 		relative_position_id = TEX_improve_relations_with_our_neigbours
@@ -13879,6 +13905,15 @@ focus_tree = {
 		
 		allow_branch = {
 			NOT = { has_country_flag = TEX_perot_america }
+			NOT = { 
+				has_country_flag = TEX_victory_of_true_libertarianism_flag
+				AND = {
+					has_country_flag = unifying_america 
+					NOT = { has_country_flag = TEX_perot_america }
+				}
+				has_country_flag = TEX_libertarian_restoring_america 
+				has_country_flag = the_united_states_are_back
+			}
 		}
 		
 		relative_position_id = TEX_global_alignment
