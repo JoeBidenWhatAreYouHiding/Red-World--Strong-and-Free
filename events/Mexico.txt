@@ -157,10 +157,10 @@ country_event = {
 				add_ideas = MEX_American_Refugees
 			}
 			add_ideas = MEX_War_On_Drugs
-			every_state = {
-				limit = { is_core_of = MEX }
-				RIO = { add_state_core = PREV }
-			}
+			# every_state = {
+				# limit = { is_core_of = MEX }
+				# RIO = { add_state_core = PREV }
+			# }
 			RIO = {
 				division_template = {
 					name = "Sinaloa Cartel Guards"
@@ -212,26 +212,6 @@ country_event = {
 		}
 		add_popularity = {
 			ideology = communist
-			popularity = 0.3
-		}
-		set_cosmetic_tag = MEX_revolutionary
-		hidden_effect = {
-			every_country = {
-				news_event = {
-					hours = 4
-					id = rwmex_news.26
-				}
-			}
-		}
-	}
-	
-	option = { #Revolutionary Anarchists Seize Control
-		name = mexico.5.o2
-		set_politics = {
-			ruling_party = national_bolshevik
-		}
-		add_popularity = {
-			ideology = national_bolshevik
 			popularity = 0.3
 		}
 		set_cosmetic_tag = MEX_revolutionary
@@ -385,10 +365,10 @@ country_event = {
 		}
 		event_target:nueva_mexico_target = {
 			MEX_joaquin_guzman = {
-				promote_character = corporate
+				promote_character = kaichogunate
 				add_country_leader_role = {
 					country_leader={
-						ideology=corporate
+						ideology=kaichogunate
 						expire="1.1.1.1"
 						id=-1
 					}
@@ -461,14 +441,85 @@ country_event = {
 			exists = no
 		}
 	}
-
+	
 	option = { #Maintain the Ruse
 		name = mexico.7.o1
+		MEX = { 
+			country_event = {
+				id = mexico.70 
+				days = 2
+			}
+		}
+		hidden_effect = {
+			every_owned_state = {
+				limit = { is_core_of = MEX }
+				MEX = { transfer_state = PREV }
+			}
+			MEX = {
+				change_tag_from = ROOT 
+			}
+			MEX_salvador_cienfuegos = {
+				set_nationality = MEX
+			}
+			MEX = {
+				MEX_salvador_cienfuegos = {
+					promote_character = military_dictatorship
+					add_country_leader_role = {
+						country_leader={
+							ideology=military_dictatorship
+							expire="1.1.1.1"
+							id=-1
+						}
+						promote_leader = yes
+					}
+				}
+				set_party_name = {
+					name = RIO_junta_party
+					long_name = RUO_junta_party_long
+					ideology = fascist
+				}
+				set_politics = {
+					ruling_party = fascist
+					elections_allowed = no
+				}
+				add_popularity = {
+					ideology = fascist
+					popularity = 0.3
+				}
+				set_cosmetic_tag = MEX_narco_state
+				set_country_flag = MEX_cartel_mexico
+			}
+			RIO = {
+				remove_ideas = MEX_Narco_State
+				remove_ideas = MEX_Nueva_Mexico_Occupation
+				remove_ideas = MEX_War_On_Drugs_Cartel
+				remove_ideas = MEX_American_Refugees
+				set_party_name = {
+					name = RIO_fascist_party
+					long_name = RIO_fascist_party
+					ideology = fascist
+				}
+			}
+		}
+	}
+}
+
+# Cartels Seize Mexico
+country_event = {
+	id = mexico.70
+	title = mexico.70.t
+	desc = mexico.70.d
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Maintain the Ruse
+		name = mexico.70.o1
 		every_state = {
 			limit = { is_core_of = MEX }
 			MEX = { remove_state_core = PREV }
 		}
-		remove_ideas = MEX_War_On_Drugs_Cartel
+		remove_ideas = MEX_War_On_Drugs
 		hidden_effect = {
 			every_country = {
 				news_event = {
@@ -480,20 +531,14 @@ country_event = {
 	}
 	
 	option = { #El Chapo in Charge
-		name = mexico.7.o2
-		every_state = {
-			limit = { is_core_of = MEX }
-			MEX = { remove_state_core = PREV }
-		}
-		remove_ideas = MEX_War_On_Drugs_Cartel
-		MEX = {
-			MEX_joaquin_guzman = { 
-				set_nationality = RIO 
-				set_portraits = {
-					civilian = { large = "gfx/leaders/MEX/Portrait_MEX_Joaquin_Guzman_President.png" }
-				}
-				set_character_name = "Joaquín Guzmán"
+		name = mexico.70.o2
+		remove_ideas = MEX_War_On_Drugs
+		MEX_joaquin_guzman = { 
+			set_nationality = ROOT 
+			set_portraits = {
+				civilian = { large = "gfx/leaders/MEX/Portrait_MEX_Joaquin_Guzman_President.png" }
 			}
+			set_character_name = "Joaquín Guzmán"
 		}
 		set_party_name = {
 			name = MEX_fascist_party
@@ -501,10 +546,10 @@ country_event = {
 			ideology = fascist
 		}
 		MEX_joaquin_guzman = {
-			promote_character = corporate
+			promote_character = kaichogunate
 			add_country_leader_role = {
 				country_leader={
-					ideology=corporate
+					ideology=kaichogunate
 					expire="1.1.1.1"
 					id=-1
 				}
@@ -522,22 +567,17 @@ country_event = {
 	}
 	
 	option = { #Puppet Presidency
-		name = mexico.7.o3
+		name = mexico.70.o3
 		every_state = {
 			limit = { is_core_of = MEX }
 			MEX = { remove_state_core = PREV }
 		}
 		remove_ideas = MEX_War_On_Drugs_Cartel
-		MEX = {
-			MEX_manuel_bartlett = { 
-				set_nationality = RIO 
-			}
-		}
 		MEX_manuel_bartlett = {
-			promote_character = corporate
+			promote_character = kaichogunate
 			add_country_leader_role = {
 				country_leader={
-					ideology=corporate
+					ideology=kaichogunate
 					expire="1.1.1.1"
 					id=-1
 				}
@@ -549,6 +589,7 @@ country_event = {
 			long_name = MEX_centrist_party_long
 			ideology = fascist
 		}
+		add_centrist_to_coalition = yes
 		hidden_effect = {
 			every_country = {
 				news_event = {
@@ -765,6 +806,7 @@ country_event = {
 			has_country_flag = released_in_drug_war
 			exists = no
 		}
+		NOT = { has_country_flag = MEX_cartel_mexico }
 	}
 
 	option = { #The Drug War moves Underground Once More
@@ -870,7 +912,30 @@ news_event = {	#Cartels Puppet Mexican Democracy
 news_event = {	#Cartel Uprising Defeated
 	id = rwmex_news.31
 	title = rwmex_news.31.t
-	desc = rwmex_news.31.d
+	desc = {
+		text = rwmex_news.31.d_verdugo
+		trigger = { 
+			MEX = { has_government = communist }
+		}
+	}
+	desc = {
+		text = rwmex_news.31.d_zapatista
+		trigger = { 
+			MEX = { has_government = revolutionary_socialist }
+		}
+	}
+	desc = {
+		text = rwmex_news.31.d_synarchist
+		trigger = { 
+			MEX = { has_government = fascist }
+		}
+	}
+	desc = {
+		text = rwmex_news.31.d_monarchist
+		trigger = { 
+			MEX = { has_government = monarchist }
+		}
+	}
 	picture = narco_rebellion_crushed
 	
 	is_triggered_only = yes 
