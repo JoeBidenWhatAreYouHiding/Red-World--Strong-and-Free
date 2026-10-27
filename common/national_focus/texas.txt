@@ -10,6 +10,8 @@ focus_tree = {
 	default = no
 	continuous_focus_position = { x = 4800 y = 2300 }
 	shared_focus = TEX_texan_army
+	shared_focus = TEX_air_force
+	shared_focus = TEX_texan_navy
 	shared_focus = TEX_texan_economy
 	shared_focus = USA_the_texan_question
 	shared_focus = AMR_1987_undone
@@ -16007,15 +16009,11 @@ focus_tree = {
 		id = TEX_texan_navy
 		icon = GFX_goal_TEX_texan_navy
 		cost = 5.0
-		prerequisite = {
-			focus = TEX_texan_army
-		}
 		relative_position_id = TEX_texan_army
-		x = -2
-		y = 2
+		x = -3
+		y = 1
 
 		available = {
-			NOT = { has_completed_focus = TEX_air_force }
 			has_completed_focus = TEX_brown_in_command
 		}
 
@@ -16034,11 +16032,34 @@ focus_tree = {
 	}
 	
 	shared_focus = {
+		id = TEX_uss_texas
+		icon = GFX_goal_TEX_uss_texas
+		cost = 5.0
+		prerequisite = {
+			focus = TEX_texan_navy
+		}
+		relative_position_id = TEX_texan_army
+		x = -2
+		y = 2
+
+		available = {
+		}
+
+		# ai_will_do = {
+			# factor = 0.25
+		# }
+
+		completion_reward = {
+			add_ideas = TEX_uss_texas
+		}
+	}
+	
+	shared_focus = {
 		id = TEX_rio_grande_patrols
 		icon = GFX_goal_TEX_rio_grande_patrols
 		cost = 5.0
 		prerequisite = {
-			focus = TEX_texan_navy
+			focus = TEX_uss_texas
 		}
 		relative_position_id = TEX_texan_army
 		x = -3
@@ -16169,15 +16190,11 @@ focus_tree = {
 		id = TEX_air_force
 		icon = GFX_goal_TEX_texan_air_force
 		cost = 5.0
-		prerequisite = {
-			focus = TEX_texan_army
-		}
 		relative_position_id = TEX_texan_army
-		x = 2
-		y = 2
+		x = 3
+		y = 1
 
 		available = {
-			NOT = { has_completed_focus = TEX_texan_navy }
 			has_completed_focus = TEX_brown_in_command
 		}
 
@@ -16196,11 +16213,55 @@ focus_tree = {
 	}
 	
 	shared_focus = {
+		id = TEX_white_sands
+		icon = GFX_goal_TEX_white_sands
+		cost = 5.0
+		prerequisite = {
+			focus = TEX_air_force
+		}
+		relative_position_id = TEX_texan_army
+		x = 2
+		y = 2
+
+		available = {
+			has_completed_focus = TEX_brown_in_command
+		}
+
+		# ai_will_do = {
+			# factor = 0.25
+		# }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = rocket_engines
+				bonus = 2
+				uses = 2
+				category = rocketry
+			}
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = cat_air_engine
+			}
+			add_tech_bonus = {
+				name = nuclear_bonus
+				bonus = 0.5
+				uses = 1
+				category = nuclear
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_nuclear
+				value = 0.5
+			}
+		}
+	}
+	
+	shared_focus = {
 		id = TEX_drones
 		icon = GFX_goal_CSD_examine_uav_warfare
 		cost = 5.0
 		prerequisite = {
-			focus = TEX_air_force
+			focus = TEX_white_sands
 		}
 		relative_position_id = TEX_texan_army
 		x = 3

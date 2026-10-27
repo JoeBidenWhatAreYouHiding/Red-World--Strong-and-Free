@@ -8469,6 +8469,7 @@ country_event = {
 		TEX_allen_weh = {
 			promote_character = fiscal_conservative
 		}
+		add_ideas = texas_sic_mac_thornberry
 	}
 }
 
@@ -9773,42 +9774,132 @@ country_event = {
 		
 	option = { #Perot Jr.
 		name = texas_elections.11.o1
-		TEX_ross_perot_jr = {
-			promote_character = classical_populism
-		}
 		set_country_flag = TEX_ross_perot_jr_has_been_reform_nominee
+		set_country_flag = TEX_reform_nominee_perot_jr
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_luce }
+			clr_country_flag = TEX_reform_nominee_luce
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_bezos }
+			clr_country_flag = TEX_reform_nominee_bezos
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_choate }
+			clr_country_flag = TEX_reform_nominee_choate
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_cuban }
+			clr_country_flag = TEX_reform_nominee_cuban
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_steyer }
+			clr_country_flag = TEX_reform_nominee_steyer
+		}
 	}
 	
 	option = { #Pat Choate.
 		name = texas_elections.11.o2
-		TEX_pat_choate = {
-			promote_character = classical_populism
-		}
 		set_country_flag = TEX_pat_choate_has_been_reform_nominee
+		set_country_flag = TEX_reform_nominee_choate
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_luce }
+			clr_country_flag = TEX_reform_nominee_luce
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_bezos }
+			clr_country_flag = TEX_reform_nominee_bezos
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_perot_jr }
+			clr_country_flag = TEX_reform_nominee_perot_jr
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_cuban }
+			clr_country_flag = TEX_reform_nominee_cuban
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_steyer }
+			clr_country_flag = TEX_reform_nominee_steyer
+		}
 	}
 	
 	option = { #Mark Cuban.
 		name = texas_elections.11.o3
-		TEX_mark_cuban = {
-			promote_character = classical_populism
-		}
 		set_country_flag = TEX_mark_cuban_has_been_reform_nominee
+		set_country_flag = TEX_reform_nominee_cuban
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_luce }
+			clr_country_flag = TEX_reform_nominee_luce
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_bezos }
+			clr_country_flag = TEX_reform_nominee_bezos
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_perot_jr }
+			clr_country_flag = TEX_reform_nominee_perot_jr
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_choate }
+			clr_country_flag = TEX_reform_nominee_choate
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_steyer }
+			clr_country_flag = TEX_reform_nominee_steyer
+		}
 	}
 	
 	option = { #Bezos.
 		name = texas_elections.11.o4
-		TEX_jeffrey_bezos = {
-			promote_character = classical_populism
-		}
 		set_country_flag = TEX_jeff_bezos_has_been_reform_nominee
+		set_country_flag = TEX_reform_nominee_bezos
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_luce }
+			clr_country_flag = TEX_reform_nominee_luce
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_cuban }
+			clr_country_flag = TEX_reform_nominee_cuban
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_perot_jr }
+			clr_country_flag = TEX_reform_nominee_perot_jr
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_choate }
+			clr_country_flag = TEX_reform_nominee_choate
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_steyer }
+			clr_country_flag = TEX_reform_nominee_steyer
+		}
 	}
 	
 	option = { #Luce.
 		name = texas_elections.11.o5
-		TEX_tom_luce = {
-			promote_character = classical_populism
-		}
 		set_country_flag = TEX_tom_luce_has_been_reform_nominee
+		set_country_flag = TEX_reform_nominee_luce
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_bezos }
+			clr_country_flag = TEX_reform_nominee_bezos
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_cuban }
+			clr_country_flag = TEX_reform_nominee_cuban
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_perot_jr }
+			clr_country_flag = TEX_reform_nominee_perot_jr
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_choate }
+			clr_country_flag = TEX_reform_nominee_choate
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_steyer }
+			clr_country_flag = TEX_reform_nominee_steyer
+		}
 	}
 }
 
@@ -9830,6 +9921,18 @@ country_event = {
 	}
 	picture = texas_reform_party_presidential_primaries
 	
+	trigger = {
+		OR = {
+			NOT = { has_government = centrist }
+			AND = {
+				has_government = centrist
+				var:country_leader = {
+					check_variable = { TEX_terms_served > 1 }
+				}
+			}
+		}
+	}
+	
 	is_triggered_only = yes
 		
 	option = { #Perot Jr.
@@ -9837,10 +9940,28 @@ country_event = {
 		trigger = {
 			NOT = { has_country_flag = TEX_ross_perot_jr_has_been_reform_nominee }
 		}
-		TEX_ross_perot_jr = {
-			promote_character = classical_populism
-		}
 		set_country_flag = TEX_ross_perot_jr_has_been_reform_nominee
+		set_country_flag = TEX_reform_nominee_perot_jr
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_luce }
+			clr_country_flag = TEX_reform_nominee_luce
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_bezos }
+			clr_country_flag = TEX_reform_nominee_bezos
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_choate }
+			clr_country_flag = TEX_reform_nominee_choate
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_cuban }
+			clr_country_flag = TEX_reform_nominee_cuban
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_steyer }
+			clr_country_flag = TEX_reform_nominee_steyer
+		}
 	}
 	
 	option = { #Pat Choate.
@@ -9848,10 +9969,28 @@ country_event = {
 		trigger = {
 			NOT = { has_country_flag = TEX_pat_choate_has_been_reform_nominee }
 		}
-		TEX_pat_choate = {
-			promote_character = classical_populism
-		}
 		set_country_flag = TEX_pat_choate_has_been_reform_nominee
+		set_country_flag = TEX_reform_nominee_choate
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_luce }
+			clr_country_flag = TEX_reform_nominee_luce
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_bezos }
+			clr_country_flag = TEX_reform_nominee_bezos
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_perot_jr }
+			clr_country_flag = TEX_reform_nominee_perot_jr
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_cuban }
+			clr_country_flag = TEX_reform_nominee_cuban
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_steyer }
+			clr_country_flag = TEX_reform_nominee_steyer
+		}
 	}
 	
 	option = { #Mark Cuban.
@@ -9859,10 +9998,28 @@ country_event = {
 		trigger = {
 			NOT = { has_country_flag = TEX_mark_cuban_has_been_reform_nominee }
 		}
-		TEX_mark_cuban = {
-			promote_character = classical_populism
-		}
 		set_country_flag = TEX_mark_cuban_has_been_reform_nominee
+		set_country_flag = TEX_reform_nominee_cuban
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_luce }
+			clr_country_flag = TEX_reform_nominee_luce
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_bezos }
+			clr_country_flag = TEX_reform_nominee_bezos
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_perot_jr }
+			clr_country_flag = TEX_reform_nominee_perot_jr
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_choate }
+			clr_country_flag = TEX_reform_nominee_choate
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_steyer }
+			clr_country_flag = TEX_reform_nominee_steyer
+		}
 	}
 	
 	option = { #Bezos.
@@ -9870,10 +10027,28 @@ country_event = {
 		trigger = {
 			NOT = { has_country_flag = TEX_jeff_bezos_has_been_reform_nominee }
 		}
-		TEX_jeffrey_bezos = {
-			promote_character = classical_populism
-		}
 		set_country_flag = TEX_jeff_bezos_has_been_reform_nominee
+		set_country_flag = TEX_reform_nominee_bezos
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_luce }
+			clr_country_flag = TEX_reform_nominee_luce
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_cuban }
+			clr_country_flag = TEX_reform_nominee_cuban
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_perot_jr }
+			clr_country_flag = TEX_reform_nominee_perot_jr
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_choate }
+			clr_country_flag = TEX_reform_nominee_choate
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_steyer }
+			clr_country_flag = TEX_reform_nominee_steyer
+		}
 	}
 	
 	option = { #Steyer.
@@ -9881,10 +10056,28 @@ country_event = {
 		trigger = {
 			NOT = { has_country_flag = TEX_tom_steyer_has_been_reform_nominee }
 		}
-		TEX_tom_steyer = {
-			promote_character = classical_populism
-		}
 		set_country_flag = TEX_tom_steyer_has_been_reform_nominee
+		set_country_flag = TEX_reform_nominee_steyer
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_bezos }
+			clr_country_flag = TEX_reform_nominee_bezos
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_cuban }
+			clr_country_flag = TEX_reform_nominee_cuban
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_perot_jr }
+			clr_country_flag = TEX_reform_nominee_perot_jr
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_choate }
+			clr_country_flag = TEX_reform_nominee_choate
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_luce }
+			clr_country_flag = TEX_reform_nominee_luce
+		}
 	}
 	
 	option = { #Luce.
@@ -9892,10 +10085,28 @@ country_event = {
 		trigger = {
 			NOT = { has_country_flag = TEX_tom_luce_has_been_reform_nominee }
 		}
-		TEX_tom_luce = {
-			promote_character = classical_populism
-		}
 		set_country_flag = TEX_tom_luce_has_been_reform_nominee
+		set_country_flag = TEX_reform_nominee_luce
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_bezos }
+			clr_country_flag = TEX_reform_nominee_bezos
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_cuban }
+			clr_country_flag = TEX_reform_nominee_cuban
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_perot_jr }
+			clr_country_flag = TEX_reform_nominee_perot_jr
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_choate }
+			clr_country_flag = TEX_reform_nominee_choate
+		}
+		if = {
+			limit = { has_country_flag = TEX_reform_nominee_steyer }
+			clr_country_flag = TEX_reform_nominee_steyer
+		}
 	}
 }
 
@@ -9992,11 +10203,7 @@ country_event = {
 	is_triggered_only = yes
 	
 	trigger = {
-		NOT = { has_country_flag = TEX_no_elections_anymore }
-	}
-	
-	trigger = {
-		NOT = {
+		OR = {
 			AND = {
 				OR = {
 					has_government = moderate_socialist
@@ -10004,8 +10211,17 @@ country_event = {
 					has_government = liberal
 					has_government = revolutionary_socialist
 				}
-				has_country_flag = TEX_democrats_won_last_election
+				var:country_leader = {
+					check_variable = { TEX_terms_served > 1 }
+				}
 			}
+			NOT = { 
+				has_government = moderate_socialist
+				has_government = new_democrat
+				has_government = liberal
+				has_government = revolutionary_socialist
+			}
+			NOT = { has_country_flag = TEX_no_elections_anymore }
 		}
 	}
 		
@@ -10072,11 +10288,7 @@ country_event = {
 	is_triggered_only = yes
 	
 	trigger = {
-		NOT = { has_country_flag = TEX_no_elections_anymore }
-	}
-	
-	trigger = {
-		NOT = {
+		OR = {
 			AND = {
 				OR = {
 					has_government = moderate_socialist
@@ -10084,8 +10296,17 @@ country_event = {
 					has_government = liberal
 					has_government = revolutionary_socialist
 				}
-				has_country_flag = TEX_democrats_won_last_election
+				var:country_leader = {
+					check_variable = { TEX_terms_served > 1 }
+				}
 			}
+			NOT = { 
+				has_government = moderate_socialist
+				has_government = new_democrat
+				has_government = liberal
+				has_government = revolutionary_socialist
+			}
+			NOT = { has_country_flag = TEX_no_elections_anymore }
 		}
 	}
 		
@@ -10167,11 +10388,7 @@ country_event = {
 	is_triggered_only = yes
 	
 	trigger = {
-		NOT = { has_country_flag = TEX_no_elections_anymore }
-	}
-	
-	trigger = {
-		NOT = {
+		OR = {
 			AND = {
 				OR = {
 					has_government = moderate_socialist
@@ -10179,8 +10396,17 @@ country_event = {
 					has_government = liberal
 					has_government = revolutionary_socialist
 				}
-				has_country_flag = TEX_democrats_won_last_election
+				var:country_leader = {
+					check_variable = { TEX_terms_served > 1 }
+				}
 			}
+			NOT = { 
+				has_government = moderate_socialist
+				has_government = new_democrat
+				has_government = liberal
+				has_government = revolutionary_socialist
+			}
+			NOT = { has_country_flag = TEX_no_elections_anymore }
 		}
 	}
 		
@@ -10543,15 +10769,15 @@ country_event = {
 	is_triggered_only = yes
 	
 	trigger = {
-		NOT = { has_country_flag = TEX_no_elections_anymore }
-	}
-	
-	trigger = {
-		NOT = {
+		OR = {
 			AND = {
 				has_government = national_conservative
-				has_country_flag = TEX_indepdendent_republicans_won_last_election
+				var:country_leader = {
+					check_variable = { TEX_terms_served > 1 }
+				}
 			}
+			NOT = { has_government= national_conservative }
+			NOT = { has_country_flag = TEX_no_elections_anymore }
 		}
 	}
 	
@@ -10599,24 +10825,15 @@ country_event = {
 	is_triggered_only = yes
 	
 	trigger = {
-		NOT = { has_country_flag = TEX_no_elections_anymore }
-	}
-	
-	trigger = {
-		NOT = {
+		OR = {
 			AND = {
 				has_government = national_conservative
-				has_country_flag = TEX_indepdendent_republicans_won_last_election
+				var:country_leader = {
+					check_variable = { TEX_terms_served > 1 }
+				}
 			}
-		}
-	}
-	
-	trigger = {
-		NOT = {
-			AND = {
-				has_government = national_conservative
-				has_country_flag = TEX_indepdendent_republicans_won_last_election
-			}
+			NOT = { has_government= national_conservative }
+			NOT = { has_country_flag = TEX_no_elections_anymore }
 		}
 	}
 	
@@ -10675,15 +10892,15 @@ country_event = {
 	is_triggered_only = yes
 	
 	trigger = {
-		NOT = { has_country_flag = TEX_no_elections_anymore }
-	}
-	
-	trigger = {
-		NOT = {
+		OR = {
 			AND = {
 				has_government = national_conservative
-				has_country_flag = TEX_indepdendent_republicans_won_last_election
+				var:country_leader = {
+					check_variable = { TEX_terms_served > 1 }
+				}
 			}
+			NOT = { has_government= national_conservative }
+			NOT = { has_country_flag = TEX_no_elections_anymore }
 		}
 	}
 	
@@ -10761,6 +10978,7 @@ country_event = {
 			NOT = { has_country_flag = TEX_one_republic_gone }
 			NOT = { has_country_flag = TEX_president_unchallenged }
 		}
+		add_ideas = texas_sic_michael_cloud
 		if = {
 			limit = { has_country_flag = TEX_one_republic_is_fascist }
 			add_popularity = {
@@ -10837,6 +11055,13 @@ country_event = {
 				}
 			}
 		}
+		
+		if = {
+			limit = { has_government = nationalist }
+			var:country_leader = { 
+				add_to_variable = { TEX_terms_served = 1 }
+			}
+		}
 	}
 	
 	option = { #Independent Republicans
@@ -10851,18 +11076,6 @@ country_event = {
 		}
 		set_politics = {
 			ruling_party = national_conservative
-		}
-		if = {
-			limit = {
-				NOT = { has_government = national_conservative }
-			}
-			custom_effect_tooltip = TEX_independent_republican_cabinet
-			hidden_effect = {
-				add_ideas = texas_sic_susana_martinez
-				add_ideas = texas_fom_james_baker
-				add_ideas = texas_ind_dan_crenshaw
-				add_ideas = texas_nsm_alberto_gonzales
-			}
 		}
 		TEX_set_independent_republican_leader_2017 = yes
 		hidden_effect = {
@@ -10931,6 +11144,13 @@ country_event = {
 			limit = { has_country_flag = TEX_democrats_won_last_election }
 			clr_country_flag = TEX_democrats_won_last_election
 		}
+		
+		if = {
+			limit = { has_government = national_conservative }
+			var:country_leader = { 
+				add_to_variable = { TEX_terms_served = 1 }
+			}
+		}
 	}	
 	
 	option = { #Reform
@@ -10945,18 +11165,6 @@ country_event = {
 		}
 		set_politics = {
 			ruling_party = centrist
-		}
-		if = {
-			limit = {
-				NOT = { has_government = centrist }
-			}
-			custom_effect_tooltip = TEX_reform_cabinet
-			hidden_effect = {
-				add_ideas = texas_sic_pat_choate
-				add_ideas = texas_fom_ed_zschau
-				add_ideas = texas_ind_mark_cuban
-				add_ideas = texas_nsm_eric_x_li
-			}
 		}
 		hidden_effect = {
 			if = {
@@ -11014,6 +11222,15 @@ country_event = {
 			limit = { has_country_flag = TEX_democrats_won_last_election }
 			clr_country_flag = TEX_democrats_won_last_election
 		}
+		
+		TEX_set_reform_party_leader = yes
+		
+		if = {
+			limit = { has_government = centrist }
+			var:country_leader = { 
+				add_to_variable = { TEX_terms_served = 1 }
+			}
+		}
 	}
 	
 	option = { #Libertarians
@@ -11028,18 +11245,6 @@ country_event = {
 		}
 		set_politics = {
 			ruling_party = centrist
-		}
-		if = {
-			limit = {
-				NOT = { has_government = centrist }
-			}
-			custom_effect_tooltip = TEX_libertarian_cabinet
-			hidden_effect = {
-				add_ideas = texas_sic_gary_johnson 
-				add_ideas = texas_fom_jacob_hornberger 
-				add_ideas = texas_ind_dan_behrman 
-				add_ideas = texas_nsm_rand_paul
-			}
 		}
 
 		if = {
@@ -11131,6 +11336,13 @@ country_event = {
 			limit = { has_country_flag = TEX_democrats_won_last_election }
 			clr_country_flag = TEX_democrats_won_last_election
 		}
+		
+		if = {
+			limit = { has_government = centrist }
+			var:country_leader = { 
+				add_to_variable = { TEX_terms_served = 1 }
+			}
+		}
 	} 
 	
 	option = { #Democrats
@@ -11182,23 +11394,6 @@ country_event = {
 			}
 			set_politics = {
 				ruling_party = liberal
-			}
-		}
-		if = {
-			limit = {
-				NOT = { 
-					has_government = liberal 
-					has_government = new_democrat 
-					has_government = moderate_socialist 
-					has_government = revolutionary_socialist 
-				}
-			}
-			custom_effect_tooltip = TEX_democrat_cabinet
-			hidden_effect = {
-				add_ideas = texas_sic_wendy_davis
-				add_ideas = texas_fom_al_green
-				add_ideas = texas_ind_joaquin_castro
-				add_ideas = texas_nsm_bill_white
 			}
 		}
 		TEX_set_democratic_party_leader_2017 = yes
@@ -11258,6 +11453,20 @@ country_event = {
 			limit = { has_country_flag = TEX_libertarians_won_last_election }
 			clr_country_flag = TEX_libertarians_won_last_election
 		}
+		
+		if = {
+			limit = { 
+				OR = {
+					has_government = liberal 
+					has_government = new_democrat 
+					has_government = moderate_socialist 
+					has_government = revolutionary_socialist 
+				}
+			}
+			var:country_leader = { 
+				add_to_variable = { TEX_terms_served = 1 }
+			}
+		}
 	}
 	
 	option = { #President Unchallenged
@@ -11311,6 +11520,7 @@ country_event = {
 			NOT = { has_country_flag = TEX_one_republic_gone }
 			NOT = { has_country_flag = TEX_president_unchallenged }
 		}
+		add_ideas = texas_sic_michael_cloud
 		if = {
 			limit = { has_country_flag = TEX_one_republic_is_fascist }
 			add_popularity = {
@@ -11376,6 +11586,13 @@ country_event = {
 			limit = { has_country_flag = TEX_democrats_won_last_election }
 			clr_country_flag = TEX_democrats_won_last_election
 		}
+		
+		if = {
+			limit = { has_government = nationalist }
+			var:country_leader = { 
+				add_to_variable = { TEX_terms_served = 1 }
+			}
+		}
 	}
 	
 	option = { #Independent Republicans
@@ -11390,18 +11607,6 @@ country_event = {
 		}
 		set_politics = {
 			ruling_party = national_conservative
-		}
-		if = {
-			limit = {
-				NOT = { has_government = national_conservative }
-			}
-			custom_effect_tooltip = TEX_independent_republican_cabinet
-			hidden_effect = {
-				add_ideas = texas_sic_susana_martinez
-				add_ideas = texas_fom_james_baker
-				add_ideas = texas_ind_dan_crenshaw
-				add_ideas = texas_nsm_alberto_gonzales
-			}
 		}
 		
 		if = {
@@ -11456,6 +11661,13 @@ country_event = {
 			limit = { has_country_flag = TEX_democrats_won_last_election }
 			clr_country_flag = TEX_democrats_won_last_election
 		}
+		
+		if = {
+			limit = { has_government = national_conservative }
+			var:country_leader = { 
+				add_to_variable = { TEX_terms_served = 1 }
+			}
+		}
 	}	
 	
 	option = { #Reform
@@ -11470,18 +11682,6 @@ country_event = {
 		}
 		set_politics = {
 			ruling_party = centrist
-		}
-		if = {
-			limit = {
-				NOT = { has_government = centrist }
-			}
-			custom_effect_tooltip = TEX_reform_cabinet
-			hidden_effect = {
-				add_ideas = texas_sic_pat_choate
-				add_ideas = texas_fom_ed_zschau
-				add_ideas = texas_ind_mark_cuban
-				add_ideas = texas_nsm_eric_x_li
-			}
 		}
 		
 		if = {
@@ -11534,6 +11734,15 @@ country_event = {
 			limit = { has_country_flag = TEX_democrats_won_last_election }
 			clr_country_flag = TEX_democrats_won_last_election
 		}
+		
+		TEX_set_reform_party_leader = yes
+		
+		if = {
+			limit = { has_government = centrist }
+			var:country_leader = { 
+				add_to_variable = { TEX_terms_served = 1 }
+			}
+		}
 	}
 	
 	option = { #Libertarians
@@ -11548,18 +11757,6 @@ country_event = {
 		}
 		set_politics = {
 			ruling_party = centrist
-		}
-		if = {
-			limit = {
-				NOT = { has_government = centrist }
-			}
-			custom_effect_tooltip = TEX_libertarian_cabinet
-			hidden_effect = {
-				add_ideas = texas_sic_gary_johnson 
-				add_ideas = texas_fom_jacob_hornberger 
-				add_ideas = texas_ind_dan_behrman 
-				add_ideas = texas_nsm_rand_paul
-			}
 		}
 		
 		if = {
@@ -11614,6 +11811,13 @@ country_event = {
 			limit = { has_country_flag = TEX_democrats_won_last_election }
 			clr_country_flag = TEX_democrats_won_last_election
 		}
+		
+		if = {
+			limit = { has_government = centrist }
+			var:country_leader = { 
+				add_to_variable = { TEX_terms_served = 1 }
+			}
+		}
 	} 
 	
 	option = { #Democrats
@@ -11667,23 +11871,6 @@ country_event = {
 				ruling_party = liberal
 			}
 		}
-		if = {
-			limit = {
-				NOT = { 
-					has_government = liberal 
-					has_government = new_democrat 
-					has_government = moderate_socialist 
-					has_government = revolutionary_socialist 
-				}
-			}
-			custom_effect_tooltip = TEX_democrat_cabinet
-			hidden_effect = {
-				add_ideas = texas_sic_wendy_davis
-				add_ideas = texas_fom_al_green
-				add_ideas = texas_ind_joaquin_castro
-				add_ideas = texas_nsm_bill_white
-			}
-		}
 		
 		TEX_set_democrat_leader_2021 = yes
 		
@@ -11734,6 +11921,19 @@ country_event = {
 			clr_country_flag = TEX_libertarians_won_last_election
 		}
 		
+		if = {
+			limit = { 
+				OR = {
+					has_government = liberal 
+					has_government = new_democrat 
+					has_government = moderate_socialist 
+					has_government = revolutionary_socialist 
+				}
+			}
+			var:country_leader = { 
+				add_to_variable = { TEX_terms_served = 1 }
+			}
+		}
 	}
 	
 	option = { #President Unchallenged
@@ -11787,6 +11987,7 @@ country_event = {
 			NOT = { has_country_flag = TEX_one_republic_gone }
 			NOT = { has_country_flag = TEX_president_unchallenged }
 		}
+		add_ideas = texas_sic_michael_cloud
 		if = {
 			limit = { has_country_flag = TEX_one_republic_is_fascist }
 			add_popularity = {
@@ -11807,6 +12008,13 @@ country_event = {
 				ruling_party = nationalist
 			}
 		}
+		
+		if = {
+			limit = { has_government = nationalist }
+			var:country_leader = { 
+				add_to_variable = { TEX_terms_served = 1 }
+			}
+		}
 	}
 	
 	option = { #Independent Republicans
@@ -11822,18 +12030,6 @@ country_event = {
 		set_politics = {
 			ruling_party = national_conservative
 		}
-		if = {
-			limit = {
-				NOT = { has_government = national_conservative }
-			}
-			custom_effect_tooltip = TEX_independent_republican_cabinet
-			hidden_effect = {
-				add_ideas = texas_sic_susana_martinez
-				add_ideas = texas_fom_james_baker
-				add_ideas = texas_ind_dan_crenshaw
-				add_ideas = texas_nsm_alberto_gonzales
-			}
-		}
 		
 		if = {
 			limit = { has_country_flag = TEX_one_republic_last_chance }
@@ -11841,6 +12037,13 @@ country_event = {
 		}
 		
 		TEX_set_independent_republican_leader_2025 = yes
+		
+		if = {
+			limit = { has_government = national_conservative }
+			var:country_leader = { 
+				add_to_variable = { TEX_terms_served = 1 }
+			}
+		}
 	}	
 	
 	option = { #Reform
@@ -11856,22 +12059,19 @@ country_event = {
 		set_politics = {
 			ruling_party = centrist
 		}
-		if = {
-			limit = {
-				NOT = { has_government = centrist }
-			}
-			custom_effect_tooltip = TEX_reform_cabinet
-			hidden_effect = {
-				add_ideas = texas_sic_pat_choate
-				add_ideas = texas_fom_ed_zschau
-				add_ideas = texas_ind_mark_cuban
-				add_ideas = texas_nsm_eric_x_li
-			}
-		}
 		
 		if = {
 			limit = { has_country_flag = TEX_one_republic_last_chance }
 			set_country_flag = TEX_one_republic_gone
+		}
+		
+		TEX_set_reform_party_leader = yes
+		
+		if = {
+			limit = { has_government = centrist }
+			var:country_leader = { 
+				add_to_variable = { TEX_terms_served = 1 }
+			}
 		}
 	}
 	
@@ -11888,18 +12088,6 @@ country_event = {
 		set_politics = {
 			ruling_party = centrist
 		}
-		if = {
-			limit = {
-				NOT = { has_government = centrist }
-			}
-			custom_effect_tooltip = TEX_libertarian_cabinet
-			hidden_effect = {
-				add_ideas = texas_sic_gary_johnson 
-				add_ideas = texas_fom_jacob_hornberger 
-				add_ideas = texas_ind_dan_behrman 
-				add_ideas = texas_nsm_rand_paul
-			}
-		}
 		
 		if = {
 			limit = { has_country_flag = TEX_one_republic_last_chance }
@@ -11907,6 +12095,13 @@ country_event = {
 		}
 		
 		TEX_set_libertarian_leader_2025 = yes
+		
+		if = {
+			limit = { has_government = centrist }
+			var:country_leader = { 
+				add_to_variable = { TEX_terms_served = 1 }
+			}
+		}
 		
 	} 
 	
@@ -11961,26 +12156,22 @@ country_event = {
 				ruling_party = liberal
 			}
 		}
+		
+		TEX_set_democrat_leader_2025 = yes
+		
 		if = {
-			limit = {
-				NOT = { 
+			limit = { 
+				OR = {
 					has_government = liberal 
 					has_government = new_democrat 
 					has_government = moderate_socialist 
 					has_government = revolutionary_socialist 
 				}
 			}
-			custom_effect_tooltip = TEX_democrat_cabinet
-			hidden_effect = {
-				add_ideas = texas_sic_wendy_davis
-				add_ideas = texas_fom_al_green
-				add_ideas = texas_ind_joaquin_castro
-				add_ideas = texas_nsm_bill_white
+			var:country_leader = { 
+				add_to_variable = { TEX_terms_served = 1 }
 			}
 		}
-		
-		TEX_set_democrat_leader_2025 = yes
-		
 	}
 	
 	option = { #President Unchallenged
@@ -12013,6 +12204,9 @@ country_event = {
 			country_event = {
 				id = texas_elections.30
 				days = 1
+			}
+			var:country_leader = { 
+				add_to_variable = { TEX_terms_served = 1 }
 			}
 		}
 		else = {
