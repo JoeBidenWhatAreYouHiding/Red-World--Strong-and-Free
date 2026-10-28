@@ -2385,6 +2385,7 @@ country_event = {
 	after = {
 		clr_country_flag = TEX_can_hold_elections
 		set_variable = { TEX_elections_held = 1 }
+		set_country_flag = TEX_elections_over
 		hidden_effect = {
 			country_event = {
 				id = texas_elections.100
@@ -2738,6 +2739,7 @@ country_event = {
 	option = {
 		name = texas.92.o1
 		add_manpower = 1200
+		set_country_flag = TEX_improved_hispanic_tensions
 	}
 }
 
@@ -2823,6 +2825,7 @@ country_event = {
 	option = {
 		name = texas.97.o1
 		add_manpower = 1100
+		set_country_flag = TEX_improved_hispanic_tensions
 	}
 }
 
@@ -3909,6 +3912,7 @@ country_event = {
 			ideology = national_conservative
 			popularity = 0.02
 		}
+		set_country_flag = TEX_improved_hispanic_tensions
 	}
 }
 
@@ -5121,7 +5125,14 @@ country_event = {
 	
 	option = {
 		name = texas.192.o1
-		add_ideas = TEX_Hispanic_Tensions
+		if = {
+			limit = { has_country_flag = TEX_improved_hispanic_tensions }
+			add_ideas = TEX_Hispanic_Tensions_Less
+			custom_effect_tooltip = TEX_because_improved_hispanic_tensions
+		}
+		else = {
+			add_ideas = TEX_Hispanic_Tensions
+		}
 	}
 }
 
@@ -9728,6 +9739,14 @@ country_event = {
 			popularity = -0.04
 		}
 		set_country_flag = TEX_reform_party_gone
+		TEX_ron_paul = {
+			promote_character = mainline_anti_statism
+		}
+		set_party_name = {
+			name = TEX_libertarian_party
+			long_name = TEX_libertarian_party_long
+			ideology = centrist
+		}
 	}
 }
 
@@ -10228,6 +10247,10 @@ country_event = {
 	option = { #Beto
 		name = texas_elections.16.o1
 		set_country_flag = TEX_democrat_beto_o_rourke_2017
+		if = {
+			limit = { has_country_flag = TEX_dems_are_newdem }
+			clr_country_flag = TEX_dems_are_newdem 
+		}
 	}
 	
 	option = { #Marianne Williamson
@@ -10251,6 +10274,10 @@ country_event = {
 	option = { #Bill Richardson
 		name = texas_elections.16.o3
 		set_country_flag = TEX_democrat_bill_richardson_2017
+		if = {
+			limit = { has_country_flag = TEX_dems_are_newdem }
+			clr_country_flag = TEX_dems_are_newdem 
+		}
 	}
 	
 	option = { #Woody Harrleson
@@ -10331,11 +10358,19 @@ country_event = {
 	option = { #M.J. Heagar
 		name = texas_elections.17.o2
 		set_country_flag = TEX_democrat_m_j_heagar_2021
+		if = {
+			limit = { has_country_flag = TEX_dems_are_newdem }
+			clr_country_flag = TEX_dems_are_newdem 
+		}
 	}
 	
 	option = { #Colin Allred
 		name = texas_elections.17.o3
 		set_country_flag = TEX_democrat_colin_allred_2021
+		if = {
+			limit = { has_country_flag = TEX_dems_are_newdem }
+			clr_country_flag = TEX_dems_are_newdem 
+		}
 	}
 	
 	option = { #Matthew McConaughey
@@ -10362,6 +10397,10 @@ country_event = {
 			has_country_flag = TEX_mark_kelly_unlocked
 		}
 		set_country_flag = TEX_democrat_mark_kelly_2021
+		if = {
+			limit = { has_country_flag = TEX_dems_are_newdem }
+			clr_country_flag = TEX_dems_are_newdem 
+		}
 	}
 }
 
@@ -10413,16 +10452,28 @@ country_event = {
 	option = { #Gina Hinojosa
 		name = texas_elections.18.o1
 		set_country_flag = TEX_democrat_gina_hinojosa_2025
+		if = {
+			limit = { has_country_flag = TEX_dems_are_newdem }
+			clr_country_flag = TEX_dems_are_newdem 
+		}
 	}
 	
 	option = { #Al Green
 		name = texas_elections.18.o2
 		set_country_flag = TEX_democrat_al_green_2025
+		if = {
+			limit = { has_country_flag = TEX_dems_are_newdem }
+			clr_country_flag = TEX_dems_are_newdem 
+		}
 	}
 	
 	option = { #Jasmine Crockett
 		name = texas_elections.18.o3
 		set_country_flag = TEX_democrat_jasmine_crockett_2025
+		if = {
+			limit = { has_country_flag = TEX_dems_are_newdem }
+			clr_country_flag = TEX_dems_are_newdem 
+		}
 	}
 	
 	option = { #James Talarico
@@ -10862,9 +10913,6 @@ country_event = {
 	
 	option = { #Karl Rove *Wolf's Howl*
 		name = texas_elections.28.o5
-		trigger = {
-			has_country_flag = TEX_george_p_bush_unlocked 
-		}
 		set_country_flag = TEX_indrep_karl_rove_2021
 	}
 }

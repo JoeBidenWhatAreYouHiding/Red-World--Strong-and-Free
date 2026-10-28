@@ -157,10 +157,14 @@ country_event = {
 				add_ideas = MEX_American_Refugees
 			}
 			add_ideas = MEX_War_On_Drugs
-			# every_state = {
-				# limit = { is_core_of = MEX }
-				# RIO = { add_state_core = PREV }
-			# }
+			every_state = {
+				limit = {
+					is_core_of = MEX 
+					NOT = { is_core_of = RIO }
+				}
+				set_state_flag = MEX_RIO_CLAIM
+				RIO = { add_state_core = PREV }
+			}
 			RIO = {
 				division_template = {
 					name = "Sinaloa Cartel Guards"
@@ -450,13 +454,24 @@ country_event = {
 				days = 2
 			}
 		}
+		RIO = {
+			every_owned_state = {
+				limit = { has_state_flag = MEX_RIO_CLAIM }
+				RIO = { remove_state_core = PREV }
+			}
+			drop_cosmetic_tag = yes
+		}
 		hidden_effect = {
+			MEX = {
+				annex_country = {
+					target = RIO
+					transfer_troops = yes
+				}
+				change_tag_from = ROOT 
+			}
 			every_owned_state = {
 				limit = { is_core_of = MEX }
 				MEX = { transfer_state = PREV }
-			}
-			MEX = {
-				change_tag_from = ROOT 
 			}
 			MEX_salvador_cienfuegos = {
 				set_nationality = MEX

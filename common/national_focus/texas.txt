@@ -803,6 +803,7 @@ focus_tree = {
 					random_days = 10
 				}
 				set_country_flag = TEX_hide_opening_tree
+				mark_focus_tree_layout_dirty = yes
 			}
 		}
 	}
@@ -854,6 +855,7 @@ focus_tree = {
 					random_days = 10
 				}
 				set_country_flag = TEX_hide_opening_tree
+				mark_focus_tree_layout_dirty = yes
 			}
 		}
 	}
@@ -916,6 +918,7 @@ focus_tree = {
 		}
 		bypass = {
 			has_government = nationalist
+			hidden_trigger = { has_country_flag = TEX_elections_over }
 		}
 		
 		relative_position_id = TEX_2013_election
@@ -10407,7 +10410,10 @@ focus_tree = {
 				has_government = fascist
 				has_government = nationalist
 			}
-			has_idea = TEX_Hispanic_Tensions
+			OR = {
+				has_idea = TEX_Hispanic_Tensions
+				hidden_trigger = { has_idea = TEX_Hispanic_Tensions_Less }
+			}
 		}
 		
 		relative_position_id = TEX_eve_of_war
@@ -13413,6 +13419,15 @@ focus_tree = {
 			
 		}
 		
+		bypass = {
+			MEX = {
+				OR = {
+					exists = no
+					is_subject = yes
+				}
+			}
+		}
+		
 		relative_position_id = TEX_improve_relations_with_our_neigbours
 		x = 1
 		y = 1
@@ -13452,6 +13467,16 @@ focus_tree = {
 			NOT = { has_country_leader_with_trait = TEX_new_mexico_representative }
 			owns_state = 376
 			NOT = { has_war_with = MEX }
+		}
+		
+		bypass = {
+			OR = {
+				899 = {
+					has_dynamic_modifier = { modifier = TEX_New_Mexico_Autonomy }
+				}
+				has_country_leader_with_trait = TEX_new_mexico_representative 
+				NOT = { owns_state = 376 }
+			}
 		}
 		
 		relative_position_id = TEX_improve_relations_with_our_neigbours
@@ -13496,6 +13521,15 @@ focus_tree = {
 			}
 		}
 		
+		bypass = {
+			USA = {
+				OR = {
+					exists = no
+					is_subject = yes
+				}
+			}
+		}
+		
 		relative_position_id = TEX_improve_relations_with_our_neigbours
 		x = -1
 		y = 3
@@ -13522,6 +13556,16 @@ focus_tree = {
 		available = {
 			PCA = { 
 				has_government = communist
+			}
+		}
+		
+		bypass = {
+			PCA = {
+				OR = {
+					exists = no
+					is_subject = yes
+					NOT = { has_government = communist }
+				}
 			}
 		}
 		
@@ -15326,9 +15370,11 @@ focus_tree = {
 			set_country_flag = TEX_mark_kelly_unlocked
 			TEX_scott_kelly = {
 				add_scientist_role = {
-					traits = { scientist_trait_gifted_engineer }
-					skills = {
-						specialization_air = 1
+					scientist = {
+						traits = { scientist_trait_gifted_engineer }
+						skills = {
+							specialization_air = 1
+						}
 					}
 				}
 			}
