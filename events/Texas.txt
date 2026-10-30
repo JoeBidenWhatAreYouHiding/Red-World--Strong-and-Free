@@ -1253,6 +1253,10 @@ country_event = {
 					id = texas_news.15
 				}
 			}
+			country_event = {
+				id = texas_peaceout.10
+				days = 7
+			}
 		}
 	}
 }
@@ -9183,6 +9187,66 @@ country_event = {
 	}
 }
 
+#Perot Death
+country_event = {
+	id = texas.400
+	title = texas.400.t
+	desc = {
+		text = texas.400.d
+		trigger = {
+			NOT = { has_country_flag = TEX_ross_perot_was_president }
+		}
+	}
+	desc = {
+		text = texas.400.d_pres
+		trigger = {
+			has_country_flag = TEX_ross_perot_was_president
+			has_country_leader = {
+				character = TEX_ross_perot
+				ruling_only = yes
+			}
+		}
+	}
+	desc = {
+		text = texas.400.d_former_pres
+		trigger = {
+			has_country_flag = TEX_ross_perot_was_president
+			NOT = {
+				has_country_leader = {
+					character = TEX_ross_perot
+					ruling_only = yes
+				}
+			}
+		}
+	}
+	picture = death_of_ross_perot
+	
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = { has_country_flag = TEX_perot_dips }
+	}
+	
+	option = { #RIP
+		name = texas.400.o1
+		add_manpower = -1
+		if = { 
+			limit = {
+				has_country_leader = {
+					character = TEX_ross_perot
+					ruling_only = yes
+				}
+			}
+			TEX_pat_choate = {
+				promote_character = classical_populism
+			}
+			add_ideas = texas_sic_ross_perot_jr
+		}
+	}
+}
+
 ### Elections Events ###
 
 add_namespace = texas_elections
@@ -12984,6 +13048,7 @@ country_event = {
 		CAN = {
 			add_manpower = 1
 		}
+		set_country_flag = TEX_perot_dips
 	}
 }
 
@@ -13638,6 +13703,38 @@ country_event = {
 	option = {
 		name = texas_flavour.55.o1
 		add_war_support = 0.02
+	}
+}
+
+#State Fair trigger
+country_event = {
+	id = texas_flavour.100
+	title = texas_flavour.100.t
+	desc = texas_flavour.100.d
+	picture = texas_state_fair
+	
+	
+	is_triggered_only = yes
+	
+	hidden = yes
+	
+	immediate = {
+		if = {
+			limit = { 
+				NOT = { has_war_with = USA }
+			}
+			country_event = texas_flavour.12
+		}
+		hidden_effect = {
+			country_event = {
+				id = texas_flavour.100
+				days = 355
+			}
+		}
+	}
+	
+	option = {
+		name = texas_flavour.100.o1
 	}
 }
 
