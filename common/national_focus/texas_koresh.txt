@@ -1,0 +1,3016 @@
+focus_tree = {
+	id = texas_cults_focus
+	country = {
+		factor = 0
+		# modifier = {
+			# add = 100
+			# tag = TEX
+		# }
+	}
+	default = no
+	continuous_focus_position = { x = 4800 y = 2300 }
+	shared_focus = TEX_texan_army
+	shared_focus = TEX_air_force
+	shared_focus = TEX_texan_navy
+	shared_focus = TEX_texan_economy
+	
+	###################
+	#### POLITICAL ####
+	###################
+
+	focus = {
+		id = TEX_branch_davidians
+		icon = GFX_goal_TEX_branch_davidians
+		cost = 1
+		x = 10
+		y = 1
+
+		available = {
+			
+		}
+		
+		allow_branch = {
+			NOT = { has_country_flag = TEX_junta_flag }
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.314
+			custom_effect_tooltip = TEX_davidan_cabinet_tt
+			hidden_effect = {
+				add_ideas = {
+					texas_sic_steve_schneider
+					texas_fom_livingstone_fagan
+					texas_ind_david_thibodeau
+					texas_nsm_wayne_martin
+				}
+			}
+			hidden_effect = {
+				country_event = {
+					id = texas_flavour.49
+					days = 200
+					random_days = 100
+				}
+			}
+		}
+	}
+	
+	# - Davidian Kingdom
+	
+	focus = {
+		id = TEX_kingdom_of_david
+		icon = GFX_goal_TEX_arise_kingdom_of_david
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_branch_davidians
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_restore_the_constitution
+		}
+		
+		relative_position_id = TEX_branch_davidians
+		x = -1
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.301
+			add_monarchist_to_coalition = yes
+			hidden_effect = {
+				set_party_name = {
+					name = TEX_branch_davidians_party
+					long_name = TEX_branch_davidians_party_long
+					ideology = monarchist
+				}
+			}
+			add_ideas = TEX_the_kingdom_of_david
+		}
+	}
+	
+	focus = {
+		id = TEX_mt_carmel_rule
+		icon = GFX_goal_TEX_mt_carmel_rule
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_kingdom_of_david
+		}
+		
+		relative_position_id = TEX_kingdom_of_david
+		x = -1
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.302
+			swap_ideas = {
+				remove_idea = TEX_the_kingdom_of_david
+				add_idea = TEX_the_kingdom_of_david2
+			}
+			set_victory_points = {
+				province = 10861
+				value = 30
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_perform_miracles
+		icon = GFX_goal_TEX_capitalist_idols
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_mt_carmel_rule
+		}
+		
+		relative_position_id = TEX_mt_carmel_rule
+		x = -1
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.303
+			add_ideas = TEX_christian_anti_capitalism
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_popularity = {
+				ideology = national_bolshevik
+				popularity = 0.04
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			swap_ideas = {
+				remove_idea = TEX_scars_of_the_war
+				add_idea = TEX_scars_of_the_war2
+			}
+			set_country_flag = TEX_can_do_economy_stuff
+			custom_effect_tooltip = TEX_unlock_economy_tree
+		}
+	}
+	
+	focus = {
+		id = TEX_intense_philosemitism
+		icon = GFX_goal_TEX_philiosemitism
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_mt_carmel_rule
+		}
+		
+		relative_position_id = TEX_mt_carmel_rule
+		x = 1
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.304
+			swap_ideas = {
+				remove_idea = TEX_the_kingdom_of_david2
+				add_idea = TEX_the_kingdom_of_david3
+			}
+			add_opinion_modifier = {
+				target = SAF
+				modifier = supports_our_cause
+			}
+			SAF = {
+				add_opinion_modifier = {
+					target = TEX
+					modifier = supports_our_cause
+				}
+			}
+			add_manpower = 2300
+		}
+	}
+	
+	focus = {
+		id = TEX_the_lamb
+		icon = GFX_goal_TEX_the_lamb
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_intense_philosemitism
+		}
+		prerequisite = {
+			focus = TEX_perform_miracles
+		}
+		
+		relative_position_id = TEX_mt_carmel_rule
+		x = 0
+		y = 2
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			TEX_david_koresh = {
+				swap_country_leader_traits = {
+					remove = TEX_madman_in_waco
+					add = TEX_the_lamb
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_the_seven_seals
+		icon = GFX_goal_TEX_seven_seals
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_the_lamb
+		}
+		
+		relative_position_id = TEX_mt_carmel_rule
+		x = 0
+		y = 4
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_named_threat = { threat = 5 name = "Revelations" }
+			add_ideas = TEX_coming_of_the_end
+		}
+	}
+	
+	# - Mainstream 
+	
+	focus = {
+		id = TEX_restore_the_constitution
+		icon = GFX_goal_TEX_restore_the_constitution
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_branch_davidians
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_kingdom_of_david
+		}
+		
+		relative_position_id = TEX_branch_davidians
+		x = 1
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.305
+			TEX_david_koresh = {
+				add_country_leader_role = {
+					country_leader = {
+						expire = "1.1.1.1"
+						ideology = texas_nationalism
+					}
+				}
+				promote_character = texas_nationalism
+				set_portraits = {
+					civilian = { large = "gfx/leaders/TEX/Portrait_TEX_David_Koresh_President.png" }
+				}
+			}
+			set_politics = {
+				ruling_party = nationalist
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.25
+			}
+			set_party_name = {
+				name = TEX_office_of_the_president_party
+				long_name = TEX_office_of_the_president_party_long
+				ideology = nationalist
+			}
+			add_fash_to_coalition = yes
+			hidden_effect = { 
+				set_cosmetic_tag = TEX_koresh_texas
+			}
+			hidden_effect = {
+				country_event = {
+					id = texas_elections.30
+					days = 1460
+				}
+			}
+			set_country_flag = TEX_president_unchallenged
+		}
+	}
+	
+	focus = {
+		id = TEX_reconnect_with_the_christian_mainstream
+		icon = GFX_goal_TEX_reconcile_the_christian_mainstream
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_restore_the_constitution
+		}
+		
+		relative_position_id = TEX_restore_the_constitution
+		x = 1
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.306
+			add_ideas = TEX_obey_the_bible
+			add_political_power = 100
+		}
+	}
+	
+	focus = {
+		id = TEX_form_a_complete_political_consensus
+		icon = GFX_goal_TEX_political_consensus
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_reconnect_with_the_christian_mainstream
+		}
+		
+		relative_position_id = TEX_reconnect_with_the_christian_mainstream
+		x = -1
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.307
+			set_party_name = {
+				name = TEX_independent_organization
+				long_name = TEX_independent_organization_long
+				ideology = liberal
+			}
+			set_party_name = {
+				name = TEX_prog_independent_organization
+				long_name = TEX_prog_independent_organization_long
+				ideology = new_democrat
+			}
+			set_party_name = {
+				name = TEX_natcon_independent_organization
+				long_name = TEX_natcon_independent_organization_long
+				ideology = national_conservative
+			}
+			set_party_name = {
+				name = TEX_centrist_independent_organization
+				long_name = TEX_centrist_independent_organization_long
+				ideology = centrist
+			}
+			set_party_name = {
+				name = TEX_leftist_independent_organization
+				long_name = TEX_leftist_independent_organization_long
+				ideology = moderate_socialist
+			}
+			add_natcon_to_coalition = yes
+			add_centrist_to_coalition = yes
+			add_liberal_to_coalition = yes
+			add_newdem_to_coalition = yes
+			add_modsoc_to_coalition = yes
+			hidden_effect = {
+				set_party_name = {
+					name = TEX_none_party
+					long_name = TEX_none_party_long
+					ideology = revolutionary_socialist
+				}
+				set_party_name = {
+					name = TEX_none_party
+					long_name = TEX_none_party_long
+					ideology = communist
+				}
+				set_party_name = {
+					name = TEX_none_party
+					long_name = TEX_none_party_long
+					ideology = national_bolshevik
+				}
+			}
+			swap_ideas = {
+				remove_idea = TEX_obey_the_bible
+				add_idea = TEX_obey_the_bible2
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_fundraising_oppurtunities
+		icon = GFX_goal_TEX_adapt_to_mainstream_sensibilities
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_reconnect_with_the_christian_mainstream
+		}
+		
+		relative_position_id = TEX_reconnect_with_the_christian_mainstream
+		x = 1
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.308
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.03
+			}
+			add_war_support = 0.04
+			add_ideas = TEX_koresh_christian_nationalism
+		}
+	}
+	
+	focus = {
+		id = TEX_comprehensive_welfare_state
+		icon = GFX_goal_TEX_christian_welfare_state
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_fundraising_oppurtunities
+		}
+		prerequisite = {
+			focus = TEX_form_a_complete_political_consensus
+		}
+		
+		relative_position_id = TEX_reconnect_with_the_christian_mainstream
+		x = 0
+		y = 2
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_stability = 0.04
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.03
+			}
+			add_ideas = TEX_christian_welfare_state
+			custom_effect_tooltip = tooltip_blank_line
+			swap_ideas = {
+				remove_idea = TEX_scars_of_the_war
+				add_idea = TEX_scars_of_the_war2
+			}
+			set_country_flag = TEX_can_do_economy_stuff
+			custom_effect_tooltip = TEX_unlock_economy_tree
+		}
+	}
+	
+	focus = {
+		id = TEX_a_new_form_of_messiahood
+		icon = GFX_goal_TEX_prophet_president
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_comprehensive_welfare_state
+		}
+		
+		relative_position_id = TEX_reconnect_with_the_christian_mainstream
+		x = 0
+		y = 4
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			TEX_david_koresh = {
+				swap_country_leader_traits = {
+					remove = TEX_madman_in_waco
+					add = TEX_messiah_in_chief
+				}
+			}
+		}
+	}
+	
+	# - Shared
+	
+	focus = {
+		id = TEX_keep_your_rifle_by_your_side
+		icon = GFX_goal_TEX_keep_your_rifle_by_your_side
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_restore_the_constitution
+			focus = TEX_kingdom_of_david
+		}
+		
+		relative_position_id = TEX_branch_davidians
+		x = 0
+		y = 2
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.309
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1200
+				producer = TEX
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = 1200
+				producer = TEX
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = 1200
+				producer = TEX
+			}
+			add_ideas = TEX_keep_your_rifle_by_your_side_idea
+		}
+	}
+	
+	focus = {
+		id = TEX_davidian_media
+		icon = GFX_goal_TEX_davidian_media
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_keep_your_rifle_by_your_side
+		}
+		
+		relative_position_id = TEX_keep_your_rifle_by_your_side
+		x = 0
+		y = 2
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.310
+			add_ideas = TEX_god_rocks
+			CAN_add_3_percent_popularity = yes
+		}
+	}
+	
+	focus = {
+		id = TEX_stimulation_through_legalization
+		icon = GFX_goal_TEX_revelation_through_legalization
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_davidian_media
+		}
+		
+		relative_position_id = TEX_davidian_media
+		x = -1
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.312
+			add_stability = 0.04
+			add_ideas = TEX_bliss
+		}
+	}
+	
+	focus = {
+		id = TEX_tear_down_secularism
+		icon = GFX_goal_TEX_return_to_the_land
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_davidian_media
+		}
+		
+		relative_position_id = TEX_davidian_media
+		x = 1
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			add_ideas = TEX_simpler_living
+		}
+	}
+	
+	focus = {
+		id = TEX_purge_the_communists
+		icon = GFX_goal_TEX_destroy_modern_technology
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_tear_down_secularism
+		}
+		prerequisite = {
+			focus = TEX_stimulation_through_legalization
+		}
+		
+		relative_position_id = TEX_davidian_media
+		x = 0
+		y = 2
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_research_slot = 1 #Should be -1 but what other focus would give him another slot
+			swap_ideas = {
+				remove_idea = TEX_simpler_living
+				add_idea = TEX_simpler_living2
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_infiltrate_law_enforcment
+		icon = GFX_goal_TEX_infiltrate_law_enforcement
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_tear_down_secularism
+		}
+		
+		relative_position_id = TEX_davidian_media
+		x = -1
+		y = 3
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.311
+			add_manpower = 3400
+			remove_ideas = TEX_the_nonbelievers
+			CAN_add_3_percent_popularity = yes
+			custom_effect_tooltip = TEX_unlock_mil_tree
+			set_country_flag = TEX_can_do_military_stuff
+		}
+	}
+	
+	focus = {
+		id = TEX_ahead_of_armegeddon
+		icon = GFX_goal_TEX_ahead_of_the_apocalypse
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_tear_down_secularism
+		}
+		
+		relative_position_id = TEX_davidian_media
+		x = 1
+		y = 3
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.315
+			add_ideas = TEX_judgement_day
+			add_named_threat = { threat = 5 name = "The End Times" }
+		}
+	}
+	
+    ########################
+	#### FOREIGN POLICY ####
+	########################
+	
+	### Isolationists ###
+
+	focus = {
+		id = TEX_further_our_retreat
+		icon = GFX_goal_TEX_autarky
+		cost = 6
+		x = 1
+		y = 3
+		
+		mutually_exclusive = {
+			focus = TEX_destroy_the_federal_government
+		}
+		
+		allow_branch = {
+			NOT = { has_country_flag = TEX_junta_flag }
+		}
+
+		available = {
+			OR = {
+				has_completed_focus = TEX_the_lamb
+				has_completed_focus = TEX_comprehensive_welfare_state
+			}
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = TEX_autarky
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_davidian_nuclear_program
+		icon = GFX_goal_TEX_davidian_nuclear_program
+		cost = 6
+		x = 0
+		y = 1
+		relative_position_id = TEX_further_our_retreat
+		
+		prerequisite = {
+			focus = TEX_further_our_retreat
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = nuclear_bonus
+				bonus = 0.5
+				uses = 1
+				category = nuclear
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_nuclear
+				value = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_offer_refuge_to_the_faithful
+		icon = GFX_goal_TEX_offer_refuge_to_the_faithful
+		cost = 6
+		x = 0
+		y = 2
+		relative_position_id = TEX_further_our_retreat
+		
+		prerequisite = {
+			focus = TEX_davidian_nuclear_program
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_manpower = 5600
+			add_ideas = TEX_preparing_for_the_end_times
+			if = {
+				limit = { NOT = { has_tech = tech_field_hospital }}
+				set_technology = { tech_field_hospital = 1 }
+			}
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = hospital_tech
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_seal_our_borders_and_prepare_for_the_end
+		icon = GFX_goal_TEX_prepare_for_the_end
+		cost = 6
+		x = 0
+		y = 3
+		relative_position_id = TEX_further_our_retreat
+		
+		prerequisite = {
+			focus = TEX_offer_refuge_to_the_faithful
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			every_country = {
+				limit = { is_neighbor_of = TEX }
+				PREV = {
+					custom_effect_tooltip = MWA_bunkers_tt
+				}
+			}
+			every_core_state = {
+				limit = {
+					is_island_state = no
+					is_fully_controlled_by = ROOT
+					any_neighbor_state = {
+						is_core_of = ROOT
+					}
+				}
+				every_neighbor_state = {
+					limit = {
+						is_core_of = ROOT
+					}
+					if = {
+						limit = {
+							NOT = { is_in_array = { ROOT.targetcountries = THIS.controller } }
+						}
+						PREV = {
+							add_building_construction = {
+								type = bunker
+								level = 2
+								instant_build = yes
+								province = {
+									all_provinces = yes
+									limit_to_border_country = PREV.controller
+								}
+							}
+						}
+						add_to_array = { ROOT.targetcountries = THIS.controller }
+					}
+				}
+				clear_array = ROOT.targetcountries
+			}
+		}
+	}
+	
+	### Expansionists ###
+
+	focus = {
+		id = TEX_destroy_the_federal_government
+		icon = GFX_goal_TEX_destroy_the_fedeal_government
+		cost = 6
+		x = 3
+		y = 3
+		
+		mutually_exclusive = {
+			focus = TEX_further_our_retreat
+		}
+		
+		allow_branch = {
+			NOT = { has_country_flag = TEX_junta_flag }
+		}
+
+		available = {
+			has_completed_focus = TEX_the_lamb
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			declare_war_on = {
+				target = USA
+				type = annex_everything 
+			}
+			add_ideas = TEX_settling_the_score
+		}
+	}
+	
+	focus = {
+		id = TEX_cooperate_with_montana
+		icon = GFX_goal_TEX_cooperate_with_montana
+		cost = 6
+		x = 0
+		y = 1
+		relative_position_id = TEX_destroy_the_federal_government
+		
+		prerequisite = {
+			focus = TEX_destroy_the_federal_government
+		}
+
+		available = {
+			OR = {
+				MOT = {
+					has_government = fascist
+					is_subject = no
+				}
+				GRL = {
+					has_country_leader = {
+						name = "David Brian Stone"
+						ruling_only = yes
+					}
+				}
+			}
+		}
+		
+		bypass = {
+			MOT = {
+				OR = {
+					NOT = { has_government = fascist }
+					is_subject = yes
+				}
+			}
+			NOT = {
+				GRL = {
+					has_country_leader = {
+						name = "David Brian Stone"
+						ruling_only = yes
+					}
+				}
+			}
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			if = {
+				limit = {
+					MOT = { has_government = fascist }
+					MOT = { is_subject = no }
+				}
+				MOT = {
+					country_event = texas_diplo.40 
+				}
+			}
+			if = {
+				limit = {
+					GRL = {
+						has_country_leader = {
+							name = "David Brian Stone"
+							ruling_only = yes
+						}
+					}
+				}
+				GRL = {
+					country_event = texas_diplo.40 
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_reclaim_america_for_the_faithful
+		icon = GFX_goal_TEX_reclaim_america_for_the_faithful
+		cost = 6
+		x = 0
+		y = 2
+		relative_position_id = TEX_destroy_the_federal_government
+		
+		prerequisite = {
+			focus = TEX_cooperate_with_montana
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			set_country_flag = unifying_america
+			enable_unification_decisions = yes
+            core_NEA = yes
+            core_ILL = yes
+            core_GRL = yes
+            core_MWA = yes
+            core_MOT = yes
+            core_LIN = yes
+            core_UTA = yes
+            core_ARI = yes
+            core_PCA = yes
+            core_USA = yes
+			custom_effect_tooltip = TEX_gains_wargoals_on_all_post_american_countries
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = { is_in_faction_with = MOT }
+					}
+					create_wargoal = {
+						type = annex_everything
+						target = MOT
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = LIN
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = UTA
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = ARI
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = PCA
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = CSD
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = ILL
+				}
+				if = {
+					limit = {
+						NOT = { is_in_faction_with = GRL }
+					}
+					create_wargoal = {
+						type = annex_everything
+						target = GRL
+					}
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = NEA
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = AMC
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = USA
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = MWA
+				}
+			}
+			if = {
+				limit = {
+					is_in_faction_with = MOT 
+				}
+				activate_targeted_decision = { target = MOT decision = TEX_demand_tag_submit_themselves_before_the_second_coming }
+			}
+			if = {
+				limit = {
+					is_in_faction_with = GRL 
+				}
+				activate_targeted_decision = { target = MOT decision = TEX_demand_tag_submit_themselves_before_the_second_coming }
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_take_back_the_holy_land
+		icon = GFX_goal_TEX_reclaim_holy_land
+		cost = 6
+		x = 0
+		y = 3
+		relative_position_id = TEX_destroy_the_federal_government
+		
+		prerequisite = {
+			focus = TEX_reclaim_america_for_the_faithful
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TEX_united_the_lost_tribe
+				has_country_flag = the_united_states_are_back
+			}
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			if = {
+				limit = {
+					NOT = { has_cosmetic_tag = TEX_davidian_america }
+				}
+				set_cosmetic_tag = TEX_davidian_america
+			}
+			declare_war_on = {
+				target = PAL
+				type = annex_everything 
+			}
+			set_country_flag = TEX_went_to_reclaim_israel
+			PAL = {
+				every_owned_state = {
+					TEX = { add_state_claim = PREV }
+				}
+			}
+		}
+	}
+	
+		
+	####################
+	#### UFOLOGISTS ####
+	####################
+	
+	### Opening Fakeout ###
+	
+	focus = {
+		id = TEX_mccasland_junta
+		icon = GFX_goal_TEX_military_junta
+		cost = 1
+		x = 11
+		y = 3
+	
+		available = {
+			
+		}
+		
+		allow_branch = {
+			has_country_flag = TEX_junta_flag
+			NOT = { has_country_flag = TEX_ufo_flag }
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.319
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.02
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_disband_congress
+		icon = GFX_goal_TEX_disband_congress
+		cost = 6
+		x = -1
+		y = 1
+		relative_position_id = TEX_mccasland_junta
+		
+		mutually_exclusive = {
+			focus = TEX_re_open_the_legislature
+		}
+		
+		prerequisite = {
+			focus = TEX_mccasland_junta
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TEX_dummy_focus_flag
+				always = no
+			}
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			custom_effect_tooltip = TEX_junta_fake_event_1
+			effect_tooltip = {
+				add_ideas = TEX_martial_law
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_re_open_the_legislature
+		icon = GFX_goal_TEX_reopen_legislature
+		cost = 6
+		x = 1
+		y = 1
+		relative_position_id = TEX_mccasland_junta
+		
+		mutually_exclusive = {
+			focus = TEX_disband_congress
+		}
+		
+		prerequisite = {
+			focus = TEX_mccasland_junta
+		}
+		
+		select_effect = {
+			TEX_charles_quinton_brown_junior = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader={
+						ideology=military_junta
+						expire="1.1.1.1"
+						id=-1
+					}
+				}
+			}
+		}
+		
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TEX_dummy_focus_flag
+				always = yes
+			}
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.320
+			custom_effect_tooltip = TEX_free_elections_will_be_restored
+		}
+	}
+	
+	focus = {
+		id = TEX_they_speak
+		icon = {
+			GFX_goal_TEX_SPEAK = {
+				has_country_flag = TEX_ufo_movement
+			}
+			GFX_goal_TEX_cooperate_ufologist_movement = yes
+		}
+		cost = 6
+		x = 0
+		y = 2
+		relative_position_id = TEX_mccasland_junta
+		
+		prerequisite = {
+			focus = TEX_mccasland_junta
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TEX_dummy_focus_flag
+				NOT = { has_country_flag = TEX_purged_ufologists }
+			}	
+		}
+		
+		select_effect = {
+			country_event = {
+				id = texas.321
+				days = 30
+			}
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			set_country_flag = TEX_ufo_flag
+			mark_focus_tree_layout_dirty = yes
+			if = {
+				limit = { has_country_flag = TEX_ufo_movement }
+				country_event = texas.322
+			}
+			else = {
+				effect_tooltip = { add_ideas = TEX_uap_disclosure }
+				custom_effect_tooltip = TEX_junta_fake_event_2
+			}
+			effect_tooltip = {
+				TEX_bob_lazar = {
+					add_scientist_role = {
+						traits = { scientist_trait_brilliant_theorist scientist_trait_gifted_engineer }
+						skills = {
+							specialization_air = 2
+						}
+					}
+				}
+			}
+			hidden_effect = {
+				random_list = {
+					50 = {
+						TEX_bob_lazar = {
+							add_scientist_role = {
+								scientist = {
+									traits = { scientist_trait_brilliant_theorist scientist_trait_gifted_engineer scientist_trait_bright scientist_trait_genius }
+									skills = {
+										specialization_air = 2
+									}
+								}
+							}
+						}
+					}
+					50 = {
+						TEX_bob_lazar = {
+							add_scientist_role = {
+								scientist = {
+									traits = { scientist_trait_schrodingers_trait }
+									skills = {
+										specialization_air = 0
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_restore_order_on_the_streets
+		icon = GFX_tanks_in_the_streets
+		cost = 6
+		x = -2
+		y = 2
+		relative_position_id = TEX_mccasland_junta
+		
+		prerequisite = {
+			focus = TEX_mccasland_junta
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TEX_dummy_focus_flag
+				always = no
+			}
+			has_completed_focus = TEX_expell_soviet_agents
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {	
+			add_stability = 0.14
+			remove_ideas = TEX_post_coup_chaos2
+		}
+	}
+	
+	focus = {
+		id = TEX_expell_soviet_agents
+		icon = GFX_goal_CAN_soviet_bloc
+		cost = 6
+		x = 2
+		y = 2
+		relative_position_id = TEX_mccasland_junta
+		
+		prerequisite = {
+			focus = TEX_mccasland_junta
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TEX_dummy_focus_flag
+				always = no
+			}
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_popularity = {
+				ideology = communist
+				popularity = 0.03
+			}
+			swap_ideas = {
+				remove_idea = TEX_post_coup_chaos
+				add_idea = TEX_post_coup_chaos2
+			}
+		}
+	}
+	
+	### Real Tree ###
+	
+	focus = {
+		id = TEX_victory_of_the_ufologists
+		icon = GFX_goal_TEX_SEE
+		cost = 6
+		x = 11
+		y = 1
+	
+		available = {
+			
+		}
+		bypass = {
+			always = yes
+		}
+		
+		allow_branch = {
+			has_country_flag = TEX_ufo_flag
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			custom_effect_tooltip = unlock_focuses
+		}
+		bypass_effect = {
+			set_cosmetic_tag = RSW
+			set_party_name = {
+				name = TEX_disclosure_party
+				long_name = TEX_disclosure_party_long
+				ideology = nationalist
+			}
+			hidden_effect = {
+				remove_ideas = TEX_post_coup_chaos
+			}
+			add_ideas = {
+				texas_sic_david_wilcock
+				texas_fom_frank_chu
+				texas_ind_jeff_peckman
+				texas_nsm_hal_puthoff
+			}
+			hidden_effect = {
+				country_event = {
+					id = texas_flavour.50
+					days = 200
+					random_days = 100
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_consolidate_power_in_roswell
+		icon = GFX_goal_TEX_consolidate_power_in_roswell
+		cost = 6
+		x = 0
+		y = 1
+		relative_position_id = TEX_victory_of_the_ufologists
+		
+		prerequisite = {
+			focus = TEX_victory_of_the_ufologists
+		}
+
+		available = {
+			has_completed_focus = TEX_unity_in_humanity
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_et_go_home
+				add_idea = TEX_et_go_home2
+			}
+			set_victory_points = {
+				province = 8070
+				value = 20
+			}
+			set_capital = { state = 899 }
+			swap_ideas = {
+				remove_idea = TEX_scars_of_the_war
+				add_idea = TEX_scars_of_the_war2
+			}
+			set_country_flag = TEX_can_do_economy_stuff
+			custom_effect_tooltip = TEX_unlock_economy_tree
+		}
+	}
+	
+	focus = {
+		id = TEX_unity_in_humanity
+		icon = GFX_goal_TEX_unity_in_humanity
+		cost = 6
+		x = 2
+		y = 1
+		relative_position_id = TEX_victory_of_the_ufologists
+		
+		prerequisite = {
+			focus = TEX_victory_of_the_ufologists
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.323
+			add_ideas = TEX_et_go_home
+			add_war_support = 0.02
+			every_country = {
+				ROOT = {
+					add_opinion_modifier = {
+						target = PREV
+						modifier = fellow_humans
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_expand_MUFON
+		icon = GFX_goal_TEX_expand_MUFON
+		cost = 6
+		x = -2
+		y = 1
+		relative_position_id = TEX_victory_of_the_ufologists
+		
+		prerequisite = {
+			focus = TEX_victory_of_the_ufologists
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.325
+			add_ideas = TEX_MUFON
+			set_country_flag = TEX_blue_book_projects_in_progress
+		}
+	}
+	
+	focus = {
+		id = TEX_disclose_project_blue_book
+		icon = GFX_goal_TEX_era_of_disclosure
+		cost = 6
+		x = 0
+		y = 2
+		relative_position_id = TEX_victory_of_the_ufologists
+		
+		prerequisite = {
+			focus = TEX_expand_MUFON
+		}
+		prerequisite = {
+			focus = TEX_unity_in_humanity
+		}
+		prerequisite = {
+			focus = TEX_consolidate_power_in_roswell
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.324
+			swap_ideas = {
+				remove_idea = TEX_people_think_were_crazy
+				add_idea = TEX_people_think_were_crazy2
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.03
+			}
+			set_country_flag = TEX_can_go_searching
+			add_political_power = 100
+		}
+	}
+	
+	focus = {
+		id = TEX_the_pentagon
+		icon = GFX_goal_TEX_the_pentagon
+		cost = 4
+		x = -1
+		y = 1
+		relative_position_id = TEX_disclose_project_blue_book
+		
+		prerequisite = {
+			focus = TEX_disclose_project_blue_book
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			set_country_flag = TEX_can_search_pentagon
+			create_wargoal = {
+				type = annex_everything
+				target = USA
+			}
+			unlock_decision_tooltip = TEX_search_pentagon
+			core_USA = yes
+
+		}
+	}
+	
+	focus = {
+		id = TEX_area_51
+		icon = GFX_goal_TEX_area_51
+		cost = 4
+		x = 1
+		y = 1
+		relative_position_id = TEX_disclose_project_blue_book
+		
+		prerequisite = {
+			focus = TEX_disclose_project_blue_book
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			set_country_flag = TEX_can_search_area_51
+			create_wargoal = {
+				type = annex_everything
+				target = PCA
+			}
+			unlock_decision_tooltip = TEX_search_area_51
+			core_PCA = yes
+		}
+	}
+	
+	focus = {
+		id = TEX_call_for_unity_among_the_humans
+		icon = GFX_goal_TEX_call_for_unity
+		cost = 4
+		x = 0
+		y = 2
+		relative_position_id = TEX_disclose_project_blue_book
+		
+		prerequisite = {
+			focus = TEX_area_51
+			focus = TEX_the_pentagon
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			set_country_flag = unifying_america
+			enable_unification_decisions = yes
+			hidden_effect = {
+				core_ILL = yes
+				core_GRL = yes
+				core_MWA = yes
+				core_MOT = yes
+				core_LIN = yes
+				core_UTA = yes
+				core_ARI = yes
+				core_NEA = yes
+				activate_targeted_decision = { target = LIN decision = TEX_invite_country_to_the_hdf } 
+				activate_targeted_decision = { target = MOT decision = TEX_invite_country_to_the_hdf } 
+				activate_targeted_decision = { target = UTA decision = TEX_invite_country_to_the_hdf } 
+				activate_targeted_decision = { target = ARI decision = TEX_invite_country_to_the_hdf } 
+				activate_targeted_decision = { target = GRL decision = TEX_invite_country_to_the_hdf } 
+				activate_targeted_decision = { target = ILL decision = TEX_invite_country_to_the_hdf } 
+				activate_targeted_decision = { target = CSD decision = TEX_invite_country_to_the_hdf } 
+				activate_targeted_decision = { target = NEA decision = TEX_invite_country_to_the_hdf } 
+				activate_targeted_decision = { target = AMC decision = TEX_invite_country_to_the_hdf } 
+				activate_targeted_decision = { target = MWA decision = TEX_invite_country_to_the_hdf } 
+			}
+			unlock_decision_category_tooltip = TEX_humanity_defense_initiative
+		}
+	}
+	
+	focus = {
+		id = TEX_skinwalker_ranch
+		icon = GFX_goal_TEX_skinwalker_ranch
+		cost = 4
+		x = 2
+		y = 2
+		relative_position_id = TEX_disclose_project_blue_book
+		
+		prerequisite = {
+			focus = TEX_area_51
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			if = {
+				limit = {
+					country_exists = UTA 
+				}
+				UTA = { country_event = texas_diplo.46 }
+			}
+			else = {
+				create_wargoal = {
+					type = annex_everything
+					target = var:380.owner
+				}
+			}
+			set_country_flag = TEX_can_search_skinwalker_ranch
+			unlock_decision_tooltip = TEX_search_skinwalker_ranch
+		}
+	}
+	
+	focus = {
+		id = TEX_midwestern_crop_circles
+		icon = GFX_goal_TEX_midwestern_crop_circles
+		cost = 4
+		x = -2
+		y = 2
+		relative_position_id = TEX_disclose_project_blue_book
+		
+		prerequisite = {
+			focus = TEX_the_pentagon
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			if = {
+				limit = {
+					country_exists = MWA 
+				}
+				MWA = { country_event = texas_diplo.46 }
+			}
+			else = {
+				create_wargoal = {
+					type = annex_everything
+					target = var:380.owner
+				}
+			}
+			set_country_flag = TEX_can_search_crop_circles
+			unlock_decision_tooltip = TEX_search_crop_circles
+		}
+	}
+	
+	focus = {
+		id = TEX_destroy_the_legacy_program
+		icon = GFX_goal_TEX_destroy_legacy_program
+		cost = 6
+		x = 0
+		y = 3
+		relative_position_id = TEX_disclose_project_blue_book
+		
+		prerequisite = {
+			focus = TEX_call_for_unity_among_the_humans
+		}
+		prerequisite = {
+			focus = TEX_midwestern_crop_circles
+		}
+		prerequisite = {
+			focus = TEX_skinwalker_ranch
+		}
+
+		available = {
+			USA = {
+				OR = {
+					exists = no
+					is_subject = yes
+				}
+			}
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.330
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+			effect_tooltip = {
+				remove_ideas = TEX_deep_state
+			}
+			hidden_effect = {
+				remove_ideas = TEX_deep_state
+				remove_ideas = TEX_deep_state2
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_overcome_stigma
+		icon = GFX_goal_TEX_overcome_stigma
+		cost = 6
+		x = -1
+		y = 4
+		relative_position_id = TEX_disclose_project_blue_book
+		
+		prerequisite = {
+			focus = TEX_destroy_the_legacy_program
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.331
+			remove_ideas = TEX_people_think_were_crazy2
+			add_stability = 0.03
+		}
+	}
+	
+	focus = {
+		id = TEX_AATIP
+		icon = GFX_goal_TEX_AATIP
+		cost = 6
+		x = 1
+		y = 4
+		relative_position_id = TEX_disclose_project_blue_book
+		
+		prerequisite = {
+			focus = TEX_destroy_the_legacy_program
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = TEX_AATIP_idea
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = radar_tech
+			}
+			custom_effect_tooltip = TEX_unlock_mil_tree
+			set_country_flag = TEX_can_do_military_stuff
+		}
+	}
+	
+	focus = {
+		id = TEX_form_the_earth_liberation_command_council
+		icon = GFX_goal_TEX_form_the_earth_liberation_defense_command
+		cost = 4
+		x = 0
+		y = 5
+		relative_position_id = TEX_disclose_project_blue_book
+		
+		prerequisite = {
+			focus = TEX_AATIP
+		}
+		prerequisite = {
+			focus = TEX_overcome_stigma
+		}
+		
+		available = {
+			has_country_flag = the_united_states_are_back
+		}
+		
+		ai_will_do = {
+			factor = 100
+		}
+		
+		select_effect = {
+			set_cosmetic_tag = UFO
+			hidden_effect = {
+				every_country = {
+					news_event = {
+						hours = 4
+						id = texas_news.34
+					}
+				}
+			}
+			if = {
+				limit = {
+					check_variable = {
+						TEX_credibility > 2
+					}
+				}
+				country_event = {
+					id = texas.333
+					days = 8
+				}
+			}
+			else = {
+				country_event = {
+					id = texas.332
+					days = 8
+				}
+			}
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			effect_tooltip = { set_cosmetic_tag = UFO }
+			custom_effect_tooltip = TEX_ufo_decide_future		
+			clr_country_flag = TEX_blue_book_projects_in_progress
+		}
+	}
+	
+	
+	### Semi-Legitimacy ###
+	
+	focus = {
+		id = TEX_return_of_the_majestic_twelve
+		icon = GFX_goal_TEX_return_of_the_majestic_12
+		cost = 6
+		x = -3
+		y = 1
+		relative_position_id = TEX_form_the_earth_liberation_command_council
+		
+		mutually_exclusive = {
+			focus = TEX_continuance_of_the_roswell_clique
+		}
+		
+		prerequisite = {
+			focus = TEX_form_the_earth_liberation_command_council
+		}
+
+		available = {
+			has_country_leader = {
+				name = "Neil McCasland"
+				ruling_only = yes
+			}
+		}
+		bypass = {
+			has_country_leader = {
+				name = "Neil McCasland"
+				ruling_only = yes
+			}
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			custom_effect_tooltip = unlock_focuses
+		}
+	}
+	
+	focus = {
+		id = TEX_nonpartisan_technocratic_administation
+		icon = GFX_goal_TEX_non_partisan_managed_democracy
+		cost = 6
+		x = -1
+		y = 1
+		relative_position_id = TEX_return_of_the_majestic_twelve
+		
+		prerequisite = {
+			focus = TEX_return_of_the_majestic_twelve
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			TEX_neil_mccasland = {
+				set_portraits = {
+					civilian = { large = "gfx/leaders/TEX/Portrait_TEX_Neil_McCasland_Shades.png" }
+				}
+			}
+			add_ideas = TEX_managed_democracy
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.03
+			}
+			add_stability = 0.05
+		}
+	}
+	
+	focus = {
+		id = TEX_legitimize_political_organizations
+		icon = GFX_goal_TEX_legitimize_political_organizations
+		cost = 6
+		x = 1
+		y = 1
+		relative_position_id = TEX_return_of_the_majestic_twelve
+		
+		prerequisite = {
+			focus = TEX_return_of_the_majestic_twelve
+		}
+
+		available = {
+			has_completed_focus = TEX_nonpartisan_technocratic_administation
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.336
+			swap_ideas = {
+				remove_idea = TEX_managed_democracy
+				add_idea = TEX_managed_democracy2
+			}
+			add_political_power = 30
+			custom_effect_tooltip = TEX_reorg_political_parties
+			hidden_effect = {
+				set_party_name = {
+					name = TEX_ufo_communist_party
+					long_name = TEX_ufo_communist_party_long
+					ideology = communist
+				}
+				set_party_name = {
+					name = TEX_ufo_revsoc_party
+					long_name = TEX_ufo_revsoc_party_long
+					ideology = revolutionary_socialist
+				}
+				set_party_name = {
+					name = TEX_ufo_modsoc_party
+					long_name = TEX_ufo_modsoc_party_long
+					ideology = moderate_socialist
+				}
+				set_party_name = {
+					name = TEX_ufo_newdem_party
+					long_name = TEX_ufo_newdem_party_long
+					ideology = new_democrat
+				}
+				set_party_name = {
+					name = TEX_ufo_lib_party
+					long_name = TEX_ufo_lib_party_long
+					ideology = liberal
+				}
+				set_party_name = {
+					name = TEX_ufo_centrist_party
+					long_name = TEX_ufo_centrist_party_long
+					ideology = centrist
+				}
+				set_party_name = {
+					name = TEX_ufo_natcon_party
+					long_name = TEX_ufo_natcon_party_long
+					ideology = national_conservative
+				}
+				set_party_name = {
+					name = TEX_ufo_fascist_party
+					long_name = TEX_ufo_fascist_party_long
+					ideology = fascist
+				}
+				set_party_name = {
+					name = TEX_ufo_nazbol_party
+					long_name = TEX_ufo_nazbol_party_long
+					ideology = national_bolshevik
+				}
+				set_party_name = {
+					name = TEX_ufo_monarchist_party
+					long_name = TEX_ufo_monarchist_party_long
+					ideology = monarchist
+				}
+				create_country_leader = {
+					name = "Daniel Sheehan"
+					picture = "gfx/leaders/NEA/Portrait_NEA_Daniel_Sheehan.png"
+					ideology = neocommunist
+				}
+				create_country_leader = {
+					name = "American Posadist Council"
+					picture = "gfx/leaders/AMR/Portrait_AMR_American_Posadist_Council.png"
+					ideology = trotskyist
+				}
+				create_country_leader = {
+					name = "Dennis Kucinich"
+					picture = "gfx/leaders/GAU/Portrait_GAU_Dennis_Kucinich.png"
+					ideology = moderate_socialist_ideology
+				}
+				create_country_leader = {
+					name = "André Carson"
+					picture = "gfx/leaders/NEA/Portrait_NEA_Andre_Carson.png"
+					ideology = new_democrat_ideology
+				}
+				create_country_leader = {
+					name = "Harry Reid"
+					picture = "gfx/leaders/UTA/Portrait_UTA_Harry_Reid.png"
+					ideology = old_american_democrats
+				}
+				create_country_leader = {
+					name = "Larry Niven"
+					picture = "gfx/leaders/PCA/Portrait_PCA_Larry_Niven.png"
+					ideology = centrist_populist
+				}
+				create_country_leader = {
+					name = "Robert Bigelow"
+					picture = "gfx/leaders/UTA/Portrait_UTA_Robert_Bigelow.png"
+					ideology = fiscal_conservative
+				}
+				create_country_leader = {
+					name = "Terry A. Davis"
+					picture = "gfx/leaders/ARI/Portrait_ARI_Terrance_Andrew_Davis.png"
+					ideology = regency_monarchist
+				}
+				create_country_leader = {
+					name = "David Miscavige"
+					picture = "gfx/leaders/PCA/Portrait_PCA_David_Miscavige.png"
+					ideology = clerical_fascist
+				}
+				create_country_leader = {
+					name = "Dennis Kucinich"
+					picture = "gfx/leaders/GAU/Portrait_GAU_Dennis_Kucinich.png"
+					ideology = socialist_nationalist
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_descredit_the_lazarites
+		icon = GFX_goal_TEX_discredit_lazarites
+		cost = 6
+		x = 0
+		y = 2
+		relative_position_id = TEX_return_of_the_majestic_twelve
+		
+		prerequisite = {
+			focus = TEX_return_of_the_majestic_twelve
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.337
+			add_ideas = TEX_true_credibility
+			add_popularity = {
+				ideology = fascist
+				popularity = -0.03
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_address_the_united_nations
+		icon = GFX_goal_TEX_address_the_united_nations
+		cost = 6
+		x = 1
+		y = 3
+		relative_position_id = TEX_return_of_the_majestic_twelve
+		
+		prerequisite = {
+			focus = TEX_descredit_the_lazarites
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.338
+			add_stability = 0.03
+			swap_ideas = {
+				remove_idea = TEX_true_credibility
+				add_idea = TEX_true_credibility2
+			}
+			every_country = {
+				ROOT = {
+					add_opinion_modifier = {
+						target = PREV
+						modifier = new_credibility
+					}
+				}
+			}
+		}
+	}
+	
+	### Lazarite Victory ###
+	
+	focus = {
+		id = TEX_continuance_of_the_roswell_clique
+		icon = GFX_goal_TEX_continuance_of_the_lazarite_clique
+		cost = 6
+		x = 3
+		y = 1
+		relative_position_id = TEX_form_the_earth_liberation_command_council
+		
+		mutually_exclusive = {
+			focus = TEX_return_of_the_majestic_twelve
+		}
+
+		prerequisite = {
+			focus = TEX_form_the_earth_liberation_command_council
+		}
+
+		available = {
+			has_country_leader = {
+				name = "Bob Lazar"
+				ruling_only = yes
+			}
+		}
+		bypass = {
+			has_country_leader = {
+				name = "Bob Lazar"
+				ruling_only = yes
+			}
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			custom_effect_tooltip = unlock_focuses
+		}
+	}
+	
+	focus = {
+		id = TEX_expose_soviet_extraterrestrial_collaboration
+		icon = GFX_goal_TEX_expose_soviet_alien_collaboration
+		cost = 6
+		x = -1
+		y = 1
+		relative_position_id = TEX_continuance_of_the_roswell_clique
+		
+		prerequisite = {
+			focus = TEX_continuance_of_the_roswell_clique
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {	
+			country_event = texas.339
+			add_ideas = TEX_anti_communist_ufology
+			add_popularity = {
+				ideology = communist
+				popularity = -0.03
+			}
+			add_opinion_modifier = {
+				target = SOV
+				modifier = alien_collaboration
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_cult_of_the_commander
+		icon = GFX_goal_TEX_venerate_truth_teller
+		cost = 6
+		x = 1
+		y = 1
+		relative_position_id = TEX_continuance_of_the_roswell_clique
+		
+		prerequisite = {
+			focus = TEX_continuance_of_the_roswell_clique
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			TEX_bob_lazar = {
+				set_portraits = {
+					civilian = "gfx/leaders/TEX/Portrait_TEX_Bob_Lazar_Victory.png"
+				}
+				add_trait = {
+					ideology = human_nationalism
+					trait = TEX_truth_seeker
+				}
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.03
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_introduce_privatization
+		icon = GFX_goal_TEX_wok_with_faith_leaders_and_private_industry
+		cost = 6
+		x = 0
+		y = 2
+		relative_position_id = TEX_continuance_of_the_roswell_clique
+		
+		prerequisite = {
+			focus = TEX_continuance_of_the_roswell_clique
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.340
+			add_ideas = TEX_private_ufology
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			add_monarchist_to_coalition = yes
+			add_natcon_to_coalition = yes
+			add_fash_to_coalition = yes
+			add_modsoc_to_coalition = yes
+			hidden_effect = {
+				set_party_name = {
+					name = TEX_ufo_natcon_party
+					long_name = TEX_ufo_natcon_party_long
+					ideology = national_conservative
+				}
+				set_party_name = {
+					name = TEX_ufo_fascist_party
+					long_name = TEX_ufo_fascist_party_long
+					ideology = fascist
+				}
+				set_party_name = {
+					name = TEX_ufo_monarchist_party2
+					long_name = TEX_ufo_monarchist_party2_long
+					ideology = monarchist
+				}
+				set_party_name = {
+					name = TEX_ufo_modsoc_party2
+					long_name = TEX_ufo_modsoc_party2_long
+					ideology = moderate_socialist
+				}
+				
+				create_country_leader = {
+					name = "Robert Bigelow"
+					picture = "gfx/leaders/UTA/Portrait_UTA_Robert_Bigelow.png"
+					ideology = fiscal_conservative
+				}
+				create_country_leader = {
+					name = "David Miscavige"
+					picture = "gfx/leaders/PCA/Portrait_PCA_David_Miscavige.png"
+					ideology = clerical_fascist
+				}
+				create_country_leader = {
+					name = "Hans-Adam II"
+					picture = "gfx/leaders/SWI/Portrait_Adam_II.dds"
+					ideology = dynastic_monarchist
+				}
+				create_country_leader = {
+					name = "Hans-Adam II"
+					picture = "gfx/leaders/SWI/Portrait_Adam_II.dds"
+					ideology = dynastic_monarchist
+				}
+				create_country_leader = {
+					name = "Raël"
+					picture = "gfx/leaders/FRA/Portrait_FRA_Claude_Maurice_Marcel_Vorilhon.png"
+					ideology = moderate_socialist_ideology
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_hunt_down_the_complicit_in_coverups
+		icon = GFX_goal_TEX_hunt_down_complicit_coverup
+		cost = 6
+		x = -1
+		y = 3
+		relative_position_id = TEX_continuance_of_the_roswell_clique
+		
+		prerequisite = {
+			focus = TEX_introduce_privatization
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.341
+			add_ideas = TEX_justice_for_the_legacy_program
+			add_manpower = -2400
+			add_popularity = {
+				ideology = fascist
+				popularity = -0.04
+			}
+		}
+	}
+	
+	### Shared ###
+	
+	focus = {
+		id = TEX_establish_the_mib
+		icon = GFX_goal_TEX_create_the_MIB
+		cost = 6
+		x = -1
+		y = 3
+		relative_position_id = TEX_form_the_earth_liberation_command_council
+		
+		prerequisite = {
+			focus = TEX_continuance_of_the_roswell_clique
+			focus = TEX_return_of_the_majestic_twelve
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_MUFON
+				add_idea = TEX_MIB
+			}
+			if = {
+				limit = { has_dlc = "La Resistance" }
+				if = {
+					limit = { has_intelligence_agency = yes }
+					if = {
+						limit = { NOT = { has_done_agency_upgrade = upgrade_commando_training } }
+						upgrade_intelligence_agency = upgrade_commando_training
+					}
+					if = {
+						limit = { NOT = { has_done_agency_upgrade = upgrade_crypto_strength } }
+						upgrade_intelligence_agency = upgrade_crypto_strength
+					}
+					if = {
+						limit = { NOT = { has_done_agency_upgrade = upgrade_decryption_boost } }
+						upgrade_intelligence_agency = upgrade_decryption_boost
+					}
+					if = {
+						limit = {
+							OR = {
+								has_done_agency_upgrade = upgrade_commando_training
+								has_done_agency_upgrade = upgrade_crypto_strength
+								has_done_agency_upgrade = upgrade_decryption_boost
+							}
+							NOT = { has_done_agency_upgrade = upgrade_training_centers }
+						}
+						upgrade_intelligence_agency = upgrade_training_centers
+					}
+				}
+			}
+			else_if = {
+				limit = { has_intelligence_agency = no }
+				create_intelligence_agency = yes
+				upgrade_intelligence_agency = upgrade_commando_training
+				upgrade_intelligence_agency = upgrade_decryption_boost
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_experimental_funding
+		icon = GFX_goal_TEX_experimental_funding
+		cost = 6
+		x = 1
+		y = 3
+		relative_position_id = TEX_form_the_earth_liberation_command_council
+		
+		prerequisite = {
+			focus = TEX_continuance_of_the_roswell_clique
+			focus = TEX_return_of_the_majestic_twelve
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.334
+			add_research_slot = 1
+			 add_tech_bonus = {
+				name = tactical_bomber_bonus
+				bonus = 0.5
+				uses = 1
+				category = tactical_bomber
+			}
+			 add_tech_bonus = {
+				name = tactical_bomber_bonus
+				bonus = 0.75
+				uses = 2
+				category = cat_strategic_bomber
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
+			air_experience = 100
+			add_corps_commander_role = {
+				Character = TEX_john_b_alexander
+				traits = { politically_connected brilliant_strategist engineer_officer }
+				skill = 2
+				attack_skill = 3
+				defense_skill = 3
+				planning_skill = 2
+				logistics_skill = 3
+			}
+			PCA = {
+				PCA_michael_a_aquino = {
+					set_nationality = ROOT
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_UFOlogist_media
+		icon = GFX_goal_TEX_ufologist_media
+		cost = 6
+		x = 0
+		y = 2
+		relative_position_id = TEX_form_the_earth_liberation_command_council
+		
+		prerequisite = {
+			focus = TEX_continuance_of_the_roswell_clique
+			focus = TEX_return_of_the_majestic_twelve
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = TEX_ufologist_media_blitz
+				days = 600
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.04
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_explore_the_oceans
+		icon = GFX_goal_TEX_fund_deep_sea_exploration
+		cost = 6
+		x = 0
+		y = 4
+		relative_position_id = TEX_form_the_earth_liberation_command_council
+		
+		prerequisite = {
+			focus = TEX_establish_the_mib
+		}
+		prerequisite = {
+			focus = TEX_experimental_funding
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {	
+			country_event = texas.335
+			navy_experience = 100
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = bb_tech
+				category = cv_tech
+			}
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = ss_tech
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.5
+			}
+		}
+	}
+	
+	##########################
+	#### UFOlogist ForPol ####
+	##########################
+	
+	# - Isolationist
+	
+	focus = {
+		id = TEX_defense_of_earth_doctrine
+		icon = GFX_goal_TEX_defense_of_earth
+		cost = 6
+		x = 9
+		y = 2
+		relative_position_id = TEX_form_the_earth_liberation_command_council
+		
+		mutually_exclusive = {
+			focus = TEX_first_strike_doctrine
+		}
+		
+		allow_branch = {
+			has_country_flag = TEX_ufo_flag
+		}
+		
+		# prerequisite = {
+			# focus = TEX_descredit_the_lazarites
+			# focus = TEX_introduce_privatization
+		# }
+		# prerequisite = {
+			# focus = TEX_establish_the_mib
+		# }
+		# prerequisite = {
+			# focus = TEX_experimental_funding
+		# }
+
+		available = {
+			has_country_flag = the_united_states_are_back
+			has_completed_focus = TEX_form_the_earth_liberation_command_council
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_war_support = 0.1
+			add_ideas = TEX_defense_of_earth_doctrine
+		}
+	}
+	
+	focus = {
+		id = TEX_citadel_51
+		icon = GFX_goal_TEX_citadel_51
+		cost = 6
+		x = -1
+		y = 1
+		relative_position_id = TEX_defense_of_earth_doctrine
+		
+		prerequisite = {
+			focus = TEX_defense_of_earth_doctrine
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.342
+			add_victory_points = {
+				province = 4799
+				value = 10
+			}
+			hidden_effect = { set_province_name = { id = 4799 name = "Area 51"} }
+			set_capital = { state = 897 }		
+			897 = { 
+				set_state_name = "Area 51"
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_star_wars_program
+		icon = GFX_goal_TEX_restore_star_wars
+		cost = 6
+		x = 0
+		y = 2
+		relative_position_id = TEX_defense_of_earth_doctrine
+		
+		prerequisite = {
+			focus = TEX_defense_of_earth_doctrine
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.343
+			every_owned_state = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_ideas = TEX_strategic_defense_initiative
+		}
+	}
+	
+	focus = {
+		id = TEX_call_for_a_global_ceasfire
+		icon = GFX_goal_TEX_call_for_a_global_ceasfire
+		cost = 6
+		x = 1
+		y = 1
+		relative_position_id = TEX_defense_of_earth_doctrine
+		
+		prerequisite = {
+			focus = TEX_defense_of_earth_doctrine
+			focus = TEX_first_strike_doctrine
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			every_country = {
+				country_event = texas_diplo.52
+			}
+		}
+	}
+	
+	# - First Strike
+	
+	focus = {
+		id = TEX_first_strike_doctrine
+		icon = GFX_goal_TEX_first_strike_doctrine
+		cost = 6
+		x = 6
+		y = 0
+		relative_position_id = TEX_defense_of_earth_doctrine
+		
+		mutually_exclusive = {
+			focus = TEX_defense_of_earth_doctrine
+		}
+		
+		allow_branch = {
+			has_country_flag = TEX_ufo_flag
+		}
+		
+		# prerequisite = {
+			# focus = TEX_descredit_the_lazarites
+			# focus = TEX_introduce_privatization
+		# }
+		# prerequisite = {
+			# focus = TEX_establish_the_mib
+		# }
+		# prerequisite = {
+			# focus = TEX_experimental_funding
+		# }
+
+		available = {
+			has_country_flag = the_united_states_are_back
+			has_completed_focus = TEX_form_the_earth_liberation_command_council
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = TEX_first_strike_doctrine
+			add_tech_bonus = {
+				name = rocket_engines
+				bonus = 1
+				uses = 1
+				category = rocketry
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_moon_forward_operating_base
+		icon = GFX_goal_TEX_moon_forward_operating_base
+		cost = 6
+		x = 1
+		y = 1
+		relative_position_id = TEX_first_strike_doctrine
+		
+		prerequisite = {
+			focus = TEX_first_strike_doctrine
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.344
+			swap_ideas = {
+				remove_idea = TEX_first_strike_doctrine
+				add_idea = TEX_first_strike_doctrine2
+			}
+			375 = {
+				add_building_construction = {
+					type = rocket_site
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_conquest_of_mars
+		icon = GFX_goal_TEX_conquest_of_mars
+		cost = 6
+		x = 0
+		y = 2
+		relative_position_id = TEX_first_strike_doctrine
+		
+		prerequisite = {
+			focus = TEX_moon_forward_operating_base
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.345
+			swap_ideas = {
+				remove_idea = TEX_first_strike_doctrine2
+				add_idea = TEX_first_strike_doctrine3
+			}
+			add_command_power = 100
+		}
+	}
+	
+	focus = {
+		id = TEX_hypercharge_nasa_budget
+		icon = GFX_goal_TEX_hypercharge_NASA_budget
+		cost = 6
+		x = -1
+		y = 1
+		relative_position_id = TEX_first_strike_doctrine
+		
+		prerequisite = {
+			focus = TEX_first_strike_doctrine
+			focus = TEX_defense_of_earth_doctrine
+		}
+
+		available = {
+			has_completed_focus = TEX_reopen_the_johnson_space_center
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			if = {
+				limit = { 
+					NOT = { has_idea = TEX_NASA_SpaceAgency }
+				}
+				swap_ideas = {
+					remove_idea = TEX_NASA
+					add_idea = TEX_NASA2
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = TEX_NASA_SpaceAgency
+					add_idea = TEX_NASA_SpaceAgency2
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_the_space_force
+		icon = GFX_goal_TEX_space_force
+		cost = 6
+		x = -3
+		y = 1
+		relative_position_id = TEX_first_strike_doctrine
+		
+		prerequisite = {
+			focus = TEX_first_strike_doctrine
+			focus = TEX_defense_of_earth_doctrine
+		}
+
+		available = {
+			has_completed_focus = TEX_hypercharge_nasa_budget
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.50
+				uses = 2
+				category = special_forces_doctrine
+			}
+			add_ideas = TEX_the_space_force
+		}
+	}
+	
+	focus = {
+		id = TEX_expand_SETI
+		icon = GFX_goal_TEX_expand_SETI
+		cost = 6
+		x = -1
+		y = 1
+		relative_position_id = TEX_the_space_force
+		
+		prerequisite = {
+			focus = TEX_the_space_force
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = TEX_SETI
+			add_tech_bonus = {
+				name = sef_bonus
+				bonus = 1
+				uses = 1
+				category = electronics
+			}
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
+				uses = 2
+				category = radar_tech
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_create_XCOM
+		icon = GFX_goal_TEX_create_the_XCOM
+		cost = 6
+		x = 1
+		y = 1
+		relative_position_id = TEX_the_space_force
+		
+		prerequisite = {
+			focus = TEX_the_space_force
+		}
+
+		available = {
+			
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_the_space_force
+				add_idea = TEX_XCOM
+			}
+			army_experience = 20
+			add_manpower = 3500
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = cat_special_forces_generic
+			}
+		}
+	}
+	
+}

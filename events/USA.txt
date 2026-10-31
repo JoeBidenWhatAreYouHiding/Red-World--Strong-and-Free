@@ -473,6 +473,14 @@ country_event = {
 		USA = {
 		    country_event = { id = usa.9 }
 		}
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					hours = 4
+					id = texas_news.14
+				}
+			}
+		}
 	}
 	
 	option = {   #Never
@@ -481,6 +489,7 @@ country_event = {
 		    declare_war_on = { target = TEX type = annex_everything }
 			set_country_flag = USA_war_with_TEX
 		}
+		set_global_flag = TEX_texan_war_occured
 		ai_chance = {
 			base = 10
 			modifier = {
@@ -494,6 +503,14 @@ country_event = {
 		}
 		USA = {
 		    country_event = { id = usa.7 }
+		}
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					hours = 4
+					id = texas_news.6
+				}
+			}
 		}
 	}
 }
@@ -509,8 +526,23 @@ country_event = {
 	
 	option = {   #We have to
 		name = usa.6.o1
-		USA = {
-		    puppet = TEX
+		trigger = {
+			NOT = { has_country_leader = { name = "Oliver North" ruling_only = yes } }
+		}
+		TEX = { 
+			get_current_government_type = yes
+		}
+		USA = { puppet = TEX }
+		TEX = { 
+			restore_previous_government_type = yes
+		}
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					hours = 4
+					id = texas_news.7
+				}
+			}
 		}
 		ai_chance = {
 			factor = 90
@@ -526,11 +558,20 @@ country_event = {
 		    declare_war_on = { target = TEX type = annex_everything }
 			set_country_flag = USA_war_with_TEX
 		}
+		set_global_flag = TEX_texan_war_occured
 		ai_chance = {
 			factor = 10
 		}
 		USA = {
 		    country_event = { id = usa.8 }
+		}
+		hidden_effect = {
+			every_country = {
+				news_event = {
+					hours = 4
+					id = texas_news.6
+				}
+			}
 		}
 	}
 }
@@ -777,6 +818,7 @@ country_event = {
 			idea = idea_usa_merging_currencies
 			days = 300
 		}
+		TEX = { set_country_flag = USA_integrated_texan_currency }
 	}
 	
 	option = {   #Two currencies
@@ -786,6 +828,7 @@ country_event = {
 		}
 		add_political_power = 25
 		add_stability = -0.035
+		TEX = { set_country_flag = USA_kept_texan_currency }
 	}
 	
 }
@@ -809,6 +852,7 @@ country_event = {
 			idea = idea_usa_texan_outrage
 			days = 100
 		}
+		TEX = { set_country_flag = USA_full_control }
 	}
 	
 	option = {   #Power to the texan national guard
@@ -821,6 +865,7 @@ country_event = {
 			idea = idea_usa_appeased_texans
 			days = 300
 		}
+		TEX = { set_country_flag = USA_independent_military }
 	}
 	
 }
@@ -841,6 +886,7 @@ country_event = {
 		}
 		TEX = {
 		    add_autonomy_ratio = { value = -0.5 localization = american_laws }
+			set_country_flag = USA_american_law_in_texas
 		}
 		add_stability = -0.1
 	}
@@ -852,6 +898,7 @@ country_event = {
 		}
 		TEX = {
 		    add_autonomy_ratio = { value = 0.1 localization = new_texan_constitution }
+			set_country_flag = USA_new_texan_constitution
 		}
 		add_political_power = -20
 		add_stability = 0.01
@@ -864,6 +911,7 @@ country_event = {
 		}
 		TEX = {
 		    add_autonomy_ratio = { value = 0.5 localization = texan_laws_maintained }
+			set_country_flag = USA_status_quo_laws
 		}
 		add_stability = 0.03
 	}
@@ -3902,6 +3950,50 @@ country_event = {
 	
 	option = {   
 		name = usa.144.o1
+        create_wargoal = {
+		    type = annex_everything
+		    target = MWA
+		}
+		create_wargoal = {
+		    type = annex_everything
+		    target = ILL
+		}
+		create_wargoal = {
+		    type = annex_everything
+		    target = UTA
+		}
+		create_wargoal = {
+		    type = annex_everything
+		    target = ARI
+		}
+        create_wargoal = {
+		    type = annex_everything
+		    target = GRL
+		}
+		create_wargoal = {
+		    type = annex_everything
+		    target = MOT
+		}
+		create_wargoal = {
+		    type = annex_everything
+		    target = LIN
+		}
+        create_wargoal = {
+		    type = annex_everything
+		    target = PCA
+		}
+        create_wargoal = {
+		    type = annex_everything
+		    target = CSD
+		}
+        create_wargoal = {
+		    type = annex_everything
+		    target = NEA
+		}
+        create_wargoal = {
+		    type = annex_everything
+		    target = AMC
+		}
 	}
 	
 }
@@ -4913,7 +5005,7 @@ country_event = {
 		hidden_effect = {
 			USA = {
 				country_event = {
-					days = 180
+					days = 30
 					id = usa.175
 				}
 			}
@@ -4928,7 +5020,7 @@ country_event = {
 		hidden_effect = {
 			USA = {
 				country_event = {
-					days = 180
+					days = 30
 					id = usa.176
 				}
 			}
@@ -4943,7 +5035,7 @@ country_event = {
 		hidden_effect = {
 			USA = {
 				country_event = {
-					days = 180
+					days = 30
 					id = usa.177
 				}
 			}
@@ -4958,7 +5050,7 @@ country_event = {
 		hidden_effect = {
 			USA = {
 				country_event = {
-					days = 180
+					days = 30
 					id = usa.178
 				}
 			}
@@ -4973,7 +5065,7 @@ country_event = {
 		hidden_effect = {
 			USA = {
 				country_event = {
-					days = 180
+					days = 30
 					id = usa.179
 				}
 			}
@@ -5134,8 +5226,8 @@ country_event = {
 			factor = 30
 		}
 		add_popularity = {
-			ideology = national_conservative
-			popularity = 0.2
+		ideology = national_conservative
+		popularity = 0.2
 		}
 		USA_sonny_perdue = {
 			promote_character = american_conservative
@@ -5232,7 +5324,7 @@ country_event = {
 		add_stability = 0.03
 	}
 	
-	option = {   #Tucker Carlson
+	option = {   #Joe Exotic
 		name = usa.182.o2
 		ai_chance = {
 			factor = 20
@@ -6025,13 +6117,8 @@ country_event = {
 			popularity = -0.03
 		}
 		set_country_flag = USA_washington_dead
-		add_country_leader_role = {
-			character = USA_bill_washington
-			promote_leader = yes
-			country_leader = {
-				ideology = absolute_monarchist
-				expire = "2030.1.1.1"
-			 }
+		USA_bill_washington = {
+			promote_character = absolute_monarchist
 		}
 		ai_chance = {
 			factor = 100

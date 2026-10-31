@@ -1,0 +1,3613 @@
+focus_tree = {
+	id = texas_communist_focus
+	country = {
+		factor = 0
+		# modifier = {
+			# add = 150
+			# tag = TEX
+		# }
+	}
+	default = no
+	continuous_focus_position = { x = 4800 y = 2300 }
+	shared_focus = TEX_texan_army
+	shared_focus = TEX_air_force
+	shared_focus = TEX_texan_navy
+	shared_focus = TEX_texan_economy
+	shared_focus = AMR_1987_undone
+	
+	###################
+	#### POLITICAL ####
+	###################
+
+	focus = {
+		id = TEX_rise_of_the_lone_red_star
+		icon = GFX_goal_TEX_rise_of_the_lone_red_star
+		cost = 1
+		x = 10
+		y = 1
+
+		available = {
+			
+		}
+		bypass = {
+		}
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.210
+			add_political_power = 100
+			add_popularity = {
+				ideology = communist
+				popularity = 0.2
+			}
+			custom_effect_tooltip = TEX_communist_party_cabinet
+			hidden_effect = {
+				add_ideas = texas_sic_russel_bentley
+				add_ideas = texas_fom_harry_cleaver
+				add_ideas = texas_ind_colby_keller
+				add_ideas = texas_nsm_olga_rodriguez
+			}
+			hidden_effect = { set_cosmetic_tag = TEX_com_init }
+		}
+	}
+	
+	focus = {
+		id = TEX_tear_down_capitalist_corruption
+		icon = GFX_goal_TEX_crack_capitalist_corruption
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_rise_of_the_lone_red_star
+		}
+		
+		relative_position_id = TEX_rise_of_the_lone_red_star
+		x = -1
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.1
+			}
+			remove_ideas = TEX_corruption_issue
+		}
+	}
+	
+	focus = {
+		id = TEX_deal_with_militias
+		icon = GFX_goal_TEX_deal_with_militias
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_tear_down_capitalist_corruption
+		}
+		
+		relative_position_id = TEX_rise_of_the_lone_red_star
+		x = -1
+		y = 2
+		
+		available = {
+			has_completed_focus = TEX_cycle_in_more_soviet_troops
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.211
+			add_manpower  = -2400
+			add_command_power = 200
+			swap_ideas = {
+				remove_idea = TEX_overwhelming_anti_communist_resistance2
+				add_idea = TEX_overwhelming_anti_communist_resistance3
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_gain_hispanic_support
+		icon = GFX_goal_TEX_hispanic_liberation
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_deal_with_militias
+		}
+		
+		relative_position_id = TEX_rise_of_the_lone_red_star
+		x = -1
+		y = 3
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_popularity = {	
+				ideology = communist
+				popularity = 0.04
+			}
+			add_timed_idea = {
+				idea = TEX_hispanic_liberation
+				days = 300
+			}
+			add_opinion_modifier = {
+				target = MEX
+				modifier = repaired_relations
+			}
+			MEX = {
+				add_opinion_modifier = {
+					target = TEX
+					modifier = repaired_relations
+				}
+			}
+			MEX = { country_event = texas_diplo.20 }
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = TEX_mexican_negotiations_tt
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = TEX_occupy_texmex_for_peace
+		}
+	}
+	
+	focus = {
+		id = TEX_cycle_in_more_soviet_troops
+		icon = GFX_goal_TEX_cycle_in_soviet_troops
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_rise_of_the_lone_red_star
+		}
+		
+		relative_position_id = TEX_rise_of_the_lone_red_star
+		x = 1
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_overwhelming_anti_communist_resistance
+				add_idea = TEX_overwhelming_anti_communist_resistance2
+			}
+			add_command_power = 100
+			add_manpower = 3400
+		}
+	}
+	
+	focus = {
+		id = TEX_begin_cultural_revolution
+		icon = GFX_goal_TEX_cultural_renovation
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_cycle_in_more_soviet_troops
+		}
+		
+		relative_position_id = TEX_rise_of_the_lone_red_star
+		x = 1
+		y = 2
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.212
+			add_political_power = 100
+			add_ideas = TEX_new_texan_culture
+		}
+	}
+	
+	focus = {
+		id = TEX_occupy_rural_texas
+		icon = GFX_goal_TEX_red_sherrifs
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_begin_cultural_revolution
+		}
+		
+		relative_position_id = TEX_rise_of_the_lone_red_star
+		x = 1
+		y = 3
+		
+		available = {
+			has_completed_focus = TEX_deal_with_militias
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.213
+			swap_ideas = {
+				remove_idea = TEX_overwhelming_anti_communist_resistance3
+				add_idea = TEX_overwhelming_anti_communist_resistance4
+			}
+			add_ideas = TEX_red_law_enforcement
+		}
+	}
+	
+	focus = {
+		id = TEX_congress_of_the_cptx
+		icon = GFX_goal_TEX_congress_of_the_cptx
+		cost = 4
+		
+		prerequisite = {
+			focus = TEX_occupy_rural_texas
+		}
+		prerequisite = {
+			focus = TEX_gain_hispanic_support
+		}
+		
+		select_effect = {
+			country_event = {
+				id = texas.214
+				days = 10
+			}
+			country_event = {
+				id = texas.215
+				days = 15
+			}
+			country_event = {
+				id = texas.216
+				days = 20
+			}
+		}
+		
+		relative_position_id = TEX_rise_of_the_lone_red_star
+		x = 0
+		y = 4
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.217
+		}
+	}
+	
+	### Communist - Jim Jones ###
+	
+	focus = {
+		id = TEX_socialism_of_the_apostles
+		icon = GFX_goal_TEX_peoples_temple
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_congress_of_the_cptx
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_red_guards
+			focus = TEX_texas_red
+		}
+		
+		relative_position_id = TEX_congress_of_the_cptx
+		x = -5
+		y = 1
+		
+		available = {
+			has_country_leader = {
+				character = TEX_jim_jones
+				ruling_only = yes
+			}
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.218
+			set_cosmetic_tag = TEX_tabernacle
+			custom_effect_tooltip = TEX_peoples_temple_cabinet
+			hidden_effect = {
+				set_country_flag = TEX_jim_jones_victory
+				add_ideas = texas_sic_carolyn_moore_layton
+				add_ideas = texas_fom_harriet_tropp
+				add_ideas = texas_ind_sharon_amos
+				add_ideas = texas_nsm_larry_layton
+			}
+			hidden_effect = {
+				country_event = {
+					id = texas_flavour.45
+					days = 200
+					random_days = 100
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_social_justice_and_liberation_of_all #Racism is Bad
+		icon = GFX_goal_TEX_social_justice
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_socialism_of_the_apostles
+		}
+		
+		relative_position_id = TEX_socialism_of_the_apostles
+		x = 0
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_stability = 0.05
+			add_ideas = TEX_social_justice_and_liberation_of_all
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.03
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = 0.03
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = TEX_unlock_mil_tree
+			set_country_flag = TEX_can_do_military_stuff
+		}
+	}
+	
+	focus = {
+		id = TEX_christian_communism
+		icon = GFX_goal_TEX_christian_communism
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_socialism_of_the_apostles
+		}
+		
+		relative_position_id = TEX_socialism_of_the_apostles
+		x = -2
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.219
+			set_party_name = {
+				name = TEX_christian_communist_party
+				long_name = TEX_christian_communist_party_long
+				ideology = communist
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = 0.02
+			}
+			TEX_jim_jones = {
+				swap_country_leader_traits = {
+					remove = TEX_flawed_messiah
+					add = TEX_red_reverend
+				}
+			}
+		}
+	}
+	
+	focus = { #No Cults, Stalin, Jones, State-Atheism, etc
+		id = TEX_tear_down_messiah_worship
+		icon = GFX_goal_TEX_tear_down_stalinist_idolatry
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_socialism_of_the_apostles
+		}
+		
+		relative_position_id = TEX_socialism_of_the_apostles
+		x = 2
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.220
+			add_ideas = TEX_crusade_against_stalinism
+			add_revsoc_to_coalition = yes
+			add_modsoc_to_coalition = yes
+			set_party_name = {
+				name = TEX_christian_communist_party
+				long_name = TEX_christian_communist_party_long
+				ideology = revolutionary_socialist
+			}
+			set_party_name = {
+				name = TEX_christian_communist_party
+				long_name = TEX_christian_communist_party_long
+				ideology = moderate_socialist
+			}
+			add_political_power = 40
+		}
+	}
+	
+	focus = {
+		id = TEX_communalist_form_of_living #Socialized Medicine + Red Ecology
+		icon = GFX_goal_TEX_communal_living
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_tear_down_messiah_worship
+		}
+		prerequisite = {
+			focus = TEX_christian_communism
+		}
+		prerequisite = {
+			focus = TEX_social_justice_and_liberation_of_all
+		}
+		
+		relative_position_id = TEX_socialism_of_the_apostles
+		x = -1
+		y = 2
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.221
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			add_ideas = TEX_communalist_form_of_living
+			custom_effect_tooltip = tooltip_blank_line
+			swap_ideas = {
+				remove_idea = TEX_scars_of_the_war
+				add_idea = TEX_scars_of_the_war2
+			}
+			set_country_flag = TEX_can_do_economy_stuff
+			custom_effect_tooltip = TEX_unlock_economy_tree
+		}
+	}
+	
+	focus = {
+		id = TEX_a_peoples_forum
+		icon = GFX_goal_TEX_voice_of_the_peoples_forum
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_tear_down_messiah_worship
+		}
+		prerequisite = {
+			focus = TEX_christian_communism
+		}
+		prerequisite = {
+			focus = TEX_social_justice_and_liberation_of_all
+		}
+		
+		relative_position_id = TEX_socialism_of_the_apostles
+		x = 1
+		y = 2
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_stability = 0.05
+			add_popularity = {
+				ideology = communist
+				popularity = 0.04
+			}
+			add_timed_idea = {
+				idea = TEX_revolutionary_media
+				days = 230
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_anti_imperialist_red_democracy
+		icon = GFX_goal_TEX_anti_imperialist_red_democracy
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_a_peoples_forum
+		}
+		prerequisite = {
+			focus = TEX_communalist_form_of_living
+		}
+		
+		relative_position_id = TEX_socialism_of_the_apostles
+		x = 1
+		y = 3
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.222
+			add_liberal_to_coalition = yes
+			add_nationalist_to_coalition = yes
+			add_natcon_to_coalition = yes
+			add_centrist_to_coalition = yes
+			add_newdem_to_coalition = yes
+			add_ideas = TEX_the_national_front
+		}
+	}
+	
+	focus = {
+		id = TEX_demobilize_the_red_brigades
+		icon = GFX_goal_TEX_demoblize_red_brigades
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_a_peoples_forum
+		}
+		prerequisite = {
+			focus = TEX_communalist_form_of_living
+		}
+		
+		relative_position_id = TEX_socialism_of_the_apostles
+		x = -1
+		y = 3
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_manpower = 2400
+			add_stability = 0.05
+			swap_ideas = {
+				remove_idea = TEX_crusade_against_stalinism
+				add_idea = TEX_crusade_against_stalinism2
+			}
+		}
+	}
+	
+	# - Post-Cali
+	
+	focus = {
+		id = TEX_california_reclaimed
+		icon = GFX_goal_TEX_the_pacific_reclaimed
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_demobilize_the_red_brigades
+			focus = TEX_anti_imperialist_red_democracy
+		}
+		
+		allow_branch = {
+			NOT = {
+				has_country_leader = {
+					name = "Dianne Feinstein"
+					ruling_only = yes
+				}
+			}
+		}
+		
+		select_effect = {
+			country_event = {
+				id = texas.232
+				days = 4
+			}
+		}
+		
+		relative_position_id = TEX_anti_imperialist_red_democracy
+		x = -1
+		y = 1
+		
+		available = {
+			NOT = { country_exists = PCA }
+			owns_state = 378
+		}
+		
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.223
+			set_cosmetic_tag = TEX_temple_of_the_living_apostle
+			hidden_effect = {
+				country_event = {
+					id = texas.238
+					days = 50
+					random_days = 10
+				}
+				swap_ideas = {
+					remove_idea = TEX_crusade_against_stalinism2
+					add_idea = TEX_crusade_against_stalinism3
+				}
+				hidden_effect = {
+					every_country = {
+						news_event = {
+							hours = 4
+							id = texas_news.38
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_expand_the_planning_board_parentheses_secret_police
+		icon = GFX_goal_TEX_put_the_planning_commission_to_work
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_california_reclaimed
+		}
+		
+		relative_position_id = TEX_california_reclaimed
+		x = 0
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_manpower = -1300
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			swap_ideas = {
+				remove_idea = TEX_legacy_of_the_uapr
+				add_idea = TEX_legacy_of_the_uapr2
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = 0.03
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_pilfer_davis_philosiphy
+		icon = GFX_goal_TEX_pilfer_uapr_ideals
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_california_reclaimed
+		}
+		
+		relative_position_id = TEX_california_reclaimed
+		x = -2
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.224
+			add_research_slot = 1
+			add_ideas = TEX_the_good_of_the_uapr
+		}
+	}
+	
+	focus = {
+		id = TEX_cleanse_the_pacific_coast_of_atheism
+		icon = GFX_goal_TEX_cleanse_california_of_atheism
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_california_reclaimed
+		}
+		
+		relative_position_id = TEX_california_reclaimed
+		x = 2
+		y = 1
+		
+		available = {
+			has_completed_focus = TEX_expand_the_planning_board_parentheses_secret_police
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.225
+			remove_ideas = TEX_legacy_of_the_uapr2
+			add_political_power = 40
+			TEX_jim_jones = {
+				swap_country_leader_traits = {
+					remove = TEX_red_reverend
+					add = TEX_the_liberator
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_new_political_education
+		icon = GFX_goal_TEX_new_red_dawn
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_cleanse_the_pacific_coast_of_atheism
+		}
+		prerequisite = {
+			focus = TEX_pilfer_davis_philosiphy
+		}
+		prerequisite = {
+			focus = TEX_expand_the_planning_board_parentheses_secret_police
+		}
+		
+		relative_position_id = TEX_california_reclaimed
+		x = 0
+		y = 2
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = TEX_the_second_coming
+			add_political_power = 100
+			hidden_effect = {
+				country_event = {
+					id = texas.226
+					days = 20
+				}
+			}
+		}
+	}
+	
+	# - Feinstein Clique Victory
+	
+	focus = {
+		id = TEX_victory_of_the_sanfran_clique
+		icon = GFX_goal_TEX_feinstein_clique
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_demobilize_the_red_brigades
+			focus = TEX_anti_imperialist_red_democracy
+		}
+		
+		allow_branch = {
+			has_country_leader = {
+				name = "Dianne Feinstein"
+				ruling_only = yes
+			}
+		}
+		
+		relative_position_id = TEX_anti_imperialist_red_democracy
+		x = -1
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			set_cosmetic_tag = TEX_uadr
+			country_event = texas.234
+			add_ideas = texas_sic_leo_ryan
+		}
+	}
+	
+	focus = {
+		id = TEX_de_jonesification
+		icon = GFX_goal_TEX_de_jonesification
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_victory_of_the_sanfran_clique
+		}
+		
+		relative_position_id = TEX_victory_of_the_sanfran_clique
+		x = 0
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.236
+			swap_ideas = {
+				remove_idea = TEX_crusade_against_stalinism3
+				add_idea = TEX_de_jonesification
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = -0.15
+			}
+			remove_ideas = TEX_communalist_form_of_living
+		}
+	}
+	
+	focus = {
+		id = TEX_form_new_socialist_party
+		icon = GFX_goal_TEX_form_new_socialist_party
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_victory_of_the_sanfran_clique
+		}
+		
+		relative_position_id = TEX_victory_of_the_sanfran_clique
+		x = -2
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.235
+			set_party_name = {
+				name = TEX_uasp_party
+				long_name = TEX_uasp_party_long
+				ideology = revolutionary_socialist
+			}
+			add_ideas = TEX_political_correctness
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = 0.1
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_realize_the_fallen_dream
+		icon = GFX_goal_TEX_realize_the_fallen_dream
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_victory_of_the_sanfran_clique
+		}
+		
+		relative_position_id = TEX_victory_of_the_sanfran_clique
+		x = 2
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_the_good_of_the_uapr
+				add_idea = TEX_the_good_of_the_uapr2
+			}
+			add_stability = 0.04
+			add_country_leader_trait = TEX_red_lion
+		}
+	}
+	
+	focus = {
+		id = TEX_unity_the_uadr
+		icon = GFX_goal_TEX_unify_the_uadr
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_realize_the_fallen_dream
+		}
+		prerequisite = {
+			focus = TEX_form_new_socialist_party
+		}
+		prerequisite = {
+			focus = TEX_de_jonesification
+		}
+		
+		relative_position_id = TEX_victory_of_the_sanfran_clique
+		x = 0
+		y = 2
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.237
+			set_country_flag = unifying_america
+			enable_unification_decisions = yes
+            core_NEA = yes
+            core_ILL = yes
+            core_GRL = yes
+            core_MWA = yes
+            core_MOT = yes
+            core_LIN = yes
+            core_UTA = yes
+            core_ARI = yes
+            core_PCA = yes
+            core_USA = yes
+			custom_effect_tooltip = TEX_gains_wargoals_on_all_post_american_countries
+			hidden_effect = {
+				create_wargoal = {
+					type = annex_everything
+					target = MOT
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = LIN
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = UTA
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = ARI
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = PCA
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = CSD
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = ILL
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = GRL
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = NEA
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = AMC
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = USA
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = MWA
+				}
+			}
+		}
+	}
+	
+	### Communist - Bentley ###
+	
+	focus = {
+		id = TEX_texas_red
+		icon = GFX_goal_TEX_Texas_Red
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_congress_of_the_cptx
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_red_guards
+			focus = TEX_socialism_of_the_apostles
+		}
+		
+		relative_position_id = TEX_congress_of_the_cptx
+		x = 0
+		y = 1
+		
+		available = {
+			has_country_leader = {
+				character = TEX_russel_bentley
+				ruling_only = yes
+			}
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.239
+			custom_effect_tooltip = TEX_bentley_cabinet
+			hidden_effect = {
+				remove_ideas = texas_sic_russel_bentley
+				add_ideas = texas_sic_elizabeth_ann_duke
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_texan_checka
+		icon = GFX_goal_TEX_texan_cheka
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_texas_red
+		}
+		
+		relative_position_id = TEX_texas_red
+		x = 1
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_war_support = 0.05
+			remove_ideas = TEX_overwhelming_anti_communist_resistance4
+			swap_ideas = {
+				remove_idea = TEX_red_law_enforcement
+				add_idea = TEX_german_efficency_with_texan_flair
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = TEX_unlock_mil_tree
+			set_country_flag = TEX_can_do_military_stuff
+		}
+	}
+	
+	focus = {
+		id = TEX_cowboy_communism
+		icon = GFX_goal_TEX_cowboy_communism
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_texas_red
+		}
+		
+		relative_position_id = TEX_texas_red
+		x = -1
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.240
+			add_political_power = 50
+			add_popularity = {
+				ideology = communist
+				popularity = 0.03
+			}
+			swap_ideas = {
+				remove_idea = TEX_new_texan_culture
+				add_idea = TEX_texan_nationalism_turned_red
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			swap_ideas = {
+				remove_idea = TEX_scars_of_the_war
+				add_idea = TEX_scars_of_the_war2
+			}
+			set_country_flag = TEX_can_do_economy_stuff
+			custom_effect_tooltip = TEX_unlock_economy_tree
+		}
+	}
+	
+	focus = {
+		id = TEX_a_very_texan_form_of_stalinism
+		icon = GFX_goal_TEX_cowboy_stalinism
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_cowboy_communism
+		}
+		prerequisite = {
+			focus = TEX_texan_checka
+		}
+		
+		relative_position_id = TEX_texas_red
+		x = 0
+		y = 2
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.241
+			add_war_support = 0.05
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.1
+			}
+			add_popularity = {
+				ideology = revolutionary_socialist
+				popularity = -0.1
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = -0.1
+			}
+			add_opinion_modifier = {
+				target = SOV
+				modifier = strengthened_moscow_line
+			}
+			add_timed_idea = {
+				idea = TEX_crush_the_liberals
+				days = 150
+			}
+			TEX_russel_bentley = {
+				set_portraits = {
+					civilian = { large = "gfx/leaders/TEX/Portrait_TEX_Russell_Bentley_Marshal.png" }
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_dye_texan_nationalism_red
+		icon = GFX_goal_TEX_dye_patriotism_red
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_cowboy_communism
+		}
+		prerequisite = {
+			focus = TEX_texan_checka
+		}
+		
+		relative_position_id = TEX_texas_red
+		x = -2
+		y = 2
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_texan_nationalism_turned_red
+				add_idea = TEX_texan_nationalism_turned_red2
+			}
+			add_popularity = {
+				ideology  = communist
+				popularity = 0.04
+			}
+			set_party_name = {
+				name = TEX_nationalist_communist_party
+				long_name = TEX_nationalist_communist_party_long
+				ideology = nationalist
+			}
+			hidden_effect = {
+				TEX_russel_bentley = {
+					add_country_leader_role = {
+						promote_leader = yes
+						country_leader={
+							ideology=neoconservative
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+			add_nationalist_to_coalition = yes
+		}
+	}
+	
+	focus = {
+		id = TEX_stand_against_american_imperialism
+		icon = GFX_goal_TEX_against_american_imperialism
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_cowboy_communism
+		}
+		prerequisite = {
+			focus = TEX_texan_checka
+		}
+		
+		available = {
+			has_completed_focus = TEX_dye_texan_nationalism_red
+		}
+		
+		relative_position_id = TEX_texas_red
+		x = 2
+		y = 2
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.242
+			add_war_support = 0.05
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			swap_ideas = {
+				remove_idea = TEX_texan_nationalism_turned_red2
+				add_idea = TEX_texan_nationalism_turned_red3
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_cut_into_the_drug_trade
+		icon = GFX_goal_TEX_cut_into_the_drug_trade
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_stand_against_american_imperialism
+		}
+		prerequisite = {
+			focus = TEX_dye_texan_nationalism_red
+		}
+		prerequisite = {
+			focus = TEX_a_very_texan_form_of_stalinism
+		}
+		
+		relative_position_id = TEX_texas_red
+		x = -1
+		y = 3
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_ideas = TEX_drug_trade
+		}
+	}
+	
+	focus = {
+		id = TEX_the_information_war_of_the_future
+		icon = GFX_goal_TEX_information_war_of_the_future
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_stand_against_american_imperialism
+		}
+		prerequisite = {
+			focus = TEX_dye_texan_nationalism_red
+		}
+		prerequisite = {
+			focus = TEX_a_very_texan_form_of_stalinism
+		}
+		
+		relative_position_id = TEX_texas_red
+		x = 1
+		y = 3
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_research_slot = 1
+			country_event = texas.243
+			add_war_support = 0.05
+			add_ideas = TEX_the_information_war_of_the_future
+		}
+	}
+	
+	# - South Reclaimed 
+	
+	focus = {
+		id = TEX_back_in_the_cssa
+		icon = GFX_goal_TEX_back_in_the_cssa
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_the_information_war_of_the_future
+			focus = TEX_cut_into_the_drug_trade
+		}
+		
+		allow_branch = {
+			NOT = { has_country_flag = TEX_maintaned_texanism }
+		}
+		
+		relative_position_id = TEX_texas_red
+		x = 0
+		y = 4
+		
+		available = {
+			NOT = { country_exists = USA }
+			owns_state = 362
+		}
+		
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.244
+			set_cosmetic_tag = CSA
+			effect_tooltip = {
+				swap_ideas = {
+					remove_idea = TEX_texan_nationalism_turned_red3
+					add_idea = TEX_red_confederate_nationalism_dummy
+				}
+			}
+			hidden_effect = {
+				swap_ideas = {
+					remove_idea = TEX_texan_nationalism_turned_red3
+					add_idea = TEX_red_confederate_nationalism
+				}
+				hidden_effect = {
+					every_country = {
+						news_event = {
+							hours = 4
+							id = texas_news.40
+						}
+					}
+				}
+			}
+			hidden_effect = {
+				country_event = {
+					id = texas_flavour.46
+					days = 200
+					random_days = 100
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_redneck_revolt
+		icon = GFX_goal_TEX_redneck_revolt
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_back_in_the_cssa
+		}
+		
+		relative_position_id = TEX_back_in_the_cssa
+		x = -1
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.245
+			add_command_power = 100
+			add_revsoc_to_coalition = yes
+			set_party_name = {
+				name = TEX_redneck_revolt_party
+				long_name = TEX_redneck_revolt_party_long
+				ideology = revolutionary_socialist
+			}
+			add_timed_idea = {
+				idea = TEX_redneck_revolt
+				days = 400
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_destroy_entrenched_elites
+		icon = GFX_goal_TEX_divorce_southern_identity_from_racism
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_back_in_the_cssa
+		}
+		
+		relative_position_id = TEX_back_in_the_cssa
+		x = 1
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			every_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			swap_ideas = {
+				remove_idea = TEX_legacy_of_yankeedom
+				add_idea = TEX_legacy_of_yankeedom2
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = -0.05
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_clean_up_remains_of_carpetbagger_rule
+		icon = GFX_goal_TEX_clean_up_carpetbagger_rule
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_destroy_entrenched_elites
+		}
+		prerequisite = {
+			focus = TEX_redneck_revolt
+		}
+		
+		relative_position_id = TEX_back_in_the_cssa
+		x = 1
+		y = 2
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.246
+			remove_ideas = TEX_legacy_of_yankeedom2
+			every_state = {
+				limit = { is_core_of = USA }
+				USA = { remove_state_core = PREV }
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_marxist_lincolnism_without_northern_treachery
+		icon = GFX_goal_TEX_southern_marxist_lincolnism
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_destroy_entrenched_elites
+		}
+		prerequisite = {
+			focus = TEX_redneck_revolt
+		}
+		
+		relative_position_id = TEX_back_in_the_cssa
+		x = -1
+		y = 2
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_popularity = {
+				ideology = communist
+				popularity = 0.05
+			}
+			swap_ideas = {
+				remove_idea = TEX_red_confederate_nationalism
+				add_idea = TEX_heritage_not_hate
+			}
+		}
+	}
+	
+	# - Texas Maintained
+	
+	focus = {
+		id = TEX_texanism_maintained
+		icon = GFX_goal_TEX_texanism_maintained
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_the_information_war_of_the_future
+			focus = TEX_cut_into_the_drug_trade
+		}
+		
+		allow_branch = {
+			has_country_flag = TEX_maintaned_texanism
+		}
+		
+		relative_position_id = TEX_texas_red
+		x = 0
+		y = 4
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_war_support = 0.06
+			swap_ideas = {
+				remove_idea = TEX_texan_nationalism_turned_red3
+				add_idea = TEX_texan_nationalism_turned_red4
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_russian_education_in_schools
+		icon = GFX_goal_TEX_expand_russian_in_schooling
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_texanism_maintained
+		}
+		
+		relative_position_id = TEX_texanism_maintained
+		x = -1
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.300
+			add_opinion_modifier = {
+				target = SOV
+				modifier = soviet_education
+			}
+			add_ideas = TEX_russian_orientation
+		}
+	}
+	
+	focus = {
+		id = TEX_maintain_social_conservatism
+		icon = GFX_goal_TEX_communist_social_conservatism
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_texanism_maintained
+		}
+		
+		relative_position_id = TEX_texanism_maintained
+		x = 1
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_texan_nationalism_turned_red4
+				add_idea = TEX_texan_nationalism_turned_red5
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.04
+			}
+			add_stability = -0.02
+		}
+	}
+	
+	focus = {
+		id = TEX_communist_pmcs
+		icon = GFX_goal_TEX_anti_capitalist_pmcs
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_maintain_social_conservatism
+		}
+		prerequisite = {
+			focus = TEX_russian_education_in_schools
+		}
+		
+		relative_position_id = TEX_texanism_maintained
+		x = 1
+		y = 2
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.299
+			add_ideas = TEX_communist_contractors
+		}
+	}
+	
+	focus = {
+		id = TEX_draw_closer_to_the_eusr
+		icon = CUB_establish_ties_with_eu
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_maintain_social_conservatism
+		}
+		prerequisite = {
+			focus = TEX_russian_education_in_schools
+		}
+		
+		relative_position_id = TEX_texanism_maintained
+		x = -1
+		y = 2
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.249
+			add_opinion_modifier = {
+				target = GER
+				modifier = repaired_relations
+			}
+			GER = {
+				add_opinion_modifier = {
+					target = TEX
+					modifier = repaired_relations
+				}
+			}
+			add_ideas = idea_eu_observer
+		}
+	}
+	
+	### Communist - Red Guards ###
+	
+	focus = {
+		id = TEX_red_guards
+		icon = GFX_goal_TEX_Red_Guards
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_congress_of_the_cptx
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_socialism_of_the_apostles
+			focus = TEX_texas_red
+		}
+		
+		relative_position_id = TEX_congress_of_the_cptx
+		x = 5
+		y = 1
+		
+		available = {
+			has_country_leader = {
+				character = TEX_jared_roark
+				ruling_only = yes
+			}
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.290
+			set_cosmetic_tag = TEX_red_guards_cosmetic
+			custom_effect_tooltip = TEX_red_guard_cabinet
+			hidden_effect = {
+				add_ideas = texas_sic_joseph_wayne_george
+				add_ideas = texas_fom_taylor_tomas_chase
+				add_ideas = texas_ind_samuel_benjamin_lauber
+				add_ideas = texas_nsm_jason_peterson
+			}
+			hidden_effect = {
+				country_event = {
+					id = texas_flavour.47
+					days = 200
+					random_days = 100
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_fervent_maoism
+		icon = GFX_goal_TEX_revolutionary_struggle_sessions
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_red_guards
+		}
+		
+		relative_position_id = TEX_red_guards
+		x = 0
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.291
+			add_manpower = -2300
+			remove_ideas = TEX_overwhelming_anti_communist_resistance4
+			add_timed_idea = {
+				idea = TEX_revolutionary_violence
+				days = 400
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			custom_effect_tooltip = TEX_unlock_mil_tree
+			set_country_flag = TEX_can_do_military_stuff
+		}
+	}
+	
+	focus = {
+		id = TEX_shining_path_inspiration
+		icon = GFX_goal_TEX_shining_path_inspiration
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_red_guards
+		}
+		
+		relative_position_id = TEX_red_guards
+		x = -2
+		y = 1
+		
+		available = {
+			has_completed_focus = TEX_fervent_maoism
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.298
+			set_country_leader_ideology = gonzalo_thought
+			custom_effect_tooltip = TEX_become_gonzalo_thought
+			modify_timed_idea = {
+				idea = TEX_revolutionary_violence
+				days = 100
+			}
+			swap_ideas = {
+				remove_idea = TEX_revolutionary_violence
+				add_idea = TEX_protracted_peoples_war_until_communism
+			}
+			PRU = {
+				add_opinion_modifier = {
+					target = TEX
+					modifier = supported_shining_path
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_begin_the_cultural_revolution
+		icon = GFX_goal_TEX_cultural_revolution
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_red_guards
+		}
+		
+		relative_position_id = TEX_red_guards
+		x = 2
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.293
+			add_research_slot = 1
+			swap_ideas = {
+				remove_idea = TEX_new_texan_culture
+				add_idea = TEX_cultural_revolution
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.2
+			}
+			add_popularity = {
+				ideology = fascist
+				popularity = -0.2
+			}
+			add_popularity = {
+				ideology = national_conservative
+				popularity = -0.2
+			}
+			set_party_name = {
+				ideology = national_conservative 
+				name = TEX_reactionaries_party
+				long_name = TEX_reactionaries_party_long
+			}
+			set_party_name = {
+				ideology = nationalist 
+				name = TEX_reactionaries_party
+				long_name = TEX_reactionaries_party_long
+			}
+			set_party_name = {
+				ideology = fascist 
+				name = TEX_reactionaries_party
+				long_name = TEX_reactionaries_party_long
+			}
+			set_party_name = {
+				ideology = monarchist 
+				name = TEX_reactionaries_party
+				long_name = TEX_reactionaries_party_long
+			}
+			set_party_name = {
+				ideology = centrist 
+				name = TEX_reactionaries_party
+				long_name = TEX_reactionaries_party_long
+			}
+			custom_effect_tooltip = tooltip_blank_line
+			swap_ideas = {
+				remove_idea = TEX_scars_of_the_war
+				add_idea = TEX_scars_of_the_war2
+			}
+			set_country_flag = TEX_can_do_economy_stuff
+			custom_effect_tooltip = TEX_unlock_economy_tree
+		}
+	}
+	
+	focus = {
+		id = TEX_new_secret_police
+		icon = GFX_goal_TEX_texan_stasi
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_begin_the_cultural_revolution
+		}
+		prerequisite = {
+			focus = TEX_shining_path_inspiration
+		}
+		prerequisite = {
+			focus = TEX_fervent_maoism
+		}
+		
+		relative_position_id = TEX_red_guards
+		x = -1
+		y = 2
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.292
+			add_command_power = 100
+			add_popularity = {
+				ideology = national_bolshevik
+				popularity = 0.04
+			}
+			swap_ideas = {
+				remove_idea = TEX_red_law_enforcement
+				add_idea = TEX_struggle_against_fascism
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_cult_of_roark
+		icon = GFX_goal_TEX_great_helmsman_roak
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_begin_the_cultural_revolution
+		}
+		prerequisite = {
+			focus = TEX_shining_path_inspiration
+		}
+		prerequisite = {
+			focus = TEX_fervent_maoism
+		}
+		
+		relative_position_id = TEX_red_guards
+		x = 1
+		y = 2
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_political_power = 50
+			add_popularity = {
+				ideology = national_bolshevik
+				popularity = 0.03
+			}
+			TEX_jared_roark = {
+				swap_country_leader_traits = {
+					remove = TEX_herald_of_the_young_guard
+					add = TEX_red_star_in_the_sky
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_wash_away_the_imperialist_concept
+		icon = GFX_goal_TEX_wash_away_imperial_concepts
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_cult_of_roark
+		}
+		prerequisite = {
+			focus = TEX_new_secret_police
+		}
+		
+		relative_position_id = TEX_red_guards
+		x = 1
+		y = 3
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_cultural_revolution
+				add_idea = TEX_decolonize_turtle_island
+			}
+			add_war_support = 0.1
+		}
+	}
+	
+	focus = {
+		id = TEX_purge_the_false_left
+		icon = GFX_goal_TEX_purge_the_false_left
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_cult_of_roark
+		}
+		prerequisite = {
+			focus = TEX_new_secret_police
+		}
+		
+		relative_position_id = TEX_red_guards
+		x = -1
+		y = 3
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.294
+			add_popularity = {
+				ideology = new_democrat
+				popularity = -0.2
+			}
+			add_popularity = {
+				ideology = moderate_socialist
+				popularity = -0.2
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = -0.2
+			}
+			set_party_name = {
+				ideology = revolutionary_socialist 
+				name = TEX_revisionists_party
+				long_name = TEX_revisionists_party_long
+			}
+			set_party_name = {
+				ideology = communist 
+				name = TEX_revisionists_party
+				long_name = TEX_revisionists_party_long
+			}
+			set_party_name = {
+				ideology = moderate_socialist 
+				name = TEX_revisionists_party
+				long_name = TEX_revisionists_party_long
+			}
+			set_party_name = {
+				ideology = new_democrat 
+				name = TEX_social_fascists_party
+				long_name = TEX_social_fascists_party_long
+			}
+			set_party_name = {
+				ideology = liberal 
+				name = TEX_reactionaries_party
+				long_name = TEX_social_fascists_party_long
+			}
+			swap_ideas = {
+				remove_idea = TEX_struggle_against_fascism
+				add_idea = TEX_struggle_against_fascism2
+			}
+		}
+	}
+	
+	# - Post-Uni
+	
+	focus = {
+		id = TEX_revisionists_slain
+		icon = GFX_goal_TEX_death_to_amerikkka
+		cost = 1
+		
+		prerequisite = {
+			focus = TEX_purge_the_false_left
+			focus = TEX_wash_away_the_imperialist_concept
+		}
+		
+		relative_position_id = TEX_wash_away_the_imperialist_concept
+		x = -1
+		y = 1
+		
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TEX_has_cleansed_amerikkka
+				has_country_flag = the_united_states_are_back
+			}
+		}
+		
+		ai_will_do = {
+			factor = 100
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.295
+			set_cosmetic_tag = TEX_red_guards_us_cosmetic
+			hidden_effect = {
+				every_country = {
+					news_event = {
+						hours = 4
+						id = texas_news.35
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_overthrow_aparthied
+		icon = GFX_goal_TEX_end_aparthied
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_revisionists_slain
+		}
+		
+		relative_position_id = TEX_revisionists_slain
+		x = 0
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				type = topple_government
+				target = SAF
+			} 
+		}
+	}
+	
+	focus = {
+		id = TEX_bring_gonzalo_home
+		icon = GFX_goal_TEX_bring_gonzalo_thought_home
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_revisionists_slain
+		}
+		
+		relative_position_id = TEX_revisionists_slain
+		x = -2
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				type = topple_government
+				target = PRU
+			} 
+			hidden_effect = {
+				PRU = {
+					remove_opinion_modifier = {
+						target = TEX
+						modifier = supported_shining_path
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_destroy_the_democratic_league
+		icon = GFX_goal_TEX_destroy_the_demokkkratic_league
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_revisionists_slain
+		}
+		
+		relative_position_id = TEX_revisionists_slain
+		x = 2
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.296
+			create_wargoal = {
+				type = annex_everything
+				target = CAN
+			} 
+			CAN = {
+				every_owned_state = {
+					TEX = { add_state_core = PREV }
+				}
+			}
+			effect_tooltip = {
+				swap_ideas = {
+					remove_idea = TEX_decolonize_turtle_island
+					add_idea = TEX_decolonize_turtle_island2_dummy
+				}
+			}
+			hidden_effect = {
+				swap_ideas = {
+					remove_idea = TEX_decolonize_turtle_island
+					add_idea = TEX_decolonize_turtle_island2
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_complete_the_american_great_leap_forward
+		icon = GFX_goal_TEX_american_great_leap_forward
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_destroy_the_democratic_league
+		}
+		prerequisite = {
+			focus = TEX_bring_gonzalo_home
+		}
+		prerequisite = {
+			focus = TEX_overthrow_aparthied
+		}
+		
+		relative_position_id = TEX_revisionists_slain
+		x = 0
+		y = 2
+		
+		available = {
+			NOT = { country_exists = CAN }
+			owns_state = 629
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas.297
+			every_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			swap_ideas = {
+				remove_idea = TEX_decolonize_turtle_island2
+				add_idea = TEX_the_great_leap
+			}
+		}
+	}
+	
+	### Shared ###
+	
+	# focus = {
+		# id = TEX_lone_red_star
+		# icon = X
+		# cost = 6
+		
+		# prerequisite = {
+			# focus = TEX_anti_imperialist_red_democracy
+			# focus = TEX_union_of_texan_soviet_socialist_republics
+			# focus = TEX_wash_away_the_imperialist_concept
+		# }
+		
+		# relative_position_id = TEX_congress_of_the_cptx
+		# x = 0
+		# y = 5
+		
+		# ai_will_do = {
+			# factor = 100
+		# }
+
+		# available = {
+		# }
+
+		# available_if_capitulated = yes
+
+		# completion_reward = {
+			
+		# }
+	# }
+	
+		
+	########################
+	#### FOREIGN POLICY ####
+	########################
+	
+	### Pro-Soviet ###
+	
+	focus = {
+		id = TEX_red_foothold_in_america
+		icon = GFX_goal_TEX_red_foothold_in_america
+		cost = 2
+		
+		mutually_exclusive = {
+			focus = TEX_forsaken_by_los_angeles
+		}
+		
+		x = 36
+		y = 9
+		
+		available = {
+			has_country_leader = {
+				character = TEX_russel_bentley
+				ruling_only = yes
+			}
+		}
+		
+		allow_branch = {
+			NOT = { 
+				AND = {
+					has_country_flag = the_united_states_are_back
+					has_country_leader = {
+						name = "Dianne Feinstein"
+						ruling_only = yes
+					}
+				}
+			}
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_command_power = 100
+			army_experience = 100
+			add_manpower = 3500
+		}
+	}
+	
+	# - UAPR
+	
+	focus = {
+		id = TEX_link_up_with_the_uapr
+		icon = GFX_goal_TEX_link_with_the_uapr
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_red_foothold_in_america
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_take_up_the_torch_of_american_communism
+		}
+		
+		relative_position_id = TEX_red_foothold_in_america
+		x = -1
+		y = 1
+		
+		available = {
+			PCA = {
+				exists = yes
+				is_subject = no
+				has_government = communist
+			}
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_opinion_modifier = {
+				target = PCA
+				modifier = supports_our_cause
+			}
+			add_ideas = TEX_supporting_the_uapr
+		}
+	}
+	
+	focus = {
+		id = TEX_join_the_struggle
+		icon = GFX_goal_TEX_our_part_in_the_struggle
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_link_up_with_the_uapr
+		}
+		
+		relative_position_id = TEX_link_up_with_the_uapr
+		x = 0
+		y = 1
+		
+		available = {
+			PCA = { has_war = yes }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			TEX = { 
+				get_current_government_type = yes
+			}
+			PCA = { puppet = TEX }
+			TEX = { 
+				restore_previous_government_type = yes
+			}
+			PCA = {
+				add_ideas = TEX_texan_oil
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_rejoining_america
+		icon = GFX_goal_TEX_rejoin_america
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_join_the_struggle
+		}
+		
+		relative_position_id = TEX_link_up_with_the_uapr
+		x = 0
+		y = 2
+		
+		available = {
+			NOT = { country_exists = USA }
+			NOT = { country_exists = MWA }
+			NOT = { country_exists = NEA }
+			is_subject_of = PCA
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			country_event = texas_diplo.31
+			TEX = {
+				every_owned_state = {
+					PCA = { add_state_core = PREV }
+				}
+			}
+			custom_effect_tooltip = TEX_will_end_the_game
+		}
+	}
+	
+	# - Indep
+	
+	focus = {
+		id = TEX_take_up_the_torch_of_american_communism
+		icon = GFX_goal_TEX_torch_of_american_communism
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_red_foothold_in_america
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_link_up_with_the_uapr
+		}
+		
+		relative_position_id = TEX_red_foothold_in_america
+		x = 1
+		y = 1
+		
+		available = {
+			PCA = {
+				OR = {
+					exists = no
+					NOT = { has_government = communist }
+					is_subject = yes
+				}
+			}
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			set_country_flag = TEX_maintaned_texanism
+			mark_focus_tree_layout_dirty = yes
+			add_timed_idea = {
+				idea = TEX_fight_american_unificationism
+				days = 400
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_com_warm_water_port
+		icon = GFX_goal_TEX_warm_water_port
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_take_up_the_torch_of_american_communism
+		}
+		
+		relative_position_id = TEX_take_up_the_torch_of_american_communism
+		x = 0
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = TEX_com_warm_water_port
+			diplomatic_relation = {
+				country = SOV
+				relation = military_access
+				active = yes
+			}
+			diplomatic_relation = {
+				country = GER
+				relation = military_access
+				active = yes
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_fight_american_reaction
+		icon = GFX_goal_TEX_destroy_american_reaction
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_com_warm_water_port
+		}
+		
+		relative_position_id = TEX_take_up_the_torch_of_american_communism
+		x = 0
+		y = 2
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				target = ARI
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = UTA
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = PCA
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = CSD
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = MWA
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = LIN
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = MOT
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = GRL
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = ILL
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = NEA
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = AMC
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = USA
+				type = annex_everything 
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_ensure_a_disunuted_future
+		icon = GFX_goal_TEX_destroy_yankee_nationhood
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_fight_american_reaction
+		}
+		
+		relative_position_id = TEX_take_up_the_torch_of_american_communism
+		x = -1
+		y = 3
+		
+		available = {
+			has_war = no
+			USA = { is_subject_of = ROOT }
+			NEA = { is_subject_of = ROOT }
+			PCA = { is_subject_of = ROOT }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_stability = 0.1
+			remove_ideas = TEX_fight_american_unificationism
+			add_ideas = TEX_victory_over_america
+		}
+	}
+	
+	### Independent ###
+	
+	focus = {
+		id = TEX_forsaken_by_los_angeles
+		icon = GFX_goal_TEX_forsaken_by_los_angeles
+		cost = 2
+		
+		mutually_exclusive = {
+			focus = TEX_red_foothold_in_america
+		}
+		
+		relative_position_id = TEX_red_foothold_in_america
+		x = -10
+		y = 0
+		
+		available = {
+			OR = {
+				has_completed_focus = TEX_wash_away_the_imperialist_concept
+				has_completed_focus = TEX_tear_down_messiah_worship
+				has_completed_focus = TEX_stand_against_american_imperialism
+			}
+			NOT = {
+				AND = {
+					has_country_leader = {
+						character = TEX_russel_bentley
+						ruling_only = yes
+					}
+					PCA = {
+						has_country_leader = {
+							character = PCA_john_foster
+							ruling_only = yes
+						}
+					}
+				}
+			}
+		}
+		
+		allow_branch = {
+			NOT = { 
+				AND = {
+					has_country_flag = the_united_states_are_back
+					has_country_leader = {
+						name = "Dianne Feinstein"
+						ruling_only = yes
+					}
+				}
+			}
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_opinion_modifier = {
+				target = PCA
+				modifier = betrayed_communism
+			}
+		}
+	}
+	
+	### Jones Unique ForPol ###
+	
+	focus = {
+		id = TEX_settle_our_score_with_the_uapr
+		icon = GFX_goal_TEX_settle_our_score_with_the_uapr
+		cost = 6
+		
+		mutually_exclusive = {
+			focus = TEX_towards_a_southern_revolution
+			focus = TEX_bring_maoism_to_america
+		}
+		
+		prerequisite = {
+			focus = TEX_forsaken_by_los_angeles
+		}
+		
+		relative_position_id = TEX_forsaken_by_los_angeles
+		x = -4
+		y = 1
+		
+		available = {
+			has_country_leader = {
+				character = TEX_jim_jones
+				ruling_only = yes
+			}
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = TEX_our_road_home
+				days = 400
+			}
+			add_war_support = 0.1
+		}
+	}
+	
+	focus = {
+		id = TEX_jones_path_to_arizona
+		icon = GFX_goal_TEX_through_arizona
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_settle_our_score_with_the_uapr
+		}
+		
+		relative_position_id = TEX_settle_our_score_with_the_uapr
+		x = -1
+		y = 1
+				
+		bypass = {
+			NOT = { country_exists = ARI }
+		}
+
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				target = ARI
+				type = annex_everything 
+			}
+			ARI = {
+				every_owned_state = {
+					TEX = { add_state_core = PREV }
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_war_with_false_christians
+		icon = GFX_goal_TEX_through_utah
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_settle_our_score_with_the_uapr
+		}
+		
+		relative_position_id = TEX_settle_our_score_with_the_uapr
+		x = 1
+		y = 1
+				
+		bypass = {
+			NOT = { country_exists = UTA }
+		}
+
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				target = UTA
+				type = annex_everything 
+			}
+			UTA = {
+				every_owned_state = {
+					TEX = { add_state_core = PREV }
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_jones_retake_san_francisco
+		icon = GFX_goal_TEX_return_home
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_war_with_false_christians
+		}
+		prerequisite = {
+			focus = TEX_jones_path_to_arizona
+		}
+		
+		relative_position_id = TEX_settle_our_score_with_the_uapr
+		x = 0
+		y = 2
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				target = PCA
+				type = annex_everything 
+			}
+			PCA = {
+				every_owned_state = {
+					limit = { 
+						NOT = { is_core_of = CSD }
+					}
+					TEX = { add_state_core = PREV }
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_protect_guyana
+		icon = GFX_goal_TEX_protect_guyana
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_jones_retake_san_francisco
+		}
+		
+		relative_position_id = TEX_settle_our_score_with_the_uapr
+		x = -1
+		y = 3
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			give_guarantee = GUY
+		}
+	}
+	
+	focus = {
+		id = TEX_finish_off_the_federals
+		icon = GFX_goal_TEX_finish_off_the_federales
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_jones_retake_san_francisco
+		}
+		
+		relative_position_id = TEX_settle_our_score_with_the_uapr
+		x = 1
+		y = 3
+				
+		bypass = {
+			NOT = { country_exists = USA }
+		}
+
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				target = USA
+				type = topple_government 
+			}
+		}
+	}
+	
+	### Maoist Unique ForPol ###
+	
+	focus = {
+		id = TEX_bring_maoism_to_america
+		icon = GFX_goal_TEX_bring_maoism_to_america
+		cost = 6
+		
+		mutually_exclusive = {
+			focus = TEX_towards_a_southern_revolution
+			focus = TEX_settle_our_score_with_the_uapr
+		}
+		
+		prerequisite = {
+			focus = TEX_forsaken_by_los_angeles
+		}
+		
+		relative_position_id = TEX_forsaken_by_los_angeles
+		x = 4
+		y = 1
+		
+		available = {	
+			has_country_leader = {
+				character = TEX_jared_roark
+				ruling_only = yes
+			}
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = TEX_the_long_march
+				days = 400
+			}
+			add_war_support = 0.1
+			hidden_effect = {
+				set_country_flag = unifying_america
+				enable_unification_decisions = yes
+				set_country_flag = AMR_hide_american_diplo_tree
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_the_southern_great_leap_forward
+		icon = GFX_goal_TEX_southern_great_leap
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_bring_maoism_to_america
+		}
+		
+		relative_position_id = TEX_bring_maoism_to_america
+		x = -1
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			core_USA = yes
+			create_wargoal = {
+				target = USA
+				type = annex_everything 
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_crimson_path_through_the_desert
+		icon = GFX_goal_TEX_crimson_path_through_the_desert
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_bring_maoism_to_america
+		}
+		
+		relative_position_id = TEX_bring_maoism_to_america
+		x = 1
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			core_UTA = yes
+            core_ARI = yes
+			create_wargoal = {
+				target = UTA
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = ARI
+				type = annex_everything 
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_anihilate_the_false_communists
+		icon = GFX_goal_TEX_wipe_away_false_communists
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_crimson_path_through_the_desert
+		}
+		prerequisite = {
+			focus = TEX_the_southern_great_leap_forward
+		}
+		
+		relative_position_id = TEX_bring_maoism_to_america
+		x = 0
+		y = 2
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			core_PCA = yes
+			create_wargoal = {
+				target = PCA
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = CSD
+				type = annex_everything 
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_bring_the_revolution_to_the_heartlands
+		icon = GFX_goal_TEX_bring_revolution_to_heartlands
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_anihilate_the_false_communists
+		}
+		
+		relative_position_id = TEX_bring_maoism_to_america
+		x = -1
+		y = 3
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			core_ILL = yes
+            core_GRL = yes
+            core_MWA = yes
+            core_MOT = yes
+            core_LIN = yes
+			create_wargoal = {
+				target = ILL
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = GRL
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = MWA
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = MOT
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = LIN
+				type = annex_everything 
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_and_end_to_chomskys_demented_experiment
+		icon = GFX_goal_TEX_end_chomsky_experiment
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_anihilate_the_false_communists
+		}
+		
+		relative_position_id = TEX_bring_maoism_to_america
+		x = 1
+		y = 3
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			core_NEA = yes
+			create_wargoal = {
+				target = NEA
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = AMC
+				type = annex_everything 
+			}
+		}
+	}
+	
+	### Bentley Unique ForPol ###
+	
+	focus = {
+		id = TEX_towards_a_southern_revolution
+		icon = GFX_goal_TEX_tear_down_cotton_kings
+		cost = 6
+		
+		mutually_exclusive = {
+			focus = TEX_bring_maoism_to_america
+			focus = TEX_settle_our_score_with_the_uapr
+		}
+		
+		prerequisite = {
+			focus = TEX_forsaken_by_los_angeles
+		}
+		
+		relative_position_id = TEX_forsaken_by_los_angeles
+		x = 0
+		y = 1
+		
+		available = {
+			has_country_leader = {
+				character = TEX_russel_bentley
+				ruling_only = yes
+			}
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = TEX_bring_the_jubilee
+				days = 400
+			}
+			add_war_support = 0.1
+		}
+	}
+	
+	focus = {
+		id = TEX_free_the_south_from_carpetbagger_rule
+		icon = GFX_goal_TEX_liberate_south
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_towards_a_southern_revolution
+		}
+		
+		relative_position_id = TEX_towards_a_southern_revolution
+		x = -1
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				target = USA
+				type = annex_everything 
+			}
+			USA = {
+				every_owned_state = {
+					TEX = { add_state_core = PREV }
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_reunite_virginia
+		icon = GFX_goal_TEX_reunify_virginia
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_towards_a_southern_revolution
+		}
+		
+		relative_position_id = TEX_towards_a_southern_revolution
+		x = 1
+		y = 1
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				target = NEA
+				type = annex_everything 
+			}
+			add_state_core = 902
+			add_state_core = 893
+		}
+	}
+	
+	focus = {
+		id = TEX_the_two_state_solution
+		icon = GFX_goal_TEX_two_state_solution
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_reunite_virginia
+			focus = TEX_free_the_south_from_carpetbagger_rule
+		}
+		
+		relative_position_id = TEX_towards_a_southern_revolution
+		x = 0
+		y = 2
+		
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TEX_has_formed_confederacy
+				has_cosmetic_tag = CSA
+			}
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			PCA = { country_event = texas_diplo.24 }
+		}
+	}
+	
+	focus = {
+		id = TEX_reclaim_red_missouri
+		icon = GFX_goal_TEX_claim_confederate_territories
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_reunite_virginia
+		}
+		
+		relative_position_id = TEX_towards_a_southern_revolution
+		x = 1
+		y = 3
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				target = ARI
+				type = annex_everything 
+			}
+			ARI = {
+				every_owned_state = {
+					TEX = { add_state_core = PREV }
+				}
+			}
+			create_wargoal = {
+				target = ILL
+				type = annex_everything 
+			}
+			add_state_core = 373
+			if = {
+				limit = { MEX = { owns_state = 376 } }
+				custom_effect_tooltip = tooltip_blank_line
+				create_wargoal = {
+					target = MEX
+					type = annex_everything 
+				}
+				custom_effect_tooltip = tooltip_blank_line
+				custom_effect_tooltip = TEX_occupy_texmex_for_peace
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_the_red_circle
+		icon = GFX_goal_TEX_red_circle
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_free_the_south_from_carpetbagger_rule
+		}
+		
+		relative_position_id = TEX_towards_a_southern_revolution
+		x = -1
+		y = 3
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				target = MEX
+				type = topple_government 
+			}
+			create_wargoal = {
+				target = GUA
+				type = topple_government 
+			}
+			create_wargoal = {
+				target = BLZ
+				type = topple_government 
+			}
+			create_wargoal = {
+				target = COS
+				type = topple_government 
+			}
+			create_wargoal = {
+				target = PAN
+				type = topple_government 
+			}
+			create_wargoal = {
+				target = JAM
+				type = topple_government 
+			}
+			create_wargoal = {
+				target = BAH
+				type = topple_government 
+			}
+			create_wargoal = {
+				target = HAI
+				type = topple_government 
+			}
+			create_wargoal = {
+				target = DOM
+				type = topple_government 
+			}
+			if = {
+				limit = {
+					CEA = {
+						NOT = { 
+							has_government = revolutionary_socialist
+							has_government = communist
+						}
+					}
+				}
+				create_wargoal = {
+					target = CEA
+					type = annex_everything 
+				}
+			}
+			if = {
+				limit = {
+					CUB = {
+						NOT = { 
+							has_government = moderate_socialist
+							has_government = communist
+							has_government = national_bolshevik
+						}
+					}
+				}
+				create_wargoal = {
+					target = CUB
+					type = annex_everything 
+				}
+			}
+		}
+	}
+	
+	### Shared ###
+	
+	# - Warsaw Pact
+	
+	focus = {
+		id = TEX_a_future_in_the_warsaw_pact
+		icon = GFX_goal_PCA_join_the_warsaw_pact
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_reclaim_red_missouri
+			focus = TEX_the_red_circle
+			focus = TEX_ensure_a_disunuted_future
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_red_neutrality
+			focus = TEX_join_conefo
+		}
+		
+		relative_position_id = TEX_forsaken_by_los_angeles
+		
+		x = 0
+		y = 5
+		
+		available = {
+			is_subject = no
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			if = {
+				limit = {
+					SOV = {
+						is_faction_leader = yes
+						has_government = communist
+					}
+				}
+				SOV = {
+			    	country_event = { days = 1 id = generic.1 } 
+				}
+			}
+		    else_if = {
+				limit = {
+					GER = {
+						is_faction_leader = yes
+						GER_is_ddr = yes
+					}
+				}
+				GER = {
+			    	country_event = { days = 1 id = generic.1 } 
+				}
+			}
+			else_if = {
+				limit = {
+					ITA = {
+						is_faction_leader = yes
+						has_government = communist
+					}
+				}
+				ITA = {
+			    	country_event = { days = 1 id = generic.1 } 
+				}
+			}
+			else_if = {
+				limit = {
+					FRA = {
+						is_faction_leader = yes
+						has_government = communist
+					}
+				}
+				FRA = {
+			    	country_event = { days = 1 id = generic.1 } 
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_conquest_of_canada
+		icon = GFX_goal_GER_war_with_canada
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_a_future_in_the_warsaw_pact
+		}
+		
+		relative_position_id = TEX_forsaken_by_los_angeles
+		
+		x = 0
+		y = 6
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				type = topple_government
+				target = CAN
+			} 
+		}
+	}
+	
+	# - CONEFO
+	
+	focus = {
+		id = TEX_join_conefo
+		icon = GFX_goal_TEX_join_CONEFO
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_bring_the_revolution_to_the_heartlands
+			focus = TEX_and_end_to_chomskys_demented_experiment
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_red_neutrality
+			focus = TEX_a_future_in_the_warsaw_pact
+		}
+		
+		relative_position_id = TEX_forsaken_by_los_angeles
+		
+		x = 2
+		y = 5
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			INS = {
+				add_to_faction = ROOT
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_an_end_to_false_communists
+		icon = GFX_goal_CAN_final_battle
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_join_conefo
+		}
+		
+		relative_position_id = TEX_forsaken_by_los_angeles
+		
+		x = 2
+		y = 6
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				type = topple_government
+				target = SOV
+			}
+		}
+	}
+	
+	# - Neutrality
+	
+	focus = {
+		id = TEX_red_neutrality
+		icon = GFX_goal_TEX_pacifist_alliance
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_protect_guyana
+			focus = TEX_finish_off_the_federals
+			focus = TEX_reclaim_red_missouri
+			focus = TEX_the_red_circle
+			focus = TEX_bring_the_revolution_to_the_heartlands
+			focus = TEX_and_end_to_chomskys_demented_experiment
+		}
+		
+		mutually_exclusive = {
+			focus = TEX_join_conefo
+			focus = TEX_a_future_in_the_warsaw_pact
+		}
+		
+		relative_position_id = TEX_forsaken_by_los_angeles
+		
+		x = -2
+		y = 5
+		
+		available = {	
+			hidden_trigger = {
+				has_country_leader_ideology = apostolic_socialism
+			}
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_faction_from_template = { 
+				template = faction_template_regional 
+				name = "Revolutionary Peace Pact"
+				icon = GFX_irish_salvation_faction_logo
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_cultivate_revolutionary_alliances
+		icon = GFX_goal_AMR_revolutionary_dawn
+		cost = 6
+		
+		prerequisite = {
+			focus = TEX_red_neutrality
+		}
+		
+		relative_position_id = TEX_forsaken_by_los_angeles
+		
+		x = -2
+		y = 6
+		
+		available = {
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			every_country = {
+				limit = {
+					capital_scope = {
+						is_on_continent = south_america
+					}
+					NOT = { is_in_faction_with = ROOT}
+					has_government = revolutionary_socialist
+				}
+				activate_targeted_decision = { target = PREV decision = NEA_invite_to_faction } 
+			}
+		}
+	}
+	
+	# focus = {
+		# id = TEX_com_warm_water_port
+		# icon = X
+		# cost = 6
+		
+		# prerequisite = {
+			# focus = TEX_red_foothold_in_america
+			# focus = TEX_forsaken_by_los_angeles
+		# }
+		
+		# relative_position_id = TEX_red_foothold_in_america
+		
+		# x = -3
+		# y = 4
+		
+		# ai_will_do = {
+			# factor = 100
+		# }
+
+		# available = {
+		# }
+
+		# available_if_capitulated = yes
+
+		# completion_reward = {
+			
+		# }
+	# }
+}
