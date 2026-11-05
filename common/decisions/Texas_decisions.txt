@@ -811,6 +811,9 @@ TEX_reintegrating_south_texas = {
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision TEX_remove_collabs"
 			remove_ideas = TEX_Hispanic_Tensions
+			hidden_effect = {
+				remove_ideas = TEX_Hispanic_Tensions_Less
+			}
 			clr_country_flag = TEX_doing_easttex_decision
 		}
 		complete_effect = {
@@ -852,9 +855,12 @@ TEX_searching_for_evidence = {
 			log = "[GetDateText]: [Root.GetName]: Decision TEX_remove_collabs"
 			country_event = texas.326
 			clr_country_flag = TEX_search_in_progress
-			swap_ideas = {
-				remove_idea = TEX_deep_state
-				add_idea = TEX_deep_state2
+			if = {
+				limit = { has_idea = TEX_deep_state }
+				swap_ideas = {
+					remove_idea = TEX_deep_state
+					add_idea = TEX_deep_state2
+				}
 			}
 		}
 		complete_effect = {

@@ -7632,6 +7632,7 @@ focus_tree = {
 				remove_ideas = TEX_corruption_issue_reduced
 				remove_ideas = TEX_One_Republic_Legacy
 				remove_ideas = TEX_One_Republic_Legacy2
+				remove_ideas = TEX_Shadow_of_Martial_Law
 			}
 		}
 	}
@@ -8718,6 +8719,15 @@ focus_tree = {
 			    type = annex_everything
 			    target = CAN
 		    }
+			if = {
+				limit = {
+					CAN = { is_subject_of = ROOT }
+				}
+				annex_country = {
+					target = CAN
+					transfer_troops = no
+				}
+			}
 			every_state = {
 				limit = { is_core_of = CAN }
 				ROOT = { add_state_claim = PREV }
@@ -8745,6 +8755,15 @@ focus_tree = {
 			    type = annex_everything
 			    target = MEX
 		    }
+			if = {
+				limit = {
+					MEX = { is_subject_of = ROOT }
+				}
+				annex_country = {
+					target = MEX
+					transfer_troops = no
+				}
+			}
 			every_state = {
 				limit = { is_core_of = MEX }
 				ROOT = { add_state_claim = PREV }
@@ -10604,6 +10623,10 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			if = {
+				limit = { owns_state = 376 }
+				add_state_core = 376 
+			}
 			set_country_flag = TEX_hide_war_trees
 			mark_focus_tree_layout_dirty = yes
 			set_country_flag = TEX_unlock_forpol
@@ -13781,6 +13804,7 @@ focus_tree = {
 				limit = { has_country_flag = TEX_released_new_mexico }
 				event_target:nueva_mexico_target = { country_event = texas_diplo.33 }
 			}
+			add_ideas = TEX_sun_belt_free_trade_organization_member
 		}
 	}
 	

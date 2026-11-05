@@ -8,10 +8,6 @@ american_unification = {
 		}
 		available = {
 			has_integrated_NEA = yes
-			OR = {
-				has_integrated_USA = yes
-				hidden_trigger = { has_country_flag = PCA_supported_confederate_nationhood }
-			}
 			has_integrated_ILL = yes
 			has_integrated_GRL = yes
 			has_integrated_MWA = yes
@@ -734,7 +730,6 @@ american_unification = {
 					371 = { is_core_of = ROOT }
 					372 = { is_core_of = ROOT }
 					374 = { is_core_of = ROOT }
-					900 = { is_core_of = ROOT }
 					901 = { is_core_of = ROOT }
 				}
 			}
@@ -754,7 +749,6 @@ american_unification = {
 					owns_state = 371
 					owns_state = 372
 					owns_state = 374
-					owns_state = 900
 					owns_state = 901
 				}
 				USA = {
@@ -814,6 +808,18 @@ american_unification = {
 					owns_state = 880
 				}
 				add_state_core = 880
+			}
+			if = {
+				limit = {
+					owns_state = 900
+				}
+				add_state_core = 900
+			}
+			if = {
+				limit = {
+					owns_state = 1046
+				}
+				add_state_core = 1046
 			}
 			if = {
 				limit = {
@@ -889,6 +895,19 @@ american_unification = {
 					}
 				}
 				add_state_core = 900
+			}
+			if = { #if AR is cored but you lost core on east texas, you get the core back
+				limit = {
+					365 = { #Georgia
+						is_core_of = ROOT
+					}
+					1046 = { #East Texas
+						NOT = {
+							is_core_of = ROOT
+						}
+					}
+				}
+				add_state_core = 1046
 			}
 			if = {
 				limit = {
