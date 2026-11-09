@@ -3150,7 +3150,7 @@ country_event = {
 		add_stability = -0.01
 		hidden_effect = {
 			country_event = {
-				id = texas.190
+				id = texas.109
 				days = 30
 			}
 		}
@@ -9353,6 +9353,10 @@ country_event = {
 	}
 	picture = texas_election
 	
+	trigger = {
+		NOT = { has_country_flag = TEX_no_elections_anymore }
+	}
+	
 	fire_only_once = yes
 	
 	is_triggered_only = yes
@@ -9369,6 +9373,7 @@ country_event = {
 				ruling_party = fascist
 			}
 			add_nationalist_to_coalition = yes
+			add_liberal_to_coalition = yes
 		}
 		else = {
 			add_popularity = {
@@ -9454,6 +9459,10 @@ country_event = {
 		}
 	}
 	picture = texas_election
+	
+	trigger = {
+		NOT = { has_country_flag = TEX_no_elections_anymore }
+	}
 	
 	fire_only_once = yes
 	
@@ -9557,6 +9566,10 @@ country_event = {
 	fire_only_once = yes
 	
 	is_triggered_only = yes
+	
+	trigger = {
+		NOT = { has_country_flag = TEX_no_elections_anymore }
+	}
 		
 	option = { #Ronny Jackson
 		name = texas_elections.4.o1
@@ -9597,6 +9610,10 @@ country_event = {
 	fire_only_once = yes
 	
 	is_triggered_only = yes
+	
+	trigger = {
+		NOT = { has_country_flag = TEX_no_elections_anymore }
+	}
 		
 	option = { #Nate Smith
 		name = texas_elections.5.o1
@@ -9651,6 +9668,10 @@ country_event = {
 	
 	is_triggered_only = yes
 	
+	trigger = {
+		NOT = { has_country_flag = TEX_no_elections_anymore }
+	}
+	
 	option = { #One Republic
 		name = texas_elections.6.o1
 		trigger = {
@@ -9669,6 +9690,8 @@ country_event = {
 			set_politics = {
 				ruling_party = fascist
 			}
+			add_nationalist_to_coalition = yes
+			add_liberal_to_coalition = yes
 			if = {
 				limit = { has_country_flag = TEX_nate_smith_2021 }
 				TEX_nate_smith = {
@@ -9694,6 +9717,8 @@ country_event = {
 			set_politics = {
 				ruling_party = nationalist
 			}
+			add_fash_to_coalition = yes
+			add_liberal_to_coalition = yes
 			if = {
 				limit = { has_country_flag = TEX_nate_smith_2021 }
 				TEX_nate_smith = {
@@ -9841,14 +9866,14 @@ country_event = {
 		
 	option = { #Too good for this world
 		name = texas_elections.9.o1
-		add_popularity = {
-			ideology = centrist
-			popularity = -0.04
-		}
 		set_country_flag = TEX_reform_party_gone
 		if = {
 			limit = {
 				NOT = { has_government = centrist }
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = -0.04
 			}
 			TEX_ron_paul = {
 				promote_character = mainline_anti_statism
@@ -9857,6 +9882,12 @@ country_event = {
 				name = TEX_libertarian_party
 				long_name = TEX_libertarian_party_long
 				ideology = centrist
+			}
+		}
+		else = {
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.02
 			}
 		}
 	}
@@ -10357,8 +10388,8 @@ country_event = {
 				has_government = liberal
 				has_government = revolutionary_socialist
 			}
-			NOT = { has_country_flag = TEX_no_elections_anymore }
 		}
+		NOT = { has_country_flag = TEX_no_elections_anymore }
 	}
 		
 	option = { #Beto
@@ -10455,8 +10486,8 @@ country_event = {
 				has_government = liberal
 				has_government = revolutionary_socialist
 			}
-			NOT = { has_country_flag = TEX_no_elections_anymore }
 		}
+		NOT = { has_country_flag = TEX_no_elections_anymore }
 	}
 		
 	option = { #Joaquin Castro
@@ -10567,8 +10598,8 @@ country_event = {
 				has_government = liberal
 				has_government = revolutionary_socialist
 			}
-			NOT = { has_country_flag = TEX_no_elections_anymore }
 		}
+		NOT = { has_country_flag = TEX_no_elections_anymore }
 	}
 		
 	option = { #Gina Hinojosa
@@ -10797,6 +10828,18 @@ country_event = {
 	is_triggered_only = yes
 	
 	trigger = {
+		OR = {
+			NOT = { has_government = centrist }
+			AND = {
+				has_government = centrist
+				var:country_leader = {
+					check_variable = { TEX_terms_served > 1 }
+				}
+			}
+		}
+	}
+	
+	trigger = {
 		NOT = { has_country_flag = TEX_no_elections_anymore }
 	}
 	
@@ -10870,6 +10913,7 @@ country_event = {
 	
 	trigger = {
 		NOT = { has_country_flag = TEX_no_elections_anymore }
+		
 	}
 	
 	option = { #Ross Ulbricht
@@ -10954,8 +10998,8 @@ country_event = {
 				}
 			}
 			NOT = { has_government= national_conservative }
-			NOT = { has_country_flag = TEX_no_elections_anymore }
 		}
+		NOT = { has_country_flag = TEX_no_elections_anymore }
 	}
 	
 	option = { #John Cornyn
@@ -11010,8 +11054,8 @@ country_event = {
 				}
 			}
 			NOT = { has_government= national_conservative }
-			NOT = { has_country_flag = TEX_no_elections_anymore }
 		}
+		NOT = { has_country_flag = TEX_no_elections_anymore }
 	}
 	
 	option = { #Dan Crenshaw
@@ -11074,8 +11118,8 @@ country_event = {
 				}
 			}
 			NOT = { has_government= national_conservative }
-			NOT = { has_country_flag = TEX_no_elections_anymore }
 		}
+		NOT = { has_country_flag = TEX_no_elections_anymore }
 	}
 	
 	option = { #Van Taylor
@@ -11229,20 +11273,9 @@ country_event = {
 				id = texas_elections.8
 				days = 1400
 			}
-			if = {
-				limit = {
-					has_country_flag = TEX_brocialists_in_control
-				}
-				country_event = {
-					id = texas_elections.20
-					days = 1420
-				}
-			}
-			else = {
-				country_event = {
-					id = texas_elections.17
-					days = 1420
-				}
+			country_event = {
+				id = texas_elections.17
+				days = 1420
 			}
 		}
 		
@@ -11291,20 +11324,9 @@ country_event = {
 				id = texas_elections.8
 				days = 1400
 			}
-			if = {
-				limit = {
-					has_country_flag = TEX_brocialists_in_control
-				}
-				country_event = {
-					id = texas_elections.20
-					days = 1420
-				}
-			}
-			else = {
-				country_event = {
-					id = texas_elections.17
-					days = 1420
-				}
+			country_event = {
+				id = texas_elections.17
+				days = 1420
 			}
 			if = {
 				limit = {
@@ -11379,20 +11401,9 @@ country_event = {
 				id = texas_elections.8
 				days = 1400
 			}
-			if = {
-				limit = {
-					has_country_flag = TEX_brocialists_in_control
-				}
-				country_event = {
-					id = texas_elections.20
-					days = 1420
-				}
-			}
-			else = {
-				country_event = {
-					id = texas_elections.17
-					days = 1420
-				}
+			country_event = {
+				id = texas_elections.17
+				days = 1420
 			}
 		}
 		set_country_flag = TEX_reform_party_won_last_election
@@ -11493,20 +11504,9 @@ country_event = {
 				id = texas_elections.8
 				days = 1400
 			}
-			if = {
-				limit = {
-					has_country_flag = TEX_brocialists_in_control
-				}
-				country_event = {
-					id = texas_elections.20
-					days = 1420
-				}
-			}
-			else = {
-				country_event = {
-					id = texas_elections.17
-					days = 1420
-				}
+			country_event = {
+				id = texas_elections.17
+				days = 1420
 			}
 		}
 		set_country_flag = TEX_libertarians_won_last_election
@@ -11611,20 +11611,9 @@ country_event = {
 				id = texas_elections.8
 				days = 1400
 			}
-			if = {
-				limit = {
-					has_country_flag = TEX_brocialists_in_control
-				}
-				country_event = {
-					id = texas_elections.19
-					days = 1420
-				}
-			}
-			else = {
-				country_event = {
-					id = texas_elections.17
-					days = 1420
-				}
+			country_event = {
+				id = texas_elections.17
+				days = 1420
 			}
 		}
 		set_country_flag = TEX_democrats_won_last_election
@@ -11766,9 +11755,20 @@ country_event = {
 				id = texas_elections.29
 				days = 1370
 			}
-			country_event = {
-				id = texas_elections.18
-				days = 1420
+			if = {
+				limit = {
+					has_country_flag = TEX_brocialists_in_control
+				}
+				country_event = {
+					id = texas_elections.20
+					days = 1420
+				}
+			}
+			else = {
+				country_event = {
+					id = texas_elections.18
+					days = 1420
+				}
 			}
 		}
 		set_country_flag = TEX_one_republic_won_last_election
@@ -11841,9 +11841,20 @@ country_event = {
 				id = texas_elections.29
 				days = 1370
 			}
-			country_event = {
-				id = texas_elections.18
-				days = 1420
+			if = {
+				limit = {
+					has_country_flag = TEX_brocialists_in_control
+				}
+				country_event = {
+					id = texas_elections.20
+					days = 1420
+				}
+			}
+			else = {
+				country_event = {
+					id = texas_elections.18
+					days = 1420
+				}
 			}
 		}
 		set_country_flag = TEX_indepdendent_republicans_won_last_election
@@ -11914,9 +11925,20 @@ country_event = {
 				id = texas_elections.29
 				days = 1370
 			}
-			country_event = {
-				id = texas_elections.18
-				days = 1420
+			if = {
+				limit = {
+					has_country_flag = TEX_brocialists_in_control
+				}
+				country_event = {
+					id = texas_elections.20
+					days = 1420
+				}
+			}
+			else = {
+				country_event = {
+					id = texas_elections.18
+					days = 1420
+				}
 			}
 		}
 		set_country_flag = TEX_reform_party_won_last_election
@@ -11991,9 +12013,20 @@ country_event = {
 				id = texas_elections.29
 				days = 1370
 			}
-			country_event = {
-				id = texas_elections.18
-				days = 1420
+			if = {
+				limit = {
+					has_country_flag = TEX_brocialists_in_control
+				}
+				country_event = {
+					id = texas_elections.20
+					days = 1420
+				}
+			}
+			else = {
+				country_event = {
+					id = texas_elections.18
+					days = 1420
+				}
 			}
 		}
 		set_country_flag = TEX_libertarians_won_last_election
@@ -12100,9 +12133,20 @@ country_event = {
 				id = texas_elections.29
 				days = 1370
 			}
-			country_event = {
-				id = texas_elections.18
-				days = 1420
+			if = {
+				limit = {
+					has_country_flag = TEX_brocialists_in_control
+				}
+				country_event = {
+					id = texas_elections.19
+					days = 1420
+				}
+			}
+			else = {
+				country_event = {
+					id = texas_elections.18
+					days = 1420
+				}
 			}
 		}
 		
