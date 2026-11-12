@@ -1383,7 +1383,10 @@
 				remove_idea = GER_westalgie
 				add_idea = GER_westalgie2
 			}
-			country_event = rw_germany.40
+			country_event = {
+				id = rw_germany.40
+				days = 2
+			}
 			swap_ideas = {
 				remove_idea = GER_party_under_control2
 				add_idea = GER_new_system_of_socialism
@@ -6990,15 +6993,20 @@
 		completion_reward = {
 			country_event = rw_germany.108
 			custom_effect_tooltip = GER_sed_will_switch_to_modsoc
-			set_party_name = {
-				name = GER_sed_modsoc_party
-				long_name = GER_sed_modsoc_party_long
-				ideology = moderate_socialist
-			}
-			set_party_name = {
-				name = GER_sed_hardliners_party
-				long_name = GER_sed_hardliners_party_long
-				ideology = communist
+			if = {
+				limit = {
+					NOT = { has_cosmetic_tag = EUU }
+				}
+				set_party_name = {
+					name = GER_sed_modsoc_party
+					long_name = GER_sed_modsoc_party_long
+					ideology = moderate_socialist
+				}
+				set_party_name = {
+					name = GER_sed_hardliners_party
+					long_name = GER_sed_hardliners_party_long
+					ideology = communist
+				}
 			}
 			hidden_effect = {
 				if = {
@@ -7080,15 +7088,20 @@
 		completion_reward = {
 			country_event = rw_germany.109
 			custom_effect_tooltip = GER_sed_will_switch_to_newdem
-			set_party_name = {
-				name = GER_sed_newdem_party
-				long_name = GER_sed_newdem_party_long
-				ideology = new_democrat
-			}
-			set_party_name = {
-				name = GER_sed_hardliners_party
-				long_name = GER_sed_hardliners_party_long
-				ideology = communist
+			if = {
+				limit = {
+					NOT = { has_cosmetic_tag = EUU }
+				}
+				set_party_name = {
+					name = GER_sed_newdem_party
+					long_name = GER_sed_newdem_party_long
+					ideology = new_democrat
+				}
+				set_party_name = {
+					name = GER_sed_hardliners_party
+					long_name = GER_sed_hardliners_party_long
+					ideology = communist
+				}
 			}
 			hidden_effect = {
 				if = {
@@ -7332,15 +7345,20 @@
 			}
 			country_event = rw_germany.216
 			custom_effect_tooltip = GER_sed_will_switch_to_revsoc
-			set_party_name = {
-				name = GER_sed_scholz_party
-				long_name = GER_sed_scholz_party_long
-				ideology = revolutionary_socialist
-			}
-			set_party_name = {
-				name = GER_sed_hardliners_party
-				long_name = GER_sed_hardliners_party_long
-				ideology = communist
+			if = {
+				limit = {
+					NOT = { has_cosmetic_tag = EUU }
+				}
+				set_party_name = {
+					name = GER_sed_scholz_party
+					long_name = GER_sed_scholz_party_long
+					ideology = revolutionary_socialist
+				}
+				set_party_name = {
+					name = GER_sed_hardliners_party
+					long_name = GER_sed_hardliners_party_long
+					ideology = communist
+				}
 			}
 			hidden_effect = {
 				if = {
@@ -7804,15 +7822,20 @@
 			remove_ideas = GER_national_front3_gysi
 			end_coalition = yes
 			custom_effect_tooltip = GER_sed_will_switch_to_modsoc
-			set_party_name = {
-				name = GER_sed_modsoc_party
-				long_name = GER_sed_modsoc_party_long
-				ideology = moderate_socialist
-			}
-			set_party_name = {
-				name = GER_sed_hardliners_party
-				long_name = GER_sed_hardliners_party_long
-				ideology = communist
+			if = {
+				limit = {
+					NOT = { has_cosmetic_tag = EUU }
+				}
+				set_party_name = {
+					name = GER_sed_modsoc_party
+					long_name = GER_sed_modsoc_party_long
+					ideology = moderate_socialist
+				}
+				set_party_name = {
+					name = GER_sed_hardliners_party
+					long_name = GER_sed_hardliners_party_long
+					ideology = communist
+				}
 			}
 			add_popularity = {
 				ideology = moderate_socialist
@@ -28052,11 +28075,12 @@
 		y = 2
 		
 		ai_will_do = {
-			factor = 100
+			factor = 10
 		}
 
 		available = {
 			NOT = { has_war_with = CAN }
+			date > 2015.5.5
 		}
 		
 		bypass = {
