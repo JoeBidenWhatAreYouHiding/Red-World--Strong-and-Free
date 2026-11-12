@@ -1255,6 +1255,11 @@ country_event = {
 			ideology = revolutionary_socialist
 			popularity = 0.02
 		}
+		add_communist_to_coalition = yes
+		add_nationalist_to_coalition = yes
+		add_natcon_to_coalition = yes
+		add_centrist_to_coalition = yes
+		add_liberal_to_coalition = yes
 	}
 }
 
@@ -5588,10 +5593,15 @@ country_event = {
 			ideology = revolutionary_socialist
 			popularity = -0.1
 		}
-		set_party_name = {
-			name = GER_sed_luxs_party
-			long_name = GER_sed_luxs_party_long
-			ideology = revolutionary_socialist
+		if = {
+			limit = {
+				NOT = { has_cosmetic_tag = EUU }
+			}
+			set_party_name = {
+				name = GER_sed_luxs_party
+				long_name = GER_sed_luxs_party_long
+				ideology = revolutionary_socialist
+			}
 		}
 		GER_wolf_biermann = {
 			promote_character = luxemburgism
@@ -5606,6 +5616,7 @@ country_event = {
 			set_country_flag = GER_second_term_tree_visible
 			mark_focus_tree_layout_dirty = yes
 		}
+		set_country_flag = GER_luxemburgists_in_power
 	}
 	
 	option = { #
@@ -5614,10 +5625,15 @@ country_event = {
 			ideology = revolutionary_socialist
 			popularity = -0.1
 		}
-		set_party_name = {
-			name = GER_sed_luxs_party
-			long_name = GER_sed_luxs_party_long
-			ideology = revolutionary_socialist
+		if = {
+			limit = {
+				NOT = { has_cosmetic_tag = EUU }
+			}
+			set_party_name = {
+				name = GER_sed_luxs_party
+				long_name = GER_sed_luxs_party_long
+				ideology = revolutionary_socialist
+			}
 		}
 		GER_martin_schirdewan = {
 			promote_character = luxemburgism
@@ -5632,6 +5648,7 @@ country_event = {
 			set_country_flag = GER_second_term_tree_visible
 			mark_focus_tree_layout_dirty = yes
 		}
+		set_country_flag = GER_luxemburgists_in_power
 	}
 }
 
@@ -17761,6 +17778,11 @@ country_event = {
 		every_unit_leader = {
 			limit = { has_trait = GER_bundesheer_officer_trait }
 			set_nationality = AUS
+		}
+		AUS = {
+			every_owned_state = {
+				set_demilitarized_zone = no 
+			}
 		}
 	}
 }
