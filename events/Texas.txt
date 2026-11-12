@@ -9863,6 +9863,10 @@ country_event = {
 	fire_only_once = yes
 	
 	is_triggered_only = yes
+	
+	trigger = {
+		NOT = { has_country_flag = TEX_no_elections_anymore }
+	}
 		
 	option = { #Too good for this world
 		name = texas_elections.9.o1
@@ -11196,6 +11200,7 @@ country_event = {
 						character = TEX_george_w_bush
 						ruling_only = yes
 					}
+					has_government = national_conservative
 				}
 				TEX_george_w_bush = {
 					set_portraits = {
@@ -12136,6 +12141,10 @@ country_event = {
 			if = {
 				limit = {
 					has_country_flag = TEX_brocialists_in_control
+					has_country_leader = {
+						character = TEX_woody_harrelson
+						ruling_only = yes
+					}
 				}
 				country_event = {
 					id = texas_elections.19
@@ -15008,11 +15017,13 @@ country_event = {
 				add_state_core = 376		
 				transfer_state = 899
 				add_state_core = 899
+				remove_state_core = 377
+				remove_state_core = 377
 			}
 			remove_state_claim = 376
 			remove_state_claim = 899
 			remove_state_core = 376
-			remove_state_core = 899
+			remove_state_core = 895
 			TEX_ben_ray_lujan = {
 				set_nationality = event_target:nueva_mexico_target 
 			}
@@ -15171,6 +15182,7 @@ country_event = {
 		name = texas_diplo.37.o1
 		add_political_power = 40
 		set_global_flag = MWA_recognized_texas
+		set_global_flag = TEX_AMR_agreement
 	}
 }
 
@@ -15218,8 +15230,15 @@ country_event = {
 		TEX = { 
 			restore_previous_government_type = yes
 		}
+		remove_state_core = 376
+		remove_state_core = 899
+		if = {
+			limit = { owns_state = 374 }
+			MWA = { transfer_state = 374 }
+		}
 		MWA = {
 			transfer_state = 376
+			transfer_state = 899
 			if = {
 				limit = { owns_state = 900 }
 				TEX = { transfer_state = 900 }
