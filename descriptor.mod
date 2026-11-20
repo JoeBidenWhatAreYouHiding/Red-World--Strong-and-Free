@@ -1,4 +1,4 @@
-version="1.9"
+version="1.20"
 tags={
 	"Gameplay"
 }
@@ -38,6 +38,6 @@ replace_path="portraits"
 replace_path="sound/menu"
 picture="thumbnail.gif"
 name="Red World: Alien Nation"
-supported_version="1.19.*"
+supported_version="1.20.*"
 path="C:/Users/Owner/Documents/Paradox Interactive/Hearts of Iron IV/mod/RWCANADA"
 remote_file_id="3279394255"
