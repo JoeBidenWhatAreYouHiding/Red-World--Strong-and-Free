@@ -6,7 +6,7 @@ focus_tree = {
 	
 	focus = {
 		id = GAL_franco_blood_of_el_caudillo
-		icon = unknown
+		icon = GAL_blood_of_el_caudillo
 		cost = 0
 
 		x = 10
@@ -113,7 +113,7 @@ focus_tree = {
 	}
 	focus = {
 		id = GAL_franco_mandate_martial_education
-		icon = patriotic_education
+		icon = GAL_martial_education
 		cost = 7.2
 
 		prerequisite = {
@@ -207,7 +207,7 @@ focus_tree = {
 	}
 	focus = {
 		id = GAL_franco_expand_military_production_capacity
-		icon = military_factory
+		icon = GAL_expand_military_production
 		cost = 8
 
 		prerequisite = {
@@ -254,7 +254,7 @@ focus_tree = {
 				gal_ind_nicolas_franco
 			}
 		    add_ideas = {
-				gal_fom_carmen_martinez_bordiu_franco
+				gal_nsm_carmen_martinez_bordiu_franco
 			}
 			country_event = {
 				id = galicia.66
@@ -413,7 +413,7 @@ focus_tree = {
 	
 	focus = {
 		id = GAL_franco_maintain_international_neutrality
-		icon = unknown
+		icon = GAL_galicia_stands_alone
 		cost = 7.2
 
 		prerequisite = {
@@ -664,7 +664,7 @@ focus_tree = {
 				}
 				CAN = {
 					country_event = {
-						id = galfopof.12
+						id = galfopof.13
 					}
 				}
 			}
@@ -674,7 +674,7 @@ focus_tree = {
 				}
 				RUS = {
 					country_event = {
-						id = galfopof.12
+						id = galfopof.13
 					}
 				}
 			}
@@ -755,7 +755,7 @@ focus_tree = {
 	}
 	focus = {
 		id = GAL_franco_lay_claim_to_galicias_historic_lands
-		icon = portugal_attack
+		icon = GAL_historic_galician_lands
 		cost = 3
 
 		prerequisite = {
@@ -781,7 +781,7 @@ focus_tree = {
 	}
 	focus = {
 		id = GAL_franco_integrate_portuguese_lands
-		icon = unknown
+		icon = GAL_integrate_portugal
 		cost = 10
 
 		available = {
@@ -820,6 +820,12 @@ focus_tree = {
 							last_election = "1935.12.17"
 							election_frequency = 48
 						}
+						every_state = {
+						limit = {
+						is_owned_by = POR
+							}
+						remove_claim_by = GAL
+						}
 						add_popularity = {
 							ideology = monarchist
 							popularity = 0.25
@@ -842,7 +848,7 @@ focus_tree = {
 	}
 	focus = {
 		id = GAL_franco_invigorate_francoist_revanchism
-		icon = the_saviours_of_francos_legacy
+		icon = GAL_francoist_revanschism
 		cost = 7.2
 
 		prerequisite = {
@@ -860,7 +866,7 @@ focus_tree = {
 	}
 	focus = {
 		id = GAL_franco_reclaim_the_family_birthright
-		icon = live_up_to_the_name_one_spain
+		icon = GAL_reclaim_birthright
 		cost = 5
 
 		prerequisite = {
@@ -922,7 +928,7 @@ focus_tree = {
 	}
 	focus = {
 		id = GAL_franco_the_return_of_spains_rightful_rulers
-		icon = celebrate_salvation_day
+		icon = GAL_Spains_rightful_rulers
 		cost = 10
 
 		available = {
@@ -971,7 +977,7 @@ focus_tree = {
 	}
 	focus = {
 		id = GAL_franco_demand_gibraltar
-		icon = SPR_fopo_the_gibraltar_issue
+		icon = BSQ_take_gibraltar
 		cost = 5
 
 		prerequisite = {
@@ -1041,7 +1047,7 @@ focus_tree = {
 	}
 	focus = {
 		id = GAL_franco_reorganize_the_protectorate_of_morocco
-		icon = unknown
+		icon = GAL_reorganize_morocco_protectorate
 		cost = 10
 
 		available = {
@@ -1092,7 +1098,7 @@ focus_tree = {
 	}
 	focus = {
 		id = GAL_franco_restore_spanish_guinea
-		icon = unknown
+		icon = GAL_restore_spanish_guineau
 		cost = 5
 		
 		available = {
@@ -1135,7 +1141,7 @@ focus_tree = {
 	}
 	focus = {
 		id = GAL_franco_the_franco_dynasty
-		icon = SPR_francoists_the_new_spanish_state_secured
+		icon = GAL_franco_dynasty
 		cost = 10
 
 		prerequisite = {
@@ -1161,7 +1167,7 @@ focus_tree = {
 	##ARMY TREE##
 	focus = {
 		id = GAL_franco_found_the_galician_defence_force
-		icon = build_tank
+		icon = GAL_galician_defence_force
 		cost = 7.2
 
 		x = 22
@@ -1194,6 +1200,9 @@ focus_tree = {
 				}
 				add_extra_state_shared_building_slots = 2
 			}
+			mio:urovesa_tank = {
+				add_mio_funds = 1000
+			}
 		}
 	}
 	focus = {
@@ -1209,10 +1218,9 @@ focus_tree = {
 		x = 0
 		y = 2
 		completion_reward = {
-			add_tech_bonus = {
-				bonus = 0.6
-				uses = 1
-				category = infantry_weapons
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 5000
 			}
 		}
 	}
@@ -1231,16 +1239,23 @@ focus_tree = {
 		x = 2
 		y = 1
 		completion_reward = {
+			add_mastery_bonus = {
+				name = "Focus on Assault"
+				bonus = 0.1
+				days = 240
+				grand_doctrine = superior_firepower
+			}
 			add_doctrine_cost_reduction = {
+				name = "Focus on Assault"
 				cost_reduction = 0.75
 				uses = 2
-				category = cat_superior_firepower
+				category = land_doctrine
 			}
 		}
 	}
 	focus = {
 		id = GAL_franco_logistical_improvements
-		icon = infrastructure_building
+		icon = GAL_logistical_improvements
 		cost = 5
 
 		prerequisite = {
@@ -1255,6 +1270,9 @@ focus_tree = {
 				bonus = 1
 				uses = 2
 				category = logistics_tech
+			}
+			add_ideas = {
+				idea_gal_logistic_effort
 			}
 		}
 	}
@@ -1278,7 +1296,7 @@ focus_tree = {
 			}
 			add_breakthrough_progress = {
 				specialization = specialization_land
-				value = 0.5
+				value = 1
 			}
 		}
 	}
@@ -1322,7 +1340,7 @@ focus_tree = {
 	}
 	focus = {
 		id = GAL_franco_honor_bravery
-		icon = generic_marching
+		icon = GAL_honor_bravery
 		cost = 9
 
 		prerequisite = {
@@ -1357,10 +1375,17 @@ focus_tree = {
 		x = -2
 		y = 1
 		completion_reward = {
+			add_mastery_bonus = {
+				name = "Focus on Speed"
+				bonus = 0.1
+				days = 240
+				grand_doctrine = new_mobile_warfare
+			}
 			add_doctrine_cost_reduction = {
+				name = "Focus on Speed"
 				cost_reduction = 0.75
 				uses = 2
-				category = cat_mobile_warfare
+				category = land_doctrine
 			}
 		}
 	}
@@ -1399,6 +1424,30 @@ focus_tree = {
 				uses = 2
 				category = infantry_weapons
 			}
+			add_ideas = {
+				idea_gal_auxilliary_infantry
+			}
+		}
+	}
+	focus = {
+		id = GAL_franco_honor_efficiency
+		icon = army_reform
+		cost = 5
+
+		prerequisite = {
+			focus = GAL_franco_infantry_as_an_auxillary_force
+			focus = GAL_franco_armor_research
+			focus = GAL_franco_maintain_vehicle_performance
+		}
+
+		relative_position_id = GAL_franco_infantry_as_an_auxillary_force
+		x = -2
+		y = 1
+		completion_reward = {
+		swap_ideas = {
+				remove_idea = idea_gal_military_s3
+				add_idea = idea_gal_military_s4
+			} 
 		}
 	}
 	focus = {
@@ -1445,7 +1494,7 @@ focus_tree = {
 	##NAVY##
 	focus = {
 		id = GAL_franco_organize_the_galician_navy
-		icon = naval_occupation
+		icon = GAL_galician_navy
 		cost = 7.2
 
 		x = 18
@@ -1510,6 +1559,9 @@ focus_tree = {
 				uses = 2
 				category = dd_tech
 			}
+			add_ideas = {
+				idea_gal_surface_fleet_1
+			}
 		}
 	}
 	focus = {
@@ -1538,6 +1590,10 @@ focus_tree = {
 				specialization = specialization_naval
 				value = 1
 			}
+			swap_ideas = {
+				remove_idea = idea_gal_surface_fleet_1
+				add_idea = idea_gal_surface_fleet_2
+			}
 		}
 	}
 	focus = {
@@ -1555,6 +1611,9 @@ focus_tree = {
 			add_equipment_to_stockpile = {
 				type = convoy
 				amount = 350
+			}
+			add_ideas = {
+				idea_gal_trade_fleet
 			}
 		}
 	}
@@ -1575,12 +1634,15 @@ focus_tree = {
 				uses = 2
 				category = ss_tech
 			}
+			add_ideas = {
+				idea_gal_submarine_tactics
+			}
 		}
 	}
 	##AIR FORCE##
 	focus = {
 		id = GAL_franco_establish_the_galician_air_force
-		icon = build_airforce
+		icon = GAL_galician_airforce
 		cost = 7.2
 
 		x = 25

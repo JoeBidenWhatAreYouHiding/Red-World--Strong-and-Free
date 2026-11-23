@@ -1,0 +1,89 @@
+ENG_can_join_revsoc_faction = {
+	custom_trigger_tooltip = {
+		tooltip = ENG_can_join_revsoc_faction_tt
+		is_in_faction = no
+		has_government = revolutionary_socialist
+		any_country = {
+			NOT = {
+				tag = UAR #theirs is a local faction
+			}
+			has_government = revolutionary_socialist
+			is_faction_leader = yes
+		}
+	}
+}
+ENG_can_join_conefo = { #TODO see if there's a better way to determine if CONEFO exists
+	custom_trigger_tooltip = {
+		tooltip = ENG_can_join_conefo_tt
+		is_in_faction = no
+		has_government = communist
+		has_completed_focus = ENG_peasants_revolution
+		PRC = {
+			OR = {
+				is_faction_leader = yes
+				is_in_faction_with = INS
+			}
+		}
+	}
+}
+ENG_can_join_warsaw_pact = {
+	custom_trigger_tooltip = {
+		tooltip = ENG_can_join_warsaw_pact_tt
+		is_in_faction = no
+		has_government = communist
+		OR = {
+			has_completed_focus = ENG_workers_revolution
+			has_completed_focus = ENG_total_revolution #TODO change based on what subideology rules the WP
+		}
+		OR = {
+			AND = {
+				country_exists = SOV
+				SOV = {
+					is_faction_leader = yes
+					has_government = communist
+				}
+			}
+			AND = { #TODO factor in RevSoc Germany
+				country_exists = GER
+				GER = {
+					is_faction_leader = yes
+					has_government = communist
+				}
+			}
+		}
+	}
+}
+ENG_can_join_democratic_league = { #TODO change to allow for Kenney's broadening of League membership
+	custom_trigger_tooltip = {
+		tooltip = ENG_can_join_democratic_league_tt
+		has_completed_focus = ENG_democratic_policies
+	}
+}
+ENG_can_join_moscow_accords = { #TODO change to allow for democratic Russia absorbing the Democratic League
+	custom_trigger_tooltip = {
+		tooltip = ENG_can_join_moscow_accords_tt
+		OR = {
+			AND = {
+				country_exists = SOV
+				SOV = {
+					is_faction_leader = yes
+					NOT = {
+						has_government = communist
+						has_government = revolutionary_socialist
+					}
+				}
+			}
+			AND = {
+				country_exists = RUS
+				RUS = {
+					is_faction_leader = yes
+				}
+			}
+		}
+		OR = {
+			has_government = fascist
+			has_government = nationalist
+			has_government = monarchist
+		}
+	}
+}

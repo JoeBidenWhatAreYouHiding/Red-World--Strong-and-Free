@@ -1104,7 +1104,7 @@ focus_tree = {
 				}
 			}
 			add_ideas = {
-				idea_SPR_decentralized_state
+				idea_SPR_decentralized_state_red
 			}
 			hidden_effect = {
 				every_owned_state = {
@@ -1162,6 +1162,7 @@ focus_tree = {
 		
 		completion_reward = {
 			set_country_flag = spr_felipe_is_dead
+			set_global_flag = spr_felipe_is_dead_global
 			add_stability = 0.05
 			add_popularity = {
 				ideology = monarchist
@@ -2847,6 +2848,7 @@ focus_tree = {
 		
 		completion_reward = {
 			set_country_flag = spr_felipe_is_dead
+			set_global_flag = spr_felipe_is_dead_global
 			add_stability = 0.05
 			add_popularity = {
 				ideology = monarchist
@@ -7606,6 +7608,8 @@ focus_tree = {
 			add_ideas = {
 				idea_SPR_reconcile_the_communists
 			}
+			set_temp_variable = { coalition_partner_var = token:communist }
+			add_to_coalition = yes
 			custom_effect_tooltip = spr_modsoc_spain_lets_in_neocommunists_and_ccoo
 			country_event = {
 				id = spain.96
@@ -21722,9 +21726,35 @@ focus_tree = {
 				type = annex_everything
 				target = CHL
 			}
-			create_wargoal = {
-				type = annex_everything
-				target = BOL
+			IF = {
+				limit = {
+					country_exists = BOL
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = BOL
+				}
+				every_state = {
+					limit = {
+						is_core_of = BOL
+					}
+					add_claim_by = ROOT
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = STC
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = STC
+				}
+				every_state = {
+					limit = {
+						is_core_of = STC
+					}
+					add_claim_by = ROOT
+				}
 			}
 			create_wargoal = {
 				type = annex_everything
@@ -22280,6 +22310,7 @@ focus_tree = {
 						country_exists = SOV
 						SOV = {
 							is_faction_leader = yes
+							has_government = communist
 						}
 					}
 					AND = {
@@ -25081,6 +25112,8 @@ focus_tree = {
 				limit = {
 					has_government = moderate_socialist
 				}
+				set_temp_variable = { coalition_partner_var = token:new_democrat }
+				add_to_coalition = yes
 				country_event = {
 					id = spain.183
 				}
@@ -25091,6 +25124,8 @@ focus_tree = {
 						has_government = moderate_socialist
 					}
 				}
+				set_temp_variable = { coalition_partner_var = token:moderate_socialist }
+				add_to_coalition = yes
 				country_event = {
 					id = spain.184
 				}

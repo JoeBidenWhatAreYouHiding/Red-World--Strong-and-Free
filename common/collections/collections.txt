@@ -8,6 +8,29 @@
 
 ########################################     
 
+muslim_nation_countries = {
+	input = game:all_possible_countries
+	name = COLLECTION_MUSLIM_NATION_COUNTRIES
+	operators = {
+		limit = {
+			has_country_flag = muslim_nation
+		}
+	}
+}
+
+nonexistent_or_puppet_muslim_nation_countries = {
+	input = collection:muslim_nation_countries
+	name = COLLECTION_NONEXISTENT_OR_PUPPET_MUSLIM_NATION_COUNTRIES
+	operators = {
+		limit = {
+			OR = {
+				exists = no
+				is_puppet = yes
+			}
+		}
+	}
+}
+
 world_at_peace_countries = {
 	input = game:all_countries
 	operators = {
@@ -130,6 +153,21 @@ world_non_communist_countries = {
 	}
 }
 
+world_non_communist_and_non_revolutionary_socialist_countries = {
+	input = game:all_countries
+	name = COLLECTION_WORLD_WITHOUT_COMMUNIST_OR_REVOLUTIONARY_SOCIALIST_GOVERNMENTS
+	operators = {
+		limit = {
+			NOT = {
+				OR = {
+					has_government = communist
+					has_government = revolutionary_socialist
+				}
+			}
+		}
+	}
+}
+
 world_non_communist_states = {
 	input = game:all_states
 	name = COLLECTION_NON_COMMUNIST_STATES
@@ -145,6 +183,26 @@ world_non_communist_states = {
 					} 
 				} 
 			}
+		}
+	}
+}
+
+world_strictly_communist_countries = {
+	input = game:all_countries
+	name = COLLECTION_WORLD_STRICTLY_COMMUNIST_COUNTRIES
+	operators = {
+		limit = {
+			has_government = communist
+		}
+	}
+}
+
+world_revolutionary_socialist_countries = {
+	input = game:all_countries
+	name = COLLECTION_WORLD_REVOLUTIONARY_SOCIALIST_COUNTRIES
+	operators = {
+		limit = {
+			has_government = revolutionary_socialist
 		}
 	}
 }
@@ -166,6 +224,31 @@ world_communist_countries = {
 
 
 # New Order in Asia etc
+
+countries_europe = {
+	input = game:all_countries
+	name = COLLECTION_COUNTRIES_EUROPE
+	operators = {
+		limit = {
+			capital_scope = { is_on_continent = europe }
+		}
+	}
+}
+
+non_communist_and_non_revolutionary_socialist_countries_europe = {
+	input = collection:countries_europe
+	name = COLLECTION_EUROPE_WITHOUT_COMMUNIST_OR_REVOLUTIONARY_SOCIALIST_GOVERNMENTS
+	operators = {
+		limit = {
+			NOT = {
+				OR = {
+					has_government = communist
+					has_government = revolutionary_socialist
+				}
+			}
+		}
+	}
+}
 
 countries_asia = {
 	input = game:all_countries
@@ -350,6 +433,114 @@ china_core_states_controlled_by_faction_leader_ideology = {
 		}
 	}
 	name = COLLECTION_CHINA_CORE_STATES_CONTROLLED_BY_FACTION_LEADER_IDEOLOGY
+}
+
+states_in_caribbean = {
+	input = game:all_states
+	operators = {
+		limit = {
+			OR = {
+				region = 53 # Caribbean islands
+				state = 690 # Bahamas
+				state = 693 # Turks and Caicos
+				state = 695 # ABC Islands
+			}
+		}
+	}
+	name = COLLECTION_STATES_IN_CARIBBEAN
+}
+
+faction_controlled_caribbean_states = {
+	input = collection:states_in_caribbean
+	operators = {
+		limit = {
+			controller = {
+				OR = {
+					tag = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+	}
+	name = COLLECTION_FACTION_CONTROLLED_CARIBBEAN_STATES
+}
+
+former_united_states_states = {
+	input = constant:faction_territories.former_united_states
+	name = COLLECTION_FORMER_UNITED_STATES_STATES
+}
+
+faction_controlled_former_united_states_states = {
+	input = collection:former_united_states_states
+	operators = {
+		limit = {
+			controller = {
+				OR = {
+					tag = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+	}
+	name = COLLECTION_FACTION_CONTROLLED_FORMER_UNITED_STATES_STATES
+}
+
+states_in_british_isles = {
+	input = game:all_states
+	operators = {
+		limit = {
+			OR = {
+				region = 1 # Southern England
+				region = 2 # Northern England
+				region = 3 # Scotland and Northern Ireland
+				region = 4 # Ireland
+			}
+		}
+	}
+	name = COLLECTION_STATES_IN_BRITISH_ISLES
+}
+
+faction_controlled_british_isles_states = {
+	input = collection:states_in_british_isles
+	operators = {
+		limit = {
+			controller = {
+				OR = {
+					tag = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+	}
+	name = COLLECTION_FACTION_CONTROLLED_BRITISH_ISLES_STATES
+}
+
+states_in_ireland = {
+	input = game:all_states
+	operators = {
+		limit = {
+			OR = {
+				region = 4 # Ireland
+				state = 119 # Northern Ireland is in strategic region 3.
+			}
+		}
+	}
+	name = COLLECTION_STATES_IN_IRELAND
+}
+
+faction_controlled_irish_states = {
+	input = collection:states_in_ireland
+	operators = {
+		limit = {
+			controller = {
+				OR = {
+					tag = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+	}
+	name = COLLECTION_FACTION_CONTROLLED_IRISH_STATES
 }
 
 states_in_africa = {

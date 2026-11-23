@@ -57,6 +57,32 @@ faction_manifest_defense_of_democracy_allies = {
 	}
 }
 
+# Protect Democratic Allies
+faction_manifest_protect_democratic_allies = {
+	name = protect_democratic_allies_goal_name
+	description = protect_democratic_allies_goal_desc
+	is_manifest = yes
+	ratio_progress = {
+		total_amount_collection = collection:democratic_faction_members
+		completed_amount_collection = collection:uncapitulated_democratic_faction_members
+
+		scale = {
+			trade_opinion_factor = 0.20
+			guarantee_cost = -0.50
+		}
+
+		progress_sections = {
+			manifest_fulfilled = {
+				min = 1 # Every current democratic faction member must be uncapitulated.
+				modifier = {
+					war_support_factor = 0.05
+					army_core_defence_factor = 0.1
+				}
+			}
+		}
+	}
+}
+
 # Containment of Communism
 faction_manifest_containment_of_communism = {
 	name = containment_of_communism_goal_name
@@ -75,6 +101,81 @@ faction_manifest_containment_of_communism = {
 				min = @manifest_fulfilled_value
 	
 				modifier = { 
+					required_garrison_factor = -0.15
+					generate_wargoal_tension = -0.15
+				}
+			}
+		}
+	}
+}
+
+# Catholic Holy League
+faction_manifest_holy_league_crusade = {
+	name = holy_league_crusade_goal_name
+	description = holy_league_crusade_goal_desc
+	is_manifest = yes
+	ratio_progress = {
+		total_amount_collection = collection:muslim_nation_countries
+		completed_amount_collection = collection:nonexistent_or_puppet_muslim_nation_countries
+
+		scale = {
+			drift_defence_factor = 0.1
+		}
+
+		progress_sections = {
+			manifest_fulfilled = {
+				min = 1 # Every flagged Muslim nation must be nonexistent or a puppet.
+				modifier = {
+					required_garrison_factor = -0.15
+					generate_wargoal_tension = -0.15
+				}
+			}
+		}
+	}
+}
+
+# Eradicate Communist and Revolutionary Socialist governments worldwide
+faction_manifest_eradicate_world_communism = {
+	name = eradicate_world_communism_goal_name
+	description = eradicate_world_communism_goal_desc
+	is_manifest = yes
+	ratio_progress = {
+		total_amount_collection = game:all_countries
+		completed_amount_collection = collection:world_non_communist_and_non_revolutionary_socialist_countries
+
+		scale = {
+			drift_defence_factor = 0.1
+		}
+
+		progress_sections = {
+			manifest_fulfilled = {
+				min = 1 # Neither ideology may govern any existing country.
+				modifier = {
+					required_garrison_factor = -0.15
+					generate_wargoal_tension = -0.15
+				}
+			}
+		}
+	}
+}
+
+# Eradicate Communist and Revolutionary Socialist governments in Europe
+faction_manifest_eradicate_european_communism = {
+	name = eradicate_european_communism_goal_name
+	description = eradicate_european_communism_goal_desc
+	is_manifest = yes
+	ratio_progress = {
+		total_amount_collection = collection:countries_europe
+		completed_amount_collection = collection:non_communist_and_non_revolutionary_socialist_countries_europe
+
+		scale = {
+			drift_defence_factor = 0.1
+		}
+
+		progress_sections = {
+			manifest_fulfilled = {
+				min = 1 # Neither ideology may govern any country with a European capital.
+				modifier = {
 					required_garrison_factor = -0.15
 					generate_wargoal_tension = -0.15
 				}
@@ -254,6 +355,56 @@ faction_manifest_spread_of_communism = {
 		}
 	}
 
+}
+
+# Communist World Revolution
+faction_manifest_communist_world_revolution = {
+	name = spread_of_communism_goal_name
+	description = communist_world_revolution_goal_desc
+	is_manifest = yes
+	ratio_progress = {
+		total_amount_collection = game:all_countries
+		completed_amount_collection = collection:world_strictly_communist_countries
+
+		scale = {
+			required_garrison_factor = -0.1
+		}
+
+		progress_sections = {
+			manifest_fulfilled = {
+				min = @manifest_fulfilled_value
+				modifier = {
+					conscription_factor = 0.05
+					party_popularity_stability_factor = 0.1
+				}
+			}
+		}
+	}
+}
+
+# Spread of Revolutionary Socialism
+faction_manifest_spread_of_revolutionary_socialism = {
+	name = spread_of_revolutionary_socialism_goal_name
+	description = spread_of_revolutionary_socialism_goal_desc
+	is_manifest = yes
+	ratio_progress = {
+		total_amount_collection = game:all_countries
+		completed_amount_collection = collection:world_revolutionary_socialist_countries
+
+		scale = {
+			required_garrison_factor = -0.1
+		}
+
+		progress_sections = {
+			manifest_fulfilled = {
+				min = @manifest_fulfilled_value
+				modifier = {
+					conscription_factor = 0.05
+					party_popularity_stability_factor = 0.1
+				}
+			}
+		}
+	}
 }
 
 # Strength in Unity 
@@ -453,6 +604,104 @@ faction_manifest_middle_east_dominance = {
 
 ### CUSTOM FACTION MANIFESTS 
 
+# Caribbean Alliance
+faction_manifest_caribbean_unity = {
+	name = caribbean_unity_goal_name
+	description = caribbean_unity_goal_desc
+	is_manifest = yes
+	ratio_progress = {
+		total_amount_collection = collection:states_in_caribbean
+		completed_amount_collection = collection:faction_controlled_caribbean_states
+
+		scale = {
+			stability_factor = 0.1
+		}
+
+		progress_sections = {
+			manifest_fulfilled = {
+				min = 1
+				modifier = {
+					war_support_factor = 0.05
+					army_core_defence_factor = 0.1
+				}
+			}
+		}
+	}
+}
+
+# American Territorial Imperative and Great Lakes factions
+faction_manifest_reunite_the_united_states = {
+	name = reunite_the_united_states_goal_name
+	description = reunite_the_united_states_goal_desc
+	is_manifest = yes
+	ratio_progress = {
+		total_amount_collection = collection:former_united_states_states
+		completed_amount_collection = collection:faction_controlled_former_united_states_states
+
+		scale = {
+			stability_factor = 0.1
+		}
+
+		progress_sections = {
+			manifest_fulfilled = {
+				min = 1
+				modifier = {
+					war_support_factor = 0.05
+					army_core_defence_factor = 0.1
+				}
+			}
+		}
+	}
+}
+
+# British Isles Protection Union
+faction_manifest_british_isles_security = {
+	name = british_isles_security_goal_name
+	description = british_isles_security_goal_desc
+	is_manifest = yes
+	ratio_progress = {
+		total_amount_collection = collection:states_in_british_isles
+		completed_amount_collection = collection:faction_controlled_british_isles_states
+
+		scale = {
+			stability_factor = 0.05
+		}
+
+		progress_sections = {
+			manifest_fulfilled = {
+				min = 1 # Every British Isles state must remain under faction control.
+				modifier = {
+					army_core_defence_factor = 0.1
+				}
+			}
+		}
+	}
+}
+
+
+# Irish Salvation
+faction_manifest_irish_security = {
+	name = irish_security_goal_name
+	description = irish_security_goal_desc
+	is_manifest = yes
+	ratio_progress = {
+		total_amount_collection = collection:states_in_ireland
+		completed_amount_collection = collection:faction_controlled_irish_states
+
+		scale = {
+			stability_factor = 0.05
+		}
+
+		progress_sections = {
+			manifest_fulfilled = {
+				min = 1 # Every Irish state must remain under faction control.
+				modifier = {
+					army_core_defence_factor = 0.1
+				}
+			}
+		}
+	}
+}
 
 # POLAND
 

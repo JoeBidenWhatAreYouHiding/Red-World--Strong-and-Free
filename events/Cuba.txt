@@ -3664,6 +3664,7 @@ country_event = { #Communist Party Rallies Loyalists in Santiago de Cuba
 				add_core_of = FAR
 			}
 		}
+		mark_focus_tree_layout_dirty = yes
 		declare_war_on = {
 			target = FAR
 			type = annex_everything
@@ -3715,6 +3716,7 @@ country_event = { #Communist Party Rallies Loyalists in Santiago de Cuba
 			}
 		}
 		FAR = { change_tag_from = ROOT }
+		mark_focus_tree_layout_dirty = yes
 		declare_war_on = {
 			target = FAR
 			type = annex_everything
@@ -4810,7 +4812,7 @@ country_event = { #2016 General Election
 			has_completed_focus = CUB_embrace_the_far
 		}
 		retire_character = CUB_raúl_castro
-		CUB_alvaro_lopez_miera = {
+		CUB_luis_alberto_rodriguez_lopez_callejas = {
 			add_country_leader_role = {
 				promote_leader = yes
 				country_leader = {
@@ -8523,6 +8525,7 @@ country_event = { #The American Republic Sends Assistence
 			popularity = 0.05
 		}
 		custom_effect_tooltip = cuba_ar_assist_tooltip
+		set_country_flag = cuba_american_republic_aided_exiles
 	}
 }
 
@@ -11126,7 +11129,7 @@ country_event = { #Sweeping Conservationist Measures Enacted
 	is_triggered_only = yes
 	
 	option = {
-		name = Cuba.329.o1
+		name = cuba.329.o1
 	}
 }
 
@@ -18556,6 +18559,156 @@ country_event = { #Namibian War of Liberation Continues to Rage
 				producer = CUB
 			}
 			add_manpower = 5000
+		}
+	}
+}
+
+country_event = { #Cuban Brigades Petition Bombing Campaign
+	id = cuba.520
+	title = cuba.520.t
+	desc = cuba.520.d
+	picture = cuba_exiles_want_bombs
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #We must maintain plausible deniability
+		name = cuba.520.o1
+		hidden_effect = {
+			CUB = {
+				country_event = {
+					id = cuba.521
+					days = 4
+				}
+			}
+		}
+	}
+	
+	option = { #Commence Operation Phantom Menace
+		name = cuba.520.o2
+		add_threat = 2
+		hidden_effect = {
+			CUB = {
+				country_event = {
+					id = cuba.522
+					days = 4
+				}
+			}
+		}
+		hidden_effect = {
+			FAR = {
+				country_event = {
+					id = cuba.523
+					days = 4
+				}
+			}
+		}
+	}
+}
+
+country_event = { #American Bombers Arrive in Havana
+	id = cuba.521
+	title = cuba.521.t
+	desc = cuba.521.d
+	picture = cuba_bombers_for_loan
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = cuba.521.o1
+		add_equipment_to_stockpile = {
+			type = small_plane_airframe_1
+			amount = 10
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = medium_plane_airframe_0
+			amount = 50
+			producer = USA
+		}
+	}
+}
+
+country_event = { #Operation Phantom Menace Begins
+	id = cuba.522
+	title = cuba.522.t
+	desc = cuba.522.d
+	picture = cuba_phantom_menace
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = cuba.522.o1
+	}
+}
+
+country_event = { #American Terror Bombing Commences
+	id = cuba.523
+	title = cuba.523.t
+	desc = cuba.523.d
+	picture = cuba_phantom_menace_receiving_end
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = cuba.523.o1
+		add_timed_idea = {
+			idea = idea_CUB_american_bombing_campaign
+			days = 100
+		}
+	}
+}
+
+country_event = { #Terrorism Resurges to the Oriente
+	id = cuba.524
+	title = cuba.524.t
+	desc = cuba.524.d
+	picture = cuba_terrorism_strikes_back
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = cuba.524.o1
+		add_timed_idea = {
+			idea = idea_CUB_rearmed_terrorists
+			days = 200
+		}
+	}
+}
+
+country_event = { #Luis Alberto Rodríguez López-Calleja Passes Unexpectedly Away
+	id = cuba.525
+	title = cuba.525.t
+	desc = cuba.525.d
+	picture = cuba_luis_alberto_rodriguez_dies
+	
+	fire_only_once = yes
+	trigger = {
+		tag = CUB
+		date > 2022.6.30
+		date < 2022.7.10
+		has_country_leader = {
+			character = CUB_luis_alberto_rodriguez_lopez_callejas
+			ruling_only = yes
+		}
+	}
+	
+	option = {
+		name = cuba.525.o1
+		add_political_power = -100
+		kill_country_leader = yes
+		CUB_alvaro_lopez_miera = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					ideology = neoauthoritarian
+					expire="1.1.1.1"
+				}
+			}
 		}
 	}
 }

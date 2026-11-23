@@ -16,11 +16,16 @@ if = {
 }
 
 if = {
-	limit = { has_dlc = "Man the Guns" }
-		set_naval_oob = "USA_2000_naval_mtg"
-	else = {
-		set_naval_oob = "USA_2000_naval_legacy"
+	limit = { has_dlc = "Gotterdammerung" }
+	set_naval_oob = "USA_2000_naval_Gotterdammerung"
+	ELSE_IF = {
+	limit = {
+			NOT = {
+				has_dlc = "Gotterdammerung"
+			}
 		}
+		set_naval_oob = "USA_2000_naval_mtg"
+	}
 }
 
 give_guarantee = ICE
@@ -158,23 +163,6 @@ if = {
 	}
 }
 if = {
-	limit = { not = { has_dlc = "Man the Guns" } }
-	set_technology = {
-		early_submarine = 1
-		basic_submarine = 1
-		early_destroyer = 1
-		basic_destroyer = 1
-		early_light_cruiser = 1
-		basic_light_cruiser = 1
-		early_heavy_cruiser = 1
-		basic_heavy_cruiser = 1
-		
-		early_carrier = 1
-		basic_carrier = 1
-		transport = 1
-	}
-}
-if = {
 	limit = { has_dlc = "Man the Guns" }
 	set_technology = {
 		basic_naval_mines = 1
@@ -250,6 +238,7 @@ recruit_character = USA_john_bachtell
 recruit_character = USA_michael_hagee
 recruit_character = USA_h._hugh_shelton
 recruit_character = USA_mark_a._milley
+recruit_character = USA_Walter_L_Sharp
 recruit_character = USA_bantz_j._craddock
 recruit_character = USA_burwell_b._bell_iii
 recruit_character = USA_carlton_w._fulford_jr.
@@ -363,20 +352,6 @@ add_opinion_modifier = {
 if = {
 	limit = {
 		has_dlc = "Gotterdammerung"
-	}
-	create_equipment_variant = {
-		name = "Ohio Class" # submarines
-		type = ship_hull_nuclear_submarine
-#		name_group = ENG_SS_VANGUARD
-		parent_version = 0
-		modules = {
-			fixed_ship_torpedo_slot = ship_torpedo_sub_2
-			fixed_ship_engine_slot = sub_ship_nuclear_engine_1
-			front_1_custom_slot = ship_torpedo_sub_2
-			mid_1_custom_slot = empty
-			rear_1_custom_slot = slbm_launcher
-			rear_2_custom_slot = empty
-		}
 	}
 	add_equipment_to_stockpile = { 
 			type = nuclear_missile_equipment_2
@@ -521,6 +496,24 @@ if = {
 			rear_1_custom_slot = ship_torpedo_2
 		}
 	}
+}
+if = {
+	limit = {
+	NOT = {
+	has_dlc = "Gotterdammerung" 
+			}
+		}
+	create_equipment_variant = {
+		name = "Ohio Class" # submarines
+		type = ship_hull_submarine_2
+		name_group = USA_SS_HISTORICAL
+		parent_version = 0
+		modules = {
+			fixed_ship_torpedo_slot = ship_torpedo_sub_2
+			fixed_ship_engine_slot = sub_ship_engine_2
+			rear_1_custom_slot = ship_torpedo_sub_2
+		}
+	}
 	create_equipment_variant = {
 		name = "Los Angeles Class" # submarines
 		type = ship_hull_submarine_2
@@ -532,61 +525,52 @@ if = {
 			rear_1_custom_slot = ship_torpedo_sub_2
 		}
 	}
-}
-if = {
-	limit = { not = { has_dlc = "Man the Guns" } }
-	create_equipment_variant = { 
-		name = "Nimitz Class" #carriers
-		type = carrier_1
-		upgrades = {
-			ship_deckspace_upgrade =0
-			carrier_armor_upgrade = 1
-			ship_engine_upgrade = 1
-			ship_reliability_upgrade = 1
-		}
-	}
 	create_equipment_variant = {
-		name = "Ticonderoga Class"
-		type = heavy_cruiser_2
-		upgrades = {
-			ship_reliability_upgrade = 0
-			ship_engine_upgrade = 1
-			ship_armor_upgrade = 2
-			ship_gun_upgrade = 4
+		name = "Los Angeles Class" # submarines
+		type = ship_hull_submarine_2
+		name_group = USA_SS_HISTORICAL
+		parent_version = 0
+		modules = {
+			fixed_ship_torpedo_slot = ship_torpedo_sub_2
+			fixed_ship_engine_slot = sub_ship_engine_2
+			rear_1_custom_slot = ship_torpedo_sub_2
 		}
-	}
-	create_equipment_variant = {
-		name = "Virginia Class"
-		type = heavy_cruiser_2
-		upgrades = {
-			ship_reliability_upgrade = 1
-			ship_engine_upgrade = 2
-			ship_armor_upgrade = 2
-			ship_gun_upgrade = 3
-		}
-	}
-	create_equipment_variant = {
-		name = "Spurance Class" #destroyers
-		type = destroyer_2
-		upgrades = {
-			ship_torpedo_upgrade = 1
-			destroyer_engine_upgrade = 1
-			ship_ASW_upgrade = 2
-			ship_anti_air_upgrade = 4
-		}
-	}
-	create_equipment_variant = {
-		name = "Los Angeles Class" #submarines
-		type = submarine_2
-		upgrades = {
-			ship_reliability_upgrade = 1
-			sub_engine_upgrade = 1
-			sub_stealth_upgrade = 1
-			sub_torpedo_upgrade = 1
-		}
-	}
+	}	
 }
 
+if = {
+	limit = {
+	has_dlc = "Gotterdammerung" 
+		}
+	create_equipment_variant = {
+		name = "Ohio Class" # submarines
+		type = ship_hull_nuclear_submarine
+		name_group = USA_SS_HISTORICAL
+		parent_version = 0
+		modules = {
+			fixed_ship_torpedo_slot = ship_torpedo_sub_2
+			fixed_ship_engine_slot = sub_ship_nuclear_engine_1
+			front_1_custom_slot = ship_torpedo_sub_2
+			mid_1_custom_slot = ship_anechoic_tile
+			rear_1_custom_slot = slbm_launcher
+			rear_2_custom_slot = empty
+		}
+	}
+	create_equipment_variant = {
+		name = "Los Angeles Class" # submarines
+		type = ship_hull_nuclear_submarine
+		name_group = USA_SS_HISTORICAL
+		parent_version = 0
+		modules = {
+			fixed_ship_torpedo_slot = ship_torpedo_sub_2
+			fixed_ship_engine_slot = sub_ship_nuclear_engine_1
+			front_1_custom_slot = ship_torpedo_sub_2
+			mid_1_custom_slot = ship_anechoic_tile
+			rear_1_custom_slot = empty
+			rear_2_custom_slot = empty
+		}
+	}		
+}
 if = {
 	limit = {
 		has_dlc = "By Blood Alone"
