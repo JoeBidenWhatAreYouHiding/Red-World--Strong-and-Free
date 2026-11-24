@@ -1,4 +1,4 @@
-﻿capital = 816
+﻿capital = 1053
 
 if = {
 	limit = {
@@ -14,12 +14,26 @@ if = {
 	}
 	set_oob = "MAY_2000_nsb"
 }
+if = {
+	limit = {
+		NOT = {
+			has_dlc = "Man the Guns"
+		}
+	}
+	set_naval_oob = "MAY_2000_naval_legacy"
+}
+if = {
+	limit = {
+		has_dlc = "Man the Guns"
+	}
+	set_naval_oob = "MAY_2000_naval_mtg"
+}
 
 add_ideas = {
     idea_ASEAN
 }
 
-set_research_slots = 4
+set_research_slots = 3
 set_convoys = 80
 set_stability = 0.6
 set_war_support = 0.2
@@ -304,6 +318,61 @@ if = {
 			fixed_auxiliary_weapon_slot_1 = medium_bomb_bay
 			engine_type_slot = engine_2_2x
 			special_type_slot_1 = empty
+		}
+	}
+}
+
+if = {
+	limit = { has_dlc = "Man the Guns" }
+	create_equipment_variant = {
+	name = "Lekiu Class"	#destroyers 
+	type = ship_hull_light_1
+	name_group = MAY_DD_HISTORICAL
+	parent_version = 0
+	modules = {
+		fixed_ship_battery_slot = ship_light_battery_1
+		fixed_ship_anti_air_slot = ship_anti_air_4			
+		fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+		fixed_ship_radar_slot = ship_sonar_1
+		fixed_ship_engine_slot = light_ship_engine_1
+		fixed_ship_torpedo_slot = ship_torpedo_1
+		mid_1_custom_slot = ship_anti_air_4	
+		rear_1_custom_slot = ship_torpedo_1
+		}
+	}
+	create_equipment_variant = {
+		name = "Perdana Menteri Class" # submarines
+		type = ship_hull_submarine_1
+		name_group = MAY_SS_HISTORICAL
+		parent_version = 0
+		modules = {
+			fixed_ship_torpedo_slot = ship_torpedo_sub_1
+			fixed_ship_engine_slot = sub_ship_engine_1
+			rear_1_custom_slot = ship_torpedo_sub_1
+		}
+	}
+}
+
+if = {
+	limit = { not = { has_dlc = "Man the Guns" } }
+	create_equipment_variant = {
+		name = "Lekiu Class" #destroyers
+		type = destroyer_1
+		upgrades = {
+			ship_torpedo_upgrade = 1
+			destroyer_engine_upgrade = 1
+			ship_ASW_upgrade = 1
+			ship_anti_air_upgrade = 4
+		}
+	}
+	create_equipment_variant = {
+		name = "Perdana Menteri Class" #submarines
+		type = submarine_1
+		upgrades = {
+			ship_reliability_upgrade = 1
+			sub_engine_upgrade = 1
+			sub_stealth_upgrade = 1
+			sub_torpedo_upgrade = 1
 		}
 	}
 }

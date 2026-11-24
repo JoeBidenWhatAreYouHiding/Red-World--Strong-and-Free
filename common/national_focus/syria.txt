@@ -4482,11 +4482,7 @@ focus_tree = {
 			}
 		    country_event = { id = syria.119 }
 		    add_political_power = 20
-			create_faction_from_template = { 
-				template = faction_template_regional   
-				name = middle_east_protection_league
-				icon = GFX_faction_generic_middle_east
-			}
+			create_faction_from_template = faction_template_middle_east_league
 		}
 
 	}
@@ -4863,8 +4859,21 @@ focus_tree = {
 		x = 94
 		y = 4
 		completion_reward = {
-		    SOV = {
-			    country_event = { days = 1 id = generic.1 } 
+			if = {
+				limit = {
+					country_exists = SOV
+					SOV = {
+						has_government = communist
+					}
+				}
+				SOV = {
+					country_event = { id = generic.1 }
+				}
+			}
+			else = {
+				GER = {
+					country_event = { id = generic.1 }
+				}
 			}
 		}
 
@@ -4934,11 +4943,11 @@ focus_tree = {
 		x = 96
 		y = 4
 		completion_reward = {
-			create_faction_from_template = { 
-				template = faction_template_regional   
+		    create_faction_from_template = {
+				template = faction_template_middle_east_league
 				name = arab_international
-				icon = GFX_arab_international_faction_logo
 			}
+			set_faction_rule = dismissal_rule_ideology_not_communism
 			if = {
 			    limit = {
 				    OR = {
@@ -5395,7 +5404,7 @@ focus_tree = {
 		completion_reward = {
 		    country_event = { id = syria.121 }
 			SYR_asma_alassad = {
-				promote_character = neo_baathist
+				promote_character = baathist
 			}
 			add_ideas = syria_sic_hisham_ikhtiyar
 		}

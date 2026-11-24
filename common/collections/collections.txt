@@ -8,6 +8,29 @@
 
 ########################################     
 
+muslim_nation_countries = {
+	input = game:all_possible_countries
+	name = COLLECTION_MUSLIM_NATION_COUNTRIES
+	operators = {
+		limit = {
+			has_country_flag = muslim_nation
+		}
+	}
+}
+
+nonexistent_or_puppet_muslim_nation_countries = {
+	input = collection:muslim_nation_countries
+	name = COLLECTION_NONEXISTENT_OR_PUPPET_MUSLIM_NATION_COUNTRIES
+	operators = {
+		limit = {
+			OR = {
+				exists = no
+				is_puppet = yes
+			}
+		}
+	}
+}
+
 world_at_peace_countries = {
 	input = game:all_countries
 	operators = {
@@ -23,7 +46,14 @@ democratic_faction_members = {
 	operators = {
 		faction_members
 		limit = {
-			has_democratic_government = yes
+			OR = {
+				has_government = nationalist
+				has_government = national_conservative
+				has_government = centrist
+				has_government = liberal
+				has_government = new_democrat
+				has_government = moderate_socialist
+			}
 		}
 	}
 	name = COLLECTION_DEMOCRATIC_FACTION_MEMBERS
@@ -34,7 +64,14 @@ uncapitulated_democratic_faction_members = {
 	operators = {
 		faction_members
 		limit = {
-			has_democratic_government = yes
+			OR = {
+				has_government = nationalist
+				has_government = national_conservative
+				has_government = centrist
+				has_government = liberal
+				has_government = new_democrat
+				has_government = moderate_socialist
+			}
 			has_capitulated = no
 		}
 	}
@@ -46,7 +83,14 @@ world_democratic_countries = {
 	name = COLLECTION_WORLD_DEMOCRATIC_COUNTRIES
 	operators = {
 		limit = {
-			has_democratic_government = yes
+			OR = {
+				has_government = nationalist
+				has_government = national_conservative
+				has_government = centrist
+				has_government = liberal
+				has_government = new_democrat
+				has_government = moderate_socialist
+			}
 		}
 	}
 }
@@ -57,7 +101,14 @@ world_uncapitulated_democratic_countries_and_dominions = {
 	name = COLLECTION_UNCAPITULATED_DEMOCRATIC_COUNTRIES_AND_DOMINIONS
 	operators = {
 		limit = {
-			has_democratic_government = yes
+			OR = {
+				has_government = nationalist
+				has_government = national_conservative
+				has_government = centrist
+				has_government = liberal
+				has_government = new_democrat
+				has_government = moderate_socialist
+			}
 			has_capitulated = no
 			OR = {
 				is_subject = no
@@ -72,6 +123,14 @@ world_uncapitulated_democratic_countries = {
 	name = COLLECTION_UNCAPITULATED_DEMOCRATIC_COUNTRIES
 	operators = {
 		limit = {
+			OR = {
+				has_government = nationalist
+				has_government = national_conservative
+				has_government = centrist
+				has_government = liberal
+				has_government = new_democrat
+				has_government = moderate_socialist
+			}
 			has_capitulated = no
 		}
 	}	
@@ -82,7 +141,29 @@ world_non_communist_countries = {
 	name = COLLECTION_NON_COMMUNIST_COUNTRIES
 	operators = {
 		limit = {
-			NOT = { has_government = communist }
+			NOT = { 
+				OR = {
+					has_government = communist
+					has_government = revolutionary_socialist
+					has_government = moderate_socialist
+					has_government = national_bolshevik
+				} 
+			}
+		}
+	}
+}
+
+world_non_communist_and_non_revolutionary_socialist_countries = {
+	input = game:all_countries
+	name = COLLECTION_WORLD_WITHOUT_COMMUNIST_OR_REVOLUTIONARY_SOCIALIST_GOVERNMENTS
+	operators = {
+		limit = {
+			NOT = {
+				OR = {
+					has_government = communist
+					has_government = revolutionary_socialist
+				}
+			}
 		}
 	}
 }
@@ -92,7 +173,36 @@ world_non_communist_states = {
 	name = COLLECTION_NON_COMMUNIST_STATES
 	operators = {
 		limit = {
-			NOT = { controller = { has_government = communist } }
+			NOT = { 
+				controller = { 
+					OR = {
+						has_government = communist
+						has_government = revolutionary_socialist
+						has_government = moderate_socialist
+						has_government = national_bolshevik
+					} 
+				} 
+			}
+		}
+	}
+}
+
+world_strictly_communist_countries = {
+	input = game:all_countries
+	name = COLLECTION_WORLD_STRICTLY_COMMUNIST_COUNTRIES
+	operators = {
+		limit = {
+			has_government = communist
+		}
+	}
+}
+
+world_revolutionary_socialist_countries = {
+	input = game:all_countries
+	name = COLLECTION_WORLD_REVOLUTIONARY_SOCIALIST_COUNTRIES
+	operators = {
+		limit = {
+			has_government = revolutionary_socialist
 		}
 	}
 }
@@ -102,12 +212,43 @@ world_communist_countries = {
 	name = COLLECTION_WORLD_COMMUNIST_COUNTRIES
 	operators = {
 		limit = {
-			has_government = communist
+			OR = {
+				has_government = communist
+				has_government = revolutionary_socialist
+				has_government = moderate_socialist
+				has_government = national_bolshevik
+			}
+		}
+	}
+}	
+
+
+# New Order in Asia etc
+
+countries_europe = {
+	input = game:all_countries
+	name = COLLECTION_COUNTRIES_EUROPE
+	operators = {
+		limit = {
+			capital_scope = { is_on_continent = europe }
 		}
 	}
 }
 
-# New Order in Asia etc
+non_communist_and_non_revolutionary_socialist_countries_europe = {
+	input = collection:countries_europe
+	name = COLLECTION_EUROPE_WITHOUT_COMMUNIST_OR_REVOLUTIONARY_SOCIALIST_GOVERNMENTS
+	operators = {
+		limit = {
+			NOT = {
+				OR = {
+					has_government = communist
+					has_government = revolutionary_socialist
+				}
+			}
+		}
+	}
+}
 
 countries_asia = {
 	input = game:all_countries
@@ -126,7 +267,12 @@ communist_countries_asia = {
 	operators = {
 		limit = {
 			capital_scope = { is_on_continent = asia }
-			has_government = communist
+			OR = {
+				has_government = communist
+				has_government = revolutionary_socialist
+				has_government = moderate_socialist
+				has_government = national_bolshevik
+			}
 		}
 	}
 }
@@ -138,10 +284,22 @@ non_communist_or_capitulated_countries_asia = {
 		limit = {
 			capital_scope = { is_on_continent = asia }
 			OR = {
-				NOT = { has_government = communist }
+				NOT = { 
+					OR = {
+						has_government = communist
+						has_government = revolutionary_socialist
+						has_government = moderate_socialist
+						has_government = national_bolshevik
+					} 
+				}
 				AND = {
 					has_capitulated = yes 
-					has_government = communist
+					OR = {
+						has_government = communist
+						has_government = revolutionary_socialist
+						has_government = moderate_socialist
+						has_government = national_bolshevik
+					}
 				}
 			}
 		}
@@ -277,6 +435,114 @@ china_core_states_controlled_by_faction_leader_ideology = {
 	name = COLLECTION_CHINA_CORE_STATES_CONTROLLED_BY_FACTION_LEADER_IDEOLOGY
 }
 
+states_in_caribbean = {
+	input = game:all_states
+	operators = {
+		limit = {
+			OR = {
+				region = 53 # Caribbean islands
+				state = 690 # Bahamas
+				state = 693 # Turks and Caicos
+				state = 695 # ABC Islands
+			}
+		}
+	}
+	name = COLLECTION_STATES_IN_CARIBBEAN
+}
+
+faction_controlled_caribbean_states = {
+	input = collection:states_in_caribbean
+	operators = {
+		limit = {
+			controller = {
+				OR = {
+					tag = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+	}
+	name = COLLECTION_FACTION_CONTROLLED_CARIBBEAN_STATES
+}
+
+former_united_states_states = {
+	input = constant:faction_territories.former_united_states
+	name = COLLECTION_FORMER_UNITED_STATES_STATES
+}
+
+faction_controlled_former_united_states_states = {
+	input = collection:former_united_states_states
+	operators = {
+		limit = {
+			controller = {
+				OR = {
+					tag = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+	}
+	name = COLLECTION_FACTION_CONTROLLED_FORMER_UNITED_STATES_STATES
+}
+
+states_in_british_isles = {
+	input = game:all_states
+	operators = {
+		limit = {
+			OR = {
+				region = 1 # Southern England
+				region = 2 # Northern England
+				region = 3 # Scotland and Northern Ireland
+				region = 4 # Ireland
+			}
+		}
+	}
+	name = COLLECTION_STATES_IN_BRITISH_ISLES
+}
+
+faction_controlled_british_isles_states = {
+	input = collection:states_in_british_isles
+	operators = {
+		limit = {
+			controller = {
+				OR = {
+					tag = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+	}
+	name = COLLECTION_FACTION_CONTROLLED_BRITISH_ISLES_STATES
+}
+
+states_in_ireland = {
+	input = game:all_states
+	operators = {
+		limit = {
+			OR = {
+				region = 4 # Ireland
+				state = 119 # Northern Ireland is in strategic region 3.
+			}
+		}
+	}
+	name = COLLECTION_STATES_IN_IRELAND
+}
+
+faction_controlled_irish_states = {
+	input = collection:states_in_ireland
+	operators = {
+		limit = {
+			controller = {
+				OR = {
+					tag = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+	}
+	name = COLLECTION_FACTION_CONTROLLED_IRISH_STATES
+}
+
 states_in_africa = {
 	input = game:all_states
 	operators = {
@@ -332,9 +598,7 @@ states_in_the_baltics = {
 	operators = {
 		limit = {
 			OR = {
-				region = 37
-				state = 763 
-				state = 784  
+				region = 37 
 				state = 208  
 				state = 209   
 			}
@@ -350,9 +614,7 @@ faction_states_in_the_baltics = {
 		controlled_states
 		limit = {
 			OR = {
-				region = 37
-				state = 763 
-				state = 784  
+				region = 37 
 				state = 208  
 				state = 209   
 			}
@@ -366,18 +628,19 @@ states_in_the_nordics = {
 	operators = {
 		limit = {
 			OR = {
-				region = 275 
+				region = 9
 				region = 10
 				region = 11
 				region = 192
-				region = 276
 				region = 191
-				region = 277
-				region = 278
 				region = 13
 				region = 161
 				region = 36 
 				region = 45 
+				state = 37
+				state = 887
+				state = 99
+				state = 800
 			}
 		}
 	}
@@ -391,18 +654,19 @@ faction_states_in_the_nordics = {
 		controlled_states
 		limit = {
 			OR = {
-				region = 275 
+				region = 9
 				region = 10
 				region = 11
 				region = 192
-				region = 276
 				region = 191
-				region = 277
-				region = 278
 				region = 13
 				region = 161
 				region = 36 
 				region = 45 
+				state = 37
+				state = 887
+				state = 99
+				state = 800 
 			}
 		}
 	}
@@ -529,7 +793,14 @@ non_communist_controlled_states_on_my_continent = {
 	input = collection:states_on_my_continent
 	operators = {
 		limit = {
-			controller = { NOT = { has_government = communist } }
+			controller = { 
+				NOT = { 
+					has_government = communist 
+					has_government = revolutionary_socialist
+					has_government = moderate_socialist
+					has_government = national_bolshevik
+				} 
+			}
 		}
 	}
 	name = COLLECTION_NON_COMMUNIST_STATES_MY_CONTINENT
@@ -538,7 +809,18 @@ non_democratic_controlled_states_on_my_continent = {
 	input = collection:states_on_my_continent
 	operators = {
 		limit = {
-			controller = { NOT = { has_democratic_government = yes } }
+			controller = { 
+				NOT = { 
+					OR = {
+						has_government = nationalist
+						has_government = national_conservative
+						has_government = centrist
+						has_government = liberal
+						has_government = new_democrat
+						has_government = moderate_socialist
+					} 
+				} 
+			}
 		}
 	}
 	name = COLLECTION_NON_DEMOCRATIC_STATES_MY_CONTINENT
@@ -564,7 +846,12 @@ communist_controlled_states_my_continent = {
 		limit = {
 			is_on_same_continent_as = ROOT
 			controller = {
-				has_government = communist
+				OR = {
+					has_government = communist 
+					has_government = revolutionary_socialist
+					has_government = moderate_socialist
+					has_government = national_bolshevik
+				}
 			}
 		}
 	}
@@ -588,6 +875,9 @@ communist_or_capitulated_countries_my_continent = {
 			is_on_same_continent_as = ROOT
 			OR = {
 				has_government = communist 
+				has_government = revolutionary_socialist
+				has_government = moderate_socialist
+				has_government = national_bolshevik
 				has_capitulated = yes
 			}
 		}
@@ -618,7 +908,13 @@ anti_communist_controlled_states_my_continent = {
 			controller = {
 				OR = {
 					has_government = fascist
-					has_democratic_government = yes
+					has_government = nationalist
+					has_government = monarchist
+					has_government = national_conservative
+					has_government = centrist
+					has_government = liberal
+					has_government = new_democrat
+					has_government = moderate_socialist
 				}
 			}
 		}
@@ -634,7 +930,13 @@ anti_fascist_controlled_states_my_continent = {
 			controller = {
 				OR = {
 					has_government = communist
-					has_democratic_government = yes
+					has_government = revolutionary_socialist
+					has_government = monarchist
+					has_government = national_conservative
+					has_government = centrist
+					has_government = liberal
+					has_government = new_democrat
+					has_government = moderate_socialist
 				}
 			}
 		}
@@ -721,6 +1023,110 @@ non_colonial_power_controlled_african_states = {
 	}
 	name = COLLECTION_NON_COLONIAL_CONTROLLED_AFRICAN_STATES
 }
+
+# Habsburgs 
+
+potential_habsburg_countries_total = {
+	input = game:all_countries
+	operators = {
+		limit = {
+			OR = {
+				AND = {
+					exists = yes
+					original_tag = POL
+				}
+				AND = {
+					exists = yes
+					original_tag = HUN
+				}
+				AND = {
+					exists = yes
+					original_tag = AUS
+				}
+				AND = {
+					exists = yes
+					original_tag = CZE
+				}
+				AND = {
+					exists = yes
+					original_tag = UKR
+				}
+				AND = {
+					exists = yes
+					original_tag = SPR
+				}
+				AND = {
+					exists = yes
+					original_tag = MEX
+				}
+				AND = {
+					exists = yes
+					original_tag = TOS
+				}
+				AND = {
+					exists = yes
+					original_tag = LBV
+				}
+				AND = {
+					exists = yes
+					original_tag = CRO
+				}
+			}
+		}
+	}
+}
+
+habsburg_countries_in_our_faction = {
+	input = collection:potential_habsburg_countries_total
+	operators = {
+		limit = {
+			is_in_faction_with = ROOT
+			OR = {
+				has_country_leader = {
+					ruling_only = yes
+					character = HUN_joseph_august_von_habsburg
+				}
+				has_country_leader = {
+					ruling_only = yes 
+					character = HUN_otto_von_habsburg
+				}
+				has_country_leader = {
+					ruling_only = yes 
+					character = POL_karl_albrecht
+				}
+				has_country_leader = {
+					ruling_only = yes 
+					character = CZE_albrecht_franz
+				}
+				has_country_leader = {
+					ruling_only = yes 
+					character = HUN_vasyl_vyshyvanyi
+				}
+				has_country_leader = {
+					ruling_only = yes 
+					character = SPA_karl_pius_von_habsburg
+				}
+				has_country_leader = {
+					ruling_only = yes 
+					character = MEX_maria_de_iturbide
+				}
+				has_country_leader = {
+					ruling_only = yes 
+					character = TOS_joseph_ferdinand_von_habsburg
+				}
+				has_country_leader = {
+					ruling_only = yes 
+					character = LBV_robert_von_habsburg
+				}
+				has_country_leader = {
+					ruling_only = yes 
+					character = CRO_joseph_francis
+				}
+			}
+		}
+	}
+}
+
 # Islamic World 
 
 all_islamic_countries = {

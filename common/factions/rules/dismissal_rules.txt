@@ -12,7 +12,13 @@ dismissal_rule_world_tension = {
 		base = 0
 		modifier = {  
 			add = 1
-			has_democratic_government = yes
+			OR = {
+				has_government = national_conservative
+				has_government = centrist
+				has_government = liberal
+				has_government = new_democrat
+				has_government = moderate_socialist
+			}
 			is_faction_leader = yes 
 		}
 	}
@@ -27,7 +33,13 @@ dismissal_rule_offensive_war = {
 		base = 0
 		modifier = {  
 			add = 1
-			has_democratic_government = yes
+			OR = {
+				has_government = national_conservative
+				has_government = centrist
+				has_government = liberal
+				has_government = new_democrat
+				has_government = moderate_socialist
+			}
 			is_faction_leader = yes 
 		}
 	}
@@ -49,41 +61,79 @@ dismissal_rule_offensive_war = {
 
 dismissal_rule_ideology_not_democratic = {
 	type = dismissal_rules
-	visible = { has_democratic_government = yes }
+	visible = { 
+		OR = {
+			has_government = nationalist
+			has_government = national_conservative
+			has_government = centrist
+			has_government = liberal
+			has_government = new_democrat
+			has_government = moderate_socialist
+		} 
+	}
 	ai_will_do = {
 		base = 0
 	}
 
 	dismiss_member_trigger = {
 		NOT = {
-			has_democratic_government = yes
+			OR = {
+				has_government = nationalist
+				has_government = national_conservative
+				has_government = centrist
+				has_government = liberal
+				has_government = new_democrat
+				has_government = moderate_socialist
+			} 
 		}
 	}
 }
 
 dismissal_rule_ideology_not_communism = {
 	type = dismissal_rules
-	visible = { has_socialist_government = yes }
+	visible = { 
+		OR = {
+			has_government = communist
+			has_government = revolutionary_socialist
+			has_government = moderate_socialist
+		}
+	}
 	ai_will_do = {
 		base = 0
 	}
 
 	dismiss_member_trigger = {
 		NOT = {
-			has_socialist_government = yes
+			OR = {
+				has_government = communist
+				has_government = revolutionary_socialist
+				has_government = moderate_socialist
+			} 
 		}
 	}
 }
 
 dismissal_rule_ideology_communist = {
 	type = dismissal_rules
-	visible = { NOT = { has_socialist_government = yes } }
+	visible = { 
+		NOT = { 
+			OR = {
+				has_government = communist
+				has_government = revolutionary_socialist
+				has_government = moderate_socialist
+			} 
+		} 
+	}
 	ai_will_do = {
 		base = 0
 	}
 
 	dismiss_member_trigger = {
-		has_socialist_government = yes
+		OR = {
+			has_government = communist
+			has_government = revolutionary_socialist
+			has_government = moderate_socialist
+		}
 	}
 }
 
@@ -99,14 +149,174 @@ dismissal_rule_ideology_fascist = {
 	}
 }
 
-dismissal_rule_ideology_democratic = {
+dismissal_rule_ideology_not_fascist = {
 	type = dismissal_rules
-	visible = { NOT = { has_democratic_government = yes } }
+	visible = { 
+		has_government = fascist
+	}
 	ai_will_do = {
 		base = 0
 	}
 
 	dismiss_member_trigger = {
-		has_democratic_government = yes
+		NOT = {
+			has_government = fascist
+		}
+	}
+}
+
+dismissal_rule_ideology_democratic = {
+	type = dismissal_rules
+	visible = { 
+		NOT = { 
+			OR = {
+				has_government = nationalist
+				has_government = national_conservative
+				has_government = centrist
+				has_government = liberal
+				has_government = new_democrat
+				has_government = moderate_socialist
+			} 
+		} 
+	}
+	ai_will_do = {
+		base = 0
+	}
+
+	dismiss_member_trigger = {
+		OR = {
+			has_government = nationalist
+			has_government = national_conservative
+			has_government = centrist
+			has_government = liberal
+			has_government = new_democrat
+			has_government = moderate_socialist
+		}
+	}
+}
+
+dismissal_rule_ideology_not_national_bolshevik = {
+	type = dismissal_rules
+	visible = { 
+		has_government = national_bolshevik
+	}
+	ai_will_do = {
+		base = 0
+	}
+
+	dismiss_member_trigger = {
+		NOT = {
+			has_government = national_bolshevik
+		}
+	}
+}
+
+dismissal_rule_ideology_not_monarchist = {
+	type = dismissal_rules
+	visible = { 
+		has_government = monarchist
+	}
+	ai_will_do = {
+		base = 0
+	}
+
+	dismiss_member_trigger = {
+		NOT = {
+			has_government = monarchist
+		}
+	}
+}
+
+dismissal_rule_ideology_not_revolutionary_socialist = {
+	type = dismissal_rules
+	visible = { 
+		has_government = revolutionary_socialist
+	}
+	ai_will_do = {
+		base = 0
+	}
+
+	dismiss_member_trigger = {
+		NOT = {
+			has_government = revolutionary_socialist
+		}
+	}
+}
+
+dismissal_rule_ideology_not_modsoc_newdem = {
+	type = dismissal_rules
+	visible = { 
+		OR = {
+			has_government = moderate_socialist
+			has_government = new_democrat
+		}
+	}
+	ai_will_do = {
+		base = 0
+	}
+
+	dismiss_member_trigger = {
+		NOT = {
+			OR = {
+				has_government = moderate_socialist
+				has_government = new_democrat
+			}
+		}
+	}
+}
+
+dismissal_rule_ideology_not_right_wing = {
+	type = dismissal_rules
+	visible = { 
+		OR = {
+			has_government = fascist
+			has_government = nationalist
+			has_government = monarchist
+			has_government = national_conservative
+		}
+	}
+	ai_will_do = {
+		base = 0
+	}
+
+	dismiss_member_trigger = {
+		NOT = {
+			OR = {
+				has_government = fascist
+				has_government = nationalist
+				has_government = monarchist
+				has_government = national_conservative
+			}
+		}
+	}
+}
+
+dismissal_rule_ideology_not_democratic_revsoc = {
+	type = dismissal_rules
+	visible = { 
+		OR = {
+			has_government = national_conservative
+			has_government = centrist
+			has_government = liberal
+			has_government = new_democrat
+			has_government = moderate_socialist
+			has_government = revolutionary_socialist
+		} 
+	}
+	ai_will_do = {
+		base = 0
+	}
+
+	dismiss_member_trigger = {
+		NOT = {
+			OR = {
+				has_government = national_conservative
+				has_government = centrist
+				has_government = liberal
+				has_government = new_democrat
+				has_government = moderate_socialist
+				has_government = revolutionary_socialist
+			} 
+		}
 	}
 }

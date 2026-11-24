@@ -556,7 +556,7 @@ sp_naval_rocket_launching_submarine = {
 		sp_tag_rocket
 		sp_tag_submarine
 	}
-	
+
 	ai_will_do = {
 		base = 1
 	}
@@ -752,7 +752,7 @@ sp_naval_nuclear_missile_submarine = {
 		sp_tag_nuclear_warfare
 		sp_tag_submarine
 	}
-	
+
 	ai_will_do = {
 		base = 1
 	}
@@ -930,7 +930,7 @@ sp_naval_nuclear_torpedo = {
 		sp_tag_submarine
 		sp_tag_nuclear_warfare
 	}
-	
+
 	ai_will_do = {
 		base = 1
 	}
@@ -1658,6 +1658,16 @@ specialization = specialization_naval
 
 	ai_will_do = {
 		base = 1
+#		modifier = {
+#			factor = 2
+#			ROOT = { 
+#				original_tag = JAP
+#				OR = {
+#					has_government = fascism
+#					has_government = neutrality
+#				}
+#			}
+#		}
 	}
 
 	allowed = {
@@ -2001,12 +2011,18 @@ sp_naval_torpedo_cruiser = {
 #Super Heavy Battleship
 sp_naval_super_heavy_battleship = {
 	specialization = specialization_naval
- 
 
 	project_tags = sp_tag_surface_ship
 
 	ai_will_do = {
 		base = 1
+
+		modifier = {
+			factor = 0.3
+			AND = {
+				ROOT = { is_major = no } # Pointless unless we are big enough to do this
+			}
+        }
 	}
 
 	allowed = {
@@ -2018,8 +2034,8 @@ sp_naval_super_heavy_battleship = {
 			if = {
 				limit = { 
 					has_dlc = "Man the Guns"
-					}
-			has_tech = early_ship_hull_heavy
+				}
+				has_tech = early_ship_hull_heavy
 			}
 			else = {
 				has_tech = early_battleship
@@ -3322,7 +3338,7 @@ sp_naval_underway_replenishment = {
 				token = sp_naval_underway_replenishment_preference_a
 				
 				iteration_output = {
-					country_effects = { 
+					country_effects = {
 						custom_effect_tooltip = tech_effect|sp_naval_underway_replenishment_pick_a
 						hidden_effect = {
 							set_technology = {
@@ -3349,7 +3365,7 @@ sp_naval_underway_replenishment = {
 				token = sp_naval_underway_replenishment_preference_b
 				
 				iteration_output = {
-					country_effects = { 
+					country_effects = {
 						custom_effect_tooltip = tech_effect|sp_naval_underway_replenishment_pick_b
 						hidden_effect = {
 							set_technology = {
@@ -3411,9 +3427,9 @@ sp_naval_proximity_fuze = {
 				set_technology = {
 					sp_naval_proximity_fuze_tech = 1
 					popup = no
-					}
+				}
 			}
-			
+
 			custom_effect_tooltip = {
 				localization_key = SP_UNLOCK_TECH
 				TECH = sp_shock_hardening_techniques
@@ -3485,8 +3501,8 @@ sp_naval_proximity_fuze = {
 
 				}
 			}
-		}	
-	}	
+		}
+	}
 }
 
 sp_naval_support_ships = {

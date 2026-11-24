@@ -17,10 +17,15 @@ if = {
 
 
 if = {
-	limit = { has_dlc = "Man the Guns" }
+	limit = { has_dlc = "Gotterdammerung" }
+	set_naval_oob = "CHI_2000_naval_Gotterdammerung"
+	ELSE_IF = {
+	limit = {
+			NOT = {
+				has_dlc = "Gotterdammerung"
+			}
+		}
 		set_naval_oob = "CHI_2000_naval_mtg"
-	else = {
-		set_naval_oob = "CHI_2000_naval_legacy"
 	}
 }
 
@@ -39,7 +44,6 @@ add_ideas = {
 set_technology = {
 	support_weapons = 1
 	infantry_weapons = 1
-	tech_trucks = 1
 	militia_tech = 1
 	motorised_infantry = 1 
 	tech_support = 1 
@@ -161,6 +165,8 @@ if = {
 }
 add_ideas = {
 	idea_chi_remnants_of_the_pacific_fleet
+	idea_chi_paper_tiger_of_asia
+	idea_chi_compliant_opposition_movement
 	war_economy
 }
 
@@ -187,22 +193,6 @@ if = {
 	}
 }
 if = {
-	limit = { not = { has_dlc = "Man the Guns" } }
-	set_technology = {
-		early_submarine = 1
-		basic_submarine = 1
-		early_destroyer = 1
-		early_light_cruiser = 1
-		basic_light_cruiser = 1
-		early_heavy_cruiser = 1
-		basic_heavy_cruiser = 1
-		
-		early_carrier = 1
-		basic_carrier = 1
-		transport = 1
-	}
-}
-if = {
 	limit = { has_dlc = "Man the Guns" }
 	set_technology = {
 		basic_naval_mines = 1
@@ -218,7 +208,7 @@ if = {
 		basic_ship_hull_carrier = 1
 		basic_battery = 1
 		basic_light_battery = 1
-		#basic_medium_battery = 1
+		basic_medium_battery = 1
 		basic_heavy_battery = 1
 		basic_torpedo = 1
 		sonar = 1
@@ -272,25 +262,38 @@ add_opinion_modifier = {
 	target = USA
 	modifier = close_friendship
 }
-
 if = {
 	limit = {
 		has_dlc = "Gotterdammerung"
 	}
 	create_equipment_variant = {
-		name = "Ohio Class" # submarines
+		name = "Chien Lung Class" # submarines, ohio class
 		type = ship_hull_nuclear_submarine
-#		name_group = ENG_SS_VANGUARD
+#		name_group = NEA_SS_HISTORICAL
 		parent_version = 0
 		modules = {
 			fixed_ship_torpedo_slot = ship_torpedo_sub_2
 			fixed_ship_engine_slot = sub_ship_nuclear_engine_1
 			front_1_custom_slot = ship_torpedo_sub_2
-			mid_1_custom_slot = empty
+			mid_1_custom_slot = ship_anechoic_tile
 			rear_1_custom_slot = slbm_launcher
 			rear_2_custom_slot = empty
 		}
 	}
+	create_equipment_variant = {
+		name = "Hai Kun Class" # submarines, los angeles class
+		type = ship_hull_nuclear_submarine
+#		name_group = NEA_SS_HISTORICAL
+		parent_version = 0
+		modules = {
+			fixed_ship_torpedo_slot = ship_torpedo_sub_2
+			fixed_ship_engine_slot = sub_ship_nuclear_engine_1
+			front_1_custom_slot = ship_torpedo_sub_2
+			mid_1_custom_slot = ship_anechoic_tile
+			rear_1_custom_slot = empty
+			rear_2_custom_slot = empty
+		}
+	}		
 	add_equipment_to_stockpile = { 
 			type = nuclear_missile_equipment_2
 #			variant_name = "L3/35"
@@ -302,7 +305,32 @@ if = {
 #			variant_name = "L3/35"
 			amount = 40
 			producer = CHI
-	}		
+	}
+}
+if = {
+limit = { not = { has_dlc = "Gotterdammerung" } }
+create_equipment_variant = {
+		name = "Hai Kun Class" # submarines
+		type = ship_hull_submarine_2
+#		name_group = NEA_SS_HISTORICAL
+		parent_version = 0
+		modules = {
+			fixed_ship_torpedo_slot = ship_torpedo_sub_2
+			fixed_ship_engine_slot = sub_ship_engine_2
+			rear_1_custom_slot = ship_torpedo_sub_2
+		}
+	}
+create_equipment_variant = {
+		name = "Chien Lung Class" # submarines
+		type = ship_hull_submarine_2
+#		name_group = NEA_SS_HISTORICAL
+		parent_version = 0
+		modules = {
+			fixed_ship_torpedo_slot = ship_torpedo_sub_2
+			fixed_ship_engine_slot = sub_ship_engine_2
+			rear_1_custom_slot = ship_torpedo_sub_2
+		}
+	}
 }
 if = {
 	limit = {
@@ -392,11 +420,11 @@ if = {
 		}
 	}
 create_equipment_variant = {
-		name = "Ticonderoga Class" 	# Heavy Cruisers 
+		name = "Ning Hai Class" 	# Heavy Cruisers 
 		type = ship_hull_cruiser_2
 		parent_version = 0
 		modules = {
-			fixed_ship_battery_slot = ship_light_medium_battery_2
+			fixed_ship_battery_slot = ship_medium_battery_1
 			fixed_ship_anti_air_slot = ship_anti_air_4
 			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
 			fixed_ship_radar_slot = ship_sonar_1
@@ -410,7 +438,7 @@ create_equipment_variant = {
 		}
 	}
 create_equipment_variant = {
-	name = "Virginia Class"			# Virginia and California Classes
+	name = "Xiáng Feng Class"			# Virginia and California Classes, means Auspicious Wind
 	type = ship_hull_cruiser_2
 	parent_version = 0
 		modules = {
@@ -428,7 +456,22 @@ create_equipment_variant = {
 		}
 	}
 create_equipment_variant = {
-	name = "Spurance Class"	#destroyers also covers the kidd class 
+	name = "Kee Lung Class"	#destroyers covers the kidd class and the spurances
+	type = ship_hull_light_2
+	parent_version = 0
+	modules = {
+		fixed_ship_battery_slot = ship_light_battery_2
+		fixed_ship_anti_air_slot = ship_anti_air_4			
+		fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+		fixed_ship_radar_slot = ship_sonar_1
+		fixed_ship_engine_slot = light_ship_engine_1
+		fixed_ship_torpedo_slot = ship_torpedo_2
+		mid_1_custom_slot = ship_light_battery_2	
+		rear_1_custom_slot = ship_torpedo_2
+		}
+	}
+create_equipment_variant = {
+	name = "Cheng Kung Class"
 	type = ship_hull_light_2
 	parent_version = 0
 	modules = {
@@ -442,77 +485,22 @@ create_equipment_variant = {
 		rear_1_custom_slot = ship_torpedo_2
 		}
 	}
-	create_equipment_variant = {
-		name = "Los Angeles Class" # submarines
-		type = ship_hull_submarine_2
-		parent_version = 0
-		modules = {
-			fixed_ship_torpedo_slot = ship_torpedo_sub_2
-			fixed_ship_engine_slot = sub_ship_engine_2
-			rear_1_custom_slot = ship_torpedo_sub_2
-		}
-	}
-}
-if = {
-	limit = { not = { has_dlc = "Man the Guns" } }
-	create_equipment_variant = { 
-		name = "Nimitz Class" #carriers
-		type = carrier_1
-		upgrades = {
-			ship_deckspace_upgrade = 3
-			carrier_armor_upgrade = 1
-			ship_engine_upgrade = 1
-			ship_reliability_upgrade = 1
-		}
-	}
-	create_equipment_variant = { 
-		name = "Kitty Hawk Class" #carriers
-		type = carrier_1
-		upgrades = {
-			ship_deckspace_upgrade = 3
-			carrier_armor_upgrade = 1
-			ship_engine_upgrade = 1
-			ship_reliability_upgrade = 1
-		}
-	}
-	create_equipment_variant = {
-		name = "Ticonderoga Class"
-		type = heavy_cruiser_2
-		upgrades = {
-			ship_reliability_upgrade = 0
-			ship_engine_upgrade = 1
-			ship_armor_upgrade = 2
-			ship_gun_upgrade = 4
-		}
-	}
-	create_equipment_variant = {
-		name = "Virginia Class"
-		type = heavy_cruiser_2
-		upgrades = {
-			ship_reliability_upgrade = 1
-			ship_engine_upgrade = 2
-			ship_armor_upgrade = 2
-			ship_gun_upgrade = 3
-		}
-	}
-	create_equipment_variant = {
-		name = "Spurance Class" #destroyers
-		type = destroyer_1
-		upgrades = {
-			ship_torpedo_upgrade = 1
-			destroyer_engine_upgrade = 1
-			ship_ASW_upgrade = 2
-			ship_anti_air_upgrade = 4
-		}
-	}
-	create_equipment_variant = {
-		name = "Los Angeles Class" #submarines
-		type = submarine_1
-		upgrades = {
-			ship_reliability_upgrade = 1
-			sub_engine_upgrade = 1
-			sub_stealth_upgrade = 1
-			sub_torpedo_upgrade = 1
+create_equipment_variant = {
+	name = "Chi Yang Class"
+	type = ship_hull_cruiser_2
+	parent_version = 0
+	modules = {
+		fixed_ship_battery_slot = ship_light_medium_battery_2
+		fixed_ship_anti_air_slot = ship_anti_air_4
+		fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+		fixed_ship_radar_slot = ship_sonar_1
+		fixed_ship_engine_slot = cruiser_ship_engine_2
+		fixed_ship_secondaries_slot = empty
+		fixed_ship_armor_slot = ship_armor_cruiser_1
+		mid_1_custom_slot = empty
+		mid_2_custom_slot = empty
+		rear_1_custom_slot = ship_airplane_launcher_2
+		front_1_custom_slot = empty
 		}
 	}
 }
