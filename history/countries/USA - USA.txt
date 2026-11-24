@@ -16,16 +16,11 @@ if = {
 }
 
 if = {
-	limit = { has_dlc = "Gotterdammerung" }
-	set_naval_oob = "USA_2000_naval_Gotterdammerung"
-	ELSE_IF = {
-	limit = {
-			NOT = {
-				has_dlc = "Gotterdammerung"
-			}
-		}
+	limit = { has_dlc = "Man the Guns" }
 		set_naval_oob = "USA_2000_naval_mtg"
-	}
+	else = {
+		set_naval_oob = "USA_2000_naval_legacy"
+		}
 }
 
 give_guarantee = ICE
@@ -48,6 +43,7 @@ set_technology = {
 	basic_carrier = 1
 	support_weapons = 1
 	infantry_weapons = 1
+	#tech_trucks = 1
 	motorised_infantry = 1 
 	tech_support = 1 
 	tech_field_hospital = 1 
@@ -73,30 +69,6 @@ complete_special_project = {
 #Naval Projects
 complete_special_project = {
 	project = sp:sp_naval_torpedo_cruiser
-}
-complete_special_project = {
-	project = sp:sp_naval_midget_submarine
-}
-complete_special_project = {
-	project = sp:sp_naval_aip_engine
-}
-complete_special_project = {
-	project = sp:sp_naval_anechoic_tiles
-}
-complete_special_project = {
-	project = sp:sp_naval_fleet_submarine
-}
-complete_special_project = {
-	project = sp:sp_naval_nuclear_submarine
-}
-complete_special_project = {
-	project = sp:sp_naval_nuclear_missile_submarine
-}
-complete_special_project = {
-	project = sp:sp_naval_nuclear_torpedo
-}
-complete_special_project = {
-	project = sp:sp_naval_proximity_fuze
 }
 #Air Projects
 complete_special_project = {
@@ -178,7 +150,7 @@ if = {
 		basic_ship_hull_carrier = 1
 		basic_battery = 1
 		basic_light_battery = 1
-		basic_medium_battery = 1
+		#basic_medium_battery = 1
 		basic_heavy_battery = 1
 		basic_torpedo = 1
 		sonar = 1
@@ -238,7 +210,6 @@ recruit_character = USA_john_bachtell
 recruit_character = USA_michael_hagee
 recruit_character = USA_h._hugh_shelton
 recruit_character = USA_mark_a._milley
-recruit_character = USA_Walter_L_Sharp
 recruit_character = USA_bantz_j._craddock
 recruit_character = USA_burwell_b._bell_iii
 recruit_character = USA_carlton_w._fulford_jr.
@@ -358,23 +329,6 @@ add_opinion_modifier = {
 
 if = {
 	limit = {
-		has_dlc = "Gotterdammerung"
-	}
-	add_equipment_to_stockpile = { 
-			type = nuclear_missile_equipment_2
-#			variant_name = "L3/35"
-			amount = 70
-			producer = USA
-		}
-	add_equipment_to_stockpile = { 
-			type = nuclear_missile_equipment_1
-#			variant_name = "L3/35"
-			amount = 40
-			producer = USA
-	}		
-}
-if = {
-	limit = {
 		has_dlc = "No Step Back"
 	}
 	create_equipment_variant = {
@@ -474,7 +428,7 @@ if = {
 		name_group = USA_CA_HISTORICAL 
 		parent_version = 0
 		modules = {
-			fixed_ship_battery_slot = ship_medium_battery_1
+			fixed_ship_battery_slot = ship_light_medium_battery_2
 			fixed_ship_anti_air_slot = ship_anti_air_4
 			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
 			fixed_ship_radar_slot = ship_sonar_1
@@ -503,24 +457,6 @@ if = {
 			rear_1_custom_slot = ship_torpedo_2
 		}
 	}
-}
-if = {
-	limit = {
-	NOT = {
-	has_dlc = "Gotterdammerung" 
-			}
-		}
-	create_equipment_variant = {
-		name = "Ohio Class" # submarines
-		type = ship_hull_submarine_2
-		name_group = USA_SS_HISTORICAL
-		parent_version = 0
-		modules = {
-			fixed_ship_torpedo_slot = ship_torpedo_sub_2
-			fixed_ship_engine_slot = sub_ship_engine_2
-			rear_1_custom_slot = ship_torpedo_sub_2
-		}
-	}
 	create_equipment_variant = {
 		name = "Los Angeles Class" # submarines
 		type = ship_hull_submarine_2
@@ -532,52 +468,8 @@ if = {
 			rear_1_custom_slot = ship_torpedo_sub_2
 		}
 	}
-	create_equipment_variant = {
-		name = "Los Angeles Class" # submarines
-		type = ship_hull_submarine_2
-		name_group = USA_SS_HISTORICAL
-		parent_version = 0
-		modules = {
-			fixed_ship_torpedo_slot = ship_torpedo_sub_2
-			fixed_ship_engine_slot = sub_ship_engine_2
-			rear_1_custom_slot = ship_torpedo_sub_2
-		}
-	}	
 }
 
-if = {
-	limit = {
-	has_dlc = "Gotterdammerung" 
-		}
-	create_equipment_variant = {
-		name = "Ohio Class" # submarines
-		type = ship_hull_nuclear_submarine
-		name_group = USA_SS_HISTORICAL
-		parent_version = 0
-		modules = {
-			fixed_ship_torpedo_slot = ship_torpedo_sub_2
-			fixed_ship_engine_slot = sub_ship_nuclear_engine_1
-			front_1_custom_slot = ship_torpedo_sub_2
-			mid_1_custom_slot = ship_anechoic_tile
-			rear_1_custom_slot = slbm_launcher
-			rear_2_custom_slot = empty
-		}
-	}
-	create_equipment_variant = {
-		name = "Los Angeles Class" # submarines
-		type = ship_hull_nuclear_submarine
-		name_group = USA_SS_HISTORICAL
-		parent_version = 0
-		modules = {
-			fixed_ship_torpedo_slot = ship_torpedo_sub_2
-			fixed_ship_engine_slot = sub_ship_nuclear_engine_1
-			front_1_custom_slot = ship_torpedo_sub_2
-			mid_1_custom_slot = ship_anechoic_tile
-			rear_1_custom_slot = empty
-			rear_2_custom_slot = empty
-		}
-	}		
-}
 if = {
 	limit = {
 		has_dlc = "By Blood Alone"
