@@ -76,7 +76,7 @@ division_limiter = {
 }
 
 dont_build_tanks_if_youre_broke = {
-	enable = { num_of_military_factories < 9 }
+	enable = { is_eligible_for_armor_production = no }
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
@@ -130,17 +130,7 @@ default_unit_production = {
 		id = infantry
 		value = 100
 	}
-
-	ai_strategy = {
-		type = equipment_variant_production_factor
-		id = light_tank_chassis
-		value = -100
-	}
-	ai_strategy = {
-		type = equipment_variant_production_factor
-		id = heavy_tank_chassis
-		value = -100
-	}
+	# Other roles are added by their conditional strategies, not unconditional demand.
 }
 
 more_guns_in_the_early_game = {
@@ -169,6 +159,7 @@ more_guns_in_the_early_game = {
 default_transition_production = {
 	enable = {
 		num_of_military_factories > 9
+		num_of_military_factories < 20
 	}
 	abort_when_not_enabled = yes
 
@@ -184,12 +175,7 @@ default_transition_production = {
 	}
 	ai_strategy = {
 		type = equipment_production_min_factories_archetype
-		id = anti_air_equipment
-		value = 1
-	}
-	ai_strategy = {
-		type = equipment_production_min_factories_archetype
-		id = motorized_equipment
+		id = support_equipment
 		value = 1
 	}
 }
@@ -238,6 +224,17 @@ default_specialised_production = {
 		id = medium_tank_chassis
 		value = 5
 	}
+
+	ai_strategy = {
+		type = equipment_production_min_factories_archetype
+		id = support_equipment
+		value = 1
+	}
+	ai_strategy = {
+		type = equipment_production_min_factories_archetype
+		id = anti_tank_equipment
+		value = 1
+	}
 }
 
 special_forces_marine_production = {
@@ -260,8 +257,14 @@ special_forces_marine_production = {
 	}
 }
 
+# Armor ratios below are additive: the full ladder contributes 16 at 200 factories.
 default_tank_production = {
 	enable = {
+		OR = {
+			rw_ai_can_use_light_armor = yes
+			rw_ai_can_use_medium_armor = yes
+			rw_ai_can_use_modern_armor = yes
+		}
 		is_eligible_for_armor_production = yes
 		num_divisions > 49 #build enough infantry first
 	}
@@ -274,13 +277,18 @@ default_tank_production = {
 	}
 	ai_strategy = {
 		type = role_ratio
-		id = armor_role
-		value = 8
+		id = armor
+		value = 2
 	}
 }
 
 increased_tank_production_1 = {
 	enable = {
+		OR = {
+			rw_ai_can_use_light_armor = yes
+			rw_ai_can_use_medium_armor = yes
+			rw_ai_can_use_modern_armor = yes
+		}
 		num_of_military_factories > 49
 		num_divisions > 19 #build enough infantry first
 	}
@@ -288,13 +296,18 @@ increased_tank_production_1 = {
 
 	ai_strategy = {
 		type = role_ratio
-		id = armor_role
-		value = 8
+		id = armor
+		value = 2
 	}
 }
 
 increased_tank_production_2 = {
 	enable = {
+		OR = {
+			rw_ai_can_use_light_armor = yes
+			rw_ai_can_use_medium_armor = yes
+			rw_ai_can_use_modern_armor = yes
+		}
 		num_of_military_factories > 99
 	}
 	abort_when_not_enabled = yes
@@ -307,74 +320,84 @@ increased_tank_production_2 = {
 
 	ai_strategy = {
 		type = role_ratio
-		id = armor_role
-		value = 8
+		id = armor
+		value = 2
 	}
 }
 
 increased_tank_production_3 = {
 	enable = {
+		OR = {
+			rw_ai_can_use_light_armor = yes
+			rw_ai_can_use_medium_armor = yes
+			rw_ai_can_use_modern_armor = yes
+		}
 		num_of_military_factories > 119
 	}
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
 		type = role_ratio
-		id = armor_role
-		value = 8
+		id = armor
+		value = 2
 	}
 }
 
 increased_tank_production_4 = {
 	enable = {
+		OR = {
+			rw_ai_can_use_light_armor = yes
+			rw_ai_can_use_medium_armor = yes
+			rw_ai_can_use_modern_armor = yes
+		}
 		num_of_military_factories > 149
 	}
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
 		type = role_ratio
-		id = armor_role
-		value = 8
+		id = armor
+		value = 2
 	}
 }
 
 increased_tank_production_5 = {
 	enable = {
+		OR = {
+			rw_ai_can_use_light_armor = yes
+			rw_ai_can_use_medium_armor = yes
+			rw_ai_can_use_modern_armor = yes
+		}
 		num_of_military_factories > 179
 	}
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
 		type = role_ratio
-		id = armor_role
-		value = 10
+		id = armor
+		value = 3
 	}
 }
 
 increased_tank_production_6 = {
 	enable = {
+		OR = {
+			rw_ai_can_use_light_armor = yes
+			rw_ai_can_use_medium_armor = yes
+			rw_ai_can_use_modern_armor = yes
+		}
 		num_of_military_factories > 199
 	}
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
 		type = role_ratio
-		id = armor_role
-		value = 10
+		id = armor
+		value = 3
 	}
 }
 
-stockpile_less_early_game = {
-	enable = {
-		date < 2014.1.1
-	}
-	abort_when_not_enabled = yes
-
-	ai_strategy = {
-		type = equipment_stockpile_surplus_ratio
-		value = -20
-	}
-}
+# Keep the normal equipment reserve instead of reducing it during the buildup.
 
 division_upgrades_are_very_important = {
 	enable = {
@@ -422,7 +445,7 @@ DEFAULT_template_design_low_factories = {
 
 DEFAULT_template_design_industrial_country = {
 	enable = {
-		date < 2014.1.1
+		NOT = { date > 2014.1.1 }
 		is_eligible_for_armor_production = yes
 	}
 	abort_when_not_enabled = yes

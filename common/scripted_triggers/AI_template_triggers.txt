@@ -1,0 +1,49 @@
+# Shared affordability gates for generic AI division targets.
+# Keep stockpile checks on field conversions: using them to select targets would
+# make the AI switch targets whenever training consumes its reserve equipment.
+
+rw_ai_can_use_supported_infantry = {
+	num_of_military_factories > 9
+}
+
+rw_ai_can_use_advanced_infantry = {
+	num_of_military_factories > 39
+	date > 2014.1.1
+}
+
+rw_ai_can_use_light_armor = {
+	is_eligible_for_armor_production = yes
+	has_tech = motorised_infantry
+	OR = {
+		has_tech = basic_light_tank
+		has_tech = basic_light_tank_chassis
+	}
+}
+
+rw_ai_can_use_medium_armor = {
+	is_eligible_for_armor_production = yes
+	has_tech = motorised_infantry
+	OR = {
+		has_tech = basic_medium_tank
+		has_tech = basic_medium_tank_chassis
+	}
+}
+
+rw_ai_can_use_large_medium_armor = {
+	num_of_military_factories > 49
+	rw_ai_can_use_medium_armor = yes
+	OR = {
+		has_tech = improved_medium_tank
+		has_tech = improved_medium_tank_chassis
+	}
+}
+
+rw_ai_can_use_modern_armor = {
+	num_of_military_factories > 99
+	has_tech = motorised_infantry
+	has_tech = mechanised_infantry
+	OR = {
+		has_tech = main_battle_tank
+		has_tech = main_battle_tank_chassis
+	}
+}

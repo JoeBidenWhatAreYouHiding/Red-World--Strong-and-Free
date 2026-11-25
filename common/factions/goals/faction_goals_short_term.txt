@@ -1,6 +1,7 @@
 #category = short_term medium_term or long_term
 # ROOT is faction leader, FROM is faction member who opens UI and views goals, completed/cancel/complete_effect do not have FROM scopes
 
+
 ##########################################################
 
  ##  ### #  # ### ###  ###  ##       ##   ##   ##  #    ## 
@@ -141,226 +142,35 @@ faction_goal_spy_master = {
 }
 
 
-faction_goal_convoy_sufficiency = {
-	name = convoy_sufficiency_goal_name
-	description = convoy_sufficiency_goal_desc
-	category = short_term
-	group = FOCUS_FILTER_INDUSTRY
-	completed = {
-		count_in_collection = {
-			collection = {
-				input = game:scope
-				operators = { faction_members }
-				name = FACTION_NAME
-			}
-			unit = convoy
-			size > 999
-		}
-	}
-	complete_effect = {
-		add_faction_power_projection = 100
-		custom_effect_tooltip = generic_skip_one_line_tt
-		custom_effect_tooltip = THE_FACTION_LEADER
-		add_faction_initiative = 1
-		custom_effect_tooltip = generic_skip_one_line_tt
-		every_faction_member = {
-			tooltip = AT_LEAST_200_CONVOYS
-			visible_when_empty = yes 
-			limit = {
-				has_navy_size = {
-				    size > 199
-				    type = convoy
-				}
-			}
-			navy_experience = 50
-		}
-	}
-	ai_will_do = {
-		base = 1
-		modifier = {  
-			add = -1
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_coastal = yes
-							is_controlled_by_ROOT_or_ally = yes
-						}
-					}
-				}
-				value < 1
-			}
-		}
-		modifier = {  
-			add = 1
-			collection_size = {
-				input = {
-					input = game:all_states
-					operators = {
-						limit = {
-							is_coastal = yes
-							is_controlled_by_ROOT_or_ally = yes
-						}
-					}
-				}
-				value > 19
-			}
-		}
-	}
-}
+#faction_goal_convoy_sufficiency = {
+#	name = convoy_sufficiency_goal_name
+#	description = convoy_sufficiency_goal_desc
+#	completed = {
+#		count_in_collection = {
+#			collection = {
+#				input = game:scope
+#				operators = { faction_members }
+#				name = FACTION_NAME
+#			}
+#			equipment = { convoy }
+#			size > 1000
+#		}
+#	}
+#	complete_effect = {
+#		add_faction_power_projection = 200
+#		custom_effect_tooltip = generic_skip_one_line_tt
+#		every_faction_member = {
+#			tooltip = AT_LEAST_50_MILS
+#			visible_when_empty = yes 
+#			limit = {
+#				num_of_military_factories > 49
+#			}
+#			add_faction_initiative = 1
+#		}
+#		
+#	}
+#}
 
-faction_goal_unlock_research = {
-	name = faction_goal_unlock_research_name
-	description = faction_goal_unlock_research_desc
-	category = short_term
-	group = FOCUS_FILTER_INTERNAL_AFFAIRS
-	available = {
-		FROM = { num_faction_members > 2 }
-	}
-	visible = {
-		FROM = { has_faction_research_unlocked = no }
-	}
-	select_effect = {
-		set_temp_variable = { total_techs = 0 }
-		every_collection_element = {
-			input = {
-				input = game:scope
-				operators =  {
-					faction_members
-				}
-			}
-			add_to_temp_variable = { total_techs = num_researched_technologies }
-		}
-		
-		multiply_temp_variable = {
-			var = total_techs
-			value = 1.20
-		}
-		scope:faction = {
-			set_variable = { unlock_military_techs_researched_target = total_techs }
-		}
-	}
-	completed = {
-		scope:faction = {
-			hidden_trigger = {
-				tooltip_evaluation = eval
-				set_temp_variable = { unlock_military_techs_researched_compare = 0 }			
-				all_collection_elements = {
-					collection = {
-						input = game:scope
-						operators =  { faction_members }
-					}
-					add_to_temp_variable = { unlock_military_techs_researched_compare = num_researched_technologies }
-				}
-				set_temp_variable = { unlock_military_techs_researched_compare_temp_target = unlock_military_techs_researched_compare }
-				multiply_temp_variable = { unlock_military_techs_researched_compare_temp_target = 1.20 }
-			}
-			if = {
-				limit = {
-					has_variable = unlock_military_techs_researched_target
-				}
-				check_variable = {
-					var = unlock_military_techs_researched_compare
-					value = unlock_military_techs_researched_target
-					compare = greater_than
-					tooltip = "GOAL_T_TRIGGER_A"
-				}
-			}
-			else = {
-				check_variable = {
-					var = unlock_military_techs_researched_compare
-					value = unlock_military_techs_researched_compare_temp_target
-					compare = greater_than
-					tooltip = "GOAL_T_TRIGGER_A"
-				}
-			}
-		}
-	}
-	complete_effect = {
-		set_faction_research_unlocked = yes
-		add_faction_initiative = 1
-	}
-	ai_will_do = {
-		base = 1000 # They should always do this if they can
-	}
-}
-
-faction_goal_unlock_military = {
-	name = faction_goal_unlock_military_name
-	description = faction_goal_unlock_military_desc
-	category = short_term
-	group = FOCUS_FILTER_INTERNAL_AFFAIRS
-	available = {
-		FROM = { num_faction_members > 2 }
-	}
-	visible = {
-		FROM = { has_faction_military_unlocked = no }
-	}
-	select_effect = {
-		set_temp_variable = { total_divs = 0 }
-		every_collection_element = {
-			input = {
-				input = game:scope
-				operators =  {
-					faction_members
-				}
-			}
-			add_to_temp_variable = { total_divs = num_armies }
-		}
-		
-		multiply_temp_variable = {
-			var = total_divs
-			value = 1.20
-		}
-		scope:faction = {
-			set_variable = { unlock_target = total_divs }
-		}
-	}
-	completed = {
-		scope:faction = {
-			hidden_trigger = {
-				tooltip_evaluation = eval
-				set_temp_variable = { unlock_compare = 0 }			
-				all_collection_elements = {
-					collection = {
-						input = game:scope
-						operators =  { faction_members }
-					}
-					add_to_temp_variable = { unlock_compare = num_armies }
-					set_temp_variable = { unlock_military_techs_researched_compare_temp_target = unlock_compare }
-					multiply_temp_variable = { unlock_military_techs_researched_compare_temp_target = 1.20 }
-				}
-			}
-			if = {
-				limit = {
-					has_variable = unlock_target
-				}
-				check_variable = {
-					var = unlock_compare
-					value = unlock_target
-					compare = greater_than
-					tooltip = "GOAL_T_TRIGGER_B"
-				}
-			}
-			else = {
-				check_variable = {
-					var = unlock_compare
-					value = unlock_military_techs_researched_compare_temp_target
-					compare = greater_than
-					tooltip = "GOAL_T_TRIGGER_B"
-				}
-			}
-		}
-	}
-	complete_effect = {
-		set_faction_military_unlocked = yes
-		add_faction_initiative = 1
-	}
-	ai_will_do = {
-		base = 1000 # They should always do this if they can
-	}
-}
 faction_goal_ensure_military_r_d = {
 	name = ensure_military_r_d_goal_name
 	description = ensure_military_r_d_goal_desc
@@ -758,10 +568,10 @@ faction_goal_war_on_communism = {
 		}
 		any_country = {
 			OR = {
-				has_government = communist
-				has_government = revolutionary_socialist
-				has_government = national_bolshevik
-			}
+					has_government = communist
+					has_government = revolutionary_socialist
+					has_government = national_bolshevik
+				}
 			is_on_same_continent_as = FROM
 		}
 		NOT = { original_tag = JAP } # they have their own goal 
@@ -779,10 +589,10 @@ faction_goal_war_on_communism = {
 			any_allied_country = {
 				any_enemy_country = {
 					OR = {
-						has_government = communist
-						has_government = revolutionary_socialist
-						has_government = national_bolshevik
-					}
+					has_government = communist
+					has_government = revolutionary_socialist
+					has_government = national_bolshevik
+				}
 					is_on_same_continent_as = PREV
 				}
 			}
@@ -812,26 +622,51 @@ faction_goal_war_on_democracy = {
 	visible = {
 		FROM = {
 			NOT = {
-				has_democratic_government = yes
-			}
-			faction_leader = {
-				NOT = { has_democratic_government = yes }
+				OR = {
+					has_government = nationalist
+					has_government = national_conservative
+					has_government = centrist
+					has_government = liberal
+					has_government = new_democrat
+					has_government = moderate_socialist
+				}
 			}
 		}
 		any_country = {
-			has_democratic_government = yes
+			OR = {
+				has_government = nationalist
+				has_government = national_conservative
+				has_government = centrist
+				has_government = liberal
+				has_government = new_democrat
+				has_government = moderate_socialist
+			}
 			is_on_same_continent_as = FROM
 		}
 	}
 	completed = {
 		OR = {
 			any_enemy_country = {
-				has_democratic_government = yes
+				OR = {
+					has_government = nationalist
+					has_government = national_conservative
+					has_government = centrist
+					has_government = liberal
+					has_government = new_democrat
+					has_government = moderate_socialist
+				}
 				is_on_same_continent_as = ROOT
 			}
 			any_allied_country = {
 				any_enemy_country = {
-					has_democratic_government = yes
+					OR = {
+						has_government = nationalist
+						has_government = national_conservative
+						has_government = centrist
+						has_government = liberal
+						has_government = new_democrat
+						has_government = moderate_socialist
+					}
 					is_on_same_continent_as = PREV
 				}
 			}
@@ -872,8 +707,7 @@ faction_goal_an_armored_fist = {
 			    name = FACTION
 			}
 			unit = armor
-			equipment_ratio = 0.9
-			size > 49
+			size > 14
 		}
 		
 		
@@ -943,6 +777,1437 @@ faction_goal_an_infantry_army = {
 	}
 	ai_will_do = {
 		base = 1
+	}
+}
+
+### Strategic Resources
+
+# Mexican Oil
+faction_goal_develop_mexican_oil = {
+	name = develop_mexican_oil_goal_name
+	description = develop_mexican_oil_goal_desc
+	category = short_term
+	group = resources_to_market_icon
+	allowed = {
+		
+	}
+	visible = {
+		OR = {
+			480 = { is_controlled_by_ROOT_or_ally = yes }
+			479 = {	is_controlled_by_ROOT_or_ally = yes }
+			477 = {	is_controlled_by_ROOT_or_ally = yes }
+			476 = {	is_controlled_by_ROOT_or_ally = yes }	
+		}
+	}
+	available = {
+		FROM = {
+			has_tech = excavation1
+			has_tech = excavation2
+		}
+		480 = { is_controlled_by_ROOT_or_ally = yes }
+		479 = {	is_controlled_by_ROOT_or_ally = yes }
+		477 = {	is_controlled_by_ROOT_or_ally = yes }
+		476 = {	is_controlled_by_ROOT_or_ally = yes }
+	}
+	completed = {
+		480 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+		479 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+		477 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+		476 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+	}
+	complete_effect = {
+		add_faction_power_projection = 100
+		every_state = {
+			limit = {
+				OR = {
+					state = 480
+					state = 479
+					state = 477
+					state = 476
+				}
+			}
+			add_resource = {
+			    type = oil
+			    amount = 4
+			}
+		}
+	}
+	ai_will_do = {
+		base = 1 # Everyone should always kiiiinda care about oil
+		modifier = {
+			add = 1 # State owners should care more
+			OR = {
+				controls_state = 480
+				controls_state = 479
+				controls_state = 477
+				controls_state = 476
+			}
+		}
+		modifier = {
+			add = -1 # If the alliance is doing well with fuel avoid taking this...
+			fuel_ratio > 0.9
+			all_allied_country = {
+				fuel_ratio > 0.9
+			}
+		}
+		modifier = {
+			add = 1 # Powers with low fuel should care about oil a bit more
+			fuel_ratio < 0.4
+		}
+		modifier = {
+			add = 1 # Powers with very low fuel should care about oil A LOT
+			fuel_ratio < 0.1
+		}
+	}
+}
+
+# Curacao Oil
+faction_goal_develop_curacao_oil = {
+	name = develop_curacao_oil_goal_name
+	description = develop_curacao_oil_goal_desc
+	category = short_term
+	group = resources_to_market_icon
+	allowed = {
+		
+	}
+	visible = {
+		695 = { is_controlled_by_ROOT_or_ally = yes }
+	}
+	available = {
+		FROM = {
+			has_tech = excavation1
+			has_tech = excavation2
+		}
+	}
+	completed = {
+		695 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+	}
+	complete_effect = {
+		add_faction_power_projection = 100
+		695 = {
+			add_resource = {
+			    type = oil
+			    amount = 14
+			}
+		}
+	}
+	ai_will_do = {
+		base = 1 # Everyone should always kiiiinda care about oil
+		modifier = {
+			add = 1 # State owners should care more
+			controls_state = 695
+		}
+		modifier = {
+			add = -1 # If the alliance is doing well with fuel avoid taking this...
+			fuel_ratio > 0.9
+			all_allied_country = {
+				fuel_ratio > 0.9
+			}
+		}
+		modifier = {
+			add = 1 # Powers with low fuel should care about oil a bit more
+			fuel_ratio < 0.4
+		}
+		modifier = {
+			add = 1 # Powers with very low fuel should care about oil A LOT
+			fuel_ratio < 0.1
+		}
+	}
+}
+
+# Venezuelan Oil
+faction_goal_develop_venezuelan_oil = {
+	name = develop_venezuelan_oil_goal_name
+	description = develop_venezuelan_oil_goal_desc
+	category = short_term
+	group = resources_to_market_icon
+
+	allowed = {
+		
+	}
+	visible = {
+		OR = {
+			489 = { is_controlled_by_ROOT_or_ally = yes }
+			307 = {	is_controlled_by_ROOT_or_ally = yes }
+		}
+	}
+	available = {
+		FROM = {
+			has_tech = excavation1
+			has_tech = excavation2
+		}
+		489 = { is_controlled_by_ROOT_or_ally = yes }
+		307 = {	is_controlled_by_ROOT_or_ally = yes }
+	}
+	completed = {
+		489 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+		307 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+	}
+	complete_effect = {
+		add_faction_power_projection = 100
+		every_state = {
+			limit = {
+				OR = {
+					state = 489
+					state = 307
+				}
+			}
+			add_resource = {
+			    type = oil
+			    amount = 8
+			}
+		}
+	}
+	ai_will_do = {
+		base = 1 # Everyone should always kiiiinda care about oil
+		modifier = {
+			add = 1 # State owners should care more
+			OR = {
+				controls_state = 489
+				controls_state = 307
+			}
+		}
+		modifier = {
+			add = -1 # If the alliance is doing well with fuel avoid taking this...
+			fuel_ratio > 0.9
+			all_allied_country = {
+				fuel_ratio > 0.9
+			}
+		}
+		modifier = {
+			add = 1 # Powers with low fuel should care about oil a bit more
+			fuel_ratio < 0.4
+		}
+		modifier = {
+			add = 1 # Powers with very low fuel should care about oil A LOT
+			fuel_ratio < 0.1
+		}
+	}
+}
+
+# Guyanan Bauxite
+faction_goal_develop_guyanan_bauxite = {
+	name = develop_guyanan_bauxite_goal_name
+	description = develop_guyanan_bauxite_goal_desc
+	category = short_term
+	group = resources_to_market_icon
+	allowed = {
+		
+	}
+	visible = {
+		687 = { is_controlled_by_ROOT_or_ally = yes }
+	}
+	available = {
+		FROM = {
+			has_tech = excavation1
+			has_tech = excavation2
+		}
+
+	}
+	completed = {
+		687 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+	}
+	complete_effect = {
+		add_faction_power_projection = 100
+		687 = {
+			add_resource = {
+			    type = aluminium
+			    amount = 14
+			}
+		}
+	}
+	ai_will_do = {
+		base = 0
+		modifier = {
+			add = 1 # State owners should care more
+			controls_state = 687
+		}
+		modifier = {
+			add = 1 # If entire alliance is low on aluminium they should be incentivized to developing more
+			has_resources_in_collection = {
+				collection = {
+						input = game:scope
+						operators =  { faction_members }
+						name = FACTION
+				}
+				resource = aluminium
+				amount < 30
+				extracted = no # (optional, default: no) checks extracted amount instead of country balance
+			}
+		}
+		modifier = {
+			add = 3 # If entire alliance is very low on aluminium they should be heavily incentivized to developing more
+			has_resources_in_collection = {
+				collection = {
+						input = game:scope
+						operators =  { faction_members }
+						name = FACTION
+				}
+				resource = aluminium
+				amount < 10
+				extracted = no # (optional, default: no) checks extracted amount instead of country balance
+			}
+		}
+	}
+}
+
+# Surinamese Bauxite
+faction_goal_develop_suriname_bauxite = {
+	name = develop_suriname_bauxite_goal_name
+	description = develop_suriname_bauxite_goal_desc
+	category = short_term
+	group = resources_to_market_icon
+	allowed = {
+		
+	}
+	visible = {
+		309 = { is_controlled_by_ROOT_or_ally = yes }
+	}
+	available = {
+		FROM = {
+			has_tech = excavation1
+			has_tech = excavation2
+		}
+
+	}
+	completed = {
+		309 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+	}
+	complete_effect = {
+		add_faction_power_projection = 100
+		309 = {
+			add_resource = {
+			    type = aluminium
+			    amount = 14
+			}
+		}
+	}
+	ai_will_do = {
+		base = 0
+		modifier = {
+			add = 1 # State owners should care more
+			controls_state = 309
+		}
+		modifier = {
+			add = 1 # If entire alliance is low on aluminium they should be incentivized to developing more
+			has_resources_in_collection = {
+				collection = {
+						input = game:scope
+						operators =  { faction_members }
+						name = FACTION
+				}
+				resource = aluminium
+				amount < 30
+				extracted = no # (optional, default: no) checks extracted amount instead of country balance
+			}
+		}
+		modifier = {
+			add = 3 # If entire alliance is very low on aluminium they should be heavily incentivized to developing more
+			has_resources_in_collection = {
+				collection = {
+						input = game:scope
+						operators =  { faction_members }
+						name = FACTION
+				}
+				resource = aluminium
+				amount < 10
+				extracted = no # (optional, default: no) checks extracted amount instead of country balance
+			}
+		}
+	}
+}
+
+# Lappland Metals
+faction_goal_develop_lappland_metals = {
+	name = develop_lappland_metals_goal_name
+	description = develop_lappland_metals_goal_desc
+	category = short_term
+	group = resources_to_market_icon
+	allowed = {
+		
+	}
+	visible = {
+		OR = {
+			666 = { is_controlled_by_ROOT_or_ally = yes }
+			38 = {	is_controlled_by_ROOT_or_ally = yes }
+		}
+	}
+	available = {
+		FROM = {
+			has_tech = excavation1
+			has_tech = excavation2
+		}
+		666 = { is_controlled_by_ROOT_or_ally = yes }
+		38 = {	is_controlled_by_ROOT_or_ally = yes }
+	}
+	completed = {
+		666 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+		38 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+	}
+	complete_effect = {
+		add_faction_power_projection = 100
+		666 = {
+			add_resource = {
+			    type = tungsten
+			    amount = 14
+			}
+			add_resource = {
+			    type = steel
+			    amount = 14
+			}
+			add_resource = {
+			    type = chromium
+			    amount = 8
+			}
+		}
+		38 = {
+			add_resource = {
+			    type = tungsten
+			    amount = 10
+			}
+			add_resource = {
+			    type = steel
+			    amount = 10
+			}
+			add_resource = {
+			    type = chromium
+			    amount = 5
+			}
+		}
+	}
+	ai_will_do = {
+		base = 0
+		modifier = {
+			add = 1 # State owners should care more
+			OR = {
+				controls_state = 666
+				controls_state = 38
+			}
+		}
+		modifier = {
+			add = 1 # If entire alliance is low on resources they should be incentivized to developing more
+			OR = {
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = tungsten
+					amount < 45
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = steel
+					amount < 45
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = chromium
+					amount < 24
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+			}
+		}
+		modifier = {
+			add = 3 # If entire alliance is very low on resources they should be heavily incentivized to developing more
+			OR = {
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = tungsten
+					amount < 15
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = steel
+					amount < 15
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = chromium
+					amount < 8
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+			}
+		}
+	}
+}
+
+# Ploiesti Oil Fields
+faction_goal_develop_ploiesti_oil_fields = {
+	name = develop_ploiesti_oil_fields_goal_name
+	description = develop_ploiesti_oil_fields_goal_desc
+	category = short_term
+	group = resources_to_market_icon
+	allowed = {
+		
+	}
+	visible = {
+		46 = { is_controlled_by_ROOT_or_ally = yes }
+	}
+	available = {
+		FROM = {
+			has_tech = excavation1
+			has_tech = excavation2
+		}
+	}
+	completed = {
+		46 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+	}
+	complete_effect = {
+		add_faction_power_projection = 100
+		46 = {
+			add_resource = {
+			    type = oil
+			    amount = 14
+			}
+		}
+	}
+	ai_will_do = {
+		base = 1 # Everyone should always kiiiinda care about oil
+		modifier = {
+			add = 1 # State owners should care more
+			controls_state = 46
+		}
+		modifier = {
+			add = -1 # If the alliance is doing well with fuel avoid taking this...
+			fuel_ratio > 0.9
+			all_allied_country = {
+				fuel_ratio > 0.9
+			}
+		}
+		modifier = {
+			add = 1 # Powers with low fuel should care about oil a bit more
+			fuel_ratio < 0.4
+		}
+		modifier = {
+			add = 1 # Powers with very low fuel should care about oil A LOT
+			fuel_ratio < 0.1
+		}
+	}
+}
+
+# Baku Oil Fields
+faction_goal_develop_baku_oil_fields = {
+	name = develop_baku_oil_fields_goal_name
+	description = develop_baku_oil_fields_goal_desc
+	category = short_term
+	group = resources_to_market_icon
+
+	allowed = {
+		
+	}
+	visible = {
+		OR = {
+			229 = { is_controlled_by_ROOT_or_ally = yes }
+			232 = {	is_controlled_by_ROOT_or_ally = yes }
+		}
+	}
+	available = {
+		FROM = {
+			has_tech = excavation1
+			has_tech = excavation2
+		}
+		229 = { is_controlled_by_ROOT_or_ally = yes }
+		232 = {	is_controlled_by_ROOT_or_ally = yes }
+	}
+	completed = {
+		229 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+		232 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+	}
+	complete_effect = {
+		add_faction_power_projection = 100
+		every_state = {
+			limit = {
+				OR = {
+					state = 232
+				}
+			}
+			add_resource = {
+			    type = oil
+			    amount = 4
+			}
+		}
+		229 = {
+			add_resource = {
+			    type = oil
+			    amount = 14
+			}
+		}
+	}
+	ai_will_do = {
+		base = 1 # Everyone should always kiiiinda care about oil
+		modifier = {
+			add = 1 # State owners should care more
+			controls_state = 46
+		}
+		modifier = {
+			add = -1 # If the alliance is doing well with fuel avoid taking this...
+			fuel_ratio > 0.9
+			all_allied_country = {
+				fuel_ratio > 0.9
+			}
+		}
+		modifier = {
+			add = 1 # Powers with low fuel should care about oil a bit more
+			fuel_ratio < 0.4
+		}
+		modifier = {
+			add = 1 # Powers with very low fuel should care about oil A LOT
+			fuel_ratio < 0.1
+		}
+	}
+}
+
+# Iraqi Oil
+faction_goal_develop_iraqi_oil = {
+	name = develop_iraqi_oil_goal_name
+	description = develop_iraqi_oil_goal_desc
+	category = short_term
+	group = resources_to_market_icon
+	allowed = {
+		
+	}
+	visible = {
+		OR = {
+			291 = { is_controlled_by_ROOT_or_ally = yes }
+			676 = {	is_controlled_by_ROOT_or_ally = yes }
+			939 = { is_controlled_by_ROOT_or_ally = yes }	
+		}
+	}
+	available = {
+		FROM = {
+			has_tech = excavation1
+			has_tech = excavation2
+		}
+		291 = { is_controlled_by_ROOT_or_ally = yes }
+		676 = {	is_controlled_by_ROOT_or_ally = yes }
+		939 = { is_controlled_by_ROOT_or_ally = yes }	
+	}
+	completed = {
+		291 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+		676 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+		939 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+	}
+	complete_effect = {
+		add_faction_power_projection = 100
+		291 = {
+			add_resource = {
+			    type = oil
+			    amount = 6
+			}
+		}
+		676 = {
+			add_resource = {
+			    type = oil
+			    amount = 4
+			}
+		}
+		939 = {
+			add_resource = {
+			    type = oil
+			    amount = 2
+			}
+		}
+	}
+	ai_will_do = {
+		base = 1 # Everyone should always kiiiinda care about oil
+		modifier = {
+			add = 1 # State owners should care more
+			controls_state = 46
+		}
+		modifier = {
+			add = -1 # If the alliance is doing well with fuel avoid taking this...
+			fuel_ratio > 0.9
+			all_allied_country = {
+				fuel_ratio > 0.9
+			}
+		}
+		modifier = {
+			add = 1 # Powers with low fuel should care about oil a bit more
+			fuel_ratio < 0.4
+		}
+		modifier = {
+			add = 1 # Powers with very low fuel should care about oil A LOT
+			fuel_ratio < 0.1
+		}
+	}
+}
+
+# Persian Oil
+faction_goal_develop_persian_oil = {
+	name = develop_persian_oil_goal_name
+	description = develop_persian_oil_goal_desc
+	category = short_term
+	group = resources_to_market_icon
+	allowed = {
+		
+	}
+	visible = {
+		OR = {
+			411 = { is_controlled_by_ROOT_or_ally = yes }
+			412 = {	is_controlled_by_ROOT_or_ally = yes }
+			413 = { is_controlled_by_ROOT_or_ally = yes }	
+		}
+	}
+	available = {
+		FROM = {
+			has_tech = excavation1
+			has_tech = excavation2
+		}
+		411 = { is_controlled_by_ROOT_or_ally = yes }
+		412 = {	is_controlled_by_ROOT_or_ally = yes }
+		413 = { is_controlled_by_ROOT_or_ally = yes }
+	}
+	completed = {
+		411 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+		412 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+		413 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+	}
+	complete_effect = {
+		add_faction_power_projection = 100
+		411 = {
+			add_resource = {
+			    type = oil
+			    amount = 6
+			}
+		}
+		412 = {
+			add_resource = {
+			    type = oil
+			    amount = 4
+			}
+		}
+		413 = {
+			add_resource = {
+			    type = oil
+			    amount = 8
+			}
+		}
+	}
+	ai_will_do = {
+		base = 1 # Everyone should always kiiiinda care about oil
+		modifier = {
+			add = 1 # State owners should care more
+			controls_state = 46
+		}
+		modifier = {
+			add = -1 # If the alliance is doing well with fuel avoid taking this...
+			fuel_ratio > 0.9
+			all_allied_country = {
+				fuel_ratio > 0.9
+			}
+		}
+		modifier = {
+			add = 1 # Powers with low fuel should care about oil a bit more
+			fuel_ratio < 0.4
+		}
+		modifier = {
+			add = 1 # Powers with very low fuel should care about oil A LOT
+			fuel_ratio < 0.1
+		}
+	}
+}
+
+# Chinese Metals
+faction_goal_develop_chinese_metals = {
+	name = develop_chinese_metals_goal_name
+	description = develop_chinese_metals_goal_desc
+	category = short_term
+	group = resources_to_market_icon
+	allowed = {
+
+	}
+	visible = {
+		OR = {
+			593 = {	is_controlled_by_ROOT_or_ally = yes }
+			599 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+	}
+	available = {
+		FROM = {
+			has_tech = excavation1
+			has_tech = excavation2
+		}
+		593 = {	is_controlled_by_ROOT_or_ally = yes }
+		599 = { is_controlled_by_ROOT_or_ally = yes }
+	}
+	completed = {
+		593 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+		599 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+	}
+	complete_effect = {
+		add_faction_power_projection = 100
+		593 = {
+			add_resource = {
+			    type = tungsten
+			    amount = 6
+			}
+			add_resource = {
+			    type = steel
+			    amount = 6
+			}
+			add_resource = {
+			    type = chromium
+			    amount = 2
+			}
+		}
+		599 = {
+			add_resource = {
+			    type = tungsten
+			    amount = 6
+			}
+			add_resource = {
+			    type = steel
+			    amount = 6
+			}
+			add_resource = {
+			    type = chromium
+			    amount = 2
+			}
+		}
+	}
+	ai_will_do = {
+		base = 0
+		modifier = {
+			add = 1 # State owners should care more
+			OR = {
+				controls_state = 593
+				controls_state = 599
+			}
+		}
+		modifier = {
+			add = 1 # If entire alliance is low on resources they should be incentivized to developing more
+			OR = {
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = tungsten
+					amount < 45
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = steel
+					amount < 45
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = chromium
+					amount < 24
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+			}
+		}
+		modifier = {
+			add = 3 # If entire alliance is very low on resources they should be heavily incentivized to developing more
+			OR = {
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = tungsten
+					amount < 15
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = steel
+					amount < 15
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = chromium
+					amount < 8
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+			}
+		}
+	}
+}
+
+# Malayan Riches
+faction_goal_develop_malayan_riches = {
+	name = develop_malayan_riches_goal_name
+	description = develop_malayan_riches_goal_desc
+	category = short_term
+	group = resources_to_market_icon
+	allowed = {
+		
+	}
+	visible = {
+		OR = {
+			333 = { is_controlled_by_ROOT_or_ally = yes }
+			336 = {	is_controlled_by_ROOT_or_ally = yes }
+			816 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+	}
+	available = {
+		FROM = {
+			has_tech = excavation1
+			has_tech = excavation2
+		}
+		333 = { is_controlled_by_ROOT_or_ally = yes }
+		336 = {	is_controlled_by_ROOT_or_ally = yes }
+		816 = { is_controlled_by_ROOT_or_ally = yes }
+		817 = { is_controlled_by_ROOT_or_ally = yes }
+	}
+	completed = {
+		333 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+		336 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+		816 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+		817 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+	}
+	complete_effect = {
+		add_faction_power_projection = 100
+		333 = {
+			add_resource = {
+			    type = oil
+			    amount = 2
+			}
+			add_resource = {
+			    type = rubber
+			    amount = 8
+			}
+			add_resource = {
+			    type = coal
+			    amount = 1
+			}
+		}
+		336 = {
+			add_resource = {
+			    type = aluminium
+			    amount = 4
+			}
+			add_resource = {
+			    type = rubber
+			    amount = 60
+			}
+			add_resource = {
+			    type = tungsten
+			    amount = 28
+			}
+			add_resource = {
+			    type = steel
+			    amount = 4
+			}
+		}
+		816 = {
+			add_resource = {
+			    type = aluminium
+			    amount = 4
+			}
+			add_resource = {
+			    type = rubber
+			    amount = 60
+			}
+			add_resource = {
+			    type = tungsten
+			    amount = 28
+			}
+			add_resource = {
+			    type = steel
+			    amount = 4
+			}
+		}
+		817 = {
+			add_resource = {
+			    type = aluminium
+			    amount = 4
+			}
+			add_resource = {
+			    type = rubber
+			    amount = 60
+			}
+			add_resource = {
+			    type = tungsten
+			    amount = 28
+			}
+			add_resource = {
+			    type = steel
+			    amount = 4
+			}
+		}
+	}
+	ai_will_do = {
+		base = 0
+		modifier = {
+			add = 1 # State owners should care more
+			OR = {
+				controls_state = 333
+				controls_state = 336
+				controls_state = 816
+				controls_state = 817
+			}
+		}
+		modifier = {
+			add = 1 # If entire alliance is low on resources they should be incentivized to developing more
+			OR = {
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = rubber
+					amount < 45
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = tungsten
+					amount < 45
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = steel
+					amount < 24
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = aluminium
+					amount < 12
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = oil
+					amount < 30
+					extracted = yes  # (optional, default: no) checks extracted amount instead of country balance
+				}
+			}
+		}
+		modifier = {
+			add = 3 # If entire alliance is very low on resources they should be heavily incentivized to taking more
+			OR = {
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = rubber
+					amount < 15
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = tungsten
+					amount < 15
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = steel
+					amount < 8
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = aluminium
+					amount < 4
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = oil
+					amount < 10
+					extracted = yes  # (optional, default: no) checks extracted amount instead of country balance
+				}
+			}
+		}
+	}
+}
+
+# Indonesian Riches
+faction_goal_develop_indonesian_riches = {
+	name = develop_indonesian_riches_goal_name
+	description = control_indonesian_riches_goal_desc
+	category = short_term
+	group = resources_to_market_icon
+	allowed = {
+		
+	}
+	visible = {
+		OR = {
+			334 = { is_controlled_by_ROOT_or_ally = yes }
+			335 = {	is_controlled_by_ROOT_or_ally = yes }
+			667 = {	is_controlled_by_ROOT_or_ally = yes }
+			672 = { is_controlled_by_ROOT_or_ally = yes }
+			673 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+	}
+	available = {
+		FROM = {
+			has_tech = excavation1
+			has_tech = excavation2
+		}
+		334 = { is_controlled_by_ROOT_or_ally = yes }
+		335 = {	is_controlled_by_ROOT_or_ally = yes }
+		667 = {	is_controlled_by_ROOT_or_ally = yes }
+		672 = { is_controlled_by_ROOT_or_ally = yes }
+		673 = { is_controlled_by_ROOT_or_ally = yes }
+	}
+	completed = {
+		334 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+		335 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+		667 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+		672 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+		673 = {
+			CONTROLLER = { has_tech = excavation3 }
+			infrastructure > 4
+		}
+	}
+	complete_effect = {
+		add_faction_power_projection = 100
+		334 = {
+			add_resource = {
+			    type = oil
+			    amount = 3
+			}
+			add_resource = {
+			    type = rubber
+			    amount = 28
+			}
+			add_resource = {
+			    type = coal
+			    amount = 2
+			}
+		}
+		335 = {
+			add_resource = {
+			    type = oil
+			    amount = 4
+			}
+			add_resource = {
+			    type = rubber
+			    amount = 48
+			}
+		}
+		667 = {
+			add_resource = {
+			    type = rubber
+			    amount = 6
+			}
+		}
+		672 = {
+			add_resource = {
+			    type = oil
+			    amount = 5
+			}
+			add_resource = {
+			    type = aluminium
+			    amount = 8
+			}
+			add_resource = {
+			    type = rubber
+			    amount = 50
+			}
+			add_resource = {
+			    type = coal
+			    amount = 3
+			}
+		}
+		673 = {
+			add_resource = {
+			    type = rubber
+			    amount = 10
+			}
+		}
+	}
+	ai_will_do = {
+		base = 0
+		modifier = {
+			add = 1 # State owners should care more
+			OR = {
+				controls_state = 334
+				controls_state = 335
+				controls_state = 667
+				controls_state = 672
+				controls_state = 673
+			}
+		}
+		modifier = {
+			add = 1 # If entire alliance is low on resources they should be incentivized to developing more
+			OR = {
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = rubber
+					amount < 45
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = tungsten
+					amount < 45
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = steel
+					amount < 24
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = aluminium
+					amount < 12
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = oil
+					amount < 30
+					extracted = yes  # (optional, default: no) checks extracted amount instead of country balance
+				}
+			}
+		}
+		modifier = {
+			add = 3 # If entire alliance is very low on resources they should be heavily incentivized to taking more
+			OR = {
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = rubber
+					amount < 15
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = tungsten
+					amount < 15
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = steel
+					amount < 8
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = aluminium
+					amount < 4
+					extracted = no # (optional, default: no) checks extracted amount instead of country balance
+				}
+				has_resources_in_collection = {
+					collection = {
+							input = game:scope
+							operators =  { faction_members }
+							name = FACTION
+					}
+					resource = oil
+					amount < 10
+					extracted = yes  # (optional, default: no) checks extracted amount instead of country balance
+				}
+			}
+		}
 	}
 }
 
@@ -1699,13 +2964,13 @@ faction_goal_fortify_danish_belts = {
 	visible = {
 		OR = {
 			37 = { is_controlled_by_ROOT_or_ally = yes }
-			911 = { is_controlled_by_ROOT_or_ally = yes }
+			887 = { is_controlled_by_ROOT_or_ally = yes }
 			99 = { is_controlled_by_ROOT_or_ally = yes }
 		}
 	}
 	available = {
 		37 = { is_controlled_by_ROOT_or_ally = yes }
-		911 = { is_controlled_by_ROOT_or_ally = yes }
+		887 = { is_controlled_by_ROOT_or_ally = yes }
 		99 = { is_controlled_by_ROOT_or_ally = yes }
 	}
 	completed = {
@@ -1721,7 +2986,7 @@ faction_goal_fortify_danish_belts = {
 					level > 0
 				}
 			}
-			911 = {
+			887 = {
 				any_province_building_level = {
 					province = {
 						id = 3325
@@ -1743,12 +3008,12 @@ faction_goal_fortify_danish_belts = {
 			OR = {
 				AND = {
 					divisions_in_state = { state = 37 size > 1 }
-					divisions_in_state = { state = 911 size > 0 }
+					divisions_in_state = { state = 887 size > 0 }
 					divisions_in_state = { state = 99 size > 1 }
 				}
 				any_allied_country = {
 					divisions_in_state = { state = 37 size > 1 }
-					divisions_in_state = { state = 911 size > 0 }
+					divisions_in_state = { state = 887 size > 0 }
 					divisions_in_state = { state = 99 size > 1 }
 				}
 			}
@@ -1763,7 +3028,7 @@ faction_goal_fortify_danish_belts = {
 			limit = {
 				OR = {
 					controls_state = 37
-					controls_state = 911
+					controls_state = 887
 					controls_state = 99
 				}
 			}
@@ -1783,7 +3048,7 @@ faction_goal_fortify_danish_belts = {
 				instant_build = yes
 			}
 		}
-		911 = {
+		887 = {
 			add_building_construction = {
 				type = coastal_bunker
 				level = 1
@@ -2592,13 +3857,13 @@ faction_goal_expand_gulf_of_aden_bases = {
 		
 	}
 	visible = {
-		992 = { is_controlled_by_ROOT_or_ally = yes }
+		979 = { is_controlled_by_ROOT_or_ally = yes }
 	}
 	available = {
 
 	}
 	completed = {
-		992 = {
+		979 = {
 			air_base > 2
 			any_province_building_level = {
 				province = {
@@ -2616,7 +3881,7 @@ faction_goal_expand_gulf_of_aden_bases = {
 		every_faction_member = { 
 			visible_when_empty = yes
 			limit = {
-				controls_state = 992
+				controls_state = 979
 			}
 			add_faction_initiative = 1
 		}
@@ -3569,5 +4834,159 @@ faction_goal_expand_midway_island_bases = {
 				type = capital_ship
 			}
 		}
+	}
+}
+
+#unlock research
+faction_goal_unlock_research = {
+	name = faction_goal_unlock_research_name
+	description = faction_goal_unlock_research_desc
+	category = short_term
+	group = FOCUS_FILTER_INTERNAL_AFFAIRS
+	available = {
+		FROM = { num_faction_members > 2 }
+	}
+	visible = {
+		FROM = { has_faction_research_unlocked = no }
+	}
+	select_effect = {
+		set_temp_variable = { total_techs = 0 }
+		every_collection_element = {
+			input = {
+				input = game:scope
+				operators =  {
+					faction_members
+				}
+			}
+			add_to_temp_variable = { total_techs = num_researched_technologies }
+		}
+		
+		multiply_temp_variable = {
+			var = total_techs
+			value = 1.20
+		}
+		scope:faction = {
+			set_variable = { unlock_military_techs_researched_target = total_techs }
+		}
+	}
+	completed = {
+		scope:faction = {
+			hidden_trigger = {
+				tooltip_evaluation = eval
+				set_temp_variable = { unlock_military_techs_researched_compare = 0 }			
+				all_collection_elements = {
+					collection = {
+						input = game:scope
+						operators =  { faction_members }
+					}
+					add_to_temp_variable = { unlock_military_techs_researched_compare = num_researched_technologies }
+				}
+				set_temp_variable = { unlock_military_techs_researched_compare_temp_target = unlock_military_techs_researched_compare }
+				multiply_temp_variable = { unlock_military_techs_researched_compare_temp_target = 1.20 }
+			}
+			if = {
+				limit = {
+					has_variable = unlock_military_techs_researched_target
+				}
+				check_variable = {
+					var = unlock_military_techs_researched_compare
+					value = unlock_military_techs_researched_target
+					compare = greater_than
+					tooltip = "GOAL_T_TRIGGER_A"
+				}
+			}
+			else = {
+				check_variable = {
+					var = unlock_military_techs_researched_compare
+					value = unlock_military_techs_researched_compare_temp_target
+					compare = greater_than
+					tooltip = "GOAL_T_TRIGGER_A"
+				}
+			}
+		}
+	}
+	complete_effect = {
+		set_faction_research_unlocked = yes
+		add_faction_initiative = 1
+	}
+	ai_will_do = {
+		base = 1000 # They should always do this if they can
+	}
+}
+
+#unlock military
+faction_goal_unlock_military = {
+	name = faction_goal_unlock_military_name
+	description = faction_goal_unlock_military_desc
+	category = short_term
+	group = FOCUS_FILTER_INTERNAL_AFFAIRS
+	available = {
+		FROM = { num_faction_members > 2 }
+	}
+	visible = {
+		FROM = { has_faction_military_unlocked = no }
+	}
+	select_effect = {
+		set_temp_variable = { total_divs = 0 }
+		every_collection_element = {
+			input = {
+				input = game:scope
+				operators =  {
+					faction_members
+				}
+			}
+			add_to_temp_variable = { total_divs = num_armies }
+		}
+		
+		multiply_temp_variable = {
+			var = total_divs
+			value = 1.20
+		}
+		scope:faction = {
+			set_variable = { unlock_target = total_divs }
+		}
+	}
+	completed = {
+		scope:faction = {
+			hidden_trigger = {
+				tooltip_evaluation = eval
+				set_temp_variable = { unlock_compare = 0 }			
+				all_collection_elements = {
+					collection = {
+						input = game:scope
+						operators =  { faction_members }
+					}
+					add_to_temp_variable = { unlock_compare = num_armies }
+					set_temp_variable = { unlock_military_techs_researched_compare_temp_target = unlock_compare }
+					multiply_temp_variable = { unlock_military_techs_researched_compare_temp_target = 1.20 }
+				}
+			}
+			if = {
+				limit = {
+					has_variable = unlock_target
+				}
+				check_variable = {
+					var = unlock_compare
+					value = unlock_target
+					compare = greater_than
+					tooltip = "GOAL_T_TRIGGER_B"
+				}
+			}
+			else = {
+				check_variable = {
+					var = unlock_compare
+					value = unlock_military_techs_researched_compare_temp_target
+					compare = greater_than
+					tooltip = "GOAL_T_TRIGGER_B"
+				}
+			}
+		}
+	}
+	complete_effect = {
+		set_faction_military_unlocked = yes
+		add_faction_initiative = 1
+	}
+	ai_will_do = {
+		base = 1000 # They should always do this if they can
 	}
 }

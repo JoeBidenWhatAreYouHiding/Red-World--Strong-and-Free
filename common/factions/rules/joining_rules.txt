@@ -21,7 +21,11 @@ joining_rule_non_fascist = {
 		}
 		modifier = {
 			add = 1
-			has_socialist_government = yes
+			OR = {
+				has_government = communist
+				has_government = revolutionary_socialist
+				has_government = moderate_socialist
+			}
 		}
 	}
 	trigger = {
@@ -38,13 +42,31 @@ joining_rule_non_fascist = {
 joining_rule_non_democratic = {
 	type = joining_rules
 	visible = {
-		NOT = { has_democratic_government = yes }
+		NOT = { 
+			OR = {
+				has_government = nationalist
+				has_government = national_conservative
+				has_government = centrist
+				has_government = liberal
+				has_government = new_democrat
+				has_government = moderate_socialist
+			} 
+		}
 	}
 	ai_will_do = {
 		base = 0
 		modifier = {
 			add = 1
-			NOT = { has_democratic_government = yes }
+			NOT = { 
+				OR = {
+					has_government = nationalist
+					has_government = national_conservative
+					has_government = centrist
+					has_government = liberal
+					has_government = new_democrat
+					has_government = moderate_socialist
+				} 
+			}
 		}
 		modifier = {
 			add = 1
@@ -53,7 +75,14 @@ joining_rule_non_democratic = {
 	}
 	trigger = {
 		NOT = {
-			has_democratic_government = yes
+			OR = {
+				has_government = nationalist
+				has_government = national_conservative
+				has_government = centrist
+				has_government = liberal
+				has_government = new_democrat
+				has_government = moderate_socialist
+			} 
 		}
 		IF = {
 			limit = { NOT = { has_rule = can_join_opposite_factions } }
@@ -65,13 +94,25 @@ joining_rule_non_democratic = {
 joining_rule_non_communist = {
 	type = joining_rules
 	visible = {
-		NOT = { has_socialist_government = yes }
+		NOT = { 
+			OR = {
+				has_government = communist
+				has_government = revolutionary_socialist
+				has_government = moderate_socialist
+			} 
+		}
 	}
 	ai_will_do = {
 		base = 0
 		modifier = {
 			add = 1
-			NOT = { has_socialist_government = yes }
+			NOT = { 
+				OR = {
+				has_government = communist
+				has_government = revolutionary_socialist
+				has_government = moderate_socialist
+				}
+			}
 		}
 		modifier = {
 			add = 1
@@ -105,7 +146,11 @@ joining_rule_non_communist = {
 	}
 	trigger = {
 		NOT = {
-			has_socialist_government = yes
+			OR = {
+				has_government = communist
+				has_government = revolutionary_socialist
+				has_government = moderate_socialist
+			}
 		}
 		IF = {
 			limit = { NOT = { has_rule = can_join_opposite_factions } }
@@ -137,10 +182,26 @@ joining_rule_democratic_non_aligned = {
 		base = 0
 	}
 	available = {
-		has_democratic_government = yes
+		OR = {
+				has_government = nationalist
+				has_government = national_conservative
+				has_government = centrist
+				has_government = liberal
+				has_government = new_democrat
+				has_government = moderate_socialist
+			}
 	}
 	trigger = {
-		has_democratic_government = yes
+		OR = {
+			OR = {
+				has_government = nationalist
+				has_government = national_conservative
+				has_government = centrist
+				has_government = liberal
+				has_government = new_democrat
+				has_government = moderate_socialist
+			}
+		}
 		IF = {
 			limit = { NOT = { has_rule = can_join_opposite_factions } }
 			has_government = FROM
@@ -164,10 +225,119 @@ joining_rule_communist_only = {
 		base = 0
 	}
 	available = {
-		has_socialist_government = yes
+		OR = {
+			has_government = communist
+			has_government = revolutionary_socialist
+			has_government = moderate_socialist
+		}
 	}
 	trigger = {
-		has_socialist_government = yes
+		OR = {
+			has_government = communist
+			has_government = revolutionary_socialist
+			has_government = moderate_socialist
+		}
+		IF = {
+			limit = { NOT = { has_rule = can_join_opposite_factions } }
+			has_government = FROM
+		}
+	}
+}
+
+joining_rule_national_bolshevik_only = {
+	type = joining_rules
+	ai_will_do = {
+		base = 0
+	}
+	available = {
+		has_government = national_bolshevik
+	}
+	trigger = {
+		has_government = national_bolshevik
+		IF = {
+			limit = { NOT = { has_rule = can_join_opposite_factions } }
+			has_government = FROM
+		}
+	}
+}
+
+joining_rule_monarchist_only = {
+	type = joining_rules
+	ai_will_do = {
+		base = 0
+	}
+	available = {
+		has_government = monarchist
+	}
+	trigger = {
+		has_government = monarchist
+		IF = {
+			limit = { NOT = { has_rule = can_join_opposite_factions } }
+			has_government = FROM
+		}
+	}
+}
+
+joining_rule_revolutionary_socialist_only = {
+	type = joining_rules
+	ai_will_do = {
+		base = 0
+	}
+	available = {
+		has_government = revolutionary_socialist
+	}
+	trigger = {
+		has_government = revolutionary_socialist
+		IF = {
+			limit = { NOT = { has_rule = can_join_opposite_factions } }
+			has_government = FROM
+		}
+	}
+}
+
+joining_rule_modsoc_newdem_only = {
+	type = joining_rules
+	ai_will_do = {
+		base = 0
+	}
+	available = {
+		OR = {
+			has_government = moderate_socialist
+			has_government = new_democrat
+		}
+	}
+	trigger = {
+		OR = {
+			has_government = moderate_socialist
+			has_government = new_democrat
+		}
+		IF = {
+			limit = { NOT = { has_rule = can_join_opposite_factions } }
+			has_government = FROM
+		}
+	}
+}
+
+joining_rule_right_wing = {
+	type = joining_rules
+	ai_will_do = {
+		base = 0
+	}
+	available = {
+		OR = {
+			has_government = fascist
+			has_government = nationalist
+			has_government = monarchist
+			has_government = national_bolshevik
+		}
+	}
+	trigger = {
+		OR = {
+			has_government = fascist
+			has_government = nationalist
+			has_government = monarchist
+			has_government = national_bolshevik
+		}
 		IF = {
 			limit = { NOT = { has_rule = can_join_opposite_factions } }
 			has_government = FROM
@@ -232,7 +402,14 @@ joining_rule_has_no_war = {
 		base = 0
 		modifier = {
 			add = 3
-			has_democratic_government = yes
+			OR = {
+				has_government = nationalist
+				has_government = national_conservative
+				has_government = centrist
+				has_government = liberal
+				has_government = new_democrat
+				has_government = moderate_socialist
+			}
 			has_war = no 
 		}
 	}
@@ -253,8 +430,14 @@ joining_rule_has_no_offensive_war = {
 			NOT = { tag = ENG }
 			NOT = { tag = USA }
 			OR = {
-				has_democratic_government = yes
-				has_government = monarchist
+				OR = {
+					has_government = nationalist
+					has_government = national_conservative
+					has_government = centrist
+					has_government = liberal
+					has_government = new_democrat
+					has_government = moderate_socialist
+				}
 			}
 		}
 	}
@@ -282,7 +465,14 @@ joining_rule_neighbors_only = {
 		base = 0
 		modifier = {
 			add = 1
-			has_democratic_government = yes
+			OR = {
+				has_government = nationalist
+				has_government = national_conservative
+				has_government = centrist
+				has_government = liberal
+				has_government = new_democrat
+				has_government = moderate_socialist
+			}
 			has_war = no 
 		}
 	}
@@ -634,83 +824,7 @@ joining_rule_baltics_only = {
 joining_rule_islamic_only = {
 	type = joining_rules
 	visible = {
-		OR = {
-			original_tag = SAU
-			original_tag = OMA
-			original_tag = YEM
-			original_tag = IRQ
-			original_tag = PER
-			original_tag = FSA
-			original_tag = JOR
-			original_tag = PAL
-			original_tag = SYR
-			original_tag = LEB
-			original_tag = TUR
-			original_tag = QAT
-			original_tag = BHR
-			original_tag = UAE
-			original_tag = EGY
-			original_tag = SUD
-			original_tag = LBA
-			original_tag = TUN
-			original_tag = ALG
-			original_tag = MOR
-			original_tag = RIF
-			original_tag = MAL
-			original_tag = INS
-			original_tag = MLD
-			original_tag = BAN
-			original_tag = PAK
-			original_tag = WES
-			original_tag = MRT
-			original_tag = SOK
-			original_tag = MLI
-			original_tag = NGR
-			original_tag = NGA
-			original_tag = SOM
-			original_tag = AFA
-			original_tag = AZR
-			original_tag = DAG
-			original_tag = CIN
-			original_tag = ALB
-			original_tag = TAT
-			original_tag = BSK
-			original_tag = BUK
-			original_tag = KHI
-			original_tag = UZB
-			original_tag = KAZ
-			original_tag = TAJ
-			original_tag = KYR
-			original_tag = TMS
-			original_tag = KKP
-			original_tag = SIN
-			original_tag = KAS                  
-			original_tag = CRI              
-			original_tag = KOS              
-			original_tag = KUR      
-			original_tag = BLC      
-			original_tag = IMO      
-			original_tag = KLT      
-			original_tag = KBK      
-			original_tag = DJI      
-			original_tag = HAR      
-			original_tag = SEN      
-			original_tag = GAM      
-			original_tag = GNB      
-			original_tag = SIE      
-			original_tag = VOL      
-			original_tag = GNA      
-			original_tag = XSM      
-			original_tag = SIK
-			original_tag = KHM
-			original_tag = GSM
-			original_tag = NXM
-			original_tag = KUM
-			original_tag = SAB
-			original_tag = BRN
-			original_tag = CHM  
-			original_tag = AFG
-		}
+		has_country_flag = muslim_nation
 	}
 	can_remove = {
 		faction_manifest_fulfillment > 0.75
@@ -726,84 +840,60 @@ joining_rule_islamic_only = {
 	trigger = {
 		custom_trigger_tooltip = {
 			tooltip = is_islamic_country_tt
-			OR = {
-				original_tag = SAU
-				original_tag = OMA
-				original_tag = YEM
-				original_tag = IRQ
-				original_tag = PER
-				original_tag = FSA
-				original_tag = JOR
-				original_tag = PAL
-				original_tag = SYR
-				original_tag = LEB
-				original_tag = TUR
-				original_tag = QAT
-				original_tag = BHR
-				original_tag = UAE
-				original_tag = EGY
-				original_tag = SUD
-				original_tag = LBA
-				original_tag = TUN
-				original_tag = ALG
-				original_tag = MOR
-				original_tag = RIF
-				original_tag = MAL
-				original_tag = INS
-				original_tag = MLD
-				original_tag = BAN
-				original_tag = PAK
-				original_tag = WES
-				original_tag = MRT
-				original_tag = SOK
-				original_tag = MLI
-				original_tag = NGR
-				original_tag = NGA
-				original_tag = SOM
-				original_tag = AFA
-				original_tag = AZR
-				original_tag = DAG
-				original_tag = CIN
-				original_tag = ALB
-				original_tag = TAT
-				original_tag = BSK
-				original_tag = BUK
-				original_tag = KHI
-				original_tag = UZB
-				original_tag = KAZ
-				original_tag = TAJ
-				original_tag = KYR
-				original_tag = TMS
-				original_tag = KKP
-				original_tag = SIN
-				original_tag = KAS                  
-				original_tag = CRI              
-				original_tag = KOS              
-				original_tag = KUR      
-				original_tag = BLC      
-				original_tag = IMO      
-				original_tag = KLT      
-				original_tag = KBK      
-				original_tag = DJI      
-				original_tag = HAR      
-				original_tag = SEN      
-				original_tag = GAM      
-				original_tag = GNB      
-				original_tag = SIE      
-				original_tag = VOL      
-				original_tag = GNA      
-				original_tag = XSM      
-				original_tag = SIK
-				original_tag = KHM
-				original_tag = GSM
-				original_tag = NXM
-				original_tag = KUM
-				original_tag = SAB
-				original_tag = BRN
-				original_tag = CHM  
-				original_tag = AFG
-			}
+			has_country_flag = muslim_nation
 		}
+	}
+}
+
+joining_rule_shia_only = {
+	type = joining_rules
+	visible = {
+		OR = {
+			tag = YAR
+			tag = PER
+			tag = LEB
+			tag = IRQ
+		}
+	}
+	can_remove = {
+		faction_manifest_fulfillment > 0.75
+	}
+	ai_will_do = {
+		base = 0
+	}
+
+	modifier = {
+		stability_factor = 0.05
+	}
+
+	trigger = {
+		OR = {
+			tag = YAR
+			tag = PER
+			tag = LEB
+			tag = IRQ
+		}
+	}
+}
+
+joining_rule_catholic_only = {
+	type = joining_rules
+	visible = {
+		has_country_flag = catholic_nation
+	}
+	can_remove = {
+		faction_manifest_fulfillment > 0.75
+	}
+	ai_will_do = {
+		base = 0
+	}
+
+	modifier = {
+		stability_factor = 0.05
+	}
+
+	trigger = {
+		has_country_flag = catholic_nation
 	}
 }
 
@@ -935,5 +1025,119 @@ joining_rule_asia_only = {
 	
 	trigger = {
 		capital_scope = { is_on_continent = asia }
+	}
+}
+
+joining_rule_italy_only = {
+	type = joining_rules
+	ai_will_do = {
+		base = 0
+	}
+	visible = {
+		capital_scope = {
+				OR = {
+					is_core_of = ITA
+				}
+			}
+	}
+	can_remove = {
+		faction_manifest_fulfillment > 0.95	
+	}
+	trigger = {
+		capital_scope = {
+				OR = {
+					is_core_of = ITA
+				}
+			}
+	}
+}
+
+joining_rule_british_isles_only = {
+	type = joining_rules
+	ai_will_do = {
+		base = 0
+	}
+	visible = {
+		capital_scope = {
+				OR = {
+					is_core_of = ENG
+					is_core_of = SCO
+					is_core_of = WAL
+					is_core_of = ULS
+					is_core_of = IRE
+				}
+			}
+	}
+	can_remove = {
+		faction_manifest_fulfillment > 0.95	
+	}
+	trigger = {
+		capital_scope = {
+				OR = {
+					is_core_of = ENG
+					is_core_of = SCO
+					is_core_of = WAL
+					is_core_of = ULS
+					is_core_of = IRE
+				}
+			}
+	}
+}
+
+joining_rule_middle_east_only = {
+	type = joining_rules
+	visible = {
+		OR = {
+			capital_scope = { is_on_continent = middle_east }
+			tag = EGY
+			tag = UAR
+		}
+	}
+	can_remove = {
+		faction_manifest_fulfillment > 0.95
+	}
+	ai_will_do = {
+		base = 0
+		modifier = {
+			add = 1
+			is_faction_leader = yes 
+			OR = {
+				capital_scope = { is_on_continent = middle_east }
+				tag = EGY
+				tag = UAR
+			}
+		}
+	}
+
+	trigger = {
+		OR = {
+			capital_scope = { is_on_continent = middle_east }
+			tag = EGY
+			tag = UAR
+		}
+	}
+	modifier = {
+		enemy_justify_war_goal_time = 0.1
+	}
+}
+
+joining_rule_nam_only = {
+	type = joining_rules
+	visible = {
+		has_country_flag = non_aligned_movement_flag
+	}
+	can_remove = {
+		faction_manifest_fulfillment > 0.75
+	}
+	ai_will_do = {
+		base = 0
+	}
+
+	modifier = {
+		stability_factor = 0.05
+	}
+
+	trigger = {
+		has_country_flag = non_aligned_movement_flag
 	}
 }

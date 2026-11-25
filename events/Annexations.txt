@@ -200,18 +200,16 @@ country_event = { #Albania
 			base = 100
 		}
 		trigger = {
-			AND = {
-				NOT = {
-					has_cosmetic_tag = SPR_SFKS
-				}
-				NOT = {
-					has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
-				}
-				NOT = {
-					AND = {
-						tag = CAT
-						has_country_leader_ideology = revolutionary_nazi
-					}
+			NOT = {
+				has_cosmetic_tag = SPR_SFKS
+			}
+			NOT = {
+				has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
 				}
 			}
 		}
@@ -305,10 +303,8 @@ country_event = { #Albania
 			base = 100
 		}
 		trigger = {
-			AND = {
-				tag = CAT
-				has_government = national_bolshevik
-			}
+			tag = CAT
+			has_government = national_bolshevik
 		}
 		every_state = {
 			limit = {
@@ -664,13 +660,11 @@ country_event = { #Arizona
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -738,13 +732,11 @@ country_event = { #Arizona
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -922,12 +914,10 @@ country_event = { #Armenia
 			base = 100
 		}
 		trigger = {
-			AND = {
-				tag = CAT
-				has_government = national_bolshevik
-				GEO = {
-					is_puppet_of = CAT
-				}
+			tag = CAT
+			has_government = national_bolshevik
+			GEO = {
+				is_puppet_of = CAT
 			}
 		}
 		every_state = {
@@ -1886,6 +1876,35 @@ country_event = { #Basque
 			}
 		}
 	}
+
+	immediate = {
+		hidden_effect = {
+			every_state = {
+				limit = {
+					NOT = {
+						is_core_of = BSQ
+					}
+					is_in_array = {
+						array = BSQ_starting_cores
+						value = THIS
+					}
+				}
+				add_core_of = BSQ
+			}
+			every_state = {
+				limit = {
+					is_core_of = BSQ
+					NOT = {
+						is_in_array = {
+							array = BSQ_starting_cores
+							value = THIS
+						}
+					}
+				}
+				remove_core_of = BSQ
+			}
+		}
+	}
 	
 	is_triggered_only = yes
 
@@ -2091,10 +2110,8 @@ country_event = { #Basque
 			base = 100
 		}
 		trigger = {
-			AND = {
-				tag = CAT
-				has_government = national_bolshevik
-			}
+			tag = CAT
+			has_government = national_bolshevik
 		}
 		every_state = {
 			limit = {
@@ -2143,6 +2160,9 @@ country_event = { #Basque
 					transfer_state = 927
 				}
 			}
+			BSQ = {
+				load_focus_tree = generic_focus
+			}
 		}
 	}
 
@@ -2169,10 +2189,7 @@ country_event = { #Bavaria (South German Confederation)
 		}
 		every_state = {
 			limit = {
-				OR = {
-					is_core_of = BAV
-					is_claimed_by = BAV
-				}
+				is_core_of = BAV
 				is_owned_by = ROOT
 				NOT = {
 					is_core_of = ROOT
@@ -2181,7 +2198,6 @@ country_event = { #Bavaria (South German Confederation)
 			}
 			BAV = {
 				transfer_state = PREV
-				add_state_core = PREV
 			}
 		}
 		hidden_effect = {
@@ -2382,13 +2398,11 @@ country_event = { #Belgium
 			base = 100
 		}
 		trigger = {
-			AND = {
-				NOT = {
-					has_cosmetic_tag = SPR_SFKS
-				}
-				NOT = {
-					has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
-				}
+			NOT = {
+				has_cosmetic_tag = SPR_SFKS
+			}
+			NOT = {
+				has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
 			}
 		}
 		every_state = {
@@ -2526,6 +2540,22 @@ country_event = { #Belgium
 				}
 			}
 		}
+	}
+
+	option = { #balkanize
+		name = annex.24.o4
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				has_cosmetic_tag = SPR_SFKS
+			}
+			NOT = {
+				has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+			}
+		}
+		set_country_flag = BEL_balkanize
 	}
 
 	option = { #annex
@@ -2977,8 +3007,77 @@ country_event = { #Bosnia
 		}
 	}
 
-	option = { #give to YUG
+	option = { #balkanize
 		name = annex.30.o2
+		trigger = {
+			NOT = {
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = WBO
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			WBO = {
+				transfer_state = PREV
+			}
+		}
+		puppet = WBO
+		every_state = {
+			limit = {
+				is_core_of = SRP
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SRP = {
+				transfer_state = PREV
+			}
+		}
+		puppet = SRP
+		every_state = {
+			limit = {
+				is_core_of = HRZ
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			HRZ = {
+				transfer_state = PREV
+			}
+		}
+		puppet = HRZ
+		every_state = {
+			limit = {
+				is_core_of = BOS
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+					is_core_of = WBO
+					is_core_of = SRP
+					is_core_of = HRZ
+				}
+			}
+			BOS = {
+				transfer_state = PREV
+			}
+		}
+		puppet = BOS
+	}
+
+	option = { #give to YUG
+		name = annex.30.o3
 		ai_chance = {
 			base = 100
 		}
@@ -3009,7 +3108,7 @@ country_event = { #Bosnia
 	}
 
 	option = { #annex
-		name = annex.30.o3
+		name = annex.30.o4
 		ai_chance = {
 			base = 0
 		}
@@ -3277,6 +3376,59 @@ country_event = { #Brittany
 		}
 	}
 
+	option = { #eta puppet
+		name = annex.eta.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = BSQ
+				OR = {
+					has_government = national_bolshevik
+					has_government = revolutionary_socialist
+					has_government = communist
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = BRI
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			BRI = {
+				transfer_state = PREV
+			}
+		}
+		puppet = BRI
+		hidden_effect = {
+			BRI = {
+				set_politics = {
+					ruling_party = national_bolshevik
+				}
+				set_party_name = {
+					ideology = national_bolshevik
+					name = "Revolutionary Army"
+					long_name = "Breton Revolutionary Army"
+				}
+				BRI_Gael_Roblin_masked = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology = revolutionary_junta
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+		}
+	}
+
 	option = { #annex
 		name = annex.34.o3
 		ai_chance = {
@@ -3300,18 +3452,18 @@ country_event = { #Brunei
 		}
 		every_state = {
 			limit = {
-				is_core_of = BRN
+				is_core_of = BOR
 				is_owned_by = ROOT
 				NOT = {
 					is_core_of = ROOT
 					is_claimed_by = ROOT
 				}
 			}
-			BRN = {
+			BOR = {
 				transfer_state = PREV
 			}
 		}
-		puppet = BRN
+		puppet = BOR
 	}
 
 	option = { #annex
@@ -3320,7 +3472,7 @@ country_event = { #Brunei
 			base = 0
 		}
 
-		set_country_flag = BRN_annex
+		set_country_flag = BOR_annex
 	}
 }
 country_event = { #Bulgaria
@@ -3390,12 +3542,10 @@ country_event = { #Bulgaria
 			base = 100
 		}
 		trigger = {
-			AND = {
-				tag = CAT
-				OR = {
-					has_country_leader_ideology = anarcho_syndicalism
-					has_country_leader_ideology = syndicalism
-				}
+			tag = CAT
+			OR = {
+				has_country_leader_ideology = anarcho_syndicalism
+				has_country_leader_ideology = syndicalism
 			}
 		}
 		every_state = {
@@ -3440,10 +3590,8 @@ country_event = { #Bulgaria
 			base = 100
 		}
 		trigger = {
-			AND = {
-				tag = CAT
-				has_government = national_bolshevik
-			}
+			tag = CAT
+			has_government = national_bolshevik
 		}
 		every_state = {
 			limit = {
@@ -3779,14 +3927,6 @@ country_event = { #Canada
 		hidden_effect = {
 			CAN = {
 				load_focus_tree = generic_focus
-				CAN_don_andrews = {
-					promote_character = fascist_ideology
-				}
-				set_party_name = {
-					name = CAN_fascists_party
-					long_name = CAN_fascists_party_long
-					ideology = fascist
-				}
 			}
 		}
 		puppet = CAN
@@ -3869,13 +4009,11 @@ country_event = { #Cascadia
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -3954,13 +4092,11 @@ country_event = { #Cascadia
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -3972,6 +4108,59 @@ country_event = { #Catalonia
 	desc = annex.43.d
 	
 	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			every_state = {
+				limit = {
+					NOT = {
+						is_core_of = CAT
+					}
+					is_in_array = {
+						array = CAT_starting_cores
+						value = THIS
+					}
+				}
+				add_core_of = CAT
+			}
+			every_state = {
+				limit = {
+					is_core_of = CAT
+					NOT = {
+						is_in_array = {
+							array = CAT_starting_cores
+							value = THIS
+						}
+					}
+				}
+				remove_core_of = CAT
+			}
+			every_state = {
+				limit = {
+					NOT = {
+						is_claimed_by = CAT
+					}
+					is_in_array = {
+						array = CAT_starting_claims
+						value = THIS
+					}
+				}
+				add_claim_by = CAT
+			}
+			every_state = {
+				limit = {
+					is_claimed_by = CAT
+					NOT = {
+						is_in_array = {
+							array = CAT_starting_claims
+							value = THIS
+						}
+					}
+				}
+				add_claim_by = CAT
+			}
+		}
+	}
 
 	option = { #puppet
 		name = annex.43.o1
@@ -4001,8 +4190,14 @@ country_event = { #Catalonia
 		}
 		every_state = {
 			limit = {
-				is_core_of = CAT
+				OR = {
+					is_core_of = CAT
+					is_claimed_by = CAT
+				}
 				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ANA
+				}
 				NOT = {
 					is_core_of = ROOT
 					is_claimed_by = ROOT
@@ -4010,6 +4205,7 @@ country_event = { #Catalonia
 			}
 			CAT = {
 				transfer_state = PREV
+				add_state_core = PREV
 			}
 		}
 		puppet = CAT
@@ -4039,8 +4235,14 @@ country_event = { #Catalonia
 		}
 		every_state = {
 			limit = {
-				is_core_of = CAT
+				OR = {
+					is_core_of = CAT
+					is_claimed_by = CAT
+				}
 				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ANA
+				}
 				NOT = {
 					is_core_of = ROOT
 					is_claimed_by = ROOT
@@ -4073,8 +4275,14 @@ country_event = { #Catalonia
 		}
 		every_state = {
 			limit = {
-				is_core_of = CAT
+				OR = {
+					is_core_of = CAT
+					is_claimed_by = CAT
+				}
 				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ANA
+				}
 				NOT = {
 					is_core_of = ROOT
 					is_claimed_by = ROOT
@@ -4108,8 +4316,14 @@ country_event = { #Catalonia
 		}
 		every_state = {
 			limit = {
-				is_core_of = CAT
+				OR = {
+					is_core_of = CAT
+					is_claimed_by = CAT
+				}
 				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ANA
+				}
 				NOT = {
 					is_core_of = ROOT
 					is_claimed_by = ROOT
@@ -4133,6 +4347,63 @@ country_event = { #Catalonia
 					elections_allowed = no
 					last_election = "1935.12.17"
 					election_frequency = 48
+				}
+			}
+		}
+	}
+
+	option = { #eta puppet
+		name = annex.eta.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			tag = BSQ
+			OR = {
+				has_government = national_bolshevik
+				has_government = revolutionary_socialist
+				has_government = communist
+			}
+		}
+		every_state = {
+			limit = {
+				OR = {
+					is_core_of = CAT
+					is_claimed_by = CAT
+				}
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ANA
+				}
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			CAT = {
+				transfer_state = PREV
+			}
+		}
+		puppet = CAT
+		hidden_effect = {
+			CAT = {
+				set_politics = {
+					ruling_party = communist
+				}
+				set_party_name = {
+					ideology = communist
+					name = "Terra Lliure"
+					long_name = "Terra Lliure"
+				}
+				CAT_Frederic_Bentanachs_i_Chalaux = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology=marxist
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
 				}
 			}
 		}
@@ -4630,43 +4901,6 @@ country_event = { #ComChina (PRC)
 		}
 		puppet = PRC
 		set_country_flag = PRC_balkanize
-		if = {
-			limit = {
-				OR = { 
-					AND = {
-						tag = GER
-						GER = { GER_is_ddr = yes }
-					}
-					AND = {
-						tag = VIN
-						is_in_faction_with = GER
-					}
-				}
-			}
-			GER = { PRC_dehua_muller = { set_nationality = PRC } }
-			PRC = {
-				PRC_dehua_muller = {
-					promote_character = malenkovist
-					add_country_leader_role = {
-						country_leader = {
-							expire = "1.1.1.1"
-							ideology = malenkovist
-						}
-					}
-					promote_character = malenkovist
-				}
-				if = {
-					limit = { NOT = { has_government = communist } }
-					set_politics = {
-						ruling_party = communist
-					}
-					add_popularity = {
-						ideology = communist 
-						popularity = 0.5
-					}
-				}
-			}
-		}
 	}
 
 	option = { #give to CHI
@@ -4679,6 +4913,7 @@ country_event = { #ComChina (PRC)
 				tag = CHI
 			}
 			CHI = {
+				exists = yes
 				OR = {
 					is_puppet_of = ROOT
 					is_in_faction_with = ROOT
@@ -4922,6 +5157,59 @@ country_event = { #Corsica
 		}
 	}
 
+	option = { #eta puppet
+		name = annex.eta.option
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			AND = {
+				tag = BSQ
+				OR = {
+					has_government = national_bolshevik
+					has_government = revolutionary_socialist
+					has_government = communist
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = COR
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			COR = {
+				transfer_state = PREV
+			}
+		}
+		puppet = COR
+		hidden_effect = {
+			COR = {
+				set_politics = {
+					ruling_party = revolutionary_socialist
+				}
+				set_party_name = {
+					ideology = revolutionary_socialist
+					name = "FLNC-22"
+					long_name = "FLNC-22 October"
+				}
+				COR_Paul_Felix_Benedetti = {
+					add_country_leader_role = {
+						promote_leader = yes		
+						country_leader={
+							ideology = revolutionary_socialist_ideology
+							expire="1.1.1.1"
+							id=-1
+						}
+					}
+				}
+			}
+		}
+	}
+
 	option = { #annex
 		name = annex.55.o3
 		ai_chance = {
@@ -5046,8 +5334,48 @@ country_event = { #Croatia
 		}
 		puppet = CRO
 	}
+	option = { #Liberate Serbian Krajina
+	name = annex.57.o2
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = KRA
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			KRA = {
+				transfer_state = PREV
+			}
+		}
+		puppet = KRA
+		every_state = {
+			limit = {
+				is_core_of = CRO
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+					is_core_of = KRA
+				}
+			}
+			CRO = {
+				transfer_state = PREV
+			}
+		}
+		puppet = CRO
+	}
 	option = { #give to YUG
-		name = annex.57.o2
+		name = annex.57.o3
 		ai_chance = {
 			base = 100
 		}
@@ -5236,7 +5564,7 @@ country_event = { #Croatia
 	}
 
 	option = { #annex
-		name = annex.57.o3
+		name = annex.57.o4
 		ai_chance = {
 			base = 0
 		}
@@ -5269,6 +5597,11 @@ country_event = { #Cuba
 				transfer_state = PREV
 			}
 		}
+		hidden_effect = {
+			CUB = {
+				load_focus_tree = generic_focus
+			}
+		}
 		puppet = CUB
 	}
 
@@ -5288,6 +5621,11 @@ country_event = { #Cuba
 			}
 			CUB = {
 				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			CUB = {
+				load_focus_tree = generic_focus
 			}
 		}
 	    transfer_state = 880
@@ -5406,10 +5744,8 @@ country_event = { #Czechoslovakia
 		puppet = CZE
 		IF = {
 			limit = {
-				AND = {
-					tag = CAT
-					has_country_leader_ideology = revolutionary_nazi
-				}
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
 			}
 			CZE = {
 				set_cosmetic_tag = CZE_revnazi_puppet
@@ -5652,10 +5988,8 @@ country_event = { #Denmark
 		hidden_effect = {
 			IF = {
 				limit = {
-					AND = {
-						tag = CAT
-						has_government = national_bolshevik
-					}
+					tag = CAT
+					has_government = national_bolshevik
 				}
 				DEN = {
 					set_cosmetic_tag = DEN_revnazi_puppet
@@ -6262,10 +6596,8 @@ country_event = { #Estonia
 		hidden_effect = {
 			IF = {
 				limit = {
-					AND = {
-						tag = CAT
-						has_country_leader_ideology = revolutionary_nazi
-					}
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
 				}
 				EST = {
 					set_cosmetic_tag = EST_revnazi_puppet
@@ -6302,10 +6634,8 @@ country_event = { #Estonia
 		hidden_effect = {
 			IF = {
 				limit = {
-					AND = {
-						tag = CAT
-						has_country_leader_ideology = revolutionary_nazi
-					}
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
 				}
 				EST = {
 					set_cosmetic_tag = EST_revnazi_puppet
@@ -6724,23 +7054,21 @@ country_event = { #Finland
 			}
 			IF = {
 				limit = {
-					AND = {
-						OR = {
+					OR = {
+						owns_state = 145
+						any_country = {
+							NOT = {
+								tag = SWE
+							}
+							is_puppet_of = CAT
 							owns_state = 145
-							any_country = {
-								NOT = {
-									tag = SWE
-								}
-								is_puppet_of = CAT
-								owns_state = 145
-							}
 						}
-						SWE = {
-							OR = {
-								has_country_leader_ideology = national_socialist
-								has_country_leader_ideology = revolutionary_nazi
-								is_puppet_of = CAT
-							}
+					}
+					SWE = {
+						OR = {
+							has_country_leader_ideology = national_socialist
+							has_country_leader_ideology = revolutionary_nazi
+							is_puppet_of = CAT
 						}
 					}
 				}
@@ -6776,21 +7104,19 @@ country_event = { #France
 			base = 100
 		}
 		trigger = {
-			AND = {
-				NOT = {
-					has_cosmetic_tag = SPR_SFKS
-				}
-				NOT = {
-					has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
-				}
-				NOT = {
-					AND = {
-						tag = CAT
-						OR = {
-							has_country_leader_ideology = anarcho_syndicalism
-							has_country_leader_ideology = syndicalism
-							has_country_leader_ideology = revolutionary_nazi
-						}
+			NOT = {
+				has_cosmetic_tag = SPR_SFKS
+			}
+			NOT = {
+				has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					OR = {
+						has_country_leader_ideology = anarcho_syndicalism
+						has_country_leader_ideology = syndicalism
+						has_country_leader_ideology = revolutionary_nazi
 					}
 				}
 			}
@@ -6806,6 +7132,9 @@ country_event = { #France
 				}
 				NOT = {
 					is_core_of = ROOT
+					is_core_of = GDL
+					is_core_of = MTQ
+					is_core_of = REU
 					is_claimed_by = ROOT
 				}
 			}
@@ -6843,27 +7172,25 @@ country_event = { #France
 			base = 50
 		}
 		trigger = {
-			AND = {
-				NOT = {
-					has_cosmetic_tag = SPR_SFKS
-				}
-				NOT = {
-					has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
-				}
-				OR = {
-					owns_state = 15
-					owns_state = 14
-					owns_state = 21
-					owns_state = 1
-				}
-				NOT = {
-					AND = {
-						tag = CAT
-						OR = {
-							has_country_leader_ideology = anarcho_syndicalism
-							has_country_leader_ideology = syndicalism
-							has_country_leader_ideology = revolutionary_nazi
-						}
+			NOT = {
+				has_cosmetic_tag = SPR_SFKS
+			}
+			NOT = {
+				has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+			}
+			OR = {
+				owns_state = 15
+				owns_state = 14
+				owns_state = 21
+				owns_state = 1
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					OR = {
+						has_country_leader_ideology = anarcho_syndicalism
+						has_country_leader_ideology = syndicalism
+						has_country_leader_ideology = revolutionary_nazi
 					}
 				}
 			}
@@ -6873,9 +7200,12 @@ country_event = { #France
 				is_core_of = FRA
 				NOT = {
 					is_core_of = BRI
-					is_core_of = NOM
+					#is_core_of = NOM - deprecated
 					is_core_of = OCC
 					is_core_of = COR
+					is_core_of = GDL
+					is_core_of = MTQ
+					is_core_of = REU
 				}
 				is_owned_by = ROOT
 				NOT = {
@@ -6934,6 +7264,9 @@ country_event = { #France
 				}
 				NOT = {
 					is_core_of = ROOT
+					is_core_of = GDL
+					is_core_of = MTQ
+					is_core_of = REU
 					is_claimed_by = ROOT
 				}
 			}
@@ -6957,6 +7290,7 @@ country_event = { #France
 				}
 				set_party_name = {
 					ideology = revolutionary_socialist
+					long_name = "House of Bourbon-Parma"
 					name = "Bourbon-Parma"
 				}
 			}
@@ -6969,12 +7303,10 @@ country_event = { #France
 			base = 100
 		}
 		trigger = {
-			AND = {
-				tag = CAT
-				OR = {
-					has_country_leader_ideology = anarcho_syndicalism
-					has_country_leader_ideology = syndicalism
-				}
+			tag = CAT
+			OR = {
+				has_country_leader_ideology = anarcho_syndicalism
+				has_country_leader_ideology = syndicalism
 			}
 		}
 		every_state = {
@@ -6988,6 +7320,9 @@ country_event = { #France
 				}
 				NOT = {
 					is_core_of = ROOT
+					is_core_of = GDL
+					is_core_of = MTQ
+					is_core_of = REU
 					is_claimed_by = ROOT
 				}
 			}
@@ -7024,10 +7359,8 @@ country_event = { #France
 			base = 100
 		}
 		trigger = {
-			AND = {
-				tag = CAT
-				has_country_leader_ideology = revolutionary_nazi
-			}
+			tag = CAT
+			has_country_leader_ideology = revolutionary_nazi
 		}
 		every_state = {
 			limit = {
@@ -7498,12 +7831,10 @@ country_event = { #Georgia
 			base = 100
 		}
 		trigger = {
-			AND = {
-				tag = CAT
-				has_government = national_bolshevik
-				ARM = {
-					is_puppet_of = CAT
-				}
+			tag = CAT
+			has_government = national_bolshevik
+			ARM = {
+				is_puppet_of = CAT
 			}
 		}
 		every_state = {
@@ -7743,7 +8074,26 @@ country_event = { #Germany
 			}
 		}
 		hidden_effect = {
-			GER_puppet_setup = yes
+			GER = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = revolutionary_socialist
+					long_name = GER_revolutionary_socialist_party_long
+					name = GER_revolutionary_socialist_party
+				}
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = GER_national_bolshevik_party
+					name = GER_national_bolshevik_party
+				}
+				GER_herbert_mies = {
+					promote_character = yes
+				}
+				GER_heinzchristian_strache = {
+					promote_character = yes
+				}
+				load_focus_tree = generic_focus
+			}
 		}
 		puppet = GER
 	}
@@ -7856,12 +8206,10 @@ country_event = { #Germany
 			base = 20
 		}
 		trigger = {
-			AND = {
-				tag = CAT
-				OR = {
-					has_country_leader_ideology = anarcho_syndicalism
-					has_country_leader_ideology = syndicalism
-				}
+			tag = CAT
+			OR = {
+				has_country_leader_ideology = anarcho_syndicalism
+				has_country_leader_ideology = syndicalism
 			}
 		}
 		every_state = {
@@ -7911,10 +8259,8 @@ country_event = { #Germany
 			base = 100
 		}
 		trigger = {
-			AND = {
-				tag = CAT
-				has_country_leader_ideology = revolutionary_nazi
-			}
+			tag = CAT
+			has_country_leader_ideology = revolutionary_nazi
 		}
 		every_state = {
 			limit = {
@@ -7938,7 +8284,7 @@ country_event = { #Germany
 		hidden_effect = {
 			GER = {
 				set_cosmetic_tag = GER_revnazi_puppet
-				GER_Matthias_Fischer = {
+				GER_Christian_Worch = {
 					add_country_leader_role = {
 						promote_leader = yes		
 						country_leader={
@@ -8122,13 +8468,11 @@ country_event = { #Great Lakes
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 			OR = {
@@ -8169,13 +8513,11 @@ country_event = { #Great Lakes
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 			OR = {
@@ -8219,13 +8561,11 @@ country_event = { #Great Lakes
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 			OR = {
@@ -8266,13 +8606,11 @@ country_event = { #Great Lakes
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 			OR = {
@@ -8312,13 +8650,11 @@ country_event = { #Great Lakes
 		}
 		trigger = {
 			any_country = {
-				AND = {
-					OR = {
-						is_puppet_of = ROOT
-						is_in_faction_with = ROOT
-					}
-					has_country_flag = unifying_america
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
 				}
+				has_country_flag = unifying_america
 			}
 		}
 		every_state = {
@@ -8353,13 +8689,11 @@ country_event = { #Great Lakes
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -8432,12 +8766,10 @@ country_event = { #Greece
 			base = 100
 		}
 		trigger = {
-			AND = {
-				tag = CAT
-				OR = {
-					has_country_leader_ideology = anarcho_syndicalism
-					has_country_leader_ideology = syndicalism
-				}
+			tag = CAT
+			OR = {
+				has_country_leader_ideology = anarcho_syndicalism
+				has_country_leader_ideology = syndicalism
 			}
 		}
 		every_state = {
@@ -8482,10 +8814,8 @@ country_event = { #Greece
 			base = 100
 		}
 		trigger = {
-			AND = {
-				tag = CAT
-				has_government = national_bolshevik
-			}
+			tag = CAT
+			has_government = national_bolshevik
 		}
 		every_state = {
 			limit = {
@@ -8672,10 +9002,8 @@ country_event = { #Greenland
 							is_puppet_of = ROOT
 						}
 					}
-					AND = {
-						tag = CAT
-						has_country_leader_ideology = revolutionary_nazi
-					}
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
 				}
 				NOT = {
 					AND = {
@@ -8869,7 +9197,6 @@ country_event = { #(French) Guiana
 			}
 			GUN = {
 				transfer_state = PREV
-				GUY = { remove_state_core = PREV }
 			}
 		}
 		puppet = GUN
@@ -9106,6 +9433,7 @@ country_event = { #Guyana
 			OR = {
 				owns_state = 309
 				owns_state = 310
+				owns_state = 687
 			}
 		}
 		every_state = {
@@ -9125,6 +9453,35 @@ country_event = { #Guyana
 				transfer_state = PREV
 			}
 		}
+		every_state = {
+			limit = {
+				is_core_of = SUR
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SUR = {
+				transfer_state = PREV
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = GUN
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			GUN = {
+				transfer_state = PREV
+			}
+		}
+		puppet = GUY
+		puppet = SUR
+		puppet = GUN
 		set_country_flag = GUY_balkanize
 	}
 
@@ -9187,13 +9544,11 @@ country_event = { #Hawaii
 			base = 100
 			modifier = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 				factor = 0
 			}
@@ -9262,13 +9617,11 @@ country_event = { #Hawaii
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -9287,13 +9640,11 @@ country_event = { #Holland (The Netherlands)
 			base = 100
 		}
 		trigger = {
-			AND = {
-				NOT = {
-					has_cosmetic_tag = SPR_SFKS
-				}
-				NOT = {
-					has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
-				}
+			NOT = {
+				has_cosmetic_tag = SPR_SFKS
+			}
+			NOT = {
+				has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
 			}
 			NOT = {
 				AND = {
@@ -9323,7 +9674,7 @@ country_event = { #Holland (The Netherlands)
 					long_name = HOL_revolutionary_socialist_party
 					name = HOL_revolutionary_socialist_party
 				}
-				HOL_jesse_klaver = {
+				HOL_paul_rosenmöller = {
 					promote_character = yes
 				}
 			}
@@ -9363,7 +9714,7 @@ country_event = { #Holland (The Netherlands)
 					long_name = HOL_revolutionary_socialist_party
 					name = HOL_revolutionary_socialist_party
 				}
-				HOL_jesse_klaver = {
+				HOL_paul_rosenmöller = {
 					promote_character = yes
 				}
 			}
@@ -9703,13 +10054,11 @@ country_event = { #Illinois
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -9720,6 +10069,9 @@ country_event = { #Illinois
 				NOT = {
 					is_core_of = ROOT
 					is_claimed_by = ROOT
+				}
+				NOT = {
+					state = 395
 				}
 			}
 			ILL = {
@@ -9777,13 +10129,11 @@ country_event = { #Illinois
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -9830,7 +10180,6 @@ country_event = { #Indonesia
 					is_core_of = ROOT
 					is_claimed_by = ROOT
 					is_core_of = WPA
-					is_core_of = TIM
 				}
 			}
 			INS = {
@@ -10385,12 +10734,10 @@ country_event = { #Italy
 			base = 90
 		}
 		trigger = {
-			AND = {
-				tag = CAT
-				OR = {
-					has_country_leader_ideology = anarcho_syndicalism
-					has_country_leader_ideology = syndicalism
-				}
+			tag = CAT
+			OR = {
+				has_country_leader_ideology = anarcho_syndicalism
+				has_country_leader_ideology = syndicalism
 			}
 		}
 		every_state = {
@@ -10442,10 +10789,8 @@ country_event = { #Italy
 			base = 100
 		}
 		trigger = {
-			AND = {
-				tag = CAT
-				has_country_leader_ideology = revolutionary_nazi
-			}
+			tag = CAT
+			has_country_leader_ideology = revolutionary_nazi
 		}
 		every_state = {
 			limit = {
@@ -11008,10 +11353,8 @@ country_event = { #Kazakhstan
 							is_puppet_of = ROOT
 						}
 					}
-					AND = {
-						tag = CAT
-						has_country_leader_ideology = revolutionary_nazi
-					}
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
 				}
 				NOT = {
 					AND = {
@@ -11522,10 +11865,8 @@ country_event = { #Kyrgystan
 							is_puppet_of = ROOT
 						}
 					}
-					AND = {
-						tag = CAT
-						has_country_leader_ideology = revolutionary_nazi
-					}
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
 				}
 				NOT = {
 					AND = {
@@ -11746,10 +12087,8 @@ country_event = { #Latvia
 		hidden_effect = {
 			IF = {
 				limit = {
-					AND = {
-						tag = CAT
-						has_country_leader_ideology = revolutionary_nazi
-					}
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
 				}
 				LAT = {
 					set_cosmetic_tag = LAT_revnazi_puppet
@@ -12352,13 +12691,11 @@ country_event = { #Lincoln
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -12427,13 +12764,11 @@ country_event = { #Lincoln
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -12521,10 +12856,8 @@ country_event = { #Lithuania
 		hidden_effect = {
 			IF = {
 				limit = {
-					AND = {
-						tag = CAT
-						has_country_leader_ideology = revolutionary_nazi
-					}
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
 				}
 				LIT = {
 					set_cosmetic_tag = LIT_revnazi_puppet
@@ -12683,13 +13016,11 @@ country_event = { #Luxemburg
 			base = 100
 		}
 		trigger = {
-			AND = {
-				NOT = {
-					has_cosmetic_tag = SPR_SFKS
-				}
-				NOT = {
-					has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
-				}
+			NOT = {
+				has_cosmetic_tag = SPR_SFKS
+			}
+			NOT = {
+				has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
 			}
 		}
 		every_state = {
@@ -12721,22 +13052,20 @@ country_event = { #Luxemburg
 		puppet = LUX
 		IF = {
 			limit = {
-				AND = {
-					tag = CAT
-					has_country_leader_ideology = revolutionary_nazi
-					FRA = {
-						OR = {
-							is_puppet_of = CAT
-							has_country_leader_ideology = revolutionary_nazi
-							has_country_leader_ideology = national_socialist
-						}
-					}
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+				FRA = {
 					OR = {
+						is_puppet_of = CAT
+						has_country_leader_ideology = revolutionary_nazi
+						has_country_leader_ideology = national_socialist
+					}
+				}
+				OR = {
+					owns_state = 8
+					any_country = {
+						is_puppet_of = CAT
 						owns_state = 8
-						any_country = {
-							is_puppet_of = CAT
-							owns_state = 8
-						}
 					}
 				}
 			}
@@ -12749,8 +13078,132 @@ country_event = { #Luxemburg
 		}
 	}
 
-	option = { #carlist titoist puppet
+	option = { #give to FRA
+		name = annex.129.o2
+		ai_chance = {
+			base = 0
+		}
+		trigger = {
+			NOT = {
+				tag = FRA
+			}
+			FRA = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = LUX
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			FRA = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #give to GER
 		name = annex.129.o3
+		ai_chance = {
+			base = 0
+		}
+		trigger = {
+			NOT = {
+				tag = GER
+			}
+			GER = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = LUX
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			GER = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #give to BEL
+		name = annex.129.o4
+		ai_chance = {
+			base = 0
+		}
+		trigger = {
+			NOT = {
+				tag = BEL
+			}
+			BEL = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = LUX
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			BEL = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #give to WLN
+		name = annex.129.o5
+		ai_chance = {
+			base = 0
+		}
+		trigger = {
+			NOT = {
+				tag = WLN
+			}
+			WLN = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = LUX
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			WLN = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #carlist titoist puppet
+		name = annex.129.o6
 		ai_chance = {
 			base = 100
 		}
@@ -12779,6 +13232,7 @@ country_event = { #Luxemburg
 				set_cosmetic_tag = LUX_titocarlist
 				set_party_name = {
 					ideology = revolutionary_socialist
+					long_name = "House of Bourbon-Parma"
 					name = "Bourbon-Parma"
 				}
 				LUX_Maria_First = {
@@ -12796,7 +13250,7 @@ country_event = { #Luxemburg
 	}
 
 	option = { #annex
-		name = annex.129.o2
+		name = annex.129.o7
 		ai_chance = {
 			base = 0
 		}
@@ -13354,10 +13808,8 @@ country_event = { #Malta
 		hidden_effect = {
 			IF = {
 				limit = {
-					AND = {
-						tag = CAT
-						has_country_leader_ideology = revolutionary_nazi
-					}
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
 				}
 				MLT = {
 					set_cosmetic_tag = MLT_revnazi_puppet
@@ -13689,13 +14141,11 @@ country_event = { #Midwest America
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -13718,6 +14168,7 @@ country_event = { #Midwest America
 			clr_country_flag = can_core_PCA
 			clr_country_flag = can_core_LIN
 			clr_country_flag = can_core_MOT
+			clr_country_flag = can_core_UTA
 			clr_country_flag = can_core_TEX
 			clr_country_flag = can_core_GRL
 			clr_country_flag = can_core_ILL
@@ -13755,13 +14206,11 @@ country_event = { #Midwest America
 			}
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 			NOT = { #dont make unifiers if you have American allies
@@ -13810,6 +14259,7 @@ country_event = { #Midwest America
 			set_country_flag = can_core_PCA
 			set_country_flag = can_core_LIN
 			set_country_flag = can_core_MOT
+			set_country_flag = can_core_UTA
 			set_country_flag = can_core_TEX
 			set_country_flag = can_core_GRL
 			set_country_flag = can_core_ILL
@@ -13825,13 +14275,11 @@ country_event = { #Midwest America
 		}
 		trigger = {
 			any_country = {
-				AND = {
-					OR = {
-						is_puppet_of = ROOT
-						is_in_faction_with = ROOT
-					}
-					has_country_flag = unifying_america
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
 				}
+				has_country_flag = unifying_america
 			}
 		}
 		every_state = {
@@ -13866,13 +14314,11 @@ country_event = { #Midwest America
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -14045,13 +14491,11 @@ country_event = { #Montana
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -14080,13 +14524,11 @@ country_event = { #Montana
 		}
 		trigger = {
 			any_country = {
-				AND = {
-					OR = {
-						is_puppet_of = ROOT
-						is_in_faction_with = ROOT
-					}
-					has_country_flag = unifying_america
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
 				}
+				has_country_flag = unifying_america
 			}
 		}
 		every_state = {
@@ -14121,13 +14563,11 @@ country_event = { #Montana
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -14355,9 +14795,6 @@ country_event = { #Morocco
 				transfer_state = PREV
 			}
 		}
-		882 = {
-			transfer_state_to = MOR
-		}
 		hidden_effect = {
 			MOR = {
 				drop_cosmetic_tag = yes
@@ -14424,16 +14861,14 @@ country_event = { #Morocco
 					is_claimed_by = ROOT
 					is_core_of = WSA
 				}
+				NOT = {
+					state = 699
+					state = 882
+				}
 			}
 			MOR = {
 				transfer_state = PREV
 			}
-		}
-		699 = {
-			remove_core_of = MOR
-		}
-		882 = {
-			remove_claim_by = MOR
 		}
 		hidden_effect = {
 			MOR = {
@@ -14994,8 +15429,45 @@ country_event = { #Nicaragua
 		puppet = NIC
 	}
 
-	option = { #give to CEA
+	option = { #separate Miskito
 		name = annex.161.o2
+		ai_chance = {
+			base = 100
+		}
+		every_state = {
+			limit = {
+				is_core_of = MSK
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			MSK = {
+				transfer_state = PREV
+			}
+		}
+		puppet = MSK
+		every_state = {
+			limit = {
+				is_core_of = NIC
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_core_of = MSK
+					is_claimed_by = ROOT
+					is_claimed_by = MSK
+				}
+			}
+			NIC = {
+				transfer_state = PREV
+			}
+		}
+		puppet = NIC
+	}
+
+	option = { #give to CEA
+		name = annex.161.o3
 		ai_chance = {
 			base = 100
 		}
@@ -15026,7 +15498,7 @@ country_event = { #Nicaragua
 	}
 
 	option = { #annex
-		name = annex.161.o3
+		name = annex.161.o4
 		ai_chance = {
 			base = 0
 		}
@@ -15071,74 +15543,74 @@ country_event = { #Nigeria
 		set_country_flag = NGR_annex
 	}
 }
-country_event = { #Normandy
-	id = annex.163
-	title = annex.163.t
-	desc = annex.163.d
-	
-	is_triggered_only = yes
-
-	option = { #puppet
-		name = annex.163.o1
-		ai_chance = {
-			base = 100
-		}
-		every_state = {
-			limit = {
-				is_core_of = NOM
-				is_owned_by = ROOT
-				NOT = {
-					is_core_of = ROOT
-					is_claimed_by = ROOT
-				}
-			}
-			NOM = {
-				transfer_state = PREV
-			}
-		}
-		puppet = NOM
-	}
-
-	option = { #give to FRA
-		name = annex.163.o2
-		ai_chance = {
-			base = 100
-		}
-		trigger = {
-			NOT = {
-				tag = FRA
-			}
-			FRA = {
-				OR = {
-					is_puppet_of = ROOT
-					is_in_faction_with = ROOT
-				}
-			}
-		}
-		every_state = {
-			limit = {
-				is_core_of = NOM
-				is_owned_by = ROOT
-				NOT = {
-					is_core_of = ROOT
-					is_claimed_by = ROOT
-				}
-			}
-			FRA = {
-				transfer_state = PREV
-			}
-		}
-	}
-
-	option = { #annex
-		name = annex.163.o3
-		ai_chance = {
-			base = 0
-		}
-
-		set_country_flag = NOM_annex
-	}
-}
+#country_event = { #Normandy - deprecated
+#	id = annex.163
+#	title = annex.163.t
+#	desc = annex.163.d
+#	
+#	is_triggered_only = yes
+#
+#	option = { #puppet
+#		name = annex.163.o1
+#		ai_chance = {
+#			base = 100
+#		}
+#		every_state = {
+#			limit = {
+#				is_core_of = NOM
+#				is_owned_by = ROOT
+#				NOT = {
+#					is_core_of = ROOT
+#					is_claimed_by = ROOT
+#				}
+#			}
+#			NOM = {
+#				transfer_state = PREV
+#			}
+#		}
+#		puppet = NOM
+#	}
+#
+#	option = { #give to FRA
+#		name = annex.163.o2
+#		ai_chance = {
+#			base = 100
+#		}
+#		trigger = {
+#			NOT = {
+#				tag = FRA
+#			}
+#			FRA = {
+#				OR = {
+#					is_puppet_of = ROOT
+#					is_in_faction_with = ROOT
+#				}
+#			}
+#		}
+#		every_state = {
+#			limit = {
+#				is_core_of = NOM
+#				is_owned_by = ROOT
+#				NOT = {
+#					is_core_of = ROOT
+#					is_claimed_by = ROOT
+#				}
+#			}
+#			FRA = {
+#				transfer_state = PREV
+#			}
+#		}
+#	}
+#
+#	option = { #annex
+#		name = annex.163.o3
+#		ai_chance = {
+#			base = 0
+#		}
+#
+#		set_country_flag = NOM_annex
+#	}
+#}
 country_event = { #North East America
 	id = annex.164
 	title = annex.164.t
@@ -15181,13 +15653,11 @@ country_event = { #North East America
 			base = 10
 			modifier = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 				factor = 0
 			}
@@ -15198,13 +15668,11 @@ country_event = { #North East America
 			}
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -15217,6 +15685,7 @@ country_event = { #North East America
 					is_claimed_by = ROOT
 				}
 				NOT = {
+					state = 395
 					state = 901
 					state = 902
 				}
@@ -15231,6 +15700,7 @@ country_event = { #North East America
 			clr_country_flag = can_core_PCA
 			clr_country_flag = can_core_LIN
 			clr_country_flag = can_core_MOT
+			clr_country_flag = can_core_UTA
 			clr_country_flag = can_core_TEX
 			clr_country_flag = can_core_GRL
 			clr_country_flag = can_core_ILL
@@ -15263,13 +15733,11 @@ country_event = { #North East America
 			base = 0
 			modifier = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 				factor = 0
 			}
@@ -15280,13 +15748,11 @@ country_event = { #North East America
 			}
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 			owns_state = 357
@@ -15301,6 +15767,7 @@ country_event = { #North East America
 					is_claimed_by = ROOT
 				}
 				NOT = {
+					state = 395
 					state = 901
 					state = 902
 					state = 795
@@ -15321,6 +15788,7 @@ country_event = { #North East America
 			clr_country_flag = can_core_PCA
 			clr_country_flag = can_core_LIN
 			clr_country_flag = can_core_MOT
+			clr_country_flag = can_core_UTA
 			clr_country_flag = can_core_TEX
 			clr_country_flag = can_core_GRL
 			clr_country_flag = can_core_ILL
@@ -15353,13 +15821,11 @@ country_event = { #North East America
 			base = 100
 			modifier = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 				factor = 0
 			}
@@ -15383,13 +15849,11 @@ country_event = { #North East America
 			has_government = revolutionary_socialist
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 			NOT = { #dont make unifiers if you have American allies
@@ -15437,6 +15901,7 @@ country_event = { #North East America
 			set_country_flag = can_core_PCA
 			set_country_flag = can_core_LIN
 			set_country_flag = can_core_MOT
+			set_country_flag = can_core_UTA
 			set_country_flag = can_core_TEX
 			set_country_flag = can_core_GRL
 			set_country_flag = can_core_ILL
@@ -15470,13 +15935,11 @@ country_event = { #North East America
 			base = 100
 			modifier = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 				factor = 0
 			}
@@ -15508,13 +15971,11 @@ country_event = { #North East America
 			}
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 			NOT = { #dont make unifiers if you have American allies
@@ -15563,6 +16024,7 @@ country_event = { #North East America
 			set_country_flag = can_core_PCA
 			set_country_flag = can_core_LIN
 			set_country_flag = can_core_MOT
+			set_country_flag = can_core_UTA
 			set_country_flag = can_core_TEX
 			set_country_flag = can_core_GRL
 			set_country_flag = can_core_ILL
@@ -15591,13 +16053,11 @@ country_event = { #North East America
 			base = 100
 			modifier = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 				factor = 0
 			}
@@ -15653,13 +16113,11 @@ country_event = { #North East America
 				has_focus_tree = great_lakes_tree
 			}
 			any_country = {
-				AND = {
-					OR = {
-						is_puppet_of = ROOT
-						is_in_faction_with = ROOT
-					}
-					has_country_flag = unifying_america
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
 				}
+				has_country_flag = unifying_america
 			}
 		}
 		every_state = {
@@ -15695,13 +16153,11 @@ country_event = { #North East America
 			NOT = {
 				has_focus_tree = great_lakes_tree
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -15788,21 +16244,19 @@ country_event = { #Norway
 			base = 100
 		}
 		trigger = {
-			AND = {
-				NOT = {
-					has_cosmetic_tag = SPR_SFKS
-				}
-				NOT = {
-					has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
-				}
-				NOT = {
-					AND = {
-						tag = CAT
-						OR = {
-							has_country_leader_ideology = anarcho_syndicalism
-							has_country_leader_ideology = syndicalism
-							has_country_leader_ideology = revolutionary_nazi
-						}
+			NOT = {
+				has_cosmetic_tag = SPR_SFKS
+			}
+			NOT = {
+				has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					OR = {
+						has_country_leader_ideology = anarcho_syndicalism
+						has_country_leader_ideology = syndicalism
+						has_country_leader_ideology = revolutionary_nazi
 					}
 				}
 			}
@@ -15836,9 +16290,9 @@ country_event = { #Norway
 				NOR_Øystein_meier_johannessen = {
 					promote_character = yes
 				}
-				NOR_makvan_kasheikal = {
-					promote_character = yes
-				}
+#				NOR_makvan_kasheikal = {
+#					promote_character = yes
+#				}
 			}
 		}
 		puppet = NOR
@@ -15874,7 +16328,8 @@ country_event = { #Norway
 				set_cosmetic_tag = NOR_titocarlist
 				set_party_name = {
 					ideology = revolutionary_socialist
-					name = "House of Glücksburg"
+					long_name = "House of Glücksburg"
+					name = "Glücksburg"
 				}
 				NOR_harald_v_revsoc = {
 					add_country_leader_role = {
@@ -15896,12 +16351,10 @@ country_event = { #Norway
 			base = 100
 		}
 		trigger = {
-			AND = {
-				tag = CAT
-				OR = {
-					has_country_leader_ideology = anarcho_syndicalism
-					has_country_leader_ideology = syndicalism
-				}
+			tag = CAT
+			OR = {
+				has_country_leader_ideology = anarcho_syndicalism
+				has_country_leader_ideology = syndicalism
 			}
 		}
 		every_state = {
@@ -15923,6 +16376,7 @@ country_event = { #Norway
 				set_cosmetic_tag = NOR_ansynd
 				set_party_name = {
 					ideology = revolutionary_socialist
+					long_name = "Society Party"
 					name = "Society Party"
 				}
 				NOR_Øystein_meier_johannessen_ancom = {
@@ -15944,10 +16398,8 @@ country_event = { #Norway
 			base = 100
 		}
 		trigger = {
-			AND = {
-				tag = CAT
-				has_government = national_bolshevik
-			}
+			tag = CAT
+			has_government = national_bolshevik
 		}
 		every_state = {
 			limit = {
@@ -16263,13 +16715,11 @@ country_event = { #Pacific Coast America
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -16295,6 +16745,7 @@ country_event = { #Pacific Coast America
 			clr_country_flag = can_core_NEA
 			clr_country_flag = can_core_LIN
 			clr_country_flag = can_core_MOT
+			clr_country_flag = can_core_UTA
 			clr_country_flag = can_core_TEX
 			clr_country_flag = can_core_GRL
 			clr_country_flag = can_core_ILL
@@ -16334,13 +16785,11 @@ country_event = { #Pacific Coast America
 			has_government = communist
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 			NOT = { #dont make unifiers if you have American allies
@@ -16388,6 +16837,7 @@ country_event = { #Pacific Coast America
 			set_country_flag = can_core_NEA
 			set_country_flag = can_core_LIN
 			set_country_flag = can_core_MOT
+			set_country_flag = can_core_UTA
 			set_country_flag = can_core_TEX
 			set_country_flag = can_core_GRL
 			set_country_flag = can_core_ILL
@@ -16410,13 +16860,11 @@ country_event = { #Pacific Coast America
 		}
 		trigger = {
 			any_country = {
-				AND = {
-					OR = {
-						is_puppet_of = ROOT
-						is_in_faction_with = ROOT
-					}
-					has_country_flag = unifying_america
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
 				}
+				has_country_flag = unifying_america
 			}
 		}
 		every_state = {
@@ -16451,13 +16899,11 @@ country_event = { #Pacific Coast America
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -17302,12 +17748,10 @@ country_event = { #Poland
 			base = 100
 		}
 		trigger = {
-			AND = {
-				tag = CAT
-				OR = {
-					has_country_leader_ideology = anarcho_syndicalism
-					has_country_leader_ideology = syndicalism
-				}
+			tag = CAT
+			OR = {
+				has_country_leader_ideology = anarcho_syndicalism
+				has_country_leader_ideology = syndicalism
 			}
 		}
 		every_state = {
@@ -17352,10 +17796,8 @@ country_event = { #Poland
 			base = 100
 		}
 		trigger = {
-			AND = {
-				tag = CAT
-				has_government = national_bolshevik
-			}
+			tag = CAT
+			has_government = national_bolshevik
 		}
 		every_state = {
 			limit = {
@@ -17443,9 +17885,9 @@ country_event = { #Portugal
 					long_name = POR_national_bolshevik_party
 					name = POR_national_bolshevik_party
 				}
-				# POR_antónio_garcia_pereira = {
-					# promote_character = yes
-				# }
+#				POR_antónio_garcia_pereira = {
+#					promote_character = yes
+#				}
 			}
 		}
 		puppet = POR
@@ -17457,10 +17899,8 @@ country_event = { #Portugal
 			base = 100
 		}
 		trigger = {
-			AND = {
-				tag = CAT
-				has_government = national_bolshevik
-			}
+			tag = CAT
+			has_government = national_bolshevik
 		}
 		every_state = {
 			limit = {
@@ -17522,13 +17962,11 @@ country_event = { #Puerto Rico
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -17630,13 +18068,11 @@ country_event = { #Puerto Rico
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -18382,6 +18818,7 @@ country_event = { #Russia
 				}
 			}
 		}
+		puppet = RUS
 		if = {
 			limit = {
 				tag = GER
@@ -18411,7 +18848,6 @@ country_event = { #Russia
 				}
 			}
 		}
-		puppet = RUS
 	}
 	
 	option = { #revnazi puppet
@@ -18590,23 +19026,21 @@ country_event = { #Russia
 			}
 			IF = {
 				limit = {
-					AND = {
-						OR = {
+					OR = {
+						owns_state = 722
+						any_country = {
+							NOT = {
+								tag = FIN
+							}
+							is_puppet_of = CAT
 							owns_state = 722
-							any_country = {
-								NOT = {
-									tag = FIN
-								}
-								is_puppet_of = CAT
-								owns_state = 722
-							}
 						}
-						FIN = {
-							OR = {
-								has_country_leader_ideology = national_socialist
-								has_country_leader_ideology = revolutionary_nazi
-								is_puppet_of = CAT
-							}
+					}
+					FIN = {
+						OR = {
+							has_country_leader_ideology = national_socialist
+							has_country_leader_ideology = revolutionary_nazi
+							is_puppet_of = CAT
 						}
 					}
 				}
@@ -18619,23 +19053,21 @@ country_event = { #Russia
 			}
 			IF = {
 				limit = {
-					AND = {
-						OR = {
+					OR = {
+						owns_state = 213
+						any_country = {
+							NOT = {
+								tag = FIN
+							}
+							is_puppet_of = CAT
 							owns_state = 213
-							any_country = {
-								NOT = {
-									tag = FIN
-								}
-								is_puppet_of = CAT
-								owns_state = 213
-							}
 						}
-						FIN = {
-							OR = {
-								has_country_leader_ideology = national_socialist
-								has_country_leader_ideology = revolutionary_nazi
-								is_puppet_of = CAT
-							}
+					}
+					FIN = {
+						OR = {
+							has_country_leader_ideology = national_socialist
+							has_country_leader_ideology = revolutionary_nazi
+							is_puppet_of = CAT
 						}
 					}
 				}
@@ -18648,23 +19080,21 @@ country_event = { #Russia
 			}
 			IF = {
 				limit = {
-					AND = {
-						OR = {
+					OR = {
+						owns_state = 147
+						any_country = {
+							NOT = {
+								tag = FIN
+							}
+							is_puppet_of = CAT
 							owns_state = 147
-							any_country = {
-								NOT = {
-									tag = FIN
-								}
-								is_puppet_of = CAT
-								owns_state = 147
-							}
 						}
-						FIN = {
-							OR = {
-								has_country_leader_ideology = national_socialist
-								has_country_leader_ideology = revolutionary_nazi
-								is_puppet_of = CAT
-							}
+					}
+					FIN = {
+						OR = {
+							has_country_leader_ideology = national_socialist
+							has_country_leader_ideology = revolutionary_nazi
+							is_puppet_of = CAT
 						}
 					}
 				}
@@ -18677,23 +19107,21 @@ country_event = { #Russia
 			}
 			IF = {
 				limit = {
-					AND = {
-						OR = {
+					OR = {
+						owns_state = 215
+						any_country = {
+							NOT = {
+								tag = FIN
+							}
+							is_puppet_of = CAT
 							owns_state = 215
-							any_country = {
-								NOT = {
-									tag = FIN
-								}
-								is_puppet_of = CAT
-								owns_state = 215
-							}
 						}
-						FIN = {
-							OR = {
-								has_country_leader_ideology = national_socialist
-								has_country_leader_ideology = revolutionary_nazi
-								is_puppet_of = CAT
-							}
+					}
+					FIN = {
+						OR = {
+							has_country_leader_ideology = national_socialist
+							has_country_leader_ideology = revolutionary_nazi
+							is_puppet_of = CAT
 						}
 					}
 				}
@@ -18706,23 +19134,21 @@ country_event = { #Russia
 			}
 			IF = {
 				limit = {
-					AND = {
-						OR = {
+					OR = {
+						owns_state = 146
+						any_country = {
+							NOT = {
+								tag = FIN
+							}
+							is_puppet_of = CAT
 							owns_state = 146
-							any_country = {
-								NOT = {
-									tag = FIN
-								}
-								is_puppet_of = CAT
-								owns_state = 146
-							}
 						}
-						FIN = {
-							OR = {
-								has_country_leader_ideology = national_socialist
-								has_country_leader_ideology = revolutionary_nazi
-								is_puppet_of = CAT
-							}
+					}
+					FIN = {
+						OR = {
+							has_country_leader_ideology = national_socialist
+							has_country_leader_ideology = revolutionary_nazi
+							is_puppet_of = CAT
 						}
 					}
 				}
@@ -18735,23 +19161,21 @@ country_event = { #Russia
 			}
 			IF = {
 				limit = {
-					AND = {
-						OR = {
+					OR = {
+						owns_state = 216
+						any_country = {
+							NOT = {
+								tag = FIN
+							}
+							is_puppet_of = CAT
 							owns_state = 216
-							any_country = {
-								NOT = {
-									tag = FIN
-								}
-								is_puppet_of = CAT
-								owns_state = 216
-							}
 						}
-						FIN = {
-							OR = {
-								has_country_leader_ideology = national_socialist
-								has_country_leader_ideology = revolutionary_nazi
-								is_puppet_of = CAT
-							}
+					}
+					FIN = {
+						OR = {
+							has_country_leader_ideology = national_socialist
+							has_country_leader_ideology = revolutionary_nazi
+							is_puppet_of = CAT
 						}
 					}
 				}
@@ -18764,23 +19188,21 @@ country_event = { #Russia
 			}
 			IF = {
 				limit = {
-					AND = {
-						OR = {
+					OR = {
+						owns_state = 78
+						any_country = {
+							NOT = {
+								tag = UKR
+							}
+							is_puppet_of = CAT
 							owns_state = 78
-							any_country = {
-								NOT = {
-									tag = UKR
-								}
-								is_puppet_of = CAT
-								owns_state = 78
-							}
 						}
-						UKR = {
-							OR = {
-								has_country_leader_ideology = national_socialist
-								has_country_leader_ideology = revolutionary_nazi
-								is_puppet_of = CAT
-							}
+					}
+					UKR = {
+						OR = {
+							has_country_leader_ideology = national_socialist
+							has_country_leader_ideology = revolutionary_nazi
+							is_puppet_of = CAT
 						}
 					}
 				}
@@ -18793,23 +19215,21 @@ country_event = { #Russia
 			}
 			IF = {
 				limit = {
-					AND = {
-						OR = {
+					OR = {
+						owns_state = 857
+						any_country = {
+							NOT = {
+								tag = UKR
+							}
+							is_puppet_of = CAT
 							owns_state = 857
-							any_country = {
-								NOT = {
-									tag = UKR
-								}
-								is_puppet_of = CAT
-								owns_state = 857
-							}
 						}
-						UKR = {
-							OR = {
-								has_country_leader_ideology = national_socialist
-								has_country_leader_ideology = revolutionary_nazi
-								is_puppet_of = CAT
-							}
+					}
+					UKR = {
+						OR = {
+							has_country_leader_ideology = national_socialist
+							has_country_leader_ideology = revolutionary_nazi
+							is_puppet_of = CAT
 						}
 					}
 				}
@@ -19317,9 +19737,9 @@ country_event = { #Scotland
 					long_name = SCO_national_bolshevik_party
 					name = SCO_national_bolshevik_party
 				}
-				# SCO_Matt_Lygate = {
-					# promote_character = yes
-				# }
+				SCO_brian_quail = {
+					promote_character = yes
+				}
 			}
 		}
 		puppet = SCO
@@ -19507,8 +19927,65 @@ country_event = { #Serbia
 		puppet = SER
 	}
 
-	option = { #give to YUG
+	option = { #Separate Vojvodina
 		name = annex.211.o2
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = VOJ
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			VOJ = {
+				transfer_state = PREV
+			}
+		}
+		puppet = VOJ
+		every_state = {
+			limit = {
+				is_core_of = SER
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = KOS
+					is_core_of = VOJ
+				}
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SER = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			SER = {
+				drop_cosmetic_tag = yes
+				set_party_name = {
+					ideology = national_bolshevik
+					long_name = SER_national_bolshevik_party_long
+					name = SER_national_bolshevik_party
+				}
+				SER_ivica_dacic = {
+					promote_character = yes
+				}
+			}
+		}
+		puppet = SER
+	}
+
+	option = { #give to YUG
+		name = annex.211.o3
 		ai_chance = {
 			base = 100
 		}
@@ -19662,7 +20139,7 @@ country_event = { #Serbia
 	}
 
 	option = { #annex
-		name = annex.211.o3
+		name = annex.211.o4
 		ai_chance = {
 			base = 0
 		}
@@ -20572,6 +21049,7 @@ country_event = { #Somalia
 				is_owned_by = ROOT
 				NOT = {
 					is_core_of = ROOT
+					is_core_of = SML
 					is_claimed_by = ROOT
 				}
 			}
@@ -20604,6 +21082,7 @@ country_event = { #Somalia
 				is_owned_by = ROOT
 				NOT = {
 					is_core_of = ROOT
+					is_core_of = SML
 					is_claimed_by = ROOT
 				}
 			}
@@ -20948,12 +21427,10 @@ country_event = { #Soviet Union
 			base = 100
 		}
 		trigger = {
-			AND = {
-				tag = CAT
-				OR = {
-					has_country_leader_ideology = anarcho_syndicalism
-					has_country_leader_ideology = syndicalism
-				}
+			tag = CAT
+			OR = {
+				has_country_leader_ideology = anarcho_syndicalism
+				has_country_leader_ideology = syndicalism
 			}
 		}
 		every_state = {
@@ -21018,6 +21495,35 @@ country_event = { #Spain
 	
 	is_triggered_only = yes
 
+	immediate = {
+		hidden_effect = {
+			every_state = {
+				limit = {
+					NOT = {
+						is_core_of = SPR
+					}
+					is_in_array = {
+						array = SPR_starting_cores
+						value = THIS
+					}
+				}
+				add_core_of = SPR
+			}
+			every_state = {
+				limit = {
+					is_core_of = SPR
+					NOT = {
+						is_in_array = {
+							array = SPR_starting_cores
+							value = THIS
+						}
+					}
+				}
+				remove_core_of = SPR
+			}
+		}
+	}
+
 	option = { #puppet
 		name = annex.228.o1
 		ai_chance = {
@@ -21034,6 +21540,12 @@ country_event = { #Spain
 		every_state = {
 			limit = {
 				is_core_of = SPR
+				NOT = { #still remove their colonies
+					is_core_of = CCM
+					is_core_of = EQG
+					is_core_of = CAI
+					is_core_of = ANA
+				}
 				OR = {
 					is_owned_by = ROOT
 					owner = {
@@ -21074,6 +21586,37 @@ country_event = { #Spain
 		SPR = {
 			load_focus_tree = generic_focus
 		}
+		if = {
+			limit = {
+				OR = {
+					has_government = communist
+					has_government = revolutionary_socialist
+					has_government = moderate_socialist
+					has_government = national_bolshevik
+				}
+			}
+			SPR = {
+				set_cosmetic_tag = SPR_thirdrep
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_government = communist
+					has_government = revolutionary_socialist
+					has_government = moderate_socialist
+					has_government = national_bolshevik
+					has_government = monarchist
+				}
+			}
+			country_event = annex.315
+		}
+		if = {
+			limit = {
+				has_government = monarchist
+			}
+			country_event = annex.316
+		}
 	}
 
 	option = { #balkanize
@@ -21096,6 +21639,10 @@ country_event = { #Spain
 					is_core_of = BSQ
 					is_core_of = CAT
 					is_core_of = GAL
+					is_core_of = CCM
+					is_core_of = EQG
+					is_core_of = CAI
+					is_core_of = ANA
 				}
 				is_owned_by = ROOT
 				NOT = {
@@ -21133,6 +21680,37 @@ country_event = { #Spain
 			load_focus_tree = generic_focus
 		}
 		set_country_flag = SPR_balkanize
+		if = {
+			limit = {
+				OR = {
+					has_government = communist
+					has_government = revolutionary_socialist
+					has_government = moderate_socialist
+					has_government = national_bolshevik
+				}
+			}
+			SPR = {
+				set_cosmetic_tag = SPR_thirdrep
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_government = communist
+					has_government = revolutionary_socialist
+					has_government = moderate_socialist
+					has_government = national_bolshevik
+					has_government = monarchist
+				}
+			}
+			country_event = annex.315
+		}
+		if = {
+			limit = {
+				has_government = monarchist
+			}
+			country_event = annex.316
+		}
 	}
 
 	option = { #balkanize more
@@ -21154,9 +21732,14 @@ country_event = { #Spain
 				NOT = {
 					is_core_of = BSQ
 					is_core_of = CAT
+					is_claimed_by = CAT
 					is_core_of = GAL
 					is_core_of = ATA
 					is_core_of = ALU
+					is_core_of = CCM
+					is_core_of = EQG
+					is_core_of = CAI
+					is_core_of = ANA
 				}
 				is_owned_by = ROOT
 				NOT = {
@@ -21195,6 +21778,37 @@ country_event = { #Spain
 		}
 		set_country_flag = SPR_balkanize
 		set_country_flag = SPR_balkanize_2
+		if = {
+			limit = {
+				OR = {
+					has_government = communist
+					has_government = revolutionary_socialist
+					has_government = moderate_socialist
+					has_government = national_bolshevik
+				}
+			}
+			SPR = {
+				set_cosmetic_tag = SPR_thirdrep
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_government = communist
+					has_government = revolutionary_socialist
+					has_government = moderate_socialist
+					has_government = national_bolshevik
+					has_government = monarchist
+				}
+			}
+			country_event = annex.315
+		}
+		if = {
+			limit = {
+				has_government = monarchist
+			}
+			country_event = annex.316
+		}
 	}
 	
 	option = { #revnazi puppet not balkanization
@@ -21203,15 +21817,13 @@ country_event = { #Spain
 			base = 100
 		}
 		trigger = {
-			AND = {
-				tag = CAT
-				has_government = national_bolshevik
-				NOT = {
-					owns_state = 172
-				}
-				NOT = {
-					owns_state = 171
-				}
+			tag = CAT
+			has_government = national_bolshevik
+			NOT = {
+				owns_state = 172
+			}
+			NOT = {
+				owns_state = 171
 			}
 		}
 		every_state = {
@@ -21289,6 +21901,7 @@ country_event = { #Spain
 					is_core_of = BSQ
 					is_core_of = CAT
 					is_core_of = GAL
+					is_core_of = ANA
 				}
 				is_owned_by = ROOT
 				NOT = {
@@ -21594,8 +22207,54 @@ country_event = { #Sudan
 		puppet = SUD
 	}
 
-	option = { #give to UAR
+	option = { #liberate south sudan
 		name = annex.232.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				UAR = {
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = SSD
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SSD = {
+				transfer_state = PREV
+			}
+		}
+		puppet = SSD
+		every_state = {
+			limit = {
+				is_core_of = SUD
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_core_of = SSD
+					is_claimed_by = ROOT
+				}
+			}
+			SUD = {
+				transfer_state = PREV
+			}
+		}
+		puppet = SUD
+	}
+
+	option = { #give to UAR
+		name = annex.232.o3
 		ai_chance = {
 			base = 100
 		}
@@ -21627,7 +22286,7 @@ country_event = { #Sudan
 	}
 
 	option = { #annex
-		name = annex.232.o3
+		name = annex.232.o4
 		ai_chance = {
 			base = 0
 		}
@@ -21726,7 +22385,6 @@ country_event = { #Suriname
 			}
 			SUR = {
 				transfer_state = PREV
-				GUY = { remove_state_core = PREV }
 			}
 		}
 		puppet = SUR
@@ -21853,21 +22511,19 @@ country_event = { #Sweden
 			base = 100
 		}
 		trigger = {
-			AND = {
-				NOT = {
-					has_cosmetic_tag = SPR_SFKS
-				}
-				NOT = {
-					has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
-				}
-				NOT = {
-					AND = {
-						tag = CAT
-						OR = {
-							has_country_leader_ideology = anarcho_syndicalism
-							has_country_leader_ideology = syndicalism
-							has_country_leader_ideology = revolutionary_nazi
-						}
+			NOT = {
+				has_cosmetic_tag = SPR_SFKS
+			}
+			NOT = {
+				has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					OR = {
+						has_country_leader_ideology = anarcho_syndicalism
+						has_country_leader_ideology = syndicalism
+						has_country_leader_ideology = revolutionary_nazi
 					}
 				}
 			}
@@ -21898,9 +22554,6 @@ country_event = { #Sweden
 					long_name = SWE_national_bolshevik_party
 					name = SWE_national_bolshevik_party
 				}
-				# SWE_stefan_jacobsson = {
-					# promote_character = yes
-				# }
 			}
 		}
 		puppet = SWE
@@ -21912,10 +22565,8 @@ country_event = { #Sweden
 			base = 100
 		}
 		trigger = {
-			AND = {
-				tag = CAT
-				has_country_leader_ideology = revolutionary_nazi
-			}
+			tag = CAT
+			has_country_leader_ideology = revolutionary_nazi
 		}
 		every_state = {
 			limit = {
@@ -21949,30 +22600,39 @@ country_event = { #Sweden
 			}
 			IF = {
 				limit = {
-					AND = {
-						tag = CAT
-						has_country_leader_ideology = revolutionary_nazi
-					}
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
 				}
 				SWE = {
 					set_cosmetic_tag = SWE_revnazi_puppet
+					set_party_name = {
+						ideology = national_bolshevik
+						name = "SvP"
+						long_name = "Party of the Swedes"
+					}
+					SWE_Stefan_Jacobsson = {
+						add_country_leader_role = {
+							promote_leader = yes		
+							country_leader={
+								ideology=revolutionary_nazi
+								expire="1.1.1.1"
+								id=-1
+							}
+						}
+					}
 				}
 			}
 			IF = {
 				limit = {
-					AND = {
-						tag = CAT
-						has_country_leader_ideology = revolutionary_nazi
-						OR = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+					OR = {
+						owns_state = 145
+						any_country = {
 							owns_state = 145
-							any_country = {
-								AND = {
-									owns_state = 145
-									is_puppet_of = CAT
-								}
-							}
-						}	
-					}
+							is_puppet_of = CAT
+						}
+					}	
 				}
 				SWE = {
 					transfer_state = 145
@@ -22076,7 +22736,8 @@ country_event = { #Sweden
 				set_cosmetic_tag = SWE_titocarlist
 				set_party_name = {
 					ideology = revolutionary_socialist
-					name = "House of Bernadotte"
+					long_name = "House of Bernadotte"
+					name = "Bernadotte"
 				}
 				SWE_carl_xvi_gustaf_revsoc = {
 					add_country_leader_role = {
@@ -22098,12 +22759,10 @@ country_event = { #Sweden
 			base = 100
 		}
 		trigger = {
-			AND = {
-				tag = CAT
-				OR = {
-					has_country_leader_ideology = anarcho_syndicalism
-					has_country_leader_ideology = syndicalism
-				}
+			tag = CAT
+			OR = {
+				has_country_leader_ideology = anarcho_syndicalism
+				has_country_leader_ideology = syndicalism
 			}
 		}
 		every_state = {
@@ -22184,25 +22843,23 @@ country_event = { #Switzerland
 		puppet = SWI
 		IF = {
 			limit = {
-				AND = {
-					tag = CAT
-					has_country_leader_ideology = revolutionary_nazi
-					OR = {
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+				OR = {
+					owns_state = 3
+					any_country = {
+						NOT = {
+							tag = FRA
+						}
+						is_puppet_of = CAT
 						owns_state = 3
-						any_country = {
-							NOT = {
-								tag = FRA
-							}
-							is_puppet_of = CAT
-							owns_state = 3
-						}
 					}
-					FRA = {
-						OR = {
-							has_country_leader_ideology = national_socialist
-							has_country_leader_ideology = revolutionary_nazi
-							is_puppet_of = CAT
-						}
+				}
+				FRA = {
+					OR = {
+						has_country_leader_ideology = national_socialist
+						has_country_leader_ideology = revolutionary_nazi
+						is_puppet_of = CAT
 					}
 				}
 			}
@@ -22215,25 +22872,23 @@ country_event = { #Switzerland
 		}
 		IF = {
 			limit = {
-				AND = {
-					tag = CAT
-					has_country_leader_ideology = revolutionary_nazi
-					OR = {
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+				OR = {
+					owns_state = 151
+					any_country = {
+						NOT = {
+							tag = GER
+						}
+						is_puppet_of = CAT
 						owns_state = 151
-						any_country = {
-							NOT = {
-								tag = GER
-							}
-							is_puppet_of = CAT
-							owns_state = 151
-						}
 					}
-					GER = {
-						OR = {
-							has_country_leader_ideology = national_socialist
-							has_country_leader_ideology = revolutionary_nazi
-							is_puppet_of = CAT
-						}
+				}
+				GER = {
+					OR = {
+						has_country_leader_ideology = national_socialist
+						has_country_leader_ideology = revolutionary_nazi
+						is_puppet_of = CAT
 					}
 				}
 			}
@@ -22246,25 +22901,23 @@ country_event = { #Switzerland
 		}
 		IF = {
 			limit = {
-				AND = {
-					tag = CAT
-					has_country_leader_ideology = revolutionary_nazi
-					OR = {
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+				OR = {
+					owns_state = 855
+					any_country = {
+						NOT = {
+							tag = GER
+						}
+						is_puppet_of = CAT
 						owns_state = 855
-						any_country = {
-							NOT = {
-								tag = GER
-							}
-							is_puppet_of = CAT
-							owns_state = 855
-						}
 					}
-					GER = {
-						OR = {
-							has_country_leader_ideology = national_socialist
-							has_country_leader_ideology = revolutionary_nazi
-							is_puppet_of = CAT
-						}
+				}
+				GER = {
+					OR = {
+						has_country_leader_ideology = national_socialist
+						has_country_leader_ideology = revolutionary_nazi
+						is_puppet_of = CAT
 					}
 				}
 			}
@@ -22277,25 +22930,23 @@ country_event = { #Switzerland
 		}
 		IF = {
 			limit = {
-				AND = {
-					tag = CAT
-					has_country_leader_ideology = revolutionary_nazi
-					OR = {
+				tag = CAT
+				has_country_leader_ideology = revolutionary_nazi
+				OR = {
+					owns_state = 838
+					any_country = {
+						NOT = {
+							tag = ITA
+						}
+						is_puppet_of = CAT
 						owns_state = 838
-						any_country = {
-							NOT = {
-								tag = ITA
-							}
-							is_puppet_of = CAT
-							owns_state = 838
-						}
 					}
-					ITA = {
-						OR = {
-							has_country_leader_ideology = national_socialist
-							has_country_leader_ideology = revolutionary_nazi
-							is_puppet_of = CAT
-						}
+				}
+				ITA = {
+					OR = {
+						has_country_leader_ideology = national_socialist
+						has_country_leader_ideology = revolutionary_nazi
+						is_puppet_of = CAT
 					}
 				}
 			}
@@ -22453,10 +23104,8 @@ country_event = { #Tajikistan
 							is_puppet_of = ROOT
 						}
 					}
-					AND = {
-						tag = CAT
-						has_country_leader_ideology = revolutionary_nazi
-					}
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
 				}
 				NOT = {
 					AND = {
@@ -22786,10 +23435,8 @@ country_event = { #Tannu Tuva (Tannu what?)
 							is_puppet_of = ROOT
 						}
 					}
-					AND = {
-						tag = CAT
-						has_country_leader_ideology = revolutionary_nazi
-					}
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
 				}
 				NOT = {
 					AND = {
@@ -23037,13 +23684,11 @@ country_event = { #Texas
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -23056,6 +23701,7 @@ country_event = { #Texas
 					is_claimed_by = ROOT
 				}
 				NOT = {
+					state = 900
 					state = 894
 					state = 376
 				}
@@ -23170,13 +23816,11 @@ country_event = { #Texas
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -23625,8 +24269,8 @@ country_event = { #Turkey
 				set_cosmetic_tag = TUR_revnazi_puppet
 				set_party_name = {
 					ideology = national_bolshevik
-					name = "National Unity"
-					long_name = "Georgian National Unity"
+					name = "Idealist Hearths"
+					long_name = "Idealist Hearths Educational and Cultural Foundation"
 				}
 				TUR_Olcay_Klavuz = {
 					add_country_leader_role = {
@@ -23955,10 +24599,8 @@ country_event = { #Turkmenistan
 							is_puppet_of = ROOT
 						}
 					}
-					AND = {
-						tag = CAT
-						has_country_leader_ideology = revolutionary_nazi
-					}
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
 				}
 				NOT = {
 					AND = {
@@ -24905,25 +25547,23 @@ country_event = { #United Kingdom
 			base = 0
 		}
 		trigger = {
-			AND = {
-				OR = {
-					owns_state = 121
-					owns_state = 122
-				}
-				NOT = {
-					has_cosmetic_tag = SPR_SFKS
-				}
-				NOT = {
-					has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
-				}
-				NOT = {
-					AND = {
-						tag = CAT
-						OR = {
-							has_country_leader_ideology = anarcho_syndicalism
-							has_country_leader_ideology = syndicalism
-							has_country_leader_ideology = revolutionary_nazi
-						}
+			OR = {
+				owns_state = 121
+				owns_state = 122
+			}
+			NOT = {
+				has_cosmetic_tag = SPR_SFKS
+			}
+			NOT = {
+				has_cosmetic_tag = SPR_titoist_kingdom_of_iberia
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					OR = {
+						has_country_leader_ideology = anarcho_syndicalism
+						has_country_leader_ideology = syndicalism
+						has_country_leader_ideology = revolutionary_nazi
 					}
 				}
 			}
@@ -25004,16 +25644,12 @@ country_event = { #United Kingdom
 			base = 0
 		}
 		trigger = {
-			AND = {
-				OR = {
-					owns_state = 121
-					owns_state = 122
-				}
-				AND = {
-					tag = CAT
-					has_country_leader_ideology = revolutionary_nazi
-				}
+			OR = {
+				owns_state = 121
+				owns_state = 122
 			}
+			tag = CAT
+			has_country_leader_ideology = revolutionary_nazi
 		}
 		every_state = {
 			limit = {
@@ -25176,12 +25812,10 @@ country_event = { #United Kingdom
 			base = 100
 		}
 		trigger = {
-			AND = {
-				tag = CAT
-				OR = {
-					has_country_leader_ideology = anarcho_syndicalism
-					has_country_leader_ideology = syndicalism
-				}
+			tag = CAT
+			OR = {
+				has_country_leader_ideology = anarcho_syndicalism
+				has_country_leader_ideology = syndicalism
 			}
 		}
 		every_state = {
@@ -25344,8 +25978,9 @@ country_event = { #USA (American Republic)
 					is_claimed_by = ROOT
 				}
 				NOT = {
-					state = 901
-					state = 902
+					state = 900 #East Texas
+					state = 901 #DC
+					state = 902 #North Virginia
 				}
 				NOT = {
 					is_core_of = PUE
@@ -25361,6 +25996,7 @@ country_event = { #USA (American Republic)
 			clr_country_flag = can_core_PCA
 			clr_country_flag = can_core_LIN
 			clr_country_flag = can_core_MOT
+			clr_country_flag = can_core_UTA
 			clr_country_flag = can_core_TEX
 			clr_country_flag = can_core_GRL
 			clr_country_flag = can_core_ILL
@@ -25429,13 +26065,11 @@ country_event = { #USA (American Republic)
 			}
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 			NOT = { #dont make unifiers if you have American allies
@@ -25484,6 +26118,7 @@ country_event = { #USA (American Republic)
 			set_country_flag = can_core_PCA
 			set_country_flag = can_core_LIN
 			set_country_flag = can_core_MOT
+			set_country_flag = can_core_UTA
 			set_country_flag = can_core_TEX
 			set_country_flag = can_core_GRL
 			set_country_flag = can_core_ILL
@@ -25532,13 +26167,11 @@ country_event = { #USA (American Republic)
 				has_focus_tree = great_lakes_tree
 			}
 			any_country = {
-				AND = {
-					OR = {
-						is_puppet_of = ROOT
-						is_in_faction_with = ROOT
-					}
-					has_country_flag = unifying_america
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
 				}
+				has_country_flag = unifying_america
 			}
 		}
 		every_state = {
@@ -25587,13 +26220,11 @@ country_event = { #USA (American Republic)
 			}
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -25614,13 +26245,11 @@ country_event = { #Utah
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -25688,13 +26317,11 @@ country_event = { #Utah
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -25870,10 +26497,8 @@ country_event = { #Uzbekistan
 							is_puppet_of = ROOT
 						}
 					}
-					AND = {
-						tag = CAT
-						has_country_leader_ideology = revolutionary_nazi
-					}
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
 				}
 				NOT = {
 					AND = {
@@ -25913,8 +26538,60 @@ country_event = { #Uzbekistan
 		puppet = UZB
 	}
 
+	option = { #Liberate Karakalpakstan
+		name = annex.267.02
+		trigger = {
+			OR = {
+				AND = {
+					NOT = {
+						RUS = {
+							is_puppet_of = ROOT
+						}
+					}
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+				NOT = {
+					AND = {
+						tag = CAT
+						has_country_leader_ideology = revolutionary_nazi
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = KAR
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			KAR = {
+				transfer_state = PREV
+			}
+		}
+		puppet = KAR
+		every_state = {
+			limit = {
+				is_core_of = UZB
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_core_of = KAR
+					is_claimed_by = ROOT
+				}
+			}
+			UZB = {
+				transfer_state = PREV
+			}
+		}
+		puppet = UZB
+	}
+
 	option = { #give to SOV
-		name = annex.267.o2
+		name = annex.267.o3
 		ai_chance = {
 			base = 100
 		}
@@ -25978,7 +26655,7 @@ country_event = { #Uzbekistan
 	}
 
 	option = { #annex
-		name = annex.267.o3
+		name = annex.267.o4
 		ai_chance = {
 			base = 0
 		}
@@ -27046,12 +27723,10 @@ country_event = { #Yugoslavia
 			base = 100
 		}
 		trigger = {
-			AND = {
-				tag = CAT
-				OR = {
-					has_country_leader_ideology = anarcho_syndicalism
-					has_country_leader_ideology = syndicalism
-				}
+			tag = CAT
+			OR = {
+				has_country_leader_ideology = anarcho_syndicalism
+				has_country_leader_ideology = syndicalism
 			}
 		}
 		every_state = {
@@ -27323,7 +27998,7 @@ country_event = { #Borneo
 		}
 		every_state = {
 			limit = {
-				is_core_of = BOR
+				is_core_of = BRN
 				OR = {
 					is_owned_by = ROOT
 					owner = {
@@ -27335,80 +28010,20 @@ country_event = { #Borneo
 					is_claimed_by = ROOT
 				}
 			}
-			BOR = {
+			BRN = {
 				transfer_state = PREV
 			}
 		}
-		puppet = BOR
+		puppet = BRN
 	}
 
-	option = { #balkanize
+	option = { #annex
 		name = annex.285.o2
 		ai_chance = {
 			base = 0
 		}
-		trigger = {
-			owns_state = 834
-		}
-		every_state = {
-			limit = {
-				is_core_of = BOR
-				NOT = {
-					is_core_of = BRN
-				}
-				is_owned_by = ROOT
-				NOT = {
-					is_core_of = ROOT
-					is_claimed_by = ROOT
-				}
-			}
-			BOR = {
-				transfer_state = PREV
-			}
-		}
-		set_country_flag = BOR_balkanize
-		puppet = BOR
-	}
 
-	option = { #give to INS
-		name = annex.285.o3
-		ai_chance = {
-			base = 100
-		}
-		trigger = {
-			NOT = {
-				tag = INS
-			}
-			INS = {
-				OR = {
-					is_puppet_of = ROOT
-					is_in_faction_with = ROOT
-				}
-			}
-		}
-		every_state = {
-			limit = {
-				is_core_of = WPA
-				is_owned_by = ROOT
-				NOT = {
-					is_core_of = ROOT
-					is_claimed_by = ROOT
-				}
-			}
-			INS = {
-				transfer_state = PREV
-				add_state_core = PREV
-			}
-		}
-	}
-
-	option = { #annex
-		name = annex.285.o4
-		ai_chance = {
-			base = 0
-		}
-
-		set_country_flag = BOR_annex
+		set_country_flag = BRN_annex
 	}
 }
 
@@ -27467,13 +28082,11 @@ country_event = { #Mexican Texas
 			}
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 			MEX = {
@@ -27535,13 +28148,11 @@ country_event = { #Mexican Texas
 		}
 		trigger = {
 			any_country = {
-				AND = {
-					OR = {
-						is_puppet_of = ROOT
-						is_in_faction_with = ROOT
-					}
-					has_country_flag = unifying_america
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
 				}
+				has_country_flag = unifying_america
 			}
 		}
 		894 = {
@@ -27568,13 +28179,11 @@ country_event = { #Mexican Texas
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -27596,15 +28205,16 @@ country_event = { #New Mexico
 			NOT = {
 				tag = MEX
 			}
+			MEX = {
+				exists = yes
+			}
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -27644,13 +28254,11 @@ country_event = { #New Mexico
 		}
 		trigger = {
 			any_country = {
-				AND = {
-					OR = {
-						is_puppet_of = ROOT
-						is_in_faction_with = ROOT
-					}
-					has_country_flag = unifying_america
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
 				}
+				has_country_flag = unifying_america
 			}
 		}
 		376 = {
@@ -27677,13 +28285,11 @@ country_event = { #New Mexico
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -27710,13 +28316,11 @@ country_event = { #Washington DC
 			}
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -27742,13 +28346,11 @@ country_event = { #Washington DC
 			}
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -27775,13 +28377,11 @@ country_event = { #Washington DC
 			}
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -27800,13 +28400,11 @@ country_event = { #Washington DC
 		}
 		trigger = {
 			any_country = {
-				AND = {
-					OR = {
-						is_puppet_of = ROOT
-						is_in_faction_with = ROOT
-					}
-					has_country_flag = unifying_america
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
 				}
+				has_country_flag = unifying_america
 			}
 		}
 		901 = {
@@ -27833,13 +28431,11 @@ country_event = { #Washington DC
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -27866,13 +28462,11 @@ country_event = { #North Virginia
 			}
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -27898,13 +28492,11 @@ country_event = { #North Virginia
 			}
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -27931,13 +28523,11 @@ country_event = { #North Virginia
 			}
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -27956,13 +28546,11 @@ country_event = { #North Virginia
 		}
 		trigger = {
 			any_country = {
-				AND = {
-					OR = {
-						is_puppet_of = ROOT
-						is_in_faction_with = ROOT
-					}
-					has_country_flag = unifying_america
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
 				}
+				has_country_flag = unifying_america
 			}
 		}
 		902 = {
@@ -27989,13 +28577,11 @@ country_event = { #North Virginia
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -28055,13 +28641,11 @@ country_event = { #New England
 			}
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -28091,13 +28675,11 @@ country_event = { #New England
 		}
 		trigger = {
 			any_country = {
-				AND = {
-					OR = {
-						is_puppet_of = ROOT
-						is_in_faction_with = ROOT
-					}
-					has_country_flag = unifying_america
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
 				}
+				has_country_flag = unifying_america
 			}
 		}
 		every_state = {
@@ -28127,13 +28709,11 @@ country_event = { #New England
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -28411,6 +28991,10 @@ country_event = { #Arunachal Pradesh
 			base = 100
 		}
 		trigger = {
+			ASS = {
+				exists = yes
+				owns_state = 432
+			}
 			NOT = {
 				tag = ASS
 			}
@@ -28639,18 +29223,16 @@ country_event = { #Galicia
 			base = 100
 		}
 		trigger = {	
-			AND = {
-				OR = {
-					tag = SPR
-					tag = SPN
-				}
-				has_completed_focus = SPR_a_confederate_spain
-				NOT = {
-					has_completed_focus = SPR_nat_reunite_spain
-				}
-				NOT = {
-					has_completed_focus = SPR_liberal_recentralize_spain
-				}
+			OR = {
+				tag = SPR
+				tag = SPN
+			}
+			has_completed_focus = SPR_a_confederate_spain
+			NOT = {
+				has_completed_focus = SPR_nat_reunite_spain
+			}
+			NOT = {
+				has_completed_focus = SPR_liberal_recentralize_spain
 			}
 		}
 		every_state = {
@@ -28709,7 +29291,7 @@ country_event = { #USA Leader (Fascist)
 		}
 		USA = {
 			USA_david_duke = {
-				promote_character = fascist_ideology
+				promote_character = american_fascist
 			}
 			set_country_flag = duke_puppet_leader
 			set_party_name = { ideology = fascist long_name = USA_national_renewal name = USA_national_renewal }
@@ -28738,7 +29320,7 @@ country_event = { #USA Leader (Fascist)
 		}
 		USA = {
 			USA_frank_ancona = {
-				promote_character = clerical_fascist
+				promote_character = klan_doctrine
 			}
 			set_country_flag = ancona_puppet_leader
 			set_party_name = { ideology = fascist long_name = USA_kkk name = USA_kkk }
@@ -28881,6 +29463,14 @@ country_event = { #Western Sahara
 		ai_chance = {
 			base = 100
 		}
+		trigger = {
+			NOT = {
+				tag = WSA
+			}
+			WSA = {
+				exists = no
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = WSA
@@ -28897,8 +29487,36 @@ country_event = { #Western Sahara
 		puppet = WSA
 	}
 
-	option = { #give to MOR
+	option = { #give to WSA
 		name = annex.298.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = WSA
+			}
+			WSA = {
+				exists = yes
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = WSA
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			WSA = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #give to MOR
+		name = annex.298.o3
 		ai_chance = {
 			base = 10
 		}
@@ -28906,12 +29524,9 @@ country_event = { #Western Sahara
 			NOT = {
 				tag = MOR
 			}
-			MOR = {
-				OR = {
-					is_puppet_of = ROOT
-					is_in_faction_with = ROOT
-				}
-			}
+		}
+		699 = {
+			add_core_of = MOR
 		}
 		every_state = {
 			limit = {
@@ -28926,13 +29541,10 @@ country_event = { #Western Sahara
 				transfer_state = PREV
 			}
 		}
-		699 = {
-			add_core_of = MOR
-		}
 	}
 
 	option = { #annex
-		name = annex.298.o3
+		name = annex.298.o4
 		ai_chance = {
 			base = 0
 		}
@@ -29577,13 +30189,11 @@ country_event = { #East Cascadia
 			}
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -29609,13 +30219,11 @@ country_event = { #East Cascadia
 			}
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -29643,13 +30251,11 @@ country_event = { #East Cascadia
 			}
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -29668,13 +30274,11 @@ country_event = { #East Cascadia
 		}
 		trigger = {
 			any_country = {
-				AND = {
-					OR = {
-						is_puppet_of = ROOT
-						is_in_faction_with = ROOT
-					}
-					has_country_flag = unifying_america
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
 				}
+				has_country_flag = unifying_america
 			}
 		}
 		890 = {
@@ -29701,13 +30305,11 @@ country_event = { #East Cascadia
 		trigger = {
 			NOT = {
 				any_country = {
-					AND = {
-						OR = {
-							is_puppet_of = ROOT
-							is_in_faction_with = ROOT
-						}
-						has_country_flag = unifying_america
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
 					}
+					has_country_flag = unifying_america
 				}
 			}
 		}
@@ -30131,5 +30733,1710 @@ country_event = { #Republic or Monarchy (ENG)
 				add_ideas = idea_king_edward_ix_edward
 			}
 		}
+	}
+}
+country_event = { #Republic or Monarchy (SPR)
+	id = annex.315
+	title = annex.315.t
+	desc = annex.315.d
+	
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			SPR = {
+				remove_ideas = idea_spr_felipe_vi
+				remove_ideas = idea_spr_carlos_javier_i
+				remove_ideas = idea_spr_enrique_v
+				remove_ideas = idea_spr_leonor_i_kid
+				remove_ideas = idea_spr_leonor_i_adult
+			}
+		}
+	}
+
+	option = { #Republic
+		name = annex.315.o1
+		ai_chance = {
+			base = 50
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_government = fascist #they still make the Spanish State
+				}
+			}
+			SPR = { #puppetted spain is always SPR not SPN
+				set_cosmetic_tag = SPR_thirdrep
+			}
+		}
+	}
+
+	option = { #Monarchy
+		name = annex.315.o2
+		ai_chance = {
+			base = 50
+		}
+		country_event = annex.316
+	}
+}
+country_event = { #SPR - Which royal branch to restore?
+	id = annex.316
+	title = annex.316.t
+	desc = annex.316.d
+	
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			SPR = {
+				remove_ideas = idea_spr_felipe_vi
+				remove_ideas = idea_spr_carlos_javier_i
+				remove_ideas = idea_spr_enrique_v
+				remove_ideas = idea_spr_leonor_i_kid
+				remove_ideas = idea_spr_leonor_i_adult
+			}
+		}
+	}
+
+	option = { #Felipe
+		name = annex.316.o1
+		trigger = {
+			NOT = { #Felipe didnt die
+				has_global_flag = spr_felipe_is_dead_global
+				has_global_flag = spr_anjous_exterminated
+			}
+		}
+		ai_chance = {
+			base = 75 #legitimists more likely to be chosen
+		}
+		SPR = { #puppetted spain is always SPR not SPN
+			drop_cosmetic_tag = yes
+			create_country_leader = {
+				name = "Felipe VI"
+				picture = Portrait_SPR_Felipe_VI.dds
+				ideology = absolute_monarchist
+			}
+			set_party_name = {
+				ideology = monarchist
+				long_name = SPR_monarchist_party_long
+				name = SPR_monarchist_party
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_government = monarchist
+					}
+				}
+				add_ideas = idea_spr_felipe_vi
+			}
+		}
+	}
+
+	option = { #Leonor
+		name = annex.316.o2
+		trigger = { #Felipe died but the rest didnt
+			has_global_flag = spr_felipe_is_dead_global
+			NOT = {
+				has_global_flag = spr_anjous_exterminated
+			}
+		}
+		ai_chance = {
+			base = 50 #legitimists more likely to be chosen but less likely to choose a young girl
+		}
+		if = {
+			limit = {
+				date < 2023.11.01 #Leonor is still a kid
+			}
+			SPR = { #puppetted spain is always SPR not SPN
+				drop_cosmetic_tag = yes
+				create_country_leader = {
+					name = "Regency Council"
+					picture = Portrait_SPR_regency_council.dds
+					ideology = regency_monarchist
+				}
+				set_party_name = {
+					ideology = monarchist
+					long_name = SPR_monarchist_party_long
+					name = SPR_monarchist_party
+				}
+				if = {
+					limit = {
+						NOT = {
+							has_government = monarchist
+						}
+					}
+					add_ideas = idea_spr_leonor_i_kid
+				}
+			}
+		}
+		else = { #After October 2023, Leonor is an adult
+			SPR = { #puppetted spain is always SPR not SPN
+				drop_cosmetic_tag = yes
+				create_country_leader = {
+					name = "Leonor I"
+					picture = Portrait_SPR_Leonor_First.dds
+					ideology = absolute_monarchist
+				}
+				set_party_name = {
+					ideology = monarchist
+					long_name = SPR_monarchist_party_long
+					name = SPR_monarchist_party
+				}
+				if = {
+					limit = {
+						NOT = {
+							has_government = monarchist
+						}
+					}
+					add_ideas = idea_spr_leonor_i_adult
+				}
+			}
+		}
+	}
+
+	option = { #Carlos Javier
+		name = annex.316.o3
+		#no trigger, is always available
+		ai_chance = {
+			base = 10 #Carlists less likely to be chosen
+		}
+		SPR = { #puppetted spain is always SPR not SPN
+			set_cosmetic_tag = SPR_carlism
+			create_country_leader = {
+				name = "Carlos Javier I"
+				picture = Portrait_SPR_Carlos_Javier_I.dds
+				ideology = carlist_monarchist
+			}
+			set_party_name = {
+				ideology = monarchist
+				long_name = spain_carlist_long
+				name = spain_carlist
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_government = monarchist
+					}
+				}
+				add_ideas = idea_spr_carlos_javier_i
+			}
+		}
+	}
+
+	option = { #Enrique
+		name = annex.316.o4
+		#no trigger, is always available
+		ai_chance = {
+			base = 15 #Carlists less likely to be chosen
+		}
+		SPR = { #puppetted spain is always SPR not SPN
+			add_ideas = idea_spr_enrique_v
+			set_cosmetic_tag = SPR_carlism
+			create_country_leader = {
+				name = "Enrique V"
+				picture = Portrait_SPR_Enrique_V.dds
+				ideology = carlist_monarchist
+			}
+			set_party_name = {
+				ideology = monarchist
+				long_name = spain_carlist_long
+				name = spain_carlist
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_government = monarchist
+					}
+				}
+				add_ideas = idea_spr_enrique_v
+			}
+		}
+	}
+}
+country_event = { #East Texas
+	id = annex.317
+	title = annex.317.t
+	desc = annex.317.d
+	
+	is_triggered_only = yes
+
+	option = { #give to TEX
+		name = annex.317.o1
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = TEX
+			}
+			TEX = {
+				exists = yes
+			}
+			NOT = {
+				any_country = {
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
+					}
+					has_country_flag = unifying_america
+				}
+			}
+		}
+		900 = {
+			TEX = {
+				transfer_state = PREV
+				add_state_core = PREV
+			}
+		}
+	}
+
+	option = { #give to USA
+		name = annex.317.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = USA
+			}
+			USA = {
+				exists = yes
+			}
+			NOT = {
+				any_country = {
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
+					}
+					has_country_flag = unifying_america
+				}
+			}
+		}
+		900 = {
+			USA = {
+				transfer_state = PREV
+				add_state_core = PREV
+			}
+		}
+	}
+
+	option = { #give to american ally/puppet
+		name = annex.317.o3
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			any_country = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+				has_country_flag = unifying_america
+			}
+		}
+		900 = {
+			every_country = { #this should only be one possible country
+				limit = {
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
+					}
+					has_country_flag = unifying_america
+				}
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #annex
+		name = annex.317.o4
+		ai_chance = {
+			base = 0
+		}
+
+		set_country_flag = east_texas_annex
+		trigger = {
+			NOT = {
+				any_country = {
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
+					}
+					has_country_flag = unifying_america
+				}
+			}
+		}
+	}
+}
+country_event = { #East Texas
+	id = annex.318
+	title = annex.318.t
+	desc = annex.318.d
+	
+	is_triggered_only = yes
+
+	option = { #give to ILL
+		name = annex.318.o1
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = ILL
+			}
+			ILL = {
+				exists = yes
+			}
+			NOT = {
+				any_country = {
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
+					}
+					has_country_flag = unifying_america
+				}
+			}
+		}
+		395 = {
+			ILL = {
+				transfer_state = PREV
+				add_state_core = PREV
+			}
+		}
+	}
+
+	option = { #give to NEA
+		name = annex.318.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = NEA
+			}
+			NEA = {
+				exists = yes
+			}
+			NOT = {
+				any_country = {
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
+					}
+					has_country_flag = unifying_america
+				}
+			}
+		}
+		395 = {
+			NEA = {
+				transfer_state = PREV
+				add_state_core = PREV
+			}
+		}
+	}
+
+	option = { #give to american ally/puppet
+		name = annex.318.o3
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			any_country = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+				has_country_flag = unifying_america
+			}
+		}
+		395 = {
+			every_country = { #this should only be one possible country
+				limit = {
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
+					}
+					has_country_flag = unifying_america
+				}
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #annex
+		name = annex.318.o4
+		ai_chance = {
+			base = 0
+		}
+
+		set_country_flag = chicago_annex
+		trigger = {
+			NOT = {
+				any_country = {
+					OR = {
+						is_puppet_of = ROOT
+						is_in_faction_with = ROOT
+					}
+					has_country_flag = unifying_america
+				}
+			}
+		}
+	}
+}
+country_event = { #Ceuta and Melilla
+	id = annex.319
+	title = annex.319.t
+	desc = annex.319.d
+
+	is_triggered_only = yes
+
+	option = { #puppet
+		name = annex.319.o1
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+			OR = {
+				AND = {
+					NOT = {
+						tag = SPR
+					}
+					NOT = {
+						tag = SPN
+					}
+				}
+				AND = {
+					OR = {
+						tag = SPR
+						tag = SPN
+					}
+					NOT = {
+						has_completed_focus = SPR_a_confederate_spain
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = CCM
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			CCM = {
+				transfer_state = PREV
+			}
+		}
+		puppet = CCM
+		CCM = {
+			load_focus_tree = generic_focus
+		}
+	}
+
+	option = { #give to SPR
+		name = annex.319.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = SPR
+			}
+			NOT = {
+				tag = SPN
+			}
+			SPR = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = CCM
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SPR = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #give to SPN
+		name = annex.319.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = SPR
+			}
+			NOT = {
+				tag = SPN
+			}
+			SPN = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = CCM
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SPN = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #give to MOR
+		name = annex.319.o3
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = SPR
+			}
+			NOT = {
+				tag = SPN
+			}
+			MOR = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = CCM
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			MOR = {
+				transfer_state = PREV
+				add_state_core = PREV
+			}
+		}
+	}
+
+	option = { #annex
+		name = annex.319.o4
+		ai_chance = {
+			base = 0
+		}
+
+		set_country_flag = CCM_annex
+	}
+}
+country_event = { #Equatorial Guinea
+	id = annex.320
+	title = annex.320.t
+	desc = annex.320.d
+
+	is_triggered_only = yes
+
+	option = { #puppet
+		name = annex.320.o1
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+			OR = {
+				AND = {
+					NOT = {
+						tag = SPR
+					}
+					NOT = {
+						tag = SPN
+					}
+				}
+				AND = {
+					OR = {
+						tag = SPR
+						tag = SPN
+					}
+					NOT = {
+						has_completed_focus = SPR_a_confederate_spain
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = EQG
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			EQG = {
+				transfer_state = PREV
+			}
+		}
+		puppet = EQG
+		EQG = {
+			load_focus_tree = generic_focus
+		}
+	}
+
+	option = { #give to SPR
+		name = annex.320.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = SPR
+			}
+			NOT = {
+				tag = SPN
+			}
+			SPR = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = EQG
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SPR = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #give to SPN
+		name = annex.320.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = SPR
+			}
+			NOT = {
+				tag = SPN
+			}
+			SPN = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = EQG
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SPN = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #annex
+		name = annex.320.o3
+		ai_chance = {
+			base = 0
+		}
+
+		set_country_flag = EQG_annex
+	}
+}
+country_event = { #Canary Islands
+	id = annex.321
+	title = annex.321.t
+	desc = annex.321.d
+
+	is_triggered_only = yes
+
+	option = { #puppet
+		name = annex.321.o1
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+			OR = {
+				AND = {
+					NOT = {
+						tag = SPR
+					}
+					NOT = {
+						tag = SPN
+					}
+				}
+				AND = {
+					OR = {
+						tag = SPR
+						tag = SPN
+					}
+					NOT = {
+						has_completed_focus = SPR_a_confederate_spain
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = CAI
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			CAI = {
+				transfer_state = PREV
+			}
+		}
+		puppet = CAI
+		CAI = {
+			load_focus_tree = generic_focus
+		}
+	}
+
+	option = { #give to SPR
+		name = annex.321.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = SPR
+			}
+			NOT = {
+				tag = SPN
+			}
+			SPR = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = CAI
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SPR = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #give to SPN
+		name = annex.321.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = SPR
+			}
+			NOT = {
+				tag = SPN
+			}
+			SPN = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+			NOT = {
+				AND = {
+					tag = CAT
+					has_country_leader_ideology = revolutionary_nazi
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = CAI
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SPN = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #annex
+		name = annex.321.o3
+		ai_chance = {
+			base = 0
+		}
+
+		set_country_flag = CAI_annex
+	}
+}
+
+country_event = { #Andorra
+	id = annex.322
+	title = annex.322.t
+	desc = annex.322.d
+
+	is_triggered_only = yes
+
+	option = { #puppet
+		name = annex.322.o1
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			OR = {
+				AND = {
+					NOT = {
+						tag = SPR
+					}
+					NOT = {
+						tag = SPN
+					}
+				}
+				AND = {
+					OR = {
+						tag = SPR
+						tag = SPN
+					}
+					NOT = {
+						has_completed_focus = SPR_a_confederate_spain
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = ANA
+				is_owned_by = ROOT
+			}
+			ANA = {
+				transfer_state = PREV
+			}
+		}
+		puppet = ANA
+	}
+
+	option = { #give to SPR
+		name = annex.322.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = SPR
+			}
+			NOT = {
+				tag = SPN
+			}
+			SPR = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = ANA
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SPR = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #give to SPN
+		name = annex.322.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = SPR
+			}
+			NOT = {
+				tag = SPN
+			}
+			SPN = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = ANA
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SPN = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #give to CAT
+		name = annex.322.o3
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = CAT
+			}
+			CAT = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = ANA
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			CAT = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #give to FRA
+		name = annex.322.o4
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = FRA
+			}
+			FRA = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = ANA
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			FRA = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #annex
+		name = annex.322.o5
+		ai_chance = {
+			base = 0
+		}
+		trigger = {
+			NOT = {
+				tag = FRA
+			}
+		}
+
+		set_country_flag = ANA_annex
+	}
+}
+
+country_event = { #Somaliland
+	id = annex.323
+	title = annex.323.t
+	desc = annex.323.d
+
+	is_triggered_only = yes
+
+	option = { #puppet
+		name = annex.323.o1
+		ai_chance = {
+			base = 100
+		}
+		every_state = {
+			limit = {
+				is_core_of = SML
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SML = {
+				transfer_state = PREV
+			}
+		}
+		puppet = SML
+	}
+
+	option = { #give to Somalia
+		name = annex.323.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = SOM
+			}
+			SOM = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = SML
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			SOM = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #annex
+		name = annex.323.o3
+		ai_chance = {
+			base = 0
+		}
+
+		set_country_flag = SML_annex
+	}
+}
+
+country_event = { #St Kitts & Nevis
+	id = annex.324
+	title = annex.324.t
+	desc = annex.324.d
+
+	is_triggered_only = yes
+
+	option = { #puppet
+		name = annex.324.o1
+		ai_chance = {
+			base = 100
+		}
+		every_state = {
+			limit = {
+				is_core_of = STK
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			STK = {
+				transfer_state = PREV
+			}
+		}
+		puppet = STK
+	}
+
+	option = { #annex
+		name = annex.324.o2
+		ai_chance = {
+			base = 0
+		}
+
+		set_country_flag = STK_annex
+	}
+}
+
+country_event = { #Wallonia
+	id = annex.325
+	title = annex.325.t
+	desc = annex.325.d
+
+	is_triggered_only = yes
+
+	option = { #puppet
+		name = annex.325.o1
+		ai_chance = {
+			base = 100
+		}
+		every_state = {
+			limit = {
+				is_core_of = WLN
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			WLN = {
+				transfer_state = PREV
+			}
+		}
+		puppet = WLN
+	}
+
+	option = { #give to BEL
+		name = annex.325.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = BEL
+			}
+			BEL = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = WLN
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			BEL = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #give to FRA
+		name = annex.325.o3
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = FRA
+			}
+			FRA = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = WLN
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			add_claim_by = FRA
+			FRA = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #annex
+		name = annex.325.o4
+		ai_chance = {
+			base = 0
+		}
+
+		set_country_flag = WLN_annex
+	}
+}
+
+country_event = { #Flanders
+	id = annex.326
+	title = annex.326.t
+	desc = annex.326.d
+
+	is_triggered_only = yes
+
+	option = { #puppet
+		name = annex.326.o1
+		ai_chance = {
+			base = 100
+		}
+		every_state = {
+			limit = {
+				is_core_of = FLN
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			FLN = {
+				transfer_state = PREV
+			}
+		}
+		puppet = FLN
+	}
+
+	option = { #give to BEL
+		name = annex.326.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = BEL
+			}
+			BEL = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = FLN
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			BEL = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #give to HOL
+		name = annex.326.o3
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = HOL
+			}
+			HOL = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = FLN
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			add_claim_by = HOL
+			HOL = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #annex
+		name = annex.326.o4
+		ai_chance = {
+			base = 0
+		}
+
+		set_country_flag = FLN_annex
+	}
+}
+
+country_event = { #Bermuda
+	id = annex.327
+	title = annex.327.t
+	desc = annex.327.d
+
+	is_triggered_only = yes
+
+	option = { #puppet
+		name = annex.327.o1
+		ai_chance = {
+			base = 100
+		}
+		every_state = {
+			limit = {
+				is_core_of = BRM
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			BRM = {
+				transfer_state = PREV
+			}
+		}
+		puppet = BRM
+	}
+
+	option = { #give to ENG
+		name = annex.327.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = ENG
+			}
+			ENG = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = BRM
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			ENG = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #annex
+		name = annex.327.o3
+		ai_chance = {
+			base = 0
+		}
+
+		set_country_flag = BRM_annex
+	}
+}
+
+country_event = { #Guadeloupe
+	id = annex.328
+	title = annex.328.t
+	desc = annex.328.d
+
+	is_triggered_only = yes
+
+	option = { #puppet
+		name = annex.328.o1
+		ai_chance = {
+			base = 100
+		}
+		every_state = {
+			limit = {
+				is_core_of = GDL
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			GDL = {
+				transfer_state = PREV
+			}
+		}
+		puppet = GDL
+	}
+
+	option = { #give to FRA
+		name = annex.328.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = FRA
+			}
+			FRA = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = GDL
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			FRA = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #annex
+		name = annex.328.o3
+		ai_chance = {
+			base = 0
+		}
+
+		set_country_flag = GDL_annex
+	}
+}
+
+country_event = { #Martinique
+	id = annex.329
+	title = annex.329.t
+	desc = annex.329.d
+
+	is_triggered_only = yes
+
+	option = { #puppet
+		name = annex.329.o1
+		ai_chance = {
+			base = 100
+		}
+		every_state = {
+			limit = {
+				is_core_of = MTQ
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			MTQ = {
+				transfer_state = PREV
+			}
+		}
+		puppet = MTQ
+	}
+
+	option = { #give to FRA
+		name = annex.329.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = FRA
+			}
+			FRA = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = MTQ
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			FRA = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #annex
+		name = annex.329.o3
+		ai_chance = {
+			base = 0
+		}
+
+		set_country_flag = MTQ_annex
+	}
+}
+
+country_event = { #Réunion
+	id = annex.330
+	title = annex.330.t
+	desc = annex.330.d
+
+	is_triggered_only = yes
+
+	option = { #puppet
+		name = annex.330.o1
+		ai_chance = {
+			base = 100
+		}
+		every_state = {
+			limit = {
+				is_core_of = REU
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			REU = {
+				transfer_state = PREV
+			}
+		}
+		puppet = REU
+	}
+
+	option = { #give to FRA
+		name = annex.330.o2
+		ai_chance = {
+			base = 100
+		}
+		trigger = {
+			NOT = {
+				tag = FRA
+			}
+			FRA = {
+				OR = {
+					is_puppet_of = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = REU
+				is_owned_by = ROOT
+				NOT = {
+					is_core_of = ROOT
+					is_claimed_by = ROOT
+				}
+			}
+			FRA = {
+				transfer_state = PREV
+			}
+		}
+	}
+
+	option = { #annex
+		name = annex.329.o3
+		ai_chance = {
+			base = 0
+		}
+
+		set_country_flag = REU_annex
 	}
 }

@@ -1,0 +1,210 @@
+add_namespace = scotland
+
+country_event = { #The Constitutional State of Scotland
+	id = scotland.1
+	title = scotland.1.t
+	desc = scotland.1.d
+	picture = scotland_monarchy_or_republic
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #We will become a republic, free of crowned heads
+		name = scotland.1.o1
+		hidden_effect = {
+			country_event = { days = 26 id = scotland.2 } 
+		}
+		ai_chance = {
+			base = 55
+			modifier = {
+				ENG = {
+					has_completed_focus = ENG_republic_referendum
+				}
+				factor = 35
+			}
+		}
+	}
+	
+	option = { #We still respect the House of Windsor
+		name = scotland.1.o2
+		add_ideas = idea_queen_elizabeth_humiliated
+		set_cosmetic_tag = scotland_kingdom_cosmetic_tag
+		ai_chance = {
+			base = 45
+		}
+		hidden_effect = {
+			country_event = { days = 26 id = scotland.2 } 
+		}
+	}
+}
+
+country_event = { #First Independent Scottish Elections
+	id = scotland.2
+	title = scotland.2.t
+	desc = scotland.2.d
+	picture = scotland_elections_event_photo
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #The Independent Alliance
+		name = scotland.2.o1
+		set_politics = {
+	        ruling_party = nationalist
+	        elections_allowed = no
+        }
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.2
+		}
+		set_temp_variable = { coalition_partner_var = token:national_conservative }
+		add_to_coalition = yes
+	}
+	
+	option = { #The Scottish Progressives
+		name = scotland.2.o2
+		set_politics = {
+	        ruling_party = national_conservative
+	        elections_allowed = no
+        }
+		add_popularity = {
+			ideology = national_conservative
+			popularity = 0.2
+		}
+	}
+	
+	option = { #The Liberal Conservatives
+		name = scotland.2.o3
+		set_politics = {
+	        ruling_party = centrist
+	        elections_allowed = no
+        }
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.2
+		}
+		set_temp_variable = { coalition_partner_var = token:liberal }
+		add_to_coalition = yes
+	}
+	
+	option = { #The Liberal Democratic Alliance
+		name = scotland.2.o4
+		set_politics = {
+	        ruling_party = liberal
+	        elections_allowed = no
+        }
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.2
+		}
+	}
+	
+	option = { #The SNP
+		name = scotland.2.o5
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = 0.2
+		}
+		hidden_effect = {
+			country_event = { days = 534 id = scotland.3 } 
+		}
+	}
+	
+	option = { #Scottish Labour
+		name = scotland.2.o6
+		set_politics = {
+	        ruling_party = revolutionary_socialist
+	        elections_allowed = no
+        }
+		add_popularity = {
+			ideology = revolutionary_socialist
+			popularity = 0.2
+		}
+	}
+}
+
+country_event = { #Scottish National Party Moderates Revolt Against Alex Salmond
+	id = scotland.3
+	title = scotland.3.t
+	desc = scotland.3.d
+	picture = scotland_moderate_revolt
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #The Moderates manage to unseat Salmond
+		name = scotland.3.o1
+		set_politics = {
+	        ruling_party = new_democrat
+	        elections_allowed = no
+        }
+		add_popularity = {
+			ideology = new_democrat
+			popularity = 0.2
+		}
+		add_popularity = {
+			ideology = moderate_socialist
+			popularity = -0.2
+		}
+		set_temp_variable = { coalition_partner_var = token:moderate_socialist }
+		add_to_coalition = yes
+	}
+	
+	option = { #Alex Salmond Manages to Hold on
+		name = scotland.3.o2
+		add_popularity = {
+			ideology = new_democrat
+			popularity = -0.2
+		}
+	}
+}
+
+country_event = { #Determining Scotland's International Alignment
+	id = scotland.4
+	title = scotland.4.t
+	desc = scotland.4.d
+	picture = scotland_goes_international
+	
+	fire_only_once = yes
+	trigger = {
+		tag = SCO
+		has_country_flag = scotland_given_independence_indyref_flag
+		ENG = {
+			has_completed_focus = ENG_strengthen_the_protection_union
+		}
+	}
+	
+	option = { #We should seek to join the Protection Union
+		name = scotland.4.o1
+		hidden_effect = {
+			ENG = {
+				country_event = { days = 3 id = scotland.5 } 
+			}
+		}
+	}
+	
+	option = { #It is better to retain a diversity of options
+		name = scotland.4.o2
+		add_political_power = 50
+	}
+}
+
+country_event = { #Scotland Applies for Membership in the British Islands Protection Union
+	id = scotland.5
+	title = scotland.5.t
+	desc = scotland.5.d
+	picture = scotland_in_protection_union
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = { #Though we may now be neighbours, we can still be friends
+		name = scotland.5.o1
+		add_to_faction = SCO
+	}
+	
+	option = { #They leave us and yet ask for our protection?! Ridiculous!
+		name = scotland.5.o2
+		add_war_support = 0.03
+	}
+}

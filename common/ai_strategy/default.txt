@@ -133,41 +133,11 @@
 #	priority = 100 # ai will prefer state of the highest prio strategy
 # }
 
-default_unit_production = {
+default_air_and_naval_production = {
 	enable = {
 		always = yes
 	}
-	
-	ai_strategy = {
-		type = role_ratio
-		id = paratroopers
-		value = 0
-	}
 
-	ai_strategy = {
-		type = role_ratio
-		id = mountaineers
-		value = 5
-	}
-
-	ai_strategy = {
-		type = role_ratio
-		id = marines
-		value = 5
-	}
-
-	ai_strategy = {
-		type = role_ratio
-		id = armor
-		value = 45
-	}
-
-	ai_strategy = {
-		type = role_ratio
-		id = infantry
-		value = 45
-	}
-	
 	#Air unit factors
 	ai_strategy = {
 		type = unit_ratio
@@ -247,7 +217,7 @@ default_unit_production = {
 
 }
 
-default_role_ratios = {
+default_role_ratios_without_mtg = {
 	enable = {
 		not = {
 			has_dlc = "Man the Guns"
@@ -282,7 +252,7 @@ default_role_ratios = {
 
 }
 
-default_role_ratios = {
+default_role_ratios_with_mtg = {
 	enable = {
 		has_dlc = "Man the Guns"
 	}
@@ -493,10 +463,7 @@ default_garrison_production = {
 		ai_wants_divisions >  12 #Massively decreasing the amount of garrison and suppression the AI wants
 		is_major = yes
 	}
-	abort = {
-		ai_wants_divisions < 13 #Massively decreasing the amount of garrison and suppression the AI wants
-		is_major = no
-	}
+	abort_when_not_enabled = yes
 
 	ai_strategy = {
 		type = role_ratio
@@ -564,41 +531,7 @@ default_mobile_production = {
 	}
 }
 
-default_armored_production = {
-	enable = {
-		ai_wants_divisions > 49
-	}
-	abort = {
-		ai_wants_divisions < 50
-	}
-
-	ai_strategy = {
-		type = role_ratio
-		id = armor
-		value = 2
-	}
-
-	ai_strategy = {
-		type = role_ratio
-		id = infantry
-		value = 0
-	}
-}
-
-highered_armored_production = {
-	enable = {
-		num_of_military_factories > 69
-	}
-	abort = {
-		num_of_military_factories < 70
-	}
-
-	ai_strategy = {
-		type = role_ratio
-		id = armor
-		value = 5
-	}
-}
+# Generic armor demand is defined in production.txt.
 
 slightly_naval_focused_nation = {
 	enable = {
@@ -815,7 +748,7 @@ DEFAULT_template_design = {
 	ai_strategy = {
 		type = template_prio
 		id = heavy_armor
-		value = 40
+		value = 0
 	}
 
 	ai_strategy = {
@@ -1106,6 +1039,7 @@ minors_dont_spy = {
 	}
 }
 
+
 default_market_stockpile_management = {
 	enable = {
 		always = yes
@@ -1118,4 +1052,17 @@ default_market_stockpile_management = {
 		value = 200000  # this should make it impossible for the AI to sell nuclear missiles
 	}
 	
+}
+
+if_we_can_build_nuclear_missiles_we_want_nuclear_missiles = {
+	enable = {
+		is_special_project_completed = sp:sp_nuclear_warheads
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = equipment_production_min_factories_archetype
+		id = nuclear_missile_equipment
+		value = 2
+	}
 }

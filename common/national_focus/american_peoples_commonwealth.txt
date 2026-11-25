@@ -1400,14 +1400,9 @@ focus_tree = {
 		y = 3
 		completion_reward = {
 		    air_experience = 10
-			add_doctrine_cost_reduction = {
+			add_tech_bonus = {
 				name = air_doctrine_bonus
-				cost_reduction = 0.5
-				uses = 1
-			}
-			add_doctrine_cost_reduction = {
-				name = land_doctrine_bonus
-				cost_reduction = 0.5
+				bonus = 1
 				uses = 1
 				category = air_doctrine 
 			}
@@ -1811,10 +1806,12 @@ focus_tree = {
 		    every_country = {
 			    limit = {
 				    NOT = {
-						has_government = fascist
-						has_government = nationalist
-						has_government = monarchist
-						has_government = national_bolshevik
+					    OR = {
+						    has_government = fascist
+							has_government = nationalist
+							has_government = monarchist
+							has_government = national_bolshevik
+						}
 					}
 				}
 				add_opinion_modifier = {
@@ -2560,6 +2557,8 @@ focus_tree = {
 			    popularity = 0.1
 		    }
 			remove_ideas = idea_standing_firm_commonwealth
+			set_temp_variable = { coalition_partner_var = token:communist }
+			add_to_coalition = yes
 			add_manpower = 25000
 			country_event = { id = commonwealth.133 }
 		}
@@ -3225,11 +3224,13 @@ focus_tree = {
 		    }
 			if = {
 				limit = {
-					GRL = {
-						has_country_flag = GRL_socialist_apc_alignment
-					}
-					MOT = {
-						is_puppet_of = GRL
+					AND = {
+						GRL = {
+							has_country_flag = GRL_socialist_apc_alignment
+						}
+						MOT = {
+							is_puppet_of = GRL
+						}
 					}
 				}
 				annex_country = {
@@ -3245,11 +3246,13 @@ focus_tree = {
 			}
 			if = {
 				limit = {
-					GRL = {
-						has_country_flag = GRL_socialist_apc_alignment
-					}
-					MWA = {
-						is_puppet_of = GRL
+					AND = {
+						GRL = {
+							has_country_flag = GRL_socialist_apc_alignment
+						}
+						MWA = {
+							is_puppet_of = GRL
+						}
 					}
 				}
 				annex_country = {
@@ -3443,11 +3446,10 @@ focus_tree = {
 				limit = {
 					is_in_faction = no
 				}
-				create_faction_from_template = { 
-					template = faction_template_world_revolution 
-					name = american_international
-					icon = GFX_faction_generic_revsoc
-				}
+				create_faction_from_template = {
+				template = faction_template_urn
+				name = american_international
+				} 
 			}
 		}
 
@@ -4054,19 +4056,15 @@ focus_tree = {
 		x = 3
 		y = 9
 		completion_reward = {
-			create_faction_from_template = { 
-				template = faction_template_world_revolution 
-				name = union_of_revolutionary_nations
-				icon = GFX_faction_generic_revsoc
-			}
+		    create_faction_from_template = faction_template_urn
 			every_country = {
 			    limit = {
 					NOT = {
 						tag = NEA 
 					}
-					is_puppet = no
+					is_subject = no
 					has_war = no
-					OR = {
+					or = {
 						tag = ALA
 						tag = CAN
 						tag = ARI
@@ -4140,24 +4138,27 @@ focus_tree = {
 			}
 		    every_country = {
 			    limit = {
-					OR = {
-						tag = GRL 
-						tag = ILL 
-						tag = MWA
-						tag = MOT
-						tag = LIN 
-						tag = ARI
-						tag = UTA
-						tag = TEX
-					}
-					OR = {
-						has_government = nationalist
-						has_government = national_conservative
-						has_government = centrist
-						has_government = liberal
-						has_government = new_democrat
-						has_government = moderate_socialist
-						has_government = revolutionary_socialist
+				    AND = {
+						exists = yes
+					    OR = {
+						    tag = GRL 
+							tag = ILL 
+							tag = MWA
+							tag = MOT
+							tag = LIN 
+							tag = ARI
+							tag = UTA
+							tag = TEX
+						}
+						OR = {
+						    has_government = nationalist
+						    has_government = national_conservative
+							has_government = centrist
+							has_government = liberal
+							has_government = new_democrat
+							has_government = moderate_socialist
+							has_government = revolutionary_socialist
+						}
 					}
 				}
 				add_opinion_modifier = {
@@ -4167,24 +4168,27 @@ focus_tree = {
 			}
 			every_country = {
 			    limit = {
-					OR = {
-						tag = GRL 
-						tag = ILL 
-						tag = MWA
-						tag = MOT
-						tag = LIN 
-						tag = ARI
-						tag = UTA
-						tag = TEX
-					}
-					OR = {
-						has_government = nationalist
-						has_government = national_conservative
-						has_government = centrist
-						has_government = liberal
-						has_government = new_democrat
-						has_government = moderate_socialist
-						has_government = revolutionary_socialist
+				    AND = {
+						exists = yes
+					    OR = {
+						    tag = GRL 
+							tag = ILL 
+							tag = MWA
+							tag = MOT
+							tag = LIN 
+							tag = ARI
+							tag = UTA
+							tag = TEX
+						}
+						OR = {
+						    has_government = nationalist
+						    has_government = national_conservative
+							has_government = centrist
+							has_government = liberal
+							has_government = new_democrat
+							has_government = moderate_socialist
+							has_government = revolutionary_socialist
+						}
 					}
 				}
 				add_opinion_modifier = {
@@ -4195,6 +4199,7 @@ focus_tree = {
 			if = {
 			    limit = {
 				    GRL = {
+						exists = yes
 				        OR = {
 					        has_government = national_conservative
 						    has_government = centrist
@@ -4211,6 +4216,7 @@ focus_tree = {
 			if = {
 				limit = {
 					GRL = {
+						exists = yes
 						has_country_flag = GRL_socialist_apc_alignment
 					}
 				}
@@ -4221,6 +4227,7 @@ focus_tree = {
 			if = {
 			    limit = {
 				    ILL = {
+						exists = yes
 				        OR = {
 					        has_government = national_conservative
 						    has_government = centrist
@@ -4294,10 +4301,9 @@ focus_tree = {
 		x = 12
 		y = 11
 		completion_reward = {
-			create_faction_from_template = { 
-				template = faction_template_world_revolution 
+		    create_faction_from_template = {
+				template = faction_template_urn
 				name = american_socialist_pact
-				icon = GFX_faction_generic_revsoc
 			}
 			every_country = {
 			    limit = {
@@ -4355,9 +4361,7 @@ focus_tree = {
 						tag = HAW
 					}
 				}
-				ROOT = {
-					activate_targeted_decision = { target = PREV decision = NEA_invite_to_faction } 
-				}
+				country_event = { id = commonwealth.75 }
 			}
 		}
 

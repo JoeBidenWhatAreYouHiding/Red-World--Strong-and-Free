@@ -1,0 +1,189 @@
+###Credit to the Kaiserreich mod for the original concept and implementation of the coalition system
+### Party Popularity ###
+defined_text = {
+	name = GetPopIcon
+	text = {
+		trigger = {
+			has_variable = political_power_ideology
+		}
+		localization_key = "GFX_[?global.ideology_groups^political_power_ideology.GetTokenKey]_small"
+	}
+	text = {
+		localization_key = "GFX_[?current_party_ideology_group.GetTokenKey]_small"
+	}
+}
+
+defined_text = {
+	name = GetPopularityPercent
+	text = {
+		trigger = {
+			has_dynamic_modifier = { modifier = party_popularity_dynamic_modifier_ideology_mapped }
+			set_temp_variable = { temp = global.ideology_groups^political_power_ideology }
+		}
+		localization_key = party_popularity_value_mapped
+	}
+	text = {
+		localization_key = party_popularity_value_default
+	}
+}
+defined_text = {
+	name = GetPopularityPPGain
+	text = {
+		trigger = {
+			OR = {
+				has_dynamic_modifier = { modifier = party_popularity_dynamic_modifier_ideology_mapped }
+				has_dynamic_modifier = { modifier = party_popularity_dynamic_modifier }
+			}
+		}
+		localization_key = party_popularity_tooltip_long
+	}
+}
+defined_text = {
+	name = GetPopularityPPGainValue
+	text = {
+		trigger = {
+			has_dynamic_modifier = { modifier = party_popularity_dynamic_modifier_ideology_mapped }
+			set_temp_variable = { temp = global.ideology_groups^political_power_ideology }
+		}
+		localization_key = party_popularity_gain_value_mapped
+	}
+	text = {
+		trigger = {
+			NOT = { has_dynamic_modifier = { modifier = party_popularity_dynamic_modifier } }
+		}
+		localization_key = party_popularity_gain_value_disabled
+	}
+	text = {
+		localization_key = party_popularity_gain_value_default
+	}
+}
+defined_text = {
+	name = GetHasCoalition
+	text = {
+		trigger = { has_coalition = yes }
+		localization_key = party_pop_coalition
+	}
+}
+defined_text = {
+	name = GetCoalitionPartyPop
+	# Recursive Scripted Loc!
+	text = { #Coalition present
+		trigger = {
+			check_variable = { ideology_index_next < global.ideology_groups^num } #End loop if past final index
+			check_variable = { coalitions_array^ideology_index_next = 2 } #Checks for presence of coalition
+			set_temp_variable = { ideology_index_current = ideology_index_next }
+			add_to_temp_variable = { ideology_index_next = 1 }
+		}
+		localization_key = party_pop_coalition_ideology
+	}
+	text = { #Coalition not present or is ruling party, move to next ideology
+		trigger = {
+			check_variable = { ideology_index_next < global.ideology_groups^num } #End loop if past final index
+			set_temp_variable = { ideology_index_current = ideology_index_next }
+			add_to_temp_variable = { ideology_index_next = 1 }
+		}
+		localization_key = "[GetCoalitionPartyPop]"
+	}
+}
+defined_text = {
+	name = GetCoalitionStability
+	text = {
+		trigger = {
+			if = {
+				limit = { NOT = { check_variable = { coalition_stability_array^ideology_index_current = 0 } } }
+				set_temp_variable = { coalition_stab = coalition_stability_array^ideology_index_current }
+			}
+			else = {
+				set_temp_variable = { coalition_stab = coalition_stability?0.5 }
+			}
+		}
+		localization_key = party_pop_coalition_stability
+	}
+}
+defined_text = {
+	name = GetCoalitionPPGain
+	text = {
+		trigger = {
+			set_temp_variable = { coalition_partner = global.ideology_groups^ideology_index_current }
+			set_temp_variable = { coalition_pp = party_popularity@var:coalition_partner }
+			if = {
+				limit = { NOT = { check_variable = { coalition_stability_array^ideology_index_current = 0 } } }
+				multiply_temp_variable = { coalition_pp = coalition_stability_array^ideology_index_current }
+			}
+			else = {
+				multiply_temp_variable = { coalition_pp = coalition_stability?0.5 }
+			}
+		}
+		localization_key = party_pop_coalition_pp_gain
+	}
+}
+
+defined_text = {
+	name = GetCoalitionTooltipColour
+	text = {
+		trigger = {
+			check_variable = { coalition_partner_var = token:fascist }
+		}
+		localization_key = color_fascist
+	}
+	text = {
+		trigger = {
+			check_variable = { coalition_partner_var = token:nationalist }
+		}
+		localization_key = color_nationalist
+	}
+	text = {
+		trigger = {
+			check_variable = { coalition_partner_var = token:monarchist }
+		}
+		localization_key = color_monarchist
+	}
+	text = {
+		trigger = {
+			check_variable = { coalition_partner_var = token:national_bolshevik }
+		}
+		localization_key = color_national_bolshevik
+	}
+	text = {
+		trigger = {
+			check_variable = { coalition_partner_var = token:national_conservative }
+		}
+		localization_key = color_national_conservative
+	}
+	text = {
+		trigger = {
+			check_variable = { coalition_partner_var = token:centrist }
+		}
+		localization_key = color_centrist
+	}
+	text = {
+		trigger = {
+			check_variable = { coalition_partner_var = token:liberal }
+		}
+		localization_key = color_liberal
+	}
+	text = {
+		trigger = {
+			check_variable = { coalition_partner_var = token:new_democrat }
+		}
+		localization_key = color_new_democrat
+	}
+	text = {
+		trigger = {
+			check_variable = { coalition_partner_var = token:moderate_socialist }
+		}
+		localization_key = color_moderate_socialist
+	}
+	text = {
+		trigger = {
+			check_variable = { coalition_partner_var = token:revolutionary_socialist }
+		}
+		localization_key = color_revolutionary_socialist
+	}
+	text = {
+		trigger = {
+			check_variable = { coalition_partner_var = token:communist }
+		}
+		localization_key = color_communist
+	}
+}

@@ -13659,7 +13659,7 @@
 		}
 		
 		allow_branch = {
-			check_variable = { GER_ndpd_moderate > 2 }
+			check_variable = { GER_ndpd_moderate > 3 }
 			NOT = { has_country_flag = GER_hide_democratic_trees }
 		}
 		
@@ -13705,8 +13705,8 @@
 		}
 		
 		allow_branch = {
-			check_variable = { GER_ndpd_moderate < 2 }
-			check_variable = { GER_ndpd_radical < 2 }
+			check_variable = { GER_ndpd_moderate < 3 }
+			check_variable = { GER_ndpd_radical < 3 }
 			NOT = { has_country_flag = GER_hide_democratic_trees }
 		}
 		
@@ -13746,7 +13746,7 @@
 		}
 		
 		allow_branch = {
-			check_variable = { GER_ndpd_radical > 2}
+			check_variable = { GER_ndpd_radical > 3}
 			NOT = { has_country_flag = GER_hide_democratic_trees }
 		}
 		
@@ -25610,7 +25610,10 @@
 				random_owned_controlled_state = {
 					add_extra_state_shared_building_slots = 1
 				}
-				add_ideas = GER_german_influence
+				add_timed_idea = {
+					idea = GER_german_influence
+					days = 200
+				}
 			}
 		}
 	}
@@ -25633,7 +25636,7 @@
 		}
 
 		available = {
-			
+			is_in_faction_with = FRA
 		}
 
 		available_if_capitulated = yes
@@ -27764,6 +27767,17 @@
 		
 		prerequisite = {
 			focus = GER_mop_up_whats_left
+		}
+		
+		bypass = {
+			IRQ = {
+				NOT = {
+					has_country_leader = {
+						character = IRQ_saddam_hussein
+						ruling_only = yes
+					}
+				}
+			}
 		}
 		
 		relative_position_id = GER_secure_red_europe

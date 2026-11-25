@@ -2,10 +2,6 @@ focus_tree = {
 	id = Shibe
 	country = {
 		factor = 0
-		modifier = {
-			add = 20
-			tag = RUB
-		}
 	}
 	default = no
 	focus = {
@@ -182,7 +178,7 @@ focus_tree = {
 		x = 16
 		y = 3
 		completion_reward = {
-		
+		remove_ideas = idea_raj_naxalite_insurgency
 		add_popularity = {
 		ideology = communist
 		popularity = -0.1
@@ -271,11 +267,10 @@ focus_tree = {
 		y = 7
 		completion_reward = {
 		429 = {
-		add_extra_state_shared_building_slots = 10 
-		add_building_construction = { type = industrial_complex  level = 4 instant_build = yes }
+		add_building_construction = { type = industrial_complex  level = 2 instant_build = yes }
 		add_building_construction = { type = arms_factory  level = 2 instant_build = yes }
-		add_building_construction = { type = tungsten_factory  level = 2 instant_build = yes }
-		add_building_construction = { type = steel_factory  level = 2 instant_build = yes }
+		add_building_construction = { type = tungsten_factory  level = 1 instant_build = yes }
+		add_building_construction = { type = steel_factory  level = 1 instant_build = yes }
 		}
 		add_ideas = idea_raj_shibe_south_india_discrim
 		}
@@ -297,7 +292,7 @@ focus_tree = {
 		add_timed_idea = {
 		idea = idea_raj_shibe_limit_interstate_travel
 		days = 400
-						}
+			}
 						
 		}
 	}
@@ -509,6 +504,9 @@ focus_tree = {
 		prerequisite = {
 			focus = RUB_shibe_strip_muslims_of_citizenship
 		}
+		available = {
+		country_exists = PAK
+		}
 		x = 18
 		y = 4
 		completion_reward = {
@@ -560,6 +558,10 @@ focus_tree = {
 		cost = 7.2
 		prerequisite = {
 			focus = RUB_shibe_strip_muslims_of_citizenship
+		}
+		
+		available = {
+		country_exists = BNG
 		}
 		x = 22
 		y = 4
@@ -654,6 +656,25 @@ focus_tree = {
 		y = 2
 		completion_reward = {
 		add_ideas = idea_raj_shibe_corp_blackmail
+		remove_ideas = idea_raj_swadeshi
+		if = {
+		limit = {
+		has_idea = idea_raj_bjp_cut_back_state_involvement_perm
+		}
+		remove_ideas = idea_raj_bjp_cut_back_state_involvement_perm
+		}
+		if = {
+		limit = {
+		has_idea = idea_raj_bjp_reform_state_involvement
+		}
+		remove_ideas = idea_raj_bjp_reform_state_involvement
+		}
+		if = {
+		limit = {
+		has_idea = idea_raj_bjp_local_privatisation
+		}
+		remove_ideas = idea_raj_bjp_local_privatisation
+			}
 		}
 	}
 	focus = {
@@ -666,6 +687,18 @@ focus_tree = {
 		x = 25
 		y = 3
 		completion_reward = {
+		if = {
+		limit = {
+		has_idea = idea_raj_bjp_restrict_for_invest_perm
+		}
+		remove_ideas = idea_raj_bjp_restrict_for_invest_perm
+			}
+		if = {
+		limit = {
+		has_idea = idea_raj_bjp_cautious_for_invest
+		}
+		remove_ideas = idea_raj_bjp_cautious_for_invest
+			}
 		429 = {
 		add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
 		}
@@ -977,6 +1010,7 @@ focus_tree = {
 		y = 2
 		completion_reward = {
 		country_event = { hours = 1 id = rub.36 }
+		remove_ideas = idea_raj_rss_brazen_action
 		}
 	}
 	focus = {
@@ -1229,14 +1263,17 @@ focus_tree = {
 		x = 13
 		y = 7
 		completion_reward = {
-		country_event = { hours = 2 id = rub.9 }
-		add_stability = 0.035
-		set_capital = { state = 429 }
-		429 = {
-		add_extra_state_shared_building_slots = 2
+			country_event = { hours = 2 id = rub.9 }
+			add_stability = 0.035
+			set_capital = { state = 429 }
+			429 = {
+				add_extra_state_shared_building_slots = 2
+			}
+			add_victory_points = {
+				province = 1359
+				value = 5
+			}
 		}
-		}
-		
 	}
 	focus = {
 		id = RUB_shibe_demolish_south_indian_influence
@@ -1269,16 +1306,12 @@ focus_tree = {
 		y = 8
 		completion_reward = {
 		429 = {
-		 add_extra_state_shared_building_slots = 10
-		 add_building_construction = { type = industrial_complex  level = 7 instant_build = yes }
+		 add_building_construction = { type = industrial_complex  level = 4 instant_build = yes }
 		 add_building_construction = { type = arms_factory  level = 3 instant_build = yes }
 		}
 		423 = {
 		remove_building = { type = arms_factory level = 2 }
-		remove_building = { type = industrial_complex level = 2 }
-		}
-		424 = {
-		remove_building = { type = industrial_complex level = 2 }
+		remove_building = { type = industrial_complex level = 1 }
 		}
 		425 = {
 		remove_building = { type = industrial_complex level = 1 }
@@ -1353,7 +1386,7 @@ focus_tree = {
 		add_stability = 0.05
 		431 = {
 		add_extra_state_shared_building_slots = 8
-		add_building_construction = { type = nuclear_reactor level = 2 instant_build = yes }
+		add_building_construction = { type = industrial_complex level = 4 instant_build = yes }
 		}
 		}
 	}

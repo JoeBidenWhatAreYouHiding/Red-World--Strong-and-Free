@@ -717,52 +717,52 @@ faction_goal_industrial_domination = {
 
 ### Tech
 
-# faction_goal_the_atomic_race = {
-	# name = the_atomic_race_goal_name
-	# description = the_atomic_race_goal_desc
-	# group = FOCUS_FILTER_RESEARCH
-	# category = long_term
-	# available = {
-	# }
-	# visible = {
-		# FROM = {
-			# NOT = {
-				# is_special_project_completed = sp:sp_nuclear_bomb
-			# }
-		# }
-	# }
-	# completed = {
-		# is_special_project_completed = sp:sp_nuclear_bomb
-	# }
-	# complete_effect = {	
-		# add_faction_power_projection = 1000
-		# every_collection_element = {
-			# input = {
-				# input = game:scope
-				# operators =  { 
-					# faction_members 
-					# limit = {
-						# faction_influence_rank < 4
-					# }
-				# }
+faction_goal_the_atomic_race = {
+	name = the_atomic_race_goal_name
+	description = the_atomic_race_goal_desc
+	group = FOCUS_FILTER_RESEARCH
+	category = long_term
+	available = {
+	}
+	visible = {
+		FROM = {
+			NOT = {
+				is_special_project_completed = sp:sp_nuclear_bomb
+			}
+		}
+	}
+	completed = {
+		is_special_project_completed = sp:sp_nuclear_bomb
+	}
+	complete_effect = {	
+		add_faction_power_projection = 1000
+		every_collection_element = {
+			input = {
+				input = game:scope
+				operators =  { 
+					faction_members 
+					limit = {
+						faction_influence_rank < 4
+					}
+				}
 				
-				# name = INFLUENCE_TOP_THREE
-			# }
-			# add_faction_initiative = 1
-			# add_breakthrough_progress = {
-				# specialization = specialization_nuclear
-				# value = 0.25
-			# } 
-		# }
-	# }
-	# ai_will_do = {
-		# base = 0
-		# modifier = {
-			# add = 1
-			# is_major = yes
-		# }
-	# }
-# }
+				name = INFLUENCE_TOP_THREE
+			}
+			add_faction_initiative = 1
+			add_breakthrough_progress = {
+				specialization = specialization_nuclear
+				value = 0.25
+			} 
+		}
+	}
+	ai_will_do = {
+		base = 0
+		modifier = {
+			add = 1
+			is_major = yes
+		}
+	}
+}
 
 
 ### Ideology based
@@ -836,7 +836,9 @@ faction_goal_defeat_of_fascism = {
 				operators = {
 					faction_members
 					limit = {
-						has_government = fascist
+						OR = {
+							has_government = fascist
+						}
 					}
 				}
 				name = FACTION
@@ -938,7 +940,11 @@ faction_goal_defeat_of_anti_fascists = {
 		modifier = { 
 			add = 1 # If war with communists you probably hate them
 			any_enemy_country = {
-				has_socialist_government = yes
+				OR = {
+					has_government = communist
+					has_government = revolutionary_socialist
+					has_government = national_bolshevik
+				}
 			}
 		}
 	}
@@ -964,7 +970,14 @@ faction_goal_defeat_of_anti_communists = {
 					limit = {
 						OR = {
 							has_government = fascist
-							has_democratic_government = yes
+							OR = {
+								has_government = nationalist
+								has_government = national_conservative
+								has_government = centrist
+								has_government = liberal
+								has_government = new_democrat
+								has_government = moderate_socialist
+							}
 						}
 					}
 				}
